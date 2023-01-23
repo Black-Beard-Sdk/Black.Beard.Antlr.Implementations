@@ -84,8 +84,8 @@ namespace Bb.Parsers
         public Result Visit<Result>(IParseTreeVisitor<Result> visitor)
         {
 
-            if (visitor is IFile f)
-                f.Filename = File;
+            if (visitor is Initializing f)
+                f.Initialize(this._parser, new Diagnostics(), File);
 
             if (System.Diagnostics.Debugger.IsAttached)
                 System.Diagnostics.Trace.WriteLine(File);

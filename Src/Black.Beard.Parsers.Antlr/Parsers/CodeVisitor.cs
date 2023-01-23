@@ -123,7 +123,7 @@ namespace Bb.Parsers
         {
             _stack.Push(a);
             a.Name.Accept(this);
-            a.Code.Name = a.Name.Text;
+            //a.Code.Name = a.Name.Text;
             _stack.Pop();
 
         }
@@ -297,7 +297,7 @@ namespace Bb.Parsers
 
         public void VisitTerminalText(AstTerminalText a)
         {
-            a.Code.Name = a.Text;
+            //a.Code.Name = a.Text;
         }
 
         [System.Diagnostics.DebuggerStepThrough]

@@ -1,6 +1,5 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
-using Bb.Asts.Codes;
 using Bb.Parsers;
 using System;
 using System.Collections.Generic;
@@ -30,7 +29,6 @@ namespace Bb.Asts
         public AstBase(Position position)
         {
             this.Position = position;
-            this.Codes = new List<Generator>();
         }
 
 
@@ -40,8 +38,6 @@ namespace Bb.Asts
         public Position Position { get; }
 
         public AstBase Parent { get; set; }
-
-        public List<Generator> Codes { get; }
 
         public abstract void Accept(IAstBaseVisitor visitor);
 
