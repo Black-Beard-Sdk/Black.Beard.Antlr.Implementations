@@ -24,7 +24,7 @@ namespace Bb.Asts
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)
         {
-            visitor.VisitElmentOption(this);
+            visitor.VisitElementOption(this);
         }
 
     }

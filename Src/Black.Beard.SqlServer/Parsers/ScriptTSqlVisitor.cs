@@ -11,18 +11,18 @@ using Bb.Asts;
 namespace Bb.Parsers
 {
 
-    public partial class ScriptAntlrVisitor : TSqlParserBaseVisitor<AstBase>
+    public partial class ScriptTSqlVisitor : TSqlParserBaseVisitor<AstBase>, Initializing
     {
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="culture"></param>
-        public ScriptAntlrVisitor(TSqlParser parser, Diagnostics diagnostics, string path)
+        public void Initialize(Antlr4.Runtime.Parser parser, Diagnostics diagnostics, string path)
         {
             _parser = parser;
             _diagnostics = diagnostics;
-            _scriptPath = path;
+            Filename = path;
 
             if (!string.IsNullOrEmpty(path))
                 _scriptPathDirectory = new FileInfo(path).Directory.FullName;
@@ -30,7 +30,6 @@ namespace Bb.Parsers
                 _scriptPathDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         }
-
 
         public void EvaluateErrors(IParseTree item)
         {
@@ -75,13 +74,11 @@ namespace Bb.Parsers
 
         public IEnumerable<ErrorModel> Errors { get => _diagnostics; }
 
-        public string Filename { get; set; }
+        public string Filename { get; private set; }
 
         public uint Crc { get; set; }
         public CultureInfo Culture { get => _currentCulture; }
-
-        
-
+                
         void AddError(TokenLocation start, string txt, string message, string path = null)
         {
             _diagnostics
@@ -154,14 +151,10 @@ namespace Bb.Parsers
             System.Diagnostics.Debugger.Break();
         }
 
-        private StringBuilder _initialSource;
-        private readonly TSqlParser _parser;
+        private Antlr4.Runtime.Parser _parser;
         private Diagnostics _diagnostics;
-        private readonly string _scriptPath;
-        private readonly string _scriptPathDirectory;
         private CultureInfo _currentCulture;
-
-
+        private string _scriptPathDirectory;
     }
 
 }

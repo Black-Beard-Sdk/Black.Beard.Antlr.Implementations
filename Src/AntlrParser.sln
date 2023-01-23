@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers.SqlServ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Antlr", "Antlr", "{DA904F8A-FE72-4EA9-8EE9-E869028B0A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Beard.Parsers", "Black.Beard.Parsers\Black.Beard.Parsers.csproj", "{D25C9409-451D-4803-93F9-3C7AA2624038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers", "Black.Beard.Parsers\Black.Beard.Parsers.csproj", "{D25C9409-451D-4803-93F9-3C7AA2624038}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers.SqlServer.UnitTests", "Black.Beard.Parsers.SqlServer.UnitTests\Black.Beard.Parsers.SqlServer.UnitTests.csproj", "{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{912C9F50-49E3-47C8-AEDE-569B57147BBC} = {DA904F8A-FE72-4EA9-8EE9-E869028B0A0F}
 		{5FFD18B0-B3FC-4C7F-A8EE-A3EB3677F810} = {DA904F8A-FE72-4EA9-8EE9-E869028B0A0F}
+		{D25C9409-451D-4803-93F9-3C7AA2624038} = {DA904F8A-FE72-4EA9-8EE9-E869028B0A0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1408861-EF6C-49A9-9470-E35D15C1D657}

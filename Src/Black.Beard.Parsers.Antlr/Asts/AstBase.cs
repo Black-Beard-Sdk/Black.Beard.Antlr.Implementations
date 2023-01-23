@@ -30,16 +30,18 @@ namespace Bb.Asts
         public AstBase(Position position)
         {
             this.Position = position;
-            this.Code = new Generator(this);
+            this.Codes = new List<Generator>();
         }
 
+
+        public string Type => GetType().Name;
 
 
         public Position Position { get; }
 
         public AstBase Parent { get; set; }
 
-        public Generator Code { get; }
+        public List<Generator> Codes { get; }
 
         public abstract void Accept(IAstBaseVisitor visitor);
 

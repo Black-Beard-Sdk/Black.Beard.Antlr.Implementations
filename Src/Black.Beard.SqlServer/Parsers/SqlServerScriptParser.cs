@@ -13,10 +13,10 @@ using System.Text;
 namespace Bb.Parsers
 {
 
-    public class ScriptParser
+    public class SqlServerScriptParser
     {
 
-        private ScriptParser(TextWriter output, TextWriter outputError)
+        private SqlServerScriptParser(TextWriter output, TextWriter outputError)
         {
 
             Output = output ?? Console.Out;
@@ -24,11 +24,11 @@ namespace Bb.Parsers
             _includes = new HashSet<string>();
         }
 
-        public static ScriptParser ParseString(StringBuilder source, string sourceFile = "", TextWriter output = null, TextWriter outputError = null)
+        public static SqlServerScriptParser ParseString(StringBuilder source, string sourceFile = "", TextWriter output = null, TextWriter outputError = null)
         {
             ICharStream stream = CharStreams.fromString(source.ToString());
 
-            var parser = new ScriptParser(output, outputError)
+            var parser = new SqlServerScriptParser(output, outputError)
             {
                 File = sourceFile ?? string.Empty,
                 Content = source,
@@ -46,13 +46,13 @@ namespace Bb.Parsers
         /// <param name="output"></param>
         /// <param name="outputError"></param>
         /// <returns></returns>
-        public static ScriptParser ParsePath(string source, TextWriter output = null, TextWriter outputError = null)
+        public static SqlServerScriptParser ParsePath(string source, TextWriter output = null, TextWriter outputError = null)
         {
 
             var payload = source.LoadFromFile();
             ICharStream stream = CharStreams.fromString(payload.ToString());
 
-            var parser = new ScriptParser(output, outputError)
+            var parser = new SqlServerScriptParser(output, outputError)
             {
                 File = source,
                 Content = new StringBuilder(payload),
@@ -84,9 +84,9 @@ namespace Bb.Parsers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Result Visit<Result>(IParseTreeVisitor<Result> visitor)
         {
-
-            if (visitor is IFile f)
-                f.Filename = File;
+                     
+            if (visitor is Initializing g)
+                g.Initialize(this.Parser, new Diagnostics(), File);
 
             if (System.Diagnostics.Debugger.IsAttached)
                 System.Diagnostics.Trace.WriteLine(File);

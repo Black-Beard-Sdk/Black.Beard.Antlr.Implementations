@@ -12,4 +12,8 @@
     <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Codes\" />
+  </ItemGroup>
+
 </Project>

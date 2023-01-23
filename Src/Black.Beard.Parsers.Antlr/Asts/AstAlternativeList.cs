@@ -2,17 +2,16 @@
 
 namespace Bb.Asts
 {
-
-    public class AstIdentifierList : AstListBase<AstIdentifier>
+    public class AstAlternativeList : AstListBase<AstAlternative>
     {
 
-        public AstIdentifierList(ParserRuleContext ctx)
+        public AstAlternativeList(ParserRuleContext ctx)
             : base(ctx)
         {
 
         }
 
-        public AstIdentifierList(ParserRuleContext ctx, int capacity)
+        public AstAlternativeList(ParserRuleContext ctx, int capacity)
             : base(ctx, capacity)
         {
 
@@ -22,7 +21,7 @@ namespace Bb.Asts
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)
         {
-            visitor.VisitIdentifierList(this);
+            visitor.VisitAstAlternativeList(this);
         }
 
     }

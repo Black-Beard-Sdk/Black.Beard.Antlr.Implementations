@@ -605,13 +605,7 @@ namespace Bb.Parsers
                 var alt = (AstAlternative)VisitAlternative(context.alternative());
 
                 if (context.POUND() != null)
-                {
-
-                    Pause();
-
                     return new AstLabeledAlt(context, alt, (AstIdentifier)VisitIdentifier(context.identifier()));
-
-                }
 
                 return new AstLabeledAlt(context, alt);
 
@@ -659,14 +653,13 @@ namespace Bb.Parsers
             if (context != null)
             {
 
-                var l = new List<AstBase>();
+                var l = new AstAlternativeList(context);
                 var list = context.alternative();
 
                 foreach (var item in list)
-                    l.Add((AstBase)VisitAlternative(item));
+                    l.Add((AstAlternative)VisitAlternative(item));
 
-                Pause();
-                return (AstBase)base.VisitAltList(context);
+                return l;
 
             }
 
@@ -806,11 +799,32 @@ namespace Bb.Parsers
 
         }
 
+        /// <summary>
+        /// : LPAREN (optionsSpec? ruleAction* COLON)? altList RPAREN
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override AstBase VisitBlock([NotNull] ANTLRv4Parser.BlockContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitBlock(context);
+            AstOptionList _a = null;
+            var a = context.optionsSpec();
+            if (a != null)
+                _a = (AstOptionList)VisitOptionsSpec(a);
+
+            AstRuleAction _b = null;
+            var b = context.ruleAction();
+            if (b != null && b.Length > 0)
+                foreach (var item in b)
+                    _b = (AstRuleAction)VisitRuleAction(item);
+
+            AstAlternativeList _c = null;
+            var c = context.altList();
+            if (c != null)
+                _c = (AstAlternativeList)VisitAltList(c);
+
+            return new AstBlock(context, _a, _b, _c);
+        
         }
 
         public override AstBase VisitBlockSet([NotNull] ANTLRv4Parser.BlockSetContext context)
@@ -924,7 +938,6 @@ namespace Bb.Parsers
         {
             if (context != null)
             {
-                Pause();
                 AstBase value = null;
                 var atom = context.atom();
                 if (atom != null)

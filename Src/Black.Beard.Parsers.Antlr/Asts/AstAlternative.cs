@@ -3,7 +3,6 @@
 namespace Bb.Asts
 {
 
-
     public class AstAlternative : AstBase
     {
 

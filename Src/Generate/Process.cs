@@ -1,5 +1,6 @@
 ﻿using Bb;
 using Bb.Asts;
+using Bb.Generators;
 using Bb.Parsers;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Generate
     {
         private string _folder;
 
-        public Process(FileInfo antlrParser)
+        public Process(FileInfo antlrParser, Context ctx)
         {
 
             if (antlrParser.Exists)
@@ -39,12 +40,15 @@ namespace Generate
                 visitor3.Visit(ast);
 
 
-                var ctx = new Context() 
-                {
-                    Path = ""
-                }
-                ;
-                var visitor4 = new CodeGeneratorVisitor(ctx);
+                var visitor4 = new CodeGeneratorVisitor(ctx)
+                    .Add("model", c =>
+                    {
+                        c.Script = new ScriptAstOnNamespace()
+                        {
+                            NameOfClass = u => (u as AstRule).RuleName.Text
+                        };
+                    })
+                    ;
                 visitor4.Visit(ast);
 
 

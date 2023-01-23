@@ -88,7 +88,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitElmentOption(AstElementOption a)
+        public void VisitElementOption(AstElementOption a)
         {
             _stack.Push(a);
             a.Key?.Accept(this);
@@ -286,6 +286,15 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
+        public void VisitAstAlternativeList(AstAlternativeList a)
+        {
+            a.Parent = _stack.Peek();
+            _stack.Push(a);
+            foreach (var item in a)
+                item.Accept(this);
+            _stack.Pop();
+        }
+
         public void VisitTerminalText(AstTerminalText a)
         {
             a.Code.Name = a.Text;
@@ -297,6 +306,7 @@ namespace Bb.Parsers
         {
             System.Diagnostics.Debugger.Break();
         }
+
 
         private Stack<AstBase> _stack = new Stack<AstBase>();
 

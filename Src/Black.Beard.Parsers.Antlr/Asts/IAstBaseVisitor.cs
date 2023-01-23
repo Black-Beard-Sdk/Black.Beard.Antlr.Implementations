@@ -23,7 +23,7 @@
         void VisitAtom(AstAtom a);
         void VisitBlock(AstBlock a);
         void VisitElement(AstElement a);
-        void VisitElmentOption(AstElementOption a);
+        void VisitElementOption(AstElementOption a);
         void VisitExceptionGroup(AstExceptionGroup a);
         void VisitExceptionHandler(AstExceptionHandler a);
         void VisitFinallyClause(AstFinallyClause a);
@@ -43,6 +43,7 @@
         void VisitRuleRef(AstRuleRef a);
         void VisitTerminal(AstTerminal a);
         void VisitTerminalText(AstTerminalText a);
+        void VisitAstAlternativeList(AstAlternativeList a);
     }
 
 
