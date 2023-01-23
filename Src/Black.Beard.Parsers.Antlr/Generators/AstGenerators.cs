@@ -49,7 +49,6 @@ namespace Bb.Generators
 
                 var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");
 
-                // Create a TextWriter to a StreamWriter to the output file.
                 using (StreamWriter sw = new StreamWriter(filename, false))
                 {
                     IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");

@@ -1,4 +1,5 @@
 ﻿using Bb.Asts;
+using Bb.Parsers;
 
 namespace Bb.Generators
 {
@@ -8,10 +9,11 @@ namespace Bb.Generators
 
         public string Name { get; internal set; }
 
+
         public ScriptAstOnNamespace Script { get; set; }
 
 
-        public void Generate(AstBase ast)
+        public void Generate(Context ctx, AstBase ast)
         {
 
 

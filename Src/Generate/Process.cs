@@ -46,7 +46,10 @@ namespace Generate
                         c.Script = new ScriptAstOnNamespace()
                         {
                             NameOfClass = u => (u as AstRule).RuleName.Text
-                        };
+                        }
+                        .Using("System")
+                        .Using("Bb.Asts")
+                        ;
                     })
                     ;
                 visitor4.Visit(ast);
