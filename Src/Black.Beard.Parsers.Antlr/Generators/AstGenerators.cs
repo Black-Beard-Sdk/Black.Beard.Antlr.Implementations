@@ -41,9 +41,10 @@ namespace Bb.Generators
             {
 
                 var compileUnit = g.Script.GetCompileUnit(ctx);
+                var o = g.Script.Get(ctx, compileUnit);
 
                 foreach (var item in _asts)
-                    g.Generate(ctx, item);
+                    g.Generate(ctx, item, o);
 
                 CSharpCodeProvider provider = new CSharpCodeProvider();
 

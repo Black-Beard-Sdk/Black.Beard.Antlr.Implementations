@@ -41,16 +41,29 @@ namespace Generate
 
 
                 var visitor4 = new CodeGeneratorVisitor(ctx)
-                    .Add("model", c =>
+                    .Add("models", c =>
                     {
-                        c.Script = new ScriptAstOnNamespace()
+                        c.Script = new ScriptCreateModel()
                         {
                             NameOfClass = u => (u as AstRule).RuleName.Text
                         }
+                        .Inherit("AstBase")
                         .Using("System")
                         .Using("Bb.Asts")
                         ;
                     })
+                    //.Add("interfaceVisitor", c =>
+                    //{
+                    //    c.Script = new ScriptCreateInterface()
+                    //    {
+                    //        Name = "ITSqlVisitor",
+                    //        NameOfClass = u => (u as AstRule).RuleName.Text
+                    //    }
+                    //    .Implement("IAstBaseVisitor")
+                    //    .Using("System")
+                    //    .Using("Bb.Asts")
+                    //    ;
+                    //})
                     ;
                 visitor4.Visit(ast);
 

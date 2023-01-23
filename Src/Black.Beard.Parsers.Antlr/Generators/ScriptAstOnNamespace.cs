@@ -13,28 +13,29 @@ namespace Bb.Generators
 {
 
 
-    public class ScriptAstOnNamespace : ScriptAstBase<CodeNamespace>
+
+    public class ScriptCreateInterface : ScriptAstBase<CodeNamespace>
     {
 
-        public ScriptAstOnNamespace()
+        public ScriptCreateInterface()
         {
             Parents = new List<string>();
             Usings = new List<string>();
         }
 
-        public ScriptAstOnNamespace Using(string u)
+        public ScriptCreateInterface Using(string u)
         {
-            this.Using(u);
+            this.Usings.Add(u);
             return this;
         }
 
-        public override CodeNamespace Get(Context ctx, CodeCompileUnit compileUnit)
+        public override CodeObject Get(Context ctx, CodeCompileUnit compileUnit)
         {
 
             CodeNamespace @namespace = new CodeNamespace(ctx.Namespace);
             compileUnit.Namespaces.Add(@namespace);
 
-            foreach (string ns in Usings) 
+            foreach (string ns in Usings)
                 @namespace.Imports.Add(new CodeNamespaceImport(ns));
 
             return @namespace;
@@ -44,7 +45,88 @@ namespace Bb.Generators
         public override void GenerateTo(CodeNamespace o, Context ctx, AstBase model)
         {
 
-            CodeTypeDeclaration class1 = new CodeTypeDeclaration(NameOfClass(model))
+            CodeTypeDeclaration class1 = new CodeTypeDeclaration("ITSqlVisitor")
+            {
+                IsPartial = true,
+                IsInterface = true,
+            };
+
+            if (this.Parents != null)
+                foreach (var parent in this.Parents)
+                    class1.BaseTypes.Add(parent);
+
+            o.Types.Add(class1);
+
+            CodeConstructor constructor = new CodeConstructor()
+            {
+                Attributes = MemberAttributes.Public | MemberAttributes.Final
+            };                      
+
+            // Declaring a ToString method
+            CodeMemberMethod acceptMethod = new CodeMemberMethod()
+            {
+                Name = "Visit" + NameOfClass(model),
+                Attributes = MemberAttributes.Public,
+                ReturnType = new CodeTypeReference(typeof(AstBase)),
+            };
+
+            acceptMethod.Parameters.Add(new CodeParameterDeclarationExpression("Ast" + NameOfClass(model), "i"));
+
+            class1.Members.Add(acceptMethod);
+
+        }
+
+
+
+        public ScriptCreateInterface Implement(string interfaceName)
+        {
+            this.Parents.Add(interfaceName);
+            return this;
+        }
+
+        public Func<AstBase, string> NameOfClass { get; set; }
+
+        public List<string> Usings { get; }
+
+        public List<string> Parents { get; }
+        public string Name { get; set; }
+    }
+
+
+
+    public class ScriptCreateModel : ScriptAstBase<CodeNamespace>
+    {
+
+        public ScriptCreateModel()
+        {
+            Parents = new List<string>();
+            Usings = new List<string>();
+        }
+
+        public ScriptCreateModel Using(string u)
+        {
+            this.Usings.Add(u);
+            return this;
+        }
+
+        public override CodeObject Get(Context ctx, CodeCompileUnit compileUnit)
+        {
+
+            CodeNamespace @namespace = new CodeNamespace(ctx.Namespace);
+            compileUnit.Namespaces.Add(@namespace);
+
+            foreach (string ns in Usings)
+                @namespace.Imports.Add(new CodeNamespaceImport(ns));
+
+            return @namespace;
+
+        }
+
+        public override void GenerateTo(CodeNamespace o, Context ctx, AstBase model)
+        {
+
+            var n = NameOfClass(model);
+            CodeTypeDeclaration class1 = new CodeTypeDeclaration("Ast" + n)
             {
                 IsPartial = true,
             };
@@ -79,10 +161,22 @@ namespace Bb.Generators
 
             acceptMethod.Parameters.Add(new CodeParameterDeclarationExpression(typeof(IAstBaseVisitor), "visitor"));
 
-            // acceptMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("visitor"), "Visit" + this.Name, new CodeThisReferenceExpression()));
+            acceptMethod.Statements.Add(new CodeMethodInvokeExpression(new CodeVariableReferenceExpression("visitor"), "Visit" + n, new CodeThisReferenceExpression()));
 
             class1.Members.Add(acceptMethod);
 
+        }
+
+        public ScriptCreateModel Inherit(string parentName)
+        {
+            this.Parent = parentName;
+            return this;
+        }
+
+        public ScriptCreateModel Implement(string interfaceName)
+        {
+            this.Parents.Add(interfaceName);
+            return this;
         }
 
         public Func<AstBase, string> NameOfClass { get; set; }

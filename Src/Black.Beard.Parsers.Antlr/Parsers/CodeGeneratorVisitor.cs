@@ -318,12 +318,8 @@ namespace Bb.Parsers
 
         public void VisitRulesList(AstRulesList a)
         {
-
             foreach (var item in a)
-                item.Accept(this);
-
-            
-                
+                item.Accept(this);  
         }
 
         public void VisitTerminal(AstTerminal a)
