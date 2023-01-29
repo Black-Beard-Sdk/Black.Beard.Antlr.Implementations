@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Black.Beard.Parsers.SqlServer.UnitTests
 {
+
     [TestClass]
     public class UnitTest1
     {

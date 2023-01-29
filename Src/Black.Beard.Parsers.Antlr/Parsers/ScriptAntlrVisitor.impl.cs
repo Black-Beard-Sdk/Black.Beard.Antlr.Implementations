@@ -633,8 +633,7 @@ namespace Bb.Parsers
             var l1 = context.element();
             AstElementList list1 = new AstElementList(context, l1.Length);
             foreach (var item in l1)
-                list1.Add((AstElement)VisitElement(item));
-
+                list1.Add(VisitElement(item));
             return new AstAlternative(context, list1, opt);
 
         }
@@ -681,19 +680,33 @@ namespace Bb.Parsers
         public override AstBase VisitElement([NotNull] ANTLRv4Parser.ElementContext context)
         {
 
+            var ebnf = (AstEbnfSuffix)VisitEbnfSuffix(context.ebnfSuffix());
 
-            AstBase result = (AstBase)VisitLabeledElement(context.labeledElement());
 
-            if (result == null)
-                result = (AstBase)VisitAtom(context.atom());
+            var result = (AstLabeledElement)VisitLabeledElement(context.labeledElement());
+            if (result != null)
+            {
+                if (ebnf != null)
+                    result.Occurence = ebnf.Occurence;
+                return result;
+            }
 
-            else if (result == null)
-                result = (AstBase)VisitEbnf(context.ebnf());
+            var f = (AstAtom)VisitAtom(context.atom());
+            if (f != null)
+            {
+                if (ebnf != null)
+                    f.Occurence = ebnf.Occurence;
+                return f;
+            }
 
-            else if (result == null)
-                result = (AstBase)VisitActionBlock(context.actionBlock());
+            var g = (AstBlock)VisitEbnf(context.ebnf());
+            if (g != null)
+                return g;
 
-            return new AstElement(context, result);
+            var e = (AstArgActionBlock)VisitActionBlock(context.actionBlock());
+            e.Occurence = context.QUESTION() != null ? OccurenceEnum.OneOptional : OccurenceEnum.One;
+
+            return e;
 
         }
 
@@ -824,7 +837,7 @@ namespace Bb.Parsers
                 _c = (AstAlternativeList)VisitAltList(c);
 
             return new AstBlock(context, _a, _b, _c);
-        
+
         }
 
         public override AstBase VisitBlockSet([NotNull] ANTLRv4Parser.BlockSetContext context)
@@ -832,14 +845,7 @@ namespace Bb.Parsers
 
             Pause();
             return (AstBase)base.VisitBlockSet(context);
-        }
-
-        public override AstBase VisitBlockSuffix([NotNull] ANTLRv4Parser.BlockSuffixContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitBlockSuffix(context);
-        }
+        }        
 
         public override AstBase VisitChannelsSpec([NotNull] ANTLRv4Parser.ChannelsSpecContext context)
         {
@@ -869,18 +875,91 @@ namespace Bb.Parsers
             return (AstBase)base.VisitDelegateGrammars(context);
         }
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.ebnf" />.
+        /// block blockSuffix?
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitEbnf([NotNull] ANTLRv4Parser.EbnfContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitEbnf(context);
+            var block = (AstBlock)VisitBlock(context.block());
+
+            var e = VisitBlockSuffix(context.blockSuffix());
+            
+            if (e is AstEbnfSuffix bs)
+                block.Occurence = bs.Occurence;
+            return block;
         }
 
+        public override AstBase VisitBlockSuffix([NotNull] ANTLRv4Parser.BlockSuffixContext context)
+        {
+
+            if (context != null)
+                return base.VisitBlockSuffix(context);
+
+            return null;
+
+        }
+
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.ebnfSuffix" />.
+        /// ebnfSuffix
+        ///     : QUESTION QUESTION?
+        ///     | STAR QUESTION?
+        ///     | PLUS QUESTION?
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitEbnfSuffix([NotNull] ANTLRv4Parser.EbnfSuffixContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitEbnfSuffix(context);
+            if (context != null)
+            {
+
+                var c = new AstEbnfSuffix(context);
+
+                var o = context.QUESTION().Length;
+
+                if (context.STAR() != null)
+                {
+                    if (o > 0)
+                        c.Occurence = OccurenceEnum.AnyOptional;
+                    else
+                        c.Occurence = OccurenceEnum.Any;
+                }
+                else if (context.PLUS() != null)
+                {
+                    if (o > 0)
+                        c.Occurence = OccurenceEnum.OneOrMoreOptional;
+                    else
+                        c.Occurence = OccurenceEnum.OneOrMore;
+
+                }
+                else
+                {
+
+                    c.Occurence = OccurenceEnum.OneOptional;
+
+                }
+
+                return c;
+
+            }
+
+            return null;
+
         }
 
         /// <summary>

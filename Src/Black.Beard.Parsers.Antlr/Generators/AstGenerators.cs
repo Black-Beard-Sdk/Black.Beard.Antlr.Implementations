@@ -1,4 +1,5 @@
 ﻿using Bb.Asts;
+using Bb.Configurations;
 using Bb.Parsers;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
@@ -16,7 +17,7 @@ namespace Bb.Generators
         }
 
 
-        public void Add(AstRule a)
+        public void Add(AstBase a)
         {
             this._asts.Add(a);
         }
@@ -36,31 +37,32 @@ namespace Bb.Generators
 
         public void Generate(Context ctx)
         {
-            
-            foreach (AstGenerator g in this._generators) 
+
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+
+            foreach (AstGenerator g in this._generators)
             {
 
-                var compileUnit = g.Script.GetCompileUnit(ctx);
-                var o = g.Script.Get(ctx, compileUnit);
-
                 foreach (var item in _asts)
-                    g.Generate(ctx, item, o);
-
-                CSharpCodeProvider provider = new CSharpCodeProvider();
-
-                var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");
-
-                using (StreamWriter sw = new StreamWriter(filename, false))
-                {
-                    IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
-                    provider.GenerateCodeFromCompileUnit(compileUnit, tw,
-                        new CodeGeneratorOptions() { });
-                    tw.Close();
-                }
-
+                    g.Generate(ctx, item);
+                
+                WriteFile(ctx, provider, g);
 
             }
 
+        }
+
+        private static void WriteFile(Context ctx, CSharpCodeProvider provider, AstGenerator g)
+        {
+            var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");
+
+            using (StreamWriter sw = new StreamWriter(filename, false))
+            {
+                IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
+                provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw,
+                    new CodeGeneratorOptions() { });
+                tw.Close();
+            }
         }
 
         private readonly List<AstGenerator> _generators;

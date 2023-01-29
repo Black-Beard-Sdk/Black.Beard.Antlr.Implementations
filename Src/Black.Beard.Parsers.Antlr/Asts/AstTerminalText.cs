@@ -1,5 +1,6 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
+using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 
 namespace Bb.Asts
@@ -23,9 +24,28 @@ namespace Bb.Asts
             this.Text = text;
         }
 
+        public override void ToString(Writer wrt)
+        {
+            wrt.Append(this.Text.Trim());
+        }
+
         public string Type { get; }
 
         public string Text { get; }
+
+        public override bool ContainsOnlyRuleReferences  => false; 
+        public override bool ContainsOneRule => false;
+        public override bool ContainsOneTerminal => true;
+
+        public override AstTerminalText GetTerminal()
+        {
+            return this;
+        }
+
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            yield return this;
+        }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

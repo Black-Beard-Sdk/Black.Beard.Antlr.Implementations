@@ -2,6 +2,7 @@
 using Antlr4.Runtime.Tree;
 using Bb.Parsers;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,53 +12,80 @@ namespace Bb.Asts
 {
 
 
-    public abstract class AstBase
+    public abstract class AstBase : AstBase<IAstBaseVisitor>
     {
 
         public AstBase(ParserRuleContext ctx)
-            : this(new Position(ctx))
+            : base(ctx)
         {
 
         }
 
         public AstBase(ITerminalNode n)
-            : this(new Position(n.Symbol, n.Symbol))
+            : base(n)
         {
 
         }
 
         public AstBase(Position position)
+            : base(position)
         {
-            this.Position = position;
+
         }
 
+        public bool IsList { get; protected set; }
+
+        public virtual bool IsTerminal { get => this is AstTerminal || this is AstTerminalText; }
+
+        public virtual bool IsRuleReference { get => false; }
+
+        public virtual bool ContainsOnlyRuleReferences {  get => false; }
+
+        public virtual bool ContainsOneRule { get => false; }
+
+        public virtual bool ContainsOneTerminal => false;
+
+        public virtual bool ContainsOnlyTerminals => false;
 
         public string Type => GetType().Name;
 
-
-        public Position Position { get; }
-
-        public AstBase Parent { get; set; }
-
-        public abstract void Accept(IAstBaseVisitor visitor);
-
-        public T? Ancestor<T>()
-           where T : AstBase
+        public virtual AstTerminalText GetTerminal()
         {
+            return null;
+        }
 
-            T ancestor = default(T);
+        public virtual IEnumerable<AstTerminalText> GetTerminals()
+        {
+            yield break;
+        }
 
-            if (this.Parent == null)
-                return ancestor;
+        protected override SerializationStrategy StrategySerialization()
+        {
+            return new StrategyConfiguration().GetStrategy();
+        }
 
-            if (this.Parent is T model)
-                ancestor = model;
+        protected void WriteOccurence(Writer wrt, OccurenceEnum occurence)
+        {
+            switch (occurence)
+            {
+                case OccurenceEnum.One:
+                    break;
+                case OccurenceEnum.OneOptional:
+                    wrt.Append("?");
+                    break;
 
-            else
-                ancestor = this.Parent?.Ancestor<T>();
+                case OccurenceEnum.OneOrMore:
+                case OccurenceEnum.OneOrMoreOptional:
+                    wrt.Append("+");
+                    break;
 
-            return ancestor;
-
+                case OccurenceEnum.Any:
+                case OccurenceEnum.AnyOptional:
+                    wrt.Append("*");
+                    break;
+                default:
+                    break;
+            }
         }
 
     }

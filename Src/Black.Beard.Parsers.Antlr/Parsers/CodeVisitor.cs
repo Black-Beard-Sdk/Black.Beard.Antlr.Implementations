@@ -307,6 +307,10 @@ namespace Bb.Parsers
             System.Diagnostics.Debugger.Break();
         }
 
+        public void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        {
+            throw new NotImplementedException();
+        }
 
         private Stack<AstBase> _stack = new Stack<AstBase>();
 

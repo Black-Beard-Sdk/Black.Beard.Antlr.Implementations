@@ -345,6 +345,11 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
+        public void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        {
+            throw new NotImplementedException();
+        }
+
         private Stack<AstBase> _stack = new Stack<AstBase>();
 
 

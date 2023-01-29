@@ -1,9 +1,10 @@
 ﻿namespace Bb.Asts
 {
 
-    public interface IAstTSqlVisitor : IAstBaseVisitor
+    public partial interface IAstTSqlVisitor
     {
-    
+
+        void VisitTerminalText(AstTerminalText a);
 
 
     }

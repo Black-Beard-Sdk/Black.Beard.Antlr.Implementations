@@ -20,6 +20,7 @@ namespace Bb.Asts
 
         }
 
+
         public AstIdentifier Child { get; private set; }
 
         public void Add(AstIdentifier iDentifier)

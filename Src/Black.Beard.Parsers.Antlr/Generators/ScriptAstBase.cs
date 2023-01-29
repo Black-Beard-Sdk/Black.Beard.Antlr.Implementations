@@ -30,7 +30,6 @@ namespace Bb.Generators
 
         public ScriptAstBase()
         {
-
         }
 
         public abstract void GenerateTo(T o, Context ctx, AstBase model);
@@ -39,6 +38,10 @@ namespace Bb.Generators
         {
             GenerateTo((T)codeObject, ctx, model);
         }
+
+
+        public HashSet<string> Usings { get; }
+
 
     }
 

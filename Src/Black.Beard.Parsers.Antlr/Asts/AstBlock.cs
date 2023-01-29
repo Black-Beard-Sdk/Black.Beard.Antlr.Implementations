@@ -9,23 +9,71 @@ namespace Bb.Asts
         public AstBlock(ParserRuleContext ctx, AstOptionList? optionList, AstRuleAction? ruleAction, AstAlternativeList? alternativeList)
             : base(ctx)
         {
-            OpptionList = optionList;
+            Options = optionList;
             RuleAction = ruleAction;
             AlternativeList = alternativeList;
         }
 
-        public AstOptionList? OpptionList { get; }
+        public AstOptionList? Options { get; }
 
         public AstRuleAction? RuleAction { get; }
 
         public AstAlternativeList? AlternativeList { get; }
+        public OccurenceEnum Occurence { get; internal set; }
 
+        public override bool ContainsOnlyTerminals
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                {
+                    if (!item.ContainsOnlyTerminals)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public override bool ContainsOnlyRuleReferences
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyRuleReferences)
+                        return false;
+
+                return true;
+
+            }
+        }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)
         {
             visitor.VisitBlock(this);
+        }
+
+        public override void ToString(Writer writer)
+        {
+            if (Options != null) Options.ToString(writer);
+
+            if (RuleAction != null) RuleAction.ToString(writer);
+
+            if (AlternativeList != null)
+            {
+                AlternativeList.ToString(writer);
+                WriteOccurence(writer, Occurence);
+            }
+
         }
 
     }

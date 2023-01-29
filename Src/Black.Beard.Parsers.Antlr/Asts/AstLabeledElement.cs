@@ -27,6 +27,7 @@ namespace Bb.Asts
         public AstIdentifier Left { get; }
         public LabeledElementAssignEnum Assign { get; }
         public AstBase Right { get; }
+        public OccurenceEnum Occurence { get; internal set; }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

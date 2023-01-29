@@ -44,6 +44,7 @@
         void VisitTerminal(AstTerminal a);
         void VisitTerminalText(AstTerminalText a);
         void VisitAstAlternativeList(AstAlternativeList a);
+        void VisitAstEbnfSuffix(AstEbnfSuffix a);
     }
 
 

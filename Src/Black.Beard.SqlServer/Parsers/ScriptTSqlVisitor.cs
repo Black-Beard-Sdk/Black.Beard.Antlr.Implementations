@@ -11,7 +11,7 @@ using Bb.Asts;
 namespace Bb.Parsers
 {
 
-    public partial class ScriptTSqlVisitor : TSqlParserBaseVisitor<AstBase>, Initializing
+    public partial class ScriptTSqlVisitor : TSqlParserBaseVisitor<AstRoot>, Initializing
     {
 
         /// <summary>
@@ -61,14 +61,14 @@ namespace Bb.Parsers
 
         }
 
-        public override AstBase Visit(IParseTree tree)
+        public override AstRoot Visit(IParseTree tree)
         {
             EvaluateErrors(tree);
             //if (this._diagnostics.Count > 0)
             //    LocalDebug.Stop();
             var result = base.Visit(tree);
 
-            return (AstBase)result;
+            return (AstRoot)result;
 
         }
 

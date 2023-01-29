@@ -4,14 +4,13 @@ using Bb.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Bb.Asts
 {
 
 
-    public abstract class AstBase
+    public abstract class AstBase<TVisitor> : IStrategyResolver
     {
 
         public AstBase(ParserRuleContext ctx)
@@ -35,12 +34,12 @@ namespace Bb.Asts
 
         public Position Position { get; }
 
-        public AstBase Parent { get; set; }
+        public AstBase<TVisitor> Parent { get; set; }
 
-        public abstract void Accept(IAstBaseVisitor visitor);
+        public abstract void Accept(TVisitor visitor);
 
         public T? Ancestor<T>()
-           where T : AstBase
+           where T : AstBase<TVisitor>
         {
 
             T ancestor = default(T);
@@ -58,14 +57,41 @@ namespace Bb.Asts
 
         }
 
+
+        protected virtual SerializationStrategy StrategySerialization() => null;
+
+
+        public StrategySerializationItem GetFrom(object instance)
+        {
+
+            var str = StrategySerialization();            
+            if (str != null)
+                return str.GetStrategy(instance.GetType().Name);
+            
+            return null;
+
+        }
+        
+
+        public override string ToString()
+        {
+
+            var wrt = new Writer();
+            wrt.Strategy = StrategySerialization();
+
+            ToString(wrt);
+            return wrt.ToString();
+
+        }
+
+
+        public virtual void ToString(Writer writer)
+        {
+
+        }
+
     }
 
-    public enum GrammarType
-    {
-        None,
-        Lexer,
-        Parser
-    }
-
+  
 
 }

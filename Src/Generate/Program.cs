@@ -1,34 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Bb;
 using Bb.Parsers;
 using Generate;
 
 
 
-//var i =  Crc32.CalculateCrc32("FR125987652GT");
-//var u = i.ToString("X2");
+var file = new FileInfo("C:\\Src\\Black.Beard.Antlr.Implementations\\Src\\Black.Beard.SqlServer\\Parsers\\Grammar\\TSqlParser.g4");
 
-/*
- 
-\Src\Generate\bin\Debug\net6.0
-D:\src\Black.Beard.Antlr.Implementations\Src\Black.Beard.SqlServer\Parsers\Grammar\TSqlParser.g4
- 
- */
-
-
-var file = new FileInfo("D:\\src\\Black.Beard.Antlr.Implementations\\Src\\Black.Beard.SqlServer\\Parsers\\Grammar\\TSqlParser.g4");
+var configFile = Path.Combine(file.Directory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".antlr.json");
+var configFileIdentifiers = Path.Combine(file.Directory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".Identifiers.txt");
+var configFileEnum = Path.Combine(file.Directory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".terminalsToExcludesFromEnums.txt");
 
 var ctx = new Context()
 {
-    Path = "D:\\src\\Black.Beard.Antlr.Implementations\\Src\\Black.Beard.SqlServer\\Asts\\",
+    Path = "C:\\Src\\Black.Beard.Antlr.Implementations\\Src\\Black.Beard.SqlServer\\Asts\\",
     Namespace = "Bb.Asts",
-}
-           ;
+    Configuration = Bb.Configurations.ConfigurationList.LoadRules(configFile),
+    TerminalsToExcludes = Bb.Configurations.ConfigurationList.LoadTerminalsToExcludesFromEnums(configFileEnum),
+    Identifiers = Bb.Configurations.ConfigurationList.LoadIdentifiers(configFileIdentifiers),
+};
 
-var p = new Process(file, ctx);
+var p = new Process();
+p.Run(file, ctx);
 
-
+ctx.Configuration.Save();
 
 
 

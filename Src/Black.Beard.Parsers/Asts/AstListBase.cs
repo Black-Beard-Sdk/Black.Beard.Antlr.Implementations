@@ -5,8 +5,8 @@ namespace Bb.Asts
 {
 
 
-    public abstract class AstListBase<T> : AstBase, IEnumerable<T>
-        where T : AstBase
+    public abstract class AstListBase<T, TVisitor> : AstBase<TVisitor>, IEnumerable<T>
+        where T : AstBase<TVisitor>
     {
 
         public AstListBase(ParserRuleContext ctx, int capacity)

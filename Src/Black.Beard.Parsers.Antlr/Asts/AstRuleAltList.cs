@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using System.Text;
 
 namespace Bb.Asts
 {
@@ -9,7 +10,135 @@ namespace Bb.Asts
             : base(ctx, capacity)
         {
 
+            this._charSplit = " | ";
+
         }
+
+        public bool ContainsJustOneAlternative
+        {
+            get
+            {
+                return this.Count == 1;
+            }
+        }
+
+        public bool OutputContainsAlwayOneItem
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+
+                    if (item.Rule.Count != 1)
+                        return false;
+
+
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool OutputContainsAlwayOneRule
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+
+                    if (item.Rule.Count != 1)
+                        return false;
+
+                    if (!item.Rule.Rule[0].IsRuleReference)
+                        return false;
+
+                }
+
+                return true;
+
+            }
+        }
+
+        public bool OutputContainsAlwayOneTerminal
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+
+                    if (item.Rule.Count != 1)
+                        return false;
+
+                    if (!item.Rule.Rule[0].IsTerminal)
+                        return false;
+
+                }
+
+                return true;
+
+            }
+        }
+
+        public override bool ContainsOnlyRuleReferences
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+                    if (!item.ContainsOnlyRuleReferences)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public override bool ContainsOnlyTerminals
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+                    if (!item.ContainsOnlyTerminals)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+
+            foreach (AstLabeledAlt item in this)
+                foreach (var t in item.GetTerminals())
+                    yield return t;
+
+        }
+
+        public bool CanBeRemoved { get; internal set; }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

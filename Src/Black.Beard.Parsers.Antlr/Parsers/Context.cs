@@ -1,16 +1,33 @@
-﻿namespace Bb.Parsers
+﻿using Bb.Asts;
+using Bb.Configurations;
+
+namespace Bb.Parsers
 {
     public class Context
     {
 
         public Context()
         {
-
+            TerminalsToExcludes = new HashSet<string>();
+            Identifiers = new HashSet<string>();
         }
 
         public string Path { get; set; }
+
         public string Namespace { get; set; }
 
+        public ConfigurationList Configuration { get; set; }
+
+        public ConfigurationRule CurrentConfiguration { get; internal set; }
+    
+        public ConfigurationType CurrentConfigurationType { get; internal set; }
+        
+        public ConfigurationMethod CurrentConfigurationMethod { get; internal set; }
+        
+        public HashSet<string> TerminalsToExcludes { get; set; }
+        public HashSet<string> Identifiers { get; set; }
+
+        public string Strategy { get; internal set; }
 
     }
 }
