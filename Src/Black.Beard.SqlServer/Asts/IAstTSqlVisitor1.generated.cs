@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bb.Asts {
+namespace Bb.Asts
+{
     using System;
     
     
-    public partial interface IAstTSqlVisitor {
+    public partial interface IAstTSqlVisitor
+    {
         
         void VisitTsqlfile(AstTsqlfile a);
         

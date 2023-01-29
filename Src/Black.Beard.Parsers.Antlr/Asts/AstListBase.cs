@@ -89,6 +89,24 @@ namespace Bb.Asts
             }
         }
 
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (item.ContainsTerminals)
+                        return true;
+                }
+
+                return false;
+
+            }
+        }
+
         public override bool ContainsOnlyRuleReferences
         {
             get

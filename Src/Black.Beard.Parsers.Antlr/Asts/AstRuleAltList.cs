@@ -31,13 +31,8 @@ namespace Bb.Asts
                     return false;
 
                 foreach (AstLabeledAlt item in this)
-                {
-
-                    if (item.Rule.Count != 1)
+                    if (item.Rule.Count > 1)
                         return false;
-
-
-                }
 
                 return true;
 
@@ -125,6 +120,24 @@ namespace Bb.Asts
                 }
 
                 return true;
+
+            }
+        }
+
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstLabeledAlt item in this)
+                {
+                    if (item.ContainsTerminals)
+                        return true;
+                }
+
+                return false;
 
             }
         }

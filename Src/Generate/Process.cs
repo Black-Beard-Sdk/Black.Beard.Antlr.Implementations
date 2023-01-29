@@ -97,6 +97,15 @@ namespace Generate
 
         }
 
+        private static bool Generate(AstRule ast, Context context)
+        {
+
+            //if (ast.OutputContainsAlwayOneRule)
+            //    return false;
+
+            return true;
+        }
+
         private static void Generate(Context ctx, AstBase ast)
         {
 
@@ -137,6 +146,7 @@ namespace Generate
 
                 .Add("models", template =>
                 {
+
                     template.Namespace("Bb.Asts", ns =>
                     {
                         ns.Using("System")
@@ -145,6 +155,7 @@ namespace Generate
                           {
 
                               type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
+                                  .GenerateIf(() => Generate(ast, ctx))
                                   .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text))
                                   .Inherit(() => GetInherit(ast, ctx))
                                   .Ctor(() => ctx.Strategy == string.Empty || ctx.Strategy == "Default", (f) =>
@@ -195,8 +206,8 @@ namespace Generate
                                                var test = "value".Var().IsEqual(text.Text.AsConstant());
                                                b.Statements.If(test, t =>
                                                {
-                                                    t.Return(typeEnum.AsType().Field(CodeHelper.FormatCsharp(text.Text.ToLower())));
-                                               }); 
+                                                   t.Return(typeEnum.AsType().Field(CodeHelper.FormatCsharp(text.Text.ToLower())));
+                                               });
                                            }
 
                                            b.Statements.Return(typeEnum.AsType().Field("_undefined"));
@@ -236,6 +247,7 @@ namespace Generate
                 })
 
 
+
                 .Add("IAstTSqlVisitor1", template =>
                 {
                     template.Namespace("Bb.Asts", ns =>
@@ -244,6 +256,7 @@ namespace Generate
                         .CreateOneType<AstRule>((ast, type) =>
                         {
                             type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
+                                .GenerateIf(() => Generate(ast, ctx))
                                 .Name(() => "IAstTSqlVisitor")
                                 .IsInterface()
                                 .Method(m =>
@@ -276,6 +289,7 @@ namespace Generate
                 })
 
 
+
                 .Add("ScriptTSqlVisitor1", template =>
                 {
                     template.Namespace("Bb.Parsers", ns =>
@@ -289,9 +303,9 @@ namespace Generate
                           .CreateOneType<AstRule>((ast, type) =>
                           {
                               type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-
+                                  .GenerateIf(() => Generate(ast, ctx))
                                   .Name(() => "ScriptTSqlVisitor")
-                                  .Method(m =>
+                                  .Method(()=> ctx.Strategy == "" || ctx.Strategy == "Default", m =>
                                   {
                                       m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
                                        .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
@@ -299,18 +313,24 @@ namespace Generate
                                        .Return(() => "AstRoot")
                                        .Body(b =>
                                        {
-
-
-
                                            b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
                                            b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
                                            {
                                                stm.Call("list".Var(), "Add", CodeHelper.Var("enumerator.Current").Call("Accept", CodeHelper.This()));
                                            });
-
-
                                            b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "list".Var()));
 
+                                       });
+                                  })
+                                  .Method(() => ctx.Strategy == "ClassEnum", m =>
+                                  {
+                                      m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
+                                       .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
+                                       .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                       .Return(() => "AstRoot")
+                                       .Body(b =>
+                                       {
+                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "context".Var().Call("GetText")));
                                        });
                                   });
                           });
@@ -334,10 +354,6 @@ namespace Generate
                               .Method(m =>
                               {
 
-                                  if (ctx.Strategy == "")
-                                  {
-
-                                  }
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Identifier.Text))
                                    .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Identifier.Text) + "Context", "context")
                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)

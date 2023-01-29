@@ -42,6 +42,13 @@ namespace Bb.Asts
             }
         }
 
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                return Value.ContainsTerminals;
+            }
+        }
 
         public bool Dot { get; internal set; }
 

@@ -7,10580 +7,13626 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bb.Asts {
+namespace Bb.Asts
+{
     using System;
     using Antlr4.Runtime;
     
     
-    public partial class AstTsqlfile : AstRule {
+    public partial class AstTsqlfile : AstRule
+    {
         
         public AstTsqlfile(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTsqlfile(this);
         }
     }
     
-    public partial class AstBatch : AstRule {
+    public partial class AstBatch : AstRule
+    {
         
         public AstBatch(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBatch(this);
         }
     }
     
-    public partial class AstBlockstatement : AstRule {
+    public partial class AstBlockstatement : AstRule
+    {
         
         public AstBlockstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBlockstatement(this);
         }
     }
     
-    public partial class AstBreakstatement : AstRule {
+    public partial class AstBreakstatement : AstRule
+    {
         
         public AstBreakstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBreakstatement(this);
         }
     }
     
-    public partial class AstContinuestatement : AstRule {
+    public partial class AstContinuestatement : AstRule
+    {
         
         public AstContinuestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitContinuestatement(this);
         }
     }
     
-    public partial class AstGotostatement : AstRule {
+    public partial class AstGotostatement : AstRule
+    {
         
         public AstGotostatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGotostatement(this);
         }
     }
     
-    public partial class AstReturnstatement : AstRule {
+    public partial class AstReturnstatement : AstRule
+    {
         
         public AstReturnstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReturnstatement(this);
         }
     }
     
-    public partial class AstIfstatement : AstRule {
+    public partial class AstIfstatement : AstRule
+    {
         
         public AstIfstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIfstatement(this);
         }
     }
     
-    public partial class AstThrowstatement : AstRule {
+    public partial class AstThrowstatement : AstRule
+    {
         
         public AstThrowstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitThrowstatement(this);
         }
     }
     
-    public partial class AstThrowerrornumber : AstRule {
+    public partial class AstThrowerrornumber : AstRule
+    {
         
         public AstThrowerrornumber(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitThrowerrornumber(this);
         }
     }
     
-    public partial class AstThrowmessage : AstRule {
+    public partial class AstThrowmessage : AstRule
+    {
         
         public AstThrowmessage(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitThrowmessage(this);
         }
     }
     
-    public partial class AstThrowstate : AstRule {
+    public partial class AstThrowstate : AstRule
+    {
         
         public AstThrowstate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitThrowstate(this);
         }
     }
     
-    public partial class AstTrycatchstatement : AstRule {
+    public partial class AstTrycatchstatement : AstRule
+    {
         
         public AstTrycatchstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTrycatchstatement(this);
         }
     }
     
-    public partial class AstWaitforstatement : AstRule {
+    public partial class AstWaitforstatement : AstRule
+    {
         
         public AstWaitforstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWaitforstatement(this);
         }
     }
     
-    public partial class AstWhilestatement : AstRule {
+    public partial class AstWhilestatement : AstRule
+    {
         
         public AstWhilestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWhilestatement(this);
         }
     }
     
-    public partial class AstPrintstatement : AstRule {
+    public partial class AstPrintstatement : AstRule
+    {
         
         public AstPrintstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPrintstatement(this);
         }
     }
     
-    public partial class AstRaiseerrorstatement : AstRule {
+    public partial class AstRaiseerrorstatement : AstRule
+    {
         
         public AstRaiseerrorstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRaiseerrorstatement(this);
         }
     }
     
-    public partial class AstEmptystatement : AstRule {
+    public partial class AstEmptystatement : AstRule
+    {
         
         public AstEmptystatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEmptystatement(this);
         }
     }
     
-    public partial class AstAlterapplicationrole : AstRule {
+    public partial class AstAlterapplicationrole : AstRule
+    {
         
         public AstAlterapplicationrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterapplicationrole(this);
         }
     }
     
-    public partial class AstCreateapplicationrole : AstRule {
+    public partial class AstCreateapplicationrole : AstRule
+    {
         
         public AstCreateapplicationrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateapplicationrole(this);
         }
     }
     
-    public partial class AstDropaggregate : AstRule {
+    public partial class AstDropaggregate : AstRule
+    {
         
         public AstDropaggregate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropaggregate(this);
         }
     }
     
-    public partial class AstDropapplicationrole : AstRule {
+    public partial class AstDropapplicationrole : AstRule
+    {
         
         public AstDropapplicationrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropapplicationrole(this);
         }
     }
     
-    public partial class AstAlterassembly : AstRule {
+    public partial class AstAlterassembly : AstRule
+    {
         
         public AstAlterassembly(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassembly(this);
         }
     }
     
-    public partial class AstAlterassemblystart : AstRule {
+    public partial class AstAlterassemblystart : AstRule
+    {
         
         public AstAlterassemblystart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblystart(this);
         }
     }
     
-    public partial class AstAlterassemblyclause : AstRule {
+    public partial class AstAlterassemblyclause : AstRule
+    {
         
         public AstAlterassemblyclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyclause(this);
         }
     }
     
-    public partial class AstAlterassemblyfromclause : AstRule {
+    public partial class AstAlterassemblyfromclause : AstRule
+    {
         
         public AstAlterassemblyfromclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyfromclause(this);
         }
     }
     
-    public partial class AstAlterassemblyfromclausestart : AstRule {
+    public partial class AstAlterassemblyfromclausestart : AstRule
+    {
         
         public AstAlterassemblyfromclausestart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyfromclausestart(this);
         }
     }
     
-    public partial class AstAlterassemblydropclause : AstRule {
+    public partial class AstAlterassemblydropclause : AstRule
+    {
         
         public AstAlterassemblydropclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblydropclause(this);
         }
     }
     
-    public partial class AstAlterassemblydropmultiplefiles : AstRule {
+    public partial class AstAlterassemblydropmultiplefiles : AstRule
+    {
         
         public AstAlterassemblydropmultiplefiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblydropmultiplefiles(this);
         }
     }
     
-    public partial class AstAlterassemblydrop : AstRule {
+    public partial class AstAlterassemblydrop : AstRule
+    {
         
         public AstAlterassemblydrop(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblydrop(this);
         }
     }
     
-    public partial class AstAlterassemblyaddclause : AstRule {
+    public partial class AstAlterassemblyaddclause : AstRule
+    {
         
         public AstAlterassemblyaddclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyaddclause(this);
         }
     }
     
-    public partial class AstAlterasssemblyaddclausestart : AstRule {
+    public partial class AstAlterasssemblyaddclausestart : AstRule
+    {
         
         public AstAlterasssemblyaddclausestart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterasssemblyaddclausestart(this);
         }
     }
     
-    public partial class AstAlterassemblyclientfileclause : AstRule {
+    public partial class AstAlterassemblyclientfileclause : AstRule
+    {
         
         public AstAlterassemblyclientfileclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyclientfileclause(this);
         }
     }
     
-    public partial class AstAlterassemblyfilename : AstRule {
+    public partial class AstAlterassemblyfilename : AstRule
+    {
         
         public AstAlterassemblyfilename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyfilename(this);
         }
     }
     
-    public partial class AstAlterassemblyfilebits : AstRule {
+    public partial class AstAlterassemblyfilebits : AstRule
+    {
         
         public AstAlterassemblyfilebits(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyfilebits(this);
         }
     }
     
-    public partial class AstAlterassemblyas : AstRule {
+    public partial class AstAlterassemblyas : AstRule
+    {
         
         public AstAlterassemblyas(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblyas(this);
         }
     }
     
-    public partial class AstAlterassemblywithclause : AstRule {
+    public partial class AstAlterassemblywithclause : AstRule
+    {
         
         public AstAlterassemblywithclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblywithclause(this);
         }
     }
     
-    public partial class AstAlterassemblywith : AstRule {
+    public partial class AstAlterassemblywith : AstRule
+    {
         
         public AstAlterassemblywith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterassemblywith(this);
         }
     }
     
-    public partial class AstClientassemblyspecifier : AstRule {
+    public partial class AstClientassemblyspecifier : AstRule
+    {
         
         public AstClientassemblyspecifier(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClientassemblyspecifier(this);
         }
     }
     
-    public partial class AstAssemblyoption : AstRule {
+    public partial class AstAssemblyoption : AstRule
+    {
         
         public AstAssemblyoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAssemblyoption(this);
         }
     }
     
-    public partial class AstNetworkfileshare : AstRule {
+    public partial class AstNetworkfileshare : AstRule
+    {
         
         public AstNetworkfileshare(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNetworkfileshare(this);
         }
     }
     
-    public partial class AstNetworkfilestart : AstRule {
+    public partial class AstNetworkfilestart : AstRule
+    {
         
         public AstNetworkfilestart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNetworkfilestart(this);
         }
     }
     
-    public partial class AstFilepath : AstRule {
+    public partial class AstFilepath : AstRule
+    {
         
         public AstFilepath(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilepath(this);
         }
     }
     
-    public partial class AstFiledirectorypathseparator : AstRule {
+    public partial class AstFiledirectorypathseparator : AstRule
+    {
         
         public AstFiledirectorypathseparator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFiledirectorypathseparator(this);
         }
     }
     
-    public partial class AstLocalfile : AstRule {
+    public partial class AstLocalfile : AstRule
+    {
         
         public AstLocalfile(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLocalfile(this);
         }
     }
     
-    public partial class AstLocaldrive : AstRule {
+    public partial class AstLocaldrive : AstRule
+    {
         
         public AstLocaldrive(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLocaldrive(this);
         }
     }
     
-    public partial class AstMultiplelocalfiles : AstRule {
+    public partial class AstMultiplelocalfiles : AstRule
+    {
         
         public AstMultiplelocalfiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMultiplelocalfiles(this);
         }
     }
     
-    public partial class AstMultiplelocalfilestart : AstRule {
+    public partial class AstMultiplelocalfilestart : AstRule
+    {
         
         public AstMultiplelocalfilestart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMultiplelocalfilestart(this);
         }
     }
     
-    public partial class AstCreateassembly : AstRule {
+    public partial class AstCreateassembly : AstRule
+    {
         
         public AstCreateassembly(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateassembly(this);
         }
     }
     
-    public partial class AstDropassembly : AstRule {
+    public partial class AstDropassembly : AstRule
+    {
         
         public AstDropassembly(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropassembly(this);
         }
     }
     
-    public partial class AstAlterasymmetrickey : AstRule {
+    public partial class AstAlterasymmetrickey : AstRule
+    {
         
         public AstAlterasymmetrickey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterasymmetrickey(this);
         }
     }
     
-    public partial class AstAlterasymmetrickeystart : AstRule {
+    public partial class AstAlterasymmetrickeystart : AstRule
+    {
         
         public AstAlterasymmetrickeystart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterasymmetrickeystart(this);
         }
     }
     
-    public partial class AstAsymmetrickeyoption : AstRule {
+    public partial class AstAsymmetrickeyoption : AstRule
+    {
         
         public AstAsymmetrickeyoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsymmetrickeyoption(this);
         }
     }
     
-    public partial class AstAsymmetrickeyoptionstart : AstRule {
+    public partial class AstAsymmetrickeyoptionstart : AstRule
+    {
         
         public AstAsymmetrickeyoptionstart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsymmetrickeyoptionstart(this);
         }
     }
     
-    public partial class AstAsymmetrickeypasswordchangeoption : AstRule {
+    public partial class AstAsymmetrickeypasswordchangeoption : AstRule
+    {
         
         public AstAsymmetrickeypasswordchangeoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsymmetrickeypasswordchangeoption(this);
         }
     }
     
-    public partial class AstCreateasymmetrickey : AstRule {
+    public partial class AstCreateasymmetrickey : AstRule
+    {
         
         public AstCreateasymmetrickey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateasymmetrickey(this);
         }
     }
     
-    public partial class AstDropasymmetrickey : AstRule {
+    public partial class AstDropasymmetrickey : AstRule
+    {
         
         public AstDropasymmetrickey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropasymmetrickey(this);
         }
     }
     
-    public partial class AstAlterauthorization : AstRule {
+    public partial class AstAlterauthorization : AstRule
+    {
         
         public AstAlterauthorization(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterauthorization(this);
         }
     }
     
-    public partial class AstAuthorizationgrantee : AstRule {
+    public partial class AstAuthorizationgrantee : AstRule
+    {
         
         public AstAuthorizationgrantee(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAuthorizationgrantee(this);
         }
     }
     
-    public partial class AstEntityto : AstRule {
+    public partial class AstEntityto : AstRule
+    {
         
         public AstEntityto(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEntityto(this);
         }
     }
     
-    public partial class AstColoncolon : AstRule {
+    public partial class AstColoncolon : AstRule
+    {
         
         public AstColoncolon(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColoncolon(this);
         }
     }
     
-    public partial class AstAlterauthorizationstart : AstRule {
+    public partial class AstAlterauthorizationstart : AstRule
+    {
         
         public AstAlterauthorizationstart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterauthorizationstart(this);
         }
     }
     
-    public partial class AstAlterauthorizationforsqldatabase : AstRule {
+    public partial class AstAlterauthorizationforsqldatabase : AstRule
+    {
         
         public AstAlterauthorizationforsqldatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterauthorizationforsqldatabase(this);
         }
     }
     
-    public partial class AstAlterauthorizationforazuredw : AstRule {
+    public partial class AstAlterauthorizationforazuredw : AstRule
+    {
         
         public AstAlterauthorizationforazuredw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterauthorizationforazuredw(this);
         }
     }
     
-    public partial class AstAlterauthorizationforparalleldw : AstRule {
+    public partial class AstAlterauthorizationforparalleldw : AstRule
+    {
         
         public AstAlterauthorizationforparalleldw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterauthorizationforparalleldw(this);
         }
     }
     
-    public partial class AstClasstype : AstRule {
+    public partial class AstClasstype : AstRule
+    {
         
         public AstClasstype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClasstype(this);
         }
     }
     
-    public partial class AstClasstypeforsqldatabase : AstRule {
+    public partial class AstClasstypeforsqldatabase : AstRule
+    {
         
         public AstClasstypeforsqldatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClasstypeforsqldatabase(this);
         }
     }
     
-    public partial class AstClasstypeforazuredw : AstTerminalEnum<AstClasstypeforazuredwEnum> {
+    public partial class AstClasstypeforazuredw : AstTerminalEnum<AstClasstypeforazuredwEnum>
+    {
         
         public AstClasstypeforazuredw(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClasstypeforazuredw(this);
         }
         
-        protected override AstClasstypeforazuredwEnum GetValue(string value) {
-            if ((value == "SCHEMA")) {
+        protected override AstClasstypeforazuredwEnum GetValue(string value)
+        {
+            if ((value == "SCHEMA"))
+            {
                 return AstClasstypeforazuredwEnum.Schema;
             }
-            if ((value == "OBJECT")) {
+            if ((value == "OBJECT"))
+            {
                 return AstClasstypeforazuredwEnum.Object;
             }
             return AstClasstypeforazuredwEnum._undefined;
         }
     }
     
-    public partial class AstClasstypeforparalleldw : AstTerminalEnum<AstClasstypeforparalleldwEnum> {
+    public partial class AstClasstypeforparalleldw : AstTerminalEnum<AstClasstypeforparalleldwEnum>
+    {
         
         public AstClasstypeforparalleldw(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClasstypeforparalleldw(this);
         }
         
-        protected override AstClasstypeforparalleldwEnum GetValue(string value) {
-            if ((value == "DATABASE")) {
+        protected override AstClasstypeforparalleldwEnum GetValue(string value)
+        {
+            if ((value == "DATABASE"))
+            {
                 return AstClasstypeforparalleldwEnum.Database;
             }
-            if ((value == "SCHEMA")) {
+            if ((value == "SCHEMA"))
+            {
                 return AstClasstypeforparalleldwEnum.Schema;
             }
-            if ((value == "OBJECT")) {
+            if ((value == "OBJECT"))
+            {
                 return AstClasstypeforparalleldwEnum.Object;
             }
             return AstClasstypeforparalleldwEnum._undefined;
         }
     }
     
-    public partial class AstClasstypeforgrant : AstRule {
+    public partial class AstClasstypeforgrant : AstRule
+    {
         
         public AstClasstypeforgrant(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClasstypeforgrant(this);
         }
     }
     
-    public partial class AstDropavailabilitygroup : AstRule {
+    public partial class AstDropavailabilitygroup : AstRule
+    {
         
         public AstDropavailabilitygroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropavailabilitygroup(this);
         }
     }
     
-    public partial class AstAlteravailabilitygroup : AstRule {
+    public partial class AstAlteravailabilitygroup : AstRule
+    {
         
         public AstAlteravailabilitygroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlteravailabilitygroup(this);
         }
     }
     
-    public partial class AstAlteravailabilitygroupstart : AstRule {
+    public partial class AstAlteravailabilitygroupstart : AstRule
+    {
         
         public AstAlteravailabilitygroupstart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlteravailabilitygroupstart(this);
         }
     }
     
-    public partial class AstAlteravailabilitygroupoptions : AstRule {
+    public partial class AstAlteravailabilitygroupoptions : AstRule
+    {
         
         public AstAlteravailabilitygroupoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlteravailabilitygroupoptions(this);
         }
     }
     
-    public partial class AstServerinstance : AstRule {
+    public partial class AstServerinstance : AstRule
+    {
         
         public AstServerinstance(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitServerinstance(this);
         }
     }
     
-    public partial class AstIpv4failover : AstRule {
+    public partial class AstIpv4failover : AstRule
+    {
         
         public AstIpv4failover(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIpv4failover(this);
         }
     }
     
-    public partial class AstIpv6failover : AstRule {
+    public partial class AstIpv6failover : AstRule
+    {
         
         public AstIpv6failover(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIpv6failover(this);
         }
     }
     
-    public partial class AstCreateoralterbrokerpriority : AstRule {
+    public partial class AstCreateoralterbrokerpriority : AstRule
+    {
         
         public AstCreateoralterbrokerpriority(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoralterbrokerpriority(this);
         }
     }
     
-    public partial class AstDropbrokerpriority : AstRule {
+    public partial class AstDropbrokerpriority : AstRule
+    {
         
         public AstDropbrokerpriority(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropbrokerpriority(this);
         }
     }
     
-    public partial class AstAltercertificate : AstRule {
+    public partial class AstAltercertificate : AstRule
+    {
         
         public AstAltercertificate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltercertificate(this);
         }
     }
     
-    public partial class AstAltercolumnencryptionkey : AstRule {
+    public partial class AstAltercolumnencryptionkey : AstRule
+    {
         
         public AstAltercolumnencryptionkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltercolumnencryptionkey(this);
         }
     }
     
-    public partial class AstCreatecolumnencryptionkey : AstRule {
+    public partial class AstCreatecolumnencryptionkey : AstRule
+    {
         
         public AstCreatecolumnencryptionkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecolumnencryptionkey(this);
         }
     }
     
-    public partial class AstDropcertificate : AstRule {
+    public partial class AstDropcertificate : AstRule
+    {
         
         public AstDropcertificate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcertificate(this);
         }
     }
     
-    public partial class AstDropcolumnencryptionkey : AstRule {
+    public partial class AstDropcolumnencryptionkey : AstRule
+    {
         
         public AstDropcolumnencryptionkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcolumnencryptionkey(this);
         }
     }
     
-    public partial class AstDropcolumnmasterkey : AstRule {
+    public partial class AstDropcolumnmasterkey : AstRule
+    {
         
         public AstDropcolumnmasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcolumnmasterkey(this);
         }
     }
     
-    public partial class AstDropcontract : AstRule {
+    public partial class AstDropcontract : AstRule
+    {
         
         public AstDropcontract(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcontract(this);
         }
     }
     
-    public partial class AstDropcredential : AstRule {
+    public partial class AstDropcredential : AstRule
+    {
         
         public AstDropcredential(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcredential(this);
         }
     }
     
-    public partial class AstDropcryptograhicprovider : AstRule {
+    public partial class AstDropcryptograhicprovider : AstRule
+    {
         
         public AstDropcryptograhicprovider(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropcryptograhicprovider(this);
         }
     }
     
-    public partial class AstDropdatabase : AstRule {
+    public partial class AstDropdatabase : AstRule
+    {
         
         public AstDropdatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdatabase(this);
         }
     }
     
-    public partial class AstDropdatabaseauditspecification : AstRule {
+    public partial class AstDropdatabaseauditspecification : AstRule
+    {
         
         public AstDropdatabaseauditspecification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdatabaseauditspecification(this);
         }
     }
     
-    public partial class AstDropdatabaseencryptionkey : AstRule {
+    public partial class AstDropdatabaseencryptionkey : AstRule
+    {
         
         public AstDropdatabaseencryptionkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdatabaseencryptionkey(this);
         }
     }
     
-    public partial class AstDropdatabasescopedcredential : AstRule {
+    public partial class AstDropdatabasescopedcredential : AstRule
+    {
         
         public AstDropdatabasescopedcredential(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdatabasescopedcredential(this);
         }
     }
     
-    public partial class AstDropdefault : AstRule {
+    public partial class AstDropdefault : AstRule
+    {
         
         public AstDropdefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdefault(this);
         }
     }
     
-    public partial class AstDropendpoint : AstRule {
+    public partial class AstDropendpoint : AstRule
+    {
         
         public AstDropendpoint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropendpoint(this);
         }
     }
     
-    public partial class AstDropexternaldatasource : AstRule {
+    public partial class AstDropexternaldatasource : AstRule
+    {
         
         public AstDropexternaldatasource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropexternaldatasource(this);
         }
     }
     
-    public partial class AstDropexternalfileformat : AstRule {
+    public partial class AstDropexternalfileformat : AstRule
+    {
         
         public AstDropexternalfileformat(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropexternalfileformat(this);
         }
     }
     
-    public partial class AstDropexternallibrary : AstRule {
+    public partial class AstDropexternallibrary : AstRule
+    {
         
         public AstDropexternallibrary(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropexternallibrary(this);
         }
     }
     
-    public partial class AstDropexternalresourcepool : AstRule {
+    public partial class AstDropexternalresourcepool : AstRule
+    {
         
         public AstDropexternalresourcepool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropexternalresourcepool(this);
         }
     }
     
-    public partial class AstDropexternaltable : AstRule {
+    public partial class AstDropexternaltable : AstRule
+    {
         
         public AstDropexternaltable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropexternaltable(this);
         }
     }
     
-    public partial class AstDropeventnotifications : AstRule {
+    public partial class AstDropeventnotifications : AstRule
+    {
         
         public AstDropeventnotifications(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropeventnotifications(this);
         }
     }
     
-    public partial class AstDropeventsession : AstRule {
+    public partial class AstDropeventsession : AstRule
+    {
         
         public AstDropeventsession(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropeventsession(this);
         }
     }
     
-    public partial class AstDropfulltextcatalog : AstRule {
+    public partial class AstDropfulltextcatalog : AstRule
+    {
         
         public AstDropfulltextcatalog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropfulltextcatalog(this);
         }
     }
     
-    public partial class AstDropfulltextindex : AstRule {
+    public partial class AstDropfulltextindex : AstRule
+    {
         
         public AstDropfulltextindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropfulltextindex(this);
         }
     }
     
-    public partial class AstDropfulltextstoplist : AstRule {
+    public partial class AstDropfulltextstoplist : AstRule
+    {
         
         public AstDropfulltextstoplist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropfulltextstoplist(this);
         }
     }
     
-    public partial class AstDroplogin : AstRule {
+    public partial class AstDroplogin : AstRule
+    {
         
         public AstDroplogin(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroplogin(this);
         }
     }
     
-    public partial class AstDropmasterkey : AstRule {
+    public partial class AstDropmasterkey : AstRule
+    {
         
         public AstDropmasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropmasterkey(this);
         }
     }
     
-    public partial class AstDropmessagetype : AstRule {
+    public partial class AstDropmessagetype : AstRule
+    {
         
         public AstDropmessagetype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropmessagetype(this);
         }
     }
     
-    public partial class AstMessagetypename : AstRule {
+    public partial class AstMessagetypename : AstRule
+    {
         
         public AstMessagetypename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMessagetypename(this);
         }
     }
     
-    public partial class AstDroppartitionfunction : AstRule {
+    public partial class AstDroppartitionfunction : AstRule
+    {
         
         public AstDroppartitionfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroppartitionfunction(this);
         }
     }
     
-    public partial class AstPartitionfunctionname : AstRule {
+    public partial class AstPartitionfunctionname : AstRule
+    {
         
         public AstPartitionfunctionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartitionfunctionname(this);
         }
     }
     
-    public partial class AstDroppartitionscheme : AstRule {
+    public partial class AstDroppartitionscheme : AstRule
+    {
         
         public AstDroppartitionscheme(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroppartitionscheme(this);
         }
     }
     
-    public partial class AstPartitionschemename : AstRule {
+    public partial class AstPartitionschemename : AstRule
+    {
         
         public AstPartitionschemename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartitionschemename(this);
         }
     }
     
-    public partial class AstDropqueue : AstRule {
+    public partial class AstDropqueue : AstRule
+    {
         
         public AstDropqueue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropqueue(this);
         }
     }
     
-    public partial class AstDropremoteservicebinding : AstRule {
+    public partial class AstDropremoteservicebinding : AstRule
+    {
         
         public AstDropremoteservicebinding(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropremoteservicebinding(this);
         }
     }
     
-    public partial class AstDropresourcepool : AstRule {
+    public partial class AstDropresourcepool : AstRule
+    {
         
         public AstDropresourcepool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropresourcepool(this);
         }
     }
     
-    public partial class AstDropdbrole : AstRule {
+    public partial class AstDropdbrole : AstRule
+    {
         
         public AstDropdbrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdbrole(this);
         }
     }
     
-    public partial class AstDroproute : AstRule {
+    public partial class AstDroproute : AstRule
+    {
         
         public AstDroproute(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroproute(this);
         }
     }
     
-    public partial class AstDroprule : AstRule {
+    public partial class AstDroprule : AstRule
+    {
         
         public AstDroprule(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroprule(this);
         }
     }
     
-    public partial class AstDropschema : AstRule {
+    public partial class AstDropschema : AstRule
+    {
         
         public AstDropschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropschema(this);
         }
     }
     
-    public partial class AstDropsearchpropertylist : AstRule {
+    public partial class AstDropsearchpropertylist : AstRule
+    {
         
         public AstDropsearchpropertylist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsearchpropertylist(this);
         }
     }
     
-    public partial class AstDropsecuritypolicy : AstRule {
+    public partial class AstDropsecuritypolicy : AstRule
+    {
         
         public AstDropsecuritypolicy(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsecuritypolicy(this);
         }
     }
     
-    public partial class AstDropsequence : AstRule {
+    public partial class AstDropsequence : AstRule
+    {
         
         public AstDropsequence(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsequence(this);
         }
     }
     
-    public partial class AstDropserveraudit : AstRule {
+    public partial class AstDropserveraudit : AstRule
+    {
         
         public AstDropserveraudit(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropserveraudit(this);
         }
     }
     
-    public partial class AstDropserverauditspecification : AstRule {
+    public partial class AstDropserverauditspecification : AstRule
+    {
         
         public AstDropserverauditspecification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropserverauditspecification(this);
         }
     }
     
-    public partial class AstDropserverrole : AstRule {
+    public partial class AstDropserverrole : AstRule
+    {
         
         public AstDropserverrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropserverrole(this);
         }
     }
     
-    public partial class AstDropservice : AstRule {
+    public partial class AstDropservice : AstRule
+    {
         
         public AstDropservice(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropservice(this);
         }
     }
     
-    public partial class AstDropsignature : AstRule {
+    public partial class AstDropsignature : AstRule
+    {
         
         public AstDropsignature(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsignature(this);
         }
     }
     
-    public partial class AstDropstatisticsnameazuredwandpdw : AstRule {
+    public partial class AstDropstatisticsnameazuredwandpdw : AstRule
+    {
         
         public AstDropstatisticsnameazuredwandpdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropstatisticsnameazuredwandpdw(this);
         }
     }
     
-    public partial class AstDropsymmetrickey : AstRule {
+    public partial class AstDropsymmetrickey : AstRule
+    {
         
         public AstDropsymmetrickey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsymmetrickey(this);
         }
     }
     
-    public partial class AstDropsynonym : AstRule {
+    public partial class AstDropsynonym : AstRule
+    {
         
         public AstDropsynonym(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropsynonym(this);
         }
     }
     
-    public partial class AstDropuser : AstRule {
+    public partial class AstDropuser : AstRule
+    {
         
         public AstDropuser(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropuser(this);
         }
     }
     
-    public partial class AstDropworkloadgroup : AstRule {
+    public partial class AstDropworkloadgroup : AstRule
+    {
         
         public AstDropworkloadgroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropworkloadgroup(this);
         }
     }
     
-    public partial class AstDropxmlschemacollection : AstRule {
+    public partial class AstDropxmlschemacollection : AstRule
+    {
         
         public AstDropxmlschemacollection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropxmlschemacollection(this);
         }
     }
     
-    public partial class AstDisabletrigger : AstRule {
+    public partial class AstDisabletrigger : AstRule
+    {
         
         public AstDisabletrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDisabletrigger(this);
         }
     }
     
-    public partial class AstEnabletrigger : AstRule {
+    public partial class AstEnabletrigger : AstRule
+    {
         
         public AstEnabletrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEnabletrigger(this);
         }
     }
     
-    public partial class AstLocktable : AstRule {
+    public partial class AstLocktable : AstRule
+    {
         
         public AstLocktable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLocktable(this);
         }
     }
     
-    public partial class AstTruncatetable : AstRule {
+    public partial class AstTruncatetable : AstRule
+    {
         
         public AstTruncatetable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTruncatetable(this);
         }
     }
     
-    public partial class AstCreatecolumnmasterkey : AstRule {
+    public partial class AstCreatecolumnmasterkey : AstRule
+    {
         
         public AstCreatecolumnmasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecolumnmasterkey(this);
         }
     }
     
-    public partial class AstAltercredential : AstRule {
+    public partial class AstAltercredential : AstRule
+    {
         
         public AstAltercredential(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltercredential(this);
         }
     }
     
-    public partial class AstCreatecredential : AstRule {
+    public partial class AstCreatecredential : AstRule
+    {
         
         public AstCreatecredential(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecredential(this);
         }
     }
     
-    public partial class AstAltercryptographicprovider : AstRule {
+    public partial class AstAltercryptographicprovider : AstRule
+    {
         
         public AstAltercryptographicprovider(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltercryptographicprovider(this);
         }
     }
     
-    public partial class AstCreatecryptographicprovider : AstRule {
+    public partial class AstCreatecryptographicprovider : AstRule
+    {
         
         public AstCreatecryptographicprovider(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecryptographicprovider(this);
         }
     }
     
-    public partial class AstCreateeventnotification : AstRule {
+    public partial class AstCreateeventnotification : AstRule
+    {
         
         public AstCreateeventnotification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateeventnotification(this);
         }
     }
     
-    public partial class AstCreateoraltereventsession : AstRule {
+    public partial class AstCreateoraltereventsession : AstRule
+    {
         
         public AstCreateoraltereventsession(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoraltereventsession(this);
         }
     }
     
-    public partial class AstStartstop : AstTerminalEnum<AstStartstopEnum> {
+    public partial class AstStartstop : AstTerminalEnum<AstStartstopEnum>
+    {
         
         public AstStartstop(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitStartstop(this);
         }
         
-        protected override AstStartstopEnum GetValue(string value) {
-            if ((value == "START")) {
+        protected override AstStartstopEnum GetValue(string value)
+        {
+            if ((value == "START"))
+            {
                 return AstStartstopEnum.Start;
             }
-            if ((value == "STOP")) {
+            if ((value == "STOP"))
+            {
                 return AstStartstopEnum.Stop;
             }
             return AstStartstopEnum._undefined;
         }
     }
     
-    public partial class AstEventsessionpredicateexpression : AstRule {
+    public partial class AstEventsessionpredicateexpression : AstRule
+    {
         
         public AstEventsessionpredicateexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventsessionpredicateexpression(this);
         }
     }
     
-    public partial class AstEventsessionpredicatefactor : AstRule {
+    public partial class AstEventsessionpredicatefactor : AstRule
+    {
         
         public AstEventsessionpredicatefactor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventsessionpredicatefactor(this);
         }
     }
     
-    public partial class AstEventsessionpredicateleaf : AstRule {
+    public partial class AstEventsessionpredicateleaf : AstRule
+    {
         
         public AstEventsessionpredicateleaf(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventsessionpredicateleaf(this);
         }
     }
     
-    public partial class AstAlterexternaldatasource : AstRule {
+    public partial class AstAlterexternaldatasource : AstRule
+    {
         
         public AstAlterexternaldatasource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterexternaldatasource(this);
         }
     }
     
-    public partial class AstAlterexternallibrary : AstRule {
+    public partial class AstAlterexternallibrary : AstRule
+    {
         
         public AstAlterexternallibrary(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterexternallibrary(this);
         }
     }
     
-    public partial class AstCreateexternallibrary : AstRule {
+    public partial class AstCreateexternallibrary : AstRule
+    {
         
         public AstCreateexternallibrary(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateexternallibrary(this);
         }
     }
     
-    public partial class AstAlterexternalresourcepool : AstRule {
+    public partial class AstAlterexternalresourcepool : AstRule
+    {
         
         public AstAlterexternalresourcepool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterexternalresourcepool(this);
         }
     }
     
-    public partial class AstCreateexternalresourcepool : AstRule {
+    public partial class AstCreateexternalresourcepool : AstRule
+    {
         
         public AstCreateexternalresourcepool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateexternalresourcepool(this);
         }
     }
     
-    public partial class AstAlterfulltextcatalog : AstRule {
+    public partial class AstAlterfulltextcatalog : AstRule
+    {
         
         public AstAlterfulltextcatalog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterfulltextcatalog(this);
         }
     }
     
-    public partial class AstCreatefulltextcatalog : AstRule {
+    public partial class AstCreatefulltextcatalog : AstRule
+    {
         
         public AstCreatefulltextcatalog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatefulltextcatalog(this);
         }
     }
     
-    public partial class AstAlterfulltextstoplist : AstRule {
+    public partial class AstAlterfulltextstoplist : AstRule
+    {
         
         public AstAlterfulltextstoplist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterfulltextstoplist(this);
         }
     }
     
-    public partial class AstCreatefulltextstoplist : AstRule {
+    public partial class AstCreatefulltextstoplist : AstRule
+    {
         
         public AstCreatefulltextstoplist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatefulltextstoplist(this);
         }
     }
     
-    public partial class AstAlterloginsqlserver : AstRule {
+    public partial class AstAlterloginsqlserver : AstRule
+    {
         
         public AstAlterloginsqlserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterloginsqlserver(this);
         }
     }
     
-    public partial class AstCreateloginsqlserver : AstRule {
+    public partial class AstCreateloginsqlserver : AstRule
+    {
         
         public AstCreateloginsqlserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateloginsqlserver(this);
         }
     }
     
-    public partial class AstAlterloginazuresql : AstRule {
+    public partial class AstAlterloginazuresql : AstRule
+    {
         
         public AstAlterloginazuresql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterloginazuresql(this);
         }
     }
     
-    public partial class AstCreateloginazuresql : AstRule {
+    public partial class AstCreateloginazuresql : AstRule
+    {
         
         public AstCreateloginazuresql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateloginazuresql(this);
         }
     }
     
-    public partial class AstAlterloginazuresqldwandpdw : AstRule {
+    public partial class AstAlterloginazuresqldwandpdw : AstRule
+    {
         
         public AstAlterloginazuresqldwandpdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterloginazuresqldwandpdw(this);
         }
     }
     
-    public partial class AstEnabledisable : AstTerminalEnum<AstEnabledisableEnum> {
+    public partial class AstEnabledisable : AstTerminalEnum<AstEnabledisableEnum>
+    {
         
         public AstEnabledisable(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEnabledisable(this);
         }
         
-        protected override AstEnabledisableEnum GetValue(string value) {
-            if ((value == "ENABLE")) {
+        protected override AstEnabledisableEnum GetValue(string value)
+        {
+            if ((value == "ENABLE"))
+            {
                 return AstEnabledisableEnum.Enable;
             }
-            if ((value == "DISABLE")) {
+            if ((value == "DISABLE"))
+            {
                 return AstEnabledisableEnum.Disable;
             }
             return AstEnabledisableEnum._undefined;
         }
     }
     
-    public partial class AstCreateloginpdw : AstRule {
+    public partial class AstCreateloginpdw : AstRule
+    {
         
         public AstCreateloginpdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateloginpdw(this);
         }
     }
     
-    public partial class AstAltermasterkeysqlserver : AstRule {
+    public partial class AstAltermasterkeysqlserver : AstRule
+    {
         
         public AstAltermasterkeysqlserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltermasterkeysqlserver(this);
         }
     }
     
-    public partial class AstCreatemasterkeysqlserver : AstRule {
+    public partial class AstCreatemasterkeysqlserver : AstRule
+    {
         
         public AstCreatemasterkeysqlserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatemasterkeysqlserver(this);
         }
     }
     
-    public partial class AstAltermasterkeyazuresql : AstRule {
+    public partial class AstAltermasterkeyazuresql : AstRule
+    {
         
         public AstAltermasterkeyazuresql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltermasterkeyazuresql(this);
         }
     }
     
-    public partial class AstCreatemasterkeyazuresql : AstRule {
+    public partial class AstCreatemasterkeyazuresql : AstRule
+    {
         
         public AstCreatemasterkeyazuresql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatemasterkeyazuresql(this);
         }
     }
     
-    public partial class AstAltermessagetype : AstRule {
+    public partial class AstAltermessagetype : AstRule
+    {
         
         public AstAltermessagetype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltermessagetype(this);
         }
     }
     
-    public partial class AstAlterpartitionfunction : AstRule {
+    public partial class AstAlterpartitionfunction : AstRule
+    {
         
         public AstAlterpartitionfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterpartitionfunction(this);
         }
     }
     
-    public partial class AstSplitormerge : AstTerminalEnum<AstSplitormergeEnum> {
+    public partial class AstSplitormerge : AstTerminalEnum<AstSplitormergeEnum>
+    {
         
         public AstSplitormerge(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSplitormerge(this);
         }
         
-        protected override AstSplitormergeEnum GetValue(string value) {
-            if ((value == "SPLIT")) {
+        protected override AstSplitormergeEnum GetValue(string value)
+        {
+            if ((value == "SPLIT"))
+            {
                 return AstSplitormergeEnum.Split;
             }
-            if ((value == "MERGE")) {
+            if ((value == "MERGE"))
+            {
                 return AstSplitormergeEnum.Merge;
             }
             return AstSplitormergeEnum._undefined;
         }
     }
     
-    public partial class AstAlterpartitionscheme : AstRule {
+    public partial class AstAlterpartitionscheme : AstRule
+    {
         
         public AstAlterpartitionscheme(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterpartitionscheme(this);
         }
     }
     
-    public partial class AstAlterremoteservicebinding : AstRule {
+    public partial class AstAlterremoteservicebinding : AstRule
+    {
         
         public AstAlterremoteservicebinding(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterremoteservicebinding(this);
         }
     }
     
-    public partial class AstCreateremoteservicebinding : AstRule {
+    public partial class AstCreateremoteservicebinding : AstRule
+    {
         
         public AstCreateremoteservicebinding(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateremoteservicebinding(this);
         }
     }
     
-    public partial class AstCreateresourcepool : AstRule {
+    public partial class AstCreateresourcepool : AstRule
+    {
         
         public AstCreateresourcepool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateresourcepool(this);
         }
     }
     
-    public partial class AstAlterresourcegovernor : AstRule {
+    public partial class AstAlterresourcegovernor : AstRule
+    {
         
         public AstAlterresourcegovernor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterresourcegovernor(this);
         }
     }
     
-    public partial class AstAlterdbrole : AstRule {
+    public partial class AstAlterdbrole : AstRule
+    {
         
         public AstAlterdbrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterdbrole(this);
         }
     }
     
-    public partial class AstAdddrop : AstTerminalEnum<AstAdddropEnum> {
+    public partial class AstAdddrop : AstTerminalEnum<AstAdddropEnum>
+    {
         
         public AstAdddrop(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAdddrop(this);
         }
         
-        protected override AstAdddropEnum GetValue(string value) {
-            if ((value == "ADD")) {
+        protected override AstAdddropEnum GetValue(string value)
+        {
+            if ((value == "ADD"))
+            {
                 return AstAdddropEnum.Add;
             }
-            if ((value == "DROP")) {
+            if ((value == "DROP"))
+            {
                 return AstAdddropEnum.Drop;
             }
             return AstAdddropEnum._undefined;
         }
     }
     
-    public partial class AstCreatedbrole : AstRule {
+    public partial class AstCreatedbrole : AstRule
+    {
         
         public AstCreatedbrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatedbrole(this);
         }
     }
     
-    public partial class AstCreateroute : AstRule {
+    public partial class AstCreateroute : AstRule
+    {
         
         public AstCreateroute(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateroute(this);
         }
     }
     
-    public partial class AstCreaterule : AstRule {
+    public partial class AstCreaterule : AstRule
+    {
         
         public AstCreaterule(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreaterule(this);
         }
     }
     
-    public partial class AstAlterschemasql : AstRule {
+    public partial class AstAlterschemasql : AstRule
+    {
         
         public AstAlterschemasql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterschemasql(this);
         }
     }
     
-    public partial class AstCreateschema : AstRule {
+    public partial class AstCreateschema : AstRule
+    {
         
         public AstCreateschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateschema(this);
         }
     }
     
-    public partial class AstEnumdml : AstTerminalEnum<AstEnumdmlEnum> {
+    public partial class AstEnumdml : AstTerminalEnum<AstEnumdmlEnum>
+    {
         
         public AstEnumdml(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEnumdml(this);
         }
         
-        protected override AstEnumdmlEnum GetValue(string value) {
-            if ((value == "SELECT")) {
+        protected override AstEnumdmlEnum GetValue(string value)
+        {
+            if ((value == "SELECT"))
+            {
                 return AstEnumdmlEnum.Select;
             }
-            if ((value == "INSERT")) {
+            if ((value == "INSERT"))
+            {
                 return AstEnumdmlEnum.Insert;
             }
-            if ((value == "DELETE")) {
+            if ((value == "DELETE"))
+            {
                 return AstEnumdmlEnum.Delete;
             }
-            if ((value == "UPDATE")) {
+            if ((value == "UPDATE"))
+            {
                 return AstEnumdmlEnum.Update;
             }
             return AstEnumdmlEnum._undefined;
         }
     }
     
-    public partial class AstGrantdeny : AstTerminalEnum<AstGrantdenyEnum> {
+    public partial class AstGrantdeny : AstTerminalEnum<AstGrantdenyEnum>
+    {
         
         public AstGrantdeny(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGrantdeny(this);
         }
         
-        protected override AstGrantdenyEnum GetValue(string value) {
-            if ((value == "GRANT")) {
+        protected override AstGrantdenyEnum GetValue(string value)
+        {
+            if ((value == "GRANT"))
+            {
                 return AstGrantdenyEnum.Grant;
             }
-            if ((value == "DENY")) {
+            if ((value == "DENY"))
+            {
                 return AstGrantdenyEnum.Deny;
             }
             return AstGrantdenyEnum._undefined;
         }
     }
     
-    public partial class AstCreateschemaazuresqldwandpdw : AstRule {
+    public partial class AstCreateschemaazuresqldwandpdw : AstRule
+    {
         
         public AstCreateschemaazuresqldwandpdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateschemaazuresqldwandpdw(this);
         }
     }
     
-    public partial class AstAlterschemaazuresqldwandpdw : AstRule {
+    public partial class AstAlterschemaazuresqldwandpdw : AstRule
+    {
         
         public AstAlterschemaazuresqldwandpdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterschemaazuresqldwandpdw(this);
         }
     }
     
-    public partial class AstCreatesearchpropertylist : AstRule {
+    public partial class AstCreatesearchpropertylist : AstRule
+    {
         
         public AstCreatesearchpropertylist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatesearchpropertylist(this);
         }
     }
     
-    public partial class AstCreatesecuritypolicy : AstRule {
+    public partial class AstCreatesecuritypolicy : AstRule
+    {
         
         public AstCreatesecuritypolicy(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatesecuritypolicy(this);
         }
     }
     
-    public partial class AstAltersequence : AstRule {
+    public partial class AstAltersequence : AstRule
+    {
         
         public AstAltersequence(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltersequence(this);
         }
     }
     
-    public partial class AstCreatesequence : AstRule {
+    public partial class AstCreatesequence : AstRule
+    {
         
         public AstCreatesequence(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatesequence(this);
         }
     }
     
-    public partial class AstAlterserveraudit : AstRule {
+    public partial class AstAlterserveraudit : AstRule
+    {
         
         public AstAlterserveraudit(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterserveraudit(this);
         }
     }
     
-    public partial class AstCreateserveraudit : AstRule {
+    public partial class AstCreateserveraudit : AstRule
+    {
         
         public AstCreateserveraudit(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateserveraudit(this);
         }
     }
     
-    public partial class AstAlterserverauditspecification : AstRule {
+    public partial class AstAlterserverauditspecification : AstRule
+    {
         
         public AstAlterserverauditspecification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterserverauditspecification(this);
         }
     }
     
-    public partial class AstCreateserverauditspecification : AstRule {
+    public partial class AstCreateserverauditspecification : AstRule
+    {
         
         public AstCreateserverauditspecification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateserverauditspecification(this);
         }
     }
     
-    public partial class AstAlterserverconfiguration : AstRule {
+    public partial class AstAlterserverconfiguration : AstRule
+    {
         
         public AstAlterserverconfiguration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterserverconfiguration(this);
         }
     }
     
-    public partial class AstAlterserverrole : AstRule {
+    public partial class AstAlterserverrole : AstRule
+    {
         
         public AstAlterserverrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterserverrole(this);
         }
     }
     
-    public partial class AstCreateserverrole : AstRule {
+    public partial class AstCreateserverrole : AstRule
+    {
         
         public AstCreateserverrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateserverrole(this);
         }
     }
     
-    public partial class AstAlterserverrolepdw : AstRule {
+    public partial class AstAlterserverrolepdw : AstRule
+    {
         
         public AstAlterserverrolepdw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterserverrolepdw(this);
         }
     }
     
-    public partial class AstAlterservice : AstRule {
+    public partial class AstAlterservice : AstRule
+    {
         
         public AstAlterservice(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterservice(this);
         }
     }
     
-    public partial class AstCreateservice : AstRule {
+    public partial class AstCreateservice : AstRule
+    {
         
         public AstCreateservice(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateservice(this);
         }
     }
     
-    public partial class AstAlterservicemasterkey : AstRule {
+    public partial class AstAlterservicemasterkey : AstRule
+    {
         
         public AstAlterservicemasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterservicemasterkey(this);
         }
     }
     
-    public partial class AstAltersymmetrickey : AstRule {
+    public partial class AstAltersymmetrickey : AstRule
+    {
         
         public AstAltersymmetrickey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltersymmetrickey(this);
         }
     }
     
-    public partial class AstCreatesynonym : AstRule {
+    public partial class AstCreatesynonym : AstRule
+    {
         
         public AstCreatesynonym(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatesynonym(this);
         }
     }
     
-    public partial class AstAlteruser : AstRule {
+    public partial class AstAlteruser : AstRule
+    {
         
         public AstAlteruser(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlteruser(this);
         }
     }
     
-    public partial class AstCreateuser : AstRule {
+    public partial class AstCreateuser : AstRule
+    {
         
         public AstCreateuser(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateuser(this);
         }
     }
     
-    public partial class AstCreateuserazuresqldw : AstRule {
+    public partial class AstCreateuserazuresqldw : AstRule
+    {
         
         public AstCreateuserazuresqldw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateuserazuresqldw(this);
         }
     }
     
-    public partial class AstAlteruserazuresql : AstRule {
+    public partial class AstAlteruserazuresql : AstRule
+    {
         
         public AstAlteruserazuresql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlteruserazuresql(this);
         }
     }
     
-    public partial class AstAlterworkloadgroup : AstRule {
+    public partial class AstAlterworkloadgroup : AstRule
+    {
         
         public AstAlterworkloadgroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterworkloadgroup(this);
         }
     }
     
-    public partial class AstCreateworkloadgroup : AstRule {
+    public partial class AstCreateworkloadgroup : AstRule
+    {
         
         public AstCreateworkloadgroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateworkloadgroup(this);
         }
     }
     
-    public partial class AstCreatexmlschemacollection : AstRule {
+    public partial class AstCreatexmlschemacollection : AstRule
+    {
         
         public AstCreatexmlschemacollection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatexmlschemacollection(this);
         }
     }
     
-    public partial class AstCreatepartitionfunction : AstRule {
+    public partial class AstCreatepartitionfunction : AstRule
+    {
         
         public AstCreatepartitionfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatepartitionfunction(this);
         }
     }
     
-    public partial class AstCreatepartitionscheme : AstRule {
+    public partial class AstCreatepartitionscheme : AstRule
+    {
         
         public AstCreatepartitionscheme(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatepartitionscheme(this);
         }
     }
     
-    public partial class AstCreatequeue : AstRule {
+    public partial class AstCreatequeue : AstRule
+    {
         
         public AstCreatequeue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatequeue(this);
         }
     }
     
-    public partial class AstQueuesettings : AstRule {
+    public partial class AstQueuesettings : AstRule
+    {
         
         public AstQueuesettings(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueuesettings(this);
         }
     }
     
-    public partial class AstAlterqueue : AstRule {
+    public partial class AstAlterqueue : AstRule
+    {
         
         public AstAlterqueue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterqueue(this);
         }
     }
     
-    public partial class AstQueueaction : AstRule {
+    public partial class AstQueueaction : AstRule
+    {
         
         public AstQueueaction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueueaction(this);
         }
     }
     
-    public partial class AstQueuerebuildoptions : AstRule {
+    public partial class AstQueuerebuildoptions : AstRule
+    {
         
         public AstQueuerebuildoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueuerebuildoptions(this);
         }
     }
     
-    public partial class AstCreatecontract : AstRule {
+    public partial class AstCreatecontract : AstRule
+    {
         
         public AstCreatecontract(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecontract(this);
         }
     }
     
-    public partial class AstMessagestatement : AstRule {
+    public partial class AstMessagestatement : AstRule
+    {
         
         public AstMessagestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMessagestatement(this);
         }
     }
     
-    public partial class AstMergestatement : AstRule {
+    public partial class AstMergestatement : AstRule
+    {
         
         public AstMergestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMergestatement(this);
         }
     }
     
-    public partial class AstWhenmatches : AstRule {
+    public partial class AstWhenmatches : AstRule
+    {
         
         public AstWhenmatches(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWhenmatches(this);
         }
     }
     
-    public partial class AstMergematched : AstRule {
+    public partial class AstMergematched : AstRule
+    {
         
         public AstMergematched(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMergematched(this);
         }
     }
     
-    public partial class AstUpdateelemmerges : AstRule {
+    public partial class AstUpdateelemmerges : AstRule
+    {
         
         public AstUpdateelemmerges(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdateelemmerges(this);
         }
     }
     
-    public partial class AstMergenotmatched : AstRule {
+    public partial class AstMergenotmatched : AstRule
+    {
         
         public AstMergenotmatched(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMergenotmatched(this);
         }
     }
     
-    public partial class AstDeletestatement : AstRule {
+    public partial class AstDeletestatement : AstRule
+    {
         
         public AstDeletestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeletestatement(this);
         }
     }
     
-    public partial class AstInsertstatement : AstRule {
+    public partial class AstInsertstatement : AstRule
+    {
         
         public AstInsertstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitInsertstatement(this);
         }
     }
     
-    public partial class AstInsertstatementvalue : AstRule {
+    public partial class AstInsertstatementvalue : AstRule
+    {
         
         public AstInsertstatementvalue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitInsertstatementvalue(this);
         }
     }
     
-    public partial class AstReceivestatement : AstRule {
+    public partial class AstReceivestatement : AstRule
+    {
         
         public AstReceivestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReceivestatement(this);
         }
     }
     
-    public partial class AstSelectstatementstandalone : AstRule {
+    public partial class AstSelectstatementstandalone : AstRule
+    {
         
         public AstSelectstatementstandalone(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSelectstatementstandalone(this);
         }
     }
     
-    public partial class AstSelectstatement : AstRule {
+    public partial class AstSelectstatement : AstRule
+    {
         
         public AstSelectstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSelectstatement(this);
         }
     }
     
-    public partial class AstUpdatestatement : AstRule {
+    public partial class AstUpdatestatement : AstRule
+    {
         
         public AstUpdatestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdatestatement(this);
         }
     }
     
-    public partial class AstUpdateelems : AstRule {
+    public partial class AstUpdateelems : AstRule
+    {
         
         public AstUpdateelems(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdateelems(this);
         }
     }
     
-    public partial class AstOutputclause : AstRule {
+    public partial class AstOutputclause : AstRule
+    {
         
         public AstOutputclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOutputclause(this);
         }
     }
     
-    public partial class AstOutputdmllistelems : AstRule {
+    public partial class AstOutputdmllistelems : AstRule
+    {
         
         public AstOutputdmllistelems(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOutputdmllistelems(this);
         }
     }
     
-    public partial class AstOutputdmllistelem : AstRule {
+    public partial class AstOutputdmllistelem : AstRule
+    {
         
         public AstOutputdmllistelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOutputdmllistelem(this);
         }
     }
     
-    public partial class AstCreatedatabase : AstRule {
+    public partial class AstCreatedatabase : AstRule
+    {
         
         public AstCreatedatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatedatabase(this);
         }
     }
     
-    public partial class AstCreateindex : AstRule {
+    public partial class AstCreateindex : AstRule
+    {
         
         public AstCreateindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateindex(this);
         }
     }
     
-    public partial class AstCreateindexoptions : AstRule {
+    public partial class AstCreateindexoptions : AstRule
+    {
         
         public AstCreateindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateindexoptions(this);
         }
     }
     
-    public partial class AstRelationalindexoptions : AstRule {
+    public partial class AstRelationalindexoptions : AstRule
+    {
         
         public AstRelationalindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRelationalindexoptions(this);
         }
     }
     
-    public partial class AstRelationalindexoption : AstRule {
+    public partial class AstRelationalindexoption : AstRule
+    {
         
         public AstRelationalindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRelationalindexoption(this);
         }
     }
     
-    public partial class AstAlterindex : AstRule {
+    public partial class AstAlterindex : AstRule
+    {
         
         public AstAlterindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterindex(this);
         }
     }
     
-    public partial class AstResumableindexoptions : AstRule {
+    public partial class AstResumableindexoptions : AstRule
+    {
         
         public AstResumableindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitResumableindexoptions(this);
         }
     }
     
-    public partial class AstResumableindexoption : AstRule {
+    public partial class AstResumableindexoption : AstRule
+    {
         
         public AstResumableindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitResumableindexoption(this);
         }
     }
     
-    public partial class AstReorganizepartition : AstRule {
+    public partial class AstReorganizepartition : AstRule
+    {
         
         public AstReorganizepartition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReorganizepartition(this);
         }
     }
     
-    public partial class AstReorganizeoptions : AstRule {
+    public partial class AstReorganizeoptions : AstRule
+    {
         
         public AstReorganizeoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReorganizeoptions(this);
         }
     }
     
-    public partial class AstReorganizeoption : AstRule {
+    public partial class AstReorganizeoption : AstRule
+    {
         
         public AstReorganizeoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReorganizeoption(this);
         }
     }
     
-    public partial class AstSetindexoptions : AstRule {
+    public partial class AstSetindexoptions : AstRule
+    {
         
         public AstSetindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSetindexoptions(this);
         }
     }
     
-    public partial class AstSetindexoption : AstRule {
+    public partial class AstSetindexoption : AstRule
+    {
         
         public AstSetindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSetindexoption(this);
         }
     }
     
-    public partial class AstRebuildpartition : AstRule {
+    public partial class AstRebuildpartition : AstRule
+    {
         
         public AstRebuildpartition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRebuildpartition(this);
         }
     }
     
-    public partial class AstRebuildindexoptions : AstRule {
+    public partial class AstRebuildindexoptions : AstRule
+    {
         
         public AstRebuildindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRebuildindexoptions(this);
         }
     }
     
-    public partial class AstRebuildindexoption : AstRule {
+    public partial class AstRebuildindexoption : AstRule
+    {
         
         public AstRebuildindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRebuildindexoption(this);
         }
     }
     
-    public partial class AstSinglepartitionrebuildindexoptions : AstRule {
+    public partial class AstSinglepartitionrebuildindexoptions : AstRule
+    {
         
         public AstSinglepartitionrebuildindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSinglepartitionrebuildindexoptions(this);
         }
     }
     
-    public partial class AstSinglepartitionrebuildindexoption : AstRule {
+    public partial class AstSinglepartitionrebuildindexoption : AstRule
+    {
         
         public AstSinglepartitionrebuildindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSinglepartitionrebuildindexoption(this);
         }
     }
     
-    public partial class AstOnpartitions : AstRule {
+    public partial class AstOnpartitions : AstRule
+    {
         
         public AstOnpartitions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOnpartitions(this);
         }
     }
     
-    public partial class AstCreatecolumnstoreindex : AstRule {
+    public partial class AstCreatecolumnstoreindex : AstRule
+    {
         
         public AstCreatecolumnstoreindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecolumnstoreindex(this);
         }
     }
     
-    public partial class AstCreatecolumnstoreindexoptions : AstRule {
+    public partial class AstCreatecolumnstoreindexoptions : AstRule
+    {
         
         public AstCreatecolumnstoreindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecolumnstoreindexoptions(this);
         }
     }
     
-    public partial class AstColumnstoreindexoption : AstRule {
+    public partial class AstColumnstoreindexoption : AstRule
+    {
         
         public AstColumnstoreindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnstoreindexoption(this);
         }
     }
     
-    public partial class AstCreatenonclusteredcolumnstoreindex : AstRule {
+    public partial class AstCreatenonclusteredcolumnstoreindex : AstRule
+    {
         
         public AstCreatenonclusteredcolumnstoreindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatenonclusteredcolumnstoreindex(this);
         }
     }
     
-    public partial class AstCreatexmlindex : AstRule {
+    public partial class AstCreatexmlindex : AstRule
+    {
         
         public AstCreatexmlindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatexmlindex(this);
         }
     }
     
-    public partial class AstXmlindexoptions : AstRule {
+    public partial class AstXmlindexoptions : AstRule
+    {
         
         public AstXmlindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmlindexoptions(this);
         }
     }
     
-    public partial class AstXmlindexoption : AstRule {
+    public partial class AstXmlindexoption : AstRule
+    {
         
         public AstXmlindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmlindexoption(this);
         }
     }
     
-    public partial class AstCreateoralterprocedure : AstRule {
+    public partial class AstCreateoralterprocedure : AstRule
+    {
         
         public AstCreateoralterprocedure(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoralterprocedure(this);
         }
     }
     
-    public partial class AstProcedureoptions : AstRule {
+    public partial class AstProcedureoptions : AstRule
+    {
         
         public AstProcedureoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitProcedureoptions(this);
         }
     }
     
-    public partial class AstAsexternalname : AstRule {
+    public partial class AstAsexternalname : AstRule
+    {
         
         public AstAsexternalname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsexternalname(this);
         }
     }
     
-    public partial class AstCreateoralterdmltrigger : AstRule {
+    public partial class AstCreateoralterdmltrigger : AstRule
+    {
         
         public AstCreateoralterdmltrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoralterdmltrigger(this);
         }
     }
     
-    public partial class AstDmltriggeroptions : AstRule {
+    public partial class AstDmltriggeroptions : AstRule
+    {
         
         public AstDmltriggeroptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDmltriggeroptions(this);
         }
     }
     
-    public partial class AstDmltriggeroperations : AstRule {
+    public partial class AstDmltriggeroperations : AstRule
+    {
         
         public AstDmltriggeroperations(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDmltriggeroperations(this);
         }
     }
     
-    public partial class AstDmltriggeroption : AstRule {
+    public partial class AstDmltriggeroption : AstRule
+    {
         
         public AstDmltriggeroption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDmltriggeroption(this);
         }
     }
     
-    public partial class AstDmltriggeroperation : AstRule {
+    public partial class AstDmltriggeroperation : AstRule
+    {
         
         public AstDmltriggeroperation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDmltriggeroperation(this);
         }
     }
     
-    public partial class AstCreateoralterddltrigger : AstRule {
+    public partial class AstCreateoralterddltrigger : AstRule
+    {
         
         public AstCreateoralterddltrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoralterddltrigger(this);
         }
     }
     
-    public partial class AstCreateoralterfunction : AstRule {
+    public partial class AstCreateoralterfunction : AstRule
+    {
         
         public AstCreateoralterfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateoralterfunction(this);
         }
     }
     
-    public partial class AstProcedureparams : AstRule {
+    public partial class AstProcedureparams : AstRule
+    {
         
         public AstProcedureparams(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitProcedureparams(this);
         }
     }
     
-    public partial class AstFuncbodyreturnsselect : AstRule {
+    public partial class AstFuncbodyreturnsselect : AstRule
+    {
         
         public AstFuncbodyreturnsselect(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncbodyreturnsselect(this);
         }
     }
     
-    public partial class AstFunctionoptions : AstRule {
+    public partial class AstFunctionoptions : AstRule
+    {
         
         public AstFunctionoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFunctionoptions(this);
         }
     }
     
-    public partial class AstFuncbodyreturnstable : AstRule {
+    public partial class AstFuncbodyreturnstable : AstRule
+    {
         
         public AstFuncbodyreturnstable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncbodyreturnstable(this);
         }
     }
     
-    public partial class AstFuncbodyreturnsscalar : AstRule {
+    public partial class AstFuncbodyreturnsscalar : AstRule
+    {
         
         public AstFuncbodyreturnsscalar(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncbodyreturnsscalar(this);
         }
     }
     
-    public partial class AstProcedureparam : AstRule {
+    public partial class AstProcedureparam : AstRule
+    {
         
         public AstProcedureparam(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitProcedureparam(this);
         }
     }
     
-    public partial class AstProcedureoption : AstRule {
+    public partial class AstProcedureoption : AstRule
+    {
         
         public AstProcedureoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitProcedureoption(this);
         }
     }
     
-    public partial class AstFunctionoption : AstRule {
+    public partial class AstFunctionoption : AstRule
+    {
         
         public AstFunctionoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFunctionoption(this);
         }
     }
     
-    public partial class AstCreatestatistics : AstRule {
+    public partial class AstCreatestatistics : AstRule
+    {
         
         public AstCreatestatistics(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatestatistics(this);
         }
     }
     
-    public partial class AstUpdatestatistics : AstRule {
+    public partial class AstUpdatestatistics : AstRule
+    {
         
         public AstUpdatestatistics(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdatestatistics(this);
         }
     }
     
-    public partial class AstUpdatestatisticsoptions : AstRule {
+    public partial class AstUpdatestatisticsoptions : AstRule
+    {
         
         public AstUpdatestatisticsoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdatestatisticsoptions(this);
         }
     }
     
-    public partial class AstUpdatestatisticsoption : AstRule {
+    public partial class AstUpdatestatisticsoption : AstRule
+    {
         
         public AstUpdatestatisticsoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdatestatisticsoption(this);
         }
     }
     
-    public partial class AstCreatetable : AstRule {
+    public partial class AstCreatetable : AstRule
+    {
         
         public AstCreatetable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatetable(this);
         }
     }
     
-    public partial class AstTableindices : AstRule {
+    public partial class AstTableindices : AstRule
+    {
         
         public AstTableindices(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableindices(this);
         }
     }
     
-    public partial class AstTableoptions : AstRule {
+    public partial class AstTableoptions : AstRule
+    {
         
         public AstTableoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableoptions(this);
         }
     }
     
-    public partial class AstTableoption : AstRule {
+    public partial class AstTableoption : AstRule
+    {
         
         public AstTableoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableoption(this);
         }
     }
     
-    public partial class AstDistribution : AstRule {
+    public partial class AstDistribution : AstRule
+    {
         
         public AstDistribution(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDistribution(this);
         }
     }
     
-    public partial class AstCreatetableindexoptions : AstRule {
+    public partial class AstCreatetableindexoptions : AstRule
+    {
         
         public AstCreatetableindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatetableindexoptions(this);
         }
     }
     
-    public partial class AstCreatetableindexoption : AstRule {
+    public partial class AstCreatetableindexoption : AstRule
+    {
         
         public AstCreatetableindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatetableindexoption(this);
         }
     }
     
-    public partial class AstCreateview : AstRule {
+    public partial class AstCreateview : AstRule
+    {
         
         public AstCreateview(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateview(this);
         }
     }
     
-    public partial class AstViewattributes : AstRule {
+    public partial class AstViewattributes : AstRule
+    {
         
         public AstViewattributes(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitViewattributes(this);
         }
     }
     
-    public partial class AstViewattribute : AstTerminalEnum<AstViewattributeEnum> {
+    public partial class AstViewattribute : AstTerminalEnum<AstViewattributeEnum>
+    {
         
         public AstViewattribute(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitViewattribute(this);
         }
         
-        protected override AstViewattributeEnum GetValue(string value) {
-            if ((value == "ENCRYPTION")) {
+        protected override AstViewattributeEnum GetValue(string value)
+        {
+            if ((value == "ENCRYPTION"))
+            {
                 return AstViewattributeEnum.Encryption;
             }
-            if ((value == "SCHEMABINDING")) {
+            if ((value == "SCHEMABINDING"))
+            {
                 return AstViewattributeEnum.Schemabinding;
             }
-            if ((value == "VIEW_METADATA")) {
+            if ((value == "VIEW_METADATA"))
+            {
                 return AstViewattributeEnum.Viewmetadata;
             }
             return AstViewattributeEnum._undefined;
         }
     }
     
-    public partial class AstAltertable : AstRule {
+    public partial class AstAltertable : AstRule
+    {
         
         public AstAltertable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltertable(this);
         }
     }
     
-    public partial class AstIds : AstRule {
+    public partial class AstIds : AstRule
+    {
         
         public AstIds(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIds(this);
         }
     }
     
-    public partial class AstSwitchpartition : AstRule {
+    public partial class AstSwitchpartition : AstRule
+    {
         
         public AstSwitchpartition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSwitchpartition(this);
         }
     }
     
-    public partial class AstLowprioritylockwait : AstRule {
+    public partial class AstLowprioritylockwait : AstRule
+    {
         
         public AstLowprioritylockwait(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLowprioritylockwait(this);
         }
     }
     
-    public partial class AstAlterdatabase : AstRule {
+    public partial class AstAlterdatabase : AstRule
+    {
         
         public AstAlterdatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterdatabase(this);
         }
     }
     
-    public partial class AstAddormodifyfiles : AstRule {
+    public partial class AstAddormodifyfiles : AstRule
+    {
         
         public AstAddormodifyfiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAddormodifyfiles(this);
         }
     }
     
-    public partial class AstFilespecs : AstRule {
+    public partial class AstFilespecs : AstRule
+    {
         
         public AstFilespecs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilespecs(this);
         }
     }
     
-    public partial class AstFilespec : AstRule {
+    public partial class AstFilespec : AstRule
+    {
         
         public AstFilespec(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilespec(this);
         }
     }
     
-    public partial class AstAddormodifyfilegroups : AstRule {
+    public partial class AstAddormodifyfilegroups : AstRule
+    {
         
         public AstAddormodifyfilegroups(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAddormodifyfilegroups(this);
         }
     }
     
-    public partial class AstFilegroupupdatabilityoption : AstTerminalEnum<AstFilegroupupdatabilityoptionEnum> {
+    public partial class AstFilegroupupdatabilityoption : AstTerminalEnum<AstFilegroupupdatabilityoptionEnum>
+    {
         
         public AstFilegroupupdatabilityoption(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilegroupupdatabilityoption(this);
         }
         
-        protected override AstFilegroupupdatabilityoptionEnum GetValue(string value) {
-            if ((value == "READONLY")) {
+        protected override AstFilegroupupdatabilityoptionEnum GetValue(string value)
+        {
+            if ((value == "READONLY"))
+            {
                 return AstFilegroupupdatabilityoptionEnum.Readonly;
             }
-            if ((value == "READWRITE")) {
+            if ((value == "READWRITE"))
+            {
                 return AstFilegroupupdatabilityoptionEnum.Readwrite;
             }
-            if ((value == "READ_ONLY")) {
+            if ((value == "READ_ONLY"))
+            {
                 return AstFilegroupupdatabilityoptionEnum.Readonly;
             }
-            if ((value == "READ_WRITE")) {
+            if ((value == "READ_WRITE"))
+            {
                 return AstFilegroupupdatabilityoptionEnum.Readwrite;
             }
             return AstFilegroupupdatabilityoptionEnum._undefined;
         }
     }
     
-    public partial class AstDatabaseoptionspec : AstRule {
+    public partial class AstDatabaseoptionspec : AstRule
+    {
         
         public AstDatabaseoptionspec(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatabaseoptionspec(this);
         }
     }
     
-    public partial class AstAutooption : AstRule {
+    public partial class AstAutooption : AstRule
+    {
         
         public AstAutooption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAutooption(this);
         }
     }
     
-    public partial class AstChangetrackingoption : AstRule {
+    public partial class AstChangetrackingoption : AstRule
+    {
         
         public AstChangetrackingoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitChangetrackingoption(this);
         }
     }
     
-    public partial class AstChangetrackingoptionlists : AstRule {
+    public partial class AstChangetrackingoptionlists : AstRule
+    {
         
         public AstChangetrackingoptionlists(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitChangetrackingoptionlists(this);
         }
     }
     
-    public partial class AstChangetrackingoptionlist : AstRule {
+    public partial class AstChangetrackingoptionlist : AstRule
+    {
         
         public AstChangetrackingoptionlist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitChangetrackingoptionlist(this);
         }
     }
     
-    public partial class AstContainmentoption : AstRule {
+    public partial class AstContainmentoption : AstRule
+    {
         
         public AstContainmentoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitContainmentoption(this);
         }
     }
     
-    public partial class AstCursoroption : AstRule {
+    public partial class AstCursoroption : AstRule
+    {
         
         public AstCursoroption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCursoroption(this);
         }
     }
     
-    public partial class AstLocalglobal : AstTerminalEnum<AstLocalglobalEnum> {
+    public partial class AstLocalglobal : AstTerminalEnum<AstLocalglobalEnum>
+    {
         
         public AstLocalglobal(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLocalglobal(this);
         }
         
-        protected override AstLocalglobalEnum GetValue(string value) {
-            if ((value == "LOCAL")) {
+        protected override AstLocalglobalEnum GetValue(string value)
+        {
+            if ((value == "LOCAL"))
+            {
                 return AstLocalglobalEnum.Local;
             }
-            if ((value == "GLOBAL")) {
+            if ((value == "GLOBAL"))
+            {
                 return AstLocalglobalEnum.Global;
             }
             return AstLocalglobalEnum._undefined;
         }
     }
     
-    public partial class AstAlterendpoint : AstRule {
+    public partial class AstAlterendpoint : AstRule
+    {
         
         public AstAlterendpoint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlterendpoint(this);
         }
     }
     
-    public partial class AstMirroringsetoption : AstRule {
+    public partial class AstMirroringsetoption : AstRule
+    {
         
         public AstMirroringsetoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMirroringsetoption(this);
         }
     }
     
-    public partial class AstMirroringpartner : AstRule {
+    public partial class AstMirroringpartner : AstRule
+    {
         
         public AstMirroringpartner(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMirroringpartner(this);
         }
     }
     
-    public partial class AstMirroringwitness : AstRule {
+    public partial class AstMirroringwitness : AstRule
+    {
         
         public AstMirroringwitness(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMirroringwitness(this);
         }
     }
     
-    public partial class AstWitnesspartnerequal : AstRule {
+    public partial class AstWitnesspartnerequal : AstRule
+    {
         
         public AstWitnesspartnerequal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWitnesspartnerequal(this);
         }
     }
     
-    public partial class AstPartneroption : AstRule {
+    public partial class AstPartneroption : AstRule
+    {
         
         public AstPartneroption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartneroption(this);
         }
     }
     
-    public partial class AstWitnessoption : AstRule {
+    public partial class AstWitnessoption : AstRule
+    {
         
         public AstWitnessoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWitnessoption(this);
         }
     }
     
-    public partial class AstPartnerserver : AstRule {
+    public partial class AstPartnerserver : AstRule
+    {
         
         public AstPartnerserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartnerserver(this);
         }
     }
     
-    public partial class AstMirroringhostportseperator : AstRule {
+    public partial class AstMirroringhostportseperator : AstRule
+    {
         
         public AstMirroringhostportseperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMirroringhostportseperator(this);
         }
     }
     
-    public partial class AstPartnerservertcpprefix : AstRule {
+    public partial class AstPartnerservertcpprefix : AstRule
+    {
         
         public AstPartnerservertcpprefix(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartnerservertcpprefix(this);
         }
     }
     
-    public partial class AstPortnumber : AstRule {
+    public partial class AstPortnumber : AstRule
+    {
         
         public AstPortnumber(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPortnumber(this);
         }
     }
     
-    public partial class AstHost : AstRule {
+    public partial class AstHost : AstRule
+    {
         
         public AstHost(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitHost(this);
         }
     }
     
-    public partial class AstDatecorrelationoptimizationoption : AstRule {
+    public partial class AstDatecorrelationoptimizationoption : AstRule
+    {
         
         public AstDatecorrelationoptimizationoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatecorrelationoptimizationoption(this);
         }
     }
     
-    public partial class AstDbencryptionoption : AstRule {
+    public partial class AstDbencryptionoption : AstRule
+    {
         
         public AstDbencryptionoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbencryptionoption(this);
         }
     }
     
-    public partial class AstDbstateoption : AstRule {
+    public partial class AstDbstateoption : AstRule
+    {
         
         public AstDbstateoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbstateoption(this);
         }
     }
     
-    public partial class AstDbupdateoption : AstTerminalEnum<AstDbupdateoptionEnum> {
+    public partial class AstDbupdateoption : AstTerminalEnum<AstDbupdateoptionEnum>
+    {
         
         public AstDbupdateoption(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbupdateoption(this);
         }
         
-        protected override AstDbupdateoptionEnum GetValue(string value) {
-            if ((value == "READ_ONLY")) {
+        protected override AstDbupdateoptionEnum GetValue(string value)
+        {
+            if ((value == "READ_ONLY"))
+            {
                 return AstDbupdateoptionEnum.Readonly;
             }
-            if ((value == "READ_WRITE")) {
+            if ((value == "READ_WRITE"))
+            {
                 return AstDbupdateoptionEnum.Readwrite;
             }
             return AstDbupdateoptionEnum._undefined;
         }
     }
     
-    public partial class AstDbuseraccessoption : AstTerminalEnum<AstDbuseraccessoptionEnum> {
+    public partial class AstDbuseraccessoption : AstTerminalEnum<AstDbuseraccessoptionEnum>
+    {
         
         public AstDbuseraccessoption(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbuseraccessoption(this);
         }
         
-        protected override AstDbuseraccessoptionEnum GetValue(string value) {
-            if ((value == "SINGLE_USER")) {
+        protected override AstDbuseraccessoptionEnum GetValue(string value)
+        {
+            if ((value == "SINGLE_USER"))
+            {
                 return AstDbuseraccessoptionEnum.Singleuser;
             }
-            if ((value == "RESTRICTED_USER")) {
+            if ((value == "RESTRICTED_USER"))
+            {
                 return AstDbuseraccessoptionEnum.Restricteduser;
             }
-            if ((value == "MULTI_USER")) {
+            if ((value == "MULTI_USER"))
+            {
                 return AstDbuseraccessoptionEnum.Multiuser;
             }
             return AstDbuseraccessoptionEnum._undefined;
         }
     }
     
-    public partial class AstDelayeddurabilityoption : AstRule {
+    public partial class AstDelayeddurabilityoption : AstRule
+    {
         
         public AstDelayeddurabilityoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDelayeddurabilityoption(this);
         }
     }
     
-    public partial class AstExternalaccessoption : AstRule {
+    public partial class AstExternalaccessoption : AstRule
+    {
         
         public AstExternalaccessoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExternalaccessoption(this);
         }
     }
     
-    public partial class AstIdorstring : AstRule {
+    public partial class AstIdorstring : AstRule
+    {
         
         public AstIdorstring(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIdorstring(this);
         }
     }
     
-    public partial class AstHadroptions : AstRule {
+    public partial class AstHadroptions : AstRule
+    {
         
         public AstHadroptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitHadroptions(this);
         }
     }
     
-    public partial class AstMixedpageallocationoption : AstRule {
+    public partial class AstMixedpageallocationoption : AstRule
+    {
         
         public AstMixedpageallocationoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMixedpageallocationoption(this);
         }
     }
     
-    public partial class AstParameterizationoption : AstRule {
+    public partial class AstParameterizationoption : AstRule
+    {
         
         public AstParameterizationoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitParameterizationoption(this);
         }
     }
     
-    public partial class AstRecoveryoption : AstRule {
+    public partial class AstRecoveryoption : AstRule
+    {
         
         public AstRecoveryoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRecoveryoption(this);
         }
     }
     
-    public partial class AstServicebrokeroption : AstRule {
+    public partial class AstServicebrokeroption : AstRule
+    {
         
         public AstServicebrokeroption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitServicebrokeroption(this);
         }
     }
     
-    public partial class AstSnapshotoption : AstRule {
+    public partial class AstSnapshotoption : AstRule
+    {
         
         public AstSnapshotoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSnapshotoption(this);
         }
     }
     
-    public partial class AstSqloption : AstRule {
+    public partial class AstSqloption : AstRule
+    {
         
         public AstSqloption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSqloption(this);
         }
     }
     
-    public partial class AstTargetrecoverytimeoption : AstRule {
+    public partial class AstTargetrecoverytimeoption : AstRule
+    {
         
         public AstTargetrecoverytimeoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTargetrecoverytimeoption(this);
         }
     }
     
-    public partial class AstTermination : AstRule {
+    public partial class AstTermination : AstRule
+    {
         
         public AstTermination(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTermination(this);
         }
     }
     
-    public partial class AstDropindex : AstRule {
+    public partial class AstDropindex : AstRule
+    {
         
         public AstDropindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropindex(this);
         }
     }
     
-    public partial class AstDroprelationalorxmlorspatialindexs : AstRule {
+    public partial class AstDroprelationalorxmlorspatialindexs : AstRule
+    {
         
         public AstDroprelationalorxmlorspatialindexs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroprelationalorxmlorspatialindexs(this);
         }
     }
     
-    public partial class AstDropbackwardcompatibleindexs : AstRule {
+    public partial class AstDropbackwardcompatibleindexs : AstRule
+    {
         
         public AstDropbackwardcompatibleindexs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropbackwardcompatibleindexs(this);
         }
     }
     
-    public partial class AstDroprelationalorxmlorspatialindex : AstRule {
+    public partial class AstDroprelationalorxmlorspatialindex : AstRule
+    {
         
         public AstDroprelationalorxmlorspatialindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroprelationalorxmlorspatialindex(this);
         }
     }
     
-    public partial class AstDropbackwardcompatibleindex : AstRule {
+    public partial class AstDropbackwardcompatibleindex : AstRule
+    {
         
         public AstDropbackwardcompatibleindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropbackwardcompatibleindex(this);
         }
     }
     
-    public partial class AstDropprocedure : AstRule {
+    public partial class AstDropprocedure : AstRule
+    {
         
         public AstDropprocedure(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropprocedure(this);
         }
     }
     
-    public partial class AstFuncprocnameschemas : AstRule {
+    public partial class AstFuncprocnameschemas : AstRule
+    {
         
         public AstFuncprocnameschemas(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncprocnameschemas(this);
         }
     }
     
-    public partial class AstDropdmltrigger : AstRule {
+    public partial class AstDropdmltrigger : AstRule
+    {
         
         public AstDropdmltrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropdmltrigger(this);
         }
     }
     
-    public partial class AstDropddltrigger : AstRule {
+    public partial class AstDropddltrigger : AstRule
+    {
         
         public AstDropddltrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropddltrigger(this);
         }
     }
     
-    public partial class AstSimplenames : AstRule {
+    public partial class AstSimplenames : AstRule
+    {
         
         public AstSimplenames(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSimplenames(this);
         }
     }
     
-    public partial class AstTablenames : AstRule {
+    public partial class AstTablenames : AstRule
+    {
         
         public AstTablenames(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablenames(this);
         }
     }
     
-    public partial class AstDropfunction : AstRule {
+    public partial class AstDropfunction : AstRule
+    {
         
         public AstDropfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropfunction(this);
         }
     }
     
-    public partial class AstDropstatistics : AstRule {
+    public partial class AstDropstatistics : AstRule
+    {
         
         public AstDropstatistics(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropstatistics(this);
         }
     }
     
-    public partial class AstDroptable : AstRule {
+    public partial class AstDroptable : AstRule
+    {
         
         public AstDroptable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroptable(this);
         }
     }
     
-    public partial class AstDropview : AstRule {
+    public partial class AstDropview : AstRule
+    {
         
         public AstDropview(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDropview(this);
         }
     }
     
-    public partial class AstCreatetype : AstRule {
+    public partial class AstCreatetype : AstRule
+    {
         
         public AstCreatetype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatetype(this);
         }
     }
     
-    public partial class AstDroptype : AstRule {
+    public partial class AstDroptype : AstRule
+    {
         
         public AstDroptype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroptype(this);
         }
     }
     
-    public partial class AstOpenquery : AstRule {
+    public partial class AstOpenquery : AstRule
+    {
         
         public AstOpenquery(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOpenquery(this);
         }
     }
     
-    public partial class AstOpendatasource : AstRule {
+    public partial class AstOpendatasource : AstRule
+    {
         
         public AstOpendatasource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOpendatasource(this);
         }
     }
     
-    public partial class AstDeclarestatement : AstRule {
+    public partial class AstDeclarestatement : AstRule
+    {
         
         public AstDeclarestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclarestatement(this);
         }
     }
     
-    public partial class AstDeclarelocals : AstRule {
+    public partial class AstDeclarelocals : AstRule
+    {
         
         public AstDeclarelocals(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclarelocals(this);
         }
     }
     
-    public partial class AstXmldeclarations : AstRule {
+    public partial class AstXmldeclarations : AstRule
+    {
         
         public AstXmldeclarations(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmldeclarations(this);
         }
     }
     
-    public partial class AstXmldeclaration : AstRule {
+    public partial class AstXmldeclaration : AstRule
+    {
         
         public AstXmldeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmldeclaration(this);
         }
     }
     
-    public partial class AstCursorstatement : AstRule {
+    public partial class AstCursorstatement : AstRule
+    {
         
         public AstCursorstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCursorstatement(this);
         }
     }
     
-    public partial class AstBackupdatabase : AstRule {
+    public partial class AstBackupdatabase : AstRule
+    {
         
         public AstBackupdatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackupdatabase(this);
         }
     }
     
-    public partial class AstBackuplog : AstRule {
+    public partial class AstBackuplog : AstRule
+    {
         
         public AstBackuplog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackuplog(this);
         }
     }
     
-    public partial class AstBackupcertificate : AstRule {
+    public partial class AstBackupcertificate : AstRule
+    {
         
         public AstBackupcertificate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackupcertificate(this);
         }
     }
     
-    public partial class AstBackupmasterkey : AstRule {
+    public partial class AstBackupmasterkey : AstRule
+    {
         
         public AstBackupmasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackupmasterkey(this);
         }
     }
     
-    public partial class AstBackupservicemasterkey : AstRule {
+    public partial class AstBackupservicemasterkey : AstRule
+    {
         
         public AstBackupservicemasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackupservicemasterkey(this);
         }
     }
     
-    public partial class AstKillstatement : AstRule {
+    public partial class AstKillstatement : AstRule
+    {
         
         public AstKillstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKillstatement(this);
         }
     }
     
-    public partial class AstKillprocess : AstRule {
+    public partial class AstKillprocess : AstRule
+    {
         
         public AstKillprocess(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKillprocess(this);
         }
     }
     
-    public partial class AstKillquerynotification : AstRule {
+    public partial class AstKillquerynotification : AstRule
+    {
         
         public AstKillquerynotification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKillquerynotification(this);
         }
     }
     
-    public partial class AstKillstatsjob : AstRule {
+    public partial class AstKillstatsjob : AstRule
+    {
         
         public AstKillstatsjob(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKillstatsjob(this);
         }
     }
     
-    public partial class AstExecutestatement : AstRule {
+    public partial class AstExecutestatement : AstRule
+    {
         
         public AstExecutestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatement(this);
         }
     }
     
-    public partial class AstExecutebodybatch : AstRule {
+    public partial class AstExecutebodybatch : AstRule
+    {
         
         public AstExecutebodybatch(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutebodybatch(this);
         }
     }
     
-    public partial class AstExecutebody : AstRule {
+    public partial class AstExecutebody : AstRule
+    {
         
         public AstExecutebody(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutebody(this);
         }
     }
     
-    public partial class AstExecutevarstrings : AstRule {
+    public partial class AstExecutevarstrings : AstRule
+    {
         
         public AstExecutevarstrings(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutevarstrings(this);
         }
     }
     
-    public partial class AstExecutestatementarg : AstRule {
+    public partial class AstExecutestatementarg : AstRule
+    {
         
         public AstExecutestatementarg(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatementarg(this);
         }
     }
     
-    public partial class AstExecutestatementargnameds : AstRule {
+    public partial class AstExecutestatementargnameds : AstRule
+    {
         
         public AstExecutestatementargnameds(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatementargnameds(this);
         }
     }
     
-    public partial class AstExecutestatementargs : AstRule {
+    public partial class AstExecutestatementargs : AstRule
+    {
         
         public AstExecutestatementargs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatementargs(this);
         }
     }
     
-    public partial class AstExecutestatementargnamed : AstRule {
+    public partial class AstExecutestatementargnamed : AstRule
+    {
         
         public AstExecutestatementargnamed(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatementargnamed(this);
         }
     }
     
-    public partial class AstExecutestatementargunnamed : AstRule {
+    public partial class AstExecutestatementargunnamed : AstRule
+    {
         
         public AstExecutestatementargunnamed(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutestatementargunnamed(this);
         }
     }
     
-    public partial class AstExecuteparameter : AstRule {
+    public partial class AstExecuteparameter : AstRule
+    {
         
         public AstExecuteparameter(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecuteparameter(this);
         }
     }
     
-    public partial class AstExecutevarstring : AstRule {
+    public partial class AstExecutevarstring : AstRule
+    {
         
         public AstExecutevarstring(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecutevarstring(this);
         }
     }
     
-    public partial class AstSecuritystatement : AstRule {
+    public partial class AstSecuritystatement : AstRule
+    {
         
         public AstSecuritystatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSecuritystatement(this);
         }
     }
     
-    public partial class AstToprincipalrincipalids : AstRule {
+    public partial class AstToprincipalrincipalids : AstRule
+    {
         
         public AstToprincipalrincipalids(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitToprincipalrincipalids(this);
         }
     }
     
-    public partial class AstPrincipalid : AstRule {
+    public partial class AstPrincipalid : AstRule
+    {
         
         public AstPrincipalid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPrincipalid(this);
         }
     }
     
-    public partial class AstCreatecertificate : AstRule {
+    public partial class AstCreatecertificate : AstRule
+    {
         
         public AstCreatecertificate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatecertificate(this);
         }
     }
     
-    public partial class AstExistingkeys : AstRule {
+    public partial class AstExistingkeys : AstRule
+    {
         
         public AstExistingkeys(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExistingkeys(this);
         }
     }
     
-    public partial class AstPrivatekeyoptions : AstRule {
+    public partial class AstPrivatekeyoptions : AstRule
+    {
         
         public AstPrivatekeyoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPrivatekeyoptions(this);
         }
     }
     
-    public partial class AstGeneratenewkeys : AstRule {
+    public partial class AstGeneratenewkeys : AstRule
+    {
         
         public AstGeneratenewkeys(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGeneratenewkeys(this);
         }
     }
     
-    public partial class AstDateoptions : AstRule {
+    public partial class AstDateoptions : AstRule
+    {
         
         public AstDateoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDateoptions(this);
         }
     }
     
-    public partial class AstOpenkey : AstRule {
+    public partial class AstOpenkey : AstRule
+    {
         
         public AstOpenkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOpenkey(this);
         }
     }
     
-    public partial class AstClosekey : AstRule {
+    public partial class AstClosekey : AstRule
+    {
         
         public AstClosekey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClosekey(this);
         }
     }
     
-    public partial class AstCreatekey : AstRule {
+    public partial class AstCreatekey : AstRule
+    {
         
         public AstCreatekey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatekey(this);
         }
     }
     
-    public partial class AstKeyoptions : AstRule {
+    public partial class AstKeyoptions : AstRule
+    {
         
         public AstKeyoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKeyoptions(this);
         }
     }
     
-    public partial class AstAlgorithm : AstTerminalEnum<AstAlgorithmEnum> {
+    public partial class AstAlgorithm : AstTerminalEnum<AstAlgorithmEnum>
+    {
         
         public AstAlgorithm(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlgorithm(this);
         }
         
-        protected override AstAlgorithmEnum GetValue(string value) {
-            if ((value == "DES")) {
+        protected override AstAlgorithmEnum GetValue(string value)
+        {
+            if ((value == "DES"))
+            {
                 return AstAlgorithmEnum.Des;
             }
-            if ((value == "TRIPLE_DES")) {
+            if ((value == "TRIPLE_DES"))
+            {
                 return AstAlgorithmEnum.Tripledes;
             }
-            if ((value == "TRIPLE_DES_3KEY")) {
+            if ((value == "TRIPLE_DES_3KEY"))
+            {
                 return AstAlgorithmEnum.Tripledes3key;
             }
-            if ((value == "RC2")) {
+            if ((value == "RC2"))
+            {
                 return AstAlgorithmEnum.Rc2;
             }
-            if ((value == "RC4")) {
+            if ((value == "RC4"))
+            {
                 return AstAlgorithmEnum.Rc4;
             }
-            if ((value == "RC4_128")) {
+            if ((value == "RC4_128"))
+            {
                 return AstAlgorithmEnum.Rc4128;
             }
-            if ((value == "DESX")) {
+            if ((value == "DESX"))
+            {
                 return AstAlgorithmEnum.Desx;
             }
-            if ((value == "AES_128")) {
+            if ((value == "AES_128"))
+            {
                 return AstAlgorithmEnum.Aes128;
             }
-            if ((value == "AES_192")) {
+            if ((value == "AES_192"))
+            {
                 return AstAlgorithmEnum.Aes192;
             }
-            if ((value == "AES_256")) {
+            if ((value == "AES_256"))
+            {
                 return AstAlgorithmEnum.Aes256;
             }
             return AstAlgorithmEnum._undefined;
         }
     }
     
-    public partial class AstEncryptionmechanism : AstRule {
+    public partial class AstEncryptionmechanism : AstRule
+    {
         
         public AstEncryptionmechanism(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEncryptionmechanism(this);
         }
     }
     
-    public partial class AstDecryptionmechanism : AstRule {
+    public partial class AstDecryptionmechanism : AstRule
+    {
         
         public AstDecryptionmechanism(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDecryptionmechanism(this);
         }
     }
     
-    public partial class AstGrantpermission : AstRule {
+    public partial class AstGrantpermission : AstRule
+    {
         
         public AstGrantpermission(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGrantpermission(this);
         }
     }
     
-    public partial class AstSetstatement : AstRule {
+    public partial class AstSetstatement : AstRule
+    {
         
         public AstSetstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSetstatement(this);
         }
     }
     
-    public partial class AstTransactionstatement : AstRule {
+    public partial class AstTransactionstatement : AstRule
+    {
         
         public AstTransactionstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTransactionstatement(this);
         }
     }
     
-    public partial class AstGostatement : AstRule {
+    public partial class AstGostatement : AstRule
+    {
         
         public AstGostatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGostatement(this);
         }
     }
     
-    public partial class AstUsestatement : AstRule {
+    public partial class AstUsestatement : AstRule
+    {
         
         public AstUsestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUsestatement(this);
         }
     }
     
-    public partial class AstSetuserstatement : AstRule {
+    public partial class AstSetuserstatement : AstRule
+    {
         
         public AstSetuserstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSetuserstatement(this);
         }
     }
     
-    public partial class AstReconfigurestatement : AstRule {
+    public partial class AstReconfigurestatement : AstRule
+    {
         
         public AstReconfigurestatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitReconfigurestatement(this);
         }
     }
     
-    public partial class AstShutdownstatement : AstRule {
+    public partial class AstShutdownstatement : AstRule
+    {
         
         public AstShutdownstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitShutdownstatement(this);
         }
     }
     
-    public partial class AstCheckpointstatement : AstRule {
+    public partial class AstCheckpointstatement : AstRule
+    {
         
         public AstCheckpointstatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCheckpointstatement(this);
         }
     }
     
-    public partial class AstDbccspecial : AstRule {
+    public partial class AstDbccspecial : AstRule
+    {
         
         public AstDbccspecial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbccspecial(this);
         }
     }
     
-    public partial class AstDbccclause : AstRule {
+    public partial class AstDbccclause : AstRule
+    {
         
         public AstDbccclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbccclause(this);
         }
     }
     
-    public partial class AstDbcccommand : AstRule {
+    public partial class AstDbcccommand : AstRule
+    {
         
         public AstDbcccommand(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbcccommand(this);
         }
     }
     
-    public partial class AstDbccoptions : AstRule {
+    public partial class AstDbccoptions : AstRule
+    {
         
         public AstDbccoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDbccoptions(this);
         }
     }
     
-    public partial class AstExecuteclause : AstRule {
+    public partial class AstExecuteclause : AstRule
+    {
         
         public AstExecuteclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExecuteclause(this);
         }
     }
     
-    public partial class AstDeclarelocal : AstRule {
+    public partial class AstDeclarelocal : AstRule
+    {
         
         public AstDeclarelocal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclarelocal(this);
         }
     }
     
-    public partial class AstTabletypedefinition : AstRule {
+    public partial class AstTabletypedefinition : AstRule
+    {
         
         public AstTabletypedefinition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTabletypedefinition(this);
         }
     }
     
-    public partial class AstTabletypeindices : AstRule {
+    public partial class AstTabletypeindices : AstRule
+    {
         
         public AstTabletypeindices(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTabletypeindices(this);
         }
     }
     
-    public partial class AstXmltypedefinition : AstRule {
+    public partial class AstXmltypedefinition : AstRule
+    {
         
         public AstXmltypedefinition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmltypedefinition(this);
         }
     }
     
-    public partial class AstXmlschemacollection : AstRule {
+    public partial class AstXmlschemacollection : AstRule
+    {
         
         public AstXmlschemacollection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmlschemacollection(this);
         }
     }
     
-    public partial class AstColumndeftableconstraints : AstRule {
+    public partial class AstColumndeftableconstraints : AstRule
+    {
         
         public AstColumndeftableconstraints(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumndeftableconstraints(this);
         }
     }
     
-    public partial class AstColumndefinition : AstRule {
+    public partial class AstColumndefinition : AstRule
+    {
         
         public AstColumndefinition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumndefinition(this);
         }
     }
     
-    public partial class AstColumndefinitionelement : AstRule {
+    public partial class AstColumndefinitionelement : AstRule
+    {
         
         public AstColumndefinitionelement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumndefinitionelement(this);
         }
     }
     
-    public partial class AstColumnmodifier : AstRule {
+    public partial class AstColumnmodifier : AstRule
+    {
         
         public AstColumnmodifier(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnmodifier(this);
         }
     }
     
-    public partial class AstMaterializedcolumndefinition : AstRule {
+    public partial class AstMaterializedcolumndefinition : AstRule
+    {
         
         public AstMaterializedcolumndefinition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMaterializedcolumndefinition(this);
         }
     }
     
-    public partial class AstColumnconstraint : AstRule {
+    public partial class AstColumnconstraint : AstRule
+    {
         
         public AstColumnconstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnconstraint(this);
         }
     }
     
-    public partial class AstColumnindex : AstRule {
+    public partial class AstColumnindex : AstRule
+    {
         
         public AstColumnindex(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnindex(this);
         }
     }
     
-    public partial class AstOnpartitionorfilegroup : AstRule {
+    public partial class AstOnpartitionorfilegroup : AstRule
+    {
         
         public AstOnpartitionorfilegroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOnpartitionorfilegroup(this);
         }
     }
     
-    public partial class AstTableconstraint : AstRule {
+    public partial class AstTableconstraint : AstRule
+    {
         
         public AstTableconstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableconstraint(this);
         }
     }
     
-    public partial class AstConnectionnode : AstRule {
+    public partial class AstConnectionnode : AstRule
+    {
         
         public AstConnectionnode(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitConnectionnode(this);
         }
     }
     
-    public partial class AstPrimarykeyoptions : AstRule {
+    public partial class AstPrimarykeyoptions : AstRule
+    {
         
         public AstPrimarykeyoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPrimarykeyoptions(this);
         }
     }
     
-    public partial class AstForeignkeyoptions : AstRule {
+    public partial class AstForeignkeyoptions : AstRule
+    {
         
         public AstForeignkeyoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitForeignkeyoptions(this);
         }
     }
     
-    public partial class AstCheckconstraint : AstRule {
+    public partial class AstCheckconstraint : AstRule
+    {
         
         public AstCheckconstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCheckconstraint(this);
         }
     }
     
-    public partial class AstOndelete : AstRule {
+    public partial class AstOndelete : AstRule
+    {
         
         public AstOndelete(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOndelete(this);
         }
     }
     
-    public partial class AstOnupdate : AstRule {
+    public partial class AstOnupdate : AstRule
+    {
         
         public AstOnupdate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOnupdate(this);
         }
     }
     
-    public partial class AstAltertableindexoptions : AstRule {
+    public partial class AstAltertableindexoptions : AstRule
+    {
         
         public AstAltertableindexoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltertableindexoptions(this);
         }
     }
     
-    public partial class AstAltertableindexoption : AstRule {
+    public partial class AstAltertableindexoption : AstRule
+    {
         
         public AstAltertableindexoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAltertableindexoption(this);
         }
     }
     
-    public partial class AstDeclarecursor : AstRule {
+    public partial class AstDeclarecursor : AstRule
+    {
         
         public AstDeclarecursor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclarecursor(this);
         }
     }
     
-    public partial class AstSensitive : AstTerminalEnum<AstSensitiveEnum> {
+    public partial class AstSensitive : AstTerminalEnum<AstSensitiveEnum>
+    {
         
         public AstSensitive(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSensitive(this);
         }
         
-        protected override AstSensitiveEnum GetValue(string value) {
-            if ((value == "SEMI_SENSITIVE")) {
+        protected override AstSensitiveEnum GetValue(string value)
+        {
+            if ((value == "SEMI_SENSITIVE"))
+            {
                 return AstSensitiveEnum.Semisensitive;
             }
-            if ((value == "INSENSITIVE")) {
+            if ((value == "INSENSITIVE"))
+            {
                 return AstSensitiveEnum.Insensitive;
             }
             return AstSensitiveEnum._undefined;
         }
     }
     
-    public partial class AstDeclaresetcursorcommon : AstRule {
+    public partial class AstDeclaresetcursorcommon : AstRule
+    {
         
         public AstDeclaresetcursorcommon(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclaresetcursorcommon(this);
         }
     }
     
-    public partial class AstDeclaresetcursorcommonpartial : AstRule {
+    public partial class AstDeclaresetcursorcommonpartial : AstRule
+    {
         
         public AstDeclaresetcursorcommonpartial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeclaresetcursorcommonpartial(this);
         }
     }
     
-    public partial class AstFetchcursor : AstRule {
+    public partial class AstFetchcursor : AstRule
+    {
         
         public AstFetchcursor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFetchcursor(this);
         }
     }
     
-    public partial class AstAbsoluterelative : AstTerminalEnum<AstAbsoluterelativeEnum> {
+    public partial class AstAbsoluterelative : AstTerminalEnum<AstAbsoluterelativeEnum>
+    {
         
         public AstAbsoluterelative(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAbsoluterelative(this);
         }
         
-        protected override AstAbsoluterelativeEnum GetValue(string value) {
-            if ((value == "ABSOLUTE")) {
+        protected override AstAbsoluterelativeEnum GetValue(string value)
+        {
+            if ((value == "ABSOLUTE"))
+            {
                 return AstAbsoluterelativeEnum.Absolute;
             }
-            if ((value == "RELATIVE")) {
+            if ((value == "RELATIVE"))
+            {
                 return AstAbsoluterelativeEnum.Relative;
             }
             return AstAbsoluterelativeEnum._undefined;
         }
     }
     
-    public partial class AstFetchcursorstrategy : AstTerminalEnum<AstFetchcursorstrategyEnum> {
+    public partial class AstFetchcursorstrategy : AstTerminalEnum<AstFetchcursorstrategyEnum>
+    {
         
         public AstFetchcursorstrategy(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFetchcursorstrategy(this);
         }
         
-        protected override AstFetchcursorstrategyEnum GetValue(string value) {
-            if ((value == "NEXT")) {
+        protected override AstFetchcursorstrategyEnum GetValue(string value)
+        {
+            if ((value == "NEXT"))
+            {
                 return AstFetchcursorstrategyEnum.Next;
             }
-            if ((value == "PRIOR")) {
+            if ((value == "PRIOR"))
+            {
                 return AstFetchcursorstrategyEnum.Prior;
             }
-            if ((value == "FIRST")) {
+            if ((value == "FIRST"))
+            {
                 return AstFetchcursorstrategyEnum.First;
             }
-            if ((value == "LAST")) {
+            if ((value == "LAST"))
+            {
                 return AstFetchcursorstrategyEnum.Last;
             }
             return AstFetchcursorstrategyEnum._undefined;
         }
     }
     
-    public partial class AstLocalids : AstRule {
+    public partial class AstLocalids : AstRule
+    {
         
         public AstLocalids(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLocalids(this);
         }
     }
     
-    public partial class AstSetspecial : AstRule {
+    public partial class AstSetspecial : AstRule
+    {
         
         public AstSetspecial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSetspecial(this);
         }
     }
     
-    public partial class AstSpeciallist : AstTerminalEnum<AstSpeciallistEnum> {
+    public partial class AstSpeciallist : AstTerminalEnum<AstSpeciallistEnum>
+    {
         
         public AstSpeciallist(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSpeciallist(this);
         }
         
-        protected override AstSpeciallistEnum GetValue(string value) {
-            if ((value == "ANSI_NULLS")) {
+        protected override AstSpeciallistEnum GetValue(string value)
+        {
+            if ((value == "ANSI_NULLS"))
+            {
                 return AstSpeciallistEnum.Ansinulls;
             }
-            if ((value == "QUOTED_IDENTIFIER")) {
+            if ((value == "QUOTED_IDENTIFIER"))
+            {
                 return AstSpeciallistEnum.Quotedidentifier;
             }
-            if ((value == "ANSI_PADDING")) {
+            if ((value == "ANSI_PADDING"))
+            {
                 return AstSpeciallistEnum.Ansipadding;
             }
-            if ((value == "ANSI_WARNINGS")) {
+            if ((value == "ANSI_WARNINGS"))
+            {
                 return AstSpeciallistEnum.Ansiwarnings;
             }
-            if ((value == "ANSI_DEFAULTS")) {
+            if ((value == "ANSI_DEFAULTS"))
+            {
                 return AstSpeciallistEnum.Ansidefaults;
             }
-            if ((value == "ANSI_NULL_DFLT_OFF")) {
+            if ((value == "ANSI_NULL_DFLT_OFF"))
+            {
                 return AstSpeciallistEnum.Ansinulldfltoff;
             }
-            if ((value == "ANSI_NULL_DFLT_ON")) {
+            if ((value == "ANSI_NULL_DFLT_ON"))
+            {
                 return AstSpeciallistEnum.Ansinulldflton;
             }
-            if ((value == "ARITHABORT")) {
+            if ((value == "ARITHABORT"))
+            {
                 return AstSpeciallistEnum.Arithabort;
             }
-            if ((value == "ARITHIGNORE")) {
+            if ((value == "ARITHIGNORE"))
+            {
                 return AstSpeciallistEnum.Arithignore;
             }
-            if ((value == "CONCAT_NULL_YIELDS_NULL")) {
+            if ((value == "CONCAT_NULL_YIELDS_NULL"))
+            {
                 return AstSpeciallistEnum.Concatnullyieldsnull;
             }
-            if ((value == "CURSOR_CLOSE_ON_COMMIT")) {
+            if ((value == "CURSOR_CLOSE_ON_COMMIT"))
+            {
                 return AstSpeciallistEnum.Cursorcloseoncommit;
             }
-            if ((value == "FMTONLY")) {
+            if ((value == "FMTONLY"))
+            {
                 return AstSpeciallistEnum.Fmtonly;
             }
-            if ((value == "FORCEPLAN")) {
+            if ((value == "FORCEPLAN"))
+            {
                 return AstSpeciallistEnum.Forceplan;
             }
-            if ((value == "IMPLICIT_TRANSACTIONS")) {
+            if ((value == "IMPLICIT_TRANSACTIONS"))
+            {
                 return AstSpeciallistEnum.Implicittransactions;
             }
-            if ((value == "NOCOUNT")) {
+            if ((value == "NOCOUNT"))
+            {
                 return AstSpeciallistEnum.Nocount;
             }
-            if ((value == "NOEXEC")) {
+            if ((value == "NOEXEC"))
+            {
                 return AstSpeciallistEnum.Noexec;
             }
-            if ((value == "NUMERIC_ROUNDABORT")) {
+            if ((value == "NUMERIC_ROUNDABORT"))
+            {
                 return AstSpeciallistEnum.Numericroundabort;
             }
-            if ((value == "PARSEONLY")) {
+            if ((value == "PARSEONLY"))
+            {
                 return AstSpeciallistEnum.Parseonly;
             }
-            if ((value == "REMOTE_PROC_TRANSACTIONS")) {
+            if ((value == "REMOTE_PROC_TRANSACTIONS"))
+            {
                 return AstSpeciallistEnum.Remoteproctransactions;
             }
-            if ((value == "SHOWPLAN_ALL")) {
+            if ((value == "SHOWPLAN_ALL"))
+            {
                 return AstSpeciallistEnum.Showplanall;
             }
-            if ((value == "SHOWPLAN_TEXT")) {
+            if ((value == "SHOWPLAN_TEXT"))
+            {
                 return AstSpeciallistEnum.Showplantext;
             }
-            if ((value == "SHOWPLAN_XML")) {
+            if ((value == "SHOWPLAN_XML"))
+            {
                 return AstSpeciallistEnum.Showplanxml;
             }
-            if ((value == "XACT_ABORT")) {
+            if ((value == "XACT_ABORT"))
+            {
                 return AstSpeciallistEnum.Xactabort;
             }
             return AstSpeciallistEnum._undefined;
         }
     }
     
-    public partial class AstConstantLOCALID : AstRule {
+    public partial class AstConstantLOCALID : AstRule
+    {
         
         public AstConstantLOCALID(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitConstantLOCALID(this);
         }
     }
     
-    public partial class AstExpression : AstRule {
+    public partial class AstExpression : AstRule
+    {
         
         public AstExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpression(this);
         }
     }
     
-    public partial class AstParameter : AstRule {
+    public partial class AstParameter : AstRule
+    {
         
         public AstParameter(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitParameter(this);
         }
     }
     
-    public partial class AstTimezone : AstRule {
+    public partial class AstTimezone : AstRule
+    {
         
         public AstTimezone(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTimezone(this);
         }
     }
     
-    public partial class AstPrimitiveexpression : AstRule {
+    public partial class AstPrimitiveexpression : AstRule
+    {
         
         public AstPrimitiveexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPrimitiveexpression(this);
         }
     }
     
-    public partial class AstCaseexpression : AstRule {
+    public partial class AstCaseexpression : AstRule
+    {
         
         public AstCaseexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCaseexpression(this);
         }
     }
     
-    public partial class AstUnaryoperatorexpression : AstRule {
+    public partial class AstUnaryoperatorexpression : AstRule
+    {
         
         public AstUnaryoperatorexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUnaryoperatorexpression(this);
         }
     }
     
-    public partial class AstBracketexpression : AstRule {
+    public partial class AstBracketexpression : AstRule
+    {
         
         public AstBracketexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBracketexpression(this);
         }
     }
     
-    public partial class AstConstantexpression : AstRule {
+    public partial class AstConstantexpression : AstRule
+    {
         
         public AstConstantexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitConstantexpression(this);
         }
     }
     
-    public partial class AstWithexpression : AstRule {
+    public partial class AstWithexpression : AstRule
+    {
         
         public AstWithexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWithexpression(this);
         }
     }
     
-    public partial class AstCommontableexpression : AstRule {
+    public partial class AstCommontableexpression : AstRule
+    {
         
         public AstCommontableexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCommontableexpression(this);
         }
     }
     
-    public partial class AstUpdateelem : AstRule {
+    public partial class AstUpdateelem : AstRule
+    {
         
         public AstUpdateelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdateelem(this);
         }
     }
     
-    public partial class AstUpdateelemmerge : AstRule {
+    public partial class AstUpdateelemmerge : AstRule
+    {
         
         public AstUpdateelemmerge(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUpdateelemmerge(this);
         }
     }
     
-    public partial class AstSearchcondition : AstRule {
+    public partial class AstSearchcondition : AstRule
+    {
         
         public AstSearchcondition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSearchcondition(this);
         }
     }
     
-    public partial class AstPredicate : AstRule {
+    public partial class AstPredicate : AstRule
+    {
         
         public AstPredicate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPredicate(this);
         }
     }
     
-    public partial class AstQueryexpression : AstRule {
+    public partial class AstQueryexpression : AstRule
+    {
         
         public AstQueryexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueryexpression(this);
         }
     }
     
-    public partial class AstSqlunion : AstRule {
+    public partial class AstSqlunion : AstRule
+    {
         
         public AstSqlunion(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSqlunion(this);
         }
     }
     
-    public partial class AstQueryspecification : AstRule {
+    public partial class AstQueryspecification : AstRule
+    {
         
         public AstQueryspecification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueryspecification(this);
         }
     }
     
-    public partial class AstGroupSetlist : AstRule {
+    public partial class AstGroupSetlist : AstRule
+    {
         
         public AstGroupSetlist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGroupSetlist(this);
         }
     }
     
-    public partial class AstGroupByslist : AstRule {
+    public partial class AstGroupByslist : AstRule
+    {
         
         public AstGroupByslist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGroupByslist(this);
         }
     }
     
-    public partial class AstTopclause : AstRule {
+    public partial class AstTopclause : AstRule
+    {
         
         public AstTopclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTopclause(this);
         }
     }
     
-    public partial class AstToppercent : AstRule {
+    public partial class AstToppercent : AstRule
+    {
         
         public AstToppercent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitToppercent(this);
         }
     }
     
-    public partial class AstTopcount : AstRule {
+    public partial class AstTopcount : AstRule
+    {
         
         public AstTopcount(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTopcount(this);
         }
     }
     
-    public partial class AstOrderbyclause : AstRule {
+    public partial class AstOrderbyclause : AstRule
+    {
         
         public AstOrderbyclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOrderbyclause(this);
         }
     }
     
-    public partial class AstSelectorderbyclause : AstRule {
+    public partial class AstSelectorderbyclause : AstRule
+    {
         
         public AstSelectorderbyclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSelectorderbyclause(this);
         }
     }
     
-    public partial class AstForclause : AstRule {
+    public partial class AstForclause : AstRule
+    {
         
         public AstForclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitForclause(this);
         }
     }
     
-    public partial class AstXmlcommondirectives : AstRule {
+    public partial class AstXmlcommondirectives : AstRule
+    {
         
         public AstXmlcommondirectives(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitXmlcommondirectives(this);
         }
     }
     
-    public partial class AstOrderbyexpression : AstRule {
+    public partial class AstOrderbyexpression : AstRule
+    {
         
         public AstOrderbyexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOrderbyexpression(this);
         }
     }
     
-    public partial class AstGroupingsetsitem : AstRule {
+    public partial class AstGroupingsetsitem : AstRule
+    {
         
         public AstGroupingsetsitem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGroupingsetsitem(this);
         }
     }
     
-    public partial class AstGroupingsetslist : AstRule {
+    public partial class AstGroupingsetslist : AstRule
+    {
         
         public AstGroupingsetslist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGroupingsetslist(this);
         }
     }
     
-    public partial class AstOptionclause : AstRule {
+    public partial class AstOptionclause : AstRule
+    {
         
         public AstOptionclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOptionclause(this);
         }
     }
     
-    public partial class AstOption : AstRule {
+    public partial class AstOption : AstRule
+    {
         
         public AstOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOption(this);
         }
     }
     
-    public partial class AstOptimizeforargs : AstRule {
+    public partial class AstOptimizeforargs : AstRule
+    {
         
         public AstOptimizeforargs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOptimizeforargs(this);
         }
     }
     
-    public partial class AstOptimizeforarg : AstRule {
+    public partial class AstOptimizeforarg : AstRule
+    {
         
         public AstOptimizeforarg(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOptimizeforarg(this);
         }
     }
     
-    public partial class AstSelectlist : AstRule {
+    public partial class AstSelectlist : AstRule
+    {
         
         public AstSelectlist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSelectlist(this);
         }
     }
     
-    public partial class AstUdtmethodarguments : AstRule {
+    public partial class AstUdtmethodarguments : AstRule
+    {
         
         public AstUdtmethodarguments(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUdtmethodarguments(this);
         }
     }
     
-    public partial class AstAsterisk : AstRule {
+    public partial class AstAsterisk : AstRule
+    {
         
         public AstAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsterisk(this);
         }
     }
     
-    public partial class AstColumnelem : AstRule {
+    public partial class AstColumnelem : AstRule
+    {
         
         public AstColumnelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnelem(this);
         }
     }
     
-    public partial class AstUdtelem : AstRule {
+    public partial class AstUdtelem : AstRule
+    {
         
         public AstUdtelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUdtelem(this);
         }
     }
     
-    public partial class AstExpressionelem : AstRule {
+    public partial class AstExpressionelem : AstRule
+    {
         
         public AstExpressionelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpressionelem(this);
         }
     }
     
-    public partial class AstSelectlistelem : AstRule {
+    public partial class AstSelectlistelem : AstRule
+    {
         
         public AstSelectlistelem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSelectlistelem(this);
         }
     }
     
-    public partial class AstTablesources : AstRule {
+    public partial class AstTablesources : AstRule
+    {
         
         public AstTablesources(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablesources(this);
         }
     }
     
-    public partial class AstTablesource : AstRule {
+    public partial class AstTablesource : AstRule
+    {
         
         public AstTablesource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablesource(this);
         }
     }
     
-    public partial class AstTablesourceitemjoined : AstRule {
+    public partial class AstTablesourceitemjoined : AstRule
+    {
         
         public AstTablesourceitemjoined(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablesourceitemjoined(this);
         }
     }
     
-    public partial class AstTablesourceitem : AstRule {
+    public partial class AstTablesourceitem : AstRule
+    {
         
         public AstTablesourceitem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablesourceitem(this);
         }
     }
     
-    public partial class AstExpression2 : AstRule {
+    public partial class AstExpression2 : AstRule
+    {
         
         public AstExpression2(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpression2(this);
         }
     }
     
-    public partial class AstOpenxml : AstRule {
+    public partial class AstOpenxml : AstRule
+    {
         
         public AstOpenxml(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOpenxml(this);
         }
     }
     
-    public partial class AstOpenjson : AstRule {
+    public partial class AstOpenjson : AstRule
+    {
         
         public AstOpenjson(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOpenjson(this);
         }
     }
     
-    public partial class AstJsondeclaration : AstRule {
+    public partial class AstJsondeclaration : AstRule
+    {
         
         public AstJsondeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitJsondeclaration(this);
         }
     }
     
-    public partial class AstJsoncolumndeclaration : AstRule {
+    public partial class AstJsoncolumndeclaration : AstRule
+    {
         
         public AstJsoncolumndeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitJsoncolumndeclaration(this);
         }
     }
     
-    public partial class AstSchemadeclaration : AstRule {
+    public partial class AstSchemadeclaration : AstRule
+    {
         
         public AstSchemadeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSchemadeclaration(this);
         }
     }
     
-    public partial class AstColumndeclaration : AstRule {
+    public partial class AstColumndeclaration : AstRule
+    {
         
         public AstColumndeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumndeclaration(this);
         }
     }
     
-    public partial class AstChangetablechanges : AstRule {
+    public partial class AstChangetablechanges : AstRule
+    {
         
         public AstChangetablechanges(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitChangetablechanges(this);
         }
     }
     
-    public partial class AstChangetableversion : AstRule {
+    public partial class AstChangetableversion : AstRule
+    {
         
         public AstChangetableversion(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitChangetableversion(this);
         }
     }
     
-    public partial class AstJoinon : AstRule {
+    public partial class AstJoinon : AstRule
+    {
         
         public AstJoinon(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitJoinon(this);
         }
     }
     
-    public partial class AstCrossjoin : AstRule {
+    public partial class AstCrossjoin : AstRule
+    {
         
         public AstCrossjoin(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCrossjoin(this);
         }
     }
     
-    public partial class AstApply : AstRule {
+    public partial class AstApply : AstRule
+    {
         
         public AstApply(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitApply(this);
         }
     }
     
-    public partial class AstPivot : AstRule {
+    public partial class AstPivot : AstRule
+    {
         
         public AstPivot(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPivot(this);
         }
     }
     
-    public partial class AstUnpivot : AstRule {
+    public partial class AstUnpivot : AstRule
+    {
         
         public AstUnpivot(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUnpivot(this);
         }
     }
     
-    public partial class AstPivotclause : AstRule {
+    public partial class AstPivotclause : AstRule
+    {
         
         public AstPivotclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPivotclause(this);
         }
     }
     
-    public partial class AstUnpivotclause : AstRule {
+    public partial class AstUnpivotclause : AstRule
+    {
         
         public AstUnpivotclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUnpivotclause(this);
         }
     }
     
-    public partial class AstFullcolumnnamelist : AstRule {
+    public partial class AstFullcolumnnamelist : AstRule
+    {
         
         public AstFullcolumnnamelist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFullcolumnnamelist(this);
         }
     }
     
-    public partial class AstRowsetfunction : AstRule {
+    public partial class AstRowsetfunction : AstRule
+    {
         
         public AstRowsetfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRowsetfunction(this);
         }
     }
     
-    public partial class AstBulkoptions : AstRule {
+    public partial class AstBulkoptions : AstRule
+    {
         
         public AstBulkoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBulkoptions(this);
         }
     }
     
-    public partial class AstBulkoption : AstRule {
+    public partial class AstBulkoption : AstRule
+    {
         
         public AstBulkoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBulkoption(this);
         }
     }
     
-    public partial class AstDerivedtable : AstRule {
+    public partial class AstDerivedtable : AstRule
+    {
         
         public AstDerivedtable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDerivedtable(this);
         }
     }
     
-    public partial class AstFunctioncall : AstRule {
+    public partial class AstFunctioncall : AstRule
+    {
         
         public AstFunctioncall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFunctioncall(this);
         }
     }
     
-    public partial class AstPartitionfunction : AstRule {
+    public partial class AstPartitionfunction : AstRule
+    {
         
         public AstPartitionfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartitionfunction(this);
         }
     }
     
-    public partial class AstFreetextfunction : AstRule {
+    public partial class AstFreetextfunction : AstRule
+    {
         
         public AstFreetextfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFreetextfunction(this);
         }
     }
     
-    public partial class AstFreetextpredicate : AstRule {
+    public partial class AstFreetextpredicate : AstRule
+    {
         
         public AstFreetextpredicate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFreetextpredicate(this);
         }
     }
     
-    public partial class AstExpressionlanguage : AstRule {
+    public partial class AstExpressionlanguage : AstRule
+    {
         
         public AstExpressionlanguage(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpressionlanguage(this);
         }
     }
     
-    public partial class AstFreetexttableandcolumnnames : AstRule {
+    public partial class AstFreetexttableandcolumnnames : AstRule
+    {
         
         public AstFreetexttableandcolumnnames(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFreetexttableandcolumnnames(this);
         }
     }
     
-    public partial class AstFullcolumnnames : AstRule {
+    public partial class AstFullcolumnnames : AstRule
+    {
         
         public AstFullcolumnnames(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFullcolumnnames(this);
         }
     }
     
-    public partial class AstBuiltinfunctions : AstRule {
+    public partial class AstBuiltinfunctions : AstRule
+    {
         
         public AstBuiltinfunctions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBuiltinfunctions(this);
         }
     }
     
-    public partial class AstExpressions : AstRule {
+    public partial class AstExpressions : AstRule
+    {
         
         public AstExpressions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpressions(this);
         }
     }
     
-    public partial class AstValuemethod : AstRule {
+    public partial class AstValuemethod : AstRule
+    {
         
         public AstValuemethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitValuemethod(this);
         }
     }
     
-    public partial class AstValuecall : AstRule {
+    public partial class AstValuecall : AstRule
+    {
         
         public AstValuecall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitValuecall(this);
         }
     }
     
-    public partial class AstQuerymethod : AstRule {
+    public partial class AstQuerymethod : AstRule
+    {
         
         public AstQuerymethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQuerymethod(this);
         }
     }
     
-    public partial class AstQuerycall : AstRule {
+    public partial class AstQuerycall : AstRule
+    {
         
         public AstQuerycall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQuerycall(this);
         }
     }
     
-    public partial class AstExistmethod : AstRule {
+    public partial class AstExistmethod : AstRule
+    {
         
         public AstExistmethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExistmethod(this);
         }
     }
     
-    public partial class AstExistcall : AstRule {
+    public partial class AstExistcall : AstRule
+    {
         
         public AstExistcall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExistcall(this);
         }
     }
     
-    public partial class AstModifymethod : AstRule {
+    public partial class AstModifymethod : AstRule
+    {
         
         public AstModifymethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitModifymethod(this);
         }
     }
     
-    public partial class AstModifycall : AstRule {
+    public partial class AstModifycall : AstRule
+    {
         
         public AstModifycall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitModifycall(this);
         }
     }
     
-    public partial class AstHierarchyidcall : AstRule {
+    public partial class AstHierarchyidcall : AstRule
+    {
         
         public AstHierarchyidcall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitHierarchyidcall(this);
         }
     }
     
-    public partial class AstHierarchyidstaticmethod : AstRule {
+    public partial class AstHierarchyidstaticmethod : AstRule
+    {
         
         public AstHierarchyidstaticmethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitHierarchyidstaticmethod(this);
         }
     }
     
-    public partial class AstNodesmethod : AstRule {
+    public partial class AstNodesmethod : AstRule
+    {
         
         public AstNodesmethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNodesmethod(this);
         }
     }
     
-    public partial class AstSwitchsection : AstRule {
+    public partial class AstSwitchsection : AstRule
+    {
         
         public AstSwitchsection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSwitchsection(this);
         }
     }
     
-    public partial class AstSwitchsearchconditionsection : AstRule {
+    public partial class AstSwitchsearchconditionsection : AstRule
+    {
         
         public AstSwitchsearchconditionsection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSwitchsearchconditionsection(this);
         }
     }
     
-    public partial class AstAscolumnalias : AstRule {
+    public partial class AstAscolumnalias : AstRule
+    {
         
         public AstAscolumnalias(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAscolumnalias(this);
         }
     }
     
-    public partial class AstAstablealias : AstRule {
+    public partial class AstAstablealias : AstRule
+    {
         
         public AstAstablealias(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAstablealias(this);
         }
     }
     
-    public partial class AstTablealias : AstRule {
+    public partial class AstTablealias : AstRule
+    {
         
         public AstTablealias(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablealias(this);
         }
     }
     
-    public partial class AstWithtablehints : AstRule {
+    public partial class AstWithtablehints : AstRule
+    {
         
         public AstWithtablehints(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWithtablehints(this);
         }
     }
     
-    public partial class AstDeprecatedtablehint : AstRule {
+    public partial class AstDeprecatedtablehint : AstRule
+    {
         
         public AstDeprecatedtablehint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDeprecatedtablehint(this);
         }
     }
     
-    public partial class AstSybaselegacyhints : AstRule {
+    public partial class AstSybaselegacyhints : AstRule
+    {
         
         public AstSybaselegacyhints(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSybaselegacyhints(this);
         }
     }
     
-    public partial class AstSybaselegacyhint : AstTerminalEnum<AstSybaselegacyhintEnum> {
+    public partial class AstSybaselegacyhint : AstTerminalEnum<AstSybaselegacyhintEnum>
+    {
         
         public AstSybaselegacyhint(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSybaselegacyhint(this);
         }
         
-        protected override AstSybaselegacyhintEnum GetValue(string value) {
-            if ((value == "HOLDLOCK")) {
+        protected override AstSybaselegacyhintEnum GetValue(string value)
+        {
+            if ((value == "HOLDLOCK"))
+            {
                 return AstSybaselegacyhintEnum.Holdlock;
             }
-            if ((value == "NOHOLDLOCK")) {
+            if ((value == "NOHOLDLOCK"))
+            {
                 return AstSybaselegacyhintEnum.Noholdlock;
             }
-            if ((value == "READPAST")) {
+            if ((value == "READPAST"))
+            {
                 return AstSybaselegacyhintEnum.Readpast;
             }
-            if ((value == "SHARED")) {
+            if ((value == "SHARED"))
+            {
                 return AstSybaselegacyhintEnum.Shared;
             }
             return AstSybaselegacyhintEnum._undefined;
         }
     }
     
-    public partial class AstIndexvalues : AstRule {
+    public partial class AstIndexvalues : AstRule
+    {
         
         public AstIndexvalues(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIndexvalues(this);
         }
     }
     
-    public partial class AstTablehint : AstRule {
+    public partial class AstTablehint : AstRule
+    {
         
         public AstTablehint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablehint(this);
         }
     }
     
-    public partial class AstIndexvalue : AstRule {
+    public partial class AstIndexvalue : AstRule
+    {
         
         public AstIndexvalue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIndexvalue(this);
         }
     }
     
-    public partial class AstColumnaliaslist : AstRule {
+    public partial class AstColumnaliaslist : AstRule
+    {
         
         public AstColumnaliaslist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnaliaslist(this);
         }
     }
     
-    public partial class AstColumnalias : AstRule {
+    public partial class AstColumnalias : AstRule
+    {
         
         public AstColumnalias(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnalias(this);
         }
     }
     
-    public partial class AstTablevalueconstructor : AstRule {
+    public partial class AstTablevalueconstructor : AstRule
+    {
         
         public AstTablevalueconstructor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablevalueconstructor(this);
         }
     }
     
-    public partial class AstExpressionlist : AstRule {
+    public partial class AstExpressionlist : AstRule
+    {
         
         public AstExpressionlist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExpressionlist(this);
         }
     }
     
-    public partial class AstRankingwindowedfunction : AstRule {
+    public partial class AstRankingwindowedfunction : AstRule
+    {
         
         public AstRankingwindowedfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRankingwindowedfunction(this);
         }
     }
     
-    public partial class AstAggregatewindowedfunction : AstRule {
+    public partial class AstAggregatewindowedfunction : AstRule
+    {
         
         public AstAggregatewindowedfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAggregatewindowedfunction(this);
         }
     }
     
-    public partial class AstAnalyticwindowedfunction : AstRule {
+    public partial class AstAnalyticwindowedfunction : AstRule
+    {
         
         public AstAnalyticwindowedfunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAnalyticwindowedfunction(this);
         }
     }
     
-    public partial class AstAlldistinctexpression : AstRule {
+    public partial class AstAlldistinctexpression : AstRule
+    {
         
         public AstAlldistinctexpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAlldistinctexpression(this);
         }
     }
     
-    public partial class AstOverclause : AstRule {
+    public partial class AstOverclause : AstRule
+    {
         
         public AstOverclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOverclause(this);
         }
     }
     
-    public partial class AstRoworrangeclause : AstRule {
+    public partial class AstRoworrangeclause : AstRule
+    {
         
         public AstRoworrangeclause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRoworrangeclause(this);
         }
     }
     
-    public partial class AstWindowframeextent : AstRule {
+    public partial class AstWindowframeextent : AstRule
+    {
         
         public AstWindowframeextent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWindowframeextent(this);
         }
     }
     
-    public partial class AstWindowframepreceding : AstRule {
+    public partial class AstWindowframepreceding : AstRule
+    {
         
         public AstWindowframepreceding(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWindowframepreceding(this);
         }
     }
     
-    public partial class AstWindowframefollowing : AstRule {
+    public partial class AstWindowframefollowing : AstRule
+    {
         
         public AstWindowframefollowing(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWindowframefollowing(this);
         }
     }
     
-    public partial class AstCreatedatabaseoption : AstRule {
+    public partial class AstCreatedatabaseoption : AstRule
+    {
         
         public AstCreatedatabaseoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreatedatabaseoption(this);
         }
     }
     
-    public partial class AstDatabasefilestreamoptions : AstRule {
+    public partial class AstDatabasefilestreamoptions : AstRule
+    {
         
         public AstDatabasefilestreamoptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatabasefilestreamoptions(this);
         }
     }
     
-    public partial class AstDatabasefilestreamoption : AstRule {
+    public partial class AstDatabasefilestreamoption : AstRule
+    {
         
         public AstDatabasefilestreamoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatabasefilestreamoption(this);
         }
     }
     
-    public partial class AstFilegroup : AstRule {
+    public partial class AstFilegroup : AstRule
+    {
         
         public AstFilegroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilegroup(this);
         }
     }
     
-    public partial class AstEntityname : AstRule {
+    public partial class AstEntityname : AstRule
+    {
         
         public AstEntityname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEntityname(this);
         }
     }
     
-    public partial class AstEntitynameforazuredw : AstRule {
+    public partial class AstEntitynameforazuredw : AstRule
+    {
         
         public AstEntitynameforazuredw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEntitynameforazuredw(this);
         }
     }
     
-    public partial class AstEntitynameforparalleldw : AstRule {
+    public partial class AstEntitynameforparalleldw : AstRule
+    {
         
         public AstEntitynameforparalleldw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEntitynameforparalleldw(this);
         }
     }
     
-    public partial class AstFulltablename : AstRule {
+    public partial class AstFulltablename : AstRule
+    {
         
         public AstFulltablename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFulltablename(this);
         }
     }
     
-    public partial class AstTablename : AstRule {
+    public partial class AstTablename : AstRule
+    {
         
         public AstTablename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablename(this);
         }
     }
     
-    public partial class AstSimplename : AstRule {
+    public partial class AstSimplename : AstRule
+    {
         
         public AstSimplename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSimplename(this);
         }
     }
     
-    public partial class AstFuncprocnameschema : AstRule {
+    public partial class AstFuncprocnameschema : AstRule
+    {
         
         public AstFuncprocnameschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncprocnameschema(this);
         }
     }
     
-    public partial class AstFuncprocnamedatabaseschema : AstRule {
+    public partial class AstFuncprocnamedatabaseschema : AstRule
+    {
         
         public AstFuncprocnamedatabaseschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncprocnamedatabaseschema(this);
         }
     }
     
-    public partial class AstFuncprocnameserverdatabaseschema : AstRule {
+    public partial class AstFuncprocnameserverdatabaseschema : AstRule
+    {
         
         public AstFuncprocnameserverdatabaseschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFuncprocnameserverdatabaseschema(this);
         }
     }
     
-    public partial class AstDdlobject : AstRule {
+    public partial class AstDdlobject : AstRule
+    {
         
         public AstDdlobject(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDdlobject(this);
         }
     }
     
-    public partial class AstFullcolumnname : AstRule {
+    public partial class AstFullcolumnname : AstRule
+    {
         
         public AstFullcolumnname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFullcolumnname(this);
         }
     }
     
-    public partial class AstColumnnamelistwithorder : AstRule {
+    public partial class AstColumnnamelistwithorder : AstRule
+    {
         
         public AstColumnnamelistwithorder(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnnamelistwithorder(this);
         }
     }
     
-    public partial class AstInsertcolumnnamelist : AstRule {
+    public partial class AstInsertcolumnnamelist : AstRule
+    {
         
         public AstInsertcolumnnamelist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitInsertcolumnnamelist(this);
         }
     }
     
-    public partial class AstInsertcolumnid : AstRule {
+    public partial class AstInsertcolumnid : AstRule
+    {
         
         public AstInsertcolumnid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitInsertcolumnid(this);
         }
     }
     
-    public partial class AstColumnnamelist : AstRule {
+    public partial class AstColumnnamelist : AstRule
+    {
         
         public AstColumnnamelist(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnnamelist(this);
         }
     }
     
-    public partial class AstCursorname : AstRule {
+    public partial class AstCursorname : AstRule
+    {
         
         public AstCursorname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCursorname(this);
         }
     }
     
-    public partial class AstOnoff : AstTerminalEnum<AstOnoffEnum> {
+    public partial class AstOnoff : AstTerminalEnum<AstOnoffEnum>
+    {
         
         public AstOnoff(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOnoff(this);
         }
         
-        protected override AstOnoffEnum GetValue(string value) {
-            if ((value == "ON")) {
+        protected override AstOnoffEnum GetValue(string value)
+        {
+            if ((value == "ON"))
+            {
                 return AstOnoffEnum.On;
             }
-            if ((value == "OFF")) {
+            if ((value == "OFF"))
+            {
                 return AstOnoffEnum.Off;
             }
             return AstOnoffEnum._undefined;
         }
     }
     
-    public partial class AstClustered : AstTerminalEnum<AstClusteredEnum> {
+    public partial class AstClustered : AstTerminalEnum<AstClusteredEnum>
+    {
         
         public AstClustered(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClustered(this);
         }
         
-        protected override AstClusteredEnum GetValue(string value) {
-            if ((value == "CLUSTERED")) {
+        protected override AstClusteredEnum GetValue(string value)
+        {
+            if ((value == "CLUSTERED"))
+            {
                 return AstClusteredEnum.Clustered;
             }
-            if ((value == "NONCLUSTERED")) {
+            if ((value == "NONCLUSTERED"))
+            {
                 return AstClusteredEnum.Nonclustered;
             }
             return AstClusteredEnum._undefined;
         }
     }
     
-    public partial class AstNullnotnull : AstRule {
+    public partial class AstNullnotnull : AstRule
+    {
         
         public AstNullnotnull(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNullnotnull(this);
         }
     }
     
-    public partial class AstNullordefault : AstRule {
+    public partial class AstNullordefault : AstRule
+    {
         
         public AstNullordefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNullordefault(this);
         }
     }
     
-    public partial class AstScalarfunctionname : AstRule {
+    public partial class AstScalarfunctionname : AstRule
+    {
         
         public AstScalarfunctionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitScalarfunctionname(this);
         }
     }
     
-    public partial class AstBeginconversationtimer : AstRule {
+    public partial class AstBeginconversationtimer : AstRule
+    {
         
         public AstBeginconversationtimer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBeginconversationtimer(this);
         }
     }
     
-    public partial class AstBeginconversationdialog : AstRule {
+    public partial class AstBeginconversationdialog : AstRule
+    {
         
         public AstBeginconversationdialog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBeginconversationdialog(this);
         }
     }
     
-    public partial class AstContractname : AstRule {
+    public partial class AstContractname : AstRule
+    {
         
         public AstContractname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitContractname(this);
         }
     }
     
-    public partial class AstServicename : AstRule {
+    public partial class AstServicename : AstRule
+    {
         
         public AstServicename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitServicename(this);
         }
     }
     
-    public partial class AstEndconversation : AstRule {
+    public partial class AstEndconversation : AstRule
+    {
         
         public AstEndconversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEndconversation(this);
         }
     }
     
-    public partial class AstWaitforconversation : AstRule {
+    public partial class AstWaitforconversation : AstRule
+    {
         
         public AstWaitforconversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWaitforconversation(this);
         }
     }
     
-    public partial class AstGetconversation : AstRule {
+    public partial class AstGetconversation : AstRule
+    {
         
         public AstGetconversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGetconversation(this);
         }
     }
     
-    public partial class AstQueueid : AstRule {
+    public partial class AstQueueid : AstRule
+    {
         
         public AstQueueid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueueid(this);
         }
     }
     
-    public partial class AstSendconversation : AstRule {
+    public partial class AstSendconversation : AstRule
+    {
         
         public AstSendconversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSendconversation(this);
         }
     }
     
-    public partial class AstDatatype : AstRule {
+    public partial class AstDatatype : AstRule
+    {
         
         public AstDatatype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatatype(this);
         }
     }
     
-    public partial class AstDefaultvalue : AstRule {
+    public partial class AstDefaultvalue : AstRule
+    {
         
         public AstDefaultvalue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDefaultvalue(this);
         }
     }
     
-    public partial class AstConstant : AstRule {
+    public partial class AstConstant : AstRule
+    {
         
         public AstConstant(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitConstant(this);
         }
     }
     
-    public partial class AstSign : AstRule {
+    public partial class AstSign : AstRule
+    {
         
         public AstSign(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSign(this);
         }
     }
     
-    public partial class AstKeyword : AstTerminalEnum<AstKeywordEnum> {
+    public partial class AstKeyword : AstTerminalEnum<AstKeywordEnum>
+    {
         
         public AstKeyword(ParserRuleContext ctx, string value) : 
-                base(ctx, value) {
+                base(ctx, value)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitKeyword(this);
         }
         
-        protected override AstKeywordEnum GetValue(string value) {
-            if ((value == "ABORT")) {
+        protected override AstKeywordEnum GetValue(string value)
+        {
+            if ((value == "ABORT"))
+            {
                 return AstKeywordEnum.Abort;
             }
-            if ((value == "ABSOLUTE")) {
+            if ((value == "ABSOLUTE"))
+            {
                 return AstKeywordEnum.Absolute;
             }
-            if ((value == "ACCENT_SENSITIVITY")) {
+            if ((value == "ACCENT_SENSITIVITY"))
+            {
                 return AstKeywordEnum.Accentsensitivity;
             }
-            if ((value == "ACCESS")) {
+            if ((value == "ACCESS"))
+            {
                 return AstKeywordEnum.Access;
             }
-            if ((value == "ACTION")) {
+            if ((value == "ACTION"))
+            {
                 return AstKeywordEnum.Action;
             }
-            if ((value == "ACTIVATION")) {
+            if ((value == "ACTIVATION"))
+            {
                 return AstKeywordEnum.Activation;
             }
-            if ((value == "ACTIVE")) {
+            if ((value == "ACTIVE"))
+            {
                 return AstKeywordEnum.Active;
             }
-            if ((value == "ADD")) {
+            if ((value == "ADD"))
+            {
                 return AstKeywordEnum.Add;
             }
-            if ((value == "ADDRESS")) {
+            if ((value == "ADDRESS"))
+            {
                 return AstKeywordEnum.Address;
             }
-            if ((value == "AES_128")) {
+            if ((value == "AES_128"))
+            {
                 return AstKeywordEnum.Aes128;
             }
-            if ((value == "AES_192")) {
+            if ((value == "AES_192"))
+            {
                 return AstKeywordEnum.Aes192;
             }
-            if ((value == "AES_256")) {
+            if ((value == "AES_256"))
+            {
                 return AstKeywordEnum.Aes256;
             }
-            if ((value == "AFFINITY")) {
+            if ((value == "AFFINITY"))
+            {
                 return AstKeywordEnum.Affinity;
             }
-            if ((value == "AFTER")) {
+            if ((value == "AFTER"))
+            {
                 return AstKeywordEnum.After;
             }
-            if ((value == "AGGREGATE")) {
+            if ((value == "AGGREGATE"))
+            {
                 return AstKeywordEnum.Aggregate;
             }
-            if ((value == "ALGORITHM")) {
+            if ((value == "ALGORITHM"))
+            {
                 return AstKeywordEnum.Algorithm;
             }
-            if ((value == "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS")) {
+            if ((value == "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS"))
+            {
                 return AstKeywordEnum.Allowencryptedvaluemodifications;
             }
-            if ((value == "ALLOW_PAGE_LOCKS")) {
+            if ((value == "ALLOW_PAGE_LOCKS"))
+            {
                 return AstKeywordEnum.Allowpagelocks;
             }
-            if ((value == "ALLOW_ROW_LOCKS")) {
+            if ((value == "ALLOW_ROW_LOCKS"))
+            {
                 return AstKeywordEnum.Allowrowlocks;
             }
-            if ((value == "ALLOW_SNAPSHOT_ISOLATION")) {
+            if ((value == "ALLOW_SNAPSHOT_ISOLATION"))
+            {
                 return AstKeywordEnum.Allowsnapshotisolation;
             }
-            if ((value == "ALLOWED")) {
+            if ((value == "ALLOWED"))
+            {
                 return AstKeywordEnum.Allowed;
             }
-            if ((value == "ALWAYS")) {
+            if ((value == "ALWAYS"))
+            {
                 return AstKeywordEnum.Always;
             }
-            if ((value == "ANSI_DEFAULTS")) {
+            if ((value == "ANSI_DEFAULTS"))
+            {
                 return AstKeywordEnum.Ansidefaults;
             }
-            if ((value == "ANSI_NULL_DEFAULT")) {
+            if ((value == "ANSI_NULL_DEFAULT"))
+            {
                 return AstKeywordEnum.Ansinulldefault;
             }
-            if ((value == "ANSI_NULL_DFLT_OFF")) {
+            if ((value == "ANSI_NULL_DFLT_OFF"))
+            {
                 return AstKeywordEnum.Ansinulldfltoff;
             }
-            if ((value == "ANSI_NULL_DFLT_ON")) {
+            if ((value == "ANSI_NULL_DFLT_ON"))
+            {
                 return AstKeywordEnum.Ansinulldflton;
             }
-            if ((value == "ANSI_NULLS")) {
+            if ((value == "ANSI_NULLS"))
+            {
                 return AstKeywordEnum.Ansinulls;
             }
-            if ((value == "ANSI_PADDING")) {
+            if ((value == "ANSI_PADDING"))
+            {
                 return AstKeywordEnum.Ansipadding;
             }
-            if ((value == "ANSI_WARNINGS")) {
+            if ((value == "ANSI_WARNINGS"))
+            {
                 return AstKeywordEnum.Ansiwarnings;
             }
-            if ((value == "APP_NAME")) {
+            if ((value == "APP_NAME"))
+            {
                 return AstKeywordEnum.Appname;
             }
-            if ((value == "APPLICATION_LOG")) {
+            if ((value == "APPLICATION_LOG"))
+            {
                 return AstKeywordEnum.Applicationlog;
             }
-            if ((value == "APPLOCK_MODE")) {
+            if ((value == "APPLOCK_MODE"))
+            {
                 return AstKeywordEnum.Applockmode;
             }
-            if ((value == "APPLOCK_TEST")) {
+            if ((value == "APPLOCK_TEST"))
+            {
                 return AstKeywordEnum.Applocktest;
             }
-            if ((value == "APPLY")) {
+            if ((value == "APPLY"))
+            {
                 return AstKeywordEnum.Apply;
             }
-            if ((value == "ARITHABORT")) {
+            if ((value == "ARITHABORT"))
+            {
                 return AstKeywordEnum.Arithabort;
             }
-            if ((value == "ARITHIGNORE")) {
+            if ((value == "ARITHIGNORE"))
+            {
                 return AstKeywordEnum.Arithignore;
             }
-            if ((value == "ASCII")) {
+            if ((value == "ASCII"))
+            {
                 return AstKeywordEnum.Ascii;
             }
-            if ((value == "ASSEMBLY")) {
+            if ((value == "ASSEMBLY"))
+            {
                 return AstKeywordEnum.Assembly;
             }
-            if ((value == "ASSEMBLYPROPERTY")) {
+            if ((value == "ASSEMBLYPROPERTY"))
+            {
                 return AstKeywordEnum.Assemblyproperty;
             }
-            if ((value == "AT_KEYWORD")) {
+            if ((value == "AT_KEYWORD"))
+            {
                 return AstKeywordEnum.Atkeyword;
             }
-            if ((value == "AUDIT")) {
+            if ((value == "AUDIT"))
+            {
                 return AstKeywordEnum.Audit;
             }
-            if ((value == "AUDIT_GUID")) {
+            if ((value == "AUDIT_GUID"))
+            {
                 return AstKeywordEnum.Auditguid;
             }
-            if ((value == "AUTO")) {
+            if ((value == "AUTO"))
+            {
                 return AstKeywordEnum.Auto;
             }
-            if ((value == "AUTO_CLEANUP")) {
+            if ((value == "AUTO_CLEANUP"))
+            {
                 return AstKeywordEnum.Autocleanup;
             }
-            if ((value == "AUTO_CLOSE")) {
+            if ((value == "AUTO_CLOSE"))
+            {
                 return AstKeywordEnum.Autoclose;
             }
-            if ((value == "AUTO_CREATE_STATISTICS")) {
+            if ((value == "AUTO_CREATE_STATISTICS"))
+            {
                 return AstKeywordEnum.Autocreatestatistics;
             }
-            if ((value == "AUTO_DROP")) {
+            if ((value == "AUTO_DROP"))
+            {
                 return AstKeywordEnum.Autodrop;
             }
-            if ((value == "AUTO_SHRINK")) {
+            if ((value == "AUTO_SHRINK"))
+            {
                 return AstKeywordEnum.Autoshrink;
             }
-            if ((value == "AUTO_UPDATE_STATISTICS")) {
+            if ((value == "AUTO_UPDATE_STATISTICS"))
+            {
                 return AstKeywordEnum.Autoupdatestatistics;
             }
-            if ((value == "AUTO_UPDATE_STATISTICS_ASYNC")) {
+            if ((value == "AUTO_UPDATE_STATISTICS_ASYNC"))
+            {
                 return AstKeywordEnum.Autoupdatestatisticsasync;
             }
-            if ((value == "AUTOGROW_ALL_FILES")) {
+            if ((value == "AUTOGROW_ALL_FILES"))
+            {
                 return AstKeywordEnum.Autogrowallfiles;
             }
-            if ((value == "AUTOGROW_SINGLE_FILE")) {
+            if ((value == "AUTOGROW_SINGLE_FILE"))
+            {
                 return AstKeywordEnum.Autogrowsinglefile;
             }
-            if ((value == "AVAILABILITY")) {
+            if ((value == "AVAILABILITY"))
+            {
                 return AstKeywordEnum.Availability;
             }
-            if ((value == "AVG")) {
+            if ((value == "AVG"))
+            {
                 return AstKeywordEnum.Avg;
             }
-            if ((value == "BACKUP_PRIORITY")) {
+            if ((value == "BACKUP_PRIORITY"))
+            {
                 return AstKeywordEnum.Backuppriority;
             }
-            if ((value == "BASE64")) {
+            if ((value == "BASE64"))
+            {
                 return AstKeywordEnum.Base64;
             }
-            if ((value == "BEGIN_DIALOG")) {
+            if ((value == "BEGIN_DIALOG"))
+            {
                 return AstKeywordEnum.Begindialog;
             }
-            if ((value == "BIGINT")) {
+            if ((value == "BIGINT"))
+            {
                 return AstKeywordEnum.Bigint;
             }
-            if ((value == "BINARY_KEYWORD")) {
+            if ((value == "BINARY_KEYWORD"))
+            {
                 return AstKeywordEnum.Binarykeyword;
             }
-            if ((value == "BINARY_CHECKSUM")) {
+            if ((value == "BINARY_CHECKSUM"))
+            {
                 return AstKeywordEnum.Binarychecksum;
             }
-            if ((value == "BINDING")) {
+            if ((value == "BINDING"))
+            {
                 return AstKeywordEnum.Binding;
             }
-            if ((value == "BLOB_STORAGE")) {
+            if ((value == "BLOB_STORAGE"))
+            {
                 return AstKeywordEnum.Blobstorage;
             }
-            if ((value == "BROKER")) {
+            if ((value == "BROKER"))
+            {
                 return AstKeywordEnum.Broker;
             }
-            if ((value == "BROKER_INSTANCE")) {
+            if ((value == "BROKER_INSTANCE"))
+            {
                 return AstKeywordEnum.Brokerinstance;
             }
-            if ((value == "BULK_LOGGED")) {
+            if ((value == "BULK_LOGGED"))
+            {
                 return AstKeywordEnum.Bulklogged;
             }
-            if ((value == "CALLER")) {
+            if ((value == "CALLER"))
+            {
                 return AstKeywordEnum.Caller;
             }
-            if ((value == "CAP_CPU_PERCENT")) {
+            if ((value == "CAP_CPU_PERCENT"))
+            {
                 return AstKeywordEnum.Capcpupercent;
             }
-            if ((value == "CAST")) {
+            if ((value == "CAST"))
+            {
                 return AstKeywordEnum.Cast;
             }
-            if ((value == "TRY_CAST")) {
+            if ((value == "TRY_CAST"))
+            {
                 return AstKeywordEnum.Trycast;
             }
-            if ((value == "CATALOG")) {
+            if ((value == "CATALOG"))
+            {
                 return AstKeywordEnum.Catalog;
             }
-            if ((value == "CATCH")) {
+            if ((value == "CATCH"))
+            {
                 return AstKeywordEnum.Catch;
             }
-            if ((value == "CHANGE")) {
+            if ((value == "CHANGE"))
+            {
                 return AstKeywordEnum.Change;
             }
-            if ((value == "CHANGE_RETENTION")) {
+            if ((value == "CHANGE_RETENTION"))
+            {
                 return AstKeywordEnum.Changeretention;
             }
-            if ((value == "CHANGE_TRACKING")) {
+            if ((value == "CHANGE_TRACKING"))
+            {
                 return AstKeywordEnum.Changetracking;
             }
-            if ((value == "CHAR")) {
+            if ((value == "CHAR"))
+            {
                 return AstKeywordEnum.Char;
             }
-            if ((value == "CHARINDEX")) {
+            if ((value == "CHARINDEX"))
+            {
                 return AstKeywordEnum.Charindex;
             }
-            if ((value == "CHECKSUM")) {
+            if ((value == "CHECKSUM"))
+            {
                 return AstKeywordEnum.Checksum;
             }
-            if ((value == "CHECKSUM_AGG")) {
+            if ((value == "CHECKSUM_AGG"))
+            {
                 return AstKeywordEnum.Checksumagg;
             }
-            if ((value == "CLEANUP")) {
+            if ((value == "CLEANUP"))
+            {
                 return AstKeywordEnum.Cleanup;
             }
-            if ((value == "COL_LENGTH")) {
+            if ((value == "COL_LENGTH"))
+            {
                 return AstKeywordEnum.Collength;
             }
-            if ((value == "COL_NAME")) {
+            if ((value == "COL_NAME"))
+            {
                 return AstKeywordEnum.Colname;
             }
-            if ((value == "COLLECTION")) {
+            if ((value == "COLLECTION"))
+            {
                 return AstKeywordEnum.Collection;
             }
-            if ((value == "COLUMN_ENCRYPTION_KEY")) {
+            if ((value == "COLUMN_ENCRYPTION_KEY"))
+            {
                 return AstKeywordEnum.Columnencryptionkey;
             }
-            if ((value == "COLUMN_MASTER_KEY")) {
+            if ((value == "COLUMN_MASTER_KEY"))
+            {
                 return AstKeywordEnum.Columnmasterkey;
             }
-            if ((value == "COLUMNPROPERTY")) {
+            if ((value == "COLUMNPROPERTY"))
+            {
                 return AstKeywordEnum.Columnproperty;
             }
-            if ((value == "COLUMNS")) {
+            if ((value == "COLUMNS"))
+            {
                 return AstKeywordEnum.Columns;
             }
-            if ((value == "COLUMNSTORE")) {
+            if ((value == "COLUMNSTORE"))
+            {
                 return AstKeywordEnum.Columnstore;
             }
-            if ((value == "COLUMNSTORE_ARCHIVE")) {
+            if ((value == "COLUMNSTORE_ARCHIVE"))
+            {
                 return AstKeywordEnum.Columnstorearchive;
             }
-            if ((value == "COMMITTED")) {
+            if ((value == "COMMITTED"))
+            {
                 return AstKeywordEnum.Committed;
             }
-            if ((value == "COMPATIBILITY_LEVEL")) {
+            if ((value == "COMPATIBILITY_LEVEL"))
+            {
                 return AstKeywordEnum.Compatibilitylevel;
             }
-            if ((value == "COMPRESS_ALL_ROW_GROUPS")) {
+            if ((value == "COMPRESS_ALL_ROW_GROUPS"))
+            {
                 return AstKeywordEnum.Compressallrowgroups;
             }
-            if ((value == "COMPRESSION_DELAY")) {
+            if ((value == "COMPRESSION_DELAY"))
+            {
                 return AstKeywordEnum.Compressiondelay;
             }
-            if ((value == "CONCAT")) {
+            if ((value == "CONCAT"))
+            {
                 return AstKeywordEnum.Concat;
             }
-            if ((value == "CONCAT_WS")) {
+            if ((value == "CONCAT_WS"))
+            {
                 return AstKeywordEnum.Concatws;
             }
-            if ((value == "CONCAT_NULL_YIELDS_NULL")) {
+            if ((value == "CONCAT_NULL_YIELDS_NULL"))
+            {
                 return AstKeywordEnum.Concatnullyieldsnull;
             }
-            if ((value == "CONTENT")) {
+            if ((value == "CONTENT"))
+            {
                 return AstKeywordEnum.Content;
             }
-            if ((value == "CONTROL")) {
+            if ((value == "CONTROL"))
+            {
                 return AstKeywordEnum.Control;
             }
-            if ((value == "COOKIE")) {
+            if ((value == "COOKIE"))
+            {
                 return AstKeywordEnum.Cookie;
             }
-            if ((value == "COUNT")) {
+            if ((value == "COUNT"))
+            {
                 return AstKeywordEnum.Count;
             }
-            if ((value == "COUNT_BIG")) {
+            if ((value == "COUNT_BIG"))
+            {
                 return AstKeywordEnum.Countbig;
             }
-            if ((value == "COUNTER")) {
+            if ((value == "COUNTER"))
+            {
                 return AstKeywordEnum.Counter;
             }
-            if ((value == "CPU")) {
+            if ((value == "CPU"))
+            {
                 return AstKeywordEnum.Cpu;
             }
-            if ((value == "CREATE_NEW")) {
+            if ((value == "CREATE_NEW"))
+            {
                 return AstKeywordEnum.Createnew;
             }
-            if ((value == "CREATION_DISPOSITION")) {
+            if ((value == "CREATION_DISPOSITION"))
+            {
                 return AstKeywordEnum.Creationdisposition;
             }
-            if ((value == "CREDENTIAL")) {
+            if ((value == "CREDENTIAL"))
+            {
                 return AstKeywordEnum.Credential;
             }
-            if ((value == "CRYPTOGRAPHIC")) {
+            if ((value == "CRYPTOGRAPHIC"))
+            {
                 return AstKeywordEnum.Cryptographic;
             }
-            if ((value == "CUME_DIST")) {
+            if ((value == "CUME_DIST"))
+            {
                 return AstKeywordEnum.Cumedist;
             }
-            if ((value == "CURSOR_CLOSE_ON_COMMIT")) {
+            if ((value == "CURSOR_CLOSE_ON_COMMIT"))
+            {
                 return AstKeywordEnum.Cursorcloseoncommit;
             }
-            if ((value == "CURSOR_DEFAULT")) {
+            if ((value == "CURSOR_DEFAULT"))
+            {
                 return AstKeywordEnum.Cursordefault;
             }
-            if ((value == "DATA")) {
+            if ((value == "DATA"))
+            {
                 return AstKeywordEnum.Data;
             }
-            if ((value == "DATABASE_PRINCIPAL_ID")) {
+            if ((value == "DATABASE_PRINCIPAL_ID"))
+            {
                 return AstKeywordEnum.Databaseprincipalid;
             }
-            if ((value == "DATABASEPROPERTYEX")) {
+            if ((value == "DATABASEPROPERTYEX"))
+            {
                 return AstKeywordEnum.Databasepropertyex;
             }
-            if ((value == "DATE_CORRELATION_OPTIMIZATION")) {
+            if ((value == "DATE_CORRELATION_OPTIMIZATION"))
+            {
                 return AstKeywordEnum.Datecorrelationoptimization;
             }
-            if ((value == "DATEADD")) {
+            if ((value == "DATEADD"))
+            {
                 return AstKeywordEnum.Dateadd;
             }
-            if ((value == "DATEDIFF")) {
+            if ((value == "DATEDIFF"))
+            {
                 return AstKeywordEnum.Datediff;
             }
-            if ((value == "DATENAME")) {
+            if ((value == "DATENAME"))
+            {
                 return AstKeywordEnum.Datename;
             }
-            if ((value == "DATEPART")) {
+            if ((value == "DATEPART"))
+            {
                 return AstKeywordEnum.Datepart;
             }
-            if ((value == "DAYS")) {
+            if ((value == "DAYS"))
+            {
                 return AstKeywordEnum.Days;
             }
-            if ((value == "DB_CHAINING")) {
+            if ((value == "DB_CHAINING"))
+            {
                 return AstKeywordEnum.Dbchaining;
             }
-            if ((value == "DB_FAILOVER")) {
+            if ((value == "DB_FAILOVER"))
+            {
                 return AstKeywordEnum.Dbfailover;
             }
-            if ((value == "DB_ID")) {
+            if ((value == "DB_ID"))
+            {
                 return AstKeywordEnum.Dbid;
             }
-            if ((value == "DB_NAME")) {
+            if ((value == "DB_NAME"))
+            {
                 return AstKeywordEnum.Dbname;
             }
-            if ((value == "DECRYPTION")) {
+            if ((value == "DECRYPTION"))
+            {
                 return AstKeywordEnum.Decryption;
             }
-            if ((value == "DEFAULT_DOUBLE_QUOTE")) {
+            if ((value == "DEFAULT_DOUBLE_QUOTE"))
+            {
                 return AstKeywordEnum.Defaultdoublequote;
             }
-            if ((value == "DEFAULT_FULLTEXT_LANGUAGE")) {
+            if ((value == "DEFAULT_FULLTEXT_LANGUAGE"))
+            {
                 return AstKeywordEnum.Defaultfulltextlanguage;
             }
-            if ((value == "DEFAULT_LANGUAGE")) {
+            if ((value == "DEFAULT_LANGUAGE"))
+            {
                 return AstKeywordEnum.Defaultlanguage;
             }
-            if ((value == "DEFINITION")) {
+            if ((value == "DEFINITION"))
+            {
                 return AstKeywordEnum.Definition;
             }
-            if ((value == "DELAY")) {
+            if ((value == "DELAY"))
+            {
                 return AstKeywordEnum.Delay;
             }
-            if ((value == "DELAYED_DURABILITY")) {
+            if ((value == "DELAYED_DURABILITY"))
+            {
                 return AstKeywordEnum.Delayeddurability;
             }
-            if ((value == "DELETED")) {
+            if ((value == "DELETED"))
+            {
                 return AstKeywordEnum.Deleted;
             }
-            if ((value == "DENSE_RANK")) {
+            if ((value == "DENSE_RANK"))
+            {
                 return AstKeywordEnum.Denserank;
             }
-            if ((value == "DEPENDENTS")) {
+            if ((value == "DEPENDENTS"))
+            {
                 return AstKeywordEnum.Dependents;
             }
-            if ((value == "DES")) {
+            if ((value == "DES"))
+            {
                 return AstKeywordEnum.Des;
             }
-            if ((value == "DESCRIPTION")) {
+            if ((value == "DESCRIPTION"))
+            {
                 return AstKeywordEnum.Description;
             }
-            if ((value == "DESX")) {
+            if ((value == "DESX"))
+            {
                 return AstKeywordEnum.Desx;
             }
-            if ((value == "DETERMINISTIC")) {
+            if ((value == "DETERMINISTIC"))
+            {
                 return AstKeywordEnum.Deterministic;
             }
-            if ((value == "DHCP")) {
+            if ((value == "DHCP"))
+            {
                 return AstKeywordEnum.Dhcp;
             }
-            if ((value == "DIALOG")) {
+            if ((value == "DIALOG"))
+            {
                 return AstKeywordEnum.Dialog;
             }
-            if ((value == "DIFFERENCE")) {
+            if ((value == "DIFFERENCE"))
+            {
                 return AstKeywordEnum.Difference;
             }
-            if ((value == "DIRECTORY_NAME")) {
+            if ((value == "DIRECTORY_NAME"))
+            {
                 return AstKeywordEnum.Directoryname;
             }
-            if ((value == "DISABLE")) {
+            if ((value == "DISABLE"))
+            {
                 return AstKeywordEnum.Disable;
             }
-            if ((value == "DISABLE_BROKER")) {
+            if ((value == "DISABLE_BROKER"))
+            {
                 return AstKeywordEnum.Disablebroker;
             }
-            if ((value == "DISABLED")) {
+            if ((value == "DISABLED"))
+            {
                 return AstKeywordEnum.Disabled;
             }
-            if ((value == "DOCUMENT")) {
+            if ((value == "DOCUMENT"))
+            {
                 return AstKeywordEnum.Document;
             }
-            if ((value == "DROP_EXISTING")) {
+            if ((value == "DROP_EXISTING"))
+            {
                 return AstKeywordEnum.Dropexisting;
             }
-            if ((value == "DYNAMIC")) {
+            if ((value == "DYNAMIC"))
+            {
                 return AstKeywordEnum.Dynamic;
             }
-            if ((value == "ELEMENTS")) {
+            if ((value == "ELEMENTS"))
+            {
                 return AstKeywordEnum.Elements;
             }
-            if ((value == "EMERGENCY")) {
+            if ((value == "EMERGENCY"))
+            {
                 return AstKeywordEnum.Emergency;
             }
-            if ((value == "EMPTY")) {
+            if ((value == "EMPTY"))
+            {
                 return AstKeywordEnum.Empty;
             }
-            if ((value == "ENABLE")) {
+            if ((value == "ENABLE"))
+            {
                 return AstKeywordEnum.Enable;
             }
-            if ((value == "ENABLE_BROKER")) {
+            if ((value == "ENABLE_BROKER"))
+            {
                 return AstKeywordEnum.Enablebroker;
             }
-            if ((value == "ENCRYPTED")) {
+            if ((value == "ENCRYPTED"))
+            {
                 return AstKeywordEnum.Encrypted;
             }
-            if ((value == "ENCRYPTED_VALUE")) {
+            if ((value == "ENCRYPTED_VALUE"))
+            {
                 return AstKeywordEnum.Encryptedvalue;
             }
-            if ((value == "ENCRYPTION")) {
+            if ((value == "ENCRYPTION"))
+            {
                 return AstKeywordEnum.Encryption;
             }
-            if ((value == "ENCRYPTION_TYPE")) {
+            if ((value == "ENCRYPTION_TYPE"))
+            {
                 return AstKeywordEnum.Encryptiontype;
             }
-            if ((value == "ENDPOINT_URL")) {
+            if ((value == "ENDPOINT_URL"))
+            {
                 return AstKeywordEnum.Endpointurl;
             }
-            if ((value == "ERROR_BROKER_CONVERSATIONS")) {
+            if ((value == "ERROR_BROKER_CONVERSATIONS"))
+            {
                 return AstKeywordEnum.Errorbrokerconversations;
             }
-            if ((value == "EXCLUSIVE")) {
+            if ((value == "EXCLUSIVE"))
+            {
                 return AstKeywordEnum.Exclusive;
             }
-            if ((value == "EXECUTABLE")) {
+            if ((value == "EXECUTABLE"))
+            {
                 return AstKeywordEnum.Executable;
             }
-            if ((value == "EXIST")) {
+            if ((value == "EXIST"))
+            {
                 return AstKeywordEnum.Exist;
             }
-            if ((value == "EXPAND")) {
+            if ((value == "EXPAND"))
+            {
                 return AstKeywordEnum.Expand;
             }
-            if ((value == "EXPIRY_DATE")) {
+            if ((value == "EXPIRY_DATE"))
+            {
                 return AstKeywordEnum.Expirydate;
             }
-            if ((value == "EXPLICIT")) {
+            if ((value == "EXPLICIT"))
+            {
                 return AstKeywordEnum.Explicit;
             }
-            if ((value == "FAIL_OPERATION")) {
+            if ((value == "FAIL_OPERATION"))
+            {
                 return AstKeywordEnum.Failoperation;
             }
-            if ((value == "FAILOVER_MODE")) {
+            if ((value == "FAILOVER_MODE"))
+            {
                 return AstKeywordEnum.Failovermode;
             }
-            if ((value == "FAILURE")) {
+            if ((value == "FAILURE"))
+            {
                 return AstKeywordEnum.Failure;
             }
-            if ((value == "FAILURE_CONDITION_LEVEL")) {
+            if ((value == "FAILURE_CONDITION_LEVEL"))
+            {
                 return AstKeywordEnum.Failureconditionlevel;
             }
-            if ((value == "FAST")) {
+            if ((value == "FAST"))
+            {
                 return AstKeywordEnum.Fast;
             }
-            if ((value == "FAST_FORWARD")) {
+            if ((value == "FAST_FORWARD"))
+            {
                 return AstKeywordEnum.Fastforward;
             }
-            if ((value == "FILE_ID")) {
+            if ((value == "FILE_ID"))
+            {
                 return AstKeywordEnum.Fileid;
             }
-            if ((value == "FILE_IDEX")) {
+            if ((value == "FILE_IDEX"))
+            {
                 return AstKeywordEnum.Fileidex;
             }
-            if ((value == "FILE_NAME")) {
+            if ((value == "FILE_NAME"))
+            {
                 return AstKeywordEnum.Filename;
             }
-            if ((value == "FILEGROUP")) {
+            if ((value == "FILEGROUP"))
+            {
                 return AstKeywordEnum.Filegroup;
             }
-            if ((value == "FILEGROUP_ID")) {
+            if ((value == "FILEGROUP_ID"))
+            {
                 return AstKeywordEnum.Filegroupid;
             }
-            if ((value == "FILEGROUP_NAME")) {
+            if ((value == "FILEGROUP_NAME"))
+            {
                 return AstKeywordEnum.Filegroupname;
             }
-            if ((value == "FILEGROUPPROPERTY")) {
+            if ((value == "FILEGROUPPROPERTY"))
+            {
                 return AstKeywordEnum.Filegroupproperty;
             }
-            if ((value == "FILEGROWTH")) {
+            if ((value == "FILEGROWTH"))
+            {
                 return AstKeywordEnum.Filegrowth;
             }
-            if ((value == "FILENAME")) {
+            if ((value == "FILENAME"))
+            {
                 return AstKeywordEnum.Filename;
             }
-            if ((value == "FILEPATH")) {
+            if ((value == "FILEPATH"))
+            {
                 return AstKeywordEnum.Filepath;
             }
-            if ((value == "FILEPROPERTY")) {
+            if ((value == "FILEPROPERTY"))
+            {
                 return AstKeywordEnum.Fileproperty;
             }
-            if ((value == "FILEPROPERTYEX")) {
+            if ((value == "FILEPROPERTYEX"))
+            {
                 return AstKeywordEnum.Filepropertyex;
             }
-            if ((value == "FILESTREAM")) {
+            if ((value == "FILESTREAM"))
+            {
                 return AstKeywordEnum.Filestream;
             }
-            if ((value == "FILTER")) {
+            if ((value == "FILTER"))
+            {
                 return AstKeywordEnum.Filter;
             }
-            if ((value == "FIRST")) {
+            if ((value == "FIRST"))
+            {
                 return AstKeywordEnum.First;
             }
-            if ((value == "FIRST_VALUE")) {
+            if ((value == "FIRST_VALUE"))
+            {
                 return AstKeywordEnum.Firstvalue;
             }
-            if ((value == "FMTONLY")) {
+            if ((value == "FMTONLY"))
+            {
                 return AstKeywordEnum.Fmtonly;
             }
-            if ((value == "FOLLOWING")) {
+            if ((value == "FOLLOWING"))
+            {
                 return AstKeywordEnum.Following;
             }
-            if ((value == "FORCE")) {
+            if ((value == "FORCE"))
+            {
                 return AstKeywordEnum.Force;
             }
-            if ((value == "FORCE_FAILOVER_ALLOW_DATA_LOSS")) {
+            if ((value == "FORCE_FAILOVER_ALLOW_DATA_LOSS"))
+            {
                 return AstKeywordEnum.Forcefailoverallowdataloss;
             }
-            if ((value == "FORCED")) {
+            if ((value == "FORCED"))
+            {
                 return AstKeywordEnum.Forced;
             }
-            if ((value == "FORCEPLAN")) {
+            if ((value == "FORCEPLAN"))
+            {
                 return AstKeywordEnum.Forceplan;
             }
-            if ((value == "FORCESCAN")) {
+            if ((value == "FORCESCAN"))
+            {
                 return AstKeywordEnum.Forcescan;
             }
-            if ((value == "FORMAT")) {
+            if ((value == "FORMAT"))
+            {
                 return AstKeywordEnum.Format;
             }
-            if ((value == "FORWARD_ONLY")) {
+            if ((value == "FORWARD_ONLY"))
+            {
                 return AstKeywordEnum.Forwardonly;
             }
-            if ((value == "FULLSCAN")) {
+            if ((value == "FULLSCAN"))
+            {
                 return AstKeywordEnum.Fullscan;
             }
-            if ((value == "FULLTEXT")) {
+            if ((value == "FULLTEXT"))
+            {
                 return AstKeywordEnum.Fulltext;
             }
-            if ((value == "FULLTEXTCATALOGPROPERTY")) {
+            if ((value == "FULLTEXTCATALOGPROPERTY"))
+            {
                 return AstKeywordEnum.Fulltextcatalogproperty;
             }
-            if ((value == "FULLTEXTSERVICEPROPERTY")) {
+            if ((value == "FULLTEXTSERVICEPROPERTY"))
+            {
                 return AstKeywordEnum.Fulltextserviceproperty;
             }
-            if ((value == "GB")) {
+            if ((value == "GB"))
+            {
                 return AstKeywordEnum.Gb;
             }
-            if ((value == "GENERATED")) {
+            if ((value == "GENERATED"))
+            {
                 return AstKeywordEnum.Generated;
             }
-            if ((value == "GETDATE")) {
+            if ((value == "GETDATE"))
+            {
                 return AstKeywordEnum.Getdate;
             }
-            if ((value == "GETUTCDATE")) {
+            if ((value == "GETUTCDATE"))
+            {
                 return AstKeywordEnum.Getutcdate;
             }
-            if ((value == "GLOBAL")) {
+            if ((value == "GLOBAL"))
+            {
                 return AstKeywordEnum.Global;
             }
-            if ((value == "GO")) {
+            if ((value == "GO"))
+            {
                 return AstKeywordEnum.Go;
             }
-            if ((value == "GROUP_MAX_REQUESTS")) {
+            if ((value == "GROUP_MAX_REQUESTS"))
+            {
                 return AstKeywordEnum.Groupmaxrequests;
             }
-            if ((value == "GROUPING")) {
+            if ((value == "GROUPING"))
+            {
                 return AstKeywordEnum.Grouping;
             }
-            if ((value == "GROUPING_ID")) {
+            if ((value == "GROUPING_ID"))
+            {
                 return AstKeywordEnum.Groupingid;
             }
-            if ((value == "HADR")) {
+            if ((value == "HADR"))
+            {
                 return AstKeywordEnum.Hadr;
             }
-            if ((value == "HASH")) {
+            if ((value == "HASH"))
+            {
                 return AstKeywordEnum.Hash;
             }
-            if ((value == "HEALTH_CHECK_TIMEOUT")) {
+            if ((value == "HEALTH_CHECK_TIMEOUT"))
+            {
                 return AstKeywordEnum.Healthchecktimeout;
             }
-            if ((value == "HIDDEN_KEYWORD")) {
+            if ((value == "HIDDEN_KEYWORD"))
+            {
                 return AstKeywordEnum.Hiddenkeyword;
             }
-            if ((value == "HIGH")) {
+            if ((value == "HIGH"))
+            {
                 return AstKeywordEnum.High;
             }
-            if ((value == "HONOR_BROKER_PRIORITY")) {
+            if ((value == "HONOR_BROKER_PRIORITY"))
+            {
                 return AstKeywordEnum.Honorbrokerpriority;
             }
-            if ((value == "HOURS")) {
+            if ((value == "HOURS"))
+            {
                 return AstKeywordEnum.Hours;
             }
-            if ((value == "IDENTITY_VALUE")) {
+            if ((value == "IDENTITY_VALUE"))
+            {
                 return AstKeywordEnum.Identityvalue;
             }
-            if ((value == "IGNORE_CONSTRAINTS")) {
+            if ((value == "IGNORE_CONSTRAINTS"))
+            {
                 return AstKeywordEnum.Ignoreconstraints;
             }
-            if ((value == "IGNORE_DUP_KEY")) {
+            if ((value == "IGNORE_DUP_KEY"))
+            {
                 return AstKeywordEnum.Ignoredupkey;
             }
-            if ((value == "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX")) {
+            if ((value == "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX"))
+            {
                 return AstKeywordEnum.Ignorenonclusteredcolumnstoreindex;
             }
-            if ((value == "IGNORE_TRIGGERS")) {
+            if ((value == "IGNORE_TRIGGERS"))
+            {
                 return AstKeywordEnum.Ignoretriggers;
             }
-            if ((value == "IMMEDIATE")) {
+            if ((value == "IMMEDIATE"))
+            {
                 return AstKeywordEnum.Immediate;
             }
-            if ((value == "IMPERSONATE")) {
+            if ((value == "IMPERSONATE"))
+            {
                 return AstKeywordEnum.Impersonate;
             }
-            if ((value == "IMPLICIT_TRANSACTIONS")) {
+            if ((value == "IMPLICIT_TRANSACTIONS"))
+            {
                 return AstKeywordEnum.Implicittransactions;
             }
-            if ((value == "IMPORTANCE")) {
+            if ((value == "IMPORTANCE"))
+            {
                 return AstKeywordEnum.Importance;
             }
-            if ((value == "INCLUDE_NULL_VALUES")) {
+            if ((value == "INCLUDE_NULL_VALUES"))
+            {
                 return AstKeywordEnum.Includenullvalues;
             }
-            if ((value == "INCREMENTAL")) {
+            if ((value == "INCREMENTAL"))
+            {
                 return AstKeywordEnum.Incremental;
             }
-            if ((value == "INDEX_COL")) {
+            if ((value == "INDEX_COL"))
+            {
                 return AstKeywordEnum.Indexcol;
             }
-            if ((value == "INDEXKEY_PROPERTY")) {
+            if ((value == "INDEXKEY_PROPERTY"))
+            {
                 return AstKeywordEnum.Indexkeyproperty;
             }
-            if ((value == "INDEXPROPERTY")) {
+            if ((value == "INDEXPROPERTY"))
+            {
                 return AstKeywordEnum.Indexproperty;
             }
-            if ((value == "INITIATOR")) {
+            if ((value == "INITIATOR"))
+            {
                 return AstKeywordEnum.Initiator;
             }
-            if ((value == "INPUT")) {
+            if ((value == "INPUT"))
+            {
                 return AstKeywordEnum.Input;
             }
-            if ((value == "INSENSITIVE")) {
+            if ((value == "INSENSITIVE"))
+            {
                 return AstKeywordEnum.Insensitive;
             }
-            if ((value == "INSERTED")) {
+            if ((value == "INSERTED"))
+            {
                 return AstKeywordEnum.Inserted;
             }
-            if ((value == "INT")) {
+            if ((value == "INT"))
+            {
                 return AstKeywordEnum.Int;
             }
-            if ((value == "IP")) {
+            if ((value == "IP"))
+            {
                 return AstKeywordEnum.Ip;
             }
-            if ((value == "ISOLATION")) {
+            if ((value == "ISOLATION"))
+            {
                 return AstKeywordEnum.Isolation;
             }
-            if ((value == "JOB")) {
+            if ((value == "JOB"))
+            {
                 return AstKeywordEnum.Job;
             }
-            if ((value == "JSON")) {
+            if ((value == "JSON"))
+            {
                 return AstKeywordEnum.Json;
             }
-            if ((value == "KB")) {
+            if ((value == "KB"))
+            {
                 return AstKeywordEnum.Kb;
             }
-            if ((value == "KEEP")) {
+            if ((value == "KEEP"))
+            {
                 return AstKeywordEnum.Keep;
             }
-            if ((value == "KEEPDEFAULTS")) {
+            if ((value == "KEEPDEFAULTS"))
+            {
                 return AstKeywordEnum.Keepdefaults;
             }
-            if ((value == "KEEPFIXED")) {
+            if ((value == "KEEPFIXED"))
+            {
                 return AstKeywordEnum.Keepfixed;
             }
-            if ((value == "KEEPIDENTITY")) {
+            if ((value == "KEEPIDENTITY"))
+            {
                 return AstKeywordEnum.Keepidentity;
             }
-            if ((value == "KEY_SOURCE")) {
+            if ((value == "KEY_SOURCE"))
+            {
                 return AstKeywordEnum.Keysource;
             }
-            if ((value == "KEYS")) {
+            if ((value == "KEYS"))
+            {
                 return AstKeywordEnum.Keys;
             }
-            if ((value == "KEYSET")) {
+            if ((value == "KEYSET"))
+            {
                 return AstKeywordEnum.Keyset;
             }
-            if ((value == "LAG")) {
+            if ((value == "LAG"))
+            {
                 return AstKeywordEnum.Lag;
             }
-            if ((value == "LAST")) {
+            if ((value == "LAST"))
+            {
                 return AstKeywordEnum.Last;
             }
-            if ((value == "LAST_VALUE")) {
+            if ((value == "LAST_VALUE"))
+            {
                 return AstKeywordEnum.Lastvalue;
             }
-            if ((value == "LEAD")) {
+            if ((value == "LEAD"))
+            {
                 return AstKeywordEnum.Lead;
             }
-            if ((value == "LEN")) {
+            if ((value == "LEN"))
+            {
                 return AstKeywordEnum.Len;
             }
-            if ((value == "LEVEL")) {
+            if ((value == "LEVEL"))
+            {
                 return AstKeywordEnum.Level;
             }
-            if ((value == "LIST")) {
+            if ((value == "LIST"))
+            {
                 return AstKeywordEnum.List;
             }
-            if ((value == "LISTENER")) {
+            if ((value == "LISTENER"))
+            {
                 return AstKeywordEnum.Listener;
             }
-            if ((value == "LISTENER_URL")) {
+            if ((value == "LISTENER_URL"))
+            {
                 return AstKeywordEnum.Listenerurl;
             }
-            if ((value == "LOB_COMPACTION")) {
+            if ((value == "LOB_COMPACTION"))
+            {
                 return AstKeywordEnum.Lobcompaction;
             }
-            if ((value == "LOCAL")) {
+            if ((value == "LOCAL"))
+            {
                 return AstKeywordEnum.Local;
             }
-            if ((value == "LOCATION")) {
+            if ((value == "LOCATION"))
+            {
                 return AstKeywordEnum.Location;
             }
-            if ((value == "LOCK")) {
+            if ((value == "LOCK"))
+            {
                 return AstKeywordEnum.Lock;
             }
-            if ((value == "LOCK_ESCALATION")) {
+            if ((value == "LOCK_ESCALATION"))
+            {
                 return AstKeywordEnum.Lockescalation;
             }
-            if ((value == "LOGIN")) {
+            if ((value == "LOGIN"))
+            {
                 return AstKeywordEnum.Login;
             }
-            if ((value == "LOOP")) {
+            if ((value == "LOOP"))
+            {
                 return AstKeywordEnum.Loop;
             }
-            if ((value == "LOW")) {
+            if ((value == "LOW"))
+            {
                 return AstKeywordEnum.Low;
             }
-            if ((value == "LOWER")) {
+            if ((value == "LOWER"))
+            {
                 return AstKeywordEnum.Lower;
             }
-            if ((value == "LTRIM")) {
+            if ((value == "LTRIM"))
+            {
                 return AstKeywordEnum.Ltrim;
             }
-            if ((value == "MANUAL")) {
+            if ((value == "MANUAL"))
+            {
                 return AstKeywordEnum.Manual;
             }
-            if ((value == "MARK")) {
+            if ((value == "MARK"))
+            {
                 return AstKeywordEnum.Mark;
             }
-            if ((value == "MASKED")) {
+            if ((value == "MASKED"))
+            {
                 return AstKeywordEnum.Masked;
             }
-            if ((value == "MATERIALIZED")) {
+            if ((value == "MATERIALIZED"))
+            {
                 return AstKeywordEnum.Materialized;
             }
-            if ((value == "MAX")) {
+            if ((value == "MAX"))
+            {
                 return AstKeywordEnum.Max;
             }
-            if ((value == "MAX_CPU_PERCENT")) {
+            if ((value == "MAX_CPU_PERCENT"))
+            {
                 return AstKeywordEnum.Maxcpupercent;
             }
-            if ((value == "MAX_DOP")) {
+            if ((value == "MAX_DOP"))
+            {
                 return AstKeywordEnum.Maxdop;
             }
-            if ((value == "MAX_FILES")) {
+            if ((value == "MAX_FILES"))
+            {
                 return AstKeywordEnum.Maxfiles;
             }
-            if ((value == "MAX_IOPS_PER_VOLUME")) {
+            if ((value == "MAX_IOPS_PER_VOLUME"))
+            {
                 return AstKeywordEnum.Maxiopspervolume;
             }
-            if ((value == "MAX_MEMORY_PERCENT")) {
+            if ((value == "MAX_MEMORY_PERCENT"))
+            {
                 return AstKeywordEnum.Maxmemorypercent;
             }
-            if ((value == "MAX_PROCESSES")) {
+            if ((value == "MAX_PROCESSES"))
+            {
                 return AstKeywordEnum.Maxprocesses;
             }
-            if ((value == "MAX_QUEUE_READERS")) {
+            if ((value == "MAX_QUEUE_READERS"))
+            {
                 return AstKeywordEnum.Maxqueuereaders;
             }
-            if ((value == "MAX_ROLLOVER_FILES")) {
+            if ((value == "MAX_ROLLOVER_FILES"))
+            {
                 return AstKeywordEnum.Maxrolloverfiles;
             }
-            if ((value == "MAXDOP")) {
+            if ((value == "MAXDOP"))
+            {
                 return AstKeywordEnum.Maxdop;
             }
-            if ((value == "MAXRECURSION")) {
+            if ((value == "MAXRECURSION"))
+            {
                 return AstKeywordEnum.Maxrecursion;
             }
-            if ((value == "MAXSIZE")) {
+            if ((value == "MAXSIZE"))
+            {
                 return AstKeywordEnum.Maxsize;
             }
-            if ((value == "MB")) {
+            if ((value == "MB"))
+            {
                 return AstKeywordEnum.Mb;
             }
-            if ((value == "MEDIUM")) {
+            if ((value == "MEDIUM"))
+            {
                 return AstKeywordEnum.Medium;
             }
-            if ((value == "MEMORY_OPTIMIZED_DATA")) {
+            if ((value == "MEMORY_OPTIMIZED_DATA"))
+            {
                 return AstKeywordEnum.Memoryoptimizeddata;
             }
-            if ((value == "MESSAGE")) {
+            if ((value == "MESSAGE"))
+            {
                 return AstKeywordEnum.Message;
             }
-            if ((value == "MIN")) {
+            if ((value == "MIN"))
+            {
                 return AstKeywordEnum.Min;
             }
-            if ((value == "MIN_ACTIVE_ROWVERSION")) {
+            if ((value == "MIN_ACTIVE_ROWVERSION"))
+            {
                 return AstKeywordEnum.Minactiverowversion;
             }
-            if ((value == "MIN_CPU_PERCENT")) {
+            if ((value == "MIN_CPU_PERCENT"))
+            {
                 return AstKeywordEnum.Mincpupercent;
             }
-            if ((value == "MIN_IOPS_PER_VOLUME")) {
+            if ((value == "MIN_IOPS_PER_VOLUME"))
+            {
                 return AstKeywordEnum.Miniopspervolume;
             }
-            if ((value == "MIN_MEMORY_PERCENT")) {
+            if ((value == "MIN_MEMORY_PERCENT"))
+            {
                 return AstKeywordEnum.Minmemorypercent;
             }
-            if ((value == "MINUTES")) {
+            if ((value == "MINUTES"))
+            {
                 return AstKeywordEnum.Minutes;
             }
-            if ((value == "MIRROR_ADDRESS")) {
+            if ((value == "MIRROR_ADDRESS"))
+            {
                 return AstKeywordEnum.Mirroraddress;
             }
-            if ((value == "MIXED_PAGE_ALLOCATION")) {
+            if ((value == "MIXED_PAGE_ALLOCATION"))
+            {
                 return AstKeywordEnum.Mixedpageallocation;
             }
-            if ((value == "MODE")) {
+            if ((value == "MODE"))
+            {
                 return AstKeywordEnum.Mode;
             }
-            if ((value == "MODIFY")) {
+            if ((value == "MODIFY"))
+            {
                 return AstKeywordEnum.Modify;
             }
-            if ((value == "MOVE")) {
+            if ((value == "MOVE"))
+            {
                 return AstKeywordEnum.Move;
             }
-            if ((value == "MULTI_USER")) {
+            if ((value == "MULTI_USER"))
+            {
                 return AstKeywordEnum.Multiuser;
             }
-            if ((value == "NAME")) {
+            if ((value == "NAME"))
+            {
                 return AstKeywordEnum.Name;
             }
-            if ((value == "NCHAR")) {
+            if ((value == "NCHAR"))
+            {
                 return AstKeywordEnum.Nchar;
             }
-            if ((value == "NESTED_TRIGGERS")) {
+            if ((value == "NESTED_TRIGGERS"))
+            {
                 return AstKeywordEnum.Nestedtriggers;
             }
-            if ((value == "NEW_ACCOUNT")) {
+            if ((value == "NEW_ACCOUNT"))
+            {
                 return AstKeywordEnum.Newaccount;
             }
-            if ((value == "NEW_BROKER")) {
+            if ((value == "NEW_BROKER"))
+            {
                 return AstKeywordEnum.Newbroker;
             }
-            if ((value == "NEW_PASSWORD")) {
+            if ((value == "NEW_PASSWORD"))
+            {
                 return AstKeywordEnum.Newpassword;
             }
-            if ((value == "NEWNAME")) {
+            if ((value == "NEWNAME"))
+            {
                 return AstKeywordEnum.Newname;
             }
-            if ((value == "NEXT")) {
+            if ((value == "NEXT"))
+            {
                 return AstKeywordEnum.Next;
             }
-            if ((value == "NO")) {
+            if ((value == "NO"))
+            {
                 return AstKeywordEnum.No;
             }
-            if ((value == "NO_TRUNCATE")) {
+            if ((value == "NO_TRUNCATE"))
+            {
                 return AstKeywordEnum.Notruncate;
             }
-            if ((value == "NO_WAIT")) {
+            if ((value == "NO_WAIT"))
+            {
                 return AstKeywordEnum.Nowait;
             }
-            if ((value == "NOCOUNT")) {
+            if ((value == "NOCOUNT"))
+            {
                 return AstKeywordEnum.Nocount;
             }
-            if ((value == "NODES")) {
+            if ((value == "NODES"))
+            {
                 return AstKeywordEnum.Nodes;
             }
-            if ((value == "NOEXEC")) {
+            if ((value == "NOEXEC"))
+            {
                 return AstKeywordEnum.Noexec;
             }
-            if ((value == "NOEXPAND")) {
+            if ((value == "NOEXPAND"))
+            {
                 return AstKeywordEnum.Noexpand;
             }
-            if ((value == "NOLOCK")) {
+            if ((value == "NOLOCK"))
+            {
                 return AstKeywordEnum.Nolock;
             }
-            if ((value == "NON_TRANSACTED_ACCESS")) {
+            if ((value == "NON_TRANSACTED_ACCESS"))
+            {
                 return AstKeywordEnum.Nontransactedaccess;
             }
-            if ((value == "NORECOMPUTE")) {
+            if ((value == "NORECOMPUTE"))
+            {
                 return AstKeywordEnum.Norecompute;
             }
-            if ((value == "NORECOVERY")) {
+            if ((value == "NORECOVERY"))
+            {
                 return AstKeywordEnum.Norecovery;
             }
-            if ((value == "NOTIFICATIONS")) {
+            if ((value == "NOTIFICATIONS"))
+            {
                 return AstKeywordEnum.Notifications;
             }
-            if ((value == "NOWAIT")) {
+            if ((value == "NOWAIT"))
+            {
                 return AstKeywordEnum.Nowait;
             }
-            if ((value == "NTILE")) {
+            if ((value == "NTILE"))
+            {
                 return AstKeywordEnum.Ntile;
             }
-            if ((value == "NULL_DOUBLE_QUOTE")) {
+            if ((value == "NULL_DOUBLE_QUOTE"))
+            {
                 return AstKeywordEnum.Nulldoublequote;
             }
-            if ((value == "NUMANODE")) {
+            if ((value == "NUMANODE"))
+            {
                 return AstKeywordEnum.Numanode;
             }
-            if ((value == "NUMBER")) {
+            if ((value == "NUMBER"))
+            {
                 return AstKeywordEnum.Number;
             }
-            if ((value == "NUMERIC_ROUNDABORT")) {
+            if ((value == "NUMERIC_ROUNDABORT"))
+            {
                 return AstKeywordEnum.Numericroundabort;
             }
-            if ((value == "OBJECT")) {
+            if ((value == "OBJECT"))
+            {
                 return AstKeywordEnum.Object;
             }
-            if ((value == "OBJECT_DEFINITION")) {
+            if ((value == "OBJECT_DEFINITION"))
+            {
                 return AstKeywordEnum.Objectdefinition;
             }
-            if ((value == "OBJECT_ID")) {
+            if ((value == "OBJECT_ID"))
+            {
                 return AstKeywordEnum.Objectid;
             }
-            if ((value == "OBJECT_NAME")) {
+            if ((value == "OBJECT_NAME"))
+            {
                 return AstKeywordEnum.Objectname;
             }
-            if ((value == "OBJECT_SCHEMA_NAME")) {
+            if ((value == "OBJECT_SCHEMA_NAME"))
+            {
                 return AstKeywordEnum.Objectschemaname;
             }
-            if ((value == "OBJECTPROPERTY")) {
+            if ((value == "OBJECTPROPERTY"))
+            {
                 return AstKeywordEnum.Objectproperty;
             }
-            if ((value == "OBJECTPROPERTYEX")) {
+            if ((value == "OBJECTPROPERTYEX"))
+            {
                 return AstKeywordEnum.Objectpropertyex;
             }
-            if ((value == "OFFLINE")) {
+            if ((value == "OFFLINE"))
+            {
                 return AstKeywordEnum.Offline;
             }
-            if ((value == "OFFSET")) {
+            if ((value == "OFFSET"))
+            {
                 return AstKeywordEnum.Offset;
             }
-            if ((value == "OLD_ACCOUNT")) {
+            if ((value == "OLD_ACCOUNT"))
+            {
                 return AstKeywordEnum.Oldaccount;
             }
-            if ((value == "ONLINE")) {
+            if ((value == "ONLINE"))
+            {
                 return AstKeywordEnum.Online;
             }
-            if ((value == "ONLY")) {
+            if ((value == "ONLY"))
+            {
                 return AstKeywordEnum.Only;
             }
-            if ((value == "OPEN_EXISTING")) {
+            if ((value == "OPEN_EXISTING"))
+            {
                 return AstKeywordEnum.Openexisting;
             }
-            if ((value == "OPENJSON")) {
+            if ((value == "OPENJSON"))
+            {
                 return AstKeywordEnum.Openjson;
             }
-            if ((value == "OPTIMISTIC")) {
+            if ((value == "OPTIMISTIC"))
+            {
                 return AstKeywordEnum.Optimistic;
             }
-            if ((value == "OPTIMIZE")) {
+            if ((value == "OPTIMIZE"))
+            {
                 return AstKeywordEnum.Optimize;
             }
-            if ((value == "OPTIMIZE_FOR_SEQUENTIAL_KEY")) {
+            if ((value == "OPTIMIZE_FOR_SEQUENTIAL_KEY"))
+            {
                 return AstKeywordEnum.Optimizeforsequentialkey;
             }
-            if ((value == "ORIGINAL_DB_NAME")) {
+            if ((value == "ORIGINAL_DB_NAME"))
+            {
                 return AstKeywordEnum.Originaldbname;
             }
-            if ((value == "OUT")) {
+            if ((value == "OUT"))
+            {
                 return AstKeywordEnum.Out;
             }
-            if ((value == "OUTPUT")) {
+            if ((value == "OUTPUT"))
+            {
                 return AstKeywordEnum.Output;
             }
-            if ((value == "OVERRIDE")) {
+            if ((value == "OVERRIDE"))
+            {
                 return AstKeywordEnum.Override;
             }
-            if ((value == "OWNER")) {
+            if ((value == "OWNER"))
+            {
                 return AstKeywordEnum.Owner;
             }
-            if ((value == "OWNERSHIP")) {
+            if ((value == "OWNERSHIP"))
+            {
                 return AstKeywordEnum.Ownership;
             }
-            if ((value == "PAD_INDEX")) {
+            if ((value == "PAD_INDEX"))
+            {
                 return AstKeywordEnum.Padindex;
             }
-            if ((value == "PAGE_VERIFY")) {
+            if ((value == "PAGE_VERIFY"))
+            {
                 return AstKeywordEnum.Pageverify;
             }
-            if ((value == "PAGECOUNT")) {
+            if ((value == "PAGECOUNT"))
+            {
                 return AstKeywordEnum.Pagecount;
             }
-            if ((value == "PAGLOCK")) {
+            if ((value == "PAGLOCK"))
+            {
                 return AstKeywordEnum.Paglock;
             }
-            if ((value == "PARAMETERIZATION")) {
+            if ((value == "PARAMETERIZATION"))
+            {
                 return AstKeywordEnum.Parameterization;
             }
-            if ((value == "PARSENAME")) {
+            if ((value == "PARSENAME"))
+            {
                 return AstKeywordEnum.Parsename;
             }
-            if ((value == "PARSEONLY")) {
+            if ((value == "PARSEONLY"))
+            {
                 return AstKeywordEnum.Parseonly;
             }
-            if ((value == "PARTITION")) {
+            if ((value == "PARTITION"))
+            {
                 return AstKeywordEnum.Partition;
             }
-            if ((value == "PARTITIONS")) {
+            if ((value == "PARTITIONS"))
+            {
                 return AstKeywordEnum.Partitions;
             }
-            if ((value == "PARTNER")) {
+            if ((value == "PARTNER"))
+            {
                 return AstKeywordEnum.Partner;
             }
-            if ((value == "PATH")) {
+            if ((value == "PATH"))
+            {
                 return AstKeywordEnum.Path;
             }
-            if ((value == "PATINDEX")) {
+            if ((value == "PATINDEX"))
+            {
                 return AstKeywordEnum.Patindex;
             }
-            if ((value == "PAUSE")) {
+            if ((value == "PAUSE"))
+            {
                 return AstKeywordEnum.Pause;
             }
-            if ((value == "PERCENT_RANK")) {
+            if ((value == "PERCENT_RANK"))
+            {
                 return AstKeywordEnum.Percentrank;
             }
-            if ((value == "PERCENTILE_CONT")) {
+            if ((value == "PERCENTILE_CONT"))
+            {
                 return AstKeywordEnum.Percentilecont;
             }
-            if ((value == "PERCENTILE_DISC")) {
+            if ((value == "PERCENTILE_DISC"))
+            {
                 return AstKeywordEnum.Percentiledisc;
             }
-            if ((value == "PERSIST_SAMPLE_PERCENT")) {
+            if ((value == "PERSIST_SAMPLE_PERCENT"))
+            {
                 return AstKeywordEnum.Persistsamplepercent;
             }
-            if ((value == "POISON_MESSAGE_HANDLING")) {
+            if ((value == "POISON_MESSAGE_HANDLING"))
+            {
                 return AstKeywordEnum.Poisonmessagehandling;
             }
-            if ((value == "POOL")) {
+            if ((value == "POOL"))
+            {
                 return AstKeywordEnum.Pool;
             }
-            if ((value == "PORT")) {
+            if ((value == "PORT"))
+            {
                 return AstKeywordEnum.Port;
             }
-            if ((value == "PRECEDING")) {
+            if ((value == "PRECEDING"))
+            {
                 return AstKeywordEnum.Preceding;
             }
-            if ((value == "PRIMARY_ROLE")) {
+            if ((value == "PRIMARY_ROLE"))
+            {
                 return AstKeywordEnum.Primaryrole;
             }
-            if ((value == "PRIOR")) {
+            if ((value == "PRIOR"))
+            {
                 return AstKeywordEnum.Prior;
             }
-            if ((value == "PRIORITY")) {
+            if ((value == "PRIORITY"))
+            {
                 return AstKeywordEnum.Priority;
             }
-            if ((value == "PRIORITY_LEVEL")) {
+            if ((value == "PRIORITY_LEVEL"))
+            {
                 return AstKeywordEnum.Prioritylevel;
             }
-            if ((value == "PRIVATE")) {
+            if ((value == "PRIVATE"))
+            {
                 return AstKeywordEnum.Private;
             }
-            if ((value == "PRIVATE_KEY")) {
+            if ((value == "PRIVATE_KEY"))
+            {
                 return AstKeywordEnum.Privatekey;
             }
-            if ((value == "PRIVILEGES")) {
+            if ((value == "PRIVILEGES"))
+            {
                 return AstKeywordEnum.Privileges;
             }
-            if ((value == "PROCEDURE_NAME")) {
+            if ((value == "PROCEDURE_NAME"))
+            {
                 return AstKeywordEnum.Procedurename;
             }
-            if ((value == "PROPERTY")) {
+            if ((value == "PROPERTY"))
+            {
                 return AstKeywordEnum.Property;
             }
-            if ((value == "PROVIDER")) {
+            if ((value == "PROVIDER"))
+            {
                 return AstKeywordEnum.Provider;
             }
-            if ((value == "PROVIDER_KEY_NAME")) {
+            if ((value == "PROVIDER_KEY_NAME"))
+            {
                 return AstKeywordEnum.Providerkeyname;
             }
-            if ((value == "QUERY")) {
+            if ((value == "QUERY"))
+            {
                 return AstKeywordEnum.Query;
             }
-            if ((value == "QUEUE")) {
+            if ((value == "QUEUE"))
+            {
                 return AstKeywordEnum.Queue;
             }
-            if ((value == "QUEUE_DELAY")) {
+            if ((value == "QUEUE_DELAY"))
+            {
                 return AstKeywordEnum.Queuedelay;
             }
-            if ((value == "QUOTED_IDENTIFIER")) {
+            if ((value == "QUOTED_IDENTIFIER"))
+            {
                 return AstKeywordEnum.Quotedidentifier;
             }
-            if ((value == "QUOTENAME")) {
+            if ((value == "QUOTENAME"))
+            {
                 return AstKeywordEnum.Quotename;
             }
-            if ((value == "RANDOMIZED")) {
+            if ((value == "RANDOMIZED"))
+            {
                 return AstKeywordEnum.Randomized;
             }
-            if ((value == "RANGE")) {
+            if ((value == "RANGE"))
+            {
                 return AstKeywordEnum.Range;
             }
-            if ((value == "RANK")) {
+            if ((value == "RANK"))
+            {
                 return AstKeywordEnum.Rank;
             }
-            if ((value == "RC2")) {
+            if ((value == "RC2"))
+            {
                 return AstKeywordEnum.Rc2;
             }
-            if ((value == "RC4")) {
+            if ((value == "RC4"))
+            {
                 return AstKeywordEnum.Rc4;
             }
-            if ((value == "RC4_128")) {
+            if ((value == "RC4_128"))
+            {
                 return AstKeywordEnum.Rc4128;
             }
-            if ((value == "READ_COMMITTED_SNAPSHOT")) {
+            if ((value == "READ_COMMITTED_SNAPSHOT"))
+            {
                 return AstKeywordEnum.Readcommittedsnapshot;
             }
-            if ((value == "READ_ONLY")) {
+            if ((value == "READ_ONLY"))
+            {
                 return AstKeywordEnum.Readonly;
             }
-            if ((value == "READ_ONLY_ROUTING_LIST")) {
+            if ((value == "READ_ONLY_ROUTING_LIST"))
+            {
                 return AstKeywordEnum.Readonlyroutinglist;
             }
-            if ((value == "READ_WRITE")) {
+            if ((value == "READ_WRITE"))
+            {
                 return AstKeywordEnum.Readwrite;
             }
-            if ((value == "READCOMMITTED")) {
+            if ((value == "READCOMMITTED"))
+            {
                 return AstKeywordEnum.Readcommitted;
             }
-            if ((value == "READCOMMITTEDLOCK")) {
+            if ((value == "READCOMMITTEDLOCK"))
+            {
                 return AstKeywordEnum.Readcommittedlock;
             }
-            if ((value == "READONLY")) {
+            if ((value == "READONLY"))
+            {
                 return AstKeywordEnum.Readonly;
             }
-            if ((value == "READPAST")) {
+            if ((value == "READPAST"))
+            {
                 return AstKeywordEnum.Readpast;
             }
-            if ((value == "READUNCOMMITTED")) {
+            if ((value == "READUNCOMMITTED"))
+            {
                 return AstKeywordEnum.Readuncommitted;
             }
-            if ((value == "READWRITE")) {
+            if ((value == "READWRITE"))
+            {
                 return AstKeywordEnum.Readwrite;
             }
-            if ((value == "REBUILD")) {
+            if ((value == "REBUILD"))
+            {
                 return AstKeywordEnum.Rebuild;
             }
-            if ((value == "RECEIVE")) {
+            if ((value == "RECEIVE"))
+            {
                 return AstKeywordEnum.Receive;
             }
-            if ((value == "RECOMPILE")) {
+            if ((value == "RECOMPILE"))
+            {
                 return AstKeywordEnum.Recompile;
             }
-            if ((value == "RECOVERY")) {
+            if ((value == "RECOVERY"))
+            {
                 return AstKeywordEnum.Recovery;
             }
-            if ((value == "RECURSIVE_TRIGGERS")) {
+            if ((value == "RECURSIVE_TRIGGERS"))
+            {
                 return AstKeywordEnum.Recursivetriggers;
             }
-            if ((value == "RELATIVE")) {
+            if ((value == "RELATIVE"))
+            {
                 return AstKeywordEnum.Relative;
             }
-            if ((value == "REMOTE")) {
+            if ((value == "REMOTE"))
+            {
                 return AstKeywordEnum.Remote;
             }
-            if ((value == "REMOTE_PROC_TRANSACTIONS")) {
+            if ((value == "REMOTE_PROC_TRANSACTIONS"))
+            {
                 return AstKeywordEnum.Remoteproctransactions;
             }
-            if ((value == "REMOTE_SERVICE_NAME")) {
+            if ((value == "REMOTE_SERVICE_NAME"))
+            {
                 return AstKeywordEnum.Remoteservicename;
             }
-            if ((value == "REMOVE")) {
+            if ((value == "REMOVE"))
+            {
                 return AstKeywordEnum.Remove;
             }
-            if ((value == "REORGANIZE")) {
+            if ((value == "REORGANIZE"))
+            {
                 return AstKeywordEnum.Reorganize;
             }
-            if ((value == "REPEATABLE")) {
+            if ((value == "REPEATABLE"))
+            {
                 return AstKeywordEnum.Repeatable;
             }
-            if ((value == "REPEATABLEREAD")) {
+            if ((value == "REPEATABLEREAD"))
+            {
                 return AstKeywordEnum.Repeatableread;
             }
-            if ((value == "REPLACE")) {
+            if ((value == "REPLACE"))
+            {
                 return AstKeywordEnum.Replace;
             }
-            if ((value == "REPLICA")) {
+            if ((value == "REPLICA"))
+            {
                 return AstKeywordEnum.Replica;
             }
-            if ((value == "REPLICATE")) {
+            if ((value == "REPLICATE"))
+            {
                 return AstKeywordEnum.Replicate;
             }
-            if ((value == "REQUEST_MAX_CPU_TIME_SEC")) {
+            if ((value == "REQUEST_MAX_CPU_TIME_SEC"))
+            {
                 return AstKeywordEnum.Requestmaxcputimesec;
             }
-            if ((value == "REQUEST_MAX_MEMORY_GRANT_PERCENT")) {
+            if ((value == "REQUEST_MAX_MEMORY_GRANT_PERCENT"))
+            {
                 return AstKeywordEnum.Requestmaxmemorygrantpercent;
             }
-            if ((value == "REQUEST_MEMORY_GRANT_TIMEOUT_SEC")) {
+            if ((value == "REQUEST_MEMORY_GRANT_TIMEOUT_SEC"))
+            {
                 return AstKeywordEnum.Requestmemorygranttimeoutsec;
             }
-            if ((value == "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT")) {
+            if ((value == "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT"))
+            {
                 return AstKeywordEnum.Requiredsynchronizedsecondariestocommit;
             }
-            if ((value == "RESAMPLE")) {
+            if ((value == "RESAMPLE"))
+            {
                 return AstKeywordEnum.Resample;
             }
-            if ((value == "RESERVE_DISK_SPACE")) {
+            if ((value == "RESERVE_DISK_SPACE"))
+            {
                 return AstKeywordEnum.Reservediskspace;
             }
-            if ((value == "RESOURCE")) {
+            if ((value == "RESOURCE"))
+            {
                 return AstKeywordEnum.Resource;
             }
-            if ((value == "RESOURCE_MANAGER_LOCATION")) {
+            if ((value == "RESOURCE_MANAGER_LOCATION"))
+            {
                 return AstKeywordEnum.Resourcemanagerlocation;
             }
-            if ((value == "RESTRICTED_USER")) {
+            if ((value == "RESTRICTED_USER"))
+            {
                 return AstKeywordEnum.Restricteduser;
             }
-            if ((value == "RESUMABLE")) {
+            if ((value == "RESUMABLE"))
+            {
                 return AstKeywordEnum.Resumable;
             }
-            if ((value == "RETENTION")) {
+            if ((value == "RETENTION"))
+            {
                 return AstKeywordEnum.Retention;
             }
-            if ((value == "REVERSE")) {
+            if ((value == "REVERSE"))
+            {
                 return AstKeywordEnum.Reverse;
             }
-            if ((value == "ROBUST")) {
+            if ((value == "ROBUST"))
+            {
                 return AstKeywordEnum.Robust;
             }
-            if ((value == "ROOT")) {
+            if ((value == "ROOT"))
+            {
                 return AstKeywordEnum.Root;
             }
-            if ((value == "ROUTE")) {
+            if ((value == "ROUTE"))
+            {
                 return AstKeywordEnum.Route;
             }
-            if ((value == "ROW")) {
+            if ((value == "ROW"))
+            {
                 return AstKeywordEnum.Row;
             }
-            if ((value == "ROW_NUMBER")) {
+            if ((value == "ROW_NUMBER"))
+            {
                 return AstKeywordEnum.Rownumber;
             }
-            if ((value == "ROWGUID")) {
+            if ((value == "ROWGUID"))
+            {
                 return AstKeywordEnum.Rowguid;
             }
-            if ((value == "ROWLOCK")) {
+            if ((value == "ROWLOCK"))
+            {
                 return AstKeywordEnum.Rowlock;
             }
-            if ((value == "ROWS")) {
+            if ((value == "ROWS"))
+            {
                 return AstKeywordEnum.Rows;
             }
-            if ((value == "RTRIM")) {
+            if ((value == "RTRIM"))
+            {
                 return AstKeywordEnum.Rtrim;
             }
-            if ((value == "SAMPLE")) {
+            if ((value == "SAMPLE"))
+            {
                 return AstKeywordEnum.Sample;
             }
-            if ((value == "SCHEMA_ID")) {
+            if ((value == "SCHEMA_ID"))
+            {
                 return AstKeywordEnum.Schemaid;
             }
-            if ((value == "SCHEMA_NAME")) {
+            if ((value == "SCHEMA_NAME"))
+            {
                 return AstKeywordEnum.Schemaname;
             }
-            if ((value == "SCHEMABINDING")) {
+            if ((value == "SCHEMABINDING"))
+            {
                 return AstKeywordEnum.Schemabinding;
             }
-            if ((value == "SCOPE_IDENTITY")) {
+            if ((value == "SCOPE_IDENTITY"))
+            {
                 return AstKeywordEnum.Scopeidentity;
             }
-            if ((value == "SCOPED")) {
+            if ((value == "SCOPED"))
+            {
                 return AstKeywordEnum.Scoped;
             }
-            if ((value == "SCROLL")) {
+            if ((value == "SCROLL"))
+            {
                 return AstKeywordEnum.Scroll;
             }
-            if ((value == "SCROLL_LOCKS")) {
+            if ((value == "SCROLL_LOCKS"))
+            {
                 return AstKeywordEnum.Scrolllocks;
             }
-            if ((value == "SEARCH")) {
+            if ((value == "SEARCH"))
+            {
                 return AstKeywordEnum.Search;
             }
-            if ((value == "SECONDARY")) {
+            if ((value == "SECONDARY"))
+            {
                 return AstKeywordEnum.Secondary;
             }
-            if ((value == "SECONDARY_ONLY")) {
+            if ((value == "SECONDARY_ONLY"))
+            {
                 return AstKeywordEnum.Secondaryonly;
             }
-            if ((value == "SECONDARY_ROLE")) {
+            if ((value == "SECONDARY_ROLE"))
+            {
                 return AstKeywordEnum.Secondaryrole;
             }
-            if ((value == "SECONDS")) {
+            if ((value == "SECONDS"))
+            {
                 return AstKeywordEnum.Seconds;
             }
-            if ((value == "SECRET")) {
+            if ((value == "SECRET"))
+            {
                 return AstKeywordEnum.Secret;
             }
-            if ((value == "SECURABLES")) {
+            if ((value == "SECURABLES"))
+            {
                 return AstKeywordEnum.Securables;
             }
-            if ((value == "SECURITY")) {
+            if ((value == "SECURITY"))
+            {
                 return AstKeywordEnum.Security;
             }
-            if ((value == "SECURITY_LOG")) {
+            if ((value == "SECURITY_LOG"))
+            {
                 return AstKeywordEnum.Securitylog;
             }
-            if ((value == "SEEDING_MODE")) {
+            if ((value == "SEEDING_MODE"))
+            {
                 return AstKeywordEnum.Seedingmode;
             }
-            if ((value == "SELF")) {
+            if ((value == "SELF"))
+            {
                 return AstKeywordEnum.Self;
             }
-            if ((value == "SEMI_SENSITIVE")) {
+            if ((value == "SEMI_SENSITIVE"))
+            {
                 return AstKeywordEnum.Semisensitive;
             }
-            if ((value == "SEND")) {
+            if ((value == "SEND"))
+            {
                 return AstKeywordEnum.Send;
             }
-            if ((value == "SENT")) {
+            if ((value == "SENT"))
+            {
                 return AstKeywordEnum.Sent;
             }
-            if ((value == "SEQUENCE")) {
+            if ((value == "SEQUENCE"))
+            {
                 return AstKeywordEnum.Sequence;
             }
-            if ((value == "SEQUENCE_NUMBER")) {
+            if ((value == "SEQUENCE_NUMBER"))
+            {
                 return AstKeywordEnum.Sequencenumber;
             }
-            if ((value == "SERIALIZABLE")) {
+            if ((value == "SERIALIZABLE"))
+            {
                 return AstKeywordEnum.Serializable;
             }
-            if ((value == "SERVERPROPERTY")) {
+            if ((value == "SERVERPROPERTY"))
+            {
                 return AstKeywordEnum.Serverproperty;
             }
-            if ((value == "SESSION_TIMEOUT")) {
+            if ((value == "SESSION_TIMEOUT"))
+            {
                 return AstKeywordEnum.Sessiontimeout;
             }
-            if ((value == "SETERROR")) {
+            if ((value == "SETERROR"))
+            {
                 return AstKeywordEnum.Seterror;
             }
-            if ((value == "SHARE")) {
+            if ((value == "SHARE"))
+            {
                 return AstKeywordEnum.Share;
             }
-            if ((value == "SHARED")) {
+            if ((value == "SHARED"))
+            {
                 return AstKeywordEnum.Shared;
             }
-            if ((value == "SHOWPLAN")) {
+            if ((value == "SHOWPLAN"))
+            {
                 return AstKeywordEnum.Showplan;
             }
-            if ((value == "SHOWPLAN_ALL")) {
+            if ((value == "SHOWPLAN_ALL"))
+            {
                 return AstKeywordEnum.Showplanall;
             }
-            if ((value == "SHOWPLAN_TEXT")) {
+            if ((value == "SHOWPLAN_TEXT"))
+            {
                 return AstKeywordEnum.Showplantext;
             }
-            if ((value == "SHOWPLAN_XML")) {
+            if ((value == "SHOWPLAN_XML"))
+            {
                 return AstKeywordEnum.Showplanxml;
             }
-            if ((value == "SIGNATURE")) {
+            if ((value == "SIGNATURE"))
+            {
                 return AstKeywordEnum.Signature;
             }
-            if ((value == "SIMPLE")) {
+            if ((value == "SIMPLE"))
+            {
                 return AstKeywordEnum.Simple;
             }
-            if ((value == "SINGLE_USER")) {
+            if ((value == "SINGLE_USER"))
+            {
                 return AstKeywordEnum.Singleuser;
             }
-            if ((value == "SIZE")) {
+            if ((value == "SIZE"))
+            {
                 return AstKeywordEnum.Size;
             }
-            if ((value == "SMALLINT")) {
+            if ((value == "SMALLINT"))
+            {
                 return AstKeywordEnum.Smallint;
             }
-            if ((value == "SNAPSHOT")) {
+            if ((value == "SNAPSHOT"))
+            {
                 return AstKeywordEnum.Snapshot;
             }
-            if ((value == "SORT_IN_TEMPDB")) {
+            if ((value == "SORT_IN_TEMPDB"))
+            {
                 return AstKeywordEnum.Sortintempdb;
             }
-            if ((value == "SOUNDEX")) {
+            if ((value == "SOUNDEX"))
+            {
                 return AstKeywordEnum.Soundex;
             }
-            if ((value == "SPACE_KEYWORD")) {
+            if ((value == "SPACE_KEYWORD"))
+            {
                 return AstKeywordEnum.Spacekeyword;
             }
-            if ((value == "SPARSE")) {
+            if ((value == "SPARSE"))
+            {
                 return AstKeywordEnum.Sparse;
             }
-            if ((value == "SPATIAL_WINDOW_MAX_CELLS")) {
+            if ((value == "SPATIAL_WINDOW_MAX_CELLS"))
+            {
                 return AstKeywordEnum.Spatialwindowmaxcells;
             }
-            if ((value == "STANDBY")) {
+            if ((value == "STANDBY"))
+            {
                 return AstKeywordEnum.Standby;
             }
-            if ((value == "START_DATE")) {
+            if ((value == "START_DATE"))
+            {
                 return AstKeywordEnum.Startdate;
             }
-            if ((value == "STATIC")) {
+            if ((value == "STATIC"))
+            {
                 return AstKeywordEnum.Static;
             }
-            if ((value == "STATISTICS_INCREMENTAL")) {
+            if ((value == "STATISTICS_INCREMENTAL"))
+            {
                 return AstKeywordEnum.Statisticsincremental;
             }
-            if ((value == "STATISTICS_NORECOMPUTE")) {
+            if ((value == "STATISTICS_NORECOMPUTE"))
+            {
                 return AstKeywordEnum.Statisticsnorecompute;
             }
-            if ((value == "STATS_DATE")) {
+            if ((value == "STATS_DATE"))
+            {
                 return AstKeywordEnum.Statsdate;
             }
-            if ((value == "STATS_STREAM")) {
+            if ((value == "STATS_STREAM"))
+            {
                 return AstKeywordEnum.Statsstream;
             }
-            if ((value == "STATUS")) {
+            if ((value == "STATUS"))
+            {
                 return AstKeywordEnum.Status;
             }
-            if ((value == "STATUSONLY")) {
+            if ((value == "STATUSONLY"))
+            {
                 return AstKeywordEnum.Statusonly;
             }
-            if ((value == "STDEV")) {
+            if ((value == "STDEV"))
+            {
                 return AstKeywordEnum.Stdev;
             }
-            if ((value == "STDEVP")) {
+            if ((value == "STDEVP"))
+            {
                 return AstKeywordEnum.Stdevp;
             }
-            if ((value == "STOPLIST")) {
+            if ((value == "STOPLIST"))
+            {
                 return AstKeywordEnum.Stoplist;
             }
-            if ((value == "STR")) {
+            if ((value == "STR"))
+            {
                 return AstKeywordEnum.Str;
             }
-            if ((value == "STRING_AGG")) {
+            if ((value == "STRING_AGG"))
+            {
                 return AstKeywordEnum.Stringagg;
             }
-            if ((value == "STRING_ESCAPE")) {
+            if ((value == "STRING_ESCAPE"))
+            {
                 return AstKeywordEnum.Stringescape;
             }
-            if ((value == "STUFF")) {
+            if ((value == "STUFF"))
+            {
                 return AstKeywordEnum.Stuff;
             }
-            if ((value == "SUBJECT")) {
+            if ((value == "SUBJECT"))
+            {
                 return AstKeywordEnum.Subject;
             }
-            if ((value == "SUBSCRIBE")) {
+            if ((value == "SUBSCRIBE"))
+            {
                 return AstKeywordEnum.Subscribe;
             }
-            if ((value == "SUBSCRIPTION")) {
+            if ((value == "SUBSCRIPTION"))
+            {
                 return AstKeywordEnum.Subscription;
             }
-            if ((value == "SUBSTRING")) {
+            if ((value == "SUBSTRING"))
+            {
                 return AstKeywordEnum.Substring;
             }
-            if ((value == "SUM")) {
+            if ((value == "SUM"))
+            {
                 return AstKeywordEnum.Sum;
             }
-            if ((value == "SUSPEND")) {
+            if ((value == "SUSPEND"))
+            {
                 return AstKeywordEnum.Suspend;
             }
-            if ((value == "SYMMETRIC")) {
+            if ((value == "SYMMETRIC"))
+            {
                 return AstKeywordEnum.Symmetric;
             }
-            if ((value == "SYNCHRONOUS_COMMIT")) {
+            if ((value == "SYNCHRONOUS_COMMIT"))
+            {
                 return AstKeywordEnum.Synchronouscommit;
             }
-            if ((value == "SYNONYM")) {
+            if ((value == "SYNONYM"))
+            {
                 return AstKeywordEnum.Synonym;
             }
-            if ((value == "SYSTEM")) {
+            if ((value == "SYSTEM"))
+            {
                 return AstKeywordEnum.System;
             }
-            if ((value == "TABLOCK")) {
+            if ((value == "TABLOCK"))
+            {
                 return AstKeywordEnum.Tablock;
             }
-            if ((value == "TABLOCKX")) {
+            if ((value == "TABLOCKX"))
+            {
                 return AstKeywordEnum.Tablockx;
             }
-            if ((value == "TAKE")) {
+            if ((value == "TAKE"))
+            {
                 return AstKeywordEnum.Take;
             }
-            if ((value == "TARGET_RECOVERY_TIME")) {
+            if ((value == "TARGET_RECOVERY_TIME"))
+            {
                 return AstKeywordEnum.Targetrecoverytime;
             }
-            if ((value == "TB")) {
+            if ((value == "TB"))
+            {
                 return AstKeywordEnum.Tb;
             }
-            if ((value == "TEXTIMAGE_ON")) {
+            if ((value == "TEXTIMAGE_ON"))
+            {
                 return AstKeywordEnum.Textimageon;
             }
-            if ((value == "THROW")) {
+            if ((value == "THROW"))
+            {
                 return AstKeywordEnum.Throw;
             }
-            if ((value == "TIES")) {
+            if ((value == "TIES"))
+            {
                 return AstKeywordEnum.Ties;
             }
-            if ((value == "TIME")) {
+            if ((value == "TIME"))
+            {
                 return AstKeywordEnum.Time;
             }
-            if ((value == "TIMEOUT")) {
+            if ((value == "TIMEOUT"))
+            {
                 return AstKeywordEnum.Timeout;
             }
-            if ((value == "TIMER")) {
+            if ((value == "TIMER"))
+            {
                 return AstKeywordEnum.Timer;
             }
-            if ((value == "TINYINT")) {
+            if ((value == "TINYINT"))
+            {
                 return AstKeywordEnum.Tinyint;
             }
-            if ((value == "TORN_PAGE_DETECTION")) {
+            if ((value == "TORN_PAGE_DETECTION"))
+            {
                 return AstKeywordEnum.Tornpagedetection;
             }
-            if ((value == "TRACKING")) {
+            if ((value == "TRACKING"))
+            {
                 return AstKeywordEnum.Tracking;
             }
-            if ((value == "TRANSACTION_ID")) {
+            if ((value == "TRANSACTION_ID"))
+            {
                 return AstKeywordEnum.Transactionid;
             }
-            if ((value == "TRANSFORM_NOISE_WORDS")) {
+            if ((value == "TRANSFORM_NOISE_WORDS"))
+            {
                 return AstKeywordEnum.Transformnoisewords;
             }
-            if ((value == "TRANSLATE")) {
+            if ((value == "TRANSLATE"))
+            {
                 return AstKeywordEnum.Translate;
             }
-            if ((value == "TRIM")) {
+            if ((value == "TRIM"))
+            {
                 return AstKeywordEnum.Trim;
             }
-            if ((value == "TRIPLE_DES")) {
+            if ((value == "TRIPLE_DES"))
+            {
                 return AstKeywordEnum.Tripledes;
             }
-            if ((value == "TRIPLE_DES_3KEY")) {
+            if ((value == "TRIPLE_DES_3KEY"))
+            {
                 return AstKeywordEnum.Tripledes3key;
             }
-            if ((value == "TRUSTWORTHY")) {
+            if ((value == "TRUSTWORTHY"))
+            {
                 return AstKeywordEnum.Trustworthy;
             }
-            if ((value == "TRY")) {
+            if ((value == "TRY"))
+            {
                 return AstKeywordEnum.Try;
             }
-            if ((value == "TSQL")) {
+            if ((value == "TSQL"))
+            {
                 return AstKeywordEnum.Tsql;
             }
-            if ((value == "TWO_DIGIT_YEAR_CUTOFF")) {
+            if ((value == "TWO_DIGIT_YEAR_CUTOFF"))
+            {
                 return AstKeywordEnum.Twodigityearcutoff;
             }
-            if ((value == "TYPE")) {
+            if ((value == "TYPE"))
+            {
                 return AstKeywordEnum.Type;
             }
-            if ((value == "TYPE_ID")) {
+            if ((value == "TYPE_ID"))
+            {
                 return AstKeywordEnum.Typeid;
             }
-            if ((value == "TYPE_NAME")) {
+            if ((value == "TYPE_NAME"))
+            {
                 return AstKeywordEnum.Typename;
             }
-            if ((value == "TYPE_WARNING")) {
+            if ((value == "TYPE_WARNING"))
+            {
                 return AstKeywordEnum.Typewarning;
             }
-            if ((value == "TYPEPROPERTY")) {
+            if ((value == "TYPEPROPERTY"))
+            {
                 return AstKeywordEnum.Typeproperty;
             }
-            if ((value == "UNBOUNDED")) {
+            if ((value == "UNBOUNDED"))
+            {
                 return AstKeywordEnum.Unbounded;
             }
-            if ((value == "UNCOMMITTED")) {
+            if ((value == "UNCOMMITTED"))
+            {
                 return AstKeywordEnum.Uncommitted;
             }
-            if ((value == "UNICODE")) {
+            if ((value == "UNICODE"))
+            {
                 return AstKeywordEnum.Unicode;
             }
-            if ((value == "UNKNOWN")) {
+            if ((value == "UNKNOWN"))
+            {
                 return AstKeywordEnum.Unknown;
             }
-            if ((value == "UNLIMITED")) {
+            if ((value == "UNLIMITED"))
+            {
                 return AstKeywordEnum.Unlimited;
             }
-            if ((value == "UNMASK")) {
+            if ((value == "UNMASK"))
+            {
                 return AstKeywordEnum.Unmask;
             }
-            if ((value == "UOW")) {
+            if ((value == "UOW"))
+            {
                 return AstKeywordEnum.Uow;
             }
-            if ((value == "UPDLOCK")) {
+            if ((value == "UPDLOCK"))
+            {
                 return AstKeywordEnum.Updlock;
             }
-            if ((value == "UPPER")) {
+            if ((value == "UPPER"))
+            {
                 return AstKeywordEnum.Upper;
             }
-            if ((value == "USING")) {
+            if ((value == "USING"))
+            {
                 return AstKeywordEnum.Using;
             }
-            if ((value == "VALID_XML")) {
+            if ((value == "VALID_XML"))
+            {
                 return AstKeywordEnum.Validxml;
             }
-            if ((value == "VALIDATION")) {
+            if ((value == "VALIDATION"))
+            {
                 return AstKeywordEnum.Validation;
             }
-            if ((value == "VALUE")) {
+            if ((value == "VALUE"))
+            {
                 return AstKeywordEnum.Value;
             }
-            if ((value == "VAR")) {
+            if ((value == "VAR"))
+            {
                 return AstKeywordEnum.Var;
             }
-            if ((value == "VARBINARY_KEYWORD")) {
+            if ((value == "VARBINARY_KEYWORD"))
+            {
                 return AstKeywordEnum.Varbinarykeyword;
             }
-            if ((value == "VARP")) {
+            if ((value == "VARP"))
+            {
                 return AstKeywordEnum.Varp;
             }
-            if ((value == "VERSION")) {
+            if ((value == "VERSION"))
+            {
                 return AstKeywordEnum.Version;
             }
-            if ((value == "VIEW_METADATA")) {
+            if ((value == "VIEW_METADATA"))
+            {
                 return AstKeywordEnum.Viewmetadata;
             }
-            if ((value == "VIEWS")) {
+            if ((value == "VIEWS"))
+            {
                 return AstKeywordEnum.Views;
             }
-            if ((value == "WAIT")) {
+            if ((value == "WAIT"))
+            {
                 return AstKeywordEnum.Wait;
             }
-            if ((value == "WELL_FORMED_XML")) {
+            if ((value == "WELL_FORMED_XML"))
+            {
                 return AstKeywordEnum.Wellformedxml;
             }
-            if ((value == "WITHOUT_ARRAY_WRAPPER")) {
+            if ((value == "WITHOUT_ARRAY_WRAPPER"))
+            {
                 return AstKeywordEnum.Withoutarraywrapper;
             }
-            if ((value == "WORK")) {
+            if ((value == "WORK"))
+            {
                 return AstKeywordEnum.Work;
             }
-            if ((value == "WORKLOAD")) {
+            if ((value == "WORKLOAD"))
+            {
                 return AstKeywordEnum.Workload;
             }
-            if ((value == "XLOCK")) {
+            if ((value == "XLOCK"))
+            {
                 return AstKeywordEnum.Xlock;
             }
-            if ((value == "XML")) {
+            if ((value == "XML"))
+            {
                 return AstKeywordEnum.Xml;
             }
-            if ((value == "XML_COMPRESSION")) {
+            if ((value == "XML_COMPRESSION"))
+            {
                 return AstKeywordEnum.Xmlcompression;
             }
-            if ((value == "XMLDATA")) {
+            if ((value == "XMLDATA"))
+            {
                 return AstKeywordEnum.Xmldata;
             }
-            if ((value == "XMLNAMESPACES")) {
+            if ((value == "XMLNAMESPACES"))
+            {
                 return AstKeywordEnum.Xmlnamespaces;
             }
-            if ((value == "XMLSCHEMA")) {
+            if ((value == "XMLSCHEMA"))
+            {
                 return AstKeywordEnum.Xmlschema;
             }
-            if ((value == "XSINIL")) {
+            if ((value == "XSINIL"))
+            {
                 return AstKeywordEnum.Xsinil;
             }
-            if ((value == "ZONE")) {
+            if ((value == "ZONE"))
+            {
                 return AstKeywordEnum.Zone;
             }
-            if ((value == "ABORT_AFTER_WAIT")) {
+            if ((value == "ABORT_AFTER_WAIT"))
+            {
                 return AstKeywordEnum.Abortafterwait;
             }
-            if ((value == "ABSENT")) {
+            if ((value == "ABSENT"))
+            {
                 return AstKeywordEnum.Absent;
             }
-            if ((value == "ADMINISTER")) {
+            if ((value == "ADMINISTER"))
+            {
                 return AstKeywordEnum.Administer;
             }
-            if ((value == "AES")) {
+            if ((value == "AES"))
+            {
                 return AstKeywordEnum.Aes;
             }
-            if ((value == "ALLOW_CONNECTIONS")) {
+            if ((value == "ALLOW_CONNECTIONS"))
+            {
                 return AstKeywordEnum.Allowconnections;
             }
-            if ((value == "ALLOW_MULTIPLE_EVENT_LOSS")) {
+            if ((value == "ALLOW_MULTIPLE_EVENT_LOSS"))
+            {
                 return AstKeywordEnum.Allowmultipleeventloss;
             }
-            if ((value == "ALLOW_SINGLE_EVENT_LOSS")) {
+            if ((value == "ALLOW_SINGLE_EVENT_LOSS"))
+            {
                 return AstKeywordEnum.Allowsingleeventloss;
             }
-            if ((value == "ANONYMOUS")) {
+            if ((value == "ANONYMOUS"))
+            {
                 return AstKeywordEnum.Anonymous;
             }
-            if ((value == "APPEND")) {
+            if ((value == "APPEND"))
+            {
                 return AstKeywordEnum.Append;
             }
-            if ((value == "APPLICATION")) {
+            if ((value == "APPLICATION"))
+            {
                 return AstKeywordEnum.Application;
             }
-            if ((value == "ASYMMETRIC")) {
+            if ((value == "ASYMMETRIC"))
+            {
                 return AstKeywordEnum.Asymmetric;
             }
-            if ((value == "ASYNCHRONOUS_COMMIT")) {
+            if ((value == "ASYNCHRONOUS_COMMIT"))
+            {
                 return AstKeywordEnum.Asynchronouscommit;
             }
-            if ((value == "AUTHENTICATE")) {
+            if ((value == "AUTHENTICATE"))
+            {
                 return AstKeywordEnum.Authenticate;
             }
-            if ((value == "AUTHENTICATION")) {
+            if ((value == "AUTHENTICATION"))
+            {
                 return AstKeywordEnum.Authentication;
             }
-            if ((value == "AUTOMATED_BACKUP_PREFERENCE")) {
+            if ((value == "AUTOMATED_BACKUP_PREFERENCE"))
+            {
                 return AstKeywordEnum.Automatedbackuppreference;
             }
-            if ((value == "AUTOMATIC")) {
+            if ((value == "AUTOMATIC"))
+            {
                 return AstKeywordEnum.Automatic;
             }
-            if ((value == "AVAILABILITY_MODE")) {
+            if ((value == "AVAILABILITY_MODE"))
+            {
                 return AstKeywordEnum.Availabilitymode;
             }
-            if ((value == "BEFORE")) {
+            if ((value == "BEFORE"))
+            {
                 return AstKeywordEnum.Before;
             }
-            if ((value == "BLOCK")) {
+            if ((value == "BLOCK"))
+            {
                 return AstKeywordEnum.Block;
             }
-            if ((value == "BLOCKERS")) {
+            if ((value == "BLOCKERS"))
+            {
                 return AstKeywordEnum.Blockers;
             }
-            if ((value == "BLOCKSIZE")) {
+            if ((value == "BLOCKSIZE"))
+            {
                 return AstKeywordEnum.Blocksize;
             }
-            if ((value == "BLOCKING_HIERARCHY")) {
+            if ((value == "BLOCKING_HIERARCHY"))
+            {
                 return AstKeywordEnum.Blockinghierarchy;
             }
-            if ((value == "BUFFER")) {
+            if ((value == "BUFFER"))
+            {
                 return AstKeywordEnum.Buffer;
             }
-            if ((value == "BUFFERCOUNT")) {
+            if ((value == "BUFFERCOUNT"))
+            {
                 return AstKeywordEnum.Buffercount;
             }
-            if ((value == "CACHE")) {
+            if ((value == "CACHE"))
+            {
                 return AstKeywordEnum.Cache;
             }
-            if ((value == "CALLED")) {
+            if ((value == "CALLED"))
+            {
                 return AstKeywordEnum.Called;
             }
-            if ((value == "CERTIFICATE")) {
+            if ((value == "CERTIFICATE"))
+            {
                 return AstKeywordEnum.Certificate;
             }
-            if ((value == "CHANGETABLE")) {
+            if ((value == "CHANGETABLE"))
+            {
                 return AstKeywordEnum.Changetable;
             }
-            if ((value == "CHANGES")) {
+            if ((value == "CHANGES"))
+            {
                 return AstKeywordEnum.Changes;
             }
-            if ((value == "CHECK_POLICY")) {
+            if ((value == "CHECK_POLICY"))
+            {
                 return AstKeywordEnum.Checkpolicy;
             }
-            if ((value == "CHECK_EXPIRATION")) {
+            if ((value == "CHECK_EXPIRATION"))
+            {
                 return AstKeywordEnum.Checkexpiration;
             }
-            if ((value == "CLASSIFIER_FUNCTION")) {
+            if ((value == "CLASSIFIER_FUNCTION"))
+            {
                 return AstKeywordEnum.Classifierfunction;
             }
-            if ((value == "CLUSTER")) {
+            if ((value == "CLUSTER"))
+            {
                 return AstKeywordEnum.Cluster;
             }
-            if ((value == "COMPRESS")) {
+            if ((value == "COMPRESS"))
+            {
                 return AstKeywordEnum.Compress;
             }
-            if ((value == "COMPRESSION")) {
+            if ((value == "COMPRESSION"))
+            {
                 return AstKeywordEnum.Compression;
             }
-            if ((value == "CONNECT")) {
+            if ((value == "CONNECT"))
+            {
                 return AstKeywordEnum.Connect;
             }
-            if ((value == "CONNECTION")) {
+            if ((value == "CONNECTION"))
+            {
                 return AstKeywordEnum.Connection;
             }
-            if ((value == "CONFIGURATION")) {
+            if ((value == "CONFIGURATION"))
+            {
                 return AstKeywordEnum.Configuration;
             }
-            if ((value == "CONNECTIONPROPERTY")) {
+            if ((value == "CONNECTIONPROPERTY"))
+            {
                 return AstKeywordEnum.Connectionproperty;
             }
-            if ((value == "CONTAINMENT")) {
+            if ((value == "CONTAINMENT"))
+            {
                 return AstKeywordEnum.Containment;
             }
-            if ((value == "CONTEXT")) {
+            if ((value == "CONTEXT"))
+            {
                 return AstKeywordEnum.Context;
             }
-            if ((value == "CONTEXT_INFO")) {
+            if ((value == "CONTEXT_INFO"))
+            {
                 return AstKeywordEnum.Contextinfo;
             }
-            if ((value == "CONTINUE_AFTER_ERROR")) {
+            if ((value == "CONTINUE_AFTER_ERROR"))
+            {
                 return AstKeywordEnum.Continueaftererror;
             }
-            if ((value == "CONTRACT")) {
+            if ((value == "CONTRACT"))
+            {
                 return AstKeywordEnum.Contract;
             }
-            if ((value == "CONTRACT_NAME")) {
+            if ((value == "CONTRACT_NAME"))
+            {
                 return AstKeywordEnum.Contractname;
             }
-            if ((value == "CONVERSATION")) {
+            if ((value == "CONVERSATION"))
+            {
                 return AstKeywordEnum.Conversation;
             }
-            if ((value == "COPY_ONLY")) {
+            if ((value == "COPY_ONLY"))
+            {
                 return AstKeywordEnum.Copyonly;
             }
-            if ((value == "CURRENT_REQUEST_ID")) {
+            if ((value == "CURRENT_REQUEST_ID"))
+            {
                 return AstKeywordEnum.Currentrequestid;
             }
-            if ((value == "CURRENT_TRANSACTION_ID")) {
+            if ((value == "CURRENT_TRANSACTION_ID"))
+            {
                 return AstKeywordEnum.Currenttransactionid;
             }
-            if ((value == "CYCLE")) {
+            if ((value == "CYCLE"))
+            {
                 return AstKeywordEnum.Cycle;
             }
-            if ((value == "DATA_COMPRESSION")) {
+            if ((value == "DATA_COMPRESSION"))
+            {
                 return AstKeywordEnum.Datacompression;
             }
-            if ((value == "DATA_SOURCE")) {
+            if ((value == "DATA_SOURCE"))
+            {
                 return AstKeywordEnum.Datasource;
             }
-            if ((value == "DATABASE_MIRRORING")) {
+            if ((value == "DATABASE_MIRRORING"))
+            {
                 return AstKeywordEnum.Databasemirroring;
             }
-            if ((value == "DATASPACE")) {
+            if ((value == "DATASPACE"))
+            {
                 return AstKeywordEnum.Dataspace;
             }
-            if ((value == "DDL")) {
+            if ((value == "DDL"))
+            {
                 return AstKeywordEnum.Ddl;
             }
-            if ((value == "DECOMPRESS")) {
+            if ((value == "DECOMPRESS"))
+            {
                 return AstKeywordEnum.Decompress;
             }
-            if ((value == "DEFAULT_DATABASE")) {
+            if ((value == "DEFAULT_DATABASE"))
+            {
                 return AstKeywordEnum.Defaultdatabase;
             }
-            if ((value == "DEFAULT_SCHEMA")) {
+            if ((value == "DEFAULT_SCHEMA"))
+            {
                 return AstKeywordEnum.Defaultschema;
             }
-            if ((value == "DIAGNOSTICS")) {
+            if ((value == "DIAGNOSTICS"))
+            {
                 return AstKeywordEnum.Diagnostics;
             }
-            if ((value == "DIFFERENTIAL")) {
+            if ((value == "DIFFERENTIAL"))
+            {
                 return AstKeywordEnum.Differential;
             }
-            if ((value == "DISTRIBUTION")) {
+            if ((value == "DISTRIBUTION"))
+            {
                 return AstKeywordEnum.Distribution;
             }
-            if ((value == "DTC_SUPPORT")) {
+            if ((value == "DTC_SUPPORT"))
+            {
                 return AstKeywordEnum.Dtcsupport;
             }
-            if ((value == "ENABLED")) {
+            if ((value == "ENABLED"))
+            {
                 return AstKeywordEnum.Enabled;
             }
-            if ((value == "ENDPOINT")) {
+            if ((value == "ENDPOINT"))
+            {
                 return AstKeywordEnum.Endpoint;
             }
-            if ((value == "ERROR")) {
+            if ((value == "ERROR"))
+            {
                 return AstKeywordEnum.Error;
             }
-            if ((value == "ERROR_LINE")) {
+            if ((value == "ERROR_LINE"))
+            {
                 return AstKeywordEnum.Errorline;
             }
-            if ((value == "ERROR_MESSAGE")) {
+            if ((value == "ERROR_MESSAGE"))
+            {
                 return AstKeywordEnum.Errormessage;
             }
-            if ((value == "ERROR_NUMBER")) {
+            if ((value == "ERROR_NUMBER"))
+            {
                 return AstKeywordEnum.Errornumber;
             }
-            if ((value == "ERROR_PROCEDURE")) {
+            if ((value == "ERROR_PROCEDURE"))
+            {
                 return AstKeywordEnum.Errorprocedure;
             }
-            if ((value == "ERROR_SEVERITY")) {
+            if ((value == "ERROR_SEVERITY"))
+            {
                 return AstKeywordEnum.Errorseverity;
             }
-            if ((value == "ERROR_STATE")) {
+            if ((value == "ERROR_STATE"))
+            {
                 return AstKeywordEnum.Errorstate;
             }
-            if ((value == "EVENT")) {
+            if ((value == "EVENT"))
+            {
                 return AstKeywordEnum.Event;
             }
-            if ((value == "EVENTDATA")) {
+            if ((value == "EVENTDATA"))
+            {
                 return AstKeywordEnum.Eventdata;
             }
-            if ((value == "EVENT_RETENTION_MODE")) {
+            if ((value == "EVENT_RETENTION_MODE"))
+            {
                 return AstKeywordEnum.Eventretentionmode;
             }
-            if ((value == "EXECUTABLE_FILE")) {
+            if ((value == "EXECUTABLE_FILE"))
+            {
                 return AstKeywordEnum.Executablefile;
             }
-            if ((value == "EXPIREDATE")) {
+            if ((value == "EXPIREDATE"))
+            {
                 return AstKeywordEnum.Expiredate;
             }
-            if ((value == "EXTENSION")) {
+            if ((value == "EXTENSION"))
+            {
                 return AstKeywordEnum.Extension;
             }
-            if ((value == "EXTERNAL_ACCESS")) {
+            if ((value == "EXTERNAL_ACCESS"))
+            {
                 return AstKeywordEnum.Externalaccess;
             }
-            if ((value == "FAILOVER")) {
+            if ((value == "FAILOVER"))
+            {
                 return AstKeywordEnum.Failover;
             }
-            if ((value == "FAILURECONDITIONLEVEL")) {
+            if ((value == "FAILURECONDITIONLEVEL"))
+            {
                 return AstKeywordEnum.Failureconditionlevel;
             }
-            if ((value == "FAN_IN")) {
+            if ((value == "FAN_IN"))
+            {
                 return AstKeywordEnum.Fanin;
             }
-            if ((value == "FILE_SNAPSHOT")) {
+            if ((value == "FILE_SNAPSHOT"))
+            {
                 return AstKeywordEnum.Filesnapshot;
             }
-            if ((value == "FORCESEEK")) {
+            if ((value == "FORCESEEK"))
+            {
                 return AstKeywordEnum.Forceseek;
             }
-            if ((value == "FORCE_SERVICE_ALLOW_DATA_LOSS")) {
+            if ((value == "FORCE_SERVICE_ALLOW_DATA_LOSS"))
+            {
                 return AstKeywordEnum.Forceserviceallowdataloss;
             }
-            if ((value == "FORMATMESSAGE")) {
+            if ((value == "FORMATMESSAGE"))
+            {
                 return AstKeywordEnum.Formatmessage;
             }
-            if ((value == "GET")) {
+            if ((value == "GET"))
+            {
                 return AstKeywordEnum.Get;
             }
-            if ((value == "GET_FILESTREAM_TRANSACTION_CONTEXT")) {
+            if ((value == "GET_FILESTREAM_TRANSACTION_CONTEXT"))
+            {
                 return AstKeywordEnum.Getfilestreamtransactioncontext;
             }
-            if ((value == "GETANCESTOR")) {
+            if ((value == "GETANCESTOR"))
+            {
                 return AstKeywordEnum.Getancestor;
             }
-            if ((value == "GETANSINULL")) {
+            if ((value == "GETANSINULL"))
+            {
                 return AstKeywordEnum.Getansinull;
             }
-            if ((value == "GETDESCENDANT")) {
+            if ((value == "GETDESCENDANT"))
+            {
                 return AstKeywordEnum.Getdescendant;
             }
-            if ((value == "GETLEVEL")) {
+            if ((value == "GETLEVEL"))
+            {
                 return AstKeywordEnum.Getlevel;
             }
-            if ((value == "GETREPARENTEDVALUE")) {
+            if ((value == "GETREPARENTEDVALUE"))
+            {
                 return AstKeywordEnum.Getreparentedvalue;
             }
-            if ((value == "GETROOT")) {
+            if ((value == "GETROOT"))
+            {
                 return AstKeywordEnum.Getroot;
             }
-            if ((value == "GOVERNOR")) {
+            if ((value == "GOVERNOR"))
+            {
                 return AstKeywordEnum.Governor;
             }
-            if ((value == "HASHED")) {
+            if ((value == "HASHED"))
+            {
                 return AstKeywordEnum.Hashed;
             }
-            if ((value == "HEALTHCHECKTIMEOUT")) {
+            if ((value == "HEALTHCHECKTIMEOUT"))
+            {
                 return AstKeywordEnum.Healthchecktimeout;
             }
-            if ((value == "HEAP")) {
+            if ((value == "HEAP"))
+            {
                 return AstKeywordEnum.Heap;
             }
-            if ((value == "HIERARCHYID")) {
+            if ((value == "HIERARCHYID"))
+            {
                 return AstKeywordEnum.Hierarchyid;
             }
-            if ((value == "HOST_ID")) {
+            if ((value == "HOST_ID"))
+            {
                 return AstKeywordEnum.Hostid;
             }
-            if ((value == "HOST_NAME")) {
+            if ((value == "HOST_NAME"))
+            {
                 return AstKeywordEnum.Hostname;
             }
-            if ((value == "IIF")) {
+            if ((value == "IIF"))
+            {
                 return AstKeywordEnum.Iif;
             }
-            if ((value == "IO")) {
+            if ((value == "IO"))
+            {
                 return AstKeywordEnum.Io;
             }
-            if ((value == "INCLUDE")) {
+            if ((value == "INCLUDE"))
+            {
                 return AstKeywordEnum.Include;
             }
-            if ((value == "INCREMENT")) {
+            if ((value == "INCREMENT"))
+            {
                 return AstKeywordEnum.Increment;
             }
-            if ((value == "INFINITE")) {
+            if ((value == "INFINITE"))
+            {
                 return AstKeywordEnum.Infinite;
             }
-            if ((value == "INIT")) {
+            if ((value == "INIT"))
+            {
                 return AstKeywordEnum.Init;
             }
-            if ((value == "INSTEAD")) {
+            if ((value == "INSTEAD"))
+            {
                 return AstKeywordEnum.Instead;
             }
-            if ((value == "ISDESCENDANTOF")) {
+            if ((value == "ISDESCENDANTOF"))
+            {
                 return AstKeywordEnum.Isdescendantof;
             }
-            if ((value == "ISNULL")) {
+            if ((value == "ISNULL"))
+            {
                 return AstKeywordEnum.Isnull;
             }
-            if ((value == "ISNUMERIC")) {
+            if ((value == "ISNUMERIC"))
+            {
                 return AstKeywordEnum.Isnumeric;
             }
-            if ((value == "KERBEROS")) {
+            if ((value == "KERBEROS"))
+            {
                 return AstKeywordEnum.Kerberos;
             }
-            if ((value == "KEY_PATH")) {
+            if ((value == "KEY_PATH"))
+            {
                 return AstKeywordEnum.Keypath;
             }
-            if ((value == "KEY_STORE_PROVIDER_NAME")) {
+            if ((value == "KEY_STORE_PROVIDER_NAME"))
+            {
                 return AstKeywordEnum.Keystoreprovidername;
             }
-            if ((value == "LANGUAGE")) {
+            if ((value == "LANGUAGE"))
+            {
                 return AstKeywordEnum.Language;
             }
-            if ((value == "LIBRARY")) {
+            if ((value == "LIBRARY"))
+            {
                 return AstKeywordEnum.Library;
             }
-            if ((value == "LIFETIME")) {
+            if ((value == "LIFETIME"))
+            {
                 return AstKeywordEnum.Lifetime;
             }
-            if ((value == "LINKED")) {
+            if ((value == "LINKED"))
+            {
                 return AstKeywordEnum.Linked;
             }
-            if ((value == "LINUX")) {
+            if ((value == "LINUX"))
+            {
                 return AstKeywordEnum.Linux;
             }
-            if ((value == "LISTENER_IP")) {
+            if ((value == "LISTENER_IP"))
+            {
                 return AstKeywordEnum.Listenerip;
             }
-            if ((value == "LISTENER_PORT")) {
+            if ((value == "LISTENER_PORT"))
+            {
                 return AstKeywordEnum.Listenerport;
             }
-            if ((value == "LOCAL_SERVICE_NAME")) {
+            if ((value == "LOCAL_SERVICE_NAME"))
+            {
                 return AstKeywordEnum.Localservicename;
             }
-            if ((value == "LOG")) {
+            if ((value == "LOG"))
+            {
                 return AstKeywordEnum.Log;
             }
-            if ((value == "MASK")) {
+            if ((value == "MASK"))
+            {
                 return AstKeywordEnum.Mask;
             }
-            if ((value == "MATCHED")) {
+            if ((value == "MATCHED"))
+            {
                 return AstKeywordEnum.Matched;
             }
-            if ((value == "MASTER")) {
+            if ((value == "MASTER"))
+            {
                 return AstKeywordEnum.Master;
             }
-            if ((value == "MAX_MEMORY")) {
+            if ((value == "MAX_MEMORY"))
+            {
                 return AstKeywordEnum.Maxmemory;
             }
-            if ((value == "MAXTRANSFER")) {
+            if ((value == "MAXTRANSFER"))
+            {
                 return AstKeywordEnum.Maxtransfer;
             }
-            if ((value == "MAXVALUE")) {
+            if ((value == "MAXVALUE"))
+            {
                 return AstKeywordEnum.Maxvalue;
             }
-            if ((value == "MAX_DISPATCH_LATENCY")) {
+            if ((value == "MAX_DISPATCH_LATENCY"))
+            {
                 return AstKeywordEnum.Maxdispatchlatency;
             }
-            if ((value == "MAX_DURATION")) {
+            if ((value == "MAX_DURATION"))
+            {
                 return AstKeywordEnum.Maxduration;
             }
-            if ((value == "MAX_EVENT_SIZE")) {
+            if ((value == "MAX_EVENT_SIZE"))
+            {
                 return AstKeywordEnum.Maxeventsize;
             }
-            if ((value == "MAX_SIZE")) {
+            if ((value == "MAX_SIZE"))
+            {
                 return AstKeywordEnum.Maxsize;
             }
-            if ((value == "MAX_OUTSTANDING_IO_PER_VOLUME")) {
+            if ((value == "MAX_OUTSTANDING_IO_PER_VOLUME"))
+            {
                 return AstKeywordEnum.Maxoutstandingiopervolume;
             }
-            if ((value == "MEDIADESCRIPTION")) {
+            if ((value == "MEDIADESCRIPTION"))
+            {
                 return AstKeywordEnum.Mediadescription;
             }
-            if ((value == "MEDIANAME")) {
+            if ((value == "MEDIANAME"))
+            {
                 return AstKeywordEnum.Medianame;
             }
-            if ((value == "MEMBER")) {
+            if ((value == "MEMBER"))
+            {
                 return AstKeywordEnum.Member;
             }
-            if ((value == "MEMORY_PARTITION_MODE")) {
+            if ((value == "MEMORY_PARTITION_MODE"))
+            {
                 return AstKeywordEnum.Memorypartitionmode;
             }
-            if ((value == "MESSAGE_FORWARDING")) {
+            if ((value == "MESSAGE_FORWARDING"))
+            {
                 return AstKeywordEnum.Messageforwarding;
             }
-            if ((value == "MESSAGE_FORWARD_SIZE")) {
+            if ((value == "MESSAGE_FORWARD_SIZE"))
+            {
                 return AstKeywordEnum.Messageforwardsize;
             }
-            if ((value == "MINVALUE")) {
+            if ((value == "MINVALUE"))
+            {
                 return AstKeywordEnum.Minvalue;
             }
-            if ((value == "MIRROR")) {
+            if ((value == "MIRROR"))
+            {
                 return AstKeywordEnum.Mirror;
             }
-            if ((value == "MUST_CHANGE")) {
+            if ((value == "MUST_CHANGE"))
+            {
                 return AstKeywordEnum.Mustchange;
             }
-            if ((value == "NEWID")) {
+            if ((value == "NEWID"))
+            {
                 return AstKeywordEnum.Newid;
             }
-            if ((value == "NEWSEQUENTIALID")) {
+            if ((value == "NEWSEQUENTIALID"))
+            {
                 return AstKeywordEnum.Newsequentialid;
             }
-            if ((value == "NOFORMAT")) {
+            if ((value == "NOFORMAT"))
+            {
                 return AstKeywordEnum.Noformat;
             }
-            if ((value == "NOINIT")) {
+            if ((value == "NOINIT"))
+            {
                 return AstKeywordEnum.Noinit;
             }
-            if ((value == "NONE")) {
+            if ((value == "NONE"))
+            {
                 return AstKeywordEnum.None;
             }
-            if ((value == "NOREWIND")) {
+            if ((value == "NOREWIND"))
+            {
                 return AstKeywordEnum.Norewind;
             }
-            if ((value == "NOSKIP")) {
+            if ((value == "NOSKIP"))
+            {
                 return AstKeywordEnum.Noskip;
             }
-            if ((value == "NOUNLOAD")) {
+            if ((value == "NOUNLOAD"))
+            {
                 return AstKeywordEnum.Nounload;
             }
-            if ((value == "NO_CHECKSUM")) {
+            if ((value == "NO_CHECKSUM"))
+            {
                 return AstKeywordEnum.Nochecksum;
             }
-            if ((value == "NO_COMPRESSION")) {
+            if ((value == "NO_COMPRESSION"))
+            {
                 return AstKeywordEnum.Nocompression;
             }
-            if ((value == "NO_EVENT_LOSS")) {
+            if ((value == "NO_EVENT_LOSS"))
+            {
                 return AstKeywordEnum.Noeventloss;
             }
-            if ((value == "NOTIFICATION")) {
+            if ((value == "NOTIFICATION"))
+            {
                 return AstKeywordEnum.Notification;
             }
-            if ((value == "NTLM")) {
+            if ((value == "NTLM"))
+            {
                 return AstKeywordEnum.Ntlm;
             }
-            if ((value == "OLD_PASSWORD")) {
+            if ((value == "OLD_PASSWORD"))
+            {
                 return AstKeywordEnum.Oldpassword;
             }
-            if ((value == "ON_FAILURE")) {
+            if ((value == "ON_FAILURE"))
+            {
                 return AstKeywordEnum.Onfailure;
             }
-            if ((value == "OPERATIONS")) {
+            if ((value == "OPERATIONS"))
+            {
                 return AstKeywordEnum.Operations;
             }
-            if ((value == "PAGE")) {
+            if ((value == "PAGE"))
+            {
                 return AstKeywordEnum.Page;
             }
-            if ((value == "PARAM_NODE")) {
+            if ((value == "PARAM_NODE"))
+            {
                 return AstKeywordEnum.Paramnode;
             }
-            if ((value == "PARTIAL")) {
+            if ((value == "PARTIAL"))
+            {
                 return AstKeywordEnum.Partial;
             }
-            if ((value == "PASSWORD")) {
+            if ((value == "PASSWORD"))
+            {
                 return AstKeywordEnum.Password;
             }
-            if ((value == "PERMISSION_SET")) {
+            if ((value == "PERMISSION_SET"))
+            {
                 return AstKeywordEnum.Permissionset;
             }
-            if ((value == "PER_CPU")) {
+            if ((value == "PER_CPU"))
+            {
                 return AstKeywordEnum.Percpu;
             }
-            if ((value == "PER_DB")) {
+            if ((value == "PER_DB"))
+            {
                 return AstKeywordEnum.Perdb;
             }
-            if ((value == "PER_NODE")) {
+            if ((value == "PER_NODE"))
+            {
                 return AstKeywordEnum.Pernode;
             }
-            if ((value == "PERSISTED")) {
+            if ((value == "PERSISTED"))
+            {
                 return AstKeywordEnum.Persisted;
             }
-            if ((value == "PLATFORM")) {
+            if ((value == "PLATFORM"))
+            {
                 return AstKeywordEnum.Platform;
             }
-            if ((value == "POLICY")) {
+            if ((value == "POLICY"))
+            {
                 return AstKeywordEnum.Policy;
             }
-            if ((value == "PREDICATE")) {
+            if ((value == "PREDICATE"))
+            {
                 return AstKeywordEnum.Predicate;
             }
-            if ((value == "PROCESS")) {
+            if ((value == "PROCESS"))
+            {
                 return AstKeywordEnum.Process;
             }
-            if ((value == "PROFILE")) {
+            if ((value == "PROFILE"))
+            {
                 return AstKeywordEnum.Profile;
             }
-            if ((value == "PYTHON")) {
+            if ((value == "PYTHON"))
+            {
                 return AstKeywordEnum.Python;
             }
-            if ((value == "R")) {
+            if ((value == "R"))
+            {
                 return AstKeywordEnum.R;
             }
-            if ((value == "READ_WRITE_FILEGROUPS")) {
+            if ((value == "READ_WRITE_FILEGROUPS"))
+            {
                 return AstKeywordEnum.Readwritefilegroups;
             }
-            if ((value == "REGENERATE")) {
+            if ((value == "REGENERATE"))
+            {
                 return AstKeywordEnum.Regenerate;
             }
-            if ((value == "RELATED_CONVERSATION")) {
+            if ((value == "RELATED_CONVERSATION"))
+            {
                 return AstKeywordEnum.Relatedconversation;
             }
-            if ((value == "RELATED_CONVERSATION_GROUP")) {
+            if ((value == "RELATED_CONVERSATION_GROUP"))
+            {
                 return AstKeywordEnum.Relatedconversationgroup;
             }
-            if ((value == "REQUIRED")) {
+            if ((value == "REQUIRED"))
+            {
                 return AstKeywordEnum.Required;
             }
-            if ((value == "RESET")) {
+            if ((value == "RESET"))
+            {
                 return AstKeywordEnum.Reset;
             }
-            if ((value == "RESOURCES")) {
+            if ((value == "RESOURCES"))
+            {
                 return AstKeywordEnum.Resources;
             }
-            if ((value == "RESTART")) {
+            if ((value == "RESTART"))
+            {
                 return AstKeywordEnum.Restart;
             }
-            if ((value == "RESUME")) {
+            if ((value == "RESUME"))
+            {
                 return AstKeywordEnum.Resume;
             }
-            if ((value == "RETAINDAYS")) {
+            if ((value == "RETAINDAYS"))
+            {
                 return AstKeywordEnum.Retaindays;
             }
-            if ((value == "RETURNS")) {
+            if ((value == "RETURNS"))
+            {
                 return AstKeywordEnum.Returns;
             }
-            if ((value == "REWIND")) {
+            if ((value == "REWIND"))
+            {
                 return AstKeywordEnum.Rewind;
             }
-            if ((value == "ROLE")) {
+            if ((value == "ROLE"))
+            {
                 return AstKeywordEnum.Role;
             }
-            if ((value == "ROUND_ROBIN")) {
+            if ((value == "ROUND_ROBIN"))
+            {
                 return AstKeywordEnum.Roundrobin;
             }
-            if ((value == "ROWCOUNT_BIG")) {
+            if ((value == "ROWCOUNT_BIG"))
+            {
                 return AstKeywordEnum.Rowcountbig;
             }
-            if ((value == "RSA_512")) {
+            if ((value == "RSA_512"))
+            {
                 return AstKeywordEnum.Rsa512;
             }
-            if ((value == "RSA_1024")) {
+            if ((value == "RSA_1024"))
+            {
                 return AstKeywordEnum.Rsa1024;
             }
-            if ((value == "RSA_2048")) {
+            if ((value == "RSA_2048"))
+            {
                 return AstKeywordEnum.Rsa2048;
             }
-            if ((value == "RSA_3072")) {
+            if ((value == "RSA_3072"))
+            {
                 return AstKeywordEnum.Rsa3072;
             }
-            if ((value == "RSA_4096")) {
+            if ((value == "RSA_4096"))
+            {
                 return AstKeywordEnum.Rsa4096;
             }
-            if ((value == "SAFETY")) {
+            if ((value == "SAFETY"))
+            {
                 return AstKeywordEnum.Safety;
             }
-            if ((value == "SAFE")) {
+            if ((value == "SAFE"))
+            {
                 return AstKeywordEnum.Safe;
             }
-            if ((value == "SCHEDULER")) {
+            if ((value == "SCHEDULER"))
+            {
                 return AstKeywordEnum.Scheduler;
             }
-            if ((value == "SCHEME")) {
+            if ((value == "SCHEME"))
+            {
                 return AstKeywordEnum.Scheme;
             }
-            if ((value == "SCRIPT")) {
+            if ((value == "SCRIPT"))
+            {
                 return AstKeywordEnum.Script;
             }
-            if ((value == "SERVER")) {
+            if ((value == "SERVER"))
+            {
                 return AstKeywordEnum.Server;
             }
-            if ((value == "SERVICE")) {
+            if ((value == "SERVICE"))
+            {
                 return AstKeywordEnum.Service;
             }
-            if ((value == "SERVICE_BROKER")) {
+            if ((value == "SERVICE_BROKER"))
+            {
                 return AstKeywordEnum.Servicebroker;
             }
-            if ((value == "SERVICE_NAME")) {
+            if ((value == "SERVICE_NAME"))
+            {
                 return AstKeywordEnum.Servicename;
             }
-            if ((value == "SESSION")) {
+            if ((value == "SESSION"))
+            {
                 return AstKeywordEnum.Session;
             }
-            if ((value == "SESSION_CONTEXT")) {
+            if ((value == "SESSION_CONTEXT"))
+            {
                 return AstKeywordEnum.Sessioncontext;
             }
-            if ((value == "SETTINGS")) {
+            if ((value == "SETTINGS"))
+            {
                 return AstKeywordEnum.Settings;
             }
-            if ((value == "SHRINKLOG")) {
+            if ((value == "SHRINKLOG"))
+            {
                 return AstKeywordEnum.Shrinklog;
             }
-            if ((value == "SID")) {
+            if ((value == "SID"))
+            {
                 return AstKeywordEnum.Sid;
             }
-            if ((value == "SKIP_KEYWORD")) {
+            if ((value == "SKIP_KEYWORD"))
+            {
                 return AstKeywordEnum.Skipkeyword;
             }
-            if ((value == "SOFTNUMA")) {
+            if ((value == "SOFTNUMA"))
+            {
                 return AstKeywordEnum.Softnuma;
             }
-            if ((value == "SOURCE")) {
+            if ((value == "SOURCE"))
+            {
                 return AstKeywordEnum.Source;
             }
-            if ((value == "SPECIFICATION")) {
+            if ((value == "SPECIFICATION"))
+            {
                 return AstKeywordEnum.Specification;
             }
-            if ((value == "SPLIT")) {
+            if ((value == "SPLIT"))
+            {
                 return AstKeywordEnum.Split;
             }
-            if ((value == "SQL")) {
+            if ((value == "SQL"))
+            {
                 return AstKeywordEnum.Sql;
             }
-            if ((value == "SQLDUMPERFLAGS")) {
+            if ((value == "SQLDUMPERFLAGS"))
+            {
                 return AstKeywordEnum.Sqldumperflags;
             }
-            if ((value == "SQLDUMPERPATH")) {
+            if ((value == "SQLDUMPERPATH"))
+            {
                 return AstKeywordEnum.Sqldumperpath;
             }
-            if ((value == "SQLDUMPERTIMEOUT")) {
+            if ((value == "SQLDUMPERTIMEOUT"))
+            {
                 return AstKeywordEnum.Sqldumpertimeout;
             }
-            if ((value == "STATE")) {
+            if ((value == "STATE"))
+            {
                 return AstKeywordEnum.State;
             }
-            if ((value == "STATS")) {
+            if ((value == "STATS"))
+            {
                 return AstKeywordEnum.Stats;
             }
-            if ((value == "START")) {
+            if ((value == "START"))
+            {
                 return AstKeywordEnum.Start;
             }
-            if ((value == "STARTED")) {
+            if ((value == "STARTED"))
+            {
                 return AstKeywordEnum.Started;
             }
-            if ((value == "STARTUP_STATE")) {
+            if ((value == "STARTUP_STATE"))
+            {
                 return AstKeywordEnum.Startupstate;
             }
-            if ((value == "STOP")) {
+            if ((value == "STOP"))
+            {
                 return AstKeywordEnum.Stop;
             }
-            if ((value == "STOPPED")) {
+            if ((value == "STOPPED"))
+            {
                 return AstKeywordEnum.Stopped;
             }
-            if ((value == "STOP_ON_ERROR")) {
+            if ((value == "STOP_ON_ERROR"))
+            {
                 return AstKeywordEnum.Stoponerror;
             }
-            if ((value == "SUPPORTED")) {
+            if ((value == "SUPPORTED"))
+            {
                 return AstKeywordEnum.Supported;
             }
-            if ((value == "SWITCH")) {
+            if ((value == "SWITCH"))
+            {
                 return AstKeywordEnum.Switch;
             }
-            if ((value == "TAPE")) {
+            if ((value == "TAPE"))
+            {
                 return AstKeywordEnum.Tape;
             }
-            if ((value == "TARGET")) {
+            if ((value == "TARGET"))
+            {
                 return AstKeywordEnum.Target;
             }
-            if ((value == "TCP")) {
+            if ((value == "TCP"))
+            {
                 return AstKeywordEnum.Tcp;
             }
-            if ((value == "TOSTRING")) {
+            if ((value == "TOSTRING"))
+            {
                 return AstKeywordEnum.Tostring;
             }
-            if ((value == "TRACE")) {
+            if ((value == "TRACE"))
+            {
                 return AstKeywordEnum.Trace;
             }
-            if ((value == "TRACK_CAUSALITY")) {
+            if ((value == "TRACK_CAUSALITY"))
+            {
                 return AstKeywordEnum.Trackcausality;
             }
-            if ((value == "TRANSFER")) {
+            if ((value == "TRANSFER"))
+            {
                 return AstKeywordEnum.Transfer;
             }
-            if ((value == "UNCHECKED")) {
+            if ((value == "UNCHECKED"))
+            {
                 return AstKeywordEnum.Unchecked;
             }
-            if ((value == "UNLOCK")) {
+            if ((value == "UNLOCK"))
+            {
                 return AstKeywordEnum.Unlock;
             }
-            if ((value == "UNSAFE")) {
+            if ((value == "UNSAFE"))
+            {
                 return AstKeywordEnum.Unsafe;
             }
-            if ((value == "URL")) {
+            if ((value == "URL"))
+            {
                 return AstKeywordEnum.Url;
             }
-            if ((value == "USED")) {
+            if ((value == "USED"))
+            {
                 return AstKeywordEnum.Used;
             }
-            if ((value == "VERBOSELOGGING")) {
+            if ((value == "VERBOSELOGGING"))
+            {
                 return AstKeywordEnum.Verboselogging;
             }
-            if ((value == "VISIBILITY")) {
+            if ((value == "VISIBILITY"))
+            {
                 return AstKeywordEnum.Visibility;
             }
-            if ((value == "WAIT_AT_LOW_PRIORITY")) {
+            if ((value == "WAIT_AT_LOW_PRIORITY"))
+            {
                 return AstKeywordEnum.Waitatlowpriority;
             }
-            if ((value == "WINDOWS")) {
+            if ((value == "WINDOWS"))
+            {
                 return AstKeywordEnum.Windows;
             }
-            if ((value == "WITHOUT")) {
+            if ((value == "WITHOUT"))
+            {
                 return AstKeywordEnum.Without;
             }
-            if ((value == "WITNESS")) {
+            if ((value == "WITNESS"))
+            {
                 return AstKeywordEnum.Witness;
             }
-            if ((value == "XACT_ABORT")) {
+            if ((value == "XACT_ABORT"))
+            {
                 return AstKeywordEnum.Xactabort;
             }
-            if ((value == "XACT_STATE")) {
+            if ((value == "XACT_STATE"))
+            {
                 return AstKeywordEnum.Xactstate;
             }
-            if ((value == "VARCHAR")) {
+            if ((value == "VARCHAR"))
+            {
                 return AstKeywordEnum.Varchar;
             }
-            if ((value == "NVARCHAR")) {
+            if ((value == "NVARCHAR"))
+            {
                 return AstKeywordEnum.Nvarchar;
             }
-            if ((value == "PRECISION")) {
+            if ((value == "PRECISION"))
+            {
                 return AstKeywordEnum.Precision;
             }
             return AstKeywordEnum._undefined;
         }
     }
     
-    public partial class AstId : AstRule {
+    public partial class AstId : AstRule
+    {
         
         public AstId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitId(this);
         }
     }
     
-    public partial class AstSimpleid : AstRule {
+    public partial class AstSimpleid : AstRule
+    {
         
         public AstSimpleid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSimpleid(this);
         }
     }
     
-    public partial class AstComparisonoperator : AstRule {
+    public partial class AstComparisonoperator : AstRule
+    {
         
         public AstComparisonoperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitComparisonoperator(this);
         }
     }
     
-    public partial class AstAssignmentoperator : AstRule {
+    public partial class AstAssignmentoperator : AstRule
+    {
         
         public AstAssignmentoperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAssignmentoperator(this);
         }
     }
     
-    public partial class AstFilesize : AstRule {
+    public partial class AstFilesize : AstRule
+    {
         
         public AstFilesize(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilesize(this);
         }
     }
     
-    public partial class AstFilesizeunity : AstRule {
+    public partial class AstFilesizeunity : AstRule
+    {
         
         public AstFilesizeunity(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilesizeunity(this);
         }
     }
     
-    public partial class AstFilestreamfilegrouporpartitionschemaname : AstRule {
+    public partial class AstFilestreamfilegrouporpartitionschemaname : AstRule
+    {
         
         public AstFilestreamfilegrouporpartitionschemaname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilestreamfilegrouporpartitionschemaname(this);
         }
     }
     
-    public partial class AstActionname : AstRule {
+    public partial class AstActionname : AstRule
+    {
         
         public AstActionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitActionname(this);
         }
     }
     
-    public partial class AstAggregatename : AstRule {
+    public partial class AstAggregatename : AstRule
+    {
         
         public AstAggregatename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAggregatename(this);
         }
     }
     
-    public partial class AstApproleschema : AstRule {
+    public partial class AstApproleschema : AstRule
+    {
         
         public AstApproleschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitApproleschema(this);
         }
     }
     
-    public partial class AstApplicationrole : AstRule {
+    public partial class AstApplicationrole : AstRule
+    {
         
         public AstApplicationrole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitApplicationrole(this);
         }
     }
     
-    public partial class AstAssemblyname : AstRule {
+    public partial class AstAssemblyname : AstRule
+    {
         
         public AstAssemblyname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAssemblyname(this);
         }
     }
     
-    public partial class AstAsymkeyname : AstRule {
+    public partial class AstAsymkeyname : AstRule
+    {
         
         public AstAsymkeyname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAsymkeyname(this);
         }
     }
     
-    public partial class AstAuditactiongroupname : AstRule {
+    public partial class AstAuditactiongroupname : AstRule
+    {
         
         public AstAuditactiongroupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAuditactiongroupname(this);
         }
     }
     
-    public partial class AstAuditguid : AstRule {
+    public partial class AstAuditguid : AstRule
+    {
         
         public AstAuditguid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAuditguid(this);
         }
     }
     
-    public partial class AstAuditname : AstRule {
+    public partial class AstAuditname : AstRule
+    {
         
         public AstAuditname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAuditname(this);
         }
     }
     
-    public partial class AstAuditspecificationname : AstRule {
+    public partial class AstAuditspecificationname : AstRule
+    {
         
         public AstAuditspecificationname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAuditspecificationname(this);
         }
     }
     
-    public partial class AstAzureactivedirectoryprincipal : AstRule {
+    public partial class AstAzureactivedirectoryprincipal : AstRule
+    {
         
         public AstAzureactivedirectoryprincipal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitAzureactivedirectoryprincipal(this);
         }
     }
     
-    public partial class AstBackupname : AstRule {
+    public partial class AstBackupname : AstRule
+    {
         
         public AstBackupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBackupname(this);
         }
     }
     
-    public partial class AstBindingname : AstRule {
+    public partial class AstBindingname : AstRule
+    {
         
         public AstBindingname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitBindingname(this);
         }
     }
     
-    public partial class AstCatalogname : AstRule {
+    public partial class AstCatalogname : AstRule
+    {
         
         public AstCatalogname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCatalogname(this);
         }
     }
     
-    public partial class AstCertname : AstRule {
+    public partial class AstCertname : AstRule
+    {
         
         public AstCertname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCertname(this);
         }
     }
     
-    public partial class AstCertificatename : AstRule {
+    public partial class AstCertificatename : AstRule
+    {
         
         public AstCertificatename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCertificatename(this);
         }
     }
     
-    public partial class AstClassname : AstRule {
+    public partial class AstClassname : AstRule
+    {
         
         public AstClassname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitClassname(this);
         }
     }
     
-    public partial class AstCollationname : AstRule {
+    public partial class AstCollationname : AstRule
+    {
         
         public AstCollationname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCollationname(this);
         }
     }
     
-    public partial class AstColumnencryptionkey : AstRule {
+    public partial class AstColumnencryptionkey : AstRule
+    {
         
         public AstColumnencryptionkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnencryptionkey(this);
         }
     }
     
-    public partial class AstColumnname : AstRule {
+    public partial class AstColumnname : AstRule
+    {
         
         public AstColumnname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnname(this);
         }
     }
     
-    public partial class AstColumnnameorarguments : AstRule {
+    public partial class AstColumnnameorarguments : AstRule
+    {
         
         public AstColumnnameorarguments(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitColumnnameorarguments(this);
         }
     }
     
-    public partial class AstConstraintname : AstRule {
+    public partial class AstConstraintname : AstRule
+    {
         
         public AstConstraintname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitConstraintname(this);
         }
     }
     
-    public partial class AstCreateservicename : AstRule {
+    public partial class AstCreateservicename : AstRule
+    {
         
         public AstCreateservicename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCreateservicename(this);
         }
     }
     
-    public partial class AstCredentialname : AstRule {
+    public partial class AstCredentialname : AstRule
+    {
         
         public AstCredentialname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCredentialname(this);
         }
     }
     
-    public partial class AstCryptographicprovidername : AstRule {
+    public partial class AstCryptographicprovidername : AstRule
+    {
         
         public AstCryptographicprovidername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitCryptographicprovidername(this);
         }
     }
     
-    public partial class AstDatasourcename : AstRule {
+    public partial class AstDatasourcename : AstRule
+    {
         
         public AstDatasourcename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatasourcename(this);
         }
     }
     
-    public partial class AstDatabasename : AstRule {
+    public partial class AstDatabasename : AstRule
+    {
         
         public AstDatabasename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDatabasename(this);
         }
     }
     
-    public partial class AstDroppedservicename : AstRule {
+    public partial class AstDroppedservicename : AstRule
+    {
         
         public AstDroppedservicename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitDroppedservicename(this);
         }
     }
     
-    public partial class AstEncryptorname : AstRule {
+    public partial class AstEncryptorname : AstRule
+    {
         
         public AstEncryptorname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEncryptorname(this);
         }
     }
     
-    public partial class AstEncryptionname : AstRule {
+    public partial class AstEncryptionname : AstRule
+    {
         
         public AstEncryptionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEncryptionname(this);
         }
     }
     
-    public partial class AstEndpointname : AstRule {
+    public partial class AstEndpointname : AstRule
+    {
         
         public AstEndpointname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEndpointname(this);
         }
     }
     
-    public partial class AstEventcustomizableattributue : AstRule {
+    public partial class AstEventcustomizableattributue : AstRule
+    {
         
         public AstEventcustomizableattributue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventcustomizableattributue(this);
         }
     }
     
-    public partial class AstEventfieldname : AstRule {
+    public partial class AstEventfieldname : AstRule
+    {
         
         public AstEventfieldname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventfieldname(this);
         }
     }
     
-    public partial class AstEventmoduleguid : AstRule {
+    public partial class AstEventmoduleguid : AstRule
+    {
         
         public AstEventmoduleguid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventmoduleguid(this);
         }
     }
     
-    public partial class AstEventname : AstRule {
+    public partial class AstEventname : AstRule
+    {
         
         public AstEventname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventname(this);
         }
     }
     
-    public partial class AstEventnotificationname : AstRule {
+    public partial class AstEventnotificationname : AstRule
+    {
         
         public AstEventnotificationname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventnotificationname(this);
         }
     }
     
-    public partial class AstEventpackagename : AstRule {
+    public partial class AstEventpackagename : AstRule
+    {
         
         public AstEventpackagename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventpackagename(this);
         }
     }
     
-    public partial class AstEventsessionname : AstRule {
+    public partial class AstEventsessionname : AstRule
+    {
         
         public AstEventsessionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventsessionname(this);
         }
     }
     
-    public partial class AstEventtypeorgroup : AstRule {
+    public partial class AstEventtypeorgroup : AstRule
+    {
         
         public AstEventtypeorgroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitEventtypeorgroup(this);
         }
     }
     
-    public partial class AstExttype : AstRule {
+    public partial class AstExttype : AstRule
+    {
         
         public AstExttype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExttype(this);
         }
     }
     
-    public partial class AstExternaldatasourcename : AstRule {
+    public partial class AstExternaldatasourcename : AstRule
+    {
         
         public AstExternaldatasourcename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExternaldatasourcename(this);
         }
     }
     
-    public partial class AstExternalfileformatname : AstRule {
+    public partial class AstExternalfileformatname : AstRule
+    {
         
         public AstExternalfileformatname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExternalfileformatname(this);
         }
     }
     
-    public partial class AstExternalpoolname : AstRule {
+    public partial class AstExternalpoolname : AstRule
+    {
         
         public AstExternalpoolname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitExternalpoolname(this);
         }
     }
     
-    public partial class AstFilegroupid : AstRule {
+    public partial class AstFilegroupid : AstRule
+    {
         
         public AstFilegroupid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilegroupid(this);
         }
     }
     
-    public partial class AstFilegroupname : AstRule {
+    public partial class AstFilegroupname : AstRule
+    {
         
         public AstFilegroupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFilegroupname(this);
         }
     }
     
-    public partial class AstFunctionname : AstRule {
+    public partial class AstFunctionname : AstRule
+    {
         
         public AstFunctionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitFunctionname(this);
         }
     }
     
-    public partial class AstGroupname : AstRule {
+    public partial class AstGroupname : AstRule
+    {
         
         public AstGroupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitGroupname(this);
         }
     }
     
-    public partial class AstIndexname : AstRule {
+    public partial class AstIndexname : AstRule
+    {
         
         public AstIndexname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitIndexname(this);
         }
     }
     
-    public partial class AstLanguage : AstRule {
+    public partial class AstLanguage : AstRule
+    {
         
         public AstLanguage(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLanguage(this);
         }
     }
     
-    public partial class AstLibraryname : AstRule {
+    public partial class AstLibraryname : AstRule
+    {
         
         public AstLibraryname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLibraryname(this);
         }
     }
     
-    public partial class AstLinkedserver : AstRule {
+    public partial class AstLinkedserver : AstRule
+    {
         
         public AstLinkedserver(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLinkedserver(this);
         }
     }
     
-    public partial class AstLogicaldevicename : AstRule {
+    public partial class AstLogicaldevicename : AstRule
+    {
         
         public AstLogicaldevicename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLogicaldevicename(this);
         }
     }
     
-    public partial class AstLoginname : AstRule {
+    public partial class AstLoginname : AstRule
+    {
         
         public AstLoginname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitLoginname(this);
         }
     }
     
-    public partial class AstMasterkey : AstRule {
+    public partial class AstMasterkey : AstRule
+    {
         
         public AstMasterkey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMasterkey(this);
         }
     }
     
-    public partial class AstMethodname : AstRule {
+    public partial class AstMethodname : AstRule
+    {
         
         public AstMethodname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitMethodname(this);
         }
     }
     
-    public partial class AstModifiedcontractname : AstRule {
+    public partial class AstModifiedcontractname : AstRule
+    {
         
         public AstModifiedcontractname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitModifiedcontractname(this);
         }
     }
     
-    public partial class AstModifiedservicename : AstRule {
+    public partial class AstModifiedservicename : AstRule
+    {
         
         public AstModifiedservicename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitModifiedservicename(this);
         }
     }
     
-    public partial class AstModulename : AstRule {
+    public partial class AstModulename : AstRule
+    {
         
         public AstModulename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitModulename(this);
         }
     }
     
-    public partial class AstNetworkcomputer : AstRule {
+    public partial class AstNetworkcomputer : AstRule
+    {
         
         public AstNetworkcomputer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNetworkcomputer(this);
         }
     }
     
-    public partial class AstNewapplicationrolename : AstRule {
+    public partial class AstNewapplicationrolename : AstRule
+    {
         
         public AstNewapplicationrolename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNewapplicationrolename(this);
         }
     }
     
-    public partial class AstNewfilegroupname : AstRule {
+    public partial class AstNewfilegroupname : AstRule
+    {
         
         public AstNewfilegroupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNewfilegroupname(this);
         }
     }
     
-    public partial class AstNonstaticattr : AstRule {
+    public partial class AstNonstaticattr : AstRule
+    {
         
         public AstNonstaticattr(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNonstaticattr(this);
         }
     }
     
-    public partial class AstNotificationname : AstRule {
+    public partial class AstNotificationname : AstRule
+    {
         
         public AstNotificationname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitNotificationname(this);
         }
     }
     
-    public partial class AstObjectname : AstRule {
+    public partial class AstObjectname : AstRule
+    {
         
         public AstObjectname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitObjectname(this);
         }
     }
     
-    public partial class AstOwnername : AstRule {
+    public partial class AstOwnername : AstRule
+    {
         
         public AstOwnername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitOwnername(this);
         }
     }
     
-    public partial class AstPartitioncolumnname : AstRule {
+    public partial class AstPartitioncolumnname : AstRule
+    {
         
         public AstPartitioncolumnname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPartitioncolumnname(this);
         }
     }
     
-    public partial class AstPoolname : AstRule {
+    public partial class AstPoolname : AstRule
+    {
         
         public AstPoolname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPoolname(this);
         }
     }
     
-    public partial class AstPredicatecomparename : AstRule {
+    public partial class AstPredicatecomparename : AstRule
+    {
         
         public AstPredicatecomparename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPredicatecomparename(this);
         }
     }
     
-    public partial class AstPredicatesourcename : AstRule {
+    public partial class AstPredicatesourcename : AstRule
+    {
         
         public AstPredicatesourcename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPredicatesourcename(this);
         }
     }
     
-    public partial class AstPropertylistname : AstRule {
+    public partial class AstPropertylistname : AstRule
+    {
         
         public AstPropertylistname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitPropertylistname(this);
         }
     }
     
-    public partial class AstProvidername : AstRule {
+    public partial class AstProvidername : AstRule
+    {
         
         public AstProvidername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitProvidername(this);
         }
     }
     
-    public partial class AstQueuename : AstRule {
+    public partial class AstQueuename : AstRule
+    {
         
         public AstQueuename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitQueuename(this);
         }
     }
     
-    public partial class AstRelationalschema : AstRule {
+    public partial class AstRelationalschema : AstRule
+    {
         
         public AstRelationalschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRelationalschema(this);
         }
     }
     
-    public partial class AstRolename : AstRule {
+    public partial class AstRolename : AstRule
+    {
         
         public AstRolename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRolename(this);
         }
     }
     
-    public partial class AstRoutename : AstRule {
+    public partial class AstRoutename : AstRule
+    {
         
         public AstRoutename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRoutename(this);
         }
     }
     
-    public partial class AstRulename : AstRule {
+    public partial class AstRulename : AstRule
+    {
         
         public AstRulename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitRulename(this);
         }
     }
     
-    public partial class AstSchemacollectionname : AstRule {
+    public partial class AstSchemacollectionname : AstRule
+    {
         
         public AstSchemacollectionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSchemacollectionname(this);
         }
     }
     
-    public partial class AstSchemaid : AstRule {
+    public partial class AstSchemaid : AstRule
+    {
         
         public AstSchemaid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSchemaid(this);
         }
     }
     
-    public partial class AstSchemaname : AstRule {
+    public partial class AstSchemaname : AstRule
+    {
         
         public AstSchemaname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSchemaname(this);
         }
     }
     
-    public partial class AstSecuritypolicyname : AstRule {
+    public partial class AstSecuritypolicyname : AstRule
+    {
         
         public AstSecuritypolicyname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSecuritypolicyname(this);
         }
     }
     
-    public partial class AstSecuritypredicatefunctionname : AstRule {
+    public partial class AstSecuritypredicatefunctionname : AstRule
+    {
         
         public AstSecuritypredicatefunctionname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSecuritypredicatefunctionname(this);
         }
     }
     
-    public partial class AstSequencename : AstRule {
+    public partial class AstSequencename : AstRule
+    {
         
         public AstSequencename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSequencename(this);
         }
     }
     
-    public partial class AstServername : AstRule {
+    public partial class AstServername : AstRule
+    {
         
         public AstServername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitServername(this);
         }
     }
     
-    public partial class AstServerrolename : AstRule {
+    public partial class AstServerrolename : AstRule
+    {
         
         public AstServerrolename(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitServerrolename(this);
         }
     }
     
-    public partial class AstSourcelistname : AstRule {
+    public partial class AstSourcelistname : AstRule
+    {
         
         public AstSourcelistname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSourcelistname(this);
         }
     }
     
-    public partial class AstSqlidentifier : AstRule {
+    public partial class AstSqlidentifier : AstRule
+    {
         
         public AstSqlidentifier(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSqlidentifier(this);
         }
     }
     
-    public partial class AstStaticattr : AstRule {
+    public partial class AstStaticattr : AstRule
+    {
         
         public AstStaticattr(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitStaticattr(this);
         }
     }
     
-    public partial class AstStatisticsname : AstRule {
+    public partial class AstStatisticsname : AstRule
+    {
         
         public AstStatisticsname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitStatisticsname(this);
         }
     }
     
-    public partial class AstStoplistname : AstRule {
+    public partial class AstStoplistname : AstRule
+    {
         
         public AstStoplistname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitStoplistname(this);
         }
     }
     
-    public partial class AstSymmetrickeyname : AstRule {
+    public partial class AstSymmetrickeyname : AstRule
+    {
         
         public AstSymmetrickeyname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSymmetrickeyname(this);
         }
     }
     
-    public partial class AstSynonymname : AstRule {
+    public partial class AstSynonymname : AstRule
+    {
         
         public AstSynonymname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitSynonymname(this);
         }
     }
     
-    public partial class AstTableorviewname : AstRule {
+    public partial class AstTableorviewname : AstRule
+    {
         
         public AstTableorviewname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableorviewname(this);
         }
     }
     
-    public partial class AstTablevariable : AstRule {
+    public partial class AstTablevariable : AstRule
+    {
         
         public AstTablevariable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTablevariable(this);
         }
     }
     
-    public partial class AstTableName : AstRule {
+    public partial class AstTableName : AstRule
+    {
         
         public AstTableName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTableName(this);
         }
     }
     
-    public partial class AstTargetname : AstRule {
+    public partial class AstTargetname : AstRule
+    {
         
         public AstTargetname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTargetname(this);
         }
     }
     
-    public partial class AstTargetparametername : AstRule {
+    public partial class AstTargetparametername : AstRule
+    {
         
         public AstTargetparametername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTargetparametername(this);
         }
     }
     
-    public partial class AstTriggername : AstRule {
+    public partial class AstTriggername : AstRule
+    {
         
         public AstTriggername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTriggername(this);
         }
     }
     
-    public partial class AstTvfschemaname : AstRule {
+    public partial class AstTvfschemaname : AstRule
+    {
         
         public AstTvfschemaname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTvfschemaname(this);
         }
     }
     
-    public partial class AstTypeschema : AstRule {
+    public partial class AstTypeschema : AstRule
+    {
         
         public AstTypeschema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitTypeschema(this);
         }
     }
     
-    public partial class AstUdtcolumnname : AstRule {
+    public partial class AstUdtcolumnname : AstRule
+    {
         
         public AstUdtcolumnname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUdtcolumnname(this);
         }
     }
     
-    public partial class AstUnscaledtype : AstRule {
+    public partial class AstUnscaledtype : AstRule
+    {
         
         public AstUnscaledtype(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUnscaledtype(this);
         }
     }
     
-    public partial class AstUsername : AstRule {
+    public partial class AstUsername : AstRule
+    {
         
         public AstUsername(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitUsername(this);
         }
     }
     
-    public partial class AstWindowsprincipal : AstRule {
+    public partial class AstWindowsprincipal : AstRule
+    {
         
         public AstWindowsprincipal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWindowsprincipal(this);
         }
     }
     
-    public partial class AstWorkloadgroupgroupname : AstRule {
+    public partial class AstWorkloadgroupgroupname : AstRule
+    {
         
         public AstWorkloadgroupgroupname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWorkloadgroupgroupname(this);
         }
     }
     
-    public partial class AstWorkloadgrouppoolname : AstRule {
+    public partial class AstWorkloadgrouppoolname : AstRule
+    {
         
         public AstWorkloadgrouppoolname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list) {
+                base(ctx, list)
+        {
         }
         
-        public override void Accept(IAstTSqlVisitor visitor) {
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
             visitor.VisitWorkloadgrouppoolname(this);
         }
     }

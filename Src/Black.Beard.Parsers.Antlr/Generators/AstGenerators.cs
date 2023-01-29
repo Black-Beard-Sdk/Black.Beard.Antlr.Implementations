@@ -14,6 +14,10 @@ namespace Bb.Generators
         {
             this._generators = new List<AstGenerator>();
             this._asts = new List<AstBase>();
+
+            _provider = new CSharpCodeProvider();
+            _options = new CodeGeneratorOptions() { BracingStyle = "C" };
+
         }
 
 
@@ -28,46 +32,37 @@ namespace Bb.Generators
             this._generators.Add(g);
         }
 
-
         internal void Clear()
         {
             this._asts.Clear();
         }
 
-
         public void Generate(Context ctx)
         {
-
-            CSharpCodeProvider provider = new CSharpCodeProvider();
-
             foreach (AstGenerator g in this._generators)
             {
-
                 foreach (var item in _asts)
                     g.Generate(ctx, item);
-                
-                WriteFile(ctx, provider, g);
-
+                WriteFile(ctx, g);
             }
-
         }
 
-        private static void WriteFile(Context ctx, CSharpCodeProvider provider, AstGenerator g)
+        private void WriteFile(Context ctx, AstGenerator g)
         {
             var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");
 
             using (StreamWriter sw = new StreamWriter(filename, false))
             {
                 IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
-                provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw,
-                    new CodeGeneratorOptions() { });
+                _provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw, _options);
                 tw.Close();
             }
         }
 
         private readonly List<AstGenerator> _generators;
         private readonly List<AstBase> _asts;
-
+        private readonly CSharpCodeProvider _provider;
+        private readonly CodeGeneratorOptions _options;
     }
 
 

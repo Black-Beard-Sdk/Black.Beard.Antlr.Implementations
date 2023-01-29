@@ -37,6 +37,8 @@ namespace Bb.Asts
         public override bool ContainsOneRule => false;
         public override bool ContainsOneTerminal => true;
 
+        public override bool ContainsTerminals => true;
+
         public override AstTerminalText GetTerminal()
         {
             return this;

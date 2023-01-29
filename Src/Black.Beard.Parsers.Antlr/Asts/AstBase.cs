@@ -45,6 +45,8 @@ namespace Bb.Asts
 
         public virtual bool ContainsOneTerminal => false;
 
+        public virtual bool ContainsTerminals => false;
+
         public virtual bool ContainsOnlyTerminals => false;
 
         public string Type => GetType().Name;

@@ -25,6 +25,9 @@ namespace Bb.Asts
         public override bool ContainsOneTerminal { get => Rule?.ContainsOneTerminal ?? false; }
         public override bool ContainsOneRule { get => this.Rule?.ContainsOneRule ?? false; }
         public override bool ContainsOnlyTerminals { get => this.Rule?.ContainsOnlyTerminals ?? false; }
+
+        public override bool ContainsTerminals { get => this.Rule?.ContainsTerminals ?? false; }
+
         public override bool ContainsOnlyRuleReferences { get => this.Rule?.ContainsOnlyRuleReferences ?? false; }
 
         public override IEnumerable<AstTerminalText> GetTerminals()

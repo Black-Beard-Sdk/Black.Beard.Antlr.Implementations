@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bb.Asts {
+namespace Bb.Asts
+{
     
     
-    public enum AstClasstypeforazuredwEnum {
+    public enum AstClasstypeforazuredwEnum
+    {
         
         _undefined,
         
@@ -19,7 +21,8 @@ namespace Bb.Asts {
         Object,
     }
     
-    public enum AstClasstypeforparalleldwEnum {
+    public enum AstClasstypeforparalleldwEnum
+    {
         
         _undefined,
         
@@ -30,7 +33,8 @@ namespace Bb.Asts {
         Object,
     }
     
-    public enum AstStartstopEnum {
+    public enum AstStartstopEnum
+    {
         
         _undefined,
         
@@ -39,7 +43,8 @@ namespace Bb.Asts {
         Stop,
     }
     
-    public enum AstEnabledisableEnum {
+    public enum AstEnabledisableEnum
+    {
         
         _undefined,
         
@@ -48,7 +53,8 @@ namespace Bb.Asts {
         Disable,
     }
     
-    public enum AstSplitormergeEnum {
+    public enum AstSplitormergeEnum
+    {
         
         _undefined,
         
@@ -57,7 +63,8 @@ namespace Bb.Asts {
         Merge,
     }
     
-    public enum AstAdddropEnum {
+    public enum AstAdddropEnum
+    {
         
         _undefined,
         
@@ -66,7 +73,8 @@ namespace Bb.Asts {
         Drop,
     }
     
-    public enum AstEnumdmlEnum {
+    public enum AstEnumdmlEnum
+    {
         
         _undefined,
         
@@ -79,7 +87,8 @@ namespace Bb.Asts {
         Update,
     }
     
-    public enum AstGrantdenyEnum {
+    public enum AstGrantdenyEnum
+    {
         
         _undefined,
         
@@ -88,7 +97,8 @@ namespace Bb.Asts {
         Deny,
     }
     
-    public enum AstViewattributeEnum {
+    public enum AstViewattributeEnum
+    {
         
         _undefined,
         
@@ -99,7 +109,8 @@ namespace Bb.Asts {
         Viewmetadata,
     }
     
-    public enum AstFilegroupupdatabilityoptionEnum {
+    public enum AstFilegroupupdatabilityoptionEnum
+    {
         
         _undefined,
         
@@ -108,7 +119,8 @@ namespace Bb.Asts {
         Readwrite,
     }
     
-    public enum AstLocalglobalEnum {
+    public enum AstLocalglobalEnum
+    {
         
         _undefined,
         
@@ -117,7 +129,8 @@ namespace Bb.Asts {
         Global,
     }
     
-    public enum AstDbupdateoptionEnum {
+    public enum AstDbupdateoptionEnum
+    {
         
         _undefined,
         
@@ -126,7 +139,8 @@ namespace Bb.Asts {
         Readwrite,
     }
     
-    public enum AstDbuseraccessoptionEnum {
+    public enum AstDbuseraccessoptionEnum
+    {
         
         _undefined,
         
@@ -137,7 +151,8 @@ namespace Bb.Asts {
         Multiuser,
     }
     
-    public enum AstAlgorithmEnum {
+    public enum AstAlgorithmEnum
+    {
         
         _undefined,
         
@@ -162,7 +177,8 @@ namespace Bb.Asts {
         Aes256,
     }
     
-    public enum AstSensitiveEnum {
+    public enum AstSensitiveEnum
+    {
         
         _undefined,
         
@@ -171,7 +187,8 @@ namespace Bb.Asts {
         Insensitive,
     }
     
-    public enum AstAbsoluterelativeEnum {
+    public enum AstAbsoluterelativeEnum
+    {
         
         _undefined,
         
@@ -180,7 +197,8 @@ namespace Bb.Asts {
         Relative,
     }
     
-    public enum AstFetchcursorstrategyEnum {
+    public enum AstFetchcursorstrategyEnum
+    {
         
         _undefined,
         
@@ -193,7 +211,8 @@ namespace Bb.Asts {
         Last,
     }
     
-    public enum AstSpeciallistEnum {
+    public enum AstSpeciallistEnum
+    {
         
         _undefined,
         
@@ -244,7 +263,8 @@ namespace Bb.Asts {
         Xactabort,
     }
     
-    public enum AstSybaselegacyhintEnum {
+    public enum AstSybaselegacyhintEnum
+    {
         
         _undefined,
         
@@ -257,7 +277,8 @@ namespace Bb.Asts {
         Shared,
     }
     
-    public enum AstOnoffEnum {
+    public enum AstOnoffEnum
+    {
         
         _undefined,
         
@@ -266,7 +287,8 @@ namespace Bb.Asts {
         Off,
     }
     
-    public enum AstClusteredEnum {
+    public enum AstClusteredEnum
+    {
         
         _undefined,
         
@@ -275,7 +297,8 @@ namespace Bb.Asts {
         Nonclustered,
     }
     
-    public enum AstKeywordEnum {
+    public enum AstKeywordEnum
+    {
         
         _undefined,
         

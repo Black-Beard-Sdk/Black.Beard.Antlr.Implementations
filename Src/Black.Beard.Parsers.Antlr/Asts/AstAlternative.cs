@@ -43,6 +43,14 @@ namespace Bb.Asts
             }
         }
 
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                return this.Rule?.ContainsTerminals ?? false;
+            }
+        }
+
         public override bool ContainsOnlyRuleReferences
         {
             get

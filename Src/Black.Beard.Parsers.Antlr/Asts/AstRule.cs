@@ -76,6 +76,14 @@ namespace Bb.Asts
             }
         }
 
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                return this.RuleBlock?.ContainsTerminals ?? false;
+            }
+        }
+
         public bool OutputContainsAlwayOneItem { get => RuleBlock?.OutputContainsAlwayOneItem ?? false; }
         
         public bool OutputContainsAlwayOneRule { get => RuleBlock?.OutputContainsAlwayOneRule ?? false; }

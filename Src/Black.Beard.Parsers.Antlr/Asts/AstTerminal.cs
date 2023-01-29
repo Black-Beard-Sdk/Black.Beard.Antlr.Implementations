@@ -29,6 +29,7 @@ namespace Bb.Asts
 
         public override bool ContainsOnlyRuleReferences => false; 
         public override bool ContainsOnlyTerminals => true; 
+        public override bool ContainsTerminals => true;
         public override bool ContainsOneRule => false;
         public override bool ContainsOneTerminal => true;
 
