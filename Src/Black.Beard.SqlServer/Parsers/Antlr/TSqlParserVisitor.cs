@@ -3069,6 +3069,24 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAsterisk([NotNull] TSqlParser.AsteriskContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.star_asterisk"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStar_asterisk([NotNull] TSqlParser.Star_asteriskContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.table_asterisk"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTable_asterisk([NotNull] TSqlParser.Table_asteriskContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.updated_asterisk"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUpdated_asterisk([NotNull] TSqlParser.Updated_asteriskContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.column_elem"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -995,7 +995,11 @@ namespace Bb.Asts
         
         void VisitUdtMethodArguments(AstUdtMethodArguments a);
         
-        void VisitAsterisk(AstAsterisk a);
+        void VisitStarAsterisk(AstStarAsterisk a);
+        
+        void VisitTableAsterisk(AstTableAsterisk a);
+        
+        void VisitUpdatedAsterisk(AstUpdatedAsterisk a);
         
         void VisitColumnElem(AstColumnElem a);
         

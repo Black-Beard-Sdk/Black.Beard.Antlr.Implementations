@@ -5721,6 +5721,18 @@
           {
             "Name": "VisitWorkloadGroupPoolName",
             "Generate": true
+          },
+          {
+            "Name": "VisitStarAsterisk",
+            "Generate": true
+          },
+          {
+            "Name": "VisitTableAsterisk",
+            "Generate": true
+          },
+          {
+            "Name": "VisitUpdatedAsterisk",
+            "Generate": true
           }
         ]
       },
@@ -8678,6 +8690,22 @@
           },
           {
             "Name": "VisitBinary_content_nexts",
+            "Generate": true
+          },
+          {
+            "Name": "VisitStar_asterisk",
+            "Generate": true
+          },
+          {
+            "Name": "VisitUpdated_asterisk",
+            "Generate": true
+          },
+          {
+            "Name": "VisitBinary_content_next",
+            "Generate": true
+          },
+          {
+            "Name": "VisitTable_asterisk",
             "Generate": true
           }
         ]
@@ -28507,7 +28535,7 @@
   },
   {
     "Name": "asterisk",
-    "Generate": true,
+    "Generate": false,
     "Strategy": null,
     "Types": [
       {
@@ -48360,6 +48388,68 @@
       },
       {
         "Name": "AstBinaryContent",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "Accept",
+            "Generate": true
+          }
+        ]
+      }
+    ],
+    "ProposalGenerate": false
+  },
+  {
+    "Name": "star_asterisk",
+    "Generate": true,
+    "Strategy": null,
+    "Types": [
+      {
+        "Name": "AstStarAsterisk",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "Accept",
+            "Generate": true
+          }
+        ]
+      }
+    ],
+    "ProposalGenerate": false
+  },
+  {
+    "Name": "table_asterisk",
+    "Generate": true,
+    "Strategy": null,
+    "Types": [
+      {
+        "Name": "AstTableAsterisk",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "TableName",
+            "Generate": true
+          },
+          {
+            "Name": "Accept",
+            "Generate": true
+          },
+          {
+            "Name": "_tableName",
+            "Generate": true
+          }
+        ]
+      }
+    ],
+    "ProposalGenerate": false
+  },
+  {
+    "Name": "updated_asterisk",
+    "Generate": true,
+    "Strategy": null,
+    "Types": [
+      {
+        "Name": "AstUpdatedAsterisk",
         "Generate": true,
         "Methods": [
           {

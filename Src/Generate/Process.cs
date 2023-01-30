@@ -215,11 +215,13 @@ namespace Generate
                     {
                         ns.Using("System")
                           .Using("Antlr4.Runtime")
+                          .Using("System.Collections")
                           .CreateTypeFrom<AstRule>((ast, type) =>
                           {
 
                               type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                                   .GenerateIf(() => Generate(ast, ctx))
+                                  .Comment(() => ast.ToString())
                                   .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text))
                                   .Inherit(() => GetInherit(ast, ctx))
                                   .CtorWhen(() => ctx.Strategy == string.Empty || ctx.Strategy == "Default", (f) =>
@@ -379,6 +381,8 @@ namespace Generate
                           {
                               type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text))
                                   .Inherit(() => "AstRule")
+                                  .Comment(() => ast.ToString())
+
                                   .Ctor((f) =>
                                   {
                                       f.Argument(() => "ParserRuleContext", "ctx")
@@ -472,12 +476,21 @@ namespace Generate
                                        .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                        .Return(() => "AstRoot")
+                                       .Comment(() => ast.ToString())
                                        .Body(b =>
                                        {
                                            b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
                                            b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
                                            {
-                                               stm.Call("list".Var(), "Add", CodeHelper.Var("item").Call("Accept", CodeHelper.This()));
+                                               //var v1 = ("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType();
+                                               var v1 = "AstRoot".AsType();
+                                               stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()));
+                                               stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
+                                               {
+                                                   s.Call("list".Var(), "Add", "acceptResult".Var());
+                                               }
+                                               );
+
                                            });
                                            b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "list".Var()));
 
@@ -489,13 +502,13 @@ namespace Generate
                                        .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
                                        .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                        .Return(() => "AstRoot")
+                                       .Comment(() => ast.ToString())
                                        .Body(b =>
                                        {
                                            b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "context".Var().Call("GetText")));
                                        });
                                   })
-                                  .Method(() => ctx.Strategy == "ClassList",
-                                  m =>
+                                  .Method(() => ctx.Strategy == "ClassList", m =>
                                   {
                                       m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
                                        .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
@@ -515,15 +528,40 @@ namespace Generate
                                            b.Statements.ForEach(t.AsType(), "item", "source", stm =>
                                            {
                                                var v1 = ("Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text)).AsType();
-                                               stm.DeclareAndInitialize("acceptResult",v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
+                                               stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
                                                stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
                                                {
                                                    s.Call("list".Var(), "Add", "acceptResult".Var());
                                                }
                                                );
-                                               
                                            });
                                            b.Statements.Return("list".Var());
+
+                                       });
+                                  })
+                                  .Method(() => ctx.Strategy == "ClassWithProperties", m =>
+                                  {
+                                      m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
+                                       .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
+                                       .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                       .Return(() => "AstRoot")
+                                       .Comment(() => ast.ToString())
+                                       .Body(b =>
+                                       {
+                                           b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
+                                           b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
+                                           {
+                                               // var v1 = ("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType();
+                                               var v1 = "AstRoot".AsType();
+                                               stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()));
+                                               stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
+                                               {
+                                                   s.Call("list".Var(), "Add", "acceptResult".Var());
+                                               }
+                                               );
+
+                                           });
+                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "list".Var()));
 
                                        });
                                   })

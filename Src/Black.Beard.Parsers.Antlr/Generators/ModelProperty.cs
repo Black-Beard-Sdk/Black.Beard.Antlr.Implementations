@@ -20,6 +20,17 @@ namespace Bb.Generators
             return this;
         }
 
+        public ModelProperty Comment(Func<string> action)
+        {
+            this._actionComment = action;
+            return this;
+        }
+
+        /// <summary>
+        /// Attributes the specified attributes.
+        /// </summary>
+        /// <param name="attributes">The attributes.</param>
+        /// <returns></returns>
         public ModelProperty Attribute(MemberAttributes attributes)
         {
             this._attributes = attributes;
@@ -98,6 +109,8 @@ namespace Bb.Generators
                     HasGet= _hasGet,
                     HasSet= _hasSet,
                 };
+
+                GenerateDocumentation(property, ctx);
 
                 if (_getAction != null)
                     _getAction(property.GetStatements);

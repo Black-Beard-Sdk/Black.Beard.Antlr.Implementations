@@ -22,13 +22,18 @@ namespace Bb.Generators
             return this;
         }
 
+        public ModelMethod Comment(Func<string> action)
+        {
+            this._actionComment = action;
+            return this;
+        }
+
         public ModelMethod Argument(string type, string name)
         {
             var arg = new ModelArgument(c => name, () => type);
             this._arguments.Add(arg);
             return this;
         }
-
 
         public ModelMethod Argument(Func<object> type, string name)
         {
@@ -108,6 +113,8 @@ namespace Bb.Generators
                         ReturnType = type,
                     };
 
+                    GenerateDocumentation(method, ctx);
+
                     foreach (var arg in _arguments)
                         arg.Generate(ctx, model, method);
 
@@ -120,7 +127,6 @@ namespace Bb.Generators
             }
 
         }
-
 
 
         protected ModelTypeFrom modelTypeFrom;

@@ -19,6 +19,12 @@ namespace Bb.Generators
             return this;
         }
 
+        public ModelField Comment(Func<string> action)
+        {
+            this._actionComment = action;
+            return this;
+        }
+
         public ModelField Value(Func<object, string> name)
         {
             this._nameOfField = name;
@@ -78,6 +84,8 @@ namespace Bb.Generators
                     Type = type,
                 };
 
+                GenerateDocumentation(field, ctx);
+
                 if (_valueOfField != null)
                     field.InitExpression = new CodePrimitiveExpression((string)_valueOfField(model));
 
@@ -93,7 +101,6 @@ namespace Bb.Generators
         private Func<object, string> _valueOfField;
         protected MemberAttributes _attributes;
         private Func<object> _actionType;
-
 
         public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelField, object> Action { get; internal set; }

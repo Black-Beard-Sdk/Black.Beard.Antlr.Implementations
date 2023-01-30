@@ -47,6 +47,12 @@ namespace Bb.Generators
             return this;
         }
 
+        public ModelTypeFrom<T> Comment(Func<string> action)
+        {
+            this._actionComment = action;
+            return this;
+        }
+
         public ModelTypeFrom<T> IsStruct()
         {
             this._isInterface = false;
@@ -206,6 +212,8 @@ namespace Bb.Generators
                             Attributes = _attributes,
                         };
 
+                        GenerateDocumentation(type, ctx);
+
                         foreach (var parent in _parents)
                             type.BaseTypes.Add(new CodeTypeReference(parent()));
 
@@ -309,7 +317,11 @@ namespace Bb.Generators
 
     }
 
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks></remarks>
+    /// <seealso cref="Bb.Generators.ModelTypeFrom" />
     public abstract class ModelTypeFrom : ModelMember
     {
 
@@ -322,7 +334,29 @@ namespace Bb.Generators
 
         protected ModelNamespace _modelNamespace;
 
+        protected void GenerateDocumentation(CodeTypeMember member, Context context)
+        {
+            if (_actionComment != null)
+            {
+                var txt = _actionComment();
+                var text = txt.Split('\r');
+                member.Comments.Add(new CodeCommentStatement("<summary>", true));
+                foreach (var item in text)
+                    if (!string.IsNullOrEmpty(item.Trim()) && !string.IsNullOrEmpty(item.Trim()))
+                        member.Comments.Add(new CodeCommentStatement(item.Trim('\n'), true));
+                member.Comments.Add(new CodeCommentStatement("</summary>", true));
+
+                member.Comments.Add(new CodeCommentStatement("<remarks>", true));
+                member.Comments.Add(new CodeCommentStatement("Strategy : " + context.Strategy, true));
+                member.Comments.Add(new CodeCommentStatement("</remarks>", true));
+
+            }
+        }
+
         internal abstract void Generate(Context ctx, AstBase ast, CodeNamespace @namespace);
+
+        protected Func<string> _actionComment;
+
 
     }
 

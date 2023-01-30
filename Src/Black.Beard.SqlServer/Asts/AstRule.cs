@@ -17,6 +17,9 @@ namespace Bb.Asts
         public AstRule(ParserRuleContext ctx, List<AstRoot> list)
             : base(ctx)
         {
+
+            this.List = list;
+
         }
 
         public AstRule(Position n)
@@ -24,6 +27,8 @@ namespace Bb.Asts
         {
 
         }
+
+        public List<AstRoot> List { get; }
 
     }
 

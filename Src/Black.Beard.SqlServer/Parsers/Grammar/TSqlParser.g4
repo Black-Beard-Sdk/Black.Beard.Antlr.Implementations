@@ -3885,8 +3885,21 @@ udt_method_arguments
 
 // https://docs.microsoft.com/ru-ru/sql/t-sql/queries/select-clause-transact-sql
 asterisk
-    : (table_name DOT )? STAR
-    | (INSERTED | DELETED) DOT STAR
+    : star_asterisk
+    | table_asterisk
+    | updated_asterisk
+    ;
+
+star_asterisk
+    : STAR
+    ;
+
+table_asterisk
+    : table_name DOT STAR
+    ;
+
+updated_asterisk
+    : (INSERTED | DELETED) DOT STAR
     ;
 
 column_elem
