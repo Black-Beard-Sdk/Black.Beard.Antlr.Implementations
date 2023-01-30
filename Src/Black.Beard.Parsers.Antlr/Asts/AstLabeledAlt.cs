@@ -34,9 +34,24 @@ namespace Bb.Asts
         {
 
             foreach (AstBase item in this.Rule.Rule)
-                foreach (var t in item.GetTerminals())
-                    yield return t;
+                if (item != null)
+                    foreach (var t in item.GetTerminals())
+                        yield return t;
 
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            foreach (AstBase item in this.Rule.Rule)
+                if (item != null)
+                    foreach (var t in item.GetRules())
+                        yield return t;
+        }
+
+        public IEnumerable<AstBase> GetItems()
+        {
+            foreach (AstBase item in this.Rule.Rule)
+                yield return item;
         }
 
         public override bool IsTerminal

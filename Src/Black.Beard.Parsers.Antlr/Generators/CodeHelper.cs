@@ -4,6 +4,7 @@ using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +16,42 @@ namespace Bb.Generators
     public static class CodeHelper
     {
 
+        public static CodeStatementCollection Assign(this CodeStatementCollection self, CodeExpression left, CodeExpression right)
+        {
+            self.Add(left.Assign(right));
+            return self;
+        }
+
+
+        public static CodeAssignStatement Assign(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeAssignStatement(left, right);
+        }
+
+        public static CodeCastExpression Cast(this CodeExpression self, CodeTypeReference type)
+        {
+            return new CodeCastExpression(type, self);
+        }
+
 
         public static CodeBinaryOperatorExpression IsEqual(this CodeExpression left, CodeExpression right)
         {
             return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.ValueEquality, right);
         }
 
+        public static CodeBinaryOperatorExpression IsNotEqual(this CodeExpression left, CodeExpression right)
+        {
+            return new CodeBinaryOperatorExpression(left, CodeBinaryOperatorType.IdentityInequality, right);
+        }
+
         public static CodePrimitiveExpression AsConstant(this object self)
         {
             return new CodePrimitiveExpression(self);
+        }
+
+        public static CodePrimitiveExpression Null()
+        {
+            return new CodePrimitiveExpression(null);
         }
 
         public static CodeStatementCollection If(this CodeStatementCollection self, CodeExpression condition, Action<CodeStatementCollection> _true, Action<CodeStatementCollection> _false = null)
@@ -51,11 +79,12 @@ namespace Bb.Generators
         public static CodeStatementCollection ForEach(this CodeStatementCollection self, CodeTypeReference variableType, string item, string list, Action<CodeStatementCollection> action)
         {
 
-            var declare = Declare("enumerator", typeof(IEnumerator<IParseTree>).AsType(), list.Var().Call("GetEnumerator"));
+            var t = "IEnumerator".AsType();
+            //t.TypeArguments.Add(variableType);
+            var declare = Declare("enumerator", t, list.Var().Call("GetEnumerator"));
 
-            self.Declare(item, variableType);
-            var i = new CodeIterationStatement(declare, "enumerator".Var().Call("MoveNext"), new CodeAssignStatement(item.Var(), "enumerator".Var().Property("Current")));
-
+            var i = new CodeIterationStatement(declare, "enumerator".Var().Call("MoveNext"), new CodeSnippetStatement(""));
+            i.Statements.DeclareAndInitialize(item, variableType, "enumerator".Var().Property("Current").Cast(variableType));
             action(i.Statements);
 
             self.Add(i);
@@ -74,19 +103,32 @@ namespace Bb.Generators
 
         public static CodeTypeReference AsType(this Type type) => new CodeTypeReference(type);
 
-        public static CodeStatementCollection DeclareAndCreate(this CodeStatementCollection self, string name, CodeTypeReference type)
+        public static CodeStatementCollection DeclareAndCreate(this CodeStatementCollection self, string name, CodeTypeReference type, params CodeExpression[] arguments)
         {
-            self.Add(DeclareAndCreate(name, type));
+            self.Add(DeclareAndCreate(name, type, arguments));
             return self;
         }
+
+        public static CodeStatementCollection DeclareAndInitialize(this CodeStatementCollection self, string name, CodeTypeReference type, CodeExpression initExpression)
+        {
+            self.Add(DeclareAndInitialize(name, type, initExpression));
+            return self;
+        }
+
+
         public static CodeObjectCreateExpression Create(this CodeTypeReference type, params CodeExpression[] arguments)
         {
             return new CodeObjectCreateExpression(type, arguments);
         }
 
-        public static CodeVariableDeclarationStatement DeclareAndCreate(this string name, CodeTypeReference type)
+        public static CodeVariableDeclarationStatement DeclareAndCreate(this string name, CodeTypeReference type, params CodeExpression[] arguments)
         {
-            return new CodeVariableDeclarationStatement(type, name, new CodeObjectCreateExpression(type));
+            return DeclareAndInitialize(name, type, new CodeObjectCreateExpression(type, arguments));
+        }
+
+        public static CodeVariableDeclarationStatement DeclareAndInitialize(this string name, CodeTypeReference type, CodeExpression initExpression)
+        {
+            return new CodeVariableDeclarationStatement(type, name, initExpression);
         }
 
         public static CodeStatementCollection Declare(this CodeStatementCollection self, string name, CodeTypeReference type, CodeExpression initExpression = null)
@@ -111,7 +153,7 @@ namespace Bb.Generators
             return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(type), name);
         }
 
-        public static object Field(this CodeExpression self, string name)
+        public static CodeFieldReferenceExpression Field(this CodeExpression self, string name)
         {
             return new CodeFieldReferenceExpression(self, name);
         }
@@ -129,7 +171,13 @@ namespace Bb.Generators
             return new CodeMethodInvokeExpression(instance, name, arguments);
         }
 
-
+        public static CodeMethodInvokeExpression Call(this CodeExpression instance, string name, CodeTypeReference[] types, params CodeExpression[] arguments)
+        {
+            var method = new CodeMethodReferenceExpression(instance, name);
+            method.TypeArguments.AddRange(types);
+            var result = new CodeMethodInvokeExpression(method, arguments);
+            return result;
+        }
 
         public static CodeStatementCollection Return(this CodeStatementCollection self, CodeExpression expression)
         {
@@ -147,22 +195,57 @@ namespace Bb.Generators
             for (int i = 0; i < code.Length; i++)
             {
                 var s = code[i];
-                last = s;
 
                 if (sb.Length == 0)
                     s = char.ToUpper(s);
 
                 else if (s == '_')
+                {
+                    last = '_';
                     continue;
+                }
 
                 else if (last == '_')
                     s = char.ToUpper(s);
 
                 sb.Append(s);
+                last = s;
 
             }
 
             return sb.ToString();
+        }
+
+        public static string FormatCsharpField(this string code)
+        {
+
+            StringBuilder sb = new StringBuilder(code.Length);
+            sb.Append("_");
+
+            char last = '\0';
+            for (int i = 0; i < code.Length; i++)
+            {
+                var s = code[i];
+
+                if (sb.Length == 0)
+                    s = char.ToLower(s);
+
+                else if (s == '_')
+                {
+                    last = '_';
+                    continue;
+                }
+
+                else if (last == '_')
+                    s = char.ToUpper(s);
+
+                sb.Append(s);
+                last = s;
+
+            }
+
+            return sb.ToString();
+
         }
 
         public static string FormatCamelUpercase(this string code)

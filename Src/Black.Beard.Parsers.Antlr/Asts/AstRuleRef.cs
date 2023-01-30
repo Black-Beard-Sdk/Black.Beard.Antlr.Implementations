@@ -24,6 +24,16 @@ namespace Bb.Asts
 
         public override bool IsRuleReference { get => true; }
 
+        public override string ResolveName()
+        {
+            return Identifier.Text;
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            yield return this;
+        }
+
         public override bool ContainsOnlyRuleReferences { get => true; }
 
         public override bool ContainsOnlyTerminals { get => false; }

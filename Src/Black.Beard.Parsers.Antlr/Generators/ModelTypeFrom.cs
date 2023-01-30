@@ -75,7 +75,7 @@ namespace Bb.Generators
             action(m);
             return this;
         }
-        public ModelTypeFrom<T> Ctor(Func<bool> test, Action<ModelConstructor> action)
+        public ModelTypeFrom<T> CtorWhen(Func<bool> test, Action<ModelConstructor> action)
         {
             var m = new ModelConstructor(this) { Test = test };
             this._methods.Add(m);
@@ -90,7 +90,7 @@ namespace Bb.Generators
             this._fields.Add(m);
             return this;
         }
-        public ModelTypeFrom<T> Field(Func<bool> test, Action<ModelField> action)
+        public ModelTypeFrom<T> FieldWhen(Func<bool> test, Action<ModelField> action)
         {
             var m = new ModelField(this) { Test = test, Items = null, Action = null, Action2 = action };
             this._fields.Add(m);
@@ -98,13 +98,13 @@ namespace Bb.Generators
         }
 
 
-        public ModelTypeFrom<T> Fields(Func<IEnumerable<AstTerminalText>> items, Action<ModelField, object> action)
+        public ModelTypeFrom<T> Fields(Func<IEnumerable<object>> items, Action<ModelField, object> action)
         {
             var m = new ModelField(this) { Items = items, Action = action };
             this._fields.Add(m);
             return this;
         }
-        public ModelTypeFrom<T> Fields(Func<bool> test, Func<IEnumerable<AstTerminalText>> items, Action<ModelField, object> action)
+        public ModelTypeFrom<T> FieldsWhen(Func<bool> test, Func<IEnumerable<object>> items, Action<ModelField, object> action)
         {
             var m = new ModelField(this) { Test = test, Items = items, Action = action };
             this._fields.Add(m);
@@ -118,7 +118,7 @@ namespace Bb.Generators
             this._properties.Add(m);
             return this;
         }
-        public ModelTypeFrom<T> Property(Func<bool> test, Action<ModelProperty> action)
+        public ModelTypeFrom<T> PropertyWhen(Func<bool> test, Action<ModelProperty> action)
         {
             var m = new ModelProperty(this) { Test = test, Items = null, Action = null, Action2 = action };
             this._properties.Add(m);
@@ -132,7 +132,7 @@ namespace Bb.Generators
             this._properties.Add(m);
             return this;
         }
-        public ModelTypeFrom<T> Properties(Func<bool> test, Func<IEnumerable<object>> items, Action<ModelProperty, object> action)
+        public ModelTypeFrom<T> PropertiesWhen(Func<bool> test, Func<IEnumerable<object>> items, Action<ModelProperty, object> action)
         {
             var m = new ModelProperty(this) { Test = test, Items = items, Action = action };
             this._properties.Add(m);

@@ -5,37 +5,6 @@ using Bb.Parsers;
 namespace Bb.Asts
 {
 
-    public enum EnumName
-    {
-        None = 0,
-    }
-
-    public class AstTerminalEnumName : AstTerminalEnum<EnumName>
-    {
-
-        public AstTerminalEnumName(ParserRuleContext ctx, string value)
-            : base(ctx, value)
-        {
-
-        }
-
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            //visitor.VisitEnumName(this);
-        }
-
-        protected override EnumName GetValue(string value)
-        {
-
-            if (value == "None")
-                return EnumName.None;
-
-            return EnumName.None;
-
-        }
-
-    }
-
 
     public abstract class AstTerminalEnum<T> :  AstTerminal
         where T : Enum

@@ -50,31 +50,91 @@ namespace Generate
         private static string TemplateSelector(AstRule ast, Context context)
         {
 
+            if (ast.RuleName.Text == "binary_content_nexts")
+            {
+                if (ast.RuleBlock.Count == 1)
+                {
+                    var r = ast.RuleBlock[0].Rule.Rule;
+                    if (r.Count == 1)
+                    {
+                        var o = r[0];
+                        switch (o.Type)
+                        {
+
+                            case "AstAtom":
+                                var i = o as AstAtom;
+                                var p = i.Occurence;
+                                switch (p)
+                                {
+                                    case OccurenceEnum.OneOrMore:
+                                    case OccurenceEnum.OneOrMoreOptional:
+                                    case OccurenceEnum.Any:
+                                    case OccurenceEnum.AnyOptional:
+                                        return "ClassList";
+
+                                    case OccurenceEnum.One:
+                                    case OccurenceEnum.OneOptional:
+                                    default:
+                                        break;
+                                }
+
+                                break;
+
+                            case "AstlabeledElement":
+                                break;
+
+                            case "AstBlock":
+                                break;
+
+                            case "AstArgActionBlock":
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+            }
+
             //if (!string.IsNullOrEmpty(context.CurrentConfiguration.Strategy))
             //    return context.CurrentConfiguration.Strategy;
 
 
             if (ast.OutputContainsAlwayOneTerminal
-                && ast.OutputContainsAlwayOneItem
-                && ast.GetTerminals().Count() > 1
-                && !ast.GetTerminals().Where(c => context.TerminalsToExcludes.Contains(c.Text)).Any()
-                && !ast.GetTerminals().Where(c => context.Identifiers.Contains(c.Text)).Any()
-                )
+                  && ast.OutputContainsAlwayOneItem
+                  && ast.GetTerminals().Count() > 1
+                  && !ast.GetTerminals().Where(c => context.TerminalsToExcludes.Contains(c.Text)).Any()
+                  && !ast.GetTerminals().Where(c => context.Identifiers.Contains(c.Text)).Any()
+               )
                 return "ClassEnum";
 
             if (ast.ContainsJustOneAlternative)
             {
 
-                if (ast.ContainsOnlyRuleReferences)
-                    return "";
-
-                else if (ast.ContainsOnlyTerminals
-                    && ast.OutputContainsAlwayOneItem
-                    && ast.GetTerminals().Count() > 1
-                    && !ast.GetTerminals().Where(c => context.TerminalsToExcludes.Contains(c.Text)).Any()
-                    && !ast.GetTerminals().Where(c => context.Identifiers.Contains(c.Text)).Any()
-                    )
+                if (ast.ContainsOnlyTerminals
+                      && ast.OutputContainsAlwayOneItem
+                      && ast.GetTerminals().Count() > 1
+                      && !ast.GetTerminals().Where(c => context.TerminalsToExcludes.Contains(c.Text)).Any()
+                      && !ast.GetTerminals().Where(c => context.Identifiers.Contains(c.Text)).Any()
+                   )
                     return "ClassEnum";
+
+                bool t = false;
+                foreach (var item in ast.GetAlternatives())
+                    foreach (var item2 in item.Where(c => c.IsRuleReference).ToList())
+                    {
+                        t = true;
+                        continue;
+                    }
+
+                if (t)
+                    return "ClassWithProperties";
 
             }
 
@@ -88,6 +148,10 @@ namespace Generate
             {
                 case "ClassEnum":
                     return "AstTerminalEnum<Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text) + "Enum>";
+
+                case "ClassList":
+                    var astChild = ast.GetRules().FirstOrDefault();
+                    return "AstRuleList<Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text) + ">";
 
                 default:
                     break;
@@ -158,7 +222,7 @@ namespace Generate
                                   .GenerateIf(() => Generate(ast, ctx))
                                   .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text))
                                   .Inherit(() => GetInherit(ast, ctx))
-                                  .Ctor(() => ctx.Strategy == string.Empty || ctx.Strategy == "Default", (f) =>
+                                  .CtorWhen(() => ctx.Strategy == string.Empty || ctx.Strategy == "Default", (f) =>
                                   {
                                       f.Argument(() => "ParserRuleContext", "ctx")
                                        .Argument(() => "List<AstRoot>", "list")
@@ -166,13 +230,61 @@ namespace Generate
                                        .CallBase("ctx", "list");
 
                                   })
-                                  .Ctor(() => ctx.Strategy == "ClassEnum", (f) =>
+                                  .CtorWhen(() => ctx.Strategy == "ClassEnum", (f) =>
                                   {
                                       f.Argument(() => "ParserRuleContext", "ctx")
                                        .Argument(() => typeof(string), "value")
                                        .Attribute(MemberAttributes.Public)
                                        .CallBase("ctx", "value");
                                   })
+                                  .CtorWhen(() => ctx.Strategy == "ClassWithProperties", (f) =>
+                                  {
+                                      f.Argument(() => "ParserRuleContext", "ctx")
+                                       .Argument(() => "List<AstRoot>", "list")
+                                       .Attribute(MemberAttributes.Public)
+                                       .CallBase("ctx", "null")
+                                       .Body(b =>
+                                       {
+
+                                           b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
+                                           {
+
+                                               foreach (var item in ast.GetAlternatives())
+                                               {
+                                                   foreach (var item2 in item.Where(c => c.IsRuleReference).ToList())
+                                                   {
+
+                                                       var name = item2.ResolveName();
+
+                                                       var type = "Ast" + CodeHelper.FormatCsharp(name);
+                                                       var ty = new CodeTypeReference(type);
+                                                       stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
+                                                       {
+                                                           t.Assign(CodeHelper.This().Property(CodeHelper.FormatCsharp(CodeHelper.FormatCsharp(name))), CodeHelper.Var("enumerator.Current").Cast(ty));
+                                                       });
+                                                   }
+
+                                               }
+
+                                           });
+
+                                       })
+                                       ;
+                                  })
+                                  .CtorWhen(() => ctx.Strategy == "ClassList", (f) =>
+                                  {
+                                      f.Argument(() => "ParserRuleContext", "ctx")
+                                       .Attribute(MemberAttributes.Public)
+                                       .CallBase("ctx");
+                                  })
+                                  .CtorWhen(() => ctx.Strategy == "ClassList", (f) =>
+                                  {
+                                      f.Argument(() => "ParserRuleContext", "ctx")
+                                       .Argument(() => typeof(int), "capacity")
+                                       .Attribute(MemberAttributes.Public)
+                                       .CallBase("ctx", "capacity");
+                                  })
+
                                   .Method(method =>
                                   {
                                       method
@@ -213,7 +325,55 @@ namespace Generate
                                            b.Statements.Return(typeEnum.AsType().Field("_undefined"));
 
                                        });
-                                  });
+                                  })
+
+                                  .PropertiesWhen(
+                                      () => ctx.Strategy == "ClassWithProperties",
+                                      () =>
+                                      {
+                                          List<object> _properties = new List<object>();
+                                          foreach (var item in ast.GetAlternatives())
+                                              foreach (AstBase item2 in item.Where(c => c.IsRuleReference).ToList())
+                                                  _properties.Add(item2);
+                                          return _properties;
+                                      },
+                                      (property, model) =>
+                                      {
+                                          property.Name(m => CodeHelper.FormatCsharp((model as AstBase).ResolveName()))
+                                          .Type(() => "Ast" + CodeHelper.FormatCsharp((model as AstBase).ResolveName()))
+                                          .Attribute(MemberAttributes.Public)
+                                          .Get((stm) =>
+                                          {
+                                              stm.Return(CodeHelper.This().Field(CodeHelper.FormatCsharpField((model as AstBase).ResolveName())));
+                                          })
+                                          .Set((stm) =>
+                                          {
+                                              stm.Assign(CodeHelper.This().Field(CodeHelper.FormatCsharpField((model as AstBase).ResolveName())), new CodePropertySetValueReferenceExpression());
+                                          })
+                                          ;
+                                      }
+                                  )
+
+                                  .FieldsWhen(
+                                      () => ctx.Strategy == "ClassWithProperties",
+                                      () =>
+                                      {
+                                          List<object> _properties = new List<object>();
+                                          foreach (var item in ast.GetAlternatives())
+                                              foreach (AstBase item2 in item.Where(c => c.IsRuleReference).ToList())
+                                                  _properties.Add(item2);
+                                          return _properties;
+                                      },
+                                      (field, model) =>
+                                      {
+                                          field.Name(m => CodeHelper.FormatCsharpField((model as AstBase).ResolveName()))
+                                          .Type(() => "Ast" + CodeHelper.FormatCsharp((model as AstBase).ResolveName()))
+                                          .Attribute(MemberAttributes.Private)
+                                          ;
+                                      }
+                                  )
+
+                                  ;
                           })
                           .CreateTypeFrom<AstLabeledAlt>((ast, type) =>
                           {
@@ -298,14 +458,15 @@ namespace Generate
                             "Bb.Parsers.Tsql",
                             "Bb.Asts",
                             "Antlr4.Runtime.Misc",
-                            "Antlr4.Runtime.Tree"
+                            "Antlr4.Runtime.Tree",
+                            "System.Collections"
                           )
                           .CreateOneType<AstRule>((ast, type) =>
                           {
                               type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                                   .GenerateIf(() => Generate(ast, ctx))
                                   .Name(() => "ScriptTSqlVisitor")
-                                  .Method(()=> ctx.Strategy == "" || ctx.Strategy == "Default", m =>
+                                  .Method(() => ctx.Strategy == "" || ctx.Strategy == "Default", m =>
                                   {
                                       m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
                                        .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
@@ -316,7 +477,7 @@ namespace Generate
                                            b.Statements.DeclareAndCreate("list", "List<AstRoot>".AsType());
                                            b.Statements.ForEach("IParseTree".AsType(), "item", "context.children", stm =>
                                            {
-                                               stm.Call("list".Var(), "Add", CodeHelper.Var("enumerator.Current").Call("Accept", CodeHelper.This()));
+                                               stm.Call("list".Var(), "Add", CodeHelper.Var("item").Call("Accept", CodeHelper.This()));
                                            });
                                            b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "list".Var()));
 
@@ -332,7 +493,41 @@ namespace Generate
                                        {
                                            b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType().Create("context".Var(), "context".Var().Call("GetText")));
                                        });
-                                  });
+                                  })
+                                  .Method(() => ctx.Strategy == "ClassList",
+                                  m =>
+                                  {
+                                      m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.RuleName.Text))
+                                       .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.RuleName.Text) + "Context", "context")
+                                       .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                       .Return(() => "AstRoot")
+                                       .Body(b =>
+                                       {
+
+                                           var astChild = ast.GetRules().FirstOrDefault();
+                                           var t = "TSqlParser." + CodeHelper.FormatCamelUpercase(astChild.Identifier.Text) + "Context";
+                                           var t1 = t.AsType();
+                                           t1.ArrayRank = 1;
+                                           b.Statements.DeclareAndInitialize("source", t1, "context".Var().Call(astChild.ResolveName()));
+
+                                           var type = ("Ast" + CodeHelper.FormatCsharp(ast.RuleName.Text)).AsType();
+                                           b.Statements.DeclareAndInitialize("list", type, type.Create("context".Var(), "source".Var().Field("Length")));
+                                           b.Statements.ForEach(t.AsType(), "item", "source", stm =>
+                                           {
+                                               var v1 = ("Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text)).AsType();
+                                               stm.DeclareAndInitialize("acceptResult",v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
+                                               stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
+                                               {
+                                                   s.Call("list".Var(), "Add", "acceptResult".Var());
+                                               }
+                                               );
+                                               
+                                           });
+                                           b.Statements.Return("list".Var());
+
+                                       });
+                                  })
+                                  ;
                           });
                     });
                 })

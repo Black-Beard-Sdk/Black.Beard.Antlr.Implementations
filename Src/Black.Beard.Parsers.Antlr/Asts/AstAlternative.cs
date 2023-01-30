@@ -18,6 +18,22 @@ namespace Bb.Asts
 
         public AstElementList Rule { get; }
 
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            foreach (AstBase item in this.Rule)
+                if (item != null)
+                    foreach (var t in item.GetTerminals())
+                        yield return t;
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            foreach (AstBase item in this.Rule)
+                if (item != null)
+                    foreach (var t in item.GetRules())
+                        yield return t;
+        }
+
         public AstElementOptionList Options { get; }
 
         public override bool ContainsOneTerminal

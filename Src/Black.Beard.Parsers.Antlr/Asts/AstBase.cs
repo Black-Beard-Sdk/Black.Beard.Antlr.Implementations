@@ -61,6 +61,16 @@ namespace Bb.Asts
             yield break;
         }
 
+        public virtual IEnumerable<AstRuleRef> GetRules()
+        {
+            yield break;
+        }
+
+        public virtual string ResolveName()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override SerializationStrategy StrategySerialization()
         {
             return new StrategyConfiguration().GetStrategy();

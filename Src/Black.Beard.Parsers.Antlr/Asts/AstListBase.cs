@@ -159,6 +159,22 @@ namespace Bb.Asts
 
         public OccurenceEnum Occurence { get; set; }
 
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetTerminals())
+                        yield return t;
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetRules())
+                        yield return t;
+        }
+             
         public int Count => _list.Count;
 
         private readonly List<T> _list;

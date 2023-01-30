@@ -98,6 +98,16 @@ namespace Bb.Asts
             return this.RuleBlock.GetTerminals();
         }
 
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            return this.RuleBlock.GetRules();
+        }
+
+        public IEnumerable<IEnumerable<AstBase>> GetAlternatives()
+        {
+            return this.RuleBlock.GetAlternatives();
+        }
+
         public override void ToString(Writer wrt)
         {
 

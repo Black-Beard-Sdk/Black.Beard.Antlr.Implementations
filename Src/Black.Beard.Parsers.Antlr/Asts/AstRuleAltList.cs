@@ -151,6 +151,21 @@ namespace Bb.Asts
 
         }
 
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+
+            foreach (AstLabeledAlt item in this)
+                foreach (var t in item.GetRules())
+                    yield return t;
+
+        }
+
+        public IEnumerable<IEnumerable<AstBase>> GetAlternatives()
+        {
+            foreach (AstLabeledAlt item in this)
+                yield return item.GetItems();
+        }
+
         public bool CanBeRemoved { get; internal set; }
 
         [System.Diagnostics.DebuggerStepThrough]

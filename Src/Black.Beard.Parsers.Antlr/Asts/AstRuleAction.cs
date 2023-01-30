@@ -20,6 +20,16 @@ namespace Bb.Asts
         public AstIdentifier Name { get; }
         public AstActionBlock Action { get; }
 
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            return this.Action?.GetTerminals();
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            return this.Action?.GetRules();
+        }
+
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)

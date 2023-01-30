@@ -11,7 +11,7 @@ namespace Bb.Asts
 {
     
     
-    public enum AstClasstypeforazuredwEnum
+    public enum AstClassTypeForAzureDwEnum
     {
         
         _undefined,
@@ -21,7 +21,7 @@ namespace Bb.Asts
         Object,
     }
     
-    public enum AstClasstypeforparalleldwEnum
+    public enum AstClassTypeForParallelDwEnum
     {
         
         _undefined,
@@ -33,7 +33,7 @@ namespace Bb.Asts
         Object,
     }
     
-    public enum AstStartstopEnum
+    public enum AstStartStopEnum
     {
         
         _undefined,
@@ -43,7 +43,7 @@ namespace Bb.Asts
         Stop,
     }
     
-    public enum AstEnabledisableEnum
+    public enum AstEnableDisableEnum
     {
         
         _undefined,
@@ -53,7 +53,7 @@ namespace Bb.Asts
         Disable,
     }
     
-    public enum AstSplitormergeEnum
+    public enum AstSplitOrMergeEnum
     {
         
         _undefined,
@@ -63,7 +63,7 @@ namespace Bb.Asts
         Merge,
     }
     
-    public enum AstAdddropEnum
+    public enum AstAddDropEnum
     {
         
         _undefined,
@@ -73,7 +73,7 @@ namespace Bb.Asts
         Drop,
     }
     
-    public enum AstEnumdmlEnum
+    public enum AstEnumDmlEnum
     {
         
         _undefined,
@@ -87,7 +87,7 @@ namespace Bb.Asts
         Update,
     }
     
-    public enum AstGrantdenyEnum
+    public enum AstGrantDenyEnum
     {
         
         _undefined,
@@ -97,7 +97,19 @@ namespace Bb.Asts
         Deny,
     }
     
-    public enum AstViewattributeEnum
+    public enum AstDmlTriggerOperationEnum
+    {
+        
+        _undefined,
+        
+        Insert,
+        
+        Update,
+        
+        Delete,
+    }
+    
+    public enum AstViewAttributeEnum
     {
         
         _undefined,
@@ -106,10 +118,10 @@ namespace Bb.Asts
         
         Schemabinding,
         
-        Viewmetadata,
+        ViewMetadata,
     }
     
-    public enum AstFilegroupupdatabilityoptionEnum
+    public enum AstFilegroupUpdatabilityOptionEnum
     {
         
         _undefined,
@@ -117,9 +129,13 @@ namespace Bb.Asts
         Readonly,
         
         Readwrite,
+        
+        ReadOnly,
+        
+        ReadWrite,
     }
     
-    public enum AstLocalglobalEnum
+    public enum AstLocalGlobalEnum
     {
         
         _undefined,
@@ -129,26 +145,38 @@ namespace Bb.Asts
         Global,
     }
     
-    public enum AstDbupdateoptionEnum
+    public enum AstDbStateOptionEnum
     {
         
         _undefined,
         
-        Readonly,
+        Online,
         
-        Readwrite,
+        Offline,
+        
+        Emergency,
     }
     
-    public enum AstDbuseraccessoptionEnum
+    public enum AstDbUpdateOptionEnum
     {
         
         _undefined,
         
-        Singleuser,
+        ReadOnly,
         
-        Restricteduser,
+        ReadWrite,
+    }
+    
+    public enum AstDbUserAccessOptionEnum
+    {
         
-        Multiuser,
+        _undefined,
+        
+        SingleUser,
+        
+        RestrictedUser,
+        
+        MultiUser,
     }
     
     public enum AstAlgorithmEnum
@@ -158,9 +186,9 @@ namespace Bb.Asts
         
         Des,
         
-        Tripledes,
+        TripleDes,
         
-        Tripledes3key,
+        TripleDes3key,
         
         Rc2,
         
@@ -182,12 +210,12 @@ namespace Bb.Asts
         
         _undefined,
         
-        Semisensitive,
+        SemiSensitive,
         
         Insensitive,
     }
     
-    public enum AstAbsoluterelativeEnum
+    public enum AstAbsoluteRelativeEnum
     {
         
         _undefined,
@@ -197,7 +225,7 @@ namespace Bb.Asts
         Relative,
     }
     
-    public enum AstFetchcursorstrategyEnum
+    public enum AstFetchCursorStrategyEnum
     {
         
         _undefined,
@@ -211,59 +239,59 @@ namespace Bb.Asts
         Last,
     }
     
-    public enum AstSpeciallistEnum
+    public enum AstSpecialListEnum
     {
         
         _undefined,
         
-        Ansinulls,
+        AnsiNulls,
         
-        Quotedidentifier,
+        QuotedIdentifier,
         
-        Ansipadding,
+        AnsiPadding,
         
-        Ansiwarnings,
+        AnsiWarnings,
         
-        Ansidefaults,
+        AnsiDefaults,
         
-        Ansinulldfltoff,
+        AnsiNullDfltOff,
         
-        Ansinulldflton,
+        AnsiNullDfltOn,
         
         Arithabort,
         
         Arithignore,
         
-        Concatnullyieldsnull,
+        ConcatNullYieldsNull,
         
-        Cursorcloseoncommit,
+        CursorCloseOnCommit,
         
         Fmtonly,
         
         Forceplan,
         
-        Implicittransactions,
+        ImplicitTransactions,
         
         Nocount,
         
         Noexec,
         
-        Numericroundabort,
+        NumericRoundabort,
         
         Parseonly,
         
-        Remoteproctransactions,
+        RemoteProcTransactions,
         
-        Showplanall,
+        ShowplanAll,
         
-        Showplantext,
+        ShowplanText,
         
-        Showplanxml,
+        ShowplanXml,
         
-        Xactabort,
+        XactAbort,
     }
     
-    public enum AstSybaselegacyhintEnum
+    public enum AstSybaseLegacyHintEnum
     {
         
         _undefined,
@@ -277,7 +305,7 @@ namespace Bb.Asts
         Shared,
     }
     
-    public enum AstOnoffEnum
+    public enum AstOnOffEnum
     {
         
         _undefined,
@@ -306,7 +334,7 @@ namespace Bb.Asts
         
         Absolute,
         
-        Accentsensitivity,
+        AccentSensitivity,
         
         Access,
         
@@ -334,39 +362,39 @@ namespace Bb.Asts
         
         Algorithm,
         
-        Allowencryptedvaluemodifications,
+        AllowEncryptedValueModifications,
         
-        Allowpagelocks,
+        AllowPageLocks,
         
-        Allowrowlocks,
+        AllowRowLocks,
         
-        Allowsnapshotisolation,
+        AllowSnapshotIsolation,
         
         Allowed,
         
         Always,
         
-        Ansidefaults,
+        AnsiDefaults,
         
-        Ansinulldefault,
+        AnsiNullDefault,
         
-        Ansinulldfltoff,
+        AnsiNullDfltOff,
         
-        Ansinulldflton,
+        AnsiNullDfltOn,
         
-        Ansinulls,
+        AnsiNulls,
         
-        Ansipadding,
+        AnsiPadding,
         
-        Ansiwarnings,
+        AnsiWarnings,
         
-        Appname,
+        AppName,
         
-        Applicationlog,
+        ApplicationLog,
         
-        Applockmode,
+        ApplockMode,
         
-        Applocktest,
+        ApplockTest,
         
         Apply,
         
@@ -380,65 +408,65 @@ namespace Bb.Asts
         
         Assemblyproperty,
         
-        Atkeyword,
+        AtKeyword,
         
         Audit,
         
-        Auditguid,
+        AuditGuid,
         
         Auto,
         
-        Autocleanup,
+        AutoCleanup,
         
-        Autoclose,
+        AutoClose,
         
-        Autocreatestatistics,
+        AutoCreateStatistics,
         
-        Autodrop,
+        AutoDrop,
         
-        Autoshrink,
+        AutoShrink,
         
-        Autoupdatestatistics,
+        AutoUpdateStatistics,
         
-        Autoupdatestatisticsasync,
+        AutoUpdateStatisticsAsync,
         
-        Autogrowallfiles,
+        AutogrowAllFiles,
         
-        Autogrowsinglefile,
+        AutogrowSingleFile,
         
         Availability,
         
         Avg,
         
-        Backuppriority,
+        BackupPriority,
         
         Base64,
         
-        Begindialog,
+        BeginDialog,
         
         Bigint,
         
-        Binarykeyword,
+        BinaryKeyword,
         
-        Binarychecksum,
+        BinaryChecksum,
         
         Binding,
         
-        Blobstorage,
+        BlobStorage,
         
         Broker,
         
-        Brokerinstance,
+        BrokerInstance,
         
-        Bulklogged,
+        BulkLogged,
         
         Caller,
         
-        Capcpupercent,
+        CapCpuPercent,
         
         Cast,
         
-        Trycast,
+        TryCast,
         
         Catalog,
         
@@ -446,9 +474,9 @@ namespace Bb.Asts
         
         Change,
         
-        Changeretention,
+        ChangeRetention,
         
-        Changetracking,
+        ChangeTracking,
         
         Char,
         
@@ -456,19 +484,19 @@ namespace Bb.Asts
         
         Checksum,
         
-        Checksumagg,
+        ChecksumAgg,
         
         Cleanup,
         
-        Collength,
+        ColLength,
         
-        Colname,
+        ColName,
         
         Collection,
         
-        Columnencryptionkey,
+        ColumnEncryptionKey,
         
-        Columnmasterkey,
+        ColumnMasterKey,
         
         Columnproperty,
         
@@ -476,21 +504,21 @@ namespace Bb.Asts
         
         Columnstore,
         
-        Columnstorearchive,
+        ColumnstoreArchive,
         
         Committed,
         
-        Compatibilitylevel,
+        CompatibilityLevel,
         
-        Compressallrowgroups,
+        CompressAllRowGroups,
         
-        Compressiondelay,
+        CompressionDelay,
         
         Concat,
         
-        Concatws,
+        ConcatWs,
         
-        Concatnullyieldsnull,
+        ConcatNullYieldsNull,
         
         Content,
         
@@ -500,33 +528,33 @@ namespace Bb.Asts
         
         Count,
         
-        Countbig,
+        CountBig,
         
         Counter,
         
         Cpu,
         
-        Createnew,
+        CreateNew,
         
-        Creationdisposition,
+        CreationDisposition,
         
         Credential,
         
         Cryptographic,
         
-        Cumedist,
+        CumeDist,
         
-        Cursorcloseoncommit,
+        CursorCloseOnCommit,
         
-        Cursordefault,
+        CursorDefault,
         
         Data,
         
-        Databaseprincipalid,
+        DatabasePrincipalId,
         
         Databasepropertyex,
         
-        Datecorrelationoptimization,
+        DateCorrelationOptimization,
         
         Dateadd,
         
@@ -538,31 +566,31 @@ namespace Bb.Asts
         
         Days,
         
-        Dbchaining,
+        DbChaining,
         
-        Dbfailover,
+        DbFailover,
         
-        Dbid,
+        DbId,
         
-        Dbname,
+        DbName,
         
         Decryption,
         
-        Defaultdoublequote,
+        DefaultDoubleQuote,
         
-        Defaultfulltextlanguage,
+        DefaultFulltextLanguage,
         
-        Defaultlanguage,
+        DefaultLanguage,
         
         Definition,
         
         Delay,
         
-        Delayeddurability,
+        DelayedDurability,
         
         Deleted,
         
-        Denserank,
+        DenseRank,
         
         Dependents,
         
@@ -580,17 +608,17 @@ namespace Bb.Asts
         
         Difference,
         
-        Directoryname,
+        DirectoryName,
         
         Disable,
         
-        Disablebroker,
+        DisableBroker,
         
         Disabled,
         
         Document,
         
-        Dropexisting,
+        DropExisting,
         
         Dynamic,
         
@@ -602,19 +630,19 @@ namespace Bb.Asts
         
         Enable,
         
-        Enablebroker,
+        EnableBroker,
         
         Encrypted,
         
-        Encryptedvalue,
+        EncryptedValue,
         
         Encryption,
         
-        Encryptiontype,
+        EncryptionType,
         
-        Endpointurl,
+        EndpointUrl,
         
-        Errorbrokerconversations,
+        ErrorBrokerConversations,
         
         Exclusive,
         
@@ -624,37 +652,39 @@ namespace Bb.Asts
         
         Expand,
         
-        Expirydate,
+        ExpiryDate,
         
         Explicit,
         
-        Failoperation,
+        FailOperation,
         
-        Failovermode,
+        FailoverMode,
         
         Failure,
         
-        Failureconditionlevel,
+        FailureConditionLevel,
         
         Fast,
         
-        Fastforward,
+        FastForward,
         
-        Fileid,
+        FileId,
         
-        Fileidex,
+        FileIdex,
         
-        Filename,
+        FileName,
         
         Filegroup,
         
-        Filegroupid,
+        FilegroupId,
         
-        Filegroupname,
+        FilegroupName,
         
         Filegroupproperty,
         
         Filegrowth,
+        
+        Filename,
         
         Filepath,
         
@@ -668,7 +698,7 @@ namespace Bb.Asts
         
         First,
         
-        Firstvalue,
+        FirstValue,
         
         Fmtonly,
         
@@ -676,7 +706,7 @@ namespace Bb.Asts
         
         Force,
         
-        Forcefailoverallowdataloss,
+        ForceFailoverAllowDataLoss,
         
         Forced,
         
@@ -686,7 +716,7 @@ namespace Bb.Asts
         
         Format,
         
-        Forwardonly,
+        ForwardOnly,
         
         Fullscan,
         
@@ -708,51 +738,51 @@ namespace Bb.Asts
         
         Go,
         
-        Groupmaxrequests,
+        GroupMaxRequests,
         
         Grouping,
         
-        Groupingid,
+        GroupingId,
         
         Hadr,
         
         Hash,
         
-        Healthchecktimeout,
+        HealthCheckTimeout,
         
-        Hiddenkeyword,
+        HiddenKeyword,
         
         High,
         
-        Honorbrokerpriority,
+        HonorBrokerPriority,
         
         Hours,
         
-        Identityvalue,
+        IdentityValue,
         
-        Ignoreconstraints,
+        IgnoreConstraints,
         
-        Ignoredupkey,
+        IgnoreDupKey,
         
-        Ignorenonclusteredcolumnstoreindex,
+        IgnoreNonclusteredColumnstoreIndex,
         
-        Ignoretriggers,
+        IgnoreTriggers,
         
         Immediate,
         
         Impersonate,
         
-        Implicittransactions,
+        ImplicitTransactions,
         
         Importance,
         
-        Includenullvalues,
+        IncludeNullValues,
         
         Incremental,
         
-        Indexcol,
+        IndexCol,
         
-        Indexkeyproperty,
+        IndexkeyProperty,
         
         Indexproperty,
         
@@ -784,7 +814,7 @@ namespace Bb.Asts
         
         Keepidentity,
         
-        Keysource,
+        KeySource,
         
         Keys,
         
@@ -794,7 +824,7 @@ namespace Bb.Asts
         
         Last,
         
-        Lastvalue,
+        LastValue,
         
         Lead,
         
@@ -806,9 +836,9 @@ namespace Bb.Asts
         
         Listener,
         
-        Listenerurl,
+        ListenerUrl,
         
-        Lobcompaction,
+        LobCompaction,
         
         Local,
         
@@ -816,7 +846,7 @@ namespace Bb.Asts
         
         Lock,
         
-        Lockescalation,
+        LockEscalation,
         
         Login,
         
@@ -838,21 +868,23 @@ namespace Bb.Asts
         
         Max,
         
-        Maxcpupercent,
+        MaxCpuPercent,
+        
+        MaxDop,
+        
+        MaxFiles,
+        
+        MaxIopsPerVolume,
+        
+        MaxMemoryPercent,
+        
+        MaxProcesses,
+        
+        MaxQueueReaders,
+        
+        MaxRolloverFiles,
         
         Maxdop,
-        
-        Maxfiles,
-        
-        Maxiopspervolume,
-        
-        Maxmemorypercent,
-        
-        Maxprocesses,
-        
-        Maxqueuereaders,
-        
-        Maxrolloverfiles,
         
         Maxrecursion,
         
@@ -862,25 +894,25 @@ namespace Bb.Asts
         
         Medium,
         
-        Memoryoptimizeddata,
+        MemoryOptimizedData,
         
         Message,
         
         Min,
         
-        Minactiverowversion,
+        MinActiveRowversion,
         
-        Mincpupercent,
+        MinCpuPercent,
         
-        Miniopspervolume,
+        MinIopsPerVolume,
         
-        Minmemorypercent,
+        MinMemoryPercent,
         
         Minutes,
         
-        Mirroraddress,
+        MirrorAddress,
         
-        Mixedpageallocation,
+        MixedPageAllocation,
         
         Mode,
         
@@ -888,19 +920,19 @@ namespace Bb.Asts
         
         Move,
         
-        Multiuser,
+        MultiUser,
         
         Name,
         
         Nchar,
         
-        Nestedtriggers,
+        NestedTriggers,
         
-        Newaccount,
+        NewAccount,
         
-        Newbroker,
+        NewBroker,
         
-        Newpassword,
+        NewPassword,
         
         Newname,
         
@@ -908,9 +940,9 @@ namespace Bb.Asts
         
         No,
         
-        Notruncate,
+        NoTruncate,
         
-        Nowait,
+        NoWait,
         
         Nocount,
         
@@ -922,7 +954,7 @@ namespace Bb.Asts
         
         Nolock,
         
-        Nontransactedaccess,
+        NonTransactedAccess,
         
         Norecompute,
         
@@ -930,25 +962,27 @@ namespace Bb.Asts
         
         Notifications,
         
+        Nowait,
+        
         Ntile,
         
-        Nulldoublequote,
+        NullDoubleQuote,
         
         Numanode,
         
         Number,
         
-        Numericroundabort,
+        NumericRoundabort,
         
         Object,
         
-        Objectdefinition,
+        ObjectDefinition,
         
-        Objectid,
+        ObjectId,
         
-        Objectname,
+        ObjectName,
         
-        Objectschemaname,
+        ObjectSchemaName,
         
         Objectproperty,
         
@@ -958,13 +992,13 @@ namespace Bb.Asts
         
         Offset,
         
-        Oldaccount,
+        OldAccount,
         
         Online,
         
         Only,
         
-        Openexisting,
+        OpenExisting,
         
         Openjson,
         
@@ -972,9 +1006,9 @@ namespace Bb.Asts
         
         Optimize,
         
-        Optimizeforsequentialkey,
+        OptimizeForSequentialKey,
         
-        Originaldbname,
+        OriginalDbName,
         
         Out,
         
@@ -986,9 +1020,9 @@ namespace Bb.Asts
         
         Ownership,
         
-        Padindex,
+        PadIndex,
         
-        Pageverify,
+        PageVerify,
         
         Pagecount,
         
@@ -1012,15 +1046,15 @@ namespace Bb.Asts
         
         Pause,
         
-        Percentrank,
+        PercentRank,
         
-        Percentilecont,
+        PercentileCont,
         
-        Percentiledisc,
+        PercentileDisc,
         
-        Persistsamplepercent,
+        PersistSamplePercent,
         
-        Poisonmessagehandling,
+        PoisonMessageHandling,
         
         Pool,
         
@@ -1028,35 +1062,35 @@ namespace Bb.Asts
         
         Preceding,
         
-        Primaryrole,
+        PrimaryRole,
         
         Prior,
         
         Priority,
         
-        Prioritylevel,
+        PriorityLevel,
         
         Private,
         
-        Privatekey,
+        PrivateKey,
         
         Privileges,
         
-        Procedurename,
+        ProcedureName,
         
         Property,
         
         Provider,
         
-        Providerkeyname,
+        ProviderKeyName,
         
         Query,
         
         Queue,
         
-        Queuedelay,
+        QueueDelay,
         
-        Quotedidentifier,
+        QuotedIdentifier,
         
         Quotename,
         
@@ -1072,21 +1106,25 @@ namespace Bb.Asts
         
         Rc4128,
         
-        Readcommittedsnapshot,
+        ReadCommittedSnapshot,
         
-        Readonly,
+        ReadOnly,
         
-        Readonlyroutinglist,
+        ReadOnlyRoutingList,
         
-        Readwrite,
+        ReadWrite,
         
         Readcommitted,
         
         Readcommittedlock,
         
+        Readonly,
+        
         Readpast,
         
         Readuncommitted,
+        
+        Readwrite,
         
         Rebuild,
         
@@ -1096,15 +1134,15 @@ namespace Bb.Asts
         
         Recovery,
         
-        Recursivetriggers,
+        RecursiveTriggers,
         
         Relative,
         
         Remote,
         
-        Remoteproctransactions,
+        RemoteProcTransactions,
         
-        Remoteservicename,
+        RemoteServiceName,
         
         Remove,
         
@@ -1120,23 +1158,23 @@ namespace Bb.Asts
         
         Replicate,
         
-        Requestmaxcputimesec,
+        RequestMaxCpuTimeSec,
         
-        Requestmaxmemorygrantpercent,
+        RequestMaxMemoryGrantPercent,
         
-        Requestmemorygranttimeoutsec,
+        RequestMemoryGrantTimeoutSec,
         
-        Requiredsynchronizedsecondariestocommit,
+        RequiredSynchronizedSecondariesToCommit,
         
         Resample,
         
-        Reservediskspace,
+        ReserveDiskSpace,
         
         Resource,
         
-        Resourcemanagerlocation,
+        ResourceManagerLocation,
         
-        Restricteduser,
+        RestrictedUser,
         
         Resumable,
         
@@ -1152,7 +1190,7 @@ namespace Bb.Asts
         
         Row,
         
-        Rownumber,
+        RowNumber,
         
         Rowguid,
         
@@ -1164,27 +1202,27 @@ namespace Bb.Asts
         
         Sample,
         
-        Schemaid,
+        SchemaId,
         
-        Schemaname,
+        SchemaName,
         
         Schemabinding,
         
-        Scopeidentity,
+        ScopeIdentity,
         
         Scoped,
         
         Scroll,
         
-        Scrolllocks,
+        ScrollLocks,
         
         Search,
         
         Secondary,
         
-        Secondaryonly,
+        SecondaryOnly,
         
-        Secondaryrole,
+        SecondaryRole,
         
         Seconds,
         
@@ -1194,13 +1232,13 @@ namespace Bb.Asts
         
         Security,
         
-        Securitylog,
+        SecurityLog,
         
-        Seedingmode,
+        SeedingMode,
         
         Self,
         
-        Semisensitive,
+        SemiSensitive,
         
         Send,
         
@@ -1208,13 +1246,13 @@ namespace Bb.Asts
         
         Sequence,
         
-        Sequencenumber,
+        SequenceNumber,
         
         Serializable,
         
         Serverproperty,
         
-        Sessiontimeout,
+        SessionTimeout,
         
         Seterror,
         
@@ -1224,17 +1262,17 @@ namespace Bb.Asts
         
         Showplan,
         
-        Showplanall,
+        ShowplanAll,
         
-        Showplantext,
+        ShowplanText,
         
-        Showplanxml,
+        ShowplanXml,
         
         Signature,
         
         Simple,
         
-        Singleuser,
+        SingleUser,
         
         Size,
         
@@ -1242,29 +1280,29 @@ namespace Bb.Asts
         
         Snapshot,
         
-        Sortintempdb,
+        SortInTempdb,
         
         Soundex,
         
-        Spacekeyword,
+        SpaceKeyword,
         
         Sparse,
         
-        Spatialwindowmaxcells,
+        SpatialWindowMaxCells,
         
         Standby,
         
-        Startdate,
+        StartDate,
         
         Static,
         
-        Statisticsincremental,
+        StatisticsIncremental,
         
-        Statisticsnorecompute,
+        StatisticsNorecompute,
         
-        Statsdate,
+        StatsDate,
         
-        Statsstream,
+        StatsStream,
         
         Status,
         
@@ -1278,9 +1316,9 @@ namespace Bb.Asts
         
         Str,
         
-        Stringagg,
+        StringAgg,
         
-        Stringescape,
+        StringEscape,
         
         Stuff,
         
@@ -1298,7 +1336,7 @@ namespace Bb.Asts
         
         Symmetric,
         
-        Synchronouscommit,
+        SynchronousCommit,
         
         Synonym,
         
@@ -1310,11 +1348,11 @@ namespace Bb.Asts
         
         Take,
         
-        Targetrecoverytime,
+        TargetRecoveryTime,
         
         Tb,
         
-        Textimageon,
+        TextimageOn,
         
         Throw,
         
@@ -1328,21 +1366,21 @@ namespace Bb.Asts
         
         Tinyint,
         
-        Tornpagedetection,
+        TornPageDetection,
         
         Tracking,
         
-        Transactionid,
+        TransactionId,
         
-        Transformnoisewords,
+        TransformNoiseWords,
         
         Translate,
         
         Trim,
         
-        Tripledes,
+        TripleDes,
         
-        Tripledes3key,
+        TripleDes3key,
         
         Trustworthy,
         
@@ -1350,15 +1388,15 @@ namespace Bb.Asts
         
         Tsql,
         
-        Twodigityearcutoff,
+        TwoDigitYearCutoff,
         
         Type,
         
-        Typeid,
+        TypeId,
         
-        Typename,
+        TypeName,
         
-        Typewarning,
+        TypeWarning,
         
         Typeproperty,
         
@@ -1382,7 +1420,7 @@ namespace Bb.Asts
         
         Using,
         
-        Validxml,
+        ValidXml,
         
         Validation,
         
@@ -1390,21 +1428,21 @@ namespace Bb.Asts
         
         Var,
         
-        Varbinarykeyword,
+        VarbinaryKeyword,
         
         Varp,
         
         Version,
         
-        Viewmetadata,
+        ViewMetadata,
         
         Views,
         
         Wait,
         
-        Wellformedxml,
+        WellFormedXml,
         
-        Withoutarraywrapper,
+        WithoutArrayWrapper,
         
         Work,
         
@@ -1414,7 +1452,7 @@ namespace Bb.Asts
         
         Xml,
         
-        Xmlcompression,
+        XmlCompression,
         
         Xmldata,
         
@@ -1426,7 +1464,7 @@ namespace Bb.Asts
         
         Zone,
         
-        Abortafterwait,
+        AbortAfterWait,
         
         Absent,
         
@@ -1434,11 +1472,11 @@ namespace Bb.Asts
         
         Aes,
         
-        Allowconnections,
+        AllowConnections,
         
-        Allowmultipleeventloss,
+        AllowMultipleEventLoss,
         
-        Allowsingleeventloss,
+        AllowSingleEventLoss,
         
         Anonymous,
         
@@ -1448,17 +1486,17 @@ namespace Bb.Asts
         
         Asymmetric,
         
-        Asynchronouscommit,
+        AsynchronousCommit,
         
         Authenticate,
         
         Authentication,
         
-        Automatedbackuppreference,
+        AutomatedBackupPreference,
         
         Automatic,
         
-        Availabilitymode,
+        AvailabilityMode,
         
         Before,
         
@@ -1468,7 +1506,7 @@ namespace Bb.Asts
         
         Blocksize,
         
-        Blockinghierarchy,
+        BlockingHierarchy,
         
         Buffer,
         
@@ -1484,11 +1522,11 @@ namespace Bb.Asts
         
         Changes,
         
-        Checkpolicy,
+        CheckPolicy,
         
-        Checkexpiration,
+        CheckExpiration,
         
-        Classifierfunction,
+        ClassifierFunction,
         
         Cluster,
         
@@ -1508,29 +1546,29 @@ namespace Bb.Asts
         
         Context,
         
-        Contextinfo,
+        ContextInfo,
         
-        Continueaftererror,
+        ContinueAfterError,
         
         Contract,
         
-        Contractname,
+        ContractName,
         
         Conversation,
         
-        Copyonly,
+        CopyOnly,
         
-        Currentrequestid,
+        CurrentRequestId,
         
-        Currenttransactionid,
+        CurrentTransactionId,
         
         Cycle,
         
-        Datacompression,
+        DataCompression,
         
-        Datasource,
+        DataSource,
         
-        Databasemirroring,
+        DatabaseMirroring,
         
         Dataspace,
         
@@ -1538,9 +1576,9 @@ namespace Bb.Asts
         
         Decompress,
         
-        Defaultdatabase,
+        DefaultDatabase,
         
-        Defaultschema,
+        DefaultSchema,
         
         Diagnostics,
         
@@ -1548,7 +1586,7 @@ namespace Bb.Asts
         
         Distribution,
         
-        Dtcsupport,
+        DtcSupport,
         
         Enabled,
         
@@ -1556,47 +1594,49 @@ namespace Bb.Asts
         
         Error,
         
-        Errorline,
+        ErrorLine,
         
-        Errormessage,
+        ErrorMessage,
         
-        Errornumber,
+        ErrorNumber,
         
-        Errorprocedure,
+        ErrorProcedure,
         
-        Errorseverity,
+        ErrorSeverity,
         
-        Errorstate,
+        ErrorState,
         
         Event,
         
         Eventdata,
         
-        Eventretentionmode,
+        EventRetentionMode,
         
-        Executablefile,
+        ExecutableFile,
         
         Expiredate,
         
         Extension,
         
-        Externalaccess,
+        ExternalAccess,
         
         Failover,
         
-        Fanin,
+        Failureconditionlevel,
         
-        Filesnapshot,
+        FanIn,
+        
+        FileSnapshot,
         
         Forceseek,
         
-        Forceserviceallowdataloss,
+        ForceServiceAllowDataLoss,
         
         Formatmessage,
         
         Get,
         
-        Getfilestreamtransactioncontext,
+        GetFilestreamTransactionContext,
         
         Getancestor,
         
@@ -1614,13 +1654,15 @@ namespace Bb.Asts
         
         Hashed,
         
+        Healthchecktimeout,
+        
         Heap,
         
         Hierarchyid,
         
-        Hostid,
+        HostId,
         
-        Hostname,
+        HostName,
         
         Iif,
         
@@ -1644,9 +1686,9 @@ namespace Bb.Asts
         
         Kerberos,
         
-        Keypath,
+        KeyPath,
         
-        Keystoreprovidername,
+        KeyStoreProviderName,
         
         Language,
         
@@ -1658,11 +1700,11 @@ namespace Bb.Asts
         
         Linux,
         
-        Listenerip,
+        ListenerIp,
         
-        Listenerport,
+        ListenerPort,
         
-        Localservicename,
+        LocalServiceName,
         
         Log,
         
@@ -1672,19 +1714,21 @@ namespace Bb.Asts
         
         Master,
         
-        Maxmemory,
+        MaxMemory,
         
         Maxtransfer,
         
         Maxvalue,
         
-        Maxdispatchlatency,
+        MaxDispatchLatency,
         
-        Maxduration,
+        MaxDuration,
         
-        Maxeventsize,
+        MaxEventSize,
         
-        Maxoutstandingiopervolume,
+        MaxSize,
+        
+        MaxOutstandingIoPerVolume,
         
         Mediadescription,
         
@@ -1692,17 +1736,17 @@ namespace Bb.Asts
         
         Member,
         
-        Memorypartitionmode,
+        MemoryPartitionMode,
         
-        Messageforwarding,
+        MessageForwarding,
         
-        Messageforwardsize,
+        MessageForwardSize,
         
         Minvalue,
         
         Mirror,
         
-        Mustchange,
+        MustChange,
         
         Newid,
         
@@ -1720,37 +1764,37 @@ namespace Bb.Asts
         
         Nounload,
         
-        Nochecksum,
+        NoChecksum,
         
-        Nocompression,
+        NoCompression,
         
-        Noeventloss,
+        NoEventLoss,
         
         Notification,
         
         Ntlm,
         
-        Oldpassword,
+        OldPassword,
         
-        Onfailure,
+        OnFailure,
         
         Operations,
         
         Page,
         
-        Paramnode,
+        ParamNode,
         
         Partial,
         
         Password,
         
-        Permissionset,
+        PermissionSet,
         
-        Percpu,
+        PerCpu,
         
-        Perdb,
+        PerDb,
         
-        Pernode,
+        PerNode,
         
         Persisted,
         
@@ -1768,13 +1812,13 @@ namespace Bb.Asts
         
         R,
         
-        Readwritefilegroups,
+        ReadWriteFilegroups,
         
         Regenerate,
         
-        Relatedconversation,
+        RelatedConversation,
         
-        Relatedconversationgroup,
+        RelatedConversationGroup,
         
         Required,
         
@@ -1794,9 +1838,9 @@ namespace Bb.Asts
         
         Role,
         
-        Roundrobin,
+        RoundRobin,
         
-        Rowcountbig,
+        RowcountBig,
         
         Rsa512,
         
@@ -1822,13 +1866,13 @@ namespace Bb.Asts
         
         Service,
         
-        Servicebroker,
+        ServiceBroker,
         
-        Servicename,
+        ServiceName,
         
         Session,
         
-        Sessioncontext,
+        SessionContext,
         
         Settings,
         
@@ -1836,7 +1880,7 @@ namespace Bb.Asts
         
         Sid,
         
-        Skipkeyword,
+        SkipKeyword,
         
         Softnuma,
         
@@ -1862,13 +1906,13 @@ namespace Bb.Asts
         
         Started,
         
-        Startupstate,
+        StartupState,
         
         Stop,
         
         Stopped,
         
-        Stoponerror,
+        StopOnError,
         
         Supported,
         
@@ -1884,7 +1928,7 @@ namespace Bb.Asts
         
         Trace,
         
-        Trackcausality,
+        TrackCausality,
         
         Transfer,
         
@@ -1902,7 +1946,7 @@ namespace Bb.Asts
         
         Visibility,
         
-        Waitatlowpriority,
+        WaitAtLowPriority,
         
         Windows,
         
@@ -1910,9 +1954,9 @@ namespace Bb.Asts
         
         Witness,
         
-        Xactabort,
+        XactAbort,
         
-        Xactstate,
+        XactState,
         
         Varchar,
         

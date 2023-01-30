@@ -57,6 +57,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSql_clauses([NotNull] TSqlParser.Sql_clausesContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.sql_clause"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSql_clause([NotNull] TSqlParser.Sql_clauseContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.dml_clause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -368,6 +374,24 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitCreate_assembly([NotNull] TSqlParser.Create_assemblyContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.binary_content_nexts"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinary_content_nexts([NotNull] TSqlParser.Binary_content_nextsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.binary_content_next"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinary_content_next([NotNull] TSqlParser.Binary_content_nextContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.binary_content"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinary_content([NotNull] TSqlParser.Binary_contentContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.drop_assembly"/>.
 	/// </summary>
@@ -3051,6 +3075,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitColumn_elem([NotNull] TSqlParser.Column_elemContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.column_elem_target"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitColumn_elem_target([NotNull] TSqlParser.Column_elem_targetContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.udt_elem"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3068,6 +3098,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSelect_list_elem([NotNull] TSqlParser.Select_list_elemContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.expression_assign_elem"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExpression_assign_elem([NotNull] TSqlParser.Expression_assign_elemContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.table_sources"/>.
 	/// </summary>

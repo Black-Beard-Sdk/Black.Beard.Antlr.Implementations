@@ -86,13 +86,18 @@ namespace Bb.Generators
                 ctx.CurrentConfigurationMethod = configurationType.GetMethod(_n);
 
                 CodeTypeReference type = null;
-                var t1 = _actionType();
-                
-                if (t1 is string s)
-                    type = new CodeTypeReference(s);
+                if (_actionType != null)
+                {
+                    var t1 = _actionType();
 
-                else if (t1 is Type i)
-                    type = new CodeTypeReference(i);
+                    if (t1 is string s)
+                        type = new CodeTypeReference(s);
+
+                    else if (t1 is Type i)
+                        type = new CodeTypeReference(i);
+                }
+                else
+                    type = new CodeTypeReference(typeof(void));
 
                 if (ctx.CurrentConfigurationMethod.Generate)
                 {
@@ -123,7 +128,7 @@ namespace Bb.Generators
         protected MemberAttributes _attributes;
         private Func<object> _actionType;
         private Func<object, string> _nameOfMethod;
-        private Action<CodeMemberMethod> _body;
+        protected Action<CodeMemberMethod> _body;
 
     }
 

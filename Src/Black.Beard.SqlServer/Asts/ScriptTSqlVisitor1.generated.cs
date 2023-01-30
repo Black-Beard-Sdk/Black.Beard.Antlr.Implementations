@@ -14,6 +14,7 @@ namespace Bb.Parsers
     using Bb.Asts;
     using Antlr4.Runtime.Misc;
     using Antlr4.Runtime.Tree;
+    using System.Collections;
     
     
     public partial class ScriptTSqlVisitor
@@ -22,3672 +23,1795 @@ namespace Bb.Parsers
         public override AstRoot VisitTsql_file(TSqlParser.Tsql_fileContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTsqlfile(context, list);
+            return new AstTsqlFile(context, list);
         }
         
         public override AstRoot VisitBatch(TSqlParser.BatchContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstBatch(context, list);
         }
         
-        public override AstRoot VisitBlock_statement(TSqlParser.Block_statementContext context)
+        public override AstRoot VisitSql_clause(TSqlParser.Sql_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBlockstatement(context, list);
+            return new AstSqlClause(context, list);
         }
         
         public override AstRoot VisitBreak_statement(TSqlParser.Break_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBreakstatement(context, list);
+            return new AstBreakStatement(context, list);
         }
         
         public override AstRoot VisitContinue_statement(TSqlParser.Continue_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstContinuestatement(context, list);
+            return new AstContinueStatement(context, list);
         }
         
         public override AstRoot VisitGoto_statement(TSqlParser.Goto_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGotostatement(context, list);
-        }
-        
-        public override AstRoot VisitReturn_statement(TSqlParser.Return_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstReturnstatement(context, list);
-        }
-        
-        public override AstRoot VisitIf_statement(TSqlParser.If_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstIfstatement(context, list);
+            return new AstGotoStatement(context, list);
         }
         
         public override AstRoot VisitThrow_statement(TSqlParser.Throw_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstThrowstatement(context, list);
+            return new AstThrowStatement(context, list);
         }
         
         public override AstRoot VisitThrow_error_number(TSqlParser.Throw_error_numberContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstThrowerrornumber(context, list);
+            return new AstThrowErrorNumber(context, list);
         }
         
         public override AstRoot VisitThrow_message(TSqlParser.Throw_messageContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstThrowmessage(context, list);
+            return new AstThrowMessage(context, list);
         }
         
         public override AstRoot VisitThrow_state(TSqlParser.Throw_stateContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstThrowstate(context, list);
+            return new AstThrowState(context, list);
         }
         
         public override AstRoot VisitTry_catch_statement(TSqlParser.Try_catch_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTrycatchstatement(context, list);
-        }
-        
-        public override AstRoot VisitWaitfor_statement(TSqlParser.Waitfor_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWaitforstatement(context, list);
-        }
-        
-        public override AstRoot VisitWhile_statement(TSqlParser.While_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWhilestatement(context, list);
+            return new AstTryCatchStatement(context, list);
         }
         
         public override AstRoot VisitPrint_statement(TSqlParser.Print_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPrintstatement(context, list);
+            return new AstPrintStatement(context, list);
         }
         
         public override AstRoot VisitRaiseerror_statement(TSqlParser.Raiseerror_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRaiseerrorstatement(context, list);
+            return new AstRaiseerrorStatement(context, list);
         }
         
         public override AstRoot VisitEmpty_statement(TSqlParser.Empty_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEmptystatement(context, list);
-        }
-        
-        public override AstRoot VisitAlter_application_role(TSqlParser.Alter_application_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterapplicationrole(context, list);
-        }
-        
-        public override AstRoot VisitCreate_application_role(TSqlParser.Create_application_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateapplicationrole(context, list);
-        }
-        
-        public override AstRoot VisitDrop_aggregate(TSqlParser.Drop_aggregateContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropaggregate(context, list);
-        }
-        
-        public override AstRoot VisitDrop_application_role(TSqlParser.Drop_application_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropapplicationrole(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly(TSqlParser.Alter_assemblyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassembly(context, list);
+            return new AstEmptyStatement(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_start(TSqlParser.Alter_assembly_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblystart(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_clause(TSqlParser.Alter_assembly_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblyclause(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_from_clause(TSqlParser.Alter_assembly_from_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblyfromclause(context, list);
+            return new AstAlterAssemblyStart(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_from_clause_start(TSqlParser.Alter_assembly_from_clause_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblyfromclausestart(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_drop_clause(TSqlParser.Alter_assembly_drop_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblydropclause(context, list);
+            return new AstAlterAssemblyFromClauseStart(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_drop_multiple_files(TSqlParser.Alter_assembly_drop_multiple_filesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblydropmultiplefiles(context, list);
+            return new AstAlterAssemblyDropMultipleFiles(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_drop(TSqlParser.Alter_assembly_dropContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblydrop(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_add_clause(TSqlParser.Alter_assembly_add_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblyaddclause(context, list);
+            return new AstAlterAssemblyDrop(context, list);
         }
         
         public override AstRoot VisitAlter_asssembly_add_clause_start(TSqlParser.Alter_asssembly_add_clause_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterasssemblyaddclausestart(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_client_file_clause(TSqlParser.Alter_assembly_client_file_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblyclientfileclause(context, list);
+            return new AstAlterAsssemblyAddClauseStart(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_file_name(TSqlParser.Alter_assembly_file_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblyfilename(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_file_bits(TSqlParser.Alter_assembly_file_bitsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblyfilebits(context, list);
+            return new AstAlterAssemblyFileName(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_as(TSqlParser.Alter_assembly_asContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblyas(context, list);
-        }
-        
-        public override AstRoot VisitAlter_assembly_with_clause(TSqlParser.Alter_assembly_with_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterassemblywithclause(context, list);
+            return new AstAlterAssemblyAs(context, list);
         }
         
         public override AstRoot VisitAlter_assembly_with(TSqlParser.Alter_assembly_withContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterassemblywith(context, list);
+            return new AstAlterAssemblyWith(context, list);
         }
         
         public override AstRoot VisitClient_assembly_specifier(TSqlParser.Client_assembly_specifierContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstClientassemblyspecifier(context, list);
+            return new AstClientAssemblySpecifier(context, list);
         }
         
         public override AstRoot VisitAssembly_option(TSqlParser.Assembly_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAssemblyoption(context, list);
-        }
-        
-        public override AstRoot VisitNetwork_file_share(TSqlParser.Network_file_shareContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNetworkfileshare(context, list);
+            return new AstAssemblyOption(context, list);
         }
         
         public override AstRoot VisitNetwork_file_start(TSqlParser.Network_file_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstNetworkfilestart(context, list);
+            return new AstNetworkFileStart(context, list);
         }
         
         public override AstRoot VisitFile_path(TSqlParser.File_pathContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFilepath(context, list);
+            return new AstFilePath(context, list);
         }
         
         public override AstRoot VisitFile_directory_path_separator(TSqlParser.File_directory_path_separatorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFiledirectorypathseparator(context, list);
-        }
-        
-        public override AstRoot VisitLocal_file(TSqlParser.Local_fileContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLocalfile(context, list);
+            return new AstFileDirectoryPathSeparator(context, list);
         }
         
         public override AstRoot VisitLocal_drive(TSqlParser.Local_driveContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstLocaldrive(context, list);
+            return new AstLocalDrive(context, list);
         }
         
         public override AstRoot VisitMultiple_local_files(TSqlParser.Multiple_local_filesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMultiplelocalfiles(context, list);
+            return new AstMultipleLocalFiles(context, list);
         }
         
         public override AstRoot VisitMultiple_local_file_start(TSqlParser.Multiple_local_file_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMultiplelocalfilestart(context, list);
+            return new AstMultipleLocalFileStart(context, list);
         }
         
-        public override AstRoot VisitCreate_assembly(TSqlParser.Create_assemblyContext context)
+        public override AstRoot VisitBinary_content_nexts(TSqlParser.Binary_content_nextsContext context)
+        {
+            TSqlParser.Binary_content_nextContext[] source = context.binary_content_next();
+            AstBinaryContentNexts list = new AstBinaryContentNexts(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Binary_content_nextContext item = ((TSqlParser.Binary_content_nextContext)(enumerator.Current));
+                AstBinaryContentNext acceptResult = ((AstBinaryContentNext)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateassembly(context, list);
+            return new AstBinaryContent(context, list);
         }
         
         public override AstRoot VisitDrop_assembly(TSqlParser.Drop_assemblyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropassembly(context, list);
-        }
-        
-        public override AstRoot VisitAlter_asymmetric_key(TSqlParser.Alter_asymmetric_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterasymmetrickey(context, list);
+            return new AstDropAssembly(context, list);
         }
         
         public override AstRoot VisitAlter_asymmetric_key_start(TSqlParser.Alter_asymmetric_key_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterasymmetrickeystart(context, list);
-        }
-        
-        public override AstRoot VisitAsymmetric_key_option(TSqlParser.Asymmetric_key_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAsymmetrickeyoption(context, list);
+            return new AstAlterAsymmetricKeyStart(context, list);
         }
         
         public override AstRoot VisitAsymmetric_key_option_start(TSqlParser.Asymmetric_key_option_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAsymmetrickeyoptionstart(context, list);
+            return new AstAsymmetricKeyOptionStart(context, list);
         }
         
         public override AstRoot VisitAsymmetric_key_password_change_option(TSqlParser.Asymmetric_key_password_change_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAsymmetrickeypasswordchangeoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_asymmetric_key(TSqlParser.Create_asymmetric_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateasymmetrickey(context, list);
+            return new AstAsymmetricKeyPasswordChangeOption(context, list);
         }
         
         public override AstRoot VisitDrop_asymmetric_key(TSqlParser.Drop_asymmetric_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropasymmetrickey(context, list);
-        }
-        
-        public override AstRoot VisitAlter_authorization(TSqlParser.Alter_authorizationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterauthorization(context, list);
+            return new AstDropAsymmetricKey(context, list);
         }
         
         public override AstRoot VisitAuthorization_grantee(TSqlParser.Authorization_granteeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAuthorizationgrantee(context, list);
+            return new AstAuthorizationGrantee(context, list);
         }
         
         public override AstRoot VisitEntity_to(TSqlParser.Entity_toContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEntityto(context, list);
+            return new AstEntityTo(context, list);
         }
         
         public override AstRoot VisitColon_colon(TSqlParser.Colon_colonContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColoncolon(context, list);
+            return new AstColonColon(context, list);
         }
         
         public override AstRoot VisitAlter_authorization_start(TSqlParser.Alter_authorization_startContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterauthorizationstart(context, list);
-        }
-        
-        public override AstRoot VisitAlter_authorization_for_sql_database(TSqlParser.Alter_authorization_for_sql_databaseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterauthorizationforsqldatabase(context, list);
-        }
-        
-        public override AstRoot VisitAlter_authorization_for_azure_dw(TSqlParser.Alter_authorization_for_azure_dwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterauthorizationforazuredw(context, list);
-        }
-        
-        public override AstRoot VisitAlter_authorization_for_parallel_dw(TSqlParser.Alter_authorization_for_parallel_dwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterauthorizationforparalleldw(context, list);
+            return new AstAlterAuthorizationStart(context, list);
         }
         
         public override AstRoot VisitClass_type(TSqlParser.Class_typeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstClasstype(context, list);
+            return new AstClassType(context, list);
         }
         
         public override AstRoot VisitClass_type_for_sql_database(TSqlParser.Class_type_for_sql_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstClasstypeforsqldatabase(context, list);
+            return new AstClassTypeForSqlDatabase(context, list);
         }
         
         public override AstRoot VisitClass_type_for_azure_dw(TSqlParser.Class_type_for_azure_dwContext context)
         {
-            return new AstClasstypeforazuredw(context, context.GetText());
+            return new AstClassTypeForAzureDw(context, context.GetText());
         }
         
         public override AstRoot VisitClass_type_for_parallel_dw(TSqlParser.Class_type_for_parallel_dwContext context)
         {
-            return new AstClasstypeforparalleldw(context, context.GetText());
+            return new AstClassTypeForParallelDw(context, context.GetText());
         }
         
         public override AstRoot VisitClass_type_for_grant(TSqlParser.Class_type_for_grantContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstClasstypeforgrant(context, list);
-        }
-        
-        public override AstRoot VisitDrop_availability_group(TSqlParser.Drop_availability_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropavailabilitygroup(context, list);
-        }
-        
-        public override AstRoot VisitAlter_availability_group(TSqlParser.Alter_availability_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlteravailabilitygroup(context, list);
-        }
-        
-        public override AstRoot VisitAlter_availability_group_start(TSqlParser.Alter_availability_group_startContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlteravailabilitygroupstart(context, list);
+            return new AstClassTypeForGrant(context, list);
         }
         
         public override AstRoot VisitAlter_availability_group_options(TSqlParser.Alter_availability_group_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlteravailabilitygroupoptions(context, list);
+            return new AstAlterAvailabilityGroupOptions(context, list);
         }
         
         public override AstRoot VisitServer_instance(TSqlParser.Server_instanceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstServerinstance(context, list);
+            return new AstServerInstance(context, list);
         }
         
         public override AstRoot VisitIp_v4_failover(TSqlParser.Ip_v4_failoverContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstIpv4failover(context, list);
+            return new AstIpV4Failover(context, list);
         }
         
         public override AstRoot VisitIp_v6_failover(TSqlParser.Ip_v6_failoverContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstIpv6failover(context, list);
+            return new AstIpV6Failover(context, list);
         }
         
         public override AstRoot VisitCreate_or_alter_broker_priority(TSqlParser.Create_or_alter_broker_priorityContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateoralterbrokerpriority(context, list);
+            return new AstCreateOrAlterBrokerPriority(context, list);
         }
         
         public override AstRoot VisitDrop_broker_priority(TSqlParser.Drop_broker_priorityContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropbrokerpriority(context, list);
-        }
-        
-        public override AstRoot VisitAlter_certificate(TSqlParser.Alter_certificateContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltercertificate(context, list);
-        }
-        
-        public override AstRoot VisitAlter_column_encryption_key(TSqlParser.Alter_column_encryption_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltercolumnencryptionkey(context, list);
-        }
-        
-        public override AstRoot VisitCreate_column_encryption_key(TSqlParser.Create_column_encryption_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecolumnencryptionkey(context, list);
-        }
-        
-        public override AstRoot VisitDrop_certificate(TSqlParser.Drop_certificateContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropcertificate(context, list);
-        }
-        
-        public override AstRoot VisitDrop_column_encryption_key(TSqlParser.Drop_column_encryption_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropcolumnencryptionkey(context, list);
-        }
-        
-        public override AstRoot VisitDrop_column_master_key(TSqlParser.Drop_column_master_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropcolumnmasterkey(context, list);
+            return new AstDropBrokerPriority(context, list);
         }
         
         public override AstRoot VisitDrop_contract(TSqlParser.Drop_contractContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropcontract(context, list);
-        }
-        
-        public override AstRoot VisitDrop_credential(TSqlParser.Drop_credentialContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropcredential(context, list);
-        }
-        
-        public override AstRoot VisitDrop_cryptograhic_provider(TSqlParser.Drop_cryptograhic_providerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropcryptograhicprovider(context, list);
+            return new AstDropContract(context, list);
         }
         
         public override AstRoot VisitDrop_database(TSqlParser.Drop_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropdatabase(context, list);
-        }
-        
-        public override AstRoot VisitDrop_database_audit_specification(TSqlParser.Drop_database_audit_specificationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropdatabaseauditspecification(context, list);
+            return new AstDropDatabase(context, list);
         }
         
         public override AstRoot VisitDrop_database_encryption_key(TSqlParser.Drop_database_encryption_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropdatabaseencryptionkey(context, list);
-        }
-        
-        public override AstRoot VisitDrop_database_scoped_credential(TSqlParser.Drop_database_scoped_credentialContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropdatabasescopedcredential(context, list);
+            return new AstDropDatabaseEncryptionKey(context, list);
         }
         
         public override AstRoot VisitDrop_default(TSqlParser.Drop_defaultContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropdefault(context, list);
-        }
-        
-        public override AstRoot VisitDrop_endpoint(TSqlParser.Drop_endpointContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropendpoint(context, list);
-        }
-        
-        public override AstRoot VisitDrop_external_data_source(TSqlParser.Drop_external_data_sourceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropexternaldatasource(context, list);
-        }
-        
-        public override AstRoot VisitDrop_external_file_format(TSqlParser.Drop_external_file_formatContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropexternalfileformat(context, list);
-        }
-        
-        public override AstRoot VisitDrop_external_library(TSqlParser.Drop_external_libraryContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropexternallibrary(context, list);
-        }
-        
-        public override AstRoot VisitDrop_external_resource_pool(TSqlParser.Drop_external_resource_poolContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropexternalresourcepool(context, list);
-        }
-        
-        public override AstRoot VisitDrop_external_table(TSqlParser.Drop_external_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropexternaltable(context, list);
+            return new AstDropDefault(context, list);
         }
         
         public override AstRoot VisitDrop_event_notifications(TSqlParser.Drop_event_notificationsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropeventnotifications(context, list);
-        }
-        
-        public override AstRoot VisitDrop_event_session(TSqlParser.Drop_event_sessionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropeventsession(context, list);
-        }
-        
-        public override AstRoot VisitDrop_fulltext_catalog(TSqlParser.Drop_fulltext_catalogContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropfulltextcatalog(context, list);
-        }
-        
-        public override AstRoot VisitDrop_fulltext_index(TSqlParser.Drop_fulltext_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropfulltextindex(context, list);
-        }
-        
-        public override AstRoot VisitDrop_fulltext_stoplist(TSqlParser.Drop_fulltext_stoplistContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropfulltextstoplist(context, list);
-        }
-        
-        public override AstRoot VisitDrop_login(TSqlParser.Drop_loginContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroplogin(context, list);
+            return new AstDropEventNotifications(context, list);
         }
         
         public override AstRoot VisitDrop_master_key(TSqlParser.Drop_master_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropmasterkey(context, list);
-        }
-        
-        public override AstRoot VisitDrop_message_type(TSqlParser.Drop_message_typeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropmessagetype(context, list);
-        }
-        
-        public override AstRoot VisitMessage_type_name(TSqlParser.Message_type_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMessagetypename(context, list);
-        }
-        
-        public override AstRoot VisitDrop_partition_function(TSqlParser.Drop_partition_functionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroppartitionfunction(context, list);
-        }
-        
-        public override AstRoot VisitPartition_function_name(TSqlParser.Partition_function_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPartitionfunctionname(context, list);
-        }
-        
-        public override AstRoot VisitDrop_partition_scheme(TSqlParser.Drop_partition_schemeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroppartitionscheme(context, list);
-        }
-        
-        public override AstRoot VisitPartition_scheme_name(TSqlParser.Partition_scheme_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPartitionschemename(context, list);
-        }
-        
-        public override AstRoot VisitDrop_queue(TSqlParser.Drop_queueContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropqueue(context, list);
-        }
-        
-        public override AstRoot VisitDrop_remote_service_binding(TSqlParser.Drop_remote_service_bindingContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropremoteservicebinding(context, list);
-        }
-        
-        public override AstRoot VisitDrop_resource_pool(TSqlParser.Drop_resource_poolContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropresourcepool(context, list);
-        }
-        
-        public override AstRoot VisitDrop_db_role(TSqlParser.Drop_db_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropdbrole(context, list);
-        }
-        
-        public override AstRoot VisitDrop_route(TSqlParser.Drop_routeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroproute(context, list);
+            return new AstDropMasterKey(context, list);
         }
         
         public override AstRoot VisitDrop_rule(TSqlParser.Drop_ruleContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDroprule(context, list);
-        }
-        
-        public override AstRoot VisitDrop_schema(TSqlParser.Drop_schemaContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropschema(context, list);
-        }
-        
-        public override AstRoot VisitDrop_search_property_list(TSqlParser.Drop_search_property_listContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropsearchpropertylist(context, list);
-        }
-        
-        public override AstRoot VisitDrop_security_policy(TSqlParser.Drop_security_policyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropsecuritypolicy(context, list);
+            return new AstDropRule(context, list);
         }
         
         public override AstRoot VisitDrop_sequence(TSqlParser.Drop_sequenceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropsequence(context, list);
-        }
-        
-        public override AstRoot VisitDrop_server_audit(TSqlParser.Drop_server_auditContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropserveraudit(context, list);
-        }
-        
-        public override AstRoot VisitDrop_server_audit_specification(TSqlParser.Drop_server_audit_specificationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropserverauditspecification(context, list);
-        }
-        
-        public override AstRoot VisitDrop_server_role(TSqlParser.Drop_server_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropserverrole(context, list);
-        }
-        
-        public override AstRoot VisitDrop_service(TSqlParser.Drop_serviceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropservice(context, list);
-        }
-        
-        public override AstRoot VisitDrop_signature(TSqlParser.Drop_signatureContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropsignature(context, list);
-        }
-        
-        public override AstRoot VisitDrop_statistics_name_azure_dw_and_pdw(TSqlParser.Drop_statistics_name_azure_dw_and_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropstatisticsnameazuredwandpdw(context, list);
-        }
-        
-        public override AstRoot VisitDrop_symmetric_key(TSqlParser.Drop_symmetric_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropsymmetrickey(context, list);
-        }
-        
-        public override AstRoot VisitDrop_synonym(TSqlParser.Drop_synonymContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropsynonym(context, list);
-        }
-        
-        public override AstRoot VisitDrop_user(TSqlParser.Drop_userContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropuser(context, list);
-        }
-        
-        public override AstRoot VisitDrop_workload_group(TSqlParser.Drop_workload_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropworkloadgroup(context, list);
-        }
-        
-        public override AstRoot VisitDrop_xml_schema_collection(TSqlParser.Drop_xml_schema_collectionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropxmlschemacollection(context, list);
+            return new AstDropSequence(context, list);
         }
         
         public override AstRoot VisitDisable_trigger(TSqlParser.Disable_triggerContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDisabletrigger(context, list);
+            return new AstDisableTrigger(context, list);
         }
         
         public override AstRoot VisitEnable_trigger(TSqlParser.Enable_triggerContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEnabletrigger(context, list);
-        }
-        
-        public override AstRoot VisitLock_table(TSqlParser.Lock_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLocktable(context, list);
-        }
-        
-        public override AstRoot VisitTruncate_table(TSqlParser.Truncate_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTruncatetable(context, list);
+            return new AstEnableTrigger(context, list);
         }
         
         public override AstRoot VisitCreate_column_master_key(TSqlParser.Create_column_master_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatecolumnmasterkey(context, list);
-        }
-        
-        public override AstRoot VisitAlter_credential(TSqlParser.Alter_credentialContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltercredential(context, list);
-        }
-        
-        public override AstRoot VisitCreate_credential(TSqlParser.Create_credentialContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecredential(context, list);
-        }
-        
-        public override AstRoot VisitAlter_cryptographic_provider(TSqlParser.Alter_cryptographic_providerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltercryptographicprovider(context, list);
-        }
-        
-        public override AstRoot VisitCreate_cryptographic_provider(TSqlParser.Create_cryptographic_providerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecryptographicprovider(context, list);
-        }
-        
-        public override AstRoot VisitCreate_event_notification(TSqlParser.Create_event_notificationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateeventnotification(context, list);
-        }
-        
-        public override AstRoot VisitCreate_or_alter_event_session(TSqlParser.Create_or_alter_event_sessionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateoraltereventsession(context, list);
+            return new AstCreateColumnMasterKey(context, list);
         }
         
         public override AstRoot VisitStart_stop(TSqlParser.Start_stopContext context)
         {
-            return new AstStartstop(context, context.GetText());
+            return new AstStartStop(context, context.GetText());
         }
         
         public override AstRoot VisitEvent_session_predicate_expression(TSqlParser.Event_session_predicate_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEventsessionpredicateexpression(context, list);
+            return new AstEventSessionPredicateExpression(context, list);
         }
         
         public override AstRoot VisitEvent_session_predicate_factor(TSqlParser.Event_session_predicate_factorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEventsessionpredicatefactor(context, list);
+            return new AstEventSessionPredicateFactor(context, list);
         }
         
         public override AstRoot VisitEvent_session_predicate_leaf(TSqlParser.Event_session_predicate_leafContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEventsessionpredicateleaf(context, list);
+            return new AstEventSessionPredicateLeaf(context, list);
         }
         
         public override AstRoot VisitAlter_external_data_source(TSqlParser.Alter_external_data_sourceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterexternaldatasource(context, list);
-        }
-        
-        public override AstRoot VisitAlter_external_library(TSqlParser.Alter_external_libraryContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterexternallibrary(context, list);
-        }
-        
-        public override AstRoot VisitCreate_external_library(TSqlParser.Create_external_libraryContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateexternallibrary(context, list);
+            return new AstAlterExternalDataSource(context, list);
         }
         
         public override AstRoot VisitAlter_external_resource_pool(TSqlParser.Alter_external_resource_poolContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterexternalresourcepool(context, list);
-        }
-        
-        public override AstRoot VisitCreate_external_resource_pool(TSqlParser.Create_external_resource_poolContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateexternalresourcepool(context, list);
-        }
-        
-        public override AstRoot VisitAlter_fulltext_catalog(TSqlParser.Alter_fulltext_catalogContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterfulltextcatalog(context, list);
-        }
-        
-        public override AstRoot VisitCreate_fulltext_catalog(TSqlParser.Create_fulltext_catalogContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatefulltextcatalog(context, list);
-        }
-        
-        public override AstRoot VisitAlter_fulltext_stoplist(TSqlParser.Alter_fulltext_stoplistContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterfulltextstoplist(context, list);
-        }
-        
-        public override AstRoot VisitCreate_fulltext_stoplist(TSqlParser.Create_fulltext_stoplistContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatefulltextstoplist(context, list);
-        }
-        
-        public override AstRoot VisitAlter_login_sql_server(TSqlParser.Alter_login_sql_serverContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterloginsqlserver(context, list);
-        }
-        
-        public override AstRoot VisitCreate_login_sql_server(TSqlParser.Create_login_sql_serverContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateloginsqlserver(context, list);
-        }
-        
-        public override AstRoot VisitAlter_login_azure_sql(TSqlParser.Alter_login_azure_sqlContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterloginazuresql(context, list);
-        }
-        
-        public override AstRoot VisitCreate_login_azure_sql(TSqlParser.Create_login_azure_sqlContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateloginazuresql(context, list);
-        }
-        
-        public override AstRoot VisitAlter_login_azure_sql_dw_and_pdw(TSqlParser.Alter_login_azure_sql_dw_and_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterloginazuresqldwandpdw(context, list);
+            return new AstAlterExternalResourcePool(context, list);
         }
         
         public override AstRoot VisitEnable_disable(TSqlParser.Enable_disableContext context)
         {
-            return new AstEnabledisable(context, context.GetText());
-        }
-        
-        public override AstRoot VisitCreate_login_pdw(TSqlParser.Create_login_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateloginpdw(context, list);
+            return new AstEnableDisable(context, context.GetText());
         }
         
         public override AstRoot VisitAlter_master_key_sql_server(TSqlParser.Alter_master_key_sql_serverContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAltermasterkeysqlserver(context, list);
+            return new AstAlterMasterKeySqlServer(context, list);
         }
         
         public override AstRoot VisitCreate_master_key_sql_server(TSqlParser.Create_master_key_sql_serverContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatemasterkeysqlserver(context, list);
+            return new AstCreateMasterKeySqlServer(context, list);
         }
         
         public override AstRoot VisitAlter_master_key_azure_sql(TSqlParser.Alter_master_key_azure_sqlContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAltermasterkeyazuresql(context, list);
+            return new AstAlterMasterKeyAzureSql(context, list);
         }
         
         public override AstRoot VisitCreate_master_key_azure_sql(TSqlParser.Create_master_key_azure_sqlContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatemasterkeyazuresql(context, list);
-        }
-        
-        public override AstRoot VisitAlter_message_type(TSqlParser.Alter_message_typeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltermessagetype(context, list);
-        }
-        
-        public override AstRoot VisitAlter_partition_function(TSqlParser.Alter_partition_functionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterpartitionfunction(context, list);
+            return new AstCreateMasterKeyAzureSql(context, list);
         }
         
         public override AstRoot VisitSplit_or_merge(TSqlParser.Split_or_mergeContext context)
         {
-            return new AstSplitormerge(context, context.GetText());
-        }
-        
-        public override AstRoot VisitAlter_partition_scheme(TSqlParser.Alter_partition_schemeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterpartitionscheme(context, list);
-        }
-        
-        public override AstRoot VisitAlter_remote_service_binding(TSqlParser.Alter_remote_service_bindingContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterremoteservicebinding(context, list);
-        }
-        
-        public override AstRoot VisitCreate_remote_service_binding(TSqlParser.Create_remote_service_bindingContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateremoteservicebinding(context, list);
-        }
-        
-        public override AstRoot VisitCreate_resource_pool(TSqlParser.Create_resource_poolContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateresourcepool(context, list);
+            return new AstSplitOrMerge(context, context.GetText());
         }
         
         public override AstRoot VisitAlter_resource_governor(TSqlParser.Alter_resource_governorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterresourcegovernor(context, list);
-        }
-        
-        public override AstRoot VisitAlter_db_role(TSqlParser.Alter_db_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterdbrole(context, list);
+            return new AstAlterResourceGovernor(context, list);
         }
         
         public override AstRoot VisitAdd_drop(TSqlParser.Add_dropContext context)
         {
-            return new AstAdddrop(context, context.GetText());
-        }
-        
-        public override AstRoot VisitCreate_db_role(TSqlParser.Create_db_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatedbrole(context, list);
-        }
-        
-        public override AstRoot VisitCreate_route(TSqlParser.Create_routeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateroute(context, list);
-        }
-        
-        public override AstRoot VisitCreate_rule(TSqlParser.Create_ruleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreaterule(context, list);
-        }
-        
-        public override AstRoot VisitAlter_schema_sql(TSqlParser.Alter_schema_sqlContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterschemasql(context, list);
+            return new AstAddDrop(context, context.GetText());
         }
         
         public override AstRoot VisitCreate_schema(TSqlParser.Create_schemaContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateschema(context, list);
+            return new AstCreateSchema(context, list);
         }
         
         public override AstRoot VisitEnum_dml(TSqlParser.Enum_dmlContext context)
         {
-            return new AstEnumdml(context, context.GetText());
+            return new AstEnumDml(context, context.GetText());
         }
         
         public override AstRoot VisitGrant_deny(TSqlParser.Grant_denyContext context)
         {
-            return new AstGrantdeny(context, context.GetText());
-        }
-        
-        public override AstRoot VisitCreate_schema_azure_sql_dw_and_pdw(TSqlParser.Create_schema_azure_sql_dw_and_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateschemaazuresqldwandpdw(context, list);
-        }
-        
-        public override AstRoot VisitAlter_schema_azure_sql_dw_and_pdw(TSqlParser.Alter_schema_azure_sql_dw_and_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterschemaazuresqldwandpdw(context, list);
-        }
-        
-        public override AstRoot VisitCreate_search_property_list(TSqlParser.Create_search_property_listContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatesearchpropertylist(context, list);
-        }
-        
-        public override AstRoot VisitCreate_security_policy(TSqlParser.Create_security_policyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatesecuritypolicy(context, list);
-        }
-        
-        public override AstRoot VisitAlter_sequence(TSqlParser.Alter_sequenceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltersequence(context, list);
-        }
-        
-        public override AstRoot VisitCreate_sequence(TSqlParser.Create_sequenceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatesequence(context, list);
-        }
-        
-        public override AstRoot VisitAlter_server_audit(TSqlParser.Alter_server_auditContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterserveraudit(context, list);
-        }
-        
-        public override AstRoot VisitCreate_server_audit(TSqlParser.Create_server_auditContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateserveraudit(context, list);
-        }
-        
-        public override AstRoot VisitAlter_server_audit_specification(TSqlParser.Alter_server_audit_specificationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterserverauditspecification(context, list);
-        }
-        
-        public override AstRoot VisitCreate_server_audit_specification(TSqlParser.Create_server_audit_specificationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateserverauditspecification(context, list);
+            return new AstGrantDeny(context, context.GetText());
         }
         
         public override AstRoot VisitAlter_server_configuration(TSqlParser.Alter_server_configurationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterserverconfiguration(context, list);
-        }
-        
-        public override AstRoot VisitAlter_server_role(TSqlParser.Alter_server_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterserverrole(context, list);
-        }
-        
-        public override AstRoot VisitCreate_server_role(TSqlParser.Create_server_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateserverrole(context, list);
-        }
-        
-        public override AstRoot VisitAlter_server_role_pdw(TSqlParser.Alter_server_role_pdwContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterserverrolepdw(context, list);
-        }
-        
-        public override AstRoot VisitAlter_service(TSqlParser.Alter_serviceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterservice(context, list);
-        }
-        
-        public override AstRoot VisitCreate_service(TSqlParser.Create_serviceContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateservice(context, list);
+            return new AstAlterServerConfiguration(context, list);
         }
         
         public override AstRoot VisitAlter_service_master_key(TSqlParser.Alter_service_master_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterservicemasterkey(context, list);
-        }
-        
-        public override AstRoot VisitAlter_symmetric_key(TSqlParser.Alter_symmetric_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltersymmetrickey(context, list);
-        }
-        
-        public override AstRoot VisitCreate_synonym(TSqlParser.Create_synonymContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatesynonym(context, list);
-        }
-        
-        public override AstRoot VisitAlter_user(TSqlParser.Alter_userContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlteruser(context, list);
+            return new AstAlterServiceMasterKey(context, list);
         }
         
         public override AstRoot VisitCreate_user(TSqlParser.Create_userContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateuser(context, list);
+            return new AstCreateUser(context, list);
         }
         
         public override AstRoot VisitCreate_user_azure_sql_dw(TSqlParser.Create_user_azure_sql_dwContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateuserazuresqldw(context, list);
-        }
-        
-        public override AstRoot VisitAlter_user_azure_sql(TSqlParser.Alter_user_azure_sqlContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlteruserazuresql(context, list);
+            return new AstCreateUserAzureSqlDw(context, list);
         }
         
         public override AstRoot VisitAlter_workload_group(TSqlParser.Alter_workload_groupContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterworkloadgroup(context, list);
-        }
-        
-        public override AstRoot VisitCreate_workload_group(TSqlParser.Create_workload_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateworkloadgroup(context, list);
-        }
-        
-        public override AstRoot VisitCreate_xml_schema_collection(TSqlParser.Create_xml_schema_collectionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatexmlschemacollection(context, list);
-        }
-        
-        public override AstRoot VisitCreate_partition_function(TSqlParser.Create_partition_functionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatepartitionfunction(context, list);
-        }
-        
-        public override AstRoot VisitCreate_partition_scheme(TSqlParser.Create_partition_schemeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatepartitionscheme(context, list);
-        }
-        
-        public override AstRoot VisitCreate_queue(TSqlParser.Create_queueContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatequeue(context, list);
+            return new AstAlterWorkloadGroup(context, list);
         }
         
         public override AstRoot VisitQueue_settings(TSqlParser.Queue_settingsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueuesettings(context, list);
+            return new AstQueueSettings(context, list);
         }
         
         public override AstRoot VisitAlter_queue(TSqlParser.Alter_queueContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterqueue(context, list);
+            return new AstAlterQueue(context, list);
         }
         
         public override AstRoot VisitQueue_action(TSqlParser.Queue_actionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueueaction(context, list);
+            return new AstQueueAction(context, list);
         }
         
         public override AstRoot VisitQueue_rebuild_options(TSqlParser.Queue_rebuild_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueuerebuildoptions(context, list);
-        }
-        
-        public override AstRoot VisitCreate_contract(TSqlParser.Create_contractContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecontract(context, list);
-        }
-        
-        public override AstRoot VisitMessage_statement(TSqlParser.Message_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMessagestatement(context, list);
-        }
-        
-        public override AstRoot VisitMerge_statement(TSqlParser.Merge_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMergestatement(context, list);
+            return new AstQueueRebuildOptions(context, list);
         }
         
         public override AstRoot VisitWhen_matches(TSqlParser.When_matchesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWhenmatches(context, list);
+            return new AstWhenMatches(context, list);
         }
         
         public override AstRoot VisitMerge_matched(TSqlParser.Merge_matchedContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMergematched(context, list);
-        }
-        
-        public override AstRoot VisitUpdate_elem_merges(TSqlParser.Update_elem_mergesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUpdateelemmerges(context, list);
+            return new AstMergeMatched(context, list);
         }
         
         public override AstRoot VisitMerge_not_matched(TSqlParser.Merge_not_matchedContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMergenotmatched(context, list);
+            return new AstMergeNotMatched(context, list);
         }
         
-        public override AstRoot VisitDelete_statement(TSqlParser.Delete_statementContext context)
+        public override AstRoot VisitDelete_statement_from(TSqlParser.Delete_statement_fromContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDeletestatement(context, list);
-        }
-        
-        public override AstRoot VisitInsert_statement(TSqlParser.Insert_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstInsertstatement(context, list);
+            return new AstDeleteStatementFrom(context, list);
         }
         
         public override AstRoot VisitInsert_statement_value(TSqlParser.Insert_statement_valueContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstInsertstatementvalue(context, list);
+            return new AstInsertStatementValue(context, list);
         }
         
-        public override AstRoot VisitReceive_statement(TSqlParser.Receive_statementContext context)
+        public override AstRoot VisitTime(TSqlParser.TimeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstReceivestatement(context, list);
-        }
-        
-        public override AstRoot VisitSelect_statement_standalone(TSqlParser.Select_statement_standaloneContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSelectstatementstandalone(context, list);
-        }
-        
-        public override AstRoot VisitSelect_statement(TSqlParser.Select_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSelectstatement(context, list);
-        }
-        
-        public override AstRoot VisitUpdate_statement(TSqlParser.Update_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUpdatestatement(context, list);
-        }
-        
-        public override AstRoot VisitUpdate_elems(TSqlParser.Update_elemsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUpdateelems(context, list);
-        }
-        
-        public override AstRoot VisitOutput_clause(TSqlParser.Output_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOutputclause(context, list);
-        }
-        
-        public override AstRoot VisitOutput_dml_list_elems(TSqlParser.Output_dml_list_elemsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOutputdmllistelems(context, list);
-        }
-        
-        public override AstRoot VisitOutput_dml_list_elem(TSqlParser.Output_dml_list_elemContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOutputdmllistelem(context, list);
+            return new AstTime(context, list);
         }
         
         public override AstRoot VisitCreate_database(TSqlParser.Create_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatedatabase(context, list);
-        }
-        
-        public override AstRoot VisitCreate_index(TSqlParser.Create_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateindex(context, list);
-        }
-        
-        public override AstRoot VisitCreate_index_options(TSqlParser.Create_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateindexoptions(context, list);
-        }
-        
-        public override AstRoot VisitRelational_index_options(TSqlParser.Relational_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRelationalindexoptions(context, list);
+            return new AstCreateDatabase(context, list);
         }
         
         public override AstRoot VisitRelational_index_option(TSqlParser.Relational_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRelationalindexoption(context, list);
-        }
-        
-        public override AstRoot VisitAlter_index(TSqlParser.Alter_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterindex(context, list);
+            return new AstRelationalIndexOption(context, list);
         }
         
         public override AstRoot VisitResumable_index_options(TSqlParser.Resumable_index_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstResumableindexoptions(context, list);
+            return new AstResumableIndexOptions(context, list);
         }
         
         public override AstRoot VisitResumable_index_option(TSqlParser.Resumable_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstResumableindexoption(context, list);
-        }
-        
-        public override AstRoot VisitReorganize_partition(TSqlParser.Reorganize_partitionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstReorganizepartition(context, list);
+            return new AstResumableIndexOption(context, list);
         }
         
         public override AstRoot VisitReorganize_options(TSqlParser.Reorganize_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstReorganizeoptions(context, list);
+            return new AstReorganizeOptions(context, list);
         }
         
         public override AstRoot VisitReorganize_option(TSqlParser.Reorganize_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstReorganizeoption(context, list);
-        }
-        
-        public override AstRoot VisitSet_index_options(TSqlParser.Set_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSetindexoptions(context, list);
+            return new AstReorganizeOption(context, list);
         }
         
         public override AstRoot VisitSet_index_option(TSqlParser.Set_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSetindexoption(context, list);
+            return new AstSetIndexOption(context, list);
         }
         
         public override AstRoot VisitRebuild_partition(TSqlParser.Rebuild_partitionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRebuildpartition(context, list);
-        }
-        
-        public override AstRoot VisitRebuild_index_options(TSqlParser.Rebuild_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRebuildindexoptions(context, list);
+            return new AstRebuildPartition(context, list);
         }
         
         public override AstRoot VisitRebuild_index_option(TSqlParser.Rebuild_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRebuildindexoption(context, list);
-        }
-        
-        public override AstRoot VisitSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSinglepartitionrebuildindexoptions(context, list);
+            return new AstRebuildIndexOption(context, list);
         }
         
         public override AstRoot VisitSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSinglepartitionrebuildindexoption(context, list);
+            return new AstSinglePartitionRebuildIndexOption(context, list);
         }
         
         public override AstRoot VisitOn_partitions(TSqlParser.On_partitionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOnpartitions(context, list);
-        }
-        
-        public override AstRoot VisitCreate_columnstore_index(TSqlParser.Create_columnstore_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecolumnstoreindex(context, list);
-        }
-        
-        public override AstRoot VisitCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecolumnstoreindexoptions(context, list);
+            return new AstOnPartitions(context, list);
         }
         
         public override AstRoot VisitColumnstore_index_option(TSqlParser.Columnstore_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnstoreindexoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_nonclustered_columnstore_index(TSqlParser.Create_nonclustered_columnstore_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatenonclusteredcolumnstoreindex(context, list);
-        }
-        
-        public override AstRoot VisitCreate_xml_index(TSqlParser.Create_xml_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatexmlindex(context, list);
-        }
-        
-        public override AstRoot VisitXml_index_options(TSqlParser.Xml_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstXmlindexoptions(context, list);
+            return new AstColumnstoreIndexOption(context, list);
         }
         
         public override AstRoot VisitXml_index_option(TSqlParser.Xml_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstXmlindexoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_or_alter_procedure(TSqlParser.Create_or_alter_procedureContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateoralterprocedure(context, list);
-        }
-        
-        public override AstRoot VisitProcedure_options(TSqlParser.Procedure_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstProcedureoptions(context, list);
-        }
-        
-        public override AstRoot VisitAs_external_name(TSqlParser.As_external_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAsexternalname(context, list);
-        }
-        
-        public override AstRoot VisitCreate_or_alter_dml_trigger(TSqlParser.Create_or_alter_dml_triggerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateoralterdmltrigger(context, list);
-        }
-        
-        public override AstRoot VisitDml_trigger_options(TSqlParser.Dml_trigger_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDmltriggeroptions(context, list);
-        }
-        
-        public override AstRoot VisitDml_trigger_operations(TSqlParser.Dml_trigger_operationsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDmltriggeroperations(context, list);
+            return new AstXmlIndexOption(context, list);
         }
         
         public override AstRoot VisitDml_trigger_option(TSqlParser.Dml_trigger_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDmltriggeroption(context, list);
+            return new AstDmlTriggerOption(context, list);
         }
         
         public override AstRoot VisitDml_trigger_operation(TSqlParser.Dml_trigger_operationContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDmltriggeroperation(context, list);
-        }
-        
-        public override AstRoot VisitCreate_or_alter_ddl_trigger(TSqlParser.Create_or_alter_ddl_triggerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateoralterddltrigger(context, list);
+            return new AstDmlTriggerOperation(context, context.GetText());
         }
         
         public override AstRoot VisitCreate_or_alter_function(TSqlParser.Create_or_alter_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreateoralterfunction(context, list);
-        }
-        
-        public override AstRoot VisitProcedure_params(TSqlParser.Procedure_paramsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstProcedureparams(context, list);
-        }
-        
-        public override AstRoot VisitFunc_body_returns_select(TSqlParser.Func_body_returns_selectContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFuncbodyreturnsselect(context, list);
-        }
-        
-        public override AstRoot VisitFunction_options(TSqlParser.Function_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFunctionoptions(context, list);
-        }
-        
-        public override AstRoot VisitFunc_body_returns_table(TSqlParser.Func_body_returns_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFuncbodyreturnstable(context, list);
-        }
-        
-        public override AstRoot VisitFunc_body_returns_scalar(TSqlParser.Func_body_returns_scalarContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFuncbodyreturnsscalar(context, list);
-        }
-        
-        public override AstRoot VisitProcedure_param(TSqlParser.Procedure_paramContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstProcedureparam(context, list);
+            return new AstCreateOrAlterFunction(context, list);
         }
         
         public override AstRoot VisitProcedure_option(TSqlParser.Procedure_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstProcedureoption(context, list);
+            return new AstProcedureOption(context, list);
         }
         
         public override AstRoot VisitFunction_option(TSqlParser.Function_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFunctionoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_statistics(TSqlParser.Create_statisticsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatestatistics(context, list);
-        }
-        
-        public override AstRoot VisitUpdate_statistics(TSqlParser.Update_statisticsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUpdatestatistics(context, list);
-        }
-        
-        public override AstRoot VisitUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUpdatestatisticsoptions(context, list);
+            return new AstFunctionOption(context, list);
         }
         
         public override AstRoot VisitUpdate_statistics_option(TSqlParser.Update_statistics_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUpdatestatisticsoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_table(TSqlParser.Create_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatetable(context, list);
+            return new AstUpdateStatisticsOption(context, list);
         }
         
         public override AstRoot VisitTable_indices(TSqlParser.Table_indicesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTableindices(context, list);
+            return new AstTableIndices(context, list);
         }
         
         public override AstRoot VisitTable_options(TSqlParser.Table_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTableoptions(context, list);
+            return new AstTableOptions(context, list);
         }
         
         public override AstRoot VisitTable_option(TSqlParser.Table_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTableoption(context, list);
+            return new AstTableOption(context, list);
         }
         
         public override AstRoot VisitDistribution(TSqlParser.DistributionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstDistribution(context, list);
-        }
-        
-        public override AstRoot VisitCreate_table_index_options(TSqlParser.Create_table_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatetableindexoptions(context, list);
         }
         
         public override AstRoot VisitCreate_table_index_option(TSqlParser.Create_table_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatetableindexoption(context, list);
-        }
-        
-        public override AstRoot VisitCreate_view(TSqlParser.Create_viewContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateview(context, list);
+            return new AstCreateTableIndexOption(context, list);
         }
         
         public override AstRoot VisitView_attributes(TSqlParser.View_attributesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstViewattributes(context, list);
+            return new AstViewAttributes(context, list);
         }
         
         public override AstRoot VisitView_attribute(TSqlParser.View_attributeContext context)
         {
-            return new AstViewattribute(context, context.GetText());
-        }
-        
-        public override AstRoot VisitAlter_table(TSqlParser.Alter_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltertable(context, list);
-        }
-        
-        public override AstRoot VisitIds_(TSqlParser.Ids_Context context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstIds(context, list);
+            return new AstViewAttribute(context, context.GetText());
         }
         
         public override AstRoot VisitSwitch_partition(TSqlParser.Switch_partitionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSwitchpartition(context, list);
+            return new AstSwitchPartition(context, list);
         }
         
         public override AstRoot VisitLow_priority_lock_wait(TSqlParser.Low_priority_lock_waitContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstLowprioritylockwait(context, list);
+            return new AstLowPriorityLockWait(context, list);
         }
         
         public override AstRoot VisitAlter_database(TSqlParser.Alter_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAlterdatabase(context, list);
+            return new AstAlterDatabase(context, list);
         }
         
         public override AstRoot VisitAdd_or_modify_files(TSqlParser.Add_or_modify_filesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAddormodifyfiles(context, list);
-        }
-        
-        public override AstRoot VisitFilespecs(TSqlParser.FilespecsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilespecs(context, list);
-        }
-        
-        public override AstRoot VisitFilespec(TSqlParser.FilespecContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilespec(context, list);
+            return new AstAddOrModifyFiles(context, list);
         }
         
         public override AstRoot VisitAdd_or_modify_filegroups(TSqlParser.Add_or_modify_filegroupsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAddormodifyfilegroups(context, list);
+            return new AstAddOrModifyFilegroups(context, list);
         }
         
         public override AstRoot VisitFilegroup_updatability_option(TSqlParser.Filegroup_updatability_optionContext context)
         {
-            return new AstFilegroupupdatabilityoption(context, context.GetText());
+            return new AstFilegroupUpdatabilityOption(context, context.GetText());
         }
         
         public override AstRoot VisitDatabase_optionspec(TSqlParser.Database_optionspecContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDatabaseoptionspec(context, list);
+            return new AstDatabaseOptionspec(context, list);
         }
         
         public override AstRoot VisitAuto_option(TSqlParser.Auto_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAutooption(context, list);
+            return new AstAutoOption(context, list);
         }
         
         public override AstRoot VisitChange_tracking_option(TSqlParser.Change_tracking_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstChangetrackingoption(context, list);
-        }
-        
-        public override AstRoot VisitChange_tracking_option_lists(TSqlParser.Change_tracking_option_listsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstChangetrackingoptionlists(context, list);
+            return new AstChangeTrackingOption(context, list);
         }
         
         public override AstRoot VisitChange_tracking_option_list(TSqlParser.Change_tracking_option_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstChangetrackingoptionlist(context, list);
+            return new AstChangeTrackingOptionList(context, list);
         }
         
         public override AstRoot VisitContainment_option(TSqlParser.Containment_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstContainmentoption(context, list);
+            return new AstContainmentOption(context, list);
         }
         
         public override AstRoot VisitCursor_option(TSqlParser.Cursor_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCursoroption(context, list);
+            return new AstCursorOption(context, list);
         }
         
         public override AstRoot VisitLocal_global(TSqlParser.Local_globalContext context)
         {
-            return new AstLocalglobal(context, context.GetText());
-        }
-        
-        public override AstRoot VisitAlter_endpoint(TSqlParser.Alter_endpointContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlterendpoint(context, list);
+            return new AstLocalGlobal(context, context.GetText());
         }
         
         public override AstRoot VisitMirroring_set_option(TSqlParser.Mirroring_set_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMirroringsetoption(context, list);
+            return new AstMirroringSetOption(context, list);
         }
         
         public override AstRoot VisitMirroring_partner(TSqlParser.Mirroring_partnerContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMirroringpartner(context, list);
+            return new AstMirroringPartner(context, list);
         }
         
         public override AstRoot VisitMirroring_witness(TSqlParser.Mirroring_witnessContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMirroringwitness(context, list);
+            return new AstMirroringWitness(context, list);
         }
         
         public override AstRoot VisitWitness_partner_equal(TSqlParser.Witness_partner_equalContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWitnesspartnerequal(context, list);
+            return new AstWitnessPartnerEqual(context, list);
         }
         
         public override AstRoot VisitPartner_option(TSqlParser.Partner_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPartneroption(context, list);
+            return new AstPartnerOption(context, list);
         }
         
         public override AstRoot VisitWitness_option(TSqlParser.Witness_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWitnessoption(context, list);
-        }
-        
-        public override AstRoot VisitPartner_server(TSqlParser.Partner_serverContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPartnerserver(context, list);
+            return new AstWitnessOption(context, list);
         }
         
         public override AstRoot VisitMirroring_host_port_seperator(TSqlParser.Mirroring_host_port_seperatorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstMirroringhostportseperator(context, list);
+            return new AstMirroringHostPortSeperator(context, list);
         }
         
         public override AstRoot VisitPartner_server_tcp_prefix(TSqlParser.Partner_server_tcp_prefixContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPartnerservertcpprefix(context, list);
+            return new AstPartnerServerTcpPrefix(context, list);
         }
         
         public override AstRoot VisitPort_number(TSqlParser.Port_numberContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPortnumber(context, list);
+            return new AstPortNumber(context, list);
         }
         
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstHost(context, list);
         }
         
-        public override AstRoot VisitDate_correlation_optimization_option(TSqlParser.Date_correlation_optimization_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDatecorrelationoptimizationoption(context, list);
-        }
-        
-        public override AstRoot VisitDb_encryption_option(TSqlParser.Db_encryption_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDbencryptionoption(context, list);
-        }
-        
         public override AstRoot VisitDb_state_option(TSqlParser.Db_state_optionContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDbstateoption(context, list);
+            return new AstDbStateOption(context, context.GetText());
         }
         
         public override AstRoot VisitDb_update_option(TSqlParser.Db_update_optionContext context)
         {
-            return new AstDbupdateoption(context, context.GetText());
+            return new AstDbUpdateOption(context, context.GetText());
         }
         
         public override AstRoot VisitDb_user_access_option(TSqlParser.Db_user_access_optionContext context)
         {
-            return new AstDbuseraccessoption(context, context.GetText());
+            return new AstDbUserAccessOption(context, context.GetText());
         }
         
         public override AstRoot VisitDelayed_durability_option(TSqlParser.Delayed_durability_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDelayeddurabilityoption(context, list);
+            return new AstDelayedDurabilityOption(context, list);
         }
         
         public override AstRoot VisitExternal_access_option(TSqlParser.External_access_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExternalaccessoption(context, list);
+            return new AstExternalAccessOption(context, list);
         }
         
         public override AstRoot VisitId_or_string(TSqlParser.Id_or_stringContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstIdorstring(context, list);
+            return new AstIdOrString(context, list);
         }
         
         public override AstRoot VisitHadr_options(TSqlParser.Hadr_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstHadroptions(context, list);
-        }
-        
-        public override AstRoot VisitMixed_page_allocation_option(TSqlParser.Mixed_page_allocation_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMixedpageallocationoption(context, list);
+            return new AstHadrOptions(context, list);
         }
         
         public override AstRoot VisitParameterization_option(TSqlParser.Parameterization_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstParameterizationoption(context, list);
+            return new AstParameterizationOption(context, list);
         }
         
         public override AstRoot VisitRecovery_option(TSqlParser.Recovery_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRecoveryoption(context, list);
+            return new AstRecoveryOption(context, list);
         }
         
         public override AstRoot VisitService_broker_option(TSqlParser.Service_broker_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstServicebrokeroption(context, list);
+            return new AstServiceBrokerOption(context, list);
         }
         
         public override AstRoot VisitSnapshot_option(TSqlParser.Snapshot_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSnapshotoption(context, list);
+            return new AstSnapshotOption(context, list);
         }
         
         public override AstRoot VisitSql_option(TSqlParser.Sql_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSqloption(context, list);
+            return new AstSqlOption(context, list);
         }
         
         public override AstRoot VisitTarget_recovery_time_option(TSqlParser.Target_recovery_time_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTargetrecoverytimeoption(context, list);
+            return new AstTargetRecoveryTimeOption(context, list);
         }
         
         public override AstRoot VisitTermination(TSqlParser.TerminationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstTermination(context, list);
         }
@@ -3695,208 +1819,59 @@ namespace Bb.Parsers
         public override AstRoot VisitDrop_index(TSqlParser.Drop_indexContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropindex(context, list);
-        }
-        
-        public override AstRoot VisitDrop_relational_or_xml_or_spatial_indexs(TSqlParser.Drop_relational_or_xml_or_spatial_indexsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroprelationalorxmlorspatialindexs(context, list);
-        }
-        
-        public override AstRoot VisitDrop_backward_compatible_indexs(TSqlParser.Drop_backward_compatible_indexsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropbackwardcompatibleindexs(context, list);
-        }
-        
-        public override AstRoot VisitDrop_relational_or_xml_or_spatial_index(TSqlParser.Drop_relational_or_xml_or_spatial_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroprelationalorxmlorspatialindex(context, list);
-        }
-        
-        public override AstRoot VisitDrop_backward_compatible_index(TSqlParser.Drop_backward_compatible_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropbackwardcompatibleindex(context, list);
-        }
-        
-        public override AstRoot VisitDrop_procedure(TSqlParser.Drop_procedureContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropprocedure(context, list);
-        }
-        
-        public override AstRoot VisitFunc_proc_name_schemas(TSqlParser.Func_proc_name_schemasContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFuncprocnameschemas(context, list);
-        }
-        
-        public override AstRoot VisitDrop_dml_trigger(TSqlParser.Drop_dml_triggerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropdmltrigger(context, list);
-        }
-        
-        public override AstRoot VisitDrop_ddl_trigger(TSqlParser.Drop_ddl_triggerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropddltrigger(context, list);
-        }
-        
-        public override AstRoot VisitSimple_names(TSqlParser.Simple_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSimplenames(context, list);
-        }
-        
-        public override AstRoot VisitTable_names(TSqlParser.Table_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTablenames(context, list);
-        }
-        
-        public override AstRoot VisitDrop_function(TSqlParser.Drop_functionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropfunction(context, list);
+            return new AstDropIndex(context, list);
         }
         
         public override AstRoot VisitDrop_statistics(TSqlParser.Drop_statisticsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDropstatistics(context, list);
-        }
-        
-        public override AstRoot VisitDrop_table(TSqlParser.Drop_tableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroptable(context, list);
-        }
-        
-        public override AstRoot VisitDrop_view(TSqlParser.Drop_viewContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDropview(context, list);
+            return new AstDropStatistics(context, list);
         }
         
         public override AstRoot VisitCreate_type(TSqlParser.Create_typeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatetype(context, list);
+            return new AstCreateType(context, list);
         }
         
         public override AstRoot VisitDrop_type(TSqlParser.Drop_typeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDroptype(context, list);
-        }
-        
-        public override AstRoot VisitOpenquery(TSqlParser.OpenqueryContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOpenquery(context, list);
+            return new AstDropType(context, list);
         }
         
         public override AstRoot VisitOpendatasource(TSqlParser.OpendatasourceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstOpendatasource(context, list);
         }
@@ -3904,408 +1879,337 @@ namespace Bb.Parsers
         public override AstRoot VisitDeclare_statement(TSqlParser.Declare_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDeclarestatement(context, list);
-        }
-        
-        public override AstRoot VisitDeclare_locals(TSqlParser.Declare_localsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDeclarelocals(context, list);
-        }
-        
-        public override AstRoot VisitXml_declarations(TSqlParser.Xml_declarationsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstXmldeclarations(context, list);
+            return new AstDeclareStatement(context, list);
         }
         
         public override AstRoot VisitXml_declaration(TSqlParser.Xml_declarationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstXmldeclaration(context, list);
+            return new AstXmlDeclaration(context, list);
         }
         
         public override AstRoot VisitCursor_statement(TSqlParser.Cursor_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCursorstatement(context, list);
+            return new AstCursorStatement(context, list);
         }
         
         public override AstRoot VisitBackup_database(TSqlParser.Backup_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBackupdatabase(context, list);
+            return new AstBackupDatabase(context, list);
         }
         
         public override AstRoot VisitBackup_log(TSqlParser.Backup_logContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBackuplog(context, list);
-        }
-        
-        public override AstRoot VisitBackup_certificate(TSqlParser.Backup_certificateContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBackupcertificate(context, list);
+            return new AstBackupLog(context, list);
         }
         
         public override AstRoot VisitBackup_master_key(TSqlParser.Backup_master_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBackupmasterkey(context, list);
+            return new AstBackupMasterKey(context, list);
         }
         
         public override AstRoot VisitBackup_service_master_key(TSqlParser.Backup_service_master_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBackupservicemasterkey(context, list);
+            return new AstBackupServiceMasterKey(context, list);
         }
         
         public override AstRoot VisitKill_statement(TSqlParser.Kill_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstKillstatement(context, list);
+            return new AstKillStatement(context, list);
         }
         
         public override AstRoot VisitKill_process(TSqlParser.Kill_processContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstKillprocess(context, list);
+            return new AstKillProcess(context, list);
         }
         
         public override AstRoot VisitKill_query_notification(TSqlParser.Kill_query_notificationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstKillquerynotification(context, list);
+            return new AstKillQueryNotification(context, list);
         }
         
         public override AstRoot VisitKill_stats_job(TSqlParser.Kill_stats_jobContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstKillstatsjob(context, list);
-        }
-        
-        public override AstRoot VisitExecute_statement(TSqlParser.Execute_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExecutestatement(context, list);
-        }
-        
-        public override AstRoot VisitExecute_body_batch(TSqlParser.Execute_body_batchContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExecutebodybatch(context, list);
+            return new AstKillStatsJob(context, list);
         }
         
         public override AstRoot VisitExecute_body(TSqlParser.Execute_bodyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecutebody(context, list);
-        }
-        
-        public override AstRoot VisitExecute_var_strings(TSqlParser.Execute_var_stringsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExecutevarstrings(context, list);
+            return new AstExecuteBody(context, list);
         }
         
         public override AstRoot VisitExecute_statement_arg(TSqlParser.Execute_statement_argContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecutestatementarg(context, list);
-        }
-        
-        public override AstRoot VisitExecute_statement_arg_nameds(TSqlParser.Execute_statement_arg_namedsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExecutestatementargnameds(context, list);
-        }
-        
-        public override AstRoot VisitExecute_statement_args(TSqlParser.Execute_statement_argsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExecutestatementargs(context, list);
+            return new AstExecuteStatementArg(context, list);
         }
         
         public override AstRoot VisitExecute_statement_arg_named(TSqlParser.Execute_statement_arg_namedContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecutestatementargnamed(context, list);
+            return new AstExecuteStatementArgNamed(context, list);
         }
         
         public override AstRoot VisitExecute_statement_arg_unnamed(TSqlParser.Execute_statement_arg_unnamedContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecutestatementargunnamed(context, list);
+            return new AstExecuteStatementArgUnnamed(context, list);
         }
         
         public override AstRoot VisitExecute_parameter(TSqlParser.Execute_parameterContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecuteparameter(context, list);
+            return new AstExecuteParameter(context, list);
         }
         
         public override AstRoot VisitExecute_var_string(TSqlParser.Execute_var_stringContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecutevarstring(context, list);
+            return new AstExecuteVarString(context, list);
         }
         
         public override AstRoot VisitSecurity_statement(TSqlParser.Security_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSecuritystatement(context, list);
+            return new AstSecurityStatement(context, list);
         }
         
         public override AstRoot VisitTo_principal_rincipal_ids(TSqlParser.To_principal_rincipal_idsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstToprincipalrincipalids(context, list);
+            return new AstToPrincipalRincipalIds(context, list);
         }
         
         public override AstRoot VisitPrincipal_id(TSqlParser.Principal_idContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPrincipalid(context, list);
-        }
-        
-        public override AstRoot VisitCreate_certificate(TSqlParser.Create_certificateContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreatecertificate(context, list);
+            return new AstPrincipalId(context, list);
         }
         
         public override AstRoot VisitExisting_keys(TSqlParser.Existing_keysContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExistingkeys(context, list);
+            return new AstExistingKeys(context, list);
         }
         
         public override AstRoot VisitPrivate_key_options(TSqlParser.Private_key_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPrivatekeyoptions(context, list);
+            return new AstPrivateKeyOptions(context, list);
         }
         
         public override AstRoot VisitGenerate_new_keys(TSqlParser.Generate_new_keysContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGeneratenewkeys(context, list);
+            return new AstGenerateNewKeys(context, list);
         }
         
         public override AstRoot VisitDate_options(TSqlParser.Date_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDateoptions(context, list);
+            return new AstDateOptions(context, list);
         }
         
         public override AstRoot VisitOpen_key(TSqlParser.Open_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOpenkey(context, list);
+            return new AstOpenKey(context, list);
         }
         
         public override AstRoot VisitClose_key(TSqlParser.Close_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstClosekey(context, list);
+            return new AstCloseKey(context, list);
         }
         
         public override AstRoot VisitCreate_key(TSqlParser.Create_keyContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatekey(context, list);
+            return new AstCreateKey(context, list);
         }
         
         public override AstRoot VisitKey_options(TSqlParser.Key_optionsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstKeyoptions(context, list);
+            return new AstKeyOptions(context, list);
         }
         
         public override AstRoot VisitAlgorithm(TSqlParser.AlgorithmContext context)
@@ -4316,430 +2220,301 @@ namespace Bb.Parsers
         public override AstRoot VisitEncryption_mechanism(TSqlParser.Encryption_mechanismContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEncryptionmechanism(context, list);
+            return new AstEncryptionMechanism(context, list);
         }
         
         public override AstRoot VisitDecryption_mechanism(TSqlParser.Decryption_mechanismContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDecryptionmechanism(context, list);
+            return new AstDecryptionMechanism(context, list);
         }
         
         public override AstRoot VisitGrant_permission(TSqlParser.Grant_permissionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGrantpermission(context, list);
+            return new AstGrantPermission(context, list);
         }
         
         public override AstRoot VisitSet_statement(TSqlParser.Set_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSetstatement(context, list);
+            return new AstSetStatement(context, list);
         }
         
         public override AstRoot VisitTransaction_statement(TSqlParser.Transaction_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTransactionstatement(context, list);
+            return new AstTransactionStatement(context, list);
         }
         
         public override AstRoot VisitGo_statement(TSqlParser.Go_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGostatement(context, list);
-        }
-        
-        public override AstRoot VisitUse_statement(TSqlParser.Use_statementContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUsestatement(context, list);
+            return new AstGoStatement(context, list);
         }
         
         public override AstRoot VisitSetuser_statement(TSqlParser.Setuser_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSetuserstatement(context, list);
+            return new AstSetuserStatement(context, list);
         }
         
         public override AstRoot VisitReconfigure_statement(TSqlParser.Reconfigure_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstReconfigurestatement(context, list);
+            return new AstReconfigureStatement(context, list);
         }
         
         public override AstRoot VisitShutdown_statement(TSqlParser.Shutdown_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstShutdownstatement(context, list);
+            return new AstShutdownStatement(context, list);
         }
         
         public override AstRoot VisitCheckpoint_statement(TSqlParser.Checkpoint_statementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCheckpointstatement(context, list);
+            return new AstCheckpointStatement(context, list);
         }
         
         public override AstRoot VisitDbcc_special(TSqlParser.Dbcc_specialContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDbccspecial(context, list);
+            return new AstDbccSpecial(context, list);
         }
         
         public override AstRoot VisitDbcc_clause(TSqlParser.Dbcc_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDbccclause(context, list);
+            return new AstDbccClause(context, list);
         }
         
         public override AstRoot VisitDbcc_command(TSqlParser.Dbcc_commandContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDbcccommand(context, list);
-        }
-        
-        public override AstRoot VisitDbcc_options(TSqlParser.Dbcc_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDbccoptions(context, list);
+            return new AstDbccCommand(context, list);
         }
         
         public override AstRoot VisitExecute_clause(TSqlParser.Execute_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExecuteclause(context, list);
-        }
-        
-        public override AstRoot VisitDeclare_local(TSqlParser.Declare_localContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDeclarelocal(context, list);
-        }
-        
-        public override AstRoot VisitTable_type_definition(TSqlParser.Table_type_definitionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTabletypedefinition(context, list);
+            return new AstExecuteClause(context, list);
         }
         
         public override AstRoot VisitTable_type_indices(TSqlParser.Table_type_indicesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTabletypeindices(context, list);
-        }
-        
-        public override AstRoot VisitXml_type_definition(TSqlParser.Xml_type_definitionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstXmltypedefinition(context, list);
+            return new AstTableTypeIndices(context, list);
         }
         
         public override AstRoot VisitXml_schema_collection(TSqlParser.Xml_schema_collectionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstXmlschemacollection(context, list);
+            return new AstXmlSchemaCollection(context, list);
         }
         
-        public override AstRoot VisitColumn_def_table_constraints(TSqlParser.Column_def_table_constraintsContext context)
+        public override AstRoot VisitColumn_def_table_constraint(TSqlParser.Column_def_table_constraintContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumndeftableconstraints(context, list);
-        }
-        
-        public override AstRoot VisitColumn_definition(TSqlParser.Column_definitionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumndefinition(context, list);
+            return new AstColumnDefTableConstraint(context, list);
         }
         
         public override AstRoot VisitColumn_definition_element(TSqlParser.Column_definition_elementContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumndefinitionelement(context, list);
-        }
-        
-        public override AstRoot VisitColumn_modifier(TSqlParser.Column_modifierContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnmodifier(context, list);
-        }
-        
-        public override AstRoot VisitMaterialized_column_definition(TSqlParser.Materialized_column_definitionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMaterializedcolumndefinition(context, list);
+            return new AstColumnDefinitionElement(context, list);
         }
         
         public override AstRoot VisitColumn_constraint(TSqlParser.Column_constraintContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnconstraint(context, list);
-        }
-        
-        public override AstRoot VisitColumn_index(TSqlParser.Column_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnindex(context, list);
+            return new AstColumnConstraint(context, list);
         }
         
         public override AstRoot VisitOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOnpartitionorfilegroup(context, list);
+            return new AstOnPartitionOrFilegroup(context, list);
         }
         
         public override AstRoot VisitTable_constraint(TSqlParser.Table_constraintContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTableconstraint(context, list);
+            return new AstTableConstraint(context, list);
         }
         
         public override AstRoot VisitConnection_node(TSqlParser.Connection_nodeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstConnectionnode(context, list);
-        }
-        
-        public override AstRoot VisitPrimary_key_options(TSqlParser.Primary_key_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPrimarykeyoptions(context, list);
-        }
-        
-        public override AstRoot VisitForeign_key_options(TSqlParser.Foreign_key_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstForeignkeyoptions(context, list);
-        }
-        
-        public override AstRoot VisitCheck_constraint(TSqlParser.Check_constraintContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCheckconstraint(context, list);
+            return new AstConnectionNode(context, list);
         }
         
         public override AstRoot VisitOn_delete(TSqlParser.On_deleteContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOndelete(context, list);
+            return new AstOnDelete(context, list);
         }
         
         public override AstRoot VisitOn_update(TSqlParser.On_updateContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOnupdate(context, list);
-        }
-        
-        public override AstRoot VisitAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAltertableindexoptions(context, list);
+            return new AstOnUpdate(context, list);
         }
         
         public override AstRoot VisitAlter_table_index_option(TSqlParser.Alter_table_index_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAltertableindexoption(context, list);
-        }
-        
-        public override AstRoot VisitDeclare_cursor(TSqlParser.Declare_cursorContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDeclarecursor(context, list);
+            return new AstAlterTableIndexOption(context, list);
         }
         
         public override AstRoot VisitSensitive(TSqlParser.SensitiveContext context)
@@ -4747,83 +2522,65 @@ namespace Bb.Parsers
             return new AstSensitive(context, context.GetText());
         }
         
-        public override AstRoot VisitDeclare_set_cursor_common(TSqlParser.Declare_set_cursor_commonContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDeclaresetcursorcommon(context, list);
-        }
-        
         public override AstRoot VisitDeclare_set_cursor_common_partial(TSqlParser.Declare_set_cursor_common_partialContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDeclaresetcursorcommonpartial(context, list);
-        }
-        
-        public override AstRoot VisitFetch_cursor(TSqlParser.Fetch_cursorContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFetchcursor(context, list);
+            return new AstDeclareSetCursorCommonPartial(context, list);
         }
         
         public override AstRoot VisitAbsolute_relative(TSqlParser.Absolute_relativeContext context)
         {
-            return new AstAbsoluterelative(context, context.GetText());
+            return new AstAbsoluteRelative(context, context.GetText());
         }
         
         public override AstRoot VisitFetch_cursor_strategy(TSqlParser.Fetch_cursor_strategyContext context)
         {
-            return new AstFetchcursorstrategy(context, context.GetText());
+            return new AstFetchCursorStrategy(context, context.GetText());
         }
         
         public override AstRoot VisitLocal_ids(TSqlParser.Local_idsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstLocalids(context, list);
+            return new AstLocalIds(context, list);
         }
         
         public override AstRoot VisitSet_special(TSqlParser.Set_specialContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSetspecial(context, list);
+            return new AstSetSpecial(context, list);
         }
         
         public override AstRoot VisitSpecial_list(TSqlParser.Special_listContext context)
         {
-            return new AstSpeciallist(context, context.GetText());
+            return new AstSpecialList(context, context.GetText());
         }
         
         public override AstRoot VisitConstant_LOCAL_ID(TSqlParser.Constant_LOCAL_IDContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstConstantLOCALID(context, list);
         }
@@ -4831,10 +2588,11 @@ namespace Bb.Parsers
         public override AstRoot VisitExpression(TSqlParser.ExpressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstExpression(context, list);
         }
@@ -4842,142 +2600,143 @@ namespace Bb.Parsers
         public override AstRoot VisitParameter(TSqlParser.ParameterContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstParameter(context, list);
-        }
-        
-        public override AstRoot VisitTime_zone(TSqlParser.Time_zoneContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTimezone(context, list);
         }
         
         public override AstRoot VisitPrimitive_expression(TSqlParser.Primitive_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstPrimitiveexpression(context, list);
+            return new AstPrimitiveExpression(context, list);
         }
         
         public override AstRoot VisitCase_expression(TSqlParser.Case_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCaseexpression(context, list);
+            return new AstCaseExpression(context, list);
         }
         
         public override AstRoot VisitUnary_operator_expression(TSqlParser.Unary_operator_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUnaryoperatorexpression(context, list);
+            return new AstUnaryOperatorExpression(context, list);
         }
         
         public override AstRoot VisitBracket_expression(TSqlParser.Bracket_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstBracketexpression(context, list);
+            return new AstBracketExpression(context, list);
         }
         
         public override AstRoot VisitConstant_expression(TSqlParser.Constant_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstConstantexpression(context, list);
+            return new AstConstantExpression(context, list);
         }
         
         public override AstRoot VisitWith_expression(TSqlParser.With_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWithexpression(context, list);
+            return new AstWithExpression(context, list);
         }
         
         public override AstRoot VisitCommon_table_expression(TSqlParser.Common_table_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCommontableexpression(context, list);
+            return new AstCommonTableExpression(context, list);
         }
         
         public override AstRoot VisitUpdate_elem(TSqlParser.Update_elemContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUpdateelem(context, list);
+            return new AstUpdateElem(context, list);
         }
         
         public override AstRoot VisitUpdate_elem_merge(TSqlParser.Update_elem_mergeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUpdateelemmerge(context, list);
+            return new AstUpdateElemMerge(context, list);
         }
         
         public override AstRoot VisitSearch_condition(TSqlParser.Search_conditionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSearchcondition(context, list);
+            return new AstSearchCondition(context, list);
         }
         
         public override AstRoot VisitPredicate(TSqlParser.PredicateContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstPredicate(context, list);
         }
@@ -4985,1265 +2744,899 @@ namespace Bb.Parsers
         public override AstRoot VisitQuery_expression(TSqlParser.Query_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueryexpression(context, list);
+            return new AstQueryExpression(context, list);
         }
         
         public override AstRoot VisitSql_union(TSqlParser.Sql_unionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSqlunion(context, list);
+            return new AstSqlUnion(context, list);
         }
         
         public override AstRoot VisitQuery_specification(TSqlParser.Query_specificationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueryspecification(context, list);
+            return new AstQuerySpecification(context, list);
         }
         
         public override AstRoot VisitGroupSet_list(TSqlParser.GroupSet_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGroupSetlist(context, list);
+            return new AstGroupSetList(context, list);
         }
         
         public override AstRoot VisitGroupBys_list(TSqlParser.GroupBys_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGroupByslist(context, list);
+            return new AstGroupBysList(context, list);
         }
         
         public override AstRoot VisitTop_clause(TSqlParser.Top_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTopclause(context, list);
+            return new AstTopClause(context, list);
         }
         
         public override AstRoot VisitTop_percent(TSqlParser.Top_percentContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstToppercent(context, list);
+            return new AstTopPercent(context, list);
         }
         
         public override AstRoot VisitTop_count(TSqlParser.Top_countContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTopcount(context, list);
+            return new AstTopCount(context, list);
         }
         
         public override AstRoot VisitOrder_by_clause(TSqlParser.Order_by_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOrderbyclause(context, list);
-        }
-        
-        public override AstRoot VisitSelect_order_by_clause(TSqlParser.Select_order_by_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSelectorderbyclause(context, list);
+            return new AstOrderByClause(context, list);
         }
         
         public override AstRoot VisitFor_clause(TSqlParser.For_clauseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstForclause(context, list);
+            return new AstForClause(context, list);
         }
         
         public override AstRoot VisitXml_common_directives(TSqlParser.Xml_common_directivesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstXmlcommondirectives(context, list);
+            return new AstXmlCommonDirectives(context, list);
         }
         
         public override AstRoot VisitOrder_by_expression(TSqlParser.Order_by_expressionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOrderbyexpression(context, list);
+            return new AstOrderByExpression(context, list);
         }
         
         public override AstRoot VisitGrouping_sets_item(TSqlParser.Grouping_sets_itemContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGroupingsetsitem(context, list);
+            return new AstGroupingSetsItem(context, list);
         }
         
         public override AstRoot VisitGrouping_sets_list(TSqlParser.Grouping_sets_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGroupingsetslist(context, list);
-        }
-        
-        public override AstRoot VisitOption_clause(TSqlParser.Option_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOptionclause(context, list);
+            return new AstGroupingSetsList(context, list);
         }
         
         public override AstRoot VisitOption(TSqlParser.OptionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstOption(context, list);
-        }
-        
-        public override AstRoot VisitOptimize_for_args(TSqlParser.Optimize_for_argsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOptimizeforargs(context, list);
         }
         
         public override AstRoot VisitOptimize_for_arg(TSqlParser.Optimize_for_argContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstOptimizeforarg(context, list);
+            return new AstOptimizeForArg(context, list);
         }
         
         public override AstRoot VisitSelect_list(TSqlParser.Select_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSelectlist(context, list);
+            return new AstSelectList(context, list);
         }
         
         public override AstRoot VisitUdt_method_arguments(TSqlParser.Udt_method_argumentsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUdtmethodarguments(context, list);
+            return new AstUdtMethodArguments(context, list);
         }
         
         public override AstRoot VisitAsterisk(TSqlParser.AsteriskContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstAsterisk(context, list);
         }
         
-        public override AstRoot VisitColumn_elem(TSqlParser.Column_elemContext context)
+        public override AstRoot VisitColumn_elem_target(TSqlParser.Column_elem_targetContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnelem(context, list);
+            return new AstColumnElemTarget(context, list);
         }
         
         public override AstRoot VisitUdt_elem(TSqlParser.Udt_elemContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstUdtelem(context, list);
+            return new AstUdtElem(context, list);
         }
         
         public override AstRoot VisitExpression_elem(TSqlParser.Expression_elemContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExpressionelem(context, list);
-        }
-        
-        public override AstRoot VisitSelect_list_elem(TSqlParser.Select_list_elemContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSelectlistelem(context, list);
+            return new AstExpressionElem(context, list);
         }
         
         public override AstRoot VisitTable_sources(TSqlParser.Table_sourcesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablesources(context, list);
+            return new AstTableSources(context, list);
         }
         
         public override AstRoot VisitTable_source(TSqlParser.Table_sourceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablesource(context, list);
+            return new AstTableSource(context, list);
         }
         
         public override AstRoot VisitTable_source_item_joined(TSqlParser.Table_source_item_joinedContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablesourceitemjoined(context, list);
+            return new AstTableSourceItemJoined(context, list);
         }
         
         public override AstRoot VisitTable_source_item(TSqlParser.Table_source_itemContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablesourceitem(context, list);
-        }
-        
-        public override AstRoot VisitExpression2(TSqlParser.Expression2Context context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExpression2(context, list);
-        }
-        
-        public override AstRoot VisitOpen_xml(TSqlParser.Open_xmlContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOpenxml(context, list);
-        }
-        
-        public override AstRoot VisitOpen_json(TSqlParser.Open_jsonContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOpenjson(context, list);
+            return new AstTableSourceItem(context, list);
         }
         
         public override AstRoot VisitJson_declaration(TSqlParser.Json_declarationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstJsondeclaration(context, list);
-        }
-        
-        public override AstRoot VisitJson_column_declaration(TSqlParser.Json_column_declarationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstJsoncolumndeclaration(context, list);
+            return new AstJsonDeclaration(context, list);
         }
         
         public override AstRoot VisitSchema_declaration(TSqlParser.Schema_declarationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSchemadeclaration(context, list);
-        }
-        
-        public override AstRoot VisitColumn_declaration(TSqlParser.Column_declarationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumndeclaration(context, list);
+            return new AstSchemaDeclaration(context, list);
         }
         
         public override AstRoot VisitChange_table_changes(TSqlParser.Change_table_changesContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstChangetablechanges(context, list);
+            return new AstChangeTableChanges(context, list);
         }
         
         public override AstRoot VisitChange_table_version(TSqlParser.Change_table_versionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstChangetableversion(context, list);
+            return new AstChangeTableVersion(context, list);
         }
         
         public override AstRoot VisitJoin_on(TSqlParser.Join_onContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstJoinon(context, list);
-        }
-        
-        public override AstRoot VisitCross_join(TSqlParser.Cross_joinContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCrossjoin(context, list);
+            return new AstJoinOn(context, list);
         }
         
         public override AstRoot VisitApply_(TSqlParser.Apply_Context context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstApply(context, list);
-        }
-        
-        public override AstRoot VisitPivot(TSqlParser.PivotContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPivot(context, list);
-        }
-        
-        public override AstRoot VisitUnpivot(TSqlParser.UnpivotContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUnpivot(context, list);
-        }
-        
-        public override AstRoot VisitPivot_clause(TSqlParser.Pivot_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPivotclause(context, list);
-        }
-        
-        public override AstRoot VisitUnpivot_clause(TSqlParser.Unpivot_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUnpivotclause(context, list);
         }
         
         public override AstRoot VisitFull_column_name_list(TSqlParser.Full_column_name_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFullcolumnnamelist(context, list);
+            return new AstFullColumnNameList(context, list);
         }
         
         public override AstRoot VisitRowset_function(TSqlParser.Rowset_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRowsetfunction(context, list);
-        }
-        
-        public override AstRoot VisitBulk_options(TSqlParser.Bulk_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBulkoptions(context, list);
-        }
-        
-        public override AstRoot VisitBulk_option(TSqlParser.Bulk_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBulkoption(context, list);
+            return new AstRowsetFunction(context, list);
         }
         
         public override AstRoot VisitDerived_table(TSqlParser.Derived_tableContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDerivedtable(context, list);
-        }
-        
-        public override AstRoot VisitPartition_function(TSqlParser.Partition_functionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPartitionfunction(context, list);
+            return new AstDerivedTable(context, list);
         }
         
         public override AstRoot VisitFreetext_function(TSqlParser.Freetext_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFreetextfunction(context, list);
+            return new AstFreetextFunction(context, list);
         }
         
         public override AstRoot VisitFreetext_predicate(TSqlParser.Freetext_predicateContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFreetextpredicate(context, list);
-        }
-        
-        public override AstRoot VisitExpression_language(TSqlParser.Expression_languageContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExpressionlanguage(context, list);
-        }
-        
-        public override AstRoot VisitFreetext_table_andcolumn_names(TSqlParser.Freetext_table_andcolumn_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFreetexttableandcolumnnames(context, list);
-        }
-        
-        public override AstRoot VisitFull_column_names(TSqlParser.Full_column_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFullcolumnnames(context, list);
-        }
-        
-        public override AstRoot VisitExpressions(TSqlParser.ExpressionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExpressions(context, list);
+            return new AstFreetextPredicate(context, list);
         }
         
         public override AstRoot VisitValue_method(TSqlParser.Value_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstValuemethod(context, list);
+            return new AstValueMethod(context, list);
         }
         
         public override AstRoot VisitValue_call(TSqlParser.Value_callContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstValuecall(context, list);
+            return new AstValueCall(context, list);
         }
         
         public override AstRoot VisitQuery_method(TSqlParser.Query_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQuerymethod(context, list);
+            return new AstQueryMethod(context, list);
         }
         
         public override AstRoot VisitQuery_call(TSqlParser.Query_callContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQuerycall(context, list);
+            return new AstQueryCall(context, list);
         }
         
         public override AstRoot VisitExist_method(TSqlParser.Exist_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExistmethod(context, list);
+            return new AstExistMethod(context, list);
         }
         
         public override AstRoot VisitExist_call(TSqlParser.Exist_callContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExistcall(context, list);
+            return new AstExistCall(context, list);
         }
         
         public override AstRoot VisitModify_method(TSqlParser.Modify_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstModifymethod(context, list);
+            return new AstModifyMethod(context, list);
         }
         
         public override AstRoot VisitModify_call(TSqlParser.Modify_callContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstModifycall(context, list);
+            return new AstModifyCall(context, list);
         }
         
         public override AstRoot VisitHierarchyid_call(TSqlParser.Hierarchyid_callContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstHierarchyidcall(context, list);
+            return new AstHierarchyidCall(context, list);
         }
         
         public override AstRoot VisitHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstHierarchyidstaticmethod(context, list);
+            return new AstHierarchyidStaticMethod(context, list);
         }
         
         public override AstRoot VisitNodes_method(TSqlParser.Nodes_methodContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstNodesmethod(context, list);
-        }
-        
-        public override AstRoot VisitSwitch_section(TSqlParser.Switch_sectionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSwitchsection(context, list);
-        }
-        
-        public override AstRoot VisitSwitch_search_condition_section(TSqlParser.Switch_search_condition_sectionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSwitchsearchconditionsection(context, list);
-        }
-        
-        public override AstRoot VisitAs_column_alias(TSqlParser.As_column_aliasContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAscolumnalias(context, list);
-        }
-        
-        public override AstRoot VisitAs_table_alias(TSqlParser.As_table_aliasContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAstablealias(context, list);
-        }
-        
-        public override AstRoot VisitTable_alias(TSqlParser.Table_aliasContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTablealias(context, list);
+            return new AstNodesMethod(context, list);
         }
         
         public override AstRoot VisitWith_table_hints(TSqlParser.With_table_hintsContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWithtablehints(context, list);
-        }
-        
-        public override AstRoot VisitDeprecated_table_hint(TSqlParser.Deprecated_table_hintContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDeprecatedtablehint(context, list);
-        }
-        
-        public override AstRoot VisitSybase_legacy_hints(TSqlParser.Sybase_legacy_hintsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSybaselegacyhints(context, list);
+            return new AstWithTableHints(context, list);
         }
         
         public override AstRoot VisitSybase_legacy_hint(TSqlParser.Sybase_legacy_hintContext context)
         {
-            return new AstSybaselegacyhint(context, context.GetText());
-        }
-        
-        public override AstRoot VisitIndex_values(TSqlParser.Index_valuesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstIndexvalues(context, list);
+            return new AstSybaseLegacyHint(context, context.GetText());
         }
         
         public override AstRoot VisitTable_hint(TSqlParser.Table_hintContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablehint(context, list);
+            return new AstTableHint(context, list);
         }
         
         public override AstRoot VisitIndex_value(TSqlParser.Index_valueContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstIndexvalue(context, list);
+            return new AstIndexValue(context, list);
         }
         
         public override AstRoot VisitColumn_alias_list(TSqlParser.Column_alias_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnaliaslist(context, list);
+            return new AstColumnAliasList(context, list);
         }
         
         public override AstRoot VisitColumn_alias(TSqlParser.Column_aliasContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnalias(context, list);
+            return new AstColumnAlias(context, list);
         }
         
         public override AstRoot VisitTable_value_constructor(TSqlParser.Table_value_constructorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablevalueconstructor(context, list);
+            return new AstTableValueConstructor(context, list);
         }
         
         public override AstRoot VisitExpression_list(TSqlParser.Expression_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstExpressionlist(context, list);
+            return new AstExpressionList(context, list);
         }
         
         public override AstRoot VisitRanking_windowed_function(TSqlParser.Ranking_windowed_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstRankingwindowedfunction(context, list);
+            return new AstRankingWindowedFunction(context, list);
         }
         
         public override AstRoot VisitAggregate_windowed_function(TSqlParser.Aggregate_windowed_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAggregatewindowedfunction(context, list);
+            return new AstAggregateWindowedFunction(context, list);
         }
         
         public override AstRoot VisitAnalytic_windowed_function(TSqlParser.Analytic_windowed_functionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAnalyticwindowedfunction(context, list);
-        }
-        
-        public override AstRoot VisitAll_distinct_expression(TSqlParser.All_distinct_expressionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAlldistinctexpression(context, list);
-        }
-        
-        public override AstRoot VisitOver_clause(TSqlParser.Over_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOverclause(context, list);
-        }
-        
-        public override AstRoot VisitRow_or_range_clause(TSqlParser.Row_or_range_clauseContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRoworrangeclause(context, list);
+            return new AstAnalyticWindowedFunction(context, list);
         }
         
         public override AstRoot VisitWindow_frame_extent(TSqlParser.Window_frame_extentContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWindowframeextent(context, list);
+            return new AstWindowFrameExtent(context, list);
         }
         
         public override AstRoot VisitWindow_frame_preceding(TSqlParser.Window_frame_precedingContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWindowframepreceding(context, list);
+            return new AstWindowFramePreceding(context, list);
         }
         
         public override AstRoot VisitWindow_frame_following(TSqlParser.Window_frame_followingContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstWindowframefollowing(context, list);
+            return new AstWindowFrameFollowing(context, list);
         }
         
         public override AstRoot VisitCreate_database_option(TSqlParser.Create_database_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCreatedatabaseoption(context, list);
-        }
-        
-        public override AstRoot VisitDatabase_filestream_options(TSqlParser.Database_filestream_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDatabasefilestreamoptions(context, list);
+            return new AstCreateDatabaseOption(context, list);
         }
         
         public override AstRoot VisitDatabase_filestream_option(TSqlParser.Database_filestream_optionContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDatabasefilestreamoption(context, list);
-        }
-        
-        public override AstRoot VisitFile_group(TSqlParser.File_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilegroup(context, list);
-        }
-        
-        public override AstRoot VisitFile_spec(TSqlParser.File_specContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilespec(context, list);
-        }
-        
-        public override AstRoot VisitEntity_name(TSqlParser.Entity_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEntityname(context, list);
+            return new AstDatabaseFilestreamOption(context, list);
         }
         
         public override AstRoot VisitEntity_name_for_azure_dw(TSqlParser.Entity_name_for_azure_dwContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEntitynameforazuredw(context, list);
+            return new AstEntityNameForAzureDw(context, list);
         }
         
         public override AstRoot VisitEntity_name_for_parallel_dw(TSqlParser.Entity_name_for_parallel_dwContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEntitynameforparalleldw(context, list);
-        }
-        
-        public override AstRoot VisitFull_table_name(TSqlParser.Full_table_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFulltablename(context, list);
+            return new AstEntityNameForParallelDw(context, list);
         }
         
         public override AstRoot VisitTable_name(TSqlParser.Table_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstTablename(context, list);
+            return new AstTableName(context, list);
         }
         
         public override AstRoot VisitSimple_name(TSqlParser.Simple_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSimplename(context, list);
-        }
-        
-        public override AstRoot VisitFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFuncprocnameschema(context, list);
+            return new AstSimpleName(context, list);
         }
         
         public override AstRoot VisitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFuncprocnamedatabaseschema(context, list);
+            return new AstFuncProcNameDatabaseSchema(context, list);
         }
         
         public override AstRoot VisitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFuncprocnameserverdatabaseschema(context, list);
+            return new AstFuncProcNameServerDatabaseSchema(context, list);
         }
         
         public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDdlobject(context, list);
+            return new AstDdlObject(context, list);
         }
         
         public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFullcolumnname(context, list);
-        }
-        
-        public override AstRoot VisitColumn_name_list_with_order(TSqlParser.Column_name_list_with_orderContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnnamelistwithorder(context, list);
+            return new AstFullColumnName(context, list);
         }
         
         public override AstRoot VisitInsert_column_name_list(TSqlParser.Insert_column_name_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstInsertcolumnnamelist(context, list);
-        }
-        
-        public override AstRoot VisitInsert_column_id(TSqlParser.Insert_column_idContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstInsertcolumnid(context, list);
+            return new AstInsertColumnNameList(context, list);
         }
         
         public override AstRoot VisitColumn_name_list(TSqlParser.Column_name_listContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstColumnnamelist(context, list);
+            return new AstColumnNameList(context, list);
         }
         
         public override AstRoot VisitCursor_name(TSqlParser.Cursor_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstCursorname(context, list);
+            return new AstCursorName(context, list);
         }
         
         public override AstRoot VisitOn_off(TSqlParser.On_offContext context)
         {
-            return new AstOnoff(context, context.GetText());
+            return new AstOnOff(context, context.GetText());
         }
         
         public override AstRoot VisitClustered(TSqlParser.ClusteredContext context)
@@ -6254,164 +3647,143 @@ namespace Bb.Parsers
         public override AstRoot VisitNull_notnull(TSqlParser.Null_notnullContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstNullnotnull(context, list);
+            return new AstNullNotnull(context, list);
         }
         
         public override AstRoot VisitNull_or_default(TSqlParser.Null_or_defaultContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstNullordefault(context, list);
+            return new AstNullOrDefault(context, list);
         }
         
         public override AstRoot VisitScalar_function_name(TSqlParser.Scalar_function_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstScalarfunctionname(context, list);
-        }
-        
-        public override AstRoot VisitBegin_conversation_timer(TSqlParser.Begin_conversation_timerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBeginconversationtimer(context, list);
-        }
-        
-        public override AstRoot VisitBegin_conversation_dialog(TSqlParser.Begin_conversation_dialogContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBeginconversationdialog(context, list);
+            return new AstScalarFunctionName(context, list);
         }
         
         public override AstRoot VisitContract_name(TSqlParser.Contract_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstContractname(context, list);
+            return new AstContractName(context, list);
         }
         
         public override AstRoot VisitService_name(TSqlParser.Service_nameContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstServicename(context, list);
+            return new AstServiceName(context, list);
         }
         
         public override AstRoot VisitEnd_conversation(TSqlParser.End_conversationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstEndconversation(context, list);
-        }
-        
-        public override AstRoot VisitWaitfor_conversation(TSqlParser.Waitfor_conversationContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWaitforconversation(context, list);
+            return new AstEndConversation(context, list);
         }
         
         public override AstRoot VisitGet_conversation(TSqlParser.Get_conversationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstGetconversation(context, list);
+            return new AstGetConversation(context, list);
         }
         
         public override AstRoot VisitQueue_id(TSqlParser.Queue_idContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstQueueid(context, list);
+            return new AstQueueId(context, list);
         }
         
         public override AstRoot VisitSend_conversation(TSqlParser.Send_conversationContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSendconversation(context, list);
+            return new AstSendConversation(context, list);
         }
         
         public override AstRoot VisitData_type(TSqlParser.Data_typeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDatatype(context, list);
+            return new AstDataType(context, list);
         }
         
         public override AstRoot VisitDefault_value(TSqlParser.Default_valueContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstDefaultvalue(context, list);
+            return new AstDefaultValue(context, list);
         }
         
         public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstConstant(context, list);
         }
@@ -6419,10 +3791,11 @@ namespace Bb.Parsers
         public override AstRoot VisitSign(TSqlParser.SignContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstSign(context, list);
         }
@@ -6435,10 +3808,11 @@ namespace Bb.Parsers
         public override AstRoot VisitId_(TSqlParser.Id_Context context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
             return new AstId(context, list);
         }
@@ -6446,1222 +3820,49 @@ namespace Bb.Parsers
         public override AstRoot VisitSimple_id(TSqlParser.Simple_idContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstSimpleid(context, list);
+            return new AstSimpleId(context, list);
         }
         
         public override AstRoot VisitComparison_operator(TSqlParser.Comparison_operatorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstComparisonoperator(context, list);
+            return new AstComparisonOperator(context, list);
         }
         
         public override AstRoot VisitAssignment_operator(TSqlParser.Assignment_operatorContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstAssignmentoperator(context, list);
-        }
-        
-        public override AstRoot VisitFile_size(TSqlParser.File_sizeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilesize(context, list);
+            return new AstAssignmentOperator(context, list);
         }
         
         public override AstRoot VisitFile_size_unity(TSqlParser.File_size_unityContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
             {
-                list.Add(enumerator.Current.Accept(this));
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                list.Add(item.Accept(this));
             }
-            return new AstFilesizeunity(context, list);
-        }
-        
-        public override AstRoot VisitFilestream_filegroup_or_partition_schema_name(TSqlParser.Filestream_filegroup_or_partition_schema_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilestreamfilegrouporpartitionschemaname(context, list);
-        }
-        
-        public override AstRoot VisitAction_name(TSqlParser.Action_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstActionname(context, list);
-        }
-        
-        public override AstRoot VisitAggregate_name(TSqlParser.Aggregate_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAggregatename(context, list);
-        }
-        
-        public override AstRoot VisitApp_role_schema(TSqlParser.App_role_schemaContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstApproleschema(context, list);
-        }
-        
-        public override AstRoot VisitApplication_role(TSqlParser.Application_roleContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstApplicationrole(context, list);
-        }
-        
-        public override AstRoot VisitAssembly_name(TSqlParser.Assembly_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAssemblyname(context, list);
-        }
-        
-        public override AstRoot VisitAsym_key_name(TSqlParser.Asym_key_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAsymkeyname(context, list);
-        }
-        
-        public override AstRoot VisitAudit_action_group_name(TSqlParser.Audit_action_group_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAuditactiongroupname(context, list);
-        }
-        
-        public override AstRoot VisitAudit_guid(TSqlParser.Audit_guidContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAuditguid(context, list);
-        }
-        
-        public override AstRoot VisitAudit_name(TSqlParser.Audit_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAuditname(context, list);
-        }
-        
-        public override AstRoot VisitAudit_specification_name(TSqlParser.Audit_specification_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAuditspecificationname(context, list);
-        }
-        
-        public override AstRoot VisitAzure_active_directory_principal(TSqlParser.Azure_active_directory_principalContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstAzureactivedirectoryprincipal(context, list);
-        }
-        
-        public override AstRoot VisitBackup_name(TSqlParser.Backup_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBackupname(context, list);
-        }
-        
-        public override AstRoot VisitBinding_name(TSqlParser.Binding_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstBindingname(context, list);
-        }
-        
-        public override AstRoot VisitCatalog_name(TSqlParser.Catalog_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCatalogname(context, list);
-        }
-        
-        public override AstRoot VisitCert_name(TSqlParser.Cert_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCertname(context, list);
-        }
-        
-        public override AstRoot VisitCertificate_name(TSqlParser.Certificate_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCertificatename(context, list);
-        }
-        
-        public override AstRoot VisitClass_name(TSqlParser.Class_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstClassname(context, list);
-        }
-        
-        public override AstRoot VisitCollation_name(TSqlParser.Collation_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCollationname(context, list);
-        }
-        
-        public override AstRoot VisitColumn_encryption_key(TSqlParser.Column_encryption_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnencryptionkey(context, list);
-        }
-        
-        public override AstRoot VisitColumn_name(TSqlParser.Column_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnname(context, list);
-        }
-        
-        public override AstRoot VisitColumn_name_or_arguments(TSqlParser.Column_name_or_argumentsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstColumnnameorarguments(context, list);
-        }
-        
-        public override AstRoot VisitConstraint_name(TSqlParser.Constraint_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstConstraintname(context, list);
-        }
-        
-        public override AstRoot VisitCreate_service_name(TSqlParser.Create_service_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCreateservicename(context, list);
-        }
-        
-        public override AstRoot VisitCredential_name(TSqlParser.Credential_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCredentialname(context, list);
-        }
-        
-        public override AstRoot VisitCryptographic_provider_name(TSqlParser.Cryptographic_provider_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstCryptographicprovidername(context, list);
-        }
-        
-        public override AstRoot VisitData_source_name(TSqlParser.Data_source_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDatasourcename(context, list);
-        }
-        
-        public override AstRoot VisitDatabase_name(TSqlParser.Database_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDatabasename(context, list);
-        }
-        
-        public override AstRoot VisitDropped_service_name(TSqlParser.Dropped_service_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstDroppedservicename(context, list);
-        }
-        
-        public override AstRoot VisitEncryptor_name(TSqlParser.Encryptor_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEncryptorname(context, list);
-        }
-        
-        public override AstRoot VisitEncryption_name(TSqlParser.Encryption_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEncryptionname(context, list);
-        }
-        
-        public override AstRoot VisitEndpoint_name(TSqlParser.Endpoint_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEndpointname(context, list);
-        }
-        
-        public override AstRoot VisitEvent_customizable_attributue(TSqlParser.Event_customizable_attributueContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventcustomizableattributue(context, list);
-        }
-        
-        public override AstRoot VisitEvent_field_name(TSqlParser.Event_field_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventfieldname(context, list);
-        }
-        
-        public override AstRoot VisitEvent_module_guid(TSqlParser.Event_module_guidContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventmoduleguid(context, list);
-        }
-        
-        public override AstRoot VisitEvent_name(TSqlParser.Event_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventname(context, list);
-        }
-        
-        public override AstRoot VisitEvent_notification_name(TSqlParser.Event_notification_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventnotificationname(context, list);
-        }
-        
-        public override AstRoot VisitEvent_package_name(TSqlParser.Event_package_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventpackagename(context, list);
-        }
-        
-        public override AstRoot VisitEvent_session_name(TSqlParser.Event_session_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventsessionname(context, list);
-        }
-        
-        public override AstRoot VisitEvent_type_or_group(TSqlParser.Event_type_or_groupContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstEventtypeorgroup(context, list);
-        }
-        
-        public override AstRoot VisitExt_type(TSqlParser.Ext_typeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExttype(context, list);
-        }
-        
-        public override AstRoot VisitExternal_data_source_name(TSqlParser.External_data_source_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExternaldatasourcename(context, list);
-        }
-        
-        public override AstRoot VisitExternal_file_format_name(TSqlParser.External_file_format_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExternalfileformatname(context, list);
-        }
-        
-        public override AstRoot VisitExternal_pool_name(TSqlParser.External_pool_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstExternalpoolname(context, list);
-        }
-        
-        public override AstRoot VisitFile_group_id(TSqlParser.File_group_idContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilegroupid(context, list);
-        }
-        
-        public override AstRoot VisitFile_group_name(TSqlParser.File_group_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFilegroupname(context, list);
-        }
-        
-        public override AstRoot VisitFunction_name(TSqlParser.Function_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstFunctionname(context, list);
-        }
-        
-        public override AstRoot VisitGroup_name(TSqlParser.Group_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstGroupname(context, list);
-        }
-        
-        public override AstRoot VisitIndex_name(TSqlParser.Index_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstIndexname(context, list);
-        }
-        
-        public override AstRoot VisitLanguage(TSqlParser.LanguageContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLanguage(context, list);
-        }
-        
-        public override AstRoot VisitLibrary_name(TSqlParser.Library_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLibraryname(context, list);
-        }
-        
-        public override AstRoot VisitLinked_server(TSqlParser.Linked_serverContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLinkedserver(context, list);
-        }
-        
-        public override AstRoot VisitLogical_device_name(TSqlParser.Logical_device_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLogicaldevicename(context, list);
-        }
-        
-        public override AstRoot VisitLogin_name(TSqlParser.Login_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstLoginname(context, list);
-        }
-        
-        public override AstRoot VisitMaster_key(TSqlParser.Master_keyContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMasterkey(context, list);
-        }
-        
-        public override AstRoot VisitMethod_name(TSqlParser.Method_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstMethodname(context, list);
-        }
-        
-        public override AstRoot VisitModified_contract_name(TSqlParser.Modified_contract_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstModifiedcontractname(context, list);
-        }
-        
-        public override AstRoot VisitModified_service_name(TSqlParser.Modified_service_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstModifiedservicename(context, list);
-        }
-        
-        public override AstRoot VisitModule_name(TSqlParser.Module_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstModulename(context, list);
-        }
-        
-        public override AstRoot VisitNetwork_computer(TSqlParser.Network_computerContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNetworkcomputer(context, list);
-        }
-        
-        public override AstRoot VisitNew_application_role_name(TSqlParser.New_application_role_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNewapplicationrolename(context, list);
-        }
-        
-        public override AstRoot VisitNew_file_group_name(TSqlParser.New_file_group_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNewfilegroupname(context, list);
-        }
-        
-        public override AstRoot VisitNon_static_attr(TSqlParser.Non_static_attrContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNonstaticattr(context, list);
-        }
-        
-        public override AstRoot VisitNotification_name(TSqlParser.Notification_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstNotificationname(context, list);
-        }
-        
-        public override AstRoot VisitObject_name(TSqlParser.Object_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstObjectname(context, list);
-        }
-        
-        public override AstRoot VisitOwner_name(TSqlParser.Owner_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstOwnername(context, list);
-        }
-        
-        public override AstRoot VisitPartition_column_name(TSqlParser.Partition_column_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPartitioncolumnname(context, list);
-        }
-        
-        public override AstRoot VisitPool_name(TSqlParser.Pool_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPoolname(context, list);
-        }
-        
-        public override AstRoot VisitPredicate_compare_name(TSqlParser.Predicate_compare_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPredicatecomparename(context, list);
-        }
-        
-        public override AstRoot VisitPredicate_source_name(TSqlParser.Predicate_source_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPredicatesourcename(context, list);
-        }
-        
-        public override AstRoot VisitProperty_list_name(TSqlParser.Property_list_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstPropertylistname(context, list);
-        }
-        
-        public override AstRoot VisitProvider_name(TSqlParser.Provider_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstProvidername(context, list);
-        }
-        
-        public override AstRoot VisitQueue_name(TSqlParser.Queue_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstQueuename(context, list);
-        }
-        
-        public override AstRoot VisitRelational_schema(TSqlParser.Relational_schemaContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRelationalschema(context, list);
-        }
-        
-        public override AstRoot VisitRole_name(TSqlParser.Role_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRolename(context, list);
-        }
-        
-        public override AstRoot VisitRoute_name(TSqlParser.Route_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRoutename(context, list);
-        }
-        
-        public override AstRoot VisitRule_name(TSqlParser.Rule_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstRulename(context, list);
-        }
-        
-        public override AstRoot VisitSchema_collection_name(TSqlParser.Schema_collection_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSchemacollectionname(context, list);
-        }
-        
-        public override AstRoot VisitSchema_id(TSqlParser.Schema_idContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSchemaid(context, list);
-        }
-        
-        public override AstRoot VisitSchema_name(TSqlParser.Schema_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSchemaname(context, list);
-        }
-        
-        public override AstRoot VisitSecurity_policy_name(TSqlParser.Security_policy_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSecuritypolicyname(context, list);
-        }
-        
-        public override AstRoot VisitSecurity_predicate_function_name(TSqlParser.Security_predicate_function_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSecuritypredicatefunctionname(context, list);
-        }
-        
-        public override AstRoot VisitSequence_name(TSqlParser.Sequence_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSequencename(context, list);
-        }
-        
-        public override AstRoot VisitServer_name(TSqlParser.Server_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstServername(context, list);
-        }
-        
-        public override AstRoot VisitServer_role_name(TSqlParser.Server_role_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstServerrolename(context, list);
-        }
-        
-        public override AstRoot VisitSource_list_name(TSqlParser.Source_list_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSourcelistname(context, list);
-        }
-        
-        public override AstRoot VisitSql_identifier(TSqlParser.Sql_identifierContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSqlidentifier(context, list);
-        }
-        
-        public override AstRoot VisitStatic_attr(TSqlParser.Static_attrContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstStaticattr(context, list);
-        }
-        
-        public override AstRoot VisitStatistics_name(TSqlParser.Statistics_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstStatisticsname(context, list);
-        }
-        
-        public override AstRoot VisitStoplist_name(TSqlParser.Stoplist_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstStoplistname(context, list);
-        }
-        
-        public override AstRoot VisitSymmetric_key_name(TSqlParser.Symmetric_key_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSymmetrickeyname(context, list);
-        }
-        
-        public override AstRoot VisitSynonym_name(TSqlParser.Synonym_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstSynonymname(context, list);
-        }
-        
-        public override AstRoot VisitTable_or_view_name(TSqlParser.Table_or_view_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTableorviewname(context, list);
-        }
-        
-        public override AstRoot VisitTable_variable(TSqlParser.Table_variableContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTablevariable(context, list);
-        }
-        
-        public override AstRoot VisitTableName(TSqlParser.TableNameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTableName(context, list);
-        }
-        
-        public override AstRoot VisitTarget_name(TSqlParser.Target_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTargetname(context, list);
-        }
-        
-        public override AstRoot VisitTarget_parameter_name(TSqlParser.Target_parameter_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTargetparametername(context, list);
-        }
-        
-        public override AstRoot VisitTrigger_name(TSqlParser.Trigger_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTriggername(context, list);
-        }
-        
-        public override AstRoot VisitTvf_schema_name(TSqlParser.Tvf_schema_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTvfschemaname(context, list);
-        }
-        
-        public override AstRoot VisitType_schema(TSqlParser.Type_schemaContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstTypeschema(context, list);
-        }
-        
-        public override AstRoot VisitUdt_column_name(TSqlParser.Udt_column_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUdtcolumnname(context, list);
-        }
-        
-        public override AstRoot VisitUnscaled_type(TSqlParser.Unscaled_typeContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUnscaledtype(context, list);
-        }
-        
-        public override AstRoot VisitUser_name(TSqlParser.User_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstUsername(context, list);
-        }
-        
-        public override AstRoot VisitWindows_principal(TSqlParser.Windows_principalContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWindowsprincipal(context, list);
-        }
-        
-        public override AstRoot VisitWorkload_group_group_name(TSqlParser.Workload_group_group_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWorkloadgroupgroupname(context, list);
-        }
-        
-        public override AstRoot VisitWorkload_group_pool_name(TSqlParser.Workload_group_pool_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            IParseTree item;
-            for (System.Collections.Generic.IEnumerator<Antlr4.Runtime.Tree.IParseTree> enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); item = enumerator.Current)
-            {
-                list.Add(enumerator.Current.Accept(this));
-            }
-            return new AstWorkloadgrouppoolname(context, list);
+            return new AstFileSizeUnity(context, list);
         }
     }
 }

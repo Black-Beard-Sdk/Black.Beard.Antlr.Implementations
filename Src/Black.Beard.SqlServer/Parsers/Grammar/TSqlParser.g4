@@ -34,7 +34,7 @@ tsql_file
 
 batch
     : go_statement
-    | execute_body_batch? (go_statement | sql_clauses+) go_statement*
+    | execute_body_batch? (go_statement | sql_clauses) go_statement*
     | batch_level_statement go_statement*
     ;
 
@@ -44,7 +44,12 @@ batch_level_statement
     | create_or_alter_trigger
     | create_view
     ;
+
 sql_clauses
+    : sql_clause+
+    ;
+
+sql_clause
     : dml_clause SEMI?
     | cfl_statement SEMI?
     | another_statement SEMI?
@@ -254,7 +259,7 @@ cfl_statement
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/begin-end-transact-sql
 block_statement
-    : BEGIN SEMI? sql_clauses* END SEMI?
+    : BEGIN SEMI? sql_clause* END SEMI?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/break-transact-sql
@@ -280,7 +285,7 @@ return_statement
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/if-else-transact-sql
 if_statement
-    : IF search_condition sql_clauses (ELSE sql_clauses)? SEMI?
+    : IF search_condition sql_clause_true=sql_clause (ELSE sql_clause_false=sql_clause)? SEMI?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/throw-transact-sql
@@ -302,7 +307,7 @@ throw_state
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/try-catch-transact-sql
 try_catch_statement
-    : BEGIN TRY SEMI? try_clauses=sql_clauses+ END TRY SEMI? BEGIN CATCH SEMI? catch_clauses=sql_clauses* END CATCH SEMI?
+    : BEGIN TRY SEMI? try_clauses=sql_clauses END TRY SEMI? BEGIN CATCH SEMI? catch_clauses=sql_clauses? END CATCH SEMI?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/waitfor-transact-sql
@@ -312,7 +317,7 @@ waitfor_statement
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/while-transact-sql
 while_statement
-    : WHILE search_condition (sql_clauses | BREAK SEMI? | CONTINUE SEMI?)
+    : WHILE search_condition (sql_clause | BREAK SEMI? | CONTINUE SEMI?)
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/print-transact-sql
@@ -490,9 +495,21 @@ multiple_local_file_start
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-assembly-transact-sql
 create_assembly
     : CREATE ASSEMBLY assembly_name (AUTHORIZATION owner_name)?
-       FROM (COMMA? (STRING|BINARY) )+
+       FROM binary_content_nexts
        (WITH PERMISSION_SET EQUAL (SAFE|EXTERNAL_ACCESS|UNSAFE) )?
+    ;
 
+binary_content_nexts
+    : binary_content_next+
+    ;
+
+binary_content_next
+    : COMMA? binary_content
+    ;
+
+binary_content
+    : STRING
+    | BINARY
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-assembly-transact-sql
@@ -2136,7 +2153,7 @@ create_or_alter_procedure
     : ((CREATE (OR (ALTER | REPLACE))?) | ALTER) proc=(PROC | PROCEDURE) procName=func_proc_name_schema (SEMI DECIMAL)?
       (LR_BRACKET? procedure_params RR_BRACKET?)?
       procedure_options?
-      (FOR REPLICATION)? AS (as_external_name | sql_clauses*)
+      (FOR REPLICATION)? AS (as_external_name | sql_clause)
     ;
 
 procedure_options
@@ -2160,7 +2177,7 @@ create_or_alter_dml_trigger
       (FOR | AFTER | INSTEAD OF) dml_trigger_operations
       (WITH APPEND)?
       (NOT FOR REPLICATION)?
-      AS sql_clauses+
+      AS sql_clauses
     ;
 
 dml_trigger_options
@@ -2185,7 +2202,7 @@ create_or_alter_ddl_trigger
       ON (ALL SERVER | DATABASE)
       dml_trigger_options?
       (FOR | AFTER) dml_trigger_operations
-      AS sql_clauses+
+      AS sql_clauses
     ;
 
 ddl_trigger_operation
@@ -2218,7 +2235,7 @@ func_body_returns_table
         function_options?
         AS? (as_external_name |
         BEGIN
-           sql_clauses*
+           sql_clauses?
            RETURN SEMI?
         END SEMI?)
     ;
@@ -2228,7 +2245,7 @@ func_body_returns_scalar
         function_options?
         AS? (as_external_name |
         BEGIN
-           sql_clauses*
+           sql_clause?
            RETURN ret=expression SEMI?
        END)
     ;
@@ -3873,7 +3890,14 @@ asterisk
     ;
 
 column_elem
-    : (full_column_name | DOLLAR IDENTITY | DOLLAR ROWGUID | NULL_) as_column_alias?
+    : column_elem_target as_column_alias?
+    ;
+
+column_elem_target
+    : full_column_name 
+    | DOLLAR IDENTITY 
+    | DOLLAR ROWGUID 
+    | NULL_
     ;
 
 udt_elem
@@ -3890,8 +3914,12 @@ select_list_elem
     : asterisk
     | column_elem
     | udt_elem
-    | LOCAL_ID (assignment_operator | EQUAL) expression
+    | expression_assign_elem
     | expression_elem
+    ;
+
+expression_assign_elem
+    : LOCAL_ID (assignment_operator | EQUAL) expression
     ;
 
 table_sources

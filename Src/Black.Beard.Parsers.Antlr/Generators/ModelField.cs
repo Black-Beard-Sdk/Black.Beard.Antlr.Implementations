@@ -31,17 +31,18 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelField Type(Type typeReturn)
+        public ModelField Type(Func<Type> typeReturn)
         {
-            this._type = new CodeTypeReference(typeReturn);
+            this._actionType = () => typeReturn();
             return this;
         }
 
-        public ModelField Type(string typeReturn)
+        public ModelField Type(Func<string> typeReturn)
         {
-            this._type = new CodeTypeReference(typeReturn);
+            this._actionType = () => typeReturn();
             return this;
         }
+
 
 
         public virtual void Generate(Context ctx, object model, CodeTypeDeclaration t)
@@ -57,11 +58,24 @@ namespace Bb.Generators
                 var configurationType = ctx.CurrentConfigurationType;
                 ctx.CurrentConfigurationMethod = configurationType.GetMethod(_n);
 
+                CodeTypeReference type = null;
+
+                if (_actionType != null)
+                {
+                    var t1 = _actionType();
+
+                    if (t1 is string s)
+                        type = new CodeTypeReference(s);
+
+                    else if (t1 is Type i)
+                        type = new CodeTypeReference(i);
+                }
+
                 CodeMemberField field = new CodeMemberField()
                 {
                     Name = _n,
                     Attributes = _attributes,
-                    Type = _type,
+                    Type = type,
                 };
 
                 if (_valueOfField != null)
@@ -78,9 +92,10 @@ namespace Bb.Generators
         private Func<object, string> _nameOfField;
         private Func<object, string> _valueOfField;
         protected MemberAttributes _attributes;
-        private CodeTypeReference _type;
+        private Func<object> _actionType;
 
-        public Func<IEnumerable<AstTerminalText>> Items { get; internal set; }
+
+        public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelField, object> Action { get; internal set; }
         public Action<ModelField> Action2 { get; internal set; }
     }

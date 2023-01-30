@@ -11,7 +11,7 @@ namespace Bb.Asts
         public AstRoot(ParserRuleContext ctx)
             : this(new Position(ctx))
         {
-            
+
         }
 
         public AstRoot(ITerminalNode n)
@@ -20,8 +20,8 @@ namespace Bb.Asts
 
         }
 
-        public AstRoot(Position position) 
-            : base (position)
+        public AstRoot(Position position)
+            : base(position)
         {
 
         }

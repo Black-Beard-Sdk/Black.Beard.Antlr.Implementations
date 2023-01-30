@@ -54,6 +54,11 @@ namespace Bb.Asts
 
         public OccurenceEnum Occurence { get; internal set; }
 
+        public override string ResolveName()
+        {
+            return Value.ResolveName();
+        }
+
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)
@@ -73,6 +78,14 @@ namespace Bb.Asts
                     yield return item;
 
         }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            foreach (var item in Value.GetRules())
+                if (item != null)
+                    yield return item;
+        }
+
 
         public override void ToString(Writer wrt)
         {

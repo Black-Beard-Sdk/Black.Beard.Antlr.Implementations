@@ -21,6 +21,16 @@ namespace Bb.Asts
         public AstAlternativeList? AlternativeList { get; }
         public OccurenceEnum Occurence { get; internal set; }
 
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            return this.AlternativeList?.GetTerminals();
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            return this.AlternativeList?.GetRules();
+        }
+
         public override bool ContainsOnlyTerminals
         {
             get

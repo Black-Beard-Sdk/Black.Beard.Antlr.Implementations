@@ -10,6 +10,8 @@ namespace Bb.Generators
         public ModelProperty(ModelTypeFrom modelTypeFrom)
         {
             this.modelTypeFrom = modelTypeFrom;
+            this._hasGet = true;
+            this._hasSet = true;
         }
 
         public ModelProperty Name(Func<object, string> name)
@@ -24,15 +26,39 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelProperty Type(Type typeReturn)
+        public ModelProperty HasGet(bool value)
         {
-            this._type = new CodeTypeReference(typeReturn);
+            this._hasGet = value;
             return this;
         }
 
-        public ModelProperty Type(string typeReturn)
+        public ModelProperty Get(Action<CodeStatementCollection> action)
         {
-            this._type = new CodeTypeReference(typeReturn);
+            this._getAction = action;
+            return this;
+        }
+
+        public ModelProperty Set(Action<CodeStatementCollection> action)
+        {
+            this._setAction = action;
+            return this;
+        }
+
+        public ModelProperty HasSet(bool value)
+        {
+            this._hasSet = value;
+            return this;
+        }
+
+        public ModelProperty Type(Func<Type> typeReturn)
+        {
+            this._actionType = () => typeReturn();
+            return this;
+        }
+
+        public ModelProperty Type(Func<string> typeReturn)
+        {
+            this._actionType = () => typeReturn();
             return this;
         }
 
@@ -50,14 +76,36 @@ namespace Bb.Generators
                 var configurationType = ctx.CurrentConfigurationType;
                 ctx.CurrentConfigurationMethod = configurationType.GetMethod(_n);
 
-                CodeMemberProperty field = new CodeMemberProperty()
+                CodeTypeReference type = null;
+                if (_actionType != null)
+                {
+                    var t1 = _actionType();
+
+                    if (t1 is string s)
+                        type = new CodeTypeReference(s);
+
+                    else if (t1 is Type i)
+                        type = new CodeTypeReference(i);
+                }
+                else
+                    type = new CodeTypeReference(typeof(object));
+
+                CodeMemberProperty property = new CodeMemberProperty()
                 {
                     Name = _n,
                     Attributes = _attributes,
-                    Type = _type,
+                    Type = type,
+                    HasGet= _hasGet,
+                    HasSet= _hasSet,
                 };
 
-                t.Members.Add(field);
+                if (_getAction != null)
+                    _getAction(property.GetStatements);
+
+                if (_setAction != null)
+                    _setAction(property.SetStatements);
+
+                t.Members.Add(property);
 
             }
 
@@ -67,7 +115,11 @@ namespace Bb.Generators
         protected ModelTypeFrom modelTypeFrom;
         private Func<object, string> _nameOfProperty;
         protected MemberAttributes _attributes;
-        private CodeTypeReference _type;
+        private Func<object> _actionType;
+        private bool _hasGet;
+        private bool _hasSet;
+        private Action<CodeStatementCollection> _getAction;
+        private Action<CodeStatementCollection> _setAction;
 
         public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelProperty, object> Action { get; internal set; }

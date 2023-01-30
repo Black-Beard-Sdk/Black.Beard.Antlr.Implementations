@@ -15,897 +15,913 @@ namespace Bb.Asts
     public partial interface IAstTSqlVisitor
     {
         
-        void VisitTsqlfile(AstTsqlfile a);
+        void VisitTsqlFile(AstTsqlFile a);
         
         void VisitBatch(AstBatch a);
         
-        void VisitBlockstatement(AstBlockstatement a);
+        void VisitSqlClauses(AstSqlClauses a);
         
-        void VisitBreakstatement(AstBreakstatement a);
+        void VisitSqlClause(AstSqlClause a);
         
-        void VisitContinuestatement(AstContinuestatement a);
+        void VisitBlockStatement(AstBlockStatement a);
         
-        void VisitGotostatement(AstGotostatement a);
+        void VisitBreakStatement(AstBreakStatement a);
         
-        void VisitReturnstatement(AstReturnstatement a);
+        void VisitContinueStatement(AstContinueStatement a);
         
-        void VisitIfstatement(AstIfstatement a);
+        void VisitGotoStatement(AstGotoStatement a);
         
-        void VisitThrowstatement(AstThrowstatement a);
+        void VisitReturnStatement(AstReturnStatement a);
         
-        void VisitThrowerrornumber(AstThrowerrornumber a);
+        void VisitIfStatement(AstIfStatement a);
         
-        void VisitThrowmessage(AstThrowmessage a);
+        void VisitThrowStatement(AstThrowStatement a);
         
-        void VisitThrowstate(AstThrowstate a);
+        void VisitThrowErrorNumber(AstThrowErrorNumber a);
         
-        void VisitTrycatchstatement(AstTrycatchstatement a);
+        void VisitThrowMessage(AstThrowMessage a);
         
-        void VisitWaitforstatement(AstWaitforstatement a);
+        void VisitThrowState(AstThrowState a);
         
-        void VisitWhilestatement(AstWhilestatement a);
+        void VisitTryCatchStatement(AstTryCatchStatement a);
         
-        void VisitPrintstatement(AstPrintstatement a);
+        void VisitWaitforStatement(AstWaitforStatement a);
         
-        void VisitRaiseerrorstatement(AstRaiseerrorstatement a);
+        void VisitWhileStatement(AstWhileStatement a);
         
-        void VisitEmptystatement(AstEmptystatement a);
+        void VisitPrintStatement(AstPrintStatement a);
         
-        void VisitAlterapplicationrole(AstAlterapplicationrole a);
+        void VisitRaiseerrorStatement(AstRaiseerrorStatement a);
         
-        void VisitCreateapplicationrole(AstCreateapplicationrole a);
+        void VisitEmptyStatement(AstEmptyStatement a);
         
-        void VisitDropaggregate(AstDropaggregate a);
+        void VisitAlterApplicationRole(AstAlterApplicationRole a);
         
-        void VisitDropapplicationrole(AstDropapplicationrole a);
+        void VisitCreateApplicationRole(AstCreateApplicationRole a);
         
-        void VisitAlterassembly(AstAlterassembly a);
+        void VisitDropAggregate(AstDropAggregate a);
         
-        void VisitAlterassemblystart(AstAlterassemblystart a);
+        void VisitDropApplicationRole(AstDropApplicationRole a);
         
-        void VisitAlterassemblyclause(AstAlterassemblyclause a);
+        void VisitAlterAssembly(AstAlterAssembly a);
         
-        void VisitAlterassemblyfromclause(AstAlterassemblyfromclause a);
+        void VisitAlterAssemblyStart(AstAlterAssemblyStart a);
         
-        void VisitAlterassemblyfromclausestart(AstAlterassemblyfromclausestart a);
+        void VisitAlterAssemblyClause(AstAlterAssemblyClause a);
         
-        void VisitAlterassemblydropclause(AstAlterassemblydropclause a);
+        void VisitAlterAssemblyFromClause(AstAlterAssemblyFromClause a);
         
-        void VisitAlterassemblydropmultiplefiles(AstAlterassemblydropmultiplefiles a);
+        void VisitAlterAssemblyFromClauseStart(AstAlterAssemblyFromClauseStart a);
         
-        void VisitAlterassemblydrop(AstAlterassemblydrop a);
+        void VisitAlterAssemblyDropClause(AstAlterAssemblyDropClause a);
         
-        void VisitAlterassemblyaddclause(AstAlterassemblyaddclause a);
+        void VisitAlterAssemblyDropMultipleFiles(AstAlterAssemblyDropMultipleFiles a);
         
-        void VisitAlterasssemblyaddclausestart(AstAlterasssemblyaddclausestart a);
+        void VisitAlterAssemblyDrop(AstAlterAssemblyDrop a);
         
-        void VisitAlterassemblyclientfileclause(AstAlterassemblyclientfileclause a);
+        void VisitAlterAssemblyAddClause(AstAlterAssemblyAddClause a);
         
-        void VisitAlterassemblyfilename(AstAlterassemblyfilename a);
+        void VisitAlterAsssemblyAddClauseStart(AstAlterAsssemblyAddClauseStart a);
         
-        void VisitAlterassemblyfilebits(AstAlterassemblyfilebits a);
+        void VisitAlterAssemblyClientFileClause(AstAlterAssemblyClientFileClause a);
         
-        void VisitAlterassemblyas(AstAlterassemblyas a);
+        void VisitAlterAssemblyFileName(AstAlterAssemblyFileName a);
         
-        void VisitAlterassemblywithclause(AstAlterassemblywithclause a);
+        void VisitAlterAssemblyFileBits(AstAlterAssemblyFileBits a);
         
-        void VisitAlterassemblywith(AstAlterassemblywith a);
+        void VisitAlterAssemblyAs(AstAlterAssemblyAs a);
         
-        void VisitClientassemblyspecifier(AstClientassemblyspecifier a);
+        void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
         
-        void VisitAssemblyoption(AstAssemblyoption a);
+        void VisitAlterAssemblyWith(AstAlterAssemblyWith a);
         
-        void VisitNetworkfileshare(AstNetworkfileshare a);
+        void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a);
         
-        void VisitNetworkfilestart(AstNetworkfilestart a);
+        void VisitAssemblyOption(AstAssemblyOption a);
         
-        void VisitFilepath(AstFilepath a);
+        void VisitNetworkFileShare(AstNetworkFileShare a);
         
-        void VisitFiledirectorypathseparator(AstFiledirectorypathseparator a);
+        void VisitNetworkFileStart(AstNetworkFileStart a);
         
-        void VisitLocalfile(AstLocalfile a);
+        void VisitFilePath(AstFilePath a);
         
-        void VisitLocaldrive(AstLocaldrive a);
+        void VisitFileDirectoryPathSeparator(AstFileDirectoryPathSeparator a);
         
-        void VisitMultiplelocalfiles(AstMultiplelocalfiles a);
+        void VisitLocalFile(AstLocalFile a);
         
-        void VisitMultiplelocalfilestart(AstMultiplelocalfilestart a);
+        void VisitLocalDrive(AstLocalDrive a);
         
-        void VisitCreateassembly(AstCreateassembly a);
+        void VisitMultipleLocalFiles(AstMultipleLocalFiles a);
         
-        void VisitDropassembly(AstDropassembly a);
+        void VisitMultipleLocalFileStart(AstMultipleLocalFileStart a);
         
-        void VisitAlterasymmetrickey(AstAlterasymmetrickey a);
+        void VisitCreateAssembly(AstCreateAssembly a);
         
-        void VisitAlterasymmetrickeystart(AstAlterasymmetrickeystart a);
+        void VisitBinaryContentNexts(AstBinaryContentNexts a);
         
-        void VisitAsymmetrickeyoption(AstAsymmetrickeyoption a);
+        void VisitBinaryContentNext(AstBinaryContentNext a);
         
-        void VisitAsymmetrickeyoptionstart(AstAsymmetrickeyoptionstart a);
+        void VisitBinaryContent(AstBinaryContent a);
         
-        void VisitAsymmetrickeypasswordchangeoption(AstAsymmetrickeypasswordchangeoption a);
+        void VisitDropAssembly(AstDropAssembly a);
         
-        void VisitCreateasymmetrickey(AstCreateasymmetrickey a);
+        void VisitAlterAsymmetricKey(AstAlterAsymmetricKey a);
         
-        void VisitDropasymmetrickey(AstDropasymmetrickey a);
+        void VisitAlterAsymmetricKeyStart(AstAlterAsymmetricKeyStart a);
         
-        void VisitAlterauthorization(AstAlterauthorization a);
+        void VisitAsymmetricKeyOption(AstAsymmetricKeyOption a);
         
-        void VisitAuthorizationgrantee(AstAuthorizationgrantee a);
+        void VisitAsymmetricKeyOptionStart(AstAsymmetricKeyOptionStart a);
         
-        void VisitEntityto(AstEntityto a);
+        void VisitAsymmetricKeyPasswordChangeOption(AstAsymmetricKeyPasswordChangeOption a);
         
-        void VisitColoncolon(AstColoncolon a);
+        void VisitCreateAsymmetricKey(AstCreateAsymmetricKey a);
         
-        void VisitAlterauthorizationstart(AstAlterauthorizationstart a);
+        void VisitDropAsymmetricKey(AstDropAsymmetricKey a);
         
-        void VisitAlterauthorizationforsqldatabase(AstAlterauthorizationforsqldatabase a);
+        void VisitAlterAuthorization(AstAlterAuthorization a);
         
-        void VisitAlterauthorizationforazuredw(AstAlterauthorizationforazuredw a);
+        void VisitAuthorizationGrantee(AstAuthorizationGrantee a);
         
-        void VisitAlterauthorizationforparalleldw(AstAlterauthorizationforparalleldw a);
+        void VisitEntityTo(AstEntityTo a);
         
-        void VisitClasstype(AstClasstype a);
+        void VisitColonColon(AstColonColon a);
         
-        void VisitClasstypeforsqldatabase(AstClasstypeforsqldatabase a);
+        void VisitAlterAuthorizationStart(AstAlterAuthorizationStart a);
         
-        void VisitClasstypeforazuredw(AstClasstypeforazuredw a);
+        void VisitAlterAuthorizationForSqlDatabase(AstAlterAuthorizationForSqlDatabase a);
         
-        void VisitClasstypeforparalleldw(AstClasstypeforparalleldw a);
+        void VisitAlterAuthorizationForAzureDw(AstAlterAuthorizationForAzureDw a);
         
-        void VisitClasstypeforgrant(AstClasstypeforgrant a);
+        void VisitAlterAuthorizationForParallelDw(AstAlterAuthorizationForParallelDw a);
         
-        void VisitDropavailabilitygroup(AstDropavailabilitygroup a);
+        void VisitClassType(AstClassType a);
         
-        void VisitAlteravailabilitygroup(AstAlteravailabilitygroup a);
+        void VisitClassTypeForSqlDatabase(AstClassTypeForSqlDatabase a);
         
-        void VisitAlteravailabilitygroupstart(AstAlteravailabilitygroupstart a);
+        void VisitClassTypeForAzureDw(AstClassTypeForAzureDw a);
         
-        void VisitAlteravailabilitygroupoptions(AstAlteravailabilitygroupoptions a);
+        void VisitClassTypeForParallelDw(AstClassTypeForParallelDw a);
         
-        void VisitServerinstance(AstServerinstance a);
+        void VisitClassTypeForGrant(AstClassTypeForGrant a);
         
-        void VisitIpv4failover(AstIpv4failover a);
+        void VisitDropAvailabilityGroup(AstDropAvailabilityGroup a);
         
-        void VisitIpv6failover(AstIpv6failover a);
+        void VisitAlterAvailabilityGroup(AstAlterAvailabilityGroup a);
         
-        void VisitCreateoralterbrokerpriority(AstCreateoralterbrokerpriority a);
+        void VisitAlterAvailabilityGroupStart(AstAlterAvailabilityGroupStart a);
         
-        void VisitDropbrokerpriority(AstDropbrokerpriority a);
+        void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions a);
         
-        void VisitAltercertificate(AstAltercertificate a);
+        void VisitServerInstance(AstServerInstance a);
         
-        void VisitAltercolumnencryptionkey(AstAltercolumnencryptionkey a);
+        void VisitIpV4Failover(AstIpV4Failover a);
         
-        void VisitCreatecolumnencryptionkey(AstCreatecolumnencryptionkey a);
+        void VisitIpV6Failover(AstIpV6Failover a);
         
-        void VisitDropcertificate(AstDropcertificate a);
+        void VisitCreateOrAlterBrokerPriority(AstCreateOrAlterBrokerPriority a);
         
-        void VisitDropcolumnencryptionkey(AstDropcolumnencryptionkey a);
+        void VisitDropBrokerPriority(AstDropBrokerPriority a);
         
-        void VisitDropcolumnmasterkey(AstDropcolumnmasterkey a);
+        void VisitAlterCertificate(AstAlterCertificate a);
         
-        void VisitDropcontract(AstDropcontract a);
+        void VisitAlterColumnEncryptionKey(AstAlterColumnEncryptionKey a);
         
-        void VisitDropcredential(AstDropcredential a);
+        void VisitCreateColumnEncryptionKey(AstCreateColumnEncryptionKey a);
         
-        void VisitDropcryptograhicprovider(AstDropcryptograhicprovider a);
+        void VisitDropCertificate(AstDropCertificate a);
         
-        void VisitDropdatabase(AstDropdatabase a);
+        void VisitDropColumnEncryptionKey(AstDropColumnEncryptionKey a);
         
-        void VisitDropdatabaseauditspecification(AstDropdatabaseauditspecification a);
+        void VisitDropColumnMasterKey(AstDropColumnMasterKey a);
         
-        void VisitDropdatabaseencryptionkey(AstDropdatabaseencryptionkey a);
+        void VisitDropContract(AstDropContract a);
         
-        void VisitDropdatabasescopedcredential(AstDropdatabasescopedcredential a);
+        void VisitDropCredential(AstDropCredential a);
         
-        void VisitDropdefault(AstDropdefault a);
+        void VisitDropCryptograhicProvider(AstDropCryptograhicProvider a);
         
-        void VisitDropendpoint(AstDropendpoint a);
+        void VisitDropDatabase(AstDropDatabase a);
         
-        void VisitDropexternaldatasource(AstDropexternaldatasource a);
+        void VisitDropDatabaseAuditSpecification(AstDropDatabaseAuditSpecification a);
         
-        void VisitDropexternalfileformat(AstDropexternalfileformat a);
+        void VisitDropDatabaseEncryptionKey(AstDropDatabaseEncryptionKey a);
         
-        void VisitDropexternallibrary(AstDropexternallibrary a);
+        void VisitDropDatabaseScopedCredential(AstDropDatabaseScopedCredential a);
         
-        void VisitDropexternalresourcepool(AstDropexternalresourcepool a);
+        void VisitDropDefault(AstDropDefault a);
         
-        void VisitDropexternaltable(AstDropexternaltable a);
+        void VisitDropEndpoint(AstDropEndpoint a);
         
-        void VisitDropeventnotifications(AstDropeventnotifications a);
+        void VisitDropExternalDataSource(AstDropExternalDataSource a);
         
-        void VisitDropeventsession(AstDropeventsession a);
+        void VisitDropExternalFileFormat(AstDropExternalFileFormat a);
         
-        void VisitDropfulltextcatalog(AstDropfulltextcatalog a);
+        void VisitDropExternalLibrary(AstDropExternalLibrary a);
         
-        void VisitDropfulltextindex(AstDropfulltextindex a);
+        void VisitDropExternalResourcePool(AstDropExternalResourcePool a);
         
-        void VisitDropfulltextstoplist(AstDropfulltextstoplist a);
+        void VisitDropExternalTable(AstDropExternalTable a);
         
-        void VisitDroplogin(AstDroplogin a);
+        void VisitDropEventNotifications(AstDropEventNotifications a);
         
-        void VisitDropmasterkey(AstDropmasterkey a);
+        void VisitDropEventSession(AstDropEventSession a);
         
-        void VisitDropmessagetype(AstDropmessagetype a);
+        void VisitDropFulltextCatalog(AstDropFulltextCatalog a);
         
-        void VisitMessagetypename(AstMessagetypename a);
+        void VisitDropFulltextIndex(AstDropFulltextIndex a);
         
-        void VisitDroppartitionfunction(AstDroppartitionfunction a);
+        void VisitDropFulltextStoplist(AstDropFulltextStoplist a);
         
-        void VisitPartitionfunctionname(AstPartitionfunctionname a);
+        void VisitDropLogin(AstDropLogin a);
         
-        void VisitDroppartitionscheme(AstDroppartitionscheme a);
+        void VisitDropMasterKey(AstDropMasterKey a);
         
-        void VisitPartitionschemename(AstPartitionschemename a);
+        void VisitDropMessageType(AstDropMessageType a);
         
-        void VisitDropqueue(AstDropqueue a);
+        void VisitMessageTypeName(AstMessageTypeName a);
         
-        void VisitDropremoteservicebinding(AstDropremoteservicebinding a);
+        void VisitDropPartitionFunction(AstDropPartitionFunction a);
         
-        void VisitDropresourcepool(AstDropresourcepool a);
+        void VisitPartitionFunctionName(AstPartitionFunctionName a);
         
-        void VisitDropdbrole(AstDropdbrole a);
+        void VisitDropPartitionScheme(AstDropPartitionScheme a);
         
-        void VisitDroproute(AstDroproute a);
+        void VisitPartitionSchemeName(AstPartitionSchemeName a);
         
-        void VisitDroprule(AstDroprule a);
+        void VisitDropQueue(AstDropQueue a);
         
-        void VisitDropschema(AstDropschema a);
+        void VisitDropRemoteServiceBinding(AstDropRemoteServiceBinding a);
         
-        void VisitDropsearchpropertylist(AstDropsearchpropertylist a);
+        void VisitDropResourcePool(AstDropResourcePool a);
         
-        void VisitDropsecuritypolicy(AstDropsecuritypolicy a);
+        void VisitDropDbRole(AstDropDbRole a);
         
-        void VisitDropsequence(AstDropsequence a);
+        void VisitDropRoute(AstDropRoute a);
         
-        void VisitDropserveraudit(AstDropserveraudit a);
+        void VisitDropRule(AstDropRule a);
         
-        void VisitDropserverauditspecification(AstDropserverauditspecification a);
+        void VisitDropSchema(AstDropSchema a);
         
-        void VisitDropserverrole(AstDropserverrole a);
+        void VisitDropSearchPropertyList(AstDropSearchPropertyList a);
         
-        void VisitDropservice(AstDropservice a);
+        void VisitDropSecurityPolicy(AstDropSecurityPolicy a);
         
-        void VisitDropsignature(AstDropsignature a);
+        void VisitDropSequence(AstDropSequence a);
         
-        void VisitDropstatisticsnameazuredwandpdw(AstDropstatisticsnameazuredwandpdw a);
+        void VisitDropServerAudit(AstDropServerAudit a);
         
-        void VisitDropsymmetrickey(AstDropsymmetrickey a);
+        void VisitDropServerAuditSpecification(AstDropServerAuditSpecification a);
         
-        void VisitDropsynonym(AstDropsynonym a);
+        void VisitDropServerRole(AstDropServerRole a);
         
-        void VisitDropuser(AstDropuser a);
+        void VisitDropService(AstDropService a);
         
-        void VisitDropworkloadgroup(AstDropworkloadgroup a);
+        void VisitDropSignature(AstDropSignature a);
         
-        void VisitDropxmlschemacollection(AstDropxmlschemacollection a);
+        void VisitDropStatisticsNameAzureDwAndPdw(AstDropStatisticsNameAzureDwAndPdw a);
         
-        void VisitDisabletrigger(AstDisabletrigger a);
+        void VisitDropSymmetricKey(AstDropSymmetricKey a);
         
-        void VisitEnabletrigger(AstEnabletrigger a);
+        void VisitDropSynonym(AstDropSynonym a);
         
-        void VisitLocktable(AstLocktable a);
+        void VisitDropUser(AstDropUser a);
         
-        void VisitTruncatetable(AstTruncatetable a);
+        void VisitDropWorkloadGroup(AstDropWorkloadGroup a);
         
-        void VisitCreatecolumnmasterkey(AstCreatecolumnmasterkey a);
+        void VisitDropXmlSchemaCollection(AstDropXmlSchemaCollection a);
         
-        void VisitAltercredential(AstAltercredential a);
+        void VisitDisableTrigger(AstDisableTrigger a);
         
-        void VisitCreatecredential(AstCreatecredential a);
+        void VisitEnableTrigger(AstEnableTrigger a);
         
-        void VisitAltercryptographicprovider(AstAltercryptographicprovider a);
+        void VisitLockTable(AstLockTable a);
         
-        void VisitCreatecryptographicprovider(AstCreatecryptographicprovider a);
+        void VisitTruncateTable(AstTruncateTable a);
         
-        void VisitCreateeventnotification(AstCreateeventnotification a);
+        void VisitCreateColumnMasterKey(AstCreateColumnMasterKey a);
         
-        void VisitCreateoraltereventsession(AstCreateoraltereventsession a);
+        void VisitAlterCredential(AstAlterCredential a);
         
-        void VisitStartstop(AstStartstop a);
+        void VisitCreateCredential(AstCreateCredential a);
         
-        void VisitEventsessionpredicateexpression(AstEventsessionpredicateexpression a);
+        void VisitAlterCryptographicProvider(AstAlterCryptographicProvider a);
         
-        void VisitEventsessionpredicatefactor(AstEventsessionpredicatefactor a);
+        void VisitCreateCryptographicProvider(AstCreateCryptographicProvider a);
         
-        void VisitEventsessionpredicateleaf(AstEventsessionpredicateleaf a);
+        void VisitCreateEventNotification(AstCreateEventNotification a);
         
-        void VisitAlterexternaldatasource(AstAlterexternaldatasource a);
+        void VisitCreateOrAlterEventSession(AstCreateOrAlterEventSession a);
         
-        void VisitAlterexternallibrary(AstAlterexternallibrary a);
+        void VisitStartStop(AstStartStop a);
         
-        void VisitCreateexternallibrary(AstCreateexternallibrary a);
+        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression a);
         
-        void VisitAlterexternalresourcepool(AstAlterexternalresourcepool a);
+        void VisitEventSessionPredicateFactor(AstEventSessionPredicateFactor a);
         
-        void VisitCreateexternalresourcepool(AstCreateexternalresourcepool a);
+        void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf a);
         
-        void VisitAlterfulltextcatalog(AstAlterfulltextcatalog a);
+        void VisitAlterExternalDataSource(AstAlterExternalDataSource a);
         
-        void VisitCreatefulltextcatalog(AstCreatefulltextcatalog a);
+        void VisitAlterExternalLibrary(AstAlterExternalLibrary a);
         
-        void VisitAlterfulltextstoplist(AstAlterfulltextstoplist a);
+        void VisitCreateExternalLibrary(AstCreateExternalLibrary a);
         
-        void VisitCreatefulltextstoplist(AstCreatefulltextstoplist a);
+        void VisitAlterExternalResourcePool(AstAlterExternalResourcePool a);
         
-        void VisitAlterloginsqlserver(AstAlterloginsqlserver a);
+        void VisitCreateExternalResourcePool(AstCreateExternalResourcePool a);
         
-        void VisitCreateloginsqlserver(AstCreateloginsqlserver a);
+        void VisitAlterFulltextCatalog(AstAlterFulltextCatalog a);
         
-        void VisitAlterloginazuresql(AstAlterloginazuresql a);
+        void VisitCreateFulltextCatalog(AstCreateFulltextCatalog a);
         
-        void VisitCreateloginazuresql(AstCreateloginazuresql a);
+        void VisitAlterFulltextStoplist(AstAlterFulltextStoplist a);
         
-        void VisitAlterloginazuresqldwandpdw(AstAlterloginazuresqldwandpdw a);
+        void VisitCreateFulltextStoplist(AstCreateFulltextStoplist a);
         
-        void VisitEnabledisable(AstEnabledisable a);
+        void VisitAlterLoginSqlServer(AstAlterLoginSqlServer a);
         
-        void VisitCreateloginpdw(AstCreateloginpdw a);
+        void VisitCreateLoginSqlServer(AstCreateLoginSqlServer a);
         
-        void VisitAltermasterkeysqlserver(AstAltermasterkeysqlserver a);
+        void VisitAlterLoginAzureSql(AstAlterLoginAzureSql a);
         
-        void VisitCreatemasterkeysqlserver(AstCreatemasterkeysqlserver a);
+        void VisitCreateLoginAzureSql(AstCreateLoginAzureSql a);
         
-        void VisitAltermasterkeyazuresql(AstAltermasterkeyazuresql a);
+        void VisitAlterLoginAzureSqlDwAndPdw(AstAlterLoginAzureSqlDwAndPdw a);
         
-        void VisitCreatemasterkeyazuresql(AstCreatemasterkeyazuresql a);
+        void VisitEnableDisable(AstEnableDisable a);
         
-        void VisitAltermessagetype(AstAltermessagetype a);
+        void VisitCreateLoginPdw(AstCreateLoginPdw a);
         
-        void VisitAlterpartitionfunction(AstAlterpartitionfunction a);
+        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer a);
         
-        void VisitSplitormerge(AstSplitormerge a);
+        void VisitCreateMasterKeySqlServer(AstCreateMasterKeySqlServer a);
         
-        void VisitAlterpartitionscheme(AstAlterpartitionscheme a);
+        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql a);
         
-        void VisitAlterremoteservicebinding(AstAlterremoteservicebinding a);
+        void VisitCreateMasterKeyAzureSql(AstCreateMasterKeyAzureSql a);
         
-        void VisitCreateremoteservicebinding(AstCreateremoteservicebinding a);
+        void VisitAlterMessageType(AstAlterMessageType a);
         
-        void VisitCreateresourcepool(AstCreateresourcepool a);
+        void VisitAlterPartitionFunction(AstAlterPartitionFunction a);
         
-        void VisitAlterresourcegovernor(AstAlterresourcegovernor a);
+        void VisitSplitOrMerge(AstSplitOrMerge a);
         
-        void VisitAlterdbrole(AstAlterdbrole a);
+        void VisitAlterPartitionScheme(AstAlterPartitionScheme a);
         
-        void VisitAdddrop(AstAdddrop a);
+        void VisitAlterRemoteServiceBinding(AstAlterRemoteServiceBinding a);
         
-        void VisitCreatedbrole(AstCreatedbrole a);
+        void VisitCreateRemoteServiceBinding(AstCreateRemoteServiceBinding a);
         
-        void VisitCreateroute(AstCreateroute a);
+        void VisitCreateResourcePool(AstCreateResourcePool a);
         
-        void VisitCreaterule(AstCreaterule a);
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor a);
         
-        void VisitAlterschemasql(AstAlterschemasql a);
+        void VisitAlterDbRole(AstAlterDbRole a);
         
-        void VisitCreateschema(AstCreateschema a);
+        void VisitAddDrop(AstAddDrop a);
         
-        void VisitEnumdml(AstEnumdml a);
+        void VisitCreateDbRole(AstCreateDbRole a);
         
-        void VisitGrantdeny(AstGrantdeny a);
+        void VisitCreateRoute(AstCreateRoute a);
         
-        void VisitCreateschemaazuresqldwandpdw(AstCreateschemaazuresqldwandpdw a);
+        void VisitCreateRule(AstCreateRule a);
         
-        void VisitAlterschemaazuresqldwandpdw(AstAlterschemaazuresqldwandpdw a);
+        void VisitAlterSchemaSql(AstAlterSchemaSql a);
         
-        void VisitCreatesearchpropertylist(AstCreatesearchpropertylist a);
+        void VisitCreateSchema(AstCreateSchema a);
         
-        void VisitCreatesecuritypolicy(AstCreatesecuritypolicy a);
+        void VisitEnumDml(AstEnumDml a);
         
-        void VisitAltersequence(AstAltersequence a);
+        void VisitGrantDeny(AstGrantDeny a);
         
-        void VisitCreatesequence(AstCreatesequence a);
+        void VisitCreateSchemaAzureSqlDwAndPdw(AstCreateSchemaAzureSqlDwAndPdw a);
         
-        void VisitAlterserveraudit(AstAlterserveraudit a);
+        void VisitAlterSchemaAzureSqlDwAndPdw(AstAlterSchemaAzureSqlDwAndPdw a);
         
-        void VisitCreateserveraudit(AstCreateserveraudit a);
+        void VisitCreateSearchPropertyList(AstCreateSearchPropertyList a);
         
-        void VisitAlterserverauditspecification(AstAlterserverauditspecification a);
+        void VisitCreateSecurityPolicy(AstCreateSecurityPolicy a);
         
-        void VisitCreateserverauditspecification(AstCreateserverauditspecification a);
+        void VisitAlterSequence(AstAlterSequence a);
         
-        void VisitAlterserverconfiguration(AstAlterserverconfiguration a);
+        void VisitCreateSequence(AstCreateSequence a);
         
-        void VisitAlterserverrole(AstAlterserverrole a);
+        void VisitAlterServerAudit(AstAlterServerAudit a);
         
-        void VisitCreateserverrole(AstCreateserverrole a);
+        void VisitCreateServerAudit(AstCreateServerAudit a);
         
-        void VisitAlterserverrolepdw(AstAlterserverrolepdw a);
+        void VisitAlterServerAuditSpecification(AstAlterServerAuditSpecification a);
         
-        void VisitAlterservice(AstAlterservice a);
+        void VisitCreateServerAuditSpecification(AstCreateServerAuditSpecification a);
         
-        void VisitCreateservice(AstCreateservice a);
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration a);
         
-        void VisitAlterservicemasterkey(AstAlterservicemasterkey a);
+        void VisitAlterServerRole(AstAlterServerRole a);
         
-        void VisitAltersymmetrickey(AstAltersymmetrickey a);
+        void VisitCreateServerRole(AstCreateServerRole a);
         
-        void VisitCreatesynonym(AstCreatesynonym a);
+        void VisitAlterServerRolePdw(AstAlterServerRolePdw a);
         
-        void VisitAlteruser(AstAlteruser a);
+        void VisitAlterService(AstAlterService a);
         
-        void VisitCreateuser(AstCreateuser a);
+        void VisitCreateService(AstCreateService a);
         
-        void VisitCreateuserazuresqldw(AstCreateuserazuresqldw a);
+        void VisitAlterServiceMasterKey(AstAlterServiceMasterKey a);
         
-        void VisitAlteruserazuresql(AstAlteruserazuresql a);
+        void VisitAlterSymmetricKey(AstAlterSymmetricKey a);
         
-        void VisitAlterworkloadgroup(AstAlterworkloadgroup a);
+        void VisitCreateSynonym(AstCreateSynonym a);
         
-        void VisitCreateworkloadgroup(AstCreateworkloadgroup a);
+        void VisitAlterUser(AstAlterUser a);
         
-        void VisitCreatexmlschemacollection(AstCreatexmlschemacollection a);
+        void VisitCreateUser(AstCreateUser a);
         
-        void VisitCreatepartitionfunction(AstCreatepartitionfunction a);
+        void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw a);
         
-        void VisitCreatepartitionscheme(AstCreatepartitionscheme a);
+        void VisitAlterUserAzureSql(AstAlterUserAzureSql a);
         
-        void VisitCreatequeue(AstCreatequeue a);
+        void VisitAlterWorkloadGroup(AstAlterWorkloadGroup a);
         
-        void VisitQueuesettings(AstQueuesettings a);
+        void VisitCreateWorkloadGroup(AstCreateWorkloadGroup a);
         
-        void VisitAlterqueue(AstAlterqueue a);
+        void VisitCreateXmlSchemaCollection(AstCreateXmlSchemaCollection a);
         
-        void VisitQueueaction(AstQueueaction a);
+        void VisitCreatePartitionFunction(AstCreatePartitionFunction a);
         
-        void VisitQueuerebuildoptions(AstQueuerebuildoptions a);
+        void VisitCreatePartitionScheme(AstCreatePartitionScheme a);
         
-        void VisitCreatecontract(AstCreatecontract a);
+        void VisitCreateQueue(AstCreateQueue a);
         
-        void VisitMessagestatement(AstMessagestatement a);
+        void VisitQueueSettings(AstQueueSettings a);
         
-        void VisitMergestatement(AstMergestatement a);
+        void VisitAlterQueue(AstAlterQueue a);
         
-        void VisitWhenmatches(AstWhenmatches a);
+        void VisitQueueAction(AstQueueAction a);
         
-        void VisitMergematched(AstMergematched a);
+        void VisitQueueRebuildOptions(AstQueueRebuildOptions a);
         
-        void VisitUpdateelemmerges(AstUpdateelemmerges a);
+        void VisitCreateContract(AstCreateContract a);
         
-        void VisitMergenotmatched(AstMergenotmatched a);
+        void VisitMessageStatement(AstMessageStatement a);
         
-        void VisitDeletestatement(AstDeletestatement a);
+        void VisitMergeStatement(AstMergeStatement a);
         
-        void VisitInsertstatement(AstInsertstatement a);
+        void VisitWhenMatches(AstWhenMatches a);
         
-        void VisitInsertstatementvalue(AstInsertstatementvalue a);
+        void VisitMergeMatched(AstMergeMatched a);
         
-        void VisitReceivestatement(AstReceivestatement a);
+        void VisitUpdateElemMerges(AstUpdateElemMerges a);
         
-        void VisitSelectstatementstandalone(AstSelectstatementstandalone a);
+        void VisitMergeNotMatched(AstMergeNotMatched a);
         
-        void VisitSelectstatement(AstSelectstatement a);
+        void VisitDeleteStatement(AstDeleteStatement a);
         
-        void VisitUpdatestatement(AstUpdatestatement a);
+        void VisitDeleteStatementFrom(AstDeleteStatementFrom a);
         
-        void VisitUpdateelems(AstUpdateelems a);
+        void VisitInsertStatement(AstInsertStatement a);
         
-        void VisitOutputclause(AstOutputclause a);
+        void VisitInsertStatementValue(AstInsertStatementValue a);
         
-        void VisitOutputdmllistelems(AstOutputdmllistelems a);
+        void VisitReceiveStatement(AstReceiveStatement a);
         
-        void VisitOutputdmllistelem(AstOutputdmllistelem a);
+        void VisitSelectStatementStandalone(AstSelectStatementStandalone a);
         
-        void VisitCreatedatabase(AstCreatedatabase a);
+        void VisitSelectStatement(AstSelectStatement a);
         
-        void VisitCreateindex(AstCreateindex a);
+        void VisitTime(AstTime a);
         
-        void VisitCreateindexoptions(AstCreateindexoptions a);
+        void VisitUpdateStatement(AstUpdateStatement a);
         
-        void VisitRelationalindexoptions(AstRelationalindexoptions a);
+        void VisitUpdateElems(AstUpdateElems a);
         
-        void VisitRelationalindexoption(AstRelationalindexoption a);
+        void VisitOutputClause(AstOutputClause a);
         
-        void VisitAlterindex(AstAlterindex a);
+        void VisitOutputDmlListElems(AstOutputDmlListElems a);
         
-        void VisitResumableindexoptions(AstResumableindexoptions a);
+        void VisitOutputDmlListElem(AstOutputDmlListElem a);
         
-        void VisitResumableindexoption(AstResumableindexoption a);
+        void VisitCreateDatabase(AstCreateDatabase a);
         
-        void VisitReorganizepartition(AstReorganizepartition a);
+        void VisitCreateIndex(AstCreateIndex a);
         
-        void VisitReorganizeoptions(AstReorganizeoptions a);
+        void VisitCreateIndexOptions(AstCreateIndexOptions a);
         
-        void VisitReorganizeoption(AstReorganizeoption a);
+        void VisitRelationalIndexOptions(AstRelationalIndexOptions a);
         
-        void VisitSetindexoptions(AstSetindexoptions a);
+        void VisitRelationalIndexOption(AstRelationalIndexOption a);
         
-        void VisitSetindexoption(AstSetindexoption a);
+        void VisitAlterIndex(AstAlterIndex a);
         
-        void VisitRebuildpartition(AstRebuildpartition a);
+        void VisitResumableIndexOptions(AstResumableIndexOptions a);
         
-        void VisitRebuildindexoptions(AstRebuildindexoptions a);
+        void VisitResumableIndexOption(AstResumableIndexOption a);
         
-        void VisitRebuildindexoption(AstRebuildindexoption a);
+        void VisitReorganizePartition(AstReorganizePartition a);
         
-        void VisitSinglepartitionrebuildindexoptions(AstSinglepartitionrebuildindexoptions a);
+        void VisitReorganizeOptions(AstReorganizeOptions a);
         
-        void VisitSinglepartitionrebuildindexoption(AstSinglepartitionrebuildindexoption a);
+        void VisitReorganizeOption(AstReorganizeOption a);
         
-        void VisitOnpartitions(AstOnpartitions a);
+        void VisitSetIndexOptions(AstSetIndexOptions a);
         
-        void VisitCreatecolumnstoreindex(AstCreatecolumnstoreindex a);
+        void VisitSetIndexOption(AstSetIndexOption a);
         
-        void VisitCreatecolumnstoreindexoptions(AstCreatecolumnstoreindexoptions a);
+        void VisitRebuildPartition(AstRebuildPartition a);
         
-        void VisitColumnstoreindexoption(AstColumnstoreindexoption a);
+        void VisitRebuildIndexOptions(AstRebuildIndexOptions a);
         
-        void VisitCreatenonclusteredcolumnstoreindex(AstCreatenonclusteredcolumnstoreindex a);
+        void VisitRebuildIndexOption(AstRebuildIndexOption a);
         
-        void VisitCreatexmlindex(AstCreatexmlindex a);
+        void VisitSinglePartitionRebuildIndexOptions(AstSinglePartitionRebuildIndexOptions a);
         
-        void VisitXmlindexoptions(AstXmlindexoptions a);
+        void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption a);
         
-        void VisitXmlindexoption(AstXmlindexoption a);
+        void VisitOnPartitions(AstOnPartitions a);
         
-        void VisitCreateoralterprocedure(AstCreateoralterprocedure a);
+        void VisitCreateColumnstoreIndex(AstCreateColumnstoreIndex a);
         
-        void VisitProcedureoptions(AstProcedureoptions a);
+        void VisitCreateColumnstoreIndexOptions(AstCreateColumnstoreIndexOptions a);
         
-        void VisitAsexternalname(AstAsexternalname a);
+        void VisitColumnstoreIndexOption(AstColumnstoreIndexOption a);
         
-        void VisitCreateoralterdmltrigger(AstCreateoralterdmltrigger a);
+        void VisitCreateNonclusteredColumnstoreIndex(AstCreateNonclusteredColumnstoreIndex a);
         
-        void VisitDmltriggeroptions(AstDmltriggeroptions a);
+        void VisitCreateXmlIndex(AstCreateXmlIndex a);
         
-        void VisitDmltriggeroperations(AstDmltriggeroperations a);
+        void VisitXmlIndexOptions(AstXmlIndexOptions a);
         
-        void VisitDmltriggeroption(AstDmltriggeroption a);
+        void VisitXmlIndexOption(AstXmlIndexOption a);
         
-        void VisitDmltriggeroperation(AstDmltriggeroperation a);
+        void VisitCreateOrAlterProcedure(AstCreateOrAlterProcedure a);
         
-        void VisitCreateoralterddltrigger(AstCreateoralterddltrigger a);
+        void VisitProcedureOptions(AstProcedureOptions a);
         
-        void VisitCreateoralterfunction(AstCreateoralterfunction a);
+        void VisitAsExternalName(AstAsExternalName a);
         
-        void VisitProcedureparams(AstProcedureparams a);
+        void VisitCreateOrAlterDmlTrigger(AstCreateOrAlterDmlTrigger a);
         
-        void VisitFuncbodyreturnsselect(AstFuncbodyreturnsselect a);
+        void VisitDmlTriggerOptions(AstDmlTriggerOptions a);
         
-        void VisitFunctionoptions(AstFunctionoptions a);
+        void VisitDmlTriggerOperations(AstDmlTriggerOperations a);
         
-        void VisitFuncbodyreturnstable(AstFuncbodyreturnstable a);
+        void VisitDmlTriggerOption(AstDmlTriggerOption a);
         
-        void VisitFuncbodyreturnsscalar(AstFuncbodyreturnsscalar a);
+        void VisitDmlTriggerOperation(AstDmlTriggerOperation a);
         
-        void VisitProcedureparam(AstProcedureparam a);
+        void VisitCreateOrAlterDdlTrigger(AstCreateOrAlterDdlTrigger a);
         
-        void VisitProcedureoption(AstProcedureoption a);
+        void VisitCreateOrAlterFunction(AstCreateOrAlterFunction a);
         
-        void VisitFunctionoption(AstFunctionoption a);
+        void VisitProcedureParams(AstProcedureParams a);
         
-        void VisitCreatestatistics(AstCreatestatistics a);
+        void VisitFuncBodyReturnsSelect(AstFuncBodyReturnsSelect a);
         
-        void VisitUpdatestatistics(AstUpdatestatistics a);
+        void VisitFunctionOptions(AstFunctionOptions a);
         
-        void VisitUpdatestatisticsoptions(AstUpdatestatisticsoptions a);
+        void VisitFuncBodyReturnsTable(AstFuncBodyReturnsTable a);
         
-        void VisitUpdatestatisticsoption(AstUpdatestatisticsoption a);
+        void VisitFuncBodyReturnsScalar(AstFuncBodyReturnsScalar a);
         
-        void VisitCreatetable(AstCreatetable a);
+        void VisitProcedureParam(AstProcedureParam a);
         
-        void VisitTableindices(AstTableindices a);
+        void VisitProcedureOption(AstProcedureOption a);
         
-        void VisitTableoptions(AstTableoptions a);
+        void VisitFunctionOption(AstFunctionOption a);
         
-        void VisitTableoption(AstTableoption a);
+        void VisitCreateStatistics(AstCreateStatistics a);
+        
+        void VisitUpdateStatistics(AstUpdateStatistics a);
+        
+        void VisitUpdateStatisticsOptions(AstUpdateStatisticsOptions a);
+        
+        void VisitUpdateStatisticsOption(AstUpdateStatisticsOption a);
+        
+        void VisitCreateTable(AstCreateTable a);
+        
+        void VisitTableIndices(AstTableIndices a);
+        
+        void VisitTableOptions(AstTableOptions a);
+        
+        void VisitTableOption(AstTableOption a);
         
         void VisitDistribution(AstDistribution a);
         
-        void VisitCreatetableindexoptions(AstCreatetableindexoptions a);
+        void VisitCreateTableIndexOptions(AstCreateTableIndexOptions a);
         
-        void VisitCreatetableindexoption(AstCreatetableindexoption a);
+        void VisitCreateTableIndexOption(AstCreateTableIndexOption a);
         
-        void VisitCreateview(AstCreateview a);
+        void VisitCreateView(AstCreateView a);
         
-        void VisitViewattributes(AstViewattributes a);
+        void VisitViewAttributes(AstViewAttributes a);
         
-        void VisitViewattribute(AstViewattribute a);
+        void VisitViewAttribute(AstViewAttribute a);
         
-        void VisitAltertable(AstAltertable a);
+        void VisitAlterTable(AstAlterTable a);
         
         void VisitIds(AstIds a);
         
-        void VisitSwitchpartition(AstSwitchpartition a);
+        void VisitSwitchPartition(AstSwitchPartition a);
         
-        void VisitLowprioritylockwait(AstLowprioritylockwait a);
+        void VisitLowPriorityLockWait(AstLowPriorityLockWait a);
         
-        void VisitAlterdatabase(AstAlterdatabase a);
+        void VisitAlterDatabase(AstAlterDatabase a);
         
-        void VisitAddormodifyfiles(AstAddormodifyfiles a);
+        void VisitAddOrModifyFiles(AstAddOrModifyFiles a);
         
         void VisitFilespecs(AstFilespecs a);
         
         void VisitFilespec(AstFilespec a);
         
-        void VisitAddormodifyfilegroups(AstAddormodifyfilegroups a);
+        void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups a);
         
-        void VisitFilegroupupdatabilityoption(AstFilegroupupdatabilityoption a);
+        void VisitFilegroupUpdatabilityOption(AstFilegroupUpdatabilityOption a);
         
-        void VisitDatabaseoptionspec(AstDatabaseoptionspec a);
+        void VisitDatabaseOptionspec(AstDatabaseOptionspec a);
         
-        void VisitAutooption(AstAutooption a);
+        void VisitAutoOption(AstAutoOption a);
         
-        void VisitChangetrackingoption(AstChangetrackingoption a);
+        void VisitChangeTrackingOption(AstChangeTrackingOption a);
         
-        void VisitChangetrackingoptionlists(AstChangetrackingoptionlists a);
+        void VisitChangeTrackingOptionLists(AstChangeTrackingOptionLists a);
         
-        void VisitChangetrackingoptionlist(AstChangetrackingoptionlist a);
+        void VisitChangeTrackingOptionList(AstChangeTrackingOptionList a);
         
-        void VisitContainmentoption(AstContainmentoption a);
+        void VisitContainmentOption(AstContainmentOption a);
         
-        void VisitCursoroption(AstCursoroption a);
+        void VisitCursorOption(AstCursorOption a);
         
-        void VisitLocalglobal(AstLocalglobal a);
+        void VisitLocalGlobal(AstLocalGlobal a);
         
-        void VisitAlterendpoint(AstAlterendpoint a);
+        void VisitAlterEndpoint(AstAlterEndpoint a);
         
-        void VisitMirroringsetoption(AstMirroringsetoption a);
+        void VisitMirroringSetOption(AstMirroringSetOption a);
         
-        void VisitMirroringpartner(AstMirroringpartner a);
+        void VisitMirroringPartner(AstMirroringPartner a);
         
-        void VisitMirroringwitness(AstMirroringwitness a);
+        void VisitMirroringWitness(AstMirroringWitness a);
         
-        void VisitWitnesspartnerequal(AstWitnesspartnerequal a);
+        void VisitWitnessPartnerEqual(AstWitnessPartnerEqual a);
         
-        void VisitPartneroption(AstPartneroption a);
+        void VisitPartnerOption(AstPartnerOption a);
         
-        void VisitWitnessoption(AstWitnessoption a);
+        void VisitWitnessOption(AstWitnessOption a);
         
-        void VisitPartnerserver(AstPartnerserver a);
+        void VisitPartnerServer(AstPartnerServer a);
         
-        void VisitMirroringhostportseperator(AstMirroringhostportseperator a);
+        void VisitMirroringHostPortSeperator(AstMirroringHostPortSeperator a);
         
-        void VisitPartnerservertcpprefix(AstPartnerservertcpprefix a);
+        void VisitPartnerServerTcpPrefix(AstPartnerServerTcpPrefix a);
         
-        void VisitPortnumber(AstPortnumber a);
+        void VisitPortNumber(AstPortNumber a);
         
         void VisitHost(AstHost a);
         
-        void VisitDatecorrelationoptimizationoption(AstDatecorrelationoptimizationoption a);
+        void VisitDateCorrelationOptimizationOption(AstDateCorrelationOptimizationOption a);
         
-        void VisitDbencryptionoption(AstDbencryptionoption a);
+        void VisitDbEncryptionOption(AstDbEncryptionOption a);
         
-        void VisitDbstateoption(AstDbstateoption a);
+        void VisitDbStateOption(AstDbStateOption a);
         
-        void VisitDbupdateoption(AstDbupdateoption a);
+        void VisitDbUpdateOption(AstDbUpdateOption a);
         
-        void VisitDbuseraccessoption(AstDbuseraccessoption a);
+        void VisitDbUserAccessOption(AstDbUserAccessOption a);
         
-        void VisitDelayeddurabilityoption(AstDelayeddurabilityoption a);
+        void VisitDelayedDurabilityOption(AstDelayedDurabilityOption a);
         
-        void VisitExternalaccessoption(AstExternalaccessoption a);
+        void VisitExternalAccessOption(AstExternalAccessOption a);
         
-        void VisitIdorstring(AstIdorstring a);
+        void VisitIdOrString(AstIdOrString a);
         
-        void VisitHadroptions(AstHadroptions a);
+        void VisitHadrOptions(AstHadrOptions a);
         
-        void VisitMixedpageallocationoption(AstMixedpageallocationoption a);
+        void VisitMixedPageAllocationOption(AstMixedPageAllocationOption a);
         
-        void VisitParameterizationoption(AstParameterizationoption a);
+        void VisitParameterizationOption(AstParameterizationOption a);
         
-        void VisitRecoveryoption(AstRecoveryoption a);
+        void VisitRecoveryOption(AstRecoveryOption a);
         
-        void VisitServicebrokeroption(AstServicebrokeroption a);
+        void VisitServiceBrokerOption(AstServiceBrokerOption a);
         
-        void VisitSnapshotoption(AstSnapshotoption a);
+        void VisitSnapshotOption(AstSnapshotOption a);
         
-        void VisitSqloption(AstSqloption a);
+        void VisitSqlOption(AstSqlOption a);
         
-        void VisitTargetrecoverytimeoption(AstTargetrecoverytimeoption a);
+        void VisitTargetRecoveryTimeOption(AstTargetRecoveryTimeOption a);
         
         void VisitTermination(AstTermination a);
         
-        void VisitDropindex(AstDropindex a);
+        void VisitDropIndex(AstDropIndex a);
         
-        void VisitDroprelationalorxmlorspatialindexs(AstDroprelationalorxmlorspatialindexs a);
+        void VisitDropRelationalOrXmlOrSpatialIndexs(AstDropRelationalOrXmlOrSpatialIndexs a);
         
-        void VisitDropbackwardcompatibleindexs(AstDropbackwardcompatibleindexs a);
+        void VisitDropBackwardCompatibleIndexs(AstDropBackwardCompatibleIndexs a);
         
-        void VisitDroprelationalorxmlorspatialindex(AstDroprelationalorxmlorspatialindex a);
+        void VisitDropRelationalOrXmlOrSpatialIndex(AstDropRelationalOrXmlOrSpatialIndex a);
         
-        void VisitDropbackwardcompatibleindex(AstDropbackwardcompatibleindex a);
+        void VisitDropBackwardCompatibleIndex(AstDropBackwardCompatibleIndex a);
         
-        void VisitDropprocedure(AstDropprocedure a);
+        void VisitDropProcedure(AstDropProcedure a);
         
-        void VisitFuncprocnameschemas(AstFuncprocnameschemas a);
+        void VisitFuncProcNameSchemas(AstFuncProcNameSchemas a);
         
-        void VisitDropdmltrigger(AstDropdmltrigger a);
+        void VisitDropDmlTrigger(AstDropDmlTrigger a);
         
-        void VisitDropddltrigger(AstDropddltrigger a);
+        void VisitDropDdlTrigger(AstDropDdlTrigger a);
         
-        void VisitSimplenames(AstSimplenames a);
+        void VisitSimpleNames(AstSimpleNames a);
         
-        void VisitTablenames(AstTablenames a);
+        void VisitTableNames(AstTableNames a);
         
-        void VisitDropfunction(AstDropfunction a);
+        void VisitDropFunction(AstDropFunction a);
         
-        void VisitDropstatistics(AstDropstatistics a);
+        void VisitDropStatistics(AstDropStatistics a);
         
-        void VisitDroptable(AstDroptable a);
+        void VisitDropTable(AstDropTable a);
         
-        void VisitDropview(AstDropview a);
+        void VisitDropView(AstDropView a);
         
-        void VisitCreatetype(AstCreatetype a);
+        void VisitCreateType(AstCreateType a);
         
-        void VisitDroptype(AstDroptype a);
+        void VisitDropType(AstDropType a);
         
         void VisitOpenquery(AstOpenquery a);
         
         void VisitOpendatasource(AstOpendatasource a);
         
-        void VisitDeclarestatement(AstDeclarestatement a);
+        void VisitDeclareStatement(AstDeclareStatement a);
         
-        void VisitDeclarelocals(AstDeclarelocals a);
+        void VisitDeclareLocals(AstDeclareLocals a);
         
-        void VisitXmldeclarations(AstXmldeclarations a);
+        void VisitXmlDeclarations(AstXmlDeclarations a);
         
-        void VisitXmldeclaration(AstXmldeclaration a);
+        void VisitXmlDeclaration(AstXmlDeclaration a);
         
-        void VisitCursorstatement(AstCursorstatement a);
+        void VisitCursorStatement(AstCursorStatement a);
         
-        void VisitBackupdatabase(AstBackupdatabase a);
+        void VisitBackupDatabase(AstBackupDatabase a);
         
-        void VisitBackuplog(AstBackuplog a);
+        void VisitBackupLog(AstBackupLog a);
         
-        void VisitBackupcertificate(AstBackupcertificate a);
+        void VisitBackupCertificate(AstBackupCertificate a);
         
-        void VisitBackupmasterkey(AstBackupmasterkey a);
+        void VisitBackupMasterKey(AstBackupMasterKey a);
         
-        void VisitBackupservicemasterkey(AstBackupservicemasterkey a);
+        void VisitBackupServiceMasterKey(AstBackupServiceMasterKey a);
         
-        void VisitKillstatement(AstKillstatement a);
+        void VisitKillStatement(AstKillStatement a);
         
-        void VisitKillprocess(AstKillprocess a);
+        void VisitKillProcess(AstKillProcess a);
         
-        void VisitKillquerynotification(AstKillquerynotification a);
+        void VisitKillQueryNotification(AstKillQueryNotification a);
         
-        void VisitKillstatsjob(AstKillstatsjob a);
+        void VisitKillStatsJob(AstKillStatsJob a);
         
-        void VisitExecutestatement(AstExecutestatement a);
+        void VisitExecuteStatement(AstExecuteStatement a);
         
-        void VisitExecutebodybatch(AstExecutebodybatch a);
+        void VisitExecuteBodyBatch(AstExecuteBodyBatch a);
         
-        void VisitExecutebody(AstExecutebody a);
+        void VisitExecuteBody(AstExecuteBody a);
         
-        void VisitExecutevarstrings(AstExecutevarstrings a);
+        void VisitExecuteVarStrings(AstExecuteVarStrings a);
         
-        void VisitExecutestatementarg(AstExecutestatementarg a);
+        void VisitExecuteStatementArg(AstExecuteStatementArg a);
         
-        void VisitExecutestatementargnameds(AstExecutestatementargnameds a);
+        void VisitExecuteStatementArgNameds(AstExecuteStatementArgNameds a);
         
-        void VisitExecutestatementargs(AstExecutestatementargs a);
+        void VisitExecuteStatementArgs(AstExecuteStatementArgs a);
         
-        void VisitExecutestatementargnamed(AstExecutestatementargnamed a);
+        void VisitExecuteStatementArgNamed(AstExecuteStatementArgNamed a);
         
-        void VisitExecutestatementargunnamed(AstExecutestatementargunnamed a);
+        void VisitExecuteStatementArgUnnamed(AstExecuteStatementArgUnnamed a);
         
-        void VisitExecuteparameter(AstExecuteparameter a);
+        void VisitExecuteParameter(AstExecuteParameter a);
         
-        void VisitExecutevarstring(AstExecutevarstring a);
+        void VisitExecuteVarString(AstExecuteVarString a);
         
-        void VisitSecuritystatement(AstSecuritystatement a);
+        void VisitSecurityStatement(AstSecurityStatement a);
         
-        void VisitToprincipalrincipalids(AstToprincipalrincipalids a);
+        void VisitToPrincipalRincipalIds(AstToPrincipalRincipalIds a);
         
-        void VisitPrincipalid(AstPrincipalid a);
+        void VisitPrincipalId(AstPrincipalId a);
         
-        void VisitCreatecertificate(AstCreatecertificate a);
+        void VisitCreateCertificate(AstCreateCertificate a);
         
-        void VisitExistingkeys(AstExistingkeys a);
+        void VisitExistingKeys(AstExistingKeys a);
         
-        void VisitPrivatekeyoptions(AstPrivatekeyoptions a);
+        void VisitPrivateKeyOptions(AstPrivateKeyOptions a);
         
-        void VisitGeneratenewkeys(AstGeneratenewkeys a);
+        void VisitGenerateNewKeys(AstGenerateNewKeys a);
         
-        void VisitDateoptions(AstDateoptions a);
+        void VisitDateOptions(AstDateOptions a);
         
-        void VisitOpenkey(AstOpenkey a);
+        void VisitOpenKey(AstOpenKey a);
         
-        void VisitClosekey(AstClosekey a);
+        void VisitCloseKey(AstCloseKey a);
         
-        void VisitCreatekey(AstCreatekey a);
+        void VisitCreateKey(AstCreateKey a);
         
-        void VisitKeyoptions(AstKeyoptions a);
+        void VisitKeyOptions(AstKeyOptions a);
         
         void VisitAlgorithm(AstAlgorithm a);
         
-        void VisitEncryptionmechanism(AstEncryptionmechanism a);
+        void VisitEncryptionMechanism(AstEncryptionMechanism a);
         
-        void VisitDecryptionmechanism(AstDecryptionmechanism a);
+        void VisitDecryptionMechanism(AstDecryptionMechanism a);
         
-        void VisitGrantpermission(AstGrantpermission a);
+        void VisitGrantPermission(AstGrantPermission a);
         
-        void VisitSetstatement(AstSetstatement a);
+        void VisitSetStatement(AstSetStatement a);
         
-        void VisitTransactionstatement(AstTransactionstatement a);
+        void VisitTransactionStatement(AstTransactionStatement a);
         
-        void VisitGostatement(AstGostatement a);
+        void VisitGoStatement(AstGoStatement a);
         
-        void VisitUsestatement(AstUsestatement a);
+        void VisitUseStatement(AstUseStatement a);
         
-        void VisitSetuserstatement(AstSetuserstatement a);
+        void VisitSetuserStatement(AstSetuserStatement a);
         
-        void VisitReconfigurestatement(AstReconfigurestatement a);
+        void VisitReconfigureStatement(AstReconfigureStatement a);
         
-        void VisitShutdownstatement(AstShutdownstatement a);
+        void VisitShutdownStatement(AstShutdownStatement a);
         
-        void VisitCheckpointstatement(AstCheckpointstatement a);
+        void VisitCheckpointStatement(AstCheckpointStatement a);
         
-        void VisitDbccspecial(AstDbccspecial a);
+        void VisitDbccSpecial(AstDbccSpecial a);
         
-        void VisitDbccclause(AstDbccclause a);
+        void VisitDbccClause(AstDbccClause a);
         
-        void VisitDbcccommand(AstDbcccommand a);
+        void VisitDbccCommand(AstDbccCommand a);
         
-        void VisitDbccoptions(AstDbccoptions a);
+        void VisitDbccOptions(AstDbccOptions a);
         
-        void VisitExecuteclause(AstExecuteclause a);
+        void VisitExecuteClause(AstExecuteClause a);
         
-        void VisitDeclarelocal(AstDeclarelocal a);
+        void VisitDeclareLocal(AstDeclareLocal a);
         
-        void VisitTabletypedefinition(AstTabletypedefinition a);
+        void VisitTableTypeDefinition(AstTableTypeDefinition a);
         
-        void VisitTabletypeindices(AstTabletypeindices a);
+        void VisitTableTypeIndices(AstTableTypeIndices a);
         
-        void VisitXmltypedefinition(AstXmltypedefinition a);
+        void VisitXmlTypeDefinition(AstXmlTypeDefinition a);
         
-        void VisitXmlschemacollection(AstXmlschemacollection a);
+        void VisitXmlSchemaCollection(AstXmlSchemaCollection a);
         
-        void VisitColumndeftableconstraints(AstColumndeftableconstraints a);
+        void VisitColumnDefTableConstraints(AstColumnDefTableConstraints a);
         
-        void VisitColumndefinition(AstColumndefinition a);
+        void VisitColumnDefTableConstraint(AstColumnDefTableConstraint a);
         
-        void VisitColumndefinitionelement(AstColumndefinitionelement a);
+        void VisitColumnDefinition(AstColumnDefinition a);
         
-        void VisitColumnmodifier(AstColumnmodifier a);
+        void VisitColumnDefinitionElement(AstColumnDefinitionElement a);
         
-        void VisitMaterializedcolumndefinition(AstMaterializedcolumndefinition a);
+        void VisitColumnModifier(AstColumnModifier a);
         
-        void VisitColumnconstraint(AstColumnconstraint a);
+        void VisitMaterializedColumnDefinition(AstMaterializedColumnDefinition a);
         
-        void VisitColumnindex(AstColumnindex a);
+        void VisitColumnConstraint(AstColumnConstraint a);
         
-        void VisitOnpartitionorfilegroup(AstOnpartitionorfilegroup a);
+        void VisitColumnIndex(AstColumnIndex a);
         
-        void VisitTableconstraint(AstTableconstraint a);
+        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup a);
         
-        void VisitConnectionnode(AstConnectionnode a);
+        void VisitTableConstraint(AstTableConstraint a);
         
-        void VisitPrimarykeyoptions(AstPrimarykeyoptions a);
+        void VisitConnectionNode(AstConnectionNode a);
         
-        void VisitForeignkeyoptions(AstForeignkeyoptions a);
+        void VisitPrimaryKeyOptions(AstPrimaryKeyOptions a);
         
-        void VisitCheckconstraint(AstCheckconstraint a);
+        void VisitForeignKeyOptions(AstForeignKeyOptions a);
         
-        void VisitOndelete(AstOndelete a);
+        void VisitCheckConstraint(AstCheckConstraint a);
         
-        void VisitOnupdate(AstOnupdate a);
+        void VisitOnDelete(AstOnDelete a);
         
-        void VisitAltertableindexoptions(AstAltertableindexoptions a);
+        void VisitOnUpdate(AstOnUpdate a);
         
-        void VisitAltertableindexoption(AstAltertableindexoption a);
+        void VisitAlterTableIndexOptions(AstAlterTableIndexOptions a);
         
-        void VisitDeclarecursor(AstDeclarecursor a);
+        void VisitAlterTableIndexOption(AstAlterTableIndexOption a);
+        
+        void VisitDeclareCursor(AstDeclareCursor a);
         
         void VisitSensitive(AstSensitive a);
         
-        void VisitDeclaresetcursorcommon(AstDeclaresetcursorcommon a);
+        void VisitDeclareSetCursorCommon(AstDeclareSetCursorCommon a);
         
-        void VisitDeclaresetcursorcommonpartial(AstDeclaresetcursorcommonpartial a);
+        void VisitDeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartial a);
         
-        void VisitFetchcursor(AstFetchcursor a);
+        void VisitFetchCursor(AstFetchCursor a);
         
-        void VisitAbsoluterelative(AstAbsoluterelative a);
+        void VisitAbsoluteRelative(AstAbsoluteRelative a);
         
-        void VisitFetchcursorstrategy(AstFetchcursorstrategy a);
+        void VisitFetchCursorStrategy(AstFetchCursorStrategy a);
         
-        void VisitLocalids(AstLocalids a);
+        void VisitLocalIds(AstLocalIds a);
         
-        void VisitSetspecial(AstSetspecial a);
+        void VisitSetSpecial(AstSetSpecial a);
         
-        void VisitSpeciallist(AstSpeciallist a);
+        void VisitSpecialList(AstSpecialList a);
         
         void VisitConstantLOCALID(AstConstantLOCALID a);
         
@@ -913,111 +929,113 @@ namespace Bb.Asts
         
         void VisitParameter(AstParameter a);
         
-        void VisitTimezone(AstTimezone a);
+        void VisitTimeZone(AstTimeZone a);
         
-        void VisitPrimitiveexpression(AstPrimitiveexpression a);
+        void VisitPrimitiveExpression(AstPrimitiveExpression a);
         
-        void VisitCaseexpression(AstCaseexpression a);
+        void VisitCaseExpression(AstCaseExpression a);
         
-        void VisitUnaryoperatorexpression(AstUnaryoperatorexpression a);
+        void VisitUnaryOperatorExpression(AstUnaryOperatorExpression a);
         
-        void VisitBracketexpression(AstBracketexpression a);
+        void VisitBracketExpression(AstBracketExpression a);
         
-        void VisitConstantexpression(AstConstantexpression a);
+        void VisitConstantExpression(AstConstantExpression a);
         
-        void VisitWithexpression(AstWithexpression a);
+        void VisitWithExpression(AstWithExpression a);
         
-        void VisitCommontableexpression(AstCommontableexpression a);
+        void VisitCommonTableExpression(AstCommonTableExpression a);
         
-        void VisitUpdateelem(AstUpdateelem a);
+        void VisitUpdateElem(AstUpdateElem a);
         
-        void VisitUpdateelemmerge(AstUpdateelemmerge a);
+        void VisitUpdateElemMerge(AstUpdateElemMerge a);
         
-        void VisitSearchcondition(AstSearchcondition a);
+        void VisitSearchCondition(AstSearchCondition a);
         
         void VisitPredicate(AstPredicate a);
         
-        void VisitQueryexpression(AstQueryexpression a);
+        void VisitQueryExpression(AstQueryExpression a);
         
-        void VisitSqlunion(AstSqlunion a);
+        void VisitSqlUnion(AstSqlUnion a);
         
-        void VisitQueryspecification(AstQueryspecification a);
+        void VisitQuerySpecification(AstQuerySpecification a);
         
-        void VisitGroupSetlist(AstGroupSetlist a);
+        void VisitGroupSetList(AstGroupSetList a);
         
-        void VisitGroupByslist(AstGroupByslist a);
+        void VisitGroupBysList(AstGroupBysList a);
         
-        void VisitTopclause(AstTopclause a);
+        void VisitTopClause(AstTopClause a);
         
-        void VisitToppercent(AstToppercent a);
+        void VisitTopPercent(AstTopPercent a);
         
-        void VisitTopcount(AstTopcount a);
+        void VisitTopCount(AstTopCount a);
         
-        void VisitOrderbyclause(AstOrderbyclause a);
+        void VisitOrderByClause(AstOrderByClause a);
         
-        void VisitSelectorderbyclause(AstSelectorderbyclause a);
+        void VisitSelectOrderByClause(AstSelectOrderByClause a);
         
-        void VisitForclause(AstForclause a);
+        void VisitForClause(AstForClause a);
         
-        void VisitXmlcommondirectives(AstXmlcommondirectives a);
+        void VisitXmlCommonDirectives(AstXmlCommonDirectives a);
         
-        void VisitOrderbyexpression(AstOrderbyexpression a);
+        void VisitOrderByExpression(AstOrderByExpression a);
         
-        void VisitGroupingsetsitem(AstGroupingsetsitem a);
+        void VisitGroupingSetsItem(AstGroupingSetsItem a);
         
-        void VisitGroupingsetslist(AstGroupingsetslist a);
+        void VisitGroupingSetsList(AstGroupingSetsList a);
         
-        void VisitOptionclause(AstOptionclause a);
+        void VisitOptionClause(AstOptionClause a);
         
         void VisitOption(AstOption a);
         
-        void VisitOptimizeforargs(AstOptimizeforargs a);
+        void VisitOptimizeForArgs(AstOptimizeForArgs a);
         
-        void VisitOptimizeforarg(AstOptimizeforarg a);
+        void VisitOptimizeForArg(AstOptimizeForArg a);
         
-        void VisitSelectlist(AstSelectlist a);
+        void VisitSelectList(AstSelectList a);
         
-        void VisitUdtmethodarguments(AstUdtmethodarguments a);
+        void VisitUdtMethodArguments(AstUdtMethodArguments a);
         
         void VisitAsterisk(AstAsterisk a);
         
-        void VisitColumnelem(AstColumnelem a);
+        void VisitColumnElem(AstColumnElem a);
         
-        void VisitUdtelem(AstUdtelem a);
+        void VisitColumnElemTarget(AstColumnElemTarget a);
         
-        void VisitExpressionelem(AstExpressionelem a);
+        void VisitUdtElem(AstUdtElem a);
         
-        void VisitSelectlistelem(AstSelectlistelem a);
+        void VisitExpressionElem(AstExpressionElem a);
         
-        void VisitTablesources(AstTablesources a);
+        void VisitExpressionAssignElem(AstExpressionAssignElem a);
         
-        void VisitTablesource(AstTablesource a);
+        void VisitTableSources(AstTableSources a);
         
-        void VisitTablesourceitemjoined(AstTablesourceitemjoined a);
+        void VisitTableSource(AstTableSource a);
         
-        void VisitTablesourceitem(AstTablesourceitem a);
+        void VisitTableSourceItemJoined(AstTableSourceItemJoined a);
+        
+        void VisitTableSourceItem(AstTableSourceItem a);
         
         void VisitExpression2(AstExpression2 a);
         
-        void VisitOpenxml(AstOpenxml a);
+        void VisitOpenXml(AstOpenXml a);
         
-        void VisitOpenjson(AstOpenjson a);
+        void VisitOpenJson(AstOpenJson a);
         
-        void VisitJsondeclaration(AstJsondeclaration a);
+        void VisitJsonDeclaration(AstJsonDeclaration a);
         
-        void VisitJsoncolumndeclaration(AstJsoncolumndeclaration a);
+        void VisitJsonColumnDeclaration(AstJsonColumnDeclaration a);
         
-        void VisitSchemadeclaration(AstSchemadeclaration a);
+        void VisitSchemaDeclaration(AstSchemaDeclaration a);
         
-        void VisitColumndeclaration(AstColumndeclaration a);
+        void VisitColumnDeclaration(AstColumnDeclaration a);
         
-        void VisitChangetablechanges(AstChangetablechanges a);
+        void VisitChangeTableChanges(AstChangeTableChanges a);
         
-        void VisitChangetableversion(AstChangetableversion a);
+        void VisitChangeTableVersion(AstChangeTableVersion a);
         
-        void VisitJoinon(AstJoinon a);
+        void VisitJoinOn(AstJoinOn a);
         
-        void VisitCrossjoin(AstCrossjoin a);
+        void VisitCrossJoin(AstCrossJoin a);
         
         void VisitApply(AstApply a);
         
@@ -1025,181 +1043,183 @@ namespace Bb.Asts
         
         void VisitUnpivot(AstUnpivot a);
         
-        void VisitPivotclause(AstPivotclause a);
+        void VisitPivotClause(AstPivotClause a);
         
-        void VisitUnpivotclause(AstUnpivotclause a);
+        void VisitUnpivotClause(AstUnpivotClause a);
         
-        void VisitFullcolumnnamelist(AstFullcolumnnamelist a);
+        void VisitFullColumnNameList(AstFullColumnNameList a);
         
-        void VisitRowsetfunction(AstRowsetfunction a);
+        void VisitRowsetFunction(AstRowsetFunction a);
         
-        void VisitBulkoptions(AstBulkoptions a);
+        void VisitBulkOptions(AstBulkOptions a);
         
-        void VisitBulkoption(AstBulkoption a);
+        void VisitBulkOption(AstBulkOption a);
         
-        void VisitDerivedtable(AstDerivedtable a);
+        void VisitDerivedTable(AstDerivedTable a);
         
-        void VisitFunctioncall(AstFunctioncall a);
+        void VisitFunctionCall(AstFunctionCall a);
         
-        void VisitPartitionfunction(AstPartitionfunction a);
+        void VisitPartitionFunction(AstPartitionFunction a);
         
-        void VisitFreetextfunction(AstFreetextfunction a);
+        void VisitFreetextFunction(AstFreetextFunction a);
         
-        void VisitFreetextpredicate(AstFreetextpredicate a);
+        void VisitFreetextPredicate(AstFreetextPredicate a);
         
-        void VisitExpressionlanguage(AstExpressionlanguage a);
+        void VisitExpressionLanguage(AstExpressionLanguage a);
         
-        void VisitFreetexttableandcolumnnames(AstFreetexttableandcolumnnames a);
+        void VisitFreetextTableAndcolumnNames(AstFreetextTableAndcolumnNames a);
         
-        void VisitFullcolumnnames(AstFullcolumnnames a);
+        void VisitFullColumnNames(AstFullColumnNames a);
         
-        void VisitBuiltinfunctions(AstBuiltinfunctions a);
+        void VisitBuiltInFunctions(AstBuiltInFunctions a);
         
         void VisitExpressions(AstExpressions a);
         
-        void VisitValuemethod(AstValuemethod a);
+        void VisitValueMethod(AstValueMethod a);
         
-        void VisitValuecall(AstValuecall a);
+        void VisitValueCall(AstValueCall a);
         
-        void VisitQuerymethod(AstQuerymethod a);
+        void VisitQueryMethod(AstQueryMethod a);
         
-        void VisitQuerycall(AstQuerycall a);
+        void VisitQueryCall(AstQueryCall a);
         
-        void VisitExistmethod(AstExistmethod a);
+        void VisitExistMethod(AstExistMethod a);
         
-        void VisitExistcall(AstExistcall a);
+        void VisitExistCall(AstExistCall a);
         
-        void VisitModifymethod(AstModifymethod a);
+        void VisitModifyMethod(AstModifyMethod a);
         
-        void VisitModifycall(AstModifycall a);
+        void VisitModifyCall(AstModifyCall a);
         
-        void VisitHierarchyidcall(AstHierarchyidcall a);
+        void VisitHierarchyidCall(AstHierarchyidCall a);
         
-        void VisitHierarchyidstaticmethod(AstHierarchyidstaticmethod a);
+        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod a);
         
-        void VisitNodesmethod(AstNodesmethod a);
+        void VisitNodesMethod(AstNodesMethod a);
         
-        void VisitSwitchsection(AstSwitchsection a);
+        void VisitSwitchSection(AstSwitchSection a);
         
-        void VisitSwitchsearchconditionsection(AstSwitchsearchconditionsection a);
+        void VisitSwitchSearchConditionSection(AstSwitchSearchConditionSection a);
         
-        void VisitAscolumnalias(AstAscolumnalias a);
+        void VisitAsColumnAlias(AstAsColumnAlias a);
         
-        void VisitAstablealias(AstAstablealias a);
+        void VisitAsTableAlias(AstAsTableAlias a);
         
-        void VisitTablealias(AstTablealias a);
+        void VisitTableAlias(AstTableAlias a);
         
-        void VisitWithtablehints(AstWithtablehints a);
+        void VisitWithTableHints(AstWithTableHints a);
         
-        void VisitDeprecatedtablehint(AstDeprecatedtablehint a);
+        void VisitDeprecatedTableHint(AstDeprecatedTableHint a);
         
-        void VisitSybaselegacyhints(AstSybaselegacyhints a);
+        void VisitSybaseLegacyHints(AstSybaseLegacyHints a);
         
-        void VisitSybaselegacyhint(AstSybaselegacyhint a);
+        void VisitSybaseLegacyHint(AstSybaseLegacyHint a);
         
-        void VisitIndexvalues(AstIndexvalues a);
+        void VisitIndexValues(AstIndexValues a);
         
-        void VisitTablehint(AstTablehint a);
+        void VisitTableHint(AstTableHint a);
         
-        void VisitIndexvalue(AstIndexvalue a);
+        void VisitIndexValue(AstIndexValue a);
         
-        void VisitColumnaliaslist(AstColumnaliaslist a);
+        void VisitColumnAliasList(AstColumnAliasList a);
         
-        void VisitColumnalias(AstColumnalias a);
+        void VisitColumnAlias(AstColumnAlias a);
         
-        void VisitTablevalueconstructor(AstTablevalueconstructor a);
+        void VisitTableValueConstructor(AstTableValueConstructor a);
         
-        void VisitExpressionlist(AstExpressionlist a);
+        void VisitExpressionList(AstExpressionList a);
         
-        void VisitRankingwindowedfunction(AstRankingwindowedfunction a);
+        void VisitRankingWindowedFunction(AstRankingWindowedFunction a);
         
-        void VisitAggregatewindowedfunction(AstAggregatewindowedfunction a);
+        void VisitAggregateWindowedFunction(AstAggregateWindowedFunction a);
         
-        void VisitAnalyticwindowedfunction(AstAnalyticwindowedfunction a);
+        void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction a);
         
-        void VisitAlldistinctexpression(AstAlldistinctexpression a);
+        void VisitAllDistinctExpression(AstAllDistinctExpression a);
         
-        void VisitOverclause(AstOverclause a);
+        void VisitOverClause(AstOverClause a);
         
-        void VisitRoworrangeclause(AstRoworrangeclause a);
+        void VisitRowOrRangeClause(AstRowOrRangeClause a);
         
-        void VisitWindowframeextent(AstWindowframeextent a);
+        void VisitWindowFrameExtent(AstWindowFrameExtent a);
         
-        void VisitWindowframepreceding(AstWindowframepreceding a);
+        void VisitWindowFramePreceding(AstWindowFramePreceding a);
         
-        void VisitWindowframefollowing(AstWindowframefollowing a);
+        void VisitWindowFrameFollowing(AstWindowFrameFollowing a);
         
-        void VisitCreatedatabaseoption(AstCreatedatabaseoption a);
+        void VisitCreateDatabaseOption(AstCreateDatabaseOption a);
         
-        void VisitDatabasefilestreamoptions(AstDatabasefilestreamoptions a);
+        void VisitDatabaseFilestreamOptions(AstDatabaseFilestreamOptions a);
         
-        void VisitDatabasefilestreamoption(AstDatabasefilestreamoption a);
+        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption a);
         
-        void VisitFilegroup(AstFilegroup a);
+        void VisitFileGroup(AstFileGroup a);
         
-        void VisitEntityname(AstEntityname a);
+        void VisitFileSpec(AstFileSpec a);
         
-        void VisitEntitynameforazuredw(AstEntitynameforazuredw a);
+        void VisitEntityName(AstEntityName a);
         
-        void VisitEntitynameforparalleldw(AstEntitynameforparalleldw a);
+        void VisitEntityNameForAzureDw(AstEntityNameForAzureDw a);
         
-        void VisitFulltablename(AstFulltablename a);
+        void VisitEntityNameForParallelDw(AstEntityNameForParallelDw a);
         
-        void VisitTablename(AstTablename a);
+        void VisitFullTableName(AstFullTableName a);
         
-        void VisitSimplename(AstSimplename a);
+        void VisitTableName(AstTableName a);
         
-        void VisitFuncprocnameschema(AstFuncprocnameschema a);
+        void VisitSimpleName(AstSimpleName a);
         
-        void VisitFuncprocnamedatabaseschema(AstFuncprocnamedatabaseschema a);
+        void VisitFuncProcNameSchema(AstFuncProcNameSchema a);
         
-        void VisitFuncprocnameserverdatabaseschema(AstFuncprocnameserverdatabaseschema a);
+        void VisitFuncProcNameDatabaseSchema(AstFuncProcNameDatabaseSchema a);
         
-        void VisitDdlobject(AstDdlobject a);
+        void VisitFuncProcNameServerDatabaseSchema(AstFuncProcNameServerDatabaseSchema a);
         
-        void VisitFullcolumnname(AstFullcolumnname a);
+        void VisitDdlObject(AstDdlObject a);
         
-        void VisitColumnnamelistwithorder(AstColumnnamelistwithorder a);
+        void VisitFullColumnName(AstFullColumnName a);
         
-        void VisitInsertcolumnnamelist(AstInsertcolumnnamelist a);
+        void VisitColumnNameListWithOrder(AstColumnNameListWithOrder a);
         
-        void VisitInsertcolumnid(AstInsertcolumnid a);
+        void VisitInsertColumnNameList(AstInsertColumnNameList a);
         
-        void VisitColumnnamelist(AstColumnnamelist a);
+        void VisitInsertColumnId(AstInsertColumnId a);
         
-        void VisitCursorname(AstCursorname a);
+        void VisitColumnNameList(AstColumnNameList a);
         
-        void VisitOnoff(AstOnoff a);
+        void VisitCursorName(AstCursorName a);
+        
+        void VisitOnOff(AstOnOff a);
         
         void VisitClustered(AstClustered a);
         
-        void VisitNullnotnull(AstNullnotnull a);
+        void VisitNullNotnull(AstNullNotnull a);
         
-        void VisitNullordefault(AstNullordefault a);
+        void VisitNullOrDefault(AstNullOrDefault a);
         
-        void VisitScalarfunctionname(AstScalarfunctionname a);
+        void VisitScalarFunctionName(AstScalarFunctionName a);
         
-        void VisitBeginconversationtimer(AstBeginconversationtimer a);
+        void VisitBeginConversationTimer(AstBeginConversationTimer a);
         
-        void VisitBeginconversationdialog(AstBeginconversationdialog a);
+        void VisitBeginConversationDialog(AstBeginConversationDialog a);
         
-        void VisitContractname(AstContractname a);
+        void VisitContractName(AstContractName a);
         
-        void VisitServicename(AstServicename a);
+        void VisitServiceName(AstServiceName a);
         
-        void VisitEndconversation(AstEndconversation a);
+        void VisitEndConversation(AstEndConversation a);
         
-        void VisitWaitforconversation(AstWaitforconversation a);
+        void VisitWaitforConversation(AstWaitforConversation a);
         
-        void VisitGetconversation(AstGetconversation a);
+        void VisitGetConversation(AstGetConversation a);
         
-        void VisitQueueid(AstQueueid a);
+        void VisitQueueId(AstQueueId a);
         
-        void VisitSendconversation(AstSendconversation a);
+        void VisitSendConversation(AstSendConversation a);
         
-        void VisitDatatype(AstDatatype a);
+        void VisitDataType(AstDataType a);
         
-        void VisitDefaultvalue(AstDefaultvalue a);
+        void VisitDefaultValue(AstDefaultValue a);
         
         void VisitConstant(AstConstant a);
         
@@ -1209,226 +1229,224 @@ namespace Bb.Asts
         
         void VisitId(AstId a);
         
-        void VisitSimpleid(AstSimpleid a);
+        void VisitSimpleId(AstSimpleId a);
         
-        void VisitComparisonoperator(AstComparisonoperator a);
+        void VisitComparisonOperator(AstComparisonOperator a);
         
-        void VisitAssignmentoperator(AstAssignmentoperator a);
+        void VisitAssignmentOperator(AstAssignmentOperator a);
         
-        void VisitFilesize(AstFilesize a);
+        void VisitFileSize(AstFileSize a);
         
-        void VisitFilesizeunity(AstFilesizeunity a);
+        void VisitFileSizeUnity(AstFileSizeUnity a);
         
-        void VisitFilestreamfilegrouporpartitionschemaname(AstFilestreamfilegrouporpartitionschemaname a);
+        void VisitFilestreamFilegroupOrPartitionSchemaName(AstFilestreamFilegroupOrPartitionSchemaName a);
         
-        void VisitActionname(AstActionname a);
+        void VisitActionName(AstActionName a);
         
-        void VisitAggregatename(AstAggregatename a);
+        void VisitAggregateName(AstAggregateName a);
         
-        void VisitApproleschema(AstApproleschema a);
+        void VisitAppRoleSchema(AstAppRoleSchema a);
         
-        void VisitApplicationrole(AstApplicationrole a);
+        void VisitApplicationRole(AstApplicationRole a);
         
-        void VisitAssemblyname(AstAssemblyname a);
+        void VisitAssemblyName(AstAssemblyName a);
         
-        void VisitAsymkeyname(AstAsymkeyname a);
+        void VisitAsymKeyName(AstAsymKeyName a);
         
-        void VisitAuditactiongroupname(AstAuditactiongroupname a);
+        void VisitAuditActionGroupName(AstAuditActionGroupName a);
         
-        void VisitAuditguid(AstAuditguid a);
+        void VisitAuditGuid(AstAuditGuid a);
         
-        void VisitAuditname(AstAuditname a);
+        void VisitAuditName(AstAuditName a);
         
-        void VisitAuditspecificationname(AstAuditspecificationname a);
+        void VisitAuditSpecificationName(AstAuditSpecificationName a);
         
-        void VisitAzureactivedirectoryprincipal(AstAzureactivedirectoryprincipal a);
+        void VisitAzureActiveDirectoryPrincipal(AstAzureActiveDirectoryPrincipal a);
         
-        void VisitBackupname(AstBackupname a);
+        void VisitBackupName(AstBackupName a);
         
-        void VisitBindingname(AstBindingname a);
+        void VisitBindingName(AstBindingName a);
         
-        void VisitCatalogname(AstCatalogname a);
+        void VisitCatalogName(AstCatalogName a);
         
-        void VisitCertname(AstCertname a);
+        void VisitCertName(AstCertName a);
         
-        void VisitCertificatename(AstCertificatename a);
+        void VisitCertificateName(AstCertificateName a);
         
-        void VisitClassname(AstClassname a);
+        void VisitClassName(AstClassName a);
         
-        void VisitCollationname(AstCollationname a);
+        void VisitCollationName(AstCollationName a);
         
-        void VisitColumnencryptionkey(AstColumnencryptionkey a);
+        void VisitColumnEncryptionKey(AstColumnEncryptionKey a);
         
-        void VisitColumnname(AstColumnname a);
+        void VisitColumnName(AstColumnName a);
         
-        void VisitColumnnameorarguments(AstColumnnameorarguments a);
+        void VisitColumnNameOrArguments(AstColumnNameOrArguments a);
         
-        void VisitConstraintname(AstConstraintname a);
+        void VisitConstraintName(AstConstraintName a);
         
-        void VisitCreateservicename(AstCreateservicename a);
+        void VisitCreateServiceName(AstCreateServiceName a);
         
-        void VisitCredentialname(AstCredentialname a);
+        void VisitCredentialName(AstCredentialName a);
         
-        void VisitCryptographicprovidername(AstCryptographicprovidername a);
+        void VisitCryptographicProviderName(AstCryptographicProviderName a);
         
-        void VisitDatasourcename(AstDatasourcename a);
+        void VisitDataSourceName(AstDataSourceName a);
         
-        void VisitDatabasename(AstDatabasename a);
+        void VisitDatabaseName(AstDatabaseName a);
         
-        void VisitDroppedservicename(AstDroppedservicename a);
+        void VisitDroppedServiceName(AstDroppedServiceName a);
         
-        void VisitEncryptorname(AstEncryptorname a);
+        void VisitEncryptorName(AstEncryptorName a);
         
-        void VisitEncryptionname(AstEncryptionname a);
+        void VisitEncryptionName(AstEncryptionName a);
         
-        void VisitEndpointname(AstEndpointname a);
+        void VisitEndpointName(AstEndpointName a);
         
-        void VisitEventcustomizableattributue(AstEventcustomizableattributue a);
+        void VisitEventCustomizableAttributue(AstEventCustomizableAttributue a);
         
-        void VisitEventfieldname(AstEventfieldname a);
+        void VisitEventFieldName(AstEventFieldName a);
         
-        void VisitEventmoduleguid(AstEventmoduleguid a);
+        void VisitEventModuleGuid(AstEventModuleGuid a);
         
-        void VisitEventname(AstEventname a);
+        void VisitEventName(AstEventName a);
         
-        void VisitEventnotificationname(AstEventnotificationname a);
+        void VisitEventNotificationName(AstEventNotificationName a);
         
-        void VisitEventpackagename(AstEventpackagename a);
+        void VisitEventPackageName(AstEventPackageName a);
         
-        void VisitEventsessionname(AstEventsessionname a);
+        void VisitEventSessionName(AstEventSessionName a);
         
-        void VisitEventtypeorgroup(AstEventtypeorgroup a);
+        void VisitEventTypeOrGroup(AstEventTypeOrGroup a);
         
-        void VisitExttype(AstExttype a);
+        void VisitExtType(AstExtType a);
         
-        void VisitExternaldatasourcename(AstExternaldatasourcename a);
+        void VisitExternalDataSourceName(AstExternalDataSourceName a);
         
-        void VisitExternalfileformatname(AstExternalfileformatname a);
+        void VisitExternalFileFormatName(AstExternalFileFormatName a);
         
-        void VisitExternalpoolname(AstExternalpoolname a);
+        void VisitExternalPoolName(AstExternalPoolName a);
         
-        void VisitFilegroupid(AstFilegroupid a);
+        void VisitFileGroupId(AstFileGroupId a);
         
-        void VisitFilegroupname(AstFilegroupname a);
+        void VisitFileGroupName(AstFileGroupName a);
         
-        void VisitFunctionname(AstFunctionname a);
+        void VisitFunctionName(AstFunctionName a);
         
-        void VisitGroupname(AstGroupname a);
+        void VisitGroupName(AstGroupName a);
         
-        void VisitIndexname(AstIndexname a);
+        void VisitIndexName(AstIndexName a);
         
         void VisitLanguage(AstLanguage a);
         
-        void VisitLibraryname(AstLibraryname a);
+        void VisitLibraryName(AstLibraryName a);
         
-        void VisitLinkedserver(AstLinkedserver a);
+        void VisitLinkedServer(AstLinkedServer a);
         
-        void VisitLogicaldevicename(AstLogicaldevicename a);
+        void VisitLogicalDeviceName(AstLogicalDeviceName a);
         
-        void VisitLoginname(AstLoginname a);
+        void VisitLoginName(AstLoginName a);
         
-        void VisitMasterkey(AstMasterkey a);
+        void VisitMasterKey(AstMasterKey a);
         
-        void VisitMethodname(AstMethodname a);
+        void VisitMethodName(AstMethodName a);
         
-        void VisitModifiedcontractname(AstModifiedcontractname a);
+        void VisitModifiedContractName(AstModifiedContractName a);
         
-        void VisitModifiedservicename(AstModifiedservicename a);
+        void VisitModifiedServiceName(AstModifiedServiceName a);
         
-        void VisitModulename(AstModulename a);
+        void VisitModuleName(AstModuleName a);
         
-        void VisitNetworkcomputer(AstNetworkcomputer a);
+        void VisitNetworkComputer(AstNetworkComputer a);
         
-        void VisitNewapplicationrolename(AstNewapplicationrolename a);
+        void VisitNewApplicationRoleName(AstNewApplicationRoleName a);
         
-        void VisitNewfilegroupname(AstNewfilegroupname a);
+        void VisitNewFileGroupName(AstNewFileGroupName a);
         
-        void VisitNonstaticattr(AstNonstaticattr a);
+        void VisitNonStaticAttr(AstNonStaticAttr a);
         
-        void VisitNotificationname(AstNotificationname a);
+        void VisitNotificationName(AstNotificationName a);
         
-        void VisitObjectname(AstObjectname a);
+        void VisitObjectName(AstObjectName a);
         
-        void VisitOwnername(AstOwnername a);
+        void VisitOwnerName(AstOwnerName a);
         
-        void VisitPartitioncolumnname(AstPartitioncolumnname a);
+        void VisitPartitionColumnName(AstPartitionColumnName a);
         
-        void VisitPoolname(AstPoolname a);
+        void VisitPoolName(AstPoolName a);
         
-        void VisitPredicatecomparename(AstPredicatecomparename a);
+        void VisitPredicateCompareName(AstPredicateCompareName a);
         
-        void VisitPredicatesourcename(AstPredicatesourcename a);
+        void VisitPredicateSourceName(AstPredicateSourceName a);
         
-        void VisitPropertylistname(AstPropertylistname a);
+        void VisitPropertyListName(AstPropertyListName a);
         
-        void VisitProvidername(AstProvidername a);
+        void VisitProviderName(AstProviderName a);
         
-        void VisitQueuename(AstQueuename a);
+        void VisitQueueName(AstQueueName a);
         
-        void VisitRelationalschema(AstRelationalschema a);
+        void VisitRelationalSchema(AstRelationalSchema a);
         
-        void VisitRolename(AstRolename a);
+        void VisitRoleName(AstRoleName a);
         
-        void VisitRoutename(AstRoutename a);
+        void VisitRouteName(AstRouteName a);
         
-        void VisitRulename(AstRulename a);
+        void VisitRuleName(AstRuleName a);
         
-        void VisitSchemacollectionname(AstSchemacollectionname a);
+        void VisitSchemaCollectionName(AstSchemaCollectionName a);
         
-        void VisitSchemaid(AstSchemaid a);
+        void VisitSchemaId(AstSchemaId a);
         
-        void VisitSchemaname(AstSchemaname a);
+        void VisitSchemaName(AstSchemaName a);
         
-        void VisitSecuritypolicyname(AstSecuritypolicyname a);
+        void VisitSecurityPolicyName(AstSecurityPolicyName a);
         
-        void VisitSecuritypredicatefunctionname(AstSecuritypredicatefunctionname a);
+        void VisitSecurityPredicateFunctionName(AstSecurityPredicateFunctionName a);
         
-        void VisitSequencename(AstSequencename a);
+        void VisitSequenceName(AstSequenceName a);
         
-        void VisitServername(AstServername a);
+        void VisitServerName(AstServerName a);
         
-        void VisitServerrolename(AstServerrolename a);
+        void VisitServerRoleName(AstServerRoleName a);
         
-        void VisitSourcelistname(AstSourcelistname a);
+        void VisitSourceListName(AstSourceListName a);
         
-        void VisitSqlidentifier(AstSqlidentifier a);
+        void VisitSqlIdentifier(AstSqlIdentifier a);
         
-        void VisitStaticattr(AstStaticattr a);
+        void VisitStaticAttr(AstStaticAttr a);
         
-        void VisitStatisticsname(AstStatisticsname a);
+        void VisitStatisticsName(AstStatisticsName a);
         
-        void VisitStoplistname(AstStoplistname a);
+        void VisitStoplistName(AstStoplistName a);
         
-        void VisitSymmetrickeyname(AstSymmetrickeyname a);
+        void VisitSymmetricKeyName(AstSymmetricKeyName a);
         
-        void VisitSynonymname(AstSynonymname a);
+        void VisitSynonymName(AstSynonymName a);
         
-        void VisitTableorviewname(AstTableorviewname a);
+        void VisitTableOrViewName(AstTableOrViewName a);
         
-        void VisitTablevariable(AstTablevariable a);
+        void VisitTableVariable(AstTableVariable a);
         
-        void VisitTableName(AstTableName a);
+        void VisitTargetName(AstTargetName a);
         
-        void VisitTargetname(AstTargetname a);
+        void VisitTargetParameterName(AstTargetParameterName a);
         
-        void VisitTargetparametername(AstTargetparametername a);
+        void VisitTriggerName(AstTriggerName a);
         
-        void VisitTriggername(AstTriggername a);
+        void VisitTvfSchemaName(AstTvfSchemaName a);
         
-        void VisitTvfschemaname(AstTvfschemaname a);
+        void VisitTypeSchema(AstTypeSchema a);
         
-        void VisitTypeschema(AstTypeschema a);
+        void VisitUdtColumnName(AstUdtColumnName a);
         
-        void VisitUdtcolumnname(AstUdtcolumnname a);
+        void VisitUnscaledType(AstUnscaledType a);
         
-        void VisitUnscaledtype(AstUnscaledtype a);
+        void VisitUserName(AstUserName a);
         
-        void VisitUsername(AstUsername a);
+        void VisitWindowsPrincipal(AstWindowsPrincipal a);
         
-        void VisitWindowsprincipal(AstWindowsprincipal a);
+        void VisitWorkloadGroupGroupName(AstWorkloadGroupGroupName a);
         
-        void VisitWorkloadgroupgroupname(AstWorkloadgroupgroupname a);
-        
-        void VisitWorkloadgrouppoolname(AstWorkloadgrouppoolname a);
+        void VisitWorkloadGroupPoolName(AstWorkloadGroupPoolName a);
     }
 }

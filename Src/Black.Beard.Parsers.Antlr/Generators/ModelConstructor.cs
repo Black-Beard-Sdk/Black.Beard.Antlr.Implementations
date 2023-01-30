@@ -39,7 +39,12 @@ namespace Bb.Generators
         public ModelConstructor CallBase(params string[] values)
         {
             foreach (var value in values)
-                this._callBase.Add(c => new CodeVariableReferenceExpression(value));
+            {
+                if (value == "null")
+                    this._callBase.Add(c => new CodePrimitiveExpression(null));
+                else
+                    this._callBase.Add(c => new CodeVariableReferenceExpression(value));
+            }
             return this;
         }
 
@@ -49,7 +54,7 @@ namespace Bb.Generators
             return this;
         }
 
-        public new ModelConstructor Body(Action<object> action)
+        public new ModelConstructor Body(Action<CodeMemberMethod> action)
         {
             base.Body(action);
             return this;
@@ -73,7 +78,8 @@ namespace Bb.Generators
             foreach (var c in _callBase)
                 method.BaseConstructorArgs.Add(c(model));
 
-
+            if (this._body != null)
+                this._body(method);
 
             t.Members.Add(method);
 
