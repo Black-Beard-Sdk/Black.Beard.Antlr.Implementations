@@ -26,7 +26,7 @@ namespace Bb.Parsers
         /// 	 | execute_body_batch  go_statement*  EOF
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTsql_file(TSqlParser.Tsql_fileContext context)
         {
@@ -51,7 +51,7 @@ namespace Bb.Parsers
         /// 	 | batch_level_statement  go_statement*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBatch(TSqlParser.BatchContext context)
         {
@@ -69,27 +69,21 @@ namespace Bb.Parsers
             return new AstBatch(context, list);
         }
         
-        /// <summary>
-        /// sql_clauses
-        /// 	 : sql_clause+
-        /// </summary>
-        /// <remarks>
-        /// Strategy : ClassWithProperties
-        /// </remarks>
         public override AstRoot VisitSql_clauses(TSqlParser.Sql_clausesContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            TSqlParser.Sql_clauseContext[] source = context.sql_clause();
+            AstSqlClauses list = new AstSqlClauses(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
+                TSqlParser.Sql_clauseContext item = ((TSqlParser.Sql_clauseContext)(enumerator.Current));
+                AstSqlClause acceptResult = ((AstSqlClause)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
                 }
             }
-            return new AstSqlClauses(context, list);
+            return list;
         }
         
         /// <summary>
@@ -104,7 +98,7 @@ namespace Bb.Parsers
         /// 	 | SEMI
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSql_clause(TSqlParser.Sql_clauseContext context)
         {
@@ -150,7 +144,7 @@ namespace Bb.Parsers
         /// 	 : BREAK  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBreak_statement(TSqlParser.Break_statementContext context)
         {
@@ -173,7 +167,7 @@ namespace Bb.Parsers
         /// 	 : CONTINUE  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitContinue_statement(TSqlParser.Continue_statementContext context)
         {
@@ -197,7 +191,7 @@ namespace Bb.Parsers
         /// 	 | id_  COLON  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGoto_statement(TSqlParser.Goto_statementContext context)
         {
@@ -266,7 +260,7 @@ namespace Bb.Parsers
         /// 	 : THROW  throw_error_number  COMMA  throw_message  COMMA  throw_state?  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitThrow_statement(TSqlParser.Throw_statementContext context)
         {
@@ -290,7 +284,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitThrow_error_number(TSqlParser.Throw_error_numberContext context)
         {
@@ -314,7 +308,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitThrow_message(TSqlParser.Throw_messageContext context)
         {
@@ -338,7 +332,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitThrow_state(TSqlParser.Throw_stateContext context)
         {
@@ -361,7 +355,7 @@ namespace Bb.Parsers
         /// 	 : BEGIN  TRY  SEMI?    END  TRY  SEMI?  BEGIN  CATCH  SEMI?    END  CATCH  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTry_catch_statement(TSqlParser.Try_catch_statementContext context)
         {
@@ -430,7 +424,7 @@ namespace Bb.Parsers
         /// 	 : PRINT  expression DOUBLE_QUOTE_ID  COMMA  LOCAL_ID*  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPrint_statement(TSqlParser.Print_statementContext context)
         {
@@ -454,7 +448,7 @@ namespace Bb.Parsers
         /// 	 | RAISERROR  DECIMAL    COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRaiseerror_statement(TSqlParser.Raiseerror_statementContext context)
         {
@@ -477,22 +471,11 @@ namespace Bb.Parsers
         /// 	 : SEMI
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitEmpty_statement(TSqlParser.Empty_statementContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEmptyStatement(context, list);
+            return new AstEmptyStatement(context);
         }
         
         /// <summary>
@@ -615,7 +598,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  ASSEMBLY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_assembly_start(TSqlParser.Alter_assembly_startContext context)
         {
@@ -684,22 +667,11 @@ namespace Bb.Parsers
         /// 	 : FROM
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitAlter_assembly_from_clause_start(TSqlParser.Alter_assembly_from_clause_startContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyFromClauseStart(context, list);
+            return new AstAlterAssemblyFromClauseStart(context);
         }
         
         /// <summary>
@@ -731,7 +703,7 @@ namespace Bb.Parsers
         /// 	 | multiple_local_files
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_assembly_drop_multiple_files(TSqlParser.Alter_assembly_drop_multiple_filesContext context)
         {
@@ -754,22 +726,11 @@ namespace Bb.Parsers
         /// 	 : DROP
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitAlter_assembly_drop(TSqlParser.Alter_assembly_dropContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyDrop(context, list);
+            return new AstAlterAssemblyDrop(context);
         }
         
         /// <summary>
@@ -800,7 +761,7 @@ namespace Bb.Parsers
         /// 	 : ADD  FILE  FROM
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_asssembly_add_clause_start(TSqlParser.Alter_asssembly_add_clause_startContext context)
         {
@@ -846,22 +807,11 @@ namespace Bb.Parsers
         /// 	 : STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitAlter_assembly_file_name(TSqlParser.Alter_assembly_file_nameContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyFileName(context, list);
+            return new AstAlterAssemblyFileName(context);
         }
         
         /// <summary>
@@ -892,22 +842,11 @@ namespace Bb.Parsers
         /// 	 : AS
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitAlter_assembly_as(TSqlParser.Alter_assembly_asContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyAs(context, list);
+            return new AstAlterAssemblyAs(context);
         }
         
         /// <summary>
@@ -938,22 +877,11 @@ namespace Bb.Parsers
         /// 	 : WITH
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitAlter_assembly_with(TSqlParser.Alter_assembly_withContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterAssemblyWith(context, list);
+            return new AstAlterAssemblyWith(context);
         }
         
         /// <summary>
@@ -963,7 +891,7 @@ namespace Bb.Parsers
         /// 	 | STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitClient_assembly_specifier(TSqlParser.Client_assembly_specifierContext context)
         {
@@ -989,7 +917,7 @@ namespace Bb.Parsers
         /// 	 | assembly_option  COMMA
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAssembly_option(TSqlParser.Assembly_optionContext context)
         {
@@ -1035,22 +963,11 @@ namespace Bb.Parsers
         /// 	 : DOUBLE_BACK_SLASH
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitNetwork_file_start(TSqlParser.Network_file_startContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstNetworkFileStart(context, list);
+            return new AstNetworkFileStart(context);
         }
         
         /// <summary>
@@ -1059,7 +976,7 @@ namespace Bb.Parsers
         /// 	 | id_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFile_path(TSqlParser.File_pathContext context)
         {
@@ -1082,22 +999,11 @@ namespace Bb.Parsers
         /// 	 : BACKSLASH
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitFile_directory_path_separator(TSqlParser.File_directory_path_separatorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstFileDirectoryPathSeparator(context, list);
+            return new AstFileDirectoryPathSeparator(context);
         }
         
         /// <summary>
@@ -1128,22 +1034,11 @@ namespace Bb.Parsers
         /// 	 : DISK_DRIVE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitLocal_drive(TSqlParser.Local_driveContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstLocalDrive(context, list);
+            return new AstLocalDrive(context);
         }
         
         /// <summary>
@@ -1152,7 +1047,7 @@ namespace Bb.Parsers
         /// 	 | local_file
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitMultiple_local_files(TSqlParser.Multiple_local_filesContext context)
         {
@@ -1175,22 +1070,11 @@ namespace Bb.Parsers
         /// 	 : SINGLE_QUOTE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitMultiple_local_file_start(TSqlParser.Multiple_local_file_startContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstMultipleLocalFileStart(context, list);
+            return new AstMultipleLocalFileStart(context);
         }
         
         /// <summary>
@@ -1262,7 +1146,7 @@ namespace Bb.Parsers
         /// 	 | BINARY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
         {
@@ -1285,7 +1169,7 @@ namespace Bb.Parsers
         /// 	 : DROP  ASSEMBLY  IF  EXISTS?  COMMA?  assembly_name+  WITH  NO  DEPENDENTS?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_assembly(TSqlParser.Drop_assemblyContext context)
         {
@@ -1331,7 +1215,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  ASYMMETRIC  KEY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_asymmetric_key_start(TSqlParser.Alter_asymmetric_key_startContext context)
         {
@@ -1377,7 +1261,7 @@ namespace Bb.Parsers
         /// 	 : WITH  PRIVATE  KEY  LR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAsymmetric_key_option_start(TSqlParser.Asymmetric_key_option_startContext context)
         {
@@ -1401,7 +1285,7 @@ namespace Bb.Parsers
         /// 	 | ENCRYPTION  BY  PASSWORD  EQUAL  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAsymmetric_key_password_change_option(TSqlParser.Asymmetric_key_password_change_optionContext context)
         {
@@ -1447,7 +1331,7 @@ namespace Bb.Parsers
         /// 	 : DROP  ASYMMETRIC  KEY    REMOVE  PROVIDER  KEY?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_asymmetric_key(TSqlParser.Drop_asymmetric_keyContext context)
         {
@@ -1494,7 +1378,7 @@ namespace Bb.Parsers
         /// 	 | SCHEMA  OWNER
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAuthorization_grantee(TSqlParser.Authorization_granteeContext context)
         {
@@ -1517,22 +1401,11 @@ namespace Bb.Parsers
         /// 	 : TO
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitEntity_to(TSqlParser.Entity_toContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEntityTo(context, list);
+            return new AstEntityTo(context);
         }
         
         /// <summary>
@@ -1540,22 +1413,11 @@ namespace Bb.Parsers
         /// 	 : DOUBLE_COLON
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitColon_colon(TSqlParser.Colon_colonContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstColonColon(context, list);
+            return new AstColonColon(context);
         }
         
         /// <summary>
@@ -1563,7 +1425,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  AUTHORIZATION  ON
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_authorization_start(TSqlParser.Alter_authorization_startContext context)
         {
@@ -1675,7 +1537,7 @@ namespace Bb.Parsers
         /// 	 | XML  SCHEMA  COLLECTION
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitClass_type(TSqlParser.Class_typeContext context)
         {
@@ -1710,7 +1572,7 @@ namespace Bb.Parsers
         /// 	 | XML  SCHEMA  COLLECTION
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitClass_type_for_sql_database(TSqlParser.Class_type_for_sql_databaseContext context)
         {
@@ -1794,7 +1656,7 @@ namespace Bb.Parsers
         /// 	 | XML  SCHEMA  COLLECTION
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitClass_type_for_grant(TSqlParser.Class_type_for_grantContext context)
         {
@@ -1906,7 +1768,7 @@ namespace Bb.Parsers
         /// 	 | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_availability_group_options(TSqlParser.Alter_availability_group_optionsContext context)
         {
@@ -1929,22 +1791,11 @@ namespace Bb.Parsers
         /// 	 : STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitServer_instance(TSqlParser.Server_instanceContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstServerInstance(context, list);
+            return new AstServerInstance(context);
         }
         
         /// <summary>
@@ -1952,22 +1803,11 @@ namespace Bb.Parsers
         /// 	 : STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitIp_v4_failover(TSqlParser.Ip_v4_failoverContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstIpV4Failover(context, list);
+            return new AstIpV4Failover(context);
         }
         
         /// <summary>
@@ -1975,22 +1815,11 @@ namespace Bb.Parsers
         /// 	 : STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitIp_v6_failover(TSqlParser.Ip_v6_failoverContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstIpV6Failover(context, list);
+            return new AstIpV6Failover(context);
         }
         
         /// <summary>
@@ -1998,7 +1827,7 @@ namespace Bb.Parsers
         /// 	 : CREATE ALTER  BROKER  PRIORITY    FOR  CONVERSATION  SET  LR_BRACKET  CONTRACT_NAME  EQUAL  id_ ANY  COMMA??  LOCAL_SERVICE_NAME  EQUAL  DOUBLE_FORWARD_SLASH?  id_ ANY  COMMA??  REMOTE_SERVICE_NAME  EQUAL   ANY  COMMA??  PRIORITY_LEVEL  EQUAL   DEFAULT?  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_or_alter_broker_priority(TSqlParser.Create_or_alter_broker_priorityContext context)
         {
@@ -2021,7 +1850,7 @@ namespace Bb.Parsers
         /// 	 : DROP  BROKER  PRIORITY  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_broker_priority(TSqlParser.Drop_broker_priorityContext context)
         {
@@ -2182,7 +2011,7 @@ namespace Bb.Parsers
         /// 	 : DROP  CONTRACT  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_contract(TSqlParser.Drop_contractContext context)
         {
@@ -2251,7 +2080,7 @@ namespace Bb.Parsers
         /// 	 : DROP  DATABASE  IF  EXISTS?  COMMA?  database_name+
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_database(TSqlParser.Drop_databaseContext context)
         {
@@ -2297,7 +2126,7 @@ namespace Bb.Parsers
         /// 	 : DROP  DATABASE  ENCRYPTION  KEY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_database_encryption_key(TSqlParser.Drop_database_encryption_keyContext context)
         {
@@ -2343,7 +2172,7 @@ namespace Bb.Parsers
         /// 	 : DROP  DEFAULT  IF  EXISTS?  COMMA?  schema_name  DOT?  schema_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_default(TSqlParser.Drop_defaultContext context)
         {
@@ -2504,7 +2333,7 @@ namespace Bb.Parsers
         /// 	 : DROP  EVENT  NOTIFICATION  COMMA?  notification_name+  ON  SERVER DATABASE QUEUE  queue_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_event_notifications(TSqlParser.Drop_event_notificationsContext context)
         {
@@ -2642,7 +2471,7 @@ namespace Bb.Parsers
         /// 	 : DROP  MASTER  KEY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_master_key(TSqlParser.Drop_master_keyContext context)
         {
@@ -2918,7 +2747,7 @@ namespace Bb.Parsers
         /// 	 : DROP  RULE  IF  EXISTS?  COMMA?  schema_name  DOT?  rule_name?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_rule(TSqlParser.Drop_ruleContext context)
         {
@@ -3010,7 +2839,7 @@ namespace Bb.Parsers
         /// 	 : DROP  SEQUENCE  IF  EXISTS?  COMMA?  database_name  DOT?  schema_name  DOT?  sequence_name?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_sequence(TSqlParser.Drop_sequenceContext context)
         {
@@ -3286,7 +3115,7 @@ namespace Bb.Parsers
         /// 	 : DISABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_id  DOT?  object_name DATABASE ALL  SERVER
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDisable_trigger(TSqlParser.Disable_triggerContext context)
         {
@@ -3309,7 +3138,7 @@ namespace Bb.Parsers
         /// 	 : ENABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_id  DOT?  object_name DATABASE ALL  SERVER
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEnable_trigger(TSqlParser.Enable_triggerContext context)
         {
@@ -3378,7 +3207,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  COLUMN  MASTER  KEY    WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL    COMMA  KEY_PATH  EQUAL    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_column_master_key(TSqlParser.Create_column_master_keyContext context)
         {
@@ -3552,7 +3381,7 @@ namespace Bb.Parsers
         /// 	 : COMMA?  AND OR?  NOT?  event_session_predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET+
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEvent_session_predicate_expression(TSqlParser.Event_session_predicate_expressionContext context)
         {
@@ -3576,7 +3405,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  event_session_predicate_expression  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEvent_session_predicate_factor(TSqlParser.Event_session_predicate_factorContext context)
         {
@@ -3600,7 +3429,7 @@ namespace Bb.Parsers
         /// 	 | event_module_guid  DOT?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  event_field_name event_module_guid  DOT?  event_package_name  DOT  predicate_source_name  COMMA  DECIMAL STRING  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEvent_session_predicate_leaf(TSqlParser.Event_session_predicate_leafContext context)
         {
@@ -3624,7 +3453,7 @@ namespace Bb.Parsers
         /// 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL    COMMA  CREDENTIAL  EQUAL  credential_name?  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_external_data_source(TSqlParser.Alter_external_data_sourceContext context)
         {
@@ -3693,7 +3522,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  pool_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL    COMMA?  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL+  COMMA?  MAX_MEMORY_PERCENT  EQUAL  ?  COMMA?  MAX_PROCESSES  EQUAL  ?  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_external_resource_pool(TSqlParser.Alter_external_resource_poolContext context)
         {
@@ -3982,7 +3811,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD DROP  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_master_key_sql_server(TSqlParser.Alter_master_key_sql_serverContext context)
         {
@@ -4005,7 +3834,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_master_key_sql_server(TSqlParser.Create_master_key_sql_serverContext context)
         {
@@ -4028,7 +3857,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL   DROP  ENCRYPTION  BY  PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_master_key_azure_sql(TSqlParser.Alter_master_key_azure_sqlContext context)
         {
@@ -4051,7 +3880,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_master_key_azure_sql(TSqlParser.Create_master_key_azure_sqlContext context)
         {
@@ -4225,7 +4054,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  RESOURCE  GOVERNOR  DISABLE RECONFIGURE WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  schema_name  DOT  function_name NULL_  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_resource_governor(TSqlParser.Alter_resource_governorContext context)
         {
@@ -4376,7 +4205,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  SCHEMA  schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name  create_table create_view grant_deny  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  TO  owner_name REVOKE  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  FROM  owner_name*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_schema(TSqlParser.Create_schemaContext context)
         {
@@ -4657,7 +4486,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  SERVER  CONFIGURATION  SET  PROCESS  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ DIAGNOSTICS  LOG  ON OFF PATH  EQUAL  STRING DEFAULT MAX_SIZE  EQUAL  DECIMAL  MB DEFAULT MAX_FILES  EQUAL  DECIMAL DEFAULT FAILOVER  CLUSTER  PROPERTY  VERBOSELOGGING  EQUAL  STRING DEFAULT SQLDUMPERFLAGS  EQUAL  STRING DEFAULT SQLDUMPERPATH  EQUAL  STRING DEFAULT SQLDUMPERTIMEOUT  STRING DEFAULT FAILURECONDITIONLEVEL  EQUAL  STRING DEFAULT HEALTHCHECKTIMEOUT  EQUAL  DECIMAL DEFAULT HADR  CLUSTER  CONTEXT  EQUAL  STRING LOCAL BUFFER  POOL  EXTENSION  ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  KB MB GB  RR_BRACKET OFF SET  SOFTNUMA  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_server_configuration(TSqlParser.Alter_server_configurationContext context)
         {
@@ -4795,7 +4624,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  SERVICE  MASTER  KEY  FORCE?  REGENERATE WITH  OLD_ACCOUNT  EQUAL    COMMA  OLD_PASSWORD  EQUAL   NEW_ACCOUNT  EQUAL    COMMA  NEW_PASSWORD  EQUAL  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_service_master_key(TSqlParser.Alter_service_master_keyContext context)
         {
@@ -4890,7 +4719,7 @@ namespace Bb.Parsers
         /// 	 | CREATE  USER  user_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_user(TSqlParser.Create_userContext context)
         {
@@ -4914,7 +4743,7 @@ namespace Bb.Parsers
         /// 	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  WITH  DEFAULT_SCHEMA  EQUAL  schema_name?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_user_azure_sql_dw(TSqlParser.Create_user_azure_sql_dwContext context)
         {
@@ -4960,7 +4789,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  WORKLOAD  GROUP  workload_group_group_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  IMPORTANCE  EQUAL  LOW MEDIUM HIGH COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL   COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL   REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL   MAX_DOP  EQUAL   GROUP_MAX_REQUESTS  EQUAL  +  RR_BRACKET?  USING  workload_group_pool_name DEFAULT_DOUBLE_QUOTE?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_workload_group(TSqlParser.Alter_workload_groupContext context)
         {
@@ -5098,7 +4927,7 @@ namespace Bb.Parsers
         /// 	 : WITH  STATUS  EQUAL  on_off  COMMA??  RETENTION  EQUAL  on_off  COMMA??  ACTIVATION  LR_BRACKET  STATUS  EQUAL  on_off  COMMA??  PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA??  MAX_QUEUE_READERS  EQUAL    COMMA??  EXECUTE  AS  SELF  OWNER  COMMA?? DROP  RR_BRACKET  COMMA??  POISON_MESSAGE_HANDLING  LR_BRACKET  STATUS  EQUAL  on_off  RR_BRACKET?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQueue_settings(TSqlParser.Queue_settingsContext context)
         {
@@ -5121,7 +4950,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  QUEUE  full_table_name queue_name  queue_settings queue_action
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_queue(TSqlParser.Alter_queueContext context)
         {
@@ -5146,7 +4975,7 @@ namespace Bb.Parsers
         /// 	 | MOVE  TO  id_ DEFAULT
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQueue_action(TSqlParser.Queue_actionContext context)
         {
@@ -5169,7 +4998,7 @@ namespace Bb.Parsers
         /// 	 : MAXDOP  EQUAL  DECIMAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQueue_rebuild_options(TSqlParser.Queue_rebuild_optionsContext context)
         {
@@ -5263,7 +5092,7 @@ namespace Bb.Parsers
         /// 	 | WHEN  NOT  MATCHED  BY  SOURCE  AND  search_condition?  THEN  merge_matched+
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWhen_matches(TSqlParser.When_matchesContext context)
         {
@@ -5287,7 +5116,7 @@ namespace Bb.Parsers
         /// 	 | DELETE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitMerge_matched(TSqlParser.Merge_matchedContext context)
         {
@@ -5333,7 +5162,7 @@ namespace Bb.Parsers
         /// 	 : INSERT  LR_BRACKET  column_name_list  RR_BRACKET?  table_value_constructor DEFAULT  VALUES
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitMerge_not_matched(TSqlParser.Merge_not_matchedContext context)
         {
@@ -5381,7 +5210,7 @@ namespace Bb.Parsers
         /// 	 | 
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDelete_statement_from(TSqlParser.Delete_statement_fromContext context)
         {
@@ -5430,7 +5259,7 @@ namespace Bb.Parsers
         /// 	 | DEFAULT  VALUES
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitInsert_statement_value(TSqlParser.Insert_statement_valueContext context)
         {
@@ -5522,7 +5351,7 @@ namespace Bb.Parsers
         /// 	 : LOCAL_ID constant
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTime(TSqlParser.TimeContext context)
         {
@@ -5660,7 +5489,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  DATABASE  database_name  CONTAINMENT  EQUAL  NONE PARTIAL?  ON  PRIMARY?  database_file_spec  COMMA  database_file_spec*?  LOG  ON  database_file_spec  COMMA  database_file_spec*?  COLLATE  collation_name?  WITH  create_database_option  COMMA  create_database_option*?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_database(TSqlParser.Create_databaseContext context)
         {
@@ -5754,7 +5583,7 @@ namespace Bb.Parsers
         /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRelational_index_option(TSqlParser.Relational_index_optionContext context)
         {
@@ -5800,7 +5629,7 @@ namespace Bb.Parsers
         /// 	 : WITH  LR_BRACKET  resumable_index_option  COMMA  resumable_index_option*  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitResumable_index_options(TSqlParser.Resumable_index_optionsContext context)
         {
@@ -5825,7 +5654,7 @@ namespace Bb.Parsers
         /// 	 | low_priority_lock_wait
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitResumable_index_option(TSqlParser.Resumable_index_optionContext context)
         {
@@ -5871,7 +5700,7 @@ namespace Bb.Parsers
         /// 	 : WITH  LR_BRACKET  reorganize_option  COMMA  reorganize_option*  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitReorganize_options(TSqlParser.Reorganize_optionsContext context)
         {
@@ -5895,7 +5724,7 @@ namespace Bb.Parsers
         /// 	 | COMPRESS_ALL_ROW_GROUPS  EQUAL  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitReorganize_option(TSqlParser.Reorganize_optionContext context)
         {
@@ -5946,7 +5775,7 @@ namespace Bb.Parsers
         /// 	 | COMPRESSION_DELAY  EQUAL    MINUTES?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSet_index_option(TSqlParser.Set_index_optionContext context)
         {
@@ -5970,7 +5799,7 @@ namespace Bb.Parsers
         /// 	 | REBUILD  PARTITION  EQUAL  DECIMAL  single_partition_rebuild_index_options?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRebuild_partition(TSqlParser.Rebuild_partitionContext context)
         {
@@ -6029,7 +5858,7 @@ namespace Bb.Parsers
         /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRebuild_index_option(TSqlParser.Rebuild_index_optionContext context)
         {
@@ -6080,7 +5909,7 @@ namespace Bb.Parsers
         /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSingle_partition_rebuild_index_option(TSqlParser.Single_partition_rebuild_index_optionContext context)
         {
@@ -6103,7 +5932,7 @@ namespace Bb.Parsers
         /// 	 : ON  PARTITIONS  LR_BRACKET    TO  ?  COMMA    TO  ?*  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOn_partitions(TSqlParser.On_partitionsContext context)
         {
@@ -6176,7 +6005,7 @@ namespace Bb.Parsers
         /// 	 | DATA_COMPRESSION  EQUAL  COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumnstore_index_option(TSqlParser.Columnstore_index_optionContext context)
         {
@@ -6277,7 +6106,7 @@ namespace Bb.Parsers
         /// 	 | XML_COMPRESSION  EQUAL  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitXml_index_option(TSqlParser.Xml_index_optionContext context)
         {
@@ -6439,7 +6268,7 @@ namespace Bb.Parsers
         /// 	 | execute_clause
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDml_trigger_option(TSqlParser.Dml_trigger_optionContext context)
         {
@@ -6497,7 +6326,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  OR  ALTER? ALTER  FUNCTION    LR_BRACKET  procedure_params  RR_BRACKET LR_BRACKET  RR_BRACKET  func_body_returns_select func_body_returns_table func_body_returns_scalar  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_or_alter_function(TSqlParser.Create_or_alter_functionContext context)
         {
@@ -6660,7 +6489,7 @@ namespace Bb.Parsers
         /// 	 | execute_clause
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitProcedure_option(TSqlParser.Procedure_optionContext context)
         {
@@ -6687,7 +6516,7 @@ namespace Bb.Parsers
         /// 	 | execute_clause
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFunction_option(TSqlParser.Function_optionContext context)
         {
@@ -6791,7 +6620,7 @@ namespace Bb.Parsers
         /// 	 | AUTO_DROP  EQUAL  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUpdate_statistics_option(TSqlParser.Update_statistics_optionContext context)
         {
@@ -6839,7 +6668,7 @@ namespace Bb.Parsers
         /// 	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  ON  id_?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_indices(TSqlParser.Table_indicesContext context)
         {
@@ -6862,7 +6691,7 @@ namespace Bb.Parsers
         /// 	 : WITH  LR_BRACKET  table_option  COMMA  table_option*  RR_BRACKET table_option  COMMA  table_option*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_options(TSqlParser.Table_optionsContext context)
         {
@@ -6891,7 +6720,7 @@ namespace Bb.Parsers
         /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_option(TSqlParser.Table_optionContext context)
         {
@@ -6915,7 +6744,7 @@ namespace Bb.Parsers
         /// 	 | CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDistribution(TSqlParser.DistributionContext context)
         {
@@ -6970,7 +6799,7 @@ namespace Bb.Parsers
         /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_table_index_option(TSqlParser.Create_table_index_optionContext context)
         {
@@ -7016,7 +6845,7 @@ namespace Bb.Parsers
         /// 	 : WITH  view_attribute  COMMA  view_attribute*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitView_attributes(TSqlParser.View_attributesContext context)
         {
@@ -7099,7 +6928,7 @@ namespace Bb.Parsers
         /// 	 : PARTITION?  ?  TO    PARTITION  ?  WITH  low_priority_lock_wait?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSwitch_partition(TSqlParser.Switch_partitionContext context)
         {
@@ -7122,7 +6951,7 @@ namespace Bb.Parsers
         /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL    MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitLow_priority_lock_wait(TSqlParser.Low_priority_lock_waitContext context)
         {
@@ -7145,7 +6974,7 @@ namespace Bb.Parsers
         /// 	 : ALTER  DATABASE  database_name CURRENT  MODIFY  NAME  EQUAL  database_name COLLATE  collation_name SET  database_optionspec  WITH  termination? add_or_modify_files add_or_modify_filegroups  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_database(TSqlParser.Alter_databaseContext context)
         {
@@ -7171,7 +7000,7 @@ namespace Bb.Parsers
         /// 	 | MODIFY  FILE  filespec
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAdd_or_modify_files(TSqlParser.Add_or_modify_filesContext context)
         {
@@ -7242,7 +7071,7 @@ namespace Bb.Parsers
         /// 	 | MODIFY  FILEGROUP  file_group_name  filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAdd_or_modify_filegroups(TSqlParser.Add_or_modify_filegroupsContext context)
         {
@@ -7301,7 +7130,7 @@ namespace Bb.Parsers
         /// 	 | termination
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDatabase_optionspec(TSqlParser.Database_optionspecContext context)
         {
@@ -7329,7 +7158,7 @@ namespace Bb.Parsers
         /// 	 | AUTO_UPDATE_STATISTICS_ASYNC  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAuto_option(TSqlParser.Auto_optionContext context)
         {
@@ -7352,7 +7181,7 @@ namespace Bb.Parsers
         /// 	 : CHANGE_TRACKING  EQUAL  OFF ON  change_tracking_option_list  change_tracking_option_lists*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitChange_tracking_option(TSqlParser.Change_tracking_optionContext context)
         {
@@ -7399,7 +7228,7 @@ namespace Bb.Parsers
         /// 	 | CHANGE_RETENTION  EQUAL  DAYS HOURS MINUTES
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitChange_tracking_option_list(TSqlParser.Change_tracking_option_listContext context)
         {
@@ -7422,7 +7251,7 @@ namespace Bb.Parsers
         /// 	 : CONTAINMENT  EQUAL  NONE PARTIAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitContainment_option(TSqlParser.Containment_optionContext context)
         {
@@ -7446,7 +7275,7 @@ namespace Bb.Parsers
         /// 	 | CURSOR_DEFAULT  local_global
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCursor_option(TSqlParser.Cursor_optionContext context)
         {
@@ -7506,7 +7335,7 @@ namespace Bb.Parsers
         /// 	 | mirroring_witness  witness_option
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitMirroring_set_option(TSqlParser.Mirroring_set_optionContext context)
         {
@@ -7529,22 +7358,11 @@ namespace Bb.Parsers
         /// 	 : PARTNER
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitMirroring_partner(TSqlParser.Mirroring_partnerContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstMirroringPartner(context, list);
+            return new AstMirroringPartner(context);
         }
         
         /// <summary>
@@ -7552,22 +7370,11 @@ namespace Bb.Parsers
         /// 	 : WITNESS
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitMirroring_witness(TSqlParser.Mirroring_witnessContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstMirroringWitness(context, list);
+            return new AstMirroringWitness(context);
         }
         
         /// <summary>
@@ -7575,22 +7382,11 @@ namespace Bb.Parsers
         /// 	 : EQUAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitWitness_partner_equal(TSqlParser.Witness_partner_equalContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstWitnessPartnerEqual(context, list);
+            return new AstWitnessPartnerEqual(context);
         }
         
         /// <summary>
@@ -7605,7 +7401,7 @@ namespace Bb.Parsers
         /// 	 | TIMEOUT  DECIMAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPartner_option(TSqlParser.Partner_optionContext context)
         {
@@ -7629,7 +7425,7 @@ namespace Bb.Parsers
         /// 	 | OFF
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWitness_option(TSqlParser.Witness_optionContext context)
         {
@@ -7675,22 +7471,11 @@ namespace Bb.Parsers
         /// 	 : COLON
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitMirroring_host_port_seperator(TSqlParser.Mirroring_host_port_seperatorContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstMirroringHostPortSeperator(context, list);
+            return new AstMirroringHostPortSeperator(context);
         }
         
         /// <summary>
@@ -7698,7 +7483,7 @@ namespace Bb.Parsers
         /// 	 : TCP  COLON  DOUBLE_FORWARD_SLASH
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPartner_server_tcp_prefix(TSqlParser.Partner_server_tcp_prefixContext context)
         {
@@ -7721,7 +7506,7 @@ namespace Bb.Parsers
         /// 	 : 
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPort_number(TSqlParser.Port_numberContext context)
         {
@@ -7745,7 +7530,7 @@ namespace Bb.Parsers
         /// 	 | id_  DOT id_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
@@ -7853,7 +7638,7 @@ namespace Bb.Parsers
         /// 	 : DELAYED_DURABILITY  EQUAL  DISABLED ALLOWED FORCED
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDelayed_durability_option(TSqlParser.Delayed_durability_optionContext context)
         {
@@ -7882,7 +7667,7 @@ namespace Bb.Parsers
         /// 	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  DECIMAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExternal_access_option(TSqlParser.External_access_optionContext context)
         {
@@ -7906,7 +7691,7 @@ namespace Bb.Parsers
         /// 	 | STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitId_or_string(TSqlParser.Id_or_stringContext context)
         {
@@ -7929,7 +7714,7 @@ namespace Bb.Parsers
         /// 	 : HADR  AVAILABILITY  GROUP  EQUAL  group_name OFF SUSPEND RESUME
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitHadr_options(TSqlParser.Hadr_optionsContext context)
         {
@@ -7975,7 +7760,7 @@ namespace Bb.Parsers
         /// 	 : PARAMETERIZATION  SIMPLE FORCED
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitParameterization_option(TSqlParser.Parameterization_optionContext context)
         {
@@ -8001,7 +7786,7 @@ namespace Bb.Parsers
         /// 	 | PAGE_VERIFY  CHECKSUM TORN_PAGE_DETECTION NONE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRecovery_option(TSqlParser.Recovery_optionContext context)
         {
@@ -8028,7 +7813,7 @@ namespace Bb.Parsers
         /// 	 | HONOR_BROKER_PRIORITY  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitService_broker_option(TSqlParser.Service_broker_optionContext context)
         {
@@ -8053,7 +7838,7 @@ namespace Bb.Parsers
         /// 	 | 
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSnapshot_option(TSqlParser.Snapshot_optionContext context)
         {
@@ -8085,7 +7870,7 @@ namespace Bb.Parsers
         /// 	 | RECURSIVE_TRIGGERS  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSql_option(TSqlParser.Sql_optionContext context)
         {
@@ -8108,7 +7893,7 @@ namespace Bb.Parsers
         /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  SECONDS MINUTES
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTarget_recovery_time_option(TSqlParser.Target_recovery_time_optionContext context)
         {
@@ -8133,7 +7918,7 @@ namespace Bb.Parsers
         /// 	 | NO_WAIT
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTermination(TSqlParser.TerminationContext context)
         {
@@ -8156,7 +7941,7 @@ namespace Bb.Parsers
         /// 	 : DROP  INDEX  IF  EXISTS?  drop_relational_or_xml_or_spatial_indexs drop_backward_compatible_indexs  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_index(TSqlParser.Drop_indexContext context)
         {
@@ -8432,7 +8217,7 @@ namespace Bb.Parsers
         /// 	 : DROP  STATISTICS  COMMA?  table_name  DOT?  +  SEMI
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_statistics(TSqlParser.Drop_statisticsContext context)
         {
@@ -8501,7 +8286,7 @@ namespace Bb.Parsers
         /// 	 : CREATE  TYPE    FROM  data_type  default_value?  AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_type(TSqlParser.Create_typeContext context)
         {
@@ -8524,7 +8309,7 @@ namespace Bb.Parsers
         /// 	 : DROP  TYPE  IF  EXISTS?  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDrop_type(TSqlParser.Drop_typeContext context)
         {
@@ -8570,7 +8355,7 @@ namespace Bb.Parsers
         /// 	 : OPENDATASOURCE  LR_BRACKET    COMMA    RR_BRACKET  DOT  database_name?  DOT  schema_name?  DOT  tableName
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOpendatasource(TSqlParser.OpendatasourceContext context)
         {
@@ -8596,7 +8381,7 @@ namespace Bb.Parsers
         /// 	 | WITH  XMLNAMESPACES  LR_BRACKET    RR_BRACKET  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDeclare_statement(TSqlParser.Declare_statementContext context)
         {
@@ -8666,7 +8451,7 @@ namespace Bb.Parsers
         /// 	 | DEFAULT  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitXml_declaration(TSqlParser.Xml_declarationContext context)
         {
@@ -8693,7 +8478,7 @@ namespace Bb.Parsers
         /// 	 | OPEN  GLOBAL?  cursor_name  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCursor_statement(TSqlParser.Cursor_statementContext context)
         {
@@ -8716,7 +8501,7 @@ namespace Bb.Parsers
         /// 	 : BACKUP  DATABASE  database_name  READ_WRITE_FILEGROUPS  COMMA?  FILE FILEGROUP  EQUAL  *?  COMMA?  FILE FILEGROUP  EQUAL  *  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBackup_database(TSqlParser.Backup_databaseContext context)
         {
@@ -8739,7 +8524,7 @@ namespace Bb.Parsers
         /// 	 : BACKUP  LOG  database_name  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  NORECOVERY STANDBY  EQUAL   COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBackup_log(TSqlParser.Backup_logContext context)
         {
@@ -8785,7 +8570,7 @@ namespace Bb.Parsers
         /// 	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBackup_master_key(TSqlParser.Backup_master_keyContext context)
         {
@@ -8808,7 +8593,7 @@ namespace Bb.Parsers
         /// 	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBackup_service_master_key(TSqlParser.Backup_service_master_keyContext context)
         {
@@ -8831,7 +8616,7 @@ namespace Bb.Parsers
         /// 	 : KILL  kill_process kill_query_notification kill_stats_job
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitKill_statement(TSqlParser.Kill_statementContext context)
         {
@@ -8854,7 +8639,7 @@ namespace Bb.Parsers
         /// 	 :  UOW  WITH  STATUSONLY?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitKill_process(TSqlParser.Kill_processContext context)
         {
@@ -8877,7 +8662,7 @@ namespace Bb.Parsers
         /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  ALL 
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitKill_query_notification(TSqlParser.Kill_query_notificationContext context)
         {
@@ -8900,7 +8685,7 @@ namespace Bb.Parsers
         /// 	 : STATS  JOB  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitKill_stats_job(TSqlParser.Kill_stats_jobContext context)
         {
@@ -8970,7 +8755,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  AS?  LOGIN USER  EQUAL  STRING?  AT_KEYWORD  linked_server?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_body(TSqlParser.Execute_bodyContext context)
         {
@@ -9017,7 +8802,7 @@ namespace Bb.Parsers
         /// 	 | execute_statement_arg_nameds
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_statement_arg(TSqlParser.Execute_statement_argContext context)
         {
@@ -9086,7 +8871,7 @@ namespace Bb.Parsers
         /// 	 :   EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_statement_arg_named(TSqlParser.Execute_statement_arg_namedContext context)
         {
@@ -9109,7 +8894,7 @@ namespace Bb.Parsers
         /// 	 : 
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_statement_arg_unnamed(TSqlParser.Execute_statement_arg_unnamedContext context)
         {
@@ -9132,7 +8917,7 @@ namespace Bb.Parsers
         /// 	 : constant LOCAL_ID  OUTPUT OUT? id_ DEFAULT NULL_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_parameter(TSqlParser.Execute_parameterContext context)
         {
@@ -9156,7 +8941,7 @@ namespace Bb.Parsers
         /// 	 | STRING  PLUS  LOCAL_ID  PLUS  execute_var_string??
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_var_string(TSqlParser.Execute_var_stringContext context)
         {
@@ -9185,7 +8970,7 @@ namespace Bb.Parsers
         /// 	 | create_certificate
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSecurity_statement(TSqlParser.Security_statementContext context)
         {
@@ -9208,7 +8993,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTo_principal_rincipal_ids(TSqlParser.To_principal_rincipal_idsContext context)
         {
@@ -9233,7 +9018,7 @@ namespace Bb.Parsers
         /// 	 | PUBLIC
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPrincipal_id(TSqlParser.Principal_idContext context)
         {
@@ -9280,7 +9065,7 @@ namespace Bb.Parsers
         /// 	 | EXECUTABLE?  FILE  EQUAL    WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExisting_keys(TSqlParser.Existing_keysContext context)
         {
@@ -9303,7 +9088,7 @@ namespace Bb.Parsers
         /// 	 : FILE BINARY  EQUAL    COMMA  DECRYPTION ENCRYPTION  BY  PASSWORD  EQUAL  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPrivate_key_options(TSqlParser.Private_key_optionsContext context)
         {
@@ -9326,7 +9111,7 @@ namespace Bb.Parsers
         /// 	 : ENCRYPTION  BY  PASSWORD  EQUAL  ?  WITH  SUBJECT  EQUAL    COMMA  date_options*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGenerate_new_keys(TSqlParser.Generate_new_keysContext context)
         {
@@ -9349,7 +9134,7 @@ namespace Bb.Parsers
         /// 	 : START_DATE EXPIRY_DATE  EQUAL  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDate_options(TSqlParser.Date_optionsContext context)
         {
@@ -9373,7 +9158,7 @@ namespace Bb.Parsers
         /// 	 | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOpen_key(TSqlParser.Open_keyContext context)
         {
@@ -9398,7 +9183,7 @@ namespace Bb.Parsers
         /// 	 | CLOSE  MASTER  KEY
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitClose_key(TSqlParser.Close_keyContext context)
         {
@@ -9422,7 +9207,7 @@ namespace Bb.Parsers
         /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  AUTHORIZATION  user_name?  FROM  PROVIDER  provider_name?  WITH  key_options ENCRYPTION  BY  encryption_mechanism  COMMA?+
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_key(TSqlParser.Create_keyContext context)
         {
@@ -9449,7 +9234,7 @@ namespace Bb.Parsers
         /// 	 | CREATION_DISPOSITION  EQUAL  CREATE_NEW OPEN_EXISTING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitKey_options(TSqlParser.Key_optionsContext context)
         {
@@ -9496,7 +9281,7 @@ namespace Bb.Parsers
         /// 	 | PASSWORD  EQUAL  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEncryption_mechanism(TSqlParser.Encryption_mechanismContext context)
         {
@@ -9522,7 +9307,7 @@ namespace Bb.Parsers
         /// 	 | PASSWORD  EQUAL  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDecryption_mechanism(TSqlParser.Decryption_mechanismContext context)
         {
@@ -9570,7 +9355,7 @@ namespace Bb.Parsers
         /// 	 | VIEW  ANY  DATABASE DEFINITION COLUMN  ENCRYPTION MASTER  KEY  DEFINITION CHANGE  TRACKING DATABASE  STATE DEFINITION SERVER  STATE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGrant_permission(TSqlParser.Grant_permissionContext context)
         {
@@ -9596,7 +9381,7 @@ namespace Bb.Parsers
         /// 	 | set_special
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSet_statement(TSqlParser.Set_statementContext context)
         {
@@ -9627,7 +9412,7 @@ namespace Bb.Parsers
         /// 	 | SAVE  TRAN TRANSACTION  id_ LOCAL_ID?  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTransaction_statement(TSqlParser.Transaction_statementContext context)
         {
@@ -9650,7 +9435,7 @@ namespace Bb.Parsers
         /// 	 : GO  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGo_statement(TSqlParser.Go_statementContext context)
         {
@@ -9696,7 +9481,7 @@ namespace Bb.Parsers
         /// 	 : SETUSER  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSetuser_statement(TSqlParser.Setuser_statementContext context)
         {
@@ -9719,7 +9504,7 @@ namespace Bb.Parsers
         /// 	 : RECONFIGURE  WITH  OVERRIDE?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitReconfigure_statement(TSqlParser.Reconfigure_statementContext context)
         {
@@ -9742,7 +9527,7 @@ namespace Bb.Parsers
         /// 	 : SHUTDOWN  WITH  NOWAIT?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitShutdown_statement(TSqlParser.Shutdown_statementContext context)
         {
@@ -9765,7 +9550,7 @@ namespace Bb.Parsers
         /// 	 : CHECKPOINT  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCheckpoint_statement(TSqlParser.Checkpoint_statementContext context)
         {
@@ -9788,7 +9573,7 @@ namespace Bb.Parsers
         /// 	 : DBCC  SHRINKLOG  LR_BRACKET  SIZE  EQUAL  constant_expression id_ DEFAULT  RR_BRACKET?  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDbcc_special(TSqlParser.Dbcc_specialContext context)
         {
@@ -9811,7 +9596,7 @@ namespace Bb.Parsers
         /// 	 : DBCC    LR_BRACKET  expression_list  RR_BRACKET?  WITH  dbcc_options?  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDbcc_clause(TSqlParser.Dbcc_clauseContext context)
         {
@@ -9835,7 +9620,7 @@ namespace Bb.Parsers
         /// 	 | keyword
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDbcc_command(TSqlParser.Dbcc_commandContext context)
         {
@@ -9881,7 +9666,7 @@ namespace Bb.Parsers
         /// 	 : EXECUTE  AS  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExecute_clause(TSqlParser.Execute_clauseContext context)
         {
@@ -9951,7 +9736,7 @@ namespace Bb.Parsers
         /// 	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_type_indices(TSqlParser.Table_type_indicesContext context)
         {
@@ -9997,7 +9782,7 @@ namespace Bb.Parsers
         /// 	 : ID  DOT  ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitXml_schema_collection(TSqlParser.Xml_schema_collectionContext context)
         {
@@ -10045,7 +9830,7 @@ namespace Bb.Parsers
         /// 	 | table_constraint
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_def_table_constraint(TSqlParser.Column_def_table_constraintContext context)
         {
@@ -10101,7 +9886,7 @@ namespace Bb.Parsers
         /// 	 | column_constraint
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_definition_element(TSqlParser.Column_definition_elementContext context)
         {
@@ -10170,7 +9955,7 @@ namespace Bb.Parsers
         /// 	 : CONSTRAINT  constraint_name?  null_notnull PRIMARY  KEY UNIQUE  clustered?  primary_key_options FOREIGN  KEY?  foreign_key_options check_constraint
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_constraint(TSqlParser.Column_constraintContext context)
         {
@@ -10216,7 +10001,7 @@ namespace Bb.Parsers
         /// 	 : ON  partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET file_group_name DEFAULT_DOUBLE_QUOTE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOn_partition_or_filegroup(TSqlParser.On_partition_or_filegroupContext context)
         {
@@ -10239,7 +10024,7 @@ namespace Bb.Parsers
         /// 	 : CONSTRAINT  constraint_name?  PRIMARY  KEY UNIQUE  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options FOREIGN  KEY  LR_BRACKET    RR_BRACKET  foreign_key_options CONNECTION  LR_BRACKET  connection_node  COMMA  connection_node*  RR_BRACKET DEFAULT  LR_BRACKET?  STRING PLUS function_call DECIMAL+ NEXT  VALUE  FOR  table_name  RR_BRACKET?  FOR  id_ check_constraint
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_constraint(TSqlParser.Table_constraintContext context)
         {
@@ -10262,7 +10047,7 @@ namespace Bb.Parsers
         /// 	 :   TO  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitConnection_node(TSqlParser.Connection_nodeContext context)
         {
@@ -10354,7 +10139,7 @@ namespace Bb.Parsers
         /// 	 : ON  DELETE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOn_delete(TSqlParser.On_deleteContext context)
         {
@@ -10377,7 +10162,7 @@ namespace Bb.Parsers
         /// 	 : ON  UPDATE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOn_update(TSqlParser.On_updateContext context)
         {
@@ -10437,7 +10222,7 @@ namespace Bb.Parsers
         /// 	 | MAX_DURATION  EQUAL    MINUTES?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAlter_table_index_option(TSqlParser.Alter_table_index_optionContext context)
         {
@@ -10523,7 +10308,7 @@ namespace Bb.Parsers
         /// 	 | TYPE_WARNING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDeclare_set_cursor_common_partial(TSqlParser.Declare_set_cursor_common_partialContext context)
         {
@@ -10597,7 +10382,7 @@ namespace Bb.Parsers
         /// 	 : LOCAL_ID  COMMA  LOCAL_ID*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitLocal_ids(TSqlParser.Local_idsContext context)
         {
@@ -10627,7 +10412,7 @@ namespace Bb.Parsers
         /// 	 | SET  modify_method
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSet_special(TSqlParser.Set_specialContext context)
         {
@@ -10685,7 +10470,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitConstant_LOCAL_ID(TSqlParser.Constant_LOCAL_IDContext context)
         {
@@ -10721,7 +10506,7 @@ namespace Bb.Parsers
         /// 	 | DOLLAR_ACTION
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExpression(TSqlParser.ExpressionContext context)
         {
@@ -10744,22 +10529,11 @@ namespace Bb.Parsers
         /// 	 : PLACEHOLDER
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitParameter(TSqlParser.ParameterContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstParameter(context, list);
+            return new AstParameter(context);
         }
         
         /// <summary>
@@ -10793,7 +10567,7 @@ namespace Bb.Parsers
         /// 	 | constant
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPrimitive_expression(TSqlParser.Primitive_expressionContext context)
         {
@@ -10817,7 +10591,7 @@ namespace Bb.Parsers
         /// 	 | CASE  switch_search_condition_section+  ELSE  ?  END
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCase_expression(TSqlParser.Case_expressionContext context)
         {
@@ -10841,7 +10615,7 @@ namespace Bb.Parsers
         /// 	 |   expression
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUnary_operator_expression(TSqlParser.Unary_operator_expressionContext context)
         {
@@ -10865,7 +10639,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  subquery  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitBracket_expression(TSqlParser.Bracket_expressionContext context)
         {
@@ -10892,7 +10666,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  constant_expression  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitConstant_expression(TSqlParser.Constant_expressionContext context)
         {
@@ -10915,7 +10689,7 @@ namespace Bb.Parsers
         /// 	 : WITH    COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWith_expression(TSqlParser.With_expressionContext context)
         {
@@ -10938,7 +10712,7 @@ namespace Bb.Parsers
         /// 	 :   LR_BRACKET    RR_BRACKET?  AS  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCommon_table_expression(TSqlParser.Common_table_expressionContext context)
         {
@@ -10963,7 +10737,7 @@ namespace Bb.Parsers
         /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUpdate_elem(TSqlParser.Update_elemContext context)
         {
@@ -10987,7 +10761,7 @@ namespace Bb.Parsers
         /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUpdate_elem_merge(TSqlParser.Update_elem_mergeContext context)
         {
@@ -11012,7 +10786,7 @@ namespace Bb.Parsers
         /// 	 | search_condition  OR  search_condition
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSearch_condition(TSqlParser.Search_conditionContext context)
         {
@@ -11043,7 +10817,7 @@ namespace Bb.Parsers
         /// 	 | expression  IS  null_notnull
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitPredicate(TSqlParser.PredicateContext context)
         {
@@ -11067,7 +10841,7 @@ namespace Bb.Parsers
         /// 	 | query_specification  select_order_by_clause?  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQuery_expression(TSqlParser.Query_expressionContext context)
         {
@@ -11090,7 +10864,7 @@ namespace Bb.Parsers
         /// 	 : UNION  ALL? EXCEPT INTERSECT   LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSql_union(TSqlParser.Sql_unionContext context)
         {
@@ -11113,7 +10887,7 @@ namespace Bb.Parsers
         /// 	 : SELECT        INTO  ?  FROM  ?  WHERE  ?  GROUP  BY    groupBys_list GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET?  HAVING  ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQuery_specification(TSqlParser.Query_specificationContext context)
         {
@@ -11136,7 +10910,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGroupSet_list(TSqlParser.GroupSet_listContext context)
         {
@@ -11159,7 +10933,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGroupBys_list(TSqlParser.GroupBys_listContext context)
         {
@@ -11182,7 +10956,7 @@ namespace Bb.Parsers
         /// 	 : TOP  top_percent top_count  WITH  TIES?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTop_clause(TSqlParser.Top_clauseContext context)
         {
@@ -11206,7 +10980,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET    RR_BRACKET  PERCENT
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTop_percent(TSqlParser.Top_percentContext context)
         {
@@ -11230,7 +11004,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTop_count(TSqlParser.Top_countContext context)
         {
@@ -11253,7 +11027,7 @@ namespace Bb.Parsers
         /// 	 : ORDER  BY    COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOrder_by_clause(TSqlParser.Order_by_clauseContext context)
         {
@@ -11303,7 +11077,7 @@ namespace Bb.Parsers
         /// 	 | FOR  JSON  AUTO PATH  COMMA  ROOT  LR_BRACKET  STRING  RR_BRACKET INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFor_clause(TSqlParser.For_clauseContext context)
         {
@@ -11326,7 +11100,7 @@ namespace Bb.Parsers
         /// 	 : COMMA  BINARY_KEYWORD  BASE64 TYPE ROOT  LR_BRACKET  STRING  RR_BRACKET?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitXml_common_directives(TSqlParser.Xml_common_directivesContext context)
         {
@@ -11349,7 +11123,7 @@ namespace Bb.Parsers
         /// 	 :    ?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOrder_by_expression(TSqlParser.Order_by_expressionContext context)
         {
@@ -11373,7 +11147,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  grouping_sets_list?  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGrouping_sets_item(TSqlParser.Grouping_sets_itemContext context)
         {
@@ -11396,7 +11170,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGrouping_sets_list(TSqlParser.Grouping_sets_listContext context)
         {
@@ -11458,7 +11232,7 @@ namespace Bb.Parsers
         /// 	 | USE  PLAN  STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOption(TSqlParser.OptionContext context)
         {
@@ -11504,7 +11278,7 @@ namespace Bb.Parsers
         /// 	 : LOCAL_ID  UNKNOWN EQUAL  constant NULL_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitOptimize_for_arg(TSqlParser.Optimize_for_argContext context)
         {
@@ -11527,7 +11301,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSelect_list(TSqlParser.Select_listContext context)
         {
@@ -11550,7 +11324,7 @@ namespace Bb.Parsers
         /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUdt_method_arguments(TSqlParser.Udt_method_argumentsContext context)
         {
@@ -11573,22 +11347,11 @@ namespace Bb.Parsers
         /// 	 : STAR
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitStar_asterisk(TSqlParser.Star_asteriskContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstStarAsterisk(context, list);
+            return new AstStarAsterisk(context);
         }
         
         /// <summary>
@@ -11619,7 +11382,7 @@ namespace Bb.Parsers
         /// 	 : INSERTED DELETED  DOT  STAR
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUpdated_asterisk(TSqlParser.Updated_asteriskContext context)
         {
@@ -11668,7 +11431,7 @@ namespace Bb.Parsers
         /// 	 | NULL_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_elem_target(TSqlParser.Column_elem_targetContext context)
         {
@@ -11692,7 +11455,7 @@ namespace Bb.Parsers
         /// 	 | udt_column_name  DOUBLE_COLON  static_attr  udt_method_arguments?  as_column_alias?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitUdt_elem(TSqlParser.Udt_elemContext context)
         {
@@ -11716,7 +11479,7 @@ namespace Bb.Parsers
         /// 	 |   as_column_alias?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExpression_elem(TSqlParser.Expression_elemContext context)
         {
@@ -11762,7 +11525,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_sources(TSqlParser.Table_sourcesContext context)
         {
@@ -11786,7 +11549,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  table_source  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_source(TSqlParser.Table_sourceContext context)
         {
@@ -11810,7 +11573,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_source_item_joined(TSqlParser.Table_source_item_joinedContext context)
         {
@@ -11844,7 +11607,7 @@ namespace Bb.Parsers
         /// 	 | DOUBLE_COLON    as_table_alias?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_source_item(TSqlParser.Table_source_itemContext context)
         {
@@ -11936,7 +11699,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitJson_declaration(TSqlParser.Json_declarationContext context)
         {
@@ -11982,7 +11745,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSchema_declaration(TSqlParser.Schema_declarationContext context)
         {
@@ -12028,7 +11791,7 @@ namespace Bb.Parsers
         /// 	 : CHANGETABLE  LR_BRACKET  CHANGES    COMMA    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitChange_table_changes(TSqlParser.Change_table_changesContext context)
         {
@@ -12051,7 +11814,7 @@ namespace Bb.Parsers
         /// 	 : CHANGETABLE  LR_BRACKET  VERSION    COMMA    COMMA    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitChange_table_version(TSqlParser.Change_table_versionContext context)
         {
@@ -12074,7 +11837,7 @@ namespace Bb.Parsers
         /// 	 :      ?  JOIN    ON  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitJoin_on(TSqlParser.Join_onContext context)
         {
@@ -12120,7 +11883,7 @@ namespace Bb.Parsers
         /// 	 :   APPLY  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitApply_(TSqlParser.Apply_Context context)
         {
@@ -12235,7 +11998,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFull_column_name_list(TSqlParser.Full_column_name_listContext context)
         {
@@ -12259,7 +12022,7 @@ namespace Bb.Parsers
         /// 	 | OPENROWSET  LR_BRACKET  BULK    COMMA  bulk_options id_  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRowset_function(TSqlParser.Rowset_functionContext context)
         {
@@ -12331,7 +12094,7 @@ namespace Bb.Parsers
         /// 	 | LR_BRACKET  table_value_constructor  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDerived_table(TSqlParser.Derived_tableContext context)
         {
@@ -12379,7 +12142,7 @@ namespace Bb.Parsers
         /// 	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  table_name  COMMA  full_column_name  COMMA  expression  COMMA  full_column_name  COMMA  expression  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFreetext_function(TSqlParser.Freetext_functionContext context)
         {
@@ -12403,7 +12166,7 @@ namespace Bb.Parsers
         /// 	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFreetext_predicate(TSqlParser.Freetext_predicateContext context)
         {
@@ -12518,7 +12281,7 @@ namespace Bb.Parsers
         /// 	 :     LR_BRACKET  RR_BRACKET  LR_BRACKET  subquery  RR_BRACKET  DOT  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitValue_method(TSqlParser.Value_methodContext context)
         {
@@ -12541,7 +12304,7 @@ namespace Bb.Parsers
         /// 	 : VALUE  LR_BRACKET    COMMA    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitValue_call(TSqlParser.Value_callContext context)
         {
@@ -12564,7 +12327,7 @@ namespace Bb.Parsers
         /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQuery_method(TSqlParser.Query_methodContext context)
         {
@@ -12587,7 +12350,7 @@ namespace Bb.Parsers
         /// 	 : QUERY  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQuery_call(TSqlParser.Query_callContext context)
         {
@@ -12610,7 +12373,7 @@ namespace Bb.Parsers
         /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExist_method(TSqlParser.Exist_methodContext context)
         {
@@ -12633,7 +12396,7 @@ namespace Bb.Parsers
         /// 	 : EXIST  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExist_call(TSqlParser.Exist_callContext context)
         {
@@ -12656,7 +12419,7 @@ namespace Bb.Parsers
         /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitModify_method(TSqlParser.Modify_methodContext context)
         {
@@ -12679,7 +12442,7 @@ namespace Bb.Parsers
         /// 	 : MODIFY  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitModify_call(TSqlParser.Modify_callContext context)
         {
@@ -12707,7 +12470,7 @@ namespace Bb.Parsers
         /// 	 | TOSTRING  LR_BRACKET  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitHierarchyid_call(TSqlParser.Hierarchyid_callContext context)
         {
@@ -12730,7 +12493,7 @@ namespace Bb.Parsers
         /// 	 : HIERARCHYID  DOUBLE_COLON  GETROOT  LR_BRACKET  RR_BRACKET PARSE  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitHierarchyid_static_method(TSqlParser.Hierarchyid_static_methodContext context)
         {
@@ -12753,7 +12516,7 @@ namespace Bb.Parsers
         /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  NODES  LR_BRACKET    RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitNodes_method(TSqlParser.Nodes_methodContext context)
         {
@@ -12891,7 +12654,7 @@ namespace Bb.Parsers
         /// 	 : WITH  LR_BRACKET    COMMA?  *  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWith_table_hints(TSqlParser.With_table_hintsContext context)
         {
@@ -12932,27 +12695,21 @@ namespace Bb.Parsers
             return new AstDeprecatedTableHint(context, list);
         }
         
-        /// <summary>
-        /// sybase_legacy_hints
-        /// 	 : sybase_legacy_hint+
-        /// </summary>
-        /// <remarks>
-        /// Strategy : ClassWithProperties
-        /// </remarks>
         public override AstRoot VisitSybase_legacy_hints(TSqlParser.Sybase_legacy_hintsContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            TSqlParser.Sybase_legacy_hintContext[] source = context.sybase_legacy_hint();
+            AstSybaseLegacyHints list = new AstSybaseLegacyHints(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
+                TSqlParser.Sybase_legacy_hintContext item = ((TSqlParser.Sybase_legacy_hintContext)(enumerator.Current));
+                AstSybaseLegacyHint acceptResult = ((AstSybaseLegacyHint)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
                 }
             }
-            return new AstSybaseLegacyHints(context, list);
+            return list;
         }
         
         /// <summary>
@@ -13022,7 +12779,7 @@ namespace Bb.Parsers
         /// 	 | IGNORE_TRIGGERS
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_hint(TSqlParser.Table_hintContext context)
         {
@@ -13046,7 +12803,7 @@ namespace Bb.Parsers
         /// 	 | DECIMAL
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitIndex_value(TSqlParser.Index_valueContext context)
         {
@@ -13069,7 +12826,7 @@ namespace Bb.Parsers
         /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_alias_list(TSqlParser.Column_alias_listContext context)
         {
@@ -13093,7 +12850,7 @@ namespace Bb.Parsers
         /// 	 | STRING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_alias(TSqlParser.Column_aliasContext context)
         {
@@ -13116,7 +12873,7 @@ namespace Bb.Parsers
         /// 	 : VALUES  LR_BRACKET    RR_BRACKET  COMMA  LR_BRACKET    RR_BRACKET*
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_value_constructor(TSqlParser.Table_value_constructorContext context)
         {
@@ -13139,7 +12896,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitExpression_list(TSqlParser.Expression_listContext context)
         {
@@ -13163,7 +12920,7 @@ namespace Bb.Parsers
         /// 	 | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitRanking_windowed_function(TSqlParser.Ranking_windowed_functionContext context)
         {
@@ -13190,7 +12947,7 @@ namespace Bb.Parsers
         /// 	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAggregate_windowed_function(TSqlParser.Aggregate_windowed_functionContext context)
         {
@@ -13216,7 +12973,7 @@ namespace Bb.Parsers
         /// 	 | PERCENTILE_CONT PERCENTILE_DISC  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  PARTITION  BY  expression_list?  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAnalytic_windowed_function(TSqlParser.Analytic_windowed_functionContext context)
         {
@@ -13309,7 +13066,7 @@ namespace Bb.Parsers
         /// 	 | BETWEEN  window_frame_bound  AND  window_frame_bound
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWindow_frame_extent(TSqlParser.Window_frame_extentContext context)
         {
@@ -13334,7 +13091,7 @@ namespace Bb.Parsers
         /// 	 | CURRENT  ROW
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWindow_frame_preceding(TSqlParser.Window_frame_precedingContext context)
         {
@@ -13358,7 +13115,7 @@ namespace Bb.Parsers
         /// 	 | DECIMAL  FOLLOWING
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitWindow_frame_following(TSqlParser.Window_frame_followingContext context)
         {
@@ -13388,7 +13145,7 @@ namespace Bb.Parsers
         /// 	 | TRUSTWORTHY  on_off
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCreate_database_option(TSqlParser.Create_database_optionContext context)
         {
@@ -13434,7 +13191,7 @@ namespace Bb.Parsers
         /// 	 : LR_BRACKET  NON_TRANSACTED_ACCESS  EQUAL  OFF READ_ONLY FULL DIRECTORY_NAME  EQUAL  STRING  RR_BRACKET
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDatabase_filestream_option(TSqlParser.Database_filestream_optionContext context)
         {
@@ -13527,7 +13284,7 @@ namespace Bb.Parsers
         /// 	 | schema_name  DOT  object_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEntity_name_for_azure_dw(TSqlParser.Entity_name_for_azure_dwContext context)
         {
@@ -13551,7 +13308,7 @@ namespace Bb.Parsers
         /// 	 | schema_name  DOT  object_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEntity_name_for_parallel_dw(TSqlParser.Entity_name_for_parallel_dwContext context)
         {
@@ -13598,7 +13355,7 @@ namespace Bb.Parsers
         /// 	 | database_name  DOT  schema_name?  DOT schema_name  DOT?  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitTable_name(TSqlParser.Table_nameContext context)
         {
@@ -13621,7 +13378,7 @@ namespace Bb.Parsers
         /// 	 : schema_name  DOT?  
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSimple_name(TSqlParser.Simple_nameContext context)
         {
@@ -13668,7 +13425,7 @@ namespace Bb.Parsers
         /// 	 | func_proc_name_schema
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext context)
         {
@@ -13692,7 +13449,7 @@ namespace Bb.Parsers
         /// 	 | func_proc_name_database_schema
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext context)
         {
@@ -13716,7 +13473,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
         {
@@ -13743,7 +13500,7 @@ namespace Bb.Parsers
         /// 	 | column_name
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)
         {
@@ -13789,7 +13546,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitInsert_column_name_list(TSqlParser.Insert_column_name_listContext context)
         {
@@ -13835,7 +13592,7 @@ namespace Bb.Parsers
         /// 	 :   COMMA  *
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitColumn_name_list(TSqlParser.Column_name_listContext context)
         {
@@ -13859,7 +13616,7 @@ namespace Bb.Parsers
         /// 	 | LOCAL_ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitCursor_name(TSqlParser.Cursor_nameContext context)
         {
@@ -13908,7 +13665,7 @@ namespace Bb.Parsers
         /// 	 : NOT?  NULL_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitNull_notnull(TSqlParser.Null_notnullContext context)
         {
@@ -13931,7 +13688,7 @@ namespace Bb.Parsers
         /// 	 : null_notnull DEFAULT  constant_expression  COLLATE  id_?  WITH  VALUES?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitNull_or_default(TSqlParser.Null_or_defaultContext context)
         {
@@ -13958,7 +13715,7 @@ namespace Bb.Parsers
         /// 	 | CHECKSUM
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitScalar_function_name(TSqlParser.Scalar_function_nameContext context)
         {
@@ -14027,7 +13784,7 @@ namespace Bb.Parsers
         /// 	 : id_ expression
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitContract_name(TSqlParser.Contract_nameContext context)
         {
@@ -14050,7 +13807,7 @@ namespace Bb.Parsers
         /// 	 : id_ expression
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitService_name(TSqlParser.Service_nameContext context)
         {
@@ -14073,7 +13830,7 @@ namespace Bb.Parsers
         /// 	 : END  CONVERSATION    SEMI?  WITH  ERROR  EQUAL    DESCRIPTION  EQUAL  ?  CLEANUP??
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitEnd_conversation(TSqlParser.End_conversationContext context)
         {
@@ -14119,7 +13876,7 @@ namespace Bb.Parsers
         /// 	 : GET  CONVERSATION  GROUP    FROM    SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitGet_conversation(TSqlParser.Get_conversationContext context)
         {
@@ -14143,7 +13900,7 @@ namespace Bb.Parsers
         /// 	 | id_
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitQueue_id(TSqlParser.Queue_idContext context)
         {
@@ -14166,7 +13923,7 @@ namespace Bb.Parsers
         /// 	 : SEND  ON  CONVERSATION    MESSAGE  TYPE    LR_BRACKET    RR_BRACKET?  SEMI?
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSend_conversation(TSqlParser.Send_conversationContext context)
         {
@@ -14194,7 +13951,7 @@ namespace Bb.Parsers
         /// 	 | unscaled_type
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitData_type(TSqlParser.Data_typeContext context)
         {
@@ -14219,7 +13976,7 @@ namespace Bb.Parsers
         /// 	 | constant
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitDefault_value(TSqlParser.Default_valueContext context)
         {
@@ -14247,7 +14004,7 @@ namespace Bb.Parsers
         /// 	 | parameter
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
@@ -14271,7 +14028,7 @@ namespace Bb.Parsers
         /// 	 | MINUS
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitSign(TSqlParser.SignContext context)
         {
@@ -15126,7 +14883,7 @@ namespace Bb.Parsers
         /// 	 | keyword
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitId_(TSqlParser.Id_Context context)
         {
@@ -15149,22 +14906,11 @@ namespace Bb.Parsers
         /// 	 : ID
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : ClassTerminalAlias
         /// </remarks>
         public override AstRoot VisitSimple_id(TSqlParser.Simple_idContext context)
         {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSimpleId(context, list);
+            return new AstSimpleId(context);
         }
         
         /// <summary>
@@ -15180,7 +14926,7 @@ namespace Bb.Parsers
         /// 	 | EXCLAMATION  LESS
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitComparison_operator(TSqlParser.Comparison_operatorContext context)
         {
@@ -15210,7 +14956,7 @@ namespace Bb.Parsers
         /// 	 | OR_ASSIGN
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitAssignment_operator(TSqlParser.Assignment_operatorContext context)
         {
@@ -15260,7 +15006,7 @@ namespace Bb.Parsers
         /// 	 | MODULE
         /// </summary>
         /// <remarks>
-        /// Strategy : Default
+        /// Strategy : _
         /// </remarks>
         public override AstRoot VisitFile_size_unity(TSqlParser.File_size_unityContext context)
         {

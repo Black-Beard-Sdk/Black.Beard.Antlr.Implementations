@@ -64,33 +64,6 @@ namespace Bb.Parsers
         public void VisitRule(AstRule a)
         {
 
-            //if (a.RuleName.Text == "batch_level_statement")
-            //{
-
-            //}
-
-            //Debug.WriteLine("------------------------");
-            //Debug.WriteLine(a.ToString());
-            //Debug.WriteLine("   ContainsOneItemInOutput : " + a.ContainsOneItemInOutput);
-            //Debug.WriteLine("   ContainsJustOneAlternative : " + a.ContainsJustOneAlternative);
-            //Debug.WriteLine("   ContainsOneRule : " + a.ContainsOneRule);
-            //Debug.WriteLine("   ContainsOneTerminal : " + a.ContainsOneTerminal);
-            //Debug.WriteLine("   ContainsOnlyRuleReferences : " + a.ContainsOnlyRuleReferences);
-            //Debug.WriteLine("   ContainsOnlyTerminals : " + a.ContainsOnlyTerminals);
-            //Debug.WriteLine("");
-            //Debug.WriteLine("");
-
-            //this._currentRule = a;
-            //if (a.RuleBlock != null)
-            //{
-            //    a.RuleBlock?.Accept(this);
-
-            //}
-            //else
-            //{
-            //    Stop();
-            //}
-
             a.Return?.Accept(this);
             a.RuleName?.Accept(this);
             a.Modifiers?.Accept(this);

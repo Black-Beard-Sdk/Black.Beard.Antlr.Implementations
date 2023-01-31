@@ -45,6 +45,16 @@ namespace Bb.Generators
                 else
                     this._callBase.Add(c => new CodeVariableReferenceExpression(value));
             }
+
+            return this;
+        }
+
+        public ModelConstructor CallBase(params CodeExpression[] values)
+        {
+
+            foreach (var value in values)
+                    this._callBase.Add(c => value);
+
             return this;
         }
 

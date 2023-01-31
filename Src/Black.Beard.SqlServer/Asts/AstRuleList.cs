@@ -4,19 +4,20 @@ using Bb.Parsers;
 
 namespace Bb.Asts
 {
+
     public abstract class AstRuleList<T> : AstRule, IEnumerable<T>
-        where T : AstRule
+        where T : AstRoot
     {
 
 
         public AstRuleList(ITerminalNode n)
-            : base(n)
+            : base(n, null)
         {
             this._list = new List<T>();
         }
 
         public AstRuleList(ITerminalNode n, int capacity)
-            : base(n)
+            : base(n, null)
         {
             this._list = new List<T>(capacity);
         }
@@ -34,13 +35,13 @@ namespace Bb.Asts
         }
 
         public AstRuleList(Position n)
-            : base(n)
+            : base(n, null)
         {
             this._list = new List<T>();
         }
 
         public AstRuleList(Position n, int capacity)
-            : base(n)
+            : base(n, null)
         {
             this._list = new List<T>(capacity);
         }

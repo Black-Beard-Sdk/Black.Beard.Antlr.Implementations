@@ -91,7 +91,7 @@ namespace Bb.Asts
         public bool OutputContainsAlwayOneTerminal { get => RuleBlock?.OutputContainsAlwayOneTerminal ?? false; }
         
         public bool ContainsJustOneAlternative { get => RuleBlock?.ContainsJustOneAlternative ?? false; }
-
+        public string? Strategy { get; set; }
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {

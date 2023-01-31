@@ -8930,7 +8930,7 @@
   {
     "Name": "break_statement",
     "Generate": true,
-    "Strategy": "Default",
+    "Strategy": null,
     "Types": [
       {
         "Name": "AstBreakstatement",

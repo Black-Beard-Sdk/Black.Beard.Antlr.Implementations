@@ -29,5 +29,7 @@ namespace Bb.Parsers
 
         public string Strategy { get; internal set; }
 
+        public string AntlrParserRootName { get; set; }
+
     }
 }

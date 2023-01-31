@@ -9,23 +9,22 @@ namespace Bb.Asts
     public abstract class AstRule : AstRoot
     {
 
-        public AstRule(ITerminalNode n)
-            : base(n)
+        public AstRule(ITerminalNode t, List<AstRoot> list)
+            : base(t)
         {
+            this.List = list;
         }
 
         public AstRule(ParserRuleContext ctx, List<AstRoot> list)
             : base(ctx)
         {
-
             this.List = list;
-
         }
 
-        public AstRule(Position n)
-            : base(n)
+        public AstRule(Position p, List<AstRoot> list)
+            : base(p)
         {
-
+            this.List = list;
         }
 
         public List<AstRoot> List { get; }

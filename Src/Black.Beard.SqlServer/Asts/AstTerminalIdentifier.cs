@@ -5,24 +5,21 @@ using System.Diagnostics;
 namespace Bb.Asts
 {
 
-    public class AstTerminalIdentifier : AstTerminalText
+    public class AstTerminalIdentifier : AstTerminal<String>
     {
 
-        public AstTerminalIdentifier(ITerminalNode n, string type, string text) 
+        public AstTerminalIdentifier(ITerminalNode n, string text, string type)
             : base(n, text)
         {
-
             this.Type = type;
-        
         }
 
-        public AstTerminalIdentifier(ParserRuleContext ctx, string type, string text)
+        public AstTerminalIdentifier(ParserRuleContext ctx, string text, string type)
             : base(ctx, text)
-        {
-            
+        {        
             this.Type = type;
-
         }
+
 
         public AstTerminalIdentifier Child { get; private set; }
 
@@ -34,6 +31,13 @@ namespace Bb.Asts
                 this.Child = identifier;
             else
                 this.Child.Add(identifier);
+        }
+
+        [DebuggerStepThrough]
+        [DebuggerNonUserCode]
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitIdentifier(this);
         }
 
     }

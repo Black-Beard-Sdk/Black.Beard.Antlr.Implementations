@@ -51,6 +51,7 @@ namespace Bb.Asts
                 return this.Rule?.ContainsOneRule ?? false;
             }
         }
+        
         public override bool ContainsOnlyTerminals
         {
             get

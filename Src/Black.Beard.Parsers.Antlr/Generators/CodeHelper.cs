@@ -171,6 +171,12 @@ namespace Bb.Generators
             return new CodeMethodInvokeExpression(instance, name, arguments);
         }
 
+        public static CodeMethodInvokeExpression Call(this CodeTypeReference instance, string name, params CodeExpression[] arguments)
+        {
+            return new CodeTypeReferenceExpression(instance).Call(name, arguments);
+        }
+
+
         public static CodeMethodInvokeExpression Call(this CodeExpression instance, string name, CodeTypeReference[] types, params CodeExpression[] arguments)
         {
             var method = new CodeMethodReferenceExpression(instance, name);

@@ -3,9 +3,10 @@
 
     public partial interface IAstTSqlVisitor
     {
+        
+        void VisitIdentifier(AstTerminalIdentifier a);
 
-        void VisitTerminalText(AstTerminalText a);
-
+        void VisitKeyword(AstTerminalKeyword a);
 
     }
 

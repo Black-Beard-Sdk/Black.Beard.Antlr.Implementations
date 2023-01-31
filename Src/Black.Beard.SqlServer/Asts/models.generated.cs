@@ -12,6 +12,8 @@ namespace Bb.Asts
     using System;
     using Antlr4.Runtime;
     using System.Collections;
+    using Antlr4.Runtime.Tree;
+    using Bb.Parsers;
     
     
     /// <summary>
@@ -20,13 +22,23 @@ namespace Bb.Asts
     /// 	 | execute_body_batch  go_statement*  EOF
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTsqlFile : AstRule
     {
         
+        public AstTsqlFile(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTsqlFile(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTsqlFile(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -43,13 +55,23 @@ namespace Bb.Asts
     /// 	 | batch_level_statement  go_statement*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBatch : AstRule
     {
         
+        public AstBatch(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBatch(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBatch(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -64,37 +86,19 @@ namespace Bb.Asts
     /// 	 : sql_clause+
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassList
     /// </remarks>
-    public partial class AstSqlClauses : AstRule
+    public partial class AstSqlClauses : AstRuleList<AstSqlClause>
     {
         
-        private AstSqlClause _sqlClause;
-        
-        public AstSqlClauses(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
+        public AstSqlClauses(ParserRuleContext ctx) : 
+                base(ctx)
         {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSqlClause>())
-                {
-                    this.SqlClause = ((AstSqlClause)(enumerator.Current));
-                }
-            }
         }
         
-        public virtual AstSqlClause SqlClause
+        public AstSqlClauses(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
         {
-            get
-            {
-                return this._sqlClause;
-            }
-            set
-            {
-                this._sqlClause = value;
-            }
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
@@ -115,13 +119,23 @@ namespace Bb.Asts
     /// 	 | SEMI
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSqlClause : AstRule
     {
         
+        public AstSqlClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSqlClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSqlClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -143,6 +157,20 @@ namespace Bb.Asts
         
         private AstSqlClause _sqlClause;
         
+        public AstBlockStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSqlClause>())
+                {
+                    this._sqlClause = ((AstSqlClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBlockStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -152,7 +180,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSqlClause>())
                 {
-                    this.SqlClause = ((AstSqlClause)(enumerator.Current));
+                    this._sqlClause = ((AstSqlClause)(enumerator.Current));
                 }
             }
         }
@@ -162,10 +190,6 @@ namespace Bb.Asts
             get
             {
                 return this._sqlClause;
-            }
-            set
-            {
-                this._sqlClause = value;
             }
         }
         
@@ -180,13 +204,23 @@ namespace Bb.Asts
     /// 	 : BREAK  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBreakStatement : AstRule
     {
         
+        public AstBreakStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBreakStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBreakStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -201,13 +235,23 @@ namespace Bb.Asts
     /// 	 : CONTINUE  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstContinueStatement : AstRule
     {
         
+        public AstContinueStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstContinueStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstContinueStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -223,13 +267,23 @@ namespace Bb.Asts
     /// 	 | id_  COLON  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGotoStatement : AstRule
     {
         
+        public AstGotoStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGotoStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGotoStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -251,6 +305,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstReturnStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstReturnStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -260,7 +328,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -270,10 +338,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -295,6 +359,20 @@ namespace Bb.Asts
         
         private AstSearchCondition _searchCondition;
         
+        public AstIfStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstIfStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -304,7 +382,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
             }
         }
@@ -314,10 +392,6 @@ namespace Bb.Asts
             get
             {
                 return this._searchCondition;
-            }
-            set
-            {
-                this._searchCondition = value;
             }
         }
         
@@ -332,13 +406,23 @@ namespace Bb.Asts
     /// 	 : THROW  throw_error_number  COMMA  throw_message  COMMA  throw_state?  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstThrowStatement : AstRule
     {
         
+        public AstThrowStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstThrowStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstThrowStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -354,13 +438,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstThrowErrorNumber : AstRule
     {
         
+        public AstThrowErrorNumber(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstThrowErrorNumber(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstThrowErrorNumber(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -376,13 +470,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstThrowMessage : AstRule
     {
         
+        public AstThrowMessage(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstThrowMessage(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstThrowMessage(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -398,13 +502,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstThrowState : AstRule
     {
         
+        public AstThrowState(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstThrowState(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstThrowState(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -419,13 +533,23 @@ namespace Bb.Asts
     /// 	 : BEGIN  TRY  SEMI?    END  TRY  SEMI?  BEGIN  CATCH  SEMI?    END  CATCH  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTryCatchStatement : AstRule
     {
         
+        public AstTryCatchStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTryCatchStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTryCatchStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -449,6 +573,24 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstWaitforStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstReceiveStatement>())
+                {
+                    this._receiveStatement = ((AstReceiveStatement)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWaitforStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -458,11 +600,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstReceiveStatement>())
                 {
-                    this.ReceiveStatement = ((AstReceiveStatement)(enumerator.Current));
+                    this._receiveStatement = ((AstReceiveStatement)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -473,10 +615,6 @@ namespace Bb.Asts
             {
                 return this._receiveStatement;
             }
-            set
-            {
-                this._receiveStatement = value;
-            }
         }
         
         public virtual AstExpression Expression
@@ -484,10 +622,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -509,6 +643,20 @@ namespace Bb.Asts
         
         private AstSearchCondition _searchCondition;
         
+        public AstWhileStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWhileStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -518,7 +666,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
             }
         }
@@ -528,10 +676,6 @@ namespace Bb.Asts
             get
             {
                 return this._searchCondition;
-            }
-            set
-            {
-                this._searchCondition = value;
             }
         }
         
@@ -546,13 +690,23 @@ namespace Bb.Asts
     /// 	 : PRINT  expression DOUBLE_QUOTE_ID  COMMA  LOCAL_ID*  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPrintStatement : AstRule
     {
         
+        public AstPrintStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPrintStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPrintStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -568,13 +722,23 @@ namespace Bb.Asts
     /// 	 | RAISERROR  DECIMAL    COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRaiseerrorStatement : AstRule
     {
         
+        public AstRaiseerrorStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRaiseerrorStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRaiseerrorStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -589,13 +753,23 @@ namespace Bb.Asts
     /// 	 : SEMI
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstEmptyStatement : AstRule
+    public partial class AstEmptyStatement : AstTerminal<string>
     {
         
-        public AstEmptyStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstEmptyStatement(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEmptyStatement(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstEmptyStatement(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -617,6 +791,20 @@ namespace Bb.Asts
         
         private AstApplicationRole _applicationRole;
         
+        public AstAlterApplicationRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstApplicationRole>())
+                {
+                    this._applicationRole = ((AstApplicationRole)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterApplicationRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -626,7 +814,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstApplicationRole>())
                 {
-                    this.ApplicationRole = ((AstApplicationRole)(enumerator.Current));
+                    this._applicationRole = ((AstApplicationRole)(enumerator.Current));
                 }
             }
         }
@@ -636,10 +824,6 @@ namespace Bb.Asts
             get
             {
                 return this._applicationRole;
-            }
-            set
-            {
-                this._applicationRole = value;
             }
         }
         
@@ -661,6 +845,20 @@ namespace Bb.Asts
         
         private AstApplicationRole _applicationRole;
         
+        public AstCreateApplicationRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstApplicationRole>())
+                {
+                    this._applicationRole = ((AstApplicationRole)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateApplicationRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -670,7 +868,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstApplicationRole>())
                 {
-                    this.ApplicationRole = ((AstApplicationRole)(enumerator.Current));
+                    this._applicationRole = ((AstApplicationRole)(enumerator.Current));
                 }
             }
         }
@@ -680,10 +878,6 @@ namespace Bb.Asts
             get
             {
                 return this._applicationRole;
-            }
-            set
-            {
-                this._applicationRole = value;
             }
         }
         
@@ -705,6 +899,20 @@ namespace Bb.Asts
         
         private AstAggregateName _aggregateName;
         
+        public AstDropAggregate(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAggregateName>())
+                {
+                    this._aggregateName = ((AstAggregateName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropAggregate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -714,7 +922,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAggregateName>())
                 {
-                    this.AggregateName = ((AstAggregateName)(enumerator.Current));
+                    this._aggregateName = ((AstAggregateName)(enumerator.Current));
                 }
             }
         }
@@ -724,10 +932,6 @@ namespace Bb.Asts
             get
             {
                 return this._aggregateName;
-            }
-            set
-            {
-                this._aggregateName = value;
             }
         }
         
@@ -749,6 +953,20 @@ namespace Bb.Asts
         
         private AstRoleName _roleName;
         
+        public AstDropApplicationRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRoleName>())
+                {
+                    this._roleName = ((AstRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropApplicationRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -758,7 +976,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRoleName>())
                 {
-                    this.RoleName = ((AstRoleName)(enumerator.Current));
+                    this._roleName = ((AstRoleName)(enumerator.Current));
                 }
             }
         }
@@ -768,10 +986,6 @@ namespace Bb.Asts
             get
             {
                 return this._roleName;
-            }
-            set
-            {
-                this._roleName = value;
             }
         }
         
@@ -797,6 +1011,28 @@ namespace Bb.Asts
         
         private AstAlterAssemblyClause _alterAssemblyClause;
         
+        public AstAlterAssembly(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyStart>())
+                {
+                    this._alterAssemblyStart = ((AstAlterAssemblyStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAssemblyName>())
+                {
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyClause>())
+                {
+                    this._alterAssemblyClause = ((AstAlterAssemblyClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssembly(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -806,15 +1042,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyStart>())
                 {
-                    this.AlterAssemblyStart = ((AstAlterAssemblyStart)(enumerator.Current));
+                    this._alterAssemblyStart = ((AstAlterAssemblyStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAssemblyName>())
                 {
-                    this.AssemblyName = ((AstAssemblyName)(enumerator.Current));
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyClause>())
                 {
-                    this.AlterAssemblyClause = ((AstAlterAssemblyClause)(enumerator.Current));
+                    this._alterAssemblyClause = ((AstAlterAssemblyClause)(enumerator.Current));
                 }
             }
         }
@@ -825,10 +1061,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyStart;
             }
-            set
-            {
-                this._alterAssemblyStart = value;
-            }
         }
         
         public virtual AstAssemblyName AssemblyName
@@ -837,10 +1069,6 @@ namespace Bb.Asts
             {
                 return this._assemblyName;
             }
-            set
-            {
-                this._assemblyName = value;
-            }
         }
         
         public virtual AstAlterAssemblyClause AlterAssemblyClause
@@ -848,10 +1076,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyClause;
-            }
-            set
-            {
-                this._alterAssemblyClause = value;
             }
         }
         
@@ -866,13 +1090,23 @@ namespace Bb.Asts
     /// 	 : ALTER  ASSEMBLY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAssemblyStart : AstRule
     {
         
+        public AstAlterAssemblyStart(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAssemblyStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAssemblyStart(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -900,6 +1134,32 @@ namespace Bb.Asts
         
         private AstAlterAssemblyAddClause _alterAssemblyAddClause;
         
+        public AstAlterAssemblyClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyFromClause>())
+                {
+                    this._alterAssemblyFromClause = ((AstAlterAssemblyFromClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyWithClause>())
+                {
+                    this._alterAssemblyWithClause = ((AstAlterAssemblyWithClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyDropClause>())
+                {
+                    this._alterAssemblyDropClause = ((AstAlterAssemblyDropClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyAddClause>())
+                {
+                    this._alterAssemblyAddClause = ((AstAlterAssemblyAddClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -909,19 +1169,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyFromClause>())
                 {
-                    this.AlterAssemblyFromClause = ((AstAlterAssemblyFromClause)(enumerator.Current));
+                    this._alterAssemblyFromClause = ((AstAlterAssemblyFromClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyWithClause>())
                 {
-                    this.AlterAssemblyWithClause = ((AstAlterAssemblyWithClause)(enumerator.Current));
+                    this._alterAssemblyWithClause = ((AstAlterAssemblyWithClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyDropClause>())
                 {
-                    this.AlterAssemblyDropClause = ((AstAlterAssemblyDropClause)(enumerator.Current));
+                    this._alterAssemblyDropClause = ((AstAlterAssemblyDropClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyAddClause>())
                 {
-                    this.AlterAssemblyAddClause = ((AstAlterAssemblyAddClause)(enumerator.Current));
+                    this._alterAssemblyAddClause = ((AstAlterAssemblyAddClause)(enumerator.Current));
                 }
             }
         }
@@ -932,10 +1192,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyFromClause;
             }
-            set
-            {
-                this._alterAssemblyFromClause = value;
-            }
         }
         
         public virtual AstAlterAssemblyWithClause AlterAssemblyWithClause
@@ -943,10 +1199,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyWithClause;
-            }
-            set
-            {
-                this._alterAssemblyWithClause = value;
             }
         }
         
@@ -956,10 +1208,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyDropClause;
             }
-            set
-            {
-                this._alterAssemblyDropClause = value;
-            }
         }
         
         public virtual AstAlterAssemblyAddClause AlterAssemblyAddClause
@@ -967,10 +1215,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyAddClause;
-            }
-            set
-            {
-                this._alterAssemblyAddClause = value;
             }
         }
         
@@ -992,6 +1236,20 @@ namespace Bb.Asts
         
         private AstAlterAssemblyFromClauseStart _alterAssemblyFromClauseStart;
         
+        public AstAlterAssemblyFromClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyFromClauseStart>())
+                {
+                    this._alterAssemblyFromClauseStart = ((AstAlterAssemblyFromClauseStart)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyFromClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1001,7 +1259,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyFromClauseStart>())
                 {
-                    this.AlterAssemblyFromClauseStart = ((AstAlterAssemblyFromClauseStart)(enumerator.Current));
+                    this._alterAssemblyFromClauseStart = ((AstAlterAssemblyFromClauseStart)(enumerator.Current));
                 }
             }
         }
@@ -1011,10 +1269,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyFromClauseStart;
-            }
-            set
-            {
-                this._alterAssemblyFromClauseStart = value;
             }
         }
         
@@ -1029,13 +1283,23 @@ namespace Bb.Asts
     /// 	 : FROM
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstAlterAssemblyFromClauseStart : AstRule
+    public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string>
     {
         
-        public AstAlterAssemblyFromClauseStart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAlterAssemblyFromClauseStart(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterAssemblyFromClauseStart(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyFromClauseStart(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1059,6 +1323,24 @@ namespace Bb.Asts
         
         private AstAlterAssemblyDropMultipleFiles _alterAssemblyDropMultipleFiles;
         
+        public AstAlterAssemblyDropClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyDrop>())
+                {
+                    this._alterAssemblyDrop = ((AstAlterAssemblyDrop)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyDropMultipleFiles>())
+                {
+                    this._alterAssemblyDropMultipleFiles = ((AstAlterAssemblyDropMultipleFiles)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyDropClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1068,11 +1350,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyDrop>())
                 {
-                    this.AlterAssemblyDrop = ((AstAlterAssemblyDrop)(enumerator.Current));
+                    this._alterAssemblyDrop = ((AstAlterAssemblyDrop)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyDropMultipleFiles>())
                 {
-                    this.AlterAssemblyDropMultipleFiles = ((AstAlterAssemblyDropMultipleFiles)(enumerator.Current));
+                    this._alterAssemblyDropMultipleFiles = ((AstAlterAssemblyDropMultipleFiles)(enumerator.Current));
                 }
             }
         }
@@ -1083,10 +1365,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyDrop;
             }
-            set
-            {
-                this._alterAssemblyDrop = value;
-            }
         }
         
         public virtual AstAlterAssemblyDropMultipleFiles AlterAssemblyDropMultipleFiles
@@ -1094,10 +1372,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyDropMultipleFiles;
-            }
-            set
-            {
-                this._alterAssemblyDropMultipleFiles = value;
             }
         }
         
@@ -1113,13 +1387,23 @@ namespace Bb.Asts
     /// 	 | multiple_local_files
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAssemblyDropMultipleFiles : AstRule
     {
         
+        public AstAlterAssemblyDropMultipleFiles(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAssemblyDropMultipleFiles(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAssemblyDropMultipleFiles(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1134,13 +1418,23 @@ namespace Bb.Asts
     /// 	 : DROP
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstAlterAssemblyDrop : AstRule
+    public partial class AstAlterAssemblyDrop : AstTerminal<string>
     {
         
-        public AstAlterAssemblyDrop(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAlterAssemblyDrop(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterAssemblyDrop(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyDrop(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1164,6 +1458,24 @@ namespace Bb.Asts
         
         private AstAlterAssemblyClientFileClause _alterAssemblyClientFileClause;
         
+        public AstAlterAssemblyAddClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAsssemblyAddClauseStart>())
+                {
+                    this._alterAsssemblyAddClauseStart = ((AstAlterAsssemblyAddClauseStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAssemblyClientFileClause>())
+                {
+                    this._alterAssemblyClientFileClause = ((AstAlterAssemblyClientFileClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyAddClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1173,11 +1485,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAsssemblyAddClauseStart>())
                 {
-                    this.AlterAsssemblyAddClauseStart = ((AstAlterAsssemblyAddClauseStart)(enumerator.Current));
+                    this._alterAsssemblyAddClauseStart = ((AstAlterAsssemblyAddClauseStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAssemblyClientFileClause>())
                 {
-                    this.AlterAssemblyClientFileClause = ((AstAlterAssemblyClientFileClause)(enumerator.Current));
+                    this._alterAssemblyClientFileClause = ((AstAlterAssemblyClientFileClause)(enumerator.Current));
                 }
             }
         }
@@ -1188,10 +1500,6 @@ namespace Bb.Asts
             {
                 return this._alterAsssemblyAddClauseStart;
             }
-            set
-            {
-                this._alterAsssemblyAddClauseStart = value;
-            }
         }
         
         public virtual AstAlterAssemblyClientFileClause AlterAssemblyClientFileClause
@@ -1199,10 +1507,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyClientFileClause;
-            }
-            set
-            {
-                this._alterAssemblyClientFileClause = value;
             }
         }
         
@@ -1217,13 +1521,23 @@ namespace Bb.Asts
     /// 	 : ADD  FILE  FROM
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAsssemblyAddClauseStart : AstRule
     {
         
+        public AstAlterAsssemblyAddClauseStart(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAsssemblyAddClauseStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAsssemblyAddClauseStart(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1245,6 +1559,20 @@ namespace Bb.Asts
         
         private AstAlterAssemblyFileName _alterAssemblyFileName;
         
+        public AstAlterAssemblyClientFileClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyFileName>())
+                {
+                    this._alterAssemblyFileName = ((AstAlterAssemblyFileName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyClientFileClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1254,7 +1582,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyFileName>())
                 {
-                    this.AlterAssemblyFileName = ((AstAlterAssemblyFileName)(enumerator.Current));
+                    this._alterAssemblyFileName = ((AstAlterAssemblyFileName)(enumerator.Current));
                 }
             }
         }
@@ -1264,10 +1592,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAssemblyFileName;
-            }
-            set
-            {
-                this._alterAssemblyFileName = value;
             }
         }
         
@@ -1282,13 +1606,23 @@ namespace Bb.Asts
     /// 	 : STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstAlterAssemblyFileName : AstRule
+    public partial class AstAlterAssemblyFileName : AstTerminal<string>
     {
         
-        public AstAlterAssemblyFileName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAlterAssemblyFileName(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterAssemblyFileName(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyFileName(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1312,6 +1646,24 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAlterAssemblyFileBits(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyAs>())
+                {
+                    this._alterAssemblyAs = ((AstAlterAssemblyAs)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyFileBits(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1321,11 +1673,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyAs>())
                 {
-                    this.AlterAssemblyAs = ((AstAlterAssemblyAs)(enumerator.Current));
+                    this._alterAssemblyAs = ((AstAlterAssemblyAs)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -1336,10 +1688,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyAs;
             }
-            set
-            {
-                this._alterAssemblyAs = value;
-            }
         }
         
         public virtual AstId Id
@@ -1347,10 +1695,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -1365,13 +1709,23 @@ namespace Bb.Asts
     /// 	 : AS
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstAlterAssemblyAs : AstRule
+    public partial class AstAlterAssemblyAs : AstTerminal<string>
     {
         
-        public AstAlterAssemblyAs(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAlterAssemblyAs(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterAssemblyAs(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyAs(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1395,6 +1749,24 @@ namespace Bb.Asts
         
         private AstAssemblyOption _assemblyOption;
         
+        public AstAlterAssemblyWithClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAssemblyWith>())
+                {
+                    this._alterAssemblyWith = ((AstAlterAssemblyWith)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAssemblyOption>())
+                {
+                    this._assemblyOption = ((AstAssemblyOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAssemblyWithClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1404,11 +1776,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAssemblyWith>())
                 {
-                    this.AlterAssemblyWith = ((AstAlterAssemblyWith)(enumerator.Current));
+                    this._alterAssemblyWith = ((AstAlterAssemblyWith)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAssemblyOption>())
                 {
-                    this.AssemblyOption = ((AstAssemblyOption)(enumerator.Current));
+                    this._assemblyOption = ((AstAssemblyOption)(enumerator.Current));
                 }
             }
         }
@@ -1419,10 +1791,6 @@ namespace Bb.Asts
             {
                 return this._alterAssemblyWith;
             }
-            set
-            {
-                this._alterAssemblyWith = value;
-            }
         }
         
         public virtual AstAssemblyOption AssemblyOption
@@ -1430,10 +1798,6 @@ namespace Bb.Asts
             get
             {
                 return this._assemblyOption;
-            }
-            set
-            {
-                this._assemblyOption = value;
             }
         }
         
@@ -1448,13 +1812,23 @@ namespace Bb.Asts
     /// 	 : WITH
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstAlterAssemblyWith : AstRule
+    public partial class AstAlterAssemblyWith : AstTerminal<string>
     {
         
-        public AstAlterAssemblyWith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAlterAssemblyWith(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterAssemblyWith(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyWith(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1471,13 +1845,23 @@ namespace Bb.Asts
     /// 	 | STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstClientAssemblySpecifier : AstRule
     {
         
+        public AstClientAssemblySpecifier(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstClientAssemblySpecifier(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstClientAssemblySpecifier(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1495,13 +1879,23 @@ namespace Bb.Asts
     /// 	 | assembly_option  COMMA
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAssemblyOption : AstRule
     {
         
+        public AstAssemblyOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAssemblyOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAssemblyOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1527,6 +1921,28 @@ namespace Bb.Asts
         
         private AstFilePath _filePath;
         
+        public AstNetworkFileShare(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstNetworkFileStart>())
+                {
+                    this._networkFileStart = ((AstNetworkFileStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstNetworkComputer>())
+                {
+                    this._networkComputer = ((AstNetworkComputer)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFilePath>())
+                {
+                    this._filePath = ((AstFilePath)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNetworkFileShare(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1536,15 +1952,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstNetworkFileStart>())
                 {
-                    this.NetworkFileStart = ((AstNetworkFileStart)(enumerator.Current));
+                    this._networkFileStart = ((AstNetworkFileStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstNetworkComputer>())
                 {
-                    this.NetworkComputer = ((AstNetworkComputer)(enumerator.Current));
+                    this._networkComputer = ((AstNetworkComputer)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFilePath>())
                 {
-                    this.FilePath = ((AstFilePath)(enumerator.Current));
+                    this._filePath = ((AstFilePath)(enumerator.Current));
                 }
             }
         }
@@ -1555,10 +1971,6 @@ namespace Bb.Asts
             {
                 return this._networkFileStart;
             }
-            set
-            {
-                this._networkFileStart = value;
-            }
         }
         
         public virtual AstNetworkComputer NetworkComputer
@@ -1567,10 +1979,6 @@ namespace Bb.Asts
             {
                 return this._networkComputer;
             }
-            set
-            {
-                this._networkComputer = value;
-            }
         }
         
         public virtual AstFilePath FilePath
@@ -1578,10 +1986,6 @@ namespace Bb.Asts
             get
             {
                 return this._filePath;
-            }
-            set
-            {
-                this._filePath = value;
             }
         }
         
@@ -1596,13 +2000,23 @@ namespace Bb.Asts
     /// 	 : DOUBLE_BACK_SLASH
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstNetworkFileStart : AstRule
+    public partial class AstNetworkFileStart : AstTerminal<string>
     {
         
-        public AstNetworkFileStart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstNetworkFileStart(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNetworkFileStart(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstNetworkFileStart(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1618,13 +2032,23 @@ namespace Bb.Asts
     /// 	 | id_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFilePath : AstRule
     {
         
+        public AstFilePath(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFilePath(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFilePath(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1639,13 +2063,23 @@ namespace Bb.Asts
     /// 	 : BACKSLASH
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstFileDirectoryPathSeparator : AstRule
+    public partial class AstFileDirectoryPathSeparator : AstTerminal<string>
     {
         
-        public AstFileDirectoryPathSeparator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstFileDirectoryPathSeparator(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFileDirectoryPathSeparator(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstFileDirectoryPathSeparator(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1669,6 +2103,24 @@ namespace Bb.Asts
         
         private AstFilePath _filePath;
         
+        public AstLocalFile(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLocalDrive>())
+                {
+                    this._localDrive = ((AstLocalDrive)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFilePath>())
+                {
+                    this._filePath = ((AstFilePath)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLocalFile(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1678,11 +2130,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLocalDrive>())
                 {
-                    this.LocalDrive = ((AstLocalDrive)(enumerator.Current));
+                    this._localDrive = ((AstLocalDrive)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFilePath>())
                 {
-                    this.FilePath = ((AstFilePath)(enumerator.Current));
+                    this._filePath = ((AstFilePath)(enumerator.Current));
                 }
             }
         }
@@ -1693,10 +2145,6 @@ namespace Bb.Asts
             {
                 return this._localDrive;
             }
-            set
-            {
-                this._localDrive = value;
-            }
         }
         
         public virtual AstFilePath FilePath
@@ -1704,10 +2152,6 @@ namespace Bb.Asts
             get
             {
                 return this._filePath;
-            }
-            set
-            {
-                this._filePath = value;
             }
         }
         
@@ -1722,13 +2166,23 @@ namespace Bb.Asts
     /// 	 : DISK_DRIVE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstLocalDrive : AstRule
+    public partial class AstLocalDrive : AstTerminal<string>
     {
         
-        public AstLocalDrive(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstLocalDrive(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLocalDrive(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstLocalDrive(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1744,13 +2198,23 @@ namespace Bb.Asts
     /// 	 | local_file
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstMultipleLocalFiles : AstRule
     {
         
+        public AstMultipleLocalFiles(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstMultipleLocalFiles(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstMultipleLocalFiles(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1765,13 +2229,23 @@ namespace Bb.Asts
     /// 	 : SINGLE_QUOTE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstMultipleLocalFileStart : AstRule
+    public partial class AstMultipleLocalFileStart : AstTerminal<string>
     {
         
-        public AstMultipleLocalFileStart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstMultipleLocalFileStart(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMultipleLocalFileStart(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMultipleLocalFileStart(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -1795,6 +2269,24 @@ namespace Bb.Asts
         
         private AstBinaryContentNexts _binaryContentNexts;
         
+        public AstCreateAssembly(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAssemblyName>())
+                {
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBinaryContentNexts>())
+                {
+                    this._binaryContentNexts = ((AstBinaryContentNexts)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateAssembly(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1804,11 +2296,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAssemblyName>())
                 {
-                    this.AssemblyName = ((AstAssemblyName)(enumerator.Current));
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstBinaryContentNexts>())
                 {
-                    this.BinaryContentNexts = ((AstBinaryContentNexts)(enumerator.Current));
+                    this._binaryContentNexts = ((AstBinaryContentNexts)(enumerator.Current));
                 }
             }
         }
@@ -1819,10 +2311,6 @@ namespace Bb.Asts
             {
                 return this._assemblyName;
             }
-            set
-            {
-                this._assemblyName = value;
-            }
         }
         
         public virtual AstBinaryContentNexts BinaryContentNexts
@@ -1830,10 +2318,6 @@ namespace Bb.Asts
             get
             {
                 return this._binaryContentNexts;
-            }
-            set
-            {
-                this._binaryContentNexts = value;
             }
         }
         
@@ -1881,6 +2365,20 @@ namespace Bb.Asts
         
         private AstBinaryContent _binaryContent;
         
+        public AstBinaryContentNext(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBinaryContent>())
+                {
+                    this._binaryContent = ((AstBinaryContent)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBinaryContentNext(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1890,7 +2388,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstBinaryContent>())
                 {
-                    this.BinaryContent = ((AstBinaryContent)(enumerator.Current));
+                    this._binaryContent = ((AstBinaryContent)(enumerator.Current));
                 }
             }
         }
@@ -1900,10 +2398,6 @@ namespace Bb.Asts
             get
             {
                 return this._binaryContent;
-            }
-            set
-            {
-                this._binaryContent = value;
             }
         }
         
@@ -1919,13 +2413,23 @@ namespace Bb.Asts
     /// 	 | BINARY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBinaryContent : AstRule
     {
         
+        public AstBinaryContent(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBinaryContent(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBinaryContent(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1940,13 +2444,23 @@ namespace Bb.Asts
     /// 	 : DROP  ASSEMBLY  IF  EXISTS?  COMMA?  assembly_name+  WITH  NO  DEPENDENTS?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropAssembly : AstRule
     {
         
+        public AstDropAssembly(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropAssembly(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropAssembly(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -1970,6 +2484,24 @@ namespace Bb.Asts
         
         private AstAsymKeyName _asymKeyName;
         
+        public AstAlterAsymmetricKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAsymmetricKeyStart>())
+                {
+                    this._alterAsymmetricKeyStart = ((AstAlterAsymmetricKeyStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsymKeyName>())
+                {
+                    this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAsymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -1979,11 +2511,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAsymmetricKeyStart>())
                 {
-                    this.AlterAsymmetricKeyStart = ((AstAlterAsymmetricKeyStart)(enumerator.Current));
+                    this._alterAsymmetricKeyStart = ((AstAlterAsymmetricKeyStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsymKeyName>())
                 {
-                    this.AsymKeyName = ((AstAsymKeyName)(enumerator.Current));
+                    this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
                 }
             }
         }
@@ -1994,10 +2526,6 @@ namespace Bb.Asts
             {
                 return this._alterAsymmetricKeyStart;
             }
-            set
-            {
-                this._alterAsymmetricKeyStart = value;
-            }
         }
         
         public virtual AstAsymKeyName AsymKeyName
@@ -2005,10 +2533,6 @@ namespace Bb.Asts
             get
             {
                 return this._asymKeyName;
-            }
-            set
-            {
-                this._asymKeyName = value;
             }
         }
         
@@ -2023,13 +2547,23 @@ namespace Bb.Asts
     /// 	 : ALTER  ASYMMETRIC  KEY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAsymmetricKeyStart : AstRule
     {
         
+        public AstAlterAsymmetricKeyStart(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAsymmetricKeyStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAsymmetricKeyStart(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2053,6 +2587,24 @@ namespace Bb.Asts
         
         private AstAsymmetricKeyPasswordChangeOption _asymmetricKeyPasswordChangeOption;
         
+        public AstAsymmetricKeyOption(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAsymmetricKeyOptionStart>())
+                {
+                    this._asymmetricKeyOptionStart = ((AstAsymmetricKeyOptionStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsymmetricKeyPasswordChangeOption>())
+                {
+                    this._asymmetricKeyPasswordChangeOption = ((AstAsymmetricKeyPasswordChangeOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAsymmetricKeyOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2062,11 +2614,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAsymmetricKeyOptionStart>())
                 {
-                    this.AsymmetricKeyOptionStart = ((AstAsymmetricKeyOptionStart)(enumerator.Current));
+                    this._asymmetricKeyOptionStart = ((AstAsymmetricKeyOptionStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsymmetricKeyPasswordChangeOption>())
                 {
-                    this.AsymmetricKeyPasswordChangeOption = ((AstAsymmetricKeyPasswordChangeOption)(enumerator.Current));
+                    this._asymmetricKeyPasswordChangeOption = ((AstAsymmetricKeyPasswordChangeOption)(enumerator.Current));
                 }
             }
         }
@@ -2077,10 +2629,6 @@ namespace Bb.Asts
             {
                 return this._asymmetricKeyOptionStart;
             }
-            set
-            {
-                this._asymmetricKeyOptionStart = value;
-            }
         }
         
         public virtual AstAsymmetricKeyPasswordChangeOption AsymmetricKeyPasswordChangeOption
@@ -2088,10 +2636,6 @@ namespace Bb.Asts
             get
             {
                 return this._asymmetricKeyPasswordChangeOption;
-            }
-            set
-            {
-                this._asymmetricKeyPasswordChangeOption = value;
             }
         }
         
@@ -2106,13 +2650,23 @@ namespace Bb.Asts
     /// 	 : WITH  PRIVATE  KEY  LR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAsymmetricKeyOptionStart : AstRule
     {
         
+        public AstAsymmetricKeyOptionStart(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAsymmetricKeyOptionStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAsymmetricKeyOptionStart(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2128,13 +2682,23 @@ namespace Bb.Asts
     /// 	 | ENCRYPTION  BY  PASSWORD  EQUAL  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAsymmetricKeyPasswordChangeOption : AstRule
     {
         
+        public AstAsymmetricKeyPasswordChangeOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAsymmetricKeyPasswordChangeOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAsymmetricKeyPasswordChangeOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2156,6 +2720,20 @@ namespace Bb.Asts
         
         private AstAsymKeyName _asymKeyName;
         
+        public AstCreateAsymmetricKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAsymKeyName>())
+                {
+                    this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateAsymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2165,7 +2743,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAsymKeyName>())
                 {
-                    this.AsymKeyName = ((AstAsymKeyName)(enumerator.Current));
+                    this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
                 }
             }
         }
@@ -2175,10 +2753,6 @@ namespace Bb.Asts
             get
             {
                 return this._asymKeyName;
-            }
-            set
-            {
-                this._asymKeyName = value;
             }
         }
         
@@ -2193,13 +2767,23 @@ namespace Bb.Asts
     /// 	 : DROP  ASYMMETRIC  KEY    REMOVE  PROVIDER  KEY?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropAsymmetricKey : AstRule
     {
         
+        public AstDropAsymmetricKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropAsymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropAsymmetricKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2225,6 +2809,28 @@ namespace Bb.Asts
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
+        public AstAlterAuthorization(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
+                {
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEntityTo>())
+                {
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAuthorizationGrantee>())
+                {
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAuthorization(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2234,15 +2840,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAuthorizationStart>())
                 {
-                    this.AlterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEntityTo>())
                 {
-                    this.EntityTo = ((AstEntityTo)(enumerator.Current));
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
-                    this.AuthorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
             }
         }
@@ -2253,10 +2859,6 @@ namespace Bb.Asts
             {
                 return this._alterAuthorizationStart;
             }
-            set
-            {
-                this._alterAuthorizationStart = value;
-            }
         }
         
         public virtual AstEntityTo EntityTo
@@ -2265,10 +2867,6 @@ namespace Bb.Asts
             {
                 return this._entityTo;
             }
-            set
-            {
-                this._entityTo = value;
-            }
         }
         
         public virtual AstAuthorizationGrantee AuthorizationGrantee
@@ -2276,10 +2874,6 @@ namespace Bb.Asts
             get
             {
                 return this._authorizationGrantee;
-            }
-            set
-            {
-                this._authorizationGrantee = value;
             }
         }
         
@@ -2295,13 +2889,23 @@ namespace Bb.Asts
     /// 	 | SCHEMA  OWNER
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAuthorizationGrantee : AstRule
     {
         
+        public AstAuthorizationGrantee(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAuthorizationGrantee(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAuthorizationGrantee(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2316,13 +2920,23 @@ namespace Bb.Asts
     /// 	 : TO
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstEntityTo : AstRule
+    public partial class AstEntityTo : AstTerminal<string>
     {
         
-        public AstEntityTo(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstEntityTo(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEntityTo(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstEntityTo(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -2337,13 +2951,23 @@ namespace Bb.Asts
     /// 	 : DOUBLE_COLON
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstColonColon : AstRule
+    public partial class AstColonColon : AstTerminal<string>
     {
         
-        public AstColonColon(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstColonColon(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstColonColon(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstColonColon(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -2358,13 +2982,23 @@ namespace Bb.Asts
     /// 	 : ALTER  AUTHORIZATION  ON
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAuthorizationStart : AstRule
     {
         
+        public AstAlterAuthorizationStart(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAuthorizationStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAuthorizationStart(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2390,6 +3024,28 @@ namespace Bb.Asts
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
+        public AstAlterAuthorizationForSqlDatabase(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
+                {
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEntityTo>())
+                {
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAuthorizationGrantee>())
+                {
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAuthorizationForSqlDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2399,15 +3055,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAuthorizationStart>())
                 {
-                    this.AlterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEntityTo>())
                 {
-                    this.EntityTo = ((AstEntityTo)(enumerator.Current));
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
-                    this.AuthorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
             }
         }
@@ -2418,10 +3074,6 @@ namespace Bb.Asts
             {
                 return this._alterAuthorizationStart;
             }
-            set
-            {
-                this._alterAuthorizationStart = value;
-            }
         }
         
         public virtual AstEntityTo EntityTo
@@ -2430,10 +3082,6 @@ namespace Bb.Asts
             {
                 return this._entityTo;
             }
-            set
-            {
-                this._entityTo = value;
-            }
         }
         
         public virtual AstAuthorizationGrantee AuthorizationGrantee
@@ -2441,10 +3089,6 @@ namespace Bb.Asts
             get
             {
                 return this._authorizationGrantee;
-            }
-            set
-            {
-                this._authorizationGrantee = value;
             }
         }
         
@@ -2470,6 +3114,28 @@ namespace Bb.Asts
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
+        public AstAlterAuthorizationForAzureDw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
+                {
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEntityTo>())
+                {
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAuthorizationGrantee>())
+                {
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAuthorizationForAzureDw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2479,15 +3145,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAuthorizationStart>())
                 {
-                    this.AlterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEntityTo>())
                 {
-                    this.EntityTo = ((AstEntityTo)(enumerator.Current));
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
-                    this.AuthorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
             }
         }
@@ -2498,10 +3164,6 @@ namespace Bb.Asts
             {
                 return this._alterAuthorizationStart;
             }
-            set
-            {
-                this._alterAuthorizationStart = value;
-            }
         }
         
         public virtual AstEntityTo EntityTo
@@ -2510,10 +3172,6 @@ namespace Bb.Asts
             {
                 return this._entityTo;
             }
-            set
-            {
-                this._entityTo = value;
-            }
         }
         
         public virtual AstAuthorizationGrantee AuthorizationGrantee
@@ -2521,10 +3179,6 @@ namespace Bb.Asts
             get
             {
                 return this._authorizationGrantee;
-            }
-            set
-            {
-                this._authorizationGrantee = value;
             }
         }
         
@@ -2550,6 +3204,28 @@ namespace Bb.Asts
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
+        public AstAlterAuthorizationForParallelDw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
+                {
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEntityTo>())
+                {
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAuthorizationGrantee>())
+                {
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAuthorizationForParallelDw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2559,15 +3235,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAuthorizationStart>())
                 {
-                    this.AlterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
+                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEntityTo>())
                 {
-                    this.EntityTo = ((AstEntityTo)(enumerator.Current));
+                    this._entityTo = ((AstEntityTo)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
-                    this.AuthorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
+                    this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
             }
         }
@@ -2578,10 +3254,6 @@ namespace Bb.Asts
             {
                 return this._alterAuthorizationStart;
             }
-            set
-            {
-                this._alterAuthorizationStart = value;
-            }
         }
         
         public virtual AstEntityTo EntityTo
@@ -2590,10 +3262,6 @@ namespace Bb.Asts
             {
                 return this._entityTo;
             }
-            set
-            {
-                this._entityTo = value;
-            }
         }
         
         public virtual AstAuthorizationGrantee AuthorizationGrantee
@@ -2601,10 +3269,6 @@ namespace Bb.Asts
             get
             {
                 return this._authorizationGrantee;
-            }
-            set
-            {
-                this._authorizationGrantee = value;
             }
         }
         
@@ -2639,13 +3303,23 @@ namespace Bb.Asts
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstClassType : AstRule
     {
         
+        public AstClassType(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstClassType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstClassType(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2672,13 +3346,23 @@ namespace Bb.Asts
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstClassTypeForSqlDatabase : AstRule
     {
         
+        public AstClassTypeForSqlDatabase(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstClassTypeForSqlDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstClassTypeForSqlDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2696,11 +3380,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstClassTypeForAzureDw : AstTerminalEnum<AstClassTypeForAzureDwEnum>
+    public partial class AstClassTypeForAzureDw : AstTerminal<AstClassTypeForAzureDwEnum>
     {
         
+        public AstClassTypeForAzureDw(ITerminalNode t, string value) : 
+                base(t, AstClassTypeForAzureDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForAzureDw(ITerminalNode t, AstClassTypeForAzureDwEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstClassTypeForAzureDw(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstClassTypeForAzureDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForAzureDw(Position p, string value) : 
+                base(p, AstClassTypeForAzureDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForAzureDw(Position p, AstClassTypeForAzureDwEnum value) : 
+                base(p, value)
         {
         }
         
@@ -2709,7 +3413,7 @@ namespace Bb.Asts
             visitor.VisitClassTypeForAzureDw(this);
         }
         
-        protected override AstClassTypeForAzureDwEnum GetValue(string value)
+        protected static AstClassTypeForAzureDwEnum GetValue(string value)
         {
             if ((value == "SCHEMA"))
             {
@@ -2732,11 +3436,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstClassTypeForParallelDw : AstTerminalEnum<AstClassTypeForParallelDwEnum>
+    public partial class AstClassTypeForParallelDw : AstTerminal<AstClassTypeForParallelDwEnum>
     {
         
+        public AstClassTypeForParallelDw(ITerminalNode t, string value) : 
+                base(t, AstClassTypeForParallelDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForParallelDw(ITerminalNode t, AstClassTypeForParallelDwEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstClassTypeForParallelDw(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstClassTypeForParallelDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForParallelDw(Position p, string value) : 
+                base(p, AstClassTypeForParallelDw.GetValue(value))
+        {
+        }
+        
+        public AstClassTypeForParallelDw(Position p, AstClassTypeForParallelDwEnum value) : 
+                base(p, value)
         {
         }
         
@@ -2745,7 +3469,7 @@ namespace Bb.Asts
             visitor.VisitClassTypeForParallelDw(this);
         }
         
-        protected override AstClassTypeForParallelDwEnum GetValue(string value)
+        protected static AstClassTypeForParallelDwEnum GetValue(string value)
         {
             if ((value == "DATABASE"))
             {
@@ -2802,13 +3526,23 @@ namespace Bb.Asts
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstClassTypeForGrant : AstRule
     {
         
+        public AstClassTypeForGrant(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstClassTypeForGrant(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstClassTypeForGrant(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -2830,6 +3564,20 @@ namespace Bb.Asts
         
         private AstGroupName _groupName;
         
+        public AstDropAvailabilityGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstGroupName>())
+                {
+                    this._groupName = ((AstGroupName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropAvailabilityGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2839,7 +3587,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstGroupName>())
                 {
-                    this.GroupName = ((AstGroupName)(enumerator.Current));
+                    this._groupName = ((AstGroupName)(enumerator.Current));
                 }
             }
         }
@@ -2849,10 +3597,6 @@ namespace Bb.Asts
             get
             {
                 return this._groupName;
-            }
-            set
-            {
-                this._groupName = value;
             }
         }
         
@@ -2876,6 +3620,24 @@ namespace Bb.Asts
         
         private AstAlterAvailabilityGroupOptions _alterAvailabilityGroupOptions;
         
+        public AstAlterAvailabilityGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterAvailabilityGroupStart>())
+                {
+                    this._alterAvailabilityGroupStart = ((AstAlterAvailabilityGroupStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAlterAvailabilityGroupOptions>())
+                {
+                    this._alterAvailabilityGroupOptions = ((AstAlterAvailabilityGroupOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAvailabilityGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2885,11 +3647,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterAvailabilityGroupStart>())
                 {
-                    this.AlterAvailabilityGroupStart = ((AstAlterAvailabilityGroupStart)(enumerator.Current));
+                    this._alterAvailabilityGroupStart = ((AstAlterAvailabilityGroupStart)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterAvailabilityGroupOptions>())
                 {
-                    this.AlterAvailabilityGroupOptions = ((AstAlterAvailabilityGroupOptions)(enumerator.Current));
+                    this._alterAvailabilityGroupOptions = ((AstAlterAvailabilityGroupOptions)(enumerator.Current));
                 }
             }
         }
@@ -2900,10 +3662,6 @@ namespace Bb.Asts
             {
                 return this._alterAvailabilityGroupStart;
             }
-            set
-            {
-                this._alterAvailabilityGroupStart = value;
-            }
         }
         
         public virtual AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions
@@ -2911,10 +3669,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterAvailabilityGroupOptions;
-            }
-            set
-            {
-                this._alterAvailabilityGroupOptions = value;
             }
         }
         
@@ -2936,6 +3690,20 @@ namespace Bb.Asts
         
         private AstGroupName _groupName;
         
+        public AstAlterAvailabilityGroupStart(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstGroupName>())
+                {
+                    this._groupName = ((AstGroupName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterAvailabilityGroupStart(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -2945,7 +3713,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstGroupName>())
                 {
-                    this.GroupName = ((AstGroupName)(enumerator.Current));
+                    this._groupName = ((AstGroupName)(enumerator.Current));
                 }
             }
         }
@@ -2955,10 +3723,6 @@ namespace Bb.Asts
             get
             {
                 return this._groupName;
-            }
-            set
-            {
-                this._groupName = value;
             }
         }
         
@@ -2993,13 +3757,23 @@ namespace Bb.Asts
     /// 	 | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterAvailabilityGroupOptions : AstRule
     {
         
+        public AstAlterAvailabilityGroupOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterAvailabilityGroupOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterAvailabilityGroupOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3014,13 +3788,23 @@ namespace Bb.Asts
     /// 	 : STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstServerInstance : AstRule
+    public partial class AstServerInstance : AstTerminal<string>
     {
         
-        public AstServerInstance(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstServerInstance(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstServerInstance(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstServerInstance(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -3035,13 +3819,23 @@ namespace Bb.Asts
     /// 	 : STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstIpV4Failover : AstRule
+    public partial class AstIpV4Failover : AstTerminal<string>
     {
         
-        public AstIpV4Failover(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstIpV4Failover(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIpV4Failover(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstIpV4Failover(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -3056,13 +3850,23 @@ namespace Bb.Asts
     /// 	 : STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstIpV6Failover : AstRule
+    public partial class AstIpV6Failover : AstTerminal<string>
     {
         
-        public AstIpV6Failover(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstIpV6Failover(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIpV6Failover(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstIpV6Failover(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -3077,13 +3881,23 @@ namespace Bb.Asts
     /// 	 : CREATE ALTER  BROKER  PRIORITY    FOR  CONVERSATION  SET  LR_BRACKET  CONTRACT_NAME  EQUAL  id_ ANY  COMMA??  LOCAL_SERVICE_NAME  EQUAL  DOUBLE_FORWARD_SLASH?  id_ ANY  COMMA??  REMOTE_SERVICE_NAME  EQUAL   ANY  COMMA??  PRIORITY_LEVEL  EQUAL   DEFAULT?  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateOrAlterBrokerPriority : AstRule
     {
         
+        public AstCreateOrAlterBrokerPriority(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateOrAlterBrokerPriority(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateOrAlterBrokerPriority(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3098,13 +3912,23 @@ namespace Bb.Asts
     /// 	 : DROP  BROKER  PRIORITY  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropBrokerPriority : AstRule
     {
         
+        public AstDropBrokerPriority(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropBrokerPriority(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropBrokerPriority(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3126,6 +3950,20 @@ namespace Bb.Asts
         
         private AstCertificateName _certificateName;
         
+        public AstAlterCertificate(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCertificateName>())
+                {
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterCertificate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3135,7 +3973,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCertificateName>())
                 {
-                    this.CertificateName = ((AstCertificateName)(enumerator.Current));
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
                 }
             }
         }
@@ -3145,10 +3983,6 @@ namespace Bb.Asts
             get
             {
                 return this._certificateName;
-            }
-            set
-            {
-                this._certificateName = value;
             }
         }
         
@@ -3170,6 +4004,20 @@ namespace Bb.Asts
         
         private AstColumnEncryptionKey _columnEncryptionKey;
         
+        public AstAlterColumnEncryptionKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnEncryptionKey>())
+                {
+                    this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterColumnEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3179,7 +4027,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnEncryptionKey>())
                 {
-                    this.ColumnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
+                    this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
                 }
             }
         }
@@ -3189,10 +4037,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnEncryptionKey;
-            }
-            set
-            {
-                this._columnEncryptionKey = value;
             }
         }
         
@@ -3214,6 +4058,20 @@ namespace Bb.Asts
         
         private AstColumnEncryptionKey _columnEncryptionKey;
         
+        public AstCreateColumnEncryptionKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnEncryptionKey>())
+                {
+                    this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateColumnEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3223,7 +4081,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnEncryptionKey>())
                 {
-                    this.ColumnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
+                    this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
                 }
             }
         }
@@ -3233,10 +4091,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnEncryptionKey;
-            }
-            set
-            {
-                this._columnEncryptionKey = value;
             }
         }
         
@@ -3258,6 +4112,20 @@ namespace Bb.Asts
         
         private AstCertificateName _certificateName;
         
+        public AstDropCertificate(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCertificateName>())
+                {
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropCertificate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3267,7 +4135,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCertificateName>())
                 {
-                    this.CertificateName = ((AstCertificateName)(enumerator.Current));
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
                 }
             }
         }
@@ -3277,10 +4145,6 @@ namespace Bb.Asts
             get
             {
                 return this._certificateName;
-            }
-            set
-            {
-                this._certificateName = value;
             }
         }
         
@@ -3302,6 +4166,20 @@ namespace Bb.Asts
         
         private AstEncryptionName _encryptionName;
         
+        public AstDropColumnEncryptionKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEncryptionName>())
+                {
+                    this._encryptionName = ((AstEncryptionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropColumnEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3311,7 +4189,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEncryptionName>())
                 {
-                    this.EncryptionName = ((AstEncryptionName)(enumerator.Current));
+                    this._encryptionName = ((AstEncryptionName)(enumerator.Current));
                 }
             }
         }
@@ -3321,10 +4199,6 @@ namespace Bb.Asts
             get
             {
                 return this._encryptionName;
-            }
-            set
-            {
-                this._encryptionName = value;
             }
         }
         
@@ -3346,6 +4220,20 @@ namespace Bb.Asts
         
         private AstMasterKey _masterKey;
         
+        public AstDropColumnMasterKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMasterKey>())
+                {
+                    this._masterKey = ((AstMasterKey)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropColumnMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3355,7 +4243,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstMasterKey>())
                 {
-                    this.MasterKey = ((AstMasterKey)(enumerator.Current));
+                    this._masterKey = ((AstMasterKey)(enumerator.Current));
                 }
             }
         }
@@ -3365,10 +4253,6 @@ namespace Bb.Asts
             get
             {
                 return this._masterKey;
-            }
-            set
-            {
-                this._masterKey = value;
             }
         }
         
@@ -3383,13 +4267,23 @@ namespace Bb.Asts
     /// 	 : DROP  CONTRACT  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropContract : AstRule
     {
         
+        public AstDropContract(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropContract(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropContract(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3411,6 +4305,20 @@ namespace Bb.Asts
         
         private AstCredentialName _credentialName;
         
+        public AstDropCredential(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCredentialName>())
+                {
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropCredential(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3420,7 +4328,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCredentialName>())
                 {
-                    this.CredentialName = ((AstCredentialName)(enumerator.Current));
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
                 }
             }
         }
@@ -3430,10 +4338,6 @@ namespace Bb.Asts
             get
             {
                 return this._credentialName;
-            }
-            set
-            {
-                this._credentialName = value;
             }
         }
         
@@ -3455,6 +4359,20 @@ namespace Bb.Asts
         
         private AstProviderName _providerName;
         
+        public AstDropCryptograhicProvider(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProviderName>())
+                {
+                    this._providerName = ((AstProviderName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropCryptograhicProvider(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3464,7 +4382,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProviderName>())
                 {
-                    this.ProviderName = ((AstProviderName)(enumerator.Current));
+                    this._providerName = ((AstProviderName)(enumerator.Current));
                 }
             }
         }
@@ -3474,10 +4392,6 @@ namespace Bb.Asts
             get
             {
                 return this._providerName;
-            }
-            set
-            {
-                this._providerName = value;
             }
         }
         
@@ -3492,13 +4406,23 @@ namespace Bb.Asts
     /// 	 : DROP  DATABASE  IF  EXISTS?  COMMA?  database_name+
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropDatabase : AstRule
     {
         
+        public AstDropDatabase(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3520,6 +4444,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstDropDatabaseAuditSpecification(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropDatabaseAuditSpecification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3529,7 +4467,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -3539,10 +4477,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -3557,13 +4491,23 @@ namespace Bb.Asts
     /// 	 : DROP  DATABASE  ENCRYPTION  KEY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropDatabaseEncryptionKey : AstRule
     {
         
+        public AstDropDatabaseEncryptionKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropDatabaseEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropDatabaseEncryptionKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3585,6 +4529,20 @@ namespace Bb.Asts
         
         private AstCredentialName _credentialName;
         
+        public AstDropDatabaseScopedCredential(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCredentialName>())
+                {
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropDatabaseScopedCredential(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3594,7 +4552,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCredentialName>())
                 {
-                    this.CredentialName = ((AstCredentialName)(enumerator.Current));
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
                 }
             }
         }
@@ -3604,10 +4562,6 @@ namespace Bb.Asts
             get
             {
                 return this._credentialName;
-            }
-            set
-            {
-                this._credentialName = value;
             }
         }
         
@@ -3622,13 +4576,23 @@ namespace Bb.Asts
     /// 	 : DROP  DEFAULT  IF  EXISTS?  COMMA?  schema_name  DOT?  schema_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropDefault : AstRule
     {
         
+        public AstDropDefault(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropDefault(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropDefault(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3650,6 +4614,20 @@ namespace Bb.Asts
         
         private AstEndpointName _endpointName;
         
+        public AstDropEndpoint(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEndpointName>())
+                {
+                    this._endpointName = ((AstEndpointName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropEndpoint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3659,7 +4637,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEndpointName>())
                 {
-                    this.EndpointName = ((AstEndpointName)(enumerator.Current));
+                    this._endpointName = ((AstEndpointName)(enumerator.Current));
                 }
             }
         }
@@ -3669,10 +4647,6 @@ namespace Bb.Asts
             get
             {
                 return this._endpointName;
-            }
-            set
-            {
-                this._endpointName = value;
             }
         }
         
@@ -3694,6 +4668,20 @@ namespace Bb.Asts
         
         private AstExternalDataSourceName _externalDataSourceName;
         
+        public AstDropExternalDataSource(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExternalDataSourceName>())
+                {
+                    this._externalDataSourceName = ((AstExternalDataSourceName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropExternalDataSource(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3703,7 +4691,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExternalDataSourceName>())
                 {
-                    this.ExternalDataSourceName = ((AstExternalDataSourceName)(enumerator.Current));
+                    this._externalDataSourceName = ((AstExternalDataSourceName)(enumerator.Current));
                 }
             }
         }
@@ -3713,10 +4701,6 @@ namespace Bb.Asts
             get
             {
                 return this._externalDataSourceName;
-            }
-            set
-            {
-                this._externalDataSourceName = value;
             }
         }
         
@@ -3738,6 +4722,20 @@ namespace Bb.Asts
         
         private AstExternalFileFormatName _externalFileFormatName;
         
+        public AstDropExternalFileFormat(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExternalFileFormatName>())
+                {
+                    this._externalFileFormatName = ((AstExternalFileFormatName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropExternalFileFormat(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3747,7 +4745,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExternalFileFormatName>())
                 {
-                    this.ExternalFileFormatName = ((AstExternalFileFormatName)(enumerator.Current));
+                    this._externalFileFormatName = ((AstExternalFileFormatName)(enumerator.Current));
                 }
             }
         }
@@ -3757,10 +4755,6 @@ namespace Bb.Asts
             get
             {
                 return this._externalFileFormatName;
-            }
-            set
-            {
-                this._externalFileFormatName = value;
             }
         }
         
@@ -3782,6 +4776,20 @@ namespace Bb.Asts
         
         private AstLibraryName _libraryName;
         
+        public AstDropExternalLibrary(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLibraryName>())
+                {
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropExternalLibrary(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3791,7 +4799,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLibraryName>())
                 {
-                    this.LibraryName = ((AstLibraryName)(enumerator.Current));
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
                 }
             }
         }
@@ -3801,10 +4809,6 @@ namespace Bb.Asts
             get
             {
                 return this._libraryName;
-            }
-            set
-            {
-                this._libraryName = value;
             }
         }
         
@@ -3826,6 +4830,20 @@ namespace Bb.Asts
         
         private AstPoolName _poolName;
         
+        public AstDropExternalResourcePool(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPoolName>())
+                {
+                    this._poolName = ((AstPoolName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3835,7 +4853,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPoolName>())
                 {
-                    this.PoolName = ((AstPoolName)(enumerator.Current));
+                    this._poolName = ((AstPoolName)(enumerator.Current));
                 }
             }
         }
@@ -3845,10 +4863,6 @@ namespace Bb.Asts
             get
             {
                 return this._poolName;
-            }
-            set
-            {
-                this._poolName = value;
             }
         }
         
@@ -3870,6 +4884,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstDropExternalTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropExternalTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3879,7 +4907,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -3889,10 +4917,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -3907,13 +4931,23 @@ namespace Bb.Asts
     /// 	 : DROP  EVENT  NOTIFICATION  COMMA?  notification_name+  ON  SERVER DATABASE QUEUE  queue_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropEventNotifications : AstRule
     {
         
+        public AstDropEventNotifications(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropEventNotifications(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropEventNotifications(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -3935,6 +4969,20 @@ namespace Bb.Asts
         
         private AstEventSessionName _eventSessionName;
         
+        public AstDropEventSession(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEventSessionName>())
+                {
+                    this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropEventSession(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3944,7 +4992,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEventSessionName>())
                 {
-                    this.EventSessionName = ((AstEventSessionName)(enumerator.Current));
+                    this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
                 }
             }
         }
@@ -3954,10 +5002,6 @@ namespace Bb.Asts
             get
             {
                 return this._eventSessionName;
-            }
-            set
-            {
-                this._eventSessionName = value;
             }
         }
         
@@ -3979,6 +5023,20 @@ namespace Bb.Asts
         
         private AstCatalogName _catalogName;
         
+        public AstDropFulltextCatalog(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCatalogName>())
+                {
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropFulltextCatalog(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -3988,7 +5046,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCatalogName>())
                 {
-                    this.CatalogName = ((AstCatalogName)(enumerator.Current));
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
                 }
             }
         }
@@ -3998,10 +5056,6 @@ namespace Bb.Asts
             get
             {
                 return this._catalogName;
-            }
-            set
-            {
-                this._catalogName = value;
             }
         }
         
@@ -4023,6 +5077,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstDropFulltextIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropFulltextIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4032,7 +5100,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -4042,10 +5110,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -4067,6 +5131,20 @@ namespace Bb.Asts
         
         private AstStoplistName _stoplistName;
         
+        public AstDropFulltextStoplist(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStoplistName>())
+                {
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropFulltextStoplist(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4076,7 +5154,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstStoplistName>())
                 {
-                    this.StoplistName = ((AstStoplistName)(enumerator.Current));
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
                 }
             }
         }
@@ -4086,10 +5164,6 @@ namespace Bb.Asts
             get
             {
                 return this._stoplistName;
-            }
-            set
-            {
-                this._stoplistName = value;
             }
         }
         
@@ -4111,6 +5185,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstDropLogin(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropLogin(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4120,7 +5208,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -4130,10 +5218,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -4148,13 +5232,23 @@ namespace Bb.Asts
     /// 	 : DROP  MASTER  KEY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropMasterKey : AstRule
     {
         
+        public AstDropMasterKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropMasterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -4176,6 +5270,20 @@ namespace Bb.Asts
         
         private AstMessageTypeName _messageTypeName;
         
+        public AstDropMessageType(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMessageTypeName>())
+                {
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropMessageType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4185,7 +5293,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstMessageTypeName>())
                 {
-                    this.MessageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
                 }
             }
         }
@@ -4195,10 +5303,6 @@ namespace Bb.Asts
             get
             {
                 return this._messageTypeName;
-            }
-            set
-            {
-                this._messageTypeName = value;
             }
         }
         
@@ -4220,6 +5324,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstMessageTypeName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMessageTypeName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4229,7 +5347,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -4239,10 +5357,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -4264,6 +5378,20 @@ namespace Bb.Asts
         
         private AstPartitionFunctionName _partitionFunctionName;
         
+        public AstDropPartitionFunction(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionFunctionName>())
+                {
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropPartitionFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4273,7 +5401,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionFunctionName>())
                 {
-                    this.PartitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
                 }
             }
         }
@@ -4283,10 +5411,6 @@ namespace Bb.Asts
             get
             {
                 return this._partitionFunctionName;
-            }
-            set
-            {
-                this._partitionFunctionName = value;
             }
         }
         
@@ -4308,6 +5432,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPartitionFunctionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPartitionFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4317,7 +5455,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -4327,10 +5465,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -4352,6 +5486,20 @@ namespace Bb.Asts
         
         private AstPartitionSchemeName _partitionSchemeName;
         
+        public AstDropPartitionScheme(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionSchemeName>())
+                {
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropPartitionScheme(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4361,7 +5509,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionSchemeName>())
                 {
-                    this.PartitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
                 }
             }
         }
@@ -4371,10 +5519,6 @@ namespace Bb.Asts
             get
             {
                 return this._partitionSchemeName;
-            }
-            set
-            {
-                this._partitionSchemeName = value;
             }
         }
         
@@ -4396,6 +5540,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPartitionSchemeName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPartitionSchemeName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4405,7 +5563,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -4415,10 +5573,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -4440,6 +5594,20 @@ namespace Bb.Asts
         
         private AstQueueName _queueName;
         
+        public AstDropQueue(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstQueueName>())
+                {
+                    this._queueName = ((AstQueueName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropQueue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4449,7 +5617,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstQueueName>())
                 {
-                    this.QueueName = ((AstQueueName)(enumerator.Current));
+                    this._queueName = ((AstQueueName)(enumerator.Current));
                 }
             }
         }
@@ -4459,10 +5627,6 @@ namespace Bb.Asts
             get
             {
                 return this._queueName;
-            }
-            set
-            {
-                this._queueName = value;
             }
         }
         
@@ -4484,6 +5648,20 @@ namespace Bb.Asts
         
         private AstBindingName _bindingName;
         
+        public AstDropRemoteServiceBinding(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBindingName>())
+                {
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropRemoteServiceBinding(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4493,7 +5671,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstBindingName>())
                 {
-                    this.BindingName = ((AstBindingName)(enumerator.Current));
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
                 }
             }
         }
@@ -4503,10 +5681,6 @@ namespace Bb.Asts
             get
             {
                 return this._bindingName;
-            }
-            set
-            {
-                this._bindingName = value;
             }
         }
         
@@ -4528,6 +5702,20 @@ namespace Bb.Asts
         
         private AstPoolName _poolName;
         
+        public AstDropResourcePool(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPoolName>())
+                {
+                    this._poolName = ((AstPoolName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4537,7 +5725,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPoolName>())
                 {
-                    this.PoolName = ((AstPoolName)(enumerator.Current));
+                    this._poolName = ((AstPoolName)(enumerator.Current));
                 }
             }
         }
@@ -4547,10 +5735,6 @@ namespace Bb.Asts
             get
             {
                 return this._poolName;
-            }
-            set
-            {
-                this._poolName = value;
             }
         }
         
@@ -4572,6 +5756,20 @@ namespace Bb.Asts
         
         private AstRoleName _roleName;
         
+        public AstDropDbRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRoleName>())
+                {
+                    this._roleName = ((AstRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropDbRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4581,7 +5779,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRoleName>())
                 {
-                    this.RoleName = ((AstRoleName)(enumerator.Current));
+                    this._roleName = ((AstRoleName)(enumerator.Current));
                 }
             }
         }
@@ -4591,10 +5789,6 @@ namespace Bb.Asts
             get
             {
                 return this._roleName;
-            }
-            set
-            {
-                this._roleName = value;
             }
         }
         
@@ -4616,6 +5810,20 @@ namespace Bb.Asts
         
         private AstRouteName _routeName;
         
+        public AstDropRoute(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRouteName>())
+                {
+                    this._routeName = ((AstRouteName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropRoute(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4625,7 +5833,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRouteName>())
                 {
-                    this.RouteName = ((AstRouteName)(enumerator.Current));
+                    this._routeName = ((AstRouteName)(enumerator.Current));
                 }
             }
         }
@@ -4635,10 +5843,6 @@ namespace Bb.Asts
             get
             {
                 return this._routeName;
-            }
-            set
-            {
-                this._routeName = value;
             }
         }
         
@@ -4653,13 +5857,23 @@ namespace Bb.Asts
     /// 	 : DROP  RULE  IF  EXISTS?  COMMA?  schema_name  DOT?  rule_name?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropRule : AstRule
     {
         
+        public AstDropRule(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropRule(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropRule(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -4681,6 +5895,20 @@ namespace Bb.Asts
         
         private AstSchemaName _schemaName;
         
+        public AstDropSchema(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSchemaName>())
+                {
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4690,7 +5918,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSchemaName>())
                 {
-                    this.SchemaName = ((AstSchemaName)(enumerator.Current));
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
                 }
             }
         }
@@ -4700,10 +5928,6 @@ namespace Bb.Asts
             get
             {
                 return this._schemaName;
-            }
-            set
-            {
-                this._schemaName = value;
             }
         }
         
@@ -4725,6 +5949,20 @@ namespace Bb.Asts
         
         private AstPropertyListName _propertyListName;
         
+        public AstDropSearchPropertyList(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPropertyListName>())
+                {
+                    this._propertyListName = ((AstPropertyListName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSearchPropertyList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4734,7 +5972,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPropertyListName>())
                 {
-                    this.PropertyListName = ((AstPropertyListName)(enumerator.Current));
+                    this._propertyListName = ((AstPropertyListName)(enumerator.Current));
                 }
             }
         }
@@ -4744,10 +5982,6 @@ namespace Bb.Asts
             get
             {
                 return this._propertyListName;
-            }
-            set
-            {
-                this._propertyListName = value;
             }
         }
         
@@ -4769,6 +6003,20 @@ namespace Bb.Asts
         
         private AstSecurityPolicyName _securityPolicyName;
         
+        public AstDropSecurityPolicy(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSecurityPolicyName>())
+                {
+                    this._securityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSecurityPolicy(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4778,7 +6026,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSecurityPolicyName>())
                 {
-                    this.SecurityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
+                    this._securityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
                 }
             }
         }
@@ -4788,10 +6036,6 @@ namespace Bb.Asts
             get
             {
                 return this._securityPolicyName;
-            }
-            set
-            {
-                this._securityPolicyName = value;
             }
         }
         
@@ -4806,13 +6050,23 @@ namespace Bb.Asts
     /// 	 : DROP  SEQUENCE  IF  EXISTS?  COMMA?  database_name  DOT?  schema_name  DOT?  sequence_name?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropSequence : AstRule
     {
         
+        public AstDropSequence(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropSequence(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropSequence(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -4834,6 +6088,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstDropServerAudit(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropServerAudit(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4843,7 +6111,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -4853,10 +6121,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -4878,6 +6142,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstDropServerAuditSpecification(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropServerAuditSpecification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4887,7 +6165,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -4897,10 +6175,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -4922,6 +6196,20 @@ namespace Bb.Asts
         
         private AstRoleName _roleName;
         
+        public AstDropServerRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRoleName>())
+                {
+                    this._roleName = ((AstRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropServerRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4931,7 +6219,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRoleName>())
                 {
-                    this.RoleName = ((AstRoleName)(enumerator.Current));
+                    this._roleName = ((AstRoleName)(enumerator.Current));
                 }
             }
         }
@@ -4941,10 +6229,6 @@ namespace Bb.Asts
             get
             {
                 return this._roleName;
-            }
-            set
-            {
-                this._roleName = value;
             }
         }
         
@@ -4966,6 +6250,20 @@ namespace Bb.Asts
         
         private AstDroppedServiceName _droppedServiceName;
         
+        public AstDropService(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDroppedServiceName>())
+                {
+                    this._droppedServiceName = ((AstDroppedServiceName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropService(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -4975,7 +6273,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDroppedServiceName>())
                 {
-                    this.DroppedServiceName = ((AstDroppedServiceName)(enumerator.Current));
+                    this._droppedServiceName = ((AstDroppedServiceName)(enumerator.Current));
                 }
             }
         }
@@ -4985,10 +6283,6 @@ namespace Bb.Asts
             get
             {
                 return this._droppedServiceName;
-            }
-            set
-            {
-                this._droppedServiceName = value;
             }
         }
         
@@ -5010,6 +6304,20 @@ namespace Bb.Asts
         
         private AstModuleName _moduleName;
         
+        public AstDropSignature(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstModuleName>())
+                {
+                    this._moduleName = ((AstModuleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSignature(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5019,7 +6327,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstModuleName>())
                 {
-                    this.ModuleName = ((AstModuleName)(enumerator.Current));
+                    this._moduleName = ((AstModuleName)(enumerator.Current));
                 }
             }
         }
@@ -5029,10 +6337,6 @@ namespace Bb.Asts
             get
             {
                 return this._moduleName;
-            }
-            set
-            {
-                this._moduleName = value;
             }
         }
         
@@ -5056,6 +6360,24 @@ namespace Bb.Asts
         
         private AstStatisticsName _statisticsName;
         
+        public AstDropStatisticsNameAzureDwAndPdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstObjectName>())
+                {
+                    this._objectName = ((AstObjectName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstStatisticsName>())
+                {
+                    this._statisticsName = ((AstStatisticsName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropStatisticsNameAzureDwAndPdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5065,11 +6387,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstObjectName>())
                 {
-                    this.ObjectName = ((AstObjectName)(enumerator.Current));
+                    this._objectName = ((AstObjectName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstStatisticsName>())
                 {
-                    this.StatisticsName = ((AstStatisticsName)(enumerator.Current));
+                    this._statisticsName = ((AstStatisticsName)(enumerator.Current));
                 }
             }
         }
@@ -5080,10 +6402,6 @@ namespace Bb.Asts
             {
                 return this._objectName;
             }
-            set
-            {
-                this._objectName = value;
-            }
         }
         
         public virtual AstStatisticsName StatisticsName
@@ -5091,10 +6409,6 @@ namespace Bb.Asts
             get
             {
                 return this._statisticsName;
-            }
-            set
-            {
-                this._statisticsName = value;
             }
         }
         
@@ -5116,6 +6430,20 @@ namespace Bb.Asts
         
         private AstSymmetricKeyName _symmetricKeyName;
         
+        public AstDropSymmetricKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSymmetricKeyName>())
+                {
+                    this._symmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5125,7 +6453,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSymmetricKeyName>())
                 {
-                    this.SymmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
+                    this._symmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
                 }
             }
         }
@@ -5135,10 +6463,6 @@ namespace Bb.Asts
             get
             {
                 return this._symmetricKeyName;
-            }
-            set
-            {
-                this._symmetricKeyName = value;
             }
         }
         
@@ -5160,6 +6484,20 @@ namespace Bb.Asts
         
         private AstSynonymName _synonymName;
         
+        public AstDropSynonym(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSynonymName>())
+                {
+                    this._synonymName = ((AstSynonymName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropSynonym(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5169,7 +6507,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSynonymName>())
                 {
-                    this.SynonymName = ((AstSynonymName)(enumerator.Current));
+                    this._synonymName = ((AstSynonymName)(enumerator.Current));
                 }
             }
         }
@@ -5179,10 +6517,6 @@ namespace Bb.Asts
             get
             {
                 return this._synonymName;
-            }
-            set
-            {
-                this._synonymName = value;
             }
         }
         
@@ -5204,6 +6538,20 @@ namespace Bb.Asts
         
         private AstUserName _userName;
         
+        public AstDropUser(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUserName>())
+                {
+                    this._userName = ((AstUserName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropUser(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5213,7 +6561,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUserName>())
                 {
-                    this.UserName = ((AstUserName)(enumerator.Current));
+                    this._userName = ((AstUserName)(enumerator.Current));
                 }
             }
         }
@@ -5223,10 +6571,6 @@ namespace Bb.Asts
             get
             {
                 return this._userName;
-            }
-            set
-            {
-                this._userName = value;
             }
         }
         
@@ -5248,6 +6592,20 @@ namespace Bb.Asts
         
         private AstGroupName _groupName;
         
+        public AstDropWorkloadGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstGroupName>())
+                {
+                    this._groupName = ((AstGroupName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropWorkloadGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5257,7 +6615,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstGroupName>())
                 {
-                    this.GroupName = ((AstGroupName)(enumerator.Current));
+                    this._groupName = ((AstGroupName)(enumerator.Current));
                 }
             }
         }
@@ -5267,10 +6625,6 @@ namespace Bb.Asts
             get
             {
                 return this._groupName;
-            }
-            set
-            {
-                this._groupName = value;
             }
         }
         
@@ -5292,6 +6646,20 @@ namespace Bb.Asts
         
         private AstSqlIdentifier _sqlIdentifier;
         
+        public AstDropXmlSchemaCollection(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSqlIdentifier>())
+                {
+                    this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropXmlSchemaCollection(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5301,7 +6669,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSqlIdentifier>())
                 {
-                    this.SqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
+                    this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
                 }
             }
         }
@@ -5311,10 +6679,6 @@ namespace Bb.Asts
             get
             {
                 return this._sqlIdentifier;
-            }
-            set
-            {
-                this._sqlIdentifier = value;
             }
         }
         
@@ -5329,13 +6693,23 @@ namespace Bb.Asts
     /// 	 : DISABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_id  DOT?  object_name DATABASE ALL  SERVER
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDisableTrigger : AstRule
     {
         
+        public AstDisableTrigger(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDisableTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDisableTrigger(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5350,13 +6724,23 @@ namespace Bb.Asts
     /// 	 : ENABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_id  DOT?  object_name DATABASE ALL  SERVER
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEnableTrigger : AstRule
     {
         
+        public AstEnableTrigger(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEnableTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEnableTrigger(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5378,6 +6762,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstLockTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLockTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5387,7 +6785,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -5397,10 +6795,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -5422,6 +6816,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstTruncateTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTruncateTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5431,7 +6839,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -5441,10 +6849,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -5459,13 +6863,23 @@ namespace Bb.Asts
     /// 	 : CREATE  COLUMN  MASTER  KEY    WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL    COMMA  KEY_PATH  EQUAL    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateColumnMasterKey : AstRule
     {
         
+        public AstCreateColumnMasterKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateColumnMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateColumnMasterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5487,6 +6901,20 @@ namespace Bb.Asts
         
         private AstCredentialName _credentialName;
         
+        public AstAlterCredential(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCredentialName>())
+                {
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterCredential(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5496,7 +6924,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCredentialName>())
                 {
-                    this.CredentialName = ((AstCredentialName)(enumerator.Current));
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
                 }
             }
         }
@@ -5506,10 +6934,6 @@ namespace Bb.Asts
             get
             {
                 return this._credentialName;
-            }
-            set
-            {
-                this._credentialName = value;
             }
         }
         
@@ -5531,6 +6955,20 @@ namespace Bb.Asts
         
         private AstCredentialName _credentialName;
         
+        public AstCreateCredential(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCredentialName>())
+                {
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateCredential(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5540,7 +6978,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCredentialName>())
                 {
-                    this.CredentialName = ((AstCredentialName)(enumerator.Current));
+                    this._credentialName = ((AstCredentialName)(enumerator.Current));
                 }
             }
         }
@@ -5550,10 +6988,6 @@ namespace Bb.Asts
             get
             {
                 return this._credentialName;
-            }
-            set
-            {
-                this._credentialName = value;
             }
         }
         
@@ -5575,6 +7009,20 @@ namespace Bb.Asts
         
         private AstProviderName _providerName;
         
+        public AstAlterCryptographicProvider(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProviderName>())
+                {
+                    this._providerName = ((AstProviderName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterCryptographicProvider(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5584,7 +7032,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProviderName>())
                 {
-                    this.ProviderName = ((AstProviderName)(enumerator.Current));
+                    this._providerName = ((AstProviderName)(enumerator.Current));
                 }
             }
         }
@@ -5594,10 +7042,6 @@ namespace Bb.Asts
             get
             {
                 return this._providerName;
-            }
-            set
-            {
-                this._providerName = value;
             }
         }
         
@@ -5619,6 +7063,20 @@ namespace Bb.Asts
         
         private AstProviderName _providerName;
         
+        public AstCreateCryptographicProvider(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProviderName>())
+                {
+                    this._providerName = ((AstProviderName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateCryptographicProvider(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5628,7 +7086,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProviderName>())
                 {
-                    this.ProviderName = ((AstProviderName)(enumerator.Current));
+                    this._providerName = ((AstProviderName)(enumerator.Current));
                 }
             }
         }
@@ -5638,10 +7096,6 @@ namespace Bb.Asts
             get
             {
                 return this._providerName;
-            }
-            set
-            {
-                this._providerName = value;
             }
         }
         
@@ -5663,6 +7117,20 @@ namespace Bb.Asts
         
         private AstEventNotificationName _eventNotificationName;
         
+        public AstCreateEventNotification(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEventNotificationName>())
+                {
+                    this._eventNotificationName = ((AstEventNotificationName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateEventNotification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5672,7 +7140,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEventNotificationName>())
                 {
-                    this.EventNotificationName = ((AstEventNotificationName)(enumerator.Current));
+                    this._eventNotificationName = ((AstEventNotificationName)(enumerator.Current));
                 }
             }
         }
@@ -5682,10 +7150,6 @@ namespace Bb.Asts
             get
             {
                 return this._eventNotificationName;
-            }
-            set
-            {
-                this._eventNotificationName = value;
             }
         }
         
@@ -5707,6 +7171,20 @@ namespace Bb.Asts
         
         private AstEventSessionName _eventSessionName;
         
+        public AstCreateOrAlterEventSession(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEventSessionName>())
+                {
+                    this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateOrAlterEventSession(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5716,7 +7194,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEventSessionName>())
                 {
-                    this.EventSessionName = ((AstEventSessionName)(enumerator.Current));
+                    this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
                 }
             }
         }
@@ -5726,10 +7204,6 @@ namespace Bb.Asts
             get
             {
                 return this._eventSessionName;
-            }
-            set
-            {
-                this._eventSessionName = value;
             }
         }
         
@@ -5747,11 +7221,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstStartStop : AstTerminalEnum<AstStartStopEnum>
+    public partial class AstStartStop : AstTerminal<AstStartStopEnum>
     {
         
+        public AstStartStop(ITerminalNode t, string value) : 
+                base(t, AstStartStop.GetValue(value))
+        {
+        }
+        
+        public AstStartStop(ITerminalNode t, AstStartStopEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstStartStop(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstStartStop.GetValue(value))
+        {
+        }
+        
+        public AstStartStop(Position p, string value) : 
+                base(p, AstStartStop.GetValue(value))
+        {
+        }
+        
+        public AstStartStop(Position p, AstStartStopEnum value) : 
+                base(p, value)
         {
         }
         
@@ -5760,7 +7254,7 @@ namespace Bb.Asts
             visitor.VisitStartStop(this);
         }
         
-        protected override AstStartStopEnum GetValue(string value)
+        protected static AstStartStopEnum GetValue(string value)
         {
             if ((value == "START"))
             {
@@ -5779,13 +7273,23 @@ namespace Bb.Asts
     /// 	 : COMMA?  AND OR?  NOT?  event_session_predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET+
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEventSessionPredicateExpression : AstRule
     {
         
+        public AstEventSessionPredicateExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEventSessionPredicateExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEventSessionPredicateExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5801,13 +7305,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  event_session_predicate_expression  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEventSessionPredicateFactor : AstRule
     {
         
+        public AstEventSessionPredicateFactor(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEventSessionPredicateFactor(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEventSessionPredicateFactor(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5823,13 +7337,23 @@ namespace Bb.Asts
     /// 	 | event_module_guid  DOT?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  event_field_name event_module_guid  DOT?  event_package_name  DOT  predicate_source_name  COMMA  DECIMAL STRING  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEventSessionPredicateLeaf : AstRule
     {
         
+        public AstEventSessionPredicateLeaf(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEventSessionPredicateLeaf(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEventSessionPredicateLeaf(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5845,13 +7369,23 @@ namespace Bb.Asts
     /// 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL    COMMA  CREDENTIAL  EQUAL  credential_name?  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterExternalDataSource : AstRule
     {
         
+        public AstAlterExternalDataSource(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterExternalDataSource(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterExternalDataSource(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5873,6 +7407,20 @@ namespace Bb.Asts
         
         private AstLibraryName _libraryName;
         
+        public AstAlterExternalLibrary(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLibraryName>())
+                {
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterExternalLibrary(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5882,7 +7430,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLibraryName>())
                 {
-                    this.LibraryName = ((AstLibraryName)(enumerator.Current));
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
                 }
             }
         }
@@ -5892,10 +7440,6 @@ namespace Bb.Asts
             get
             {
                 return this._libraryName;
-            }
-            set
-            {
-                this._libraryName = value;
             }
         }
         
@@ -5917,6 +7461,20 @@ namespace Bb.Asts
         
         private AstLibraryName _libraryName;
         
+        public AstCreateExternalLibrary(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLibraryName>())
+                {
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateExternalLibrary(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5926,7 +7484,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLibraryName>())
                 {
-                    this.LibraryName = ((AstLibraryName)(enumerator.Current));
+                    this._libraryName = ((AstLibraryName)(enumerator.Current));
                 }
             }
         }
@@ -5936,10 +7494,6 @@ namespace Bb.Asts
             get
             {
                 return this._libraryName;
-            }
-            set
-            {
-                this._libraryName = value;
             }
         }
         
@@ -5954,13 +7508,23 @@ namespace Bb.Asts
     /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  pool_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL    COMMA?  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL+  COMMA?  MAX_MEMORY_PERCENT  EQUAL  ?  COMMA?  MAX_PROCESSES  EQUAL  ?  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterExternalResourcePool : AstRule
     {
         
+        public AstAlterExternalResourcePool(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterExternalResourcePool(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -5982,6 +7546,20 @@ namespace Bb.Asts
         
         private AstPoolName _poolName;
         
+        public AstCreateExternalResourcePool(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPoolName>())
+                {
+                    this._poolName = ((AstPoolName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -5991,7 +7569,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPoolName>())
                 {
-                    this.PoolName = ((AstPoolName)(enumerator.Current));
+                    this._poolName = ((AstPoolName)(enumerator.Current));
                 }
             }
         }
@@ -6001,10 +7579,6 @@ namespace Bb.Asts
             get
             {
                 return this._poolName;
-            }
-            set
-            {
-                this._poolName = value;
             }
         }
         
@@ -6026,6 +7600,20 @@ namespace Bb.Asts
         
         private AstCatalogName _catalogName;
         
+        public AstAlterFulltextCatalog(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCatalogName>())
+                {
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterFulltextCatalog(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6035,7 +7623,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCatalogName>())
                 {
-                    this.CatalogName = ((AstCatalogName)(enumerator.Current));
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
                 }
             }
         }
@@ -6045,10 +7633,6 @@ namespace Bb.Asts
             get
             {
                 return this._catalogName;
-            }
-            set
-            {
-                this._catalogName = value;
             }
         }
         
@@ -6070,6 +7654,20 @@ namespace Bb.Asts
         
         private AstCatalogName _catalogName;
         
+        public AstCreateFulltextCatalog(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCatalogName>())
+                {
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateFulltextCatalog(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6079,7 +7677,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCatalogName>())
                 {
-                    this.CatalogName = ((AstCatalogName)(enumerator.Current));
+                    this._catalogName = ((AstCatalogName)(enumerator.Current));
                 }
             }
         }
@@ -6089,10 +7687,6 @@ namespace Bb.Asts
             get
             {
                 return this._catalogName;
-            }
-            set
-            {
-                this._catalogName = value;
             }
         }
         
@@ -6114,6 +7708,20 @@ namespace Bb.Asts
         
         private AstStoplistName _stoplistName;
         
+        public AstAlterFulltextStoplist(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStoplistName>())
+                {
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterFulltextStoplist(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6123,7 +7731,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstStoplistName>())
                 {
-                    this.StoplistName = ((AstStoplistName)(enumerator.Current));
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
                 }
             }
         }
@@ -6133,10 +7741,6 @@ namespace Bb.Asts
             get
             {
                 return this._stoplistName;
-            }
-            set
-            {
-                this._stoplistName = value;
             }
         }
         
@@ -6158,6 +7762,20 @@ namespace Bb.Asts
         
         private AstStoplistName _stoplistName;
         
+        public AstCreateFulltextStoplist(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStoplistName>())
+                {
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateFulltextStoplist(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6167,7 +7785,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstStoplistName>())
                 {
-                    this.StoplistName = ((AstStoplistName)(enumerator.Current));
+                    this._stoplistName = ((AstStoplistName)(enumerator.Current));
                 }
             }
         }
@@ -6177,10 +7795,6 @@ namespace Bb.Asts
             get
             {
                 return this._stoplistName;
-            }
-            set
-            {
-                this._stoplistName = value;
             }
         }
         
@@ -6202,6 +7816,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstAlterLoginSqlServer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterLoginSqlServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6211,7 +7839,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6221,10 +7849,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6246,6 +7870,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstCreateLoginSqlServer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateLoginSqlServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6255,7 +7893,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6265,10 +7903,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6290,6 +7924,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstAlterLoginAzureSql(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterLoginAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6299,7 +7947,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6309,10 +7957,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6334,6 +7978,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstCreateLoginAzureSql(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateLoginAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6343,7 +8001,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6353,10 +8011,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6378,6 +8032,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstAlterLoginAzureSqlDwAndPdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterLoginAzureSqlDwAndPdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6387,7 +8055,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6397,10 +8065,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6418,11 +8082,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstEnableDisable : AstTerminalEnum<AstEnableDisableEnum>
+    public partial class AstEnableDisable : AstTerminal<AstEnableDisableEnum>
     {
         
+        public AstEnableDisable(ITerminalNode t, string value) : 
+                base(t, AstEnableDisable.GetValue(value))
+        {
+        }
+        
+        public AstEnableDisable(ITerminalNode t, AstEnableDisableEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstEnableDisable(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstEnableDisable.GetValue(value))
+        {
+        }
+        
+        public AstEnableDisable(Position p, string value) : 
+                base(p, AstEnableDisable.GetValue(value))
+        {
+        }
+        
+        public AstEnableDisable(Position p, AstEnableDisableEnum value) : 
+                base(p, value)
         {
         }
         
@@ -6431,7 +8115,7 @@ namespace Bb.Asts
             visitor.VisitEnableDisable(this);
         }
         
-        protected override AstEnableDisableEnum GetValue(string value)
+        protected static AstEnableDisableEnum GetValue(string value)
         {
             if ((value == "ENABLE"))
             {
@@ -6457,6 +8141,20 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstCreateLoginPdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateLoginPdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6466,7 +8164,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -6476,10 +8174,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -6494,13 +8188,23 @@ namespace Bb.Asts
     /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD DROP  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterMasterKeySqlServer : AstRule
     {
         
+        public AstAlterMasterKeySqlServer(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterMasterKeySqlServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterMasterKeySqlServer(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -6515,13 +8219,23 @@ namespace Bb.Asts
     /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateMasterKeySqlServer : AstRule
     {
         
+        public AstCreateMasterKeySqlServer(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateMasterKeySqlServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateMasterKeySqlServer(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -6536,13 +8250,23 @@ namespace Bb.Asts
     /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL   DROP  ENCRYPTION  BY  PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterMasterKeyAzureSql : AstRule
     {
         
+        public AstAlterMasterKeyAzureSql(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterMasterKeyAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterMasterKeyAzureSql(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -6557,13 +8281,23 @@ namespace Bb.Asts
     /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateMasterKeyAzureSql : AstRule
     {
         
+        public AstCreateMasterKeyAzureSql(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateMasterKeyAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateMasterKeyAzureSql(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -6585,6 +8319,20 @@ namespace Bb.Asts
         
         private AstMessageTypeName _messageTypeName;
         
+        public AstAlterMessageType(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMessageTypeName>())
+                {
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterMessageType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6594,7 +8342,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstMessageTypeName>())
                 {
-                    this.MessageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
                 }
             }
         }
@@ -6604,10 +8352,6 @@ namespace Bb.Asts
             get
             {
                 return this._messageTypeName;
-            }
-            set
-            {
-                this._messageTypeName = value;
             }
         }
         
@@ -6631,6 +8375,24 @@ namespace Bb.Asts
         
         private AstSplitOrMerge _splitOrMerge;
         
+        public AstAlterPartitionFunction(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionFunctionName>())
+                {
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSplitOrMerge>())
+                {
+                    this._splitOrMerge = ((AstSplitOrMerge)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterPartitionFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6640,11 +8402,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionFunctionName>())
                 {
-                    this.PartitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSplitOrMerge>())
                 {
-                    this.SplitOrMerge = ((AstSplitOrMerge)(enumerator.Current));
+                    this._splitOrMerge = ((AstSplitOrMerge)(enumerator.Current));
                 }
             }
         }
@@ -6655,10 +8417,6 @@ namespace Bb.Asts
             {
                 return this._partitionFunctionName;
             }
-            set
-            {
-                this._partitionFunctionName = value;
-            }
         }
         
         public virtual AstSplitOrMerge SplitOrMerge
@@ -6666,10 +8424,6 @@ namespace Bb.Asts
             get
             {
                 return this._splitOrMerge;
-            }
-            set
-            {
-                this._splitOrMerge = value;
             }
         }
         
@@ -6687,11 +8441,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstSplitOrMerge : AstTerminalEnum<AstSplitOrMergeEnum>
+    public partial class AstSplitOrMerge : AstTerminal<AstSplitOrMergeEnum>
     {
         
+        public AstSplitOrMerge(ITerminalNode t, string value) : 
+                base(t, AstSplitOrMerge.GetValue(value))
+        {
+        }
+        
+        public AstSplitOrMerge(ITerminalNode t, AstSplitOrMergeEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstSplitOrMerge(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstSplitOrMerge.GetValue(value))
+        {
+        }
+        
+        public AstSplitOrMerge(Position p, string value) : 
+                base(p, AstSplitOrMerge.GetValue(value))
+        {
+        }
+        
+        public AstSplitOrMerge(Position p, AstSplitOrMergeEnum value) : 
+                base(p, value)
         {
         }
         
@@ -6700,7 +8474,7 @@ namespace Bb.Asts
             visitor.VisitSplitOrMerge(this);
         }
         
-        protected override AstSplitOrMergeEnum GetValue(string value)
+        protected static AstSplitOrMergeEnum GetValue(string value)
         {
             if ((value == "SPLIT"))
             {
@@ -6726,6 +8500,20 @@ namespace Bb.Asts
         
         private AstPartitionSchemeName _partitionSchemeName;
         
+        public AstAlterPartitionScheme(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionSchemeName>())
+                {
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterPartitionScheme(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6735,7 +8523,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionSchemeName>())
                 {
-                    this.PartitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
                 }
             }
         }
@@ -6745,10 +8533,6 @@ namespace Bb.Asts
             get
             {
                 return this._partitionSchemeName;
-            }
-            set
-            {
-                this._partitionSchemeName = value;
             }
         }
         
@@ -6770,6 +8554,20 @@ namespace Bb.Asts
         
         private AstBindingName _bindingName;
         
+        public AstAlterRemoteServiceBinding(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBindingName>())
+                {
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterRemoteServiceBinding(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6779,7 +8577,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstBindingName>())
                 {
-                    this.BindingName = ((AstBindingName)(enumerator.Current));
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
                 }
             }
         }
@@ -6789,10 +8587,6 @@ namespace Bb.Asts
             get
             {
                 return this._bindingName;
-            }
-            set
-            {
-                this._bindingName = value;
             }
         }
         
@@ -6814,6 +8608,20 @@ namespace Bb.Asts
         
         private AstBindingName _bindingName;
         
+        public AstCreateRemoteServiceBinding(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBindingName>())
+                {
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateRemoteServiceBinding(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6823,7 +8631,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstBindingName>())
                 {
-                    this.BindingName = ((AstBindingName)(enumerator.Current));
+                    this._bindingName = ((AstBindingName)(enumerator.Current));
                 }
             }
         }
@@ -6833,10 +8641,6 @@ namespace Bb.Asts
             get
             {
                 return this._bindingName;
-            }
-            set
-            {
-                this._bindingName = value;
             }
         }
         
@@ -6858,6 +8662,20 @@ namespace Bb.Asts
         
         private AstPoolName _poolName;
         
+        public AstCreateResourcePool(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPoolName>())
+                {
+                    this._poolName = ((AstPoolName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6867,7 +8685,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPoolName>())
                 {
-                    this.PoolName = ((AstPoolName)(enumerator.Current));
+                    this._poolName = ((AstPoolName)(enumerator.Current));
                 }
             }
         }
@@ -6877,10 +8695,6 @@ namespace Bb.Asts
             get
             {
                 return this._poolName;
-            }
-            set
-            {
-                this._poolName = value;
             }
         }
         
@@ -6895,13 +8709,23 @@ namespace Bb.Asts
     /// 	 : ALTER  RESOURCE  GOVERNOR  DISABLE RECONFIGURE WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  schema_name  DOT  function_name NULL_  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterResourceGovernor : AstRule
     {
         
+        public AstAlterResourceGovernor(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterResourceGovernor(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterResourceGovernor(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -6923,6 +8747,20 @@ namespace Bb.Asts
         
         private AstRoleName _roleName;
         
+        public AstAlterDbRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRoleName>())
+                {
+                    this._roleName = ((AstRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterDbRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -6932,7 +8770,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRoleName>())
                 {
-                    this.RoleName = ((AstRoleName)(enumerator.Current));
+                    this._roleName = ((AstRoleName)(enumerator.Current));
                 }
             }
         }
@@ -6942,10 +8780,6 @@ namespace Bb.Asts
             get
             {
                 return this._roleName;
-            }
-            set
-            {
-                this._roleName = value;
             }
         }
         
@@ -6963,11 +8797,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstAddDrop : AstTerminalEnum<AstAddDropEnum>
+    public partial class AstAddDrop : AstTerminal<AstAddDropEnum>
     {
         
+        public AstAddDrop(ITerminalNode t, string value) : 
+                base(t, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(ITerminalNode t, AstAddDropEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstAddDrop(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(Position p, string value) : 
+                base(p, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(Position p, AstAddDropEnum value) : 
+                base(p, value)
         {
         }
         
@@ -6976,7 +8830,7 @@ namespace Bb.Asts
             visitor.VisitAddDrop(this);
         }
         
-        protected override AstAddDropEnum GetValue(string value)
+        protected static AstAddDropEnum GetValue(string value)
         {
             if ((value == "ADD"))
             {
@@ -7002,6 +8856,20 @@ namespace Bb.Asts
         
         private AstRoleName _roleName;
         
+        public AstCreateDbRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRoleName>())
+                {
+                    this._roleName = ((AstRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateDbRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7011,7 +8879,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRoleName>())
                 {
-                    this.RoleName = ((AstRoleName)(enumerator.Current));
+                    this._roleName = ((AstRoleName)(enumerator.Current));
                 }
             }
         }
@@ -7021,10 +8889,6 @@ namespace Bb.Asts
             get
             {
                 return this._roleName;
-            }
-            set
-            {
-                this._roleName = value;
             }
         }
         
@@ -7046,6 +8910,20 @@ namespace Bb.Asts
         
         private AstRouteName _routeName;
         
+        public AstCreateRoute(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRouteName>())
+                {
+                    this._routeName = ((AstRouteName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateRoute(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7055,7 +8933,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRouteName>())
                 {
-                    this.RouteName = ((AstRouteName)(enumerator.Current));
+                    this._routeName = ((AstRouteName)(enumerator.Current));
                 }
             }
         }
@@ -7065,10 +8943,6 @@ namespace Bb.Asts
             get
             {
                 return this._routeName;
-            }
-            set
-            {
-                this._routeName = value;
             }
         }
         
@@ -7092,6 +8966,24 @@ namespace Bb.Asts
         
         private AstSearchCondition _searchCondition;
         
+        public AstCreateRule(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRuleName>())
+                {
+                    this._ruleName = ((AstRuleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateRule(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7101,11 +8993,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRuleName>())
                 {
-                    this.RuleName = ((AstRuleName)(enumerator.Current));
+                    this._ruleName = ((AstRuleName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
             }
         }
@@ -7116,10 +9008,6 @@ namespace Bb.Asts
             {
                 return this._ruleName;
             }
-            set
-            {
-                this._ruleName = value;
-            }
         }
         
         public virtual AstSearchCondition SearchCondition
@@ -7127,10 +9015,6 @@ namespace Bb.Asts
             get
             {
                 return this._searchCondition;
-            }
-            set
-            {
-                this._searchCondition = value;
             }
         }
         
@@ -7154,6 +9038,24 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAlterSchemaSql(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSchemaName>())
+                {
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterSchemaSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7163,11 +9065,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSchemaName>())
                 {
-                    this.SchemaName = ((AstSchemaName)(enumerator.Current));
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -7178,10 +9080,6 @@ namespace Bb.Asts
             {
                 return this._schemaName;
             }
-            set
-            {
-                this._schemaName = value;
-            }
         }
         
         public virtual AstId Id
@@ -7189,10 +9087,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -7207,13 +9101,23 @@ namespace Bb.Asts
     /// 	 : CREATE  SCHEMA  schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name  create_table create_view grant_deny  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  TO  owner_name REVOKE  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  FROM  owner_name*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateSchema : AstRule
     {
         
+        public AstCreateSchema(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateSchema(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -7233,11 +9137,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstEnumDml : AstTerminalEnum<AstEnumDmlEnum>
+    public partial class AstEnumDml : AstTerminal<AstEnumDmlEnum>
     {
         
+        public AstEnumDml(ITerminalNode t, string value) : 
+                base(t, AstEnumDml.GetValue(value))
+        {
+        }
+        
+        public AstEnumDml(ITerminalNode t, AstEnumDmlEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstEnumDml(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstEnumDml.GetValue(value))
+        {
+        }
+        
+        public AstEnumDml(Position p, string value) : 
+                base(p, AstEnumDml.GetValue(value))
+        {
+        }
+        
+        public AstEnumDml(Position p, AstEnumDmlEnum value) : 
+                base(p, value)
         {
         }
         
@@ -7246,7 +9170,7 @@ namespace Bb.Asts
             visitor.VisitEnumDml(this);
         }
         
-        protected override AstEnumDmlEnum GetValue(string value)
+        protected static AstEnumDmlEnum GetValue(string value)
         {
             if ((value == "SELECT"))
             {
@@ -7276,11 +9200,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstGrantDeny : AstTerminalEnum<AstGrantDenyEnum>
+    public partial class AstGrantDeny : AstTerminal<AstGrantDenyEnum>
     {
         
+        public AstGrantDeny(ITerminalNode t, string value) : 
+                base(t, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(ITerminalNode t, AstGrantDenyEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstGrantDeny(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(Position p, string value) : 
+                base(p, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(Position p, AstGrantDenyEnum value) : 
+                base(p, value)
         {
         }
         
@@ -7289,7 +9233,7 @@ namespace Bb.Asts
             visitor.VisitGrantDeny(this);
         }
         
-        protected override AstGrantDenyEnum GetValue(string value)
+        protected static AstGrantDenyEnum GetValue(string value)
         {
             if ((value == "GRANT"))
             {
@@ -7315,6 +9259,20 @@ namespace Bb.Asts
         
         private AstSchemaName _schemaName;
         
+        public AstCreateSchemaAzureSqlDwAndPdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSchemaName>())
+                {
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateSchemaAzureSqlDwAndPdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7324,7 +9282,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSchemaName>())
                 {
-                    this.SchemaName = ((AstSchemaName)(enumerator.Current));
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
                 }
             }
         }
@@ -7334,10 +9292,6 @@ namespace Bb.Asts
             get
             {
                 return this._schemaName;
-            }
-            set
-            {
-                this._schemaName = value;
             }
         }
         
@@ -7361,6 +9315,24 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAlterSchemaAzureSqlDwAndPdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSchemaName>())
+                {
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterSchemaAzureSqlDwAndPdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7370,11 +9342,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSchemaName>())
                 {
-                    this.SchemaName = ((AstSchemaName)(enumerator.Current));
+                    this._schemaName = ((AstSchemaName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -7385,10 +9357,6 @@ namespace Bb.Asts
             {
                 return this._schemaName;
             }
-            set
-            {
-                this._schemaName = value;
-            }
         }
         
         public virtual AstId Id
@@ -7396,10 +9364,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -7421,6 +9385,20 @@ namespace Bb.Asts
         
         private AstSourceListName _sourceListName;
         
+        public AstCreateSearchPropertyList(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSourceListName>())
+                {
+                    this._sourceListName = ((AstSourceListName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateSearchPropertyList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7430,7 +9408,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSourceListName>())
                 {
-                    this.SourceListName = ((AstSourceListName)(enumerator.Current));
+                    this._sourceListName = ((AstSourceListName)(enumerator.Current));
                 }
             }
         }
@@ -7440,10 +9418,6 @@ namespace Bb.Asts
             get
             {
                 return this._sourceListName;
-            }
-            set
-            {
-                this._sourceListName = value;
             }
         }
         
@@ -7465,6 +9439,20 @@ namespace Bb.Asts
         
         private AstSecurityPolicyName _securityPolicyName;
         
+        public AstCreateSecurityPolicy(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSecurityPolicyName>())
+                {
+                    this._securityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateSecurityPolicy(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7474,7 +9462,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSecurityPolicyName>())
                 {
-                    this.SecurityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
+                    this._securityPolicyName = ((AstSecurityPolicyName)(enumerator.Current));
                 }
             }
         }
@@ -7484,10 +9472,6 @@ namespace Bb.Asts
             get
             {
                 return this._securityPolicyName;
-            }
-            set
-            {
-                this._securityPolicyName = value;
             }
         }
         
@@ -7509,6 +9493,20 @@ namespace Bb.Asts
         
         private AstSequenceName _sequenceName;
         
+        public AstAlterSequence(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSequenceName>())
+                {
+                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterSequence(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7518,7 +9516,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSequenceName>())
                 {
-                    this.SequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
                 }
             }
         }
@@ -7528,10 +9526,6 @@ namespace Bb.Asts
             get
             {
                 return this._sequenceName;
-            }
-            set
-            {
-                this._sequenceName = value;
             }
         }
         
@@ -7553,6 +9547,20 @@ namespace Bb.Asts
         
         private AstSequenceName _sequenceName;
         
+        public AstCreateSequence(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSequenceName>())
+                {
+                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateSequence(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7562,7 +9570,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSequenceName>())
                 {
-                    this.SequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
                 }
             }
         }
@@ -7572,10 +9580,6 @@ namespace Bb.Asts
             get
             {
                 return this._sequenceName;
-            }
-            set
-            {
-                this._sequenceName = value;
             }
         }
         
@@ -7597,6 +9601,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstAlterServerAudit(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterServerAudit(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7606,7 +9624,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -7616,10 +9634,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -7641,6 +9655,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstCreateServerAudit(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateServerAudit(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7650,7 +9678,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -7660,10 +9688,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -7685,6 +9709,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstAlterServerAuditSpecification(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterServerAuditSpecification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7694,7 +9732,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -7704,10 +9742,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -7729,6 +9763,20 @@ namespace Bb.Asts
         
         private AstAuditName _auditName;
         
+        public AstCreateServerAuditSpecification(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAuditName>())
+                {
+                    this._auditName = ((AstAuditName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateServerAuditSpecification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7738,7 +9786,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAuditName>())
                 {
-                    this.AuditName = ((AstAuditName)(enumerator.Current));
+                    this._auditName = ((AstAuditName)(enumerator.Current));
                 }
             }
         }
@@ -7748,10 +9796,6 @@ namespace Bb.Asts
             get
             {
                 return this._auditName;
-            }
-            set
-            {
-                this._auditName = value;
             }
         }
         
@@ -7766,13 +9810,23 @@ namespace Bb.Asts
     /// 	 : ALTER  SERVER  CONFIGURATION  SET  PROCESS  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ DIAGNOSTICS  LOG  ON OFF PATH  EQUAL  STRING DEFAULT MAX_SIZE  EQUAL  DECIMAL  MB DEFAULT MAX_FILES  EQUAL  DECIMAL DEFAULT FAILOVER  CLUSTER  PROPERTY  VERBOSELOGGING  EQUAL  STRING DEFAULT SQLDUMPERFLAGS  EQUAL  STRING DEFAULT SQLDUMPERPATH  EQUAL  STRING DEFAULT SQLDUMPERTIMEOUT  STRING DEFAULT FAILURECONDITIONLEVEL  EQUAL  STRING DEFAULT HEALTHCHECKTIMEOUT  EQUAL  DECIMAL DEFAULT HADR  CLUSTER  CONTEXT  EQUAL  STRING LOCAL BUFFER  POOL  EXTENSION  ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  KB MB GB  RR_BRACKET OFF SET  SOFTNUMA  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterServerConfiguration : AstRule
     {
         
+        public AstAlterServerConfiguration(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterServerConfiguration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterServerConfiguration(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -7794,6 +9848,20 @@ namespace Bb.Asts
         
         private AstServerRoleName _serverRoleName;
         
+        public AstAlterServerRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstServerRoleName>())
+                {
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterServerRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7803,7 +9871,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstServerRoleName>())
                 {
-                    this.ServerRoleName = ((AstServerRoleName)(enumerator.Current));
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
                 }
             }
         }
@@ -7813,10 +9881,6 @@ namespace Bb.Asts
             get
             {
                 return this._serverRoleName;
-            }
-            set
-            {
-                this._serverRoleName = value;
             }
         }
         
@@ -7838,6 +9902,20 @@ namespace Bb.Asts
         
         private AstServerRoleName _serverRoleName;
         
+        public AstCreateServerRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstServerRoleName>())
+                {
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateServerRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7847,7 +9925,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstServerRoleName>())
                 {
-                    this.ServerRoleName = ((AstServerRoleName)(enumerator.Current));
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
                 }
             }
         }
@@ -7857,10 +9935,6 @@ namespace Bb.Asts
             get
             {
                 return this._serverRoleName;
-            }
-            set
-            {
-                this._serverRoleName = value;
             }
         }
         
@@ -7884,6 +9958,24 @@ namespace Bb.Asts
         
         private AstLoginName _loginName;
         
+        public AstAlterServerRolePdw(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstServerRoleName>())
+                {
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstLoginName>())
+                {
+                    this._loginName = ((AstLoginName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterServerRolePdw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7893,11 +9985,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstServerRoleName>())
                 {
-                    this.ServerRoleName = ((AstServerRoleName)(enumerator.Current));
+                    this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstLoginName>())
                 {
-                    this.LoginName = ((AstLoginName)(enumerator.Current));
+                    this._loginName = ((AstLoginName)(enumerator.Current));
                 }
             }
         }
@@ -7908,10 +10000,6 @@ namespace Bb.Asts
             {
                 return this._serverRoleName;
             }
-            set
-            {
-                this._serverRoleName = value;
-            }
         }
         
         public virtual AstLoginName LoginName
@@ -7919,10 +10007,6 @@ namespace Bb.Asts
             get
             {
                 return this._loginName;
-            }
-            set
-            {
-                this._loginName = value;
             }
         }
         
@@ -7944,6 +10028,20 @@ namespace Bb.Asts
         
         private AstModifiedServiceName _modifiedServiceName;
         
+        public AstAlterService(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstModifiedServiceName>())
+                {
+                    this._modifiedServiceName = ((AstModifiedServiceName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterService(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7953,7 +10051,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstModifiedServiceName>())
                 {
-                    this.ModifiedServiceName = ((AstModifiedServiceName)(enumerator.Current));
+                    this._modifiedServiceName = ((AstModifiedServiceName)(enumerator.Current));
                 }
             }
         }
@@ -7963,10 +10061,6 @@ namespace Bb.Asts
             get
             {
                 return this._modifiedServiceName;
-            }
-            set
-            {
-                this._modifiedServiceName = value;
             }
         }
         
@@ -7990,6 +10084,24 @@ namespace Bb.Asts
         
         private AstQueueName _queueName;
         
+        public AstCreateService(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateServiceName>())
+                {
+                    this._createServiceName = ((AstCreateServiceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstQueueName>())
+                {
+                    this._queueName = ((AstQueueName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateService(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -7999,11 +10111,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCreateServiceName>())
                 {
-                    this.CreateServiceName = ((AstCreateServiceName)(enumerator.Current));
+                    this._createServiceName = ((AstCreateServiceName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstQueueName>())
                 {
-                    this.QueueName = ((AstQueueName)(enumerator.Current));
+                    this._queueName = ((AstQueueName)(enumerator.Current));
                 }
             }
         }
@@ -8014,10 +10126,6 @@ namespace Bb.Asts
             {
                 return this._createServiceName;
             }
-            set
-            {
-                this._createServiceName = value;
-            }
         }
         
         public virtual AstQueueName QueueName
@@ -8025,10 +10133,6 @@ namespace Bb.Asts
             get
             {
                 return this._queueName;
-            }
-            set
-            {
-                this._queueName = value;
             }
         }
         
@@ -8043,13 +10147,23 @@ namespace Bb.Asts
     /// 	 : ALTER  SERVICE  MASTER  KEY  FORCE?  REGENERATE WITH  OLD_ACCOUNT  EQUAL    COMMA  OLD_PASSWORD  EQUAL   NEW_ACCOUNT  EQUAL    COMMA  NEW_PASSWORD  EQUAL  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterServiceMasterKey : AstRule
     {
         
+        public AstAlterServiceMasterKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterServiceMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterServiceMasterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8071,6 +10185,20 @@ namespace Bb.Asts
         
         private AstSymmetricKeyName _symmetricKeyName;
         
+        public AstAlterSymmetricKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSymmetricKeyName>())
+                {
+                    this._symmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterSymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8080,7 +10208,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSymmetricKeyName>())
                 {
-                    this.SymmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
+                    this._symmetricKeyName = ((AstSymmetricKeyName)(enumerator.Current));
                 }
             }
         }
@@ -8090,10 +10218,6 @@ namespace Bb.Asts
             get
             {
                 return this._symmetricKeyName;
-            }
-            set
-            {
-                this._symmetricKeyName = value;
             }
         }
         
@@ -8115,6 +10239,20 @@ namespace Bb.Asts
         
         private AstSynonymName _synonymName;
         
+        public AstCreateSynonym(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSynonymName>())
+                {
+                    this._synonymName = ((AstSynonymName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateSynonym(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8124,7 +10262,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSynonymName>())
                 {
-                    this.SynonymName = ((AstSynonymName)(enumerator.Current));
+                    this._synonymName = ((AstSynonymName)(enumerator.Current));
                 }
             }
         }
@@ -8134,10 +10272,6 @@ namespace Bb.Asts
             get
             {
                 return this._synonymName;
-            }
-            set
-            {
-                this._synonymName = value;
             }
         }
         
@@ -8159,6 +10293,20 @@ namespace Bb.Asts
         
         private AstUserName _userName;
         
+        public AstAlterUser(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUserName>())
+                {
+                    this._userName = ((AstUserName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterUser(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8168,7 +10316,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUserName>())
                 {
-                    this.UserName = ((AstUserName)(enumerator.Current));
+                    this._userName = ((AstUserName)(enumerator.Current));
                 }
             }
         }
@@ -8178,10 +10326,6 @@ namespace Bb.Asts
             get
             {
                 return this._userName;
-            }
-            set
-            {
-                this._userName = value;
             }
         }
         
@@ -8199,13 +10343,23 @@ namespace Bb.Asts
     /// 	 | CREATE  USER  user_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateUser : AstRule
     {
         
+        public AstCreateUser(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateUser(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateUser(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8221,13 +10375,23 @@ namespace Bb.Asts
     /// 	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  WITH  DEFAULT_SCHEMA  EQUAL  schema_name?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateUserAzureSqlDw : AstRule
     {
         
+        public AstCreateUserAzureSqlDw(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateUserAzureSqlDw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateUserAzureSqlDw(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8249,6 +10413,20 @@ namespace Bb.Asts
         
         private AstUserName _userName;
         
+        public AstAlterUserAzureSql(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUserName>())
+                {
+                    this._userName = ((AstUserName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterUserAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8258,7 +10436,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUserName>())
                 {
-                    this.UserName = ((AstUserName)(enumerator.Current));
+                    this._userName = ((AstUserName)(enumerator.Current));
                 }
             }
         }
@@ -8268,10 +10446,6 @@ namespace Bb.Asts
             get
             {
                 return this._userName;
-            }
-            set
-            {
-                this._userName = value;
             }
         }
         
@@ -8286,13 +10460,23 @@ namespace Bb.Asts
     /// 	 : ALTER  WORKLOAD  GROUP  workload_group_group_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  IMPORTANCE  EQUAL  LOW MEDIUM HIGH COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL   COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL   REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL   MAX_DOP  EQUAL   GROUP_MAX_REQUESTS  EQUAL  +  RR_BRACKET?  USING  workload_group_pool_name DEFAULT_DOUBLE_QUOTE?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterWorkloadGroup : AstRule
     {
         
+        public AstAlterWorkloadGroup(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterWorkloadGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterWorkloadGroup(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8314,6 +10498,20 @@ namespace Bb.Asts
         
         private AstWorkloadGroupGroupName _workloadGroupGroupName;
         
+        public AstCreateWorkloadGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWorkloadGroupGroupName>())
+                {
+                    this._workloadGroupGroupName = ((AstWorkloadGroupGroupName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateWorkloadGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8323,7 +10521,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWorkloadGroupGroupName>())
                 {
-                    this.WorkloadGroupGroupName = ((AstWorkloadGroupGroupName)(enumerator.Current));
+                    this._workloadGroupGroupName = ((AstWorkloadGroupGroupName)(enumerator.Current));
                 }
             }
         }
@@ -8333,10 +10531,6 @@ namespace Bb.Asts
             get
             {
                 return this._workloadGroupGroupName;
-            }
-            set
-            {
-                this._workloadGroupGroupName = value;
             }
         }
         
@@ -8358,6 +10552,20 @@ namespace Bb.Asts
         
         private AstSqlIdentifier _sqlIdentifier;
         
+        public AstCreateXmlSchemaCollection(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSqlIdentifier>())
+                {
+                    this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateXmlSchemaCollection(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8367,7 +10575,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSqlIdentifier>())
                 {
-                    this.SqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
+                    this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
                 }
             }
         }
@@ -8377,10 +10585,6 @@ namespace Bb.Asts
             get
             {
                 return this._sqlIdentifier;
-            }
-            set
-            {
-                this._sqlIdentifier = value;
             }
         }
         
@@ -8402,6 +10606,20 @@ namespace Bb.Asts
         
         private AstPartitionFunctionName _partitionFunctionName;
         
+        public AstCreatePartitionFunction(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionFunctionName>())
+                {
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreatePartitionFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8411,7 +10629,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionFunctionName>())
                 {
-                    this.PartitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
                 }
             }
         }
@@ -8421,10 +10639,6 @@ namespace Bb.Asts
             get
             {
                 return this._partitionFunctionName;
-            }
-            set
-            {
-                this._partitionFunctionName = value;
             }
         }
         
@@ -8448,6 +10662,24 @@ namespace Bb.Asts
         
         private AstPartitionFunctionName _partitionFunctionName;
         
+        public AstCreatePartitionScheme(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionSchemeName>())
+                {
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstPartitionFunctionName>())
+                {
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreatePartitionScheme(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8457,11 +10689,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartitionSchemeName>())
                 {
-                    this.PartitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
+                    this._partitionSchemeName = ((AstPartitionSchemeName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstPartitionFunctionName>())
                 {
-                    this.PartitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
+                    this._partitionFunctionName = ((AstPartitionFunctionName)(enumerator.Current));
                 }
             }
         }
@@ -8472,10 +10704,6 @@ namespace Bb.Asts
             {
                 return this._partitionSchemeName;
             }
-            set
-            {
-                this._partitionSchemeName = value;
-            }
         }
         
         public virtual AstPartitionFunctionName PartitionFunctionName
@@ -8483,10 +10711,6 @@ namespace Bb.Asts
             get
             {
                 return this._partitionFunctionName;
-            }
-            set
-            {
-                this._partitionFunctionName = value;
             }
         }
         
@@ -8508,6 +10732,20 @@ namespace Bb.Asts
         
         private AstQueueSettings _queueSettings;
         
+        public AstCreateQueue(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstQueueSettings>())
+                {
+                    this._queueSettings = ((AstQueueSettings)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateQueue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8517,7 +10755,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstQueueSettings>())
                 {
-                    this.QueueSettings = ((AstQueueSettings)(enumerator.Current));
+                    this._queueSettings = ((AstQueueSettings)(enumerator.Current));
                 }
             }
         }
@@ -8527,10 +10765,6 @@ namespace Bb.Asts
             get
             {
                 return this._queueSettings;
-            }
-            set
-            {
-                this._queueSettings = value;
             }
         }
         
@@ -8545,13 +10779,23 @@ namespace Bb.Asts
     /// 	 : WITH  STATUS  EQUAL  on_off  COMMA??  RETENTION  EQUAL  on_off  COMMA??  ACTIVATION  LR_BRACKET  STATUS  EQUAL  on_off  COMMA??  PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA??  MAX_QUEUE_READERS  EQUAL    COMMA??  EXECUTE  AS  SELF  OWNER  COMMA?? DROP  RR_BRACKET  COMMA??  POISON_MESSAGE_HANDLING  LR_BRACKET  STATUS  EQUAL  on_off  RR_BRACKET?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueueSettings : AstRule
     {
         
+        public AstQueueSettings(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueueSettings(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueueSettings(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8566,13 +10810,23 @@ namespace Bb.Asts
     /// 	 : ALTER  QUEUE  full_table_name queue_name  queue_settings queue_action
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterQueue : AstRule
     {
         
+        public AstAlterQueue(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterQueue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterQueue(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8589,13 +10843,23 @@ namespace Bb.Asts
     /// 	 | MOVE  TO  id_ DEFAULT
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueueAction : AstRule
     {
         
+        public AstQueueAction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueueAction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueueAction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8610,13 +10874,23 @@ namespace Bb.Asts
     /// 	 : MAXDOP  EQUAL  DECIMAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueueRebuildOptions : AstRule
     {
         
+        public AstQueueRebuildOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueueRebuildOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueueRebuildOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8638,6 +10912,20 @@ namespace Bb.Asts
         
         private AstContractName _contractName;
         
+        public AstCreateContract(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstContractName>())
+                {
+                    this._contractName = ((AstContractName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateContract(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8647,7 +10935,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstContractName>())
                 {
-                    this.ContractName = ((AstContractName)(enumerator.Current));
+                    this._contractName = ((AstContractName)(enumerator.Current));
                 }
             }
         }
@@ -8657,10 +10945,6 @@ namespace Bb.Asts
             get
             {
                 return this._contractName;
-            }
-            set
-            {
-                this._contractName = value;
             }
         }
         
@@ -8682,6 +10966,20 @@ namespace Bb.Asts
         
         private AstMessageTypeName _messageTypeName;
         
+        public AstMessageStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMessageTypeName>())
+                {
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMessageStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8691,7 +10989,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstMessageTypeName>())
                 {
-                    this.MessageTypeName = ((AstMessageTypeName)(enumerator.Current));
+                    this._messageTypeName = ((AstMessageTypeName)(enumerator.Current));
                 }
             }
         }
@@ -8701,10 +10999,6 @@ namespace Bb.Asts
             get
             {
                 return this._messageTypeName;
-            }
-            set
-            {
-                this._messageTypeName = value;
             }
         }
         
@@ -8742,6 +11036,52 @@ namespace Bb.Asts
         
         private AstOptionClause _optionClause;
         
+        public AstMergeStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWithExpression>())
+                {
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDdlObject>())
+                {
+                    this._ddlObject = ((AstDdlObject)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstWithTableHints>())
+                {
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsTableAlias>())
+                {
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableSources>())
+                {
+                    this._tableSources = ((AstTableSources)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstWhenMatches>())
+                {
+                    this._whenMatches = ((AstWhenMatches)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOutputClause>())
+                {
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOptionClause>())
+                {
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMergeStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8751,39 +11091,39 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWithExpression>())
                 {
-                    this.WithExpression = ((AstWithExpression)(enumerator.Current));
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDdlObject>())
                 {
-                    this.DdlObject = ((AstDdlObject)(enumerator.Current));
+                    this._ddlObject = ((AstDdlObject)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstWithTableHints>())
                 {
-                    this.WithTableHints = ((AstWithTableHints)(enumerator.Current));
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsTableAlias>())
                 {
-                    this.AsTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableSources>())
                 {
-                    this.TableSources = ((AstTableSources)(enumerator.Current));
+                    this._tableSources = ((AstTableSources)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstWhenMatches>())
                 {
-                    this.WhenMatches = ((AstWhenMatches)(enumerator.Current));
+                    this._whenMatches = ((AstWhenMatches)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOutputClause>())
                 {
-                    this.OutputClause = ((AstOutputClause)(enumerator.Current));
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOptionClause>())
                 {
-                    this.OptionClause = ((AstOptionClause)(enumerator.Current));
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -8794,10 +11134,6 @@ namespace Bb.Asts
             {
                 return this._withExpression;
             }
-            set
-            {
-                this._withExpression = value;
-            }
         }
         
         public virtual AstDdlObject DdlObject
@@ -8805,10 +11141,6 @@ namespace Bb.Asts
             get
             {
                 return this._ddlObject;
-            }
-            set
-            {
-                this._ddlObject = value;
             }
         }
         
@@ -8818,10 +11150,6 @@ namespace Bb.Asts
             {
                 return this._withTableHints;
             }
-            set
-            {
-                this._withTableHints = value;
-            }
         }
         
         public virtual AstAsTableAlias AsTableAlias
@@ -8829,10 +11157,6 @@ namespace Bb.Asts
             get
             {
                 return this._asTableAlias;
-            }
-            set
-            {
-                this._asTableAlias = value;
             }
         }
         
@@ -8842,10 +11166,6 @@ namespace Bb.Asts
             {
                 return this._tableSources;
             }
-            set
-            {
-                this._tableSources = value;
-            }
         }
         
         public virtual AstSearchCondition SearchCondition
@@ -8853,10 +11173,6 @@ namespace Bb.Asts
             get
             {
                 return this._searchCondition;
-            }
-            set
-            {
-                this._searchCondition = value;
             }
         }
         
@@ -8866,10 +11182,6 @@ namespace Bb.Asts
             {
                 return this._whenMatches;
             }
-            set
-            {
-                this._whenMatches = value;
-            }
         }
         
         public virtual AstOutputClause OutputClause
@@ -8878,10 +11190,6 @@ namespace Bb.Asts
             {
                 return this._outputClause;
             }
-            set
-            {
-                this._outputClause = value;
-            }
         }
         
         public virtual AstOptionClause OptionClause
@@ -8889,10 +11197,6 @@ namespace Bb.Asts
             get
             {
                 return this._optionClause;
-            }
-            set
-            {
-                this._optionClause = value;
             }
         }
         
@@ -8909,13 +11213,23 @@ namespace Bb.Asts
     /// 	 | WHEN  NOT  MATCHED  BY  SOURCE  AND  search_condition?  THEN  merge_matched+
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWhenMatches : AstRule
     {
         
+        public AstWhenMatches(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWhenMatches(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWhenMatches(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8931,13 +11245,23 @@ namespace Bb.Asts
     /// 	 | DELETE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstMergeMatched : AstRule
     {
         
+        public AstMergeMatched(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstMergeMatched(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstMergeMatched(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -8959,6 +11283,20 @@ namespace Bb.Asts
         
         private AstUpdateElemMerge _updateElemMerge;
         
+        public AstUpdateElemMerges(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUpdateElemMerge>())
+                {
+                    this._updateElemMerge = ((AstUpdateElemMerge)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUpdateElemMerges(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -8968,7 +11306,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUpdateElemMerge>())
                 {
-                    this.UpdateElemMerge = ((AstUpdateElemMerge)(enumerator.Current));
+                    this._updateElemMerge = ((AstUpdateElemMerge)(enumerator.Current));
                 }
             }
         }
@@ -8978,10 +11316,6 @@ namespace Bb.Asts
             get
             {
                 return this._updateElemMerge;
-            }
-            set
-            {
-                this._updateElemMerge = value;
             }
         }
         
@@ -8996,13 +11330,23 @@ namespace Bb.Asts
     /// 	 : INSERT  LR_BRACKET  column_name_list  RR_BRACKET?  table_value_constructor DEFAULT  VALUES
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstMergeNotMatched : AstRule
     {
         
+        public AstMergeNotMatched(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstMergeNotMatched(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstMergeNotMatched(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -9034,6 +11378,40 @@ namespace Bb.Asts
         
         private AstOptionClause _optionClause;
         
+        public AstDeleteStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWithExpression>())
+                {
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDeleteStatementFrom>())
+                {
+                    this._deleteStatementFrom = ((AstDeleteStatementFrom)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstWithTableHints>())
+                {
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOutputClause>())
+                {
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstForClause>())
+                {
+                    this._forClause = ((AstForClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOptionClause>())
+                {
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeleteStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9043,27 +11421,27 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWithExpression>())
                 {
-                    this.WithExpression = ((AstWithExpression)(enumerator.Current));
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDeleteStatementFrom>())
                 {
-                    this.DeleteStatementFrom = ((AstDeleteStatementFrom)(enumerator.Current));
+                    this._deleteStatementFrom = ((AstDeleteStatementFrom)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstWithTableHints>())
                 {
-                    this.WithTableHints = ((AstWithTableHints)(enumerator.Current));
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOutputClause>())
                 {
-                    this.OutputClause = ((AstOutputClause)(enumerator.Current));
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstForClause>())
                 {
-                    this.ForClause = ((AstForClause)(enumerator.Current));
+                    this._forClause = ((AstForClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOptionClause>())
                 {
-                    this.OptionClause = ((AstOptionClause)(enumerator.Current));
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -9074,10 +11452,6 @@ namespace Bb.Asts
             {
                 return this._withExpression;
             }
-            set
-            {
-                this._withExpression = value;
-            }
         }
         
         public virtual AstDeleteStatementFrom DeleteStatementFrom
@@ -9085,10 +11459,6 @@ namespace Bb.Asts
             get
             {
                 return this._deleteStatementFrom;
-            }
-            set
-            {
-                this._deleteStatementFrom = value;
             }
         }
         
@@ -9098,10 +11468,6 @@ namespace Bb.Asts
             {
                 return this._withTableHints;
             }
-            set
-            {
-                this._withTableHints = value;
-            }
         }
         
         public virtual AstOutputClause OutputClause
@@ -9109,10 +11475,6 @@ namespace Bb.Asts
             get
             {
                 return this._outputClause;
-            }
-            set
-            {
-                this._outputClause = value;
             }
         }
         
@@ -9122,10 +11484,6 @@ namespace Bb.Asts
             {
                 return this._forClause;
             }
-            set
-            {
-                this._forClause = value;
-            }
         }
         
         public virtual AstOptionClause OptionClause
@@ -9133,10 +11491,6 @@ namespace Bb.Asts
             get
             {
                 return this._optionClause;
-            }
-            set
-            {
-                this._optionClause = value;
             }
         }
         
@@ -9153,13 +11507,23 @@ namespace Bb.Asts
     /// 	 | 
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDeleteStatementFrom : AstRule
     {
         
+        public AstDeleteStatementFrom(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDeleteStatementFrom(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDeleteStatementFrom(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -9191,6 +11555,40 @@ namespace Bb.Asts
         
         private AstOptionClause _optionClause;
         
+        public AstInsertStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWithExpression>())
+                {
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstWithTableHints>())
+                {
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOutputClause>())
+                {
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstInsertStatementValue>())
+                {
+                    this._insertStatementValue = ((AstInsertStatementValue)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstForClause>())
+                {
+                    this._forClause = ((AstForClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOptionClause>())
+                {
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstInsertStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9200,27 +11598,27 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWithExpression>())
                 {
-                    this.WithExpression = ((AstWithExpression)(enumerator.Current));
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstWithTableHints>())
                 {
-                    this.WithTableHints = ((AstWithTableHints)(enumerator.Current));
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOutputClause>())
                 {
-                    this.OutputClause = ((AstOutputClause)(enumerator.Current));
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstInsertStatementValue>())
                 {
-                    this.InsertStatementValue = ((AstInsertStatementValue)(enumerator.Current));
+                    this._insertStatementValue = ((AstInsertStatementValue)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstForClause>())
                 {
-                    this.ForClause = ((AstForClause)(enumerator.Current));
+                    this._forClause = ((AstForClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOptionClause>())
                 {
-                    this.OptionClause = ((AstOptionClause)(enumerator.Current));
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -9231,10 +11629,6 @@ namespace Bb.Asts
             {
                 return this._withExpression;
             }
-            set
-            {
-                this._withExpression = value;
-            }
         }
         
         public virtual AstWithTableHints WithTableHints
@@ -9242,10 +11636,6 @@ namespace Bb.Asts
             get
             {
                 return this._withTableHints;
-            }
-            set
-            {
-                this._withTableHints = value;
             }
         }
         
@@ -9255,10 +11645,6 @@ namespace Bb.Asts
             {
                 return this._outputClause;
             }
-            set
-            {
-                this._outputClause = value;
-            }
         }
         
         public virtual AstInsertStatementValue InsertStatementValue
@@ -9266,10 +11652,6 @@ namespace Bb.Asts
             get
             {
                 return this._insertStatementValue;
-            }
-            set
-            {
-                this._insertStatementValue = value;
             }
         }
         
@@ -9279,10 +11661,6 @@ namespace Bb.Asts
             {
                 return this._forClause;
             }
-            set
-            {
-                this._forClause = value;
-            }
         }
         
         public virtual AstOptionClause OptionClause
@@ -9290,10 +11668,6 @@ namespace Bb.Asts
             get
             {
                 return this._optionClause;
-            }
-            set
-            {
-                this._optionClause = value;
             }
         }
         
@@ -9311,13 +11685,23 @@ namespace Bb.Asts
     /// 	 | DEFAULT  VALUES
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstInsertStatementValue : AstRule
     {
         
+        public AstInsertStatementValue(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstInsertStatementValue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstInsertStatementValue(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -9339,6 +11723,20 @@ namespace Bb.Asts
         
         private AstFullTableName _fullTableName;
         
+        public AstReceiveStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullTableName>())
+                {
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstReceiveStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9348,7 +11746,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFullTableName>())
                 {
-                    this.FullTableName = ((AstFullTableName)(enumerator.Current));
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
                 }
             }
         }
@@ -9358,10 +11756,6 @@ namespace Bb.Asts
             get
             {
                 return this._fullTableName;
-            }
-            set
-            {
-                this._fullTableName = value;
             }
         }
         
@@ -9385,6 +11779,24 @@ namespace Bb.Asts
         
         private AstSelectStatement _selectStatement;
         
+        public AstSelectStatementStandalone(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWithExpression>())
+                {
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSelectStatement>())
+                {
+                    this._selectStatement = ((AstSelectStatement)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSelectStatementStandalone(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9394,11 +11806,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWithExpression>())
                 {
-                    this.WithExpression = ((AstWithExpression)(enumerator.Current));
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSelectStatement>())
                 {
-                    this.SelectStatement = ((AstSelectStatement)(enumerator.Current));
+                    this._selectStatement = ((AstSelectStatement)(enumerator.Current));
                 }
             }
         }
@@ -9409,10 +11821,6 @@ namespace Bb.Asts
             {
                 return this._withExpression;
             }
-            set
-            {
-                this._withExpression = value;
-            }
         }
         
         public virtual AstSelectStatement SelectStatement
@@ -9420,10 +11828,6 @@ namespace Bb.Asts
             get
             {
                 return this._selectStatement;
-            }
-            set
-            {
-                this._selectStatement = value;
             }
         }
         
@@ -9451,6 +11855,32 @@ namespace Bb.Asts
         
         private AstOptionClause _optionClause;
         
+        public AstSelectStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstQueryExpression>())
+                {
+                    this._queryExpression = ((AstQueryExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSelectOrderByClause>())
+                {
+                    this._selectOrderByClause = ((AstSelectOrderByClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstForClause>())
+                {
+                    this._forClause = ((AstForClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOptionClause>())
+                {
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSelectStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9460,19 +11890,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstQueryExpression>())
                 {
-                    this.QueryExpression = ((AstQueryExpression)(enumerator.Current));
+                    this._queryExpression = ((AstQueryExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSelectOrderByClause>())
                 {
-                    this.SelectOrderByClause = ((AstSelectOrderByClause)(enumerator.Current));
+                    this._selectOrderByClause = ((AstSelectOrderByClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstForClause>())
                 {
-                    this.ForClause = ((AstForClause)(enumerator.Current));
+                    this._forClause = ((AstForClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOptionClause>())
                 {
-                    this.OptionClause = ((AstOptionClause)(enumerator.Current));
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -9483,10 +11913,6 @@ namespace Bb.Asts
             {
                 return this._queryExpression;
             }
-            set
-            {
-                this._queryExpression = value;
-            }
         }
         
         public virtual AstSelectOrderByClause SelectOrderByClause
@@ -9494,10 +11920,6 @@ namespace Bb.Asts
             get
             {
                 return this._selectOrderByClause;
-            }
-            set
-            {
-                this._selectOrderByClause = value;
             }
         }
         
@@ -9507,10 +11929,6 @@ namespace Bb.Asts
             {
                 return this._forClause;
             }
-            set
-            {
-                this._forClause = value;
-            }
         }
         
         public virtual AstOptionClause OptionClause
@@ -9518,10 +11936,6 @@ namespace Bb.Asts
             get
             {
                 return this._optionClause;
-            }
-            set
-            {
-                this._optionClause = value;
             }
         }
         
@@ -9536,13 +11950,23 @@ namespace Bb.Asts
     /// 	 : LOCAL_ID constant
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTime : AstRule
     {
         
+        public AstTime(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTime(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTime(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -9574,6 +11998,40 @@ namespace Bb.Asts
         
         private AstOptionClause _optionClause;
         
+        public AstUpdateStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWithExpression>())
+                {
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstWithTableHints>())
+                {
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstUpdateElems>())
+                {
+                    this._updateElems = ((AstUpdateElems)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOutputClause>())
+                {
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstForClause>())
+                {
+                    this._forClause = ((AstForClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOptionClause>())
+                {
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUpdateStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9583,27 +12041,27 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWithExpression>())
                 {
-                    this.WithExpression = ((AstWithExpression)(enumerator.Current));
+                    this._withExpression = ((AstWithExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstWithTableHints>())
                 {
-                    this.WithTableHints = ((AstWithTableHints)(enumerator.Current));
+                    this._withTableHints = ((AstWithTableHints)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstUpdateElems>())
                 {
-                    this.UpdateElems = ((AstUpdateElems)(enumerator.Current));
+                    this._updateElems = ((AstUpdateElems)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOutputClause>())
                 {
-                    this.OutputClause = ((AstOutputClause)(enumerator.Current));
+                    this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstForClause>())
                 {
-                    this.ForClause = ((AstForClause)(enumerator.Current));
+                    this._forClause = ((AstForClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOptionClause>())
                 {
-                    this.OptionClause = ((AstOptionClause)(enumerator.Current));
+                    this._optionClause = ((AstOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -9614,10 +12072,6 @@ namespace Bb.Asts
             {
                 return this._withExpression;
             }
-            set
-            {
-                this._withExpression = value;
-            }
         }
         
         public virtual AstWithTableHints WithTableHints
@@ -9625,10 +12079,6 @@ namespace Bb.Asts
             get
             {
                 return this._withTableHints;
-            }
-            set
-            {
-                this._withTableHints = value;
             }
         }
         
@@ -9638,10 +12088,6 @@ namespace Bb.Asts
             {
                 return this._updateElems;
             }
-            set
-            {
-                this._updateElems = value;
-            }
         }
         
         public virtual AstOutputClause OutputClause
@@ -9649,10 +12095,6 @@ namespace Bb.Asts
             get
             {
                 return this._outputClause;
-            }
-            set
-            {
-                this._outputClause = value;
             }
         }
         
@@ -9662,10 +12104,6 @@ namespace Bb.Asts
             {
                 return this._forClause;
             }
-            set
-            {
-                this._forClause = value;
-            }
         }
         
         public virtual AstOptionClause OptionClause
@@ -9673,10 +12111,6 @@ namespace Bb.Asts
             get
             {
                 return this._optionClause;
-            }
-            set
-            {
-                this._optionClause = value;
             }
         }
         
@@ -9698,6 +12132,20 @@ namespace Bb.Asts
         
         private AstUpdateElem _updateElem;
         
+        public AstUpdateElems(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUpdateElem>())
+                {
+                    this._updateElem = ((AstUpdateElem)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUpdateElems(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9707,7 +12155,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUpdateElem>())
                 {
-                    this.UpdateElem = ((AstUpdateElem)(enumerator.Current));
+                    this._updateElem = ((AstUpdateElem)(enumerator.Current));
                 }
             }
         }
@@ -9717,10 +12165,6 @@ namespace Bb.Asts
             get
             {
                 return this._updateElem;
-            }
-            set
-            {
-                this._updateElem = value;
             }
         }
         
@@ -9742,6 +12186,20 @@ namespace Bb.Asts
         
         private AstOutputDmlListElems _outputDmlListElems;
         
+        public AstOutputClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOutputDmlListElems>())
+                {
+                    this._outputDmlListElems = ((AstOutputDmlListElems)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOutputClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9751,7 +12209,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOutputDmlListElems>())
                 {
-                    this.OutputDmlListElems = ((AstOutputDmlListElems)(enumerator.Current));
+                    this._outputDmlListElems = ((AstOutputDmlListElems)(enumerator.Current));
                 }
             }
         }
@@ -9761,10 +12219,6 @@ namespace Bb.Asts
             get
             {
                 return this._outputDmlListElems;
-            }
-            set
-            {
-                this._outputDmlListElems = value;
             }
         }
         
@@ -9786,6 +12240,20 @@ namespace Bb.Asts
         
         private AstOutputDmlListElem _outputDmlListElem;
         
+        public AstOutputDmlListElems(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOutputDmlListElem>())
+                {
+                    this._outputDmlListElem = ((AstOutputDmlListElem)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOutputDmlListElems(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9795,7 +12263,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOutputDmlListElem>())
                 {
-                    this.OutputDmlListElem = ((AstOutputDmlListElem)(enumerator.Current));
+                    this._outputDmlListElem = ((AstOutputDmlListElem)(enumerator.Current));
                 }
             }
         }
@@ -9805,10 +12273,6 @@ namespace Bb.Asts
             get
             {
                 return this._outputDmlListElem;
-            }
-            set
-            {
-                this._outputDmlListElem = value;
             }
         }
         
@@ -9830,6 +12294,20 @@ namespace Bb.Asts
         
         private AstAsColumnAlias _asColumnAlias;
         
+        public AstOutputDmlListElem(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAsColumnAlias>())
+                {
+                    this._asColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOutputDmlListElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9839,7 +12317,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAsColumnAlias>())
                 {
-                    this.AsColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
+                    this._asColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
                 }
             }
         }
@@ -9849,10 +12327,6 @@ namespace Bb.Asts
             get
             {
                 return this._asColumnAlias;
-            }
-            set
-            {
-                this._asColumnAlias = value;
             }
         }
         
@@ -9867,13 +12341,23 @@ namespace Bb.Asts
     /// 	 : CREATE  DATABASE  database_name  CONTAINMENT  EQUAL  NONE PARTIAL?  ON  PRIMARY?  database_file_spec  COMMA  database_file_spec*?  LOG  ON  database_file_spec  COMMA  database_file_spec*?  COLLATE  collation_name?  WITH  create_database_option  COMMA  create_database_option*?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateDatabase : AstRule
     {
         
+        public AstCreateDatabase(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -9901,6 +12385,32 @@ namespace Bb.Asts
         
         private AstColumnNameListWithOrder _columnNameListWithOrder;
         
+        public AstCreateIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstClustered>())
+                {
+                    this._clustered = ((AstClustered)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnNameListWithOrder>())
+                {
+                    this._columnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -9910,19 +12420,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstClustered>())
                 {
-                    this.Clustered = ((AstClustered)(enumerator.Current));
+                    this._clustered = ((AstClustered)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnNameListWithOrder>())
                 {
-                    this.ColumnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
+                    this._columnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
                 }
             }
         }
@@ -9933,10 +12443,6 @@ namespace Bb.Asts
             {
                 return this._clustered;
             }
-            set
-            {
-                this._clustered = value;
-            }
         }
         
         public virtual AstId Id
@@ -9944,10 +12450,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -9957,10 +12459,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstColumnNameListWithOrder ColumnNameListWithOrder
@@ -9968,10 +12466,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnNameListWithOrder;
-            }
-            set
-            {
-                this._columnNameListWithOrder = value;
             }
         }
         
@@ -9993,6 +12487,20 @@ namespace Bb.Asts
         
         private AstRelationalIndexOptions _relationalIndexOptions;
         
+        public AstCreateIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRelationalIndexOptions>())
+                {
+                    this._relationalIndexOptions = ((AstRelationalIndexOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10002,7 +12510,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRelationalIndexOptions>())
                 {
-                    this.RelationalIndexOptions = ((AstRelationalIndexOptions)(enumerator.Current));
+                    this._relationalIndexOptions = ((AstRelationalIndexOptions)(enumerator.Current));
                 }
             }
         }
@@ -10012,10 +12520,6 @@ namespace Bb.Asts
             get
             {
                 return this._relationalIndexOptions;
-            }
-            set
-            {
-                this._relationalIndexOptions = value;
             }
         }
         
@@ -10037,6 +12541,20 @@ namespace Bb.Asts
         
         private AstRelationalIndexOption _relationalIndexOption;
         
+        public AstRelationalIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRelationalIndexOption>())
+                {
+                    this._relationalIndexOption = ((AstRelationalIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRelationalIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10046,7 +12564,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRelationalIndexOption>())
                 {
-                    this.RelationalIndexOption = ((AstRelationalIndexOption)(enumerator.Current));
+                    this._relationalIndexOption = ((AstRelationalIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10056,10 +12574,6 @@ namespace Bb.Asts
             get
             {
                 return this._relationalIndexOption;
-            }
-            set
-            {
-                this._relationalIndexOption = value;
             }
         }
         
@@ -10076,13 +12590,23 @@ namespace Bb.Asts
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRelationalIndexOption : AstRule
     {
         
+        public AstRelationalIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRelationalIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRelationalIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10104,6 +12628,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstAlterIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10113,7 +12651,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -10123,10 +12661,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -10141,13 +12675,23 @@ namespace Bb.Asts
     /// 	 : WITH  LR_BRACKET  resumable_index_option  COMMA  resumable_index_option*  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstResumableIndexOptions : AstRule
     {
         
+        public AstResumableIndexOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstResumableIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstResumableIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10164,13 +12708,23 @@ namespace Bb.Asts
     /// 	 | low_priority_lock_wait
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstResumableIndexOption : AstRule
     {
         
+        public AstResumableIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstResumableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstResumableIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10192,6 +12746,20 @@ namespace Bb.Asts
         
         private AstReorganizeOptions _reorganizeOptions;
         
+        public AstReorganizePartition(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstReorganizeOptions>())
+                {
+                    this._reorganizeOptions = ((AstReorganizeOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstReorganizePartition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10201,7 +12769,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstReorganizeOptions>())
                 {
-                    this.ReorganizeOptions = ((AstReorganizeOptions)(enumerator.Current));
+                    this._reorganizeOptions = ((AstReorganizeOptions)(enumerator.Current));
                 }
             }
         }
@@ -10211,10 +12779,6 @@ namespace Bb.Asts
             get
             {
                 return this._reorganizeOptions;
-            }
-            set
-            {
-                this._reorganizeOptions = value;
             }
         }
         
@@ -10229,13 +12793,23 @@ namespace Bb.Asts
     /// 	 : WITH  LR_BRACKET  reorganize_option  COMMA  reorganize_option*  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstReorganizeOptions : AstRule
     {
         
+        public AstReorganizeOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstReorganizeOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstReorganizeOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10251,13 +12825,23 @@ namespace Bb.Asts
     /// 	 | COMPRESS_ALL_ROW_GROUPS  EQUAL  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstReorganizeOption : AstRule
     {
         
+        public AstReorganizeOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstReorganizeOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstReorganizeOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10279,6 +12863,20 @@ namespace Bb.Asts
         
         private AstSetIndexOption _setIndexOption;
         
+        public AstSetIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSetIndexOption>())
+                {
+                    this._setIndexOption = ((AstSetIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSetIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10288,7 +12886,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSetIndexOption>())
                 {
-                    this.SetIndexOption = ((AstSetIndexOption)(enumerator.Current));
+                    this._setIndexOption = ((AstSetIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10298,10 +12896,6 @@ namespace Bb.Asts
             get
             {
                 return this._setIndexOption;
-            }
-            set
-            {
-                this._setIndexOption = value;
             }
         }
         
@@ -10321,13 +12915,23 @@ namespace Bb.Asts
     /// 	 | COMPRESSION_DELAY  EQUAL    MINUTES?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSetIndexOption : AstRule
     {
         
+        public AstSetIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSetIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSetIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10343,13 +12947,23 @@ namespace Bb.Asts
     /// 	 | REBUILD  PARTITION  EQUAL  DECIMAL  single_partition_rebuild_index_options?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRebuildPartition : AstRule
     {
         
+        public AstRebuildPartition(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRebuildPartition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRebuildPartition(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10371,6 +12985,20 @@ namespace Bb.Asts
         
         private AstRebuildIndexOption _rebuildIndexOption;
         
+        public AstRebuildIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRebuildIndexOption>())
+                {
+                    this._rebuildIndexOption = ((AstRebuildIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRebuildIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10380,7 +13008,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstRebuildIndexOption>())
                 {
-                    this.RebuildIndexOption = ((AstRebuildIndexOption)(enumerator.Current));
+                    this._rebuildIndexOption = ((AstRebuildIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10390,10 +13018,6 @@ namespace Bb.Asts
             get
             {
                 return this._rebuildIndexOption;
-            }
-            set
-            {
-                this._rebuildIndexOption = value;
             }
         }
         
@@ -10421,13 +13045,23 @@ namespace Bb.Asts
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRebuildIndexOption : AstRule
     {
         
+        public AstRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRebuildIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRebuildIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10449,6 +13083,20 @@ namespace Bb.Asts
         
         private AstSinglePartitionRebuildIndexOption _singlePartitionRebuildIndexOption;
         
+        public AstSinglePartitionRebuildIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSinglePartitionRebuildIndexOption>())
+                {
+                    this._singlePartitionRebuildIndexOption = ((AstSinglePartitionRebuildIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSinglePartitionRebuildIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10458,7 +13106,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSinglePartitionRebuildIndexOption>())
                 {
-                    this.SinglePartitionRebuildIndexOption = ((AstSinglePartitionRebuildIndexOption)(enumerator.Current));
+                    this._singlePartitionRebuildIndexOption = ((AstSinglePartitionRebuildIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10468,10 +13116,6 @@ namespace Bb.Asts
             get
             {
                 return this._singlePartitionRebuildIndexOption;
-            }
-            set
-            {
-                this._singlePartitionRebuildIndexOption = value;
             }
         }
         
@@ -10491,13 +13135,23 @@ namespace Bb.Asts
     /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSinglePartitionRebuildIndexOption : AstRule
     {
         
+        public AstSinglePartitionRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSinglePartitionRebuildIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSinglePartitionRebuildIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10512,13 +13166,23 @@ namespace Bb.Asts
     /// 	 : ON  PARTITIONS  LR_BRACKET    TO  ?  COMMA    TO  ?*  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOnPartitions : AstRule
     {
         
+        public AstOnPartitions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOnPartitions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOnPartitions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10544,6 +13208,28 @@ namespace Bb.Asts
         
         private AstCreateColumnstoreIndexOptions _createColumnstoreIndexOptions;
         
+        public AstCreateColumnstoreIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateColumnstoreIndexOptions>())
+                {
+                    this._createColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateColumnstoreIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10553,15 +13239,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstCreateColumnstoreIndexOptions>())
                 {
-                    this.CreateColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
+                    this._createColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
                 }
             }
         }
@@ -10572,10 +13258,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstTableName TableName
@@ -10584,10 +13266,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstCreateColumnstoreIndexOptions CreateColumnstoreIndexOptions
@@ -10595,10 +13273,6 @@ namespace Bb.Asts
             get
             {
                 return this._createColumnstoreIndexOptions;
-            }
-            set
-            {
-                this._createColumnstoreIndexOptions = value;
             }
         }
         
@@ -10620,6 +13294,20 @@ namespace Bb.Asts
         
         private AstColumnstoreIndexOption _columnstoreIndexOption;
         
+        public AstCreateColumnstoreIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnstoreIndexOption>())
+                {
+                    this._columnstoreIndexOption = ((AstColumnstoreIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateColumnstoreIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10629,7 +13317,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnstoreIndexOption>())
                 {
-                    this.ColumnstoreIndexOption = ((AstColumnstoreIndexOption)(enumerator.Current));
+                    this._columnstoreIndexOption = ((AstColumnstoreIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10639,10 +13327,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnstoreIndexOption;
-            }
-            set
-            {
-                this._columnstoreIndexOption = value;
             }
         }
         
@@ -10661,13 +13345,23 @@ namespace Bb.Asts
     /// 	 | DATA_COMPRESSION  EQUAL  COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnstoreIndexOption : AstRule
     {
         
+        public AstColumnstoreIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnstoreIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnstoreIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10695,6 +13389,32 @@ namespace Bb.Asts
         
         private AstCreateColumnstoreIndexOptions _createColumnstoreIndexOptions;
         
+        public AstCreateNonclusteredColumnstoreIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnNameListWithOrder>())
+                {
+                    this._columnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateColumnstoreIndexOptions>())
+                {
+                    this._createColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateNonclusteredColumnstoreIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10704,19 +13424,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnNameListWithOrder>())
                 {
-                    this.ColumnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
+                    this._columnNameListWithOrder = ((AstColumnNameListWithOrder)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstCreateColumnstoreIndexOptions>())
                 {
-                    this.CreateColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
+                    this._createColumnstoreIndexOptions = ((AstCreateColumnstoreIndexOptions)(enumerator.Current));
                 }
             }
         }
@@ -10727,10 +13447,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstTableName TableName
@@ -10738,10 +13454,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -10751,10 +13463,6 @@ namespace Bb.Asts
             {
                 return this._columnNameListWithOrder;
             }
-            set
-            {
-                this._columnNameListWithOrder = value;
-            }
         }
         
         public virtual AstCreateColumnstoreIndexOptions CreateColumnstoreIndexOptions
@@ -10762,10 +13470,6 @@ namespace Bb.Asts
             get
             {
                 return this._createColumnstoreIndexOptions;
-            }
-            set
-            {
-                this._createColumnstoreIndexOptions = value;
             }
         }
         
@@ -10791,6 +13495,32 @@ namespace Bb.Asts
         
         private AstXmlIndexOptions _xmlIndexOptions;
         
+        public AstCreateXmlIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstXmlIndexOptions>())
+                {
+                    this._xmlIndexOptions = ((AstXmlIndexOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateXmlIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10800,19 +13530,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstXmlIndexOptions>())
                 {
-                    this.XmlIndexOptions = ((AstXmlIndexOptions)(enumerator.Current));
+                    this._xmlIndexOptions = ((AstXmlIndexOptions)(enumerator.Current));
                 }
             }
         }
@@ -10823,10 +13553,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstTableName TableName
@@ -10835,10 +13561,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstXmlIndexOptions XmlIndexOptions
@@ -10846,10 +13568,6 @@ namespace Bb.Asts
             get
             {
                 return this._xmlIndexOptions;
-            }
-            set
-            {
-                this._xmlIndexOptions = value;
             }
         }
         
@@ -10871,6 +13589,20 @@ namespace Bb.Asts
         
         private AstXmlIndexOption _xmlIndexOption;
         
+        public AstXmlIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstXmlIndexOption>())
+                {
+                    this._xmlIndexOption = ((AstXmlIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstXmlIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10880,7 +13612,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstXmlIndexOption>())
                 {
-                    this.XmlIndexOption = ((AstXmlIndexOption)(enumerator.Current));
+                    this._xmlIndexOption = ((AstXmlIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -10890,10 +13622,6 @@ namespace Bb.Asts
             get
             {
                 return this._xmlIndexOption;
-            }
-            set
-            {
-                this._xmlIndexOption = value;
             }
         }
         
@@ -10917,13 +13645,23 @@ namespace Bb.Asts
     /// 	 | XML_COMPRESSION  EQUAL  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstXmlIndexOption : AstRule
     {
         
+        public AstXmlIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstXmlIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstXmlIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -10945,6 +13683,20 @@ namespace Bb.Asts
         
         private AstProcedureOptions _procedureOptions;
         
+        public AstCreateOrAlterProcedure(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProcedureOptions>())
+                {
+                    this._procedureOptions = ((AstProcedureOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateOrAlterProcedure(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10954,7 +13706,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProcedureOptions>())
                 {
-                    this.ProcedureOptions = ((AstProcedureOptions)(enumerator.Current));
+                    this._procedureOptions = ((AstProcedureOptions)(enumerator.Current));
                 }
             }
         }
@@ -10964,10 +13716,6 @@ namespace Bb.Asts
             get
             {
                 return this._procedureOptions;
-            }
-            set
-            {
-                this._procedureOptions = value;
             }
         }
         
@@ -10989,6 +13737,20 @@ namespace Bb.Asts
         
         private AstProcedureOption _procedureOption;
         
+        public AstProcedureOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProcedureOption>())
+                {
+                    this._procedureOption = ((AstProcedureOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstProcedureOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -10998,7 +13760,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProcedureOption>())
                 {
-                    this.ProcedureOption = ((AstProcedureOption)(enumerator.Current));
+                    this._procedureOption = ((AstProcedureOption)(enumerator.Current));
                 }
             }
         }
@@ -11008,10 +13770,6 @@ namespace Bb.Asts
             get
             {
                 return this._procedureOption;
-            }
-            set
-            {
-                this._procedureOption = value;
             }
         }
         
@@ -11037,6 +13795,28 @@ namespace Bb.Asts
         
         private AstMethodName _methodName;
         
+        public AstAsExternalName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAssemblyName>())
+                {
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstClassName>())
+                {
+                    this._className = ((AstClassName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstMethodName>())
+                {
+                    this._methodName = ((AstMethodName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAsExternalName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11046,15 +13826,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAssemblyName>())
                 {
-                    this.AssemblyName = ((AstAssemblyName)(enumerator.Current));
+                    this._assemblyName = ((AstAssemblyName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstClassName>())
                 {
-                    this.ClassName = ((AstClassName)(enumerator.Current));
+                    this._className = ((AstClassName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstMethodName>())
                 {
-                    this.MethodName = ((AstMethodName)(enumerator.Current));
+                    this._methodName = ((AstMethodName)(enumerator.Current));
                 }
             }
         }
@@ -11065,10 +13845,6 @@ namespace Bb.Asts
             {
                 return this._assemblyName;
             }
-            set
-            {
-                this._assemblyName = value;
-            }
         }
         
         public virtual AstClassName ClassName
@@ -11077,10 +13853,6 @@ namespace Bb.Asts
             {
                 return this._className;
             }
-            set
-            {
-                this._className = value;
-            }
         }
         
         public virtual AstMethodName MethodName
@@ -11088,10 +13860,6 @@ namespace Bb.Asts
             get
             {
                 return this._methodName;
-            }
-            set
-            {
-                this._methodName = value;
             }
         }
         
@@ -11121,6 +13889,36 @@ namespace Bb.Asts
         
         private AstSqlClauses _sqlClauses;
         
+        public AstCreateOrAlterDmlTrigger(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleName>())
+                {
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDmlTriggerOptions>())
+                {
+                    this._dmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDmlTriggerOperations>())
+                {
+                    this._dmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSqlClauses>())
+                {
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateOrAlterDmlTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11130,23 +13928,23 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleName>())
                 {
-                    this.SimpleName = ((AstSimpleName)(enumerator.Current));
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDmlTriggerOptions>())
                 {
-                    this.DmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
+                    this._dmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDmlTriggerOperations>())
                 {
-                    this.DmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
+                    this._dmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSqlClauses>())
                 {
-                    this.SqlClauses = ((AstSqlClauses)(enumerator.Current));
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
                 }
             }
         }
@@ -11157,10 +13955,6 @@ namespace Bb.Asts
             {
                 return this._simpleName;
             }
-            set
-            {
-                this._simpleName = value;
-            }
         }
         
         public virtual AstTableName TableName
@@ -11168,10 +13962,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -11181,10 +13971,6 @@ namespace Bb.Asts
             {
                 return this._dmlTriggerOptions;
             }
-            set
-            {
-                this._dmlTriggerOptions = value;
-            }
         }
         
         public virtual AstDmlTriggerOperations DmlTriggerOperations
@@ -11193,10 +13979,6 @@ namespace Bb.Asts
             {
                 return this._dmlTriggerOperations;
             }
-            set
-            {
-                this._dmlTriggerOperations = value;
-            }
         }
         
         public virtual AstSqlClauses SqlClauses
@@ -11204,10 +13986,6 @@ namespace Bb.Asts
             get
             {
                 return this._sqlClauses;
-            }
-            set
-            {
-                this._sqlClauses = value;
             }
         }
         
@@ -11229,6 +14007,20 @@ namespace Bb.Asts
         
         private AstDmlTriggerOption _dmlTriggerOption;
         
+        public AstDmlTriggerOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDmlTriggerOption>())
+                {
+                    this._dmlTriggerOption = ((AstDmlTriggerOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDmlTriggerOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11238,7 +14030,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDmlTriggerOption>())
                 {
-                    this.DmlTriggerOption = ((AstDmlTriggerOption)(enumerator.Current));
+                    this._dmlTriggerOption = ((AstDmlTriggerOption)(enumerator.Current));
                 }
             }
         }
@@ -11248,10 +14040,6 @@ namespace Bb.Asts
             get
             {
                 return this._dmlTriggerOption;
-            }
-            set
-            {
-                this._dmlTriggerOption = value;
             }
         }
         
@@ -11273,6 +14061,20 @@ namespace Bb.Asts
         
         private AstDmlTriggerOperation _dmlTriggerOperation;
         
+        public AstDmlTriggerOperations(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDmlTriggerOperation>())
+                {
+                    this._dmlTriggerOperation = ((AstDmlTriggerOperation)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDmlTriggerOperations(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11282,7 +14084,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDmlTriggerOperation>())
                 {
-                    this.DmlTriggerOperation = ((AstDmlTriggerOperation)(enumerator.Current));
+                    this._dmlTriggerOperation = ((AstDmlTriggerOperation)(enumerator.Current));
                 }
             }
         }
@@ -11292,10 +14094,6 @@ namespace Bb.Asts
             get
             {
                 return this._dmlTriggerOperation;
-            }
-            set
-            {
-                this._dmlTriggerOperation = value;
             }
         }
         
@@ -11311,13 +14109,23 @@ namespace Bb.Asts
     /// 	 | execute_clause
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDmlTriggerOption : AstRule
     {
         
+        public AstDmlTriggerOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDmlTriggerOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDmlTriggerOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -11334,11 +14142,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstDmlTriggerOperation : AstTerminalEnum<AstDmlTriggerOperationEnum>
+    public partial class AstDmlTriggerOperation : AstTerminal<AstDmlTriggerOperationEnum>
     {
         
+        public AstDmlTriggerOperation(ITerminalNode t, string value) : 
+                base(t, AstDmlTriggerOperation.GetValue(value))
+        {
+        }
+        
+        public AstDmlTriggerOperation(ITerminalNode t, AstDmlTriggerOperationEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstDmlTriggerOperation(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstDmlTriggerOperation.GetValue(value))
+        {
+        }
+        
+        public AstDmlTriggerOperation(Position p, string value) : 
+                base(p, AstDmlTriggerOperation.GetValue(value))
+        {
+        }
+        
+        public AstDmlTriggerOperation(Position p, AstDmlTriggerOperationEnum value) : 
+                base(p, value)
         {
         }
         
@@ -11347,7 +14175,7 @@ namespace Bb.Asts
             visitor.VisitDmlTriggerOperation(this);
         }
         
-        protected override AstDmlTriggerOperationEnum GetValue(string value)
+        protected static AstDmlTriggerOperationEnum GetValue(string value)
         {
             if ((value == "INSERT"))
             {
@@ -11383,6 +14211,32 @@ namespace Bb.Asts
         
         private AstSqlClauses _sqlClauses;
         
+        public AstCreateOrAlterDdlTrigger(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleName>())
+                {
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDmlTriggerOptions>())
+                {
+                    this._dmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDmlTriggerOperations>())
+                {
+                    this._dmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSqlClauses>())
+                {
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateOrAlterDdlTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11392,19 +14246,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleName>())
                 {
-                    this.SimpleName = ((AstSimpleName)(enumerator.Current));
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDmlTriggerOptions>())
                 {
-                    this.DmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
+                    this._dmlTriggerOptions = ((AstDmlTriggerOptions)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDmlTriggerOperations>())
                 {
-                    this.DmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
+                    this._dmlTriggerOperations = ((AstDmlTriggerOperations)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSqlClauses>())
                 {
-                    this.SqlClauses = ((AstSqlClauses)(enumerator.Current));
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
                 }
             }
         }
@@ -11415,10 +14269,6 @@ namespace Bb.Asts
             {
                 return this._simpleName;
             }
-            set
-            {
-                this._simpleName = value;
-            }
         }
         
         public virtual AstDmlTriggerOptions DmlTriggerOptions
@@ -11426,10 +14276,6 @@ namespace Bb.Asts
             get
             {
                 return this._dmlTriggerOptions;
-            }
-            set
-            {
-                this._dmlTriggerOptions = value;
             }
         }
         
@@ -11439,10 +14285,6 @@ namespace Bb.Asts
             {
                 return this._dmlTriggerOperations;
             }
-            set
-            {
-                this._dmlTriggerOperations = value;
-            }
         }
         
         public virtual AstSqlClauses SqlClauses
@@ -11450,10 +14292,6 @@ namespace Bb.Asts
             get
             {
                 return this._sqlClauses;
-            }
-            set
-            {
-                this._sqlClauses = value;
             }
         }
         
@@ -11468,13 +14306,23 @@ namespace Bb.Asts
     /// 	 : CREATE  OR  ALTER? ALTER  FUNCTION    LR_BRACKET  procedure_params  RR_BRACKET LR_BRACKET  RR_BRACKET  func_body_returns_select func_body_returns_table func_body_returns_scalar  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateOrAlterFunction : AstRule
     {
         
+        public AstCreateOrAlterFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateOrAlterFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateOrAlterFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -11496,6 +14344,20 @@ namespace Bb.Asts
         
         private AstProcedureParam _procedureParam;
         
+        public AstProcedureParams(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProcedureParam>())
+                {
+                    this._procedureParam = ((AstProcedureParam)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstProcedureParams(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11505,7 +14367,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstProcedureParam>())
                 {
-                    this.ProcedureParam = ((AstProcedureParam)(enumerator.Current));
+                    this._procedureParam = ((AstProcedureParam)(enumerator.Current));
                 }
             }
         }
@@ -11515,10 +14377,6 @@ namespace Bb.Asts
             get
             {
                 return this._procedureParam;
-            }
-            set
-            {
-                this._procedureParam = value;
             }
         }
         
@@ -11540,6 +14398,20 @@ namespace Bb.Asts
         
         private AstFunctionOptions _functionOptions;
         
+        public AstFuncBodyReturnsSelect(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFunctionOptions>())
+                {
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFuncBodyReturnsSelect(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11549,7 +14421,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFunctionOptions>())
                 {
-                    this.FunctionOptions = ((AstFunctionOptions)(enumerator.Current));
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
                 }
             }
         }
@@ -11559,10 +14431,6 @@ namespace Bb.Asts
             get
             {
                 return this._functionOptions;
-            }
-            set
-            {
-                this._functionOptions = value;
             }
         }
         
@@ -11584,6 +14452,20 @@ namespace Bb.Asts
         
         private AstFunctionOption _functionOption;
         
+        public AstFunctionOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFunctionOption>())
+                {
+                    this._functionOption = ((AstFunctionOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFunctionOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11593,7 +14475,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFunctionOption>())
                 {
-                    this.FunctionOption = ((AstFunctionOption)(enumerator.Current));
+                    this._functionOption = ((AstFunctionOption)(enumerator.Current));
                 }
             }
         }
@@ -11603,10 +14485,6 @@ namespace Bb.Asts
             get
             {
                 return this._functionOption;
-            }
-            set
-            {
-                this._functionOption = value;
             }
         }
         
@@ -11630,6 +14508,24 @@ namespace Bb.Asts
         
         private AstFunctionOptions _functionOptions;
         
+        public AstFuncBodyReturnsTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableTypeDefinition>())
+                {
+                    this._tableTypeDefinition = ((AstTableTypeDefinition)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFunctionOptions>())
+                {
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFuncBodyReturnsTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11639,11 +14535,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableTypeDefinition>())
                 {
-                    this.TableTypeDefinition = ((AstTableTypeDefinition)(enumerator.Current));
+                    this._tableTypeDefinition = ((AstTableTypeDefinition)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFunctionOptions>())
                 {
-                    this.FunctionOptions = ((AstFunctionOptions)(enumerator.Current));
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
                 }
             }
         }
@@ -11654,10 +14550,6 @@ namespace Bb.Asts
             {
                 return this._tableTypeDefinition;
             }
-            set
-            {
-                this._tableTypeDefinition = value;
-            }
         }
         
         public virtual AstFunctionOptions FunctionOptions
@@ -11665,10 +14557,6 @@ namespace Bb.Asts
             get
             {
                 return this._functionOptions;
-            }
-            set
-            {
-                this._functionOptions = value;
             }
         }
         
@@ -11692,6 +14580,24 @@ namespace Bb.Asts
         
         private AstFunctionOptions _functionOptions;
         
+        public AstFuncBodyReturnsScalar(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDataType>())
+                {
+                    this._dataType = ((AstDataType)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFunctionOptions>())
+                {
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFuncBodyReturnsScalar(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11701,11 +14607,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDataType>())
                 {
-                    this.DataType = ((AstDataType)(enumerator.Current));
+                    this._dataType = ((AstDataType)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFunctionOptions>())
                 {
-                    this.FunctionOptions = ((AstFunctionOptions)(enumerator.Current));
+                    this._functionOptions = ((AstFunctionOptions)(enumerator.Current));
                 }
             }
         }
@@ -11716,10 +14622,6 @@ namespace Bb.Asts
             {
                 return this._dataType;
             }
-            set
-            {
-                this._dataType = value;
-            }
         }
         
         public virtual AstFunctionOptions FunctionOptions
@@ -11727,10 +14629,6 @@ namespace Bb.Asts
             get
             {
                 return this._functionOptions;
-            }
-            set
-            {
-                this._functionOptions = value;
             }
         }
         
@@ -11752,6 +14650,20 @@ namespace Bb.Asts
         
         private AstDataType _dataType;
         
+        public AstProcedureParam(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDataType>())
+                {
+                    this._dataType = ((AstDataType)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstProcedureParam(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11761,7 +14673,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDataType>())
                 {
-                    this.DataType = ((AstDataType)(enumerator.Current));
+                    this._dataType = ((AstDataType)(enumerator.Current));
                 }
             }
         }
@@ -11771,10 +14683,6 @@ namespace Bb.Asts
             get
             {
                 return this._dataType;
-            }
-            set
-            {
-                this._dataType = value;
             }
         }
         
@@ -11791,13 +14699,23 @@ namespace Bb.Asts
     /// 	 | execute_clause
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstProcedureOption : AstRule
     {
         
+        public AstProcedureOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstProcedureOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstProcedureOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -11816,13 +14734,23 @@ namespace Bb.Asts
     /// 	 | execute_clause
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFunctionOption : AstRule
     {
         
+        public AstFunctionOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFunctionOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFunctionOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -11848,6 +14776,28 @@ namespace Bb.Asts
         
         private AstColumnNameList _columnNameList;
         
+        public AstCreateStatistics(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnNameList>())
+                {
+                    this._columnNameList = ((AstColumnNameList)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateStatistics(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11857,15 +14807,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnNameList>())
                 {
-                    this.ColumnNameList = ((AstColumnNameList)(enumerator.Current));
+                    this._columnNameList = ((AstColumnNameList)(enumerator.Current));
                 }
             }
         }
@@ -11876,10 +14826,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstTableName TableName
@@ -11888,10 +14834,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstColumnNameList ColumnNameList
@@ -11899,10 +14841,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnNameList;
-            }
-            set
-            {
-                this._columnNameList = value;
             }
         }
         
@@ -11926,6 +14864,24 @@ namespace Bb.Asts
         
         private AstUpdateStatisticsOptions _updateStatisticsOptions;
         
+        public AstUpdateStatistics(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullTableName>())
+                {
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstUpdateStatisticsOptions>())
+                {
+                    this._updateStatisticsOptions = ((AstUpdateStatisticsOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUpdateStatistics(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11935,11 +14891,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFullTableName>())
                 {
-                    this.FullTableName = ((AstFullTableName)(enumerator.Current));
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstUpdateStatisticsOptions>())
                 {
-                    this.UpdateStatisticsOptions = ((AstUpdateStatisticsOptions)(enumerator.Current));
+                    this._updateStatisticsOptions = ((AstUpdateStatisticsOptions)(enumerator.Current));
                 }
             }
         }
@@ -11950,10 +14906,6 @@ namespace Bb.Asts
             {
                 return this._fullTableName;
             }
-            set
-            {
-                this._fullTableName = value;
-            }
         }
         
         public virtual AstUpdateStatisticsOptions UpdateStatisticsOptions
@@ -11961,10 +14913,6 @@ namespace Bb.Asts
             get
             {
                 return this._updateStatisticsOptions;
-            }
-            set
-            {
-                this._updateStatisticsOptions = value;
             }
         }
         
@@ -11986,6 +14934,20 @@ namespace Bb.Asts
         
         private AstUpdateStatisticsOption _updateStatisticsOption;
         
+        public AstUpdateStatisticsOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUpdateStatisticsOption>())
+                {
+                    this._updateStatisticsOption = ((AstUpdateStatisticsOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUpdateStatisticsOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -11995,7 +14957,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUpdateStatisticsOption>())
                 {
-                    this.UpdateStatisticsOption = ((AstUpdateStatisticsOption)(enumerator.Current));
+                    this._updateStatisticsOption = ((AstUpdateStatisticsOption)(enumerator.Current));
                 }
             }
         }
@@ -12005,10 +14967,6 @@ namespace Bb.Asts
             get
             {
                 return this._updateStatisticsOption;
-            }
-            set
-            {
-                this._updateStatisticsOption = value;
             }
         }
         
@@ -12035,13 +14993,23 @@ namespace Bb.Asts
     /// 	 | AUTO_DROP  EQUAL  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUpdateStatisticsOption : AstRule
     {
         
+        public AstUpdateStatisticsOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUpdateStatisticsOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUpdateStatisticsOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12067,6 +15035,28 @@ namespace Bb.Asts
         
         private AstTableOptions _tableOptions;
         
+        public AstCreateTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnDefTableConstraints>())
+                {
+                    this._columnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableOptions>())
+                {
+                    this._tableOptions = ((AstTableOptions)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12076,15 +15066,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnDefTableConstraints>())
                 {
-                    this.ColumnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
+                    this._columnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstTableOptions>())
                 {
-                    this.TableOptions = ((AstTableOptions)(enumerator.Current));
+                    this._tableOptions = ((AstTableOptions)(enumerator.Current));
                 }
             }
         }
@@ -12095,10 +15085,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstColumnDefTableConstraints ColumnDefTableConstraints
@@ -12107,10 +15093,6 @@ namespace Bb.Asts
             {
                 return this._columnDefTableConstraints;
             }
-            set
-            {
-                this._columnDefTableConstraints = value;
-            }
         }
         
         public virtual AstTableOptions TableOptions
@@ -12118,10 +15100,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableOptions;
-            }
-            set
-            {
-                this._tableOptions = value;
             }
         }
         
@@ -12138,13 +15116,23 @@ namespace Bb.Asts
     /// 	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  ON  id_?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableIndices : AstRule
     {
         
+        public AstTableIndices(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableIndices(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableIndices(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12159,13 +15147,23 @@ namespace Bb.Asts
     /// 	 : WITH  LR_BRACKET  table_option  COMMA  table_option*  RR_BRACKET table_option  COMMA  table_option*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableOptions : AstRule
     {
         
+        public AstTableOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12186,13 +15184,23 @@ namespace Bb.Asts
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableOption : AstRule
     {
         
+        public AstTableOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12208,13 +15216,23 @@ namespace Bb.Asts
     /// 	 | CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDistribution : AstRule
     {
         
+        public AstDistribution(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDistribution(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDistribution(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12236,6 +15254,20 @@ namespace Bb.Asts
         
         private AstCreateTableIndexOption _createTableIndexOption;
         
+        public AstCreateTableIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateTableIndexOption>())
+                {
+                    this._createTableIndexOption = ((AstCreateTableIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateTableIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12245,7 +15277,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCreateTableIndexOption>())
                 {
-                    this.CreateTableIndexOption = ((AstCreateTableIndexOption)(enumerator.Current));
+                    this._createTableIndexOption = ((AstCreateTableIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -12255,10 +15287,6 @@ namespace Bb.Asts
             get
             {
                 return this._createTableIndexOption;
-            }
-            set
-            {
-                this._createTableIndexOption = value;
             }
         }
         
@@ -12282,13 +15310,23 @@ namespace Bb.Asts
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateTableIndexOption : AstRule
     {
         
+        public AstCreateTableIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateTableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateTableIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12314,6 +15352,28 @@ namespace Bb.Asts
         
         private AstSelectStatementStandalone _selectStatementStandalone;
         
+        public AstCreateView(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleName>())
+                {
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstViewAttributes>())
+                {
+                    this._viewAttributes = ((AstViewAttributes)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSelectStatementStandalone>())
+                {
+                    this._selectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateView(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12323,15 +15383,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleName>())
                 {
-                    this.SimpleName = ((AstSimpleName)(enumerator.Current));
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstViewAttributes>())
                 {
-                    this.ViewAttributes = ((AstViewAttributes)(enumerator.Current));
+                    this._viewAttributes = ((AstViewAttributes)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSelectStatementStandalone>())
                 {
-                    this.SelectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
+                    this._selectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
                 }
             }
         }
@@ -12342,10 +15402,6 @@ namespace Bb.Asts
             {
                 return this._simpleName;
             }
-            set
-            {
-                this._simpleName = value;
-            }
         }
         
         public virtual AstViewAttributes ViewAttributes
@@ -12354,10 +15410,6 @@ namespace Bb.Asts
             {
                 return this._viewAttributes;
             }
-            set
-            {
-                this._viewAttributes = value;
-            }
         }
         
         public virtual AstSelectStatementStandalone SelectStatementStandalone
@@ -12365,10 +15417,6 @@ namespace Bb.Asts
             get
             {
                 return this._selectStatementStandalone;
-            }
-            set
-            {
-                this._selectStatementStandalone = value;
             }
         }
         
@@ -12383,13 +15431,23 @@ namespace Bb.Asts
     /// 	 : WITH  view_attribute  COMMA  view_attribute*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstViewAttributes : AstRule
     {
         
+        public AstViewAttributes(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstViewAttributes(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstViewAttributes(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12408,11 +15466,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstViewAttribute : AstTerminalEnum<AstViewAttributeEnum>
+    public partial class AstViewAttribute : AstTerminal<AstViewAttributeEnum>
     {
         
+        public AstViewAttribute(ITerminalNode t, string value) : 
+                base(t, AstViewAttribute.GetValue(value))
+        {
+        }
+        
+        public AstViewAttribute(ITerminalNode t, AstViewAttributeEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstViewAttribute(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstViewAttribute.GetValue(value))
+        {
+        }
+        
+        public AstViewAttribute(Position p, string value) : 
+                base(p, AstViewAttribute.GetValue(value))
+        {
+        }
+        
+        public AstViewAttribute(Position p, AstViewAttributeEnum value) : 
+                base(p, value)
         {
         }
         
@@ -12421,7 +15499,7 @@ namespace Bb.Asts
             visitor.VisitViewAttribute(this);
         }
         
-        protected override AstViewAttributeEnum GetValue(string value)
+        protected static AstViewAttributeEnum GetValue(string value)
         {
             if ((value == "ENCRYPTION"))
             {
@@ -12451,6 +15529,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstAlterTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12460,7 +15552,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -12470,10 +15562,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -12495,6 +15583,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstIds(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstIds(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12504,7 +15606,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -12514,10 +15616,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -12532,13 +15630,23 @@ namespace Bb.Asts
     /// 	 : PARTITION?  ?  TO    PARTITION  ?  WITH  low_priority_lock_wait?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSwitchPartition : AstRule
     {
         
+        public AstSwitchPartition(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSwitchPartition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSwitchPartition(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12553,13 +15661,23 @@ namespace Bb.Asts
     /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL    MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstLowPriorityLockWait : AstRule
     {
         
+        public AstLowPriorityLockWait(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstLowPriorityLockWait(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstLowPriorityLockWait(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12574,13 +15692,23 @@ namespace Bb.Asts
     /// 	 : ALTER  DATABASE  database_name CURRENT  MODIFY  NAME  EQUAL  database_name COLLATE  collation_name SET  database_optionspec  WITH  termination? add_or_modify_files add_or_modify_filegroups  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterDatabase : AstRule
     {
         
+        public AstAlterDatabase(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12598,13 +15726,23 @@ namespace Bb.Asts
     /// 	 | MODIFY  FILE  filespec
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAddOrModifyFiles : AstRule
     {
         
+        public AstAddOrModifyFiles(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAddOrModifyFiles(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAddOrModifyFiles(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12626,6 +15764,20 @@ namespace Bb.Asts
         
         private AstFilespec _filespec;
         
+        public AstFilespecs(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFilespec>())
+                {
+                    this._filespec = ((AstFilespec)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFilespecs(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12635,7 +15787,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFilespec>())
                 {
-                    this.Filespec = ((AstFilespec)(enumerator.Current));
+                    this._filespec = ((AstFilespec)(enumerator.Current));
                 }
             }
         }
@@ -12645,10 +15797,6 @@ namespace Bb.Asts
             get
             {
                 return this._filespec;
-            }
-            set
-            {
-                this._filespec = value;
             }
         }
         
@@ -12670,6 +15818,20 @@ namespace Bb.Asts
         
         private AstFileGroupName _fileGroupName;
         
+        public AstFilespec(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFileGroupName>())
+                {
+                    this._fileGroupName = ((AstFileGroupName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFilespec(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12679,7 +15841,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFileGroupName>())
                 {
-                    this.FileGroupName = ((AstFileGroupName)(enumerator.Current));
+                    this._fileGroupName = ((AstFileGroupName)(enumerator.Current));
                 }
             }
         }
@@ -12689,10 +15851,6 @@ namespace Bb.Asts
             get
             {
                 return this._fileGroupName;
-            }
-            set
-            {
-                this._fileGroupName = value;
             }
         }
         
@@ -12709,13 +15867,23 @@ namespace Bb.Asts
     /// 	 | MODIFY  FILEGROUP  file_group_name  filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAddOrModifyFilegroups : AstRule
     {
         
+        public AstAddOrModifyFilegroups(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAddOrModifyFilegroups(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAddOrModifyFilegroups(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12735,11 +15903,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstFilegroupUpdatabilityOption : AstTerminalEnum<AstFilegroupUpdatabilityOptionEnum>
+    public partial class AstFilegroupUpdatabilityOption : AstTerminal<AstFilegroupUpdatabilityOptionEnum>
     {
         
+        public AstFilegroupUpdatabilityOption(ITerminalNode t, string value) : 
+                base(t, AstFilegroupUpdatabilityOption.GetValue(value))
+        {
+        }
+        
+        public AstFilegroupUpdatabilityOption(ITerminalNode t, AstFilegroupUpdatabilityOptionEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstFilegroupUpdatabilityOption(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstFilegroupUpdatabilityOption.GetValue(value))
+        {
+        }
+        
+        public AstFilegroupUpdatabilityOption(Position p, string value) : 
+                base(p, AstFilegroupUpdatabilityOption.GetValue(value))
+        {
+        }
+        
+        public AstFilegroupUpdatabilityOption(Position p, AstFilegroupUpdatabilityOptionEnum value) : 
+                base(p, value)
         {
         }
         
@@ -12748,7 +15936,7 @@ namespace Bb.Asts
             visitor.VisitFilegroupUpdatabilityOption(this);
         }
         
-        protected override AstFilegroupUpdatabilityOptionEnum GetValue(string value)
+        protected static AstFilegroupUpdatabilityOptionEnum GetValue(string value)
         {
             if ((value == "READONLY"))
             {
@@ -12796,13 +15984,23 @@ namespace Bb.Asts
     /// 	 | termination
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDatabaseOptionspec : AstRule
     {
         
+        public AstDatabaseOptionspec(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDatabaseOptionspec(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDatabaseOptionspec(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12822,13 +16020,23 @@ namespace Bb.Asts
     /// 	 | AUTO_UPDATE_STATISTICS_ASYNC  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAutoOption : AstRule
     {
         
+        public AstAutoOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAutoOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAutoOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12843,13 +16051,23 @@ namespace Bb.Asts
     /// 	 : CHANGE_TRACKING  EQUAL  OFF ON  change_tracking_option_list  change_tracking_option_lists*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstChangeTrackingOption : AstRule
     {
         
+        public AstChangeTrackingOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstChangeTrackingOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstChangeTrackingOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12871,6 +16089,20 @@ namespace Bb.Asts
         
         private AstChangeTrackingOptionList _changeTrackingOptionList;
         
+        public AstChangeTrackingOptionLists(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstChangeTrackingOptionList>())
+                {
+                    this._changeTrackingOptionList = ((AstChangeTrackingOptionList)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstChangeTrackingOptionLists(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -12880,7 +16112,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstChangeTrackingOptionList>())
                 {
-                    this.ChangeTrackingOptionList = ((AstChangeTrackingOptionList)(enumerator.Current));
+                    this._changeTrackingOptionList = ((AstChangeTrackingOptionList)(enumerator.Current));
                 }
             }
         }
@@ -12890,10 +16122,6 @@ namespace Bb.Asts
             get
             {
                 return this._changeTrackingOptionList;
-            }
-            set
-            {
-                this._changeTrackingOptionList = value;
             }
         }
         
@@ -12909,13 +16137,23 @@ namespace Bb.Asts
     /// 	 | CHANGE_RETENTION  EQUAL  DAYS HOURS MINUTES
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstChangeTrackingOptionList : AstRule
     {
         
+        public AstChangeTrackingOptionList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstChangeTrackingOptionList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstChangeTrackingOptionList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12930,13 +16168,23 @@ namespace Bb.Asts
     /// 	 : CONTAINMENT  EQUAL  NONE PARTIAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstContainmentOption : AstRule
     {
         
+        public AstContainmentOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstContainmentOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstContainmentOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12952,13 +16200,23 @@ namespace Bb.Asts
     /// 	 | CURSOR_DEFAULT  local_global
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCursorOption : AstRule
     {
         
+        public AstCursorOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCursorOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCursorOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -12976,11 +16234,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstLocalGlobal : AstTerminalEnum<AstLocalGlobalEnum>
+    public partial class AstLocalGlobal : AstTerminal<AstLocalGlobalEnum>
     {
         
+        public AstLocalGlobal(ITerminalNode t, string value) : 
+                base(t, AstLocalGlobal.GetValue(value))
+        {
+        }
+        
+        public AstLocalGlobal(ITerminalNode t, AstLocalGlobalEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstLocalGlobal(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstLocalGlobal.GetValue(value))
+        {
+        }
+        
+        public AstLocalGlobal(Position p, string value) : 
+                base(p, AstLocalGlobal.GetValue(value))
+        {
+        }
+        
+        public AstLocalGlobal(Position p, AstLocalGlobalEnum value) : 
+                base(p, value)
         {
         }
         
@@ -12989,7 +16267,7 @@ namespace Bb.Asts
             visitor.VisitLocalGlobal(this);
         }
         
-        protected override AstLocalGlobalEnum GetValue(string value)
+        protected static AstLocalGlobalEnum GetValue(string value)
         {
             if ((value == "LOCAL"))
             {
@@ -13015,6 +16293,20 @@ namespace Bb.Asts
         
         private AstEndpointName _endpointName;
         
+        public AstAlterEndpoint(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEndpointName>())
+                {
+                    this._endpointName = ((AstEndpointName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterEndpoint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13024,7 +16316,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstEndpointName>())
                 {
-                    this.EndpointName = ((AstEndpointName)(enumerator.Current));
+                    this._endpointName = ((AstEndpointName)(enumerator.Current));
                 }
             }
         }
@@ -13034,10 +16326,6 @@ namespace Bb.Asts
             get
             {
                 return this._endpointName;
-            }
-            set
-            {
-                this._endpointName = value;
             }
         }
         
@@ -13053,13 +16341,23 @@ namespace Bb.Asts
     /// 	 | mirroring_witness  witness_option
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstMirroringSetOption : AstRule
     {
         
+        public AstMirroringSetOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstMirroringSetOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstMirroringSetOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13074,13 +16372,23 @@ namespace Bb.Asts
     /// 	 : PARTNER
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstMirroringPartner : AstRule
+    public partial class AstMirroringPartner : AstTerminal<string>
     {
         
-        public AstMirroringPartner(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstMirroringPartner(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMirroringPartner(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMirroringPartner(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -13095,13 +16403,23 @@ namespace Bb.Asts
     /// 	 : WITNESS
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstMirroringWitness : AstRule
+    public partial class AstMirroringWitness : AstTerminal<string>
     {
         
-        public AstMirroringWitness(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstMirroringWitness(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMirroringWitness(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMirroringWitness(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -13116,13 +16434,23 @@ namespace Bb.Asts
     /// 	 : EQUAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstWitnessPartnerEqual : AstRule
+    public partial class AstWitnessPartnerEqual : AstTerminal<string>
     {
         
-        public AstWitnessPartnerEqual(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstWitnessPartnerEqual(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWitnessPartnerEqual(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstWitnessPartnerEqual(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -13144,13 +16472,23 @@ namespace Bb.Asts
     /// 	 | TIMEOUT  DECIMAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPartnerOption : AstRule
     {
         
+        public AstPartnerOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPartnerOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPartnerOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13166,13 +16504,23 @@ namespace Bb.Asts
     /// 	 | OFF
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWitnessOption : AstRule
     {
         
+        public AstWitnessOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWitnessOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWitnessOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13200,6 +16548,32 @@ namespace Bb.Asts
         
         private AstPortNumber _portNumber;
         
+        public AstPartnerServer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartnerServerTcpPrefix>())
+                {
+                    this._partnerServerTcpPrefix = ((AstPartnerServerTcpPrefix)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstHost>())
+                {
+                    this._host = ((AstHost)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstMirroringHostPortSeperator>())
+                {
+                    this._mirroringHostPortSeperator = ((AstMirroringHostPortSeperator)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstPortNumber>())
+                {
+                    this._portNumber = ((AstPortNumber)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPartnerServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13209,19 +16583,19 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPartnerServerTcpPrefix>())
                 {
-                    this.PartnerServerTcpPrefix = ((AstPartnerServerTcpPrefix)(enumerator.Current));
+                    this._partnerServerTcpPrefix = ((AstPartnerServerTcpPrefix)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstHost>())
                 {
-                    this.Host = ((AstHost)(enumerator.Current));
+                    this._host = ((AstHost)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstMirroringHostPortSeperator>())
                 {
-                    this.MirroringHostPortSeperator = ((AstMirroringHostPortSeperator)(enumerator.Current));
+                    this._mirroringHostPortSeperator = ((AstMirroringHostPortSeperator)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstPortNumber>())
                 {
-                    this.PortNumber = ((AstPortNumber)(enumerator.Current));
+                    this._portNumber = ((AstPortNumber)(enumerator.Current));
                 }
             }
         }
@@ -13232,10 +16606,6 @@ namespace Bb.Asts
             {
                 return this._partnerServerTcpPrefix;
             }
-            set
-            {
-                this._partnerServerTcpPrefix = value;
-            }
         }
         
         public virtual AstHost Host
@@ -13243,10 +16613,6 @@ namespace Bb.Asts
             get
             {
                 return this._host;
-            }
-            set
-            {
-                this._host = value;
             }
         }
         
@@ -13256,10 +16622,6 @@ namespace Bb.Asts
             {
                 return this._mirroringHostPortSeperator;
             }
-            set
-            {
-                this._mirroringHostPortSeperator = value;
-            }
         }
         
         public virtual AstPortNumber PortNumber
@@ -13267,10 +16629,6 @@ namespace Bb.Asts
             get
             {
                 return this._portNumber;
-            }
-            set
-            {
-                this._portNumber = value;
             }
         }
         
@@ -13285,13 +16643,23 @@ namespace Bb.Asts
     /// 	 : COLON
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstMirroringHostPortSeperator : AstRule
+    public partial class AstMirroringHostPortSeperator : AstTerminal<string>
     {
         
-        public AstMirroringHostPortSeperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstMirroringHostPortSeperator(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMirroringHostPortSeperator(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMirroringHostPortSeperator(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -13306,13 +16674,23 @@ namespace Bb.Asts
     /// 	 : TCP  COLON  DOUBLE_FORWARD_SLASH
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPartnerServerTcpPrefix : AstRule
     {
         
+        public AstPartnerServerTcpPrefix(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPartnerServerTcpPrefix(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPartnerServerTcpPrefix(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13327,13 +16705,23 @@ namespace Bb.Asts
     /// 	 : 
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPortNumber : AstRule
     {
         
+        public AstPortNumber(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPortNumber(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPortNumber(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13349,13 +16737,23 @@ namespace Bb.Asts
     /// 	 | id_  DOT id_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstHost : AstRule
     {
         
+        public AstHost(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstHost(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstHost(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13377,6 +16775,20 @@ namespace Bb.Asts
         
         private AstOnOff _onOff;
         
+        public AstDateCorrelationOptimizationOption(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOnOff>())
+                {
+                    this._onOff = ((AstOnOff)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDateCorrelationOptimizationOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13386,7 +16798,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOnOff>())
                 {
-                    this.OnOff = ((AstOnOff)(enumerator.Current));
+                    this._onOff = ((AstOnOff)(enumerator.Current));
                 }
             }
         }
@@ -13396,10 +16808,6 @@ namespace Bb.Asts
             get
             {
                 return this._onOff;
-            }
-            set
-            {
-                this._onOff = value;
             }
         }
         
@@ -13421,6 +16829,20 @@ namespace Bb.Asts
         
         private AstOnOff _onOff;
         
+        public AstDbEncryptionOption(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOnOff>())
+                {
+                    this._onOff = ((AstOnOff)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDbEncryptionOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13430,7 +16852,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOnOff>())
                 {
-                    this.OnOff = ((AstOnOff)(enumerator.Current));
+                    this._onOff = ((AstOnOff)(enumerator.Current));
                 }
             }
         }
@@ -13440,10 +16862,6 @@ namespace Bb.Asts
             get
             {
                 return this._onOff;
-            }
-            set
-            {
-                this._onOff = value;
             }
         }
         
@@ -13460,11 +16878,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstDbStateOption : AstTerminalEnum<AstDbStateOptionEnum>
+    public partial class AstDbStateOption : AstTerminal<AstDbStateOptionEnum>
     {
         
+        public AstDbStateOption(ITerminalNode t, string value) : 
+                base(t, AstDbStateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbStateOption(ITerminalNode t, AstDbStateOptionEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstDbStateOption(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstDbStateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbStateOption(Position p, string value) : 
+                base(p, AstDbStateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbStateOption(Position p, AstDbStateOptionEnum value) : 
+                base(p, value)
         {
         }
         
@@ -13473,7 +16911,7 @@ namespace Bb.Asts
             visitor.VisitDbStateOption(this);
         }
         
-        protected override AstDbStateOptionEnum GetValue(string value)
+        protected static AstDbStateOptionEnum GetValue(string value)
         {
             if ((value == "ONLINE"))
             {
@@ -13499,11 +16937,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstDbUpdateOption : AstTerminalEnum<AstDbUpdateOptionEnum>
+    public partial class AstDbUpdateOption : AstTerminal<AstDbUpdateOptionEnum>
     {
         
+        public AstDbUpdateOption(ITerminalNode t, string value) : 
+                base(t, AstDbUpdateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUpdateOption(ITerminalNode t, AstDbUpdateOptionEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstDbUpdateOption(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstDbUpdateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUpdateOption(Position p, string value) : 
+                base(p, AstDbUpdateOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUpdateOption(Position p, AstDbUpdateOptionEnum value) : 
+                base(p, value)
         {
         }
         
@@ -13512,7 +16970,7 @@ namespace Bb.Asts
             visitor.VisitDbUpdateOption(this);
         }
         
-        protected override AstDbUpdateOptionEnum GetValue(string value)
+        protected static AstDbUpdateOptionEnum GetValue(string value)
         {
             if ((value == "READ_ONLY"))
             {
@@ -13535,11 +16993,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstDbUserAccessOption : AstTerminalEnum<AstDbUserAccessOptionEnum>
+    public partial class AstDbUserAccessOption : AstTerminal<AstDbUserAccessOptionEnum>
     {
         
+        public AstDbUserAccessOption(ITerminalNode t, string value) : 
+                base(t, AstDbUserAccessOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUserAccessOption(ITerminalNode t, AstDbUserAccessOptionEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstDbUserAccessOption(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstDbUserAccessOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUserAccessOption(Position p, string value) : 
+                base(p, AstDbUserAccessOption.GetValue(value))
+        {
+        }
+        
+        public AstDbUserAccessOption(Position p, AstDbUserAccessOptionEnum value) : 
+                base(p, value)
         {
         }
         
@@ -13548,7 +17026,7 @@ namespace Bb.Asts
             visitor.VisitDbUserAccessOption(this);
         }
         
-        protected override AstDbUserAccessOptionEnum GetValue(string value)
+        protected static AstDbUserAccessOptionEnum GetValue(string value)
         {
             if ((value == "SINGLE_USER"))
             {
@@ -13571,13 +17049,23 @@ namespace Bb.Asts
     /// 	 : DELAYED_DURABILITY  EQUAL  DISABLED ALLOWED FORCED
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDelayedDurabilityOption : AstRule
     {
         
+        public AstDelayedDurabilityOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDelayedDurabilityOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDelayedDurabilityOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13598,13 +17086,23 @@ namespace Bb.Asts
     /// 	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  DECIMAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExternalAccessOption : AstRule
     {
         
+        public AstExternalAccessOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExternalAccessOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExternalAccessOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13620,13 +17118,23 @@ namespace Bb.Asts
     /// 	 | STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstIdOrString : AstRule
     {
         
+        public AstIdOrString(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstIdOrString(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstIdOrString(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13641,13 +17149,23 @@ namespace Bb.Asts
     /// 	 : HADR  AVAILABILITY  GROUP  EQUAL  group_name OFF SUSPEND RESUME
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstHadrOptions : AstRule
     {
         
+        public AstHadrOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstHadrOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstHadrOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13669,6 +17187,20 @@ namespace Bb.Asts
         
         private AstOnOff _onOff;
         
+        public AstMixedPageAllocationOption(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOnOff>())
+                {
+                    this._onOff = ((AstOnOff)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMixedPageAllocationOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13678,7 +17210,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOnOff>())
                 {
-                    this.OnOff = ((AstOnOff)(enumerator.Current));
+                    this._onOff = ((AstOnOff)(enumerator.Current));
                 }
             }
         }
@@ -13688,10 +17220,6 @@ namespace Bb.Asts
             get
             {
                 return this._onOff;
-            }
-            set
-            {
-                this._onOff = value;
             }
         }
         
@@ -13706,13 +17234,23 @@ namespace Bb.Asts
     /// 	 : PARAMETERIZATION  SIMPLE FORCED
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstParameterizationOption : AstRule
     {
         
+        public AstParameterizationOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstParameterizationOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstParameterizationOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13730,13 +17268,23 @@ namespace Bb.Asts
     /// 	 | PAGE_VERIFY  CHECKSUM TORN_PAGE_DETECTION NONE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRecoveryOption : AstRule
     {
         
+        public AstRecoveryOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRecoveryOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRecoveryOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13755,13 +17303,23 @@ namespace Bb.Asts
     /// 	 | HONOR_BROKER_PRIORITY  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstServiceBrokerOption : AstRule
     {
         
+        public AstServiceBrokerOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstServiceBrokerOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstServiceBrokerOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13778,13 +17336,23 @@ namespace Bb.Asts
     /// 	 | 
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSnapshotOption : AstRule
     {
         
+        public AstSnapshotOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSnapshotOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSnapshotOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13808,13 +17376,23 @@ namespace Bb.Asts
     /// 	 | RECURSIVE_TRIGGERS  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSqlOption : AstRule
     {
         
+        public AstSqlOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSqlOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSqlOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13829,13 +17407,23 @@ namespace Bb.Asts
     /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  SECONDS MINUTES
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTargetRecoveryTimeOption : AstRule
     {
         
+        public AstTargetRecoveryTimeOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTargetRecoveryTimeOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTargetRecoveryTimeOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13852,13 +17440,23 @@ namespace Bb.Asts
     /// 	 | NO_WAIT
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTermination : AstRule
     {
         
+        public AstTermination(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTermination(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTermination(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13873,13 +17471,23 @@ namespace Bb.Asts
     /// 	 : DROP  INDEX  IF  EXISTS?  drop_relational_or_xml_or_spatial_indexs drop_backward_compatible_indexs  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropIndex : AstRule
     {
         
+        public AstDropIndex(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropIndex(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -13901,6 +17509,20 @@ namespace Bb.Asts
         
         private AstDropRelationalOrXmlOrSpatialIndex _dropRelationalOrXmlOrSpatialIndex;
         
+        public AstDropRelationalOrXmlOrSpatialIndexs(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDropRelationalOrXmlOrSpatialIndex>())
+                {
+                    this._dropRelationalOrXmlOrSpatialIndex = ((AstDropRelationalOrXmlOrSpatialIndex)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropRelationalOrXmlOrSpatialIndexs(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13910,7 +17532,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDropRelationalOrXmlOrSpatialIndex>())
                 {
-                    this.DropRelationalOrXmlOrSpatialIndex = ((AstDropRelationalOrXmlOrSpatialIndex)(enumerator.Current));
+                    this._dropRelationalOrXmlOrSpatialIndex = ((AstDropRelationalOrXmlOrSpatialIndex)(enumerator.Current));
                 }
             }
         }
@@ -13920,10 +17542,6 @@ namespace Bb.Asts
             get
             {
                 return this._dropRelationalOrXmlOrSpatialIndex;
-            }
-            set
-            {
-                this._dropRelationalOrXmlOrSpatialIndex = value;
             }
         }
         
@@ -13945,6 +17563,20 @@ namespace Bb.Asts
         
         private AstDropBackwardCompatibleIndex _dropBackwardCompatibleIndex;
         
+        public AstDropBackwardCompatibleIndexs(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDropBackwardCompatibleIndex>())
+                {
+                    this._dropBackwardCompatibleIndex = ((AstDropBackwardCompatibleIndex)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropBackwardCompatibleIndexs(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -13954,7 +17586,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDropBackwardCompatibleIndex>())
                 {
-                    this.DropBackwardCompatibleIndex = ((AstDropBackwardCompatibleIndex)(enumerator.Current));
+                    this._dropBackwardCompatibleIndex = ((AstDropBackwardCompatibleIndex)(enumerator.Current));
                 }
             }
         }
@@ -13964,10 +17596,6 @@ namespace Bb.Asts
             get
             {
                 return this._dropBackwardCompatibleIndex;
-            }
-            set
-            {
-                this._dropBackwardCompatibleIndex = value;
             }
         }
         
@@ -13991,6 +17619,24 @@ namespace Bb.Asts
         
         private AstFullTableName _fullTableName;
         
+        public AstDropRelationalOrXmlOrSpatialIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIndexName>())
+                {
+                    this._indexName = ((AstIndexName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFullTableName>())
+                {
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropRelationalOrXmlOrSpatialIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14000,11 +17646,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstIndexName>())
                 {
-                    this.IndexName = ((AstIndexName)(enumerator.Current));
+                    this._indexName = ((AstIndexName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFullTableName>())
                 {
-                    this.FullTableName = ((AstFullTableName)(enumerator.Current));
+                    this._fullTableName = ((AstFullTableName)(enumerator.Current));
                 }
             }
         }
@@ -14015,10 +17661,6 @@ namespace Bb.Asts
             {
                 return this._indexName;
             }
-            set
-            {
-                this._indexName = value;
-            }
         }
         
         public virtual AstFullTableName FullTableName
@@ -14026,10 +17668,6 @@ namespace Bb.Asts
             get
             {
                 return this._fullTableName;
-            }
-            set
-            {
-                this._fullTableName = value;
             }
         }
         
@@ -14053,6 +17691,24 @@ namespace Bb.Asts
         
         private AstIndexName _indexName;
         
+        public AstDropBackwardCompatibleIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableOrViewName>())
+                {
+                    this._tableOrViewName = ((AstTableOrViewName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstIndexName>())
+                {
+                    this._indexName = ((AstIndexName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropBackwardCompatibleIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14062,11 +17718,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableOrViewName>())
                 {
-                    this.TableOrViewName = ((AstTableOrViewName)(enumerator.Current));
+                    this._tableOrViewName = ((AstTableOrViewName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstIndexName>())
                 {
-                    this.IndexName = ((AstIndexName)(enumerator.Current));
+                    this._indexName = ((AstIndexName)(enumerator.Current));
                 }
             }
         }
@@ -14077,10 +17733,6 @@ namespace Bb.Asts
             {
                 return this._tableOrViewName;
             }
-            set
-            {
-                this._tableOrViewName = value;
-            }
         }
         
         public virtual AstIndexName IndexName
@@ -14088,10 +17740,6 @@ namespace Bb.Asts
             get
             {
                 return this._indexName;
-            }
-            set
-            {
-                this._indexName = value;
             }
         }
         
@@ -14113,6 +17761,20 @@ namespace Bb.Asts
         
         private AstFuncProcNameSchemas _funcProcNameSchemas;
         
+        public AstDropProcedure(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFuncProcNameSchemas>())
+                {
+                    this._funcProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropProcedure(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14122,7 +17784,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFuncProcNameSchemas>())
                 {
-                    this.FuncProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
+                    this._funcProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
                 }
             }
         }
@@ -14132,10 +17794,6 @@ namespace Bb.Asts
             get
             {
                 return this._funcProcNameSchemas;
-            }
-            set
-            {
-                this._funcProcNameSchemas = value;
             }
         }
         
@@ -14157,6 +17815,20 @@ namespace Bb.Asts
         
         private AstFuncProcNameSchema _funcProcNameSchema;
         
+        public AstFuncProcNameSchemas(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFuncProcNameSchema>())
+                {
+                    this._funcProcNameSchema = ((AstFuncProcNameSchema)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFuncProcNameSchemas(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14166,7 +17838,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFuncProcNameSchema>())
                 {
-                    this.FuncProcNameSchema = ((AstFuncProcNameSchema)(enumerator.Current));
+                    this._funcProcNameSchema = ((AstFuncProcNameSchema)(enumerator.Current));
                 }
             }
         }
@@ -14176,10 +17848,6 @@ namespace Bb.Asts
             get
             {
                 return this._funcProcNameSchema;
-            }
-            set
-            {
-                this._funcProcNameSchema = value;
             }
         }
         
@@ -14201,6 +17869,20 @@ namespace Bb.Asts
         
         private AstSimpleNames _simpleNames;
         
+        public AstDropDmlTrigger(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleNames>())
+                {
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropDmlTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14210,7 +17892,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleNames>())
                 {
-                    this.SimpleNames = ((AstSimpleNames)(enumerator.Current));
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
                 }
             }
         }
@@ -14220,10 +17902,6 @@ namespace Bb.Asts
             get
             {
                 return this._simpleNames;
-            }
-            set
-            {
-                this._simpleNames = value;
             }
         }
         
@@ -14245,6 +17923,20 @@ namespace Bb.Asts
         
         private AstSimpleNames _simpleNames;
         
+        public AstDropDdlTrigger(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleNames>())
+                {
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropDdlTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14254,7 +17946,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleNames>())
                 {
-                    this.SimpleNames = ((AstSimpleNames)(enumerator.Current));
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
                 }
             }
         }
@@ -14264,10 +17956,6 @@ namespace Bb.Asts
             get
             {
                 return this._simpleNames;
-            }
-            set
-            {
-                this._simpleNames = value;
             }
         }
         
@@ -14289,6 +17977,20 @@ namespace Bb.Asts
         
         private AstSimpleName _simpleName;
         
+        public AstSimpleNames(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleName>())
+                {
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSimpleNames(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14298,7 +18000,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleName>())
                 {
-                    this.SimpleName = ((AstSimpleName)(enumerator.Current));
+                    this._simpleName = ((AstSimpleName)(enumerator.Current));
                 }
             }
         }
@@ -14308,10 +18010,6 @@ namespace Bb.Asts
             get
             {
                 return this._simpleName;
-            }
-            set
-            {
-                this._simpleName = value;
             }
         }
         
@@ -14333,6 +18031,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstTableNames(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableNames(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14342,7 +18054,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -14352,10 +18064,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -14377,6 +18085,20 @@ namespace Bb.Asts
         
         private AstFuncProcNameSchemas _funcProcNameSchemas;
         
+        public AstDropFunction(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFuncProcNameSchemas>())
+                {
+                    this._funcProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14386,7 +18108,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFuncProcNameSchemas>())
                 {
-                    this.FuncProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
+                    this._funcProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
                 }
             }
         }
@@ -14396,10 +18118,6 @@ namespace Bb.Asts
             get
             {
                 return this._funcProcNameSchemas;
-            }
-            set
-            {
-                this._funcProcNameSchemas = value;
             }
         }
         
@@ -14414,13 +18132,23 @@ namespace Bb.Asts
     /// 	 : DROP  STATISTICS  COMMA?  table_name  DOT?  +  SEMI
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropStatistics : AstRule
     {
         
+        public AstDropStatistics(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropStatistics(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropStatistics(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14442,6 +18170,20 @@ namespace Bb.Asts
         
         private AstTableNames _tableNames;
         
+        public AstDropTable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableNames>())
+                {
+                    this._tableNames = ((AstTableNames)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14451,7 +18193,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableNames>())
                 {
-                    this.TableNames = ((AstTableNames)(enumerator.Current));
+                    this._tableNames = ((AstTableNames)(enumerator.Current));
                 }
             }
         }
@@ -14461,10 +18203,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableNames;
-            }
-            set
-            {
-                this._tableNames = value;
             }
         }
         
@@ -14486,6 +18224,20 @@ namespace Bb.Asts
         
         private AstSimpleNames _simpleNames;
         
+        public AstDropView(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleNames>())
+                {
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDropView(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14495,7 +18247,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleNames>())
                 {
-                    this.SimpleNames = ((AstSimpleNames)(enumerator.Current));
+                    this._simpleNames = ((AstSimpleNames)(enumerator.Current));
                 }
             }
         }
@@ -14505,10 +18257,6 @@ namespace Bb.Asts
             get
             {
                 return this._simpleNames;
-            }
-            set
-            {
-                this._simpleNames = value;
             }
         }
         
@@ -14523,13 +18271,23 @@ namespace Bb.Asts
     /// 	 : CREATE  TYPE    FROM  data_type  default_value?  AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateType : AstRule
     {
         
+        public AstCreateType(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateType(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14544,13 +18302,23 @@ namespace Bb.Asts
     /// 	 : DROP  TYPE  IF  EXISTS?  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDropType : AstRule
     {
         
+        public AstDropType(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDropType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDropType(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14572,6 +18340,20 @@ namespace Bb.Asts
         
         private AstLinkedServer _linkedServer;
         
+        public AstOpenquery(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstLinkedServer>())
+                {
+                    this._linkedServer = ((AstLinkedServer)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOpenquery(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14581,7 +18363,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstLinkedServer>())
                 {
-                    this.LinkedServer = ((AstLinkedServer)(enumerator.Current));
+                    this._linkedServer = ((AstLinkedServer)(enumerator.Current));
                 }
             }
         }
@@ -14591,10 +18373,6 @@ namespace Bb.Asts
             get
             {
                 return this._linkedServer;
-            }
-            set
-            {
-                this._linkedServer = value;
             }
         }
         
@@ -14609,13 +18387,23 @@ namespace Bb.Asts
     /// 	 : OPENDATASOURCE  LR_BRACKET    COMMA    RR_BRACKET  DOT  database_name?  DOT  schema_name?  DOT  tableName
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOpendatasource : AstRule
     {
         
+        public AstOpendatasource(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOpendatasource(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOpendatasource(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14633,13 +18421,23 @@ namespace Bb.Asts
     /// 	 | WITH  XMLNAMESPACES  LR_BRACKET    RR_BRACKET  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDeclareStatement : AstRule
     {
         
+        public AstDeclareStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDeclareStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDeclareStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14661,6 +18459,20 @@ namespace Bb.Asts
         
         private AstDeclareLocal _declareLocal;
         
+        public AstDeclareLocals(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDeclareLocal>())
+                {
+                    this._declareLocal = ((AstDeclareLocal)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeclareLocals(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14670,7 +18482,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDeclareLocal>())
                 {
-                    this.DeclareLocal = ((AstDeclareLocal)(enumerator.Current));
+                    this._declareLocal = ((AstDeclareLocal)(enumerator.Current));
                 }
             }
         }
@@ -14680,10 +18492,6 @@ namespace Bb.Asts
             get
             {
                 return this._declareLocal;
-            }
-            set
-            {
-                this._declareLocal = value;
             }
         }
         
@@ -14705,6 +18513,20 @@ namespace Bb.Asts
         
         private AstXmlDeclaration _xmlDeclaration;
         
+        public AstXmlDeclarations(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstXmlDeclaration>())
+                {
+                    this._xmlDeclaration = ((AstXmlDeclaration)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstXmlDeclarations(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14714,7 +18536,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstXmlDeclaration>())
                 {
-                    this.XmlDeclaration = ((AstXmlDeclaration)(enumerator.Current));
+                    this._xmlDeclaration = ((AstXmlDeclaration)(enumerator.Current));
                 }
             }
         }
@@ -14724,10 +18546,6 @@ namespace Bb.Asts
             get
             {
                 return this._xmlDeclaration;
-            }
-            set
-            {
-                this._xmlDeclaration = value;
             }
         }
         
@@ -14743,13 +18561,23 @@ namespace Bb.Asts
     /// 	 | DEFAULT  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstXmlDeclaration : AstRule
     {
         
+        public AstXmlDeclaration(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstXmlDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstXmlDeclaration(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14768,13 +18596,23 @@ namespace Bb.Asts
     /// 	 | OPEN  GLOBAL?  cursor_name  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCursorStatement : AstRule
     {
         
+        public AstCursorStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCursorStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCursorStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14789,13 +18627,23 @@ namespace Bb.Asts
     /// 	 : BACKUP  DATABASE  database_name  READ_WRITE_FILEGROUPS  COMMA?  FILE FILEGROUP  EQUAL  *?  COMMA?  FILE FILEGROUP  EQUAL  *  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBackupDatabase : AstRule
     {
         
+        public AstBackupDatabase(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBackupDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBackupDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14810,13 +18658,23 @@ namespace Bb.Asts
     /// 	 : BACKUP  LOG  database_name  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  NORECOVERY STANDBY  EQUAL   COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBackupLog : AstRule
     {
         
+        public AstBackupLog(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBackupLog(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBackupLog(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14838,6 +18696,20 @@ namespace Bb.Asts
         
         private AstCertificateName _certificateName;
         
+        public AstBackupCertificate(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCertificateName>())
+                {
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBackupCertificate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -14847,7 +18719,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCertificateName>())
                 {
-                    this.CertificateName = ((AstCertificateName)(enumerator.Current));
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
                 }
             }
         }
@@ -14857,10 +18729,6 @@ namespace Bb.Asts
             get
             {
                 return this._certificateName;
-            }
-            set
-            {
-                this._certificateName = value;
             }
         }
         
@@ -14875,13 +18743,23 @@ namespace Bb.Asts
     /// 	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBackupMasterKey : AstRule
     {
         
+        public AstBackupMasterKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBackupMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBackupMasterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14896,13 +18774,23 @@ namespace Bb.Asts
     /// 	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBackupServiceMasterKey : AstRule
     {
         
+        public AstBackupServiceMasterKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBackupServiceMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBackupServiceMasterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14917,13 +18805,23 @@ namespace Bb.Asts
     /// 	 : KILL  kill_process kill_query_notification kill_stats_job
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstKillStatement : AstRule
     {
         
+        public AstKillStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstKillStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstKillStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14938,13 +18836,23 @@ namespace Bb.Asts
     /// 	 :  UOW  WITH  STATUSONLY?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstKillProcess : AstRule
     {
         
+        public AstKillProcess(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstKillProcess(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstKillProcess(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14959,13 +18867,23 @@ namespace Bb.Asts
     /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  ALL 
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstKillQueryNotification : AstRule
     {
         
+        public AstKillQueryNotification(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstKillQueryNotification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstKillQueryNotification(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -14980,13 +18898,23 @@ namespace Bb.Asts
     /// 	 : STATS  JOB  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstKillStatsJob : AstRule
     {
         
+        public AstKillStatsJob(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstKillStatsJob(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstKillStatsJob(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15008,6 +18936,20 @@ namespace Bb.Asts
         
         private AstExecuteBody _executeBody;
         
+        public AstExecuteStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExecuteBody>())
+                {
+                    this._executeBody = ((AstExecuteBody)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExecuteStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15017,7 +18959,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExecuteBody>())
                 {
-                    this.ExecuteBody = ((AstExecuteBody)(enumerator.Current));
+                    this._executeBody = ((AstExecuteBody)(enumerator.Current));
                 }
             }
         }
@@ -15027,10 +18969,6 @@ namespace Bb.Asts
             get
             {
                 return this._executeBody;
-            }
-            set
-            {
-                this._executeBody = value;
             }
         }
         
@@ -15052,6 +18990,20 @@ namespace Bb.Asts
         
         private AstFuncProcNameServerDatabaseSchema _funcProcNameServerDatabaseSchema;
         
+        public AstExecuteBodyBatch(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFuncProcNameServerDatabaseSchema>())
+                {
+                    this._funcProcNameServerDatabaseSchema = ((AstFuncProcNameServerDatabaseSchema)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExecuteBodyBatch(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15061,7 +19013,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFuncProcNameServerDatabaseSchema>())
                 {
-                    this.FuncProcNameServerDatabaseSchema = ((AstFuncProcNameServerDatabaseSchema)(enumerator.Current));
+                    this._funcProcNameServerDatabaseSchema = ((AstFuncProcNameServerDatabaseSchema)(enumerator.Current));
                 }
             }
         }
@@ -15071,10 +19023,6 @@ namespace Bb.Asts
             get
             {
                 return this._funcProcNameServerDatabaseSchema;
-            }
-            set
-            {
-                this._funcProcNameServerDatabaseSchema = value;
             }
         }
         
@@ -15090,13 +19038,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  AS?  LOGIN USER  EQUAL  STRING?  AT_KEYWORD  linked_server?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteBody : AstRule
     {
         
+        public AstExecuteBody(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteBody(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteBody(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15118,6 +19076,20 @@ namespace Bb.Asts
         
         private AstExecuteVarString _executeVarString;
         
+        public AstExecuteVarStrings(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExecuteVarString>())
+                {
+                    this._executeVarString = ((AstExecuteVarString)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExecuteVarStrings(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15127,7 +19099,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExecuteVarString>())
                 {
-                    this.ExecuteVarString = ((AstExecuteVarString)(enumerator.Current));
+                    this._executeVarString = ((AstExecuteVarString)(enumerator.Current));
                 }
             }
         }
@@ -15137,10 +19109,6 @@ namespace Bb.Asts
             get
             {
                 return this._executeVarString;
-            }
-            set
-            {
-                this._executeVarString = value;
             }
         }
         
@@ -15156,13 +19124,23 @@ namespace Bb.Asts
     /// 	 | execute_statement_arg_nameds
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteStatementArg : AstRule
     {
         
+        public AstExecuteStatementArg(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteStatementArg(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteStatementArg(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15184,6 +19162,20 @@ namespace Bb.Asts
         
         private AstExecuteStatementArgNamed _executeStatementArgNamed;
         
+        public AstExecuteStatementArgNameds(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExecuteStatementArgNamed>())
+                {
+                    this._executeStatementArgNamed = ((AstExecuteStatementArgNamed)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExecuteStatementArgNameds(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15193,7 +19185,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExecuteStatementArgNamed>())
                 {
-                    this.ExecuteStatementArgNamed = ((AstExecuteStatementArgNamed)(enumerator.Current));
+                    this._executeStatementArgNamed = ((AstExecuteStatementArgNamed)(enumerator.Current));
                 }
             }
         }
@@ -15203,10 +19195,6 @@ namespace Bb.Asts
             get
             {
                 return this._executeStatementArgNamed;
-            }
-            set
-            {
-                this._executeStatementArgNamed = value;
             }
         }
         
@@ -15228,6 +19216,20 @@ namespace Bb.Asts
         
         private AstExecuteStatementArg _executeStatementArg;
         
+        public AstExecuteStatementArgs(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExecuteStatementArg>())
+                {
+                    this._executeStatementArg = ((AstExecuteStatementArg)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExecuteStatementArgs(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15237,7 +19239,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExecuteStatementArg>())
                 {
-                    this.ExecuteStatementArg = ((AstExecuteStatementArg)(enumerator.Current));
+                    this._executeStatementArg = ((AstExecuteStatementArg)(enumerator.Current));
                 }
             }
         }
@@ -15247,10 +19249,6 @@ namespace Bb.Asts
             get
             {
                 return this._executeStatementArg;
-            }
-            set
-            {
-                this._executeStatementArg = value;
             }
         }
         
@@ -15265,13 +19263,23 @@ namespace Bb.Asts
     /// 	 :   EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteStatementArgNamed : AstRule
     {
         
+        public AstExecuteStatementArgNamed(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteStatementArgNamed(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteStatementArgNamed(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15286,13 +19294,23 @@ namespace Bb.Asts
     /// 	 : 
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteStatementArgUnnamed : AstRule
     {
         
+        public AstExecuteStatementArgUnnamed(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteStatementArgUnnamed(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteStatementArgUnnamed(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15307,13 +19325,23 @@ namespace Bb.Asts
     /// 	 : constant LOCAL_ID  OUTPUT OUT? id_ DEFAULT NULL_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteParameter : AstRule
     {
         
+        public AstExecuteParameter(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteParameter(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteParameter(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15329,13 +19357,23 @@ namespace Bb.Asts
     /// 	 | STRING  PLUS  LOCAL_ID  PLUS  execute_var_string??
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteVarString : AstRule
     {
         
+        public AstExecuteVarString(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteVarString(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteVarString(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15356,13 +19394,23 @@ namespace Bb.Asts
     /// 	 | create_certificate
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSecurityStatement : AstRule
     {
         
+        public AstSecurityStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSecurityStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSecurityStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15377,13 +19425,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstToPrincipalRincipalIds : AstRule
     {
         
+        public AstToPrincipalRincipalIds(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstToPrincipalRincipalIds(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstToPrincipalRincipalIds(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15400,13 +19458,23 @@ namespace Bb.Asts
     /// 	 | PUBLIC
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPrincipalId : AstRule
     {
         
+        public AstPrincipalId(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPrincipalId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPrincipalId(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15428,6 +19496,20 @@ namespace Bb.Asts
         
         private AstCertificateName _certificateName;
         
+        public AstCreateCertificate(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCertificateName>())
+                {
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateCertificate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15437,7 +19519,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCertificateName>())
                 {
-                    this.CertificateName = ((AstCertificateName)(enumerator.Current));
+                    this._certificateName = ((AstCertificateName)(enumerator.Current));
                 }
             }
         }
@@ -15447,10 +19529,6 @@ namespace Bb.Asts
             get
             {
                 return this._certificateName;
-            }
-            set
-            {
-                this._certificateName = value;
             }
         }
         
@@ -15466,13 +19544,23 @@ namespace Bb.Asts
     /// 	 | EXECUTABLE?  FILE  EQUAL    WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExistingKeys : AstRule
     {
         
+        public AstExistingKeys(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExistingKeys(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExistingKeys(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15487,13 +19575,23 @@ namespace Bb.Asts
     /// 	 : FILE BINARY  EQUAL    COMMA  DECRYPTION ENCRYPTION  BY  PASSWORD  EQUAL  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPrivateKeyOptions : AstRule
     {
         
+        public AstPrivateKeyOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPrivateKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPrivateKeyOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15508,13 +19606,23 @@ namespace Bb.Asts
     /// 	 : ENCRYPTION  BY  PASSWORD  EQUAL  ?  WITH  SUBJECT  EQUAL    COMMA  date_options*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGenerateNewKeys : AstRule
     {
         
+        public AstGenerateNewKeys(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGenerateNewKeys(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGenerateNewKeys(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15529,13 +19637,23 @@ namespace Bb.Asts
     /// 	 : START_DATE EXPIRY_DATE  EQUAL  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDateOptions : AstRule
     {
         
+        public AstDateOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDateOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDateOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15551,13 +19669,23 @@ namespace Bb.Asts
     /// 	 | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOpenKey : AstRule
     {
         
+        public AstOpenKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOpenKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOpenKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15574,13 +19702,23 @@ namespace Bb.Asts
     /// 	 | CLOSE  MASTER  KEY
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCloseKey : AstRule
     {
         
+        public AstCloseKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCloseKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCloseKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15596,13 +19734,23 @@ namespace Bb.Asts
     /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  AUTHORIZATION  user_name?  FROM  PROVIDER  provider_name?  WITH  key_options ENCRYPTION  BY  encryption_mechanism  COMMA?+
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateKey : AstRule
     {
         
+        public AstCreateKey(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateKey(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15621,13 +19769,23 @@ namespace Bb.Asts
     /// 	 | CREATION_DISPOSITION  EQUAL  CREATE_NEW OPEN_EXISTING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstKeyOptions : AstRule
     {
         
+        public AstKeyOptions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstKeyOptions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15653,11 +19811,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstAlgorithm : AstTerminalEnum<AstAlgorithmEnum>
+    public partial class AstAlgorithm : AstTerminal<AstAlgorithmEnum>
     {
         
+        public AstAlgorithm(ITerminalNode t, string value) : 
+                base(t, AstAlgorithm.GetValue(value))
+        {
+        }
+        
+        public AstAlgorithm(ITerminalNode t, AstAlgorithmEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstAlgorithm(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstAlgorithm.GetValue(value))
+        {
+        }
+        
+        public AstAlgorithm(Position p, string value) : 
+                base(p, AstAlgorithm.GetValue(value))
+        {
+        }
+        
+        public AstAlgorithm(Position p, AstAlgorithmEnum value) : 
+                base(p, value)
         {
         }
         
@@ -15666,7 +19844,7 @@ namespace Bb.Asts
             visitor.VisitAlgorithm(this);
         }
         
-        protected override AstAlgorithmEnum GetValue(string value)
+        protected static AstAlgorithmEnum GetValue(string value)
         {
             if ((value == "DES"))
             {
@@ -15720,13 +19898,23 @@ namespace Bb.Asts
     /// 	 | PASSWORD  EQUAL  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEncryptionMechanism : AstRule
     {
         
+        public AstEncryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEncryptionMechanism(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEncryptionMechanism(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15744,13 +19932,23 @@ namespace Bb.Asts
     /// 	 | PASSWORD  EQUAL  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDecryptionMechanism : AstRule
     {
         
+        public AstDecryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDecryptionMechanism(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDecryptionMechanism(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15790,13 +19988,23 @@ namespace Bb.Asts
     /// 	 | VIEW  ANY  DATABASE DEFINITION COLUMN  ENCRYPTION MASTER  KEY  DEFINITION CHANGE  TRACKING DATABASE  STATE DEFINITION SERVER  STATE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGrantPermission : AstRule
     {
         
+        public AstGrantPermission(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGrantPermission(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGrantPermission(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15814,13 +20022,23 @@ namespace Bb.Asts
     /// 	 | set_special
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSetStatement : AstRule
     {
         
+        public AstSetStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSetStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSetStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15843,13 +20061,23 @@ namespace Bb.Asts
     /// 	 | SAVE  TRAN TRANSACTION  id_ LOCAL_ID?  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTransactionStatement : AstRule
     {
         
+        public AstTransactionStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTransactionStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTransactionStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15864,13 +20092,23 @@ namespace Bb.Asts
     /// 	 : GO  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGoStatement : AstRule
     {
         
+        public AstGoStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGoStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGoStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15892,6 +20130,20 @@ namespace Bb.Asts
         
         private AstDatabaseName _databaseName;
         
+        public AstUseStatement(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDatabaseName>())
+                {
+                    this._databaseName = ((AstDatabaseName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUseStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -15901,7 +20153,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDatabaseName>())
                 {
-                    this.DatabaseName = ((AstDatabaseName)(enumerator.Current));
+                    this._databaseName = ((AstDatabaseName)(enumerator.Current));
                 }
             }
         }
@@ -15911,10 +20163,6 @@ namespace Bb.Asts
             get
             {
                 return this._databaseName;
-            }
-            set
-            {
-                this._databaseName = value;
             }
         }
         
@@ -15929,13 +20177,23 @@ namespace Bb.Asts
     /// 	 : SETUSER  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSetuserStatement : AstRule
     {
         
+        public AstSetuserStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSetuserStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSetuserStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15950,13 +20208,23 @@ namespace Bb.Asts
     /// 	 : RECONFIGURE  WITH  OVERRIDE?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstReconfigureStatement : AstRule
     {
         
+        public AstReconfigureStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstReconfigureStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstReconfigureStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15971,13 +20239,23 @@ namespace Bb.Asts
     /// 	 : SHUTDOWN  WITH  NOWAIT?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstShutdownStatement : AstRule
     {
         
+        public AstShutdownStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstShutdownStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstShutdownStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -15992,13 +20270,23 @@ namespace Bb.Asts
     /// 	 : CHECKPOINT  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCheckpointStatement : AstRule
     {
         
+        public AstCheckpointStatement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCheckpointStatement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCheckpointStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16013,13 +20301,23 @@ namespace Bb.Asts
     /// 	 : DBCC  SHRINKLOG  LR_BRACKET  SIZE  EQUAL  constant_expression id_ DEFAULT  RR_BRACKET?  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDbccSpecial : AstRule
     {
         
+        public AstDbccSpecial(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDbccSpecial(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDbccSpecial(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16034,13 +20332,23 @@ namespace Bb.Asts
     /// 	 : DBCC    LR_BRACKET  expression_list  RR_BRACKET?  WITH  dbcc_options?  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDbccClause : AstRule
     {
         
+        public AstDbccClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDbccClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDbccClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16056,13 +20364,23 @@ namespace Bb.Asts
     /// 	 | keyword
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDbccCommand : AstRule
     {
         
+        public AstDbccCommand(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDbccCommand(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDbccCommand(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16084,6 +20402,20 @@ namespace Bb.Asts
         
         private AstSimpleId _simpleId;
         
+        public AstDbccOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSimpleId>())
+                {
+                    this._simpleId = ((AstSimpleId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDbccOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16093,7 +20425,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSimpleId>())
                 {
-                    this.SimpleId = ((AstSimpleId)(enumerator.Current));
+                    this._simpleId = ((AstSimpleId)(enumerator.Current));
                 }
             }
         }
@@ -16103,10 +20435,6 @@ namespace Bb.Asts
             get
             {
                 return this._simpleId;
-            }
-            set
-            {
-                this._simpleId = value;
             }
         }
         
@@ -16121,13 +20449,23 @@ namespace Bb.Asts
     /// 	 : EXECUTE  AS  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExecuteClause : AstRule
     {
         
+        public AstExecuteClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExecuteClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExecuteClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16149,6 +20487,20 @@ namespace Bb.Asts
         
         private AstDataType _dataType;
         
+        public AstDeclareLocal(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDataType>())
+                {
+                    this._dataType = ((AstDataType)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeclareLocal(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16158,7 +20510,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDataType>())
                 {
-                    this.DataType = ((AstDataType)(enumerator.Current));
+                    this._dataType = ((AstDataType)(enumerator.Current));
                 }
             }
         }
@@ -16168,10 +20520,6 @@ namespace Bb.Asts
             get
             {
                 return this._dataType;
-            }
-            set
-            {
-                this._dataType = value;
             }
         }
         
@@ -16193,6 +20541,20 @@ namespace Bb.Asts
         
         private AstColumnDefTableConstraints _columnDefTableConstraints;
         
+        public AstTableTypeDefinition(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnDefTableConstraints>())
+                {
+                    this._columnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableTypeDefinition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16202,7 +20564,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnDefTableConstraints>())
                 {
-                    this.ColumnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
+                    this._columnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
                 }
             }
         }
@@ -16212,10 +20574,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnDefTableConstraints;
-            }
-            set
-            {
-                this._columnDefTableConstraints = value;
             }
         }
         
@@ -16231,13 +20589,23 @@ namespace Bb.Asts
     /// 	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableTypeIndices : AstRule
     {
         
+        public AstTableTypeIndices(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableTypeIndices(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableTypeIndices(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16259,6 +20627,20 @@ namespace Bb.Asts
         
         private AstXmlSchemaCollection _xmlSchemaCollection;
         
+        public AstXmlTypeDefinition(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstXmlSchemaCollection>())
+                {
+                    this._xmlSchemaCollection = ((AstXmlSchemaCollection)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstXmlTypeDefinition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16268,7 +20650,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstXmlSchemaCollection>())
                 {
-                    this.XmlSchemaCollection = ((AstXmlSchemaCollection)(enumerator.Current));
+                    this._xmlSchemaCollection = ((AstXmlSchemaCollection)(enumerator.Current));
                 }
             }
         }
@@ -16278,10 +20660,6 @@ namespace Bb.Asts
             get
             {
                 return this._xmlSchemaCollection;
-            }
-            set
-            {
-                this._xmlSchemaCollection = value;
             }
         }
         
@@ -16296,13 +20674,23 @@ namespace Bb.Asts
     /// 	 : ID  DOT  ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstXmlSchemaCollection : AstRule
     {
         
+        public AstXmlSchemaCollection(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstXmlSchemaCollection(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstXmlSchemaCollection(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16324,6 +20712,20 @@ namespace Bb.Asts
         
         private AstColumnDefTableConstraint _columnDefTableConstraint;
         
+        public AstColumnDefTableConstraints(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnDefTableConstraint>())
+                {
+                    this._columnDefTableConstraint = ((AstColumnDefTableConstraint)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnDefTableConstraints(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16333,7 +20735,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnDefTableConstraint>())
                 {
-                    this.ColumnDefTableConstraint = ((AstColumnDefTableConstraint)(enumerator.Current));
+                    this._columnDefTableConstraint = ((AstColumnDefTableConstraint)(enumerator.Current));
                 }
             }
         }
@@ -16343,10 +20745,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnDefTableConstraint;
-            }
-            set
-            {
-                this._columnDefTableConstraint = value;
             }
         }
         
@@ -16363,13 +20761,23 @@ namespace Bb.Asts
     /// 	 | table_constraint
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnDefTableConstraint : AstRule
     {
         
+        public AstColumnDefTableConstraint(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnDefTableConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnDefTableConstraint(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16395,6 +20803,28 @@ namespace Bb.Asts
         
         private AstColumnIndex _columnIndex;
         
+        public AstColumnDefinition(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnDefinitionElement>())
+                {
+                    this._columnDefinitionElement = ((AstColumnDefinitionElement)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnIndex>())
+                {
+                    this._columnIndex = ((AstColumnIndex)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnDefinition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16404,15 +20834,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnDefinitionElement>())
                 {
-                    this.ColumnDefinitionElement = ((AstColumnDefinitionElement)(enumerator.Current));
+                    this._columnDefinitionElement = ((AstColumnDefinitionElement)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnIndex>())
                 {
-                    this.ColumnIndex = ((AstColumnIndex)(enumerator.Current));
+                    this._columnIndex = ((AstColumnIndex)(enumerator.Current));
                 }
             }
         }
@@ -16423,10 +20853,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstColumnDefinitionElement ColumnDefinitionElement
@@ -16435,10 +20861,6 @@ namespace Bb.Asts
             {
                 return this._columnDefinitionElement;
             }
-            set
-            {
-                this._columnDefinitionElement = value;
-            }
         }
         
         public virtual AstColumnIndex ColumnIndex
@@ -16446,10 +20868,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnIndex;
-            }
-            set
-            {
-                this._columnIndex = value;
             }
         }
         
@@ -16474,13 +20892,23 @@ namespace Bb.Asts
     /// 	 | column_constraint
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnDefinitionElement : AstRule
     {
         
+        public AstColumnDefinitionElement(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnDefinitionElement(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnDefinitionElement(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16504,6 +20932,24 @@ namespace Bb.Asts
         
         private AstAddDrop _addDrop;
         
+        public AstColumnModifier(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAddDrop>())
+                {
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnModifier(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16513,11 +20959,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAddDrop>())
                 {
-                    this.AddDrop = ((AstAddDrop)(enumerator.Current));
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
                 }
             }
         }
@@ -16528,10 +20974,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstAddDrop AddDrop
@@ -16539,10 +20981,6 @@ namespace Bb.Asts
             get
             {
                 return this._addDrop;
-            }
-            set
-            {
-                this._addDrop = value;
             }
         }
         
@@ -16566,6 +21004,24 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstMaterializedColumnDefinition(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMaterializedColumnDefinition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16575,11 +21031,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -16590,10 +21046,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstExpression Expression
@@ -16601,10 +21053,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -16619,13 +21067,23 @@ namespace Bb.Asts
     /// 	 : CONSTRAINT  constraint_name?  null_notnull PRIMARY  KEY UNIQUE  clustered?  primary_key_options FOREIGN  KEY?  foreign_key_options check_constraint
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnConstraint : AstRule
     {
         
+        public AstColumnConstraint(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnConstraint(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16651,6 +21109,28 @@ namespace Bb.Asts
         
         private AstOnPartitionOrFilegroup _onPartitionOrFilegroup;
         
+        public AstColumnIndex(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIndexName>())
+                {
+                    this._indexName = ((AstIndexName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateTableIndexOptions>())
+                {
+                    this._createTableIndexOptions = ((AstCreateTableIndexOptions)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnPartitionOrFilegroup>())
+                {
+                    this._onPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnIndex(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16660,15 +21140,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstIndexName>())
                 {
-                    this.IndexName = ((AstIndexName)(enumerator.Current));
+                    this._indexName = ((AstIndexName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstCreateTableIndexOptions>())
                 {
-                    this.CreateTableIndexOptions = ((AstCreateTableIndexOptions)(enumerator.Current));
+                    this._createTableIndexOptions = ((AstCreateTableIndexOptions)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnPartitionOrFilegroup>())
                 {
-                    this.OnPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
+                    this._onPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
                 }
             }
         }
@@ -16679,10 +21159,6 @@ namespace Bb.Asts
             {
                 return this._indexName;
             }
-            set
-            {
-                this._indexName = value;
-            }
         }
         
         public virtual AstCreateTableIndexOptions CreateTableIndexOptions
@@ -16691,10 +21167,6 @@ namespace Bb.Asts
             {
                 return this._createTableIndexOptions;
             }
-            set
-            {
-                this._createTableIndexOptions = value;
-            }
         }
         
         public virtual AstOnPartitionOrFilegroup OnPartitionOrFilegroup
@@ -16702,10 +21174,6 @@ namespace Bb.Asts
             get
             {
                 return this._onPartitionOrFilegroup;
-            }
-            set
-            {
-                this._onPartitionOrFilegroup = value;
             }
         }
         
@@ -16720,13 +21188,23 @@ namespace Bb.Asts
     /// 	 : ON  partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET file_group_name DEFAULT_DOUBLE_QUOTE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOnPartitionOrFilegroup : AstRule
     {
         
+        public AstOnPartitionOrFilegroup(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOnPartitionOrFilegroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOnPartitionOrFilegroup(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16741,13 +21219,23 @@ namespace Bb.Asts
     /// 	 : CONSTRAINT  constraint_name?  PRIMARY  KEY UNIQUE  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options FOREIGN  KEY  LR_BRACKET    RR_BRACKET  foreign_key_options CONNECTION  LR_BRACKET  connection_node  COMMA  connection_node*  RR_BRACKET DEFAULT  LR_BRACKET?  STRING PLUS function_call DECIMAL+ NEXT  VALUE  FOR  table_name  RR_BRACKET?  FOR  id_ check_constraint
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableConstraint : AstRule
     {
         
+        public AstTableConstraint(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableConstraint(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16762,13 +21250,23 @@ namespace Bb.Asts
     /// 	 :   TO  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstConnectionNode : AstRule
     {
         
+        public AstConnectionNode(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstConnectionNode(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstConnectionNode(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16792,6 +21290,24 @@ namespace Bb.Asts
         
         private AstOnPartitionOrFilegroup _onPartitionOrFilegroup;
         
+        public AstPrimaryKeyOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterTableIndexOptions>())
+                {
+                    this._alterTableIndexOptions = ((AstAlterTableIndexOptions)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnPartitionOrFilegroup>())
+                {
+                    this._onPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPrimaryKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16801,11 +21317,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterTableIndexOptions>())
                 {
-                    this.AlterTableIndexOptions = ((AstAlterTableIndexOptions)(enumerator.Current));
+                    this._alterTableIndexOptions = ((AstAlterTableIndexOptions)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnPartitionOrFilegroup>())
                 {
-                    this.OnPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
+                    this._onPartitionOrFilegroup = ((AstOnPartitionOrFilegroup)(enumerator.Current));
                 }
             }
         }
@@ -16816,10 +21332,6 @@ namespace Bb.Asts
             {
                 return this._alterTableIndexOptions;
             }
-            set
-            {
-                this._alterTableIndexOptions = value;
-            }
         }
         
         public virtual AstOnPartitionOrFilegroup OnPartitionOrFilegroup
@@ -16827,10 +21339,6 @@ namespace Bb.Asts
             get
             {
                 return this._onPartitionOrFilegroup;
-            }
-            set
-            {
-                this._onPartitionOrFilegroup = value;
             }
         }
         
@@ -16856,6 +21364,28 @@ namespace Bb.Asts
         
         private AstOnUpdate _onUpdate;
         
+        public AstForeignKeyOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnDelete>())
+                {
+                    this._onDelete = ((AstOnDelete)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnUpdate>())
+                {
+                    this._onUpdate = ((AstOnUpdate)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstForeignKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16865,15 +21395,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnDelete>())
                 {
-                    this.OnDelete = ((AstOnDelete)(enumerator.Current));
+                    this._onDelete = ((AstOnDelete)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnUpdate>())
                 {
-                    this.OnUpdate = ((AstOnUpdate)(enumerator.Current));
+                    this._onUpdate = ((AstOnUpdate)(enumerator.Current));
                 }
             }
         }
@@ -16884,10 +21414,6 @@ namespace Bb.Asts
             {
                 return this._tableName;
             }
-            set
-            {
-                this._tableName = value;
-            }
         }
         
         public virtual AstOnDelete OnDelete
@@ -16896,10 +21422,6 @@ namespace Bb.Asts
             {
                 return this._onDelete;
             }
-            set
-            {
-                this._onDelete = value;
-            }
         }
         
         public virtual AstOnUpdate OnUpdate
@@ -16907,10 +21429,6 @@ namespace Bb.Asts
             get
             {
                 return this._onUpdate;
-            }
-            set
-            {
-                this._onUpdate = value;
             }
         }
         
@@ -16932,6 +21450,20 @@ namespace Bb.Asts
         
         private AstSearchCondition _searchCondition;
         
+        public AstCheckConstraint(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCheckConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -16941,7 +21473,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
             }
         }
@@ -16951,10 +21483,6 @@ namespace Bb.Asts
             get
             {
                 return this._searchCondition;
-            }
-            set
-            {
-                this._searchCondition = value;
             }
         }
         
@@ -16969,13 +21497,23 @@ namespace Bb.Asts
     /// 	 : ON  DELETE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOnDelete : AstRule
     {
         
+        public AstOnDelete(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOnDelete(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOnDelete(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -16990,13 +21528,23 @@ namespace Bb.Asts
     /// 	 : ON  UPDATE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOnUpdate : AstRule
     {
         
+        public AstOnUpdate(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOnUpdate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOnUpdate(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17018,6 +21566,20 @@ namespace Bb.Asts
         
         private AstAlterTableIndexOption _alterTableIndexOption;
         
+        public AstAlterTableIndexOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterTableIndexOption>())
+                {
+                    this._alterTableIndexOption = ((AstAlterTableIndexOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAlterTableIndexOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -17027,7 +21589,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAlterTableIndexOption>())
                 {
-                    this.AlterTableIndexOption = ((AstAlterTableIndexOption)(enumerator.Current));
+                    this._alterTableIndexOption = ((AstAlterTableIndexOption)(enumerator.Current));
                 }
             }
         }
@@ -17037,10 +21599,6 @@ namespace Bb.Asts
             get
             {
                 return this._alterTableIndexOption;
-            }
-            set
-            {
-                this._alterTableIndexOption = value;
             }
         }
         
@@ -17069,13 +21627,23 @@ namespace Bb.Asts
     /// 	 | MAX_DURATION  EQUAL    MINUTES?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAlterTableIndexOption : AstRule
     {
         
+        public AstAlterTableIndexOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAlterTableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAlterTableIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17097,6 +21665,20 @@ namespace Bb.Asts
         
         private AstCursorName _cursorName;
         
+        public AstDeclareCursor(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCursorName>())
+                {
+                    this._cursorName = ((AstCursorName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeclareCursor(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -17106,7 +21688,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCursorName>())
                 {
-                    this.CursorName = ((AstCursorName)(enumerator.Current));
+                    this._cursorName = ((AstCursorName)(enumerator.Current));
                 }
             }
         }
@@ -17116,10 +21698,6 @@ namespace Bb.Asts
             get
             {
                 return this._cursorName;
-            }
-            set
-            {
-                this._cursorName = value;
             }
         }
         
@@ -17137,11 +21715,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstSensitive : AstTerminalEnum<AstSensitiveEnum>
+    public partial class AstSensitive : AstTerminal<AstSensitiveEnum>
     {
         
+        public AstSensitive(ITerminalNode t, string value) : 
+                base(t, AstSensitive.GetValue(value))
+        {
+        }
+        
+        public AstSensitive(ITerminalNode t, AstSensitiveEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstSensitive(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstSensitive.GetValue(value))
+        {
+        }
+        
+        public AstSensitive(Position p, string value) : 
+                base(p, AstSensitive.GetValue(value))
+        {
+        }
+        
+        public AstSensitive(Position p, AstSensitiveEnum value) : 
+                base(p, value)
         {
         }
         
@@ -17150,7 +21748,7 @@ namespace Bb.Asts
             visitor.VisitSensitive(this);
         }
         
-        protected override AstSensitiveEnum GetValue(string value)
+        protected static AstSensitiveEnum GetValue(string value)
         {
             if ((value == "SEMI_SENSITIVE"))
             {
@@ -17178,6 +21776,24 @@ namespace Bb.Asts
         
         private AstSelectStatementStandalone _selectStatementStandalone;
         
+        public AstDeclareSetCursorCommon(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDeclareSetCursorCommonPartial>())
+                {
+                    this._declareSetCursorCommonPartial = ((AstDeclareSetCursorCommonPartial)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSelectStatementStandalone>())
+                {
+                    this._selectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeclareSetCursorCommon(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -17187,11 +21803,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDeclareSetCursorCommonPartial>())
                 {
-                    this.DeclareSetCursorCommonPartial = ((AstDeclareSetCursorCommonPartial)(enumerator.Current));
+                    this._declareSetCursorCommonPartial = ((AstDeclareSetCursorCommonPartial)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstSelectStatementStandalone>())
                 {
-                    this.SelectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
+                    this._selectStatementStandalone = ((AstSelectStatementStandalone)(enumerator.Current));
                 }
             }
         }
@@ -17202,10 +21818,6 @@ namespace Bb.Asts
             {
                 return this._declareSetCursorCommonPartial;
             }
-            set
-            {
-                this._declareSetCursorCommonPartial = value;
-            }
         }
         
         public virtual AstSelectStatementStandalone SelectStatementStandalone
@@ -17213,10 +21825,6 @@ namespace Bb.Asts
             get
             {
                 return this._selectStatementStandalone;
-            }
-            set
-            {
-                this._selectStatementStandalone = value;
             }
         }
         
@@ -17235,13 +21843,23 @@ namespace Bb.Asts
     /// 	 | TYPE_WARNING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDeclareSetCursorCommonPartial : AstRule
     {
         
+        public AstDeclareSetCursorCommonPartial(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDeclareSetCursorCommonPartial(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDeclareSetCursorCommonPartial(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17263,6 +21881,20 @@ namespace Bb.Asts
         
         private AstCursorName _cursorName;
         
+        public AstFetchCursor(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCursorName>())
+                {
+                    this._cursorName = ((AstCursorName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFetchCursor(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -17272,7 +21904,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstCursorName>())
                 {
-                    this.CursorName = ((AstCursorName)(enumerator.Current));
+                    this._cursorName = ((AstCursorName)(enumerator.Current));
                 }
             }
         }
@@ -17282,10 +21914,6 @@ namespace Bb.Asts
             get
             {
                 return this._cursorName;
-            }
-            set
-            {
-                this._cursorName = value;
             }
         }
         
@@ -17303,11 +21931,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstAbsoluteRelative : AstTerminalEnum<AstAbsoluteRelativeEnum>
+    public partial class AstAbsoluteRelative : AstTerminal<AstAbsoluteRelativeEnum>
     {
         
+        public AstAbsoluteRelative(ITerminalNode t, string value) : 
+                base(t, AstAbsoluteRelative.GetValue(value))
+        {
+        }
+        
+        public AstAbsoluteRelative(ITerminalNode t, AstAbsoluteRelativeEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstAbsoluteRelative(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstAbsoluteRelative.GetValue(value))
+        {
+        }
+        
+        public AstAbsoluteRelative(Position p, string value) : 
+                base(p, AstAbsoluteRelative.GetValue(value))
+        {
+        }
+        
+        public AstAbsoluteRelative(Position p, AstAbsoluteRelativeEnum value) : 
+                base(p, value)
         {
         }
         
@@ -17316,7 +21964,7 @@ namespace Bb.Asts
             visitor.VisitAbsoluteRelative(this);
         }
         
-        protected override AstAbsoluteRelativeEnum GetValue(string value)
+        protected static AstAbsoluteRelativeEnum GetValue(string value)
         {
             if ((value == "ABSOLUTE"))
             {
@@ -17340,11 +21988,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstFetchCursorStrategy : AstTerminalEnum<AstFetchCursorStrategyEnum>
+    public partial class AstFetchCursorStrategy : AstTerminal<AstFetchCursorStrategyEnum>
     {
         
+        public AstFetchCursorStrategy(ITerminalNode t, string value) : 
+                base(t, AstFetchCursorStrategy.GetValue(value))
+        {
+        }
+        
+        public AstFetchCursorStrategy(ITerminalNode t, AstFetchCursorStrategyEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstFetchCursorStrategy(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstFetchCursorStrategy.GetValue(value))
+        {
+        }
+        
+        public AstFetchCursorStrategy(Position p, string value) : 
+                base(p, AstFetchCursorStrategy.GetValue(value))
+        {
+        }
+        
+        public AstFetchCursorStrategy(Position p, AstFetchCursorStrategyEnum value) : 
+                base(p, value)
         {
         }
         
@@ -17353,7 +22021,7 @@ namespace Bb.Asts
             visitor.VisitFetchCursorStrategy(this);
         }
         
-        protected override AstFetchCursorStrategyEnum GetValue(string value)
+        protected static AstFetchCursorStrategyEnum GetValue(string value)
         {
             if ((value == "NEXT"))
             {
@@ -17380,13 +22048,23 @@ namespace Bb.Asts
     /// 	 : LOCAL_ID  COMMA  LOCAL_ID*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstLocalIds : AstRule
     {
         
+        public AstLocalIds(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstLocalIds(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstLocalIds(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17408,13 +22086,23 @@ namespace Bb.Asts
     /// 	 | SET  modify_method
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSetSpecial : AstRule
     {
         
+        public AstSetSpecial(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSetSpecial(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSetSpecial(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17453,11 +22141,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstSpecialList : AstTerminalEnum<AstSpecialListEnum>
+    public partial class AstSpecialList : AstTerminal<AstSpecialListEnum>
     {
         
+        public AstSpecialList(ITerminalNode t, string value) : 
+                base(t, AstSpecialList.GetValue(value))
+        {
+        }
+        
+        public AstSpecialList(ITerminalNode t, AstSpecialListEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstSpecialList(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstSpecialList.GetValue(value))
+        {
+        }
+        
+        public AstSpecialList(Position p, string value) : 
+                base(p, AstSpecialList.GetValue(value))
+        {
+        }
+        
+        public AstSpecialList(Position p, AstSpecialListEnum value) : 
+                base(p, value)
         {
         }
         
@@ -17466,7 +22174,7 @@ namespace Bb.Asts
             visitor.VisitSpecialList(this);
         }
         
-        protected override AstSpecialListEnum GetValue(string value)
+        protected static AstSpecialListEnum GetValue(string value)
         {
             if ((value == "ANSI_NULLS"))
             {
@@ -17570,13 +22278,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstConstantLOCALID : AstRule
     {
         
+        public AstConstantLOCALID(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstConstantLOCALID(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstConstantLOCALID(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17604,13 +22322,23 @@ namespace Bb.Asts
     /// 	 | DOLLAR_ACTION
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExpression : AstRule
     {
         
+        public AstExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17625,13 +22353,23 @@ namespace Bb.Asts
     /// 	 : PLACEHOLDER
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstParameter : AstRule
+    public partial class AstParameter : AstTerminal<string>
     {
         
-        public AstParameter(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstParameter(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstParameter(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstParameter(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -17653,6 +22391,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstTimeZone(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTimeZone(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -17662,7 +22414,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -17672,10 +22424,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -17693,13 +22441,23 @@ namespace Bb.Asts
     /// 	 | constant
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPrimitiveExpression : AstRule
     {
         
+        public AstPrimitiveExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPrimitiveExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPrimitiveExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17715,13 +22473,23 @@ namespace Bb.Asts
     /// 	 | CASE  switch_search_condition_section+  ELSE  ?  END
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCaseExpression : AstRule
     {
         
+        public AstCaseExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCaseExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCaseExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17737,13 +22505,23 @@ namespace Bb.Asts
     /// 	 |   expression
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUnaryOperatorExpression : AstRule
     {
         
+        public AstUnaryOperatorExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUnaryOperatorExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUnaryOperatorExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17759,13 +22537,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  subquery  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBracketExpression : AstRule
     {
         
+        public AstBracketExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBracketExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBracketExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17784,13 +22572,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  constant_expression  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstConstantExpression : AstRule
     {
         
+        public AstConstantExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstConstantExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstConstantExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17805,13 +22603,23 @@ namespace Bb.Asts
     /// 	 : WITH    COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWithExpression : AstRule
     {
         
+        public AstWithExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWithExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWithExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17826,13 +22634,23 @@ namespace Bb.Asts
     /// 	 :   LR_BRACKET    RR_BRACKET?  AS  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCommonTableExpression : AstRule
     {
         
+        public AstCommonTableExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCommonTableExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCommonTableExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17849,13 +22667,23 @@ namespace Bb.Asts
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUpdateElem : AstRule
     {
         
+        public AstUpdateElem(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUpdateElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUpdateElem(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17871,13 +22699,23 @@ namespace Bb.Asts
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUpdateElemMerge : AstRule
     {
         
+        public AstUpdateElemMerge(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUpdateElemMerge(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUpdateElemMerge(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17894,13 +22732,23 @@ namespace Bb.Asts
     /// 	 | search_condition  OR  search_condition
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSearchCondition : AstRule
     {
         
+        public AstSearchCondition(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSearchCondition(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSearchCondition(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17923,13 +22771,23 @@ namespace Bb.Asts
     /// 	 | expression  IS  null_notnull
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstPredicate : AstRule
     {
         
+        public AstPredicate(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstPredicate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstPredicate(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17945,13 +22803,23 @@ namespace Bb.Asts
     /// 	 | query_specification  select_order_by_clause?  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueryExpression : AstRule
     {
         
+        public AstQueryExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueryExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueryExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17966,13 +22834,23 @@ namespace Bb.Asts
     /// 	 : UNION  ALL? EXCEPT INTERSECT   LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSqlUnion : AstRule
     {
         
+        public AstSqlUnion(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSqlUnion(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSqlUnion(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -17987,13 +22865,23 @@ namespace Bb.Asts
     /// 	 : SELECT        INTO  ?  FROM  ?  WHERE  ?  GROUP  BY    groupBys_list GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET?  HAVING  ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQuerySpecification : AstRule
     {
         
+        public AstQuerySpecification(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQuerySpecification(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQuerySpecification(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18008,13 +22896,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGroupSetList : AstRule
     {
         
+        public AstGroupSetList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGroupSetList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGroupSetList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18029,13 +22927,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGroupBysList : AstRule
     {
         
+        public AstGroupBysList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGroupBysList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGroupBysList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18050,13 +22958,23 @@ namespace Bb.Asts
     /// 	 : TOP  top_percent top_count  WITH  TIES?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTopClause : AstRule
     {
         
+        public AstTopClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTopClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTopClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18072,13 +22990,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET    RR_BRACKET  PERCENT
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTopPercent : AstRule
     {
         
+        public AstTopPercent(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTopPercent(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTopPercent(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18094,13 +23022,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTopCount : AstRule
     {
         
+        public AstTopCount(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTopCount(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTopCount(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18115,13 +23053,23 @@ namespace Bb.Asts
     /// 	 : ORDER  BY    COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOrderByClause : AstRule
     {
         
+        public AstOrderByClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOrderByClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOrderByClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18143,6 +23091,20 @@ namespace Bb.Asts
         
         private AstOrderByClause _orderByClause;
         
+        public AstSelectOrderByClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOrderByClause>())
+                {
+                    this._orderByClause = ((AstOrderByClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSelectOrderByClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18152,7 +23114,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOrderByClause>())
                 {
-                    this.OrderByClause = ((AstOrderByClause)(enumerator.Current));
+                    this._orderByClause = ((AstOrderByClause)(enumerator.Current));
                 }
             }
         }
@@ -18162,10 +23124,6 @@ namespace Bb.Asts
             get
             {
                 return this._orderByClause;
-            }
-            set
-            {
-                this._orderByClause = value;
             }
         }
         
@@ -18184,13 +23142,23 @@ namespace Bb.Asts
     /// 	 | FOR  JSON  AUTO PATH  COMMA  ROOT  LR_BRACKET  STRING  RR_BRACKET INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstForClause : AstRule
     {
         
+        public AstForClause(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstForClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstForClause(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18205,13 +23173,23 @@ namespace Bb.Asts
     /// 	 : COMMA  BINARY_KEYWORD  BASE64 TYPE ROOT  LR_BRACKET  STRING  RR_BRACKET?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstXmlCommonDirectives : AstRule
     {
         
+        public AstXmlCommonDirectives(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstXmlCommonDirectives(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstXmlCommonDirectives(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18226,13 +23204,23 @@ namespace Bb.Asts
     /// 	 :    ?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOrderByExpression : AstRule
     {
         
+        public AstOrderByExpression(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOrderByExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOrderByExpression(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18248,13 +23236,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  grouping_sets_list?  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGroupingSetsItem : AstRule
     {
         
+        public AstGroupingSetsItem(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGroupingSetsItem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGroupingSetsItem(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18269,13 +23267,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGroupingSetsList : AstRule
     {
         
+        public AstGroupingSetsList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGroupingSetsList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGroupingSetsList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18297,6 +23305,20 @@ namespace Bb.Asts
         
         private AstOption _option;
         
+        public AstOptionClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOption>())
+                {
+                    this._option = ((AstOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOptionClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18306,7 +23328,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOption>())
                 {
-                    this.Option = ((AstOption)(enumerator.Current));
+                    this._option = ((AstOption)(enumerator.Current));
                 }
             }
         }
@@ -18316,10 +23338,6 @@ namespace Bb.Asts
             get
             {
                 return this._option;
-            }
-            set
-            {
-                this._option = value;
             }
         }
         
@@ -18350,13 +23368,23 @@ namespace Bb.Asts
     /// 	 | USE  PLAN  STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOption : AstRule
     {
         
+        public AstOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18378,6 +23406,20 @@ namespace Bb.Asts
         
         private AstOptimizeForArg _optimizeForArg;
         
+        public AstOptimizeForArgs(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOptimizeForArg>())
+                {
+                    this._optimizeForArg = ((AstOptimizeForArg)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOptimizeForArgs(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18387,7 +23429,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOptimizeForArg>())
                 {
-                    this.OptimizeForArg = ((AstOptimizeForArg)(enumerator.Current));
+                    this._optimizeForArg = ((AstOptimizeForArg)(enumerator.Current));
                 }
             }
         }
@@ -18397,10 +23439,6 @@ namespace Bb.Asts
             get
             {
                 return this._optimizeForArg;
-            }
-            set
-            {
-                this._optimizeForArg = value;
             }
         }
         
@@ -18415,13 +23453,23 @@ namespace Bb.Asts
     /// 	 : LOCAL_ID  UNKNOWN EQUAL  constant NULL_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstOptimizeForArg : AstRule
     {
         
+        public AstOptimizeForArg(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstOptimizeForArg(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstOptimizeForArg(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18436,13 +23484,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSelectList : AstRule
     {
         
+        public AstSelectList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSelectList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSelectList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18457,13 +23515,23 @@ namespace Bb.Asts
     /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUdtMethodArguments : AstRule
     {
         
+        public AstUdtMethodArguments(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUdtMethodArguments(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUdtMethodArguments(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18478,13 +23546,23 @@ namespace Bb.Asts
     /// 	 : STAR
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstStarAsterisk : AstRule
+    public partial class AstStarAsterisk : AstTerminal<string>
     {
         
-        public AstStarAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstStarAsterisk(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStarAsterisk(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstStarAsterisk(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -18506,6 +23584,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstTableAsterisk(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18515,7 +23607,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -18525,10 +23617,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -18543,13 +23631,23 @@ namespace Bb.Asts
     /// 	 : INSERTED DELETED  DOT  STAR
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUpdatedAsterisk : AstRule
     {
         
+        public AstUpdatedAsterisk(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUpdatedAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUpdatedAsterisk(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18573,6 +23671,24 @@ namespace Bb.Asts
         
         private AstAsColumnAlias _asColumnAlias;
         
+        public AstColumnElem(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnElemTarget>())
+                {
+                    this._columnElemTarget = ((AstColumnElemTarget)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsColumnAlias>())
+                {
+                    this._asColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18582,11 +23698,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnElemTarget>())
                 {
-                    this.ColumnElemTarget = ((AstColumnElemTarget)(enumerator.Current));
+                    this._columnElemTarget = ((AstColumnElemTarget)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsColumnAlias>())
                 {
-                    this.AsColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
+                    this._asColumnAlias = ((AstAsColumnAlias)(enumerator.Current));
                 }
             }
         }
@@ -18597,10 +23713,6 @@ namespace Bb.Asts
             {
                 return this._columnElemTarget;
             }
-            set
-            {
-                this._columnElemTarget = value;
-            }
         }
         
         public virtual AstAsColumnAlias AsColumnAlias
@@ -18608,10 +23720,6 @@ namespace Bb.Asts
             get
             {
                 return this._asColumnAlias;
-            }
-            set
-            {
-                this._asColumnAlias = value;
             }
         }
         
@@ -18629,13 +23737,23 @@ namespace Bb.Asts
     /// 	 | NULL_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnElemTarget : AstRule
     {
         
+        public AstColumnElemTarget(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnElemTarget(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnElemTarget(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18651,13 +23769,23 @@ namespace Bb.Asts
     /// 	 | udt_column_name  DOUBLE_COLON  static_attr  udt_method_arguments?  as_column_alias?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstUdtElem : AstRule
     {
         
+        public AstUdtElem(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstUdtElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstUdtElem(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18673,13 +23801,23 @@ namespace Bb.Asts
     /// 	 |   as_column_alias?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExpressionElem : AstRule
     {
         
+        public AstExpressionElem(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExpressionElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExpressionElem(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18701,6 +23839,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstExpressionAssignElem(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExpressionAssignElem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18710,7 +23862,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -18720,10 +23872,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -18738,13 +23886,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableSources : AstRule
     {
         
+        public AstTableSources(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableSources(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableSources(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18760,13 +23918,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  table_source  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableSource : AstRule
     {
         
+        public AstTableSource(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableSource(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableSource(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18782,13 +23950,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableSourceItemJoined : AstRule
     {
         
+        public AstTableSourceItemJoined(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableSourceItemJoined(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableSourceItemJoined(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18814,13 +23992,23 @@ namespace Bb.Asts
     /// 	 | DOUBLE_COLON    as_table_alias?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableSourceItem : AstRule
     {
         
+        public AstTableSourceItem(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableSourceItem(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableSourceItem(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -18842,6 +24030,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstExpression2(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExpression2(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18851,7 +24053,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -18861,10 +24063,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -18890,6 +24088,28 @@ namespace Bb.Asts
         
         private AstAsTableAlias _asTableAlias;
         
+        public AstOpenXml(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression2>())
+                {
+                    this._expression2 = ((AstExpression2)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsTableAlias>())
+                {
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOpenXml(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18899,15 +24119,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression2>())
                 {
-                    this.Expression2 = ((AstExpression2)(enumerator.Current));
+                    this._expression2 = ((AstExpression2)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsTableAlias>())
                 {
-                    this.AsTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
                 }
             }
         }
@@ -18918,10 +24138,6 @@ namespace Bb.Asts
             {
                 return this._expression;
             }
-            set
-            {
-                this._expression = value;
-            }
         }
         
         public virtual AstExpression2 Expression2
@@ -18930,10 +24146,6 @@ namespace Bb.Asts
             {
                 return this._expression2;
             }
-            set
-            {
-                this._expression2 = value;
-            }
         }
         
         public virtual AstAsTableAlias AsTableAlias
@@ -18941,10 +24153,6 @@ namespace Bb.Asts
             get
             {
                 return this._asTableAlias;
-            }
-            set
-            {
-                this._asTableAlias = value;
             }
         }
         
@@ -18968,6 +24176,24 @@ namespace Bb.Asts
         
         private AstAsTableAlias _asTableAlias;
         
+        public AstOpenJson(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression2>())
+                {
+                    this._expression2 = ((AstExpression2)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsTableAlias>())
+                {
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOpenJson(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -18977,11 +24203,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression2>())
                 {
-                    this.Expression2 = ((AstExpression2)(enumerator.Current));
+                    this._expression2 = ((AstExpression2)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsTableAlias>())
                 {
-                    this.AsTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
                 }
             }
         }
@@ -18992,10 +24218,6 @@ namespace Bb.Asts
             {
                 return this._expression2;
             }
-            set
-            {
-                this._expression2 = value;
-            }
         }
         
         public virtual AstAsTableAlias AsTableAlias
@@ -19003,10 +24225,6 @@ namespace Bb.Asts
             get
             {
                 return this._asTableAlias;
-            }
-            set
-            {
-                this._asTableAlias = value;
             }
         }
         
@@ -19021,13 +24239,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstJsonDeclaration : AstRule
     {
         
+        public AstJsonDeclaration(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstJsonDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstJsonDeclaration(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19049,6 +24277,20 @@ namespace Bb.Asts
         
         private AstColumnDeclaration _columnDeclaration;
         
+        public AstJsonColumnDeclaration(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnDeclaration>())
+                {
+                    this._columnDeclaration = ((AstColumnDeclaration)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstJsonColumnDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19058,7 +24300,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnDeclaration>())
                 {
-                    this.ColumnDeclaration = ((AstColumnDeclaration)(enumerator.Current));
+                    this._columnDeclaration = ((AstColumnDeclaration)(enumerator.Current));
                 }
             }
         }
@@ -19068,10 +24310,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnDeclaration;
-            }
-            set
-            {
-                this._columnDeclaration = value;
             }
         }
         
@@ -19086,13 +24324,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSchemaDeclaration : AstRule
     {
         
+        public AstSchemaDeclaration(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSchemaDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSchemaDeclaration(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19116,6 +24364,24 @@ namespace Bb.Asts
         
         private AstDataType _dataType;
         
+        public AstColumnDeclaration(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDataType>())
+                {
+                    this._dataType = ((AstDataType)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19125,11 +24391,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDataType>())
                 {
-                    this.DataType = ((AstDataType)(enumerator.Current));
+                    this._dataType = ((AstDataType)(enumerator.Current));
                 }
             }
         }
@@ -19140,10 +24406,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstDataType DataType
@@ -19151,10 +24413,6 @@ namespace Bb.Asts
             get
             {
                 return this._dataType;
-            }
-            set
-            {
-                this._dataType = value;
             }
         }
         
@@ -19169,13 +24427,23 @@ namespace Bb.Asts
     /// 	 : CHANGETABLE  LR_BRACKET  CHANGES    COMMA    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstChangeTableChanges : AstRule
     {
         
+        public AstChangeTableChanges(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstChangeTableChanges(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstChangeTableChanges(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19190,13 +24458,23 @@ namespace Bb.Asts
     /// 	 : CHANGETABLE  LR_BRACKET  VERSION    COMMA    COMMA    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstChangeTableVersion : AstRule
     {
         
+        public AstChangeTableVersion(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstChangeTableVersion(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstChangeTableVersion(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19211,13 +24489,23 @@ namespace Bb.Asts
     /// 	 :      ?  JOIN    ON  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstJoinOn : AstRule
     {
         
+        public AstJoinOn(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstJoinOn(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstJoinOn(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19239,6 +24527,20 @@ namespace Bb.Asts
         
         private AstTableSource _tableSource;
         
+        public AstCrossJoin(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableSource>())
+                {
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCrossJoin(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19248,7 +24550,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableSource>())
                 {
-                    this.TableSource = ((AstTableSource)(enumerator.Current));
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
                 }
             }
         }
@@ -19258,10 +24560,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableSource;
-            }
-            set
-            {
-                this._tableSource = value;
             }
         }
         
@@ -19276,13 +24574,23 @@ namespace Bb.Asts
     /// 	 :   APPLY  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstApply : AstRule
     {
         
+        public AstApply(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstApply(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstApply(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19306,6 +24614,24 @@ namespace Bb.Asts
         
         private AstAsTableAlias _asTableAlias;
         
+        public AstPivot(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPivotClause>())
+                {
+                    this._pivotClause = ((AstPivotClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsTableAlias>())
+                {
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPivot(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19315,11 +24641,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstPivotClause>())
                 {
-                    this.PivotClause = ((AstPivotClause)(enumerator.Current));
+                    this._pivotClause = ((AstPivotClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsTableAlias>())
                 {
-                    this.AsTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
                 }
             }
         }
@@ -19330,10 +24656,6 @@ namespace Bb.Asts
             {
                 return this._pivotClause;
             }
-            set
-            {
-                this._pivotClause = value;
-            }
         }
         
         public virtual AstAsTableAlias AsTableAlias
@@ -19341,10 +24663,6 @@ namespace Bb.Asts
             get
             {
                 return this._asTableAlias;
-            }
-            set
-            {
-                this._asTableAlias = value;
             }
         }
         
@@ -19368,6 +24686,24 @@ namespace Bb.Asts
         
         private AstAsTableAlias _asTableAlias;
         
+        public AstUnpivot(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstUnpivotClause>())
+                {
+                    this._unpivotClause = ((AstUnpivotClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsTableAlias>())
+                {
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUnpivot(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19377,11 +24713,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstUnpivotClause>())
                 {
-                    this.UnpivotClause = ((AstUnpivotClause)(enumerator.Current));
+                    this._unpivotClause = ((AstUnpivotClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAsTableAlias>())
                 {
-                    this.AsTableAlias = ((AstAsTableAlias)(enumerator.Current));
+                    this._asTableAlias = ((AstAsTableAlias)(enumerator.Current));
                 }
             }
         }
@@ -19392,10 +24728,6 @@ namespace Bb.Asts
             {
                 return this._unpivotClause;
             }
-            set
-            {
-                this._unpivotClause = value;
-            }
         }
         
         public virtual AstAsTableAlias AsTableAlias
@@ -19403,10 +24735,6 @@ namespace Bb.Asts
             get
             {
                 return this._asTableAlias;
-            }
-            set
-            {
-                this._asTableAlias = value;
             }
         }
         
@@ -19432,6 +24760,28 @@ namespace Bb.Asts
         
         private AstColumnAliasList _columnAliasList;
         
+        public AstPivotClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAggregateWindowedFunction>())
+                {
+                    this._aggregateWindowedFunction = ((AstAggregateWindowedFunction)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFullColumnName>())
+                {
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnAliasList>())
+                {
+                    this._columnAliasList = ((AstColumnAliasList)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPivotClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19441,15 +24791,15 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstAggregateWindowedFunction>())
                 {
-                    this.AggregateWindowedFunction = ((AstAggregateWindowedFunction)(enumerator.Current));
+                    this._aggregateWindowedFunction = ((AstAggregateWindowedFunction)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFullColumnName>())
                 {
-                    this.FullColumnName = ((AstFullColumnName)(enumerator.Current));
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnAliasList>())
                 {
-                    this.ColumnAliasList = ((AstColumnAliasList)(enumerator.Current));
+                    this._columnAliasList = ((AstColumnAliasList)(enumerator.Current));
                 }
             }
         }
@@ -19460,10 +24810,6 @@ namespace Bb.Asts
             {
                 return this._aggregateWindowedFunction;
             }
-            set
-            {
-                this._aggregateWindowedFunction = value;
-            }
         }
         
         public virtual AstFullColumnName FullColumnName
@@ -19472,10 +24818,6 @@ namespace Bb.Asts
             {
                 return this._fullColumnName;
             }
-            set
-            {
-                this._fullColumnName = value;
-            }
         }
         
         public virtual AstColumnAliasList ColumnAliasList
@@ -19483,10 +24825,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnAliasList;
-            }
-            set
-            {
-                this._columnAliasList = value;
             }
         }
         
@@ -19510,6 +24848,24 @@ namespace Bb.Asts
         
         private AstFullColumnNameList _fullColumnNameList;
         
+        public AstUnpivotClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullColumnName>())
+                {
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFullColumnNameList>())
+                {
+                    this._fullColumnNameList = ((AstFullColumnNameList)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUnpivotClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19519,11 +24875,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFullColumnName>())
                 {
-                    this.FullColumnName = ((AstFullColumnName)(enumerator.Current));
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFullColumnNameList>())
                 {
-                    this.FullColumnNameList = ((AstFullColumnNameList)(enumerator.Current));
+                    this._fullColumnNameList = ((AstFullColumnNameList)(enumerator.Current));
                 }
             }
         }
@@ -19534,10 +24890,6 @@ namespace Bb.Asts
             {
                 return this._fullColumnName;
             }
-            set
-            {
-                this._fullColumnName = value;
-            }
         }
         
         public virtual AstFullColumnNameList FullColumnNameList
@@ -19545,10 +24897,6 @@ namespace Bb.Asts
             get
             {
                 return this._fullColumnNameList;
-            }
-            set
-            {
-                this._fullColumnNameList = value;
             }
         }
         
@@ -19563,13 +24911,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFullColumnNameList : AstRule
     {
         
+        public AstFullColumnNameList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFullColumnNameList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFullColumnNameList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19585,13 +24943,23 @@ namespace Bb.Asts
     /// 	 | OPENROWSET  LR_BRACKET  BULK    COMMA  bulk_options id_  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRowsetFunction : AstRule
     {
         
+        public AstRowsetFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRowsetFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRowsetFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19613,6 +24981,20 @@ namespace Bb.Asts
         
         private AstBulkOption _bulkOption;
         
+        public AstBulkOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBulkOption>())
+                {
+                    this._bulkOption = ((AstBulkOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBulkOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19622,7 +25004,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstBulkOption>())
                 {
-                    this.BulkOption = ((AstBulkOption)(enumerator.Current));
+                    this._bulkOption = ((AstBulkOption)(enumerator.Current));
                 }
             }
         }
@@ -19632,10 +25014,6 @@ namespace Bb.Asts
             get
             {
                 return this._bulkOption;
-            }
-            set
-            {
-                this._bulkOption = value;
             }
         }
         
@@ -19657,6 +25035,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstBulkOption(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBulkOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19666,7 +25058,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -19676,10 +25068,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -19697,13 +25085,23 @@ namespace Bb.Asts
     /// 	 | LR_BRACKET  table_value_constructor  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDerivedTable : AstRule
     {
         
+        public AstDerivedTable(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDerivedTable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDerivedTable(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19725,13 +25123,23 @@ namespace Bb.Asts
     /// 	 | HIERARCHYID_METHODhierarchyid_static_method
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFunctionCall : AstRule
     {
         
+        public AstFunctionCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFunctionCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFunctionCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19755,6 +25163,24 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstPartitionFunction(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFunctionName>())
+                {
+                    this._functionName = ((AstFunctionName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPartitionFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19764,11 +25190,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFunctionName>())
                 {
-                    this.FunctionName = ((AstFunctionName)(enumerator.Current));
+                    this._functionName = ((AstFunctionName)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -19779,10 +25205,6 @@ namespace Bb.Asts
             {
                 return this._functionName;
             }
-            set
-            {
-                this._functionName = value;
-            }
         }
         
         public virtual AstExpression Expression
@@ -19790,10 +25212,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -19810,13 +25228,23 @@ namespace Bb.Asts
     /// 	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  table_name  COMMA  full_column_name  COMMA  expression  COMMA  full_column_name  COMMA  expression  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFreetextFunction : AstRule
     {
         
+        public AstFreetextFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFreetextFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFreetextFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19832,13 +25260,23 @@ namespace Bb.Asts
     /// 	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFreetextPredicate : AstRule
     {
         
+        public AstFreetextPredicate(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFreetextPredicate(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFreetextPredicate(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -19860,6 +25298,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstExpressionLanguage(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExpressionLanguage(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19869,7 +25321,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -19879,10 +25331,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -19904,6 +25352,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstFreetextTableAndcolumnNames(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFreetextTableAndcolumnNames(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19913,7 +25375,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -19923,10 +25385,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -19948,6 +25406,20 @@ namespace Bb.Asts
         
         private AstFullColumnName _fullColumnName;
         
+        public AstFullColumnNames(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullColumnName>())
+                {
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFullColumnNames(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -19957,7 +25429,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFullColumnName>())
                 {
-                    this.FullColumnName = ((AstFullColumnName)(enumerator.Current));
+                    this._fullColumnName = ((AstFullColumnName)(enumerator.Current));
                 }
             }
         }
@@ -19967,10 +25439,6 @@ namespace Bb.Asts
             get
             {
                 return this._fullColumnName;
-            }
-            set
-            {
-                this._fullColumnName = value;
             }
         }
         
@@ -20103,13 +25571,23 @@ namespace Bb.Asts
     /// 	 | IIFIIF  LR_BRACKET    COMMA    COMMA    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstBuiltInFunctions : AstRule
     {
         
+        public AstBuiltInFunctions(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstBuiltInFunctions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstBuiltInFunctions(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20131,6 +25609,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstExpressions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExpressions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20140,7 +25632,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -20150,10 +25642,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -20168,13 +25656,23 @@ namespace Bb.Asts
     /// 	 :     LR_BRACKET  RR_BRACKET  LR_BRACKET  subquery  RR_BRACKET  DOT  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstValueMethod : AstRule
     {
         
+        public AstValueMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstValueMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstValueMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20189,13 +25687,23 @@ namespace Bb.Asts
     /// 	 : VALUE  LR_BRACKET    COMMA    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstValueCall : AstRule
     {
         
+        public AstValueCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstValueCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstValueCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20210,13 +25718,23 @@ namespace Bb.Asts
     /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueryMethod : AstRule
     {
         
+        public AstQueryMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueryMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueryMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20231,13 +25749,23 @@ namespace Bb.Asts
     /// 	 : QUERY  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueryCall : AstRule
     {
         
+        public AstQueryCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueryCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueryCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20252,13 +25780,23 @@ namespace Bb.Asts
     /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExistMethod : AstRule
     {
         
+        public AstExistMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExistMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExistMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20273,13 +25811,23 @@ namespace Bb.Asts
     /// 	 : EXIST  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExistCall : AstRule
     {
         
+        public AstExistCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExistCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExistCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20294,13 +25842,23 @@ namespace Bb.Asts
     /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstModifyMethod : AstRule
     {
         
+        public AstModifyMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstModifyMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstModifyMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20315,13 +25873,23 @@ namespace Bb.Asts
     /// 	 : MODIFY  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstModifyCall : AstRule
     {
         
+        public AstModifyCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstModifyCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstModifyCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20341,13 +25909,23 @@ namespace Bb.Asts
     /// 	 | TOSTRING  LR_BRACKET  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstHierarchyidCall : AstRule
     {
         
+        public AstHierarchyidCall(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstHierarchyidCall(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstHierarchyidCall(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20362,13 +25940,23 @@ namespace Bb.Asts
     /// 	 : HIERARCHYID  DOUBLE_COLON  GETROOT  LR_BRACKET  RR_BRACKET PARSE  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstHierarchyidStaticMethod : AstRule
     {
         
+        public AstHierarchyidStaticMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstHierarchyidStaticMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstHierarchyidStaticMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20383,13 +25971,23 @@ namespace Bb.Asts
     /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  NODES  LR_BRACKET    RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstNodesMethod : AstRule
     {
         
+        public AstNodesMethod(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstNodesMethod(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstNodesMethod(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20411,6 +26009,24 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstSwitchSection(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSwitchSection(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20420,11 +26036,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -20434,10 +26050,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -20461,6 +26073,24 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstSwitchSearchConditionSection(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSwitchSearchConditionSection(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20470,11 +26100,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstSearchCondition>())
                 {
-                    this.SearchCondition = ((AstSearchCondition)(enumerator.Current));
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -20485,10 +26115,6 @@ namespace Bb.Asts
             {
                 return this._searchCondition;
             }
-            set
-            {
-                this._searchCondition = value;
-            }
         }
         
         public virtual AstExpression Expression
@@ -20496,10 +26122,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -20521,6 +26143,20 @@ namespace Bb.Asts
         
         private AstColumnAlias _columnAlias;
         
+        public AstAsColumnAlias(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstColumnAlias>())
+                {
+                    this._columnAlias = ((AstColumnAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAsColumnAlias(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20530,7 +26166,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstColumnAlias>())
                 {
-                    this.ColumnAlias = ((AstColumnAlias)(enumerator.Current));
+                    this._columnAlias = ((AstColumnAlias)(enumerator.Current));
                 }
             }
         }
@@ -20540,10 +26176,6 @@ namespace Bb.Asts
             get
             {
                 return this._columnAlias;
-            }
-            set
-            {
-                this._columnAlias = value;
             }
         }
         
@@ -20565,6 +26197,20 @@ namespace Bb.Asts
         
         private AstTableAlias _tableAlias;
         
+        public AstAsTableAlias(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableAlias>())
+                {
+                    this._tableAlias = ((AstTableAlias)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAsTableAlias(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20574,7 +26220,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableAlias>())
                 {
-                    this.TableAlias = ((AstTableAlias)(enumerator.Current));
+                    this._tableAlias = ((AstTableAlias)(enumerator.Current));
                 }
             }
         }
@@ -20584,10 +26230,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableAlias;
-            }
-            set
-            {
-                this._tableAlias = value;
             }
         }
         
@@ -20609,6 +26251,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTableAlias(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableAlias(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20618,7 +26274,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -20628,10 +26284,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -20646,13 +26298,23 @@ namespace Bb.Asts
     /// 	 : WITH  LR_BRACKET    COMMA?  *  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWithTableHints : AstRule
     {
         
+        public AstWithTableHints(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWithTableHints(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWithTableHints(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20674,6 +26336,20 @@ namespace Bb.Asts
         
         private AstTableHint _tableHint;
         
+        public AstDeprecatedTableHint(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableHint>())
+                {
+                    this._tableHint = ((AstTableHint)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDeprecatedTableHint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20683,7 +26359,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableHint>())
                 {
-                    this.TableHint = ((AstTableHint)(enumerator.Current));
+                    this._tableHint = ((AstTableHint)(enumerator.Current));
                 }
             }
         }
@@ -20693,10 +26369,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableHint;
-            }
-            set
-            {
-                this._tableHint = value;
             }
         }
         
@@ -20711,37 +26383,19 @@ namespace Bb.Asts
     /// 	 : sybase_legacy_hint+
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassList
     /// </remarks>
-    public partial class AstSybaseLegacyHints : AstRule
+    public partial class AstSybaseLegacyHints : AstRuleList<AstSybaseLegacyHint>
     {
         
-        private AstSybaseLegacyHint _sybaseLegacyHint;
-        
-        public AstSybaseLegacyHints(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
+        public AstSybaseLegacyHints(ParserRuleContext ctx) : 
+                base(ctx)
         {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSybaseLegacyHint>())
-                {
-                    this.SybaseLegacyHint = ((AstSybaseLegacyHint)(enumerator.Current));
-                }
-            }
         }
         
-        public virtual AstSybaseLegacyHint SybaseLegacyHint
+        public AstSybaseLegacyHints(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
         {
-            get
-            {
-                return this._sybaseLegacyHint;
-            }
-            set
-            {
-                this._sybaseLegacyHint = value;
-            }
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
@@ -20760,11 +26414,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstSybaseLegacyHint : AstTerminalEnum<AstSybaseLegacyHintEnum>
+    public partial class AstSybaseLegacyHint : AstTerminal<AstSybaseLegacyHintEnum>
     {
         
+        public AstSybaseLegacyHint(ITerminalNode t, string value) : 
+                base(t, AstSybaseLegacyHint.GetValue(value))
+        {
+        }
+        
+        public AstSybaseLegacyHint(ITerminalNode t, AstSybaseLegacyHintEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstSybaseLegacyHint(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstSybaseLegacyHint.GetValue(value))
+        {
+        }
+        
+        public AstSybaseLegacyHint(Position p, string value) : 
+                base(p, AstSybaseLegacyHint.GetValue(value))
+        {
+        }
+        
+        public AstSybaseLegacyHint(Position p, AstSybaseLegacyHintEnum value) : 
+                base(p, value)
         {
         }
         
@@ -20773,7 +26447,7 @@ namespace Bb.Asts
             visitor.VisitSybaseLegacyHint(this);
         }
         
-        protected override AstSybaseLegacyHintEnum GetValue(string value)
+        protected static AstSybaseLegacyHintEnum GetValue(string value)
         {
             if ((value == "HOLDLOCK"))
             {
@@ -20807,6 +26481,20 @@ namespace Bb.Asts
         
         private AstIndexValue _indexValue;
         
+        public AstIndexValues(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIndexValue>())
+                {
+                    this._indexValue = ((AstIndexValue)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstIndexValues(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -20816,7 +26504,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstIndexValue>())
                 {
-                    this.IndexValue = ((AstIndexValue)(enumerator.Current));
+                    this._indexValue = ((AstIndexValue)(enumerator.Current));
                 }
             }
         }
@@ -20826,10 +26514,6 @@ namespace Bb.Asts
             get
             {
                 return this._indexValue;
-            }
-            set
-            {
-                this._indexValue = value;
             }
         }
         
@@ -20868,13 +26552,23 @@ namespace Bb.Asts
     /// 	 | IGNORE_TRIGGERS
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableHint : AstRule
     {
         
+        public AstTableHint(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableHint(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableHint(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20890,13 +26584,23 @@ namespace Bb.Asts
     /// 	 | DECIMAL
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstIndexValue : AstRule
     {
         
+        public AstIndexValue(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstIndexValue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstIndexValue(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20911,13 +26615,23 @@ namespace Bb.Asts
     /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnAliasList : AstRule
     {
         
+        public AstColumnAliasList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnAliasList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnAliasList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20933,13 +26647,23 @@ namespace Bb.Asts
     /// 	 | STRING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnAlias : AstRule
     {
         
+        public AstColumnAlias(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnAlias(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnAlias(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20954,13 +26678,23 @@ namespace Bb.Asts
     /// 	 : VALUES  LR_BRACKET    RR_BRACKET  COMMA  LR_BRACKET    RR_BRACKET*
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableValueConstructor : AstRule
     {
         
+        public AstTableValueConstructor(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableValueConstructor(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableValueConstructor(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20975,13 +26709,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstExpressionList : AstRule
     {
         
+        public AstExpressionList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstExpressionList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstExpressionList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -20997,13 +26741,23 @@ namespace Bb.Asts
     /// 	 | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstRankingWindowedFunction : AstRule
     {
         
+        public AstRankingWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstRankingWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstRankingWindowedFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21022,13 +26776,23 @@ namespace Bb.Asts
     /// 	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAggregateWindowedFunction : AstRule
     {
         
+        public AstAggregateWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAggregateWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAggregateWindowedFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21046,13 +26810,23 @@ namespace Bb.Asts
     /// 	 | PERCENTILE_CONT PERCENTILE_DISC  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  PARTITION  BY  expression_list?  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAnalyticWindowedFunction : AstRule
     {
         
+        public AstAnalyticWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAnalyticWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAnalyticWindowedFunction(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21074,6 +26848,20 @@ namespace Bb.Asts
         
         private AstExpression _expression;
         
+        public AstAllDistinctExpression(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExpression>())
+                {
+                    this._expression = ((AstExpression)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAllDistinctExpression(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21083,7 +26871,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstExpression>())
                 {
-                    this.Expression = ((AstExpression)(enumerator.Current));
+                    this._expression = ((AstExpression)(enumerator.Current));
                 }
             }
         }
@@ -21093,10 +26881,6 @@ namespace Bb.Asts
             get
             {
                 return this._expression;
-            }
-            set
-            {
-                this._expression = value;
             }
         }
         
@@ -21120,6 +26904,24 @@ namespace Bb.Asts
         
         private AstRowOrRangeClause _rowOrRangeClause;
         
+        public AstOverClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOrderByClause>())
+                {
+                    this._orderByClause = ((AstOrderByClause)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstRowOrRangeClause>())
+                {
+                    this._rowOrRangeClause = ((AstRowOrRangeClause)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOverClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21129,11 +26931,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstOrderByClause>())
                 {
-                    this.OrderByClause = ((AstOrderByClause)(enumerator.Current));
+                    this._orderByClause = ((AstOrderByClause)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstRowOrRangeClause>())
                 {
-                    this.RowOrRangeClause = ((AstRowOrRangeClause)(enumerator.Current));
+                    this._rowOrRangeClause = ((AstRowOrRangeClause)(enumerator.Current));
                 }
             }
         }
@@ -21144,10 +26946,6 @@ namespace Bb.Asts
             {
                 return this._orderByClause;
             }
-            set
-            {
-                this._orderByClause = value;
-            }
         }
         
         public virtual AstRowOrRangeClause RowOrRangeClause
@@ -21155,10 +26953,6 @@ namespace Bb.Asts
             get
             {
                 return this._rowOrRangeClause;
-            }
-            set
-            {
-                this._rowOrRangeClause = value;
             }
         }
         
@@ -21180,6 +26974,20 @@ namespace Bb.Asts
         
         private AstWindowFrameExtent _windowFrameExtent;
         
+        public AstRowOrRangeClause(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstWindowFrameExtent>())
+                {
+                    this._windowFrameExtent = ((AstWindowFrameExtent)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRowOrRangeClause(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21189,7 +26997,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstWindowFrameExtent>())
                 {
-                    this.WindowFrameExtent = ((AstWindowFrameExtent)(enumerator.Current));
+                    this._windowFrameExtent = ((AstWindowFrameExtent)(enumerator.Current));
                 }
             }
         }
@@ -21199,10 +27007,6 @@ namespace Bb.Asts
             get
             {
                 return this._windowFrameExtent;
-            }
-            set
-            {
-                this._windowFrameExtent = value;
             }
         }
         
@@ -21218,13 +27022,23 @@ namespace Bb.Asts
     /// 	 | BETWEEN  window_frame_bound  AND  window_frame_bound
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWindowFrameExtent : AstRule
     {
         
+        public AstWindowFrameExtent(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWindowFrameExtent(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWindowFrameExtent(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21241,13 +27055,23 @@ namespace Bb.Asts
     /// 	 | CURRENT  ROW
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWindowFramePreceding : AstRule
     {
         
+        public AstWindowFramePreceding(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWindowFramePreceding(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWindowFramePreceding(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21263,13 +27087,23 @@ namespace Bb.Asts
     /// 	 | DECIMAL  FOLLOWING
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstWindowFrameFollowing : AstRule
     {
         
+        public AstWindowFrameFollowing(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstWindowFrameFollowing(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstWindowFrameFollowing(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21291,13 +27125,23 @@ namespace Bb.Asts
     /// 	 | TRUSTWORTHY  on_off
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCreateDatabaseOption : AstRule
     {
         
+        public AstCreateDatabaseOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCreateDatabaseOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCreateDatabaseOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21319,6 +27163,20 @@ namespace Bb.Asts
         
         private AstDatabaseFilestreamOption _databaseFilestreamOption;
         
+        public AstDatabaseFilestreamOptions(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDatabaseFilestreamOption>())
+                {
+                    this._databaseFilestreamOption = ((AstDatabaseFilestreamOption)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDatabaseFilestreamOptions(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21328,7 +27186,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstDatabaseFilestreamOption>())
                 {
-                    this.DatabaseFilestreamOption = ((AstDatabaseFilestreamOption)(enumerator.Current));
+                    this._databaseFilestreamOption = ((AstDatabaseFilestreamOption)(enumerator.Current));
                 }
             }
         }
@@ -21338,10 +27196,6 @@ namespace Bb.Asts
             get
             {
                 return this._databaseFilestreamOption;
-            }
-            set
-            {
-                this._databaseFilestreamOption = value;
             }
         }
         
@@ -21356,13 +27210,23 @@ namespace Bb.Asts
     /// 	 : LR_BRACKET  NON_TRANSACTED_ACCESS  EQUAL  OFF READ_ONLY FULL DIRECTORY_NAME  EQUAL  STRING  RR_BRACKET
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDatabaseFilestreamOption : AstRule
     {
         
+        public AstDatabaseFilestreamOption(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDatabaseFilestreamOption(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDatabaseFilestreamOption(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21386,6 +27250,24 @@ namespace Bb.Asts
         
         private AstFileSpec _fileSpec;
         
+        public AstFileGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFileSpec>())
+                {
+                    this._fileSpec = ((AstFileSpec)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFileGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21395,11 +27277,11 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstFileSpec>())
                 {
-                    this.FileSpec = ((AstFileSpec)(enumerator.Current));
+                    this._fileSpec = ((AstFileSpec)(enumerator.Current));
                 }
             }
         }
@@ -21410,10 +27292,6 @@ namespace Bb.Asts
             {
                 return this._id;
             }
-            set
-            {
-                this._id = value;
-            }
         }
         
         public virtual AstFileSpec FileSpec
@@ -21421,10 +27299,6 @@ namespace Bb.Asts
             get
             {
                 return this._fileSpec;
-            }
-            set
-            {
-                this._fileSpec = value;
             }
         }
         
@@ -21446,6 +27320,20 @@ namespace Bb.Asts
         
         private AstIdOrString _idOrString;
         
+        public AstFileSpec(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIdOrString>())
+                {
+                    this._idOrString = ((AstIdOrString)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFileSpec(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21455,7 +27343,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstIdOrString>())
                 {
-                    this.IdOrString = ((AstIdOrString)(enumerator.Current));
+                    this._idOrString = ((AstIdOrString)(enumerator.Current));
                 }
             }
         }
@@ -21465,10 +27353,6 @@ namespace Bb.Asts
             get
             {
                 return this._idOrString;
-            }
-            set
-            {
-                this._idOrString = value;
             }
         }
         
@@ -21490,6 +27374,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstEntityName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEntityName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21499,7 +27397,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -21509,10 +27407,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -21528,13 +27422,23 @@ namespace Bb.Asts
     /// 	 | schema_name  DOT  object_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEntityNameForAzureDw : AstRule
     {
         
+        public AstEntityNameForAzureDw(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEntityNameForAzureDw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEntityNameForAzureDw(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21550,13 +27454,23 @@ namespace Bb.Asts
     /// 	 | schema_name  DOT  object_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEntityNameForParallelDw : AstRule
     {
         
+        public AstEntityNameForParallelDw(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEntityNameForParallelDw(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEntityNameForParallelDw(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21578,6 +27492,20 @@ namespace Bb.Asts
         
         private AstTableName _tableName;
         
+        public AstFullTableName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTableName>())
+                {
+                    this._tableName = ((AstTableName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFullTableName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21587,7 +27515,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTableName>())
                 {
-                    this.TableName = ((AstTableName)(enumerator.Current));
+                    this._tableName = ((AstTableName)(enumerator.Current));
                 }
             }
         }
@@ -21597,10 +27525,6 @@ namespace Bb.Asts
             get
             {
                 return this._tableName;
-            }
-            set
-            {
-                this._tableName = value;
             }
         }
         
@@ -21616,13 +27540,23 @@ namespace Bb.Asts
     /// 	 | database_name  DOT  schema_name?  DOT schema_name  DOT?  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstTableName : AstRule
     {
         
+        public AstTableName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstTableName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstTableName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21637,13 +27571,23 @@ namespace Bb.Asts
     /// 	 : schema_name  DOT?  
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSimpleName : AstRule
     {
         
+        public AstSimpleName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSimpleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSimpleName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21665,6 +27609,20 @@ namespace Bb.Asts
         
         private AstFunctionName _functionName;
         
+        public AstFuncProcNameSchema(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFunctionName>())
+                {
+                    this._functionName = ((AstFunctionName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFuncProcNameSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21674,7 +27632,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFunctionName>())
                 {
-                    this.FunctionName = ((AstFunctionName)(enumerator.Current));
+                    this._functionName = ((AstFunctionName)(enumerator.Current));
                 }
             }
         }
@@ -21684,10 +27642,6 @@ namespace Bb.Asts
             get
             {
                 return this._functionName;
-            }
-            set
-            {
-                this._functionName = value;
             }
         }
         
@@ -21703,13 +27657,23 @@ namespace Bb.Asts
     /// 	 | func_proc_name_schema
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFuncProcNameDatabaseSchema : AstRule
     {
         
+        public AstFuncProcNameDatabaseSchema(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFuncProcNameDatabaseSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFuncProcNameDatabaseSchema(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21725,13 +27689,23 @@ namespace Bb.Asts
     /// 	 | func_proc_name_database_schema
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFuncProcNameServerDatabaseSchema : AstRule
     {
         
+        public AstFuncProcNameServerDatabaseSchema(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFuncProcNameServerDatabaseSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFuncProcNameServerDatabaseSchema(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21747,13 +27721,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDdlObject : AstRule
     {
         
+        public AstDdlObject(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDdlObject(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDdlObject(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21772,13 +27756,23 @@ namespace Bb.Asts
     /// 	 | column_name
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFullColumnName : AstRule
     {
         
+        public AstFullColumnName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFullColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFullColumnName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21800,6 +27794,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstColumnNameListWithOrder(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnNameListWithOrder(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21809,7 +27817,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -21819,10 +27827,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -21837,13 +27841,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstInsertColumnNameList : AstRule
     {
         
+        public AstInsertColumnNameList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstInsertColumnNameList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstInsertColumnNameList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21865,6 +27879,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstInsertColumnId(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstInsertColumnId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -21874,7 +27902,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -21884,10 +27912,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -21902,13 +27926,23 @@ namespace Bb.Asts
     /// 	 :   COMMA  *
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstColumnNameList : AstRule
     {
         
+        public AstColumnNameList(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstColumnNameList(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstColumnNameList(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21924,13 +27958,23 @@ namespace Bb.Asts
     /// 	 | LOCAL_ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstCursorName : AstRule
     {
         
+        public AstCursorName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstCursorName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstCursorName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -21948,11 +27992,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstOnOff : AstTerminalEnum<AstOnOffEnum>
+    public partial class AstOnOff : AstTerminal<AstOnOffEnum>
     {
         
+        public AstOnOff(ITerminalNode t, string value) : 
+                base(t, AstOnOff.GetValue(value))
+        {
+        }
+        
+        public AstOnOff(ITerminalNode t, AstOnOffEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstOnOff(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstOnOff.GetValue(value))
+        {
+        }
+        
+        public AstOnOff(Position p, string value) : 
+                base(p, AstOnOff.GetValue(value))
+        {
+        }
+        
+        public AstOnOff(Position p, AstOnOffEnum value) : 
+                base(p, value)
         {
         }
         
@@ -21961,7 +28025,7 @@ namespace Bb.Asts
             visitor.VisitOnOff(this);
         }
         
-        protected override AstOnOffEnum GetValue(string value)
+        protected static AstOnOffEnum GetValue(string value)
         {
             if ((value == "ON"))
             {
@@ -21983,11 +28047,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstClustered : AstTerminalEnum<AstClusteredEnum>
+    public partial class AstClustered : AstTerminal<AstClusteredEnum>
     {
         
+        public AstClustered(ITerminalNode t, string value) : 
+                base(t, AstClustered.GetValue(value))
+        {
+        }
+        
+        public AstClustered(ITerminalNode t, AstClusteredEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstClustered(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstClustered.GetValue(value))
+        {
+        }
+        
+        public AstClustered(Position p, string value) : 
+                base(p, AstClustered.GetValue(value))
+        {
+        }
+        
+        public AstClustered(Position p, AstClusteredEnum value) : 
+                base(p, value)
         {
         }
         
@@ -21996,7 +28080,7 @@ namespace Bb.Asts
             visitor.VisitClustered(this);
         }
         
-        protected override AstClusteredEnum GetValue(string value)
+        protected static AstClusteredEnum GetValue(string value)
         {
             if ((value == "CLUSTERED"))
             {
@@ -22015,13 +28099,23 @@ namespace Bb.Asts
     /// 	 : NOT?  NULL_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstNullNotnull : AstRule
     {
         
+        public AstNullNotnull(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstNullNotnull(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstNullNotnull(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22036,13 +28130,23 @@ namespace Bb.Asts
     /// 	 : null_notnull DEFAULT  constant_expression  COLLATE  id_?  WITH  VALUES?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstNullOrDefault : AstRule
     {
         
+        public AstNullOrDefault(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstNullOrDefault(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstNullOrDefault(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22061,13 +28165,23 @@ namespace Bb.Asts
     /// 	 | CHECKSUM
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstScalarFunctionName : AstRule
     {
         
+        public AstScalarFunctionName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstScalarFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstScalarFunctionName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22089,6 +28203,20 @@ namespace Bb.Asts
         
         private AstTime _time;
         
+        public AstBeginConversationTimer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTime>())
+                {
+                    this._time = ((AstTime)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBeginConversationTimer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -22098,7 +28226,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstTime>())
                 {
-                    this.Time = ((AstTime)(enumerator.Current));
+                    this._time = ((AstTime)(enumerator.Current));
                 }
             }
         }
@@ -22108,10 +28236,6 @@ namespace Bb.Asts
             get
             {
                 return this._time;
-            }
-            set
-            {
-                this._time = value;
             }
         }
         
@@ -22133,6 +28257,20 @@ namespace Bb.Asts
         
         private AstContractName _contractName;
         
+        public AstBeginConversationDialog(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstContractName>())
+                {
+                    this._contractName = ((AstContractName)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBeginConversationDialog(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -22142,7 +28280,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstContractName>())
                 {
-                    this.ContractName = ((AstContractName)(enumerator.Current));
+                    this._contractName = ((AstContractName)(enumerator.Current));
                 }
             }
         }
@@ -22152,10 +28290,6 @@ namespace Bb.Asts
             get
             {
                 return this._contractName;
-            }
-            set
-            {
-                this._contractName = value;
             }
         }
         
@@ -22170,13 +28304,23 @@ namespace Bb.Asts
     /// 	 : id_ expression
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstContractName : AstRule
     {
         
+        public AstContractName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstContractName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstContractName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22191,13 +28335,23 @@ namespace Bb.Asts
     /// 	 : id_ expression
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstServiceName : AstRule
     {
         
+        public AstServiceName(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstServiceName(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22212,13 +28366,23 @@ namespace Bb.Asts
     /// 	 : END  CONVERSATION    SEMI?  WITH  ERROR  EQUAL    DESCRIPTION  EQUAL  ?  CLEANUP??
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstEndConversation : AstRule
     {
         
+        public AstEndConversation(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstEndConversation(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstEndConversation(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22240,6 +28404,20 @@ namespace Bb.Asts
         
         private AstGetConversation _getConversation;
         
+        public AstWaitforConversation(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstGetConversation>())
+                {
+                    this._getConversation = ((AstGetConversation)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWaitforConversation(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -22249,7 +28427,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstGetConversation>())
                 {
-                    this.GetConversation = ((AstGetConversation)(enumerator.Current));
+                    this._getConversation = ((AstGetConversation)(enumerator.Current));
                 }
             }
         }
@@ -22259,10 +28437,6 @@ namespace Bb.Asts
             get
             {
                 return this._getConversation;
-            }
-            set
-            {
-                this._getConversation = value;
             }
         }
         
@@ -22277,13 +28451,23 @@ namespace Bb.Asts
     /// 	 : GET  CONVERSATION  GROUP    FROM    SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstGetConversation : AstRule
     {
         
+        public AstGetConversation(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstGetConversation(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstGetConversation(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22299,13 +28483,23 @@ namespace Bb.Asts
     /// 	 | id_
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstQueueId : AstRule
     {
         
+        public AstQueueId(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstQueueId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstQueueId(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22320,13 +28514,23 @@ namespace Bb.Asts
     /// 	 : SEND  ON  CONVERSATION    MESSAGE  TYPE    LR_BRACKET    RR_BRACKET?  SEMI?
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSendConversation : AstRule
     {
         
+        public AstSendConversation(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSendConversation(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSendConversation(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22346,13 +28550,23 @@ namespace Bb.Asts
     /// 	 | unscaled_type
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDataType : AstRule
     {
         
+        public AstDataType(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDataType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDataType(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22369,13 +28583,23 @@ namespace Bb.Asts
     /// 	 | constant
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstDefaultValue : AstRule
     {
         
+        public AstDefaultValue(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstDefaultValue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstDefaultValue(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22395,13 +28619,23 @@ namespace Bb.Asts
     /// 	 | parameter
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstConstant : AstRule
     {
         
+        public AstConstant(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstConstant(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstConstant(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -22417,13 +28651,23 @@ namespace Bb.Asts
     /// 	 | MINUS
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstSign : AstRule
     {
         
+        public AstSign(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstSign(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstSign(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -23256,11 +29500,31 @@ namespace Bb.Asts
     /// <remarks>
     /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstKeyword : AstTerminalEnum<AstKeywordEnum>
+    public partial class AstKeyword : AstTerminal<AstKeywordEnum>
     {
         
+        public AstKeyword(ITerminalNode t, string value) : 
+                base(t, AstKeyword.GetValue(value))
+        {
+        }
+        
+        public AstKeyword(ITerminalNode t, AstKeywordEnum value) : 
+                base(t, value)
+        {
+        }
+        
         public AstKeyword(ParserRuleContext ctx, string value) : 
-                base(ctx, value)
+                base(ctx, AstKeyword.GetValue(value))
+        {
+        }
+        
+        public AstKeyword(Position p, string value) : 
+                base(p, AstKeyword.GetValue(value))
+        {
+        }
+        
+        public AstKeyword(Position p, AstKeywordEnum value) : 
+                base(p, value)
         {
         }
         
@@ -23269,7 +29533,7 @@ namespace Bb.Asts
             visitor.VisitKeyword(this);
         }
         
-        protected override AstKeywordEnum GetValue(string value)
+        protected static AstKeywordEnum GetValue(string value)
         {
             if ((value == "ABORT"))
             {
@@ -26552,13 +32816,23 @@ namespace Bb.Asts
     /// 	 | keyword
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstId : AstRule
     {
         
+        public AstId(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstId(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -26573,13 +32847,23 @@ namespace Bb.Asts
     /// 	 : ID
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : ClassTerminalAlias
     /// </remarks>
-    public partial class AstSimpleId : AstRule
+    public partial class AstSimpleId : AstTerminal<string>
     {
         
-        public AstSimpleId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstSimpleId(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSimpleId(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstSimpleId(Position t, string value) : 
+                base(t, value)
         {
         }
         
@@ -26602,13 +32886,23 @@ namespace Bb.Asts
     /// 	 | EXCLAMATION  LESS
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstComparisonOperator : AstRule
     {
         
+        public AstComparisonOperator(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstComparisonOperator(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstComparisonOperator(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -26630,13 +32924,23 @@ namespace Bb.Asts
     /// 	 | OR_ASSIGN
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstAssignmentOperator : AstRule
     {
         
+        public AstAssignmentOperator(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstAssignmentOperator(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstAssignmentOperator(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -26658,6 +32962,20 @@ namespace Bb.Asts
         
         private AstFileSizeUnity _fileSizeUnity;
         
+        public AstFileSize(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFileSizeUnity>())
+                {
+                    this._fileSizeUnity = ((AstFileSizeUnity)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFileSize(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26667,7 +32985,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstFileSizeUnity>())
                 {
-                    this.FileSizeUnity = ((AstFileSizeUnity)(enumerator.Current));
+                    this._fileSizeUnity = ((AstFileSizeUnity)(enumerator.Current));
                 }
             }
         }
@@ -26677,10 +32995,6 @@ namespace Bb.Asts
             get
             {
                 return this._fileSizeUnity;
-            }
-            set
-            {
-                this._fileSizeUnity = value;
             }
         }
         
@@ -26699,13 +33013,23 @@ namespace Bb.Asts
     /// 	 | MODULE
     /// </summary>
     /// <remarks>
-    /// Strategy : 
+    /// Strategy : _
     /// </remarks>
     public partial class AstFileSizeUnity : AstRule
     {
         
+        public AstFileSizeUnity(ITerminalNode t, List<AstRoot> list) : 
+                base(t, list)
+        {
+        }
+        
         public AstFileSizeUnity(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
+        {
+        }
+        
+        public AstFileSizeUnity(Position p, List<AstRoot> list) : 
+                base(p, list)
         {
         }
         
@@ -26727,6 +33051,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstFilestreamFilegroupOrPartitionSchemaName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFilestreamFilegroupOrPartitionSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26736,7 +33074,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26746,10 +33084,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26771,6 +33105,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstActionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstActionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26780,7 +33128,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26790,10 +33138,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26815,6 +33159,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAggregateName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAggregateName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26824,7 +33182,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26834,10 +33192,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26859,6 +33213,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAppRoleSchema(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAppRoleSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26868,7 +33236,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26878,10 +33246,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26903,6 +33267,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstApplicationRole(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstApplicationRole(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26912,7 +33290,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26922,10 +33300,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26947,6 +33321,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAssemblyName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAssemblyName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -26956,7 +33344,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -26966,10 +33354,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -26991,6 +33375,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAsymKeyName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAsymKeyName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27000,7 +33398,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27010,10 +33408,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27035,6 +33429,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAuditActionGroupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAuditActionGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27044,7 +33452,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27054,10 +33462,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27079,6 +33483,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAuditGuid(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAuditGuid(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27088,7 +33506,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27098,10 +33516,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27123,6 +33537,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAuditName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAuditName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27132,7 +33560,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27142,10 +33570,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27167,6 +33591,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAuditSpecificationName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAuditSpecificationName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27176,7 +33614,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27186,10 +33624,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27211,6 +33645,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstAzureActiveDirectoryPrincipal(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstAzureActiveDirectoryPrincipal(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27220,7 +33668,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27230,10 +33678,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27255,6 +33699,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstBackupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBackupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27264,7 +33722,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27274,10 +33732,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27299,6 +33753,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstBindingName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstBindingName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27308,7 +33776,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27318,10 +33786,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27343,6 +33807,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCatalogName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCatalogName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27352,7 +33830,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27362,10 +33840,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27387,6 +33861,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCertName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCertName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27396,7 +33884,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27406,10 +33894,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27431,6 +33915,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCertificateName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCertificateName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27440,7 +33938,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27450,10 +33948,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27475,6 +33969,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstClassName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstClassName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27484,7 +33992,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27494,10 +34002,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27519,6 +34023,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCollationName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCollationName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27528,7 +34046,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27538,10 +34056,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27563,6 +34077,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstColumnEncryptionKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27572,7 +34100,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27582,10 +34110,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27607,6 +34131,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstColumnName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27616,7 +34154,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27626,10 +34164,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27651,6 +34185,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstColumnNameOrArguments(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstColumnNameOrArguments(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27660,7 +34208,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27670,10 +34218,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27695,6 +34239,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstConstraintName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstConstraintName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27704,7 +34262,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27714,10 +34272,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27739,6 +34293,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCreateServiceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCreateServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27748,7 +34316,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27758,10 +34326,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27783,6 +34347,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCredentialName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCredentialName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27792,7 +34370,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27802,10 +34380,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27827,6 +34401,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstCryptographicProviderName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstCryptographicProviderName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27836,7 +34424,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27846,10 +34434,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27871,6 +34455,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstDataSourceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDataSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27880,7 +34478,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27890,10 +34488,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27915,6 +34509,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstDatabaseName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDatabaseName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27924,7 +34532,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27934,10 +34542,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -27959,6 +34563,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstDroppedServiceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstDroppedServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -27968,7 +34586,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -27978,10 +34596,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28003,6 +34617,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEncryptorName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEncryptorName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28012,7 +34640,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28022,10 +34650,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28047,6 +34671,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEncryptionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEncryptionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28056,7 +34694,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28066,10 +34704,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28091,6 +34725,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEndpointName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEndpointName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28100,7 +34748,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28110,10 +34758,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28135,6 +34779,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventCustomizableAttributue(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventCustomizableAttributue(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28144,7 +34802,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28154,10 +34812,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28179,6 +34833,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventFieldName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventFieldName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28188,7 +34856,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28198,10 +34866,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28223,6 +34887,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventModuleGuid(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventModuleGuid(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28232,7 +34910,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28242,10 +34920,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28267,6 +34941,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28276,7 +34964,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28286,10 +34974,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28311,6 +34995,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventNotificationName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventNotificationName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28320,7 +35018,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28330,10 +35028,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28355,6 +35049,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventPackageName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventPackageName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28364,7 +35072,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28374,10 +35082,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28399,6 +35103,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventSessionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventSessionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28408,7 +35126,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28418,10 +35136,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28443,6 +35157,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstEventTypeOrGroup(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstEventTypeOrGroup(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28452,7 +35180,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28462,10 +35190,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28487,6 +35211,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstExtType(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExtType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28496,7 +35234,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28506,10 +35244,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28531,6 +35265,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstExternalDataSourceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExternalDataSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28540,7 +35288,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28550,10 +35298,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28575,6 +35319,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstExternalFileFormatName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExternalFileFormatName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28584,7 +35342,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28594,10 +35352,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28619,6 +35373,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstExternalPoolName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstExternalPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28628,7 +35396,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28638,10 +35406,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28663,6 +35427,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstFileGroupId(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFileGroupId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28672,7 +35450,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28682,10 +35460,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28707,6 +35481,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstFileGroupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFileGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28716,7 +35504,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28726,10 +35514,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28751,6 +35535,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstFunctionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28760,7 +35558,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28770,10 +35568,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28795,6 +35589,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstGroupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28804,7 +35612,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28814,10 +35622,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28839,6 +35643,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstIndexName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstIndexName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28848,7 +35666,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28858,10 +35676,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28883,6 +35697,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstLanguage(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLanguage(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28892,7 +35720,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28902,10 +35730,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28927,6 +35751,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstLibraryName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLibraryName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28936,7 +35774,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28946,10 +35784,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -28971,6 +35805,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstLinkedServer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLinkedServer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -28980,7 +35828,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -28990,10 +35838,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29015,6 +35859,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstLogicalDeviceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLogicalDeviceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29024,7 +35882,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29034,10 +35892,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29059,6 +35913,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstLoginName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstLoginName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29068,7 +35936,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29078,10 +35946,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29103,6 +35967,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstMasterKey(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29112,7 +35990,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29122,10 +36000,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29147,6 +36021,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstMethodName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstMethodName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29156,7 +36044,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29166,10 +36054,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29191,6 +36075,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstModifiedContractName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstModifiedContractName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29200,7 +36098,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29210,10 +36108,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29235,6 +36129,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstModifiedServiceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstModifiedServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29244,7 +36152,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29254,10 +36162,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29279,6 +36183,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstModuleName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstModuleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29288,7 +36206,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29298,10 +36216,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29323,6 +36237,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstNetworkComputer(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNetworkComputer(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29332,7 +36260,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29342,10 +36270,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29367,6 +36291,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstNewApplicationRoleName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNewApplicationRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29376,7 +36314,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29386,10 +36324,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29411,6 +36345,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstNewFileGroupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNewFileGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29420,7 +36368,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29430,10 +36378,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29455,6 +36399,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstNonStaticAttr(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNonStaticAttr(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29464,7 +36422,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29474,10 +36432,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29499,6 +36453,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstNotificationName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstNotificationName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29508,7 +36476,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29518,10 +36486,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29543,6 +36507,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstObjectName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstObjectName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29552,7 +36530,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29562,10 +36540,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29587,6 +36561,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstOwnerName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstOwnerName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29596,7 +36584,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29606,10 +36594,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29631,6 +36615,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPartitionColumnName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPartitionColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29640,7 +36638,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29650,10 +36648,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29675,6 +36669,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPoolName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29684,7 +36692,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29694,10 +36702,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29719,6 +36723,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPredicateCompareName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPredicateCompareName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29728,7 +36746,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29738,10 +36756,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29763,6 +36777,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPredicateSourceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPredicateSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29772,7 +36800,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29782,10 +36810,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29807,6 +36831,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstPropertyListName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstPropertyListName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29816,7 +36854,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29826,10 +36864,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29851,6 +36885,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstProviderName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstProviderName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29860,7 +36908,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29870,10 +36918,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29895,6 +36939,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstQueueName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstQueueName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29904,7 +36962,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29914,10 +36972,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29939,6 +36993,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstRelationalSchema(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRelationalSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29948,7 +37016,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -29958,10 +37026,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -29983,6 +37047,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstRoleName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -29992,7 +37070,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30002,10 +37080,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30027,6 +37101,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstRouteName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRouteName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30036,7 +37124,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30046,10 +37134,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30071,6 +37155,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstRuleName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstRuleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30080,7 +37178,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30090,10 +37188,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30115,6 +37209,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSchemaCollectionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSchemaCollectionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30124,7 +37232,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30134,10 +37242,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30159,6 +37263,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSchemaId(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSchemaId(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30168,7 +37286,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30178,10 +37296,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30203,6 +37317,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSchemaName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30212,7 +37340,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30222,10 +37350,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30247,6 +37371,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSecurityPolicyName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSecurityPolicyName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30256,7 +37394,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30266,10 +37404,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30291,6 +37425,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSecurityPredicateFunctionName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSecurityPredicateFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30300,7 +37448,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30310,10 +37458,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30335,6 +37479,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSequenceName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSequenceName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30344,7 +37502,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30354,10 +37512,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30379,6 +37533,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstServerName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstServerName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30388,7 +37556,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30398,10 +37566,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30423,6 +37587,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstServerRoleName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstServerRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30432,7 +37610,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30442,10 +37620,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30467,6 +37641,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSourceListName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSourceListName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30476,7 +37664,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30486,10 +37674,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30511,6 +37695,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSqlIdentifier(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSqlIdentifier(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30520,7 +37718,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30530,10 +37728,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30555,6 +37749,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstStaticAttr(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstStaticAttr(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30564,7 +37772,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30574,10 +37782,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30599,6 +37803,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstStatisticsName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstStatisticsName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30608,7 +37826,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30618,10 +37836,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30643,6 +37857,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstStoplistName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstStoplistName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30652,7 +37880,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30662,10 +37890,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30687,6 +37911,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSymmetricKeyName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSymmetricKeyName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30696,7 +37934,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30706,10 +37944,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30731,6 +37965,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstSynonymName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstSynonymName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30740,7 +37988,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30750,10 +37998,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30775,6 +38019,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTableOrViewName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableOrViewName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30784,7 +38042,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30794,10 +38052,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30819,6 +38073,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTableVariable(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTableVariable(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30828,7 +38096,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30838,10 +38106,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30863,6 +38127,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTargetName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTargetName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30872,7 +38150,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30882,10 +38160,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30907,6 +38181,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTargetParameterName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTargetParameterName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30916,7 +38204,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30926,10 +38214,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30951,6 +38235,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTriggerName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTriggerName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -30960,7 +38258,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -30970,10 +38268,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -30995,6 +38289,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTvfSchemaName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTvfSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31004,7 +38312,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31014,10 +38322,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31039,6 +38343,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstTypeSchema(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstTypeSchema(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31048,7 +38366,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31058,10 +38376,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31083,6 +38397,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstUdtColumnName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUdtColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31092,7 +38420,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31102,10 +38430,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31127,6 +38451,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstUnscaledType(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUnscaledType(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31136,7 +38474,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31146,10 +38484,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31171,6 +38505,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstUserName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstUserName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31180,7 +38528,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31190,10 +38538,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31215,6 +38559,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstWindowsPrincipal(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWindowsPrincipal(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31224,7 +38582,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31234,10 +38592,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31259,6 +38613,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstWorkloadGroupGroupName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWorkloadGroupGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31268,7 +38636,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31278,10 +38646,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         
@@ -31303,6 +38667,20 @@ namespace Bb.Asts
         
         private AstId _id;
         
+        public AstWorkloadGroupPoolName(Position p, List<AstRoot> list) : 
+                base(p, null)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstId>())
+                {
+                    this._id = ((AstId)(enumerator.Current));
+                }
+            }
+        }
+        
         public AstWorkloadGroupPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, null)
         {
@@ -31312,7 +38690,7 @@ namespace Bb.Asts
                 AstRoot item = ((AstRoot)(enumerator.Current));
                 if (enumerator.Current.Is<AstId>())
                 {
-                    this.Id = ((AstId)(enumerator.Current));
+                    this._id = ((AstId)(enumerator.Current));
                 }
             }
         }
@@ -31322,10 +38700,6 @@ namespace Bb.Asts
             get
             {
                 return this._id;
-            }
-            set
-            {
-                this._id = value;
             }
         }
         

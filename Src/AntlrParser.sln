@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers", "Blac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers.SqlServer.UnitTests", "Black.Beard.Parsers.SqlServer.UnitTests\Black.Beard.Parsers.SqlServer.UnitTests.csproj", "{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSql", "TSql\TSql.csproj", "{2DB949A0-5121-412D-9256-144A93BD9070}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB949A0-5121-412D-9256-144A93BD9070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB949A0-5121-412D-9256-144A93BD9070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB949A0-5121-412D-9256-144A93BD9070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB949A0-5121-412D-9256-144A93BD9070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,10 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Parsers\Antlr\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
     <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
   </ItemGroup>
