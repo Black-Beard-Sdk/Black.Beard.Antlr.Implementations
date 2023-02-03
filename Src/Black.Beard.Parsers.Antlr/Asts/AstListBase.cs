@@ -50,6 +50,79 @@ namespace Bb.Asts
             return this._list.GetEnumerator();
         }
 
+
+
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (item.ContainsTerminals)
+                        return true;
+                }
+
+                return false;
+
+            }
+        }
+        public override bool ContainsRules
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (item.ContainsRules)
+                        return true;
+                }
+
+                return false;
+
+            }
+        }
+        public override bool ContainsBlocks
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (item.ContainsBlocks)
+                        return true;
+                }
+
+                return false;
+
+            }
+        }
+        public override bool ContainsAlternatives
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (item.ContainsAlternatives)
+                        return true;
+                }
+
+                return false;
+
+            }
+        }
+
+
+
         public override bool ContainsOneTerminal
         {
             get
@@ -59,16 +132,35 @@ namespace Bb.Asts
                 return false;
             }
         }
-
         public override bool ContainsOneRule
         {
             get
             {
                 if (this.Count == 1)
-                    return this[0].IsRuleReference;
+                    return this[0].IsRule;
                 return false;
             }
         }
+        public override bool ContainsOneBlock
+        {
+            get
+            {
+                if (this.Count == 1)
+                    return this[0].IsBlock;
+                return false;
+            }
+        }
+        public override bool ContainsOneAlternative
+        {
+            get
+            {
+                if (this.Count == 1)
+                    return this[0].IsAlternative;
+                return false;
+            }
+        }
+
+
 
         public override bool ContainsOnlyTerminals
         {
@@ -88,8 +180,7 @@ namespace Bb.Asts
 
             }
         }
-
-        public override bool ContainsTerminals
+        public override bool ContainsOnlyRules
         {
             get
             {
@@ -97,31 +188,82 @@ namespace Bb.Asts
                     return false;
 
                 foreach (var item in this)
-                {
-                    if (item.ContainsTerminals)
-                        return true;
-                }
-
-                return false;
-
-            }
-        }
-
-        public override bool ContainsOnlyRuleReferences
-        {
-            get
-            {
-                if (this.Count == 0)
-                    return false;
-
-                foreach (var item in this)
-                    if (!item.ContainsOnlyRuleReferences)
+                    if (!item.ContainsOnlyRules)
                         return false;
 
                 return true;
 
             }
         }
+        public override bool ContainsOnlyBlocks
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                {
+                    if (!item.ContainsOnlyBlocks)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+        public override bool ContainsOnlyAlternatives
+        {
+            get
+            {
+                if (this.Count == 0)
+                    return false;
+
+                foreach (var item in this)
+                    if (!item.ContainsOnlyAlternatives)
+                        return false;
+
+                return true;
+
+            }
+        }
+
+
+
+
+        public override IEnumerable<AstTerminalText> GetTerminals()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetTerminals())
+                        yield return t;
+        }
+
+        public override IEnumerable<AstRuleRef> GetRules()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetRules())
+                        yield return t;
+        }
+        public override IEnumerable<AstBlock> GetBlocks()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetBlocks())
+                        yield return t;
+        }
+        public override IEnumerable<AstAlternative> GetAlternatives()
+        {
+            foreach (T item in this)
+                if (item != null)
+                    foreach (var t in item.GetAlternatives())
+                        yield return t;
+        }
+
+
+
 
         public override AstTerminalText GetTerminal()
         {
@@ -143,7 +285,6 @@ namespace Bb.Asts
             foreach (T item in _list)
             {
 
-
                 wrt.Append(comma);
 
                 item.ToString(wrt);
@@ -159,22 +300,8 @@ namespace Bb.Asts
 
         public OccurenceEnum Occurence { get; set; }
 
-        public override IEnumerable<AstTerminalText> GetTerminals()
-        {
-            foreach (T item in this)
-                if (item != null)
-                    foreach (var t in item.GetTerminals())
-                        yield return t;
-        }
 
-        public override IEnumerable<AstRuleRef> GetRules()
-        {
-            foreach (T item in this)
-                if (item != null)
-                    foreach (var t in item.GetRules())
-                        yield return t;
-        }
-             
+           
         public int Count => _list.Count;
 
         private readonly List<T> _list;
@@ -189,8 +316,8 @@ namespace Bb.Asts
         OneOptional,
         OneOrMore,
         OneOrMoreOptional,
+        AnyOptional,
         Any,
-        AnyOptional
     }
 
 

@@ -20,7 +20,8 @@ namespace Bb.Configurations
 
 
         public List<ConfigurationType> Types { get; }
-        public bool ProposalGenerate { get; set; }
+
+        public string CalculatedStrategy { get; set; }
 
         public ConfigurationType GetType(string name)
         {

@@ -5317,48 +5317,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstMessageTypeName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstMessageTypeName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstMessageTypeName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -5425,48 +5387,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPartitionFunctionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPartitionFunctionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPartitionFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -5533,48 +5457,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPartitionSchemeName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPartitionSchemeName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPartitionSchemeName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -26244,48 +26130,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTableAlias : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTableAlias(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTableAlias(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -28651,29 +28499,52 @@ namespace Bb.Asts
     /// 	 | MINUS
     /// </summary>
     /// <remarks>
-    /// Strategy : _
+    /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstSign : AstRule
+    public partial class AstSign : AstTerminal<AstSignEnum>
     {
         
-        public AstSign(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        public AstSign(ITerminalNode t, string value) : 
+                base(t, AstSign.GetValue(value))
         {
         }
         
-        public AstSign(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstSign(ITerminalNode t, AstSignEnum value) : 
+                base(t, value)
         {
         }
         
-        public AstSign(Position p, List<AstRoot> list) : 
-                base(p, list)
+        public AstSign(ParserRuleContext ctx, string value) : 
+                base(ctx, AstSign.GetValue(value))
+        {
+        }
+        
+        public AstSign(Position p, string value) : 
+                base(p, AstSign.GetValue(value))
+        {
+        }
+        
+        public AstSign(Position p, AstSignEnum value) : 
+                base(p, value)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSign(this);
+        }
+        
+        protected static AstSignEnum GetValue(string value)
+        {
+            if ((value == "PLUS"))
+            {
+                return AstSignEnum.Plus;
+            }
+            if ((value == "MINUS"))
+            {
+                return AstSignEnum.Minus;
+            }
+            return AstSignEnum._undefined;
         }
     }
     
@@ -32924,29 +32795,76 @@ namespace Bb.Asts
     /// 	 | OR_ASSIGN
     /// </summary>
     /// <remarks>
-    /// Strategy : _
+    /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstAssignmentOperator : AstRule
+    public partial class AstAssignmentOperator : AstTerminal<AstAssignmentOperatorEnum>
     {
         
-        public AstAssignmentOperator(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        public AstAssignmentOperator(ITerminalNode t, string value) : 
+                base(t, AstAssignmentOperator.GetValue(value))
         {
         }
         
-        public AstAssignmentOperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstAssignmentOperator(ITerminalNode t, AstAssignmentOperatorEnum value) : 
+                base(t, value)
         {
         }
         
-        public AstAssignmentOperator(Position p, List<AstRoot> list) : 
-                base(p, list)
+        public AstAssignmentOperator(ParserRuleContext ctx, string value) : 
+                base(ctx, AstAssignmentOperator.GetValue(value))
+        {
+        }
+        
+        public AstAssignmentOperator(Position p, string value) : 
+                base(p, AstAssignmentOperator.GetValue(value))
+        {
+        }
+        
+        public AstAssignmentOperator(Position p, AstAssignmentOperatorEnum value) : 
+                base(p, value)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAssignmentOperator(this);
+        }
+        
+        protected static AstAssignmentOperatorEnum GetValue(string value)
+        {
+            if ((value == "PLUS_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.PlusAssign;
+            }
+            if ((value == "MINUS_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.MinusAssign;
+            }
+            if ((value == "MULT_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.MultAssign;
+            }
+            if ((value == "DIV_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.DivAssign;
+            }
+            if ((value == "MOD_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.ModAssign;
+            }
+            if ((value == "AND_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.AndAssign;
+            }
+            if ((value == "XOR_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.XorAssign;
+            }
+            if ((value == "OR_ASSIGN"))
+            {
+                return AstAssignmentOperatorEnum.OrAssign;
+            }
+            return AstAssignmentOperatorEnum._undefined;
         }
     }
     
@@ -33013,29 +32931,64 @@ namespace Bb.Asts
     /// 	 | MODULE
     /// </summary>
     /// <remarks>
-    /// Strategy : _
+    /// Strategy : ClassEnum
     /// </remarks>
-    public partial class AstFileSizeUnity : AstRule
+    public partial class AstFileSizeUnity : AstTerminal<AstFileSizeUnityEnum>
     {
         
-        public AstFileSizeUnity(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        public AstFileSizeUnity(ITerminalNode t, string value) : 
+                base(t, AstFileSizeUnity.GetValue(value))
         {
         }
         
-        public AstFileSizeUnity(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        public AstFileSizeUnity(ITerminalNode t, AstFileSizeUnityEnum value) : 
+                base(t, value)
         {
         }
         
-        public AstFileSizeUnity(Position p, List<AstRoot> list) : 
-                base(p, list)
+        public AstFileSizeUnity(ParserRuleContext ctx, string value) : 
+                base(ctx, AstFileSizeUnity.GetValue(value))
+        {
+        }
+        
+        public AstFileSizeUnity(Position p, string value) : 
+                base(p, AstFileSizeUnity.GetValue(value))
+        {
+        }
+        
+        public AstFileSizeUnity(Position p, AstFileSizeUnityEnum value) : 
+                base(p, value)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitFileSizeUnity(this);
+        }
+        
+        protected static AstFileSizeUnityEnum GetValue(string value)
+        {
+            if ((value == "KB"))
+            {
+                return AstFileSizeUnityEnum.Kb;
+            }
+            if ((value == "MB"))
+            {
+                return AstFileSizeUnityEnum.Mb;
+            }
+            if ((value == "GB"))
+            {
+                return AstFileSizeUnityEnum.Gb;
+            }
+            if ((value == "TB"))
+            {
+                return AstFileSizeUnityEnum.Tb;
+            }
+            if ((value == "MODULE"))
+            {
+                return AstFileSizeUnityEnum.Module;
+            }
+            return AstFileSizeUnityEnum._undefined;
         }
     }
     
@@ -33044,48 +32997,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstFilestreamFilegroupOrPartitionSchemaName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstFilestreamFilegroupOrPartitionSchemaName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstFilestreamFilegroupOrPartitionSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33098,48 +33013,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstActionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstActionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstActionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33152,48 +33029,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAggregateName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAggregateName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAggregateName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33206,48 +33045,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAppRoleSchema : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAppRoleSchema(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAppRoleSchema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33260,48 +33061,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstApplicationRole : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstApplicationRole(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstApplicationRole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33314,48 +33077,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAssemblyName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAssemblyName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAssemblyName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33368,48 +33093,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAsymKeyName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAsymKeyName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAsymKeyName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33422,48 +33109,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAuditActionGroupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAuditActionGroupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAuditActionGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33476,48 +33125,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAuditGuid : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAuditGuid(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAuditGuid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33530,48 +33141,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAuditName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAuditName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAuditName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33584,48 +33157,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAuditSpecificationName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAuditSpecificationName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAuditSpecificationName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33638,48 +33173,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstAzureActiveDirectoryPrincipal : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstAzureActiveDirectoryPrincipal(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstAzureActiveDirectoryPrincipal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33692,48 +33189,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstBackupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstBackupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstBackupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33746,48 +33205,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstBindingName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstBindingName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstBindingName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33800,48 +33221,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCatalogName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCatalogName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCatalogName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33854,48 +33237,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCertName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCertName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCertName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33908,48 +33253,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCertificateName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCertificateName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCertificateName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -33962,48 +33269,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstClassName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstClassName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstClassName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34016,48 +33285,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCollationName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCollationName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCollationName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34070,48 +33301,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstColumnEncryptionKey : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstColumnEncryptionKey(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstColumnEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34124,48 +33317,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstColumnName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstColumnName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34178,48 +33333,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstColumnNameOrArguments : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstColumnNameOrArguments(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstColumnNameOrArguments(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34232,48 +33349,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstConstraintName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstConstraintName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstConstraintName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34286,48 +33365,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCreateServiceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCreateServiceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCreateServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34340,48 +33381,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCredentialName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCredentialName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCredentialName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34394,48 +33397,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstCryptographicProviderName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstCryptographicProviderName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstCryptographicProviderName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34448,48 +33413,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstDataSourceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstDataSourceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstDataSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34502,48 +33429,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstDatabaseName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstDatabaseName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstDatabaseName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34556,48 +33445,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstDroppedServiceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstDroppedServiceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstDroppedServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34610,48 +33461,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEncryptorName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEncryptorName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEncryptorName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34664,48 +33477,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEncryptionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEncryptionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEncryptionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34718,48 +33493,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEndpointName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEndpointName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEndpointName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34772,48 +33509,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventCustomizableAttributue : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventCustomizableAttributue(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventCustomizableAttributue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34826,48 +33525,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventFieldName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventFieldName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventFieldName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34880,48 +33541,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventModuleGuid : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventModuleGuid(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventModuleGuid(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34934,48 +33557,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -34988,48 +33573,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventNotificationName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventNotificationName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventNotificationName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35042,48 +33589,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventPackageName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventPackageName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventPackageName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35096,48 +33605,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventSessionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventSessionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventSessionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35150,48 +33621,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstEventTypeOrGroup : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstEventTypeOrGroup(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstEventTypeOrGroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35204,48 +33637,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstExtType : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstExtType(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstExtType(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35258,48 +33653,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstExternalDataSourceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstExternalDataSourceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstExternalDataSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35312,48 +33669,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstExternalFileFormatName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstExternalFileFormatName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstExternalFileFormatName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35366,48 +33685,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstExternalPoolName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstExternalPoolName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstExternalPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35420,48 +33701,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstFileGroupId : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstFileGroupId(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstFileGroupId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35474,48 +33717,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstFileGroupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstFileGroupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstFileGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35528,48 +33733,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstFunctionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstFunctionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35582,48 +33749,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstGroupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstGroupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35636,48 +33765,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstIndexName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstIndexName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstIndexName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35690,48 +33781,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstLanguage : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstLanguage(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstLanguage(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35744,48 +33797,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstLibraryName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstLibraryName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstLibraryName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35798,48 +33813,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstLinkedServer : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstLinkedServer(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstLinkedServer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35852,48 +33829,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstLogicalDeviceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstLogicalDeviceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstLogicalDeviceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35906,48 +33845,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstLoginName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstLoginName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstLoginName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -35960,48 +33861,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstMasterKey : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstMasterKey(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36014,48 +33877,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstMethodName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstMethodName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstMethodName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36068,48 +33893,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstModifiedContractName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstModifiedContractName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstModifiedContractName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36122,48 +33909,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstModifiedServiceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstModifiedServiceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstModifiedServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36176,48 +33925,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstModuleName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstModuleName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstModuleName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36230,48 +33941,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstNetworkComputer : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstNetworkComputer(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstNetworkComputer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36284,48 +33957,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstNewApplicationRoleName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstNewApplicationRoleName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstNewApplicationRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36338,48 +33973,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstNewFileGroupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstNewFileGroupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstNewFileGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36392,48 +33989,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstNonStaticAttr : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstNonStaticAttr(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstNonStaticAttr(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36446,48 +34005,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstNotificationName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstNotificationName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstNotificationName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36500,48 +34021,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstObjectName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstObjectName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstObjectName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36554,48 +34037,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstOwnerName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstOwnerName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstOwnerName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36608,48 +34053,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPartitionColumnName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPartitionColumnName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPartitionColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36662,48 +34069,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPoolName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPoolName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36716,48 +34085,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPredicateCompareName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPredicateCompareName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPredicateCompareName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36770,48 +34101,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPredicateSourceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPredicateSourceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPredicateSourceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36824,48 +34117,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstPropertyListName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstPropertyListName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstPropertyListName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36878,48 +34133,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstProviderName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstProviderName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstProviderName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36932,48 +34149,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstQueueName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstQueueName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstQueueName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -36986,48 +34165,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstRelationalSchema : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstRelationalSchema(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstRelationalSchema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37040,48 +34181,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstRoleName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstRoleName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37094,48 +34197,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstRouteName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstRouteName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstRouteName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37148,48 +34213,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstRuleName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstRuleName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstRuleName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37202,48 +34229,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSchemaCollectionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSchemaCollectionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSchemaCollectionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37256,48 +34245,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSchemaId : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSchemaId(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSchemaId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37310,48 +34261,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSchemaName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSchemaName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37364,48 +34277,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSecurityPolicyName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSecurityPolicyName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSecurityPolicyName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37418,48 +34293,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSecurityPredicateFunctionName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSecurityPredicateFunctionName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSecurityPredicateFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37472,48 +34309,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSequenceName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSequenceName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSequenceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37526,48 +34325,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstServerName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstServerName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstServerName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37580,48 +34341,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstServerRoleName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstServerRoleName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstServerRoleName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37634,48 +34357,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSourceListName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSourceListName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSourceListName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37688,48 +34373,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSqlIdentifier : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSqlIdentifier(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSqlIdentifier(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37742,48 +34389,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstStaticAttr : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstStaticAttr(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstStaticAttr(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37796,48 +34405,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstStatisticsName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstStatisticsName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstStatisticsName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37850,48 +34421,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstStoplistName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstStoplistName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstStoplistName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37904,48 +34437,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSymmetricKeyName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSymmetricKeyName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSymmetricKeyName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -37958,48 +34453,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstSynonymName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstSynonymName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstSynonymName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38012,48 +34469,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTableOrViewName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTableOrViewName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTableOrViewName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38066,48 +34485,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTableVariable : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTableVariable(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTableVariable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38120,48 +34501,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTargetName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTargetName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTargetName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38174,48 +34517,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTargetParameterName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTargetParameterName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTargetParameterName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38228,48 +34533,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTriggerName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTriggerName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTriggerName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38282,48 +34549,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTvfSchemaName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTvfSchemaName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTvfSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38336,48 +34565,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstTypeSchema : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstTypeSchema(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstTypeSchema(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38390,48 +34581,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstUdtColumnName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstUdtColumnName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstUdtColumnName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38444,48 +34597,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstUnscaledType : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstUnscaledType(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstUnscaledType(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38498,48 +34613,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstUserName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstUserName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstUserName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38552,48 +34629,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstWindowsPrincipal : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstWindowsPrincipal(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstWindowsPrincipal(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38606,48 +34645,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstWorkloadGroupGroupName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstWorkloadGroupGroupName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstWorkloadGroupGroupName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
@@ -38660,48 +34661,10 @@ namespace Bb.Asts
     /// 	 : id_
     /// </summary>
     /// <remarks>
-    /// Strategy : ClassWithProperties
+    /// Strategy : ClassId
     /// </remarks>
     public partial class AstWorkloadGroupPoolName : AstRule
     {
-        
-        private AstId _id;
-        
-        public AstWorkloadGroupPoolName(Position p, List<AstRoot> list) : 
-                base(p, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public AstWorkloadGroupPoolName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, null)
-        {
-            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstId>())
-                {
-                    this._id = ((AstId)(enumerator.Current));
-                }
-            }
-        }
-        
-        public virtual AstId Id
-        {
-            get
-            {
-                return this._id;
-            }
-        }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {

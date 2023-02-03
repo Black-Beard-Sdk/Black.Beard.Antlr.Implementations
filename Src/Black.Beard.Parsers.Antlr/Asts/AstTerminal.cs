@@ -27,11 +27,26 @@ namespace Bb.Asts
             yield return Value;
         }
 
-        public override bool ContainsOnlyRuleReferences => false; 
-        public override bool ContainsOnlyTerminals => true; 
-        public override bool ContainsTerminals => true;
-        public override bool ContainsOneRule => false;
+
+        public override bool ContainsOnlyTerminals => true;
+        public override bool ContainsOnlyRules => false; 
+        public override bool ContainsOnlyBlocks => false;
+        public override bool ContainsOnlyAlternatives => false;
+
+
+
         public override bool ContainsOneTerminal => true;
+        public override bool ContainsOneRule => false;
+        public override bool ContainsOneBlock => false;
+        public override bool ContainsOneAlternative => false;
+
+
+
+        public override bool ContainsTerminals => true;
+        public override bool ContainsRules => false;
+        public override bool ContainsBlocks => false;
+        public override bool ContainsAlternatives => false;
+
 
 
 

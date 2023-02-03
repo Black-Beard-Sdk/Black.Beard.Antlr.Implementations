@@ -223,7 +223,7 @@ namespace Bb.Parsers
             a.Return?.Accept(this);
             a.RuleName?.Accept(this);
             a.Modifiers?.Accept(this);
-            a.RuleBlock?.Accept(this);
+            a.Alternatives?.Accept(this);
             a.Rule?.Accept(this);
             a.ThrowsSpec?.Accept(this);
             a.Local?.Accept(this);

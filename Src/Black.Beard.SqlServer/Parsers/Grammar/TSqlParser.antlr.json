@@ -8721,7 +8721,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "batch",
@@ -8743,7 +8743,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "batch_level_statement",
@@ -8761,7 +8761,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "sql_clauses",
@@ -8805,7 +8805,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "dml_clause",
@@ -8823,7 +8823,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ddl_clause",
@@ -8841,7 +8841,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "backup_statement",
@@ -8859,7 +8859,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "cfl_statement",
@@ -8877,7 +8877,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "block_statement",
@@ -8925,7 +8925,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "break_statement",
@@ -8957,7 +8957,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "continue_statement",
@@ -8989,7 +8989,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "goto_statement",
@@ -9021,7 +9021,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "return_statement",
@@ -9065,7 +9065,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "if_statement",
@@ -9113,7 +9113,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "throw_statement",
@@ -9145,7 +9145,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "throw_error_number",
@@ -9177,7 +9177,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "throw_message",
@@ -9209,7 +9209,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "throw_state",
@@ -9241,7 +9241,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "try_catch_statement",
@@ -9273,7 +9273,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "waitfor_statement",
@@ -9333,7 +9333,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "while_statement",
@@ -9381,7 +9381,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "print_statement",
@@ -9413,7 +9413,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "raiseerror_statement",
@@ -9445,7 +9445,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "empty_statement",
@@ -9477,7 +9477,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "another_statement",
@@ -9495,7 +9495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "alter_application_role",
@@ -9543,7 +9543,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_application_role",
@@ -9591,7 +9591,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_aggregate",
@@ -9639,7 +9639,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_application_role",
@@ -9687,7 +9687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly",
@@ -9767,7 +9767,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_start",
@@ -9799,7 +9799,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_assembly_clause",
@@ -9895,7 +9895,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_from_clause",
@@ -9943,7 +9943,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_from_clause_start",
@@ -9975,7 +9975,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "alter_assembly_drop_clause",
@@ -10039,7 +10039,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_drop_multiple_files",
@@ -10071,7 +10071,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_assembly_drop",
@@ -10103,7 +10103,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "alter_assembly_add_clause",
@@ -10167,7 +10167,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_asssembly_add_clause_start",
@@ -10199,7 +10199,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_assembly_client_file_clause",
@@ -10247,7 +10247,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_file_name",
@@ -10279,7 +10279,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "alter_assembly_file_bits",
@@ -10343,7 +10343,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_as",
@@ -10375,7 +10375,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "alter_assembly_with_clause",
@@ -10439,7 +10439,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_assembly_with",
@@ -10471,7 +10471,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "client_assembly_specifier",
@@ -10503,7 +10503,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "assembly_option",
@@ -10535,7 +10535,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "network_file_share",
@@ -10615,7 +10615,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "network_computer",
@@ -10663,7 +10663,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "network_file_start",
@@ -10695,7 +10695,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "file_path",
@@ -10727,7 +10727,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "file_directory_path_separator",
@@ -10759,7 +10759,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "local_file",
@@ -10823,7 +10823,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "local_drive",
@@ -10855,7 +10855,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "multiple_local_files",
@@ -10887,7 +10887,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "multiple_local_file_start",
@@ -10919,7 +10919,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "create_assembly",
@@ -10983,7 +10983,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_assembly",
@@ -11015,7 +11015,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_asymmetric_key",
@@ -11079,7 +11079,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_asymmetric_key_start",
@@ -11111,7 +11111,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "asymmetric_key_option",
@@ -11175,7 +11175,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "asymmetric_key_option_start",
@@ -11207,7 +11207,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "asymmetric_key_password_change_option",
@@ -11239,7 +11239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_asymmetric_key",
@@ -11287,7 +11287,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_asymmetric_key",
@@ -11319,7 +11319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_authorization",
@@ -11399,7 +11399,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "authorization_grantee",
@@ -11431,7 +11431,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "entity_to",
@@ -11463,7 +11463,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "colon_colon",
@@ -11495,7 +11495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "alter_authorization_start",
@@ -11527,7 +11527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_authorization_for_sql_database",
@@ -11607,7 +11607,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_authorization_for_azure_dw",
@@ -11687,7 +11687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_authorization_for_parallel_dw",
@@ -11767,7 +11767,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "class_type",
@@ -11799,7 +11799,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "class_type_for_sql_database",
@@ -11831,7 +11831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "class_type_for_azure_dw",
@@ -11903,7 +11903,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "class_type_for_parallel_dw",
@@ -11983,7 +11983,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "class_type_for_grant",
@@ -12015,7 +12015,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_availability_group",
@@ -12063,7 +12063,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_availability_group",
@@ -12127,7 +12127,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_availability_group_start",
@@ -12175,7 +12175,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_availability_group_options",
@@ -12207,7 +12207,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "ip_v4_failover",
@@ -12239,7 +12239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "ip_v6_failover",
@@ -12271,7 +12271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "create_or_alter_broker_priority",
@@ -12303,7 +12303,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_broker_priority",
@@ -12335,7 +12335,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_certificate",
@@ -12383,7 +12383,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_column_encryption_key",
@@ -12431,7 +12431,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_column_encryption_key",
@@ -12479,7 +12479,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_certificate",
@@ -12527,7 +12527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_column_encryption_key",
@@ -12575,7 +12575,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_column_master_key",
@@ -12623,7 +12623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_contract",
@@ -12655,7 +12655,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_credential",
@@ -12703,7 +12703,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_cryptograhic_provider",
@@ -12751,7 +12751,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_database",
@@ -12783,7 +12783,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_database_audit_specification",
@@ -12831,7 +12831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_database_encryption_key",
@@ -12863,7 +12863,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_database_scoped_credential",
@@ -12911,7 +12911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_default",
@@ -12943,7 +12943,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_endpoint",
@@ -12991,7 +12991,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_external_data_source",
@@ -13039,7 +13039,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_external_file_format",
@@ -13087,7 +13087,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_external_library",
@@ -13135,7 +13135,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_external_resource_pool",
@@ -13183,7 +13183,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_external_table",
@@ -13227,7 +13227,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_event_notifications",
@@ -13259,7 +13259,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_event_session",
@@ -13307,7 +13307,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_fulltext_catalog",
@@ -13355,7 +13355,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_fulltext_index",
@@ -13399,7 +13399,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_fulltext_stoplist",
@@ -13447,7 +13447,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_login",
@@ -13495,7 +13495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_master_key",
@@ -13527,7 +13527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_message_type",
@@ -13575,7 +13575,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_partition_function",
@@ -13623,7 +13623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_partition_scheme",
@@ -13671,7 +13671,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_queue",
@@ -13719,7 +13719,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_remote_service_binding",
@@ -13767,7 +13767,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_resource_pool",
@@ -13815,7 +13815,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_db_role",
@@ -13863,7 +13863,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_route",
@@ -13911,7 +13911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_rule",
@@ -13943,7 +13943,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_schema",
@@ -13991,7 +13991,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_search_property_list",
@@ -14039,7 +14039,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_security_policy",
@@ -14087,7 +14087,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_sequence",
@@ -14119,7 +14119,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_server_audit",
@@ -14167,7 +14167,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_server_audit_specification",
@@ -14215,7 +14215,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_server_role",
@@ -14263,7 +14263,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_service",
@@ -14311,7 +14311,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_signature",
@@ -14359,7 +14359,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_statistics_name_azure_dw_and_pdw",
@@ -14423,7 +14423,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_symmetric_key",
@@ -14471,7 +14471,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_synonym",
@@ -14519,7 +14519,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_user",
@@ -14567,7 +14567,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_workload_group",
@@ -14615,7 +14615,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_xml_schema_collection",
@@ -14663,7 +14663,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "disable_trigger",
@@ -14695,7 +14695,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "enable_trigger",
@@ -14727,7 +14727,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "lock_table",
@@ -14775,7 +14775,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "truncate_table",
@@ -14823,7 +14823,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_column_master_key",
@@ -14855,7 +14855,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_credential",
@@ -14903,7 +14903,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_credential",
@@ -14951,7 +14951,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_cryptographic_provider",
@@ -14999,7 +14999,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_cryptographic_provider",
@@ -15047,7 +15047,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_event_notification",
@@ -15095,7 +15095,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_or_alter_event_session",
@@ -15143,7 +15143,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "event_session_predicate_expression",
@@ -15175,7 +15175,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "event_session_predicate_factor",
@@ -15207,7 +15207,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "event_session_predicate_leaf",
@@ -15239,7 +15239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_external_data_source",
@@ -15271,7 +15271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_external_library",
@@ -15319,7 +15319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_external_library",
@@ -15367,7 +15367,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_external_resource_pool",
@@ -15399,7 +15399,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_external_resource_pool",
@@ -15447,7 +15447,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_fulltext_catalog",
@@ -15495,7 +15495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_fulltext_catalog",
@@ -15543,7 +15543,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_fulltext_stoplist",
@@ -15591,7 +15591,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_fulltext_stoplist",
@@ -15639,7 +15639,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_login_sql_server",
@@ -15687,7 +15687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_login_sql_server",
@@ -15735,7 +15735,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_login_azure_sql",
@@ -15783,7 +15783,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_login_azure_sql",
@@ -15831,7 +15831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_login_azure_sql_dw_and_pdw",
@@ -15879,7 +15879,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_login_pdw",
@@ -15927,7 +15927,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_master_key_sql_server",
@@ -15959,7 +15959,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_master_key_sql_server",
@@ -15991,7 +15991,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_master_key_azure_sql",
@@ -16023,7 +16023,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_master_key_azure_sql",
@@ -16055,7 +16055,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_message_type",
@@ -16103,7 +16103,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_partition_function",
@@ -16167,7 +16167,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_partition_scheme",
@@ -16215,7 +16215,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_remote_service_binding",
@@ -16263,7 +16263,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_remote_service_binding",
@@ -16311,7 +16311,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_resource_pool",
@@ -16359,7 +16359,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_resource_governor",
@@ -16391,7 +16391,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_db_role",
@@ -16439,7 +16439,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_db_role",
@@ -16487,7 +16487,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_route",
@@ -16535,7 +16535,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_rule",
@@ -16599,7 +16599,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_schema_sql",
@@ -16663,7 +16663,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_schema",
@@ -16695,7 +16695,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_schema_azure_sql_dw_and_pdw",
@@ -16743,7 +16743,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_schema_azure_sql_dw_and_pdw",
@@ -16807,7 +16807,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_search_property_list",
@@ -16855,7 +16855,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_security_policy",
@@ -16903,7 +16903,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_sequence",
@@ -16951,7 +16951,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_sequence",
@@ -16999,7 +16999,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_server_audit",
@@ -17047,7 +17047,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_server_audit",
@@ -17095,7 +17095,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_server_audit_specification",
@@ -17143,7 +17143,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_server_audit_specification",
@@ -17191,7 +17191,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_server_configuration",
@@ -17223,7 +17223,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_server_role",
@@ -17271,7 +17271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_server_role",
@@ -17319,7 +17319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_server_role_pdw",
@@ -17383,7 +17383,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_service",
@@ -17431,7 +17431,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_service",
@@ -17495,7 +17495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_service_master_key",
@@ -17527,7 +17527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_symmetric_key",
@@ -17575,7 +17575,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_synonym",
@@ -17623,7 +17623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_user",
@@ -17671,7 +17671,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_user",
@@ -17703,7 +17703,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_user_azure_sql_dw",
@@ -17735,7 +17735,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_user_azure_sql",
@@ -17783,7 +17783,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_workload_group",
@@ -17815,7 +17815,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_workload_group",
@@ -17863,7 +17863,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_xml_schema_collection",
@@ -17911,7 +17911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_partition_function",
@@ -17959,7 +17959,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_partition_scheme",
@@ -18023,7 +18023,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_queue",
@@ -18071,7 +18071,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "queue_settings",
@@ -18103,7 +18103,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_queue",
@@ -18135,7 +18135,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "queue_action",
@@ -18167,7 +18167,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "queue_rebuild_options",
@@ -18199,7 +18199,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_contract",
@@ -18247,7 +18247,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "conversation_statement",
@@ -18265,7 +18265,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "message_statement",
@@ -18313,7 +18313,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "merge_statement",
@@ -18489,7 +18489,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "when_matches",
@@ -18521,7 +18521,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "merge_matched",
@@ -18553,7 +18553,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "merge_not_matched",
@@ -18585,7 +18585,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "delete_statement",
@@ -18713,7 +18713,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "delete_statement_from",
@@ -18741,7 +18741,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "insert_statement",
@@ -18869,7 +18869,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "insert_statement_value",
@@ -18901,7 +18901,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "receive_statement",
@@ -18949,7 +18949,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "select_statement_standalone",
@@ -19013,7 +19013,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "select_statement",
@@ -19109,7 +19109,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "time",
@@ -19127,7 +19127,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "update_statement",
@@ -19255,7 +19255,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "output_clause",
@@ -19303,7 +19303,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "output_dml_list_elem",
@@ -19351,7 +19351,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_database",
@@ -19383,7 +19383,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_index",
@@ -19475,7 +19475,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_index_options",
@@ -19523,7 +19523,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "relational_index_option",
@@ -19555,7 +19555,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_index",
@@ -19603,7 +19603,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "resumable_index_options",
@@ -19635,7 +19635,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "resumable_index_option",
@@ -19667,7 +19667,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "reorganize_partition",
@@ -19715,7 +19715,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "reorganize_options",
@@ -19747,7 +19747,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "reorganize_option",
@@ -19779,7 +19779,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "set_index_options",
@@ -19827,7 +19827,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "set_index_option",
@@ -19859,7 +19859,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "rebuild_partition",
@@ -19891,7 +19891,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "rebuild_index_options",
@@ -19939,7 +19939,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "rebuild_index_option",
@@ -19971,7 +19971,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "single_partition_rebuild_index_options",
@@ -20019,7 +20019,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "single_partition_rebuild_index_option",
@@ -20051,7 +20051,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "on_partitions",
@@ -20083,7 +20083,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_columnstore_index",
@@ -20163,7 +20163,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_columnstore_index_options",
@@ -20211,7 +20211,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "columnstore_index_option",
@@ -20243,7 +20243,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_nonclustered_columnstore_index",
@@ -20339,7 +20339,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_xml_index",
@@ -20419,7 +20419,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "xml_index_options",
@@ -20467,7 +20467,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "xml_index_option",
@@ -20499,7 +20499,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_or_alter_procedure",
@@ -20547,7 +20547,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "as_external_name",
@@ -20627,7 +20627,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_or_alter_trigger",
@@ -20645,7 +20645,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "create_or_alter_dml_trigger",
@@ -20757,7 +20757,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "dml_trigger_option",
@@ -20789,7 +20789,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "dml_trigger_operation",
@@ -20869,7 +20869,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "create_or_alter_ddl_trigger",
@@ -20965,7 +20965,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "ddl_trigger_operation",
@@ -20983,7 +20983,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "create_or_alter_function",
@@ -21015,7 +21015,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "func_body_returns_select",
@@ -21063,7 +21063,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "func_body_returns_table",
@@ -21127,7 +21127,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "func_body_returns_scalar",
@@ -21191,7 +21191,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "procedure_param",
@@ -21239,7 +21239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "procedure_option",
@@ -21271,7 +21271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "function_option",
@@ -21303,7 +21303,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_statistics",
@@ -21383,7 +21383,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "update_statistics",
@@ -21447,7 +21447,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "update_statistics_options",
@@ -21495,7 +21495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "update_statistics_option",
@@ -21527,7 +21527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_table",
@@ -21607,7 +21607,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "table_indices",
@@ -21639,7 +21639,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_options",
@@ -21671,7 +21671,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_option",
@@ -21703,7 +21703,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_table_index_options",
@@ -21751,7 +21751,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_table_index_option",
@@ -21783,7 +21783,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_view",
@@ -21863,7 +21863,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "view_attribute",
@@ -21943,7 +21943,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "alter_table",
@@ -21991,7 +21991,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "switch_partition",
@@ -22023,7 +22023,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "low_priority_lock_wait",
@@ -22055,7 +22055,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_database",
@@ -22087,7 +22087,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "add_or_modify_files",
@@ -22119,7 +22119,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "filespec",
@@ -22157,7 +22157,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "add_or_modify_filegroups",
@@ -22189,7 +22189,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "filegroup_updatability_option",
@@ -22269,7 +22269,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "database_optionspec",
@@ -22301,7 +22301,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "auto_option",
@@ -22333,7 +22333,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "change_tracking_option",
@@ -22365,7 +22365,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "change_tracking_option_list",
@@ -22397,7 +22397,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "containment_option",
@@ -22429,7 +22429,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "cursor_option",
@@ -22461,7 +22461,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_endpoint",
@@ -22509,7 +22509,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "database_mirroring_option",
@@ -22527,7 +22527,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "mirroring_set_option",
@@ -22559,7 +22559,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "mirroring_partner",
@@ -22591,7 +22591,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "mirroring_witness",
@@ -22623,7 +22623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "witness_partner_equal",
@@ -22655,7 +22655,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "partner_option",
@@ -22687,7 +22687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "witness_option",
@@ -22719,7 +22719,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "witness_server",
@@ -22737,7 +22737,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "partner_server",
@@ -22829,7 +22829,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "mirroring_host_port_seperator",
@@ -22861,7 +22861,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "partner_server_tcp_prefix",
@@ -22893,7 +22893,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "port_number",
@@ -22925,7 +22925,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "host",
@@ -22947,7 +22947,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "date_correlation_optimization_option",
@@ -22995,7 +22995,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "db_encryption_option",
@@ -23043,7 +23043,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "db_state_option",
@@ -23123,7 +23123,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "db_update_option",
@@ -23195,7 +23195,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "db_user_access_option",
@@ -23275,7 +23275,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "delayed_durability_option",
@@ -23307,7 +23307,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "external_access_option",
@@ -23339,7 +23339,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "hadr_options",
@@ -23371,7 +23371,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "mixed_page_allocation_option",
@@ -23419,7 +23419,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "parameterization_option",
@@ -23451,7 +23451,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "recovery_option",
@@ -23483,7 +23483,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "service_broker_option",
@@ -23515,7 +23515,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "snapshot_option",
@@ -23547,7 +23547,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "sql_option",
@@ -23579,7 +23579,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "target_recovery_time_option",
@@ -23611,7 +23611,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "termination",
@@ -23633,7 +23633,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_index",
@@ -23665,7 +23665,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_relational_or_xml_or_spatial_index",
@@ -23729,7 +23729,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_backward_compatible_index",
@@ -23793,7 +23793,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_procedure",
@@ -23841,7 +23841,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_trigger",
@@ -23859,7 +23859,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "drop_dml_trigger",
@@ -23907,7 +23907,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_ddl_trigger",
@@ -23955,7 +23955,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_function",
@@ -24003,7 +24003,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_statistics",
@@ -24035,7 +24035,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_table",
@@ -24083,7 +24083,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "drop_view",
@@ -24131,7 +24131,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "create_type",
@@ -24163,7 +24163,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "drop_type",
@@ -24195,7 +24195,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "rowset_function_limited",
@@ -24213,7 +24213,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "openquery",
@@ -24251,7 +24251,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "opendatasource",
@@ -24273,7 +24273,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "declare_statement",
@@ -24305,7 +24305,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "xml_declaration",
@@ -24337,7 +24337,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "cursor_statement",
@@ -24369,7 +24369,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "backup_database",
@@ -24401,7 +24401,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "backup_log",
@@ -24433,7 +24433,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "backup_certificate",
@@ -24481,7 +24481,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "backup_master_key",
@@ -24513,7 +24513,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "backup_service_master_key",
@@ -24545,7 +24545,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "kill_statement",
@@ -24577,7 +24577,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "kill_process",
@@ -24609,7 +24609,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "kill_query_notification",
@@ -24641,7 +24641,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "kill_stats_job",
@@ -24673,7 +24673,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_statement",
@@ -24721,7 +24721,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "execute_body_batch",
@@ -24769,7 +24769,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "execute_body",
@@ -24801,7 +24801,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_statement_arg",
@@ -24833,7 +24833,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_statement_arg_named",
@@ -24865,7 +24865,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_statement_arg_unnamed",
@@ -24897,7 +24897,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_parameter",
@@ -24929,7 +24929,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "execute_var_string",
@@ -24961,7 +24961,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "security_statement",
@@ -24993,7 +24993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "principal_id",
@@ -25025,7 +25025,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_certificate",
@@ -25073,7 +25073,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "existing_keys",
@@ -25105,7 +25105,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "private_key_options",
@@ -25137,7 +25137,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "generate_new_keys",
@@ -25169,7 +25169,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "date_options",
@@ -25201,7 +25201,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "open_key",
@@ -25233,7 +25233,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "close_key",
@@ -25265,7 +25265,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_key",
@@ -25297,7 +25297,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "key_options",
@@ -25329,7 +25329,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "algorithm",
@@ -25409,7 +25409,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "encryption_mechanism",
@@ -25441,7 +25441,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "decryption_mechanism",
@@ -25473,7 +25473,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "grant_permission",
@@ -25505,7 +25505,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "set_statement",
@@ -25537,7 +25537,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "transaction_statement",
@@ -25569,7 +25569,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "go_statement",
@@ -25601,7 +25601,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "use_statement",
@@ -25649,7 +25649,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "setuser_statement",
@@ -25681,7 +25681,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "reconfigure_statement",
@@ -25713,7 +25713,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "shutdown_statement",
@@ -25745,7 +25745,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "checkpoint_statement",
@@ -25777,7 +25777,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "dbcc_special",
@@ -25809,7 +25809,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "dbcc_clause",
@@ -25841,7 +25841,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "dbcc_command",
@@ -25873,7 +25873,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "dbcc_options",
@@ -25921,7 +25921,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "execute_clause",
@@ -25953,7 +25953,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "declare_local",
@@ -26001,7 +26001,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "table_type_definition",
@@ -26049,7 +26049,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "table_type_indices",
@@ -26081,7 +26081,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "xml_type_definition",
@@ -26129,7 +26129,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "xml_schema_collection",
@@ -26161,7 +26161,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_def_table_constraints",
@@ -26209,7 +26209,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "column_def_table_constraint",
@@ -26237,7 +26237,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_definition",
@@ -26317,7 +26317,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "column_definition_element",
@@ -26349,7 +26349,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_modifier",
@@ -26413,7 +26413,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "materialized_column_definition",
@@ -26473,7 +26473,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "column_constraint",
@@ -26505,7 +26505,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_index",
@@ -26585,7 +26585,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "on_partition_or_filegroup",
@@ -26617,7 +26617,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_constraint",
@@ -26649,7 +26649,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "connection_node",
@@ -26681,7 +26681,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "primary_key_options",
@@ -26745,7 +26745,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "foreign_key_options",
@@ -26825,7 +26825,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "check_constraint",
@@ -26873,7 +26873,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "on_delete",
@@ -26905,7 +26905,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "on_update",
@@ -26937,7 +26937,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "alter_table_index_options",
@@ -26985,7 +26985,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "alter_table_index_option",
@@ -27017,7 +27017,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "declare_cursor",
@@ -27065,7 +27065,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "declare_set_cursor_common",
@@ -27129,7 +27129,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "declare_set_cursor_common_partial",
@@ -27161,7 +27161,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "fetch_cursor",
@@ -27209,7 +27209,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "set_special",
@@ -27241,7 +27241,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "special_list",
@@ -27481,7 +27481,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "constant_LOCAL_ID",
@@ -27503,7 +27503,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "expression",
@@ -27525,7 +27525,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "parameter",
@@ -27547,7 +27547,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "time_zone",
@@ -27591,7 +27591,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "primitive_expression",
@@ -27623,7 +27623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "case_expression",
@@ -27655,7 +27655,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "unary_operator_expression",
@@ -27687,7 +27687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "bracket_expression",
@@ -27719,7 +27719,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "constant_expression",
@@ -27751,7 +27751,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "subquery",
@@ -27769,7 +27769,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "with_expression",
@@ -27801,7 +27801,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "common_table_expression",
@@ -27833,7 +27833,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "update_elem",
@@ -27865,7 +27865,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "update_elem_merge",
@@ -27897,7 +27897,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "search_condition",
@@ -27929,7 +27929,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "predicate",
@@ -27951,7 +27951,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "query_expression",
@@ -27983,7 +27983,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "sql_union",
@@ -28015,7 +28015,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "query_specification",
@@ -28047,7 +28047,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "top_clause",
@@ -28079,7 +28079,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "top_percent",
@@ -28111,7 +28111,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "top_count",
@@ -28143,7 +28143,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "order_by_clause",
@@ -28175,7 +28175,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "select_order_by_clause",
@@ -28223,7 +28223,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "for_clause",
@@ -28255,7 +28255,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "xml_common_directives",
@@ -28287,7 +28287,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "order_by_expression",
@@ -28319,7 +28319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "grouping_sets_item",
@@ -28351,7 +28351,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "group_by_item",
@@ -28369,7 +28369,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "option_clause",
@@ -28413,7 +28413,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "option",
@@ -28435,7 +28435,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "optimize_for_arg",
@@ -28467,7 +28467,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "select_list",
@@ -28499,7 +28499,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "udt_method_arguments",
@@ -28531,7 +28531,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "asterisk",
@@ -28553,7 +28553,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": null
   },
   {
     "Name": "column_elem",
@@ -28617,7 +28617,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "udt_elem",
@@ -28649,7 +28649,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "expression_elem",
@@ -28681,7 +28681,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "select_list_elem",
@@ -28703,7 +28703,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": null
   },
   {
     "Name": "table_sources",
@@ -28735,7 +28735,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_source",
@@ -28767,7 +28767,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_source_item_joined",
@@ -28799,7 +28799,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_source_item",
@@ -28831,7 +28831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "open_xml",
@@ -28903,7 +28903,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "open_json",
@@ -28963,7 +28963,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "json_declaration",
@@ -28995,7 +28995,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "json_column_declaration",
@@ -29043,7 +29043,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "schema_declaration",
@@ -29075,7 +29075,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_declaration",
@@ -29139,7 +29139,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "change_table",
@@ -29157,7 +29157,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "change_table_changes",
@@ -29189,7 +29189,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "change_table_version",
@@ -29221,7 +29221,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "join_part",
@@ -29239,7 +29239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "join_on",
@@ -29271,7 +29271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "cross_join",
@@ -29319,7 +29319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "apply_",
@@ -29341,7 +29341,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "pivot",
@@ -29395,7 +29395,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "unpivot",
@@ -29449,7 +29449,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "pivot_clause",
@@ -29529,7 +29529,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "unpivot_clause",
@@ -29593,7 +29593,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "full_column_name_list",
@@ -29625,7 +29625,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "rowset_function",
@@ -29657,7 +29657,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "bulk_option",
@@ -29705,7 +29705,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "derived_table",
@@ -29737,7 +29737,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "RANKING_WINDOWED_FUNC",
@@ -30775,7 +30775,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "AGGREGATE_WINDOWED_FUNC",
@@ -30793,7 +30793,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ANALYTIC_WINDOWED_FUNC",
@@ -30811,7 +30811,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "BUILT_IN_FUNC",
@@ -30829,7 +30829,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SCALAR_FUNCTION",
@@ -30847,7 +30847,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FREE_TEXT",
@@ -30865,7 +30865,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "PARTITION_FUNC",
@@ -30883,7 +30883,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "HIERARCHYID_METHOD",
@@ -30901,7 +30901,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "function_call",
@@ -30933,7 +30933,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "partition_function",
@@ -30993,7 +30993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "freetext_function",
@@ -31025,7 +31025,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "freetext_predicate",
@@ -31057,7 +31057,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "APP_NAME",
@@ -31075,7 +31075,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "APPLOCK_MODE",
@@ -31093,7 +31093,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "APPLOCK_TEST",
@@ -31111,7 +31111,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ASSEMBLYPROPERTY",
@@ -31129,7 +31129,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "COL_LENGTH",
@@ -31147,7 +31147,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "COL_NAME",
@@ -31165,7 +31165,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "COLUMNPROPERTY",
@@ -31183,7 +31183,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DATABASEPROPERTYEX",
@@ -31201,7 +31201,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DB_ID",
@@ -31219,7 +31219,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DB_NAME",
@@ -31237,7 +31237,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILE_ID",
@@ -31255,7 +31255,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILE_IDEX",
@@ -31273,7 +31273,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILE_NAME",
@@ -31291,7 +31291,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILEGROUP_ID",
@@ -31309,7 +31309,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILEGROUP_NAME",
@@ -31327,7 +31327,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILEGROUPPROPERTY",
@@ -31345,7 +31345,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILEPROPERTY",
@@ -31363,7 +31363,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FILEPROPERTYEX",
@@ -31381,7 +31381,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FULLTEXTCATALOGPROPERTY",
@@ -31399,7 +31399,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FULLTEXTSERVICEPROPERTY",
@@ -31417,7 +31417,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "INDEX_COL",
@@ -31435,7 +31435,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "INDEXKEY_PROPERTY",
@@ -31453,7 +31453,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "INDEXPROPERTY",
@@ -31471,7 +31471,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "NEXT_VALUE_FOR",
@@ -31489,7 +31489,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECT_DEFINITION",
@@ -31507,7 +31507,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECT_ID",
@@ -31525,7 +31525,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECT_NAME",
@@ -31543,7 +31543,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECT_SCHEMA_NAME",
@@ -31561,7 +31561,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECTPROPERTY",
@@ -31579,7 +31579,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "OBJECTPROPERTYEX",
@@ -31597,7 +31597,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ORIGINAL_DB_NAME",
@@ -31615,7 +31615,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "PARSENAME",
@@ -31633,7 +31633,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SCHEMA_ID",
@@ -31651,7 +31651,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SCHEMA_NAME",
@@ -31669,7 +31669,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SCOPE_IDENTITY",
@@ -31687,7 +31687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SERVERPROPERTY",
@@ -31705,7 +31705,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "STATS_DATE",
@@ -31723,7 +31723,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TYPE_ID",
@@ -31741,7 +31741,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TYPE_NAME",
@@ -31759,7 +31759,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TYPEPROPERTY",
@@ -31777,7 +31777,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ASCII",
@@ -31795,7 +31795,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CHAR",
@@ -31813,7 +31813,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CHARINDEX",
@@ -31831,7 +31831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CONCAT",
@@ -31849,7 +31849,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CONCAT_WS",
@@ -31867,7 +31867,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DIFFERENCE",
@@ -31885,7 +31885,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FORMAT",
@@ -31903,7 +31903,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "LEFT",
@@ -31921,7 +31921,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "LEN",
@@ -31939,7 +31939,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "LOWER",
@@ -31957,7 +31957,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "LTRIM",
@@ -31975,7 +31975,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "NCHAR",
@@ -31993,7 +31993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "PATINDEX",
@@ -32011,7 +32011,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "QUOTENAME",
@@ -32029,7 +32029,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "REPLACE",
@@ -32047,7 +32047,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "REPLICATE",
@@ -32065,7 +32065,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "REVERSE",
@@ -32083,7 +32083,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "RIGHT",
@@ -32101,7 +32101,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "RTRIM",
@@ -32119,7 +32119,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SOUNDEX",
@@ -32137,7 +32137,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SPACE",
@@ -32155,7 +32155,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "STR",
@@ -32173,7 +32173,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "STRINGAGG",
@@ -32191,7 +32191,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "STRING_ESCAPE",
@@ -32209,7 +32209,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "STUFF",
@@ -32227,7 +32227,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SUBSTRING",
@@ -32245,7 +32245,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TRANSLATE",
@@ -32263,7 +32263,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TRIM",
@@ -32281,7 +32281,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "UNICODE",
@@ -32299,7 +32299,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "UPPER",
@@ -32317,7 +32317,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "BINARY_CHECKSUM",
@@ -32335,7 +32335,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CHECKSUM",
@@ -32353,7 +32353,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "COMPRESS",
@@ -32371,7 +32371,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CONNECTIONPROPERTY",
@@ -32389,7 +32389,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CONTEXT_INFO",
@@ -32407,7 +32407,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CURRENT_REQUEST_ID",
@@ -32425,7 +32425,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CURRENT_TRANSACTION_ID",
@@ -32443,7 +32443,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DECOMPRESS",
@@ -32461,7 +32461,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_LINE",
@@ -32479,7 +32479,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_MESSAGE",
@@ -32497,7 +32497,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_NUMBER",
@@ -32515,7 +32515,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_PROCEDURE",
@@ -32533,7 +32533,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_SEVERITY",
@@ -32551,7 +32551,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ERROR_STATE",
@@ -32569,7 +32569,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "FORMATMESSAGE",
@@ -32587,7 +32587,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "GET_FILESTREAM_TRANSACTION_CONTEXT",
@@ -32605,7 +32605,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "GETANSINULL",
@@ -32623,7 +32623,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "HOST_ID",
@@ -32641,7 +32641,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "HOST_NAME",
@@ -32659,7 +32659,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ISNULL",
@@ -32677,7 +32677,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ISNUMERIC",
@@ -32695,7 +32695,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "MIN_ACTIVE_ROWVERSION",
@@ -32713,7 +32713,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "NEWID",
@@ -32731,7 +32731,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "NEWSEQUENTIALID",
@@ -32749,7 +32749,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "ROWCOUNT_BIG",
@@ -32767,7 +32767,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SESSION_CONTEXT",
@@ -32785,7 +32785,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "XACT_STATE",
@@ -32803,7 +32803,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CAST",
@@ -32821,7 +32821,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "TRY_CAST",
@@ -32839,7 +32839,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CONVERT",
@@ -32857,7 +32857,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "COALESCE",
@@ -32875,7 +32875,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CURRENT_DATE",
@@ -32893,7 +32893,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CURRENT_TIMESTAMP",
@@ -32911,7 +32911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "CURRENT_USER",
@@ -32929,7 +32929,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DATEADD",
@@ -32947,7 +32947,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DATEDIFF",
@@ -32965,7 +32965,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DATENAME",
@@ -32983,7 +32983,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "DATEPART",
@@ -33001,7 +33001,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "GETDATE",
@@ -33019,7 +33019,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "GETUTCDATE",
@@ -33037,7 +33037,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "IDENTITY",
@@ -33055,7 +33055,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "NULLIF",
@@ -33073,7 +33073,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SESSION_USER",
@@ -33091,7 +33091,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "SYSTEM_USER",
@@ -33109,7 +33109,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "USER",
@@ -33127,7 +33127,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "PARSE",
@@ -33145,7 +33145,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "XML_DATA_TYPE_FUNC",
@@ -33163,7 +33163,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "IIF",
@@ -33181,7 +33181,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "built_in_functions",
@@ -33213,7 +33213,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "xml_data_type_methods",
@@ -33231,7 +33231,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "value_method",
@@ -33263,7 +33263,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "value_call",
@@ -33295,7 +33295,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "query_method",
@@ -33327,7 +33327,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "query_call",
@@ -33359,7 +33359,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "exist_method",
@@ -33391,7 +33391,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "exist_call",
@@ -33423,7 +33423,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "modify_method",
@@ -33455,7 +33455,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "modify_call",
@@ -33487,7 +33487,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "hierarchyid_call",
@@ -33519,7 +33519,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "hierarchyid_static_method",
@@ -33551,7 +33551,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "nodes_method",
@@ -33583,7 +33583,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "switch_section",
@@ -33627,7 +33627,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "switch_search_condition_section",
@@ -33687,7 +33687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "as_column_alias",
@@ -33735,7 +33735,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "as_table_alias",
@@ -33783,7 +33783,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "table_alias",
@@ -33831,7 +33831,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "with_table_hints",
@@ -33863,7 +33863,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "deprecated_table_hint",
@@ -33911,7 +33911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "sybase_legacy_hints",
@@ -33959,7 +33959,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "sybase_legacy_hint",
@@ -34047,7 +34047,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "table_hint",
@@ -34079,7 +34079,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "index_value",
@@ -34111,7 +34111,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_alias_list",
@@ -34143,7 +34143,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_alias",
@@ -34175,7 +34175,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "table_value_constructor",
@@ -34207,7 +34207,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "expression_list",
@@ -34239,7 +34239,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "ranking_windowed_function",
@@ -34271,7 +34271,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "aggregate_windowed_function",
@@ -34303,7 +34303,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "analytic_windowed_function",
@@ -34335,7 +34335,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "all_distinct_expression",
@@ -34379,7 +34379,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "over_clause",
@@ -34443,7 +34443,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "row_or_range_clause",
@@ -34491,7 +34491,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "window_frame_extent",
@@ -34523,7 +34523,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "window_frame_bound",
@@ -34541,7 +34541,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "window_frame_preceding",
@@ -34573,7 +34573,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "window_frame_following",
@@ -34605,7 +34605,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "create_database_option",
@@ -34637,7 +34637,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "database_filestream_option",
@@ -34669,7 +34669,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "database_file_spec",
@@ -34687,7 +34687,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": null
   },
   {
     "Name": "file_group",
@@ -34751,7 +34751,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "file_spec",
@@ -34777,7 +34777,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "entity_name",
@@ -34821,7 +34821,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "entity_name_for_azure_dw",
@@ -34853,7 +34853,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "entity_name_for_parallel_dw",
@@ -34885,7 +34885,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "full_table_name",
@@ -34929,7 +34929,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "table_name",
@@ -34961,7 +34961,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "simple_name",
@@ -34993,7 +34993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "func_proc_name_schema",
@@ -35041,7 +35041,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "func_proc_name_database_schema",
@@ -35073,7 +35073,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "func_proc_name_server_database_schema",
@@ -35105,7 +35105,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "ddl_object",
@@ -35137,7 +35137,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "full_column_name",
@@ -35169,7 +35169,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "column_name_list_with_order",
@@ -35217,7 +35217,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "insert_column_name_list",
@@ -35249,7 +35249,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "insert_column_id",
@@ -35297,7 +35297,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "column_name_list",
@@ -35329,7 +35329,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "cursor_name",
@@ -35361,7 +35361,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "on_off",
@@ -35433,7 +35433,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "clustered",
@@ -35473,7 +35473,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "null_notnull",
@@ -35505,7 +35505,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "null_or_default",
@@ -35537,7 +35537,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "scalar_function_name",
@@ -35569,7 +35569,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "begin_conversation_timer",
@@ -35613,7 +35613,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "begin_conversation_dialog",
@@ -35661,7 +35661,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "contract_name",
@@ -35693,7 +35693,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "service_name",
@@ -35725,7 +35725,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "end_conversation",
@@ -35757,7 +35757,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "waitfor_conversation",
@@ -35805,7 +35805,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "get_conversation",
@@ -35837,7 +35837,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "queue_id",
@@ -35869,7 +35869,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "send_conversation",
@@ -35901,7 +35901,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "data_type",
@@ -35933,7 +35933,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "default_value",
@@ -35965,7 +35965,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "constant",
@@ -35987,7 +35987,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "sign",
@@ -36007,9 +36007,27 @@
             "Generate": true
           }
         ]
+      },
+      {
+        "Name": "AstSignEnum",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "_undefined",
+            "Generate": true
+          },
+          {
+            "Name": "Plus",
+            "Generate": true
+          },
+          {
+            "Name": "Minus",
+            "Generate": true
+          }
+        ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "keyword",
@@ -40433,7 +40451,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "id_",
@@ -40455,7 +40473,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "simple_id",
@@ -40487,7 +40505,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "id_or_string",
@@ -40519,7 +40537,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "comparison_operator",
@@ -40551,7 +40569,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "assignment_operator",
@@ -40579,11 +40597,57 @@
           {
             "Name": "Accept",
             "Generate": true
+          },
+          {
+            "Name": "GetValue",
+            "Generate": true
+          }
+        ]
+      },
+      {
+        "Name": "AstAssignmentOperatorEnum",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "_undefined",
+            "Generate": true
+          },
+          {
+            "Name": "PlusAssign",
+            "Generate": true
+          },
+          {
+            "Name": "MinusAssign",
+            "Generate": true
+          },
+          {
+            "Name": "MultAssign",
+            "Generate": true
+          },
+          {
+            "Name": "DivAssign",
+            "Generate": true
+          },
+          {
+            "Name": "ModAssign",
+            "Generate": true
+          },
+          {
+            "Name": "AndAssign",
+            "Generate": true
+          },
+          {
+            "Name": "XorAssign",
+            "Generate": true
+          },
+          {
+            "Name": "OrAssign",
+            "Generate": true
           }
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "file_size",
@@ -40631,7 +40695,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "server_instance",
@@ -40663,7 +40727,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "message_type_name",
@@ -40711,7 +40775,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "partition_function_name",
@@ -40759,7 +40823,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "partition_scheme_name",
@@ -40807,7 +40871,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "start_stop",
@@ -40879,7 +40943,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "enable_disable",
@@ -40951,7 +41015,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "split_or_merge",
@@ -41023,7 +41087,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "add_drop",
@@ -41095,7 +41159,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "enum_dml",
@@ -41183,7 +41247,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "grant_deny",
@@ -41255,7 +41319,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "update_elem_merges",
@@ -41303,7 +41367,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "update_elems",
@@ -41351,7 +41415,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "output_dml_list_elems",
@@ -41399,7 +41463,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "relational_index_options",
@@ -41447,7 +41511,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "procedure_options",
@@ -41495,7 +41559,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "dml_trigger_options",
@@ -41543,7 +41607,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "dml_trigger_operations",
@@ -41591,7 +41655,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "procedure_params",
@@ -41639,7 +41703,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "function_options",
@@ -41687,7 +41751,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "distribution",
@@ -41709,7 +41773,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "view_attributes",
@@ -41741,7 +41805,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "ids_",
@@ -41775,7 +41839,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "filespecs",
@@ -41805,7 +41869,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "change_tracking_option_lists",
@@ -41853,7 +41917,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "local_global",
@@ -41925,7 +41989,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "drop_relational_or_xml_or_spatial_indexs",
@@ -41973,7 +42037,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "drop_backward_compatible_indexs",
@@ -42021,7 +42085,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "func_proc_name_schemas",
@@ -42069,7 +42133,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "simple_names",
@@ -42117,7 +42181,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "table_names",
@@ -42165,7 +42229,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "declare_locals",
@@ -42213,7 +42277,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "xml_declarations",
@@ -42261,7 +42325,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "execute_var_strings",
@@ -42309,7 +42373,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "execute_statement_arg_nameds",
@@ -42357,7 +42421,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "execute_statement_args",
@@ -42405,7 +42469,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "to_principal_rincipal_ids",
@@ -42437,7 +42501,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "sensitive",
@@ -42481,7 +42545,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "absolute_relative",
@@ -42553,7 +42617,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "fetch_cursor_strategy",
@@ -42641,7 +42705,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "local_ids",
@@ -42673,7 +42737,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "groupSet_list",
@@ -42705,7 +42769,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "groupBys_list",
@@ -42737,7 +42801,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "grouping_sets_list",
@@ -42769,7 +42833,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "optimize_for_args",
@@ -42817,7 +42881,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "expression2",
@@ -42847,7 +42911,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "bulk_options",
@@ -42895,7 +42959,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "expression_language",
@@ -42939,7 +43003,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "freetext_table_andcolumn_names",
@@ -42987,7 +43051,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "full_column_names",
@@ -43035,7 +43099,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "expressions",
@@ -43065,7 +43129,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "index_values",
@@ -43113,7 +43177,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "database_filestream_options",
@@ -43161,7 +43225,7 @@
         ]
       }
     ],
-    "ProposalGenerate": true
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "filestream_filegroup_or_partition_schema_name",
@@ -43209,7 +43273,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "action_name",
@@ -43257,7 +43321,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "aggregate_name",
@@ -43305,7 +43369,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "app_role_schema",
@@ -43353,7 +43417,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "application_role",
@@ -43401,7 +43465,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "assembly_name",
@@ -43449,7 +43513,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "asym_key_name",
@@ -43497,7 +43561,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "audit_action_group_name",
@@ -43545,7 +43609,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "audit_guid",
@@ -43593,7 +43657,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "audit_name",
@@ -43641,7 +43705,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "audit_specification_name",
@@ -43689,7 +43753,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "azure_active_directory_principal",
@@ -43737,7 +43801,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "backup_name",
@@ -43785,7 +43849,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "binding_name",
@@ -43833,7 +43897,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "catalog_name",
@@ -43881,7 +43945,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "cert_name",
@@ -43929,7 +43993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "certificate_name",
@@ -43977,7 +44041,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "class_name",
@@ -44025,7 +44089,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "collation_name",
@@ -44073,7 +44137,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "column_encryption_key",
@@ -44121,7 +44185,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "column_name",
@@ -44169,7 +44233,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "column_name_or_arguments",
@@ -44217,7 +44281,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "constraint_name",
@@ -44265,7 +44329,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "create_service_name",
@@ -44313,7 +44377,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "credential_name",
@@ -44361,7 +44425,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "cryptographic_provider_name",
@@ -44409,7 +44473,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "data_source_name",
@@ -44457,7 +44521,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "database_name",
@@ -44505,7 +44569,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "dropped_service_name",
@@ -44553,7 +44617,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "encryptor_name",
@@ -44601,7 +44665,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "encryption_name",
@@ -44649,7 +44713,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "endpoint_name",
@@ -44697,7 +44761,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_customizable_attributue",
@@ -44745,7 +44809,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_field_name",
@@ -44793,7 +44857,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_module_guid",
@@ -44841,7 +44905,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_name",
@@ -44889,7 +44953,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_notification_name",
@@ -44937,7 +45001,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_package_name",
@@ -44985,7 +45049,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_session_name",
@@ -45033,7 +45097,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "event_type_or_group",
@@ -45081,7 +45145,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "ext_type",
@@ -45129,7 +45193,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "external_data_source_name",
@@ -45177,7 +45241,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "external_file_format_name",
@@ -45225,7 +45289,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "external_pool_name",
@@ -45273,7 +45337,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "file_group_id",
@@ -45321,7 +45385,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "file_group_name",
@@ -45369,7 +45433,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "function_name",
@@ -45417,7 +45481,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "group_name",
@@ -45465,7 +45529,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "index_name",
@@ -45513,7 +45577,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "language",
@@ -45547,7 +45611,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "library_name",
@@ -45595,7 +45659,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "linked_server",
@@ -45643,7 +45707,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "logical_device_name",
@@ -45691,7 +45755,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "login_name",
@@ -45739,7 +45803,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "master_key",
@@ -45787,7 +45851,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "method_name",
@@ -45835,7 +45899,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "modified_contract_name",
@@ -45883,7 +45947,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "modified_service_name",
@@ -45931,7 +45995,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "module_name",
@@ -45979,7 +46043,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "new_application_role_name",
@@ -46027,7 +46091,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "new_file_group_name",
@@ -46075,7 +46139,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "non_static_attr",
@@ -46123,7 +46187,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "notification_name",
@@ -46171,7 +46235,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "object_name",
@@ -46219,7 +46283,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "owner_name",
@@ -46267,7 +46331,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "partition_column_name",
@@ -46315,7 +46379,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "pool_name",
@@ -46363,7 +46427,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "predicate_compare_name",
@@ -46411,7 +46475,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "predicate_source_name",
@@ -46459,7 +46523,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "property_list_name",
@@ -46507,7 +46571,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "provider_name",
@@ -46555,7 +46619,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "queue_name",
@@ -46603,7 +46667,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "relational_schema",
@@ -46651,7 +46715,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "role_name",
@@ -46699,7 +46763,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "route_name",
@@ -46747,7 +46811,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "rule_name",
@@ -46795,7 +46859,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "schema_collection_name",
@@ -46843,7 +46907,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "schema_id",
@@ -46891,7 +46955,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "schema_name",
@@ -46939,7 +47003,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "security_policy_name",
@@ -46987,7 +47051,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "security_predicate_function_name",
@@ -47035,7 +47099,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "sequence_name",
@@ -47083,7 +47147,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "server_name",
@@ -47131,7 +47195,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "server_role_name",
@@ -47179,7 +47243,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "source_list_name",
@@ -47227,7 +47291,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "sql_identifier",
@@ -47275,7 +47339,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "static_attr",
@@ -47323,7 +47387,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "statistics_name",
@@ -47371,7 +47435,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "stoplist_name",
@@ -47419,7 +47483,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "symmetric_key_name",
@@ -47467,7 +47531,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "synonym_name",
@@ -47515,7 +47579,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "table_or_view_name",
@@ -47563,7 +47627,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "table_variable",
@@ -47611,7 +47675,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "tableName",
@@ -47641,7 +47705,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "target_name",
@@ -47689,7 +47753,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "target_parameter_name",
@@ -47737,7 +47801,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "trigger_name",
@@ -47785,7 +47849,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "tvf_schema_name",
@@ -47833,7 +47897,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "type_schema",
@@ -47881,7 +47945,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "udt_column_name",
@@ -47929,7 +47993,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "unscaled_type",
@@ -47977,7 +48041,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "user_name",
@@ -48025,7 +48089,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "windows_principal",
@@ -48073,7 +48137,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "workload_group_group_name",
@@ -48121,7 +48185,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "workload_group_pool_name",
@@ -48169,7 +48233,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassId"
   },
   {
     "Name": "file_size_unity",
@@ -48197,11 +48261,45 @@
           {
             "Name": "Accept",
             "Generate": true
+          },
+          {
+            "Name": "GetValue",
+            "Generate": true
+          }
+        ]
+      },
+      {
+        "Name": "AstFileSizeUnityEnum",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "_undefined",
+            "Generate": true
+          },
+          {
+            "Name": "Kb",
+            "Generate": true
+          },
+          {
+            "Name": "Mb",
+            "Generate": true
+          },
+          {
+            "Name": "Gb",
+            "Generate": true
+          },
+          {
+            "Name": "Tb",
+            "Generate": true
+          },
+          {
+            "Name": "Module",
+            "Generate": true
           }
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassEnum"
   },
   {
     "Name": "column_elem_target",
@@ -48229,7 +48327,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "expression_assign_elem",
@@ -48269,7 +48367,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "sql_clause",
@@ -48297,7 +48395,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "binary_content_nexts",
@@ -48325,7 +48423,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "binary_content_next",
@@ -48369,7 +48467,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassList"
   },
   {
     "Name": "binary_content",
@@ -48397,7 +48495,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   },
   {
     "Name": "star_asterisk",
@@ -48415,7 +48513,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassTerminalAlias"
   },
   {
     "Name": "table_asterisk",
@@ -48441,7 +48539,7 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "ClassWithProperties"
   },
   {
     "Name": "updated_asterisk",
@@ -48459,6 +48557,6 @@
         ]
       }
     ],
-    "ProposalGenerate": false
+    "CalculatedStrategy": "_"
   }
 ]

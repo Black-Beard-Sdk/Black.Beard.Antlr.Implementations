@@ -21,16 +21,16 @@ namespace Bb.Asts
         public AstBase Value { get; }
 
         public override bool IsTerminal { get => Value.IsTerminal; }
-        public override bool IsRuleReference { get => Value.IsRuleReference; }
+        public override bool IsRule { get => Value.IsRule; }
 
         public override bool ContainsOneRule => Value.ContainsOneRule;
         public override bool ContainsOneTerminal => Value.ContainsOneTerminal;
 
-        public override bool ContainsOnlyRuleReferences
+        public override bool ContainsOnlyRules
         {
             get
             {
-                return Value.ContainsOnlyRuleReferences;
+                return Value.ContainsOnlyRules;
             }
         }
 

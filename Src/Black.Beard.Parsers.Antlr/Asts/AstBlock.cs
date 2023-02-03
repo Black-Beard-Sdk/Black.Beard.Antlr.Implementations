@@ -19,17 +19,30 @@ namespace Bb.Asts
         public AstRuleAction? RuleAction { get; }
 
         public AstAlternativeList? AlternativeList { get; }
+
         public OccurenceEnum Occurence { get; internal set; }
+
+
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {
             return this.AlternativeList?.GetTerminals();
         }
-
         public override IEnumerable<AstRuleRef> GetRules()
         {
             return this.AlternativeList?.GetRules();
         }
+        public override IEnumerable<AstBlock> GetBlocks()
+        {
+            yield return this;
+        }
+        public override IEnumerable<AstAlternative> GetAlternatives()
+        {
+            return this.AlternativeList?.GetAlternatives();
+        }
+
+
+
 
         public override bool ContainsOnlyTerminals
         {
@@ -48,8 +61,7 @@ namespace Bb.Asts
 
             }
         }
-
-        public override bool ContainsOnlyRuleReferences
+        public override bool ContainsOnlyRules
         {
             get
             {
@@ -57,13 +69,179 @@ namespace Bb.Asts
                     return false;
 
                 foreach (var item in this.AlternativeList)
-                    if (!item.ContainsOnlyRuleReferences)
+                    if (!item.ContainsOnlyRules)
                         return false;
 
                 return true;
 
             }
         }
+        public override bool ContainsOnlyBlocks
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyBlocks)
+                        return false;
+
+                return true;
+
+            }
+        }
+        public override bool ContainsOnlyAlternatives
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyAlternatives)
+                        return false;
+
+                return true;
+
+            }
+        }
+
+
+
+
+        public override bool ContainsOneTerminal
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                {
+                    if (!item.ContainsOneTerminal)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+        public override bool ContainsOneRule
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyRules)
+                        return false;
+
+                return true;
+
+            }
+        }
+        public override bool ContainsOneBlock
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOneBlock)
+                        return false;
+
+                return true;
+
+            }
+        }
+        public override bool ContainsOneAlternative
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOneAlternative)
+                        return false;
+
+                return true;
+
+            }
+        }
+
+
+
+
+        public override bool ContainsTerminals
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                {
+                    if (!item.ContainsTerminals)
+                        return false;
+                }
+
+                return true;
+
+            }
+        }
+        public override bool ContainsRules
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsRules)
+                        return false;
+
+                return true;
+
+            }
+        }
+        public override bool ContainsBlocks
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyBlocks)
+                        return false;
+
+                return true;
+
+            }
+        }
+        public override bool ContainsAlternatives
+        {
+            get
+            {
+                if (this.AlternativeList.Count == 0)
+                    return false;
+
+                foreach (var item in this.AlternativeList)
+                    if (!item.ContainsOnlyAlternatives)
+                        return false;
+
+                return true;
+
+            }
+        }
+
+
+
+
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

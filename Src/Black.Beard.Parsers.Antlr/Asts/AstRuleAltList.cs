@@ -53,7 +53,7 @@ namespace Bb.Asts
                     if (item.Rule.Count != 1)
                         return false;
 
-                    if (!item.Rule.Rule[0].IsRuleReference)
+                    if (!item.Rule.Rule[0].IsRule)
                         return false;
 
                 }
@@ -87,7 +87,7 @@ namespace Bb.Asts
             }
         }
 
-        public override bool ContainsOnlyRuleReferences
+        public override bool ContainsOnlyRules
         {
             get
             {
@@ -97,7 +97,7 @@ namespace Bb.Asts
 
                 foreach (AstLabeledAlt item in this)
                 {
-                    if (!item.ContainsOnlyRuleReferences)
+                    if (!item.ContainsOnlyRules)
                         return false;
                 }
 
@@ -160,7 +160,16 @@ namespace Bb.Asts
 
         }
 
-        public IEnumerable<IEnumerable<AstBase>> GetAlternatives()
+        public override IEnumerable<AstAlternative> GetAlternatives()
+        {
+
+            foreach (AstLabeledAlt item in this)
+                foreach (var t in item.GetAlternatives())
+                    yield return t;
+
+        }
+
+        public IEnumerable<IEnumerable<AstBase>> GetListAlternatives()
         {
             foreach (AstLabeledAlt item in this)
                 yield return item.GetItems();

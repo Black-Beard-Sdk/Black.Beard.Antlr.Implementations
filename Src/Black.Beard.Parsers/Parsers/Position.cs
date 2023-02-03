@@ -11,14 +11,19 @@ namespace Bb.Parsers
     public class Position
     {
 
-        public Position(ParserRuleContext ctx) : this(ctx.Start, ctx.Stop)
+
+
+        public static Position Default = new Position(new TokenLocation(0, 0), new TokenLocation(0, 0));
+
+
+        public Position(ParserRuleContext ctx) 
+            : this(ctx.Start, ctx.Stop)
         {
-
-
 
         }
 
-        public Position(IToken start, IToken stop) : this(new TokenLocation(start), new TokenLocation(stop))
+        public Position(IToken start, IToken stop) 
+            : this(new TokenLocation(start), new TokenLocation(stop))
         {
 
 
@@ -28,7 +33,6 @@ namespace Bb.Parsers
         {
             Start = start;
             Stop = stop;
-
         }
 
 

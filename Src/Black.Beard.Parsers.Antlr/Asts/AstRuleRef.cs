@@ -22,11 +22,20 @@ namespace Bb.Asts
 
         public AstBase Option { get; internal set; }
 
-        public override bool IsRuleReference { get => true; }
+        public override bool IsRule { get => true; }
 
         public override string ResolveName()
         {
             return Identifier.Text;
+        }
+
+        public override OccurenceEnum? ResolveOccurence()
+        {
+            if ( this.Parent is AstAtom a)
+                return a.Occurence;
+
+            return null;
+
         }
 
         public override IEnumerable<AstRuleRef> GetRules()
@@ -34,9 +43,29 @@ namespace Bb.Asts
             yield return this;
         }
 
-        public override bool ContainsOnlyRuleReferences { get => true; }
 
+
+        public override bool ContainsOnlyRules { get => true; }
         public override bool ContainsOnlyTerminals { get => false; }
+        public override bool ContainsOnlyBlocks { get => false; }
+        public override bool ContainsOnlyAlternatives { get => false; }
+
+
+
+        public override bool ContainsOneRule { get => true; }
+        public override bool ContainsOneTerminal { get => false; }
+        public override bool ContainsOneBlock { get => false; }
+        public override bool ContainsOneAlternative { get => false; }
+
+
+
+        public override bool ContainsRules { get => true; }
+        public override bool ContainsTerminals { get => false; }
+        public override bool ContainsBlocks { get => false; }
+        public override bool ContainsAlternatives { get => false; }
+
+
+
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

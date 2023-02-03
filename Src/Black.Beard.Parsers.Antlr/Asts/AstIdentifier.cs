@@ -20,6 +20,10 @@ namespace Bb.Asts
 
         }
 
+        public override string ResolveName()
+        {
+            return Text;
+        }
 
         public AstIdentifier Child { get; private set; }
 

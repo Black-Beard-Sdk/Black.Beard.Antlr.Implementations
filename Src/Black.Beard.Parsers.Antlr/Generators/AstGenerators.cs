@@ -39,17 +39,38 @@ namespace Bb.Generators
 
         public void Generate(Context ctx)
         {
+         
+            HashSet<string> names = new HashSet<string>();
+
+            var dir = new DirectoryInfo(ctx.Path);
+            if (!dir.Exists)
+                dir.Create();
+
+            foreach (var item in dir.GetFiles("*.generated.cs"))
+                names.Add(item.FullName);
+
             foreach (AstGenerator g in this._generators)
             {
+                
                 foreach (var item in _asts)
                     g.Generate(ctx, item);
-                WriteFile(ctx, g);
+                
+                var name = WriteFile(ctx, g);
+    
+                if (names.Contains(name))
+                    names.Remove(name);
+
             }
+
+            foreach (var item in names)
+                File.Delete(item);
+
         }
 
-        private void WriteFile(Context ctx, AstGenerator g)
+        private string WriteFile(Context ctx, AstGenerator g)
         {
-            var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");
+
+            var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");                      
 
             using (StreamWriter sw = new StreamWriter(filename, false))
             {
@@ -57,6 +78,9 @@ namespace Bb.Generators
                 _provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw, _options);
                 tw.Close();
             }
+
+            return filename;
+
         }
 
         private readonly List<AstGenerator> _generators;

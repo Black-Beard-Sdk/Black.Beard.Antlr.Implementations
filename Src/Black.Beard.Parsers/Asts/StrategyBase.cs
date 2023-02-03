@@ -3,7 +3,7 @@
 
     public class StrategyBase : IStrategySetter, IStrategyResolver
     {
-        private SerializationStrategy _strategy;
+
 
         public StrategySerializationItem GetFrom(object instance)
         {
@@ -32,7 +32,6 @@
             return _strategy;
 
         }
-
 
 
         private static IEnumerable<StrategySerializationItem> CollectStrategy(Type type, object instance)
@@ -120,6 +119,8 @@
 
         }
 
+
+        private SerializationStrategy _strategy;
 
 
     }

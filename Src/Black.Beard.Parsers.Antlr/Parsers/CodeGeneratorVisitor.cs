@@ -45,20 +45,7 @@ namespace Bb.Parsers
 
         private void Generate()
         {
-            CleanFolder();
             _items.Generate(_ctx);
-        }
-
-        private void CleanFolder()
-        {
-            var dir = new DirectoryInfo(this._ctx.Path);
-
-            if (!dir.Exists)
-                dir.Create();
-
-            foreach (var item in dir.GetFiles("*.generated.cs"))
-                item.Delete();
-
         }
 
         public void VisitRule(AstRule a)
@@ -75,8 +62,8 @@ namespace Bb.Parsers
             a.Prequels?.Accept(this);
             a.ExceptionGroup?.Accept(this);
 
-            if (a.RuleBlock != null)
-                a.CanBeRemoved = a.RuleBlock.CanBeRemoved;
+            if (a.Alternatives != null)
+                a.CanBeRemoved = a.Alternatives.CanBeRemoved;
 
             //var config = _ctx.Configuration.GetConfiguration(a.RuleName.Text);
             //config.ProposalGenerate = !a.CanBeRemoved;
@@ -159,11 +146,11 @@ namespace Bb.Parsers
         {
 
             bool e;
-            e = a.IsRuleReference;
+            e = a.IsRule;
             e = a.IsTerminal;
             e = a.ContainsOneRule;
             e = a.ContainsOneTerminal;
-            e = a.ContainsOnlyRuleReferences;
+            e = a.ContainsOnlyRules;
             e = a.ContainsOnlyTerminals;
 
             a.Value.Accept(this);
@@ -173,11 +160,11 @@ namespace Bb.Parsers
         {
 
             bool e;
-            e = a.IsRuleReference;
+            e = a.IsRule;
             e = a.IsTerminal;
             //e = a.ContainsOneRule;
             e = a.ContainsOneTerminal;
-            e = a.ContainsOnlyRuleReferences;
+            e = a.ContainsOnlyRules;
             e = a.ContainsOnlyTerminals;
 
             a.Identifier?.Accept(this);

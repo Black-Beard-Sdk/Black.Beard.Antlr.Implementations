@@ -325,6 +325,16 @@ namespace Bb.Asts
         Nonclustered,
     }
     
+    public enum AstSignEnum
+    {
+        
+        _undefined,
+        
+        Plus,
+        
+        Minus,
+    }
+    
     public enum AstKeywordEnum
     {
         
@@ -1963,5 +1973,43 @@ namespace Bb.Asts
         Nvarchar,
         
         Precision,
+    }
+    
+    public enum AstAssignmentOperatorEnum
+    {
+        
+        _undefined,
+        
+        PlusAssign,
+        
+        MinusAssign,
+        
+        MultAssign,
+        
+        DivAssign,
+        
+        ModAssign,
+        
+        AndAssign,
+        
+        XorAssign,
+        
+        OrAssign,
+    }
+    
+    public enum AstFileSizeUnityEnum
+    {
+        
+        _undefined,
+        
+        Kb,
+        
+        Mb,
+        
+        Gb,
+        
+        Tb,
+        
+        Module,
     }
 }

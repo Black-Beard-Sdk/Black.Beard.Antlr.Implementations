@@ -35,40 +35,56 @@ namespace Bb.Asts
 
         public bool IsList { get; protected set; }
 
+
+        public virtual bool IsRule { get; }
         public virtual bool IsTerminal { get => this is AstTerminal || this is AstTerminalText; }
+        public virtual bool IsBlock { get => this is AstBlock; }
+        public virtual bool IsAlternative { get => this is AstAlternativeList; }
 
-        public virtual bool IsRuleReference { get => false; }
 
-        public virtual bool ContainsOnlyRuleReferences {  get => false; }
 
-        public virtual bool ContainsOneRule { get => false; }
 
-        public virtual bool ContainsOneTerminal => false;
+        public virtual bool ContainsRules { get; }
+        public virtual bool ContainsOneRule { get; }
+        public virtual bool ContainsOnlyRules { get; }
+        public virtual IEnumerable<AstRuleRef> GetRules() { yield break; }
+
+
+
 
         public virtual bool ContainsTerminals => false;
-
+        public virtual bool ContainsOneTerminal => false;
         public virtual bool ContainsOnlyTerminals => false;
+        public virtual AstTerminalText GetTerminal() =>  null;
+        public virtual IEnumerable<AstTerminalText> GetTerminals() { yield break; }
+
+
+
+
+        public virtual bool ContainsBlocks => false;
+        public virtual bool ContainsOneBlock => false;
+        public virtual bool ContainsOnlyBlocks => false;
+        public virtual IEnumerable<AstBlock> GetBlocks() { yield break; }
+
+
+
+
+        public virtual bool ContainsAlternatives => false;
+        public virtual bool ContainsOneAlternative => false;
+        public virtual bool ContainsOnlyAlternatives => false;
+        public virtual IEnumerable<AstAlternative> GetAlternatives() { yield break; }
+
 
         public string Type => GetType().Name;
-
-        public virtual AstTerminalText GetTerminal()
-        {
-            return null;
-        }
-
-        public virtual IEnumerable<AstTerminalText> GetTerminals()
-        {
-            yield break;
-        }
-
-        public virtual IEnumerable<AstRuleRef> GetRules()
-        {
-            yield break;
-        }
 
         public virtual string ResolveName()
         {
             throw new NotImplementedException();
+        }
+
+        public virtual OccurenceEnum? ResolveOccurence()
+        {
+            return null;
         }
 
         protected override SerializationStrategy StrategySerialization()
@@ -108,6 +124,5 @@ namespace Bb.Asts
         Lexer,
         Parser
     }
-
 
 }

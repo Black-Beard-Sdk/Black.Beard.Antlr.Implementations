@@ -16,15 +16,14 @@ using System.Text;
 namespace Bb.Parsers
 {
 
-    public partial class ScriptAntlrVisitor : ANTLRv4ParserBaseVisitor<AstBase>
+    public partial class ScriptAntlrVisitor : ANTLRv4ParserBaseVisitor<AstBase>, Initializing
     {
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="culture"></param>
-        public ScriptAntlrVisitor(ANTLRv4Parser parser, Diagnostics diagnostics, string path)
+
+
+        public void Initialize(Parser parser, Diagnostics diagnostics, string path)
         {
+
             _parser = parser;
             _diagnostics = diagnostics;
             _scriptPath = path;
@@ -35,6 +34,7 @@ namespace Bb.Parsers
                 _scriptPathDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         }
+
 
 
         public void EvaluateErrors(IParseTree item)
@@ -160,10 +160,10 @@ namespace Bb.Parsers
         }
 
         private StringBuilder _initialSource;
-        private readonly ANTLRv4Parser _parser;
+        private Parser _parser;
         private Diagnostics _diagnostics;
-        private readonly string _scriptPath;
-        private readonly string _scriptPathDirectory;
+        private string _scriptPath;
+        private string _scriptPathDirectory;
         private CultureInfo _currentCulture;
 
 

@@ -1,5 +1,7 @@
 ﻿using Antlr4.Runtime;
+using Bb.Configurations;
 using Bb.Parsers.Antlr;
+using Bb.ParsersConfiguration.Antlr;
 using System.Diagnostics;
 using System.Text;
 
@@ -29,20 +31,24 @@ namespace Bb.Asts
             ) : this(ctx)
         {
             this.Modifiers = modifiers;
-            this.RuleName = ruleName;
+            this._ruleName = ruleName;
             this.Rule = rule;
             this.Return = returnRule;
             this.ThrowsSpec = throwsSpec;
             this.Local = localSpec;
             this.Prequels = prequels;
-            this.RuleBlock = ruleBlock;
+            this.Alternatives = ruleBlock;
             this.ExceptionGroup = exceptionGroup;
         }
 
         public AstRuleModifierList Modifiers { get; }
 
-        public AstIdentifier RuleName { get; }
-        public AstRuleAltList RuleBlock { get; }
+        private readonly AstIdentifier _ruleName;
+        public AstIdentifier RuleName => _ruleName;
+
+        public string Name => _ruleName.Text; 
+
+        public AstRuleAltList Alternatives { get; }
 
         public AstArgActionBlock Rule { get; }
         public AstArgActionBlock Return { get; }
@@ -60,52 +66,145 @@ namespace Bb.Asts
             visitor.VisitRule(this);
         }
 
-        public override bool ContainsOnlyRuleReferences
+
+
+        public override bool ContainsOnlyRules
         {
             get
             {
-                return this.RuleBlock?.ContainsOnlyRuleReferences ?? false;
+                return this.Alternatives?.ContainsOnlyRules ?? false;
             }
         }
-
         public override bool ContainsOnlyTerminals
         {
             get
             {
-                return this.RuleBlock?.ContainsOnlyTerminals ?? false;
+                return this.Alternatives?.ContainsOnlyTerminals ?? false;
             }
         }
+        public override bool ContainsOnlyBlocks
+        {
+            get
+            {
+                return this.Alternatives?.ContainsOnlyBlocks ?? false;
+            }
+        }
+        public override bool ContainsOnlyAlternatives
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+
+
+
+        public override bool ContainsOneRule
+        {
+            get
+            {
+                return this.Alternatives?.ContainsOneRule ?? false;
+            }
+        }
+        public override bool ContainsOneTerminal
+        {
+            get
+            {
+                return this.Alternatives?.ContainsOneTerminal ?? false;
+            }
+        }
+        public override bool ContainsOneBlock
+        {
+            get
+            {
+                return this.Alternatives?.ContainsOneBlock ?? false;
+            }
+        }
+        public override bool ContainsOneAlternative
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+
+
 
         public override bool ContainsTerminals
         {
             get
             {
-                return this.RuleBlock?.ContainsTerminals ?? false;
+                return this.Alternatives?.ContainsTerminals ?? false;
+            }
+        }
+        public override bool ContainsRules
+        {
+            get
+            {
+                return this.Alternatives?.ContainsRules ?? false;
+            }
+        }
+        public override bool ContainsBlocks
+        {
+            get
+            {
+                return this.Alternatives?.ContainsBlocks ?? false;
+            }
+        }
+        public override bool ContainsAlternatives
+        {
+            get
+            {
+                return this.Alternatives?.ContainsAlternatives ?? false;
             }
         }
 
-        public bool OutputContainsAlwayOneItem { get => RuleBlock?.OutputContainsAlwayOneItem ?? false; }
-        
-        public bool OutputContainsAlwayOneRule { get => RuleBlock?.OutputContainsAlwayOneRule ?? false; }
 
-        public bool OutputContainsAlwayOneTerminal { get => RuleBlock?.OutputContainsAlwayOneTerminal ?? false; }
+
+     
+
+
+        public bool OutputContainsAlwayOneItem { get => Alternatives?.OutputContainsAlwayOneItem ?? false; }
         
-        public bool ContainsJustOneAlternative { get => RuleBlock?.ContainsJustOneAlternative ?? false; }
-        public string? Strategy { get; set; }
+        public bool OutputContainsAlwayOneRule { get => Alternatives?.OutputContainsAlwayOneRule ?? false; }
+
+        public bool OutputContainsAlwayOneTerminal { get => Alternatives?.OutputContainsAlwayOneTerminal ?? false; }
+        
+        public bool ContainsJustOneAlternative { get => Alternatives?.ContainsJustOneAlternative ?? false; }
+
+
+
+        public string Strategy { get; set; }
+
+        public GrammarConfigDeclaration Configuration { get; internal set; }
+
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {
-            return this.RuleBlock.GetTerminals();
+            return this.Alternatives.GetTerminals();
         }
 
         public override IEnumerable<AstRuleRef> GetRules()
         {
-            return this.RuleBlock.GetRules();
+            return this.Alternatives.GetRules();
+        }
+        public override IEnumerable<AstBlock> GetBlocks()
+        {
+            return this.Alternatives.GetBlocks();
+        }
+        public override IEnumerable<AstAlternative> GetAlternatives()
+        {
+            return this.Alternatives.GetAlternatives();
         }
 
-        public IEnumerable<IEnumerable<AstBase>> GetAlternatives()
+
+
+
+        public IEnumerable<IEnumerable<AstBase>> GetListAlternatives()
         {
-            return this.RuleBlock.GetAlternatives();
+            return this.Alternatives.GetListAlternatives();
         }
 
         public override void ToString(Writer wrt)
@@ -113,7 +212,7 @@ namespace Bb.Asts
 
             var strategy = wrt.Strategy.GetStrategyFrom(this);
 
-            RuleName.ToString(wrt);
+            _ruleName.ToString(wrt);
 
             if (strategy.ReturnLineAfterItems)
                 wrt.AppendEndLine();
@@ -122,7 +221,7 @@ namespace Bb.Asts
             {
                 wrt.Append(" : ");
 
-                RuleBlock.ToString(wrt);
+                Alternatives.ToString(wrt);
             }
         }
 

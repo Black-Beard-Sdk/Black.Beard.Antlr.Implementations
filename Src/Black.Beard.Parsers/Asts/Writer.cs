@@ -18,47 +18,29 @@ namespace Bb.Asts
             return this;
         }
 
-        //public Writer AppendGo()
-        //{
-        //    CleanIndent();
-        //    _sb.AppendLine("GO");
-        //    _sb.AppendLine();
-        //    return this;
-        //}
+        public void TrimBegin()
+        {
+            while (char.IsWhiteSpace(_sb[0]))
+                _sb.Remove(0, 1);
+        }
 
-        //public Writer AppendUse(string databaseName)
-        //{
-        //    CleanIndent();
+        public void TrimEnd()
+        {
+            while (char.IsWhiteSpace(_sb[_sb.Length - 1]))
+                _sb.Remove(_sb.Length - 1, 1);
+        }
 
-        //    AppendEndLine("USE ", FormatLabel(databaseName));
-        //    _sb.AppendLine("GO");
-        //    _sb.AppendLine();
-        //    return this;
-        //}
+        public void TrimBegin(params char[] toFind)
+        {
+            while (toFind.Contains(_sb[0]))
+                _sb.Remove(0, 1);
+        }
 
-        //public string FormatLabel(params string[] values)
-        //{
-        //    return ToLabel(values);
-        //}
-
-        //public static string ToLabel(params string[] values)
-        //{
-
-        //    var sb = new StringBuilder();
-        //    bool dot = false;
-        //    foreach (var item in values)
-        //    {
-        //        if (!string.IsNullOrEmpty(item))
-        //        {
-        //            if (dot)
-        //                sb.Append('.');
-        //            sb.Append($"[{item}]");
-        //            dot = true;
-        //        }
-        //    }
-
-        //    return sb.ToString();
-        //}
+        public void TrimEnd(params char[] toFind)
+        {
+            while (toFind.Contains(_sb[_sb.Length - 1]))
+                _sb.Remove(_sb.Length - 1, 1);
+        }
 
         public void CleanIndent()
         {

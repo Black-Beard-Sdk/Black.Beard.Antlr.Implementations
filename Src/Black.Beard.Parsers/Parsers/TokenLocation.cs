@@ -31,10 +31,13 @@ namespace Bb.Parsers
 
         public TokenLocation(Antlr4.Runtime.IToken token)
         {
-            Line = token.Line;
-            Column = token.Column;
-            StartIndex = token.StartIndex;
-            StopIndex = token.StopIndex;
+            if (token != null)
+            {
+                Line = token.Line;
+                Column = token.Column;
+                StartIndex = token.StartIndex;
+                StopIndex = token.StopIndex;
+            }
         }
 
         //public TokenLocation(LocationResult location)

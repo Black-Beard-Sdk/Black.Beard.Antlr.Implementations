@@ -33,7 +33,7 @@ namespace Bb.Asts
 
         public string Text { get; }
 
-        public override bool ContainsOnlyRuleReferences  => false; 
+        public override bool ContainsOnlyRules  => false; 
         public override bool ContainsOneRule => false;
         public override bool ContainsOneTerminal => true;
 
