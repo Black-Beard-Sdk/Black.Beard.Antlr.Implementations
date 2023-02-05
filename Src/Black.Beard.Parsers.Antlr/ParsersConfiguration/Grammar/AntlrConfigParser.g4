@@ -33,53 +33,78 @@ options { tokenVocab = AntlrConfigLexer; }
 
 
 // The main entry point for parsing a v4 grammar.
-grammarSpec
-   : default_values? 
-     template_selector* 
-     grammarDeclaration* 
+grammar_spec
+   : grammar_spec_list* 
      EOF
    ;
 
-template_selector
-   : SET TEMPLATE identifier additional_settings WHEN template_selector_expression SEMI
+grammar_spec_list
+   : default
+   | template_selector
+   | item_list
+   | grammar_declaration
    ;
 
-additional_settings
-   : LPAREN default_value_item* RPAREN
+default
+   : DEFAULT template_setting SEMI
    ;
+template_selector
+   : SELECT template_setting WHEN template_selector_expression SEMI
+   ;
+
+item_list
+   : LIST identifier identifier+ SEMI
+   ;
+
+grammar_declaration
+   : RULE identifier ruleConfig SEMI
+   ;
+
+
+
 
 template_selector_expression
-   : template_selector_expression_item ((OR|AND) template_selector_expression_item)*
+   : template_selector_expression_item ((OR|AND) template_selector_expression)?
    ;
 
 template_selector_expression_item
-   : template_selector_expression_item_1
-   | template_selector_expression_item_2
+   : template_selector_expression_item_has
+   | template_selector_expression_item_is
    ;
-template_selector_expression_item_1
-   : RULE HAS (ONE|ONLY|ANY|NONE) (BLOCK|RULE|TERM|ALTERNATIVE)
-   ;
-
-template_selector_expression_item_2
-   : RULE IS (BLOCK|RULE|TERM|ALTERNATIVE)
+template_selector_expression_item_has
+   : RULE HAS  (ONE|ONLY|ANY|NO|MANY)  (BLOCK|RULE|TERM|ALTERNATIVE)
+   | RULE HAS   ONE OUTPUT             (BLOCK|RULE|TERM|ALTERNATIVE)?
    ;
 
-default_values
-   : WITH DEFAULT default_value_item+ SEMI
-   ;
-
-default_value_item
-   : identifier COLON constant
-   ;
-
-grammarDeclaration
-   : RULE identifier COLON ruleConfig SEMI
+template_selector_expression_item_is
+   : RULE IS NOT? (BLOCK|RULE|TERM|ALTERNATIVE)+
+   | RULE IS NOT? IN identifier
    ;
 
 ruleConfig
    : NO? GENERATE
-     TEMPLATE COLON (templateIdentifier=identifier)?
-     (CALCULATED TEMPLATE COLON calculatedTemplateIdentifier=identifier)?
+     optional_template_setting
+     calculated_template_setting?
+   ;
+
+calculated_template_setting
+   : CALCULATED optional_template_setting
+   ;
+
+template_setting
+   : TEMPLATE identifier additional_settings?
+   ;
+
+optional_template_setting
+   : TEMPLATE identifier? additional_settings?
+   ;
+
+additional_settings
+   : LPAREN value_item* RPAREN
+   ;
+
+value_item
+   : identifier COLON constant
    ;
 
 identifier 

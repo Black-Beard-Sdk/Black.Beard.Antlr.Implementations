@@ -33,11 +33,23 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammarSpec"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_spec"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitGrammarSpec([NotNull] AntlrConfigParser.GrammarSpecContext context);
+	Result VisitGrammar_spec([NotNull] AntlrConfigParser.Grammar_specContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_spec_list"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGrammar_spec_list([NotNull] AntlrConfigParser.Grammar_spec_listContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDefault([NotNull] AntlrConfigParser.DefaultContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector"/>.
 	/// </summary>
@@ -45,11 +57,17 @@ public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTemplate_selector([NotNull] AntlrConfigParser.Template_selectorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.additional_settings"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.item_list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAdditional_settings([NotNull] AntlrConfigParser.Additional_settingsContext context);
+	Result VisitItem_list([NotNull] AntlrConfigParser.Item_listContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_declaration"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGrammar_declaration([NotNull] AntlrConfigParser.Grammar_declarationContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression"/>.
 	/// </summary>
@@ -63,41 +81,53 @@ public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTemplate_selector_expression_item([NotNull] AntlrConfigParser.Template_selector_expression_itemContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_1"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_has"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTemplate_selector_expression_item_1([NotNull] AntlrConfigParser.Template_selector_expression_item_1Context context);
+	Result VisitTemplate_selector_expression_item_has([NotNull] AntlrConfigParser.Template_selector_expression_item_hasContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_2"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_is"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTemplate_selector_expression_item_2([NotNull] AntlrConfigParser.Template_selector_expression_item_2Context context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default_values"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDefault_values([NotNull] AntlrConfigParser.Default_valuesContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default_value_item"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDefault_value_item([NotNull] AntlrConfigParser.Default_value_itemContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammarDeclaration"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGrammarDeclaration([NotNull] AntlrConfigParser.GrammarDeclarationContext context);
+	Result VisitTemplate_selector_expression_item_is([NotNull] AntlrConfigParser.Template_selector_expression_item_isContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.ruleConfig"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitRuleConfig([NotNull] AntlrConfigParser.RuleConfigContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.calculated_template_setting"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCalculated_template_setting([NotNull] AntlrConfigParser.Calculated_template_settingContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_setting"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTemplate_setting([NotNull] AntlrConfigParser.Template_settingContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.optional_template_setting"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOptional_template_setting([NotNull] AntlrConfigParser.Optional_template_settingContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.additional_settings"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAdditional_settings([NotNull] AntlrConfigParser.Additional_settingsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.value_item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitValue_item([NotNull] AntlrConfigParser.Value_itemContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.identifier"/>.
 	/// </summary>

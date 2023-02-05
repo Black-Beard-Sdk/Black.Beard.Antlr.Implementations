@@ -6,7 +6,7 @@ using Bb.Asts;
 using Bb.ParserConfigurations.Antlr;
 using Bb.Parsers;
 using Bb.Parsers.Antlr;
-using Bb.ParsersConfiguration.Antlr;
+using Bb.ParsersConfiguration.Ast;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

@@ -1,7 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Bb.Configurations;
 using Bb.Parsers.Antlr;
-using Bb.ParsersConfiguration.Antlr;
+using Bb.ParsersConfiguration.Ast;
 using System.Diagnostics;
 using System.Text;
 

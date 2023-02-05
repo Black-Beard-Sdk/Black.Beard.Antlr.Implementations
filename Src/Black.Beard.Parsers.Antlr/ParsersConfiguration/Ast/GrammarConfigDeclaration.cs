@@ -2,7 +2,7 @@
 using Bb.Asts;
 using Bb.Parsers;
 
-namespace Bb.ParsersConfiguration.Antlr
+namespace Bb.ParsersConfiguration.Ast
 {
     public class GrammarConfigDeclaration : AntlrConfigAstBase
     {
@@ -32,14 +32,21 @@ namespace Bb.ParsersConfiguration.Antlr
             visitor.VisitGamarDeclaration(this);
         }
 
+        public override T Accept<T>(IAstConfigBaseWithResultVisitor<T> visitor)
+        {
+            return visitor.VisitGamarDeclaration(this);
+        }
+
         public override void ToString(Writer writer)
         {
             
             if (Rule != null)
             {
 
+                writer.Append("RULE ");
+
                 writer.Append(this.RuleName);
-                writer.AppendEndLine(" : ");
+                writer.AppendEndLine(" ");
 
                 writer.Append("/* ");
                 Rule.ToString(writer);
@@ -53,6 +60,7 @@ namespace Bb.ParsersConfiguration.Antlr
                 }
 
                 writer.AppendEndLine(";");
+                writer.AppendEndLine();
 
             }
 

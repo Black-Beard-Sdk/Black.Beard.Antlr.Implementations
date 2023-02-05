@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text;
 
 namespace Bb.Asts
 {
@@ -40,6 +41,24 @@ namespace Bb.Asts
         {
             while (toFind.Contains(_sb[_sb.Length - 1]))
                 _sb.Remove(_sb.Length - 1, 1);
+        }
+
+        public bool EndBy(string text)
+        {
+            if (_sb.Length >= text.Length)
+            {
+                var s = _sb.Length - text.Length;
+                for (int i = 0; i < text.Length; i++)
+                {
+                    var left = _sb[s + i];
+                    var right = text[i];
+                    if (left != right)
+                        return false;
+                }
+            }
+
+            return true;
+
         }
 
         public void CleanIndent()

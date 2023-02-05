@@ -36,7 +36,7 @@ using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 [System.CLSCompliant(false)]
 public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVisitor<Result>, IAntlrConfigParserVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammarSpec"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_spec"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -44,7 +44,27 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitGrammarSpec([NotNull] AntlrConfigParser.GrammarSpecContext context) { return VisitChildren(context); }
+	public virtual Result VisitGrammar_spec([NotNull] AntlrConfigParser.Grammar_specContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_spec_list"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitGrammar_spec_list([NotNull] AntlrConfigParser.Grammar_spec_listContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDefault([NotNull] AntlrConfigParser.DefaultContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector"/>.
 	/// <para>
@@ -56,7 +76,7 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitTemplate_selector([NotNull] AntlrConfigParser.Template_selectorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.additional_settings"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.item_list"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -64,7 +84,17 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAdditional_settings([NotNull] AntlrConfigParser.Additional_settingsContext context) { return VisitChildren(context); }
+	public virtual Result VisitItem_list([NotNull] AntlrConfigParser.Item_listContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammar_declaration"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitGrammar_declaration([NotNull] AntlrConfigParser.Grammar_declarationContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression"/>.
 	/// <para>
@@ -86,7 +116,7 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <return>The visitor result.</return>
 	public virtual Result VisitTemplate_selector_expression_item([NotNull] AntlrConfigParser.Template_selector_expression_itemContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_1"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_has"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -94,9 +124,9 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTemplate_selector_expression_item_1([NotNull] AntlrConfigParser.Template_selector_expression_item_1Context context) { return VisitChildren(context); }
+	public virtual Result VisitTemplate_selector_expression_item_has([NotNull] AntlrConfigParser.Template_selector_expression_item_hasContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_2"/>.
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_selector_expression_item_is"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -104,37 +134,7 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTemplate_selector_expression_item_2([NotNull] AntlrConfigParser.Template_selector_expression_item_2Context context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default_values"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitDefault_values([NotNull] AntlrConfigParser.Default_valuesContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.default_value_item"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitDefault_value_item([NotNull] AntlrConfigParser.Default_value_itemContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.grammarDeclaration"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitGrammarDeclaration([NotNull] AntlrConfigParser.GrammarDeclarationContext context) { return VisitChildren(context); }
+	public virtual Result VisitTemplate_selector_expression_item_is([NotNull] AntlrConfigParser.Template_selector_expression_item_isContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.ruleConfig"/>.
 	/// <para>
@@ -145,6 +145,56 @@ public partial class AntlrConfigParserBaseVisitor<Result> : AbstractParseTreeVis
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitRuleConfig([NotNull] AntlrConfigParser.RuleConfigContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.calculated_template_setting"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitCalculated_template_setting([NotNull] AntlrConfigParser.Calculated_template_settingContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.template_setting"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitTemplate_setting([NotNull] AntlrConfigParser.Template_settingContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.optional_template_setting"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitOptional_template_setting([NotNull] AntlrConfigParser.Optional_template_settingContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.additional_settings"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitAdditional_settings([NotNull] AntlrConfigParser.Additional_settingsContext context) { return VisitChildren(context); }
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.value_item"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitValue_item([NotNull] AntlrConfigParser.Value_itemContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.identifier"/>.
 	/// <para>

@@ -4,7 +4,7 @@ using Bb.Configurations;
 using Bb.Generators;
 using Bb.ParserConfigurations.Antlr;
 using Bb.Parsers;
-using Bb.ParsersConfiguration.Antlr;
+using Bb.ParsersConfiguration.Ast;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -32,23 +32,22 @@ namespace Generate
                 var ast = (AstGrammarSpec)parser.Visit(new ScriptAntlrVisitor());
 
                 var configFile = Path.Combine(this._folder, ctx.AntlrParserRootName + "conf");
-                GrammarSpec astConfig;
                 if (File.Exists(configFile))
                 {
                     var sb2 = new StringBuilder(configFile.LoadFromFile());
                     var config = ScriptConfigParser.ParseString(sb2, configFile);
-                    astConfig = (GrammarSpec)config.Visit(new ScriptAntlrConfigVisitor());
+                    _astConfig = (GrammarSpec)config.Visit(new ScriptAntlrConfigVisitor());
                 }
                 else
-                    astConfig = new GrammarSpec(Position.Default);
+                    _astConfig = new GrammarSpec(Position.Default);
 
-                astConfig.Append(ast);
+                _astConfig.Append(ast);
 
                 foreach (var item in ast.Rules)
                 {
                     var conf = ctx.Configuration.GetConfiguration(item);
                     if (conf.Strategy != "_")
-                        item.Configuration.Config.TemplateName = conf.Strategy;
+                        item.Configuration.Config.TemplateSetting.TemplateName = conf.Strategy;
                     item.Configuration.Config.Generate = conf.Generate;
                 }
 
@@ -60,8 +59,7 @@ namespace Generate
 
                 Generate(ctx, ast);
 
-
-                astConfig.Save(configFile);
+                _astConfig.Save(configFile);
 
             }
 
@@ -69,7 +67,7 @@ namespace Generate
 
 
 
-        private static string TemplateSelector(AstRule ast, Context context)
+        private string TemplateSelector(AstRule ast, Context context)
         {
 
             if (!string.IsNullOrEmpty(ast.Strategy))
@@ -77,12 +75,29 @@ namespace Generate
 
             var conf = ast.Configuration.Config;
 
-            conf.CalculatedTemplateName = TemplateSelectorCompute(ast, context);
 
-            if (!string.IsNullOrEmpty(conf.TemplateName))
-                ast.Strategy = conf.TemplateName;
+            var txt = _astConfig.Evaluate(ast);
+            if (!string.IsNullOrEmpty(txt))
+            {
+                conf.CalculatedTemplateSetting = new CalculatedTemplateSetting
+                (
+                    Position.Default,
+                    new TemplateSetting(Position.Default, txt)
+                );
+            }
             else
-                ast.Strategy = conf.CalculatedTemplateName;
+            {
+                conf.CalculatedTemplateSetting = new CalculatedTemplateSetting
+                (
+                    Position.Default,
+                    new TemplateSetting(Position.Default, TemplateSelectorCompute(ast, context))
+                );
+            }
+
+            if (conf.TemplateSetting != null && !string.IsNullOrEmpty(conf.TemplateSetting.TemplateName))
+                ast.Strategy = conf.TemplateSetting.TemplateName;
+            else
+                ast.Strategy = conf.CalculatedTemplateSetting.Setting.TemplateName;
 
             return ast.Strategy;
 
@@ -99,6 +114,7 @@ namespace Generate
 
             if (ast.Alternatives.Count == 1)
             {
+
                 var r = ast.Alternatives[0].Rule.Rule;
                 if (r.Count == 1)
                 {
@@ -165,9 +181,6 @@ namespace Generate
             if (ast.ContainsJustOneAlternative)
             {
 
-                //if (ast.Name == "ids_")
-                //{
-
                 var itemRules = ast.GetRules().GroupBy(c => c.ResolveName()).ToList();
                 if (itemRules.Count == 1)
                 {
@@ -209,7 +222,7 @@ namespace Generate
                     }
                 }
 
-                //}
+
 
                 if (ast.ContainsOnlyTerminals
                       && ast.OutputContainsAlwayOneItem
@@ -269,7 +282,7 @@ namespace Generate
             return true;
         }
 
-        private static void Generate(Context ctx, AstBase ast)
+        private void Generate(Context ctx, AstBase ast)
         {
 
             var visitor4 = new CodeGeneratorVisitor(ctx)
@@ -836,7 +849,7 @@ namespace Generate
         }
 
         private string _folder;
-
+        private GrammarSpec _astConfig;
     }
 
 }

@@ -66,7 +66,7 @@ namespace Bb.ParserConfigurations.Antlr
 
         public static bool Trace { get; set; }
 
-        public AntlrConfigParser.GrammarSpecContext Tree { get { return _context; } }
+        public AntlrConfigParser.Grammar_specContext Tree { get { return _context; } }
 
         public IEnumerable<string> Includes { get => _includes; }
 
@@ -111,14 +111,14 @@ namespace Bb.ParserConfigurations.Antlr
                 //Trace = ScriptParser.Trace, // Ca plante sur un null, pourquoi ?
             };
 
-            _context = _parser.grammarSpec();
+            _context = _parser.grammar_spec();
 
         }
 
         public AntlrConfigParser Parser { get => _parser; }
 
         private AntlrConfigParser _parser;
-        private AntlrConfigParser.GrammarSpecContext _context;
+        private AntlrConfigParser.Grammar_specContext _context;
 
         public bool IsFragment { get; private set; }
     }

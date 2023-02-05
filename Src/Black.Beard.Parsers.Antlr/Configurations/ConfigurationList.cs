@@ -1,7 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.ParserConfigurations.Antlr;
 using Bb.Parsers;
-using Bb.ParsersConfiguration.Antlr;
+using Bb.ParsersConfiguration.Ast;
 using Newtonsoft.Json;
 
 namespace Bb.Configurations

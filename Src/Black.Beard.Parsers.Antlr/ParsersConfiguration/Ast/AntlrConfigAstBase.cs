@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bb.ParsersConfiguration.Antlr
+namespace Bb.ParsersConfiguration.Ast
 {
 
 
@@ -31,6 +31,9 @@ namespace Bb.ParsersConfiguration.Antlr
             : base(position)
         {
         }
+
+        public abstract T Accept<T>(IAstConfigBaseWithResultVisitor<T> visitor);
+
 
     }
 

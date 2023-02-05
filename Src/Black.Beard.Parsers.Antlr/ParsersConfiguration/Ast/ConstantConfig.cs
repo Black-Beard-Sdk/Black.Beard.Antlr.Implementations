@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime.Tree;
+using Bb.Asts;
 
-namespace Bb.ParsersConfiguration.Antlr
+namespace Bb.ParsersConfiguration.Ast
 {
     public class ConstantConfig : AntlrConfigAstBase
     {
@@ -16,6 +17,16 @@ namespace Bb.ParsersConfiguration.Antlr
         public override void Accept(IAstConfigBaseVisitor visitor)
         {
             visitor.VisitConstant(this);
+        }
+
+        public override T Accept<T>(IAstConfigBaseWithResultVisitor<T> visitor)
+        {
+            return visitor.VisitConstant(this);
+        }
+
+        public override void ToString(Writer writer)
+        {
+            writer.Append(Text);
         }
 
     }

@@ -59,7 +59,7 @@ WS
 // Integer
 
 INT
-   : DecimalNumeral
+   : Int
    ;
 
 // -------------------------
@@ -84,20 +84,25 @@ WITH : 'WITH';
 DEFAULT : 'DEFAULT';
 RULE : 'RULE';
 TEMPLATE : 'TEMPLATE';
-SET : 'SET';
+SELECT : 'SELECT';
 WHEN : 'WHEN';
 ONE : 'ONE';
 ONLY : 'ONLY';
 ANY : 'ANY';
-NONE : 'NONE';
+MANY : 'MANY';
 BLOCK : 'BLOCK';
 TERM : 'TERM';
 ALTERNATIVE : 'ALTERNATIVE';
 HAS : 'HAS';
 IS : 'IS';
+NOT : 'NOT';
+IN : 'IN';
+LIST : 'LIST';
+
+
 OR : '|';
 AND : '&';
-
+OUTPUT : 'OUTPUT';
 SEMI    : Semi   ;
 COLON   : Colon   ;
 LPAREN   : LParen   ;
