@@ -36,16 +36,16 @@ namespace Bb.Parsers
 
         }
 
-        public void Visit(AstBase a)
+        public IEnumerable<string> Visit(AstBase a)
         {
             this._items.Clear();
             a.Accept(this);
-            Generate();
+            return Generate().ToList();
         }
 
-        private void Generate()
+        private IEnumerable<string> Generate()
         {
-            _items.Generate(_ctx);
+            return _items.Generate(_ctx);
         }
 
         public void VisitRule(AstRule a)

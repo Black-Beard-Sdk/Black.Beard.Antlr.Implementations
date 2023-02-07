@@ -77,8 +77,18 @@ namespace Bb.Asts
                     if (item.Rule.Count != 1)
                         return false;
 
-                    if (!item.Rule.Rule[0].IsTerminal)
-                        return false;
+                    var rule = item.Rule.Rule[0];
+                    if (!rule.IsTerminal)
+                    {
+                        if (rule is AstBlock b)
+                        {
+                            if (!b.AlternativeList.OutputContainsAlwayOneTerminal)
+                                return false;
+
+                        }
+                        else
+                            return false;
+                    }
 
                 }
 

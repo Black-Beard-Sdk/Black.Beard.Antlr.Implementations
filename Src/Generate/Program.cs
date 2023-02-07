@@ -9,17 +9,17 @@ var DirRoot = new DirectoryInfo
 (
     Path.Combine(
         new FileInfo(Assembly.GetEntryAssembly().Location).Directory.FullName
-        , @".\\..\\..\\..\\..\\Black.Beard.SqlServer"
+        , @"..\..\..\..\Black.Beard.SqlServer"
     )
 );
-var file = new FileInfo(Path.Combine(DirRoot.FullName, @"Parsers\\Grammar\\TSqlParser.g4"));
+var file = new FileInfo(Path.Combine(DirRoot.FullName, @"Parsers\Grammar\TSqlParser.g4"));
 
 
 
 var configFile = Path.Combine(DirRoot.FullName, @"Parsers\\Grammar", Path.GetFileNameWithoutExtension(file.Name) + ".antlr.json");
-var configFileIdentifiers = Path.Combine(DirRoot.FullName, @"Parsers\\Grammar", Path.GetFileNameWithoutExtension(file.Name) + ".Identifiers.txt");
-var configFileEnum = Path.Combine(DirRoot.FullName, @"Parsers\\Grammar", Path.GetFileNameWithoutExtension(file.Name) + ".terminalsToExcludesFromEnums.txt");
-var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\\");
+var configFileIdentifiers = Path.Combine(DirRoot.FullName, @"Parsers\Grammar", Path.GetFileNameWithoutExtension(file.Name) + ".Identifiers.txt");
+var configFileEnum = Path.Combine(DirRoot.FullName, @"Parsers\Grammar", Path.GetFileNameWithoutExtension(file.Name) + ".terminalsToExcludesFromEnums.txt");
+var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\");
 
 var ctx = new Context()
 {

@@ -31,5 +31,27 @@ namespace Bb.Parsers
 
         public string AntlrParserRootName { get; set; }
 
+        public HashSet<string> GetGeneratedFiles()
+        {
+
+            HashSet<string> names = new HashSet<string>();
+
+            var dir = new DirectoryInfo(this.Path);
+            if (!dir.Exists)
+                dir.Create();
+
+            foreach (var item in dir.GetFiles("*.generated.cs"))
+                names.Add(item.FullName);
+
+            return names;
+
+        }
+
+        public void RemoveFiles(HashSet<string> names)
+        {
+            foreach (var item in names)
+                File.Delete(item);
+        }
+
     }
 }

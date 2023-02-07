@@ -37,33 +37,20 @@ namespace Bb.Generators
             this._asts.Clear();
         }
 
-        public void Generate(Context ctx)
+        public IEnumerable<string> Generate(Context ctx)
         {
          
-            HashSet<string> names = new HashSet<string>();
-
-            var dir = new DirectoryInfo(ctx.Path);
-            if (!dir.Exists)
-                dir.Create();
-
-            foreach (var item in dir.GetFiles("*.generated.cs"))
-                names.Add(item.FullName);
-
             foreach (AstGenerator g in this._generators)
             {
                 
                 foreach (var item in _asts)
                     g.Generate(ctx, item);
                 
-                var name = WriteFile(ctx, g);
+                yield return WriteFile(ctx, g);
     
-                if (names.Contains(name))
-                    names.Remove(name);
-
             }
 
-            foreach (var item in names)
-                File.Delete(item);
+     
 
         }
 

@@ -17,6 +17,27 @@ namespace Bb.Asts
 
         }
 
+        public bool OutputContainsAlwayOneTerminal
+        {
+            get
+            {
+
+                if (this.Count == 0)
+                    return false;
+
+                foreach (AstAlternative item in this)
+                {
+
+                    if (!item.Rule.OutputContainsAlwayOneTerminal)
+                        return false;
+                   
+                }
+
+                return true;
+
+            }
+        }
+
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)

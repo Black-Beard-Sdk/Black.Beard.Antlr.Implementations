@@ -5733,6 +5733,14 @@
           {
             "Name": "VisitUpdatedAsterisk",
             "Generate": true
+          },
+          {
+            "Name": "VisitCompleteTableName",
+            "Generate": true
+          },
+          {
+            "Name": "VisitFullSchemaName",
+            "Generate": true
           }
         ]
       },
@@ -8706,6 +8714,14 @@
           },
           {
             "Name": "VisitTable_asterisk",
+            "Generate": true
+          },
+          {
+            "Name": "VisitComplete_table_name",
+            "Generate": true
+          },
+          {
+            "Name": "VisitFull_schema_name",
             "Generate": true
           }
         ]
@@ -14771,6 +14787,14 @@
           {
             "Name": "_tableName",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -14818,6 +14842,14 @@
           },
           {
             "Name": "_tableName",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -18945,6 +18977,14 @@
           {
             "Name": "_fullTableName",
             "Generate": true
+          },
+          {
+            "Name": "CompleteTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_completeTableName",
+            "Generate": true
           }
         ]
       }
@@ -19471,6 +19511,14 @@
           {
             "Name": "_columnNameListWithOrder",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -19598,6 +19646,14 @@
           },
           {
             "Name": "_tableName",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -20159,6 +20215,14 @@
           {
             "Name": "_createColumnstoreIndexOptions",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -20335,6 +20399,14 @@
           {
             "Name": "_createColumnstoreIndexOptions",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -20414,6 +20486,14 @@
           },
           {
             "Name": "_xmlIndexOptions",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -20752,6 +20832,14 @@
           },
           {
             "Name": "_sqlClauses",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -21379,6 +21467,14 @@
           {
             "Name": "_columnNameList",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -21442,6 +21538,14 @@
           },
           {
             "Name": "_updateStatisticsOptions",
+            "Generate": true
+          },
+          {
+            "Name": "CompleteTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_completeTableName",
             "Generate": true
           }
         ]
@@ -21602,6 +21706,14 @@
           },
           {
             "Name": "_tableOptions",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -21986,6 +22098,14 @@
           },
           {
             "Name": "_tableName",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -23724,6 +23844,14 @@
           },
           {
             "Name": "_fullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "CompleteTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_completeTableName",
             "Generate": true
           }
         ]
@@ -26820,6 +26948,14 @@
           },
           {
             "Name": "_onUpdate",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -42225,6 +42361,14 @@
           {
             "Name": "_tableName",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -43046,6 +43190,14 @@
           },
           {
             "Name": "_tableName",
+            "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
             "Generate": true
           }
         ]
@@ -47701,6 +47853,10 @@
           {
             "Name": "Id_",
             "Generate": true
+          },
+          {
+            "Name": "_id",
+            "Generate": true
           }
         ]
       }
@@ -48535,6 +48691,14 @@
           {
             "Name": "_tableName",
             "Generate": true
+          },
+          {
+            "Name": "FullTableName",
+            "Generate": true
+          },
+          {
+            "Name": "_fullTableName",
+            "Generate": true
           }
         ]
       }
@@ -48558,5 +48722,57 @@
       }
     ],
     "CalculatedStrategy": "_"
+  },
+  {
+    "Name": "complete_table_name",
+    "Generate": true,
+    "Strategy": null,
+    "Types": [
+      {
+        "Name": "AstCompleteTableName",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "TableName",
+            "Generate": true
+          },
+          {
+            "Name": "Accept",
+            "Generate": true
+          },
+          {
+            "Name": "_tableName",
+            "Generate": true
+          }
+        ]
+      }
+    ],
+    "CalculatedStrategy": null
+  },
+  {
+    "Name": "full_schema_name",
+    "Generate": true,
+    "Strategy": null,
+    "Types": [
+      {
+        "Name": "AstFullSchemaName",
+        "Generate": true,
+        "Methods": [
+          {
+            "Name": "SchemaName",
+            "Generate": true
+          },
+          {
+            "Name": "Accept",
+            "Generate": true
+          },
+          {
+            "Name": "_schemaName",
+            "Generate": true
+          }
+        ]
+      }
+    ],
+    "CalculatedStrategy": null
   }
 ]

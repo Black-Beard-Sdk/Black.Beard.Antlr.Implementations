@@ -19,6 +19,35 @@ namespace Bb.Asts
 
         }
 
+        public bool OutputContainsAlwayOneTerminal
+        {
+            get
+            {
+
+                if (this.Count != 1)
+                    return false;
+
+                foreach (AstBase item in this)
+                {
+
+                    if (item is AstAtom a)
+                    {
+
+                        if (!a.Value.IsTerminal)
+                            return false;
+
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+
+                return true;
+
+            }
+        }
 
         public AstElementOptionList Options { get; set; }
 

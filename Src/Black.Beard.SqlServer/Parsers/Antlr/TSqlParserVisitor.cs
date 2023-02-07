@@ -4491,17 +4491,23 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitEntity_name_for_parallel_dw([NotNull] TSqlParser.Entity_name_for_parallel_dwContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.complete_table_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitComplete_table_name([NotNull] TSqlParser.Complete_table_nameContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.full_table_name"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFull_table_name([NotNull] TSqlParser.Full_table_nameContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.table_name"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.full_schema_name"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTable_name([NotNull] TSqlParser.Table_nameContext context);
+	Result VisitFull_schema_name([NotNull] TSqlParser.Full_schema_nameContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.simple_name"/>.
 	/// </summary>
