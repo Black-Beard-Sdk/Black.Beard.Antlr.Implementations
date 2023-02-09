@@ -11,28 +11,63 @@ using System.Threading.Tasks;
 namespace Bb.Generators
 {
 
+
     public abstract class ScriptBase
     {
 
+        public ScriptBase()
+        {
+            this.Usings = new HashSet<string>();
+        }
 
-        public string Name { get; set; }
+
+        public string Namespace {  get; set; }  
+
+        public string Name
+        {
+            get
+            {
+                return Filename;
+            }
+        }
+
+        public HashSet<string> Usings { get; set; }
+
+        public string Filename { get; set; }
 
         public GrammarSpec Configuration { get; set; }
 
+        public static string DefaultFilename(Type item)
+        {
+            var c = "ScriptClass";
+            var _defaultFilename = item.Name;
+            if (_defaultFilename.StartsWith(c))
+                _defaultFilename = _defaultFilename.Substring(c.Length);
+            return _defaultFilename;
+
+        }
+
+        public static string DefaultFilename<T>()
+            where T : ScriptBase
+        {
+            return DefaultFilename(typeof(T));
+        }
+        
+        
 
         public abstract string GetInherit(AstRule ast, Context context);
 
-        public IEnumerable<string> Generate(AstGrammarSpec ast, Context context)
+        public IEnumerable<string> Generate(Context context)
         {
 
             var visitor = new CodeGeneratorVisitor(context);
 
             ConfigureTemplate(context, visitor);
 
-            return visitor.Visit(ast);
+            return visitor.Visit(context.RootAst);
 
         }
-        
+
         protected abstract void ConfigureTemplate(Context context, CodeGeneratorVisitor generator);
 
         protected string TemplateSelector(AstRule ast, Context context)

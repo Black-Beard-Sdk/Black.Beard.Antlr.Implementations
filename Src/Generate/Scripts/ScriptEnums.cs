@@ -32,7 +32,7 @@ namespace Generate.Scripts
             generator.Add(Name, template =>
             {
 
-                template.Namespace("Bb.Asts", ns =>
+                template.Namespace(Namespace, ns =>
                 {
 
                     ns.CreateTypeFrom<AstRule>((ast, type) =>

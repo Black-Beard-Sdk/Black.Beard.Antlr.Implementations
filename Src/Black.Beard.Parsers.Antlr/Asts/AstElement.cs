@@ -24,6 +24,14 @@ namespace Bb.Asts
             visitor.VisitElement(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitElement(this);
+        }
+
         public override bool ContainsTerminals { get => this.Child?.ContainsTerminals ?? false; }
         public override bool ContainsRules { get => this.Child?.ContainsRules ?? false; }
         public override bool ContainsBlocks { get => this.Child?.ContainsBlocks ?? false; }

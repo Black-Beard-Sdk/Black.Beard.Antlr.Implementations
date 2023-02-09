@@ -168,8 +168,8 @@ namespace Bb.Generators
             if (ast is T a)
             {
 
-                ctx.CurrentConfiguration = ctx.Configuration.GetConfiguration(ast);
-                if (ctx.CurrentConfiguration.Generate)
+                ctx.CurrentConfiguration = (ast as AstRule).Configuration;
+                if (ctx.CurrentConfiguration.Config.Generate)
                 {
                     var b = new ModelTypeFrom<T>(_modelNamespace, _action);
                     var t = b.RunGeneration(ctx, a, @namespace, _type);
@@ -199,27 +199,21 @@ namespace Bb.Generators
                 if (!Exists(@namespace.Types, _n))
                 {
 
-                    ctx.CurrentConfigurationType = ctx.CurrentConfiguration.GetType(_n);
-
-                    if (ctx.CurrentConfigurationType.Generate)
+                    type = new CodeTypeDeclaration(_n)
                     {
-                        type = new CodeTypeDeclaration(_n)
-                        {
-                            IsPartial = true,
-                            IsInterface = _isInterface,
-                            IsEnum = _isEnum,
-                            IsStruct = _isStruct,
-                            Attributes = _attributes,
-                        };
+                        IsPartial = true,
+                        IsInterface = _isInterface,
+                        IsEnum = _isEnum,
+                        IsStruct = _isStruct,
+                        Attributes = _attributes,
+                    };
 
-                        GenerateDocumentation(type, ctx);
+                    GenerateDocumentation(type, ctx);
 
-                        foreach (var parent in _parents)
-                            type.BaseTypes.Add(new CodeTypeReference(parent()));
+                    foreach (var parent in _parents)
+                        type.BaseTypes.Add(new CodeTypeReference(parent()));
 
-                        @namespace.Types.Add(type);
-
-                    }
+                    @namespace.Types.Add(type);
 
                 }
 
@@ -239,7 +233,7 @@ namespace Bb.Generators
                             p.Generate(ctx, item, type);
                         }
                     }
-                    else 
+                    else
                     {
                         p.Action2(p);
                         p.Generate(ctx, ast, type);

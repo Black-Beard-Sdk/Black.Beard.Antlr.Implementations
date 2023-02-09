@@ -74,6 +74,13 @@ namespace Bb.Asts
             visitor.VisitRuleRef(this);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitRuleRef(this);
+        }
+
         public override void ToString(Writer wrt)
         {
 

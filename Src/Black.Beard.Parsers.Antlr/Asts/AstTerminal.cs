@@ -57,6 +57,15 @@ namespace Bb.Asts
             visitor.VisitTerminal(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitTerminal(this);
+        }
+
+
         public override void ToString(Writer wrt)
         {
 

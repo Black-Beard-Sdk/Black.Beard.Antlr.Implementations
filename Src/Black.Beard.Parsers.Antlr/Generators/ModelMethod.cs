@@ -87,9 +87,6 @@ namespace Bb.Generators
             if (!MemberExists(t.Members, _n))
             {
 
-                var configurationType = ctx.CurrentConfigurationType;
-                ctx.CurrentConfigurationMethod = configurationType.GetMethod(_n);
-
                 CodeTypeReference type = null;
                 if (_actionType != null)
                 {
@@ -104,25 +101,22 @@ namespace Bb.Generators
                 else
                     type = new CodeTypeReference(typeof(void));
 
-                if (ctx.CurrentConfigurationMethod.Generate)
+                CodeMemberMethod method = new CodeMemberMethod()
                 {
-                    CodeMemberMethod method = new CodeMemberMethod()
-                    {
-                        Name = _n,
-                        Attributes = _attributes,
-                        ReturnType = type,
-                    };
+                    Name = _n,
+                    Attributes = _attributes,
+                    ReturnType = type,
+                };
 
-                    GenerateDocumentation(method, ctx);
+                GenerateDocumentation(method, ctx);
 
-                    foreach (var arg in _arguments)
-                        arg.Generate(ctx, model, method);
+                foreach (var arg in _arguments)
+                    arg.Generate(ctx, model, method);
 
-                    if (this._body != null)
-                        this._body(method);
+                if (this._body != null)
+                    this._body(method);
 
-                    t.Members.Add(method);
-                }
+                t.Members.Add(method);
 
             }
 

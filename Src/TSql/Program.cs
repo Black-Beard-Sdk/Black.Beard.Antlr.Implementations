@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Bb.Parsers;
+using Bb.Parsers.TSql;
 using System.Text;
 
 Console.WriteLine("Hello, World!");

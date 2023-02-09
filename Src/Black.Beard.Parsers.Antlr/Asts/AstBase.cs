@@ -1,6 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -86,6 +87,9 @@ namespace Bb.Asts
         {
             return null;
         }
+
+
+        public abstract T Accept<T>(IAstVisitor<T> visitor);
 
         protected override SerializationStrategy StrategySerialization()
         {

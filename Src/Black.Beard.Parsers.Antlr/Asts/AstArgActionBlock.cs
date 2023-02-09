@@ -25,6 +25,15 @@ namespace Bb.Asts
             visitor.VisitArgActionBlock(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitArgActionBlock(this);
+        }
+
+
     }
 
 }

@@ -19,6 +19,15 @@ namespace Bb.Asts
             visitor.VisitModeSpec(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitModeSpec(this);
+        }
+
+
         public override bool ContainsTerminals { get =>  false; }
         public override bool ContainsRules { get =>  false; }
         public override bool ContainsBlocks { get => false; }

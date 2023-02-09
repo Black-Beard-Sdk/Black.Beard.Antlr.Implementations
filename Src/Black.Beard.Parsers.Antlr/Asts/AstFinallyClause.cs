@@ -22,6 +22,14 @@ namespace Bb.Asts
         }
 
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitFinallyClause(this);
+        }
+
+
         public override bool ContainsTerminals { get => this.Block?.ContainsTerminals ?? false; }
         public override bool ContainsRules { get => this.Block?.ContainsRules ?? false; }
         public override bool ContainsBlocks { get => this.Block?.ContainsBlocks ?? false; }

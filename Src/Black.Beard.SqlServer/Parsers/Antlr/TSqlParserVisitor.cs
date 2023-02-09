@@ -19,7 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace Bb.Parsers.Tsql {
+namespace Bb.Parsers.TSql.Antlr {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -4905,12 +4905,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitEncryptor_name([NotNull] TSqlParser.Encryptor_nameContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.encryption_name"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitEncryption_name([NotNull] TSqlParser.Encryption_nameContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.endpoint_name"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -4988,12 +4982,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitExternal_pool_name([NotNull] TSqlParser.External_pool_nameContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.file_group_id"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFile_group_id([NotNull] TSqlParser.File_group_idContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.file_group_name"/>.
 	/// </summary>
@@ -5187,23 +5175,17 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRule_name([NotNull] TSqlParser.Rule_nameContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.schema_collection_name"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSchema_collection_name([NotNull] TSqlParser.Schema_collection_nameContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.schema_id"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSchema_id([NotNull] TSqlParser.Schema_idContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.schema_name"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSchema_name([NotNull] TSqlParser.Schema_nameContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.schema_collection_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSchema_collection_name([NotNull] TSqlParser.Schema_collection_nameContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.security_policy_name"/>.
 	/// </summary>
@@ -5361,4 +5343,4 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitWorkload_group_pool_name([NotNull] TSqlParser.Workload_group_pool_nameContext context);
 }
-} // namespace Bb.Parsers.Tsql
+} // namespace Bb.Parsers.TSql.Antlr

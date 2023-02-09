@@ -26,6 +26,13 @@ namespace Bb.Asts
             visitor.VisitPrequelConstructList(this);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitPrequelConstructList(this);
+        }
+
     }
 
 

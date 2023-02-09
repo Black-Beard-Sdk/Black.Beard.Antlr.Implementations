@@ -103,6 +103,15 @@ namespace Bb.Asts
             visitor.VisitLabeledAlt(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitLabeledAlt(this);
+        }
+
+
         public override void ToString(Writer wrt)
         {
 

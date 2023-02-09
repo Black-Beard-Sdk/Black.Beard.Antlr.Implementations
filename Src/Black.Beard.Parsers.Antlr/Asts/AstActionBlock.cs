@@ -25,6 +25,12 @@ namespace Bb.Asts
             visitor.VisitActionBlock(this);
         }
 
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitActionBlock(this);
+        }
+
+
     }
 
 

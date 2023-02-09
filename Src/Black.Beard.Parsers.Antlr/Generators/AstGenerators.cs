@@ -1,5 +1,4 @@
 ﻿using Bb.Asts;
-using Bb.Configurations;
 using Bb.Parsers;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
@@ -50,14 +49,12 @@ namespace Bb.Generators
     
             }
 
-     
-
         }
 
         private string WriteFile(Context ctx, AstGenerator g)
         {
 
-            var filename = Path.Combine(ctx.Path, g.Name + ".generated.cs");                      
+            var filename = Path.Combine(ctx.OutputPath, g.Name + ".generated.cs");                      
 
             using (StreamWriter sw = new StreamWriter(filename, false))
             {

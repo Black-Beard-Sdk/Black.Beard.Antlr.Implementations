@@ -26,6 +26,12 @@ namespace Bb.Asts
             visitor.VisitOption(this);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitOption(this);
+        }
 
         public override bool ContainsTerminals { get => false; }
         public override bool ContainsRules { get => false; }

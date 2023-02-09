@@ -1,5 +1,4 @@
 ﻿using Antlr4.Runtime;
-using Bb.Configurations;
 using Bb.Parsers.Antlr;
 using Bb.ParsersConfiguration.Ast;
 using System.Diagnostics;
@@ -66,6 +65,13 @@ namespace Bb.Asts
             visitor.VisitRule(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitRule(this);
+        }
 
 
         public override bool ContainsOnlyRules

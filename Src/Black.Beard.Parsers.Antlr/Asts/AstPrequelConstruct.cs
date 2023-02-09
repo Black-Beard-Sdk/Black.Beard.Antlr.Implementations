@@ -23,6 +23,12 @@ namespace Bb.Asts
             visitor.VisitPrequelConstruct(this);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitPrequelConstruct(this);
+        }
 
         public override bool ContainsTerminals { get => this.Child?.ContainsTerminals ?? false; }
         public override bool ContainsRules { get => this.Child?.ContainsRules ?? false; }

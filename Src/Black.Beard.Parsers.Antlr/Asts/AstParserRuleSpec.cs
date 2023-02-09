@@ -18,6 +18,12 @@ namespace Bb.Asts
             visitor.VisitParserRuleSpec(this);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitParserRuleSpec(this);
+        }
 
         public override bool ContainsTerminals { get => false; }
         public override bool ContainsRules { get => false; }

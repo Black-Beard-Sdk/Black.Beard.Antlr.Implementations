@@ -1,5 +1,4 @@
-using Antlr4.Runtime;
-using Bb.Parsers;
+using Bb.Parsers.TSql;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 

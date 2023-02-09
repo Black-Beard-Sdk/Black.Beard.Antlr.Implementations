@@ -61,9 +61,6 @@ namespace Bb.Generators
             if (!MemberExists(t.Members, _n))
             {
 
-                var configurationType = ctx.CurrentConfigurationType;
-                ctx.CurrentConfigurationMethod = configurationType.GetMethod(_n);
-
                 CodeTypeReference type = null;
 
                 if (_actionType != null)

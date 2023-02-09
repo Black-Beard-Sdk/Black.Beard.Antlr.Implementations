@@ -1,6 +1,5 @@
 ﻿using Antlr4.Runtime;
 using Bb.Asts;
-using Bb.Configurations;
 using Bb.Parsers;
 
 namespace Bb.ParsersConfiguration.Ast

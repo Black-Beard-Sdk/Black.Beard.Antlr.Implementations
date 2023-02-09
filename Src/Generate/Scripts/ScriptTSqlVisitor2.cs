@@ -23,13 +23,14 @@ namespace Generate.Scripts
 
             generator.Add(Name, template =>
             {
-                template.Namespace("Bb.Parsers", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System",
+                    ns.Using(this.Usings)
+                      .Using(
                         "Bb.Parsers.Tsql",
-                        "Bb.Asts",
                         "Antlr4.Runtime.Misc",
-                        "Antlr4.Runtime.Tree"
+                        "Antlr4.Runtime.Tree",
+                        "Bb.Parsers.TSql.Antlr"
                       )
 
                       .CreateOneType<AstLabeledAlt>((ast, type) =>

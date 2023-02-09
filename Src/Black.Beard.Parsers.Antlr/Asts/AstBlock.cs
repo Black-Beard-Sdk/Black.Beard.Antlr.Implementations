@@ -254,6 +254,16 @@ namespace Bb.Asts
             visitor.VisitBlock(this);
         }
 
+
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitBlock(this);
+        }
+
+
         public override void ToString(Writer writer)
         {
             if (Options != null) Options.ToString(writer);

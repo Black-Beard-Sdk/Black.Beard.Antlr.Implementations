@@ -1,5 +1,5 @@
 ﻿using Bb.Asts;
-using Bb.Configurations;
+using Bb.ParsersConfiguration.Ast;
 
 namespace Bb.Parsers
 {
@@ -8,35 +8,33 @@ namespace Bb.Parsers
 
         public Context()
         {
-            TerminalsToExcludes = new HashSet<string>();
-            Identifiers = new HashSet<string>();
+
         }
 
-        public string Path { get; set; }
+
 
         public string Namespace { get; set; }
-
-        public ConfigurationList Configuration { get; set; }
-
-        public ConfigurationRule CurrentConfiguration { get; internal set; }
-    
-        public ConfigurationType CurrentConfigurationType { get; internal set; }
-        
-        public ConfigurationMethod CurrentConfigurationMethod { get; internal set; }
-        
-        public HashSet<string> TerminalsToExcludes { get; set; }
-        public HashSet<string> Identifiers { get; set; }
-
         public string Strategy { get; internal set; }
 
-        public string AntlrParserRootName { get; set; }
+        
+
+        
+        public string OutputPath { get; set; }
+
+
+
+        public string GrammarFolder { get => GrammarFile.Directory.FullName; }
+        public FileInfo GrammarFile { get; set; }
+        public AstGrammarSpec RootAst { get; set; }
+
+
 
         public HashSet<string> GetGeneratedFiles()
         {
 
             HashSet<string> names = new HashSet<string>();
 
-            var dir = new DirectoryInfo(this.Path);
+            var dir = new DirectoryInfo(this.OutputPath);
             if (!dir.Exists)
                 dir.Create();
 
@@ -46,12 +44,19 @@ namespace Bb.Parsers
             return names;
 
         }
-
         public void RemoveFiles(HashSet<string> names)
         {
             foreach (var item in names)
                 File.Delete(item);
         }
+
+
+
+        public string ConfigurationFile { get; set; }
+        public string AntlrParserRootName { get; set; }
+        public GrammarSpec Configuration { get; set; }
+        public GrammarConfigDeclaration CurrentConfiguration { get; internal set; }
+
 
     }
 }

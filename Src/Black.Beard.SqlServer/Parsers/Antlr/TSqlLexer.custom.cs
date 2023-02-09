@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bb.Parsers.TSql
+namespace Bb.Parsers.TSql.Antlr
 {
     public partial class TSqlLexer
     {
 
-        public static bool IsKeyWord(string text, int type)
-        {
+        //public static bool IsKeyWord(string text, int type)
+        //{
 
-            var  o = DefaultVocabulary.GetDisplayName(type);
+        //    var  o = DefaultVocabulary.GetDisplayName(type);
 
-            var u = TSqlLexer.ruleNames[type];
+        //    var u = TSqlLexer.ruleNames[type];
 
-            return true;
+        //    return true;
 
-        }
+        //}
 
 
     }

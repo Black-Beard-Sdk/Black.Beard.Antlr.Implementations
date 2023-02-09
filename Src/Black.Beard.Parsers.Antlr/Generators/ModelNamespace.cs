@@ -14,6 +14,14 @@ namespace Bb.Generators
             this._typeBuilder = new List<ModelTypeFrom>();
         }
 
+        public ModelNamespace Using(IEnumerable<string> usings)
+        {
+            foreach (var us in usings)
+                if (!string.IsNullOrEmpty(us))
+                    this._usings.Add(us);
+            return this;
+        }
+
         public ModelNamespace Using(params string[] usings)
         {
             foreach (var us in usings)

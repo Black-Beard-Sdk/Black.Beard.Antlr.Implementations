@@ -1,9 +1,9 @@
 ﻿using Bb;
 using Bb.Asts;
-using Bb.Configurations;
 using Bb.Generators;
 using Bb.ParserConfigurations.Antlr;
 using Bb.Parsers;
+using Bb.Parsers.Antlr;
 using Bb.ParsersConfiguration.Ast;
 using Generate.Scripts;
 using System;
@@ -25,79 +25,84 @@ namespace Generate
             if (antlrParser.Exists)
             {
 
-                ctx.AntlrParserRootName = Path.GetFileNameWithoutExtension(antlrParser.Name) + ".";
-                this._folder = antlrParser.Directory.FullName;
-
-                var sb = new StringBuilder(antlrParser.LoadFromFile());
-                var parser = ScriptParser.ParseString(sb, antlrParser.FullName);
-                var rootAst = (AstGrammarSpec)parser.Visit(new ScriptAntlrVisitor());
-
-                var configFile = Path.Combine(this._folder, ctx.AntlrParserRootName + "conf");
-                if (File.Exists(configFile))
-                {
-                    var sb2 = new StringBuilder(configFile.LoadFromFile());
-                    var config = ScriptConfigParser.ParseString(sb2, configFile);
-                    _astConfig = (GrammarSpec)config.Visit(new ScriptAntlrConfigVisitor());
-                }
-                else
-                    _astConfig = new GrammarSpec(Position.Default);
-
-                _astConfig.Append(rootAst);
-
-                foreach (var item in rootAst.Rules)
-                {
-                    var conf = ctx.Configuration.GetConfiguration(item);
-                    if (conf.Strategy != "_")
-                        item.Configuration.Config.TemplateSetting.TemplateName = conf.Strategy;
-                    item.Configuration.Config.Generate = conf.Generate;
-                }
-
-                var visitor2 = new ParentVisitor();
-                visitor2.Visit(rootAst);
-
-                var visitor3 = new CodeVisitor();
-                visitor3.Visit(rootAst);
-
-                List<ScriptBase> _generators = new List<ScriptBase>()
-                {
-                    new ScriptEnums() { Name = "Models.Enums" },
-                    new ScriptClassEnum() { Name = "Models.ClassEnums" },
-                    new ScriptClassTerminalAlias() { Name = "Models.Ids" },
-                    new ScriptClassList() { Name = "Models.Lists" },
-                    new ScriptClassWithProperties() { Name ="Models.ClassWithProperties" },
-                    new ScriptModelDefault() { Name= "Models.Defaults" },
-                    new ScriptVisitor1() { Name = "IAstTSqlVisitor1"},
-                    new ScriptVisitor2() { Name = "IAstTSqlVisitor2"},
-                    new ScriptTSqlVisitor1() { Name = "ScriptTSqlVisitor1" },
-                    new ScriptTSqlVisitor2() { Name = "ScriptTSqlVisitor2" },
-
-                    // 
-
-                };
+                ctx.RootAst = LoadGrammar(ctx, antlrParser);
 
 
-                var names = ctx.GetGeneratedFiles();
 
-                foreach (var generator in _generators)
-                {
-                    generator.Configuration = _astConfig;
-                    foreach (var name in generator.Generate(rootAst, ctx))
-                        if (names.Contains(name))
-                            names.Remove(name);
-                }
 
-                ctx.RemoveFiles(names);
 
-         
 
-                _astConfig.Save(configFile);
+                ctx.Configuration = LoadConfiguration(ctx);
+
+                new ParentVisitor().Visit(ctx.RootAst);
+                new CodeVisitor().Visit(ctx.RootAst);
+
+                new ScriptList("Models")
+                    {
+                        Namespace = "Bb.Asts.TSql",
+                    }
+                    .Using("System", "Bb.Parsers")
+                    
+                    .Add<ScriptClassIdentifiers>()
+                    .Add<ScriptClassEnum>()
+                    .Add<ScriptClassTerminals>()
+                    .Add<ScriptClassLists>()
+                    .Add<ScriptClassWithProperties>()
+                    .Add<ScriptClassDefaults>()
+                    .Add<ScriptEnums>("Enums")
+                    .Add<ScriptVisitor1>("IAstTSqlVisitor1")
+                    .Add<ScriptVisitor2>("IAstTSqlVisitor2")
+                    .Add<ScriptTSqlVisitor1>("ScriptTSqlVisitor1", a =>
+                    {
+                        a.Namespace = "Bb.Parsers.TSql";
+                        a.Using("Bb.Asts.TSql");
+                    })
+                    .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = "Bb.Parsers.TSql")
+                    .Add<ScriptClassToString>()
+
+                    .Generate(ctx);
+
+                ctx.Configuration.Save(ctx.ConfigurationFile);
 
             }
 
         }
 
-        private string _folder;
-        private GrammarSpec _astConfig;
+
+        private AstGrammarSpec LoadGrammar(Context ctx, FileInfo antlrParser)
+        {
+            ctx.GrammarFile = antlrParser;
+            var sb = new StringBuilder(antlrParser.LoadFromFile());
+            var parser = ScriptParser.ParseString(sb, antlrParser.FullName);
+            var rootAst = (AstGrammarSpec)parser.Visit(new ScriptAntlrVisitor());
+            return rootAst;
+        }
+
+        private GrammarSpec LoadConfiguration(Context ctx)
+        {
+
+            if (string.IsNullOrEmpty(ctx.AntlrParserRootName))
+                ctx.AntlrParserRootName = Path.GetFileNameWithoutExtension(ctx.GrammarFile.Name);
+
+            if (string.IsNullOrEmpty(ctx.ConfigurationFile))
+                ctx.ConfigurationFile = Path.Combine(ctx.GrammarFolder, ctx.GrammarFile.Name + ".conf");
+
+            GrammarSpec result;
+            if (File.Exists(ctx.ConfigurationFile))
+            {
+                var sb2 = new StringBuilder(ctx.ConfigurationFile.LoadFromFile());
+                var config = ScriptConfigParser.ParseString(sb2, ctx.ConfigurationFile);
+                result = (GrammarSpec)config.Visit(new ScriptAntlrConfigVisitor());
+            }
+            else
+                result = new GrammarSpec(Position.Default);
+
+            result.Append(ctx.RootAst);
+
+            return result;
+
+        }
+
 
     }
 

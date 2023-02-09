@@ -23,11 +23,12 @@ namespace Generate.Scripts
 
             generator.Add(Name, template =>
             {
-                template.Namespace("Bb.Parsers", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System",
-                        "Bb.Parsers.Tsql",
+                    ns.Using(Usings)
+                      .Using(
                         "Bb.Asts",
+                        "Bb.Parsers.TSql.Antlr",
                         "Antlr4.Runtime.Misc",
                         "Antlr4.Runtime.Tree",
                         "System.Collections"
@@ -37,10 +38,11 @@ namespace Generate.Scripts
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                               .GenerateIf(() => Generate(ast, ctx))
                               .Name(() => "ScriptTSqlVisitor")
+
                               .Method(() => ctx.Strategy == "_", m =>
                               {
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
-                                   .Argument(() => ctx.AntlrParserRootName + CodeHelper.FormatCamelUpercase(ast.Name) + "Context", "context")
+                                   .Argument(() => ctx.AntlrParserRootName + "." + CodeHelper.FormatCamelUpercase(ast.Name) + "Context", "context")
                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                    .Return(() => "AstRoot")
                                    .Comment(() => ast.ToString())
@@ -63,6 +65,7 @@ namespace Generate.Scripts
 
                                    });
                               })
+
                               .Method(() => ctx.Strategy == "ClassEnum", m =>
                               {
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
@@ -75,7 +78,6 @@ namespace Generate.Scripts
                                        b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType().Create("context".Var(), "context".Var().Call("GetText")));
                                    });
                               })
-
 
                               .Method(() => ctx.Strategy == "ClassTerminalAlias", m =>
                               {
@@ -90,13 +92,13 @@ namespace Generate.Scripts
                                    });
                               })
 
-
                               .Method(() => ctx.Strategy == "ClassList", m =>
                               {
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
                                    .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Name) + "Context", "context")
                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                    .Return(() => "AstRoot")
+                                   .Comment(() => ast.ToString())
                                    .Body(b =>
                                    {
 
@@ -122,6 +124,41 @@ namespace Generate.Scripts
 
                                    });
                               })
+
+                              .Method(() => ctx.Strategy == "ClassIdentifiers", m =>
+                              {
+                                  m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
+                                   .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Name) + "Context", "context")
+                                   .Attribute(MemberAttributes.Public | MemberAttributes.Override)
+                                   .Return(() => "AstRoot")
+                                   .Comment(() => ast.ToString())
+                                   .Body(b =>
+                                   {
+
+
+                                       var astChild = ast.GetRules().FirstOrDefault();
+                                       var t1 = "IList<IParseTree>".AsType();
+                                       b.Statements.DeclareAndInitialize("source", t1, "context".Var().Property("children"));
+
+                                       var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType();
+                                       b.Statements.DeclareAndInitialize("list", type, type.Create("context".Var()));
+                                       b.Statements.ForEach("IParseTree".AsType(), "item", "source", stm =>
+                                       {
+                                           var v1 = "AstRoot".AsType();
+                                           stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
+                                           stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
+                                           {
+                                               s.Call("list".Var(), "Add", "acceptResult".Var());
+                                           }
+                                           );
+                                       });
+                                       b.Statements.Return("list".Var());
+
+
+
+                                   });
+                              })
+
                               .Method(() => ctx.Strategy == "ClassWithProperties", m =>
                               {
                                   m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
@@ -156,6 +193,11 @@ namespace Generate.Scripts
 
         }
 
+        internal void Using(params string[] usings)
+        {
+            foreach (var us in usings)
+                this.Usings.Add(us);
+        }
     }
 
 

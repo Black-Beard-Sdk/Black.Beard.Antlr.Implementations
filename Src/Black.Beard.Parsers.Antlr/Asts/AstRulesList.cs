@@ -20,6 +20,15 @@ namespace Bb.Asts
             visitor.VisitRulesList(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitRulesList(this);
+        }
+
+
     }
 
 

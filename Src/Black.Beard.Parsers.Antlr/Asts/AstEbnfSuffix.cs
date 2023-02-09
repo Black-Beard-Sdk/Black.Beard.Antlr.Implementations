@@ -23,6 +23,13 @@ namespace Bb.Asts
         }
 
 
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitAstEbnfSuffix(this);
+        }
+
 
         public override bool ContainsOnlyRules { get => false; }
         public override bool ContainsOnlyTerminals { get => false; }

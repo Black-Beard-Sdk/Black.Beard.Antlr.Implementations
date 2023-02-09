@@ -79,6 +79,14 @@ namespace Bb.Asts
             visitor.VisitLabeledElement(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitLabeledElement(this);
+        }
+
     }
 
 

@@ -23,9 +23,9 @@ namespace Generate.Scripts
 
             generator.Add(Name, template =>
             {
-                template.Namespace("Bb.Asts", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System")
+                    ns.Using(Usings)
                     .CreateOneType<AstRule>((ast, type) =>
                     {
                         type.AddTemplateSelector(() => TemplateSelector(ast, ctx))

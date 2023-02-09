@@ -22,9 +22,9 @@ namespace Generate.Scripts
 
             generator.Add(Name, template =>
             {
-                template.Namespace("Bb.Asts", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System")
+                    ns.Using(Usings)
                       .CreateOneType<AstLabeledAlt>((ast, type) =>
                       {
                           type.Name(() => "IAstTSqlVisitor")

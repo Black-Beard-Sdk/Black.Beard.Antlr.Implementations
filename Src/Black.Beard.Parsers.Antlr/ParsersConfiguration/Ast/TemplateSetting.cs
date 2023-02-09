@@ -21,7 +21,7 @@ namespace Bb.ParsersConfiguration.Ast
         }
 
 
-        public string TemplateName { get; set;  }
+        public string TemplateName { get;  }
 
         public AdditionalValues AddtionnalSettings { get; set; }
 

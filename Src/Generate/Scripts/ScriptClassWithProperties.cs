@@ -10,7 +10,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRoot";
+            return "AstRule";
         }
 
         protected override bool Generate(AstRule ast, Context context)
@@ -24,9 +24,9 @@ namespace Generate.Scripts
             generator.Add(this.Name, template =>
             {
 
-                template.Namespace("Bb.Asts", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System")
+                    ns.Using(Usings)
                       .Using("Antlr4.Runtime")
                       .Using("System.Collections")
                       .Using("Antlr4.Runtime.Tree")
@@ -48,7 +48,7 @@ namespace Generate.Scripts
                                   f.Argument(() => "Position", "p")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("p")
+                                   .CallBase("p", "list")
                                    .Body(b =>
                                    {
 
@@ -82,7 +82,7 @@ namespace Generate.Scripts
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx")
+                                   .CallBase("ctx", "list")
                                    .Body(b =>
                                    {
 

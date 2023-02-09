@@ -798,7 +798,7 @@ drop_certificate
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-column-encryption-key-transact-sql
 drop_column_encryption_key
-    : DROP COLUMN ENCRYPTION KEY encryption_name
+    : DROP COLUMN ENCRYPTION KEY encryptor_name
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-column-master-key-transact-sql
@@ -1052,13 +1052,13 @@ drop_xml_schema_collection
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/disable-trigger-transact-sql
 disable_trigger
-    : DISABLE TRIGGER ( ( COMMA? (schema_name DOT)? trigger_name)+ | ALL) ON ((schema_id DOT)? object_name|DATABASE|ALL SERVER)
+    : DISABLE TRIGGER ( ( COMMA? (schema_name DOT)? trigger_name)+ | ALL) ON ((schema_name DOT)? object_name|DATABASE|ALL SERVER)
     ;
 
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/enable-trigger-transact-sql
 enable_trigger
-    : ENABLE TRIGGER ( ( COMMA? (schema_name DOT)? trigger_name)+ | ALL)         ON ( (schema_id DOT)? object_name | DATABASE| ALL SERVER)
+    : ENABLE TRIGGER ( ( COMMA? (schema_name DOT)? trigger_name)+ | ALL) ON ( (schema_name DOT)? object_name | DATABASE| ALL SERVER)
     ;
 
 lock_table
@@ -1214,7 +1214,7 @@ alter_fulltext_catalog
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-fulltext-catalog-transact-sql
 create_fulltext_catalog
     : CREATE FULLTEXT CATALOG catalog_name
-        (ON FILEGROUP file_group_id)?
+        (ON FILEGROUP file_group_name)?
         (IN PATH rootpath=STRING)?
         (WITH ACCENT_SENSITIVITY EQUAL on_off )?
         (AS DEFAULT)?
@@ -3381,7 +3381,7 @@ column_def_table_constraint
 // There is a documentation error: column definition elements can be given in
 // any order
 column_definition
-    : id_ (data_type | AS expression PERSISTED? )
+    : column_name (data_type | AS expression PERSISTED? )
       column_definition_element*
       column_index?
     ;
@@ -5704,7 +5704,6 @@ data_source_name : id_;
 database_name : id_;
 dropped_service_name : id_;
 encryptor_name : id_;
-encryption_name : id_;
 endpoint_name : id_;
 event_customizable_attributue : id_;
 event_field_name : id_;
@@ -5718,7 +5717,6 @@ ext_type : id_;
 external_data_source_name : id_;
 external_file_format_name : id_;
 external_pool_name : id_;
-file_group_id : id_;
 file_group_name : id_;
 function_name : id_;
 group_name : id_;
@@ -5751,9 +5749,8 @@ relational_schema : id_;
 role_name : id_;
 route_name : id_;
 rule_name : id_;
-schema_collection_name : id_;
-schema_id : id_;
 schema_name : id_;
+schema_collection_name : id_;
 security_policy_name : id_;
 security_predicate_function_name : id_;
 sequence_name : id_;

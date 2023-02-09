@@ -1,5 +1,4 @@
 ﻿using Bb.Asts;
-using Bb.Configurations;
 using Bb.Generators;
 using Microsoft.CSharp;
 using System.CodeDom;
@@ -8,6 +7,7 @@ using System.Diagnostics;
 
 namespace Bb.Parsers
 {
+
 
     public class CodeGeneratorVisitor : IAstBaseVisitor
     {
@@ -118,8 +118,6 @@ namespace Bb.Parsers
 
         public void VisitGrammarSpec(AstGrammarSpec a)
         {
-
-
             a.Declaration?.Accept(this);
             a.Modes?.Accept(this);
             a.Prequels?.Accept(this);

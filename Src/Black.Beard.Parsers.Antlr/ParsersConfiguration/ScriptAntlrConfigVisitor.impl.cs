@@ -116,6 +116,17 @@ namespace Bb.Parsers
             return result;
         }
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.ParserConfigurations.Antlr.AntlrConfigParser.optional_template_setting" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// TEMPLATE identifier? additional_settings?
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AntlrConfigAstBase VisitOptional_template_setting([NotNull] AntlrConfigParser.Optional_template_settingContext context)
         {
             var v = (context.identifier()?.Accept(this) as IdentifierConfig);

@@ -24,13 +24,12 @@ namespace Generate.Scripts
             generator.Add(this.Name, template =>
             {
 
-                template.Namespace("Bb.Asts", ns =>
+                template.Namespace(Namespace, ns =>
                 {
-                    ns.Using("System")
+                    ns.Using(this.Usings)
                       .Using("Antlr4.Runtime")
                       .Using("System.Collections")
                       .Using("Antlr4.Runtime.Tree")
-                      .Using("Bb.Parsers")
 
                       .CreateTypeFrom<AstRule>((ast, type) =>
                       {

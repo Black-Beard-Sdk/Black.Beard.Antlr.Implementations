@@ -10,14 +10,14 @@ namespace Bb.Asts
     public class AstTerminalText : AstBase
     {
 
-        public AstTerminalText(ITerminalNode n, string type, string text) 
+        public AstTerminalText(ITerminalNode n, string type, string text)
             : base(n)
         {
             this.Type = type;
             this.Text = text;
         }
 
-        public AstTerminalText(ParserRuleContext ctx, string type, string text) 
+        public AstTerminalText(ParserRuleContext ctx, string type, string text)
             : base(ctx)
         {
             this.Type = type;
@@ -33,7 +33,7 @@ namespace Bb.Asts
 
         public string Text { get; }
 
-        public override bool ContainsOnlyRules  => false; 
+        public override bool ContainsOnlyRules => false;
         public override bool ContainsOneRule => false;
         public override bool ContainsOneTerminal => true;
 
@@ -56,14 +56,16 @@ namespace Bb.Asts
             visitor.VisitTerminalText(this);
         }
 
+
+        [System.Diagnostics.DebuggerStepThrough]
+        [System.Diagnostics.DebuggerNonUserCode]
+        public override T Accept<T>(IAstVisitor<T> visitor)
+        {
+            return visitor.VisitTerminalText(this);
+        }
+
     }
 
 
 }
 
-
-
-namespace Bb
-{
-
-}
