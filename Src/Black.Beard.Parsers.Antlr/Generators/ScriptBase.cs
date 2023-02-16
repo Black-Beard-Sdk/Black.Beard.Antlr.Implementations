@@ -126,20 +126,16 @@ namespace Bb.Generators
 
                             var i = o as AstAtom;
                             var p = i.Occurence;
-                            switch (p)
+                            switch (p.Value)
                             {
-                                case OccurenceEnum.OneOrMore:
-                                case OccurenceEnum.OneOrMoreOptional:
-                                case OccurenceEnum.Any:
-                                case OccurenceEnum.AnyOptional:
+                                case Occurence.Enum.Any:
                                     return "ClassList";
 
-                                case OccurenceEnum.One:
+                                case Occurence.Enum.One:
                                     if (i.IsTerminal)
                                         return "ClassTerminalAlias";
                                     break;
 
-                                case OccurenceEnum.OneOptional:
                                 default:
                                     break;
                             }
@@ -183,7 +179,7 @@ namespace Bb.Generators
                         var i = itemRules[0].ToList();
 
                         if (i.Count == 1)
-                            if ((int)i[0].ResolveOccurence() <= (int)OccurenceEnum.OneOptional)
+                            if (i[0].ResolveOccurence() <= (int)Occurence.Enum.One)
                                 if (i[0].ResolveName() == "id_")
                                     return "ClassTerminalAlias";
 
@@ -191,7 +187,7 @@ namespace Bb.Generators
                             return "ClassList";
 
                         foreach (var item in i)
-                            if ((int)item.ResolveOccurence() >= (int)OccurenceEnum.OneOrMore)
+                            if (item.ResolveOccurence() >= (int)Occurence.Enum.Any)
                                 return "ClassList";
 
                     }
@@ -202,7 +198,7 @@ namespace Bb.Generators
                         if (splitChar.Contains(o.ResolveName()))
                         {
                             var oc = ast.GetRules().First().ResolveOccurence();
-                            if (oc > OccurenceEnum.OneOptional)
+                            if (oc > (int)Occurence.Enum.One)
                                 return "ClassList";
                         }
                     }
@@ -226,6 +222,12 @@ namespace Bb.Generators
         protected virtual bool Generate(AstRule ast, Context context)
         {
             return true;
+        }
+
+        public void Using(params string[] usings)
+        {
+            foreach (var us in usings)
+                this.Usings.Add(us);
         }
 
     }

@@ -5,7 +5,6 @@ namespace Bb.Asts
 {
 
     [DebuggerDisplay("{Child}")]
-
     public class AstElement : AstBase
     {
 

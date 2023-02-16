@@ -20,11 +20,10 @@ namespace Bb.Asts.TSql
     /// 	 : batch*  EOF
     /// 	 | execute_body_batch  go_statement*  EOF
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTsqlFile : AstRule
     {
+        
+        protected static string _rule = "tsql_file\r\n\t : batch*  EOF\r\n\t | execute_body_batch  go_statement*  EOF\r\n";
         
         public AstTsqlFile(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -50,14 +49,14 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// batch
     /// 	 : go_statement
-    /// 	 | execute_body_batch?  go_statement sql_clauses  go_statement*
+    /// 	 | execute_body_batch?  (go_statement sql_clauses)  go_statement*
     /// 	 | batch_level_statement  go_statement*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBatch : AstRule
     {
+        
+        protected static string _rule = "batch\r\n\t : go_statement\r\n\t | execute_body_batch?  (go_statement sql_clauses)  go_" +
+            "statement*\r\n\t | batch_level_statement  go_statement*\r\n";
         
         public AstBatch(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -91,11 +90,12 @@ namespace Bb.Asts.TSql
     /// 	 | backup_statement  SEMI?
     /// 	 | SEMI
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSqlClause : AstRule
     {
+        
+        protected static string _rule = "sql_clause\r\n\t : dml_clause  SEMI?\r\n\t | cfl_statement  SEMI?\r\n\t | another_statemen" +
+            "t  SEMI?\r\n\t | ddl_clause  SEMI?\r\n\t | dbcc_special  SEMI?\r\n\t | dbcc_clause  SEMI?" +
+            "\r\n\t | backup_statement  SEMI?\r\n\t | SEMI\r\n";
         
         public AstSqlClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -122,11 +122,10 @@ namespace Bb.Asts.TSql
     /// break_statement
     /// 	 : BREAK  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBreakStatement : AstRule
     {
+        
+        protected static string _rule = "break_statement\r\n\t : BREAK  SEMI?\r\n";
         
         public AstBreakStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -153,11 +152,10 @@ namespace Bb.Asts.TSql
     /// continue_statement
     /// 	 : CONTINUE  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstContinueStatement : AstRule
     {
+        
+        protected static string _rule = "continue_statement\r\n\t : CONTINUE  SEMI?\r\n";
         
         public AstContinueStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -185,11 +183,10 @@ namespace Bb.Asts.TSql
     /// 	 : GOTO  id_  SEMI?
     /// 	 | id_  COLON  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGotoStatement : AstRule
     {
+        
+        protected static string _rule = "goto_statement\r\n\t : GOTO  id_  SEMI?\r\n\t | id_  COLON  SEMI?\r\n";
         
         public AstGotoStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -214,13 +211,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// throw_statement
-    /// 	 : THROW  throw_error_number  COMMA  throw_message  COMMA  throw_state?  SEMI?
+    /// 	 : THROW  (throw_error_number  COMMA  throw_message  COMMA  throw_state)?  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstThrowStatement : AstRule
     {
+        
+        protected static string _rule = "throw_statement\r\n\t : THROW  (throw_error_number  COMMA  throw_message  COMMA  thr" +
+            "ow_state)?  SEMI?\r\n";
         
         public AstThrowStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -248,11 +245,10 @@ namespace Bb.Asts.TSql
     /// 	 : DECIMAL
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstThrowErrorNumber : AstRule
     {
+        
+        protected static string _rule = "throw_error_number\r\n\t : DECIMAL\r\n\t | LOCAL_ID\r\n";
         
         public AstThrowErrorNumber(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -280,11 +276,10 @@ namespace Bb.Asts.TSql
     /// 	 : STRING
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstThrowMessage : AstRule
     {
+        
+        protected static string _rule = "throw_message\r\n\t : STRING\r\n\t | LOCAL_ID\r\n";
         
         public AstThrowMessage(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -312,11 +307,10 @@ namespace Bb.Asts.TSql
     /// 	 : DECIMAL
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstThrowState : AstRule
     {
+        
+        protected static string _rule = "throw_state\r\n\t : DECIMAL\r\n\t | LOCAL_ID\r\n";
         
         public AstThrowState(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -341,13 +335,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// try_catch_statement
-    /// 	 : BEGIN  TRY  SEMI?    END  TRY  SEMI?  BEGIN  CATCH  SEMI?    END  CATCH  SEMI?
+    /// 	 : BEGIN  TRY  SEMI?  try_clauses = sql_clauses  END  TRY  SEMI?  BEGIN  CATCH  SEMI?  catch_clauses = sql_clauses  END  CATCH  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTryCatchStatement : AstRule
     {
+        
+        protected static string _rule = "try_catch_statement\r\n\t : BEGIN  TRY  SEMI?  try_clauses = sql_clauses  END  TRY  " +
+            "SEMI?  BEGIN  CATCH  SEMI?  catch_clauses = sql_clauses  END  CATCH  SEMI?\r\n";
         
         public AstTryCatchStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -372,13 +366,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// print_statement
-    /// 	 : PRINT  expression DOUBLE_QUOTE_ID  COMMA  LOCAL_ID*  SEMI?
+    /// 	 : PRINT  (expression DOUBLE_QUOTE_ID)  (COMMA  LOCAL_ID)*  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPrintStatement : AstRule
     {
+        
+        protected static string _rule = "print_statement\r\n\t : PRINT  (expression DOUBLE_QUOTE_ID)  (COMMA  LOCAL_ID)*  SEM" +
+            "I?\r\n";
         
         public AstPrintStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -403,14 +397,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// raiseerror_statement
-    /// 	 : RAISERROR  LR_BRACKET    COMMA    COMMA    COMMA  constant_LOCAL_ID NULL_*  RR_BRACKET  WITH  LOG SETERROR NOWAIT?  SEMI?
-    /// 	 | RAISERROR  DECIMAL    COMMA  *
+    /// 	 : RAISERROR  LR_BRACKET  msg = (DECIMAL STRING LOCAL_ID)  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  (COMMA  (constant_LOCAL_ID NULL_))*  RR_BRACKET  (WITH  (LOG SETERROR NOWAIT))?  SEMI?
+    /// 	 | RAISERROR  DECIMAL  formatstring = (STRING LOCAL_ID DOUBLE_QUOTE_ID)  (COMMA  argument = (DECIMAL STRING LOCAL_ID))*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRaiseerrorStatement : AstRule
     {
+        
+        protected static string _rule = @"raiseerror_statement
+	 : RAISERROR  LR_BRACKET  msg = (DECIMAL STRING LOCAL_ID)  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  (COMMA  (constant_LOCAL_ID NULL_))*  RR_BRACKET  (WITH  (LOG SETERROR NOWAIT))?  SEMI?
+	 | RAISERROR  DECIMAL  formatstring = (STRING LOCAL_ID DOUBLE_QUOTE_ID)  (COMMA  argument = (DECIMAL STRING LOCAL_ID))*
+";
         
         public AstRaiseerrorStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -437,11 +433,10 @@ namespace Bb.Asts.TSql
     /// alter_assembly_start
     /// 	 : ALTER  ASSEMBLY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAssemblyStart : AstRule
     {
+        
+        protected static string _rule = "alter_assembly_start\r\n\t : ALTER  ASSEMBLY\r\n";
         
         public AstAlterAssemblyStart(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -469,11 +464,10 @@ namespace Bb.Asts.TSql
     /// 	 : ALL
     /// 	 | multiple_local_files
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAssemblyDropMultipleFiles : AstRule
     {
+        
+        protected static string _rule = "alter_assembly_drop_multiple_files\r\n\t : ALL\r\n\t | multiple_local_files\r\n";
         
         public AstAlterAssemblyDropMultipleFiles(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -500,11 +494,10 @@ namespace Bb.Asts.TSql
     /// alter_asssembly_add_clause_start
     /// 	 : ADD  FILE  FROM
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAsssemblyAddClauseStart : AstRule
     {
+        
+        protected static string _rule = "alter_asssembly_add_clause_start\r\n\t : ADD  FILE  FROM\r\n";
         
         public AstAlterAsssemblyAddClauseStart(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -533,11 +526,10 @@ namespace Bb.Asts.TSql
     /// 	 | local_file
     /// 	 | STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstClientAssemblySpecifier : AstRule
     {
+        
+        protected static string _rule = "client_assembly_specifier\r\n\t : network_file_share\r\n\t | local_file\r\n\t | STRING\r\n";
         
         public AstClientAssemblySpecifier(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -562,16 +554,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// assembly_option
-    /// 	 : PERMISSION_SET  EQUAL  SAFE EXTERNAL_ACCESS UNSAFE
+    /// 	 : PERMISSION_SET  EQUAL  (SAFE EXTERNAL_ACCESS UNSAFE)
     /// 	 | VISIBILITY  EQUAL  on_off
     /// 	 | UNCHECKED  DATA
     /// 	 | assembly_option  COMMA
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAssemblyOption : AstRule
     {
+        
+        protected static string _rule = "assembly_option\r\n\t : PERMISSION_SET  EQUAL  (SAFE EXTERNAL_ACCESS UNSAFE)\r\n\t | VI" +
+            "SIBILITY  EQUAL  on_off\r\n\t | UNCHECKED  DATA\r\n\t | assembly_option  COMMA\r\n";
         
         public AstAssemblyOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -599,11 +591,10 @@ namespace Bb.Asts.TSql
     /// 	 : file_directory_path_separator  file_path
     /// 	 | id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFilePath : AstRule
     {
+        
+        protected static string _rule = "file_path\r\n\t : file_directory_path_separator  file_path\r\n\t | id_\r\n";
         
         public AstFilePath(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -631,11 +622,11 @@ namespace Bb.Asts.TSql
     /// 	 : multiple_local_file_start  local_file  SINGLE_QUOTE  COMMA
     /// 	 | local_file
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstMultipleLocalFiles : AstRule
     {
+        
+        protected static string _rule = "multiple_local_files\r\n\t : multiple_local_file_start  local_file  SINGLE_QUOTE  CO" +
+            "MMA\r\n\t | local_file\r\n";
         
         public AstMultipleLocalFiles(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -663,11 +654,10 @@ namespace Bb.Asts.TSql
     /// 	 : STRING
     /// 	 | BINARY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBinaryContent : AstRule
     {
+        
+        protected static string _rule = "binary_content\r\n\t : STRING\r\n\t | BINARY\r\n";
         
         public AstBinaryContent(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -692,13 +682,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_assembly
-    /// 	 : DROP  ASSEMBLY  IF  EXISTS?  COMMA?  assembly_name+  WITH  NO  DEPENDENTS?
+    /// 	 : DROP  ASSEMBLY  (IF  EXISTS)?  (COMMA?  assembly_name)+  (WITH  NO  DEPENDENTS)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropAssembly : AstRule
     {
+        
+        protected static string _rule = "drop_assembly\r\n\t : DROP  ASSEMBLY  (IF  EXISTS)?  (COMMA?  assembly_name)+  (WITH" +
+            "  NO  DEPENDENTS)?\r\n";
         
         public AstDropAssembly(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -725,11 +715,10 @@ namespace Bb.Asts.TSql
     /// alter_asymmetric_key_start
     /// 	 : ALTER  ASYMMETRIC  KEY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAsymmetricKeyStart : AstRule
     {
+        
+        protected static string _rule = "alter_asymmetric_key_start\r\n\t : ALTER  ASYMMETRIC  KEY\r\n";
         
         public AstAlterAsymmetricKeyStart(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -756,11 +745,10 @@ namespace Bb.Asts.TSql
     /// asymmetric_key_option_start
     /// 	 : WITH  PRIVATE  KEY  LR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAsymmetricKeyOptionStart : AstRule
     {
+        
+        protected static string _rule = "asymmetric_key_option_start\r\n\t : WITH  PRIVATE  KEY  LR_BRACKET\r\n";
         
         public AstAsymmetricKeyOptionStart(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -788,11 +776,11 @@ namespace Bb.Asts.TSql
     /// 	 : DECRYPTION  BY  PASSWORD  EQUAL  STRING
     /// 	 | ENCRYPTION  BY  PASSWORD  EQUAL  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAsymmetricKeyPasswordChangeOption : AstRule
     {
+        
+        protected static string _rule = "asymmetric_key_password_change_option\r\n\t : DECRYPTION  BY  PASSWORD  EQUAL  STRIN" +
+            "G\r\n\t | ENCRYPTION  BY  PASSWORD  EQUAL  STRING\r\n";
         
         public AstAsymmetricKeyPasswordChangeOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -817,13 +805,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_asymmetric_key
-    /// 	 : DROP  ASYMMETRIC  KEY    REMOVE  PROVIDER  KEY?
+    /// 	 : DROP  ASYMMETRIC  KEY  key_name = id_  (REMOVE  PROVIDER  KEY)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropAsymmetricKey : AstRule
     {
+        
+        protected static string _rule = "drop_asymmetric_key\r\n\t : DROP  ASYMMETRIC  KEY  key_name = id_  (REMOVE  PROVIDER" +
+            "  KEY)?\r\n";
         
         public AstDropAsymmetricKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -848,14 +836,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// authorization_grantee
-    /// 	 : 
+    /// 	 : principal_name = id_
     /// 	 | SCHEMA  OWNER
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAuthorizationGrantee : AstRule
     {
+        
+        protected static string _rule = "authorization_grantee\r\n\t : principal_name = id_\r\n\t | SCHEMA  OWNER\r\n";
         
         public AstAuthorizationGrantee(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -882,11 +869,10 @@ namespace Bb.Asts.TSql
     /// alter_authorization_start
     /// 	 : ALTER  AUTHORIZATION  ON
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAuthorizationStart : AstRule
     {
+        
+        protected static string _rule = "alter_authorization_start\r\n\t : ALTER  AUTHORIZATION  ON\r\n";
         
         public AstAlterAuthorizationStart(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -933,11 +919,32 @@ namespace Bb.Asts.TSql
     /// 	 | SYMMETRIC  KEY
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstClassType : AstRule
     {
+        
+        protected static string _rule = @"class_type
+	 : OBJECT
+	 | ASSEMBLY
+	 | ASYMMETRIC  KEY
+	 | AVAILABILITY  GROUP
+	 | CERTIFICATE
+	 | CONTRACT
+	 | TYPE
+	 | DATABASE
+	 | ENDPOINT
+	 | FULLTEXT  CATALOG
+	 | FULLTEXT  STOPLIST
+	 | MESSAGE  TYPE
+	 | REMOTE  SERVICE  BINDING
+	 | ROLE
+	 | ROUTE
+	 | SCHEMA
+	 | SEARCH  PROPERTY  LIST
+	 | SERVER  ROLE
+	 | SERVICE
+	 | SYMMETRIC  KEY
+	 | XML  SCHEMA  COLLECTION
+";
         
         public AstClassType(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -976,11 +983,24 @@ namespace Bb.Asts.TSql
     /// 	 | SYMMETRIC  KEY
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstClassTypeForSqlDatabase : AstRule
     {
+        
+        protected static string _rule = @"class_type_for_sql_database
+	 : OBJECT
+	 | ASSEMBLY
+	 | ASYMMETRIC  KEY
+	 | CERTIFICATE
+	 | TYPE
+	 | DATABASE
+	 | FULLTEXT  CATALOG
+	 | FULLTEXT  STOPLIST
+	 | ROLE
+	 | SCHEMA
+	 | SEARCH  PROPERTY  LIST
+	 | SYMMETRIC  KEY
+	 | XML  SCHEMA  COLLECTION
+";
         
         public AstClassTypeForSqlDatabase(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1012,40 +1032,75 @@ namespace Bb.Asts.TSql
     /// 	 | AVAILABILITY  GROUP
     /// 	 | BROKER  PRIORITY
     /// 	 | CERTIFICATE
-    /// 	 | COLUMN  ENCRYPTION MASTER  KEY
+    /// 	 | COLUMN  (ENCRYPTION MASTER)  KEY
     /// 	 | CONTRACT
     /// 	 | CREDENTIAL
     /// 	 | CRYPTOGRAPHIC  PROVIDER
-    /// 	 | DATABASE  AUDIT  SPECIFICATION ENCRYPTION  KEY EVENT  SESSION SCOPED  CONFIGURATION CREDENTIAL RESOURCE  GOVERNOR?
+    /// 	 | DATABASE  (AUDIT  SPECIFICATION ENCRYPTION  KEY EVENT  SESSION SCOPED  (CONFIGURATION CREDENTIAL RESOURCE  GOVERNOR))?
     /// 	 | ENDPOINT
     /// 	 | EVENT  SESSION
-    /// 	 | NOTIFICATION  DATABASE OBJECT SERVER
-    /// 	 | EXTERNAL  DATA  SOURCE FILE  FORMAT LIBRARY RESOURCE  POOL TABLE CATALOG STOPLIST
+    /// 	 | NOTIFICATION  (DATABASE OBJECT SERVER)
+    /// 	 | EXTERNAL  (DATA  SOURCE FILE  FORMAT LIBRARY RESOURCE  POOL TABLE CATALOG STOPLIST)
     /// 	 | LOGIN
     /// 	 | MASTER  KEY
     /// 	 | MESSAGE  TYPE
     /// 	 | OBJECT
-    /// 	 | PARTITION  FUNCTION SCHEME
+    /// 	 | PARTITION  (FUNCTION SCHEME)
     /// 	 | REMOTE  SERVICE  BINDING
     /// 	 | RESOURCE  GOVERNOR
     /// 	 | ROLE
     /// 	 | ROUTE
     /// 	 | SCHEMA
     /// 	 | SEARCH  PROPERTY  LIST
-    /// 	 | SERVER  AUDIT  SPECIFICATION? ROLE?
+    /// 	 | SERVER  ((AUDIT  SPECIFICATION?) ROLE)?
     /// 	 | SERVICE
     /// 	 | SQL  LOGIN
     /// 	 | SYMMETRIC  KEY
-    /// 	 | TRIGGER  DATABASE SERVER
+    /// 	 | TRIGGER  (DATABASE SERVER)
     /// 	 | TYPE
     /// 	 | USER
     /// 	 | XML  SCHEMA  COLLECTION
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstClassTypeForGrant : AstRule
     {
+        
+        protected static string _rule = @"class_type_for_grant
+	 : APPLICATION  ROLE
+	 | ASSEMBLY
+	 | ASYMMETRIC  KEY
+	 | AUDIT
+	 | AVAILABILITY  GROUP
+	 | BROKER  PRIORITY
+	 | CERTIFICATE
+	 | COLUMN  (ENCRYPTION MASTER)  KEY
+	 | CONTRACT
+	 | CREDENTIAL
+	 | CRYPTOGRAPHIC  PROVIDER
+	 | DATABASE  (AUDIT  SPECIFICATION ENCRYPTION  KEY EVENT  SESSION SCOPED  (CONFIGURATION CREDENTIAL RESOURCE  GOVERNOR))?
+	 | ENDPOINT
+	 | EVENT  SESSION
+	 | NOTIFICATION  (DATABASE OBJECT SERVER)
+	 | EXTERNAL  (DATA  SOURCE FILE  FORMAT LIBRARY RESOURCE  POOL TABLE CATALOG STOPLIST)
+	 | LOGIN
+	 | MASTER  KEY
+	 | MESSAGE  TYPE
+	 | OBJECT
+	 | PARTITION  (FUNCTION SCHEME)
+	 | REMOTE  SERVICE  BINDING
+	 | RESOURCE  GOVERNOR
+	 | ROLE
+	 | ROUTE
+	 | SCHEMA
+	 | SEARCH  PROPERTY  LIST
+	 | SERVER  ((AUDIT  SPECIFICATION?) ROLE)?
+	 | SERVICE
+	 | SQL  LOGIN
+	 | SYMMETRIC  KEY
+	 | TRIGGER  (DATABASE SERVER)
+	 | TYPE
+	 | USER
+	 | XML  SCHEMA  COLLECTION
+";
         
         public AstClassTypeForGrant(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1070,33 +1125,72 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_availability_group_options
-    /// 	 : SET  LR_BRACKET  AUTOMATED_BACKUP_PREFERENCE  EQUAL  PRIMARY SECONDARY_ONLY SECONDARY NONE FAILURE_CONDITION_LEVEL  EQUAL  DECIMAL HEALTH_CHECK_TIMEOUT  EQUAL   DB_FAILOVER  EQUAL  on_off REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  DECIMAL  RR_BRACKET
+    /// 	 : SET  LR_BRACKET  ((AUTOMATED_BACKUP_PREFERENCE  EQUAL  (PRIMARY SECONDARY_ONLY SECONDARY NONE) FAILURE_CONDITION_LEVEL  EQUAL  DECIMAL HEALTH_CHECK_TIMEOUT  EQUAL  milliseconds = DECIMAL DB_FAILOVER  EQUAL  on_off REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  DECIMAL)  RR_BRACKET)
     /// 	 | ADD  DATABASE  database_name
     /// 	 | REMOVE  DATABASE  database_name
-    /// 	 | ADD  REPLICA  ON  server_instance  WITH  LR_BRACKET  ENDPOINT_URL  EQUAL  STRING?  COMMA?  AVAILABILITY_MODE  EQUAL  SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT?  COMMA?  FAILOVER_MODE  EQUAL  AUTOMATIC MANUAL?  COMMA?  SEEDING_MODE  EQUAL  AUTOMATIC MANUAL?  COMMA?  BACKUP_PRIORITY  EQUAL  DECIMAL?  COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_WRITE ALL  RR_BRACKET?  COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET?  RR_BRACKET
-    /// 	 | SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  NO READ_ONLY ALL READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET
-    /// 	 | PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  NO READ_ONLY ALL READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  COMMA?  STRING* NONE  RR_BRACKET SESSION_TIMEOUT  EQUAL  
-    /// 	 | MODIFY  REPLICA  ON  server_instance  WITH  LR_BRACKET  ENDPOINT_URL  EQUAL  STRING AVAILABILITY_MODE  EQUAL  SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT FAILOVER_MODE  EQUAL  AUTOMATIC MANUAL SEEDING_MODE  EQUAL  AUTOMATIC MANUAL BACKUP_PRIORITY  EQUAL  DECIMAL SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  NO READ_ONLY ALL READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  NO READ_ONLY ALL READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  COMMA?  STRING* NONE  RR_BRACKET SESSION_TIMEOUT  EQUAL    RR_BRACKET
+    /// 	 | ADD  REPLICA  ON  server_instance  (WITH  LR_BRACKET  ((ENDPOINT_URL  EQUAL  STRING)?  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT))?  (COMMA?  FAILOVER_MODE  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  BACKUP_PRIORITY  EQUAL  DECIMAL)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_WRITE ALL)  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_ONLY)  RR_BRACKET)?))  RR_BRACKET
+    /// 	 | SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STRING))  RR_BRACKET))
+    /// 	 | PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)* NONE)  RR_BRACKET) SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)
+    /// 	 | MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT) FAILOVER_MODE  EQUAL  (AUTOMATIC MANUAL) SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL) BACKUP_PRIORITY  EQUAL  DECIMAL) SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STRING))  RR_BRACKET)) PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)* NONE)  RR_BRACKET) SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL))  RR_BRACKET
     /// 	 | REMOVE  REPLICA  ON  STRING
     /// 	 | JOIN
-    /// 	 | JOIN  AVAILABILITY  GROUP  ON  COMMA?    WITH  LR_BRACKET  LISTENER_URL  EQUAL  STRING  COMMA  AVAILABILITY_MODE  EQUAL  SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT  COMMA  FAILOVER_MODE  EQUAL  MANUAL  COMMA  SEEDING_MODE  EQUAL  AUTOMATIC MANUAL  RR_BRACKET+
-    /// 	 | MODIFY  AVAILABILITY  GROUP  ON  COMMA?    WITH  LR_BRACKET  LISTENER_URL  EQUAL  STRING  COMMA?  AVAILABILITY_MODE  EQUAL  SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT?  COMMA?  FAILOVER_MODE  EQUAL  MANUAL?  COMMA?  SEEDING_MODE  EQUAL  AUTOMATIC MANUAL?  RR_BRACKET+
+    /// 	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = STRING  WITH  LR_BRACKET  (LISTENER_URL  EQUAL  STRING  COMMA  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT)  COMMA  FAILOVER_MODE  EQUAL  MANUAL  COMMA  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL)  RR_BRACKET))+
+    /// 	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = STRING  WITH  LR_BRACKET  (LISTENER_URL  EQUAL  STRING  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT))?  (COMMA?  FAILOVER_MODE  EQUAL  MANUAL)?  (COMMA?  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL))?  RR_BRACKET))+
     /// 	 | GRANT  CREATE  ANY  DATABASE
     /// 	 | DENY  CREATE  ANY  DATABASE
     /// 	 | FAILOVER
     /// 	 | FORCE_FAILOVER_ALLOW_DATA_LOSS
-    /// 	 | ADD  LISTENER    LR_BRACKET  WITH  DHCP  ON  LR_BRACKET  ip_v4_failover  ip_v4_failover  RR_BRACKET WITH  IP  LR_BRACKET  COMMA?  LR_BRACKET  ip_v4_failover  COMMA  ip_v4_failover ip_v6_failover  RR_BRACKET+  RR_BRACKET  COMMA  PORT  EQUAL  DECIMAL?  RR_BRACKET
-    /// 	 | MODIFY  LISTENER  ADD  IP  LR_BRACKET  ip_v4_failover  ip_v4_failover ip_v6_failover  RR_BRACKET PORT  EQUAL  DECIMAL
+    /// 	 | ADD  LISTENER  listener_name = STRING  LR_BRACKET  (WITH  DHCP  (ON  LR_BRACKET  ip_v4_failover  ip_v4_failover  RR_BRACKET) WITH  IP  LR_BRACKET  ((COMMA?  LR_BRACKET  (ip_v4_failover  COMMA  ip_v4_failover ip_v6_failover)  RR_BRACKET)+  RR_BRACKET  (COMMA  PORT  EQUAL  DECIMAL)?))  RR_BRACKET
+    /// 	 | MODIFY  LISTENER  (ADD  IP  LR_BRACKET  (ip_v4_failover  ip_v4_failover ip_v6_failover)  RR_BRACKET PORT  EQUAL  DECIMAL)
     /// 	 | RESTART  LISTENER  STRING
     /// 	 | REMOVE  LISTENER  STRING
     /// 	 | OFFLINE
     /// 	 | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterAvailabilityGroupOptions : AstRule
     {
+        
+        protected static string _rule = "alter_availability_group_options\r\n\t : SET  LR_BRACKET  ((AUTOMATED_BACKUP_PREFERE" +
+            "NCE  EQUAL  (PRIMARY SECONDARY_ONLY SECONDARY NONE) FAILURE_CONDITION_LEVEL  EQU" +
+            "AL  DECIMAL HEALTH_CHECK_TIMEOUT  EQUAL  milliseconds = DECIMAL DB_FAILOVER  EQU" +
+            "AL  on_off REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  DECIMAL)  RR_BRAC" +
+            "KET)\r\n\t | ADD  DATABASE  database_name\r\n\t | REMOVE  DATABASE  database_name\r\n\t |" +
+            " ADD  REPLICA  ON  server_instance  (WITH  LR_BRACKET  ((ENDPOINT_URL  EQUAL  ST" +
+            "RING)?  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMM" +
+            "IT))?  (COMMA?  FAILOVER_MODE  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  SEEDING_MOD" +
+            "E  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  BACKUP_PRIORITY  EQUAL  DECIMAL)?  (COM" +
+            "MA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_WRITE ALL)  RR_BR" +
+            "ACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_ON" +
+            "LY)  RR_BRACKET)?))  RR_BRACKET\r\n\t | SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTI" +
+            "ONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STR" +
+            "ING))  RR_BRACKET))\r\n\t | PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (N" +
+            "O READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)* " +
+            "NONE)  RR_BRACKET) SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)\r\n\t | MODIF" +
+            "Y  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING" +
+            " AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT) FAILOVER_MOD" +
+            "E  EQUAL  (AUTOMATIC MANUAL) SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL) BACKUP_PRIO" +
+            "RITY  EQUAL  DECIMAL) SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO" +
+            " READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STRING))  RR_BRACK" +
+            "ET)) PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) REA" +
+            "D_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)* NONE)  RR_BRACKET) S" +
+            "ESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL))  RR_BRACKET\r\n\t | REMOVE  REPL" +
+            "ICA  ON  STRING\r\n\t | JOIN\r\n\t | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name =" +
+            " STRING  WITH  LR_BRACKET  (LISTENER_URL  EQUAL  STRING  COMMA  AVAILABILITY_MOD" +
+            "E  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT)  COMMA  FAILOVER_MODE  EQUAL " +
+            " MANUAL  COMMA  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL)  RR_BRACKET))+\r\n\t | MODI" +
+            "FY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = STRING  WITH  LR_BRACKE" +
+            "T  (LISTENER_URL  EQUAL  STRING  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS" +
+            "_COMMIT ASYNCHRONOUS_COMMIT))?  (COMMA?  FAILOVER_MODE  EQUAL  MANUAL)?  (COMMA?" +
+            "  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL))?  RR_BRACKET))+\r\n\t | GRANT  CREATE  A" +
+            "NY  DATABASE\r\n\t | DENY  CREATE  ANY  DATABASE\r\n\t | FAILOVER\r\n\t | FORCE_FAILOVER_" +
+            "ALLOW_DATA_LOSS\r\n\t | ADD  LISTENER  listener_name = STRING  LR_BRACKET  (WITH  D" +
+            "HCP  (ON  LR_BRACKET  ip_v4_failover  ip_v4_failover  RR_BRACKET) WITH  IP  LR_B" +
+            "RACKET  ((COMMA?  LR_BRACKET  (ip_v4_failover  COMMA  ip_v4_failover ip_v6_failo" +
+            "ver)  RR_BRACKET)+  RR_BRACKET  (COMMA  PORT  EQUAL  DECIMAL)?))  RR_BRACKET\r\n\t " +
+            "| MODIFY  LISTENER  (ADD  IP  LR_BRACKET  (ip_v4_failover  ip_v4_failover ip_v6_" +
+            "failover)  RR_BRACKET PORT  EQUAL  DECIMAL)\r\n\t | RESTART  LISTENER  STRING\r\n\t | " +
+            "REMOVE  LISTENER  STRING\r\n\t | OFFLINE\r\n\t | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL " +
+            " PER_DB  RR_BRACKET\r\n";
         
         public AstAlterAvailabilityGroupOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1121,13 +1215,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_broker_priority
-    /// 	 : CREATE ALTER  BROKER  PRIORITY    FOR  CONVERSATION  SET  LR_BRACKET  CONTRACT_NAME  EQUAL  id_ ANY  COMMA??  LOCAL_SERVICE_NAME  EQUAL  DOUBLE_FORWARD_SLASH?  id_ ANY  COMMA??  REMOTE_SERVICE_NAME  EQUAL   ANY  COMMA??  PRIORITY_LEVEL  EQUAL   DEFAULT?  RR_BRACKET
+    /// 	 : (CREATE ALTER)  BROKER  PRIORITY  ConversationPriorityName = id_  FOR  CONVERSATION  SET  LR_BRACKET  (CONTRACT_NAME  EQUAL  ((id_) ANY)  COMMA?)?  (LOCAL_SERVICE_NAME  EQUAL  (DOUBLE_FORWARD_SLASH?  id_ ANY)  COMMA?)?  (REMOTE_SERVICE_NAME  EQUAL  (RemoteServiceName = STRING ANY)  COMMA?)?  (PRIORITY_LEVEL  EQUAL  (PriorityValue = DECIMAL DEFAULT))?  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateOrAlterBrokerPriority : AstRule
     {
+        
+        protected static string _rule = @"create_or_alter_broker_priority
+	 : (CREATE ALTER)  BROKER  PRIORITY  ConversationPriorityName = id_  FOR  CONVERSATION  SET  LR_BRACKET  (CONTRACT_NAME  EQUAL  ((id_) ANY)  COMMA?)?  (LOCAL_SERVICE_NAME  EQUAL  (DOUBLE_FORWARD_SLASH?  id_ ANY)  COMMA?)?  (REMOTE_SERVICE_NAME  EQUAL  (RemoteServiceName = STRING ANY)  COMMA?)?  (PRIORITY_LEVEL  EQUAL  (PriorityValue = DECIMAL DEFAULT))?  RR_BRACKET
+";
         
         public AstCreateOrAlterBrokerPriority(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1152,13 +1247,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_broker_priority
-    /// 	 : DROP  BROKER  PRIORITY  
+    /// 	 : DROP  BROKER  PRIORITY  ConversationPriorityName = id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropBrokerPriority : AstRule
     {
+        
+        protected static string _rule = "drop_broker_priority\r\n\t : DROP  BROKER  PRIORITY  ConversationPriorityName = id_\r" +
+            "\n";
         
         public AstDropBrokerPriority(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1183,13 +1278,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_contract
-    /// 	 : DROP  CONTRACT  
+    /// 	 : DROP  CONTRACT  dropped_contract_name = id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropContract : AstRule
     {
+        
+        protected static string _rule = "drop_contract\r\n\t : DROP  CONTRACT  dropped_contract_name = id_\r\n";
         
         public AstDropContract(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1214,13 +1308,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_database
-    /// 	 : DROP  DATABASE  IF  EXISTS?  COMMA?  database_name+
+    /// 	 : DROP  DATABASE  (IF  EXISTS)?  (COMMA?  database_name)+
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropDatabase : AstRule
     {
+        
+        protected static string _rule = "drop_database\r\n\t : DROP  DATABASE  (IF  EXISTS)?  (COMMA?  database_name)+\r\n";
         
         public AstDropDatabase(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1247,11 +1340,10 @@ namespace Bb.Asts.TSql
     /// drop_database_encryption_key
     /// 	 : DROP  DATABASE  ENCRYPTION  KEY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropDatabaseEncryptionKey : AstRule
     {
+        
+        protected static string _rule = "drop_database_encryption_key\r\n\t : DROP  DATABASE  ENCRYPTION  KEY\r\n";
         
         public AstDropDatabaseEncryptionKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1276,13 +1368,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_default
-    /// 	 : DROP  DEFAULT  IF  EXISTS?  COMMA?  schema_name  DOT?  schema_name
+    /// 	 : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  (schema_name  DOT)?  schema_name)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropDefault : AstRule
     {
+        
+        protected static string _rule = "drop_default\r\n\t : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  (schema_name  DOT)?  sch" +
+            "ema_name)\r\n";
         
         public AstDropDefault(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1307,13 +1399,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_event_notifications
-    /// 	 : DROP  EVENT  NOTIFICATION  COMMA?  notification_name+  ON  SERVER DATABASE QUEUE  queue_name
+    /// 	 : DROP  EVENT  NOTIFICATION  (COMMA?  notification_name)+  ON  (SERVER DATABASE QUEUE  queue_name)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropEventNotifications : AstRule
     {
+        
+        protected static string _rule = "drop_event_notifications\r\n\t : DROP  EVENT  NOTIFICATION  (COMMA?  notification_na" +
+            "me)+  ON  (SERVER DATABASE QUEUE  queue_name)\r\n";
         
         public AstDropEventNotifications(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1340,11 +1432,10 @@ namespace Bb.Asts.TSql
     /// drop_master_key
     /// 	 : DROP  MASTER  KEY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropMasterKey : AstRule
     {
+        
+        protected static string _rule = "drop_master_key\r\n\t : DROP  MASTER  KEY\r\n";
         
         public AstDropMasterKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1369,13 +1460,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_rule
-    /// 	 : DROP  RULE  IF  EXISTS?  COMMA?  schema_name  DOT?  rule_name?
+    /// 	 : DROP  RULE  (IF  EXISTS)?  (COMMA?  (schema_name  DOT)?  rule_name)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropRule : AstRule
     {
+        
+        protected static string _rule = "drop_rule\r\n\t : DROP  RULE  (IF  EXISTS)?  (COMMA?  (schema_name  DOT)?  rule_name" +
+            ")?\r\n";
         
         public AstDropRule(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1400,13 +1491,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_sequence
-    /// 	 : DROP  SEQUENCE  IF  EXISTS?  COMMA?  database_name  DOT?  schema_name  DOT?  sequence_name?
+    /// 	 : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  (database_name  DOT)?  (schema_name  DOT)?  sequence_name)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropSequence : AstRule
     {
+        
+        protected static string _rule = "drop_sequence\r\n\t : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  (database_name  DOT)? " +
+            " (schema_name  DOT)?  sequence_name)?\r\n";
         
         public AstDropSequence(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1431,13 +1522,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// disable_trigger
-    /// 	 : DISABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_name  DOT?  object_name DATABASE ALL  SERVER
+    /// 	 : DISABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDisableTrigger : AstRule
     {
+        
+        protected static string _rule = "disable_trigger\r\n\t : DISABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_nam" +
+            "e)+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)\r\n";
         
         public AstDisableTrigger(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1462,13 +1553,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// enable_trigger
-    /// 	 : ENABLE  TRIGGER  COMMA?  schema_name  DOT?  trigger_name+ ALL  ON  schema_name  DOT?  object_name DATABASE ALL  SERVER
+    /// 	 : ENABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEnableTrigger : AstRule
     {
+        
+        protected static string _rule = "enable_trigger\r\n\t : ENABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)" +
+            "+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)\r\n";
         
         public AstEnableTrigger(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1493,13 +1584,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_column_master_key
-    /// 	 : CREATE  COLUMN  MASTER  KEY    WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL    COMMA  KEY_PATH  EQUAL    RR_BRACKET
+    /// 	 : CREATE  COLUMN  MASTER  KEY  key_name = id_  WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL  key_store_provider_name = STRING  COMMA  KEY_PATH  EQUAL  key_path = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateColumnMasterKey : AstRule
     {
+        
+        protected static string _rule = "create_column_master_key\r\n\t : CREATE  COLUMN  MASTER  KEY  key_name = id_  WITH  " +
+            "LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL  key_store_provider_name = STRING  CO" +
+            "MMA  KEY_PATH  EQUAL  key_path = STRING  RR_BRACKET\r\n";
         
         public AstCreateColumnMasterKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1524,13 +1616,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// event_session_predicate_expression
-    /// 	 : COMMA?  AND OR?  NOT?  event_session_predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET+
+    /// 	 : (COMMA?  (AND OR)?  NOT?  (event_session_predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET))+
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEventSessionPredicateExpression : AstRule
     {
+        
+        protected static string _rule = "event_session_predicate_expression\r\n\t : (COMMA?  (AND OR)?  NOT?  (event_session_" +
+            "predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET))+\r\n" +
+            "";
         
         public AstEventSessionPredicateExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1558,11 +1651,11 @@ namespace Bb.Asts.TSql
     /// 	 : event_session_predicate_leaf
     /// 	 | LR_BRACKET  event_session_predicate_expression  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEventSessionPredicateFactor : AstRule
     {
+        
+        protected static string _rule = "event_session_predicate_factor\r\n\t : event_session_predicate_leaf\r\n\t | LR_BRACKET " +
+            " event_session_predicate_expression  RR_BRACKET\r\n";
         
         public AstEventSessionPredicateFactor(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1587,14 +1680,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// event_session_predicate_leaf
-    /// 	 : event_field_name event_field_name event_module_guid  DOT?  event_package_name  DOT  predicate_source_name  EQUAL LESS  GREATER EXCLAMATION  EQUAL GREATER GREATER  EQUAL LESS LESS  EQUAL  DECIMAL STRING
-    /// 	 | event_module_guid  DOT?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  event_field_name event_module_guid  DOT?  event_package_name  DOT  predicate_source_name  COMMA  DECIMAL STRING  RR_BRACKET
+    /// 	 : (event_field_name (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name))  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING))
+    /// 	 | (event_module_guid  DOT)?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name)  COMMA  (DECIMAL STRING))  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEventSessionPredicateLeaf : AstRule
     {
+        
+        protected static string _rule = @"event_session_predicate_leaf
+	 : (event_field_name (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name))  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING))
+	 | (event_module_guid  DOT)?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name)  COMMA  (DECIMAL STRING))  RR_BRACKET
+";
         
         public AstEventSessionPredicateLeaf(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1619,14 +1714,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_external_data_source
-    /// 	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_name  SET  LOCATION  EQUAL    COMMA? RESOURCE_MANAGER_LOCATION  EQUAL    COMMA? CREDENTIAL  EQUAL  credential_name+
-    /// 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL    COMMA  CREDENTIAL  EQUAL  credential_name?  RR_BRACKET
+    /// 	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_name  SET  (LOCATION  EQUAL  location = STRING  COMMA? RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = STRING  COMMA? CREDENTIAL  EQUAL  credential_name)+
+    /// 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = STRING  (COMMA  CREDENTIAL  EQUAL  credential_name)?  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterExternalDataSource : AstRule
     {
+        
+        protected static string _rule = @"alter_external_data_source
+	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_name  SET  (LOCATION  EQUAL  location = STRING  COMMA? RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = STRING  COMMA? CREDENTIAL  EQUAL  credential_name)+
+	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = STRING  (COMMA  CREDENTIAL  EQUAL  credential_name)?  RR_BRACKET
+";
         
         public AstAlterExternalDataSource(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1651,13 +1748,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_external_resource_pool
-    /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  pool_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL    COMMA?  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL+  COMMA?  MAX_MEMORY_PERCENT  EQUAL  ?  COMMA?  MAX_PROCESSES  EQUAL  ?  RR_BRACKET
+    /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name DEFAULT_DOUBLE_QUOTE)  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO (COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL)+)  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MAX_PROCESSES  EQUAL  max_processes = DECIMAL)?  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterExternalResourcePool : AstRule
     {
+        
+        protected static string _rule = @"alter_external_resource_pool
+	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name DEFAULT_DOUBLE_QUOTE)  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO (COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL)+)  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MAX_PROCESSES  EQUAL  max_processes = DECIMAL)?  RR_BRACKET
+";
         
         public AstAlterExternalResourcePool(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1682,13 +1780,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_master_key_sql_server
-    /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD DROP  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL  
+    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING (ADD DROP)  ENCRYPTION  BY  (SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterMasterKeySqlServer : AstRule
     {
+        
+        protected static string _rule = "alter_master_key_sql_server\r\n\t : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH " +
+            " ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING (ADD DROP)  ENCRYPTION  BY  " +
+            "(SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING))\r\n";
         
         public AstAlterMasterKeySqlServer(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1713,13 +1812,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_master_key_sql_server
-    /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  
+    /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateMasterKeySqlServer : AstRule
     {
+        
+        protected static string _rule = "create_master_key_sql_server\r\n\t : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  " +
+            "EQUAL  password = STRING\r\n";
         
         public AstCreateMasterKeySqlServer(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1744,13 +1843,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_master_key_azure_sql
-    /// 	 : ALTER  MASTER  KEY  FORCE?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL   ADD  ENCRYPTION  BY  SERVICE  MASTER  KEY PASSWORD  EQUAL   DROP  ENCRYPTION  BY  PASSWORD  EQUAL  
+    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING) DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterMasterKeyAzureSql : AstRule
     {
+        
+        protected static string _rule = @"alter_master_key_azure_sql
+	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING) DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING)
+";
         
         public AstAlterMasterKeyAzureSql(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1775,13 +1875,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_master_key_azure_sql
-    /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  ?
+    /// 	 : CREATE  MASTER  KEY  (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateMasterKeyAzureSql : AstRule
     {
+        
+        protected static string _rule = "create_master_key_azure_sql\r\n\t : CREATE  MASTER  KEY  (ENCRYPTION  BY  PASSWORD  " +
+            "EQUAL  password = STRING)?\r\n";
         
         public AstCreateMasterKeyAzureSql(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1806,13 +1906,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_resource_governor
-    /// 	 : ALTER  RESOURCE  GOVERNOR  DISABLE RECONFIGURE WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  schema_name  DOT  function_name NULL_  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL    RR_BRACKET
+    /// 	 : ALTER  RESOURCE  GOVERNOR  ((DISABLE RECONFIGURE) WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  (schema_name  DOT  function_name NULL_)  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL  max_outstanding_io_per_volume = DECIMAL  RR_BRACKET)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterResourceGovernor : AstRule
     {
+        
+        protected static string _rule = @"alter_resource_governor
+	 : ALTER  RESOURCE  GOVERNOR  ((DISABLE RECONFIGURE) WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  (schema_name  DOT  function_name NULL_)  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL  max_outstanding_io_per_volume = DECIMAL  RR_BRACKET)
+";
         
         public AstAlterResourceGovernor(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1837,13 +1938,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_schema
-    /// 	 : CREATE  SCHEMA  schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name  create_table create_view grant_deny  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  TO  owner_name REVOKE  enum_dml  ON  SCHEMA  DOUBLE_COLON?  object_name  FROM  owner_name*
+    /// 	 : CREATE  SCHEMA  (schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name)  (create_table create_view grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  TO  owner_name REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  FROM  owner_name)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateSchema : AstRule
     {
+        
+        protected static string _rule = @"create_schema
+	 : CREATE  SCHEMA  (schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name)  (create_table create_view grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  TO  owner_name REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  FROM  owner_name)*
+";
         
         public AstCreateSchema(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1868,13 +1970,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_configuration
-    /// 	 : ALTER  SERVER  CONFIGURATION  SET  PROCESS  AFFINITY  CPU  EQUAL  AUTO COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ NUMANODE  EQUAL  COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL+ DIAGNOSTICS  LOG  ON OFF PATH  EQUAL  STRING DEFAULT MAX_SIZE  EQUAL  DECIMAL  MB DEFAULT MAX_FILES  EQUAL  DECIMAL DEFAULT FAILOVER  CLUSTER  PROPERTY  VERBOSELOGGING  EQUAL  STRING DEFAULT SQLDUMPERFLAGS  EQUAL  STRING DEFAULT SQLDUMPERPATH  EQUAL  STRING DEFAULT SQLDUMPERTIMEOUT  STRING DEFAULT FAILURECONDITIONLEVEL  EQUAL  STRING DEFAULT HEALTHCHECKTIMEOUT  EQUAL  DECIMAL DEFAULT HADR  CLUSTER  CONTEXT  EQUAL  STRING LOCAL BUFFER  POOL  EXTENSION  ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  KB MB GB  RR_BRACKET OFF SET  SOFTNUMA  on_off
+    /// 	 : ALTER  SERVER  CONFIGURATION  SET  ((PROCESS  AFFINITY  (CPU  EQUAL  (AUTO (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) DIAGNOSTICS  LOG  (ON OFF PATH  EQUAL  (STRING DEFAULT) MAX_SIZE  EQUAL  (DECIMAL  MB DEFAULT) MAX_FILES  EQUAL  (DECIMAL DEFAULT)) FAILOVER  CLUSTER  PROPERTY  (VERBOSELOGGING  EQUAL  (STRING DEFAULT) SQLDUMPERFLAGS  EQUAL  (STRING DEFAULT) SQLDUMPERPATH  EQUAL  (STRING DEFAULT) SQLDUMPERTIMEOUT  (STRING DEFAULT) FAILURECONDITIONLEVEL  EQUAL  (STRING DEFAULT) HEALTHCHECKTIMEOUT  EQUAL  (DECIMAL DEFAULT)) HADR  CLUSTER  CONTEXT  EQUAL  (STRING LOCAL) BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  (KB MB GB)  RR_BRACKET OFF) SET  SOFTNUMA  on_off))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterServerConfiguration : AstRule
     {
+        
+        protected static string _rule = @"alter_server_configuration
+	 : ALTER  SERVER  CONFIGURATION  SET  ((PROCESS  AFFINITY  (CPU  EQUAL  (AUTO (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) DIAGNOSTICS  LOG  (ON OFF PATH  EQUAL  (STRING DEFAULT) MAX_SIZE  EQUAL  (DECIMAL  MB DEFAULT) MAX_FILES  EQUAL  (DECIMAL DEFAULT)) FAILOVER  CLUSTER  PROPERTY  (VERBOSELOGGING  EQUAL  (STRING DEFAULT) SQLDUMPERFLAGS  EQUAL  (STRING DEFAULT) SQLDUMPERPATH  EQUAL  (STRING DEFAULT) SQLDUMPERTIMEOUT  (STRING DEFAULT) FAILURECONDITIONLEVEL  EQUAL  (STRING DEFAULT) HEALTHCHECKTIMEOUT  EQUAL  (DECIMAL DEFAULT)) HADR  CLUSTER  CONTEXT  EQUAL  (STRING LOCAL) BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  (KB MB GB)  RR_BRACKET OFF) SET  SOFTNUMA  on_off))
+";
         
         public AstAlterServerConfiguration(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1899,13 +2002,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_service_master_key
-    /// 	 : ALTER  SERVICE  MASTER  KEY  FORCE?  REGENERATE WITH  OLD_ACCOUNT  EQUAL    COMMA  OLD_PASSWORD  EQUAL   NEW_ACCOUNT  EQUAL    COMMA  NEW_PASSWORD  EQUAL  ?
+    /// 	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = STRING  COMMA  OLD_PASSWORD  EQUAL  old_password = STRING NEW_ACCOUNT  EQUAL  new_account_name = STRING  COMMA  NEW_PASSWORD  EQUAL  new_password = STRING)?))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterServiceMasterKey : AstRule
     {
+        
+        protected static string _rule = @"alter_service_master_key
+	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = STRING  COMMA  OLD_PASSWORD  EQUAL  old_password = STRING NEW_ACCOUNT  EQUAL  new_account_name = STRING  COMMA  NEW_PASSWORD  EQUAL  new_password = STRING)?))
+";
         
         public AstAlterServiceMasterKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1930,16 +2034,20 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_user
-    /// 	 : CREATE  USER  user_name  FOR FROM  LOGIN  login_name?  WITH  COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off*?
-    /// 	 | CREATE  USER  windows_principal  WITH  COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  NONE DECIMAL language COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off*? user_name  WITH  PASSWORD  EQUAL    COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  NONE DECIMAL language COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off* azure_active_directory_principal  FROM  EXTERNAL  PROVIDER
-    /// 	 | CREATE  USER  user_name  WITHOUT  LOGIN  COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off* FOR FROM  CERTIFICATE  certificate_name FOR FROM  ASYMMETRIC  KEY  asym_key_name
+    /// 	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name)?  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*)?
+    /// 	 | CREATE  USER  (windows_principal  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*)? user_name  WITH  PASSWORD  EQUAL  password = STRING  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)* azure_active_directory_principal  FROM  EXTERNAL  PROVIDER)
+    /// 	 | CREATE  USER  user_name  (WITHOUT  LOGIN  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)* (FOR FROM)  CERTIFICATE  certificate_name (FOR FROM)  ASYMMETRIC  KEY  asym_key_name)
     /// 	 | CREATE  USER  user_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateUser : AstRule
     {
+        
+        protected static string _rule = @"create_user
+	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name)?  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*)?
+	 | CREATE  USER  (windows_principal  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*)? user_name  WITH  PASSWORD  EQUAL  password = STRING  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)* azure_active_directory_principal  FROM  EXTERNAL  PROVIDER)
+	 | CREATE  USER  user_name  (WITHOUT  LOGIN  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)* (FOR FROM)  CERTIFICATE  certificate_name (FOR FROM)  ASYMMETRIC  KEY  asym_key_name)
+	 | CREATE  USER  user_name
+";
         
         public AstCreateUser(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1964,14 +2072,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_user_azure_sql_dw
-    /// 	 : CREATE  USER  user_name  FOR FROM  LOGIN  login_name WITHOUT  LOGIN?  WITH  DEFAULT_SCHEMA  EQUAL  schema_name?
-    /// 	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  WITH  DEFAULT_SCHEMA  EQUAL  schema_name?
+    /// 	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name WITHOUT  LOGIN)?  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
+    /// 	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateUserAzureSqlDw : AstRule
     {
+        
+        protected static string _rule = @"create_user_azure_sql_dw
+	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name WITHOUT  LOGIN)?  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
+	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
+";
         
         public AstCreateUserAzureSqlDw(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -1996,13 +2106,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_workload_group
-    /// 	 : ALTER  WORKLOAD  GROUP  workload_group_group_name DEFAULT_DOUBLE_QUOTE  WITH  LR_BRACKET  IMPORTANCE  EQUAL  LOW MEDIUM HIGH COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL   COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL   REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL   MAX_DOP  EQUAL   GROUP_MAX_REQUESTS  EQUAL  +  RR_BRACKET?  USING  workload_group_pool_name DEFAULT_DOUBLE_QUOTE?
+    /// 	 : ALTER  WORKLOAD  GROUP  (workload_group_group_name DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW MEDIUM HIGH) COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL MAX_DOP  EQUAL  max_dop = DECIMAL GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name DEFAULT_DOUBLE_QUOTE))?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterWorkloadGroup : AstRule
     {
+        
+        protected static string _rule = @"alter_workload_group
+	 : ALTER  WORKLOAD  GROUP  (workload_group_group_name DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW MEDIUM HIGH) COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL MAX_DOP  EQUAL  max_dop = DECIMAL GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name DEFAULT_DOUBLE_QUOTE))?
+";
         
         public AstAlterWorkloadGroup(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2027,13 +2138,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// queue_settings
-    /// 	 : WITH  STATUS  EQUAL  on_off  COMMA??  RETENTION  EQUAL  on_off  COMMA??  ACTIVATION  LR_BRACKET  STATUS  EQUAL  on_off  COMMA??  PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA??  MAX_QUEUE_READERS  EQUAL    COMMA??  EXECUTE  AS  SELF  OWNER  COMMA?? DROP  RR_BRACKET  COMMA??  POISON_MESSAGE_HANDLING  LR_BRACKET  STATUS  EQUAL  on_off  RR_BRACKET?
+    /// 	 : WITH  (STATUS  EQUAL  on_off  COMMA?)?  (RETENTION  EQUAL  on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF username = STRING OWNER)  COMMA?)?) DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueueSettings : AstRule
     {
+        
+        protected static string _rule = @"queue_settings
+	 : WITH  (STATUS  EQUAL  on_off  COMMA?)?  (RETENTION  EQUAL  on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF username = STRING OWNER)  COMMA?)?) DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
+";
         
         public AstQueueSettings(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2058,13 +2170,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_queue
-    /// 	 : ALTER  QUEUE  complete_table_name queue_name  queue_settings queue_action
+    /// 	 : ALTER  QUEUE  (complete_table_name queue_name)  (queue_settings queue_action)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterQueue : AstRule
     {
+        
+        protected static string _rule = "alter_queue\r\n\t : ALTER  QUEUE  (complete_table_name queue_name)  (queue_settings " +
+            "queue_action)\r\n";
         
         public AstAlterQueue(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2089,15 +2201,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// queue_action
-    /// 	 : REBUILD  WITH  LR_BRACKET  queue_rebuild_options  RR_BRACKET?
-    /// 	 | REORGANIZE  WITH  LOB_COMPACTION  EQUAL  on_off?
-    /// 	 | MOVE  TO  id_ DEFAULT
+    /// 	 : REBUILD  (WITH  LR_BRACKET  queue_rebuild_options  RR_BRACKET)?
+    /// 	 | REORGANIZE  (WITH  LOB_COMPACTION  EQUAL  on_off)?
+    /// 	 | MOVE  TO  (id_ DEFAULT)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueueAction : AstRule
     {
+        
+        protected static string _rule = "queue_action\r\n\t : REBUILD  (WITH  LR_BRACKET  queue_rebuild_options  RR_BRACKET)?" +
+            "\r\n\t | REORGANIZE  (WITH  LOB_COMPACTION  EQUAL  on_off)?\r\n\t | MOVE  TO  (id_ DEF" +
+            "AULT)\r\n";
         
         public AstQueueAction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2124,11 +2237,10 @@ namespace Bb.Asts.TSql
     /// queue_rebuild_options
     /// 	 : MAXDOP  EQUAL  DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueueRebuildOptions : AstRule
     {
+        
+        protected static string _rule = "queue_rebuild_options\r\n\t : MAXDOP  EQUAL  DECIMAL\r\n";
         
         public AstQueueRebuildOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2153,15 +2265,18 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// when_matches
-    /// 	 : WHEN  MATCHED  AND  search_condition?  THEN  merge_matched+
-    /// 	 | WHEN  NOT  MATCHED  BY  TARGET?  AND  search_condition?  THEN  merge_not_matched
-    /// 	 | WHEN  NOT  MATCHED  BY  SOURCE  AND  search_condition?  THEN  merge_matched+
+    /// 	 : (WHEN  MATCHED  (AND  search_condition)?  THEN  merge_matched)+
+    /// 	 | (WHEN  NOT  MATCHED  (BY  TARGET)?  (AND  search_condition)?  THEN  merge_not_matched)
+    /// 	 | (WHEN  NOT  MATCHED  BY  SOURCE  (AND  search_condition)?  THEN  merge_matched)+
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWhenMatches : AstRule
     {
+        
+        protected static string _rule = @"when_matches
+	 : (WHEN  MATCHED  (AND  search_condition)?  THEN  merge_matched)+
+	 | (WHEN  NOT  MATCHED  (BY  TARGET)?  (AND  search_condition)?  THEN  merge_not_matched)
+	 | (WHEN  NOT  MATCHED  BY  SOURCE  (AND  search_condition)?  THEN  merge_matched)+
+";
         
         public AstWhenMatches(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2189,11 +2304,10 @@ namespace Bb.Asts.TSql
     /// 	 : UPDATE  SET  update_elem_merges
     /// 	 | DELETE
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstMergeMatched : AstRule
     {
+        
+        protected static string _rule = "merge_matched\r\n\t : UPDATE  SET  update_elem_merges\r\n\t | DELETE\r\n";
         
         public AstMergeMatched(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2218,13 +2332,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// merge_not_matched
-    /// 	 : INSERT  LR_BRACKET  column_name_list  RR_BRACKET?  table_value_constructor DEFAULT  VALUES
+    /// 	 : INSERT  (LR_BRACKET  column_name_list  RR_BRACKET)?  (table_value_constructor DEFAULT  VALUES)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstMergeNotMatched : AstRule
     {
+        
+        protected static string _rule = "merge_not_matched\r\n\t : INSERT  (LR_BRACKET  column_name_list  RR_BRACKET)?  (tabl" +
+            "e_value_constructor DEFAULT  VALUES)\r\n";
         
         public AstMergeNotMatched(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2251,13 +2365,13 @@ namespace Bb.Asts.TSql
     /// delete_statement_from
     /// 	 : ddl_object
     /// 	 | rowset_function_limited
-    /// 	 | 
+    /// 	 | table_var = LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDeleteStatementFrom : AstRule
     {
+        
+        protected static string _rule = "delete_statement_from\r\n\t : ddl_object\r\n\t | rowset_function_limited\r\n\t | table_var" +
+            " = LOCAL_ID\r\n";
         
         public AstDeleteStatementFrom(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2287,11 +2401,11 @@ namespace Bb.Asts.TSql
     /// 	 | execute_statement
     /// 	 | DEFAULT  VALUES
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstInsertStatementValue : AstRule
     {
+        
+        protected static string _rule = "insert_statement_value\r\n\t : table_value_constructor\r\n\t | derived_table\r\n\t | execu" +
+            "te_statement\r\n\t | DEFAULT  VALUES\r\n";
         
         public AstInsertStatementValue(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2316,13 +2430,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// time
-    /// 	 : LOCAL_ID constant
+    /// 	 : (LOCAL_ID constant)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTime : AstRule
     {
+        
+        protected static string _rule = "time\r\n\t : (LOCAL_ID constant)\r\n";
         
         public AstTime(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2347,13 +2460,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_database
-    /// 	 : CREATE  DATABASE  database_name  CONTAINMENT  EQUAL  NONE PARTIAL?  ON  PRIMARY?  database_file_spec  COMMA  database_file_spec*?  LOG  ON  database_file_spec  COMMA  database_file_spec*?  COLLATE  collation_name?  WITH  create_database_option  COMMA  create_database_option*?
+    /// 	 : CREATE  DATABASE  (database_name)  (CONTAINMENT  EQUAL  (NONE PARTIAL))?  (ON  PRIMARY?  database_file_spec  (COMMA  database_file_spec)*)?  (LOG  ON  database_file_spec  (COMMA  database_file_spec)*)?  (COLLATE  collation_name)?  (WITH  create_database_option  (COMMA  create_database_option)*)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateDatabase : AstRule
     {
+        
+        protected static string _rule = @"create_database
+	 : CREATE  DATABASE  (database_name)  (CONTAINMENT  EQUAL  (NONE PARTIAL))?  (ON  PRIMARY?  database_file_spec  (COMMA  database_file_spec)*)?  (LOG  ON  database_file_spec  (COMMA  database_file_spec)*)?  (COLLATE  collation_name)?  (WITH  create_database_option  (COMMA  create_database_option)*)?
+";
         
         public AstCreateDatabase(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2382,11 +2496,11 @@ namespace Bb.Asts.TSql
     /// 	 | DROP_EXISTING  EQUAL  on_off
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRelationalIndexOption : AstRule
     {
+        
+        protected static string _rule = "relational_index_option\r\n\t : rebuild_index_option\r\n\t | DROP_EXISTING  EQUAL  on_o" +
+            "ff\r\n\t | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off\r\n";
         
         public AstRelationalIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2411,13 +2525,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// resumable_index_options
-    /// 	 : WITH  LR_BRACKET  resumable_index_option  COMMA  resumable_index_option*  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  (resumable_index_option  (COMMA  resumable_index_option)*)  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstResumableIndexOptions : AstRule
     {
+        
+        protected static string _rule = "resumable_index_options\r\n\t : WITH  LR_BRACKET  (resumable_index_option  (COMMA  r" +
+            "esumable_index_option)*)  RR_BRACKET\r\n";
         
         public AstResumableIndexOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2442,15 +2556,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// resumable_index_option
-    /// 	 : MAXDOP  EQUAL  
-    /// 	 | MAX_DURATION  EQUAL    MINUTES?
+    /// 	 : MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+    /// 	 | MAX_DURATION  EQUAL  max_duration = DECIMAL  MINUTES?
     /// 	 | low_priority_lock_wait
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstResumableIndexOption : AstRule
     {
+        
+        protected static string _rule = "resumable_index_option\r\n\t : MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL\r\n\t" +
+            " | MAX_DURATION  EQUAL  max_duration = DECIMAL  MINUTES?\r\n\t | low_priority_lock_" +
+            "wait\r\n";
         
         public AstResumableIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2475,13 +2590,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// reorganize_options
-    /// 	 : WITH  LR_BRACKET  reorganize_option  COMMA  reorganize_option*  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  (reorganize_option  (COMMA  reorganize_option)*)  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstReorganizeOptions : AstRule
     {
+        
+        protected static string _rule = "reorganize_options\r\n\t : WITH  LR_BRACKET  (reorganize_option  (COMMA  reorganize_" +
+            "option)*)  RR_BRACKET\r\n";
         
         public AstReorganizeOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2509,11 +2624,11 @@ namespace Bb.Asts.TSql
     /// 	 : LOB_COMPACTION  EQUAL  on_off
     /// 	 | COMPRESS_ALL_ROW_GROUPS  EQUAL  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstReorganizeOption : AstRule
     {
+        
+        protected static string _rule = "reorganize_option\r\n\t : LOB_COMPACTION  EQUAL  on_off\r\n\t | COMPRESS_ALL_ROW_GROUPS" +
+            "  EQUAL  on_off\r\n";
         
         public AstReorganizeOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2543,13 +2658,19 @@ namespace Bb.Asts.TSql
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
     /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
     /// 	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
-    /// 	 | COMPRESSION_DELAY  EQUAL    MINUTES?
+    /// 	 | COMPRESSION_DELAY  EQUAL  delay = DECIMAL  MINUTES?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSetIndexOption : AstRule
     {
+        
+        protected static string _rule = @"set_index_option
+	 : ALLOW_ROW_LOCKS  EQUAL  on_off
+	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+	 | IGNORE_DUP_KEY  EQUAL  on_off
+	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
+	 | COMPRESSION_DELAY  EQUAL  delay = DECIMAL  MINUTES?
+";
         
         public AstSetIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2574,14 +2695,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// rebuild_partition
-    /// 	 : REBUILD  PARTITION  EQUAL  ALL?  rebuild_index_options?
+    /// 	 : REBUILD  (PARTITION  EQUAL  ALL)?  rebuild_index_options?
     /// 	 | REBUILD  PARTITION  EQUAL  DECIMAL  single_partition_rebuild_index_options?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRebuildPartition : AstRule
     {
+        
+        protected static string _rule = "rebuild_partition\r\n\t : REBUILD  (PARTITION  EQUAL  ALL)?  rebuild_index_options?\r" +
+            "\n\t | REBUILD  PARTITION  EQUAL  DECIMAL  single_partition_rebuild_index_options?" +
+            "\r\n";
         
         public AstRebuildPartition(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2612,20 +2734,34 @@ namespace Bb.Asts.TSql
     /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
     /// 	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
     /// 	 | STATISTICS_INCREMENTAL  EQUAL  on_off
-    /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
     /// 	 | RESUMABLE  EQUAL  on_off
-    /// 	 | MAX_DURATION  EQUAL    MINUTES?
+    /// 	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
-    /// 	 | DATA_COMPRESSION  EQUAL  NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
+    /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRebuildIndexOption : AstRule
     {
+        
+        protected static string _rule = @"rebuild_index_option
+	 : PAD_INDEX  EQUAL  on_off
+	 | FILLFACTOR  EQUAL  DECIMAL
+	 | SORT_IN_TEMPDB  EQUAL  on_off
+	 | IGNORE_DUP_KEY  EQUAL  on_off
+	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
+	 | STATISTICS_INCREMENTAL  EQUAL  on_off
+	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+	 | RESUMABLE  EQUAL  on_off
+	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
+	 | ALLOW_ROW_LOCKS  EQUAL  on_off
+	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+";
         
         public AstRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2651,17 +2787,23 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// single_partition_rebuild_index_option
     /// 	 : SORT_IN_TEMPDB  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
+    /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
     /// 	 | RESUMABLE  EQUAL  on_off
-    /// 	 | DATA_COMPRESSION  EQUAL  NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
-    /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSinglePartitionRebuildIndexOption : AstRule
     {
+        
+        protected static string _rule = @"single_partition_rebuild_index_option
+	 : SORT_IN_TEMPDB  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+	 | RESUMABLE  EQUAL  on_off
+	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+";
         
         public AstSinglePartitionRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2686,13 +2828,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_partitions
-    /// 	 : ON  PARTITIONS  LR_BRACKET    TO  ?  COMMA    TO  ?*  RR_BRACKET
+    /// 	 : ON  PARTITIONS  LR_BRACKET  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?  (COMMA  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?)*  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOnPartitions : AstRule
     {
+        
+        protected static string _rule = "on_partitions\r\n\t : ON  PARTITIONS  LR_BRACKET  partition_number = DECIMAL  (TO  t" +
+            "o_partition_number = DECIMAL)?  (COMMA  partition_number = DECIMAL  (TO  to_part" +
+            "ition_number = DECIMAL)?)*  RR_BRACKET\r\n";
         
         public AstOnPartitions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2718,16 +2861,21 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// columnstore_index_option
     /// 	 : DROP_EXISTING  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
+    /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
     /// 	 | ONLINE  EQUAL  on_off
-    /// 	 | COMPRESSION_DELAY  EQUAL    MINUTES?
-    /// 	 | DATA_COMPRESSION  EQUAL  COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
+    /// 	 | COMPRESSION_DELAY  EQUAL  delay = DECIMAL  MINUTES?
+    /// 	 | DATA_COMPRESSION  EQUAL  (COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnstoreIndexOption : AstRule
     {
+        
+        protected static string _rule = @"columnstore_index_option
+	 : DROP_EXISTING  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+	 | ONLINE  EQUAL  on_off
+	 | COMPRESSION_DELAY  EQUAL  delay = DECIMAL  MINUTES?
+	 | DATA_COMPRESSION  EQUAL  (COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+";
         
         public AstColumnstoreIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2757,17 +2905,27 @@ namespace Bb.Asts.TSql
     /// 	 | SORT_IN_TEMPDB  EQUAL  on_off
     /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
     /// 	 | DROP_EXISTING  EQUAL  on_off
-    /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
+    /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
     /// 	 | XML_COMPRESSION  EQUAL  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstXmlIndexOption : AstRule
     {
+        
+        protected static string _rule = @"xml_index_option
+	 : PAD_INDEX  EQUAL  on_off
+	 | FILLFACTOR  EQUAL  DECIMAL
+	 | SORT_IN_TEMPDB  EQUAL  on_off
+	 | IGNORE_DUP_KEY  EQUAL  on_off
+	 | DROP_EXISTING  EQUAL  on_off
+	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+	 | ALLOW_ROW_LOCKS  EQUAL  on_off
+	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+	 | XML_COMPRESSION  EQUAL  on_off
+";
         
         public AstXmlIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2795,11 +2953,10 @@ namespace Bb.Asts.TSql
     /// 	 : ENCRYPTION
     /// 	 | execute_clause
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDmlTriggerOption : AstRule
     {
+        
+        protected static string _rule = "dml_trigger_option\r\n\t : ENCRYPTION\r\n\t | execute_clause\r\n";
         
         public AstDmlTriggerOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2824,13 +2981,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_function
-    /// 	 : CREATE  OR  ALTER? ALTER  FUNCTION    LR_BRACKET  procedure_params  RR_BRACKET LR_BRACKET  RR_BRACKET  func_body_returns_select func_body_returns_table func_body_returns_scalar  SEMI?
+    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  FUNCTION  funcName = func_proc_name_schema  ((LR_BRACKET  procedure_params  RR_BRACKET) LR_BRACKET  RR_BRACKET)  (func_body_returns_select func_body_returns_table func_body_returns_scalar)  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateOrAlterFunction : AstRule
     {
+        
+        protected static string _rule = @"create_or_alter_function
+	 : ((CREATE  (OR  ALTER)?) ALTER)  FUNCTION  funcName = func_proc_name_schema  ((LR_BRACKET  procedure_params  RR_BRACKET) LR_BRACKET  RR_BRACKET)  (func_body_returns_select func_body_returns_table func_body_returns_scalar)  SEMI?
+";
         
         public AstCreateOrAlterFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2859,11 +3017,10 @@ namespace Bb.Asts.TSql
     /// 	 | RECOMPILE
     /// 	 | execute_clause
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstProcedureOption : AstRule
     {
+        
+        protected static string _rule = "procedure_option\r\n\t : ENCRYPTION\r\n\t | RECOMPILE\r\n\t | execute_clause\r\n";
         
         public AstProcedureOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2894,11 +3051,11 @@ namespace Bb.Asts.TSql
     /// 	 | CALLED  ON  NULL_  INPUT
     /// 	 | execute_clause
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFunctionOption : AstRule
     {
+        
+        protected static string _rule = "function_option\r\n\t : ENCRYPTION\r\n\t | SCHEMABINDING\r\n\t | RETURNS  NULL_  ON  NULL_" +
+            "  INPUT\r\n\t | CALLED  ON  NULL_  INPUT\r\n\t | execute_clause\r\n";
         
         public AstFunctionOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2923,10 +3080,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statistics_option
-    /// 	 : FULLSCAN  COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off?
-    /// 	 | SAMPLE    PERCENT ROWS  COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off?
+    /// 	 : (FULLSCAN  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+    /// 	 | (SAMPLE  number = DECIMAL  (PERCENT ROWS)  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
     /// 	 | RESAMPLE  on_partitions?
-    /// 	 | STATS_STREAM  EQUAL  
+    /// 	 | STATS_STREAM  EQUAL  stats_stream_ = expression
     /// 	 | ROWCOUNT  EQUAL  DECIMAL
     /// 	 | PAGECOUNT  EQUAL  DECIMAL
     /// 	 | ALL
@@ -2934,14 +3091,27 @@ namespace Bb.Asts.TSql
     /// 	 | INDEX
     /// 	 | NORECOMPUTE
     /// 	 | INCREMENTAL  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
+    /// 	 | MAXDOP  EQUAL  max_dregree_of_parallelism = DECIMAL
     /// 	 | AUTO_DROP  EQUAL  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUpdateStatisticsOption : AstRule
     {
+        
+        protected static string _rule = @"update_statistics_option
+	 : (FULLSCAN  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+	 | (SAMPLE  number = DECIMAL  (PERCENT ROWS)  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+	 | RESAMPLE  on_partitions?
+	 | STATS_STREAM  EQUAL  stats_stream_ = expression
+	 | ROWCOUNT  EQUAL  DECIMAL
+	 | PAGECOUNT  EQUAL  DECIMAL
+	 | ALL
+	 | COLUMNS
+	 | INDEX
+	 | NORECOMPUTE
+	 | INCREMENTAL  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_dregree_of_parallelism = DECIMAL
+	 | AUTO_DROP  EQUAL  on_off
+";
         
         public AstUpdateStatisticsOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2968,13 +3138,16 @@ namespace Bb.Asts.TSql
     /// table_indices
     /// 	 : INDEX  id_  UNIQUE?  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET
     /// 	 | INDEX  id_  CLUSTERED  COLUMNSTORE
-    /// 	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  ON  id_?
+    /// 	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  (ON  id_)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableIndices : AstRule
     {
+        
+        protected static string _rule = @"table_indices
+	 : INDEX  id_  UNIQUE?  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+	 | INDEX  id_  CLUSTERED  COLUMNSTORE
+	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  (ON  id_)?
+";
         
         public AstTableIndices(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -2999,13 +3172,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_options
-    /// 	 : WITH  LR_BRACKET  table_option  COMMA  table_option*  RR_BRACKET table_option  COMMA  table_option*
+    /// 	 : WITH  (LR_BRACKET  table_option  (COMMA  table_option)*  RR_BRACKET table_option  (COMMA  table_option)*)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableOptions : AstRule
     {
+        
+        protected static string _rule = "table_options\r\n\t : WITH  (LR_BRACKET  table_option  (COMMA  table_option)*  RR_BR" +
+            "ACKET table_option  (COMMA  table_option)*)\r\n";
         
         public AstTableOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3030,19 +3203,26 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_option
-    /// 	 : simple_id keyword  EQUAL  simple_id keyword on_off DECIMAL
+    /// 	 : (simple_id keyword)  EQUAL  (simple_id keyword on_off DECIMAL)
     /// 	 | CLUSTERED  COLUMNSTORE  INDEX
     /// 	 | HEAP
     /// 	 | FILLFACTOR  EQUAL  DECIMAL
     /// 	 | distribution
-    /// 	 | DATA_COMPRESSION  EQUAL  NONE ROW PAGE  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableOption : AstRule
     {
+        
+        protected static string _rule = @"table_option
+	 : (simple_id keyword)  EQUAL  (simple_id keyword on_off DECIMAL)
+	 | CLUSTERED  COLUMNSTORE  INDEX
+	 | HEAP
+	 | FILLFACTOR  EQUAL  DECIMAL
+	 | distribution
+	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE)  on_partitions?
+	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+";
         
         public AstTableOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3070,11 +3250,11 @@ namespace Bb.Asts.TSql
     /// 	 : DISTRIBUTION  EQUAL  HASH  LR_BRACKET  id_  RR_BRACKET
     /// 	 | CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDistribution : AstRule
     {
+        
+        protected static string _rule = "distribution\r\n\t : DISTRIBUTION  EQUAL  HASH  LR_BRACKET  id_  RR_BRACKET\r\n\t | CLU" +
+            "STERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET\r\n";
         
         public AstDistribution(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3107,14 +3287,24 @@ namespace Bb.Asts.TSql
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
-    /// 	 | DATA_COMPRESSION  EQUAL  NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateTableIndexOption : AstRule
     {
+        
+        protected static string _rule = @"create_table_index_option
+	 : PAD_INDEX  EQUAL  on_off
+	 | FILLFACTOR  EQUAL  DECIMAL
+	 | IGNORE_DUP_KEY  EQUAL  on_off
+	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
+	 | STATISTICS_INCREMENTAL  EQUAL  on_off
+	 | ALLOW_ROW_LOCKS  EQUAL  on_off
+	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+";
         
         public AstCreateTableIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3139,13 +3329,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// view_attributes
-    /// 	 : WITH  view_attribute  COMMA  view_attribute*
+    /// 	 : (WITH  view_attribute  (COMMA  view_attribute)*)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstViewAttributes : AstRule
     {
+        
+        protected static string _rule = "view_attributes\r\n\t : (WITH  view_attribute  (COMMA  view_attribute)*)\r\n";
         
         public AstViewAttributes(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3170,13 +3359,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// switch_partition
-    /// 	 : PARTITION?  ?  TO    PARTITION  ?  WITH  low_priority_lock_wait?
+    /// 	 : (PARTITION?  source_partition_number_expression = expression)?  TO  target_table = full_table_name  (PARTITION  target_partition_number_expression = expression)?  (WITH  low_priority_lock_wait)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSwitchPartition : AstRule
     {
+        
+        protected static string _rule = "switch_partition\r\n\t : (PARTITION?  source_partition_number_expression = expressio" +
+            "n)?  TO  target_table = full_table_name  (PARTITION  target_partition_number_exp" +
+            "ression = expression)?  (WITH  low_priority_lock_wait)?\r\n";
         
         public AstSwitchPartition(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3201,13 +3391,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// low_priority_lock_wait
-    /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL    MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL    RR_BRACKET
+    /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL  max_duration = time  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wait = (NONE SELF BLOCKERS)  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstLowPriorityLockWait : AstRule
     {
+        
+        protected static string _rule = "low_priority_lock_wait\r\n\t : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL" +
+            "  max_duration = time  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wai" +
+            "t = (NONE SELF BLOCKERS)  RR_BRACKET\r\n";
         
         public AstLowPriorityLockWait(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3232,13 +3423,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_database
-    /// 	 : ALTER  DATABASE  database_name CURRENT  MODIFY  NAME  EQUAL  database_name COLLATE  collation_name SET  database_optionspec  WITH  termination? add_or_modify_files add_or_modify_filegroups  SEMI?
+    /// 	 : ALTER  DATABASE  (database_name CURRENT)  (MODIFY  NAME  EQUAL  database_name COLLATE  collation_name SET  database_optionspec  (WITH  termination)? add_or_modify_files add_or_modify_filegroups)  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterDatabase : AstRule
     {
+        
+        protected static string _rule = "alter_database\r\n\t : ALTER  DATABASE  (database_name CURRENT)  (MODIFY  NAME  EQUA" +
+            "L  database_name COLLATE  collation_name SET  database_optionspec  (WITH  termin" +
+            "ation)? add_or_modify_files add_or_modify_filegroups)  SEMI?\r\n";
         
         public AstAlterDatabase(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3263,16 +3455,17 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// add_or_modify_files
-    /// 	 : ADD  FILE  filespecs  TO  FILEGROUP  file_group_name?
+    /// 	 : ADD  FILE  filespecs  (TO  FILEGROUP  file_group_name)?
     /// 	 | ADD  LOG  FILE  filespecs
     /// 	 | REMOVE  FILE  file_group_name
     /// 	 | MODIFY  FILE  filespec
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAddOrModifyFiles : AstRule
     {
+        
+        protected static string _rule = "add_or_modify_files\r\n\t : ADD  FILE  filespecs  (TO  FILEGROUP  file_group_name)?\r" +
+            "\n\t | ADD  LOG  FILE  filespecs\r\n\t | REMOVE  FILE  file_group_name\r\n\t | MODIFY  F" +
+            "ILE  filespec\r\n";
         
         public AstAddOrModifyFiles(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3297,15 +3490,18 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// add_or_modify_filegroups
-    /// 	 : ADD  FILEGROUP  file_group_name  CONTAINS  FILESTREAM CONTAINS  MEMORY_OPTIMIZED_DATA?
+    /// 	 : ADD  FILEGROUP  file_group_name  (CONTAINS  FILESTREAM CONTAINS  MEMORY_OPTIMIZED_DATA)?
     /// 	 | REMOVE  FILEGROUP  file_group_name
-    /// 	 | MODIFY  FILEGROUP  file_group_name  filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES
+    /// 	 | MODIFY  FILEGROUP  file_group_name  (filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAddOrModifyFilegroups : AstRule
     {
+        
+        protected static string _rule = @"add_or_modify_filegroups
+	 : ADD  FILEGROUP  file_group_name  (CONTAINS  FILESTREAM CONTAINS  MEMORY_OPTIMIZED_DATA)?
+	 | REMOVE  FILEGROUP  file_group_name
+	 | MODIFY  FILEGROUP  file_group_name  (filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES)
+";
         
         public AstAddOrModifyFilegroups(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3353,11 +3549,33 @@ namespace Bb.Asts.TSql
     /// 	 | target_recovery_time_option
     /// 	 | termination
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDatabaseOptionspec : AstRule
     {
+        
+        protected static string _rule = @"database_optionspec
+	 : auto_option
+	 | change_tracking_option
+	 | containment_option
+	 | cursor_option
+	 | database_mirroring_option
+	 | date_correlation_optimization_option
+	 | db_encryption_option
+	 | db_state_option
+	 | db_update_option
+	 | db_user_access_option
+	 | delayed_durability_option
+	 | external_access_option
+	 | FILESTREAM  database_filestream_option
+	 | hadr_options
+	 | mixed_page_allocation_option
+	 | parameterization_option
+	 | recovery_option
+	 | service_broker_option
+	 | snapshot_option
+	 | sql_option
+	 | target_recovery_time_option
+	 | termination
+";
         
         public AstDatabaseOptionspec(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3384,16 +3602,17 @@ namespace Bb.Asts.TSql
     /// auto_option
     /// 	 : AUTO_CLOSE  on_off
     /// 	 | AUTO_CREATE_STATISTICS  OFF
-    /// 	 | ON  INCREMENTAL  EQUAL  ON OFF
+    /// 	 | ON  (INCREMENTAL  EQUAL  ON OFF)
     /// 	 | AUTO_SHRINK  on_off
     /// 	 | AUTO_UPDATE_STATISTICS  on_off
     /// 	 | AUTO_UPDATE_STATISTICS_ASYNC  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAutoOption : AstRule
     {
+        
+        protected static string _rule = "auto_option\r\n\t : AUTO_CLOSE  on_off\r\n\t | AUTO_CREATE_STATISTICS  OFF\r\n\t | ON  (IN" +
+            "CREMENTAL  EQUAL  ON OFF)\r\n\t | AUTO_SHRINK  on_off\r\n\t | AUTO_UPDATE_STATISTICS  " +
+            "on_off\r\n\t | AUTO_UPDATE_STATISTICS_ASYNC  on_off\r\n";
         
         public AstAutoOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3418,13 +3637,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_tracking_option
-    /// 	 : CHANGE_TRACKING  EQUAL  OFF ON  change_tracking_option_list  change_tracking_option_lists*
+    /// 	 : CHANGE_TRACKING  EQUAL  (OFF ON  (change_tracking_option_list  change_tracking_option_lists)*)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstChangeTrackingOption : AstRule
     {
+        
+        protected static string _rule = "change_tracking_option\r\n\t : CHANGE_TRACKING  EQUAL  (OFF ON  (change_tracking_opt" +
+            "ion_list  change_tracking_option_lists)*)\r\n";
         
         public AstChangeTrackingOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3450,13 +3669,13 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// change_tracking_option_list
     /// 	 : AUTO_CLEANUP  EQUAL  on_off
-    /// 	 | CHANGE_RETENTION  EQUAL  DAYS HOURS MINUTES
+    /// 	 | CHANGE_RETENTION  EQUAL  (DAYS HOURS MINUTES)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstChangeTrackingOptionList : AstRule
     {
+        
+        protected static string _rule = "change_tracking_option_list\r\n\t : AUTO_CLEANUP  EQUAL  on_off\r\n\t | CHANGE_RETENTIO" +
+            "N  EQUAL  (DAYS HOURS MINUTES)\r\n";
         
         public AstChangeTrackingOptionList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3481,13 +3700,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// containment_option
-    /// 	 : CONTAINMENT  EQUAL  NONE PARTIAL
+    /// 	 : CONTAINMENT  EQUAL  (NONE PARTIAL)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstContainmentOption : AstRule
     {
+        
+        protected static string _rule = "containment_option\r\n\t : CONTAINMENT  EQUAL  (NONE PARTIAL)\r\n";
         
         public AstContainmentOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3515,11 +3733,11 @@ namespace Bb.Asts.TSql
     /// 	 : CURSOR_CLOSE_ON_COMMIT  on_off
     /// 	 | CURSOR_DEFAULT  local_global
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCursorOption : AstRule
     {
+        
+        protected static string _rule = "cursor_option\r\n\t : CURSOR_CLOSE_ON_COMMIT  on_off\r\n\t | CURSOR_DEFAULT  local_glob" +
+            "al\r\n";
         
         public AstCursorOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3547,11 +3765,11 @@ namespace Bb.Asts.TSql
     /// 	 : mirroring_partner  partner_option
     /// 	 | mirroring_witness  witness_option
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstMirroringSetOption : AstRule
     {
+        
+        protected static string _rule = "mirroring_set_option\r\n\t : mirroring_partner  partner_option\r\n\t | mirroring_witnes" +
+            "s  witness_option\r\n";
         
         public AstMirroringSetOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3581,15 +3799,16 @@ namespace Bb.Asts.TSql
     /// 	 | FORCE_SERVICE_ALLOW_DATA_LOSS
     /// 	 | OFF
     /// 	 | RESUME
-    /// 	 | SAFETY  FULL OFF
+    /// 	 | SAFETY  (FULL OFF)
     /// 	 | SUSPEND
     /// 	 | TIMEOUT  DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPartnerOption : AstRule
     {
+        
+        protected static string _rule = "partner_option\r\n\t : witness_partner_equal  partner_server\r\n\t | FAILOVER\r\n\t | FORC" +
+            "E_SERVICE_ALLOW_DATA_LOSS\r\n\t | OFF\r\n\t | RESUME\r\n\t | SAFETY  (FULL OFF)\r\n\t | SUSP" +
+            "END\r\n\t | TIMEOUT  DECIMAL\r\n";
         
         public AstPartnerOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3617,11 +3836,10 @@ namespace Bb.Asts.TSql
     /// 	 : witness_partner_equal  witness_server
     /// 	 | OFF
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWitnessOption : AstRule
     {
+        
+        protected static string _rule = "witness_option\r\n\t : witness_partner_equal  witness_server\r\n\t | OFF\r\n";
         
         public AstWitnessOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3648,11 +3866,10 @@ namespace Bb.Asts.TSql
     /// partner_server_tcp_prefix
     /// 	 : TCP  COLON  DOUBLE_FORWARD_SLASH
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPartnerServerTcpPrefix : AstRule
     {
+        
+        protected static string _rule = "partner_server_tcp_prefix\r\n\t : TCP  COLON  DOUBLE_FORWARD_SLASH\r\n";
         
         public AstPartnerServerTcpPrefix(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3677,13 +3894,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// port_number
-    /// 	 : 
+    /// 	 : port = DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPortNumber : AstRule
     {
+        
+        protected static string _rule = "port_number\r\n\t : port = DECIMAL\r\n";
         
         public AstPortNumber(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3708,13 +3924,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// delayed_durability_option
-    /// 	 : DELAYED_DURABILITY  EQUAL  DISABLED ALLOWED FORCED
+    /// 	 : DELAYED_DURABILITY  EQUAL  (DISABLED ALLOWED FORCED)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDelayedDurabilityOption : AstRule
     {
+        
+        protected static string _rule = "delayed_durability_option\r\n\t : DELAYED_DURABILITY  EQUAL  (DISABLED ALLOWED FORCE" +
+            "D)\r\n";
         
         public AstDelayedDurabilityOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3747,11 +3963,18 @@ namespace Bb.Asts.TSql
     /// 	 | TRANSFORM_NOISE_WORDS  EQUAL  on_off
     /// 	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExternalAccessOption : AstRule
     {
+        
+        protected static string _rule = @"external_access_option
+	 : DB_CHAINING  on_off
+	 | TRUSTWORTHY  on_off
+	 | DEFAULT_LANGUAGE  EQUAL  id_or_string
+	 | DEFAULT_FULLTEXT_LANGUAGE  EQUAL  id_or_string
+	 | NESTED_TRIGGERS  EQUAL  on_off
+	 | TRANSFORM_NOISE_WORDS  EQUAL  on_off
+	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  DECIMAL
+";
         
         public AstExternalAccessOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3776,13 +3999,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// hadr_options
-    /// 	 : HADR  AVAILABILITY  GROUP  EQUAL  group_name OFF SUSPEND RESUME
+    /// 	 : HADR  ((AVAILABILITY  GROUP  EQUAL  group_name OFF) (SUSPEND RESUME))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstHadrOptions : AstRule
     {
+        
+        protected static string _rule = "hadr_options\r\n\t : HADR  ((AVAILABILITY  GROUP  EQUAL  group_name OFF) (SUSPEND RE" +
+            "SUME))\r\n";
         
         public AstHadrOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3807,13 +4030,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// parameterization_option
-    /// 	 : PARAMETERIZATION  SIMPLE FORCED
+    /// 	 : PARAMETERIZATION  (SIMPLE FORCED)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstParameterizationOption : AstRule
     {
+        
+        protected static string _rule = "parameterization_option\r\n\t : PARAMETERIZATION  (SIMPLE FORCED)\r\n";
         
         public AstParameterizationOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3838,16 +4060,17 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// recovery_option
-    /// 	 : RECOVERY  FULL BULK_LOGGED SIMPLE
+    /// 	 : RECOVERY  (FULL BULK_LOGGED SIMPLE)
     /// 	 | TORN_PAGE_DETECTION  on_off
     /// 	 | ACCELERATED_DATABASE_RECOVERY  EQUAL  on_off
-    /// 	 | PAGE_VERIFY  CHECKSUM TORN_PAGE_DETECTION NONE
+    /// 	 | PAGE_VERIFY  (CHECKSUM TORN_PAGE_DETECTION NONE)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRecoveryOption : AstRule
     {
+        
+        protected static string _rule = "recovery_option\r\n\t : RECOVERY  (FULL BULK_LOGGED SIMPLE)\r\n\t | TORN_PAGE_DETECTION" +
+            "  on_off\r\n\t | ACCELERATED_DATABASE_RECOVERY  EQUAL  on_off\r\n\t | PAGE_VERIFY  (CH" +
+            "ECKSUM TORN_PAGE_DETECTION NONE)\r\n";
         
         public AstRecoveryOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3878,11 +4101,11 @@ namespace Bb.Asts.TSql
     /// 	 | ERROR_BROKER_CONVERSATIONS
     /// 	 | HONOR_BROKER_PRIORITY  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstServiceBrokerOption : AstRule
     {
+        
+        protected static string _rule = "service_broker_option\r\n\t : ENABLE_BROKER\r\n\t | DISABLE_BROKER\r\n\t | NEW_BROKER\r\n\t |" +
+            " ERROR_BROKER_CONVERSATIONS\r\n\t | HONOR_BROKER_PRIORITY  on_off\r\n";
         
         public AstServiceBrokerOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3909,13 +4132,13 @@ namespace Bb.Asts.TSql
     /// snapshot_option
     /// 	 : ALLOW_SNAPSHOT_ISOLATION  on_off
     /// 	 | READ_COMMITTED_SNAPSHOT  on_off
-    /// 	 | 
+    /// 	 | MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSnapshotOption : AstRule
     {
+        
+        protected static string _rule = "snapshot_option\r\n\t : ALLOW_SNAPSHOT_ISOLATION  on_off\r\n\t | READ_COMMITTED_SNAPSHO" +
+            "T  on_off\r\n\t | MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = on_off\r\n";
         
         public AstSnapshotOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3951,11 +4174,21 @@ namespace Bb.Asts.TSql
     /// 	 | QUOTED_IDENTIFIER  on_off
     /// 	 | RECURSIVE_TRIGGERS  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSqlOption : AstRule
     {
+        
+        protected static string _rule = @"sql_option
+	 : ANSI_NULL_DEFAULT  on_off
+	 | ANSI_NULLS  on_off
+	 | ANSI_PADDING  on_off
+	 | ANSI_WARNINGS  on_off
+	 | ARITHABORT  on_off
+	 | COMPATIBILITY_LEVEL  EQUAL  DECIMAL
+	 | CONCAT_NULL_YIELDS_NULL  on_off
+	 | NUMERIC_ROUNDABORT  on_off
+	 | QUOTED_IDENTIFIER  on_off
+	 | RECURSIVE_TRIGGERS  on_off
+";
         
         public AstSqlOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -3980,13 +4213,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// target_recovery_time_option
-    /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  SECONDS MINUTES
+    /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  (SECONDS MINUTES)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTargetRecoveryTimeOption : AstRule
     {
+        
+        protected static string _rule = "target_recovery_time_option\r\n\t : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  (SECONDS M" +
+            "INUTES)\r\n";
         
         public AstTargetRecoveryTimeOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4011,15 +4244,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// termination
-    /// 	 : ROLLBACK  AFTER  
+    /// 	 : ROLLBACK  AFTER  seconds = DECIMAL
     /// 	 | ROLLBACK  IMMEDIATE
     /// 	 | NO_WAIT
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTermination : AstRule
     {
+        
+        protected static string _rule = "termination\r\n\t : ROLLBACK  AFTER  seconds = DECIMAL\r\n\t | ROLLBACK  IMMEDIATE\r\n\t |" +
+            " NO_WAIT\r\n";
         
         public AstTermination(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4044,13 +4277,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_index
-    /// 	 : DROP  INDEX  IF  EXISTS?  drop_relational_or_xml_or_spatial_indexs drop_backward_compatible_indexs  SEMI?
+    /// 	 : DROP  INDEX  (IF  EXISTS)?  (drop_relational_or_xml_or_spatial_indexs drop_backward_compatible_indexs)  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropIndex : AstRule
     {
+        
+        protected static string _rule = "drop_index\r\n\t : DROP  INDEX  (IF  EXISTS)?  (drop_relational_or_xml_or_spatial_in" +
+            "dexs drop_backward_compatible_indexs)  SEMI?\r\n";
         
         public AstDropIndex(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4075,13 +4308,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_statistics
-    /// 	 : DROP  STATISTICS  COMMA?  full_table_name  DOT?  +  SEMI
+    /// 	 : DROP  STATISTICS  (COMMA?  (full_table_name  DOT)?  name = id_)+  SEMI
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropStatistics : AstRule
     {
+        
+        protected static string _rule = "drop_statistics\r\n\t : DROP  STATISTICS  (COMMA?  (full_table_name  DOT)?  name = i" +
+            "d_)+  SEMI\r\n";
         
         public AstDropStatistics(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4106,13 +4339,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_type
-    /// 	 : CREATE  TYPE    FROM  data_type  default_value?  AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET?
+    /// 	 : CREATE  TYPE  name = simple_name  (FROM  data_type  default_value)?  (AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateType : AstRule
     {
+        
+        protected static string _rule = "create_type\r\n\t : CREATE  TYPE  name = simple_name  (FROM  data_type  default_valu" +
+            "e)?  (AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET)?\r\n";
         
         public AstCreateType(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4137,13 +4370,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_type
-    /// 	 : DROP  TYPE  IF  EXISTS?  
+    /// 	 : DROP  TYPE  (IF  EXISTS)?  name = simple_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDropType : AstRule
     {
+        
+        protected static string _rule = "drop_type\r\n\t : DROP  TYPE  (IF  EXISTS)?  name = simple_name\r\n";
         
         public AstDropType(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4168,13 +4400,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// opendatasource
-    /// 	 : OPENDATASOURCE  LR_BRACKET    COMMA    RR_BRACKET  DOT  database_name?  DOT  schema_name?  DOT  tableName
+    /// 	 : OPENDATASOURCE  LR_BRACKET  provider = STRING  COMMA  init = STRING  RR_BRACKET  DOT  (database_name)?  DOT  (schema_name)?  DOT  (tableName)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOpendatasource : AstRule
     {
+        
+        protected static string _rule = "opendatasource\r\n\t : OPENDATASOURCE  LR_BRACKET  provider = STRING  COMMA  init = " +
+            "STRING  RR_BRACKET  DOT  (database_name)?  DOT  (schema_name)?  DOT  (tableName)" +
+            "\r\n";
         
         public AstOpendatasource(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4199,16 +4432,20 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_statement
-    /// 	 : DECLARE  LOCAL_ID  AS?  table_type_definition full_table_name  SEMI?
-    /// 	 | DECLARE    SEMI?
+    /// 	 : DECLARE  LOCAL_ID  AS?  (table_type_definition full_table_name)  SEMI?
+    /// 	 | DECLARE  loc += declare_locals  SEMI?
     /// 	 | DECLARE  LOCAL_ID  AS?  xml_type_definition  SEMI?
-    /// 	 | WITH  XMLNAMESPACES  LR_BRACKET    RR_BRACKET  SEMI?
+    /// 	 | WITH  XMLNAMESPACES  LR_BRACKET  xml_dec += xml_declarations  RR_BRACKET  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDeclareStatement : AstRule
     {
+        
+        protected static string _rule = @"declare_statement
+	 : DECLARE  LOCAL_ID  AS?  (table_type_definition full_table_name)  SEMI?
+	 | DECLARE  loc += declare_locals  SEMI?
+	 | DECLARE  LOCAL_ID  AS?  xml_type_definition  SEMI?
+	 | WITH  XMLNAMESPACES  LR_BRACKET  xml_dec += xml_declarations  RR_BRACKET  SEMI?
+";
         
         public AstDeclareStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4233,14 +4470,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_declaration
-    /// 	 :   AS  id_
+    /// 	 : xml_namespace_uri = STRING  AS  id_
     /// 	 | DEFAULT  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstXmlDeclaration : AstRule
     {
+        
+        protected static string _rule = "xml_declaration\r\n\t : xml_namespace_uri = STRING  AS  id_\r\n\t | DEFAULT  STRING\r\n";
         
         public AstXmlDeclaration(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4271,11 +4507,12 @@ namespace Bb.Asts.TSql
     /// 	 | fetch_cursor
     /// 	 | OPEN  GLOBAL?  cursor_name  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCursorStatement : AstRule
     {
+        
+        protected static string _rule = "cursor_statement\r\n\t : CLOSE  GLOBAL?  cursor_name  SEMI?\r\n\t | DEALLOCATE  GLOBAL?" +
+            "  CURSOR?  cursor_name  SEMI?\r\n\t | declare_cursor\r\n\t | fetch_cursor\r\n\t | OPEN  G" +
+            "LOBAL?  cursor_name  SEMI?\r\n";
         
         public AstCursorStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4300,13 +4537,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_database
-    /// 	 : BACKUP  DATABASE  database_name  READ_WRITE_FILEGROUPS  COMMA?  FILE FILEGROUP  EQUAL  *?  COMMA?  FILE FILEGROUP  EQUAL  *  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
+    /// 	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*)?  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBackupDatabase : AstRule
     {
+        
+        protected static string _rule = @"backup_database
+	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*)?  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*)?
+";
         
         public AstBackupDatabase(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4331,13 +4569,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_log
-    /// 	 : BACKUP  LOG  database_name  TO  COMMA?  logical_device_name+ TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_+  MIRROR  TO  COMMA?  logical_device_name++ MIRROR  TO  COMMA?  DISK TAPE URL  EQUAL  STRING id_++?  WITH  COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  COMPRESSION NO_COMPRESSION COMMA?  DESCRIPTION  EQUAL  STRING id_ COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  EXPIREDATE  EQUAL  STRING id_ RETAINDAYS  EQUAL  DECIMAL id_ COMMA?  NOINIT INIT COMMA?  NOSKIP SKIP_KEYWORD COMMA?  NOFORMAT FORMAT COMMA?  MEDIADESCRIPTION  EQUAL  STRING id_ COMMA?  MEDIANAME  EQUAL   COMMA?  BLOCKSIZE  EQUAL  DECIMAL id_ COMMA?  BUFFERCOUNT  EQUAL  DECIMAL id_ COMMA?  MAXTRANSFER  EQUAL  DECIMAL id_ COMMA?  NO_CHECKSUM CHECKSUM COMMA?  STOP_ON_ERROR CONTINUE_AFTER_ERROR COMMA?  RESTART COMMA?  STATS  EQUAL  ? COMMA?  REWIND NOREWIND COMMA?  LOAD NOUNLOAD COMMA?  NORECOVERY STANDBY  EQUAL   COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  AES_128 AES_192 AES_256 TRIPLE_DES_3KEY  COMMA  SERVER  CERTIFICATE  EQUAL  encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name*?
+    /// 	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  (NORECOVERY STANDBY  EQUAL  undo_file_name = STRING) COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBackupLog : AstRule
     {
+        
+        protected static string _rule = @"backup_log
+	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  (NORECOVERY STANDBY  EQUAL  undo_file_name = STRING) COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*)?
+";
         
         public AstBackupLog(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4362,13 +4601,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_master_key
-    /// 	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
+    /// 	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL  master_key_backup_file = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBackupMasterKey : AstRule
     {
+        
+        protected static string _rule = "backup_master_key\r\n\t : BACKUP  MASTER  KEY  TO  FILE  EQUAL  master_key_backup_fi" +
+            "le = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING\r\n";
         
         public AstBackupMasterKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4393,13 +4632,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_service_master_key
-    /// 	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL    ENCRYPTION  BY  PASSWORD  EQUAL  
+    /// 	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL  service_master_key_backup_file = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBackupServiceMasterKey : AstRule
     {
+        
+        protected static string _rule = "backup_service_master_key\r\n\t : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL  ser" +
+            "vice_master_key_backup_file = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryptio" +
+            "n_password = STRING\r\n";
         
         public AstBackupServiceMasterKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4424,13 +4664,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_statement
-    /// 	 : KILL  kill_process kill_query_notification kill_stats_job
+    /// 	 : KILL  (kill_process kill_query_notification kill_stats_job)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstKillStatement : AstRule
     {
+        
+        protected static string _rule = "kill_statement\r\n\t : KILL  (kill_process kill_query_notification kill_stats_job)\r\n" +
+            "";
         
         public AstKillStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4455,13 +4695,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_process
-    /// 	 :  UOW  WITH  STATUSONLY?
+    /// 	 : (session_id = (DECIMAL STRING) UOW)  (WITH  STATUSONLY)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstKillProcess : AstRule
     {
+        
+        protected static string _rule = "kill_process\r\n\t : (session_id = (DECIMAL STRING) UOW)  (WITH  STATUSONLY)?\r\n";
         
         public AstKillProcess(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4486,13 +4725,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_query_notification
-    /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  ALL 
+    /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  (ALL subscription_id = DECIMAL)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstKillQueryNotification : AstRule
     {
+        
+        protected static string _rule = "kill_query_notification\r\n\t : QUERY  NOTIFICATION  SUBSCRIPTION  (ALL subscription" +
+            "_id = DECIMAL)\r\n";
         
         public AstKillQueryNotification(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4517,13 +4756,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_stats_job
-    /// 	 : STATS  JOB  
+    /// 	 : STATS  JOB  job_id = DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstKillStatsJob : AstRule
     {
+        
+        protected static string _rule = "kill_stats_job\r\n\t : STATS  JOB  job_id = DECIMAL\r\n";
         
         public AstKillStatsJob(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4548,14 +4786,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_body
-    /// 	 :   EQUAL?  func_proc_name_server_database_schema execute_var_string  execute_statement_arg?
-    /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  AS?  LOGIN USER  EQUAL  STRING?  AT_KEYWORD  linked_server?
+    /// 	 : (return_status = LOCAL_ID  EQUAL)?  (func_proc_name_server_database_schema execute_var_string)  execute_statement_arg?
+    /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  (AS?  (LOGIN USER)  EQUAL  STRING)?  (AT_KEYWORD  linked_server)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteBody : AstRule
     {
+        
+        protected static string _rule = "execute_body\r\n\t : (return_status = LOCAL_ID  EQUAL)?  (func_proc_name_server_data" +
+            "base_schema execute_var_string)  execute_statement_arg?\r\n\t | LR_BRACKET  execute" +
+            "_var_strings  RR_BRACKET  (AS?  (LOGIN USER)  EQUAL  STRING)?  (AT_KEYWORD  link" +
+            "ed_server)?\r\n";
         
         public AstExecuteBody(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4580,14 +4820,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg
-    /// 	 : execute_statement_arg_unnamed  COMMA  execute_statement_arg*
+    /// 	 : execute_statement_arg_unnamed  (COMMA  execute_statement_arg)*
     /// 	 | execute_statement_arg_nameds
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteStatementArg : AstRule
     {
+        
+        protected static string _rule = "execute_statement_arg\r\n\t : execute_statement_arg_unnamed  (COMMA  execute_stateme" +
+            "nt_arg)*\r\n\t | execute_statement_arg_nameds\r\n";
         
         public AstExecuteStatementArg(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4612,13 +4852,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg_named
-    /// 	 :   EQUAL  
+    /// 	 : name = LOCAL_ID  EQUAL  value = execute_parameter
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteStatementArgNamed : AstRule
     {
+        
+        protected static string _rule = "execute_statement_arg_named\r\n\t : name = LOCAL_ID  EQUAL  value = execute_paramete" +
+            "r\r\n";
         
         public AstExecuteStatementArgNamed(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4643,13 +4883,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg_unnamed
-    /// 	 : 
+    /// 	 : value = execute_parameter
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteStatementArgUnnamed : AstRule
     {
+        
+        protected static string _rule = "execute_statement_arg_unnamed\r\n\t : value = execute_parameter\r\n";
         
         public AstExecuteStatementArgUnnamed(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4674,13 +4913,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_parameter
-    /// 	 : constant LOCAL_ID  OUTPUT OUT? id_ DEFAULT NULL_
+    /// 	 : (constant LOCAL_ID  (OUTPUT OUT)? id_ DEFAULT NULL_)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteParameter : AstRule
     {
+        
+        protected static string _rule = "execute_parameter\r\n\t : (constant LOCAL_ID  (OUTPUT OUT)? id_ DEFAULT NULL_)\r\n";
         
         public AstExecuteParameter(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4705,14 +4943,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_var_string
-    /// 	 : LOCAL_ID  OUTPUT OUT?  PLUS  LOCAL_ID  PLUS  execute_var_string??
-    /// 	 | STRING  PLUS  LOCAL_ID  PLUS  execute_var_string??
+    /// 	 : LOCAL_ID  (OUTPUT OUT)?  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?
+    /// 	 | STRING  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteVarString : AstRule
     {
+        
+        protected static string _rule = "execute_var_string\r\n\t : LOCAL_ID  (OUTPUT OUT)?  (PLUS  LOCAL_ID  (PLUS  execute_" +
+            "var_string)?)?\r\n\t | STRING  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?\r\n";
         
         public AstExecuteVarString(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4738,18 +4976,25 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// security_statement
     /// 	 : execute_clause  SEMI?
-    /// 	 | GRANT  ALL  PRIVILEGES? grant_permission  LR_BRACKET  column_name_list  RR_BRACKET?  ON  class_type_for_grant  DOUBLE_COLON?  ?  TO  to_principal_rincipal_ids  WITH  GRANT  OPTION?  AS  ?  SEMI?
-    /// 	 | REVERT  LR_BRACKET  WITH  COOKIE  EQUAL  LOCAL_ID  RR_BRACKET?  SEMI?
+    /// 	 | GRANT  (ALL  PRIVILEGES? grant_permission  (LR_BRACKET  column_name_list  RR_BRACKET)?)  (ON  (class_type_for_grant  DOUBLE_COLON)?  on_id = full_table_name)?  TO  to_principal_rincipal_ids  (WITH  GRANT  OPTION)?  (AS  as_principal = principal_id)?  SEMI?
+    /// 	 | REVERT  (LR_BRACKET  WITH  COOKIE  EQUAL  LOCAL_ID  RR_BRACKET)?  SEMI?
     /// 	 | open_key
     /// 	 | close_key
     /// 	 | create_key
     /// 	 | create_certificate
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSecurityStatement : AstRule
     {
+        
+        protected static string _rule = @"security_statement
+	 : execute_clause  SEMI?
+	 | GRANT  (ALL  PRIVILEGES? grant_permission  (LR_BRACKET  column_name_list  RR_BRACKET)?)  (ON  (class_type_for_grant  DOUBLE_COLON)?  on_id = full_table_name)?  TO  to_principal_rincipal_ids  (WITH  GRANT  OPTION)?  (AS  as_principal = principal_id)?  SEMI?
+	 | REVERT  (LR_BRACKET  WITH  COOKIE  EQUAL  LOCAL_ID  RR_BRACKET)?  SEMI?
+	 | open_key
+	 | close_key
+	 | create_key
+	 | create_certificate
+";
         
         public AstSecurityStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4774,13 +5019,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// to_principal_rincipal_ids
-    /// 	 :   COMMA  *
+    /// 	 : to_principal += principal_id  (COMMA  to_principal += principal_id)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstToPrincipalRincipalIds : AstRule
     {
+        
+        protected static string _rule = "to_principal_rincipal_ids\r\n\t : to_principal += principal_id  (COMMA  to_principal" +
+            " += principal_id)*\r\n";
         
         public AstToPrincipalRincipalIds(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4806,13 +5051,14 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// existing_keys
     /// 	 : ASSEMBLY  assembly_name
-    /// 	 | EXECUTABLE?  FILE  EQUAL    WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET?
+    /// 	 | EXECUTABLE?  FILE  EQUAL  path_to_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExistingKeys : AstRule
     {
+        
+        protected static string _rule = "existing_keys\r\n\t : ASSEMBLY  assembly_name\r\n\t | EXECUTABLE?  FILE  EQUAL  path_to" +
+            "_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET" +
+            ")?\r\n";
         
         public AstExistingKeys(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4837,13 +5083,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// private_key_options
-    /// 	 : FILE BINARY  EQUAL    COMMA  DECRYPTION ENCRYPTION  BY  PASSWORD  EQUAL  ?
+    /// 	 : (FILE BINARY)  EQUAL  path = STRING  (COMMA  (DECRYPTION ENCRYPTION)  BY  PASSWORD  EQUAL  password = STRING)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPrivateKeyOptions : AstRule
     {
+        
+        protected static string _rule = "private_key_options\r\n\t : (FILE BINARY)  EQUAL  path = STRING  (COMMA  (DECRYPTION" +
+            " ENCRYPTION)  BY  PASSWORD  EQUAL  password = STRING)?\r\n";
         
         public AstPrivateKeyOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4868,13 +5114,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// generate_new_keys
-    /// 	 : ENCRYPTION  BY  PASSWORD  EQUAL  ?  WITH  SUBJECT  EQUAL    COMMA  date_options*
+    /// 	 : (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?  WITH  SUBJECT  EQUAL  certificate_subject_name = STRING  (COMMA  date_options)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGenerateNewKeys : AstRule
     {
+        
+        protected static string _rule = "generate_new_keys\r\n\t : (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?  WIT" +
+            "H  SUBJECT  EQUAL  certificate_subject_name = STRING  (COMMA  date_options)*\r\n";
         
         public AstGenerateNewKeys(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4899,13 +5145,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// date_options
-    /// 	 : START_DATE EXPIRY_DATE  EQUAL  STRING
+    /// 	 : (START_DATE EXPIRY_DATE)  EQUAL  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDateOptions : AstRule
     {
+        
+        protected static string _rule = "date_options\r\n\t : (START_DATE EXPIRY_DATE)  EQUAL  STRING\r\n";
         
         public AstDateOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4931,13 +5176,14 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// open_key
     /// 	 : OPEN  SYMMETRIC  KEY  symmetric_key_name  DECRYPTION  BY  decryption_mechanism
-    /// 	 | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  
+    /// 	 | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  password = STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOpenKey : AstRule
     {
+        
+        protected static string _rule = "open_key\r\n\t : OPEN  SYMMETRIC  KEY  symmetric_key_name  DECRYPTION  BY  decryptio" +
+            "n_mechanism\r\n\t | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  password = " +
+            "STRING\r\n";
         
         public AstOpenKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4966,11 +5212,11 @@ namespace Bb.Asts.TSql
     /// 	 | CLOSE  ALL  SYMMETRIC  KEYS
     /// 	 | CLOSE  MASTER  KEY
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCloseKey : AstRule
     {
+        
+        protected static string _rule = "close_key\r\n\t : CLOSE  SYMMETRIC  KEY  symmetric_key_name\r\n\t | CLOSE  ALL  SYMMETR" +
+            "IC  KEYS\r\n\t | CLOSE  MASTER  KEY\r\n";
         
         public AstCloseKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -4995,14 +5241,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_key
-    /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  
-    /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  AUTHORIZATION  user_name?  FROM  PROVIDER  provider_name?  WITH  key_options ENCRYPTION  BY  encryption_mechanism  COMMA?+
+    /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
+    /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  (AUTHORIZATION  user_name)?  (FROM  PROVIDER  provider_name)?  WITH  ((key_options ENCRYPTION  BY  encryption_mechanism)  COMMA?)+
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateKey : AstRule
     {
+        
+        protected static string _rule = @"create_key
+	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
+	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  (AUTHORIZATION  user_name)?  (FROM  PROVIDER  provider_name)?  WITH  ((key_options ENCRYPTION  BY  encryption_mechanism)  COMMA?)+
+";
         
         public AstCreateKey(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5027,17 +5275,22 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// key_options
-    /// 	 : KEY_SOURCE  EQUAL  
+    /// 	 : KEY_SOURCE  EQUAL  pass_phrase = STRING
     /// 	 | ALGORITHM  EQUAL  algorithm
-    /// 	 | IDENTITY_VALUE  EQUAL  
-    /// 	 | PROVIDER_KEY_NAME  EQUAL  
-    /// 	 | CREATION_DISPOSITION  EQUAL  CREATE_NEW OPEN_EXISTING
+    /// 	 | IDENTITY_VALUE  EQUAL  identity_phrase = STRING
+    /// 	 | PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = STRING
+    /// 	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW OPEN_EXISTING)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstKeyOptions : AstRule
     {
+        
+        protected static string _rule = @"key_options
+	 : KEY_SOURCE  EQUAL  pass_phrase = STRING
+	 | ALGORITHM  EQUAL  algorithm
+	 | IDENTITY_VALUE  EQUAL  identity_phrase = STRING
+	 | PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = STRING
+	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW OPEN_EXISTING)
+";
         
         public AstKeyOptions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5067,11 +5320,12 @@ namespace Bb.Asts.TSql
     /// 	 | SYMMETRIC  KEY  symmetric_key_name
     /// 	 | PASSWORD  EQUAL  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEncryptionMechanism : AstRule
     {
+        
+        protected static string _rule = "encryption_mechanism\r\n\t : CERTIFICATE  certificate_name\r\n\t | ASYMMETRIC  KEY  asy" +
+            "m_key_name\r\n\t | SYMMETRIC  KEY  symmetric_key_name\r\n\t | PASSWORD  EQUAL  STRING\r" +
+            "\n";
         
         public AstEncryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5096,16 +5350,17 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// decryption_mechanism
-    /// 	 : CERTIFICATE  certificate_name  WITH  PASSWORD  EQUAL  STRING?
-    /// 	 | ASYMMETRIC  KEY  asym_key_name  WITH  PASSWORD  EQUAL  STRING?
+    /// 	 : CERTIFICATE  certificate_name  (WITH  PASSWORD  EQUAL  STRING)?
+    /// 	 | ASYMMETRIC  KEY  asym_key_name  (WITH  PASSWORD  EQUAL  STRING)?
     /// 	 | SYMMETRIC  KEY  symmetric_key_name
     /// 	 | PASSWORD  EQUAL  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDecryptionMechanism : AstRule
     {
+        
+        protected static string _rule = "decryption_mechanism\r\n\t : CERTIFICATE  certificate_name  (WITH  PASSWORD  EQUAL  " +
+            "STRING)?\r\n\t | ASYMMETRIC  KEY  asym_key_name  (WITH  PASSWORD  EQUAL  STRING)?\r\n" +
+            "\t | SYMMETRIC  KEY  symmetric_key_name\r\n\t | PASSWORD  EQUAL  STRING\r\n";
         
         public AstDecryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5130,23 +5385,23 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// grant_permission
-    /// 	 : ADMINISTER  BULK  OPERATIONS DATABASE  BULK  OPERATIONS
-    /// 	 | ALTER  ANY  APPLICATION  ROLE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE COLUMN  ENCRYPTION  KEY MASTER  KEY CONNECTION CONTRACT CREDENTIAL DATABASE  AUDIT DDL  TRIGGER EVENT  NOTIFICATION SESSION SCOPED  CONFIGURATION? DATASPACE ENDPOINT EVENT  NOTIFICATION SESSION EXTERNAL  DATA  SOURCE FILE  FORMAT LIBRARY FULLTEXT  CATALOG LINKED  SERVER LOGIN MASK MESSAGE  TYPE REMOTE  SERVICE  BINDING ROLE ROUTE SCHEMA SECURITY  POLICY SERVER  AUDIT ROLE SERVICE SYMMETRIC  KEY USER RESOURCES SERVER  STATE SETTINGS TRACE?
+    /// 	 : ADMINISTER  (BULK  OPERATIONS DATABASE  BULK  OPERATIONS)
+    /// 	 | ALTER  (ANY  (APPLICATION  ROLE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE COLUMN  (ENCRYPTION  KEY MASTER  KEY) CONNECTION CONTRACT CREDENTIAL DATABASE  (AUDIT DDL  TRIGGER EVENT  (NOTIFICATION SESSION) SCOPED  CONFIGURATION)? DATASPACE ENDPOINT EVENT  (NOTIFICATION SESSION) EXTERNAL  (DATA  SOURCE FILE  FORMAT LIBRARY) FULLTEXT  CATALOG LINKED  SERVER LOGIN MASK MESSAGE  TYPE REMOTE  SERVICE  BINDING ROLE ROUTE SCHEMA SECURITY  POLICY SERVER  (AUDIT ROLE) SERVICE SYMMETRIC  KEY USER) RESOURCES SERVER  STATE SETTINGS TRACE)?
     /// 	 | AUTHENTICATE  SERVER?
-    /// 	 | BACKUP  DATABASE LOG
+    /// 	 | BACKUP  (DATABASE LOG)
     /// 	 | CHECKPOINT
-    /// 	 | CONNECT  ANY  DATABASE REPLICATION SQL?
+    /// 	 | CONNECT  (ANY  DATABASE REPLICATION SQL)?
     /// 	 | CONTROL  SERVER?
-    /// 	 | CREATE  AGGREGATE ANY  DATABASE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE CONTRACT DATABASE  DDL  EVENT  NOTIFICATION? DDL  EVENT  NOTIFICATION DEFAULT ENDPOINT EXTERNAL  LIBRARY FULLTEXT  CATALOG FUNCTION MESSAGE  TYPE PROCEDURE QUEUE REMOTE  SERVICE  BINDING ROLE ROUTE RULE SCHEMA SEQUENCE SERVER  ROLE SERVICE SYMMETRIC  KEY SYNONYM TABLE TRACE  EVENT  NOTIFICATION TYPE VIEW XML  SCHEMA  COLLECTION
+    /// 	 | CREATE  (AGGREGATE ANY  DATABASE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE CONTRACT DATABASE  (DDL  EVENT  NOTIFICATION)? DDL  EVENT  NOTIFICATION DEFAULT ENDPOINT EXTERNAL  LIBRARY FULLTEXT  CATALOG FUNCTION MESSAGE  TYPE PROCEDURE QUEUE REMOTE  SERVICE  BINDING ROLE ROUTE RULE SCHEMA SEQUENCE SERVER  ROLE SERVICE SYMMETRIC  KEY SYNONYM TABLE TRACE  EVENT  NOTIFICATION TYPE VIEW XML  SCHEMA  COLLECTION)
     /// 	 | DELETE
-    /// 	 | EXECUTE  ANY  EXTERNAL  SCRIPT?
+    /// 	 | EXECUTE  (ANY  EXTERNAL  SCRIPT)?
     /// 	 | EXTERNAL  ACCESS  ASSEMBLY
-    /// 	 | IMPERSONATE  ANY  LOGIN?
+    /// 	 | IMPERSONATE  (ANY  LOGIN)?
     /// 	 | INSERT
     /// 	 | KILL  DATABASE  CONNECTION
     /// 	 | RECEIVE
     /// 	 | REFERENCES
-    /// 	 | SELECT  ALL  USER  SECURABLES?
+    /// 	 | SELECT  (ALL  USER  SECURABLES)?
     /// 	 | SEND
     /// 	 | SHOWPLAN
     /// 	 | SHUTDOWN
@@ -5155,13 +5410,33 @@ namespace Bb.Asts.TSql
     /// 	 | UNMASK
     /// 	 | UNSAFE  ASSEMBLY
     /// 	 | UPDATE
-    /// 	 | VIEW  ANY  DATABASE DEFINITION COLUMN  ENCRYPTION MASTER  KEY  DEFINITION CHANGE  TRACKING DATABASE  STATE DEFINITION SERVER  STATE
+    /// 	 | VIEW  (ANY  (DATABASE DEFINITION COLUMN  (ENCRYPTION MASTER)  KEY  DEFINITION) CHANGE  TRACKING DATABASE  STATE DEFINITION SERVER  STATE)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGrantPermission : AstRule
     {
+        
+        protected static string _rule = "grant_permission\r\n\t : ADMINISTER  (BULK  OPERATIONS DATABASE  BULK  OPERATIONS)\r\n" +
+            "\t | ALTER  (ANY  (APPLICATION  ROLE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP" +
+            " CERTIFICATE COLUMN  (ENCRYPTION  KEY MASTER  KEY) CONNECTION CONTRACT CREDENTIA" +
+            "L DATABASE  (AUDIT DDL  TRIGGER EVENT  (NOTIFICATION SESSION) SCOPED  CONFIGURAT" +
+            "ION)? DATASPACE ENDPOINT EVENT  (NOTIFICATION SESSION) EXTERNAL  (DATA  SOURCE F" +
+            "ILE  FORMAT LIBRARY) FULLTEXT  CATALOG LINKED  SERVER LOGIN MASK MESSAGE  TYPE R" +
+            "EMOTE  SERVICE  BINDING ROLE ROUTE SCHEMA SECURITY  POLICY SERVER  (AUDIT ROLE) " +
+            "SERVICE SYMMETRIC  KEY USER) RESOURCES SERVER  STATE SETTINGS TRACE)?\r\n\t | AUTHE" +
+            "NTICATE  SERVER?\r\n\t | BACKUP  (DATABASE LOG)\r\n\t | CHECKPOINT\r\n\t | CONNECT  (ANY " +
+            " DATABASE REPLICATION SQL)?\r\n\t | CONTROL  SERVER?\r\n\t | CREATE  (AGGREGATE ANY  D" +
+            "ATABASE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE CONTRACT DATABA" +
+            "SE  (DDL  EVENT  NOTIFICATION)? DDL  EVENT  NOTIFICATION DEFAULT ENDPOINT EXTERN" +
+            "AL  LIBRARY FULLTEXT  CATALOG FUNCTION MESSAGE  TYPE PROCEDURE QUEUE REMOTE  SER" +
+            "VICE  BINDING ROLE ROUTE RULE SCHEMA SEQUENCE SERVER  ROLE SERVICE SYMMETRIC  KE" +
+            "Y SYNONYM TABLE TRACE  EVENT  NOTIFICATION TYPE VIEW XML  SCHEMA  COLLECTION)\r\n\t" +
+            " | DELETE\r\n\t | EXECUTE  (ANY  EXTERNAL  SCRIPT)?\r\n\t | EXTERNAL  ACCESS  ASSEMBLY" +
+            "\r\n\t | IMPERSONATE  (ANY  LOGIN)?\r\n\t | INSERT\r\n\t | KILL  DATABASE  CONNECTION\r\n\t " +
+            "| RECEIVE\r\n\t | REFERENCES\r\n\t | SELECT  (ALL  USER  SECURABLES)?\r\n\t | SEND\r\n\t | S" +
+            "HOWPLAN\r\n\t | SHUTDOWN\r\n\t | SUBSCRIBE  QUERY  NOTIFICATIONS\r\n\t | TAKE  OWNERSHIP\r" +
+            "\n\t | UNMASK\r\n\t | UNSAFE  ASSEMBLY\r\n\t | UPDATE\r\n\t | VIEW  (ANY  (DATABASE DEFINIT" +
+            "ION COLUMN  (ENCRYPTION MASTER)  KEY  DEFINITION) CHANGE  TRACKING DATABASE  STA" +
+            "TE DEFINITION SERVER  STATE)\r\n";
         
         public AstGrantPermission(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5186,16 +5461,20 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// set_statement
-    /// 	 : SET  LOCAL_ID  DOT  ?  EQUAL  expression  SEMI?
+    /// 	 : SET  LOCAL_ID  (DOT  member_name = id_)?  EQUAL  expression  SEMI?
     /// 	 | SET  LOCAL_ID  assignment_operator  expression  SEMI?
-    /// 	 | SET  LOCAL_ID  EQUAL  CURSOR  declare_set_cursor_common  FOR  READ  ONLY UPDATE  OF  column_name_list??  SEMI?
+    /// 	 | SET  LOCAL_ID  EQUAL  CURSOR  declare_set_cursor_common  (FOR  (READ  ONLY UPDATE  (OF  column_name_list)?))?  SEMI?
     /// 	 | set_special
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSetStatement : AstRule
     {
+        
+        protected static string _rule = @"set_statement
+	 : SET  LOCAL_ID  (DOT  member_name = id_)?  EQUAL  expression  SEMI?
+	 | SET  LOCAL_ID  assignment_operator  expression  SEMI?
+	 | SET  LOCAL_ID  EQUAL  CURSOR  declare_set_cursor_common  (FOR  (READ  ONLY UPDATE  (OF  column_name_list)?))?  SEMI?
+	 | set_special
+";
         
         public AstSetStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5220,21 +5499,30 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// transaction_statement
-    /// 	 : BEGIN  DISTRIBUTED  TRAN TRANSACTION  id_ LOCAL_ID?  SEMI?
-    /// 	 | BEGIN  TRAN TRANSACTION  id_ LOCAL_ID  WITH  MARK  STRING??  SEMI?
-    /// 	 | COMMIT  TRAN TRANSACTION  id_ LOCAL_ID  WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  OFF ON  RR_BRACKET??  SEMI?
+    /// 	 : BEGIN  DISTRIBUTED  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+    /// 	 | BEGIN  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  MARK  STRING)?)?  SEMI?
+    /// 	 | COMMIT  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  (OFF ON)  RR_BRACKET)?)?  SEMI?
     /// 	 | COMMIT  WORK?  SEMI?
     /// 	 | COMMIT  id_
     /// 	 | ROLLBACK  id_
-    /// 	 | ROLLBACK  TRAN TRANSACTION  id_ LOCAL_ID?  SEMI?
+    /// 	 | ROLLBACK  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
     /// 	 | ROLLBACK  WORK?  SEMI?
-    /// 	 | SAVE  TRAN TRANSACTION  id_ LOCAL_ID?  SEMI?
+    /// 	 | SAVE  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTransactionStatement : AstRule
     {
+        
+        protected static string _rule = @"transaction_statement
+	 : BEGIN  DISTRIBUTED  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+	 | BEGIN  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  MARK  STRING)?)?  SEMI?
+	 | COMMIT  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  (OFF ON)  RR_BRACKET)?)?  SEMI?
+	 | COMMIT  WORK?  SEMI?
+	 | COMMIT  id_
+	 | ROLLBACK  id_
+	 | ROLLBACK  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+	 | ROLLBACK  WORK?  SEMI?
+	 | SAVE  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+";
         
         public AstTransactionStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5259,13 +5547,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// go_statement
-    /// 	 : GO  ?
+    /// 	 : GO  (count = DECIMAL)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGoStatement : AstRule
     {
+        
+        protected static string _rule = "go_statement\r\n\t : GO  (count = DECIMAL)?\r\n";
         
         public AstGoStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5290,13 +5577,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// setuser_statement
-    /// 	 : SETUSER  
+    /// 	 : SETUSER  user = STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSetuserStatement : AstRule
     {
+        
+        protected static string _rule = "setuser_statement\r\n\t : SETUSER  user = STRING\r\n";
         
         public AstSetuserStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5321,13 +5607,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// reconfigure_statement
-    /// 	 : RECONFIGURE  WITH  OVERRIDE?
+    /// 	 : RECONFIGURE  (WITH  OVERRIDE)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstReconfigureStatement : AstRule
     {
+        
+        protected static string _rule = "reconfigure_statement\r\n\t : RECONFIGURE  (WITH  OVERRIDE)?\r\n";
         
         public AstReconfigureStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5352,13 +5637,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// shutdown_statement
-    /// 	 : SHUTDOWN  WITH  NOWAIT?
+    /// 	 : SHUTDOWN  (WITH  NOWAIT)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstShutdownStatement : AstRule
     {
+        
+        protected static string _rule = "shutdown_statement\r\n\t : SHUTDOWN  (WITH  NOWAIT)?\r\n";
         
         public AstShutdownStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5383,13 +5667,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// checkpoint_statement
-    /// 	 : CHECKPOINT  ?
+    /// 	 : CHECKPOINT  (checkPointDuration = DECIMAL)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCheckpointStatement : AstRule
     {
+        
+        protected static string _rule = "checkpoint_statement\r\n\t : CHECKPOINT  (checkPointDuration = DECIMAL)?\r\n";
         
         public AstCheckpointStatement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5414,13 +5697,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dbcc_special
-    /// 	 : DBCC  SHRINKLOG  LR_BRACKET  SIZE  EQUAL  constant_expression id_ DEFAULT  RR_BRACKET?  SEMI?
+    /// 	 : DBCC  SHRINKLOG  (LR_BRACKET  SIZE  EQUAL  (constant_expression id_ DEFAULT)  RR_BRACKET)?  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDbccSpecial : AstRule
     {
+        
+        protected static string _rule = "dbcc_special\r\n\t : DBCC  SHRINKLOG  (LR_BRACKET  SIZE  EQUAL  (constant_expression" +
+            " id_ DEFAULT)  RR_BRACKET)?  SEMI?\r\n";
         
         public AstDbccSpecial(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5445,13 +5728,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dbcc_clause
-    /// 	 : DBCC    LR_BRACKET  expression_list  RR_BRACKET?  WITH  dbcc_options?  SEMI?
+    /// 	 : DBCC  name = dbcc_command  (LR_BRACKET  expression_list  RR_BRACKET)?  (WITH  dbcc_options)?  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDbccClause : AstRule
     {
+        
+        protected static string _rule = "dbcc_clause\r\n\t : DBCC  name = dbcc_command  (LR_BRACKET  expression_list  RR_BRAC" +
+            "KET)?  (WITH  dbcc_options)?  SEMI?\r\n";
         
         public AstDbccClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5479,11 +5762,10 @@ namespace Bb.Asts.TSql
     /// 	 : simple_id
     /// 	 | keyword
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDbccCommand : AstRule
     {
+        
+        protected static string _rule = "dbcc_command\r\n\t : simple_id\r\n\t | keyword\r\n";
         
         public AstDbccCommand(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5508,13 +5790,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_clause
-    /// 	 : EXECUTE  AS  
+    /// 	 : EXECUTE  AS  clause = (CALLER SELF OWNER STRING)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExecuteClause : AstRule
     {
+        
+        protected static string _rule = "execute_clause\r\n\t : EXECUTE  AS  clause = (CALLER SELF OWNER STRING)\r\n";
         
         public AstExecuteClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5539,14 +5820,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_type_indices
-    /// 	 : PRIMARY  KEY INDEX  id_  CLUSTERED NONCLUSTERED? UNIQUE  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+    /// 	 : (((PRIMARY  KEY INDEX  id_)  (CLUSTERED NONCLUSTERED)?) UNIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET
     /// 	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableTypeIndices : AstRule
     {
+        
+        protected static string _rule = "table_type_indices\r\n\t : (((PRIMARY  KEY INDEX  id_)  (CLUSTERED NONCLUSTERED)?) U" +
+            "NIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET\r\n\t | CHECK  LR_BRACK" +
+            "ET  search_condition  RR_BRACKET\r\n";
         
         public AstTableTypeIndices(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5573,11 +5855,10 @@ namespace Bb.Asts.TSql
     /// xml_schema_collection
     /// 	 : ID  DOT  ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstXmlSchemaCollection : AstRule
     {
+        
+        protected static string _rule = "xml_schema_collection\r\n\t : ID  DOT  ID\r\n";
         
         public AstXmlSchemaCollection(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5606,11 +5887,11 @@ namespace Bb.Asts.TSql
     /// 	 | materialized_column_definition
     /// 	 | table_constraint
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnDefTableConstraint : AstRule
     {
+        
+        protected static string _rule = "column_def_table_constraint\r\n\t : column_definition\r\n\t | materialized_column_defin" +
+            "ition\r\n\t | table_constraint\r\n";
         
         public AstColumnDefTableConstraint(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5638,20 +5919,31 @@ namespace Bb.Asts.TSql
     /// 	 : FILESTREAM
     /// 	 | COLLATE  collation_name
     /// 	 | SPARSE
-    /// 	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL    RR_BRACKET
-    /// 	 | CONSTRAINT  constraint_name?  DEFAULT  
-    /// 	 | IDENTITY  LR_BRACKET    COMMA    RR_BRACKET?
+    /// 	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = STRING  RR_BRACKET
+    /// 	 | (CONSTRAINT  constraint_name)?  DEFAULT  constant_expr = expression
+    /// 	 | IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  increment = DECIMAL  RR_BRACKET)?
     /// 	 | NOT  FOR  REPLICATION
-    /// 	 | GENERATED  ALWAYS  AS  ROW TRANSACTION_ID SEQUENCE_NUMBER  START END  HIDDEN_KEYWORD?
+    /// 	 | GENERATED  ALWAYS  AS  (ROW TRANSACTION_ID SEQUENCE_NUMBER)  (START END)  HIDDEN_KEYWORD?
     /// 	 | ROWGUIDCOL
-    /// 	 | ENCRYPTED  WITH  LR_BRACKET  COLUMN_ENCRYPTION_KEY  EQUAL    COMMA  ENCRYPTION_TYPE  EQUAL  DETERMINISTIC RANDOMIZED  COMMA  ALGORITHM  EQUAL    RR_BRACKET
+    /// 	 | ENCRYPTED  WITH  LR_BRACKET  COLUMN_ENCRYPTION_KEY  EQUAL  key_name = STRING  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = STRING  RR_BRACKET
     /// 	 | column_constraint
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnDefinitionElement : AstRule
     {
+        
+        protected static string _rule = @"column_definition_element
+	 : FILESTREAM
+	 | COLLATE  collation_name
+	 | SPARSE
+	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = STRING  RR_BRACKET
+	 | (CONSTRAINT  constraint_name)?  DEFAULT  constant_expr = expression
+	 | IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  increment = DECIMAL  RR_BRACKET)?
+	 | NOT  FOR  REPLICATION
+	 | GENERATED  ALWAYS  AS  (ROW TRANSACTION_ID SEQUENCE_NUMBER)  (START END)  HIDDEN_KEYWORD?
+	 | ROWGUIDCOL
+	 | ENCRYPTED  WITH  LR_BRACKET  COLUMN_ENCRYPTION_KEY  EQUAL  key_name = STRING  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = STRING  RR_BRACKET
+	 | column_constraint
+";
         
         public AstColumnDefinitionElement(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5676,13 +5968,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_constraint
-    /// 	 : CONSTRAINT  constraint_name?  null_notnull PRIMARY  KEY UNIQUE  clustered?  primary_key_options FOREIGN  KEY?  foreign_key_options check_constraint
+    /// 	 : (CONSTRAINT  constraint_name)?  (null_notnull ((PRIMARY  KEY UNIQUE)  clustered?  primary_key_options) ((FOREIGN  KEY)?  foreign_key_options) check_constraint)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnConstraint : AstRule
     {
+        
+        protected static string _rule = "column_constraint\r\n\t : (CONSTRAINT  constraint_name)?  (null_notnull ((PRIMARY  K" +
+            "EY UNIQUE)  clustered?  primary_key_options) ((FOREIGN  KEY)?  foreign_key_optio" +
+            "ns) check_constraint)\r\n";
         
         public AstColumnConstraint(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5707,13 +6000,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_partition_or_filegroup
-    /// 	 : ON  partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET file_group_name DEFAULT_DOUBLE_QUOTE
+    /// 	 : ON  ((partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET) file_group_name DEFAULT_DOUBLE_QUOTE)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOnPartitionOrFilegroup : AstRule
     {
+        
+        protected static string _rule = "on_partition_or_filegroup\r\n\t : ON  ((partition_scheme_name  LR_BRACKET  partition" +
+            "_column_name  RR_BRACKET) file_group_name DEFAULT_DOUBLE_QUOTE)\r\n";
         
         public AstOnPartitionOrFilegroup(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5738,13 +6031,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_constraint
-    /// 	 : CONSTRAINT  constraint_name?  PRIMARY  KEY UNIQUE  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options FOREIGN  KEY  LR_BRACKET    RR_BRACKET  foreign_key_options CONNECTION  LR_BRACKET  connection_node  COMMA  connection_node*  RR_BRACKET DEFAULT  LR_BRACKET?  STRING PLUS function_call DECIMAL+ NEXT  VALUE  FOR  full_table_name  RR_BRACKET?  FOR  id_ check_constraint
+    /// 	 : (CONSTRAINT  constraint_name)?  (((PRIMARY  KEY UNIQUE)  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options) (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  foreign_key_options) (CONNECTION  LR_BRACKET  connection_node  (COMMA  connection_node)*  RR_BRACKET) (DEFAULT  LR_BRACKET?  ((STRING PLUS function_call DECIMAL)+ NEXT  VALUE  FOR  full_table_name)  RR_BRACKET?  FOR  id_) check_constraint)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableConstraint : AstRule
     {
+        
+        protected static string _rule = @"table_constraint
+	 : (CONSTRAINT  constraint_name)?  (((PRIMARY  KEY UNIQUE)  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options) (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  foreign_key_options) (CONNECTION  LR_BRACKET  connection_node  (COMMA  connection_node)*  RR_BRACKET) (DEFAULT  LR_BRACKET?  ((STRING PLUS function_call DECIMAL)+ NEXT  VALUE  FOR  full_table_name)  RR_BRACKET?  FOR  id_) check_constraint)
+";
         
         public AstTableConstraint(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5769,13 +6063,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// connection_node
-    /// 	 :   TO  
+    /// 	 : from_node_table = id_  TO  to_node_table = id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstConnectionNode : AstRule
     {
+        
+        protected static string _rule = "connection_node\r\n\t : from_node_table = id_  TO  to_node_table = id_\r\n";
         
         public AstConnectionNode(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5800,13 +6093,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_delete
-    /// 	 : ON  DELETE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
+    /// 	 : ON  DELETE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOnDelete : AstRule
     {
+        
+        protected static string _rule = "on_delete\r\n\t : ON  DELETE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)\r\n";
         
         public AstOnDelete(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5831,13 +6123,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_update
-    /// 	 : ON  UPDATE  NO  ACTION CASCADE SET  NULL_ SET  DEFAULT
+    /// 	 : ON  UPDATE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOnUpdate : AstRule
     {
+        
+        protected static string _rule = "on_update\r\n\t : ON  UPDATE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)\r\n";
         
         public AstOnUpdate(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5870,19 +6161,34 @@ namespace Bb.Asts.TSql
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
     /// 	 | SORT_IN_TEMPDB  EQUAL  on_off
-    /// 	 | MAXDOP  EQUAL  
-    /// 	 | DATA_COMPRESSION  EQUAL  NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE  on_partitions?
+    /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// 	 | distribution
-    /// 	 | ONLINE  EQUAL  ON  LR_BRACKET  low_priority_lock_wait  RR_BRACKET? OFF
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
     /// 	 | RESUMABLE  EQUAL  on_off
-    /// 	 | MAX_DURATION  EQUAL    MINUTES?
+    /// 	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAlterTableIndexOption : AstRule
     {
+        
+        protected static string _rule = @"alter_table_index_option
+	 : PAD_INDEX  EQUAL  on_off
+	 | FILLFACTOR  EQUAL  DECIMAL
+	 | IGNORE_DUP_KEY  EQUAL  on_off
+	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
+	 | ALLOW_ROW_LOCKS  EQUAL  on_off
+	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+	 | SORT_IN_TEMPDB  EQUAL  on_off
+	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
+	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+	 | distribution
+	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+	 | RESUMABLE  EQUAL  on_off
+	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
+";
         
         public AstAlterTableIndexOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5908,16 +6214,17 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// declare_set_cursor_common_partial
     /// 	 : local_global
-    /// 	 | FORWARD_ONLY SCROLL
-    /// 	 | STATIC KEYSET DYNAMIC FAST_FORWARD
-    /// 	 | READ_ONLY SCROLL_LOCKS OPTIMISTIC
+    /// 	 | (FORWARD_ONLY SCROLL)
+    /// 	 | (STATIC KEYSET DYNAMIC FAST_FORWARD)
+    /// 	 | (READ_ONLY SCROLL_LOCKS OPTIMISTIC)
     /// 	 | TYPE_WARNING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDeclareSetCursorCommonPartial : AstRule
     {
+        
+        protected static string _rule = "declare_set_cursor_common_partial\r\n\t : local_global\r\n\t | (FORWARD_ONLY SCROLL)\r\n\t" +
+            " | (STATIC KEYSET DYNAMIC FAST_FORWARD)\r\n\t | (READ_ONLY SCROLL_LOCKS OPTIMISTIC)" +
+            "\r\n\t | TYPE_WARNING\r\n";
         
         public AstDeclareSetCursorCommonPartial(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5942,13 +6249,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// local_ids
-    /// 	 : LOCAL_ID  COMMA  LOCAL_ID*
+    /// 	 : LOCAL_ID  (COMMA  LOCAL_ID)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstLocalIds : AstRule
     {
+        
+        protected static string _rule = "local_ids\r\n\t : LOCAL_ID  (COMMA  LOCAL_ID)*\r\n";
         
         public AstLocalIds(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -5973,20 +6279,28 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// set_special
-    /// 	 : SET  id_  id_ constant_LOCAL_ID on_off  SEMI?
-    /// 	 | SET  STATISTICS  IO TIME XML PROFILE  on_off  SEMI?
-    /// 	 | SET  ROWCOUNT  LOCAL_ID DECIMAL  SEMI?
+    /// 	 : SET  id_  (id_ constant_LOCAL_ID on_off)  SEMI?
+    /// 	 | SET  STATISTICS  (IO TIME XML PROFILE)  on_off  SEMI?
+    /// 	 | SET  ROWCOUNT  (LOCAL_ID DECIMAL)  SEMI?
     /// 	 | SET  TEXTSIZE  DECIMAL  SEMI?
-    /// 	 | SET  TRANSACTION  ISOLATION  LEVEL  READ  UNCOMMITTED READ  COMMITTED REPEATABLE  READ SNAPSHOT SERIALIZABLE DECIMAL  SEMI?
+    /// 	 | SET  TRANSACTION  ISOLATION  LEVEL  (READ  UNCOMMITTED READ  COMMITTED REPEATABLE  READ SNAPSHOT SERIALIZABLE DECIMAL)  SEMI?
     /// 	 | SET  IDENTITY_INSERT  full_table_name  on_off  SEMI?
-    /// 	 | SET  special_list  COMMA  special_list*  on_off
+    /// 	 | SET  special_list  (COMMA  special_list)*  on_off
     /// 	 | SET  modify_method
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSetSpecial : AstRule
     {
+        
+        protected static string _rule = @"set_special
+	 : SET  id_  (id_ constant_LOCAL_ID on_off)  SEMI?
+	 | SET  STATISTICS  (IO TIME XML PROFILE)  on_off  SEMI?
+	 | SET  ROWCOUNT  (LOCAL_ID DECIMAL)  SEMI?
+	 | SET  TEXTSIZE  DECIMAL  SEMI?
+	 | SET  TRANSACTION  ISOLATION  LEVEL  (READ  UNCOMMITTED READ  COMMITTED REPEATABLE  READ SNAPSHOT SERIALIZABLE DECIMAL)  SEMI?
+	 | SET  IDENTITY_INSERT  full_table_name  on_off  SEMI?
+	 | SET  special_list  (COMMA  special_list)*  on_off
+	 | SET  modify_method
+";
         
         public AstSetSpecial(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6014,11 +6328,10 @@ namespace Bb.Asts.TSql
     /// 	 : constant
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstConstantLOCALID : AstRule
     {
+        
+        protected static string _rule = "constant_LOCAL_ID\r\n\t : constant\r\n\t | LOCAL_ID\r\n";
         
         public AstConstantLOCALID(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6045,24 +6358,38 @@ namespace Bb.Asts.TSql
     /// expression
     /// 	 : primitive_expression
     /// 	 | function_call
-    /// 	 | expression  DOT  value_call query_call exist_call modify_call
+    /// 	 | expression  DOT  (value_call query_call exist_call modify_call)
     /// 	 | expression  DOT  hierarchyid_call
     /// 	 | expression  COLLATE  id_
     /// 	 | case_expression
     /// 	 | full_column_name
     /// 	 | bracket_expression
     /// 	 | unary_operator_expression
-    /// 	 | expression    expression
-    /// 	 | expression    expression
+    /// 	 | expression  op = (STAR DIVIDE MODULE)  expression
+    /// 	 | expression  op = (PLUS MINUS BIT_AND BIT_XOR BIT_OR DOUBLE_BAR)  expression
     /// 	 | expression  time_zone
     /// 	 | over_clause
     /// 	 | DOLLAR_ACTION
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExpression : AstRule
     {
+        
+        protected static string _rule = @"expression
+	 : primitive_expression
+	 | function_call
+	 | expression  DOT  (value_call query_call exist_call modify_call)
+	 | expression  DOT  hierarchyid_call
+	 | expression  COLLATE  id_
+	 | case_expression
+	 | full_column_name
+	 | bracket_expression
+	 | unary_operator_expression
+	 | expression  op = (STAR DIVIDE MODULE)  expression
+	 | expression  op = (PLUS MINUS BIT_AND BIT_XOR BIT_OR DOUBLE_BAR)  expression
+	 | expression  time_zone
+	 | over_clause
+	 | DOLLAR_ACTION
+";
         
         public AstExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6092,11 +6419,10 @@ namespace Bb.Asts.TSql
     /// 	 | LOCAL_ID
     /// 	 | constant
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPrimitiveExpression : AstRule
     {
+        
+        protected static string _rule = "primitive_expression\r\n\t : DEFAULT\r\n\t | NULL_\r\n\t | LOCAL_ID\r\n\t | constant\r\n";
         
         public AstPrimitiveExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6121,14 +6447,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// case_expression
-    /// 	 : CASE    switch_section+  ELSE  ?  END
-    /// 	 | CASE  switch_search_condition_section+  ELSE  ?  END
+    /// 	 : CASE  caseExpr = expression  switch_section+  (ELSE  elseExpr = expression)?  END
+    /// 	 | CASE  switch_search_condition_section+  (ELSE  elseExpr = expression)?  END
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCaseExpression : AstRule
     {
+        
+        protected static string _rule = "case_expression\r\n\t : CASE  caseExpr = expression  switch_section+  (ELSE  elseExp" +
+            "r = expression)?  END\r\n\t | CASE  switch_search_condition_section+  (ELSE  elseEx" +
+            "pr = expression)?  END\r\n";
         
         public AstCaseExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6154,13 +6481,13 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// unary_operator_expression
     /// 	 : BIT_NOT  expression
-    /// 	 |   expression
+    /// 	 | op = (PLUS MINUS)  expression
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUnaryOperatorExpression : AstRule
     {
+        
+        protected static string _rule = "unary_operator_expression\r\n\t : BIT_NOT  expression\r\n\t | op = (PLUS MINUS)  expres" +
+            "sion\r\n";
         
         public AstUnaryOperatorExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6188,11 +6515,11 @@ namespace Bb.Asts.TSql
     /// 	 : LR_BRACKET  expression  RR_BRACKET
     /// 	 | LR_BRACKET  subquery  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBracketExpression : AstRule
     {
+        
+        protected static string _rule = "bracket_expression\r\n\t : LR_BRACKET  expression  RR_BRACKET\r\n\t | LR_BRACKET  subqu" +
+            "ery  RR_BRACKET\r\n";
         
         public AstBracketExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6223,11 +6550,11 @@ namespace Bb.Asts.TSql
     /// 	 | LOCAL_ID
     /// 	 | LR_BRACKET  constant_expression  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstConstantExpression : AstRule
     {
+        
+        protected static string _rule = "constant_expression\r\n\t : NULL_\r\n\t | constant\r\n\t | function_call\r\n\t | LOCAL_ID\r\n\t " +
+            "| LR_BRACKET  constant_expression  RR_BRACKET\r\n";
         
         public AstConstantExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6252,13 +6579,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// with_expression
-    /// 	 : WITH    COMMA  *
+    /// 	 : WITH  ctes += common_table_expression  (COMMA  ctes += common_table_expression)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWithExpression : AstRule
     {
+        
+        protected static string _rule = "with_expression\r\n\t : WITH  ctes += common_table_expression  (COMMA  ctes += commo" +
+            "n_table_expression)*\r\n";
         
         public AstWithExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6283,13 +6610,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// common_table_expression
-    /// 	 :   LR_BRACKET    RR_BRACKET?  AS  LR_BRACKET    RR_BRACKET
+    /// 	 : expression_name = id_  (LR_BRACKET  columns = column_name_list  RR_BRACKET)?  AS  LR_BRACKET  cte_query = select_statement  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCommonTableExpression : AstRule
     {
+        
+        protected static string _rule = "common_table_expression\r\n\t : expression_name = id_  (LR_BRACKET  columns = column" +
+            "_name_list  RR_BRACKET)?  AS  LR_BRACKET  cte_query = select_statement  RR_BRACK" +
+            "ET\r\n";
         
         public AstCommonTableExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6314,15 +6642,17 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem
-    /// 	 : LOCAL_ID  EQUAL  full_column_name  EQUAL assignment_operator  expression
-    /// 	 | full_column_name LOCAL_ID  EQUAL assignment_operator  expression
+    /// 	 : LOCAL_ID  EQUAL  full_column_name  (EQUAL assignment_operator)  expression
+    /// 	 | (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  expression
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUpdateElem : AstRule
     {
+        
+        protected static string _rule = "update_elem\r\n\t : LOCAL_ID  EQUAL  full_column_name  (EQUAL assignment_operator)  " +
+            "expression\r\n\t | (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  expres" +
+            "sion\r\n\t | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRA" +
+            "CKET\r\n";
         
         public AstUpdateElem(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6347,14 +6677,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem_merge
-    /// 	 : full_column_name LOCAL_ID  EQUAL assignment_operator  expression
+    /// 	 : (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  expression
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUpdateElemMerge : AstRule
     {
+        
+        protected static string _rule = "update_elem_merge\r\n\t : (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  " +
+            "expression\r\n\t | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  " +
+            "RR_BRACKET\r\n";
         
         public AstUpdateElemMerge(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6379,15 +6710,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// search_condition
-    /// 	 : NOT*  predicate LR_BRACKET  search_condition  RR_BRACKET
+    /// 	 : NOT*  (predicate LR_BRACKET  search_condition  RR_BRACKET)
     /// 	 | search_condition  AND  search_condition
     /// 	 | search_condition  OR  search_condition
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSearchCondition : AstRule
     {
+        
+        protected static string _rule = "search_condition\r\n\t : NOT*  (predicate LR_BRACKET  search_condition  RR_BRACKET)\r" +
+            "\n\t | search_condition  AND  search_condition\r\n\t | search_condition  OR  search_c" +
+            "ondition\r\n";
         
         public AstSearchCondition(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6416,17 +6748,26 @@ namespace Bb.Asts.TSql
     /// 	 | freetext_predicate
     /// 	 | expression  comparison_operator  expression
     /// 	 | expression  MULT_ASSIGN  expression
-    /// 	 | expression  comparison_operator  ALL SOME ANY  LR_BRACKET  subquery  RR_BRACKET
+    /// 	 | expression  comparison_operator  (ALL SOME ANY)  LR_BRACKET  subquery  RR_BRACKET
     /// 	 | expression  NOT*  BETWEEN  expression  AND  expression
-    /// 	 | expression  NOT*  IN  LR_BRACKET  subquery expression_list  RR_BRACKET
-    /// 	 | expression  NOT*  LIKE  expression  ESCAPE  expression?
+    /// 	 | expression  NOT*  IN  LR_BRACKET  (subquery expression_list)  RR_BRACKET
+    /// 	 | expression  NOT*  LIKE  expression  (ESCAPE  expression)?
     /// 	 | expression  IS  null_notnull
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstPredicate : AstRule
     {
+        
+        protected static string _rule = @"predicate
+	 : EXISTS  LR_BRACKET  subquery  RR_BRACKET
+	 | freetext_predicate
+	 | expression  comparison_operator  expression
+	 | expression  MULT_ASSIGN  expression
+	 | expression  comparison_operator  (ALL SOME ANY)  LR_BRACKET  subquery  RR_BRACKET
+	 | expression  NOT*  BETWEEN  expression  AND  expression
+	 | expression  NOT*  IN  LR_BRACKET  (subquery expression_list)  RR_BRACKET
+	 | expression  NOT*  LIKE  expression  (ESCAPE  expression)?
+	 | expression  IS  null_notnull
+";
         
         public AstPredicate(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6451,14 +6792,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_expression
-    /// 	 : query_specification LR_BRACKET  query_expression  RR_BRACKET  UNION  ALL?  query_expression?
-    /// 	 | query_specification  select_order_by_clause?  
+    /// 	 : (query_specification LR_BRACKET  query_expression  RR_BRACKET  (UNION  ALL?  query_expression)?)
+    /// 	 | query_specification  select_order_by_clause?  unions += sql_union
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueryExpression : AstRule
     {
+        
+        protected static string _rule = "query_expression\r\n\t : (query_specification LR_BRACKET  query_expression  RR_BRACK" +
+            "ET  (UNION  ALL?  query_expression)?)\r\n\t | query_specification  select_order_by_" +
+            "clause?  unions += sql_union\r\n";
         
         public AstQueryExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6483,13 +6825,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// sql_union
-    /// 	 : UNION  ALL? EXCEPT INTERSECT   LR_BRACKET    RR_BRACKET
+    /// 	 : (UNION  ALL? EXCEPT INTERSECT)  (spec = query_specification (LR_BRACKET  op = query_expression  RR_BRACKET))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSqlUnion : AstRule
     {
+        
+        protected static string _rule = "sql_union\r\n\t : (UNION  ALL? EXCEPT INTERSECT)  (spec = query_specification (LR_BR" +
+            "ACKET  op = query_expression  RR_BRACKET))\r\n";
         
         public AstSqlUnion(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6514,13 +6856,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_specification
-    /// 	 : SELECT        INTO  ?  FROM  ?  WHERE  ?  GROUP  BY    groupBys_list GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET?  HAVING  ?
+    /// 	 : SELECT  allOrDistinct = (ALL DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_name)?  (FROM  from = table_sources)?  (WHERE  where = search_condition)?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQuerySpecification : AstRule
     {
+        
+        protected static string _rule = @"query_specification
+	 : SELECT  allOrDistinct = (ALL DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_name)?  (FROM  from = table_sources)?  (WHERE  where = search_condition)?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
+";
         
         public AstQuerySpecification(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6545,13 +6888,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// groupSet_list
-    /// 	 :   COMMA  *
+    /// 	 : groupSets += grouping_sets_item  (COMMA  groupSets += grouping_sets_item)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGroupSetList : AstRule
     {
+        
+        protected static string _rule = "groupSet_list\r\n\t : groupSets += grouping_sets_item  (COMMA  groupSets += grouping" +
+            "_sets_item)*\r\n";
         
         public AstGroupSetList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6576,13 +6919,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// groupBys_list
-    /// 	 :   COMMA  *
+    /// 	 : groupBys += group_by_item  (COMMA  groupBys += group_by_item)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGroupBysList : AstRule
     {
+        
+        protected static string _rule = "groupBys_list\r\n\t : groupBys += group_by_item  (COMMA  groupBys += group_by_item)*" +
+            "\r\n";
         
         public AstGroupBysList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6607,13 +6950,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// top_clause
-    /// 	 : TOP  top_percent top_count  WITH  TIES?
+    /// 	 : TOP  (top_percent top_count)  (WITH  TIES)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTopClause : AstRule
     {
+        
+        protected static string _rule = "top_clause\r\n\t : TOP  (top_percent top_count)  (WITH  TIES)?\r\n";
         
         public AstTopClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6638,14 +6980,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// top_percent
-    /// 	 :   PERCENT
-    /// 	 | LR_BRACKET    RR_BRACKET  PERCENT
+    /// 	 : percent_constant = (REAL FLOAT DECIMAL)  PERCENT
+    /// 	 | LR_BRACKET  topper_expression = expression  RR_BRACKET  PERCENT
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTopPercent : AstRule
     {
+        
+        protected static string _rule = "top_percent\r\n\t : percent_constant = (REAL FLOAT DECIMAL)  PERCENT\r\n\t | LR_BRACKET" +
+            "  topper_expression = expression  RR_BRACKET  PERCENT\r\n";
         
         public AstTopPercent(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6670,14 +7012,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// top_count
-    /// 	 : 
-    /// 	 | LR_BRACKET    RR_BRACKET
+    /// 	 : count_constant = DECIMAL
+    /// 	 | LR_BRACKET  topcount_expression = expression  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTopCount : AstRule
     {
+        
+        protected static string _rule = "top_count\r\n\t : count_constant = DECIMAL\r\n\t | LR_BRACKET  topcount_expression = ex" +
+            "pression  RR_BRACKET\r\n";
         
         public AstTopCount(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6702,13 +7044,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// order_by_clause
-    /// 	 : ORDER  BY    COMMA  *
+    /// 	 : ORDER  BY  order_bys += order_by_expression  (COMMA  order_bys += order_by_expression)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOrderByClause : AstRule
     {
+        
+        protected static string _rule = "order_by_clause\r\n\t : ORDER  BY  order_bys += order_by_expression  (COMMA  order_b" +
+            "ys += order_by_expression)*\r\n";
         
         public AstOrderByClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6734,16 +7076,21 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// for_clause
     /// 	 : FOR  BROWSE
-    /// 	 | FOR  XML  RAW  LR_BRACKET  STRING  RR_BRACKET? AUTO  xml_common_directives*  COMMA  XMLDATA XMLSCHEMA  LR_BRACKET  STRING  RR_BRACKET??  COMMA  ELEMENTS  XSINIL ABSENT??
-    /// 	 | FOR  XML  EXPLICIT  xml_common_directives*  COMMA  XMLDATA?
-    /// 	 | FOR  XML  PATH  LR_BRACKET  STRING  RR_BRACKET?  xml_common_directives*  COMMA  ELEMENTS  XSINIL ABSENT??
-    /// 	 | FOR  JSON  AUTO PATH  COMMA  ROOT  LR_BRACKET  STRING  RR_BRACKET INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER*
+    /// 	 | FOR  XML  (RAW  (LR_BRACKET  STRING  RR_BRACKET)? AUTO)  xml_common_directives*  (COMMA  (XMLDATA XMLSCHEMA  (LR_BRACKET  STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
+    /// 	 | FOR  XML  EXPLICIT  xml_common_directives*  (COMMA  XMLDATA)?
+    /// 	 | FOR  XML  PATH  (LR_BRACKET  STRING  RR_BRACKET)?  xml_common_directives*  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
+    /// 	 | FOR  JSON  (AUTO PATH)  (COMMA  (ROOT  (LR_BRACKET  STRING  RR_BRACKET) INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER))*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstForClause : AstRule
     {
+        
+        protected static string _rule = @"for_clause
+	 : FOR  BROWSE
+	 | FOR  XML  (RAW  (LR_BRACKET  STRING  RR_BRACKET)? AUTO)  xml_common_directives*  (COMMA  (XMLDATA XMLSCHEMA  (LR_BRACKET  STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
+	 | FOR  XML  EXPLICIT  xml_common_directives*  (COMMA  XMLDATA)?
+	 | FOR  XML  PATH  (LR_BRACKET  STRING  RR_BRACKET)?  xml_common_directives*  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
+	 | FOR  JSON  (AUTO PATH)  (COMMA  (ROOT  (LR_BRACKET  STRING  RR_BRACKET) INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER))*
+";
         
         public AstForClause(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6768,13 +7115,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_common_directives
-    /// 	 : COMMA  BINARY_KEYWORD  BASE64 TYPE ROOT  LR_BRACKET  STRING  RR_BRACKET?
+    /// 	 : COMMA  (BINARY_KEYWORD  BASE64 TYPE ROOT  (LR_BRACKET  STRING  RR_BRACKET)?)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstXmlCommonDirectives : AstRule
     {
+        
+        protected static string _rule = "xml_common_directives\r\n\t : COMMA  (BINARY_KEYWORD  BASE64 TYPE ROOT  (LR_BRACKET " +
+            " STRING  RR_BRACKET)?)\r\n";
         
         public AstXmlCommonDirectives(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6799,13 +7146,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// order_by_expression
-    /// 	 :    ?
+    /// 	 : order_by = expression  (ascending = ASC descending = DESC)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOrderByExpression : AstRule
     {
+        
+        protected static string _rule = "order_by_expression\r\n\t : order_by = expression  (ascending = ASC descending = DES" +
+            "C)?\r\n";
         
         public AstOrderByExpression(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6833,11 +7180,11 @@ namespace Bb.Asts.TSql
     /// 	 : grouping_sets_list
     /// 	 | LR_BRACKET  grouping_sets_list?  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGroupingSetsItem : AstRule
     {
+        
+        protected static string _rule = "grouping_sets_item\r\n\t : grouping_sets_list\r\n\t | LR_BRACKET  grouping_sets_list?  " +
+            "RR_BRACKET\r\n";
         
         public AstGroupingSetsItem(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6862,13 +7209,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// grouping_sets_list
-    /// 	 :   COMMA  *
+    /// 	 : groupSetItems += group_by_item  (COMMA  groupSetItems += group_by_item)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGroupingSetsList : AstRule
     {
+        
+        protected static string _rule = "grouping_sets_list\r\n\t : groupSetItems += group_by_item  (COMMA  groupSetItems += " +
+            "group_by_item)*\r\n";
         
         public AstGroupingSetsList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6893,29 +7240,46 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// option
-    /// 	 : FAST  
-    /// 	 | HASH ORDER  GROUP
-    /// 	 | MERGE HASH CONCAT  UNION
-    /// 	 | LOOP MERGE HASH  JOIN
+    /// 	 : FAST  number_rows = DECIMAL
+    /// 	 | (HASH ORDER)  GROUP
+    /// 	 | (MERGE HASH CONCAT)  UNION
+    /// 	 | (LOOP MERGE HASH)  JOIN
     /// 	 | EXPAND  VIEWS
     /// 	 | FORCE  ORDER
     /// 	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
     /// 	 | KEEP  PLAN
     /// 	 | KEEPFIXED  PLAN
-    /// 	 | MAXDOP  
-    /// 	 | MAXRECURSION  
+    /// 	 | MAXDOP  number_of_processors = DECIMAL
+    /// 	 | MAXRECURSION  number_recursion = DECIMAL
     /// 	 | OPTIMIZE  FOR  LR_BRACKET  optimize_for_args  RR_BRACKET
     /// 	 | OPTIMIZE  FOR  UNKNOWN
-    /// 	 | PARAMETERIZATION  SIMPLE FORCED
+    /// 	 | PARAMETERIZATION  (SIMPLE FORCED)
     /// 	 | RECOMPILE
     /// 	 | ROBUST  PLAN
     /// 	 | USE  PLAN  STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOption : AstRule
     {
+        
+        protected static string _rule = @"option
+	 : FAST  number_rows = DECIMAL
+	 | (HASH ORDER)  GROUP
+	 | (MERGE HASH CONCAT)  UNION
+	 | (LOOP MERGE HASH)  JOIN
+	 | EXPAND  VIEWS
+	 | FORCE  ORDER
+	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+	 | KEEP  PLAN
+	 | KEEPFIXED  PLAN
+	 | MAXDOP  number_of_processors = DECIMAL
+	 | MAXRECURSION  number_recursion = DECIMAL
+	 | OPTIMIZE  FOR  LR_BRACKET  optimize_for_args  RR_BRACKET
+	 | OPTIMIZE  FOR  UNKNOWN
+	 | PARAMETERIZATION  (SIMPLE FORCED)
+	 | RECOMPILE
+	 | ROBUST  PLAN
+	 | USE  PLAN  STRING
+";
         
         public AstOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6940,13 +7304,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// optimize_for_arg
-    /// 	 : LOCAL_ID  UNKNOWN EQUAL  constant NULL_
+    /// 	 : LOCAL_ID  (UNKNOWN EQUAL  (constant NULL_))
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstOptimizeForArg : AstRule
     {
+        
+        protected static string _rule = "optimize_for_arg\r\n\t : LOCAL_ID  (UNKNOWN EQUAL  (constant NULL_))\r\n";
         
         public AstOptimizeForArg(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -6971,13 +7334,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_list
-    /// 	 :   COMMA  *
+    /// 	 : selectElement += select_list_elem  (COMMA  selectElement += select_list_elem)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSelectList : AstRule
     {
+        
+        protected static string _rule = "select_list\r\n\t : selectElement += select_list_elem  (COMMA  selectElement += sele" +
+            "ct_list_elem)*\r\n";
         
         public AstSelectList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7002,13 +7365,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// udt_method_arguments
-    /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
+    /// 	 : LR_BRACKET  argument += execute_var_string  (COMMA  argument += execute_var_string)*  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUdtMethodArguments : AstRule
     {
+        
+        protected static string _rule = "udt_method_arguments\r\n\t : LR_BRACKET  argument += execute_var_string  (COMMA  arg" +
+            "ument += execute_var_string)*  RR_BRACKET\r\n";
         
         public AstUdtMethodArguments(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7033,13 +7396,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// updated_asterisk
-    /// 	 : INSERTED DELETED  DOT  STAR
+    /// 	 : (INSERTED DELETED)  DOT  STAR
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUpdatedAsterisk : AstRule
     {
+        
+        protected static string _rule = "updated_asterisk\r\n\t : (INSERTED DELETED)  DOT  STAR\r\n";
         
         public AstUpdatedAsterisk(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7069,11 +7431,11 @@ namespace Bb.Asts.TSql
     /// 	 | DOLLAR  ROWGUID
     /// 	 | NULL_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnElemTarget : AstRule
     {
+        
+        protected static string _rule = "column_elem_target\r\n\t : full_column_name\r\n\t | DOLLAR  IDENTITY\r\n\t | DOLLAR  ROWGU" +
+            "ID\r\n\t | NULL_\r\n";
         
         public AstColumnElemTarget(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7101,11 +7463,12 @@ namespace Bb.Asts.TSql
     /// 	 : udt_column_name  DOT  non_static_attr  udt_method_arguments  as_column_alias?
     /// 	 | udt_column_name  DOUBLE_COLON  static_attr  udt_method_arguments?  as_column_alias?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstUdtElem : AstRule
     {
+        
+        protected static string _rule = "udt_elem\r\n\t : udt_column_name  DOT  non_static_attr  udt_method_arguments  as_col" +
+            "umn_alias?\r\n\t | udt_column_name  DOUBLE_COLON  static_attr  udt_method_arguments" +
+            "?  as_column_alias?\r\n";
         
         public AstUdtElem(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7130,14 +7493,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expression_elem
-    /// 	 :     
-    /// 	 |   as_column_alias?
+    /// 	 : leftAlias = column_alias  eq = EQUAL  leftAssignment = expression
+    /// 	 | expressionAs = expression  as_column_alias?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExpressionElem : AstRule
     {
+        
+        protected static string _rule = "expression_elem\r\n\t : leftAlias = column_alias  eq = EQUAL  leftAssignment = expre" +
+            "ssion\r\n\t | expressionAs = expression  as_column_alias?\r\n";
         
         public AstExpressionElem(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7162,13 +7525,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_sources
-    /// 	 :   COMMA  *
+    /// 	 : source += table_source  (COMMA  source += table_source)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableSources : AstRule
     {
+        
+        protected static string _rule = "table_sources\r\n\t : source += table_source  (COMMA  source += table_source)*\r\n";
         
         public AstTableSources(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7196,11 +7558,11 @@ namespace Bb.Asts.TSql
     /// 	 : table_source_item_joined
     /// 	 | LR_BRACKET  table_source  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableSource : AstRule
     {
+        
+        protected static string _rule = "table_source\r\n\t : table_source_item_joined\r\n\t | LR_BRACKET  table_source  RR_BRAC" +
+            "KET\r\n";
         
         public AstTableSource(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7225,14 +7587,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_source_item_joined
-    /// 	 : table_source_item  
-    /// 	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  
+    /// 	 : table_source_item  joins += join_part
+    /// 	 | LR_BRACKET  table_source_item_joined  RR_BRACKET  joins += join_part
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableSourceItemJoined : AstRule
     {
+        
+        protected static string _rule = "table_source_item_joined\r\n\t : table_source_item  joins += join_part\r\n\t | LR_BRACK" +
+            "ET  table_source_item_joined  RR_BRACKET  joins += join_part\r\n";
         
         public AstTableSourceItemJoined(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7258,23 +7620,35 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// table_source_item
     /// 	 : complete_table_name  deprecated_table_hint  as_table_alias
-    /// 	 | complete_table_name  as_table_alias?  with_table_hints deprecated_table_hint sybase_legacy_hints?
+    /// 	 | complete_table_name  as_table_alias?  (with_table_hints deprecated_table_hint sybase_legacy_hints)?
     /// 	 | rowset_function  as_table_alias?
-    /// 	 | LR_BRACKET  derived_table  RR_BRACKET  as_table_alias  column_alias_list??
+    /// 	 | LR_BRACKET  derived_table  RR_BRACKET  (as_table_alias  column_alias_list?)?
     /// 	 | change_table  as_table_alias?
-    /// 	 | nodes_method  as_table_alias  column_alias_list??
-    /// 	 | function_call  as_table_alias  column_alias_list??
-    /// 	 |   as_table_alias?
-    /// 	 |   DOT    as_table_alias  column_alias_list??
+    /// 	 | nodes_method  (as_table_alias  column_alias_list?)?
+    /// 	 | function_call  (as_table_alias  column_alias_list?)?
+    /// 	 | loc_id = LOCAL_ID  as_table_alias?
+    /// 	 | loc_id_call = LOCAL_ID  DOT  loc_fcall = function_call  (as_table_alias  column_alias_list?)?
     /// 	 | open_xml
     /// 	 | open_json
-    /// 	 | DOUBLE_COLON    as_table_alias?
+    /// 	 | DOUBLE_COLON  oldstyle_fcall = function_call  as_table_alias?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableSourceItem : AstRule
     {
+        
+        protected static string _rule = @"table_source_item
+	 : complete_table_name  deprecated_table_hint  as_table_alias
+	 | complete_table_name  as_table_alias?  (with_table_hints deprecated_table_hint sybase_legacy_hints)?
+	 | rowset_function  as_table_alias?
+	 | LR_BRACKET  derived_table  RR_BRACKET  (as_table_alias  column_alias_list?)?
+	 | change_table  as_table_alias?
+	 | nodes_method  (as_table_alias  column_alias_list?)?
+	 | function_call  (as_table_alias  column_alias_list?)?
+	 | loc_id = LOCAL_ID  as_table_alias?
+	 | loc_id_call = LOCAL_ID  DOT  loc_fcall = function_call  (as_table_alias  column_alias_list?)?
+	 | open_xml
+	 | open_json
+	 | DOUBLE_COLON  oldstyle_fcall = function_call  as_table_alias?
+";
         
         public AstTableSourceItem(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7299,13 +7673,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// json_declaration
-    /// 	 :   COMMA  *
+    /// 	 : json_col += json_column_declaration  (COMMA  json_col += json_column_declaration)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstJsonDeclaration : AstRule
     {
+        
+        protected static string _rule = "json_declaration\r\n\t : json_col += json_column_declaration  (COMMA  json_col += js" +
+            "on_column_declaration)*\r\n";
         
         public AstJsonDeclaration(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7330,13 +7704,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// schema_declaration
-    /// 	 :   COMMA  *
+    /// 	 : xml_col += column_declaration  (COMMA  xml_col += column_declaration)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSchemaDeclaration : AstRule
     {
+        
+        protected static string _rule = "schema_declaration\r\n\t : xml_col += column_declaration  (COMMA  xml_col += column_" +
+            "declaration)*\r\n";
         
         public AstSchemaDeclaration(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7361,13 +7735,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_table_changes
-    /// 	 : CHANGETABLE  LR_BRACKET  CHANGES    COMMA    RR_BRACKET
+    /// 	 : CHANGETABLE  LR_BRACKET  CHANGES  changetable = full_table_name  COMMA  changesid = (NULL_ DECIMAL LOCAL_ID)  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstChangeTableChanges : AstRule
     {
+        
+        protected static string _rule = "change_table_changes\r\n\t : CHANGETABLE  LR_BRACKET  CHANGES  changetable = full_ta" +
+            "ble_name  COMMA  changesid = (NULL_ DECIMAL LOCAL_ID)  RR_BRACKET\r\n";
         
         public AstChangeTableChanges(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7392,13 +7766,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_table_version
-    /// 	 : CHANGETABLE  LR_BRACKET  VERSION    COMMA    COMMA    RR_BRACKET
+    /// 	 : CHANGETABLE  LR_BRACKET  VERSION  versiontable = full_table_name  COMMA  pk_columns = full_column_name_list  COMMA  pk_values = select_list  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstChangeTableVersion : AstRule
     {
+        
+        protected static string _rule = "change_table_version\r\n\t : CHANGETABLE  LR_BRACKET  VERSION  versiontable = full_t" +
+            "able_name  COMMA  pk_columns = full_column_name_list  COMMA  pk_values = select_" +
+            "list  RR_BRACKET\r\n";
         
         public AstChangeTableVersion(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7423,13 +7798,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// join_on
-    /// 	 :      ?  JOIN    ON  
+    /// 	 : (inner = INNER join_type = (LEFT RIGHT FULL)  outer = OUTER)  (join_hint = (LOOP HASH MERGE REMOTE))?  JOIN  source = table_source  ON  cond = search_condition
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstJoinOn : AstRule
     {
+        
+        protected static string _rule = "join_on\r\n\t : (inner = INNER join_type = (LEFT RIGHT FULL)  outer = OUTER)  (join_" +
+            "hint = (LOOP HASH MERGE REMOTE))?  JOIN  source = table_source  ON  cond = searc" +
+            "h_condition\r\n";
         
         public AstJoinOn(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7454,13 +7830,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// apply_
-    /// 	 :   APPLY  
+    /// 	 : apply_style = (CROSS OUTER)  APPLY  source = table_source
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstApply : AstRule
     {
+        
+        protected static string _rule = "apply_\r\n\t : apply_style = (CROSS OUTER)  APPLY  source = table_source\r\n";
         
         public AstApply(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7485,13 +7860,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name_list
-    /// 	 :   COMMA  *
+    /// 	 : column += full_column_name  (COMMA  column += full_column_name)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFullColumnNameList : AstRule
     {
+        
+        protected static string _rule = "full_column_name_list\r\n\t : column += full_column_name  (COMMA  column += full_col" +
+            "umn_name)*\r\n";
         
         public AstFullColumnNameList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7516,14 +7891,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// rowset_function
-    /// 	 : OPENROWSET  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | OPENROWSET  LR_BRACKET  BULK    COMMA  bulk_options id_  RR_BRACKET
+    /// 	 : (OPENROWSET  LR_BRACKET  providerName = STRING  COMMA  connectionString = STRING  COMMA  sql = STRING  RR_BRACKET)
+    /// 	 | (OPENROWSET  LR_BRACKET  BULK  data_file = STRING  COMMA  (bulk_options id_)  RR_BRACKET)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRowsetFunction : AstRule
     {
+        
+        protected static string _rule = "rowset_function\r\n\t : (OPENROWSET  LR_BRACKET  providerName = STRING  COMMA  conne" +
+            "ctionString = STRING  COMMA  sql = STRING  RR_BRACKET)\r\n\t | (OPENROWSET  LR_BRAC" +
+            "KET  BULK  data_file = STRING  COMMA  (bulk_options id_)  RR_BRACKET)\r\n";
         
         public AstRowsetFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7549,15 +7925,16 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// derived_table
     /// 	 : subquery
-    /// 	 | LR_BRACKET  subquery  UNION  ALL  subquery*  RR_BRACKET
+    /// 	 | LR_BRACKET  subquery  (UNION  ALL  subquery)*  RR_BRACKET
     /// 	 | table_value_constructor
     /// 	 | LR_BRACKET  table_value_constructor  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDerivedTable : AstRule
     {
+        
+        protected static string _rule = "derived_table\r\n\t : subquery\r\n\t | LR_BRACKET  subquery  (UNION  ALL  subquery)*  R" +
+            "R_BRACKET\r\n\t | table_value_constructor\r\n\t | LR_BRACKET  table_value_constructor " +
+            " RR_BRACKET\r\n";
         
         public AstDerivedTable(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7591,11 +7968,19 @@ namespace Bb.Asts.TSql
     /// 	 | PARTITION_FUNCpartition_function
     /// 	 | HIERARCHYID_METHODhierarchyid_static_method
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFunctionCall : AstRule
     {
+        
+        protected static string _rule = @"function_call
+	 : RANKING_WINDOWED_FUNCranking_windowed_function
+	 | AGGREGATE_WINDOWED_FUNCaggregate_windowed_function
+	 | ANALYTIC_WINDOWED_FUNCanalytic_windowed_function
+	 | BUILT_IN_FUNCbuilt_in_functions
+	 | SCALAR_FUNCTIONscalar_function_name  LR_BRACKET  expression_list?  RR_BRACKET
+	 | FREE_TEXTfreetext_function
+	 | PARTITION_FUNCpartition_function
+	 | HIERARCHYID_METHODhierarchyid_static_method
+";
         
         public AstFunctionCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7620,15 +8005,18 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_function
-    /// 	 : CONTAINSTABLE FREETEXTTABLE  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  COMMA  expression?  RR_BRACKET
-    /// 	 | SEMANTICSIMILARITYTABLE SEMANTICKEYPHRASETABLE  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
+    /// 	 : (CONTAINSTABLE FREETEXTTABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  (COMMA  expression)?  RR_BRACKET
+    /// 	 | (SEMANTICSIMILARITYTABLE SEMANTICKEYPHRASETABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
     /// 	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  full_table_name  COMMA  full_column_name  COMMA  expression  COMMA  full_column_name  COMMA  expression  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFreetextFunction : AstRule
     {
+        
+        protected static string _rule = @"freetext_function
+	 : (CONTAINSTABLE FREETEXTTABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  (COMMA  expression)?  RR_BRACKET
+	 | (SEMANTICSIMILARITYTABLE SEMANTICKEYPHRASETABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
+	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  full_table_name  COMMA  full_column_name  COMMA  expression  COMMA  full_column_name  COMMA  expression  RR_BRACKET
+";
         
         public AstFreetextFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7653,14 +8041,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_predicate
-    /// 	 : CONTAINS  LR_BRACKET  full_column_name full_column_names STAR PROPERTY  LR_BRACKET  full_column_name  COMMA  expression  RR_BRACKET  COMMA  expression  RR_BRACKET
+    /// 	 : CONTAINS  LR_BRACKET  (full_column_name full_column_names STAR PROPERTY  LR_BRACKET  full_column_name  COMMA  expression  RR_BRACKET)  COMMA  expression  RR_BRACKET
     /// 	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFreetextPredicate : AstRule
     {
+        
+        protected static string _rule = @"freetext_predicate
+	 : CONTAINS  LR_BRACKET  (full_column_name full_column_names STAR PROPERTY  LR_BRACKET  full_column_name  COMMA  expression  RR_BRACKET)  COMMA  expression  RR_BRACKET
+	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
+";
         
         public AstFreetextPredicate(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7686,130 +8076,262 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// built_in_functions
     /// 	 : APP_NAMEAPP_NAME  LR_BRACKET  RR_BRACKET
-    /// 	 | APPLOCK_MODEAPPLOCK_MODE  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | APPLOCK_TESTAPPLOCK_TEST  LR_BRACKET    COMMA    COMMA    COMMA    RR_BRACKET
-    /// 	 | ASSEMBLYPROPERTYASSEMBLYPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | COL_LENGTHCOL_LENGTH  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | COL_NAMECOL_NAME  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | COLUMNPROPERTYCOLUMNPROPERTY  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | DATABASEPROPERTYEXDATABASEPROPERTYEX  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | DB_IDDB_ID  LR_BRACKET    RR_BRACKET
-    /// 	 | DB_NAMEDB_NAME  LR_BRACKET    RR_BRACKET
-    /// 	 | FILE_IDFILE_ID  LR_BRACKET    RR_BRACKET
-    /// 	 | FILE_IDEXFILE_IDEX  LR_BRACKET    RR_BRACKET
-    /// 	 | FILE_NAMEFILE_NAME  LR_BRACKET    RR_BRACKET
-    /// 	 | FILEGROUP_IDFILEGROUP_ID  LR_BRACKET    RR_BRACKET
-    /// 	 | FILEGROUP_NAMEFILEGROUP_NAME  LR_BRACKET    RR_BRACKET
-    /// 	 | FILEGROUPPROPERTYFILEGROUPPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | FILEPROPERTYFILEPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | FILEPROPERTYEXFILEPROPERTYEX  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | FULLTEXTCATALOGPROPERTYFULLTEXTCATALOGPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | FULLTEXTSERVICEPROPERTYFULLTEXTSERVICEPROPERTY  LR_BRACKET    RR_BRACKET
-    /// 	 | INDEX_COLINDEX_COL  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | INDEXKEY_PROPERTYINDEXKEY_PROPERTY  LR_BRACKET    COMMA    COMMA    COMMA    RR_BRACKET
-    /// 	 | INDEXPROPERTYINDEXPROPERTY  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | NEXT_VALUE_FORNEXT  VALUE  FOR    OVER  LR_BRACKET  order_by_clause  RR_BRACKET?
-    /// 	 | OBJECT_DEFINITIONOBJECT_DEFINITION  LR_BRACKET    RR_BRACKET
-    /// 	 | OBJECT_IDOBJECT_ID  LR_BRACKET    COMMA  ?  RR_BRACKET
-    /// 	 | OBJECT_NAMEOBJECT_NAME  LR_BRACKET    COMMA  ?  RR_BRACKET
-    /// 	 | OBJECT_SCHEMA_NAMEOBJECT_SCHEMA_NAME  LR_BRACKET    COMMA  ?  RR_BRACKET
-    /// 	 | OBJECTPROPERTYOBJECTPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | OBJECTPROPERTYEXOBJECTPROPERTYEX  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 | APPLOCK_MODEAPPLOCK_MODE  LR_BRACKET  database_principal = expression  COMMA  resource_name = expression  COMMA  lock_owner = expression  RR_BRACKET
+    /// 	 | APPLOCK_TESTAPPLOCK_TEST  LR_BRACKET  database_principal = expression  COMMA  resource_name = expression  COMMA  lock_mode = expression  COMMA  lock_owner = expression  RR_BRACKET
+    /// 	 | ASSEMBLYPROPERTYASSEMBLYPROPERTY  LR_BRACKET  assemblyName = expression  COMMA  propertyName = expression  RR_BRACKET
+    /// 	 | COL_LENGTHCOL_LENGTH  LR_BRACKET  table = expression  COMMA  column = expression  RR_BRACKET
+    /// 	 | COL_NAMECOL_NAME  LR_BRACKET  table_id = expression  COMMA  column_id = expression  RR_BRACKET
+    /// 	 | COLUMNPROPERTYCOLUMNPROPERTY  LR_BRACKET  id = expression  COMMA  column = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | DATABASEPROPERTYEXDATABASEPROPERTYEX  LR_BRACKET  database = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | DB_IDDB_ID  LR_BRACKET  databaseName = expression  RR_BRACKET
+    /// 	 | DB_NAMEDB_NAME  LR_BRACKET  database_id = expression  RR_BRACKET
+    /// 	 | FILE_IDFILE_ID  LR_BRACKET  file_name = expression  RR_BRACKET
+    /// 	 | FILE_IDEXFILE_IDEX  LR_BRACKET  file_name = expression  RR_BRACKET
+    /// 	 | FILE_NAMEFILE_NAME  LR_BRACKET  file_id = expression  RR_BRACKET
+    /// 	 | FILEGROUP_IDFILEGROUP_ID  LR_BRACKET  filegroup_name = expression  RR_BRACKET
+    /// 	 | FILEGROUP_NAMEFILEGROUP_NAME  LR_BRACKET  filegroup_id = expression  RR_BRACKET
+    /// 	 | FILEGROUPPROPERTYFILEGROUPPROPERTY  LR_BRACKET  filegroup_name = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | FILEPROPERTYFILEPROPERTY  LR_BRACKET  file_name = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | FILEPROPERTYEXFILEPROPERTYEX  LR_BRACKET  name = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | FULLTEXTCATALOGPROPERTYFULLTEXTCATALOGPROPERTY  LR_BRACKET  catalogName = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | FULLTEXTSERVICEPROPERTYFULLTEXTSERVICEPROPERTY  LR_BRACKET  property = expression  RR_BRACKET
+    /// 	 | INDEX_COLINDEX_COL  LR_BRACKET  tableOrViewName = expression  COMMA  index_id = expression  COMMA  key_id = expression  RR_BRACKET
+    /// 	 | INDEXKEY_PROPERTYINDEXKEY_PROPERTY  LR_BRACKET  object_id = expression  COMMA  index_id = expression  COMMA  key_id = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | INDEXPROPERTYINDEXPROPERTY  LR_BRACKET  object_id = expression  COMMA  index_or_statistics_name = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | NEXT_VALUE_FORNEXT  VALUE  FOR  sequenceName = full_table_name  (OVER  LR_BRACKET  order_by_clause  RR_BRACKET)?
+    /// 	 | OBJECT_DEFINITIONOBJECT_DEFINITION  LR_BRACKET  object_id = expression  RR_BRACKET
+    /// 	 | OBJECT_IDOBJECT_ID  LR_BRACKET  objectName = expression  (COMMA  object_type = expression)?  RR_BRACKET
+    /// 	 | OBJECT_NAMEOBJECT_NAME  LR_BRACKET  object_id = expression  (COMMA  database_id = expression)?  RR_BRACKET
+    /// 	 | OBJECT_SCHEMA_NAMEOBJECT_SCHEMA_NAME  LR_BRACKET  object_id = expression  (COMMA  database_id = expression)?  RR_BRACKET
+    /// 	 | OBJECTPROPERTYOBJECTPROPERTY  LR_BRACKET  id = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | OBJECTPROPERTYEXOBJECTPROPERTYEX  LR_BRACKET  id = expression  COMMA  property = expression  RR_BRACKET
     /// 	 | ORIGINAL_DB_NAMEORIGINAL_DB_NAME  LR_BRACKET  RR_BRACKET
-    /// 	 | PARSENAMEPARSENAME  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | SCHEMA_IDSCHEMA_ID  LR_BRACKET    RR_BRACKET
-    /// 	 | SCHEMA_NAMESCHEMA_NAME  LR_BRACKET    RR_BRACKET
+    /// 	 | PARSENAMEPARSENAME  LR_BRACKET  objectName = expression  COMMA  object_piece = expression  RR_BRACKET
+    /// 	 | SCHEMA_IDSCHEMA_ID  LR_BRACKET  schemaName = expression  RR_BRACKET
+    /// 	 | SCHEMA_NAMESCHEMA_NAME  LR_BRACKET  schemaId = expression  RR_BRACKET
     /// 	 | SCOPE_IDENTITYSCOPE_IDENTITY  LR_BRACKET  RR_BRACKET
-    /// 	 | SERVERPROPERTYSERVERPROPERTY  LR_BRACKET    RR_BRACKET
-    /// 	 | STATS_DATESTATS_DATE  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | TYPE_IDTYPE_ID  LR_BRACKET    RR_BRACKET
-    /// 	 | TYPE_NAMETYPE_NAME  LR_BRACKET    RR_BRACKET
-    /// 	 | TYPEPROPERTYTYPEPROPERTY  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | ASCIIASCII  LR_BRACKET    RR_BRACKET
-    /// 	 | CHARCHAR  LR_BRACKET    RR_BRACKET
-    /// 	 | CHARINDEXCHARINDEX  LR_BRACKET    COMMA    COMMA  ?  RR_BRACKET
-    /// 	 | CONCATCONCAT  LR_BRACKET    COMMA    COMMA  *  RR_BRACKET
-    /// 	 | CONCAT_WSCONCAT_WS  LR_BRACKET    COMMA    COMMA    COMMA  *  RR_BRACKET
-    /// 	 | DIFFERENCEDIFFERENCE  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | FORMATFORMAT  LR_BRACKET    COMMA    COMMA  ?  RR_BRACKET
-    /// 	 | LEFTLEFT  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | LENLEN  LR_BRACKET    RR_BRACKET
-    /// 	 | LOWERLOWER  LR_BRACKET    RR_BRACKET
-    /// 	 | LTRIMLTRIM  LR_BRACKET    RR_BRACKET
-    /// 	 | NCHARNCHAR  LR_BRACKET    RR_BRACKET
-    /// 	 | PATINDEXPATINDEX  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | QUOTENAMEQUOTENAME  LR_BRACKET    COMMA  ?  RR_BRACKET
-    /// 	 | REPLACEREPLACE  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | REPLICATEREPLICATE  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | REVERSEREVERSE  LR_BRACKET    RR_BRACKET
-    /// 	 | RIGHTRIGHT  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | RTRIMRTRIM  LR_BRACKET    RR_BRACKET
-    /// 	 | SOUNDEXSOUNDEX  LR_BRACKET    RR_BRACKET
-    /// 	 | SPACESPACE_KEYWORD  LR_BRACKET    RR_BRACKET
-    /// 	 | STRSTR  LR_BRACKET    COMMA    COMMA  ??  RR_BRACKET
-    /// 	 | STRINGAGGSTRING_AGG  LR_BRACKET    COMMA    RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET?
-    /// 	 | STRING_ESCAPESTRING_ESCAPE  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | STUFFSTUFF  LR_BRACKET    COMMA    COMMA    COMMA    RR_BRACKET
-    /// 	 | SUBSTRINGSUBSTRING  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | TRANSLATETRANSLATE  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | TRIMTRIM  LR_BRACKET    FROM?    RR_BRACKET
-    /// 	 | UNICODEUNICODE  LR_BRACKET    RR_BRACKET
-    /// 	 | UPPERUPPER  LR_BRACKET    RR_BRACKET
-    /// 	 | BINARY_CHECKSUMBINARY_CHECKSUM  LR_BRACKET   expressions  RR_BRACKET
-    /// 	 | CHECKSUMCHECKSUM  LR_BRACKET   expressions  RR_BRACKET
-    /// 	 | COMPRESSCOMPRESS  LR_BRACKET    RR_BRACKET
-    /// 	 | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_BRACKET    RR_BRACKET
+    /// 	 | SERVERPROPERTYSERVERPROPERTY  LR_BRACKET  property = expression  RR_BRACKET
+    /// 	 | STATS_DATESTATS_DATE  LR_BRACKET  object_id = expression  COMMA  stats_id = expression  RR_BRACKET
+    /// 	 | TYPE_IDTYPE_ID  LR_BRACKET  type_name = expression  RR_BRACKET
+    /// 	 | TYPE_NAMETYPE_NAME  LR_BRACKET  type_id = expression  RR_BRACKET
+    /// 	 | TYPEPROPERTYTYPEPROPERTY  LR_BRACKET  type = expression  COMMA  property = expression  RR_BRACKET
+    /// 	 | ASCIIASCII  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | CHARCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
+    /// 	 | CHARINDEXCHARINDEX  LR_BRACKET  expressionToFind = expression  COMMA  expressionToSearch = expression  (COMMA  start_location = expression)?  RR_BRACKET
+    /// 	 | CONCATCONCAT  LR_BRACKET  string_value_1 = expression  COMMA  string_value_2 = expression  (COMMA  string_value_n += expression)*  RR_BRACKET
+    /// 	 | CONCAT_WSCONCAT_WS  LR_BRACKET  separator = expression  COMMA  argument_1 = expression  COMMA  argument_2 = expression  (COMMA  argument_n += expression)*  RR_BRACKET
+    /// 	 | DIFFERENCEDIFFERENCE  LR_BRACKET  character_expression_1 = expression  COMMA  character_expression_2 = expression  RR_BRACKET
+    /// 	 | FORMATFORMAT  LR_BRACKET  value = expression  COMMA  format = expression  (COMMA  culture = expression)?  RR_BRACKET
+    /// 	 | LEFTLEFT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+    /// 	 | LENLEN  LR_BRACKET  string_expression = expression  RR_BRACKET
+    /// 	 | LOWERLOWER  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | LTRIMLTRIM  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | NCHARNCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
+    /// 	 | PATINDEXPATINDEX  LR_BRACKET  pattern = expression  COMMA  string_expression = expression  RR_BRACKET
+    /// 	 | QUOTENAMEQUOTENAME  LR_BRACKET  character_string = expression  (COMMA  quote_character = expression)?  RR_BRACKET
+    /// 	 | REPLACEREPLACE  LR_BRACKET  input = expression  COMMA  replacing = expression  COMMA  with = expression  RR_BRACKET
+    /// 	 | REPLICATEREPLICATE  LR_BRACKET  string_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+    /// 	 | REVERSEREVERSE  LR_BRACKET  string_expression = expression  RR_BRACKET
+    /// 	 | RIGHTRIGHT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
+    /// 	 | RTRIMRTRIM  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | SOUNDEXSOUNDEX  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | SPACESPACE_KEYWORD  LR_BRACKET  integer_expression = expression  RR_BRACKET
+    /// 	 | STRSTR  LR_BRACKET  float_expression = expression  (COMMA  length_expression = expression  (COMMA  decimal = expression)?)?  RR_BRACKET
+    /// 	 | STRINGAGGSTRING_AGG  LR_BRACKET  expr = expression  COMMA  separator = expression  RR_BRACKET  (WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET)?
+    /// 	 | STRING_ESCAPESTRING_ESCAPE  LR_BRACKET  text_ = expression  COMMA  type_ = expression  RR_BRACKET
+    /// 	 | STUFFSTUFF  LR_BRACKET  str = expression  COMMA  from = DECIMAL  COMMA  to = DECIMAL  COMMA  str_with = expression  RR_BRACKET
+    /// 	 | SUBSTRINGSUBSTRING  LR_BRACKET  string_expression = expression  COMMA  start_ = expression  COMMA  length = expression  RR_BRACKET
+    /// 	 | TRANSLATETRANSLATE  LR_BRACKET  inputString = expression  COMMA  characters = expression  COMMA  translations = expression  RR_BRACKET
+    /// 	 | TRIMTRIM  LR_BRACKET  (characters = expression  FROM)?  string_ = expression  RR_BRACKET
+    /// 	 | UNICODEUNICODE  LR_BRACKET  ncharacter_expression = expression  RR_BRACKET
+    /// 	 | UPPERUPPER  LR_BRACKET  character_expression = expression  RR_BRACKET
+    /// 	 | BINARY_CHECKSUMBINARY_CHECKSUM  LR_BRACKET  (star = STAR expressions)  RR_BRACKET
+    /// 	 | CHECKSUMCHECKSUM  LR_BRACKET  (star = STAR expressions)  RR_BRACKET
+    /// 	 | COMPRESSCOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
+    /// 	 | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_BRACKET  property = STRING  RR_BRACKET
     /// 	 | CONTEXT_INFOCONTEXT_INFO  LR_BRACKET  RR_BRACKET
     /// 	 | CURRENT_REQUEST_IDCURRENT_REQUEST_ID  LR_BRACKET  RR_BRACKET
     /// 	 | CURRENT_TRANSACTION_IDCURRENT_TRANSACTION_ID  LR_BRACKET  RR_BRACKET
-    /// 	 | DECOMPRESSDECOMPRESS  LR_BRACKET    RR_BRACKET
+    /// 	 | DECOMPRESSDECOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
     /// 	 | ERROR_LINEERROR_LINE  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_MESSAGEERROR_MESSAGE  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_NUMBERERROR_NUMBER  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_PROCEDUREERROR_PROCEDURE  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_SEVERITYERROR_SEVERITY  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_STATEERROR_STATE  LR_BRACKET  RR_BRACKET
-    /// 	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET      COMMA  expressions  RR_BRACKET
+    /// 	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL msg_string = STRING msg_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET
     /// 	 | GET_FILESTREAM_TRANSACTION_CONTEXTGET_FILESTREAM_TRANSACTION_CONTEXT  LR_BRACKET  RR_BRACKET
-    /// 	 | GETANSINULLGETANSINULL  LR_BRACKET  ?  RR_BRACKET
+    /// 	 | GETANSINULLGETANSINULL  LR_BRACKET  (database = STRING)?  RR_BRACKET
     /// 	 | HOST_IDHOST_ID  LR_BRACKET  RR_BRACKET
     /// 	 | HOST_NAMEHOST_NAME  LR_BRACKET  RR_BRACKET
-    /// 	 | ISNULLISNULL  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 | ISNULLISNULL  LR_BRACKET  left = expression  COMMA  right = expression  RR_BRACKET
     /// 	 | ISNUMERICISNUMERIC  LR_BRACKET  expression  RR_BRACKET
     /// 	 | MIN_ACTIVE_ROWVERSIONMIN_ACTIVE_ROWVERSION  LR_BRACKET  RR_BRACKET
     /// 	 | NEWIDNEWID  LR_BRACKET  RR_BRACKET
     /// 	 | NEWSEQUENTIALIDNEWSEQUENTIALID  LR_BRACKET  RR_BRACKET
     /// 	 | ROWCOUNT_BIGROWCOUNT_BIG  LR_BRACKET  RR_BRACKET
-    /// 	 | SESSION_CONTEXTSESSION_CONTEXT  LR_BRACKET    RR_BRACKET
+    /// 	 | SESSION_CONTEXTSESSION_CONTEXT  LR_BRACKET  key = STRING  RR_BRACKET
     /// 	 | XACT_STATEXACT_STATE  LR_BRACKET  RR_BRACKET
     /// 	 | CASTCAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
     /// 	 | TRY_CASTTRY_CAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
-    /// 	 | CONVERTCONVERT  LR_BRACKET    COMMA  expression2  RR_BRACKET
+    /// 	 | CONVERTCONVERT  LR_BRACKET  convert_data_type = data_type  COMMA  expression2  RR_BRACKET
     /// 	 | COALESCECOALESCE  LR_BRACKET  expression_list  RR_BRACKET
     /// 	 | CURRENT_DATECURRENT_DATE  LR_BRACKET  RR_BRACKET
     /// 	 | CURRENT_TIMESTAMPCURRENT_TIMESTAMP
     /// 	 | CURRENT_USERCURRENT_USER
-    /// 	 | DATEADDDATEADD  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | DATEDIFFDATEDIFF  LR_BRACKET    COMMA    COMMA    RR_BRACKET
-    /// 	 | DATENAMEDATENAME  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | DATEPARTDATEPART  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 | DATEADDDATEADD  LR_BRACKET  datepart = ID  COMMA  number = expression  COMMA  date = expression  RR_BRACKET
+    /// 	 | DATEDIFFDATEDIFF  LR_BRACKET  datepart = ID  COMMA  date_first = expression  COMMA  date_second = expression  RR_BRACKET
+    /// 	 | DATENAMEDATENAME  LR_BRACKET  datepart = ID  COMMA  date = expression  RR_BRACKET
+    /// 	 | DATEPARTDATEPART  LR_BRACKET  datepart = ID  COMMA  date = expression  RR_BRACKET
     /// 	 | GETDATEGETDATE  LR_BRACKET  RR_BRACKET
     /// 	 | GETUTCDATEGETUTCDATE  LR_BRACKET  RR_BRACKET
-    /// 	 | IDENTITYIDENTITY  LR_BRACKET  data_type  COMMA  ?  COMMA  ?  RR_BRACKET
+    /// 	 | IDENTITYIDENTITY  LR_BRACKET  data_type  (COMMA  seed = DECIMAL)?  (COMMA  increment = DECIMAL)?  RR_BRACKET
     /// 	 | MIN_ACTIVE_ROWVERSIONMIN_ACTIVE_ROWVERSION  LR_BRACKET  RR_BRACKET
-    /// 	 | NULLIFNULLIF  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 | NULLIFNULLIF  LR_BRACKET  left = expression  COMMA  right = expression  RR_BRACKET
     /// 	 | SESSION_USERSESSION_USER
     /// 	 | SYSTEM_USERSYSTEM_USER
     /// 	 | USERUSER
-    /// 	 | PARSEPARSE  LR_BRACKET    AS  data_type  USING  ?  RR_BRACKET
+    /// 	 | PARSEPARSE  LR_BRACKET  str = expression  AS  data_type  (USING  culture = expression)?  RR_BRACKET
     /// 	 | XML_DATA_TYPE_FUNCxml_data_type_methods
-    /// 	 | IIFIIF  LR_BRACKET    COMMA    COMMA    RR_BRACKET
+    /// 	 | IIFIIF  LR_BRACKET  cond = search_condition  COMMA  left = expression  COMMA  right = expression  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstBuiltInFunctions : AstRule
     {
+        
+        protected static string _rule = "built_in_functions\r\n\t : APP_NAMEAPP_NAME  LR_BRACKET  RR_BRACKET\r\n\t | APPLOCK_MOD" +
+            "EAPPLOCK_MODE  LR_BRACKET  database_principal = expression  COMMA  resource_name" +
+            " = expression  COMMA  lock_owner = expression  RR_BRACKET\r\n\t | APPLOCK_TESTAPPLO" +
+            "CK_TEST  LR_BRACKET  database_principal = expression  COMMA  resource_name = exp" +
+            "ression  COMMA  lock_mode = expression  COMMA  lock_owner = expression  RR_BRACK" +
+            "ET\r\n\t | ASSEMBLYPROPERTYASSEMBLYPROPERTY  LR_BRACKET  assemblyName = expression " +
+            " COMMA  propertyName = expression  RR_BRACKET\r\n\t | COL_LENGTHCOL_LENGTH  LR_BRAC" +
+            "KET  table = expression  COMMA  column = expression  RR_BRACKET\r\n\t | COL_NAMECOL" +
+            "_NAME  LR_BRACKET  table_id = expression  COMMA  column_id = expression  RR_BRAC" +
+            "KET\r\n\t | COLUMNPROPERTYCOLUMNPROPERTY  LR_BRACKET  id = expression  COMMA  colum" +
+            "n = expression  COMMA  property = expression  RR_BRACKET\r\n\t | DATABASEPROPERTYEX" +
+            "DATABASEPROPERTYEX  LR_BRACKET  database = expression  COMMA  property = express" +
+            "ion  RR_BRACKET\r\n\t | DB_IDDB_ID  LR_BRACKET  databaseName = expression  RR_BRACK" +
+            "ET\r\n\t | DB_NAMEDB_NAME  LR_BRACKET  database_id = expression  RR_BRACKET\r\n\t | FI" +
+            "LE_IDFILE_ID  LR_BRACKET  file_name = expression  RR_BRACKET\r\n\t | FILE_IDEXFILE_" +
+            "IDEX  LR_BRACKET  file_name = expression  RR_BRACKET\r\n\t | FILE_NAMEFILE_NAME  LR" +
+            "_BRACKET  file_id = expression  RR_BRACKET\r\n\t | FILEGROUP_IDFILEGROUP_ID  LR_BRA" +
+            "CKET  filegroup_name = expression  RR_BRACKET\r\n\t | FILEGROUP_NAMEFILEGROUP_NAME " +
+            " LR_BRACKET  filegroup_id = expression  RR_BRACKET\r\n\t | FILEGROUPPROPERTYFILEGRO" +
+            "UPPROPERTY  LR_BRACKET  filegroup_name = expression  COMMA  property = expressio" +
+            "n  RR_BRACKET\r\n\t | FILEPROPERTYFILEPROPERTY  LR_BRACKET  file_name = expression " +
+            " COMMA  property = expression  RR_BRACKET\r\n\t | FILEPROPERTYEXFILEPROPERTYEX  LR_" +
+            "BRACKET  name = expression  COMMA  property = expression  RR_BRACKET\r\n\t | FULLTE" +
+            "XTCATALOGPROPERTYFULLTEXTCATALOGPROPERTY  LR_BRACKET  catalogName = expression  " +
+            "COMMA  property = expression  RR_BRACKET\r\n\t | FULLTEXTSERVICEPROPERTYFULLTEXTSER" +
+            "VICEPROPERTY  LR_BRACKET  property = expression  RR_BRACKET\r\n\t | INDEX_COLINDEX_" +
+            "COL  LR_BRACKET  tableOrViewName = expression  COMMA  index_id = expression  COM" +
+            "MA  key_id = expression  RR_BRACKET\r\n\t | INDEXKEY_PROPERTYINDEXKEY_PROPERTY  LR_" +
+            "BRACKET  object_id = expression  COMMA  index_id = expression  COMMA  key_id = e" +
+            "xpression  COMMA  property = expression  RR_BRACKET\r\n\t | INDEXPROPERTYINDEXPROPE" +
+            "RTY  LR_BRACKET  object_id = expression  COMMA  index_or_statistics_name = expre" +
+            "ssion  COMMA  property = expression  RR_BRACKET\r\n\t | NEXT_VALUE_FORNEXT  VALUE  " +
+            "FOR  sequenceName = full_table_name  (OVER  LR_BRACKET  order_by_clause  RR_BRAC" +
+            "KET)?\r\n\t | OBJECT_DEFINITIONOBJECT_DEFINITION  LR_BRACKET  object_id = expressio" +
+            "n  RR_BRACKET\r\n\t | OBJECT_IDOBJECT_ID  LR_BRACKET  objectName = expression  (COM" +
+            "MA  object_type = expression)?  RR_BRACKET\r\n\t | OBJECT_NAMEOBJECT_NAME  LR_BRACK" +
+            "ET  object_id = expression  (COMMA  database_id = expression)?  RR_BRACKET\r\n\t | " +
+            "OBJECT_SCHEMA_NAMEOBJECT_SCHEMA_NAME  LR_BRACKET  object_id = expression  (COMMA" +
+            "  database_id = expression)?  RR_BRACKET\r\n\t | OBJECTPROPERTYOBJECTPROPERTY  LR_B" +
+            "RACKET  id = expression  COMMA  property = expression  RR_BRACKET\r\n\t | OBJECTPRO" +
+            "PERTYEXOBJECTPROPERTYEX  LR_BRACKET  id = expression  COMMA  property = expressi" +
+            "on  RR_BRACKET\r\n\t | ORIGINAL_DB_NAMEORIGINAL_DB_NAME  LR_BRACKET  RR_BRACKET\r\n\t " +
+            "| PARSENAMEPARSENAME  LR_BRACKET  objectName = expression  COMMA  object_piece =" +
+            " expression  RR_BRACKET\r\n\t | SCHEMA_IDSCHEMA_ID  LR_BRACKET  schemaName = expres" +
+            "sion  RR_BRACKET\r\n\t | SCHEMA_NAMESCHEMA_NAME  LR_BRACKET  schemaId = expression " +
+            " RR_BRACKET\r\n\t | SCOPE_IDENTITYSCOPE_IDENTITY  LR_BRACKET  RR_BRACKET\r\n\t | SERVE" +
+            "RPROPERTYSERVERPROPERTY  LR_BRACKET  property = expression  RR_BRACKET\r\n\t | STAT" +
+            "S_DATESTATS_DATE  LR_BRACKET  object_id = expression  COMMA  stats_id = expressi" +
+            "on  RR_BRACKET\r\n\t | TYPE_IDTYPE_ID  LR_BRACKET  type_name = expression  RR_BRACK" +
+            "ET\r\n\t | TYPE_NAMETYPE_NAME  LR_BRACKET  type_id = expression  RR_BRACKET\r\n\t | TY" +
+            "PEPROPERTYTYPEPROPERTY  LR_BRACKET  type = expression  COMMA  property = express" +
+            "ion  RR_BRACKET\r\n\t | ASCIIASCII  LR_BRACKET  character_expression = expression  " +
+            "RR_BRACKET\r\n\t | CHARCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKE" +
+            "T\r\n\t | CHARINDEXCHARINDEX  LR_BRACKET  expressionToFind = expression  COMMA  exp" +
+            "ressionToSearch = expression  (COMMA  start_location = expression)?  RR_BRACKET\r" +
+            "\n\t | CONCATCONCAT  LR_BRACKET  string_value_1 = expression  COMMA  string_value_" +
+            "2 = expression  (COMMA  string_value_n += expression)*  RR_BRACKET\r\n\t | CONCAT_W" +
+            "SCONCAT_WS  LR_BRACKET  separator = expression  COMMA  argument_1 = expression  " +
+            "COMMA  argument_2 = expression  (COMMA  argument_n += expression)*  RR_BRACKET\r\n" +
+            "\t | DIFFERENCEDIFFERENCE  LR_BRACKET  character_expression_1 = expression  COMMA" +
+            "  character_expression_2 = expression  RR_BRACKET\r\n\t | FORMATFORMAT  LR_BRACKET " +
+            " value = expression  COMMA  format = expression  (COMMA  culture = expression)? " +
+            " RR_BRACKET\r\n\t | LEFTLEFT  LR_BRACKET  character_expression = expression  COMMA " +
+            " integer_expression = expression  RR_BRACKET\r\n\t | LENLEN  LR_BRACKET  string_exp" +
+            "ression = expression  RR_BRACKET\r\n\t | LOWERLOWER  LR_BRACKET  character_expressi" +
+            "on = expression  RR_BRACKET\r\n\t | LTRIMLTRIM  LR_BRACKET  character_expression = " +
+            "expression  RR_BRACKET\r\n\t | NCHARNCHAR  LR_BRACKET  integer_expression = express" +
+            "ion  RR_BRACKET\r\n\t | PATINDEXPATINDEX  LR_BRACKET  pattern = expression  COMMA  " +
+            "string_expression = expression  RR_BRACKET\r\n\t | QUOTENAMEQUOTENAME  LR_BRACKET  " +
+            "character_string = expression  (COMMA  quote_character = expression)?  RR_BRACKE" +
+            "T\r\n\t | REPLACEREPLACE  LR_BRACKET  input = expression  COMMA  replacing = expres" +
+            "sion  COMMA  with = expression  RR_BRACKET\r\n\t | REPLICATEREPLICATE  LR_BRACKET  " +
+            "string_expression = expression  COMMA  integer_expression = expression  RR_BRACK" +
+            "ET\r\n\t | REVERSEREVERSE  LR_BRACKET  string_expression = expression  RR_BRACKET\r\n" +
+            "\t | RIGHTRIGHT  LR_BRACKET  character_expression = expression  COMMA  integer_ex" +
+            "pression = expression  RR_BRACKET\r\n\t | RTRIMRTRIM  LR_BRACKET  character_express" +
+            "ion = expression  RR_BRACKET\r\n\t | SOUNDEXSOUNDEX  LR_BRACKET  character_expressi" +
+            "on = expression  RR_BRACKET\r\n\t | SPACESPACE_KEYWORD  LR_BRACKET  integer_express" +
+            "ion = expression  RR_BRACKET\r\n\t | STRSTR  LR_BRACKET  float_expression = express" +
+            "ion  (COMMA  length_expression = expression  (COMMA  decimal = expression)?)?  R" +
+            "R_BRACKET\r\n\t | STRINGAGGSTRING_AGG  LR_BRACKET  expr = expression  COMMA  separa" +
+            "tor = expression  RR_BRACKET  (WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BR" +
+            "ACKET)?\r\n\t | STRING_ESCAPESTRING_ESCAPE  LR_BRACKET  text_ = expression  COMMA  " +
+            "type_ = expression  RR_BRACKET\r\n\t | STUFFSTUFF  LR_BRACKET  str = expression  CO" +
+            "MMA  from = DECIMAL  COMMA  to = DECIMAL  COMMA  str_with = expression  RR_BRACK" +
+            "ET\r\n\t | SUBSTRINGSUBSTRING  LR_BRACKET  string_expression = expression  COMMA  s" +
+            "tart_ = expression  COMMA  length = expression  RR_BRACKET\r\n\t | TRANSLATETRANSLA" +
+            "TE  LR_BRACKET  inputString = expression  COMMA  characters = expression  COMMA " +
+            " translations = expression  RR_BRACKET\r\n\t | TRIMTRIM  LR_BRACKET  (characters = " +
+            "expression  FROM)?  string_ = expression  RR_BRACKET\r\n\t | UNICODEUNICODE  LR_BRA" +
+            "CKET  ncharacter_expression = expression  RR_BRACKET\r\n\t | UPPERUPPER  LR_BRACKET" +
+            "  character_expression = expression  RR_BRACKET\r\n\t | BINARY_CHECKSUMBINARY_CHECK" +
+            "SUM  LR_BRACKET  (star = STAR expressions)  RR_BRACKET\r\n\t | CHECKSUMCHECKSUM  LR" +
+            "_BRACKET  (star = STAR expressions)  RR_BRACKET\r\n\t | COMPRESSCOMPRESS  LR_BRACKE" +
+            "T  expr = expression  RR_BRACKET\r\n\t | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_B" +
+            "RACKET  property = STRING  RR_BRACKET\r\n\t | CONTEXT_INFOCONTEXT_INFO  LR_BRACKET " +
+            " RR_BRACKET\r\n\t | CURRENT_REQUEST_IDCURRENT_REQUEST_ID  LR_BRACKET  RR_BRACKET\r\n\t" +
+            " | CURRENT_TRANSACTION_IDCURRENT_TRANSACTION_ID  LR_BRACKET  RR_BRACKET\r\n\t | DEC" +
+            "OMPRESSDECOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET\r\n\t | ERROR_LINEERRO" +
+            "R_LINE  LR_BRACKET  RR_BRACKET\r\n\t | ERROR_MESSAGEERROR_MESSAGE  LR_BRACKET  RR_B" +
+            "RACKET\r\n\t | ERROR_NUMBERERROR_NUMBER  LR_BRACKET  RR_BRACKET\r\n\t | ERROR_PROCEDUR" +
+            "EERROR_PROCEDURE  LR_BRACKET  RR_BRACKET\r\n\t | ERROR_SEVERITYERROR_SEVERITY  LR_B" +
+            "RACKET  RR_BRACKET\r\n\t | ERROR_STATEERROR_STATE  LR_BRACKET  RR_BRACKET\r\n\t | FORM" +
+            "ATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL msg_string = STRING ms" +
+            "g_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET\r\n\t | GET_FILESTREAM_TRANS" +
+            "ACTION_CONTEXTGET_FILESTREAM_TRANSACTION_CONTEXT  LR_BRACKET  RR_BRACKET\r\n\t | GE" +
+            "TANSINULLGETANSINULL  LR_BRACKET  (database = STRING)?  RR_BRACKET\r\n\t | HOST_IDH" +
+            "OST_ID  LR_BRACKET  RR_BRACKET\r\n\t | HOST_NAMEHOST_NAME  LR_BRACKET  RR_BRACKET\r\n" +
+            "\t | ISNULLISNULL  LR_BRACKET  left = expression  COMMA  right = expression  RR_B" +
+            "RACKET\r\n\t | ISNUMERICISNUMERIC  LR_BRACKET  expression  RR_BRACKET\r\n\t | MIN_ACTI" +
+            "VE_ROWVERSIONMIN_ACTIVE_ROWVERSION  LR_BRACKET  RR_BRACKET\r\n\t | NEWIDNEWID  LR_B" +
+            "RACKET  RR_BRACKET\r\n\t | NEWSEQUENTIALIDNEWSEQUENTIALID  LR_BRACKET  RR_BRACKET\r\n" +
+            "\t | ROWCOUNT_BIGROWCOUNT_BIG  LR_BRACKET  RR_BRACKET\r\n\t | SESSION_CONTEXTSESSION" +
+            "_CONTEXT  LR_BRACKET  key = STRING  RR_BRACKET\r\n\t | XACT_STATEXACT_STATE  LR_BRA" +
+            "CKET  RR_BRACKET\r\n\t | CASTCAST  LR_BRACKET  expression  AS  data_type  RR_BRACKE" +
+            "T\r\n\t | TRY_CASTTRY_CAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET\r\n\t | " +
+            "CONVERTCONVERT  LR_BRACKET  convert_data_type = data_type  COMMA  expression2  R" +
+            "R_BRACKET\r\n\t | COALESCECOALESCE  LR_BRACKET  expression_list  RR_BRACKET\r\n\t | CU" +
+            "RRENT_DATECURRENT_DATE  LR_BRACKET  RR_BRACKET\r\n\t | CURRENT_TIMESTAMPCURRENT_TIM" +
+            "ESTAMP\r\n\t | CURRENT_USERCURRENT_USER\r\n\t | DATEADDDATEADD  LR_BRACKET  datepart =" +
+            " ID  COMMA  number = expression  COMMA  date = expression  RR_BRACKET\r\n\t | DATED" +
+            "IFFDATEDIFF  LR_BRACKET  datepart = ID  COMMA  date_first = expression  COMMA  d" +
+            "ate_second = expression  RR_BRACKET\r\n\t | DATENAMEDATENAME  LR_BRACKET  datepart " +
+            "= ID  COMMA  date = expression  RR_BRACKET\r\n\t | DATEPARTDATEPART  LR_BRACKET  da" +
+            "tepart = ID  COMMA  date = expression  RR_BRACKET\r\n\t | GETDATEGETDATE  LR_BRACKE" +
+            "T  RR_BRACKET\r\n\t | GETUTCDATEGETUTCDATE  LR_BRACKET  RR_BRACKET\r\n\t | IDENTITYIDE" +
+            "NTITY  LR_BRACKET  data_type  (COMMA  seed = DECIMAL)?  (COMMA  increment = DECI" +
+            "MAL)?  RR_BRACKET\r\n\t | MIN_ACTIVE_ROWVERSIONMIN_ACTIVE_ROWVERSION  LR_BRACKET  R" +
+            "R_BRACKET\r\n\t | NULLIFNULLIF  LR_BRACKET  left = expression  COMMA  right = expre" +
+            "ssion  RR_BRACKET\r\n\t | SESSION_USERSESSION_USER\r\n\t | SYSTEM_USERSYSTEM_USER\r\n\t |" +
+            " USERUSER\r\n\t | PARSEPARSE  LR_BRACKET  str = expression  AS  data_type  (USING  " +
+            "culture = expression)?  RR_BRACKET\r\n\t | XML_DATA_TYPE_FUNCxml_data_type_methods\r" +
+            "\n\t | IIFIIF  LR_BRACKET  cond = search_condition  COMMA  left = expression  COMM" +
+            "A  right = expression  RR_BRACKET\r\n";
         
         public AstBuiltInFunctions(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7834,13 +8356,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// value_method
-    /// 	 :     LR_BRACKET  RR_BRACKET  LR_BRACKET  subquery  RR_BRACKET  DOT  
+    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name eventdata = EVENTDATA  LR_BRACKET  RR_BRACKET query = query_method LR_BRACKET  subquery  RR_BRACKET)  DOT  call = value_call
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstValueMethod : AstRule
     {
+        
+        protected static string _rule = "value_method\r\n\t : (loc_id = LOCAL_ID value_id = full_column_name eventdata = EVEN" +
+            "TDATA  LR_BRACKET  RR_BRACKET query = query_method LR_BRACKET  subquery  RR_BRAC" +
+            "KET)  DOT  call = value_call\r\n";
         
         public AstValueMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7865,13 +8388,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// value_call
-    /// 	 : VALUE  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 : VALUE  LR_BRACKET  xquery = STRING  COMMA  sqltype = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstValueCall : AstRule
     {
+        
+        protected static string _rule = "value_call\r\n\t : VALUE  LR_BRACKET  xquery = STRING  COMMA  sqltype = STRING  RR_B" +
+            "RACKET\r\n";
         
         public AstValueCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7896,13 +8419,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_method
-    /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
+    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = query_call
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueryMethod : AstRule
     {
+        
+        protected static string _rule = "query_method\r\n\t : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subq" +
+            "uery  RR_BRACKET)  DOT  call = query_call\r\n";
         
         public AstQueryMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7927,13 +8450,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_call
-    /// 	 : QUERY  LR_BRACKET    RR_BRACKET
+    /// 	 : QUERY  LR_BRACKET  xquery = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueryCall : AstRule
     {
+        
+        protected static string _rule = "query_call\r\n\t : QUERY  LR_BRACKET  xquery = STRING  RR_BRACKET\r\n";
         
         public AstQueryCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7958,13 +8480,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// exist_method
-    /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
+    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = exist_call
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExistMethod : AstRule
     {
+        
+        protected static string _rule = "exist_method\r\n\t : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subq" +
+            "uery  RR_BRACKET)  DOT  call = exist_call\r\n";
         
         public AstExistMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -7989,13 +8511,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// exist_call
-    /// 	 : EXIST  LR_BRACKET    RR_BRACKET
+    /// 	 : EXIST  LR_BRACKET  xquery = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExistCall : AstRule
     {
+        
+        protected static string _rule = "exist_call\r\n\t : EXIST  LR_BRACKET  xquery = STRING  RR_BRACKET\r\n";
         
         public AstExistCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8020,13 +8541,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// modify_method
-    /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  
+    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = modify_call
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstModifyMethod : AstRule
     {
+        
+        protected static string _rule = "modify_method\r\n\t : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  sub" +
+            "query  RR_BRACKET)  DOT  call = modify_call\r\n";
         
         public AstModifyMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8051,13 +8572,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// modify_call
-    /// 	 : MODIFY  LR_BRACKET    RR_BRACKET
+    /// 	 : MODIFY  LR_BRACKET  xml_dml = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstModifyCall : AstRule
     {
+        
+        protected static string _rule = "modify_call\r\n\t : MODIFY  LR_BRACKET  xml_dml = STRING  RR_BRACKET\r\n";
         
         public AstModifyCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8082,18 +8602,24 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// hierarchyid_call
-    /// 	 : GETANCESTOR  LR_BRACKET    RR_BRACKET
-    /// 	 | GETDESCENDANT  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 : GETANCESTOR  LR_BRACKET  n = expression  RR_BRACKET
+    /// 	 | GETDESCENDANT  LR_BRACKET  child1 = expression  COMMA  child2 = expression  RR_BRACKET
     /// 	 | GETLEVEL  LR_BRACKET  RR_BRACKET
-    /// 	 | ISDESCENDANTOF  LR_BRACKET    RR_BRACKET
-    /// 	 | GETREPARENTEDVALUE  LR_BRACKET    COMMA    RR_BRACKET
+    /// 	 | ISDESCENDANTOF  LR_BRACKET  parent_ = expression  RR_BRACKET
+    /// 	 | GETREPARENTEDVALUE  LR_BRACKET  oldroot = expression  COMMA  newroot = expression  RR_BRACKET
     /// 	 | TOSTRING  LR_BRACKET  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstHierarchyidCall : AstRule
     {
+        
+        protected static string _rule = @"hierarchyid_call
+	 : GETANCESTOR  LR_BRACKET  n = expression  RR_BRACKET
+	 | GETDESCENDANT  LR_BRACKET  child1 = expression  COMMA  child2 = expression  RR_BRACKET
+	 | GETLEVEL  LR_BRACKET  RR_BRACKET
+	 | ISDESCENDANTOF  LR_BRACKET  parent_ = expression  RR_BRACKET
+	 | GETREPARENTEDVALUE  LR_BRACKET  oldroot = expression  COMMA  newroot = expression  RR_BRACKET
+	 | TOSTRING  LR_BRACKET  RR_BRACKET
+";
         
         public AstHierarchyidCall(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8118,13 +8644,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// hierarchyid_static_method
-    /// 	 : HIERARCHYID  DOUBLE_COLON  GETROOT  LR_BRACKET  RR_BRACKET PARSE  LR_BRACKET    RR_BRACKET
+    /// 	 : HIERARCHYID  DOUBLE_COLON  (GETROOT  LR_BRACKET  RR_BRACKET PARSE  LR_BRACKET  input = expression  RR_BRACKET)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstHierarchyidStaticMethod : AstRule
     {
+        
+        protected static string _rule = "hierarchyid_static_method\r\n\t : HIERARCHYID  DOUBLE_COLON  (GETROOT  LR_BRACKET  R" +
+            "R_BRACKET PARSE  LR_BRACKET  input = expression  RR_BRACKET)\r\n";
         
         public AstHierarchyidStaticMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8149,13 +8675,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// nodes_method
-    /// 	 :   LR_BRACKET  subquery  RR_BRACKET  DOT  NODES  LR_BRACKET    RR_BRACKET
+    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = STRING  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstNodesMethod : AstRule
     {
+        
+        protected static string _rule = "nodes_method\r\n\t : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subq" +
+            "uery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = STRING  RR_BRACKET\r\n";
         
         public AstNodesMethod(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8180,13 +8706,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// with_table_hints
-    /// 	 : WITH  LR_BRACKET    COMMA?  *  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  hint += table_hint  (COMMA?  hint += table_hint)*  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWithTableHints : AstRule
     {
+        
+        protected static string _rule = "with_table_hints\r\n\t : WITH  LR_BRACKET  hint += table_hint  (COMMA?  hint += tabl" +
+            "e_hint)*  RR_BRACKET\r\n";
         
         public AstWithTableHints(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8212,8 +8738,8 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// table_hint
     /// 	 : NOEXPAND
-    /// 	 | INDEX  LR_BRACKET  index_values  RR_BRACKET EQUAL  LR_BRACKET  index_value  RR_BRACKET EQUAL  index_value
-    /// 	 | FORCESEEK  LR_BRACKET  index_value  LR_BRACKET  column_name_list  RR_BRACKET  RR_BRACKET?
+    /// 	 | INDEX  (LR_BRACKET  index_values  RR_BRACKET EQUAL  LR_BRACKET  index_value  RR_BRACKET EQUAL  index_value)
+    /// 	 | FORCESEEK  (LR_BRACKET  index_value  LR_BRACKET  column_name_list  RR_BRACKET  RR_BRACKET)?
     /// 	 | FORCESCAN
     /// 	 | HOLDLOCK
     /// 	 | NOLOCK
@@ -8237,11 +8763,36 @@ namespace Bb.Asts.TSql
     /// 	 | IGNORE_CONSTRAINTS
     /// 	 | IGNORE_TRIGGERS
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableHint : AstRule
     {
+        
+        protected static string _rule = @"table_hint
+	 : NOEXPAND
+	 | INDEX  (LR_BRACKET  index_values  RR_BRACKET EQUAL  LR_BRACKET  index_value  RR_BRACKET EQUAL  index_value)
+	 | FORCESEEK  (LR_BRACKET  index_value  LR_BRACKET  column_name_list  RR_BRACKET  RR_BRACKET)?
+	 | FORCESCAN
+	 | HOLDLOCK
+	 | NOLOCK
+	 | NOWAIT
+	 | PAGLOCK
+	 | READCOMMITTED
+	 | READCOMMITTEDLOCK
+	 | READPAST
+	 | READUNCOMMITTED
+	 | REPEATABLEREAD
+	 | ROWLOCK
+	 | SERIALIZABLE
+	 | SNAPSHOT
+	 | SPATIAL_WINDOW_MAX_CELLS  EQUAL  DECIMAL
+	 | TABLOCK
+	 | TABLOCKX
+	 | UPDLOCK
+	 | XLOCK
+	 | KEEPIDENTITY
+	 | KEEPDEFAULTS
+	 | IGNORE_CONSTRAINTS
+	 | IGNORE_TRIGGERS
+";
         
         public AstTableHint(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8269,11 +8820,10 @@ namespace Bb.Asts.TSql
     /// 	 : id_
     /// 	 | DECIMAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstIndexValue : AstRule
     {
+        
+        protected static string _rule = "index_value\r\n\t : id_\r\n\t | DECIMAL\r\n";
         
         public AstIndexValue(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8298,13 +8848,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_alias_list
-    /// 	 : LR_BRACKET    COMMA  *  RR_BRACKET
+    /// 	 : LR_BRACKET  alias += column_alias  (COMMA  alias += column_alias)*  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnAliasList : AstRule
     {
+        
+        protected static string _rule = "column_alias_list\r\n\t : LR_BRACKET  alias += column_alias  (COMMA  alias += column" +
+            "_alias)*  RR_BRACKET\r\n";
         
         public AstColumnAliasList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8329,13 +8879,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_value_constructor
-    /// 	 : VALUES  LR_BRACKET    RR_BRACKET  COMMA  LR_BRACKET    RR_BRACKET*
+    /// 	 : VALUES  LR_BRACKET  exps += expression_list  RR_BRACKET  (COMMA  LR_BRACKET  exps += expression_list  RR_BRACKET)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstTableValueConstructor : AstRule
     {
+        
+        protected static string _rule = "table_value_constructor\r\n\t : VALUES  LR_BRACKET  exps += expression_list  RR_BRAC" +
+            "KET  (COMMA  LR_BRACKET  exps += expression_list  RR_BRACKET)*\r\n";
         
         public AstTableValueConstructor(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8360,13 +8910,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expression_list
-    /// 	 :   COMMA  *
+    /// 	 : exp += expression  (COMMA  exp += expression)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstExpressionList : AstRule
     {
+        
+        protected static string _rule = "expression_list\r\n\t : exp += expression  (COMMA  exp += expression)*\r\n";
         
         public AstExpressionList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8391,14 +8940,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// ranking_windowed_function
-    /// 	 : RANK DENSE_RANK ROW_NUMBER  LR_BRACKET  RR_BRACKET  over_clause
+    /// 	 : (RANK DENSE_RANK ROW_NUMBER)  LR_BRACKET  RR_BRACKET  over_clause
     /// 	 | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstRankingWindowedFunction : AstRule
     {
+        
+        protected static string _rule = "ranking_windowed_function\r\n\t : (RANK DENSE_RANK ROW_NUMBER)  LR_BRACKET  RR_BRACK" +
+            "ET  over_clause\r\n\t | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause\r\n";
         
         public AstRankingWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8423,17 +8972,22 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// aggregate_windowed_function
-    /// 	 :   LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
-    /// 	 |   LR_BRACKET  STAR all_distinct_expression  RR_BRACKET  over_clause?
+    /// 	 : agg_func = (AVG MAX MIN SUM STDEV STDEVP VAR VARP)  LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
+    /// 	 | cnt = (COUNT COUNT_BIG)  LR_BRACKET  (STAR all_distinct_expression)  RR_BRACKET  over_clause?
     /// 	 | CHECKSUM_AGG  LR_BRACKET  all_distinct_expression  RR_BRACKET
     /// 	 | GROUPING  LR_BRACKET  expression  RR_BRACKET
     /// 	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAggregateWindowedFunction : AstRule
     {
+        
+        protected static string _rule = @"aggregate_windowed_function
+	 : agg_func = (AVG MAX MIN SUM STDEV STDEVP VAR VARP)  LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
+	 | cnt = (COUNT COUNT_BIG)  LR_BRACKET  (STAR all_distinct_expression)  RR_BRACKET  over_clause?
+	 | CHECKSUM_AGG  LR_BRACKET  all_distinct_expression  RR_BRACKET
+	 | GROUPING  LR_BRACKET  expression  RR_BRACKET
+	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
+";
         
         public AstAggregateWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8458,16 +9012,20 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// analytic_windowed_function
-    /// 	 : FIRST_VALUE LAST_VALUE  LR_BRACKET  expression  RR_BRACKET  over_clause
-    /// 	 | LAG LEAD  LR_BRACKET  expression  COMMA  expression2?  RR_BRACKET  over_clause
-    /// 	 | CUME_DIST PERCENT_RANK  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  PARTITION  BY  expression_list?  order_by_clause  RR_BRACKET
-    /// 	 | PERCENTILE_CONT PERCENTILE_DISC  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  PARTITION  BY  expression_list?  RR_BRACKET
+    /// 	 : (FIRST_VALUE LAST_VALUE)  LR_BRACKET  expression  RR_BRACKET  over_clause
+    /// 	 | (LAG LEAD)  LR_BRACKET  expression  (COMMA  expression2)?  RR_BRACKET  over_clause
+    /// 	 | (CUME_DIST PERCENT_RANK)  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  order_by_clause  RR_BRACKET
+    /// 	 | (PERCENTILE_CONT PERCENTILE_DISC)  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAnalyticWindowedFunction : AstRule
     {
+        
+        protected static string _rule = @"analytic_windowed_function
+	 : (FIRST_VALUE LAST_VALUE)  LR_BRACKET  expression  RR_BRACKET  over_clause
+	 | (LAG LEAD)  LR_BRACKET  expression  (COMMA  expression2)?  RR_BRACKET  over_clause
+	 | (CUME_DIST PERCENT_RANK)  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  order_by_clause  RR_BRACKET
+	 | (PERCENTILE_CONT PERCENTILE_DISC)  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET
+";
         
         public AstAnalyticWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8495,11 +9053,11 @@ namespace Bb.Asts.TSql
     /// 	 : window_frame_preceding
     /// 	 | BETWEEN  window_frame_bound  AND  window_frame_bound
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWindowFrameExtent : AstRule
     {
+        
+        protected static string _rule = "window_frame_extent\r\n\t : window_frame_preceding\r\n\t | BETWEEN  window_frame_bound " +
+            " AND  window_frame_bound\r\n";
         
         public AstWindowFrameExtent(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8528,11 +9086,11 @@ namespace Bb.Asts.TSql
     /// 	 | DECIMAL  PRECEDING
     /// 	 | CURRENT  ROW
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWindowFramePreceding : AstRule
     {
+        
+        protected static string _rule = "window_frame_preceding\r\n\t : UNBOUNDED  PRECEDING\r\n\t | DECIMAL  PRECEDING\r\n\t | CUR" +
+            "RENT  ROW\r\n";
         
         public AstWindowFramePreceding(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8560,11 +9118,10 @@ namespace Bb.Asts.TSql
     /// 	 : UNBOUNDED  FOLLOWING
     /// 	 | DECIMAL  FOLLOWING
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstWindowFrameFollowing : AstRule
     {
+        
+        protected static string _rule = "window_frame_following\r\n\t : UNBOUNDED  FOLLOWING\r\n\t | DECIMAL  FOLLOWING\r\n";
         
         public AstWindowFrameFollowing(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8598,11 +9155,19 @@ namespace Bb.Asts.TSql
     /// 	 | DB_CHAINING  on_off
     /// 	 | TRUSTWORTHY  on_off
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstCreateDatabaseOption : AstRule
     {
+        
+        protected static string _rule = @"create_database_option
+	 : FILESTREAM  database_filestream_options
+	 | DEFAULT_LANGUAGE  EQUAL  id_or_string
+	 | DEFAULT_FULLTEXT_LANGUAGE  EQUAL  id_or_string
+	 | NESTED_TRIGGERS  EQUAL  on_off
+	 | TRANSFORM_NOISE_WORDS  EQUAL  on_off
+	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  DECIMAL
+	 | DB_CHAINING  on_off
+	 | TRUSTWORTHY  on_off
+";
         
         public AstCreateDatabaseOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8627,13 +9192,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// database_filestream_option
-    /// 	 : LR_BRACKET  NON_TRANSACTED_ACCESS  EQUAL  OFF READ_ONLY FULL DIRECTORY_NAME  EQUAL  STRING  RR_BRACKET
+    /// 	 : LR_BRACKET  ((NON_TRANSACTED_ACCESS  EQUAL  (OFF READ_ONLY FULL)) (DIRECTORY_NAME  EQUAL  STRING))  RR_BRACKET
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDatabaseFilestreamOption : AstRule
     {
+        
+        protected static string _rule = "database_filestream_option\r\n\t : LR_BRACKET  ((NON_TRANSACTED_ACCESS  EQUAL  (OFF " +
+            "READ_ONLY FULL)) (DIRECTORY_NAME  EQUAL  STRING))  RR_BRACKET\r\n";
         
         public AstDatabaseFilestreamOption(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8661,11 +9226,10 @@ namespace Bb.Asts.TSql
     /// 	 : schema_name
     /// 	 | schema_name  DOT  object_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEntityNameForAzureDw : AstRule
     {
+        
+        protected static string _rule = "entity_name_for_azure_dw\r\n\t : schema_name\r\n\t | schema_name  DOT  object_name\r\n";
         
         public AstEntityNameForAzureDw(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8690,14 +9254,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// entity_name_for_parallel_dw
-    /// 	 : 
+    /// 	 : schema_database = id_
     /// 	 | schema_name  DOT  object_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEntityNameForParallelDw : AstRule
     {
+        
+        protected static string _rule = "entity_name_for_parallel_dw\r\n\t : schema_database = id_\r\n\t | schema_name  DOT  obj" +
+            "ect_name\r\n";
         
         public AstEntityNameForParallelDw(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8722,13 +9286,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_column_name_list
-    /// 	 :   COMMA  *
+    /// 	 : col += insert_column_id  (COMMA  col += insert_column_id)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstInsertColumnNameList : AstRule
     {
+        
+        protected static string _rule = "insert_column_name_list\r\n\t : col += insert_column_id  (COMMA  col += insert_colum" +
+            "n_id)*\r\n";
         
         public AstInsertColumnNameList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8753,13 +9317,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_name_list
-    /// 	 :   COMMA  *
+    /// 	 : col += id_  (COMMA  col += id_)*
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstColumnNameList : AstRule
     {
+        
+        protected static string _rule = "column_name_list\r\n\t : col += id_  (COMMA  col += id_)*\r\n";
         
         public AstColumnNameList(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8786,11 +9349,10 @@ namespace Bb.Asts.TSql
     /// null_notnull
     /// 	 : NOT?  NULL_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstNullNotnull : AstRule
     {
+        
+        protected static string _rule = "null_notnull\r\n\t : NOT?  NULL_\r\n";
         
         public AstNullNotnull(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8815,13 +9377,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// null_or_default
-    /// 	 : null_notnull DEFAULT  constant_expression  COLLATE  id_?  WITH  VALUES?
+    /// 	 : (null_notnull DEFAULT  constant_expression  (COLLATE  id_)?  (WITH  VALUES)?)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstNullOrDefault : AstRule
     {
+        
+        protected static string _rule = "null_or_default\r\n\t : (null_notnull DEFAULT  constant_expression  (COLLATE  id_)? " +
+            " (WITH  VALUES)?)\r\n";
         
         public AstNullOrDefault(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8852,11 +9414,11 @@ namespace Bb.Asts.TSql
     /// 	 | BINARY_CHECKSUM
     /// 	 | CHECKSUM
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstScalarFunctionName : AstRule
     {
+        
+        protected static string _rule = "scalar_function_name\r\n\t : func_proc_name_server_database_schema\r\n\t | RIGHT\r\n\t | L" +
+            "EFT\r\n\t | BINARY_CHECKSUM\r\n\t | CHECKSUM\r\n";
         
         public AstScalarFunctionName(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8881,13 +9443,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// contract_name
-    /// 	 : id_ expression
+    /// 	 : (id_ expression)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstContractName : AstRule
     {
+        
+        protected static string _rule = "contract_name\r\n\t : (id_ expression)\r\n";
         
         public AstContractName(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8912,13 +9473,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// service_name
-    /// 	 : id_ expression
+    /// 	 : (id_ expression)
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstServiceName : AstRule
     {
+        
+        protected static string _rule = "service_name\r\n\t : (id_ expression)\r\n";
         
         public AstServiceName(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8943,13 +9503,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// end_conversation
-    /// 	 : END  CONVERSATION    SEMI?  WITH  ERROR  EQUAL    DESCRIPTION  EQUAL  ?  CLEANUP??
+    /// 	 : END  CONVERSATION  conversation_handle = LOCAL_ID  SEMI?  (WITH  (ERROR  EQUAL  faliure_code = (LOCAL_ID STRING)  DESCRIPTION  EQUAL  failure_text = (LOCAL_ID STRING))?  CLEANUP?)?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstEndConversation : AstRule
     {
+        
+        protected static string _rule = "end_conversation\r\n\t : END  CONVERSATION  conversation_handle = LOCAL_ID  SEMI?  (" +
+            "WITH  (ERROR  EQUAL  faliure_code = (LOCAL_ID STRING)  DESCRIPTION  EQUAL  failu" +
+            "re_text = (LOCAL_ID STRING))?  CLEANUP?)?\r\n";
         
         public AstEndConversation(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -8974,13 +9535,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// get_conversation
-    /// 	 : GET  CONVERSATION  GROUP    FROM    SEMI?
+    /// 	 : GET  CONVERSATION  GROUP  conversation_group_id = (STRING LOCAL_ID)  FROM  queue = queue_id  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstGetConversation : AstRule
     {
+        
+        protected static string _rule = "get_conversation\r\n\t : GET  CONVERSATION  GROUP  conversation_group_id = (STRING L" +
+            "OCAL_ID)  FROM  queue = queue_id  SEMI?\r\n";
         
         public AstGetConversation(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9005,14 +9566,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// queue_id
-    /// 	 : database_name  DOT  schema_name  DOT  queue_name
+    /// 	 : (database_name  DOT  schema_name  DOT  queue_name)
     /// 	 | id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstQueueId : AstRule
     {
+        
+        protected static string _rule = "queue_id\r\n\t : (database_name  DOT  schema_name  DOT  queue_name)\r\n\t | id_\r\n";
         
         public AstQueueId(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9037,13 +9597,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// send_conversation
-    /// 	 : SEND  ON  CONVERSATION    MESSAGE  TYPE    LR_BRACKET    RR_BRACKET?  SEMI?
+    /// 	 : SEND  ON  CONVERSATION  conversation_handle = (STRING LOCAL_ID)  MESSAGE  TYPE  messageTypeName = expression  (LR_BRACKET  messageBodyEexpression = (STRING LOCAL_ID)  RR_BRACKET)?  SEMI?
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSendConversation : AstRule
     {
+        
+        protected static string _rule = "send_conversation\r\n\t : SEND  ON  CONVERSATION  conversation_handle = (STRING LOCA" +
+            "L_ID)  MESSAGE  TYPE  messageTypeName = expression  (LR_BRACKET  messageBodyEexp" +
+            "ression = (STRING LOCAL_ID)  RR_BRACKET)?  SEMI?\r\n";
         
         public AstSendConversation(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9068,18 +9629,24 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// data_type
-    /// 	 :   LR_BRACKET  MAX  RR_BRACKET
-    /// 	 | ext_type  LR_BRACKET    COMMA    RR_BRACKET
-    /// 	 | ext_type  LR_BRACKET    RR_BRACKET
-    /// 	 | ext_type  IDENTITY  LR_BRACKET    COMMA    RR_BRACKET?
-    /// 	 |   PRECISION?
+    /// 	 : scaled = (VARCHAR NVARCHAR BINARY_KEYWORD VARBINARY_KEYWORD SQUARE_BRACKET_ID)  LR_BRACKET  MAX  RR_BRACKET
+    /// 	 | ext_type  LR_BRACKET  scale = DECIMAL  COMMA  prec = DECIMAL  RR_BRACKET
+    /// 	 | ext_type  LR_BRACKET  scale = DECIMAL  RR_BRACKET
+    /// 	 | ext_type  IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  inc = DECIMAL  RR_BRACKET)?
+    /// 	 | double_prec = DOUBLE  PRECISION?
     /// 	 | unscaled_type
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDataType : AstRule
     {
+        
+        protected static string _rule = @"data_type
+	 : scaled = (VARCHAR NVARCHAR BINARY_KEYWORD VARBINARY_KEYWORD SQUARE_BRACKET_ID)  LR_BRACKET  MAX  RR_BRACKET
+	 | ext_type  LR_BRACKET  scale = DECIMAL  COMMA  prec = DECIMAL  RR_BRACKET
+	 | ext_type  LR_BRACKET  scale = DECIMAL  RR_BRACKET
+	 | ext_type  IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  inc = DECIMAL  RR_BRACKET)?
+	 | double_prec = DOUBLE  PRECISION?
+	 | unscaled_type
+";
         
         public AstDataType(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9108,11 +9675,10 @@ namespace Bb.Asts.TSql
     /// 	 | DEFAULT
     /// 	 | constant
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstDefaultValue : AstRule
     {
+        
+        protected static string _rule = "default_value\r\n\t : NULL_\r\n\t | DEFAULT\r\n\t | constant\r\n";
         
         public AstDefaultValue(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9140,15 +9706,15 @@ namespace Bb.Asts.TSql
     /// 	 : STRING
     /// 	 | BINARY
     /// 	 | sign?  DECIMAL
-    /// 	 | sign?  REAL FLOAT
-    /// 	 | sign?    DECIMAL FLOAT
+    /// 	 | sign?  (REAL FLOAT)
+    /// 	 | sign?  dollar = DOLLAR  (DECIMAL FLOAT)
     /// 	 | parameter
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstConstant : AstRule
     {
+        
+        protected static string _rule = "constant\r\n\t : STRING\r\n\t | BINARY\r\n\t | sign?  DECIMAL\r\n\t | sign?  (REAL FLOAT)\r\n\t " +
+            "| sign?  dollar = DOLLAR  (DECIMAL FLOAT)\r\n\t | parameter\r\n";
         
         public AstConstant(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9176,11 +9742,10 @@ namespace Bb.Asts.TSql
     /// 	 : PLUS
     /// 	 | MINUS
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstSign : AstRule
     {
+        
+        protected static string _rule = "sign\r\n\t : PLUS\r\n\t | MINUS\r\n";
         
         public AstSign(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9215,11 +9780,12 @@ namespace Bb.Asts.TSql
     /// 	 | EXCLAMATION  GREATER
     /// 	 | EXCLAMATION  LESS
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstComparisonOperator : AstRule
     {
+        
+        protected static string _rule = "comparison_operator\r\n\t : EQUAL\r\n\t | GREATER\r\n\t | LESS\r\n\t | LESS  EQUAL\r\n\t | GREAT" +
+            "ER  EQUAL\r\n\t | LESS  GREATER\r\n\t | EXCLAMATION  EQUAL\r\n\t | EXCLAMATION  GREATER\r\n" +
+            "\t | EXCLAMATION  LESS\r\n";
         
         public AstComparisonOperator(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9253,11 +9819,11 @@ namespace Bb.Asts.TSql
     /// 	 | XOR_ASSIGN
     /// 	 | OR_ASSIGN
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstAssignmentOperator : AstRule
     {
+        
+        protected static string _rule = "assignment_operator\r\n\t : PLUS_ASSIGN\r\n\t | MINUS_ASSIGN\r\n\t | MULT_ASSIGN\r\n\t | DIV_" +
+            "ASSIGN\r\n\t | MOD_ASSIGN\r\n\t | AND_ASSIGN\r\n\t | XOR_ASSIGN\r\n\t | OR_ASSIGN\r\n";
         
         public AstAssignmentOperator(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)
@@ -9288,11 +9854,10 @@ namespace Bb.Asts.TSql
     /// 	 | TB
     /// 	 | MODULE
     /// </summary>
-    /// <remarks>
-    /// Strategy : _
-    /// </remarks>
     public partial class AstFileSizeUnity : AstRule
     {
+        
+        protected static string _rule = "file_size_unity\r\n\t : KB\r\n\t | MB\r\n\t | GB\r\n\t | TB\r\n\t | MODULE\r\n";
         
         public AstFileSizeUnity(ITerminalNode t, List<AstRoot> list) : 
                 base(t, list)

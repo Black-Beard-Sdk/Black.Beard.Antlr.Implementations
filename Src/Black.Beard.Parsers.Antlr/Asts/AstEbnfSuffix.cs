@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Bb.Asts
 {
-    [DebuggerDisplay("{Value}")]
+    [DebuggerDisplay("{Occurence}")]
     public class AstEbnfSuffix : AstBase
     {
 
@@ -13,7 +13,7 @@ namespace Bb.Asts
             
         }
 
-        public OccurenceEnum Occurence { get; set; }
+        public Occurence Occurence { get; set; }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
@@ -27,7 +27,7 @@ namespace Bb.Asts
         [System.Diagnostics.DebuggerNonUserCode]
         public override T Accept<T>(IAstVisitor<T> visitor)
         {
-            return visitor.VisitAstEbnfSuffix(this);
+            return visitor.VisitEbnfSuffix(this);
         }
 
 
@@ -50,8 +50,10 @@ namespace Bb.Asts
         public override bool ContainsBlocks { get => false; }
         public override bool ContainsAlternatives { get => false; }
 
-
     }
+
+
+
 
 
 }

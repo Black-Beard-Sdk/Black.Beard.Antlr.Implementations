@@ -10,12 +10,12 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRule";
+            return null; // "AstRule";
         }
 
         protected override bool Generate(AstRule ast, Context context)
         {
-            return context.Strategy == "_";
+            return true; // TemplateSelector(ast, context) == "_";
         }
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)

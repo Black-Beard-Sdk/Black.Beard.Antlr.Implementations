@@ -4,13 +4,6 @@ using System.Diagnostics;
 namespace Bb.Asts
 {
 
-    public enum LabeledElementAssignEnum
-    {
-        Assign,
-        PlusAssign,
-
-    }
-
 
     [DebuggerDisplay("{Left} = {Right}")]
     public class AstLabeledElement : AstBase
@@ -30,7 +23,7 @@ namespace Bb.Asts
 
         public AstBase Right { get; }
 
-        public OccurenceEnum Occurence { get; internal set; }
+        public Occurence Occurence { get; internal set; }
 
         public override bool ContainsTerminals { get => this.Right?.ContainsTerminals ?? false; }
         public override bool ContainsRules { get => this.Right?.ContainsRules ?? false; }
@@ -87,6 +80,20 @@ namespace Bb.Asts
             return visitor.VisitLabeledElement(this);
         }
 
+        public override void ToString(Writer writer)
+        {
+
+            this.Left?.ToString(writer);
+
+            if (this.Assign == LabeledElementAssignEnum.Assign)
+                writer.Append(" = ");
+            
+            else
+                writer.Append(" += ");
+
+            this.Right?.ToString(writer);
+
+        }
     }
 
 

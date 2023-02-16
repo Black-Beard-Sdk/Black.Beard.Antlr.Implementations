@@ -20,9 +20,9 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelProperty Comment(Func<string> action)
+        public ModelProperty Documentation(Action<Documentation> action)
         {
-            this._actionComment = action;
+            this._actionDocumentation = action;
             return this;
         }
 
@@ -134,6 +134,9 @@ namespace Bb.Generators
         public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelProperty, object> Action { get; internal set; }
         public Action<ModelProperty> Action2 { get; internal set; }
+
+        protected Action<Documentation> _actionDocumentation;
+
     }
 
 

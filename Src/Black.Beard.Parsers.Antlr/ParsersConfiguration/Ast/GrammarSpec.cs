@@ -17,6 +17,7 @@ namespace Bb.ParsersConfiguration.Ast
             this._lists = new List<ListDeclaration>();
         }
 
+
         public GrammarSpec(Position position)
             : base(position)
         {
@@ -30,8 +31,11 @@ namespace Bb.ParsersConfiguration.Ast
         public GrammarSpec Append(AstGrammarSpec ast)
         {
 
-            foreach (AstRule rule in ast.Rules)
+            foreach (AstRule rule in ast.Rules.Rules)
                 this.Append(rule);
+
+            //foreach (AstLexerRule rule in ast.Rules.Terminals)
+            //    this.Append(rule);
 
             return this;
 
@@ -40,7 +44,7 @@ namespace Bb.ParsersConfiguration.Ast
         private void Append(AstRule rule)
         {
 
-            var name = rule.RuleName.Text;
+            var name = rule.Name;
             if (!this._list.TryGetValue(name, out GrammarConfigDeclaration grammar))
                 this._list.Add(name,
                     grammar = new GrammarConfigDeclaration(Position.Default, name,

@@ -45,6 +45,19 @@
         void VisitTerminalText(AstTerminalText a);
         void VisitAstAlternativeList(AstAlternativeList a);
         void VisitAstEbnfSuffix(AstEbnfSuffix a);
+        void AstLexerRulesList(AstLexerRulesList a);
+        void VisitLexerRulesList(AstLexerRulesList a);
+        void VisitRules(AstRules a);
+        void VisitLexerRule(AstLexerRule a);
+        void VisitLexerLabeledElement(AstLexerLabeledElement a);
+        void VisitLexerElementList(AstLexerElementList a);
+        void VisitLexerBlock(AstLexerBlock a);
+        void VisitLexerAlternativeList(AstLexerAlternativeList a);
+        void VisitLexerAlternative(AstLexerAlternative a);
+        void VisitLexerCommandList(AstLexerCommandList a);
+        void VisitLexerCommand(AstLexerCommand a);
+        void VisitNot(AstNot a);
+        void VisitRange(AstRange a);
     }
 
 

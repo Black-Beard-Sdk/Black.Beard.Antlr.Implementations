@@ -4,6 +4,7 @@ using System.Text;
 namespace Bb.Asts
 {
 
+
     public class AstElementList : AstListBase<AstBase>
     {
 
@@ -48,8 +49,6 @@ namespace Bb.Asts
 
             }
         }
-
-        public AstElementOptionList Options { get; set; }
 
 
         [System.Diagnostics.DebuggerStepThrough]

@@ -29,13 +29,11 @@ namespace Bb.Asts
             return Identifier.Text;
         }
 
-        public override OccurenceEnum? ResolveOccurence()
+        public override Occurence ResolveOccurence()
         {
             if ( this.Parent is AstAtom a)
                 return a.Occurence;
-
-            return null;
-
+            return new Occurence();
         }
 
         public override IEnumerable<AstRuleRef> GetRules()

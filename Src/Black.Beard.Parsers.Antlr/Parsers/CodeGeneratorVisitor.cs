@@ -52,7 +52,6 @@ namespace Bb.Parsers
         {
 
             a.Return?.Accept(this);
-            a.RuleName?.Accept(this);
             a.Modifiers?.Accept(this);
 
 
@@ -384,6 +383,74 @@ namespace Bb.Parsers
         }
 
         public void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AstLexerRulesList(AstLexerRulesList a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerRulesList(AstLexerRulesList a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitRules(AstRules a)
+        {
+
+            foreach (var item in a.Rules)
+                item.Accept(this);
+
+        }
+
+        public void VisitLexerRule(AstLexerRule a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerLabeledElement(AstLexerLabeledElement a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerElementList(AstLexerElementList a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerBlock(AstLexerBlock a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerAlternativeList(AstLexerAlternativeList a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerAlternative(AstLexerAlternative a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerCommandList(AstLexerCommandList a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitLexerCommand(AstLexerCommand astLexerCommand)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitNot(AstNot astNot)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void VisitRange(AstRange a)
         {
             throw new NotImplementedException();
         }

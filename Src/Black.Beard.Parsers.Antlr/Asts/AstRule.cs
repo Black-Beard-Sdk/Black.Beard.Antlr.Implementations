@@ -8,15 +8,29 @@ namespace Bb.Asts
 {
 
 
-    public class AstRule : AstBase
+
+
+
+    public abstract class AstRuleBase : AstBase
     {
 
-        public AstRule(ParserRuleContext ctx)
+        public AstRuleBase(ParserRuleContext ctx
+            , string ruleName
+            )
             : base(ctx)
         {
-
+            this.Name = ruleName;
         }
 
+        public string Name { get; }
+
+    }
+
+
+
+    public class AstRule : AstRuleBase
+    {
+  
         public AstRule(ParserRuleContext ctx
             , AstRuleModifierList? modifiers
             , AstIdentifier ruleName
@@ -27,10 +41,9 @@ namespace Bb.Asts
             , AstPrequelList? prequels
             , AstRuleAltList? ruleBlock
             , AstExceptionGroup? exceptionGroup
-            ) : this(ctx)
+            ) : base(ctx, ruleName.ResolveName())
         {
             this.Modifiers = modifiers;
-            this._ruleName = ruleName;
             this.Rule = rule;
             this.Return = returnRule;
             this.ThrowsSpec = throwsSpec;
@@ -42,10 +55,6 @@ namespace Bb.Asts
 
         public AstRuleModifierList Modifiers { get; }
 
-        private readonly AstIdentifier _ruleName;
-        public AstIdentifier RuleName => _ruleName;
-
-        public string Name => _ruleName.Text; 
 
         public AstRuleAltList Alternatives { get; }
 
@@ -169,15 +178,15 @@ namespace Bb.Asts
 
 
 
-     
+
 
 
         public bool OutputContainsAlwayOneItem { get => Alternatives?.OutputContainsAlwayOneItem ?? false; }
-        
+
         public bool OutputContainsAlwayOneRule { get => Alternatives?.OutputContainsAlwayOneRule ?? false; }
 
         public bool OutputContainsAlwayOneTerminal { get => Alternatives?.OutputContainsAlwayOneTerminal ?? false; }
-        
+
         public bool ContainsJustOneAlternative { get => Alternatives?.ContainsJustOneAlternative ?? false; }
 
 
@@ -185,7 +194,7 @@ namespace Bb.Asts
         public string Strategy { get; set; }
 
         public GrammarConfigDeclaration Configuration { get; internal set; }
-
+        public int Index { get; internal set; }
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {
@@ -218,7 +227,7 @@ namespace Bb.Asts
 
             var strategy = wrt.Strategy.GetStrategyFrom(this);
 
-            _ruleName.ToString(wrt);
+            wrt.Append(Name);
 
             if (strategy.ReturnLineAfterItems)
                 wrt.AppendEndLine();

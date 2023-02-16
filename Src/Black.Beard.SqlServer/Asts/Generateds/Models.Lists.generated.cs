@@ -20,9 +20,6 @@ namespace Bb.Asts.TSql
     /// sql_clauses
     /// 	 : sql_clause+
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassList
-    /// </remarks>
     public partial class AstSqlClauses : AstRuleList<AstSqlClause>
     {
         
@@ -46,9 +43,6 @@ namespace Bb.Asts.TSql
     /// binary_content_nexts
     /// 	 : binary_content_next+
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassList
-    /// </remarks>
     public partial class AstBinaryContentNexts : AstRuleList<AstBinaryContentNext>
     {
         
@@ -72,9 +66,6 @@ namespace Bb.Asts.TSql
     /// sybase_legacy_hints
     /// 	 : sybase_legacy_hint+
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassList
-    /// </remarks>
     public partial class AstSybaseLegacyHints : AstRuleList<AstSybaseLegacyHint>
     {
         

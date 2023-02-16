@@ -1,4 +1,5 @@
 ﻿using Bb.Parsers;
+using Newtonsoft.Json.Linq;
 using System.CodeDom;
 
 namespace Bb.Generators
@@ -8,31 +9,23 @@ namespace Bb.Generators
     public class ModelMember
     {
 
+        public ModelMember()
+        {
+
+        }
+
 
         public Func<bool> Test { get; internal set; }
 
 
         protected void GenerateDocumentation(CodeTypeMember member, Context context)
         {
-            if (_actionComment != null)
+            
+            if (_actionDocumentation != null)
             {
-                var txt = _actionComment();
-                var text = txt.Split('\r');
-                member.Comments.Add(new CodeCommentStatement("<summary>", true));
-                foreach (var item in text)
-                    if (!string.IsNullOrEmpty(item.Trim()) && !string.IsNullOrEmpty(item.Trim()))
-                        member.Comments.Add(new CodeCommentStatement(item.Trim('\n'), true));
-                member.Comments.Add(new CodeCommentStatement("</summary>", true));
-
-
-                member.Comments.Add(new CodeCommentStatement("<remarks>", true));
-                if (!string.IsNullOrEmpty(context.Strategy))
-                    member.Comments.Add(new CodeCommentStatement("Strategy : " + context.Strategy, true));
-                else
-                    member.Comments.Add(new CodeCommentStatement("Strategy : Default", true));
-
-                member.Comments.Add(new CodeCommentStatement("</remarks>", true));
-
+                var doc = new Documentation();
+                _actionDocumentation(doc);
+                doc.GenerateDocumentation(member, context);
             }
 
         }
@@ -50,11 +43,8 @@ namespace Bb.Generators
             return false;
         }
 
-        protected Func<string> _actionComment;
-
+        protected Action<Documentation> _actionDocumentation;
 
     }
-
-
 
 }

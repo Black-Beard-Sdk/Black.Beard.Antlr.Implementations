@@ -2,6 +2,7 @@
 {
     public interface IAstVisitor<T>
     {
+
         T VisitElementList(AstElementList a);
         T VisitIdentifierList(AstIdentifierList a);
         T VisitElementOptionList(AstElementOptionList a);
@@ -40,9 +41,21 @@
         T VisitRuleRef(AstRuleRef a);
         T VisitTerminal(AstTerminal a);
         T VisitTerminalText(AstTerminalText a);
-        T VisitAstAlternativeList(AstAlternativeList a);
-        T VisitAstEbnfSuffix(AstEbnfSuffix a);
-
+        T VisitAlternativeList(AstAlternativeList a);
+        T VisitEbnfSuffix(AstEbnfSuffix a);
+        T AstLexerRulesList(AstLexerRulesList a);
+        T VisitLexerRulesList(AstLexerRulesList a);
+        T VisitRules(AstRules a);
+        T VisitLexerRule(AstLexerRule a);
+        T VisitLexerLabeledElement(AstLexerLabeledElement a);
+        T VisitLexerElementList(AstLexerElementList a);
+        T VisitLexerBlock(AstLexerBlock a);
+        T VisitLexerAlternativeList(AstLexerAlternativeList a);
+        T VisitLexerAlternative(AstLexerAlternative a);
+        T VisitLexerElementList(AstLexerCommandList a);
+        T VisitLexerCommand(AstLexerCommand a);
+        T VisitNot(AstNot a);
+        T VisitRange(AstRange a);
     }
 
 }

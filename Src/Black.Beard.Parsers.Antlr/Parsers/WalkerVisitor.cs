@@ -5,22 +5,22 @@ namespace Bb.Parsers
 
 
 
-    public class CodeVisitor : IAstBaseVisitor
+    public class WalkerVisitor : IAstBaseVisitor
     {
 
-        public CodeVisitor()
+        public WalkerVisitor()
         {
 
         }
 
-        public void Visit(AstBase a)
+        public virtual void Visit(AstBase a)
         {
             _stack.Push(a);
             a.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitGrammarSpec(AstGrammarSpec a)
+        public virtual void VisitGrammarSpec(AstGrammarSpec a)
         {
             _stack.Push(a);
             a.Declaration?.Accept(this);
@@ -31,13 +31,13 @@ namespace Bb.Parsers
         }
 
 
-        public void VisitActionBlock(AstActionBlock a)
+        public virtual void VisitActionBlock(AstActionBlock a)
         {
             _stack.Push(a);
             _stack.Pop();
         }
 
-        public void VisitAlternative(AstAlternative a)
+        public virtual void VisitAlternative(AstAlternative a)
         {
             _stack.Push(a);
             a.Rule?.Accept(this);
@@ -45,34 +45,34 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitArgActionBlock(AstArgActionBlock a)
+        public virtual void VisitArgActionBlock(AstArgActionBlock a)
         {
             _stack.Push(a);
             _stack.Pop();
         }
 
-        public void VisitAtom(AstAtom a)
+        public virtual void VisitAtom(AstAtom a)
         {
             _stack.Push(a);
             a.Value.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitBlock(AstBlock a)
+        public virtual void VisitBlock(AstBlock a)
         {
             _stack.Push(a);
 
             _stack.Pop();
         }
 
-        public void VisitElement(AstElement a)
+        public virtual void VisitElement(AstElement a)
         {
             _stack.Push(a);
             a.Child?.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitElementList(AstElementList a)
+        public virtual void VisitElementList(AstElementList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -80,7 +80,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitElementOptionList(AstElementOptionList a)
+        public virtual void VisitElementOptionList(AstElementOptionList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -88,7 +88,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitElementOption(AstElementOption a)
+        public virtual void VisitElementOption(AstElementOption a)
         {
             _stack.Push(a);
             a.Key?.Accept(this);
@@ -96,14 +96,14 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitExceptionGroup(AstExceptionGroup a)
+        public virtual void VisitExceptionGroup(AstExceptionGroup a)
         {
             _stack.Push(a);
             a.FinallyClause?.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitExceptionHandler(AstExceptionHandler a)
+        public virtual void VisitExceptionHandler(AstExceptionHandler a)
         {
             _stack.Push(a);
             a.ArgActionBlock.Accept(this);
@@ -112,23 +112,21 @@ namespace Bb.Parsers
             throw new NotImplementedException();
         }
 
-        public void VisitFinallyClause(AstFinallyClause a)
+        public virtual void VisitFinallyClause(AstFinallyClause a)
         {
             _stack.Push(a);
             a.Block.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitGrammerDecl(AstGrammarDecl a)
+        public virtual void VisitGrammerDecl(AstGrammarDecl a)
         {
             _stack.Push(a);
             a.Name.Accept(this);
-            //a.Code.Name = a.Name.Text;
             _stack.Pop();
-
         }
 
-        public void VisitIdentifierList(AstIdentifierList a)
+        public virtual void VisitIdentifierList(AstIdentifierList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -136,7 +134,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitLabeledAlt(AstLabeledAlt a)
+        public virtual void VisitLabeledAlt(AstLabeledAlt a)
         {
             _stack.Push(a);
             a.Identifier?.Accept(this);
@@ -144,7 +142,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitLabeledElement(AstLabeledElement a)
+        public virtual void VisitLabeledElement(AstLabeledElement a)
         {
             _stack.Push(a);
             a.Left.Accept(this);
@@ -152,12 +150,14 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitModeSpec(AstModeSpec a)
+        public virtual void VisitModeSpec(AstModeSpec a)
         {
+            _stack.Push(a);
 
+            _stack.Pop();
         }
 
-        public void VisitModeSpecList(AstModeSpecList a)
+        public virtual void VisitModeSpecList(AstModeSpecList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -165,7 +165,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitOption(AstOption a)
+        public virtual void VisitOption(AstOption a)
         {
             _stack.Push(a);
             a.Key?.Accept(this);
@@ -173,7 +173,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitOptionList(AstOptionList a)
+        public virtual void VisitOptionList(AstOptionList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -181,27 +181,21 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitParserRuleSpec(AstParserRuleSpec a)
-        {
-
-
-        }
-
-        public void VisitPrequel(AstPrequel a)
+        public virtual void VisitPrequel(AstPrequel a)
         {
             _stack.Push(a);
             a.Child?.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitPrequelConstruct(AstPrequelConstruct a)
+        public virtual void VisitPrequelConstruct(AstPrequelConstruct a)
         {
             _stack.Push(a);
             a.Child?.Accept(this);
             _stack.Pop();
         }
 
-        public void VisitPrequelConstructList(AstPrequelConstructList a)
+        public virtual void VisitPrequelConstructList(AstPrequelConstructList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -209,7 +203,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitPrequelList(AstPrequelList a)
+        public virtual void VisitPrequelList(AstPrequelList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -217,11 +211,10 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRule(AstRule a)
+        public virtual void VisitRule(AstRule a)
         {
             _stack.Push(a);
             a.Return?.Accept(this);
-            a.RuleName?.Accept(this);
             a.Modifiers?.Accept(this);
             a.Alternatives?.Accept(this);
             a.Rule?.Accept(this);
@@ -232,7 +225,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRuleAction(AstRuleAction a)
+        public virtual void VisitRuleAction(AstRuleAction a)
         {
             _stack.Push(a);
             a.Action?.Accept(this);
@@ -240,7 +233,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRuleAltList(AstRuleAltList a)
+        public virtual void VisitRuleAltList(AstRuleAltList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -248,12 +241,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRuleModifier(AstRuleModifier a)
-        {
-
-        }
-
-        public void VisitRuleModifierList(AstRuleModifierList a)
+        public virtual void VisitRuleModifierList(AstRuleModifierList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -261,7 +249,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRuleRef(AstRuleRef a)
+        public virtual void VisitRuleRef(AstRuleRef a)
         {
             _stack.Push(a);
             a.Identifier?.Accept(this);
@@ -270,7 +258,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitRulesList(AstRulesList a)
+        public virtual void VisitRulesList(AstRulesList a)
         {
             _stack.Push(a);
             foreach (var item in a)
@@ -278,7 +266,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitTerminal(AstTerminal a)
+        public virtual void VisitTerminal(AstTerminal a)
         {
             _stack.Push(a);
             a.Options?.Accept(this);
@@ -286,7 +274,7 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitAstAlternativeList(AstAlternativeList a)
+        public virtual void VisitAstAlternativeList(AstAlternativeList a)
         {
             a.Parent = _stack.Peek();
             _stack.Push(a);
@@ -295,22 +283,134 @@ namespace Bb.Parsers
             _stack.Pop();
         }
 
-        public void VisitTerminalText(AstTerminalText a)
+        public virtual void VisitTerminalText(AstTerminalText a)
         {
             //a.Code.Name = a.Text;
         }
 
+        public virtual void VisitParserRuleSpec(AstParserRuleSpec a)
+        {
+
+        }
+
+        public virtual void VisitRuleModifier(AstRuleModifier a)
+        {
+
+        }
+
+        public virtual void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        {
+            _stack.Push(a);
+
+            _stack.Pop();
+        }
+
+        public virtual void AstLexerRulesList(AstLexerRulesList a)
+        {
+            _stack.Push(a);
+
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerRulesList(AstLexerRulesList a)
+        {
+            _stack.Push(a);
+
+            _stack.Pop();
+        }
+
+        public virtual void VisitRules(AstRules a)
+        {
+            _stack.Push(a);
+            a.Terminals.Accept(this);
+            a.Rules.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerRule(AstLexerRule a)
+        {
+            _stack.Push(a);
+            a.Alternatives?.Accept(this);
+            a.Value?.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerLabeledElement(AstLexerLabeledElement a)
+        {
+            _stack.Push(a);
+            a.Left?.Accept(this);
+            a.Right?.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerElementList(AstLexerElementList a)
+        {
+            _stack.Push(a);
+            foreach (var item in a)
+                item.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerBlock(AstLexerBlock a)
+        {
+            _stack.Push(a);
+            a.AlternativeList?.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerAlternativeList(AstLexerAlternativeList a)
+        {
+            _stack.Push(a);
+            foreach (var item in a)
+                item.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerAlternative(AstLexerAlternative a)
+        {
+            _stack.Push(a);
+            a.Rule?.Accept(this);
+            a.Commands?.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerCommandList(AstLexerCommandList a)
+        {
+            _stack.Push(a);
+            foreach (var item in a)
+                item.Accept(this);
+            _stack.Pop();
+        }
+
+        public virtual void VisitLexerCommand(AstLexerCommand a)
+        {
+
+        }
+
+        public virtual void VisitNot(AstNot a)
+        {
+            _stack.Push(a);
+            a.Value.Accept(this);
+            _stack.Pop();
+        }
+
+
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
-        private void Stop()
+        protected void Stop()
         {
             System.Diagnostics.Debugger.Break();
         }
 
-        public void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        public void VisitRange(AstRange a)
         {
-            throw new NotImplementedException();
+            _stack.Push(a);
+            a.ValueStart.Accept(this);
+            a.ValueEnd.Accept(this);
+            _stack.Pop();
         }
+
+        protected AstBase Parent { get => _stack.Peek(); }
 
         private Stack<AstBase> _stack = new Stack<AstBase>();
 

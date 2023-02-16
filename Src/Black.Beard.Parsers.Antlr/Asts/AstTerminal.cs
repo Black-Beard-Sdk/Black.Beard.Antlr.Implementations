@@ -27,6 +27,10 @@ namespace Bb.Asts
             yield return Value;
         }
 
+        public bool IsConstant => Value.IsConstant;
+
+        public bool IsKeyword => Value.IsKeyword;
+
 
         public override bool ContainsOnlyTerminals => true;
         public override bool ContainsOnlyRules => false; 

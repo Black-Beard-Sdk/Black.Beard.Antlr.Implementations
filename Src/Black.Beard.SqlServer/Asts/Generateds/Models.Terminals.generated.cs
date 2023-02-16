@@ -19,9 +19,6 @@ namespace Bb.Asts.TSql
     /// empty_statement
     /// 	 : SEMI
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstEmptyStatement : AstTerminal<string>
     {
         
@@ -50,9 +47,6 @@ namespace Bb.Asts.TSql
     /// alter_assembly_from_clause_start
     /// 	 : FROM
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string>
     {
         
@@ -81,9 +75,6 @@ namespace Bb.Asts.TSql
     /// alter_assembly_drop
     /// 	 : DROP
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstAlterAssemblyDrop : AstTerminal<string>
     {
         
@@ -112,9 +103,6 @@ namespace Bb.Asts.TSql
     /// alter_assembly_file_name
     /// 	 : STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstAlterAssemblyFileName : AstTerminal<string>
     {
         
@@ -143,9 +131,6 @@ namespace Bb.Asts.TSql
     /// alter_assembly_as
     /// 	 : AS
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstAlterAssemblyAs : AstTerminal<string>
     {
         
@@ -174,9 +159,6 @@ namespace Bb.Asts.TSql
     /// alter_assembly_with
     /// 	 : WITH
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstAlterAssemblyWith : AstTerminal<string>
     {
         
@@ -205,9 +187,6 @@ namespace Bb.Asts.TSql
     /// network_file_start
     /// 	 : DOUBLE_BACK_SLASH
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstNetworkFileStart : AstTerminal<string>
     {
         
@@ -236,9 +215,6 @@ namespace Bb.Asts.TSql
     /// file_directory_path_separator
     /// 	 : BACKSLASH
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstFileDirectoryPathSeparator : AstTerminal<string>
     {
         
@@ -267,9 +243,6 @@ namespace Bb.Asts.TSql
     /// local_drive
     /// 	 : DISK_DRIVE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstLocalDrive : AstTerminal<string>
     {
         
@@ -298,9 +271,6 @@ namespace Bb.Asts.TSql
     /// multiple_local_file_start
     /// 	 : SINGLE_QUOTE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstMultipleLocalFileStart : AstTerminal<string>
     {
         
@@ -329,9 +299,6 @@ namespace Bb.Asts.TSql
     /// entity_to
     /// 	 : TO
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstEntityTo : AstTerminal<string>
     {
         
@@ -360,9 +327,6 @@ namespace Bb.Asts.TSql
     /// colon_colon
     /// 	 : DOUBLE_COLON
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstColonColon : AstTerminal<string>
     {
         
@@ -391,9 +355,6 @@ namespace Bb.Asts.TSql
     /// server_instance
     /// 	 : STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstServerInstance : AstTerminal<string>
     {
         
@@ -422,9 +383,6 @@ namespace Bb.Asts.TSql
     /// ip_v4_failover
     /// 	 : STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstIpV4Failover : AstTerminal<string>
     {
         
@@ -453,9 +411,6 @@ namespace Bb.Asts.TSql
     /// ip_v6_failover
     /// 	 : STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstIpV6Failover : AstTerminal<string>
     {
         
@@ -484,9 +439,6 @@ namespace Bb.Asts.TSql
     /// mirroring_partner
     /// 	 : PARTNER
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstMirroringPartner : AstTerminal<string>
     {
         
@@ -515,9 +467,6 @@ namespace Bb.Asts.TSql
     /// mirroring_witness
     /// 	 : WITNESS
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstMirroringWitness : AstTerminal<string>
     {
         
@@ -546,9 +495,6 @@ namespace Bb.Asts.TSql
     /// witness_partner_equal
     /// 	 : EQUAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstWitnessPartnerEqual : AstTerminal<string>
     {
         
@@ -577,9 +523,6 @@ namespace Bb.Asts.TSql
     /// mirroring_host_port_seperator
     /// 	 : COLON
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstMirroringHostPortSeperator : AstTerminal<string>
     {
         
@@ -608,9 +551,6 @@ namespace Bb.Asts.TSql
     /// parameter
     /// 	 : PLACEHOLDER
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstParameter : AstTerminal<string>
     {
         
@@ -639,9 +579,6 @@ namespace Bb.Asts.TSql
     /// star_asterisk
     /// 	 : STAR
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstStarAsterisk : AstTerminal<string>
     {
         
@@ -674,9 +611,6 @@ namespace Bb.Asts.TSql
     /// 	 | SQUARE_BRACKET_ID
     /// 	 | keyword
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstId : AstTerminal<string>
     {
         
@@ -705,9 +639,6 @@ namespace Bb.Asts.TSql
     /// simple_id
     /// 	 : ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassTerminalAlias
-    /// </remarks>
     public partial class AstSimpleId : AstTerminal<string>
     {
         

@@ -21,9 +21,6 @@ namespace Bb.Asts.TSql
     /// 	 : SCHEMA
     /// 	 | OBJECT
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstClassTypeForAzureDw : AstTerminal<AstClassTypeForAzureDwEnum>
     {
         
@@ -77,9 +74,6 @@ namespace Bb.Asts.TSql
     /// 	 | SCHEMA
     /// 	 | OBJECT
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstClassTypeForParallelDw : AstTerminal<AstClassTypeForParallelDwEnum>
     {
         
@@ -136,9 +130,6 @@ namespace Bb.Asts.TSql
     /// 	 : START
     /// 	 | STOP
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstStartStop : AstTerminal<AstStartStopEnum>
     {
         
@@ -191,9 +182,6 @@ namespace Bb.Asts.TSql
     /// 	 : ENABLE
     /// 	 | DISABLE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstEnableDisable : AstTerminal<AstEnableDisableEnum>
     {
         
@@ -246,9 +234,6 @@ namespace Bb.Asts.TSql
     /// 	 : SPLIT
     /// 	 | MERGE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstSplitOrMerge : AstTerminal<AstSplitOrMergeEnum>
     {
         
@@ -301,9 +286,6 @@ namespace Bb.Asts.TSql
     /// 	 : ADD
     /// 	 | DROP
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstAddDrop : AstTerminal<AstAddDropEnum>
     {
         
@@ -358,9 +340,6 @@ namespace Bb.Asts.TSql
     /// 	 | DELETE
     /// 	 | UPDATE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstEnumDml : AstTerminal<AstEnumDmlEnum>
     {
         
@@ -421,9 +400,6 @@ namespace Bb.Asts.TSql
     /// 	 : GRANT
     /// 	 | DENY
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstGrantDeny : AstTerminal<AstGrantDenyEnum>
     {
         
@@ -473,11 +449,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_operation
-    /// 	 : INSERT UPDATE DELETE
+    /// 	 : (INSERT UPDATE DELETE)
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstDmlTriggerOperation : AstTerminal<AstDmlTriggerOperationEnum>
     {
         
@@ -535,9 +508,6 @@ namespace Bb.Asts.TSql
     /// 	 | SCHEMABINDING
     /// 	 | VIEW_METADATA
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstViewAttribute : AstTerminal<AstViewAttributeEnum>
     {
         
@@ -596,9 +566,6 @@ namespace Bb.Asts.TSql
     /// 	 | READ_ONLY
     /// 	 | READ_WRITE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstFilegroupUpdatabilityOption : AstTerminal<AstFilegroupUpdatabilityOptionEnum>
     {
         
@@ -659,9 +626,6 @@ namespace Bb.Asts.TSql
     /// 	 : LOCAL
     /// 	 | GLOBAL
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstLocalGlobal : AstTerminal<AstLocalGlobalEnum>
     {
         
@@ -711,11 +675,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// db_state_option
-    /// 	 : ONLINE OFFLINE EMERGENCY
+    /// 	 : (ONLINE OFFLINE EMERGENCY)
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstDbStateOption : AstTerminal<AstDbStateOptionEnum>
     {
         
@@ -772,9 +733,6 @@ namespace Bb.Asts.TSql
     /// 	 : READ_ONLY
     /// 	 | READ_WRITE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstDbUpdateOption : AstTerminal<AstDbUpdateOptionEnum>
     {
         
@@ -828,9 +786,6 @@ namespace Bb.Asts.TSql
     /// 	 | RESTRICTED_USER
     /// 	 | MULTI_USER
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstDbUserAccessOption : AstTerminal<AstDbUserAccessOptionEnum>
     {
         
@@ -895,9 +850,6 @@ namespace Bb.Asts.TSql
     /// 	 | AES_192
     /// 	 | AES_256
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstAlgorithm : AstTerminal<AstAlgorithmEnum>
     {
         
@@ -982,9 +934,6 @@ namespace Bb.Asts.TSql
     /// 	 : SEMI_SENSITIVE
     /// 	 | INSENSITIVE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstSensitive : AstTerminal<AstSensitiveEnum>
     {
         
@@ -1037,9 +986,6 @@ namespace Bb.Asts.TSql
     /// 	 : ABSOLUTE
     /// 	 | RELATIVE
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstAbsoluteRelative : AstTerminal<AstAbsoluteRelativeEnum>
     {
         
@@ -1094,9 +1040,6 @@ namespace Bb.Asts.TSql
     /// 	 | FIRST
     /// 	 | LAST
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstFetchCursorStrategy : AstTerminal<AstFetchCursorStrategyEnum>
     {
         
@@ -1178,9 +1121,6 @@ namespace Bb.Asts.TSql
     /// 	 | SHOWPLAN_XML
     /// 	 | XACT_ABORT
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstSpecialList : AstTerminal<AstSpecialListEnum>
     {
         
@@ -1319,9 +1259,6 @@ namespace Bb.Asts.TSql
     /// 	 | READPAST
     /// 	 | SHARED
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstSybaseLegacyHint : AstTerminal<AstSybaseLegacyHintEnum>
     {
         
@@ -1382,9 +1319,6 @@ namespace Bb.Asts.TSql
     /// 	 : ON
     /// 	 | OFF
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstOnOff : AstTerminal<AstOnOffEnum>
     {
         
@@ -1437,9 +1371,6 @@ namespace Bb.Asts.TSql
     /// 	 : CLUSTERED
     /// 	 | NONCLUSTERED
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstClustered : AstTerminal<AstClusteredEnum>
     {
         
@@ -2307,9 +2238,6 @@ namespace Bb.Asts.TSql
     /// 	 | NVARCHAR
     /// 	 | PRECISION
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassEnum
-    /// </remarks>
     public partial class AstKeyword : AstTerminal<AstKeywordEnum>
     {
         

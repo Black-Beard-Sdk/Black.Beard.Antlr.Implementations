@@ -242,7 +242,7 @@ lexerElement
    // but preds can be anywhere
 
 labeledLexerElement
-   : identifier (ASSIGN | PLUS_ASSIGN) (lexerAtom | lexerBlock)
+   : 
    ;
 
 lexerBlock

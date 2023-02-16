@@ -10,13 +10,12 @@ namespace Bb.Asts
         public AstIdentifier(ITerminalNode n, string type, string text) 
             : base(n, type, text)
         {
-            
+
         }
 
         public AstIdentifier(ParserRuleContext ctx, string type, string text)
             : base(ctx, type, text)
         {
-
 
         }
 

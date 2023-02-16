@@ -5,7 +5,7 @@ namespace Bb.Parsers
 {
 
 
-    public class ParentVisitor : IAstBaseVisitor
+    public class ParentVisitor : WalkerVisitor
     {
 
 
@@ -14,344 +14,289 @@ namespace Bb.Parsers
 
         }
 
-
-        public void Visit(AstBase a)
+        public override void VisitActionBlock(AstActionBlock a)
         {
-            _stack.Push(a);
-
-            a.Accept(this);
-
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitActionBlock(a);
         }
 
-
-        public void VisitGrammarSpec(AstGrammarSpec a)
+        public override void VisitAlternative(AstAlternative a)
         {
-            _stack.Push(a);
-
-            a.Declaration.Accept(this);
-
-            a.Modes?.Accept(this);
-
-            a.Prequels?.Accept(this);
-
-            a.Rules?.Accept(this);
-
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitAlternative(a);
         }
 
-
-        public void VisitActionBlock(AstActionBlock a)
+        public override void VisitArgActionBlock(AstArgActionBlock a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitArgActionBlock(a);
         }
 
-        public void VisitAlternative(AstAlternative a)
+        public override void VisitAtom(AstAtom a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Options?.Accept(this);
-            a.Rule?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitAtom(a);
         }
 
-        public void VisitArgActionBlock(AstArgActionBlock a)
+        public override void VisitBlock(AstBlock a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitBlock(a);
         }
 
-        public void VisitAtom(AstAtom a)
+        public override void VisitElement(AstElement a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Value?.Accept(this);
-            _stack.Pop();
-        }
-
-        public void VisitBlock(AstBlock a)
-        {
-            a.Parent = _stack.Peek();
-        }
-
-        public void VisitElement(AstElement a)
-        {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
+            a.Parent = Parent;
             a.Child?.Accept(this);
-            _stack.Pop();
         }
 
-        public void VisitElementList(AstElementList a)
+        public override void VisitElementList(AstElementList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitElementList(a);
         }
 
-        public void VisitElementOptionList(AstElementOptionList a)
+        public override void VisitElementOptionList(AstElementOptionList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitElementOptionList(a);
         }
 
-        public void VisitElementOption(AstElementOption a)
+        public override void VisitElementOption(AstElementOption a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Key?.Accept(this);
-            a.Value?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitElementOption(a);            
         }
 
-        public void VisitExceptionGroup(AstExceptionGroup a)
+        public override void VisitExceptionGroup(AstExceptionGroup a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitExceptionGroup(a);
         }
 
-        public void VisitExceptionHandler(AstExceptionHandler a)
+        public override void VisitExceptionHandler(AstExceptionHandler a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.ActionBlock?.Accept(this);
-            a.ArgActionBlock?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitExceptionHandler(a);
         }
 
-        public void VisitFinallyClause(AstFinallyClause a)
+        public override void VisitFinallyClause(AstFinallyClause a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Block?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitFinallyClause(a);
         }
 
-        public void VisitGrammerDecl(AstGrammarDecl a)
+        public override void VisitGrammerDecl(AstGrammarDecl a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Name.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitGrammerDecl(a);
         }
 
-        public void VisitIdentifierList(AstIdentifierList a)
+        public override void VisitIdentifierList(AstIdentifierList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitIdentifierList(a);
         }
 
-        public void VisitLabeledAlt(AstLabeledAlt a)
+        public override void VisitLabeledAlt(AstLabeledAlt a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Rule?.Accept(this);
-            a.Identifier?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitLabeledAlt(a);
         }
 
-        public void VisitLabeledElement(AstLabeledElement a)
+        public override void VisitLabeledElement(AstLabeledElement a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Left?.Accept(this);
-            a.Right?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitLabeledElement(a);
         }
 
-        public void VisitModeSpec(AstModeSpec a)
+        public override void VisitModeSpec(AstModeSpec a)
         {
-            a.Parent = _stack.Peek();
+            a.Parent = Parent;
+            base.VisitModeSpec(a);
         }
 
-        public void VisitModeSpecList(AstModeSpecList a)
+        public override void VisitModeSpecList(AstModeSpecList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitModeSpecList(a);            
         }
 
-        public void VisitOption(AstOption a)
+        public override void VisitOption(AstOption a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Key?.Accept(this);
-            a.Value?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitOption(a);
         }
 
-        public void VisitOptionList(AstOptionList a)
+        public override void VisitOptionList(AstOptionList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitOptionList(a);
         }
 
-        public void VisitParserRuleSpec(AstParserRuleSpec a)
+        public override void VisitParserRuleSpec(AstParserRuleSpec a)
         {
-            a.Parent = _stack.Peek();
+            a.Parent = Parent;
+            base.VisitParserRuleSpec(a);
         }
 
-        public void VisitPrequel(AstPrequel a)
+        public override void VisitPrequel(AstPrequel a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Child?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitPrequel(a);
         }
 
-        public void VisitPrequelConstruct(AstPrequelConstruct a)
+        public override void VisitPrequelConstruct(AstPrequelConstruct a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Child.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitPrequelConstruct(a);
         }
 
-        public void VisitPrequelConstructList(AstPrequelConstructList a)
+        public override void VisitPrequelConstructList(AstPrequelConstructList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitPrequelConstructList(a);
         }
 
-        public void VisitPrequelList(AstPrequelList a)
+        public override void VisitPrequelList(AstPrequelList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitPrequelList(a);
         }
 
-        public void VisitRule(AstRule a)
+        public override void VisitRule(AstRule a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Return?.Accept(this);
-            a.RuleName?.Accept(this);
-            a.Modifiers?.Accept(this);
-            a.Alternatives?.Accept(this);
-            a.Rule?.Accept(this);
-            a.ThrowsSpec?.Accept(this);
-            a.Local?.Accept(this);
-            a.Prequels?.Accept(this);
-            a.ExceptionGroup?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRule(a);
         }
 
-        public void VisitRuleAction(AstRuleAction a)
+        public override void VisitRuleAction(AstRuleAction a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Action?.Accept(this);
-            a.Name?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRuleAction(a);
         }
 
-        public void VisitRuleAltList(AstRuleAltList a)
+        public override void VisitRuleAltList(AstRuleAltList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRuleAltList(a);
         }
 
-        public void VisitRuleModifier(AstRuleModifier a)
+        public override void VisitRuleModifier(AstRuleModifier a)
         {
-            a.Parent = _stack.Peek();
+            a.Parent = Parent;
+            base.VisitRuleModifier(a);
         }
 
-        public void VisitRuleModifierList(AstRuleModifierList a)
+        public override void VisitRuleModifierList(AstRuleModifierList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRuleModifierList(a);
         }
 
-        public void VisitRuleRef(AstRuleRef a)
+        public override void VisitRuleRef(AstRuleRef a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Identifier?.Accept(this);
-            a.Action?.Accept(this);
-            a.Option?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRuleRef(a);
+
         }
 
-        public void VisitRulesList(AstRulesList a)
+        public override void VisitRulesList(AstRulesList a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitRulesList(a);
         }
 
-        public void VisitTerminal(AstTerminal a)
+        public override void VisitTerminal(AstTerminal a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            a.Options?.Accept(this);
-            a.Value?.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitTerminal(a);
         }
 
-        public void VisitTerminalText(AstTerminalText a)
+        public override void VisitTerminalText(AstTerminalText a)
         {
-            a.Parent = _stack.Peek();
+            a.Parent = Parent;
+            base.VisitTerminalText(a);
         }
 
-        [System.Diagnostics.DebuggerStepThrough]
-        [System.Diagnostics.DebuggerNonUserCode]
-        private void Stop()
+      
+        public override void VisitAstAlternativeList(AstAlternativeList a)
         {
-            System.Diagnostics.Debugger.Break();
+            a.Parent = Parent;
+            base.VisitAstAlternativeList(a);
         }
 
-        public void VisitAstAlternativeList(AstAlternativeList a)
+        public override void VisitAstEbnfSuffix(AstEbnfSuffix a)
         {
-            a.Parent = _stack.Peek();
-            _stack.Push(a);
-            foreach (var item in a)
-                item.Accept(this);
-            _stack.Pop();
+            a.Parent = Parent;
+            base.VisitAstEbnfSuffix(a);
         }
 
-        public void VisitAstEbnfSuffix(AstEbnfSuffix a)
+        public override void AstLexerRulesList(AstLexerRulesList a)
         {
-            throw new NotImplementedException();
+            a.Parent = Parent;
+            base.AstLexerRulesList(a);
         }
 
-        private Stack<AstBase> _stack = new Stack<AstBase>();
+        public override void VisitLexerRulesList(AstLexerRulesList a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerRulesList(a);
+        }
 
+        public override void VisitRules(AstRules a)
+        {
+            a.Parent = Parent;
+            base.VisitRules(a);
+        }
+
+        public override void VisitLexerRule(AstLexerRule a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerRule(a);
+        }
+
+        public override void VisitLexerLabeledElement(AstLexerLabeledElement a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerLabeledElement(a);
+        }
+
+        public override void VisitLexerElementList(AstLexerElementList a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerElementList(a);
+        }
+
+        public override void VisitLexerBlock(AstLexerBlock a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerBlock(a);
+        }
+
+        public override void VisitLexerAlternativeList(AstLexerAlternativeList a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerAlternativeList(a);
+        }
+
+        public override void VisitLexerAlternative(AstLexerAlternative a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerAlternative(a);
+        }
+
+        public override void VisitLexerCommandList(AstLexerCommandList a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerCommandList(a);
+        }
+
+        public override void VisitLexerCommand(AstLexerCommand a)
+        {
+            a.Parent = Parent;
+            base.VisitLexerCommand(a);
+        }
 
     }
 

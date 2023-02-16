@@ -4,11 +4,41 @@ using Bb.Parsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Threading.Tasks;
 
 namespace Bb.Asts
 {
 
+
+    [Serializable]
+    public class InvalidStrategyAstException : Exception
+    {
+        public InvalidStrategyAstException()
+        {
+        
+        }
+        
+        public InvalidStrategyAstException(string object1, string object2, string rule) 
+            : base($"object initialize with {object1}. {object2} can't be used." + rule) 
+        {
+        
+        }
+        
+        public InvalidStrategyAstException(string message, Exception inner) 
+            : base(message, inner) 
+        {
+        
+        }
+
+        protected InvalidStrategyAstException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) 
+            : base(info, context) 
+        {
+        
+        }
+    }
 
     public abstract class AstBase<TVisitor> : IStrategyResolver
     {
@@ -33,6 +63,9 @@ namespace Bb.Asts
 
 
         public Position Position { get; }
+
+
+
 
         public AstBase<TVisitor> Parent { get; set; }
 
@@ -64,14 +97,14 @@ namespace Bb.Asts
         public StrategySerializationItem GetFrom(object instance)
         {
 
-            var str = StrategySerialization();            
+            var str = StrategySerialization();
             if (str != null)
                 return str.GetStrategy(instance.GetType().Name);
-            
+
             return null;
 
         }
-        
+
 
         public override string ToString()
         {
@@ -87,12 +120,12 @@ namespace Bb.Asts
 
         public virtual void ToString(Writer writer)
         {
-                      
+
 
         }
 
     }
 
-  
+
 
 }

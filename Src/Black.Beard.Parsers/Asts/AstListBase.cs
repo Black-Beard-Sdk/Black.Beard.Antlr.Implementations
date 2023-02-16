@@ -4,7 +4,6 @@ using System.Collections;
 namespace Bb.Asts
 {
 
-
     public abstract class AstListBase<T, TVisitor> : AstBase<TVisitor>, IEnumerable<T>
         where T : AstBase<TVisitor>
     {

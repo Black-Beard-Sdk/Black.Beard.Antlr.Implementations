@@ -23,7 +23,7 @@ namespace Generate.Scripts
 
         protected override bool Generate(AstRule ast, Context context)
         {
-            return context.Strategy == "ClassEnum";
+            return TemplateSelector(ast, context) == "ClassEnum";
         }
 
         protected override void ConfigureTemplate(Context context, CodeGeneratorVisitor generator)

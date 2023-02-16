@@ -13,12 +13,12 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRule";
+            return string.Empty;
         }
 
         protected override bool Generate(AstRule ast, Context context)
         {
-            return context.Strategy == "_";
+            return TemplateSelector(ast, context) == "_";
         }
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
@@ -38,7 +38,7 @@ namespace Generate.Scripts
 
                            type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                                //.GenerateIf(() => Generate(ast, ctx))
-                               .Comment(() => ast.ToString())
+                               .Documentation(c => c.Summary(() => ast.ToString()))
                                .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
                                //.Inherit(() => GetInherit(ast, ctx))
 
@@ -66,7 +66,7 @@ namespace Generate.Scripts
                        {
                            type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text))
                                .Inherit(() => "AstRule")
-                               .Comment(() => ast.ToString())
+                               .Documentation(c => c.Summary(() => ast.ToString()))
 
                                .Ctor((f) =>
                                {

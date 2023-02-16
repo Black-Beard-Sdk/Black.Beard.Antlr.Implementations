@@ -3,6 +3,7 @@
 namespace Bb.Asts
 {
 
+
     public class AstBlock : AstBase
     {
 
@@ -20,7 +21,7 @@ namespace Bb.Asts
 
         public AstAlternativeList? AlternativeList { get; }
 
-        public OccurenceEnum Occurence { get; internal set; }
+        public Occurence Occurence { get; internal set; }
 
 
 
@@ -266,13 +267,19 @@ namespace Bb.Asts
 
         public override void ToString(Writer writer)
         {
+
             if (Options != null) Options.ToString(writer);
 
-            if (RuleAction != null) RuleAction.ToString(writer);
+            if (RuleAction != null)
+            {
+                RuleAction.ToString(writer);
+            }
 
             if (AlternativeList != null)
             {
+                writer.Append("(");
                 AlternativeList.ToString(writer);
+                writer.Append(")");
                 WriteOccurence(writer, Occurence);
             }
 

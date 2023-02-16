@@ -262,9 +262,6 @@ namespace Bb.Asts
                         yield return t;
         }
 
-
-
-
         public override AstTerminalText GetTerminal()
         {
             if (this._list.Count == 1)
@@ -298,26 +295,14 @@ namespace Bb.Asts
 
         }
 
-        public OccurenceEnum Occurence { get; set; }
+        public Occurence Occurence { get; set; }
 
-
-           
         public int Count => _list.Count;
 
         private readonly List<T> _list;
 
         protected string _charSplit = " ";
 
-    }
-
-    public enum OccurenceEnum
-    {
-        One,
-        OneOptional,
-        OneOrMore,
-        OneOrMoreOptional,
-        AnyOptional,
-        Any,
     }
 
 

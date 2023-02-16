@@ -19,9 +19,6 @@ namespace Bb.Asts.TSql
     /// message_type_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstMessageTypeName : AstTerminalIdentifier
     {
         
@@ -50,9 +47,6 @@ namespace Bb.Asts.TSql
     /// partition_function_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPartitionFunctionName : AstTerminalIdentifier
     {
         
@@ -81,9 +75,6 @@ namespace Bb.Asts.TSql
     /// partition_scheme_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPartitionSchemeName : AstTerminalIdentifier
     {
         
@@ -110,11 +101,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// ids_
-    /// 	 : id_  COMMA  id_*
+    /// 	 : id_  (COMMA  id_)*?
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstIds : AstTerminalIdentifier
     {
         
@@ -142,11 +130,8 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// host
     /// 	 : id_  DOT  host
-    /// 	 | id_  DOT id_
+    /// 	 | (id_  DOT id_)
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstHost : AstTerminalIdentifier
     {
         
@@ -176,9 +161,6 @@ namespace Bb.Asts.TSql
     /// 	 : id_
     /// 	 | STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstIdOrString : AstTerminalIdentifier
     {
         
@@ -209,9 +191,6 @@ namespace Bb.Asts.TSql
     /// 	 | id_
     /// 	 | PUBLIC
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPrincipalId : AstTerminalIdentifier
     {
         
@@ -240,9 +219,6 @@ namespace Bb.Asts.TSql
     /// table_alias
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTableAlias : AstTerminalIdentifier
     {
         
@@ -272,9 +248,6 @@ namespace Bb.Asts.TSql
     /// 	 : id_
     /// 	 | STRING
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstColumnAlias : AstTerminalIdentifier
     {
         
@@ -301,11 +274,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// complete_table_name
-    /// 	 : linked_server  DOT  DOT  schema_name  DOT server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT?  tableName
+    /// 	 : (linked_server  DOT  DOT  schema_name  DOT server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCompleteTableName : AstTerminalIdentifier
     {
         
@@ -333,11 +303,8 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// full_table_name
     /// 	 : full_schema_name?  tableName
-    /// 	 | full_schema_name?  
+    /// 	 | full_schema_name?  blocking_hierarchy = BLOCKING_HIERARCHY
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFullTableName : AstTerminalIdentifier
     {
         
@@ -364,11 +331,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_schema_name
-    /// 	 : database_name  DOT?  schema_name
+    /// 	 : (database_name  DOT)?  schema_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFullSchemaName : AstTerminalIdentifier
     {
         
@@ -395,11 +359,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// simple_name
-    /// 	 : schema_name  DOT?  
+    /// 	 : (schema_name  DOT)?  name = id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSimpleName : AstTerminalIdentifier
     {
         
@@ -426,11 +387,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_proc_name_schema
-    /// 	 : schema_name  DOT?  function_name
+    /// 	 : (schema_name  DOT)?  function_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFuncProcNameSchema : AstTerminalIdentifier
     {
         
@@ -460,9 +418,6 @@ namespace Bb.Asts.TSql
     /// 	 : database_name?  DOT  schema_name?  DOT  function_name
     /// 	 | func_proc_name_schema
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFuncProcNameDatabaseSchema : AstTerminalIdentifier
     {
         
@@ -492,9 +447,6 @@ namespace Bb.Asts.TSql
     /// 	 : server_name?  DOT  database_name?  DOT  schema_name?  DOT  function_name
     /// 	 | func_proc_name_database_schema
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFuncProcNameServerDatabaseSchema : AstTerminalIdentifier
     {
         
@@ -524,9 +476,6 @@ namespace Bb.Asts.TSql
     /// 	 : complete_table_name
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstDdlObject : AstTerminalIdentifier
     {
         
@@ -553,15 +502,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name
-    /// 	 : DELETED INSERTED  DOT  column_name
+    /// 	 : (DELETED INSERTED)  DOT  column_name
     /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | tableName?  DOT  column_name
     /// 	 | column_name
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFullColumnName : AstTerminalIdentifier
     {
         
@@ -588,11 +534,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_column_id
-    /// 	 :   DOT*  id_
+    /// 	 : (ignore += id_  DOT)*?  id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstInsertColumnId : AstTerminalIdentifier
     {
         
@@ -622,9 +565,6 @@ namespace Bb.Asts.TSql
     /// 	 : id_
     /// 	 | LOCAL_ID
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCursorName : AstTerminalIdentifier
     {
         
@@ -653,9 +593,6 @@ namespace Bb.Asts.TSql
     /// filestream_filegroup_or_partition_schema_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFilestreamFilegroupOrPartitionSchemaName : AstTerminalIdentifier
     {
         
@@ -684,9 +621,6 @@ namespace Bb.Asts.TSql
     /// action_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstActionName : AstTerminalIdentifier
     {
         
@@ -715,9 +649,6 @@ namespace Bb.Asts.TSql
     /// aggregate_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAggregateName : AstTerminalIdentifier
     {
         
@@ -746,9 +677,6 @@ namespace Bb.Asts.TSql
     /// app_role_schema
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAppRoleSchema : AstTerminalIdentifier
     {
         
@@ -777,9 +705,6 @@ namespace Bb.Asts.TSql
     /// application_role
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstApplicationRole : AstTerminalIdentifier
     {
         
@@ -808,9 +733,6 @@ namespace Bb.Asts.TSql
     /// assembly_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAssemblyName : AstTerminalIdentifier
     {
         
@@ -839,9 +761,6 @@ namespace Bb.Asts.TSql
     /// asym_key_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAsymKeyName : AstTerminalIdentifier
     {
         
@@ -870,9 +789,6 @@ namespace Bb.Asts.TSql
     /// audit_action_group_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAuditActionGroupName : AstTerminalIdentifier
     {
         
@@ -901,9 +817,6 @@ namespace Bb.Asts.TSql
     /// audit_guid
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAuditGuid : AstTerminalIdentifier
     {
         
@@ -932,9 +845,6 @@ namespace Bb.Asts.TSql
     /// audit_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAuditName : AstTerminalIdentifier
     {
         
@@ -963,9 +873,6 @@ namespace Bb.Asts.TSql
     /// audit_specification_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAuditSpecificationName : AstTerminalIdentifier
     {
         
@@ -994,9 +901,6 @@ namespace Bb.Asts.TSql
     /// azure_active_directory_principal
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstAzureActiveDirectoryPrincipal : AstTerminalIdentifier
     {
         
@@ -1025,9 +929,6 @@ namespace Bb.Asts.TSql
     /// backup_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstBackupName : AstTerminalIdentifier
     {
         
@@ -1056,9 +957,6 @@ namespace Bb.Asts.TSql
     /// binding_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstBindingName : AstTerminalIdentifier
     {
         
@@ -1087,9 +985,6 @@ namespace Bb.Asts.TSql
     /// catalog_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCatalogName : AstTerminalIdentifier
     {
         
@@ -1118,9 +1013,6 @@ namespace Bb.Asts.TSql
     /// cert_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCertName : AstTerminalIdentifier
     {
         
@@ -1149,9 +1041,6 @@ namespace Bb.Asts.TSql
     /// certificate_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCertificateName : AstTerminalIdentifier
     {
         
@@ -1180,9 +1069,6 @@ namespace Bb.Asts.TSql
     /// class_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstClassName : AstTerminalIdentifier
     {
         
@@ -1211,9 +1097,6 @@ namespace Bb.Asts.TSql
     /// collation_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCollationName : AstTerminalIdentifier
     {
         
@@ -1242,9 +1125,6 @@ namespace Bb.Asts.TSql
     /// column_encryption_key
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstColumnEncryptionKey : AstTerminalIdentifier
     {
         
@@ -1273,9 +1153,6 @@ namespace Bb.Asts.TSql
     /// column_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstColumnName : AstTerminalIdentifier
     {
         
@@ -1304,9 +1181,6 @@ namespace Bb.Asts.TSql
     /// column_name_or_arguments
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstColumnNameOrArguments : AstTerminalIdentifier
     {
         
@@ -1335,9 +1209,6 @@ namespace Bb.Asts.TSql
     /// constraint_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstConstraintName : AstTerminalIdentifier
     {
         
@@ -1366,9 +1237,6 @@ namespace Bb.Asts.TSql
     /// create_service_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCreateServiceName : AstTerminalIdentifier
     {
         
@@ -1397,9 +1265,6 @@ namespace Bb.Asts.TSql
     /// credential_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCredentialName : AstTerminalIdentifier
     {
         
@@ -1428,9 +1293,6 @@ namespace Bb.Asts.TSql
     /// cryptographic_provider_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstCryptographicProviderName : AstTerminalIdentifier
     {
         
@@ -1459,9 +1321,6 @@ namespace Bb.Asts.TSql
     /// data_source_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstDataSourceName : AstTerminalIdentifier
     {
         
@@ -1490,9 +1349,6 @@ namespace Bb.Asts.TSql
     /// database_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstDatabaseName : AstTerminalIdentifier
     {
         
@@ -1521,9 +1377,6 @@ namespace Bb.Asts.TSql
     /// dropped_service_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstDroppedServiceName : AstTerminalIdentifier
     {
         
@@ -1552,9 +1405,6 @@ namespace Bb.Asts.TSql
     /// encryptor_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEncryptorName : AstTerminalIdentifier
     {
         
@@ -1583,9 +1433,6 @@ namespace Bb.Asts.TSql
     /// endpoint_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEndpointName : AstTerminalIdentifier
     {
         
@@ -1614,9 +1461,6 @@ namespace Bb.Asts.TSql
     /// event_customizable_attributue
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventCustomizableAttributue : AstTerminalIdentifier
     {
         
@@ -1645,9 +1489,6 @@ namespace Bb.Asts.TSql
     /// event_field_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventFieldName : AstTerminalIdentifier
     {
         
@@ -1676,9 +1517,6 @@ namespace Bb.Asts.TSql
     /// event_module_guid
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventModuleGuid : AstTerminalIdentifier
     {
         
@@ -1707,9 +1545,6 @@ namespace Bb.Asts.TSql
     /// event_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventName : AstTerminalIdentifier
     {
         
@@ -1738,9 +1573,6 @@ namespace Bb.Asts.TSql
     /// event_notification_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventNotificationName : AstTerminalIdentifier
     {
         
@@ -1769,9 +1601,6 @@ namespace Bb.Asts.TSql
     /// event_package_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventPackageName : AstTerminalIdentifier
     {
         
@@ -1800,9 +1629,6 @@ namespace Bb.Asts.TSql
     /// event_session_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventSessionName : AstTerminalIdentifier
     {
         
@@ -1831,9 +1657,6 @@ namespace Bb.Asts.TSql
     /// event_type_or_group
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstEventTypeOrGroup : AstTerminalIdentifier
     {
         
@@ -1862,9 +1685,6 @@ namespace Bb.Asts.TSql
     /// ext_type
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstExtType : AstTerminalIdentifier
     {
         
@@ -1893,9 +1713,6 @@ namespace Bb.Asts.TSql
     /// external_data_source_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstExternalDataSourceName : AstTerminalIdentifier
     {
         
@@ -1924,9 +1741,6 @@ namespace Bb.Asts.TSql
     /// external_file_format_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstExternalFileFormatName : AstTerminalIdentifier
     {
         
@@ -1955,9 +1769,6 @@ namespace Bb.Asts.TSql
     /// external_pool_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstExternalPoolName : AstTerminalIdentifier
     {
         
@@ -1986,9 +1797,6 @@ namespace Bb.Asts.TSql
     /// file_group_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFileGroupName : AstTerminalIdentifier
     {
         
@@ -2017,9 +1825,6 @@ namespace Bb.Asts.TSql
     /// function_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstFunctionName : AstTerminalIdentifier
     {
         
@@ -2048,9 +1853,6 @@ namespace Bb.Asts.TSql
     /// group_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstGroupName : AstTerminalIdentifier
     {
         
@@ -2079,9 +1881,6 @@ namespace Bb.Asts.TSql
     /// index_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstIndexName : AstTerminalIdentifier
     {
         
@@ -2110,9 +1909,6 @@ namespace Bb.Asts.TSql
     /// language
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstLanguage : AstTerminalIdentifier
     {
         
@@ -2141,9 +1937,6 @@ namespace Bb.Asts.TSql
     /// library_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstLibraryName : AstTerminalIdentifier
     {
         
@@ -2172,9 +1965,6 @@ namespace Bb.Asts.TSql
     /// linked_server
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstLinkedServer : AstTerminalIdentifier
     {
         
@@ -2203,9 +1993,6 @@ namespace Bb.Asts.TSql
     /// logical_device_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstLogicalDeviceName : AstTerminalIdentifier
     {
         
@@ -2234,9 +2021,6 @@ namespace Bb.Asts.TSql
     /// login_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstLoginName : AstTerminalIdentifier
     {
         
@@ -2265,9 +2049,6 @@ namespace Bb.Asts.TSql
     /// master_key
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstMasterKey : AstTerminalIdentifier
     {
         
@@ -2296,9 +2077,6 @@ namespace Bb.Asts.TSql
     /// method_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstMethodName : AstTerminalIdentifier
     {
         
@@ -2327,9 +2105,6 @@ namespace Bb.Asts.TSql
     /// modified_contract_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstModifiedContractName : AstTerminalIdentifier
     {
         
@@ -2358,9 +2133,6 @@ namespace Bb.Asts.TSql
     /// modified_service_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstModifiedServiceName : AstTerminalIdentifier
     {
         
@@ -2389,9 +2161,6 @@ namespace Bb.Asts.TSql
     /// module_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstModuleName : AstTerminalIdentifier
     {
         
@@ -2420,9 +2189,6 @@ namespace Bb.Asts.TSql
     /// network_computer
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstNetworkComputer : AstTerminalIdentifier
     {
         
@@ -2451,9 +2217,6 @@ namespace Bb.Asts.TSql
     /// new_application_role_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstNewApplicationRoleName : AstTerminalIdentifier
     {
         
@@ -2482,9 +2245,6 @@ namespace Bb.Asts.TSql
     /// new_file_group_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstNewFileGroupName : AstTerminalIdentifier
     {
         
@@ -2513,9 +2273,6 @@ namespace Bb.Asts.TSql
     /// non_static_attr
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstNonStaticAttr : AstTerminalIdentifier
     {
         
@@ -2544,9 +2301,6 @@ namespace Bb.Asts.TSql
     /// notification_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstNotificationName : AstTerminalIdentifier
     {
         
@@ -2575,9 +2329,6 @@ namespace Bb.Asts.TSql
     /// object_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstObjectName : AstTerminalIdentifier
     {
         
@@ -2606,9 +2357,6 @@ namespace Bb.Asts.TSql
     /// owner_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstOwnerName : AstTerminalIdentifier
     {
         
@@ -2637,9 +2385,6 @@ namespace Bb.Asts.TSql
     /// partition_column_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPartitionColumnName : AstTerminalIdentifier
     {
         
@@ -2668,9 +2413,6 @@ namespace Bb.Asts.TSql
     /// pool_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPoolName : AstTerminalIdentifier
     {
         
@@ -2699,9 +2441,6 @@ namespace Bb.Asts.TSql
     /// predicate_compare_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPredicateCompareName : AstTerminalIdentifier
     {
         
@@ -2730,9 +2469,6 @@ namespace Bb.Asts.TSql
     /// predicate_source_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPredicateSourceName : AstTerminalIdentifier
     {
         
@@ -2761,9 +2497,6 @@ namespace Bb.Asts.TSql
     /// property_list_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstPropertyListName : AstTerminalIdentifier
     {
         
@@ -2792,9 +2525,6 @@ namespace Bb.Asts.TSql
     /// provider_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstProviderName : AstTerminalIdentifier
     {
         
@@ -2823,9 +2553,6 @@ namespace Bb.Asts.TSql
     /// queue_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstQueueName : AstTerminalIdentifier
     {
         
@@ -2854,9 +2581,6 @@ namespace Bb.Asts.TSql
     /// relational_schema
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstRelationalSchema : AstTerminalIdentifier
     {
         
@@ -2885,9 +2609,6 @@ namespace Bb.Asts.TSql
     /// role_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstRoleName : AstTerminalIdentifier
     {
         
@@ -2916,9 +2637,6 @@ namespace Bb.Asts.TSql
     /// route_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstRouteName : AstTerminalIdentifier
     {
         
@@ -2947,9 +2665,6 @@ namespace Bb.Asts.TSql
     /// rule_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstRuleName : AstTerminalIdentifier
     {
         
@@ -2978,9 +2693,6 @@ namespace Bb.Asts.TSql
     /// schema_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSchemaName : AstTerminalIdentifier
     {
         
@@ -3009,9 +2721,6 @@ namespace Bb.Asts.TSql
     /// schema_collection_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSchemaCollectionName : AstTerminalIdentifier
     {
         
@@ -3040,9 +2749,6 @@ namespace Bb.Asts.TSql
     /// security_policy_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSecurityPolicyName : AstTerminalIdentifier
     {
         
@@ -3071,9 +2777,6 @@ namespace Bb.Asts.TSql
     /// security_predicate_function_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSecurityPredicateFunctionName : AstTerminalIdentifier
     {
         
@@ -3102,9 +2805,6 @@ namespace Bb.Asts.TSql
     /// sequence_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSequenceName : AstTerminalIdentifier
     {
         
@@ -3133,9 +2833,6 @@ namespace Bb.Asts.TSql
     /// server_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstServerName : AstTerminalIdentifier
     {
         
@@ -3164,9 +2861,6 @@ namespace Bb.Asts.TSql
     /// server_role_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstServerRoleName : AstTerminalIdentifier
     {
         
@@ -3195,9 +2889,6 @@ namespace Bb.Asts.TSql
     /// source_list_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSourceListName : AstTerminalIdentifier
     {
         
@@ -3226,9 +2917,6 @@ namespace Bb.Asts.TSql
     /// sql_identifier
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSqlIdentifier : AstTerminalIdentifier
     {
         
@@ -3257,9 +2945,6 @@ namespace Bb.Asts.TSql
     /// static_attr
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstStaticAttr : AstTerminalIdentifier
     {
         
@@ -3288,9 +2973,6 @@ namespace Bb.Asts.TSql
     /// statistics_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstStatisticsName : AstTerminalIdentifier
     {
         
@@ -3319,9 +3001,6 @@ namespace Bb.Asts.TSql
     /// stoplist_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstStoplistName : AstTerminalIdentifier
     {
         
@@ -3350,9 +3029,6 @@ namespace Bb.Asts.TSql
     /// symmetric_key_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSymmetricKeyName : AstTerminalIdentifier
     {
         
@@ -3381,9 +3057,6 @@ namespace Bb.Asts.TSql
     /// synonym_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstSynonymName : AstTerminalIdentifier
     {
         
@@ -3412,9 +3085,6 @@ namespace Bb.Asts.TSql
     /// table_or_view_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTableOrViewName : AstTerminalIdentifier
     {
         
@@ -3443,9 +3113,6 @@ namespace Bb.Asts.TSql
     /// table_variable
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTableVariable : AstTerminalIdentifier
     {
         
@@ -3474,9 +3141,6 @@ namespace Bb.Asts.TSql
     /// tableName
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTableName : AstTerminalIdentifier
     {
         
@@ -3505,9 +3169,6 @@ namespace Bb.Asts.TSql
     /// target_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTargetName : AstTerminalIdentifier
     {
         
@@ -3536,9 +3197,6 @@ namespace Bb.Asts.TSql
     /// target_parameter_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTargetParameterName : AstTerminalIdentifier
     {
         
@@ -3567,9 +3225,6 @@ namespace Bb.Asts.TSql
     /// trigger_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTriggerName : AstTerminalIdentifier
     {
         
@@ -3598,9 +3253,6 @@ namespace Bb.Asts.TSql
     /// tvf_schema_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTvfSchemaName : AstTerminalIdentifier
     {
         
@@ -3629,9 +3281,6 @@ namespace Bb.Asts.TSql
     /// type_schema
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstTypeSchema : AstTerminalIdentifier
     {
         
@@ -3660,9 +3309,6 @@ namespace Bb.Asts.TSql
     /// udt_column_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstUdtColumnName : AstTerminalIdentifier
     {
         
@@ -3691,9 +3337,6 @@ namespace Bb.Asts.TSql
     /// unscaled_type
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstUnscaledType : AstTerminalIdentifier
     {
         
@@ -3722,9 +3365,6 @@ namespace Bb.Asts.TSql
     /// user_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstUserName : AstTerminalIdentifier
     {
         
@@ -3753,9 +3393,6 @@ namespace Bb.Asts.TSql
     /// windows_principal
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstWindowsPrincipal : AstTerminalIdentifier
     {
         
@@ -3784,9 +3421,6 @@ namespace Bb.Asts.TSql
     /// workload_group_group_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstWorkloadGroupGroupName : AstTerminalIdentifier
     {
         
@@ -3815,9 +3449,6 @@ namespace Bb.Asts.TSql
     /// workload_group_pool_name
     /// 	 : id_
     /// </summary>
-    /// <remarks>
-    /// Strategy : ClassIdentifiers
-    /// </remarks>
     public partial class AstWorkloadGroupPoolName : AstTerminalIdentifier
     {
         

@@ -19,8 +19,10 @@ namespace Bb.Asts
         
         public AstPrequelConstructList Prequels { get; internal set; }
         
-        public AstRulesList Rules { get; internal set; }
+        public AstRules Rules { get; internal set; }
+
         public AstModeSpecList Modes { get; internal set; }
+
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

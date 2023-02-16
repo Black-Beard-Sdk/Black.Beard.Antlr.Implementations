@@ -19,21 +19,42 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelField Comment(Func<string> action)
+        public ModelField Name(string name)
         {
-            this._actionComment = action;
+            this._nameOfField = (c) => name;
             return this;
         }
 
-        public ModelField Value(Func<object, string> name)
+        public ModelField Documentation(Action<Documentation> action)
         {
-            this._nameOfField = name;
+            this._actionDocumentation = action;
+            return this;
+        }
+    
+
+        public ModelField Value(Func<object, string> value)
+        {
+            this._valueOfField2 = null;
+            this._valueOfField = value;
+            return this;
+        }
+
+        public ModelField Value(Func<object, CodeExpression> value)
+        {
+            this._valueOfField = null;
+            this._valueOfField2 = value;
             return this;
         }
 
         public ModelField Attribute(MemberAttributes attributes)
         {
             this._attributes = attributes;
+            return this;
+        }
+
+        public ModelField Type(Type typeReturn)
+        {
+            this._actionType = () => typeReturn;
             return this;
         }
 
@@ -46,6 +67,12 @@ namespace Bb.Generators
         public ModelField Type(Func<string> typeReturn)
         {
             this._actionType = () => typeReturn();
+            return this;
+        }
+
+        public ModelField Type(string typeReturn)
+        {
+            this._actionType = () => typeReturn;
             return this;
         }
 
@@ -85,6 +112,8 @@ namespace Bb.Generators
 
                 if (_valueOfField != null)
                     field.InitExpression = new CodePrimitiveExpression((string)_valueOfField(model));
+                else if (_valueOfField2 != null)
+                    field.InitExpression = _valueOfField2(model);
 
                 t.Members.Add(field);
 
@@ -96,12 +125,16 @@ namespace Bb.Generators
         protected ModelTypeFrom modelTypeFrom;
         private Func<object, string> _nameOfField;
         private Func<object, string> _valueOfField;
+        private Func<object, CodeExpression> _valueOfField2;
         protected MemberAttributes _attributes;
         private Func<object> _actionType;
 
         public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelField, object> Action { get; internal set; }
         public Action<ModelField> Action2 { get; internal set; }
+
+        protected Action<Documentation> _actionDocumentation;
+
     }
 
 

@@ -15,7 +15,7 @@ namespace Generate.Scripts
 
         protected override bool Generate(AstRule ast, Context context)
         {
-            return context.Strategy == "ClassEnum";
+            return TemplateSelector(ast, context) == "ClassEnum";
         }
 
         protected override void ConfigureTemplate(Context context, CodeGeneratorVisitor generator)
@@ -36,7 +36,7 @@ namespace Generate.Scripts
 
                           type.AddTemplateSelector(() => TemplateSelector(ast, context))
                               .GenerateIf(() => Generate(ast, context))
-                              .Comment(() => ast.ToString())
+                              .Documentation(c => c.Summary(() => ast.ToString()))
                               .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
                               .Inherit(() => GetInherit(ast, context))
 
@@ -93,7 +93,7 @@ namespace Generate.Scripts
                                    });
                               })
 
-                              .Method(() => context.Strategy == "ClassEnum", method =>
+                              .MethodWhen(() => context.Strategy == "ClassEnum", method =>
                               {
                                   method
                                    .Name(g => "GetValue")

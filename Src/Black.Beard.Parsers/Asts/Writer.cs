@@ -27,8 +27,9 @@ namespace Bb.Asts
 
         public void TrimEnd()
         {
-            while (char.IsWhiteSpace(_sb[_sb.Length - 1]))
-                _sb.Remove(_sb.Length - 1, 1);
+            if (_sb.Length> 0)
+                while (char.IsWhiteSpace(_sb[_sb.Length - 1]))
+                    _sb.Remove(_sb.Length - 1, 1);
         }
 
         public void TrimBegin(params char[] toFind)
@@ -41,6 +42,18 @@ namespace Bb.Asts
         {
             while (toFind.Contains(_sb[_sb.Length - 1]))
                 _sb.Remove(_sb.Length - 1, 1);
+        }
+
+        public void EnsureEndBy(char txt)
+        {
+            if (!EndBy(txt))
+                Append(txt);
+        }
+
+        public void EnsureEndBy(string txt)
+        {
+            if (!EndBy(txt))
+                Append(txt);
         }
 
         public bool EndBy(string text)
@@ -57,6 +70,15 @@ namespace Bb.Asts
                 }
             }
 
+            return true;
+
+        }
+
+        public bool EndBy(char text)
+        {
+            if (_sb.Length > 1)
+                if (_sb[_sb.Length - 1] != text)
+                    return false;
             return true;
 
         }

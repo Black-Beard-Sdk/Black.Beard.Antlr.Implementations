@@ -22,7 +22,6 @@ namespace Bb.Parsers
     public partial class ScriptAntlrVisitor
     {
 
-
         public override AstBase VisitGrammarSpec([NotNull] ANTLRv4Parser.GrammarSpecContext context)
         {
 
@@ -43,7 +42,8 @@ namespace Bb.Parsers
 
                 }
 
-                result.Rules = (AstRulesList)VisitRules(context.rules());
+
+                result.Rules = (AstRules)VisitRules(context.rules());
 
 
                 var ms = context.modeSpec();
@@ -54,7 +54,18 @@ namespace Bb.Parsers
                         result.Modes.Add((AstModeSpec)VisitModeSpec(m));
                 }
 
+
+
+                foreach (var prequel in result.Prequels)
+                    if (prequel.Child is AstOptionList l)
+                        foreach (var option in l)
+                            if (option.Key.ResolveName() == "tokenVocab")
+                                _lexerList.Add(option.Value.ResolveName());
+
+
+
                 return result;
+
             }
 
             return null;
@@ -86,17 +97,6 @@ namespace Bb.Parsers
                 Name = (AstIdentifier)VisitIdentifier(context.identifier()),
             };
         }
-
-        //public override AstBase VisitGrammarType([NotNull] ANTLRv4Parser.GrammarTypeContext context)
-        //{
-        //    var lexer = context.LEXER();
-        //    if (lexer != null)
-        //        return GrammarType.Lexer;
-        //    var parser = context.PARSER();
-        //    if (parser != null)
-        //        return GrammarType.Parser;
-        //    return GrammarType.None;
-        //}
 
         /// <summary>
         /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.identifier" />.
@@ -170,12 +170,9 @@ namespace Bb.Parsers
 
         public override AstBase VisitOption([NotNull] ANTLRv4Parser.OptionContext context)
         {
-
             var key = (AstIdentifier)VisitIdentifier(context.identifier());
             var value = (AstBase)VisitOptionValue(context.optionValue());
-
             return new AstOption(context, key, value);
-
         }
 
         public override AstBase VisitOptionValue([NotNull] ANTLRv4Parser.OptionValueContext context)
@@ -242,18 +239,61 @@ namespace Bb.Parsers
         /// <return>The visitor result.</return>
         public override AstBase VisitRules([NotNull] ANTLRv4Parser.RulesContext context)
         {
-            AstRulesList result = new AstRulesList(context);
+            AstRules result = new AstRules(context);
             var items = context.ruleSpec();
             if (items != null)
                 foreach (var item in items)
-                    result.Add((AstRule)VisitRuleSpec(item));
+                {
+                    var item2 = VisitRuleSpec(item);
+                    if (item2 is AstRule rule)
+                    {
+                        //if (rule.Name == "go_statement")
+                        //{
+                        //    var p = rule.ToString();
+                        //}
+
+                        rule.Index = result.Rules.Count; // count from 0
+                        result.Rules.Add(rule);
+                    }
+                    else if (item2 is AstLexerRule terminal)
+                    {
+                        result.Terminals.Add(terminal);
+                        terminal.Index = result.Terminals.Count; // Count from 1
+                    }
+                }
             return result;
         }
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.ruleSpec" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// parserRuleSpec | lexerRuleSpec
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitRuleSpec([NotNull] ANTLRv4Parser.RuleSpecContext context)
         {
-            var r = VisitParserRuleSpec(context.parserRuleSpec());
-            return r;
+
+            var parserRuleSpec = context.parserRuleSpec();
+            if (parserRuleSpec != null)
+            {
+                var r = VisitParserRuleSpec(context.parserRuleSpec());
+                return r;
+            }
+
+            var lexerRuleSpec = context.lexerRuleSpec();
+            if (lexerRuleSpec != null)
+            {
+                var l = VisitLexerRuleSpec(lexerRuleSpec);
+                return l;
+            }
+
+            return null;
+
         }
 
         /// <summary>
@@ -280,6 +320,7 @@ namespace Bb.Parsers
             AstArgActionBlock localSpec = null;
             AstRuleAltList ruleBlock = null;
             AstExceptionGroup exceptionGroup = null;
+
 
             var v2 = context.argActionBlock();
             if (v2 != null)
@@ -634,6 +675,7 @@ namespace Bb.Parsers
             AstElementList list1 = new AstElementList(context, l1.Length);
             foreach (var item in l1)
                 list1.Add(VisitElement(item));
+            
             return new AstAlternative(context, list1, opt);
 
         }
@@ -646,6 +688,16 @@ namespace Bb.Parsers
         }
 
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.altList" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitAltList([NotNull] ANTLRv4Parser.AltListContext context)
         {
 
@@ -704,7 +756,7 @@ namespace Bb.Parsers
                 return g;
 
             var e = (AstArgActionBlock)VisitActionBlock(context.actionBlock());
-            e.Occurence = context.QUESTION() != null ? OccurenceEnum.OneOptional : OccurenceEnum.One;
+            e.Occurence = new Occurence(Occurence.Enum.One, context.QUESTION() != null);
 
             return e;
 
@@ -750,7 +802,6 @@ namespace Bb.Parsers
             return r;
 
         }
-
 
         /// <summary>
         /// Visits the atom.
@@ -804,61 +855,12 @@ namespace Bb.Parsers
 
                 }
 
-                return new AstAtom(context, value) { Dot = t };
+                return new AstAtom(context, value);
 
             }
 
             return null;
 
-        }
-
-        /// <summary>
-        /// : LPAREN (optionsSpec? ruleAction* COLON)? altList RPAREN
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public override AstBase VisitBlock([NotNull] ANTLRv4Parser.BlockContext context)
-        {
-
-            AstOptionList _a = null;
-            var a = context.optionsSpec();
-            if (a != null)
-                _a = (AstOptionList)VisitOptionsSpec(a);
-
-            AstRuleAction _b = null;
-            var b = context.ruleAction();
-            if (b != null && b.Length > 0)
-                foreach (var item in b)
-                    _b = (AstRuleAction)VisitRuleAction(item);
-
-            AstAlternativeList _c = null;
-            var c = context.altList();
-            if (c != null)
-                _c = (AstAlternativeList)VisitAltList(c);
-
-            return new AstBlock(context, _a, _b, _c);
-
-        }
-
-        public override AstBase VisitBlockSet([NotNull] ANTLRv4Parser.BlockSetContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitBlockSet(context);
-        }        
-
-        public override AstBase VisitChannelsSpec([NotNull] ANTLRv4Parser.ChannelsSpecContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitChannelsSpec(context);
-        }
-
-        public override AstBase VisitCharacterRange([NotNull] ANTLRv4Parser.CharacterRangeContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitCharacterRange(context);
         }
 
         public override AstBase VisitDelegateGrammar([NotNull] ANTLRv4Parser.DelegateGrammarContext context)
@@ -892,7 +894,7 @@ namespace Bb.Parsers
             var block = (AstBlock)VisitBlock(context.block());
 
             var e = VisitBlockSuffix(context.blockSuffix());
-            
+
             if (e is AstEbnfSuffix bs)
                 block.Occurence = bs.Occurence;
             return block;
@@ -933,26 +935,13 @@ namespace Bb.Parsers
                 var o = context.QUESTION().Length;
 
                 if (context.STAR() != null)
-                {
-                    if (o > 0)
-                        c.Occurence = OccurenceEnum.AnyOptional;
-                    else
-                        c.Occurence = OccurenceEnum.Any;
-                }
+                        c.Occurence = new Occurence(Occurence.Enum.Any, o > 0) { Optional = true };
+                
                 else if (context.PLUS() != null)
-                {
-                    if (o > 0)
-                        c.Occurence = OccurenceEnum.OneOrMoreOptional;
-                    else
-                        c.Occurence = OccurenceEnum.OneOrMore;
-
-                }
+                    c.Occurence = new Occurence(Occurence.Enum.Any, o > 0);
+                
                 else
-                {
-
-                    c.Occurence = OccurenceEnum.OneOptional;
-
-                }
+                    c.Occurence = new Occurence(  Occurence.Enum.One, o > 0);
 
                 return c;
 
@@ -1036,96 +1025,34 @@ namespace Bb.Parsers
 
         }
 
-        public override AstBase VisitLabeledLexerElement([NotNull] ANTLRv4Parser.LabeledLexerElementContext context)
+        
+
+        /// <summary>
+        /// : LPAREN (optionsSpec? ruleAction* COLON)? altList RPAREN
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public override AstBase VisitBlock([NotNull] ANTLRv4Parser.BlockContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitLabeledLexerElement(context);
-        }
+            AstOptionList _a = null;
+            var a = context.optionsSpec();
+            if (a != null)
+                _a = (AstOptionList)VisitOptionsSpec(a);
 
-        public override AstBase VisitLexerAlt([NotNull] ANTLRv4Parser.LexerAltContext context)
-        {
+            AstRuleAction _b = null;
+            var b = context.ruleAction();
+            if (b != null && b.Length > 0)
+                foreach (var item in b)
+                    _b = (AstRuleAction)VisitRuleAction(item);
 
-            Pause();
-            return (AstBase)base.VisitLexerAlt(context);
-        }
+            AstAlternativeList _c = null;
+            var c = context.altList();
+            if (c != null)
+                _c = (AstAlternativeList)VisitAltList(c);
 
-        public override AstBase VisitLexerAtom([NotNull] ANTLRv4Parser.LexerAtomContext context)
-        {
+            return new AstBlock(context, _a, _b, _c);
 
-            Pause();
-            return (AstBase)base.VisitLexerAtom(context);
-        }
-
-        public override AstBase VisitLexerAltList([NotNull] ANTLRv4Parser.LexerAltListContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerAltList(context);
-        }
-
-        public override AstBase VisitLexerBlock([NotNull] ANTLRv4Parser.LexerBlockContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerBlock(context);
-        }
-
-        public override AstBase VisitLexerCommand([NotNull] ANTLRv4Parser.LexerCommandContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerCommand(context);
-        }
-
-        public override AstBase VisitLexerCommandName([NotNull] ANTLRv4Parser.LexerCommandNameContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerCommandName(context);
-        }
-
-        public override AstBase VisitLexerCommandExpr([NotNull] ANTLRv4Parser.LexerCommandExprContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerCommandExpr(context);
-        }
-
-        public override AstBase VisitLexerCommands([NotNull] ANTLRv4Parser.LexerCommandsContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerCommands(context);
-        }
-
-        public override AstBase VisitLexerElement([NotNull] ANTLRv4Parser.LexerElementContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerElement(context);
-        }
-
-        public override AstBase VisitLexerElements([NotNull] ANTLRv4Parser.LexerElementsContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerElements(context);
-        }
-
-        public override AstBase VisitLexerRuleBlock([NotNull] ANTLRv4Parser.LexerRuleBlockContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerRuleBlock(context);
-        }
-
-
-        public override AstBase VisitLexerRuleSpec([NotNull] ANTLRv4Parser.LexerRuleSpecContext context)
-        {
-
-            Pause();
-            return (AstBase)base.VisitLexerRuleSpec(context);
         }
 
         public override AstBase VisitModeSpec([NotNull] ANTLRv4Parser.ModeSpecContext context)
@@ -1135,11 +1062,34 @@ namespace Bb.Parsers
             return (AstBase)base.VisitModeSpec(context);
         }
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.notSet" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// notSet
+        ///     : NOT setElement
+        ///     | NOT blockSet
+        ///     ;
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitNotSet([NotNull] ANTLRv4Parser.NotSetContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitNotSet(context);
+            AstBase value = null;
+            var e = context.setElement();
+            if (e != null)
+                value = VisitSetElement(e);
+            else
+            {
+                Pause();
+                value = context.blockSet().Accept(this);
+            }
+            return new AstNot(context, value);
+
         }
 
         /// <summary>
@@ -1186,12 +1136,59 @@ namespace Bb.Parsers
 
         }
 
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.Parsers.Antlr.ANTLRv4Parser.setElement" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// setElement
+        ///     : TOKEN_REF elementOptions?
+        ///     | STRING_LITERAL elementOptions?
+        ///     | characterRange
+        ///     | LEXER_CHAR_SET
+        ///     ;
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
         public override AstBase VisitSetElement([NotNull] ANTLRv4Parser.SetElementContext context)
         {
 
-            Pause();
-            return (AstBase)base.VisitSetElement(context);
+            var elementOptions = context.elementOptions();
+
+            var c1 = context.TOKEN_REF();
+            if (c1 != null)
+            {
+                var p = VisitTerminal(c1);
+                if (elementOptions != null)
+                {
+                    Pause();
+                    var a = (AstElementOptionList)VisitElementOptions(elementOptions);
+                }
+                return p;
+            }
+            var c2 = context.STRING_LITERAL();
+            if (c2 != null)
+            {
+                var p = VisitTerminal(c2);
+                if (elementOptions != null)
+                {
+                    Pause();
+                    var a = (AstElementOptionList)VisitElementOptions(elementOptions);
+                }
+                return p;
+            }
+
+            var c3 = context.LEXER_CHAR_SET();
+            if (c3 != null)
+                return VisitTerminal(c3);
+
+            return context.characterRange().Accept(this);
+        
         }
+
+        
 
         /// <summary>
         /// Visits the terminal.
@@ -1293,6 +1290,7 @@ namespace Bb.Parsers
             Pause();
             return (AstBase)base.VisitErrorNode(node);
         }
+            
 
     }
 

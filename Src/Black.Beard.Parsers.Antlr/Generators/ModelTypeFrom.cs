@@ -47,12 +47,13 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelTypeFrom<T> Comment(Func<string> action)
+        
+        public ModelTypeFrom<T> Documentation(Action<Documentation> action)
         {
-            this._actionComment = action;
+            this._actionDocumentation = action;
             return this;
         }
-
+               
         public ModelTypeFrom<T> IsStruct()
         {
             this._isInterface = false;
@@ -61,12 +62,22 @@ namespace Bb.Generators
             return this;
         }
 
+        /// <summary>
+        /// Names the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public ModelTypeFrom<T> Name(Func<string> name)
         {
             this._nameOfClass = name;
             return this;
         }
 
+        /// <summary>
+        /// Inherits the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public ModelTypeFrom<T> Inherit(Func<string> name)
         {
             this._parents.Add(name);
@@ -89,7 +100,11 @@ namespace Bb.Generators
             return this;
         }
 
-
+        /// <summary>
+        /// Add a field and use the action for generate.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
         public ModelTypeFrom<T> Field(Action<ModelField> action)
         {
             var m = new ModelField(this) { Items = null, Action = null, Action2 = action };
@@ -146,7 +161,7 @@ namespace Bb.Generators
         }
 
 
-        public ModelTypeFrom<T> Method(Func<bool> test, Action<ModelMethod> action)
+        public ModelTypeFrom<T> MethodWhen(Func<bool> test, Action<ModelMethod> action)
         {
             var m = new ModelMethod(this) { Test = test };
             this._methods.Add(m);
@@ -162,9 +177,15 @@ namespace Bb.Generators
         }
 
 
+        /// <summary>
+        /// Generates the specified CTX.
+        /// </summary>
+        /// <param name="ctx">The CTX.</param>
+        /// <param name="ast">The ast.</param>
+        /// <param name="namespace">The namespace.</param>
+        /// <exception cref="System.Exception"></exception>
         internal override void Generate(Context ctx, AstBase ast, CodeNamespace @namespace)
         {
-
             if (ast is T a)
             {
 
@@ -172,110 +193,128 @@ namespace Bb.Generators
                 if (ctx.CurrentConfiguration.Config.Generate)
                 {
                     var b = new ModelTypeFrom<T>(_modelNamespace, _action);
-                    var t = b.RunGeneration(ctx, a, @namespace, _type);
-
-                    if (_justOne)
-                        _type = t;
+                    var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
+                    if (t)
+                    {
+                        if (_justOne)
+                            _type = typeResult;
+                    }
                 }
             }
 
         }
 
-        private CodeTypeDeclaration RunGeneration(Context ctx, T ast, CodeNamespace @namespace, CodeTypeDeclaration type)
+        private bool RunGeneration(Context ctx, T ast, CodeNamespace @namespace, CodeTypeDeclaration type, out CodeTypeDeclaration typeResult)
         {
 
+            typeResult = null;
             _action(ast, this);
 
             if (this._templateSelectoraction != null)
                 ctx.Strategy = this._templateSelectoraction();
 
-            var t = _generateIf != null ? _generateIf() : true;
+            var result = _generateIf != null ? _generateIf() : true;
 
-            if (t && type == null)
+            if (result)
             {
 
-                var _n = this._nameOfClass();
-
-                if (!Exists(@namespace.Types, _n))
+                if (type == null)
                 {
 
-                    type = new CodeTypeDeclaration(_n)
+                    var _n = this._nameOfClass();
+
+                    if (!Exists(@namespace.Types, _n, out CodeTypeDeclaration typeResultDeclaration))
                     {
-                        IsPartial = true,
-                        IsInterface = _isInterface,
-                        IsEnum = _isEnum,
-                        IsStruct = _isStruct,
-                        Attributes = _attributes,
-                    };
 
-                    GenerateDocumentation(type, ctx);
+                        type = new CodeTypeDeclaration(_n)
+                        {
+                            IsPartial = true,
+                            IsInterface = _isInterface,
+                            IsEnum = _isEnum,
+                            IsStruct = _isStruct,
+                            Attributes = _attributes,
+                        };
 
-                    foreach (var parent in _parents)
-                        type.BaseTypes.Add(new CodeTypeReference(parent()));
+                        GenerateDocumentation(type, ctx);
 
-                    @namespace.Types.Add(type);
+                        foreach (var parent in _parents)
+                            type.BaseTypes.Add(new CodeTypeReference(parent()));
+
+                        @namespace.Types.Add(type);
+
+                        typeResult = type;
+
+                    }
+                    else
+                        type = typeResult = typeResultDeclaration;
+
+                }
+
+                if (type != null)
+                {
+
+                    foreach (var p in _properties)
+                    {
+                        if (p.Items != null)
+                        {
+                            var items = p.Items();
+                            foreach (var item in items)
+                            {
+                                p.Action(p, item);
+                                p.Generate(ctx, item, type);
+                            }
+                        }
+                        else
+                        {
+                            p.Action2(p);
+                            p.Generate(ctx, ast, type);
+                        }
+                    }
+
+
+                    foreach (var m in _methods)
+                        m.Generate(ctx, ast, type);
+
+                    foreach (var f in _fields)
+                    {
+                        if (f.Items != null)
+                        {
+                            var items = f.Items();
+                            foreach (var item in items)
+                            {
+                                f.Action(f, item);
+                                f.Generate(ctx, item, type);
+                            }
+                        }
+                        else
+                        {
+                            f.Action2(f);
+                            f.Generate(ctx, ast, type);
+                        }
+                    }
 
                 }
 
             }
-
-            if (type != null)
-            {
-
-                foreach (var p in _properties)
-                {
-                    if (p.Items != null)
-                    {
-                        var items = p.Items();
-                        foreach (var item in items)
-                        {
-                            p.Action(p, item);
-                            p.Generate(ctx, item, type);
-                        }
-                    }
-                    else
-                    {
-                        p.Action2(p);
-                        p.Generate(ctx, ast, type);
-                    }
-                }
-
-
-                foreach (var m in _methods)
-                    m.Generate(ctx, ast, type);
-
-                foreach (var f in _fields)
-                {
-                    if (f.Items != null)
-                    {
-                        var items = f.Items();
-                        foreach (var item in items)
-                        {
-                            f.Action(f, item);
-                            f.Generate(ctx, item, type);
-                        }
-                    }
-                    else
-                    {
-                        f.Action2(f);
-                        f.Generate(ctx, ast, type);
-                    }
-                }
-
-            }
-
-            return type;
+            
+            return result;
 
         }
 
-        private bool Exists(CodeTypeDeclarationCollection types, string n)
+        private bool Exists(CodeTypeDeclarationCollection types, string n, out CodeTypeDeclaration resultModel)
         {
+
+            resultModel = null;
+            bool resultBool = false;
 
             foreach (CodeTypeDeclaration item in types)
                 if (item.Name == n)
+                {
+                    resultModel = item;
                     return true;
+                }
 
-            return false;
+            return resultBool;
 
         }
 
@@ -296,9 +335,8 @@ namespace Bb.Generators
         private readonly List<ModelMethod> _methods;
         private readonly List<ModelField> _fields;
         private readonly List<ModelProperty> _properties;
-
         private readonly Action<T, ModelTypeFrom<T>> _action;
-        private MemberAttributes _attributes;
+
         private bool _isInterface;
         private bool _isEnum;
         private bool _isStruct;
@@ -306,6 +344,7 @@ namespace Bb.Generators
         private CodeTypeDeclaration _type;
         private Func<string> _templateSelectoraction;
         private Func<bool> _generateIf;
+        private MemberAttributes _attributes;
 
         protected internal Func<string> _nameOfClass { get; set; }
 
@@ -330,28 +369,20 @@ namespace Bb.Generators
 
         protected void GenerateDocumentation(CodeTypeMember member, Context context)
         {
-            if (_actionComment != null)
+           
+            if (_actionDocumentation != null)
             {
-                var txt = _actionComment();
-                var text = txt.Split('\r');
-                member.Comments.Add(new CodeCommentStatement("<summary>", true));
-                foreach (var item in text)
-                    if (!string.IsNullOrEmpty(item.Trim()) && !string.IsNullOrEmpty(item.Trim()))
-                        member.Comments.Add(new CodeCommentStatement(item.Trim('\n'), true));
-                member.Comments.Add(new CodeCommentStatement("</summary>", true));
-
-                member.Comments.Add(new CodeCommentStatement("<remarks>", true));
-                member.Comments.Add(new CodeCommentStatement("Strategy : " + context.Strategy, true));
-                member.Comments.Add(new CodeCommentStatement("</remarks>", true));
-
+                var doc = new Documentation();
+                _actionDocumentation(doc);
+                doc.GenerateDocumentation(member, context);
             }
+
         }
 
         internal abstract void Generate(Context ctx, AstBase ast, CodeNamespace @namespace);
 
-        protected Func<string> _actionComment;
 
-
+        protected Action<Documentation> _actionDocumentation;
     }
 
 

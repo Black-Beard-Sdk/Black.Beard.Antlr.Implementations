@@ -3,7 +3,6 @@
 namespace Bb.Asts
 {
 
-
     public class AstRulesList : AstListBase<AstRule>
     {
 
@@ -30,6 +29,6 @@ namespace Bb.Asts
 
 
     }
-
+    
 
 }

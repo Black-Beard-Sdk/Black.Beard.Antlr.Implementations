@@ -20,11 +20,11 @@ namespace Bb.Generators
         {
             this._nameOfMethod = name;
             return this;
-        }
+        }              
 
-        public ModelMethod Comment(Func<string> action)
+        public ModelMethod Documentation(Action<Documentation> action)
         {
-            this._actionComment = action;
+            this._actionDocumentation = action;
             return this;
         }
 

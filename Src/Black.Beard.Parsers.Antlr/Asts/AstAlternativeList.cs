@@ -2,6 +2,8 @@
 
 namespace Bb.Asts
 {
+
+
     public class AstAlternativeList : AstListBase<AstAlternative>
     {
 
@@ -49,7 +51,7 @@ namespace Bb.Asts
         [System.Diagnostics.DebuggerNonUserCode]
         public override T Accept<T>(IAstVisitor<T> visitor)
         {
-            return visitor.VisitAstAlternativeList(this);
+            return visitor.VisitAlternativeList(this);
         }
 
     }

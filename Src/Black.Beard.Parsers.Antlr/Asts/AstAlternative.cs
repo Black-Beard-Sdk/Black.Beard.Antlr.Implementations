@@ -4,6 +4,7 @@ using System.Text;
 namespace Bb.Asts
 {
 
+
     public class AstAlternative : AstBase
     {
 
