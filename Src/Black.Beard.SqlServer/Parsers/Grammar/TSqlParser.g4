@@ -1127,42 +1127,66 @@ create_event_notification
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-event-session-transact-sql
 // todo: not implemented
 create_or_alter_event_session
-    : (CREATE | ALTER) EVENT SESSION event_session_name ON SERVER
-       (COMMA? ADD EVENT ( (event_module_guid DOT)? event_package_name DOT event_name)
-        (LR_BRACKET
-          (SET ( COMMA? event_customizable_attributue EQUAL (DECIMAL|STRING) )* )?
-          ( ACTION LR_BRACKET (COMMA? (event_module_guid DOT)? event_package_name DOT action_name)+  RR_BRACKET)+
-          (WHERE event_session_predicate_expression)?
-         RR_BRACKET )*
-      )*
-      (COMMA? DROP EVENT (event_module_guid DOT)? event_package_name DOT event_name )*
+    : (CREATE | ALTER) EVENT SESSION event_session_name ON SERVER 
+      create_or_alter_event_session_add_event*
+      create_or_alter_event_session_del_event*
+      create_or_alter_event_session_add_target*
+      create_or_alter_event_session_del_target*
+      create_or_alter_event_session_with?
+      (STATE EQUAL start_stop)?
+    ;
 
-      ( (ADD TARGET (event_module_guid DOT)? event_package_name DOT target_name ) ( LR_BRACKET SET (COMMA? target_parameter_name EQUAL (LR_BRACKET? DECIMAL RR_BRACKET? |STRING) )+ RR_BRACKET )* )*
-       (DROP TARGET (event_module_guid DOT)? event_package_name DOT target_name )*
-
-
-     (WITH
+create_or_alter_event_session_with
+    : WITH
            LR_BRACKET
-           (COMMA? MAX_MEMORY EQUAL max_memory=DECIMAL (KB|MB) )?
-           (COMMA? EVENT_RETENTION_MODE EQUAL (ALLOW_SINGLE_EVENT_LOSS | ALLOW_MULTIPLE_EVENT_LOSS | NO_EVENT_LOSS ) )?
-           (COMMA? MAX_DISPATCH_LATENCY EQUAL (max_dispatch_latency_seconds=DECIMAL SECONDS | INFINITE) )?
-           (COMMA?  MAX_EVENT_SIZE EQUAL max_event_size=DECIMAL (KB|MB) )?
-           (COMMA? MEMORY_PARTITION_MODE EQUAL (NONE | PER_NODE | PER_CPU) )?
-           (COMMA? TRACK_CAUSALITY EQUAL on_off)?
-           (COMMA? STARTUP_STATE EQUAL on_off)?
-           RR_BRACKET
-     )?
-     (STATE EQUAL (START|STOP) )?
+           (COMMA? session_arg_max_memory)?
+           (COMMA? session_arg_event_retention_mode)?
+           (COMMA? session_arg_max_dispatch)?
+           (COMMA? session_arg_max_event_size)?
+           (COMMA? session_arg_memory_partition)?
+           (COMMA? session_arg_track_causality)?
+           (COMMA? session_arg_startup_state)?
+           RR_BRACKET     
+    ;
 
+session_arg_max_memory : MAX_MEMORY EQUAL DECIMAL (KB|MB);
+session_arg_event_retention_mode : EVENT_RETENTION_MODE EQUAL (ALLOW_SINGLE_EVENT_LOSS | ALLOW_MULTIPLE_EVENT_LOSS | NO_EVENT_LOSS );
+session_arg_max_dispatch : MAX_DISPATCH_LATENCY EQUAL (DECIMAL SECONDS | INFINITE);
+session_arg_max_event_size : MAX_EVENT_SIZE EQUAL DECIMAL (KB|MB);
+session_arg_memory_partition : MEMORY_PARTITION_MODE EQUAL (NONE | PER_NODE | PER_CPU);
+session_arg_track_causality : TRACK_CAUSALITY EQUAL on_off;
+session_arg_startup_state : STARTUP_STATE EQUAL on_off;
+    
+create_or_alter_event_session_add_event
+    : COMMA? ADD EVENT ( (event_module_guid DOT)? event_package_name DOT event_name)
+      (
+        LR_BRACKET
+        (SET ( COMMA? event_customizable_attributue EQUAL (DECIMAL|STRING) )* )?
+        ( ACTION LR_BRACKET (COMMA? (event_module_guid DOT)? event_package_name DOT action_name)+  RR_BRACKET)+
+        (WHERE event_session_predicate_expression)?
+        RR_BRACKET 
+      )      
+      ;
+
+create_or_alter_event_session_add_target
+    : ( (ADD TARGET (event_module_guid DOT)? event_package_name DOT target_name ) ( LR_BRACKET SET (COMMA? target_parameter_name EQUAL (LR_BRACKET? DECIMAL RR_BRACKET? |STRING) )+ RR_BRACKET )* )
+    ;
+
+create_or_alter_event_session_del_target
+    : (DROP TARGET (event_module_guid DOT)? event_package_name DOT target_name )
+    ;
+
+create_or_alter_event_session_del_event
+    : COMMA? DROP EVENT (event_module_guid DOT)? event_package_name DOT event_name 
     ;
 
 start_stop 
     : START
-    |STOP
+    | STOP
     ;
 
 event_session_predicate_expression
-    : ( COMMA? (AND|OR)? NOT? ( event_session_predicate_factor | LR_BRACKET event_session_predicate_expression RR_BRACKET) )+
+    : ( COMMA? and_or? NOT? ( event_session_predicate_factor | LR_BRACKET event_session_predicate_expression RR_BRACKET) )+
     ;
 
 event_session_predicate_factor
@@ -1195,7 +1219,6 @@ create_external_library
        FROM (COMMA? LR_BRACKET?  (CONTENT EQUAL)? (client_library=STRING | BINARY | NONE) (COMMA PLATFORM EQUAL (WINDOWS|LINUX)? RR_BRACKET)? ) ( WITH (COMMA? LANGUAGE EQUAL (R|PYTHON) | DATA_SOURCE EQUAL external_data_source_name)+ RR_BRACKET  )?
     ;
 
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-external-resource-pool-transact-sql
 alter_external_resource_pool
     : ALTER EXTERNAL RESOURCE POOL (pool_name | DEFAULT_DOUBLE_QUOTE) WITH LR_BRACKET MAX_CPU_PERCENT EQUAL max_cpu_percent=DECIMAL ( COMMA? AFFINITY CPU EQUAL (AUTO|(COMMA? DECIMAL TO DECIMAL |COMMA DECIMAL )+ ) | NUMANODE EQUAL (COMMA? DECIMAL TO DECIMAL| COMMA? DECIMAL )+  ) (COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=DECIMAL)? (COMMA? MAX_PROCESSES EQUAL max_processes=DECIMAL)?  RR_BRACKET
@@ -1220,7 +1243,6 @@ create_fulltext_catalog
         (AS DEFAULT)?
         (AUTHORIZATION owner_name)?
     ;
-
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-fulltext-stoplist-transact-sql
 alter_fulltext_stoplist
@@ -1516,7 +1538,7 @@ alter_server_audit
                                     | LESS EQUAL
                                     )
                                       (DECIMAL | STRING)
-                    | COMMA? (AND|OR) NOT?   (EQUAL
+                    | COMMA? and_or NOT?   (EQUAL
                                            | (LESS GREATER)
                                            | (EXCLAMATION EQUAL)
                                            | GREATER
@@ -1527,6 +1549,10 @@ alter_server_audit
         |REMOVE WHERE
         | MODIFY NAME EQUAL audit_name
        )
+    ;
+
+and_or
+    : AND|OR
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-server-audit-transact-sql
@@ -1565,7 +1591,7 @@ create_server_audit
                                     | LESS EQUAL
                                     )
                                       (DECIMAL | STRING)
-                    | COMMA? (AND|OR) NOT?   (EQUAL
+                    | COMMA? and_or NOT?   (EQUAL
                                            |(LESS GREATER)
                                            | (EXCLAMATION EQUAL)
                                            | GREATER

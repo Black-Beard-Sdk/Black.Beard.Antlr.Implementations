@@ -1,27 +1,46 @@
 ﻿using Bb.Asts;
+using System.Collections;
 using System.Diagnostics;
 
 namespace Bb.Parsers
 {
 
+
     [DebuggerDisplay("{ToString()}")]
-    public class TreeRuleItem : List<TreeRuleItem>
+    public class TreeRuleItem : IEnumerable<TreeRuleItem>
     {
 
         public static TreeRuleItem Default(Action<TreeRuleItem> action = null)
         {
 
-            var result = new TreeRuleItem();
+            var result = new TreeRuleItem() { IsRuleRef = true, IsEmpty = true };
             if (action != null)
                 action(result);
             return result;
 
         }
 
+        public TreeRuleItem this[int index] { get { return _list[index]; } set { _list[index] = value; } }
+
+        public int Count => _list.Count;
+
+        public void Add(TreeRuleItem item)
+        {
+            this._list.Add(item);
+        }
+
+        public void AddRange(IEnumerable<TreeRuleItem> collection)
+        {
+            this._list.AddRange(collection);
+        }
+
         public TreeRuleItem(string name = null)
         {
+            this._list = new List<TreeRuleItem>();
             this.Name = name;
         }
+
+        private List<TreeRuleItem> _list;
 
         public string Name { get; }
 
@@ -36,7 +55,28 @@ namespace Bb.Parsers
         public bool IsBlock { get; internal set; }
 
         public bool IsRange { get; internal set; }
+        
         public bool IsRuleRef { get; internal set; }
+        
+        public bool IsEmpty { get; private set; }
+
+        public bool ContainsRules
+        {
+            get
+            {
+                
+                if (this._list.Any(c => c.IsRuleRef))
+                    return true;
+
+                foreach (var item in this._list)
+                    if (item.ContainsRules) 
+                        return true;
+
+                return false;
+
+            }
+        }
+
 
         public override string ToString()
         {
@@ -104,13 +144,16 @@ namespace Bb.Parsers
                     break;
 
                 case Occurence.Enum.One:
+                    if (this.Occurence.Optional)
+                        wrt.Append("?");
+                    break;
+
                 default:
                     break;
 
             }
 
-            if (this.Occurence.Optional)
-                wrt.Append("?");
+            
 
         }
 
@@ -187,10 +230,21 @@ namespace Bb.Parsers
                 Occurence = this.Occurence.Clone(),
                 IsBlock = this.IsBlock,
                 IsRange = this.IsRange,
+                IsEmpty = this.IsEmpty,
             };
 
             return result;
 
+        }
+
+        public IEnumerator<TreeRuleItem> GetEnumerator()
+        {
+            return this._list.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this._list.GetEnumerator();
         }
 
     }

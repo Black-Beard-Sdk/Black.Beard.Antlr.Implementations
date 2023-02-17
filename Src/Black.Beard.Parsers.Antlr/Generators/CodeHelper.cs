@@ -195,27 +195,36 @@ namespace Bb.Generators
         public static string FormatCsharp(this string code)
         {
 
-            StringBuilder sb = new StringBuilder(code.Length);
+            StringBuilder sb = new StringBuilder(code?.Length ?? 0);
 
-            char last = '\0';
-            for (int i = 0; i < code.Length; i++)
+            if (code != null)
             {
-                var s = code[i];
 
-                if (sb.Length == 0)
-                    s = char.ToUpper(s);
-
-                else if (s == '_')
+                char last = '\0';
+                for (int i = 0; i < code.Length; i++)
                 {
-                    last = '_';
-                    continue;
+                    var s = code[i];
+
+                    if (sb.Length == 0)
+                        s = char.ToUpper(s);
+
+                    else if (s == '_')
+                    {
+                        last = '_';
+                        continue;
+                    }
+
+                    else if (last == '_')
+                        s = char.ToUpper(s);
+
+                    sb.Append(s);
+                    last = s;
+
                 }
 
-                else if (last == '_')
-                    s = char.ToUpper(s);
-
-                sb.Append(s);
-                last = s;
+            }
+            else
+            {
 
             }
 

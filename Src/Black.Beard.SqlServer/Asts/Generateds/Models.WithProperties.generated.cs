@@ -4617,12 +4617,22 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_event_session
-    /// 	 : (CREATE ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  (COMMA?  ADD  EVENT  ((event_module_guid  DOT)?  event_package_name  DOT  event_name)  (LR_BRACKET  (SET  (COMMA?  event_customizable_attributue  EQUAL  (DECIMAL STRING))*?)?  (ACTION  LR_BRACKET  (COMMA?  (event_module_guid  DOT)?  event_package_name  DOT  action_name)+  RR_BRACKET)+  (WHERE  event_session_predicate_expression)?  RR_BRACKET)*?)*?  (COMMA?  DROP  EVENT  (event_module_guid  DOT)?  event_package_name  DOT  event_name)*?  ((ADD  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)  (LR_BRACKET  SET  (COMMA?  target_parameter_name  EQUAL  (LR_BRACKET?  DECIMAL  RR_BRACKET? STRING))+  RR_BRACKET)*?)*?  (DROP  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)*?  (WITH  LR_BRACKET  (COMMA?  MAX_MEMORY  EQUAL  max_memory = DECIMAL  (KB MB))?  (COMMA?  EVENT_RETENTION_MODE  EQUAL  (ALLOW_SINGLE_EVENT_LOSS ALLOW_MULTIPLE_EVENT_LOSS NO_EVENT_LOSS))?  (COMMA?  MAX_DISPATCH_LATENCY  EQUAL  (max_dispatch_latency_seconds = DECIMAL  SECONDS INFINITE))?  (COMMA?  MAX_EVENT_SIZE  EQUAL  max_event_size = DECIMAL  (KB MB))?  (COMMA?  MEMORY_PARTITION_MODE  EQUAL  (NONE PER_NODE PER_CPU))?  (COMMA?  TRACK_CAUSALITY  EQUAL  on_off)?  (COMMA?  STARTUP_STATE  EQUAL  on_off)?  RR_BRACKET)?  (STATE  EQUAL  (START STOP))?
+    /// 	 : (CREATE ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  create_or_alter_event_session_add_event*?  create_or_alter_event_session_del_event*?  create_or_alter_event_session_add_target*?  create_or_alter_event_session_del_target*?  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
     /// </summary>
     public partial class AstCreateOrAlterEventSession : AstRule
     {
         
         private AstEventSessionName _eventSessionName;
+        
+        private AstCreateOrAlterEventSessionAddEvent _createOrAlterEventSessionAddEvent;
+        
+        private AstCreateOrAlterEventSessionDelEvent _createOrAlterEventSessionDelEvent;
+        
+        private AstCreateOrAlterEventSessionAddTarget _createOrAlterEventSessionAddTarget;
+        
+        private AstCreateOrAlterEventSessionDelTarget _createOrAlterEventSessionDelTarget;
+        
+        private AstCreateOrAlterEventSessionWith _createOrAlterEventSessionWith;
         
         public AstCreateOrAlterEventSession(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -4634,6 +4644,26 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstEventSessionName>())
                 {
                     this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionAddEvent>())
+                {
+                    this._createOrAlterEventSessionAddEvent = ((AstCreateOrAlterEventSessionAddEvent)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionDelEvent>())
+                {
+                    this._createOrAlterEventSessionDelEvent = ((AstCreateOrAlterEventSessionDelEvent)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionAddTarget>())
+                {
+                    this._createOrAlterEventSessionAddTarget = ((AstCreateOrAlterEventSessionAddTarget)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionDelTarget>())
+                {
+                    this._createOrAlterEventSessionDelTarget = ((AstCreateOrAlterEventSessionDelTarget)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionWith>())
+                {
+                    this._createOrAlterEventSessionWith = ((AstCreateOrAlterEventSessionWith)(enumerator.Current));
                 }
             }
         }
@@ -4649,6 +4679,26 @@ namespace Bb.Asts.TSql
                 {
                     this._eventSessionName = ((AstEventSessionName)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionAddEvent>())
+                {
+                    this._createOrAlterEventSessionAddEvent = ((AstCreateOrAlterEventSessionAddEvent)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionDelEvent>())
+                {
+                    this._createOrAlterEventSessionDelEvent = ((AstCreateOrAlterEventSessionDelEvent)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionAddTarget>())
+                {
+                    this._createOrAlterEventSessionAddTarget = ((AstCreateOrAlterEventSessionAddTarget)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionDelTarget>())
+                {
+                    this._createOrAlterEventSessionDelTarget = ((AstCreateOrAlterEventSessionDelTarget)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateOrAlterEventSessionWith>())
+                {
+                    this._createOrAlterEventSessionWith = ((AstCreateOrAlterEventSessionWith)(enumerator.Current));
+                }
             }
         }
         
@@ -4657,6 +4707,46 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._eventSessionName;
+            }
+        }
+        
+        public virtual AstCreateOrAlterEventSessionAddEvent CreateOrAlterEventSessionAddEvent
+        {
+            get
+            {
+                return this._createOrAlterEventSessionAddEvent;
+            }
+        }
+        
+        public virtual AstCreateOrAlterEventSessionDelEvent CreateOrAlterEventSessionDelEvent
+        {
+            get
+            {
+                return this._createOrAlterEventSessionDelEvent;
+            }
+        }
+        
+        public virtual AstCreateOrAlterEventSessionAddTarget CreateOrAlterEventSessionAddTarget
+        {
+            get
+            {
+                return this._createOrAlterEventSessionAddTarget;
+            }
+        }
+        
+        public virtual AstCreateOrAlterEventSessionDelTarget CreateOrAlterEventSessionDelTarget
+        {
+            get
+            {
+                return this._createOrAlterEventSessionDelTarget;
+            }
+        }
+        
+        public virtual AstCreateOrAlterEventSessionWith CreateOrAlterEventSessionWith
+        {
+            get
+            {
+                return this._createOrAlterEventSessionWith;
             }
         }
         
@@ -6270,7 +6360,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_audit
-    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  (AND OR)  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  and_or  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstAlterServerAudit : AstRule
     {
@@ -6321,7 +6411,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_server_audit
-    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off COMMA?  AUDIT_GUID  EQUAL  audit_guid)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  (AND OR)  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off COMMA?  AUDIT_GUID  EQUAL  audit_guid)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  and_or  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstCreateServerAudit : AstRule
     {

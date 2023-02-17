@@ -87,7 +87,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// ids_
-        /// 	 : id_  (COMMA  id_)*
+        /// 	 : id_  (COMMA  id_)*?
         /// </summary>
         public override AstRoot VisitIds_(TSqlParser.Ids_Context context)
         {
@@ -415,7 +415,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// insert_column_id
-        /// 	 : (ignore += id_  DOT)*  id_
+        /// 	 : (ignore += id_  DOT)*?  id_
         /// </summary>
         public override AstRoot VisitInsert_column_id(TSqlParser.Insert_column_idContext context)
         {

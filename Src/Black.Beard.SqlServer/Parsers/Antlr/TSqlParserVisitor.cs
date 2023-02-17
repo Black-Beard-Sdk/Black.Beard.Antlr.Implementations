@@ -963,6 +963,78 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreate_or_alter_event_session([NotNull] TSqlParser.Create_or_alter_event_sessionContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_event_session_with"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_or_alter_event_session_with([NotNull] TSqlParser.Create_or_alter_event_session_withContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_max_memory"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_max_memory([NotNull] TSqlParser.Session_arg_max_memoryContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_event_retention_mode"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_event_retention_mode([NotNull] TSqlParser.Session_arg_event_retention_modeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_max_dispatch"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_max_dispatch([NotNull] TSqlParser.Session_arg_max_dispatchContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_max_event_size"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_max_event_size([NotNull] TSqlParser.Session_arg_max_event_sizeContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_memory_partition"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_memory_partition([NotNull] TSqlParser.Session_arg_memory_partitionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_track_causality"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_track_causality([NotNull] TSqlParser.Session_arg_track_causalityContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.session_arg_startup_state"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSession_arg_startup_state([NotNull] TSqlParser.Session_arg_startup_stateContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_event_session_add_event"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_or_alter_event_session_add_event([NotNull] TSqlParser.Create_or_alter_event_session_add_eventContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_event_session_add_target"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_or_alter_event_session_add_target([NotNull] TSqlParser.Create_or_alter_event_session_add_targetContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_event_session_del_target"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_or_alter_event_session_del_target([NotNull] TSqlParser.Create_or_alter_event_session_del_targetContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_event_session_del_event"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_or_alter_event_session_del_event([NotNull] TSqlParser.Create_or_alter_event_session_del_eventContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.start_stop"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1250,6 +1322,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlter_server_audit([NotNull] TSqlParser.Alter_server_auditContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.and_or"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAnd_or([NotNull] TSqlParser.And_orContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_server_audit"/>.
 	/// </summary>

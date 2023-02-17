@@ -56,7 +56,7 @@ namespace Bb.Parsers
 
             var result = new TreeRuleItem(null)
             {
-                //IsAlternative = true,
+                IsAlternative = true,
             };
 
             foreach (var item in a)

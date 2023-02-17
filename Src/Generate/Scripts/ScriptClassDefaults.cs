@@ -24,27 +24,31 @@ namespace Generate.Scripts
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {
 
+            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
+            var spliterVisitor = new SpliterBuilderVisitor();
+
+
             generator.Add(this.Name, template =>
             {
 
-                 template.Namespace(Namespace, ns =>
-                 {
-                     ns.Using(Usings)
-                       .Using("Antlr4.Runtime")
-                       .Using("Antlr4.Runtime.Tree")
+                template.Namespace(Namespace, ns =>
+                {
+                    ns.Using(Usings)
+                      .Using("Antlr4.Runtime")
+                      .Using("Antlr4.Runtime.Tree")
 
-                       .CreateTypeFrom<AstRule>((ast, type) =>
-                       {
+                .CreateTypeFrom<AstRule>((ast, type) =>
+                {
 
-                           var item =
-                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                               .GenerateIf(() => Generate(ast, ctx))
-                               .Documentation(c => c.Summary(() => ast.ToString()))
-                               .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
-                               .Inherit(() => GetInherit(ast, ctx))
+                    var item =
+                    type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
+                        .GenerateIf(() => Generate(ast, ctx))
+                        .Documentation(c => c.Summary(() => ast.ToString()))
+                        .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
+                        .Inherit(() => GetInherit(ast, ctx))
 
 
-                               .Ctor((f) =>
+                        .Ctor((f) =>
                                {
                                    f.Argument(() => "ITerminalNode", "t")
                                     .Argument(() => "List<AstRoot>", "list")
@@ -52,7 +56,7 @@ namespace Generate.Scripts
                                     .CallBase("t", "list");
 
                                })
-                               .Ctor((f) =>
+                        .Ctor((f) =>
                                {
                                    f.Argument(() => "ParserRuleContext", "ctx")
                                     .Argument(() => "List<AstRoot>", "list")
@@ -60,7 +64,7 @@ namespace Generate.Scripts
                                     .CallBase("ctx", "list");
 
                                })
-                               .Ctor((f) =>
+                        .Ctor((f) =>
                                {
                                    f.Argument(() => "Position", "p")
                                     .Argument(() => "List<AstRoot>", "list")
@@ -70,7 +74,7 @@ namespace Generate.Scripts
                                })
 
 
-                               .Method(method =>
+                        .Method(method =>
                                {
                                    method
                                     .Name(g => "Accept")
@@ -87,43 +91,61 @@ namespace Generate.Scripts
                                     });
                                })
 
-                               .Field(field =>
-                               {
-                                   field.Name("_rule")
-                                   .Type(typeof(string))
-                                   .Attribute(MemberAttributes.Family | MemberAttributes.Static)
-                                   .Value((a) =>
-                                   {
-                                       return ast.ToString();
-                                   })
+                        .Field(field =>
+                        {
+                            field.Name("_rule")
+                            .Type(typeof(string))
+                            .Attribute(MemberAttributes.Family | MemberAttributes.Static)
+                            .Value((a) =>
+                            {
+                                return ast.ToString();
+                            })
 
-                                   ;
-                               });
+                            ;
+                        });
 
-                           foreach (var alt in ast.Alternatives)
-                               if (alt.ContainsRules)
-                               {
+                    if (ast.Name == "create_or_alter_event_session")
+                    {
 
-                                   var visitor1 = new RuleIdVisitor();
-                                   var p = alt.Accept(visitor1);
-                                   var visitor2 = new CombinaisonsBuilderVisitor();
-                                   p.Accept(visitor2);
+                    }
+                    var visitor1 = new RuleIdVisitor();
+                    var p = ast.Alternatives.Accept(visitor1);
+                    var possibilites = p.Accept(removeOptionalsVisitor);
+                    var possibilites2 = possibilites.Accept(spliterVisitor);
 
-                                   item.Ctor((f) =>
-                                   {
-                                       var ctor = f.Argument(() => "Position", "p")
-                                        .Attribute(MemberAttributes.Public);
+                    foreach (var alt in possibilites2)
+                        if (alt.ContainsRules)
+                        {
 
-                                       ctor.Argument(() => "List<AstRoot>", "list");
-                                       ctor.CallBase("p", "list");
+                            item.Ctor((f) =>
+                            {
+                                var ctor = f.Attribute(MemberAttributes.Public);
+
+                                List<string> _args = new List<string>(alt.Count)
+                                {
+                                "Position.Default"
+                                };
+
+                                foreach (var arg in alt.Where(c => c.IsRuleRef))
+                                {
+
+                                    var argName = "arg" + _args.Count;
+                                    _args.Add(argName);
+                                    var vv = CodeHelper.FormatCsharp(arg.Name);
+                                    ctor.Argument(() => ("Ast" + vv).AsType(), argName);
+
+                                }
+
+                                ctor.CallBase(_args.ToArray());
 
 
-                                   });
+                            });
 
-                               }
+                        }
 
-                       })
-                       .CreateTypeFrom<AstLabeledAlt>((ast, type) =>
+                })
+                
+                .CreateTypeFrom<AstLabeledAlt>((ast, type) =>
                        {
                            type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text))
                                .Inherit(() => "AstRule")
@@ -153,7 +175,8 @@ namespace Generate.Scripts
                                     });
                                });
                        });
-                 });
+                
+                });
 
              });
 
