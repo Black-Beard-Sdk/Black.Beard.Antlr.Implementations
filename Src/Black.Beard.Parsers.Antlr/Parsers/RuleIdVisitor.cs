@@ -6,6 +6,63 @@ namespace Bb.Parsers
 {
 
 
+    public static class RuleHelper
+    {
+
+
+        public static List<TreeRuleItem> ResolveAllCombinations(this AstLabeledAlt self)
+        {
+
+            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
+            var spliterVisitor = new SpliterBuilderVisitor();
+            var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
+
+            var visitor1 = new RuleIdVisitor();
+            var p = self.Rule.Accept(visitor1);
+            var possibilites = p.Accept(removeOptionalsVisitor);
+            var possibilites2 = possibilites.Accept(spliterVisitor);
+            possibilites2 = cleanDuplicated.Visit(possibilites2);
+            var possibilites3 = new List<TreeRuleItem>(possibilites.Count);
+            HashSet<string> names = new HashSet<string>();
+            foreach (var p1 in possibilites2)
+            {
+                var txt = p1.ToString();
+                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
+                    possibilites3.Add(p1);
+            }
+
+            return possibilites3;
+
+        }
+
+        public static List<TreeRuleItem> ResolveAllCombinations(this AstRule self)
+        {
+
+            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
+            var spliterVisitor = new SpliterBuilderVisitor();
+            var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
+
+            var visitor1 = new RuleIdVisitor();
+            var p = self.Alternatives.Accept(visitor1);
+            var possibilites = p.Accept(removeOptionalsVisitor);
+            var possibilites2 = possibilites.Accept(spliterVisitor);
+            possibilites2 = cleanDuplicated.Visit(possibilites2);
+            var possibilites3 = new List<TreeRuleItem>(possibilites.Count);
+            HashSet<string> names = new HashSet<string>();
+            foreach (var p1 in possibilites2)
+            {
+                var txt = p1.ToString();
+                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
+                    possibilites3.Add(p1);
+            }
+
+            return possibilites3;
+
+        }
+
+
+    }
+
     public class RuleIdVisitor : IAstVisitor<TreeRuleItem>
     {
 
@@ -124,7 +181,7 @@ namespace Bb.Parsers
             var result = a.Value?.Accept(this);
 
             if (result != null)
-                result.Occurence = a.Occurence;
+                result.Occurence = a.Occurence.Clone();
             return result;
         }
 
@@ -162,7 +219,7 @@ namespace Bb.Parsers
                 //Console.WriteLine(o);
 
                 if (b != null)
-                    _items.Add(item.Name, b);
+                    _items.Add(item.Name.Text, b);
 
             }
 
@@ -178,7 +235,10 @@ namespace Bb.Parsers
         public TreeRuleItem VisitTerminalText(AstTerminalText a)
         {
             if (a.Text != "EOF")
-                return new TreeRuleItem(a.Text) { IsTerminal = true };
+            {
+                // var p = a.Link as AstLexerRule;
+                return new TreeRuleItem(a.Text) { IsTerminal = true,  IsConstant = a.TerminalKind == TokenTypeEnum.Constant };
+            }
             return null;
         }
 
@@ -190,7 +250,7 @@ namespace Bb.Parsers
 
         public TreeRuleItem VisitRuleRef(AstRuleRef a)
         {
-            return new TreeRuleItem(a.ResolveName()) { IsRuleRef = true }; 
+            return new TreeRuleItem(a.ResolveName()) { IsRuleRef = true };
         }
 
         public TreeRuleItem VisitActionBlock(AstActionBlock a)
@@ -332,7 +392,7 @@ namespace Bb.Parsers
                 var b = item.Accept(this);
 
                 if (b != null)
-                    _items.Add(item.Name, b);
+                    _items.Add(item.Name.Text, b);
 
             }
 
@@ -406,7 +466,7 @@ namespace Bb.Parsers
                 return result[0];
 
             return result;
-        
+
         }
 
         public TreeRuleItem VisitLexerAlternative(AstLexerAlternative a)

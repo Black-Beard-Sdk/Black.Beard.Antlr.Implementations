@@ -58,6 +58,7 @@ item_list
 
 grammar_declaration
    : RULE identifier ruleConfig SEMI
+   | TERM identifier ruleTermConfig SEMI
    ;
 
 
@@ -83,8 +84,34 @@ template_selector_expression_item_is
 
 ruleConfig
    : NO? GENERATE
+     rule_tune_inherit?
      optional_template_setting
      calculated_template_setting?
+   ;
+
+ruleTermConfig
+   : KIND termKindEnum identifier?
+   ;
+
+termKindEnum
+   : OTHER_
+   | CONSTANT_
+   | IDENTIFIER_
+   | COMMENT_
+   | BOOLEAN_
+   | STRING_
+   | DECIMAL_
+   | INTEGER_
+   | REAL_
+   | HEXA_
+   | BINARY_
+   | PATTERN_
+   | OPERATOR_
+   | PONCTUATION_
+   ;
+
+rule_tune_inherit
+   : INHERIT STRING_LITERAL?
    ;
 
 calculated_template_setting
@@ -104,14 +131,10 @@ additional_settings
    ;
 
 value_item
-   : identifier COLON constant
+   : identifier COLON identifier
    ;
 
 identifier 
    : ID
-   ;
-
-constant 
-   : STRING_LITERAL
-   | identifier
+   | STRING_LITERAL
    ;

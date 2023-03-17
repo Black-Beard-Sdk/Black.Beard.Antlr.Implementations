@@ -17,15 +17,15 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
-    /// block_statement
-    /// 	 : BEGIN  SEMI?  sql_clause*?  END  SEMI?
+    /// sql_clauses
+    /// 	 : sql_clause  (SEMI+  sql_clause)*
     /// </summary>
-    public partial class AstBlockStatement : AstRule
+    public partial class AstSqlClauses : AstRuleList<AstSqlClause>
     {
         
         private AstSqlClause _sqlClause;
         
-        public AstBlockStatement(Position p, List<AstRoot> list) : 
+        public AstSqlClauses(Position p, List<AstRoot> list) : 
                 base(p, list)
         {
             for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
@@ -39,7 +39,7 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstBlockStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+        public AstSqlClauses(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
         {
             for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
@@ -58,6 +58,57 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._sqlClause;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSqlClauses(this);
+        }
+    }
+    
+    /// <summary>
+    /// block_statement
+    /// 	 : BEGIN  SEMI?  sql_clauses?  END  SEMI?
+    /// </summary>
+    public partial class AstBlockStatement : AstRule
+    {
+        
+        private AstSqlClauses _sqlClauses;
+        
+        public AstBlockStatement(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSqlClauses>())
+                {
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstBlockStatement(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSqlClauses>())
+                {
+                    this._sqlClauses = ((AstSqlClauses)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstSqlClauses SqlClauses
+        {
+            get
+            {
+                return this._sqlClauses;
             }
         }
         
@@ -170,8 +221,161 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// throw_error_number
+    /// 	 : decimal_local_id
+    /// </summary>
+    public partial class AstThrowErrorNumber : AstRule
+    {
+        
+        private AstDecimalLocalId _decimalLocalId;
+        
+        public AstThrowErrorNumber(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimalLocalId>())
+                {
+                    this._decimalLocalId = ((AstDecimalLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstThrowErrorNumber(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimalLocalId>())
+                {
+                    this._decimalLocalId = ((AstDecimalLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstDecimalLocalId DecimalLocalId
+        {
+            get
+            {
+                return this._decimalLocalId;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitThrowErrorNumber(this);
+        }
+    }
+    
+    /// <summary>
+    /// throw_message
+    /// 	 : string_local_id
+    /// </summary>
+    public partial class AstThrowMessage : AstRule
+    {
+        
+        private AstStringLocalId _stringLocalId;
+        
+        public AstThrowMessage(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStringLocalId>())
+                {
+                    this._stringLocalId = ((AstStringLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstThrowMessage(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStringLocalId>())
+                {
+                    this._stringLocalId = ((AstStringLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstStringLocalId StringLocalId
+        {
+            get
+            {
+                return this._stringLocalId;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitThrowMessage(this);
+        }
+    }
+    
+    /// <summary>
+    /// throw_state
+    /// 	 : decimal_local_id
+    /// </summary>
+    public partial class AstThrowState : AstRule
+    {
+        
+        private AstDecimalLocalId _decimalLocalId;
+        
+        public AstThrowState(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimalLocalId>())
+                {
+                    this._decimalLocalId = ((AstDecimalLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstThrowState(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimalLocalId>())
+                {
+                    this._decimalLocalId = ((AstDecimalLocalId)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstDecimalLocalId DecimalLocalId
+        {
+            get
+            {
+                return this._decimalLocalId;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitThrowState(this);
+        }
+    }
+    
+    /// <summary>
     /// waitfor_statement
-    /// 	 : WAITFOR  receive_statement?  COMMA?  ((DELAY TIME TIMEOUT)  time)?  expression?  SEMI?
+    /// 	 : WAITFOR  receive_statement?  COMMA?  (delay_time_timeout  time)?  expression?  SEMI?
     /// </summary>
     public partial class AstWaitforStatement : AstRule
     {
@@ -240,7 +444,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// while_statement
-    /// 	 : WHILE  search_condition  (sql_clause BREAK  SEMI? CONTINUE  SEMI?)
+    /// 	 : WHILE  search_condition  (sql_clause | BREAK  SEMI? | CONTINUE  SEMI?)
     /// </summary>
     public partial class AstWhileStatement : AstRule
     {
@@ -393,12 +597,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_aggregate
-    /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  (schema_name  DOT)?  aggregate_name
+    /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  full_aggregate_name
     /// </summary>
     public partial class AstDropAggregate : AstRule
     {
         
-        private AstAggregateName _aggregateName;
+        private AstFullAggregateName _fullAggregateName;
         
         public AstDropAggregate(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -407,9 +611,9 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAggregateName>())
+                if (enumerator.Current.Is<AstFullAggregateName>())
                 {
-                    this._aggregateName = ((AstAggregateName)(enumerator.Current));
+                    this._fullAggregateName = ((AstFullAggregateName)(enumerator.Current));
                 }
             }
         }
@@ -421,18 +625,18 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAggregateName>())
+                if (enumerator.Current.Is<AstFullAggregateName>())
                 {
-                    this._aggregateName = ((AstAggregateName)(enumerator.Current));
+                    this._fullAggregateName = ((AstFullAggregateName)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstAggregateName AggregateName
+        public virtual AstFullAggregateName FullAggregateName
         {
             get
             {
-                return this._aggregateName;
+                return this._fullAggregateName;
             }
         }
         
@@ -687,7 +891,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_from_clause
-    /// 	 : alter_assembly_from_clause_start  (client_assembly_specifier alter_assembly_file_bits)
+    /// 	 : alter_assembly_from_clause_start  (client_assembly_specifier | alter_assembly_file_bits)
     /// </summary>
     public partial class AstAlterAssemblyFromClause : AstRule
     {
@@ -807,12 +1011,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_add_clause
-    /// 	 : alter_asssembly_add_clause_start  alter_assembly_client_file_clause
+    /// 	 : ADD  FILE  FROM  alter_assembly_client_file_clause
     /// </summary>
     public partial class AstAlterAssemblyAddClause : AstRule
     {
-        
-        private AstAlterAsssemblyAddClauseStart _alterAsssemblyAddClauseStart;
         
         private AstAlterAssemblyClientFileClause _alterAssemblyClientFileClause;
         
@@ -823,10 +1025,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAsssemblyAddClauseStart>())
-                {
-                    this._alterAsssemblyAddClauseStart = ((AstAlterAsssemblyAddClauseStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAlterAssemblyClientFileClause>())
                 {
                     this._alterAssemblyClientFileClause = ((AstAlterAssemblyClientFileClause)(enumerator.Current));
@@ -841,22 +1039,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAsssemblyAddClauseStart>())
-                {
-                    this._alterAsssemblyAddClauseStart = ((AstAlterAsssemblyAddClauseStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAlterAssemblyClientFileClause>())
                 {
                     this._alterAssemblyClientFileClause = ((AstAlterAssemblyClientFileClause)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAsssemblyAddClauseStart AlterAsssemblyAddClauseStart
-        {
-            get
-            {
-                return this._alterAsssemblyAddClauseStart;
             }
         }
         
@@ -876,12 +1062,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_client_file_clause
-    /// 	 : alter_assembly_file_name  (alter_assembly_as  id_)?
+    /// 	 : assembly_file_name  (AS  id_)?
     /// </summary>
     public partial class AstAlterAssemblyClientFileClause : AstRule
     {
         
-        private AstAlterAssemblyFileName _alterAssemblyFileName;
+        private AstAssemblyFileName _assemblyFileName;
         
         public AstAlterAssemblyClientFileClause(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -890,9 +1076,9 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyFileName>())
+                if (enumerator.Current.Is<AstAssemblyFileName>())
                 {
-                    this._alterAssemblyFileName = ((AstAlterAssemblyFileName)(enumerator.Current));
+                    this._assemblyFileName = ((AstAssemblyFileName)(enumerator.Current));
                 }
             }
         }
@@ -904,18 +1090,18 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyFileName>())
+                if (enumerator.Current.Is<AstAssemblyFileName>())
                 {
-                    this._alterAssemblyFileName = ((AstAlterAssemblyFileName)(enumerator.Current));
+                    this._assemblyFileName = ((AstAssemblyFileName)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstAlterAssemblyFileName AlterAssemblyFileName
+        public virtual AstAssemblyFileName AssemblyFileName
         {
             get
             {
-                return this._alterAssemblyFileName;
+                return this._assemblyFileName;
             }
         }
         
@@ -927,12 +1113,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_file_bits
-    /// 	 : alter_assembly_as  id_
+    /// 	 : AS  id_
     /// </summary>
     public partial class AstAlterAssemblyFileBits : AstRule
     {
-        
-        private AstAlterAssemblyAs _alterAssemblyAs;
         
         private AstId _id;
         
@@ -943,10 +1127,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyAs>())
-                {
-                    this._alterAssemblyAs = ((AstAlterAssemblyAs)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstId>())
                 {
                     this._id = ((AstId)(enumerator.Current));
@@ -961,22 +1141,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyAs>())
-                {
-                    this._alterAssemblyAs = ((AstAlterAssemblyAs)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstId>())
                 {
                     this._id = ((AstId)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAssemblyAs AlterAssemblyAs
-        {
-            get
-            {
-                return this._alterAssemblyAs;
             }
         }
         
@@ -996,12 +1164,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_with_clause
-    /// 	 : alter_assembly_with  assembly_option
+    /// 	 : WITH  assembly_option
     /// </summary>
     public partial class AstAlterAssemblyWithClause : AstRule
     {
-        
-        private AstAlterAssemblyWith _alterAssemblyWith;
         
         private AstAssemblyOption _assemblyOption;
         
@@ -1012,10 +1178,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyWith>())
-                {
-                    this._alterAssemblyWith = ((AstAlterAssemblyWith)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAssemblyOption>())
                 {
                     this._assemblyOption = ((AstAssemblyOption)(enumerator.Current));
@@ -1030,22 +1192,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAssemblyWith>())
-                {
-                    this._alterAssemblyWith = ((AstAlterAssemblyWith)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAssemblyOption>())
                 {
                     this._assemblyOption = ((AstAssemblyOption)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAssemblyWith AlterAssemblyWith
-        {
-            get
-            {
-                return this._alterAssemblyWith;
             }
         }
         
@@ -1221,7 +1371,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_assembly
-    /// 	 : CREATE  ASSEMBLY  assembly_name  (AUTHORIZATION  owner_name)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE EXTERNAL_ACCESS UNSAFE))?
+    /// 	 : CREATE  ASSEMBLY  assembly_name  (AUTHORIZATION  owner_name)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE | EXTERNAL_ACCESS | UNSAFE))?
     /// </summary>
     public partial class AstCreateAssembly : AstRule
     {
@@ -1341,12 +1491,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_asymmetric_key
-    /// 	 : alter_asymmetric_key_start  asym_key_name  (asymmetric_key_option REMOVE  PRIVATE  KEY)
+    /// 	 : ALTER  ASYMMETRIC  KEY  asym_key_name  (asymmetric_key_option | REMOVE  PRIVATE  KEY)
     /// </summary>
     public partial class AstAlterAsymmetricKey : AstRule
     {
-        
-        private AstAlterAsymmetricKeyStart _alterAsymmetricKeyStart;
         
         private AstAsymKeyName _asymKeyName;
         
@@ -1357,10 +1505,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAsymmetricKeyStart>())
-                {
-                    this._alterAsymmetricKeyStart = ((AstAlterAsymmetricKeyStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAsymKeyName>())
                 {
                     this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
@@ -1375,22 +1519,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAsymmetricKeyStart>())
-                {
-                    this._alterAsymmetricKeyStart = ((AstAlterAsymmetricKeyStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAsymKeyName>())
                 {
                     this._asymKeyName = ((AstAsymKeyName)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAsymmetricKeyStart AlterAsymmetricKeyStart
-        {
-            get
-            {
-                return this._alterAsymmetricKeyStart;
             }
         }
         
@@ -1410,12 +1542,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// asymmetric_key_option
-    /// 	 : asymmetric_key_option_start  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
+    /// 	 : WITH  PRIVATE  KEY  LR_BRACKET  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
     /// </summary>
     public partial class AstAsymmetricKeyOption : AstRule
     {
-        
-        private AstAsymmetricKeyOptionStart _asymmetricKeyOptionStart;
         
         private AstAsymmetricKeyPasswordChangeOption _asymmetricKeyPasswordChangeOption;
         
@@ -1426,10 +1556,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAsymmetricKeyOptionStart>())
-                {
-                    this._asymmetricKeyOptionStart = ((AstAsymmetricKeyOptionStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAsymmetricKeyPasswordChangeOption>())
                 {
                     this._asymmetricKeyPasswordChangeOption = ((AstAsymmetricKeyPasswordChangeOption)(enumerator.Current));
@@ -1444,22 +1570,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAsymmetricKeyOptionStart>())
-                {
-                    this._asymmetricKeyOptionStart = ((AstAsymmetricKeyOptionStart)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAsymmetricKeyPasswordChangeOption>())
                 {
                     this._asymmetricKeyPasswordChangeOption = ((AstAsymmetricKeyPasswordChangeOption)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAsymmetricKeyOptionStart AsymmetricKeyOptionStart
-        {
-            get
-            {
-                return this._asymmetricKeyOptionStart;
             }
         }
         
@@ -1479,7 +1593,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_asymmetric_key
-    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_name  (AUTHORIZATION  database_name)?  (FROM  (FILE  EQUAL  STRING EXECUTABLE_FILE  EQUAL  STRING ASSEMBLY  assembly_name PROVIDER  provider_name))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 RSA_3072 RSA_2048 RSA_1024 RSA_512) PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING CREATION_DISPOSITION  EQUAL  (CREATE_NEW OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
+    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_name  (AUTHORIZATION  database_name)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_name | PROVIDER  provider_name))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
     /// </summary>
     public partial class AstCreateAsymmetricKey : AstRule
     {
@@ -1530,14 +1644,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization
-    /// 	 : alter_authorization_start  (class_type  colon_colon)?  entity = entity_name  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type  DOUBLE_COLON)?  entity = entity_name  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorization : AstRule
     {
-        
-        private AstAlterAuthorizationStart _alterAuthorizationStart;
-        
-        private AstEntityTo _entityTo;
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
@@ -1548,14 +1658,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
@@ -1570,34 +1672,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAuthorizationStart AlterAuthorizationStart
-        {
-            get
-            {
-                return this._alterAuthorizationStart;
-            }
-        }
-        
-        public virtual AstEntityTo EntityTo
-        {
-            get
-            {
-                return this._entityTo;
             }
         }
         
@@ -1617,14 +1695,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization_for_sql_database
-    /// 	 : alter_authorization_start  (class_type_for_sql_database  colon_colon)?  entity = entity_name  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_sql_database  DOUBLE_COLON)?  entity = entity_name  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForSqlDatabase : AstRule
     {
-        
-        private AstAlterAuthorizationStart _alterAuthorizationStart;
-        
-        private AstEntityTo _entityTo;
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
@@ -1635,14 +1709,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
@@ -1657,34 +1723,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAuthorizationStart AlterAuthorizationStart
-        {
-            get
-            {
-                return this._alterAuthorizationStart;
-            }
-        }
-        
-        public virtual AstEntityTo EntityTo
-        {
-            get
-            {
-                return this._entityTo;
             }
         }
         
@@ -1704,14 +1746,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization_for_azure_dw
-    /// 	 : alter_authorization_start  (class_type_for_azure_dw  colon_colon)?  entity = entity_name_for_azure_dw  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_azure_dw  DOUBLE_COLON)?  entity = entity_name_for_azure_dw  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForAzureDw : AstRule
     {
-        
-        private AstAlterAuthorizationStart _alterAuthorizationStart;
-        
-        private AstEntityTo _entityTo;
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
@@ -1722,14 +1760,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
@@ -1744,34 +1774,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAuthorizationStart AlterAuthorizationStart
-        {
-            get
-            {
-                return this._alterAuthorizationStart;
-            }
-        }
-        
-        public virtual AstEntityTo EntityTo
-        {
-            get
-            {
-                return this._entityTo;
             }
         }
         
@@ -1791,14 +1797,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization_for_parallel_dw
-    /// 	 : alter_authorization_start  (class_type_for_parallel_dw  colon_colon)?  entity = entity_name_for_parallel_dw  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_parallel_dw  DOUBLE_COLON)?  entity = entity_name_for_parallel_dw  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForParallelDw : AstRule
     {
-        
-        private AstAlterAuthorizationStart _alterAuthorizationStart;
-        
-        private AstEntityTo _entityTo;
         
         private AstAuthorizationGrantee _authorizationGrantee;
         
@@ -1809,14 +1811,6 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
@@ -1831,34 +1825,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstAlterAuthorizationStart>())
-                {
-                    this._alterAuthorizationStart = ((AstAlterAuthorizationStart)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstEntityTo>())
-                {
-                    this._entityTo = ((AstEntityTo)(enumerator.Current));
-                }
                 if (enumerator.Current.Is<AstAuthorizationGrantee>())
                 {
                     this._authorizationGrantee = ((AstAuthorizationGrantee)(enumerator.Current));
                 }
-            }
-        }
-        
-        public virtual AstAlterAuthorizationStart AlterAuthorizationStart
-        {
-            get
-            {
-                return this._alterAuthorizationStart;
-            }
-        }
-        
-        public virtual AstEntityTo EntityTo
-        {
-            get
-            {
-                return this._entityTo;
             }
         }
         
@@ -2048,8 +2018,131 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// create_or_alter_broker_priority
+    /// 	 : create_alter  BROKER  PRIORITY  ConversationPriorityName = id_  FOR  CONVERSATION  SET  LR_BRACKET  broker_contract_name?  broker_local_service_name?  broker_remote_service_name?  broker_priority_level?  RR_BRACKET
+    /// </summary>
+    public partial class AstCreateOrAlterBrokerPriority : AstRule
+    {
+        
+        private AstCreateAlter _createAlter;
+        
+        private AstBrokerContractName _brokerContractName;
+        
+        private AstBrokerLocalServiceName _brokerLocalServiceName;
+        
+        private AstBrokerRemoteServiceName _brokerRemoteServiceName;
+        
+        private AstBrokerPriorityLevel _brokerPriorityLevel;
+        
+        public AstCreateOrAlterBrokerPriority(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateAlter>())
+                {
+                    this._createAlter = ((AstCreateAlter)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerContractName>())
+                {
+                    this._brokerContractName = ((AstBrokerContractName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerLocalServiceName>())
+                {
+                    this._brokerLocalServiceName = ((AstBrokerLocalServiceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerRemoteServiceName>())
+                {
+                    this._brokerRemoteServiceName = ((AstBrokerRemoteServiceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerPriorityLevel>())
+                {
+                    this._brokerPriorityLevel = ((AstBrokerPriorityLevel)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstCreateOrAlterBrokerPriority(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateAlter>())
+                {
+                    this._createAlter = ((AstCreateAlter)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerContractName>())
+                {
+                    this._brokerContractName = ((AstBrokerContractName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerLocalServiceName>())
+                {
+                    this._brokerLocalServiceName = ((AstBrokerLocalServiceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerRemoteServiceName>())
+                {
+                    this._brokerRemoteServiceName = ((AstBrokerRemoteServiceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstBrokerPriorityLevel>())
+                {
+                    this._brokerPriorityLevel = ((AstBrokerPriorityLevel)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstCreateAlter CreateAlter
+        {
+            get
+            {
+                return this._createAlter;
+            }
+        }
+        
+        public virtual AstBrokerContractName BrokerContractName
+        {
+            get
+            {
+                return this._brokerContractName;
+            }
+        }
+        
+        public virtual AstBrokerLocalServiceName BrokerLocalServiceName
+        {
+            get
+            {
+                return this._brokerLocalServiceName;
+            }
+        }
+        
+        public virtual AstBrokerRemoteServiceName BrokerRemoteServiceName
+        {
+            get
+            {
+                return this._brokerRemoteServiceName;
+            }
+        }
+        
+        public virtual AstBrokerPriorityLevel BrokerPriorityLevel
+        {
+            get
+            {
+                return this._brokerPriorityLevel;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCreateOrAlterBrokerPriority(this);
+        }
+    }
+    
+    /// <summary>
     /// alter_certificate
-    /// 	 : ALTER  CERTIFICATE  certificate_name  (REMOVE  PRIVATE_KEY WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
+    /// 	 : ALTER  CERTIFICATE  certificate_name  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? | DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? | ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
     /// </summary>
     public partial class AstAlterCertificate : AstRule
     {
@@ -2100,12 +2193,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_column_encryption_key
-    /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key  (ADD DROP)  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
+    /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
     /// </summary>
     public partial class AstAlterColumnEncryptionKey : AstRule
     {
         
         private AstColumnEncryptionKey _columnEncryptionKey;
+        
+        private AstAddDrop _addDrop;
         
         public AstAlterColumnEncryptionKey(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -2117,6 +2212,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstColumnEncryptionKey>())
                 {
                     this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAddDrop>())
+                {
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
                 }
             }
         }
@@ -2132,6 +2231,10 @@ namespace Bb.Asts.TSql
                 {
                     this._columnEncryptionKey = ((AstColumnEncryptionKey)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstAddDrop>())
+                {
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
+                }
             }
         }
         
@@ -2140,6 +2243,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._columnEncryptionKey;
+            }
+        }
+        
+        public virtual AstAddDrop AddDrop
+        {
+            get
+            {
+                return this._addDrop;
             }
         }
         
@@ -3273,12 +3384,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_queue
-    /// 	 : DROP  QUEUE  (database_name  DOT)?  (schema_name  DOT)?  queue_name
+    /// 	 : DROP  QUEUE  (database_name  DOT)?  full_queue_name
     /// </summary>
     public partial class AstDropQueue : AstRule
     {
         
-        private AstQueueName _queueName;
+        private AstFullQueueName _fullQueueName;
         
         public AstDropQueue(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -3287,9 +3398,9 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstQueueName>())
+                if (enumerator.Current.Is<AstFullQueueName>())
                 {
-                    this._queueName = ((AstQueueName)(enumerator.Current));
+                    this._fullQueueName = ((AstFullQueueName)(enumerator.Current));
                 }
             }
         }
@@ -3301,18 +3412,18 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstQueueName>())
+                if (enumerator.Current.Is<AstFullQueueName>())
                 {
-                    this._queueName = ((AstQueueName)(enumerator.Current));
+                    this._fullQueueName = ((AstFullQueueName)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstQueueName QueueName
+        public virtual AstFullQueueName FullQueueName
         {
             get
             {
-                return this._queueName;
+                return this._fullQueueName;
             }
         }
         
@@ -3885,7 +3996,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_signature
-    /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  (schema_name  DOT)?  module_name  BY  (COMMA?  CERTIFICATE  certificate_name COMMA?  ASYMMETRIC  KEY  asym_key_name)+
+    /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  (schema_name  DOT)?  module_name  BY  (COMMA?  CERTIFICATE  certificate_name | COMMA?  ASYMMETRIC  KEY  asym_key_name)+
     /// </summary>
     public partial class AstDropSignature : AstRule
     {
@@ -4260,7 +4371,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// lock_table
-    /// 	 : LOCK  TABLE  full_table_name  IN  (SHARE EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL NOWAIT)?  SEMI?
+    /// 	 : LOCK  TABLE  full_table_name  IN  (SHARE | EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL | NOWAIT)?  SEMI?
     /// </summary>
     public partial class AstLockTable : AstRule
     {
@@ -4311,7 +4422,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// truncate_table
-    /// 	 : TRUNCATE  TABLE  full_table_name  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET  RR_BRACKET)?
+    /// 	 : TRUNCATE  TABLE  full_table_name  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET  RR_BRACKET)?
     /// </summary>
     public partial class AstTruncateTable : AstRule
     {
@@ -4464,7 +4575,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_cryptographic_provider
-    /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_name  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  (ENABLE DISABLE)?
+    /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_name  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  (ENABLE | DISABLE)?
     /// </summary>
     public partial class AstAlterCryptographicProvider : AstRule
     {
@@ -4566,7 +4677,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_event_notification
-    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_name  ON  (SERVER DATABASE QUEUE  queue_name)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
+    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_name  ON  (SERVER | DATABASE | QUEUE  queue_name)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
     /// </summary>
     public partial class AstCreateEventNotification : AstRule
     {
@@ -4617,7 +4728,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_event_session
-    /// 	 : (CREATE ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  create_or_alter_event_session_add_event*?  create_or_alter_event_session_del_event*?  create_or_alter_event_session_add_target*?  create_or_alter_event_session_del_target*?  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
+    /// 	 : (CREATE | ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  create_or_alter_event_session_add_event*  create_or_alter_event_session_del_event*  create_or_alter_event_session_add_target*  create_or_alter_event_session_del_target*  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
     /// </summary>
     public partial class AstCreateOrAlterEventSession : AstRule
     {
@@ -4758,12 +4869,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_external_library
-    /// 	 : ALTER  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  (SET ADD)  (LR_BRACKET  CONTENT  EQUAL  (client_library = STRING BINARY NONE)  (COMMA  PLATFORM  EQUAL  (WINDOWS LINUX)?  RR_BRACKET)  WITH  (COMMA?  LANGUAGE  EQUAL  (R PYTHON) DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)
+    /// 	 : ALTER  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  set_add  file_spec2  WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET
     /// </summary>
     public partial class AstAlterExternalLibrary : AstRule
     {
         
         private AstLibraryName _libraryName;
+        
+        private AstSetAdd _setAdd;
+        
+        private AstFileSpec2 _fileSpec2;
         
         public AstAlterExternalLibrary(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -4775,6 +4890,14 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstLibraryName>())
                 {
                     this._libraryName = ((AstLibraryName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSetAdd>())
+                {
+                    this._setAdd = ((AstSetAdd)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFileSpec2>())
+                {
+                    this._fileSpec2 = ((AstFileSpec2)(enumerator.Current));
                 }
             }
         }
@@ -4790,6 +4913,14 @@ namespace Bb.Asts.TSql
                 {
                     this._libraryName = ((AstLibraryName)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstSetAdd>())
+                {
+                    this._setAdd = ((AstSetAdd)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFileSpec2>())
+                {
+                    this._fileSpec2 = ((AstFileSpec2)(enumerator.Current));
+                }
             }
         }
         
@@ -4801,6 +4932,22 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual AstSetAdd SetAdd
+        {
+            get
+            {
+                return this._setAdd;
+            }
+        }
+        
+        public virtual AstFileSpec2 FileSpec2
+        {
+            get
+            {
+                return this._fileSpec2;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterExternalLibrary(this);
@@ -4809,12 +4956,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_external_library
-    /// 	 : CREATE  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  FROM  (COMMA?  LR_BRACKET?  (CONTENT  EQUAL)?  (client_library = STRING BINARY NONE)  (COMMA  PLATFORM  EQUAL  (WINDOWS LINUX)?  RR_BRACKET)?)  (WITH  (COMMA?  LANGUAGE  EQUAL  (R PYTHON) DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)?
+    /// 	 : CREATE  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  FROM  file_spec2  (WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateExternalLibrary : AstRule
     {
         
         private AstLibraryName _libraryName;
+        
+        private AstFileSpec2 _fileSpec2;
         
         public AstCreateExternalLibrary(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -4826,6 +4975,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstLibraryName>())
                 {
                     this._libraryName = ((AstLibraryName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFileSpec2>())
+                {
+                    this._fileSpec2 = ((AstFileSpec2)(enumerator.Current));
                 }
             }
         }
@@ -4841,6 +4994,10 @@ namespace Bb.Asts.TSql
                 {
                     this._libraryName = ((AstLibraryName)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstFileSpec2>())
+                {
+                    this._fileSpec2 = ((AstFileSpec2)(enumerator.Current));
+                }
             }
         }
         
@@ -4852,6 +5009,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual AstFileSpec2 FileSpec2
+        {
+            get
+            {
+                return this._fileSpec2;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateExternalLibrary(this);
@@ -4859,13 +5024,66 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// alter_external_resource_pool
+    /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name | DEFAULT_DOUBLE_QUOTE)  WITH  external_resource_with
+    /// </summary>
+    public partial class AstAlterExternalResourcePool : AstRule
+    {
+        
+        private AstExternalResourceWith _externalResourceWith;
+        
+        public AstAlterExternalResourcePool(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExternalResourceWith>())
+                {
+                    this._externalResourceWith = ((AstExternalResourceWith)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstAlterExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstExternalResourceWith>())
+                {
+                    this._externalResourceWith = ((AstExternalResourceWith)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstExternalResourceWith ExternalResourceWith
+        {
+            get
+            {
+                return this._externalResourceWith;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitAlterExternalResourcePool(this);
+        }
+    }
+    
+    /// <summary>
     /// create_external_resource_pool
-    /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_name  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO (COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL)+)  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MAX_PROCESSES  EQUAL  max_processes = DECIMAL)?  RR_BRACKET
+    /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_name  WITH  external_resource_with
     /// </summary>
     public partial class AstCreateExternalResourcePool : AstRule
     {
         
         private AstPoolName _poolName;
+        
+        private AstExternalResourceWith _externalResourceWith;
         
         public AstCreateExternalResourcePool(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -4877,6 +5095,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstPoolName>())
                 {
                     this._poolName = ((AstPoolName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstExternalResourceWith>())
+                {
+                    this._externalResourceWith = ((AstExternalResourceWith)(enumerator.Current));
                 }
             }
         }
@@ -4892,6 +5114,10 @@ namespace Bb.Asts.TSql
                 {
                     this._poolName = ((AstPoolName)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstExternalResourceWith>())
+                {
+                    this._externalResourceWith = ((AstExternalResourceWith)(enumerator.Current));
+                }
             }
         }
         
@@ -4903,6 +5129,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual AstExternalResourceWith ExternalResourceWith
+        {
+            get
+            {
+                return this._externalResourceWith;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateExternalResourcePool(this);
@@ -4911,7 +5145,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_fulltext_catalog
-    /// 	 : ALTER  FULLTEXT  CATALOG  catalog_name  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? REORGANIZE AS  DEFAULT)
+    /// 	 : ALTER  FULLTEXT  CATALOG  catalog_name  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? | REORGANIZE | AS  DEFAULT)
     /// </summary>
     public partial class AstAlterFulltextCatalog : AstRule
     {
@@ -5013,7 +5247,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_fulltext_stoplist
-    /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_name  (ADD  stopword = STRING  LANGUAGE  (STRING DECIMAL BINARY) DROP  (stopword = STRING  LANGUAGE  (STRING DECIMAL BINARY) ALL  (STRING DECIMAL BINARY) ALL))
+    /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_name  (ADD  stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
     /// </summary>
     public partial class AstAlterFulltextStoplist : AstRule
     {
@@ -5064,7 +5298,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_fulltext_stoplist
-    /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_name  (FROM  ((database_name  DOT)?  stoplist_name SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_name)?
+    /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_name  (FROM  ((database_name  DOT)?  stoplist_name | SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_name)?
     /// </summary>
     public partial class AstCreateFulltextStoplist : AstRule
     {
@@ -5115,7 +5349,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_login_sql_server
-    /// 	 : ALTER  LOGIN  login_name  ((ENABLE DISABLE)? WITH  ((PASSWORD  EQUAL  (password = STRING password_hash = BINARY  HASHED))  (MUST_CHANGE UNLOCK)*?)?  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE UNLOCK)*?)?  (DEFAULT_DATABASE  EQUAL  database_name)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_name)?  (CHECK_POLICY  EQUAL  on_off)?  (CHECK_EXPIRATION  EQUAL  on_off)?  (CREDENTIAL  EQUAL  credential_name)?  (NO  CREDENTIAL)? (ADD DROP)  CREDENTIAL  credential_name)
+    /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  alter_login_sql_server_settings | add_drop  CREDENTIAL  credential_name)
     /// </summary>
     public partial class AstAlterLoginSqlServer : AstRule
     {
@@ -5166,7 +5400,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_login_sql_server
-    /// 	 : CREATE  LOGIN  login_name  (WITH  ((PASSWORD  EQUAL  (password = STRING password_hash = BINARY  HASHED))  (MUST_CHANGE UNLOCK)*?)?  (COMMA?  SID  EQUAL  sid = BINARY)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  on_off)?  (COMMA?  CHECK_POLICY  EQUAL  on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_name)? (FROM  (WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = STRING)?) CERTIFICATE  certificate_name ASYMMETRIC  KEY  asym_key_name)))
+    /// 	 : CREATE  LOGIN  login_name  (WITH  create_login_sql_server_settings | FROM  create_login_sql_server_from)
     /// </summary>
     public partial class AstCreateLoginSqlServer : AstRule
     {
@@ -5217,7 +5451,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_login_azure_sql
-    /// 	 : ALTER  LOGIN  login_name  ((ENABLE DISABLE)? WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)? NAME  EQUAL  login_name))
+    /// 	 : ALTER  LOGIN  login_name  ((ENABLE | DISABLE)? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)? | NAME  EQUAL  login_name))
     /// </summary>
     public partial class AstAlterLoginAzureSql : AstRule
     {
@@ -5319,7 +5553,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_login_azure_sql_dw_and_pdw
-    /// 	 : ALTER  LOGIN  login_name  (enable_disable? WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE UNLOCK)*?)? NAME  EQUAL  login_name))
+    /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)? | NAME  EQUAL  login_name))
     /// </summary>
     public partial class AstAlterLoginAzureSqlDwAndPdw : AstRule
     {
@@ -5370,7 +5604,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_login_pdw
-    /// 	 : CREATE  LOGIN  login_name  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) FROM  WINDOWS)
+    /// 	 : CREATE  LOGIN  login_name  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
     /// </summary>
     public partial class AstCreateLoginPdw : AstRule
     {
@@ -5421,7 +5655,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_message_type
-    /// 	 : ALTER  MESSAGE  TYPE  message_type_name  VALIDATION  EQUAL  (NONE EMPTY WELL_FORMED_XML VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name)
+    /// 	 : ALTER  MESSAGE  TYPE  message_type_name  VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name)
     /// </summary>
     public partial class AstAlterMessageType : AstRule
     {
@@ -5694,7 +5928,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_resource_pool
-    /// 	 : CREATE  RESOURCE  POOL  pool_name  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET NUMANODE  EQUAL  LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  RR_BRACKET)?
+    /// 	 : CREATE  RESOURCE  POOL  pool_name  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO | LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET | NUMANODE  EQUAL  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateResourcePool : AstRule
     {
@@ -5745,7 +5979,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_db_role
-    /// 	 : ALTER  ROLE  role_name  (add_drop  MEMBER  database_name WITH  NAME  EQUAL  role_name)
+    /// 	 : ALTER  ROLE  role_name  (add_drop  MEMBER  database_name | WITH  NAME  EQUAL  role_name)
     /// </summary>
     public partial class AstAlterDbRole : AstRule
     {
@@ -5967,7 +6201,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_schema_sql
-    /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  ((OBJECT TYPE XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_  (DOT  id_)?
+    /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  ((OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_  (DOT  id_)?
     /// </summary>
     public partial class AstAlterSchemaSql : AstRule
     {
@@ -6207,7 +6441,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_security_policy
-    /// 	 : CREATE  SECURITY  POLICY  (schema_name  DOT)?  security_policy_name  (COMMA?  ADD  (FILTER BLOCK)?  PREDICATE  tvf_schema_name  DOT  security_predicate_function_name  LR_BRACKET  (COMMA?  column_name_or_arguments)+  RR_BRACKET  ON  schema_name  DOT  tableName  (COMMA?  AFTER  (INSERT UPDATE) COMMA?  BEFORE  (UPDATE DELETE))*?)+  (WITH  LR_BRACKET  STATE  EQUAL  on_off  (SCHEMABINDING  on_off)?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
+    /// 	 : CREATE  SECURITY  POLICY  (schema_name  DOT)?  security_policy_name  (COMMA?  ADD  (FILTER | BLOCK)?  PREDICATE  tvf_schema_name  DOT  security_predicate_function_name  LR_BRACKET  (COMMA?  column_name_or_arguments)+  RR_BRACKET  ON  schema_name  DOT  tableName  (COMMA?  AFTER  (INSERT | UPDATE) | COMMA?  BEFORE  (UPDATE | DELETE))*)+  (WITH  LR_BRACKET  STATE  EQUAL  on_off  (SCHEMABINDING  on_off)?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
     /// </summary>
     public partial class AstCreateSecurityPolicy : AstRule
     {
@@ -6258,12 +6492,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_sequence
-    /// 	 : ALTER  SEQUENCE  (schema_name  DOT)?  sequence_name  (RESTART  (WITH  DECIMAL)?)?  (INCREMENT  BY  sequnce_increment = DECIMAL)?  (MINVALUE  DECIMAL NO  MINVALUE)?  (MAXVALUE  DECIMAL NO  MAXVALUE)?  (CYCLE NO  CYCLE)?  (CACHE  DECIMAL NO  CACHE)?
+    /// 	 : ALTER  SEQUENCE  full_sequence_name  (RESTART  (WITH  DECIMAL)?)?  (INCREMENT  BY  sequnce_increment = DECIMAL)?  (MINVALUE  DECIMAL | NO  MINVALUE)?  (MAXVALUE  DECIMAL | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL | NO  CACHE)?
     /// </summary>
     public partial class AstAlterSequence : AstRule
     {
         
-        private AstSequenceName _sequenceName;
+        private AstFullSequenceName _fullSequenceName;
+        
+        private AstCycle _cycle;
         
         public AstAlterSequence(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -6272,9 +6508,13 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSequenceName>())
+                if (enumerator.Current.Is<AstFullSequenceName>())
                 {
-                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._fullSequenceName = ((AstFullSequenceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCycle>())
+                {
+                    this._cycle = ((AstCycle)(enumerator.Current));
                 }
             }
         }
@@ -6286,18 +6526,30 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSequenceName>())
+                if (enumerator.Current.Is<AstFullSequenceName>())
                 {
-                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._fullSequenceName = ((AstFullSequenceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCycle>())
+                {
+                    this._cycle = ((AstCycle)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstSequenceName SequenceName
+        public virtual AstFullSequenceName FullSequenceName
         {
             get
             {
-                return this._sequenceName;
+                return this._fullSequenceName;
+            }
+        }
+        
+        public virtual AstCycle Cycle
+        {
+            get
+            {
+                return this._cycle;
             }
         }
         
@@ -6309,12 +6561,16 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_sequence
-    /// 	 : CREATE  SEQUENCE  (schema_name  DOT)?  sequence_name  (AS  data_type)?  (START  WITH  DECIMAL)?  (INCREMENT  BY  MINUS?  DECIMAL)?  (MINVALUE  (MINUS?  DECIMAL)? NO  MINVALUE)?  (MAXVALUE  (MINUS?  DECIMAL)? NO  MAXVALUE)?  (CYCLE NO  CYCLE)?  (CACHE  DECIMAL? NO  CACHE)?
+    /// 	 : CREATE  SEQUENCE  full_sequence_name  (AS  data_type)?  create_sequence_start?  (INCREMENT  BY  real)?  (MINVALUE  real? | NO  MINVALUE)?  (MAXVALUE  real? | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL? | NO  CACHE)?
     /// </summary>
     public partial class AstCreateSequence : AstRule
     {
         
-        private AstSequenceName _sequenceName;
+        private AstFullSequenceName _fullSequenceName;
+        
+        private AstCreateSequenceStart _createSequenceStart;
+        
+        private AstCycle _cycle;
         
         public AstCreateSequence(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -6323,9 +6579,17 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSequenceName>())
+                if (enumerator.Current.Is<AstFullSequenceName>())
                 {
-                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._fullSequenceName = ((AstFullSequenceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateSequenceStart>())
+                {
+                    this._createSequenceStart = ((AstCreateSequenceStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCycle>())
+                {
+                    this._cycle = ((AstCycle)(enumerator.Current));
                 }
             }
         }
@@ -6337,18 +6601,42 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstSequenceName>())
+                if (enumerator.Current.Is<AstFullSequenceName>())
                 {
-                    this._sequenceName = ((AstSequenceName)(enumerator.Current));
+                    this._fullSequenceName = ((AstFullSequenceName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreateSequenceStart>())
+                {
+                    this._createSequenceStart = ((AstCreateSequenceStart)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCycle>())
+                {
+                    this._cycle = ((AstCycle)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstSequenceName SequenceName
+        public virtual AstFullSequenceName FullSequenceName
         {
             get
             {
-                return this._sequenceName;
+                return this._fullSequenceName;
+            }
+        }
+        
+        public virtual AstCreateSequenceStart CreateSequenceStart
+        {
+            get
+            {
+                return this._createSequenceStart;
+            }
+        }
+        
+        public virtual AstCycle Cycle
+        {
+            get
+            {
+                return this._cycle;
             }
         }
         
@@ -6360,7 +6648,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_audit
-    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  and_or  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstAlterServerAudit : AstRule
     {
@@ -6411,7 +6699,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_server_audit
-    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off COMMA?  AUDIT_GUID  EQUAL  audit_guid)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  and_or  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off | COMMA?  AUDIT_GUID  EQUAL  audit_guid)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstCreateServerAudit : AstRule
     {
@@ -6462,7 +6750,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_audit_specification
-    /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  ((ADD DROP)  LR_BRACKET  audit_action_group_name  RR_BRACKET)*?  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+    /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (add_drop  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
     /// </summary>
     public partial class AstAlterServerAuditSpecification : AstRule
     {
@@ -6513,7 +6801,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_server_audit_specification
-    /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (ADD  LR_BRACKET  audit_action_group_name  RR_BRACKET)*?  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+    /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (ADD  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateServerAuditSpecification : AstRule
     {
@@ -6564,7 +6852,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_role
-    /// 	 : ALTER  SERVER  ROLE  server_role_name  ((ADD DROP)  MEMBER  server_name WITH  NAME  EQUAL  server_role_name)
+    /// 	 : ALTER  SERVER  ROLE  server_role_name  (add_drop  MEMBER  server_name | WITH  NAME  EQUAL  server_role_name)
     /// </summary>
     public partial class AstAlterServerRole : AstRule
     {
@@ -6666,12 +6954,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_role_pdw
-    /// 	 : ALTER  SERVER  ROLE  server_role_name  (ADD DROP)  MEMBER  login_name
+    /// 	 : ALTER  SERVER  ROLE  server_role_name  add_drop  MEMBER  login_name
     /// </summary>
     public partial class AstAlterServerRolePdw : AstRule
     {
         
         private AstServerRoleName _serverRoleName;
+        
+        private AstAddDrop _addDrop;
         
         private AstLoginName _loginName;
         
@@ -6685,6 +6975,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstServerRoleName>())
                 {
                     this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAddDrop>())
+                {
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstLoginName>())
                 {
@@ -6704,6 +6998,10 @@ namespace Bb.Asts.TSql
                 {
                     this._serverRoleName = ((AstServerRoleName)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstAddDrop>())
+                {
+                    this._addDrop = ((AstAddDrop)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstLoginName>())
                 {
                     this._loginName = ((AstLoginName)(enumerator.Current));
@@ -6716,6 +7014,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._serverRoleName;
+            }
+        }
+        
+        public virtual AstAddDrop AddDrop
+        {
+            get
+            {
+                return this._addDrop;
             }
         }
         
@@ -6735,7 +7041,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_service
-    /// 	 : ALTER  SERVICE  modified_service_name  (ON  QUEUE  (schema_name  DOT)  queue_name)?  (COMMA?  (ADD DROP)  modified_contract_name)*?
+    /// 	 : ALTER  SERVICE  modified_service_name  (ON  QUEUE  full_queue_name)?  (COMMA?  add_drop  modified_contract_name)*
     /// </summary>
     public partial class AstAlterService : AstRule
     {
@@ -6786,14 +7092,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_service
-    /// 	 : CREATE  SERVICE  create_service_name  (AUTHORIZATION  owner_name)?  ON  QUEUE  (schema_name  DOT)?  queue_name  (LR_BRACKET  (COMMA?  (id_ DEFAULT))+  RR_BRACKET)?
+    /// 	 : CREATE  SERVICE  create_service_name  (AUTHORIZATION  owner_name)?  ON  QUEUE  full_queue_name  (LR_BRACKET  (COMMA?  (id_ | DEFAULT))+  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateService : AstRule
     {
         
         private AstCreateServiceName _createServiceName;
         
-        private AstQueueName _queueName;
+        private AstFullQueueName _fullQueueName;
         
         public AstCreateService(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -6806,9 +7112,9 @@ namespace Bb.Asts.TSql
                 {
                     this._createServiceName = ((AstCreateServiceName)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstQueueName>())
+                if (enumerator.Current.Is<AstFullQueueName>())
                 {
-                    this._queueName = ((AstQueueName)(enumerator.Current));
+                    this._fullQueueName = ((AstFullQueueName)(enumerator.Current));
                 }
             }
         }
@@ -6824,9 +7130,9 @@ namespace Bb.Asts.TSql
                 {
                     this._createServiceName = ((AstCreateServiceName)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstQueueName>())
+                if (enumerator.Current.Is<AstFullQueueName>())
                 {
-                    this._queueName = ((AstQueueName)(enumerator.Current));
+                    this._fullQueueName = ((AstFullQueueName)(enumerator.Current));
                 }
             }
         }
@@ -6839,11 +7145,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual AstQueueName QueueName
+        public virtual AstFullQueueName FullQueueName
         {
             get
             {
-                return this._queueName;
+                return this._fullQueueName;
             }
         }
         
@@ -6855,7 +7161,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_symmetric_key
-    /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_name  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_name PASSWORD  EQUAL  password = STRING SYMMETRIC  KEY  symmetric_key_name ASYMMETRIC  KEY  asym_key_name))
+    /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_name  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_name | PASSWORD  EQUAL  password = STRING | SYMMETRIC  KEY  symmetric_key_name | ASYMMETRIC  KEY  asym_key_name))
     /// </summary>
     public partial class AstAlterSymmetricKey : AstRule
     {
@@ -6906,7 +7212,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_synonym
-    /// 	 : CREATE  SYNONYM  (schema_name  DOT)?  synonym_name  FOR  ((server_name  DOT)?  (database_name  DOT)?  (schema_name  DOT)?  object_name (database_name  DOT)?  (schema_id_2_or_object_name = id_  DOT)?)
+    /// 	 : CREATE  SYNONYM  (schema_name  DOT)?  synonym_name  FOR  ((server_name  DOT)?  (database_name  DOT)?  (schema_name  DOT)?  object_name | (database_name  DOT)?  (schema_id_2_or_object_name = id_  DOT)?)
     /// </summary>
     public partial class AstCreateSynonym : AstRule
     {
@@ -6957,7 +7263,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_user
-    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name COMMA?  DEFAULT_SCHEMA  EQUAL  (schema_name NULL_) COMMA?  LOGIN  EQUAL  login_name COMMA?  PASSWORD  EQUAL  STRING  (OLD_PASSWORD  EQUAL  STRING)+ COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE lcid = DECIMAL language) COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  (schema_name | NULL_) | COMMA?  LOGIN  EQUAL  login_name | COMMA?  PASSWORD  EQUAL  STRING  (OLD_PASSWORD  EQUAL  STRING)+ | COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE | lcid = DECIMAL | language) | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
     /// </summary>
     public partial class AstAlterUser : AstRule
     {
@@ -7008,7 +7314,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_user_azure_sql
-    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  LOGIN  EQUAL  login_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name | COMMA?  LOGIN  EQUAL  login_name | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
     /// </summary>
     public partial class AstAlterUserAzureSql : AstRule
     {
@@ -7059,7 +7365,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_workload_group
-    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_name  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW MEDIUM HIGH) COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL MAX_DOP  EQUAL  max_dop = DECIMAL GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_name DEFAULT_DOUBLE_QUOTE)?)?
+    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_name  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_name | DEFAULT_DOUBLE_QUOTE)?)?
     /// </summary>
     public partial class AstCreateWorkloadGroup : AstRule
     {
@@ -7110,12 +7416,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_xml_schema_collection
-    /// 	 : CREATE  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier  AS  (STRING id_ LOCAL_ID)
+    /// 	 : CREATE  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier  AS  string_id2
     /// </summary>
     public partial class AstCreateXmlSchemaCollection : AstRule
     {
         
         private AstSqlIdentifier _sqlIdentifier;
+        
+        private AstStringId2 _stringId2;
         
         public AstCreateXmlSchemaCollection(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -7127,6 +7435,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstSqlIdentifier>())
                 {
                     this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstStringId2>())
+                {
+                    this._stringId2 = ((AstStringId2)(enumerator.Current));
                 }
             }
         }
@@ -7142,6 +7454,10 @@ namespace Bb.Asts.TSql
                 {
                     this._sqlIdentifier = ((AstSqlIdentifier)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstStringId2>())
+                {
+                    this._stringId2 = ((AstStringId2)(enumerator.Current));
+                }
             }
         }
         
@@ -7153,6 +7469,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual AstStringId2 StringId2
+        {
+            get
+            {
+                return this._stringId2;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCreateXmlSchemaCollection(this);
@@ -7161,7 +7485,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_partition_function
-    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
+    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT | RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
     /// </summary>
     public partial class AstCreatePartitionFunction : AstRule
     {
@@ -7212,7 +7536,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_partition_scheme
-    /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_name  AS  PARTITION  partition_function_name  ALL?  TO  LR_BRACKET  file_group_names += id_  (COMMA  file_group_names += id_)*?  RR_BRACKET
+    /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_name  AS  PARTITION  partition_function_name  ALL?  TO  LR_BRACKET  file_group_names += id_  (COMMA  file_group_names += id_)*  RR_BRACKET
     /// </summary>
     public partial class AstCreatePartitionScheme : AstRule
     {
@@ -7281,7 +7605,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_queue
-    /// 	 : CREATE  QUEUE  (complete_table_name queue_name)  queue_settings?  (ON  file_group_name DEFAULT)?
+    /// 	 : CREATE  QUEUE  (complete_table_name | queue_name)  queue_settings?  (ON  file_group_name | DEFAULT)?
     /// </summary>
     public partial class AstCreateQueue : AstRule
     {
@@ -7332,12 +7656,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_contract
-    /// 	 : CREATE  CONTRACT  contract_name  (AUTHORIZATION  owner_name)?  LR_BRACKET  ((message_type_name DEFAULT)  SENT  BY  (INITIATOR TARGET ANY)  COMMA?)+  RR_BRACKET
+    /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_name)?  LR_BRACKET  ((message_type_name | DEFAULT)  SENT  BY  (INITIATOR | TARGET | ANY)  COMMA?)+  RR_BRACKET
     /// </summary>
     public partial class AstCreateContract : AstRule
     {
         
-        private AstContractName _contractName;
+        private AstContractNameExpression _contractNameExpression;
         
         public AstCreateContract(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -7346,9 +7670,9 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstContractName>())
+                if (enumerator.Current.Is<AstContractNameExpression>())
                 {
-                    this._contractName = ((AstContractName)(enumerator.Current));
+                    this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
                 }
             }
         }
@@ -7360,18 +7684,18 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstContractName>())
+                if (enumerator.Current.Is<AstContractNameExpression>())
                 {
-                    this._contractName = ((AstContractName)(enumerator.Current));
+                    this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstContractName ContractName
+        public virtual AstContractNameExpression ContractNameExpression
         {
             get
             {
-                return this._contractName;
+                return this._contractNameExpression;
             }
         }
         
@@ -7383,7 +7707,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// message_statement
-    /// 	 : CREATE  MESSAGE  TYPE  message_type_name  (AUTHORIZATION  owner_name)?  (VALIDATION  EQUAL  (NONE EMPTY WELL_FORMED_XML VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name))
+    /// 	 : CREATE  MESSAGE  TYPE  message_type_name  (AUTHORIZATION  owner_name)?  (VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name))
     /// </summary>
     public partial class AstMessageStatement : AstRule
     {
@@ -7629,7 +7953,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem_merges
-    /// 	 : update_elem_merge  (COMMA  update_elem_merge)*?
+    /// 	 : update_elem_merge  (COMMA  update_elem_merge)*
     /// </summary>
     public partial class AstUpdateElemMerges : AstRule
     {
@@ -7680,7 +8004,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// delete_statement
-    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? TOP  DECIMAL)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition CURRENT  OF  (GLOBAL?  cursor_name cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? | TOP  DECIMAL)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstDeleteStatement : AstRule
     {
@@ -7821,7 +8145,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_statement
-    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstInsertStatement : AstRule
     {
@@ -7962,7 +8286,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// receive_statement
-    /// 	 : LR_BRACKET?  RECEIVE  (ALL DISTINCT top_clause STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*?  FROM  complete_table_name  (INTO  table_variable  (WHERE  where = search_condition))?  RR_BRACKET?
+    /// 	 : LR_BRACKET?  RECEIVE  (ALL | DISTINCT | top_clause | STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*  FROM  complete_table_name  (INTO  table_variable  (WHERE  where = search_condition))?  RR_BRACKET?
     /// </summary>
     public partial class AstReceiveStatement : AstRule
     {
@@ -8187,7 +8511,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statement
-    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition CURRENT  OF  (GLOBAL?  cursor_name cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstUpdateStatement : AstRule
     {
@@ -8328,7 +8652,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elems
-    /// 	 : update_elem  (COMMA  update_elem)*?
+    /// 	 : update_elem  (COMMA  update_elem)*
     /// </summary>
     public partial class AstUpdateElems : AstRule
     {
@@ -8379,7 +8703,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_clause
-    /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID full_table_name)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
+    /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID | full_table_name)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
     /// </summary>
     public partial class AstOutputClause : AstRule
     {
@@ -8430,7 +8754,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_dml_list_elems
-    /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*?
+    /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*
     /// </summary>
     public partial class AstOutputDmlListElems : AstRule
     {
@@ -8481,7 +8805,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_dml_list_elem
-    /// 	 : (expression asterisk)  as_column_alias?
+    /// 	 : (expression | asterisk)  as_column_alias?
     /// </summary>
     public partial class AstOutputDmlListElem : AstRule
     {
@@ -8527,6 +8851,147 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitOutputDmlListElem(this);
+        }
+    }
+    
+    /// <summary>
+    /// create_database
+    /// 	 : CREATE  DATABASE  database_name  database_containment?  database_on_primary?  database_on_log?  database_collate?  database_create_with?
+    /// </summary>
+    public partial class AstCreateDatabase : AstRule
+    {
+        
+        private AstDatabaseName _databaseName;
+        
+        private AstDatabaseContainment _databaseContainment;
+        
+        private AstDatabaseOnPrimary _databaseOnPrimary;
+        
+        private AstDatabaseOnLog _databaseOnLog;
+        
+        private AstDatabaseCollate _databaseCollate;
+        
+        private AstDatabaseCreateWith _databaseCreateWith;
+        
+        public AstCreateDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDatabaseName>())
+                {
+                    this._databaseName = ((AstDatabaseName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseContainment>())
+                {
+                    this._databaseContainment = ((AstDatabaseContainment)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseOnPrimary>())
+                {
+                    this._databaseOnPrimary = ((AstDatabaseOnPrimary)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseOnLog>())
+                {
+                    this._databaseOnLog = ((AstDatabaseOnLog)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseCollate>())
+                {
+                    this._databaseCollate = ((AstDatabaseCollate)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseCreateWith>())
+                {
+                    this._databaseCreateWith = ((AstDatabaseCreateWith)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstCreateDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDatabaseName>())
+                {
+                    this._databaseName = ((AstDatabaseName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseContainment>())
+                {
+                    this._databaseContainment = ((AstDatabaseContainment)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseOnPrimary>())
+                {
+                    this._databaseOnPrimary = ((AstDatabaseOnPrimary)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseOnLog>())
+                {
+                    this._databaseOnLog = ((AstDatabaseOnLog)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseCollate>())
+                {
+                    this._databaseCollate = ((AstDatabaseCollate)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDatabaseCreateWith>())
+                {
+                    this._databaseCreateWith = ((AstDatabaseCreateWith)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstDatabaseName DatabaseName
+        {
+            get
+            {
+                return this._databaseName;
+            }
+        }
+        
+        public virtual AstDatabaseContainment DatabaseContainment
+        {
+            get
+            {
+                return this._databaseContainment;
+            }
+        }
+        
+        public virtual AstDatabaseOnPrimary DatabaseOnPrimary
+        {
+            get
+            {
+                return this._databaseOnPrimary;
+            }
+        }
+        
+        public virtual AstDatabaseOnLog DatabaseOnLog
+        {
+            get
+            {
+                return this._databaseOnLog;
+            }
+        }
+        
+        public virtual AstDatabaseCollate DatabaseCollate
+        {
+            get
+            {
+                return this._databaseCollate;
+            }
+        }
+        
+        public virtual AstDatabaseCreateWith DatabaseCreateWith
+        {
+            get
+            {
+                return this._databaseCreateWith;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCreateDatabase(this);
         }
     }
     
@@ -8688,7 +9153,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// relational_index_options
-    /// 	 : relational_index_option  (COMMA  relational_index_option)*?
+    /// 	 : relational_index_option  (COMMA  relational_index_option)*
     /// </summary>
     public partial class AstRelationalIndexOptions : AstRule
     {
@@ -8739,7 +9204,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_index
-    /// 	 : ALTER  INDEX  (id_ ALL)  ON  full_table_name  (DISABLE PAUSE ABORT RESUME  resumable_index_options? reorganize_partition set_index_options rebuild_partition)
+    /// 	 : ALTER  INDEX  (id_ | ALL)  ON  full_table_name  (DISABLE | PAUSE | ABORT | RESUME  resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
     /// </summary>
     public partial class AstAlterIndex : AstRule
     {
@@ -8841,7 +9306,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// set_index_options
-    /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*?  RR_BRACKET
+    /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstSetIndexOptions : AstRule
     {
@@ -8892,7 +9357,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// rebuild_index_options
-    /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstRebuildIndexOptions : AstRule
     {
@@ -8943,7 +9408,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// single_partition_rebuild_index_options
-    /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstSinglePartitionRebuildIndexOptions : AstRule
     {
@@ -9081,7 +9546,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_columnstore_index_options
-    /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstCreateColumnstoreIndexOptions : AstRule
     {
@@ -9237,7 +9702,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_xml_index
-    /// 	 : CREATE  PRIMARY?  XML  INDEX  id_  ON  full_table_name  LR_BRACKET  id_  RR_BRACKET  (USING  XML  INDEX  id_  (FOR  (VALUE PATH PROPERTY)?)?)?  xml_index_options?  SEMI?
+    /// 	 : CREATE  PRIMARY?  XML  INDEX  id_  ON  full_table_name  LR_BRACKET  id_  RR_BRACKET  (USING  XML  INDEX  id_  (FOR  (VALUE | PATH | PROPERTY)?)?)?  xml_index_options?  SEMI?
     /// </summary>
     public partial class AstCreateXmlIndex : AstRule
     {
@@ -9332,7 +9797,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_index_options
-    /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstXmlIndexOptions : AstRule
     {
@@ -9383,7 +9848,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_procedure
-    /// 	 : ((CREATE  (OR  (ALTER REPLACE))?) ALTER)  proc = (PROC PROCEDURE)  procName = func_proc_name_schema  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name sql_clause)
+    /// 	 : ((CREATE  (OR  (ALTER | REPLACE))?) | ALTER)  proc = (PROC | PROCEDURE)  procName = func_proc_name_schema  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
     /// </summary>
     public partial class AstCreateOrAlterProcedure : AstRule
     {
@@ -9434,7 +9899,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_options
-    /// 	 : WITH  procedure_option  (COMMA  procedure_option)*?
+    /// 	 : WITH  procedure_option  (COMMA  procedure_option)*
     /// </summary>
     public partial class AstProcedureOptions : AstRule
     {
@@ -9572,7 +10037,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_dml_trigger
-    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  TRIGGER  simple_name  ON  full_table_name  dml_trigger_options?  (FOR AFTER INSTEAD  OF)  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
+    /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  full_table_name  dml_trigger_options?  (FOR | AFTER | INSTEAD  OF)  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
     /// </summary>
     public partial class AstCreateOrAlterDmlTrigger : AstRule
     {
@@ -9695,7 +10160,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_options
-    /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*?
+    /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*
     /// </summary>
     public partial class AstDmlTriggerOptions : AstRule
     {
@@ -9746,7 +10211,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_operations
-    /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*?
+    /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*
     /// </summary>
     public partial class AstDmlTriggerOperations : AstRule
     {
@@ -9797,7 +10262,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_ddl_trigger
-    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  TRIGGER  simple_name  ON  (ALL  SERVER DATABASE)  dml_trigger_options?  (FOR AFTER)  dml_trigger_operations  AS  sql_clauses
+    /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  (ALL  SERVER | DATABASE)  dml_trigger_options?  (FOR | AFTER)  dml_trigger_operations  AS  sql_clauses
     /// </summary>
     public partial class AstCreateOrAlterDdlTrigger : AstRule
     {
@@ -9902,7 +10367,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_params
-    /// 	 : procedure_param  (COMMA  procedure_param)*?
+    /// 	 : procedure_param  (COMMA  procedure_param)*
     /// </summary>
     public partial class AstProcedureParams : AstRule
     {
@@ -9953,7 +10418,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_select
-    /// 	 : RETURNS  TABLE  function_options?  AS?  (as_external_name RETURN  (LR_BRACKET  select_statement_standalone  RR_BRACKET select_statement_standalone))
+    /// 	 : RETURNS  TABLE  function_options?  AS?  (as_external_name | RETURN  (LR_BRACKET  select_statement_standalone  RR_BRACKET | select_statement_standalone))
     /// </summary>
     public partial class AstFuncBodyReturnsSelect : AstRule
     {
@@ -10004,7 +10469,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// function_options
-    /// 	 : WITH  function_option  (COMMA  function_option)*?
+    /// 	 : WITH  function_option  (COMMA  function_option)*
     /// </summary>
     public partial class AstFunctionOptions : AstRule
     {
@@ -10055,7 +10520,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_table
-    /// 	 : RETURNS  LOCAL_ID  table_type_definition  function_options?  AS?  (as_external_name BEGIN  sql_clauses?  RETURN  SEMI?  END  SEMI?)
+    /// 	 : RETURNS  LOCAL_ID  table_type_definition  function_options?  AS?  (as_external_name | BEGIN  sql_clauses?  RETURN  SEMI?  END  SEMI?)
     /// </summary>
     public partial class AstFuncBodyReturnsTable : AstRule
     {
@@ -10124,7 +10589,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_scalar
-    /// 	 : RETURNS  data_type  function_options?  AS?  (as_external_name BEGIN  sql_clause?  RETURN  ret = expression  SEMI?  END)
+    /// 	 : RETURNS  data_type  function_options?  AS?  (as_external_name | BEGIN  sql_clause?  RETURN  ret = expression  SEMI?  END)
     /// </summary>
     public partial class AstFuncBodyReturnsScalar : AstRule
     {
@@ -10193,7 +10658,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_param
-    /// 	 : LOCAL_ID  AS?  (type_schema  DOT)?  data_type  VARYING?  (EQUAL  default_val = default_value)?  (OUT OUTPUT READONLY)?
+    /// 	 : LOCAL_ID  AS?  (type_schema  DOT)?  data_type  VARYING?  (EQUAL  default_val = default_value)?  (OUT | OUTPUT | READONLY)?
     /// </summary>
     public partial class AstProcedureParam : AstRule
     {
@@ -10244,7 +10709,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_statistics
-    /// 	 : CREATE  STATISTICS  id_  ON  full_table_name  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN SAMPLE  DECIMAL  (PERCENT ROWS) STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
+    /// 	 : CREATE  STATISTICS  id_  ON  full_table_name  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN | SAMPLE  DECIMAL  (PERCENT | ROWS) | STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstCreateStatistics : AstRule
     {
@@ -10331,7 +10796,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statistics
-    /// 	 : UPDATE  STATISTICS  complete_table_name  (id_ LR_BRACKET  id_  (COMMA  id_)*?  RR_BRACKET)?  update_statistics_options?
+    /// 	 : UPDATE  STATISTICS  complete_table_name  (id_ | LR_BRACKET  id_  (COMMA  id_)*  RR_BRACKET)?  update_statistics_options?
     /// </summary>
     public partial class AstUpdateStatistics : AstRule
     {
@@ -10400,7 +10865,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statistics_options
-    /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*?
+    /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*
     /// </summary>
     public partial class AstUpdateStatisticsOptions : AstRule
     {
@@ -10451,7 +10916,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_table
-    /// 	 : CREATE  TABLE  full_table_name  LR_BRACKET  column_def_table_constraints  (COMMA?  table_indices)*?  COMMA?  RR_BRACKET  (LOCK  simple_id)?  table_options*?  (ON  id_ DEFAULT)?  (TEXTIMAGE_ON  id_ DEFAULT)?  SEMI?
+    /// 	 : CREATE  TABLE  full_table_name  LR_BRACKET  column_def_table_constraints  (COMMA?  table_indices)*  COMMA?  RR_BRACKET  (LOCK  simple_id)?  table_options*  (ON  id_ | DEFAULT)?  (TEXTIMAGE_ON  id_ | DEFAULT)?  SEMI?
     /// </summary>
     public partial class AstCreateTable : AstRule
     {
@@ -10538,7 +11003,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_table_index_options
-    /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstCreateTableIndexOptions : AstRule
     {
@@ -10676,7 +11141,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_table
-    /// 	 : ALTER  TABLE  full_table_name  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO TABLE DISABLE)  RR_BRACKET ADD  column_def_table_constraints ALTER  COLUMN  (column_definition column_modifier) DROP  COLUMN  ids_ DROP  CONSTRAINT  constraint_name WITH  (CHECK NOCHECK)  ADD  (CONSTRAINT  constraint_name)?  (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_name  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  (on_delete on_update)*? CHECK  LR_BRACKET  search_condition  RR_BRACKET) (NOCHECK CHECK)  CONSTRAINT  constraint_name (ENABLE DISABLE)  TRIGGER  id_? REBUILD  table_options SWITCH  switch_partition)  SEMI?
+    /// 	 : ALTER  TABLE  full_table_name  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO | TABLE | DISABLE)  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids_ | DROP  CONSTRAINT  constraint_name | WITH  (CHECK | NOCHECK)  ADD  (CONSTRAINT  constraint_name)?  (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_name  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  (on_delete | on_update)* | CHECK  LR_BRACKET  search_condition  RR_BRACKET) | (NOCHECK | CHECK)  CONSTRAINT  constraint_name | (ENABLE | DISABLE)  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
     /// </summary>
     public partial class AstAlterTable : AstRule
     {
@@ -10727,7 +11192,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// filespecs
-    /// 	 : filespec  (COMMA  filespec)*?
+    /// 	 : filespec  (COMMA  filespec)*
     /// </summary>
     public partial class AstFilespecs : AstRule
     {
@@ -10778,7 +11243,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// filespec
-    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_name  (COMMA  NEWNAME  EQUAL  new_file_group_name STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  (max_size = file_size) UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_name  (COMMA  NEWNAME  EQUAL  new_file_group_name | STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  (max_size = file_size) | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
     /// </summary>
     public partial class AstFilespec : AstRule
     {
@@ -10829,7 +11294,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_tracking_option_lists
-    /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*?
+    /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*
     /// </summary>
     public partial class AstChangeTrackingOptionLists : AstRule
     {
@@ -10879,8 +11344,59 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// containment_option
+    /// 	 : CONTAINMENT  EQUAL  none_partial
+    /// </summary>
+    public partial class AstContainmentOption : AstRule
+    {
+        
+        private AstNonePartial _nonePartial;
+        
+        public AstContainmentOption(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstNonePartial>())
+                {
+                    this._nonePartial = ((AstNonePartial)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstContainmentOption(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstNonePartial>())
+                {
+                    this._nonePartial = ((AstNonePartial)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstNonePartial NonePartial
+        {
+            get
+            {
+                return this._nonePartial;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitContainmentOption(this);
+        }
+    }
+    
+    /// <summary>
     /// alter_endpoint
-    /// 	 : ALTER  ENDPOINT  endpoint_name  (AUTHORIZATION  login_name)?  (STATE  EQUAL  (state = STARTED state = STOPPED state = DISABLED))?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  port = DECIMAL  (COMMA  LISTENER_IP  EQUAL  (ALL IPV4_ADDR IPV6_ADDR STRING))?  RR_BRACKET  (TSQL FOR  SERVICE_BROKER  LR_BRACKET  AUTHENTICATION  EQUAL  (WINDOWS  (NTLM KERBEROS NEGOTIATE)?  (CERTIFICATE  certificate_name)? CERTIFICATE  certificate_name  WINDOWS?  (NTLM KERBEROS NEGOTIATE)?)  (COMMA?  ENCRYPTION  EQUAL  (DISABLED SUPPORTED REQUIRED)  (ALGORITHM  (AES RC4 AES  RC4 RC4  AES))?)?  (COMMA?  MESSAGE_FORWARDING  EQUAL  (ENABLED DISABLED))?  (COMMA?  MESSAGE_FORWARD_SIZE  EQUAL  DECIMAL)?  RR_BRACKET FOR  DATABASE_MIRRORING  LR_BRACKET  AUTHENTICATION  EQUAL  (WINDOWS  (NTLM KERBEROS NEGOTIATE)?  (CERTIFICATE  certificate_name)? CERTIFICATE  certificate_name  WINDOWS?  (NTLM KERBEROS NEGOTIATE)?)  (COMMA?  ENCRYPTION  EQUAL  (DISABLED SUPPORTED REQUIRED)  (ALGORITHM  (AES RC4 AES  RC4 RC4  AES))?)?  COMMA?  ROLE  EQUAL  (WITNESS PARTNER ALL)  RR_BRACKET)
+    /// 	 : ALTER  ENDPOINT  endpoint_name  (AUTHORIZATION  login_name)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  DECIMAL  (COMMA  listener_ip)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
     /// </summary>
     public partial class AstAlterEndpoint : AstRule
     {
@@ -11189,7 +11705,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_relational_or_xml_or_spatial_indexs
-    /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*?
+    /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*
     /// </summary>
     public partial class AstDropRelationalOrXmlOrSpatialIndexs : AstRule
     {
@@ -11240,7 +11756,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_backward_compatible_indexs
-    /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*?
+    /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*
     /// </summary>
     public partial class AstDropBackwardCompatibleIndexs : AstRule
     {
@@ -11429,7 +11945,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_procedure
-    /// 	 : DROP  proc = (PROC PROCEDURE)  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
+    /// 	 : DROP  proc = (PROC | PROCEDURE)  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
     /// </summary>
     public partial class AstDropProcedure : AstRule
     {
@@ -11480,7 +11996,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_proc_name_schemas
-    /// 	 : func_proc_name_schema  (COMMA  func_proc_name_schema)*?
+    /// 	 : func_proc_name_schema  (COMMA  func_proc_name_schema)*
     /// </summary>
     public partial class AstFuncProcNameSchemas : AstRule
     {
@@ -11582,7 +12098,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_ddl_trigger
-    /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  ON  (DATABASE ALL  SERVER)  SEMI?
+    /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  ON  (DATABASE | ALL  SERVER)  SEMI?
     /// </summary>
     public partial class AstDropDdlTrigger : AstRule
     {
@@ -11633,7 +12149,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// simple_names
-    /// 	 : simple_name  (COMMA  simple_name)*?
+    /// 	 : simple_name  (COMMA  simple_name)*
     /// </summary>
     public partial class AstSimpleNames : AstRule
     {
@@ -11684,7 +12200,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_names
-    /// 	 : full_table_name  (COMMA  full_table_name)*?
+    /// 	 : full_table_name  (COMMA  full_table_name)*
     /// </summary>
     public partial class AstTableNames : AstRule
     {
@@ -11939,7 +12455,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_locals
-    /// 	 : declare_local  (COMMA  loc += declare_local)*?
+    /// 	 : declare_local  (COMMA  loc += declare_local)*
     /// </summary>
     public partial class AstDeclareLocals : AstRule
     {
@@ -11990,7 +12506,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_declarations
-    /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*?
+    /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*
     /// </summary>
     public partial class AstXmlDeclarations : AstRule
     {
@@ -12040,8 +12556,110 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// backup_database
+    /// 	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*)?  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
+    /// </summary>
+    public partial class AstBackupDatabase : AstRule
+    {
+        
+        private AstBackupSettings _backupSettings;
+        
+        public AstBackupDatabase(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBackupSettings>())
+                {
+                    this._backupSettings = ((AstBackupSettings)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstBackupDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBackupSettings>())
+                {
+                    this._backupSettings = ((AstBackupSettings)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstBackupSettings BackupSettings
+        {
+            get
+            {
+                return this._backupSettings;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitBackupDatabase(this);
+        }
+    }
+    
+    /// <summary>
+    /// backup_log
+    /// 	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
+    /// </summary>
+    public partial class AstBackupLog : AstRule
+    {
+        
+        private AstBackupSettings _backupSettings;
+        
+        public AstBackupLog(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBackupSettings>())
+                {
+                    this._backupSettings = ((AstBackupSettings)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstBackupLog(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstBackupSettings>())
+                {
+                    this._backupSettings = ((AstBackupSettings)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstBackupSettings BackupSettings
+        {
+            get
+            {
+                return this._backupSettings;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitBackupLog(this);
+        }
+    }
+    
+    /// <summary>
     /// backup_certificate
-    /// 	 : BACKUP  CERTIFICATE  certificate_name  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
+    /// 	 : BACKUP  CERTIFICATE  certificate_name  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING | COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING | COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
     /// </summary>
     public partial class AstBackupCertificate : AstRule
     {
@@ -12194,7 +12812,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_var_strings
-    /// 	 : execute_var_string  (COMMA  execute_var_string)*?
+    /// 	 : execute_var_string  (COMMA  execute_var_string)*
     /// </summary>
     public partial class AstExecuteVarStrings : AstRule
     {
@@ -12245,7 +12863,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg_nameds
-    /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*?
+    /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*
     /// </summary>
     public partial class AstExecuteStatementArgNameds : AstRule
     {
@@ -12296,7 +12914,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_args
-    /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*?
+    /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*
     /// </summary>
     public partial class AstExecuteStatementArgs : AstRule
     {
@@ -12347,7 +12965,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_certificate
-    /// 	 : CREATE  CERTIFICATE  certificate_name  (AUTHORIZATION  user_name)?  (FROM  existing_keys generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
+    /// 	 : CREATE  CERTIFICATE  certificate_name  (AUTHORIZATION  user_name)?  (FROM  existing_keys | generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
     /// </summary>
     public partial class AstCreateCertificate : AstRule
     {
@@ -12551,7 +13169,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_type_definition
-    /// 	 : TABLE  LR_BRACKET  column_def_table_constraints  (COMMA?  table_type_indices)*?  RR_BRACKET
+    /// 	 : TABLE  LR_BRACKET  column_def_table_constraints  (COMMA?  table_type_indices)*  RR_BRACKET
     /// </summary>
     public partial class AstTableTypeDefinition : AstRule
     {
@@ -12602,7 +13220,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_type_definition
-    /// 	 : XML  LR_BRACKET  (CONTENT DOCUMENT)?  xml_schema_collection  RR_BRACKET
+    /// 	 : XML  LR_BRACKET  (CONTENT | DOCUMENT)?  xml_schema_collection  RR_BRACKET
     /// </summary>
     public partial class AstXmlTypeDefinition : AstRule
     {
@@ -12653,7 +13271,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_def_table_constraints
-    /// 	 : column_def_table_constraint  (COMMA?  column_def_table_constraint)*?
+    /// 	 : column_def_table_constraint  (COMMA?  column_def_table_constraint)*
     /// </summary>
     public partial class AstColumnDefTableConstraints : AstRule
     {
@@ -12704,7 +13322,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_definition
-    /// 	 : column_name  (data_type AS  expression  PERSISTED?)  column_definition_element*?  column_index?
+    /// 	 : column_name  (data_type | AS  expression  PERSISTED?)  column_definition_element*  column_index?
     /// </summary>
     public partial class AstColumnDefinition : AstRule
     {
@@ -12791,7 +13409,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_modifier
-    /// 	 : id_  add_drop  (ROWGUIDCOL PERSISTED NOT  FOR  REPLICATION SPARSE HIDDEN_KEYWORD MASKED  (WITH  (FUNCTION  EQUAL  STRING LR_BRACKET  FUNCTION  EQUAL  STRING  RR_BRACKET))?)
+    /// 	 : id_  add_drop  (ROWGUIDCOL | PERSISTED | NOT  FOR  REPLICATION | SPARSE | HIDDEN_KEYWORD | MASKED  (WITH  (FUNCTION  EQUAL  STRING | LR_BRACKET  FUNCTION  EQUAL  STRING  RR_BRACKET))?)
     /// </summary>
     public partial class AstColumnModifier : AstRule
     {
@@ -12860,7 +13478,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// materialized_column_definition
-    /// 	 : id_  (COMPUTE AS)  expression  (MATERIALIZED NOT  MATERIALIZED)?
+    /// 	 : id_  (COMPUTE | AS)  expression  (MATERIALIZED | NOT  MATERIALIZED)?
     /// </summary>
     public partial class AstMaterializedColumnDefinition : AstRule
     {
@@ -12929,7 +13547,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_index
-    /// 	 : INDEX  index_name?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_name NULL_DOUBLE_QUOTE))?
+    /// 	 : INDEX  index_name?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_name | NULL_DOUBLE_QUOTE))?
     /// </summary>
     public partial class AstColumnIndex : AstRule
     {
@@ -13223,7 +13841,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_table_index_options
-    /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstAlterTableIndexOptions : AstRule
     {
@@ -13274,7 +13892,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_cursor
-    /// 	 : DECLARE  cursor_name  (CURSOR  (declare_set_cursor_common  (FOR  UPDATE  (OF  column_name_list)?)?)? sensitive?  SCROLL?  CURSOR  FOR  select_statement_standalone  (FOR  (READ  ONLY UPDATE (OF  column_name_list)))?)  SEMI?
+    /// 	 : DECLARE  cursor_name  (CURSOR  (declare_set_cursor_common  (FOR  UPDATE  (OF  column_name_list)?)?)? | sensitive?  SCROLL?  CURSOR  FOR  select_statement_standalone  (FOR  (READ  ONLY | UPDATE | (OF  column_name_list)))?)  SEMI?
     /// </summary>
     public partial class AstDeclareCursor : AstRule
     {
@@ -13325,7 +13943,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_set_cursor_common
-    /// 	 : declare_set_cursor_common_partial*?  FOR  select_statement_standalone
+    /// 	 : declare_set_cursor_common_partial*  FOR  select_statement_standalone
     /// </summary>
     public partial class AstDeclareSetCursorCommon : AstRule
     {
@@ -13394,7 +14012,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// fetch_cursor
-    /// 	 : FETCH  ((fetch_cursor_strategy absolute_relative  expression)?  FROM)?  GLOBAL?  cursor_name  (INTO  local_ids)?  SEMI?
+    /// 	 : FETCH  ((fetch_cursor_strategy | absolute_relative  expression)?  FROM)?  GLOBAL?  cursor_name  (INTO  local_ids)?  SEMI?
     /// </summary>
     public partial class AstFetchCursor : AstRule
     {
@@ -13496,7 +14114,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_order_by_clause
-    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW ROWS)  (FETCH  fetch_offset = (FIRST NEXT)  fetch_exp = expression  fetch_rows = (ROW ROWS)  ONLY)?)?
+    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW | ROWS)  (FETCH  fetch_offset = (FIRST | NEXT)  fetch_exp = expression  fetch_rows = (ROW | ROWS)  ONLY)?)?
     /// </summary>
     public partial class AstSelectOrderByClause : AstRule
     {
@@ -13547,7 +14165,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// option_clause
-    /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*?  RR_BRACKET
+    /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*  RR_BRACKET
     /// </summary>
     public partial class AstOptionClause : AstRule
     {
@@ -13598,7 +14216,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// optimize_for_args
-    /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*?
+    /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*
     /// </summary>
     public partial class AstOptimizeForArgs : AstRule
     {
@@ -13769,7 +14387,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expression_assign_elem
-    /// 	 : LOCAL_ID  (assignment_operator EQUAL)  expression
+    /// 	 : LOCAL_ID  (assignment_operator | EQUAL)  expression
     /// </summary>
     public partial class AstExpressionAssignElem : AstRule
     {
@@ -14492,7 +15110,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// bulk_options
-    /// 	 : bulk_option  (COMMA  bulk_option)*?
+    /// 	 : bulk_option  (COMMA  bulk_option)*
     /// </summary>
     public partial class AstBulkOptions : AstRule
     {
@@ -14543,7 +15161,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// bulk_option
-    /// 	 : id_  EQUAL  bulk_option_value = (DECIMAL STRING)
+    /// 	 : id_  EQUAL  bulk_option_value = decimal_string
     /// </summary>
     public partial class AstBulkOption : AstRule
     {
@@ -14714,7 +15332,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_table_andcolumn_names
-    /// 	 : full_table_name  COMMA  (full_column_name full_column_names STAR)
+    /// 	 : full_table_name  COMMA  (full_column_name | full_column_names | STAR)
     /// </summary>
     public partial class AstFreetextTableAndcolumnNames : AstRule
     {
@@ -14765,7 +15383,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_names
-    /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*?  RR_BRACKET
+    /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*  RR_BRACKET
     /// </summary>
     public partial class AstFullColumnNames : AstRule
     {
@@ -14816,7 +15434,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expressions
-    /// 	 : expression  (COMMA  expression)*?
+    /// 	 : expression  (COMMA  expression)*
     /// </summary>
     public partial class AstExpressions : AstRule
     {
@@ -15148,7 +15766,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// index_values
-    /// 	 : index_value  (COMMA  index_value)*?
+    /// 	 : index_value  (COMMA  index_value)*
     /// </summary>
     public partial class AstIndexValues : AstRule
     {
@@ -15199,7 +15817,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// all_distinct_expression
-    /// 	 : (ALL DISTINCT)?  expression
+    /// 	 : (ALL | DISTINCT)?  expression
     /// </summary>
     public partial class AstAllDistinctExpression : AstRule
     {
@@ -15319,7 +15937,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// row_or_range_clause
-    /// 	 : (ROWS RANGE)  window_frame_extent
+    /// 	 : (ROWS | RANGE)  window_frame_extent
     /// </summary>
     public partial class AstRowOrRangeClause : AstRule
     {
@@ -15370,7 +15988,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// database_filestream_options
-    /// 	 : database_filestream_option  (COMMA  database_filestream_option)*?
+    /// 	 : database_filestream_option  (COMMA  database_filestream_option)*
     /// </summary>
     public partial class AstDatabaseFilestreamOptions : AstRule
     {
@@ -15421,7 +16039,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// file_group
-    /// 	 : FILEGROUP  id_  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_spec  (COMMA  file_spec)*?
+    /// 	 : FILEGROUP  id_  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_spec  (COMMA  file_spec)*
     /// </summary>
     public partial class AstFileGroup : AstRule
     {
@@ -15490,7 +16108,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// file_spec
-    /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  file_size  COMMA?)?  (MAXSIZE  EQUAL  (file_size UNLIMITED)  COMMA?)?  (FILEGROWTH  EQUAL  file_size  COMMA?)?  RR_BRACKET
+    /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  file_size  COMMA?)?  (MAXSIZE  EQUAL  (file_size | UNLIMITED)  COMMA?)?  (FILEGROWTH  EQUAL  file_size  COMMA?)?  RR_BRACKET
     /// </summary>
     public partial class AstFileSpec : AstRule
     {
@@ -15541,7 +16159,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// entity_name
-    /// 	 : (server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
+    /// 	 : (server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
     /// </summary>
     public partial class AstEntityName : AstRule
     {
@@ -15592,7 +16210,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_name_list_with_order
-    /// 	 : id_  (ASC DESC)?  (COMMA  id_  (ASC DESC)?)*?
+    /// 	 : id_  (ASC | DESC)?  (COMMA  id_  (ASC | DESC)?)*
     /// </summary>
     public partial class AstColumnNameListWithOrder : AstRule
     {
@@ -15694,12 +16312,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// begin_conversation_dialog
-    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = STRING)?  ON  CONTRACT  contract_name  (WITH  ((RELATED_CONVERSATION RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  (DECIMAL LOCAL_ID)  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
+    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = STRING)?  ON  CONTRACT  contract_name_expression  (WITH  ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstBeginConversationDialog : AstRule
     {
         
-        private AstContractName _contractName;
+        private AstContractNameExpression _contractNameExpression;
         
         public AstBeginConversationDialog(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -15708,9 +16326,9 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstContractName>())
+                if (enumerator.Current.Is<AstContractNameExpression>())
                 {
-                    this._contractName = ((AstContractName)(enumerator.Current));
+                    this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
                 }
             }
         }
@@ -15722,18 +16340,18 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
-                if (enumerator.Current.Is<AstContractName>())
+                if (enumerator.Current.Is<AstContractNameExpression>())
                 {
-                    this._contractName = ((AstContractName)(enumerator.Current));
+                    this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
                 }
             }
         }
         
-        public virtual AstContractName ContractName
+        public virtual AstContractNameExpression ContractNameExpression
         {
             get
             {
-                return this._contractName;
+                return this._contractNameExpression;
             }
         }
         

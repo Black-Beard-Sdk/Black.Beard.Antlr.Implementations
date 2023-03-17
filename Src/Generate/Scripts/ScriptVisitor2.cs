@@ -1,6 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 
 namespace Generate.Scripts
 {
@@ -9,7 +10,14 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRule";
+
+            var config = ast.Configuration.Config;
+
+            if (config.Inherit == null)
+                config.Inherit = new IdentifierConfig("'AstRoot'");
+
+            return config.Inherit.Text;
+
         }
 
         protected override bool Generate(AstRule ast, Context context)

@@ -23,27 +23,6 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
-        /// sql_clauses
-        /// 	 : sql_clause+
-        /// </summary>
-        public override AstRoot VisitSql_clauses(TSqlParser.Sql_clausesContext context)
-        {
-            TSqlParser.Sql_clauseContext[] source = context.sql_clause();
-            AstSqlClauses list = new AstSqlClauses(context, source.Length);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                TSqlParser.Sql_clauseContext item = ((TSqlParser.Sql_clauseContext)(enumerator.Current));
-                AstSqlClause acceptResult = ((AstSqlClause)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
         /// binary_content_nexts
         /// 	 : binary_content_next+
         /// </summary>

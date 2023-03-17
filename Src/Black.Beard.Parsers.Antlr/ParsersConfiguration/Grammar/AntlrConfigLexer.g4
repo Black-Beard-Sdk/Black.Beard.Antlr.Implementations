@@ -43,14 +43,6 @@ DOC_COMMENT
    : DocComment -> channel (COMMENT)
    ;
 
-BLOCK_COMMENT
-   : BlockComment -> channel (COMMENT)
-   ;
-
-LINE_COMMENT
-   : LineComment -> channel (COMMENT)
-   ;
-
 WS
    : Ws+ -> channel (OFF_CHANNEL)
    ;
@@ -70,7 +62,7 @@ INT
 // may contain unicode escape sequences of the form \uxxxx, where x
 // is a valid hexadecimal number (per Unicode standard).
 STRING_LITERAL
-   : SQuoteLiteral
+   : DQuoteLiteral
    ;
 
 fragment WSNLCHARS : ' ' | '\t' | '\f' | '\n' | '\r' ;
@@ -98,7 +90,9 @@ IS : 'IS';
 NOT : 'NOT';
 IN : 'IN';
 LIST : 'LIST';
+KIND : 'KIND';
 
+INHERIT : 'INHERIT';
 
 OR : '|';
 AND : '&';
@@ -108,6 +102,23 @@ COLON   : Colon   ;
 LPAREN   : LParen   ;
 RPAREN   : RParen   ;
 ASSIGN   : Equal   ;
+
+OTHER_          : '#OTHER';
+CONSTANT_       : '#CONSTANT';
+IDENTIFIER_     : '#IDENTIFIER';
+COMMENT_        : '#COMMENT';
+BOOLEAN_        : '#BOOLEAN';
+STRING_         : '#STRING';
+DECIMAL_        : '#DECIMAL';
+INTEGER_        : '#INTEGER';
+REAL_           : '#REAL';
+HEXA_           : '#HEXA';
+BINARY_         : '#BINARY';
+PATTERN_        : '#PATTERN';
+OPERATOR_       : '#OPERATOR';
+PONCTUATION_    : '#PONCTUATION';
+
+
 ID   : Id   ;
    // -------------------------
    // Whitespace

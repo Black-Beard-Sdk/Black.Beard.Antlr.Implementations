@@ -99,6 +99,24 @@ public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRuleConfig([NotNull] AntlrConfigParser.RuleConfigContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.ruleTermConfig"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRuleTermConfig([NotNull] AntlrConfigParser.RuleTermConfigContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.termKindEnum"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTermKindEnum([NotNull] AntlrConfigParser.TermKindEnumContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.rule_tune_inherit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRule_tune_inherit([NotNull] AntlrConfigParser.Rule_tune_inheritContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.calculated_template_setting"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -134,11 +152,5 @@ public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitIdentifier([NotNull] AntlrConfigParser.IdentifierContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AntlrConfigParser.constant"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitConstant([NotNull] AntlrConfigParser.ConstantContext context);
 }
 } // namespace Bb.ParserConfigurations.Antlr

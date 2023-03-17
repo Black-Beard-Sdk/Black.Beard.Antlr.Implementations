@@ -6,13 +6,32 @@ namespace Bb.Asts
     public class AstLexerRule : AstRuleBase
     {
 
-      
+
         public AstLexerRule(ParserRuleContext ctx
             , AstTerminalText ruleName
             , AstLexerAlternativeList value
-            ) : base(ctx, ruleName.ResolveName())
+            ) : base(ctx, new IdentifierConfig(ruleName.ToString()))
         {
+
             this.Value = value;
+
+            if (value.Count == 1)
+            {
+
+                var v = value[0];
+
+                if (v.Count == 1)
+                {
+
+                    var tyxt = v.Rule.ToString();
+
+                    if (tyxt.StartsWith("'") == tyxt.EndsWith("'"))
+                        this.TerminalKind = TokenTypeEnum.Constant;
+
+                }
+
+            }
+
         }
 
         public AstLexerAlternativeList Value { get; }
@@ -148,10 +167,12 @@ namespace Bb.Asts
 
         public string Strategy { get; set; }
 
-        public GrammarConfigDeclaration Configuration { get; internal set; }
+        public GrammarConfigTermDeclaration Configuration { get; internal set; }
+
         public int Index { get; internal set; }
         public AstOptionList? Options { get; internal set; }
         public bool IsFragment { get; internal set; }
+
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {

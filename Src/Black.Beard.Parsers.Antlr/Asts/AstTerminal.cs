@@ -27,9 +27,7 @@ namespace Bb.Asts
             yield return Value;
         }
 
-        public bool IsConstant => Value.IsConstant;
-
-        public bool IsKeyword => Value.IsKeyword;
+        public bool IsConstant => Value.TerminalKind == TokenTypeEnum.Constant;
 
 
         public override bool ContainsOnlyTerminals => true;

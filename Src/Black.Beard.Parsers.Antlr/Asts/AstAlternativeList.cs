@@ -10,7 +10,7 @@ namespace Bb.Asts
         public AstAlternativeList(ParserRuleContext ctx)
             : base(ctx)
         {
-
+            this._charSplit = " | ";
         }
 
         public AstAlternativeList(ParserRuleContext ctx, int capacity)

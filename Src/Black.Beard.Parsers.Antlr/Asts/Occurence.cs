@@ -2,17 +2,18 @@
 
 namespace Bb.Asts
 {
+
     [DebuggerDisplay("{Value}")]
     public struct Occurence
     {
 
         public Occurence(bool optional = false)
         {
-            this.Value = Enum.One;
+            this.Value = OccurenceEnum.One;
             this.Optional = optional;
         }
 
-        public Occurence(Enum value, bool optional)
+        public Occurence(OccurenceEnum value, bool optional)
         {
             this.Value = value;
             this.Optional = optional;
@@ -21,22 +22,16 @@ namespace Bb.Asts
         public bool Optional { get; set; }
 
 
-        public Enum Value { get; }
-
-        public enum Enum
-        {
-            One,
-            Any,
-        }
+        public OccurenceEnum Value { get; set; }
 
         public int Int { get => (int)Value; }
 
-        public static implicit operator Enum(Occurence value)
+        public static implicit operator OccurenceEnum(Occurence value)
         {
             return value.Value;
         }
 
-        public static implicit operator Occurence(Enum value)
+        public static implicit operator Occurence(OccurenceEnum value)
         {
             return new Occurence(value, false);
         }
@@ -56,6 +51,12 @@ namespace Bb.Asts
         }
     }
 
+
+    public enum OccurenceEnum
+    {
+        One,
+        Any,
+    }
 
 
 

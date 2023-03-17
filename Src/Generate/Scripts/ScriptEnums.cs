@@ -41,7 +41,7 @@ namespace Generate.Scripts
                         type.AddTemplateSelector(() => TemplateSelector(ast, context))
                             .GenerateIf(() => Generate(ast, context))
                             .IsEnum()
-                            .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum")
+                            .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum")
                             .Attribute(MemberAttributes.Public)
                             .Field((field) =>
                             {

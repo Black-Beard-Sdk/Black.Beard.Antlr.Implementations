@@ -17,8 +17,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// tsql_file
-    /// 	 : batch*?  EOF
-    /// 	 | execute_body_batch  go_statement*?  EOF
+    /// 	 : batch*  EOF
+    /// 	 | execute_body_batch  go_statement*  EOF
     /// </summary>
     public partial class AstTsqlFile
     {
@@ -31,8 +31,8 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// batch
     /// 	 : go_statement
-    /// 	 | execute_body_batch?  (go_statement sql_clauses)  go_statement*?
-    /// 	 | batch_level_statement  go_statement*?
+    /// 	 | execute_body_batch?  (go_statement | sql_clauses)  go_statement*
+    /// 	 | batch_level_statement  go_statement*
     /// </summary>
     public partial class AstBatch
     {
@@ -44,7 +44,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// sql_clauses
-    /// 	 : sql_clause+
+    /// 	 : sql_clause  (SEMI+  sql_clause)*
     /// </summary>
     public partial class AstSqlClauses
     {
@@ -56,14 +56,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// sql_clause
-    /// 	 : dml_clause  SEMI?
-    /// 	 | cfl_statement  SEMI?
-    /// 	 | another_statement  SEMI?
-    /// 	 | ddl_clause  SEMI?
-    /// 	 | dbcc_special  SEMI?
-    /// 	 | dbcc_clause  SEMI?
-    /// 	 | backup_statement  SEMI?
-    /// 	 | SEMI
+    /// 	 : dml_clause
+    /// 	 | cfl_statement
+    /// 	 | another_statement
+    /// 	 | ddl_clause
+    /// 	 | dbcc_special
+    /// 	 | dbcc_clause
+    /// 	 | backup_statement
     /// </summary>
     public partial class AstSqlClause
     {
@@ -75,7 +74,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// block_statement
-    /// 	 : BEGIN  SEMI?  sql_clause*?  END  SEMI?
+    /// 	 : BEGIN  SEMI?  sql_clauses?  END  SEMI?
     /// </summary>
     public partial class AstBlockStatement
     {
@@ -160,8 +159,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// throw_error_number
-    /// 	 : DECIMAL
-    /// 	 | LOCAL_ID
+    /// 	 : decimal_local_id
     /// </summary>
     public partial class AstThrowErrorNumber
     {
@@ -173,8 +171,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// throw_message
-    /// 	 : STRING
-    /// 	 | LOCAL_ID
+    /// 	 : string_local_id
     /// </summary>
     public partial class AstThrowMessage
     {
@@ -186,8 +183,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// throw_state
-    /// 	 : DECIMAL
-    /// 	 | LOCAL_ID
+    /// 	 : decimal_local_id
     /// </summary>
     public partial class AstThrowState
     {
@@ -211,7 +207,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// waitfor_statement
-    /// 	 : WAITFOR  receive_statement?  COMMA?  ((DELAY TIME TIMEOUT)  time)?  expression?  SEMI?
+    /// 	 : WAITFOR  receive_statement?  COMMA?  (delay_time_timeout  time)?  expression?  SEMI?
     /// </summary>
     public partial class AstWaitforStatement
     {
@@ -222,8 +218,22 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// delay_time_timeout
+    /// 	 : DELAY
+    /// 	 | TIME
+    /// 	 | TIMEOUT
+    /// </summary>
+    public partial class AstDelayTimeTimeout
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// while_statement
-    /// 	 : WHILE  search_condition  (sql_clause BREAK  SEMI? CONTINUE  SEMI?)
+    /// 	 : WHILE  search_condition  (sql_clause | BREAK  SEMI? | CONTINUE  SEMI?)
     /// </summary>
     public partial class AstWhileStatement
     {
@@ -235,7 +245,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// print_statement
-    /// 	 : PRINT  (expression DOUBLE_QUOTE_ID)  (COMMA  LOCAL_ID)*?  SEMI?
+    /// 	 : PRINT  (expression | DOUBLE_QUOTE_ID)  (COMMA  LOCAL_ID)*  SEMI?
     /// </summary>
     public partial class AstPrintStatement
     {
@@ -247,8 +257,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// raiseerror_statement
-    /// 	 : RAISERROR  LR_BRACKET  msg = (DECIMAL STRING LOCAL_ID)  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  (COMMA  (constant_LOCAL_ID NULL_))*?  RR_BRACKET  (WITH  (LOG SETERROR NOWAIT))?  SEMI?
-    /// 	 | RAISERROR  DECIMAL  formatstring = (STRING LOCAL_ID DOUBLE_QUOTE_ID)  (COMMA  argument = (DECIMAL STRING LOCAL_ID))*?
+    /// 	 : RAISERROR  LR_BRACKET  msg = decimal_string_local_id  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  (COMMA  (constant_LOCAL_ID | NULL_))*  RR_BRACKET  (WITH  log_seterror_nowait)?  SEMI?
+    /// 	 | RAISERROR  DECIMAL  formatstring = string_local_id_double_quote_id  (COMMA  argument = decimal_string_local_id)*
     /// </summary>
     public partial class AstRaiseerrorStatement
     {
@@ -296,7 +306,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_aggregate
-    /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  (schema_name  DOT)?  aggregate_name
+    /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  full_aggregate_name
     /// </summary>
     public partial class AstDropAggregate
     {
@@ -356,7 +366,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_from_clause
-    /// 	 : alter_assembly_from_clause_start  (client_assembly_specifier alter_assembly_file_bits)
+    /// 	 : alter_assembly_from_clause_start  (client_assembly_specifier | alter_assembly_file_bits)
     /// </summary>
     public partial class AstAlterAssemblyFromClause
     {
@@ -417,7 +427,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_add_clause
-    /// 	 : alter_asssembly_add_clause_start  alter_assembly_client_file_clause
+    /// 	 : ADD  FILE  FROM  alter_assembly_client_file_clause
     /// </summary>
     public partial class AstAlterAssemblyAddClause
     {
@@ -428,20 +438,8 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// alter_asssembly_add_clause_start
-    /// 	 : ADD  FILE  FROM
-    /// </summary>
-    public partial class AstAlterAsssemblyAddClauseStart
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
     /// alter_assembly_client_file_clause
-    /// 	 : alter_assembly_file_name  (alter_assembly_as  id_)?
+    /// 	 : assembly_file_name  (AS  id_)?
     /// </summary>
     public partial class AstAlterAssemblyClientFileClause
     {
@@ -452,10 +450,10 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// alter_assembly_file_name
+    /// assembly_file_name
     /// 	 : STRING
     /// </summary>
-    public partial class AstAlterAssemblyFileName
+    public partial class AstAssemblyFileName
     {
         
         public override void ToString(Writer wrt)
@@ -465,7 +463,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_assembly_file_bits
-    /// 	 : alter_assembly_as  id_
+    /// 	 : AS  id_
     /// </summary>
     public partial class AstAlterAssemblyFileBits
     {
@@ -476,34 +474,10 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// alter_assembly_as
-    /// 	 : AS
-    /// </summary>
-    public partial class AstAlterAssemblyAs
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
     /// alter_assembly_with_clause
-    /// 	 : alter_assembly_with  assembly_option
+    /// 	 : WITH  assembly_option
     /// </summary>
     public partial class AstAlterAssemblyWithClause
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// alter_assembly_with
-    /// 	 : WITH
-    /// </summary>
-    public partial class AstAlterAssemblyWith
     {
         
         public override void ToString(Writer wrt)
@@ -527,7 +501,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// assembly_option
-    /// 	 : PERMISSION_SET  EQUAL  (SAFE EXTERNAL_ACCESS UNSAFE)
+    /// 	 : PERMISSION_SET  EQUAL  (SAFE | EXTERNAL_ACCESS | UNSAFE)
     /// 	 | VISIBILITY  EQUAL  on_off
     /// 	 | UNCHECKED  DATA
     /// 	 | assembly_option  COMMA
@@ -640,7 +614,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_assembly
-    /// 	 : CREATE  ASSEMBLY  assembly_name  (AUTHORIZATION  owner_name)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE EXTERNAL_ACCESS UNSAFE))?
+    /// 	 : CREATE  ASSEMBLY  assembly_name  (AUTHORIZATION  owner_name)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE | EXTERNAL_ACCESS | UNSAFE))?
     /// </summary>
     public partial class AstCreateAssembly
     {
@@ -701,7 +675,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_asymmetric_key
-    /// 	 : alter_asymmetric_key_start  asym_key_name  (asymmetric_key_option REMOVE  PRIVATE  KEY)
+    /// 	 : ALTER  ASYMMETRIC  KEY  asym_key_name  (asymmetric_key_option | REMOVE  PRIVATE  KEY)
     /// </summary>
     public partial class AstAlterAsymmetricKey
     {
@@ -712,34 +686,10 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// alter_asymmetric_key_start
-    /// 	 : ALTER  ASYMMETRIC  KEY
-    /// </summary>
-    public partial class AstAlterAsymmetricKeyStart
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
     /// asymmetric_key_option
-    /// 	 : asymmetric_key_option_start  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
+    /// 	 : WITH  PRIVATE  KEY  LR_BRACKET  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
     /// </summary>
     public partial class AstAsymmetricKeyOption
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// asymmetric_key_option_start
-    /// 	 : WITH  PRIVATE  KEY  LR_BRACKET
-    /// </summary>
-    public partial class AstAsymmetricKeyOptionStart
     {
         
         public override void ToString(Writer wrt)
@@ -762,7 +712,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_asymmetric_key
-    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_name  (AUTHORIZATION  database_name)?  (FROM  (FILE  EQUAL  STRING EXECUTABLE_FILE  EQUAL  STRING ASSEMBLY  assembly_name PROVIDER  provider_name))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 RSA_3072 RSA_2048 RSA_1024 RSA_512) PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING CREATION_DISPOSITION  EQUAL  (CREATE_NEW OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
+    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_name  (AUTHORIZATION  database_name)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_name | PROVIDER  provider_name))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
     /// </summary>
     public partial class AstCreateAsymmetricKey
     {
@@ -786,7 +736,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization
-    /// 	 : alter_authorization_start  (class_type  colon_colon)?  entity = entity_name  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type  DOUBLE_COLON)?  entity = entity_name  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorization
     {
@@ -810,44 +760,8 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// entity_to
-    /// 	 : TO
-    /// </summary>
-    public partial class AstEntityTo
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// colon_colon
-    /// 	 : DOUBLE_COLON
-    /// </summary>
-    public partial class AstColonColon
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// alter_authorization_start
-    /// 	 : ALTER  AUTHORIZATION  ON
-    /// </summary>
-    public partial class AstAlterAuthorizationStart
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
     /// alter_authorization_for_sql_database
-    /// 	 : alter_authorization_start  (class_type_for_sql_database  colon_colon)?  entity = entity_name  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_sql_database  DOUBLE_COLON)?  entity = entity_name  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForSqlDatabase
     {
@@ -859,7 +773,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization_for_azure_dw
-    /// 	 : alter_authorization_start  (class_type_for_azure_dw  colon_colon)?  entity = entity_name_for_azure_dw  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_azure_dw  DOUBLE_COLON)?  entity = entity_name_for_azure_dw  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForAzureDw
     {
@@ -871,7 +785,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_authorization_for_parallel_dw
-    /// 	 : alter_authorization_start  (class_type_for_parallel_dw  colon_colon)?  entity = entity_name_for_parallel_dw  entity_to  authorization_grantee
+    /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_parallel_dw  DOUBLE_COLON)?  entity = entity_name_for_parallel_dw  TO  authorization_grantee
     /// </summary>
     public partial class AstAlterAuthorizationForParallelDw
     {
@@ -973,31 +887,31 @@ namespace Bb.Asts.TSql
     /// 	 | AVAILABILITY  GROUP
     /// 	 | BROKER  PRIORITY
     /// 	 | CERTIFICATE
-    /// 	 | COLUMN  (ENCRYPTION MASTER)  KEY
+    /// 	 | COLUMN  (ENCRYPTION | MASTER)  KEY
     /// 	 | CONTRACT
     /// 	 | CREDENTIAL
     /// 	 | CRYPTOGRAPHIC  PROVIDER
-    /// 	 | DATABASE  (AUDIT  SPECIFICATION ENCRYPTION  KEY EVENT  SESSION SCOPED  (CONFIGURATION CREDENTIAL RESOURCE  GOVERNOR))?
+    /// 	 | DATABASE  (AUDIT  SPECIFICATION | ENCRYPTION  KEY | EVENT  SESSION | SCOPED  (CONFIGURATION | CREDENTIAL | RESOURCE  GOVERNOR))?
     /// 	 | ENDPOINT
     /// 	 | EVENT  SESSION
-    /// 	 | NOTIFICATION  (DATABASE OBJECT SERVER)
-    /// 	 | EXTERNAL  (DATA  SOURCE FILE  FORMAT LIBRARY RESOURCE  POOL TABLE CATALOG STOPLIST)
+    /// 	 | NOTIFICATION  (DATABASE | OBJECT | SERVER)
+    /// 	 | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY | RESOURCE  POOL | TABLE | CATALOG | STOPLIST)
     /// 	 | LOGIN
     /// 	 | MASTER  KEY
     /// 	 | MESSAGE  TYPE
     /// 	 | OBJECT
-    /// 	 | PARTITION  (FUNCTION SCHEME)
+    /// 	 | PARTITION  (FUNCTION | SCHEME)
     /// 	 | REMOTE  SERVICE  BINDING
     /// 	 | RESOURCE  GOVERNOR
     /// 	 | ROLE
     /// 	 | ROUTE
     /// 	 | SCHEMA
     /// 	 | SEARCH  PROPERTY  LIST
-    /// 	 | SERVER  ((AUDIT  SPECIFICATION?) ROLE)?
+    /// 	 | SERVER  ((AUDIT  SPECIFICATION?) | ROLE)?
     /// 	 | SERVICE
     /// 	 | SQL  LOGIN
     /// 	 | SYMMETRIC  KEY
-    /// 	 | TRIGGER  (DATABASE SERVER)
+    /// 	 | TRIGGER  (DATABASE | SERVER)
     /// 	 | TYPE
     /// 	 | USER
     /// 	 | XML  SCHEMA  COLLECTION
@@ -1047,26 +961,298 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// alter_availability_group_options_database
+    /// 	 : add_remove  DATABASE  database_name
+    /// </summary>
+    public partial class AstAlterAvailabilityGroupOptionsDatabase
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_group_options_listener
+    /// 	 : ADD  LISTENER  listener_name = STRING  LR_BRACKET  (WITH  DHCP  (ON  LR_BRACKET  IPV4_ADDR  IPV4_ADDR  RR_BRACKET) | WITH  IP  LR_BRACKET  ((COMMA?  LR_BRACKET  (IPV4_ADDR  COMMA  IPV4_ADDR | IPV6_ADDR)  RR_BRACKET)+  RR_BRACKET  (COMMA  PORT  EQUAL  DECIMAL)?))  RR_BRACKET
+    /// 	 | MODIFY  LISTENER  (ADD  IP  LR_BRACKET  (IPV4_ADDR  IPV4_ADDR | IPV6_ADDR)  RR_BRACKET | PORT  EQUAL  DECIMAL)
+    /// 	 | restart_remove  LISTENER  STRING
+    /// </summary>
+    public partial class AstAlterAvailabilityGroupOptionsListener
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// add_remove
+    /// 	 : ADD
+    /// 	 | REMOVE
+    /// </summary>
+    public partial class AstAddRemove
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// restart_remove
+    /// 	 : RESTART
+    /// 	 | REMOVE
+    /// </summary>
+    public partial class AstRestartRemove
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// synch_asynch
+    /// 	 : SYNCHRONOUS_COMMIT
+    /// 	 | ASYNCHRONOUS_COMMIT
+    /// </summary>
+    public partial class AstSynchAsynch
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// auto_manual
+    /// 	 : AUTOMATIC
+    /// 	 | MANUAL
+    /// </summary>
+    public partial class AstAutoManual
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// real_write_all
+    /// 	 : READ_WRITE
+    /// 	 | ALL
+    /// </summary>
+    public partial class AstRealWriteAll
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// no_real_write_all
+    /// 	 : NO
+    /// 	 | READ_WRITE
+    /// 	 | ALL
+    /// </summary>
+    public partial class AstNoRealWriteAll
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// primary_secondary_none
+    /// 	 : PRIMARY
+    /// 	 | SECONDARY_ONLY
+    /// 	 | SECONDARY
+    /// 	 | NONE
+    /// </summary>
+    public partial class AstPrimarySecondaryNone
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// grant_deny
+    /// 	 : GRANT
+    /// 	 | DENY
+    /// </summary>
+    public partial class AstGrantDeny
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_replicat_modify
+    /// 	 : MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING | availability_mode | FAILOVER_MODE  EQUAL  auto_manual | seeding_mode | backup_priority)  RR_BRACKET | SECONDARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET)  RR_BRACKET | PRIMARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  (string_list | NONE)  RR_BRACKET | SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)  RR_BRACKET)
+    /// </summary>
+    public partial class AstAlterAvailabilityReplicatModify
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// backup_priority
+    /// 	 : BACKUP_PRIORITY  EQUAL  DECIMAL
+    /// </summary>
+    public partial class AstBackupPriority
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_replicat_add
+    /// 	 : ADD  REPLICA  ON  server_instance  WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING)?  (COMMA?  availability_mode)?  (COMMA?  FAILOVER_MODE  EQUAL  auto_manual)?  (COMMA?  seeding_mode)?  (COMMA?  backup_priority)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET)?  RR_BRACKET
+    /// </summary>
+    public partial class AstAlterAvailabilityReplicatAdd
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_group_options_replicat
+    /// 	 : alter_availability_replicat_add
+    /// 	 | REMOVE  REPLICA  ON  server_instance
+    /// 	 | alter_availability_replicat_modify
+    /// </summary>
+    public partial class AstAlterAvailabilityGroupOptionsReplicat
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_group_options_group
+    /// 	 : JOIN
+    /// 	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = STRING  WITH  LR_BRACKET  (listener_url  COMMA  availability_mode  COMMA  failover_mode_manuel  COMMA  seeding_mode)  RR_BRACKET)+
+    /// 	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = STRING  WITH  LR_BRACKET  (listener_url  (COMMA?  availability_mode)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode)?)  RR_BRACKET)+
+    /// </summary>
+    public partial class AstAlterAvailabilityGroupOptionsGroup
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// listener_url
+    /// 	 : LISTENER_URL  EQUAL  STRING
+    /// </summary>
+    public partial class AstListenerUrl
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// availability_mode
+    /// 	 : AVAILABILITY_MODE  EQUAL  synch_asynch
+    /// </summary>
+    public partial class AstAvailabilityMode
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// failover_mode_manuel
+    /// 	 : FAILOVER_MODE  EQUAL  MANUAL
+    /// </summary>
+    public partial class AstFailoverModeManuel
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// seeding_mode
+    /// 	 : SEEDING_MODE  EQUAL  auto_manual
+    /// </summary>
+    public partial class AstSeedingMode
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_availability_group_options_role
+    /// 	 : SECONDARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET)
+    /// 	 | PRIMARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  (string_list | NONE)  RR_BRACKET) | SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)
+    /// </summary>
+    public partial class AstAlterAvailabilityGroupOptionsRole
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// allow_connections
+    /// 	 : ALLOW_CONNECTIONS  EQUAL  no_real_write_all
+    /// </summary>
+    public partial class AstAllowConnections
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// string_list
+    /// 	 : STRING  (COMMA  STRING)*
+    /// </summary>
+    public partial class AstStringList
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_availability_group_options
-    /// 	 : SET  LR_BRACKET  ((AUTOMATED_BACKUP_PREFERENCE  EQUAL  (PRIMARY SECONDARY_ONLY SECONDARY NONE) FAILURE_CONDITION_LEVEL  EQUAL  DECIMAL HEALTH_CHECK_TIMEOUT  EQUAL  milliseconds = DECIMAL DB_FAILOVER  EQUAL  on_off REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  DECIMAL)  RR_BRACKET)
-    /// 	 | ADD  DATABASE  database_name
-    /// 	 | REMOVE  DATABASE  database_name
-    /// 	 | ADD  REPLICA  ON  server_instance  (WITH  LR_BRACKET  ((ENDPOINT_URL  EQUAL  STRING)?  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT))?  (COMMA?  FAILOVER_MODE  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL))?  (COMMA?  BACKUP_PRIORITY  EQUAL  DECIMAL)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_WRITE ALL)  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  (READ_ONLY)  RR_BRACKET)?))  RR_BRACKET
-    /// 	 | SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STRING))  RR_BRACKET))
-    /// 	 | PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)*? NONE)  RR_BRACKET) SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)
-    /// 	 | MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT) FAILOVER_MODE  EQUAL  (AUTOMATIC MANUAL) SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL) BACKUP_PRIORITY  EQUAL  DECIMAL) SECONDARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((STRING))  RR_BRACKET)) PRIMARY_ROLE  LR_BRACKET  (ALLOW_CONNECTIONS  EQUAL  (NO READ_ONLY ALL) READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  ((COMMA?  STRING)*? NONE)  RR_BRACKET) SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL))  RR_BRACKET
-    /// 	 | REMOVE  REPLICA  ON  STRING
-    /// 	 | JOIN
-    /// 	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = STRING  WITH  LR_BRACKET  (LISTENER_URL  EQUAL  STRING  COMMA  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT)  COMMA  FAILOVER_MODE  EQUAL  MANUAL  COMMA  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL)  RR_BRACKET))+
-    /// 	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = STRING  WITH  LR_BRACKET  (LISTENER_URL  EQUAL  STRING  (COMMA?  AVAILABILITY_MODE  EQUAL  (SYNCHRONOUS_COMMIT ASYNCHRONOUS_COMMIT))?  (COMMA?  FAILOVER_MODE  EQUAL  MANUAL)?  (COMMA?  SEEDING_MODE  EQUAL  (AUTOMATIC MANUAL))?  RR_BRACKET))+
-    /// 	 | GRANT  CREATE  ANY  DATABASE
-    /// 	 | DENY  CREATE  ANY  DATABASE
+    /// 	 : SET  LR_BRACKET  (AUTOMATED_BACKUP_PREFERENCE  EQUAL  primary_secondary_none | FAILURE_CONDITION_LEVEL  EQUAL  DECIMAL | HEALTH_CHECK_TIMEOUT  EQUAL  milliseconds = DECIMAL | DB_FAILOVER  EQUAL  on_off | REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT  EQUAL  DECIMAL  RR_BRACKET)
+    /// 	 | alter_availability_group_options_database
+    /// 	 | alter_availability_group_options_replicat
+    /// 	 | alter_availability_group_options_listener
+    /// 	 | alter_availability_group_options_role
+    /// 	 | alter_availability_group_options_group
+    /// 	 | grant_deny  CREATE  ANY  DATABASE
     /// 	 | FAILOVER
     /// 	 | FORCE_FAILOVER_ALLOW_DATA_LOSS
-    /// 	 | ADD  LISTENER  listener_name = STRING  LR_BRACKET  (WITH  DHCP  (ON  LR_BRACKET  ip_v4_failover  ip_v4_failover  RR_BRACKET) WITH  IP  LR_BRACKET  ((COMMA?  LR_BRACKET  (ip_v4_failover  COMMA  ip_v4_failover ip_v6_failover)  RR_BRACKET)+  RR_BRACKET  (COMMA  PORT  EQUAL  DECIMAL)?))  RR_BRACKET
-    /// 	 | MODIFY  LISTENER  (ADD  IP  LR_BRACKET  (ip_v4_failover  ip_v4_failover ip_v6_failover)  RR_BRACKET PORT  EQUAL  DECIMAL)
-    /// 	 | RESTART  LISTENER  STRING
-    /// 	 | REMOVE  LISTENER  STRING
     /// 	 | OFFLINE
     /// 	 | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET
     /// </summary>
@@ -1091,34 +1277,71 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// ip_v4_failover
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstIpV4Failover
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// ip_v6_failover
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstIpV6Failover
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
     /// create_or_alter_broker_priority
-    /// 	 : (CREATE ALTER)  BROKER  PRIORITY  ConversationPriorityName = id_  FOR  CONVERSATION  SET  LR_BRACKET  (CONTRACT_NAME  EQUAL  ((id_) ANY)  COMMA?)?  (LOCAL_SERVICE_NAME  EQUAL  (DOUBLE_FORWARD_SLASH?  id_ ANY)  COMMA?)?  (REMOTE_SERVICE_NAME  EQUAL  (RemoteServiceName = STRING ANY)  COMMA?)?  (PRIORITY_LEVEL  EQUAL  (PriorityValue = DECIMAL DEFAULT))?  RR_BRACKET
+    /// 	 : create_alter  BROKER  PRIORITY  ConversationPriorityName = id_  FOR  CONVERSATION  SET  LR_BRACKET  broker_contract_name?  broker_local_service_name?  broker_remote_service_name?  broker_priority_level?  RR_BRACKET
     /// </summary>
     public partial class AstCreateOrAlterBrokerPriority
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// broker_contract_name
+    /// 	 : (CONTRACT_NAME  EQUAL  (id_ | ANY)  COMMA?)
+    /// </summary>
+    public partial class AstBrokerContractName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// broker_local_service_name
+    /// 	 : (LOCAL_SERVICE_NAME  EQUAL  (DOUBLE_FORWARD_SLASH?  id_ | ANY)  COMMA?)
+    /// </summary>
+    public partial class AstBrokerLocalServiceName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// broker_remote_service_name
+    /// 	 : (REMOTE_SERVICE_NAME  EQUAL  (STRING | ANY)  COMMA?)
+    /// </summary>
+    public partial class AstBrokerRemoteServiceName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// broker_priority_level
+    /// 	 : (PRIORITY_LEVEL  EQUAL  (DECIMAL | DEFAULT))
+    /// </summary>
+    public partial class AstBrokerPriorityLevel
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_alter
+    /// 	 : CREATE
+    /// 	 | ALTER
+    /// </summary>
+    public partial class AstCreateAlter
     {
         
         public override void ToString(Writer wrt)
@@ -1140,7 +1363,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_certificate
-    /// 	 : ALTER  CERTIFICATE  certificate_name  (REMOVE  PRIVATE_KEY WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
+    /// 	 : ALTER  CERTIFICATE  certificate_name  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? | DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? | ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
     /// </summary>
     public partial class AstAlterCertificate
     {
@@ -1151,8 +1374,21 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// add_drop
+    /// 	 : ADD
+    /// 	 | DROP
+    /// </summary>
+    public partial class AstAddDrop
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_column_encryption_key
-    /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key  (ADD DROP)  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
+    /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
     /// </summary>
     public partial class AstAlterColumnEncryptionKey
     {
@@ -1380,7 +1616,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_event_notifications
-    /// 	 : DROP  EVENT  NOTIFICATION  (COMMA?  notification_name)+  ON  (SERVER DATABASE QUEUE  queue_name)
+    /// 	 : DROP  EVENT  NOTIFICATION  (COMMA?  notification_name)+  ON  (SERVER | DATABASE | QUEUE  queue_name)
     /// </summary>
     public partial class AstDropEventNotifications
     {
@@ -1536,7 +1772,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_queue
-    /// 	 : DROP  QUEUE  (database_name  DOT)?  (schema_name  DOT)?  queue_name
+    /// 	 : DROP  QUEUE  (database_name  DOT)?  full_queue_name
     /// </summary>
     public partial class AstDropQueue
     {
@@ -1644,7 +1880,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_sequence
-    /// 	 : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  (database_name  DOT)?  (schema_name  DOT)?  sequence_name)?
+    /// 	 : DROP  SEQUENCE  (IF  EXISTS)?  (COMMA?  (database_name  DOT)?  full_sequence_name)?
     /// </summary>
     public partial class AstDropSequence
     {
@@ -1704,7 +1940,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_signature
-    /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  (schema_name  DOT)?  module_name  BY  (COMMA?  CERTIFICATE  certificate_name COMMA?  ASYMMETRIC  KEY  asym_key_name)+
+    /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  (schema_name  DOT)?  module_name  BY  (COMMA?  CERTIFICATE  certificate_name | COMMA?  ASYMMETRIC  KEY  asym_key_name)+
     /// </summary>
     public partial class AstDropSignature
     {
@@ -1788,7 +2024,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// disable_trigger
-    /// 	 : DISABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)
+    /// 	 : DISABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ | ALL)  ON  ((schema_name  DOT)?  object_name | DATABASE | ALL  SERVER)
     /// </summary>
     public partial class AstDisableTrigger
     {
@@ -1800,7 +2036,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// enable_trigger
-    /// 	 : ENABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ ALL)  ON  ((schema_name  DOT)?  object_name DATABASE ALL  SERVER)
+    /// 	 : ENABLE  TRIGGER  ((COMMA?  (schema_name  DOT)?  trigger_name)+ | ALL)  ON  ((schema_name  DOT)?  object_name | DATABASE | ALL  SERVER)
     /// </summary>
     public partial class AstEnableTrigger
     {
@@ -1812,7 +2048,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// lock_table
-    /// 	 : LOCK  TABLE  full_table_name  IN  (SHARE EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL NOWAIT)?  SEMI?
+    /// 	 : LOCK  TABLE  full_table_name  IN  (SHARE | EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL | NOWAIT)?  SEMI?
     /// </summary>
     public partial class AstLockTable
     {
@@ -1824,7 +2060,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// truncate_table
-    /// 	 : TRUNCATE  TABLE  full_table_name  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET  RR_BRACKET)?
+    /// 	 : TRUNCATE  TABLE  full_table_name  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET  RR_BRACKET)?
     /// </summary>
     public partial class AstTruncateTable
     {
@@ -1872,7 +2108,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_cryptographic_provider
-    /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_name  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  (ENABLE DISABLE)?
+    /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_name  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  (ENABLE | DISABLE)?
     /// </summary>
     public partial class AstAlterCryptographicProvider
     {
@@ -1896,7 +2132,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_event_notification
-    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_name  ON  (SERVER DATABASE QUEUE  queue_name)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
+    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_name  ON  (SERVER | DATABASE | QUEUE  queue_name)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
     /// </summary>
     public partial class AstCreateEventNotification
     {
@@ -1908,9 +2144,153 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_event_session
-    /// 	 : (CREATE ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  (COMMA?  ADD  EVENT  ((event_module_guid  DOT)?  event_package_name  DOT  event_name)  (LR_BRACKET  (SET  (COMMA?  event_customizable_attributue  EQUAL  (DECIMAL STRING))*?)?  (ACTION  LR_BRACKET  (COMMA?  (event_module_guid  DOT)?  event_package_name  DOT  action_name)+  RR_BRACKET)+  (WHERE  event_session_predicate_expression)?  RR_BRACKET)*?)*?  (COMMA?  DROP  EVENT  (event_module_guid  DOT)?  event_package_name  DOT  event_name)*?  ((ADD  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)  (LR_BRACKET  SET  (COMMA?  target_parameter_name  EQUAL  (LR_BRACKET?  DECIMAL  RR_BRACKET? STRING))+  RR_BRACKET)*?)*?  (DROP  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)*?  (WITH  LR_BRACKET  (COMMA?  MAX_MEMORY  EQUAL  max_memory = DECIMAL  (KB MB))?  (COMMA?  EVENT_RETENTION_MODE  EQUAL  (ALLOW_SINGLE_EVENT_LOSS ALLOW_MULTIPLE_EVENT_LOSS NO_EVENT_LOSS))?  (COMMA?  MAX_DISPATCH_LATENCY  EQUAL  (max_dispatch_latency_seconds = DECIMAL  SECONDS INFINITE))?  (COMMA?  MAX_EVENT_SIZE  EQUAL  max_event_size = DECIMAL  (KB MB))?  (COMMA?  MEMORY_PARTITION_MODE  EQUAL  (NONE PER_NODE PER_CPU))?  (COMMA?  TRACK_CAUSALITY  EQUAL  on_off)?  (COMMA?  STARTUP_STATE  EQUAL  on_off)?  RR_BRACKET)?  (STATE  EQUAL  (START STOP))?
+    /// 	 : (CREATE | ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  create_or_alter_event_session_add_event*  create_or_alter_event_session_del_event*  create_or_alter_event_session_add_target*  create_or_alter_event_session_del_target*  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
     /// </summary>
     public partial class AstCreateOrAlterEventSession
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_or_alter_event_session_with
+    /// 	 : WITH  LR_BRACKET  (COMMA?  session_arg_max_memory)?  (COMMA?  session_arg_event_retention_mode)?  (COMMA?  session_arg_max_dispatch)?  (COMMA?  session_arg_max_event_size)?  (COMMA?  session_arg_memory_partition)?  (COMMA?  session_arg_track_causality)?  (COMMA?  session_arg_startup_state)?  RR_BRACKET
+    /// </summary>
+    public partial class AstCreateOrAlterEventSessionWith
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_max_memory
+    /// 	 : MAX_MEMORY  EQUAL  DECIMAL  (KB | MB)
+    /// </summary>
+    public partial class AstSessionArgMaxMemory
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_event_retention_mode
+    /// 	 : EVENT_RETENTION_MODE  EQUAL  (ALLOW_SINGLE_EVENT_LOSS | ALLOW_MULTIPLE_EVENT_LOSS | NO_EVENT_LOSS)
+    /// </summary>
+    public partial class AstSessionArgEventRetentionMode
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_max_dispatch
+    /// 	 : MAX_DISPATCH_LATENCY  EQUAL  (DECIMAL  SECONDS | INFINITE)
+    /// </summary>
+    public partial class AstSessionArgMaxDispatch
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_max_event_size
+    /// 	 : MAX_EVENT_SIZE  EQUAL  DECIMAL  (KB | MB)
+    /// </summary>
+    public partial class AstSessionArgMaxEventSize
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_memory_partition
+    /// 	 : MEMORY_PARTITION_MODE  EQUAL  (NONE | PER_NODE | PER_CPU)
+    /// </summary>
+    public partial class AstSessionArgMemoryPartition
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_track_causality
+    /// 	 : TRACK_CAUSALITY  EQUAL  on_off
+    /// </summary>
+    public partial class AstSessionArgTrackCausality
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_startup_state
+    /// 	 : STARTUP_STATE  EQUAL  on_off
+    /// </summary>
+    public partial class AstSessionArgStartupState
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_or_alter_event_session_add_event
+    /// 	 : COMMA?  ADD  EVENT  ((event_module_guid  DOT)?  event_package_name  DOT  event_name)  (LR_BRACKET  (SET  (COMMA?  event_customizable_attributue  EQUAL  decimal_string)*)?  (ACTION  LR_BRACKET  (COMMA?  (event_module_guid  DOT)?  event_package_name  DOT  action_name)+  RR_BRACKET)+  (WHERE  event_session_predicate_expression)?  RR_BRACKET)
+    /// </summary>
+    public partial class AstCreateOrAlterEventSessionAddEvent
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_or_alter_event_session_add_target
+    /// 	 : ((ADD  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)  (LR_BRACKET  SET  (COMMA?  target_parameter_name  EQUAL  (LR_BRACKET?  DECIMAL  RR_BRACKET? | STRING))+  RR_BRACKET)*)
+    /// </summary>
+    public partial class AstCreateOrAlterEventSessionAddTarget
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_or_alter_event_session_del_target
+    /// 	 : (DROP  TARGET  (event_module_guid  DOT)?  event_package_name  DOT  target_name)
+    /// </summary>
+    public partial class AstCreateOrAlterEventSessionDelTarget
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_or_alter_event_session_del_event
+    /// 	 : COMMA?  DROP  EVENT  (event_module_guid  DOT)?  event_package_name  DOT  event_name
+    /// </summary>
+    public partial class AstCreateOrAlterEventSessionDelEvent
     {
         
         public override void ToString(Writer wrt)
@@ -1933,7 +2313,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// event_session_predicate_expression
-    /// 	 : (COMMA?  (AND OR)?  NOT?  (event_session_predicate_factor LR_BRACKET  event_session_predicate_expression  RR_BRACKET))+
+    /// 	 : (COMMA?  and_or?  NOT?  (event_session_predicate_factor | LR_BRACKET  event_session_predicate_expression  RR_BRACKET))+
     /// </summary>
     public partial class AstEventSessionPredicateExpression
     {
@@ -1958,8 +2338,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// event_session_predicate_leaf
-    /// 	 : (event_field_name (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name))  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING))
-    /// 	 | (event_module_guid  DOT)?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  (event_field_name ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name)  COMMA  (DECIMAL STRING))  RR_BRACKET
+    /// 	 : (event_field_name | (event_field_name | ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name))  (EQUAL | (LESS  GREATER) | (EXCLAMATION  EQUAL) | GREATER | (GREATER  EQUAL) | LESS | LESS  EQUAL)  decimal_string)
+    /// 	 | (event_module_guid  DOT)?  event_package_name  DOT  predicate_compare_name  LR_BRACKET  (event_field_name | ((event_module_guid  DOT)?  event_package_name  DOT  predicate_source_name)  COMMA  decimal_string)  RR_BRACKET
     /// </summary>
     public partial class AstEventSessionPredicateLeaf
     {
@@ -1971,7 +2351,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_external_data_source
-    /// 	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_name  SET  (LOCATION  EQUAL  location = STRING  COMMA? RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = STRING  COMMA? CREDENTIAL  EQUAL  credential_name)+
+    /// 	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_name  SET  (LOCATION  EQUAL  location = STRING  COMMA? | RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = STRING  COMMA? | CREDENTIAL  EQUAL  credential_name)+
     /// 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_name  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = STRING  (COMMA  CREDENTIAL  EQUAL  credential_name)?  RR_BRACKET
     /// </summary>
     public partial class AstAlterExternalDataSource
@@ -1984,7 +2364,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_external_library
-    /// 	 : ALTER  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  (SET ADD)  (LR_BRACKET  CONTENT  EQUAL  (client_library = STRING BINARY NONE)  (COMMA  PLATFORM  EQUAL  (WINDOWS LINUX)?  RR_BRACKET)  WITH  (COMMA?  LANGUAGE  EQUAL  (R PYTHON) DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)
+    /// 	 : ALTER  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  set_add  file_spec2  WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET
     /// </summary>
     public partial class AstAlterExternalLibrary
     {
@@ -1995,8 +2375,21 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// set_add
+    /// 	 : SET
+    /// 	 | ADD
+    /// </summary>
+    public partial class AstSetAdd
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// create_external_library
-    /// 	 : CREATE  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  FROM  (COMMA?  LR_BRACKET?  (CONTENT  EQUAL)?  (client_library = STRING BINARY NONE)  (COMMA  PLATFORM  EQUAL  (WINDOWS LINUX)?  RR_BRACKET)?)  (WITH  (COMMA?  LANGUAGE  EQUAL  (R PYTHON) DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)?
+    /// 	 : CREATE  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  FROM  file_spec2  (WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateExternalLibrary
     {
@@ -2007,8 +2400,60 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// file_spec2
+    /// 	 : LR_BRACKET  CONTENT  EQUAL  code_content  (COMMA  PLATFORM  EQUAL  platform)?  RR_BRACKET
+    /// </summary>
+    public partial class AstFileSpec2
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// platform
+    /// 	 : WINDOWS
+    /// 	 | LINUX
+    /// </summary>
+    public partial class AstPlatform
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// code_content
+    /// 	 : STRING
+    /// 	 | BINARY
+    /// 	 | NONE
+    /// </summary>
+    public partial class AstCodeContent
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// code_language
+    /// 	 : R
+    /// 	 | PYTHON
+    /// </summary>
+    public partial class AstCodeLanguage
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_external_resource_pool
-    /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name DEFAULT_DOUBLE_QUOTE)  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO (COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL)+)  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MAX_PROCESSES  EQUAL  max_processes = DECIMAL)?  RR_BRACKET
+    /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name | DEFAULT_DOUBLE_QUOTE)  WITH  external_resource_with
     /// </summary>
     public partial class AstAlterExternalResourcePool
     {
@@ -2020,7 +2465,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_external_resource_pool
-    /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_name  WITH  LR_BRACKET  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO (COMMA?  DECIMAL  TO  DECIMAL COMMA  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL COMMA?  DECIMAL)+)  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MAX_PROCESSES  EQUAL  max_processes = DECIMAL)?  RR_BRACKET
+    /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_name  WITH  external_resource_with
     /// </summary>
     public partial class AstCreateExternalResourcePool
     {
@@ -2031,8 +2476,56 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// external_resource_with
+    /// 	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | (COMMA?  DECIMAL  TO  DECIMAL | COMMA  DECIMAL)+) | NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL | COMMA?  DECIMAL)+)  (COMMA?  max_memory)?  (COMMA?  maw_process)?  RR_BRACKET
+    /// </summary>
+    public partial class AstExternalResourceWith
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// maw_process
+    /// 	 : MAX_PROCESSES  EQUAL  DECIMAL
+    /// </summary>
+    public partial class AstMawProcess
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// max_memory
+    /// 	 : MAX_MEMORY_PERCENT  EQUAL  DECIMAL
+    /// </summary>
+    public partial class AstMaxMemory
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// max_cpu
+    /// 	 : MAX_CPU_PERCENT  EQUAL  DECIMAL
+    /// </summary>
+    public partial class AstMaxCpu
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_fulltext_catalog
-    /// 	 : ALTER  FULLTEXT  CATALOG  catalog_name  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? REORGANIZE AS  DEFAULT)
+    /// 	 : ALTER  FULLTEXT  CATALOG  catalog_name  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? | REORGANIZE | AS  DEFAULT)
     /// </summary>
     public partial class AstAlterFulltextCatalog
     {
@@ -2056,7 +2549,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_fulltext_stoplist
-    /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_name  (ADD  stopword = STRING  LANGUAGE  (STRING DECIMAL BINARY) DROP  (stopword = STRING  LANGUAGE  (STRING DECIMAL BINARY) ALL  (STRING DECIMAL BINARY) ALL))
+    /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_name  (ADD  stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
     /// </summary>
     public partial class AstAlterFulltextStoplist
     {
@@ -2068,7 +2561,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_fulltext_stoplist
-    /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_name  (FROM  ((database_name  DOT)?  stoplist_name SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_name)?
+    /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_name  (FROM  ((database_name  DOT)?  stoplist_name | SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_name)?
     /// </summary>
     public partial class AstCreateFulltextStoplist
     {
@@ -2080,7 +2573,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_login_sql_server
-    /// 	 : ALTER  LOGIN  login_name  ((ENABLE DISABLE)? WITH  ((PASSWORD  EQUAL  (password = STRING password_hash = BINARY  HASHED))  (MUST_CHANGE UNLOCK)*?)?  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE UNLOCK)*?)?  (DEFAULT_DATABASE  EQUAL  database_name)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_name)?  (CHECK_POLICY  EQUAL  on_off)?  (CHECK_EXPIRATION  EQUAL  on_off)?  (CREDENTIAL  EQUAL  credential_name)?  (NO  CREDENTIAL)? (ADD DROP)  CREDENTIAL  credential_name)
+    /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  alter_login_sql_server_settings | add_drop  CREDENTIAL  credential_name)
     /// </summary>
     public partial class AstAlterLoginSqlServer
     {
@@ -2091,8 +2584,20 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// alter_login_sql_server_settings
+    /// 	 : ((PASSWORD  EQUAL  (password = STRING | password_hash = BINARY  HASHED))  (MUST_CHANGE | UNLOCK)*)?  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)?  (DEFAULT_DATABASE  EQUAL  database_name)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_name)?  (CHECK_POLICY  EQUAL  on_off)?  (CHECK_EXPIRATION  EQUAL  on_off)?  (CREDENTIAL  EQUAL  credential_name)?  (NO  CREDENTIAL)?
+    /// </summary>
+    public partial class AstAlterLoginSqlServerSettings
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// create_login_sql_server
-    /// 	 : CREATE  LOGIN  login_name  (WITH  ((PASSWORD  EQUAL  (password = STRING password_hash = BINARY  HASHED))  (MUST_CHANGE UNLOCK)*?)?  (COMMA?  SID  EQUAL  sid = BINARY)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  on_off)?  (COMMA?  CHECK_POLICY  EQUAL  on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_name)? (FROM  (WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = STRING)?) CERTIFICATE  certificate_name ASYMMETRIC  KEY  asym_key_name)))
+    /// 	 : CREATE  LOGIN  login_name  (WITH  create_login_sql_server_settings | FROM  create_login_sql_server_from)
     /// </summary>
     public partial class AstCreateLoginSqlServer
     {
@@ -2103,8 +2608,34 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// create_login_sql_server_settings
+    /// 	 : ((PASSWORD  EQUAL  (password = STRING | password_hash = BINARY  HASHED))  (MUST_CHANGE | UNLOCK)*)?  (COMMA?  SID  EQUAL  sid = BINARY)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  on_off)?  (COMMA?  CHECK_POLICY  EQUAL  on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_name)?
+    /// </summary>
+    public partial class AstCreateLoginSqlServerSettings
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_login_sql_server_from
+    /// 	 : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_name)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = STRING)?)
+    /// 	 | CERTIFICATE  certificate_name
+    /// 	 | ASYMMETRIC  KEY  asym_key_name
+    /// </summary>
+    public partial class AstCreateLoginSqlServerFrom
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_login_azure_sql
-    /// 	 : ALTER  LOGIN  login_name  ((ENABLE DISABLE)? WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)? NAME  EQUAL  login_name))
+    /// 	 : ALTER  LOGIN  login_name  ((ENABLE | DISABLE)? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)? | NAME  EQUAL  login_name))
     /// </summary>
     public partial class AstAlterLoginAzureSql
     {
@@ -2128,7 +2659,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_login_azure_sql_dw_and_pdw
-    /// 	 : ALTER  LOGIN  login_name  (enable_disable? WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE UNLOCK)*?)? NAME  EQUAL  login_name))
+    /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)? | NAME  EQUAL  login_name))
     /// </summary>
     public partial class AstAlterLoginAzureSqlDwAndPdw
     {
@@ -2153,7 +2684,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_login_pdw
-    /// 	 : CREATE  LOGIN  login_name  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) FROM  WINDOWS)
+    /// 	 : CREATE  LOGIN  login_name  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
     /// </summary>
     public partial class AstCreateLoginPdw
     {
@@ -2165,7 +2696,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_master_key_sql_server
-    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING (ADD DROP)  ENCRYPTION  BY  (SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING))
+    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING | add_drop  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = STRING))
     /// </summary>
     public partial class AstAlterMasterKeySqlServer
     {
@@ -2189,7 +2720,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_master_key_azure_sql
-    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY PASSWORD  EQUAL  encryption_password = STRING) DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING)
+    /// 	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING | ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = STRING) | DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING)
     /// </summary>
     public partial class AstAlterMasterKeyAzureSql
     {
@@ -2213,7 +2744,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_message_type
-    /// 	 : ALTER  MESSAGE  TYPE  message_type_name  VALIDATION  EQUAL  (NONE EMPTY WELL_FORMED_XML VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name)
+    /// 	 : ALTER  MESSAGE  TYPE  message_type_name  VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name)
     /// </summary>
     public partial class AstAlterMessageType
     {
@@ -2286,7 +2817,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_resource_pool
-    /// 	 : CREATE  RESOURCE  POOL  pool_name  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET NUMANODE  EQUAL  LR_BRACKET  (COMMA?  (DECIMAL DECIMAL  TO  DECIMAL))+  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  RR_BRACKET)?
+    /// 	 : CREATE  RESOURCE  POOL  pool_name  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO | LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET | NUMANODE  EQUAL  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateResourcePool
     {
@@ -2298,7 +2829,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_resource_governor
-    /// 	 : ALTER  RESOURCE  GOVERNOR  ((DISABLE RECONFIGURE) WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  (schema_name  DOT  function_name NULL_)  RR_BRACKET RESET  STATISTICS WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL  max_outstanding_io_per_volume = DECIMAL  RR_BRACKET)
+    /// 	 : ALTER  RESOURCE  GOVERNOR  ((DISABLE | RECONFIGURE) | WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  (schema_name  DOT  function_name | NULL_)  RR_BRACKET | RESET  STATISTICS | WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL  max_outstanding_io_per_volume = DECIMAL  RR_BRACKET)
     /// </summary>
     public partial class AstAlterResourceGovernor
     {
@@ -2310,22 +2841,9 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_db_role
-    /// 	 : ALTER  ROLE  role_name  (add_drop  MEMBER  database_name WITH  NAME  EQUAL  role_name)
+    /// 	 : ALTER  ROLE  role_name  (add_drop  MEMBER  database_name | WITH  NAME  EQUAL  role_name)
     /// </summary>
     public partial class AstAlterDbRole
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// add_drop
-    /// 	 : ADD
-    /// 	 | DROP
-    /// </summary>
-    public partial class AstAddDrop
     {
         
         public override void ToString(Writer wrt)
@@ -2371,7 +2889,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_schema_sql
-    /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  ((OBJECT TYPE XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_  (DOT  id_)?
+    /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  ((OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_  (DOT  id_)?
     /// </summary>
     public partial class AstAlterSchemaSql
     {
@@ -2383,7 +2901,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_schema
-    /// 	 : CREATE  SCHEMA  (schema_name AUTHORIZATION  owner_name schema_name  AUTHORIZATION  owner_name)  (create_table create_view grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  TO  owner_name REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  FROM  owner_name)*?
+    /// 	 : CREATE  SCHEMA  (schema_name | AUTHORIZATION  owner_name | schema_name  AUTHORIZATION  owner_name)  (create_table | create_view | grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  TO  owner_name | REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_name  FROM  owner_name)*
     /// </summary>
     public partial class AstCreateSchema
     {
@@ -2401,19 +2919,6 @@ namespace Bb.Asts.TSql
     /// 	 | UPDATE
     /// </summary>
     public partial class AstEnumDml
-    {
-        
-        public override void ToString(Writer wrt)
-        {
-        }
-    }
-    
-    /// <summary>
-    /// grant_deny
-    /// 	 : GRANT
-    /// 	 | DENY
-    /// </summary>
-    public partial class AstGrantDeny
     {
         
         public override void ToString(Writer wrt)
@@ -2459,7 +2964,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_security_policy
-    /// 	 : CREATE  SECURITY  POLICY  (schema_name  DOT)?  security_policy_name  (COMMA?  ADD  (FILTER BLOCK)?  PREDICATE  tvf_schema_name  DOT  security_predicate_function_name  LR_BRACKET  (COMMA?  column_name_or_arguments)+  RR_BRACKET  ON  schema_name  DOT  tableName  (COMMA?  AFTER  (INSERT UPDATE) COMMA?  BEFORE  (UPDATE DELETE))*?)+  (WITH  LR_BRACKET  STATE  EQUAL  on_off  (SCHEMABINDING  on_off)?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
+    /// 	 : CREATE  SECURITY  POLICY  (schema_name  DOT)?  security_policy_name  (COMMA?  ADD  (FILTER | BLOCK)?  PREDICATE  tvf_schema_name  DOT  security_predicate_function_name  LR_BRACKET  (COMMA?  column_name_or_arguments)+  RR_BRACKET  ON  schema_name  DOT  tableName  (COMMA?  AFTER  (INSERT | UPDATE) | COMMA?  BEFORE  (UPDATE | DELETE))*)+  (WITH  LR_BRACKET  STATE  EQUAL  on_off  (SCHEMABINDING  on_off)?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
     /// </summary>
     public partial class AstCreateSecurityPolicy
     {
@@ -2471,7 +2976,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_sequence
-    /// 	 : ALTER  SEQUENCE  (schema_name  DOT)?  sequence_name  (RESTART  (WITH  DECIMAL)?)?  (INCREMENT  BY  sequnce_increment = DECIMAL)?  (MINVALUE  DECIMAL NO  MINVALUE)?  (MAXVALUE  DECIMAL NO  MAXVALUE)?  (CYCLE NO  CYCLE)?  (CACHE  DECIMAL NO  CACHE)?
+    /// 	 : ALTER  SEQUENCE  full_sequence_name  (RESTART  (WITH  DECIMAL)?)?  (INCREMENT  BY  sequnce_increment = DECIMAL)?  (MINVALUE  DECIMAL | NO  MINVALUE)?  (MAXVALUE  DECIMAL | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL | NO  CACHE)?
     /// </summary>
     public partial class AstAlterSequence
     {
@@ -2483,7 +2988,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_sequence
-    /// 	 : CREATE  SEQUENCE  (schema_name  DOT)?  sequence_name  (AS  data_type)?  (START  WITH  DECIMAL)?  (INCREMENT  BY  MINUS?  DECIMAL)?  (MINVALUE  (MINUS?  DECIMAL)? NO  MINVALUE)?  (MAXVALUE  (MINUS?  DECIMAL)? NO  MAXVALUE)?  (CYCLE NO  CYCLE)?  (CACHE  DECIMAL? NO  CACHE)?
+    /// 	 : CREATE  SEQUENCE  full_sequence_name  (AS  data_type)?  create_sequence_start?  (INCREMENT  BY  real)?  (MINVALUE  real? | NO  MINVALUE)?  (MAXVALUE  real? | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL? | NO  CACHE)?
     /// </summary>
     public partial class AstCreateSequence
     {
@@ -2494,8 +2999,59 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// real
+    /// 	 : MINUS?  DECIMAL
+    /// </summary>
+    public partial class AstReal
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_sequence_start
+    /// 	 : START  WITH  DECIMAL
+    /// </summary>
+    public partial class AstCreateSequenceStart
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// cycle
+    /// 	 : CYCLE
+    /// 	 | NO  CYCLE
+    /// </summary>
+    public partial class AstCycle
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// size_unity
+    /// 	 : MB
+    /// 	 | GB
+    /// 	 | TB
+    /// </summary>
+    public partial class AstSizeUnity
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_server_audit
-    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  (AND OR)  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstAlterServerAudit
     {
@@ -2506,8 +3062,80 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// server_audit_file
+    /// 	 : FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING | COMMA?  MAXSIZE  EQUAL  (DECIMAL  size_unity | UNLIMITED) | COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL | UNLIMITED) | COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL | COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*  RR_BRACKET)
+    /// 	 | APPLICATION_LOG
+    /// 	 | SECURITY_LOG
+    /// </summary>
+    public partial class AstServerAuditFile
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_server_audit_condition
+    /// 	 : COMMA?  (NOT?)  event_field_name  audit_operator  decimal_string
+    /// 	 | COMMA?  and_or  NOT?  audit_operator  decimal_string
+    /// </summary>
+    public partial class AstAlterServerAuditCondition
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// continue_shutdown
+    /// 	 : CONTINUE
+    /// 	 | SHUTDOWN
+    /// 	 | FAIL_OPERATION
+    /// </summary>
+    public partial class AstContinueShutdown
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// audit_operator
+    /// 	 : EQUAL
+    /// 	 | LESS  GREATER
+    /// 	 | EXCLAMATION  EQUAL
+    /// 	 | GREATER
+    /// 	 | GREATER  EQUAL
+    /// 	 | LESS
+    /// 	 | LESS  EQUAL
+    /// </summary>
+    public partial class AstAuditOperator
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// and_or
+    /// 	 : AND
+    /// 	 | OR
+    /// </summary>
+    public partial class AstAndOr
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// create_server_audit
-    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  (FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING COMMA?  MAXSIZE  EQUAL  (DECIMAL  (MB GB TB) UNLIMITED) COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL UNLIMITED) COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*?  RR_BRACKET) APPLICATION_LOG SECURITY_LOG))?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL COMMA?  ON_FAILURE  EQUAL  (CONTINUE SHUTDOWN FAIL_OPERATION) COMMA?  STATE  EQUAL  on_off COMMA?  AUDIT_GUID  EQUAL  audit_guid)*?  RR_BRACKET)?  (WHERE  (COMMA?  (NOT?)  event_field_name  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING) COMMA?  (AND OR)  NOT?  (EQUAL (LESS  GREATER) (EXCLAMATION  EQUAL) GREATER (GREATER  EQUAL) LESS LESS  EQUAL)  (DECIMAL STRING)))? REMOVE  WHERE MODIFY  NAME  EQUAL  audit_name)
+    /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off | COMMA?  AUDIT_GUID  EQUAL  audit_guid)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
     /// </summary>
     public partial class AstCreateServerAudit
     {
@@ -2519,7 +3147,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_audit_specification
-    /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  ((ADD DROP)  LR_BRACKET  audit_action_group_name  RR_BRACKET)*?  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+    /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (add_drop  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
     /// </summary>
     public partial class AstAlterServerAuditSpecification
     {
@@ -2531,7 +3159,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_server_audit_specification
-    /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (ADD  LR_BRACKET  audit_action_group_name  RR_BRACKET)*?  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+    /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (ADD  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateServerAuditSpecification
     {
@@ -2543,7 +3171,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_configuration
-    /// 	 : ALTER  SERVER  CONFIGURATION  SET  ((PROCESS  AFFINITY  (CPU  EQUAL  (AUTO (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) NUMANODE  EQUAL  (COMMA?  DECIMAL COMMA?  DECIMAL  TO  DECIMAL)+) DIAGNOSTICS  LOG  (ON OFF PATH  EQUAL  (STRING DEFAULT) MAX_SIZE  EQUAL  (DECIMAL  MB DEFAULT) MAX_FILES  EQUAL  (DECIMAL DEFAULT)) FAILOVER  CLUSTER  PROPERTY  (VERBOSELOGGING  EQUAL  (STRING DEFAULT) SQLDUMPERFLAGS  EQUAL  (STRING DEFAULT) SQLDUMPERPATH  EQUAL  (STRING DEFAULT) SQLDUMPERTIMEOUT  (STRING DEFAULT) FAILURECONDITIONLEVEL  EQUAL  (STRING DEFAULT) HEALTHCHECKTIMEOUT  EQUAL  (DECIMAL DEFAULT)) HADR  CLUSTER  CONTEXT  EQUAL  (STRING LOCAL) BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  (KB MB GB)  RR_BRACKET OFF) SET  SOFTNUMA  on_off))
+    /// 	 : ALTER  SERVER  CONFIGURATION  SET  ((PROCESS  AFFINITY  (CPU  EQUAL  (AUTO | (COMMA?  DECIMAL | COMMA?  DECIMAL  TO  DECIMAL)+) | NUMANODE  EQUAL  (COMMA?  DECIMAL | COMMA?  DECIMAL  TO  DECIMAL)+) | DIAGNOSTICS  LOG  (ON | OFF | PATH  EQUAL  (STRING | DEFAULT) | MAX_SIZE  EQUAL  (DECIMAL  MB | DEFAULT) | MAX_FILES  EQUAL  (DECIMAL | DEFAULT)) | FAILOVER  CLUSTER  PROPERTY  (VERBOSELOGGING  EQUAL  (STRING | DEFAULT) | SQLDUMPERFLAGS  EQUAL  (STRING | DEFAULT) | SQLDUMPERPATH  EQUAL  (STRING | DEFAULT) | SQLDUMPERTIMEOUT  (STRING | DEFAULT) | FAILURECONDITIONLEVEL  EQUAL  (STRING | DEFAULT) | HEALTHCHECKTIMEOUT  EQUAL  (DECIMAL | DEFAULT)) | HADR  CLUSTER  CONTEXT  EQUAL  (STRING | LOCAL) | BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  STRING  COMMA  SIZE  EQUAL  DECIMAL  size_unity  RR_BRACKET | OFF) | SET  SOFTNUMA  on_off))
     /// </summary>
     public partial class AstAlterServerConfiguration
     {
@@ -2555,7 +3183,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_role
-    /// 	 : ALTER  SERVER  ROLE  server_role_name  ((ADD DROP)  MEMBER  server_name WITH  NAME  EQUAL  server_role_name)
+    /// 	 : ALTER  SERVER  ROLE  server_role_name  (add_drop  MEMBER  server_name | WITH  NAME  EQUAL  server_role_name)
     /// </summary>
     public partial class AstAlterServerRole
     {
@@ -2579,7 +3207,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_server_role_pdw
-    /// 	 : ALTER  SERVER  ROLE  server_role_name  (ADD DROP)  MEMBER  login_name
+    /// 	 : ALTER  SERVER  ROLE  server_role_name  add_drop  MEMBER  login_name
     /// </summary>
     public partial class AstAlterServerRolePdw
     {
@@ -2591,7 +3219,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_service
-    /// 	 : ALTER  SERVICE  modified_service_name  (ON  QUEUE  (schema_name  DOT)  queue_name)?  (COMMA?  (ADD DROP)  modified_contract_name)*?
+    /// 	 : ALTER  SERVICE  modified_service_name  (ON  QUEUE  full_queue_name)?  (COMMA?  add_drop  modified_contract_name)*
     /// </summary>
     public partial class AstAlterService
     {
@@ -2603,7 +3231,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_service
-    /// 	 : CREATE  SERVICE  create_service_name  (AUTHORIZATION  owner_name)?  ON  QUEUE  (schema_name  DOT)?  queue_name  (LR_BRACKET  (COMMA?  (id_ DEFAULT))+  RR_BRACKET)?
+    /// 	 : CREATE  SERVICE  create_service_name  (AUTHORIZATION  owner_name)?  ON  QUEUE  full_queue_name  (LR_BRACKET  (COMMA?  (id_ | DEFAULT))+  RR_BRACKET)?
     /// </summary>
     public partial class AstCreateService
     {
@@ -2615,7 +3243,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_service_master_key
-    /// 	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = STRING  COMMA  OLD_PASSWORD  EQUAL  old_password = STRING NEW_ACCOUNT  EQUAL  new_account_name = STRING  COMMA  NEW_PASSWORD  EQUAL  new_password = STRING)?))
+    /// 	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE | (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = STRING  COMMA  OLD_PASSWORD  EQUAL  old_password = STRING | NEW_ACCOUNT  EQUAL  new_account_name = STRING  COMMA  NEW_PASSWORD  EQUAL  new_password = STRING)?))
     /// </summary>
     public partial class AstAlterServiceMasterKey
     {
@@ -2627,7 +3255,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_symmetric_key
-    /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_name  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_name PASSWORD  EQUAL  password = STRING SYMMETRIC  KEY  symmetric_key_name ASYMMETRIC  KEY  asym_key_name))
+    /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_name  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_name | PASSWORD  EQUAL  password = STRING | SYMMETRIC  KEY  symmetric_key_name | ASYMMETRIC  KEY  asym_key_name))
     /// </summary>
     public partial class AstAlterSymmetricKey
     {
@@ -2639,7 +3267,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_synonym
-    /// 	 : CREATE  SYNONYM  (schema_name  DOT)?  synonym_name  FOR  ((server_name  DOT)?  (database_name  DOT)?  (schema_name  DOT)?  object_name (database_name  DOT)?  (schema_id_2_or_object_name = id_  DOT)?)
+    /// 	 : CREATE  SYNONYM  (schema_name  DOT)?  synonym_name  FOR  ((server_name  DOT)?  (database_name  DOT)?  (schema_name  DOT)?  object_name | (database_name  DOT)?  (schema_id_2_or_object_name = id_  DOT)?)
     /// </summary>
     public partial class AstCreateSynonym
     {
@@ -2651,7 +3279,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_user
-    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name COMMA?  DEFAULT_SCHEMA  EQUAL  (schema_name NULL_) COMMA?  LOGIN  EQUAL  login_name COMMA?  PASSWORD  EQUAL  STRING  (OLD_PASSWORD  EQUAL  STRING)+ COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE lcid = DECIMAL language) COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  (schema_name | NULL_) | COMMA?  LOGIN  EQUAL  login_name | COMMA?  PASSWORD  EQUAL  STRING  (OLD_PASSWORD  EQUAL  STRING)+ | COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE | lcid = DECIMAL | language) | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
     /// </summary>
     public partial class AstAlterUser
     {
@@ -2663,10 +3291,9 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_user
-    /// 	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name)?  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*?)?
-    /// 	 | CREATE  USER  (windows_principal  (WITH  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*?)? user_name  WITH  PASSWORD  EQUAL  password = STRING  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE DECIMAL language) COMMA?  SID  EQUAL  BINARY COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*? azure_active_directory_principal  FROM  EXTERNAL  PROVIDER)
-    /// 	 | CREATE  USER  user_name  (WITHOUT  LOGIN  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)*? (FOR FROM)  CERTIFICATE  certificate_name (FOR FROM)  ASYMMETRIC  KEY  asym_key_name)
-    /// 	 | CREATE  USER  user_name
+    /// 	 : CREATE  USER  user_name  create_user_with_login
+    /// 	 | CREATE  USER  create_user_windows_principal
+    /// 	 | CREATE  USER  user_name  create_user_without_login?
     /// </summary>
     public partial class AstCreateUser
     {
@@ -2677,8 +3304,89 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// create_user_with_login
+    /// 	 : (for_from  LOGIN  login_name)?  (WITH  user_settings_short*)?
+    /// </summary>
+    public partial class AstCreateUserWithLogin
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_user_without_login
+    /// 	 : WITHOUT  LOGIN  user_settings_short*
+    /// 	 | for_from  CERTIFICATE  certificate_name
+    /// 	 | for_from  ASYMMETRIC  KEY  asym_key_name
+    /// </summary>
+    public partial class AstCreateUserWithoutLogin
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_user_windows_principal
+    /// 	 : windows_principal  (WITH  user_settings*)?
+    /// 	 | user_name  WITH  PASSWORD  EQUAL  password = STRING  user_settings*
+    /// 	 | azure_active_directory_principal  FROM  EXTERNAL  PROVIDER
+    /// </summary>
+    public partial class AstCreateUserWindowsPrincipal
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// for_from
+    /// 	 : FOR
+    /// 	 | FROM
+    /// </summary>
+    public partial class AstForFrom
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// user_settings_short
+    /// 	 : COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name
+    /// 	 | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+    /// </summary>
+    public partial class AstUserSettingsShort
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// user_settings
+    /// 	 : COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name
+    /// 	 | COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE | DECIMAL | language)
+    /// 	 | COMMA?  SID  EQUAL  BINARY
+    /// 	 | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
+    /// </summary>
+    public partial class AstUserSettings
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// create_user_azure_sql_dw
-    /// 	 : CREATE  USER  user_name  ((FOR FROM)  LOGIN  login_name WITHOUT  LOGIN)?  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
+    /// 	 : CREATE  USER  user_name  (for_from  LOGIN  login_name | WITHOUT  LOGIN)?  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
     /// 	 | CREATE  USER  azure_active_directory_principal  FROM  EXTERNAL  PROVIDER  (WITH  DEFAULT_SCHEMA  EQUAL  schema_name)?
     /// </summary>
     public partial class AstCreateUserAzureSqlDw
@@ -2691,7 +3399,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_user_azure_sql
-    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name COMMA?  LOGIN  EQUAL  login_name COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+    /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name | COMMA?  LOGIN  EQUAL  login_name | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
     /// </summary>
     public partial class AstAlterUserAzureSql
     {
@@ -2703,7 +3411,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_workload_group
-    /// 	 : ALTER  WORKLOAD  GROUP  (workload_group_group_name DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW MEDIUM HIGH) COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL MAX_DOP  EQUAL  max_dop = DECIMAL GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name DEFAULT_DOUBLE_QUOTE))?
+    /// 	 : ALTER  WORKLOAD  GROUP  (workload_group_group_name | DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name | DEFAULT_DOUBLE_QUOTE))?
     /// </summary>
     public partial class AstAlterWorkloadGroup
     {
@@ -2715,7 +3423,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_workload_group
-    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_name  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW MEDIUM HIGH) COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL MAX_DOP  EQUAL  max_dop = DECIMAL GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_name DEFAULT_DOUBLE_QUOTE)?)?
+    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_name  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_name | DEFAULT_DOUBLE_QUOTE)?)?
     /// </summary>
     public partial class AstCreateWorkloadGroup
     {
@@ -2727,7 +3435,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_xml_schema_collection
-    /// 	 : CREATE  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier  AS  (STRING id_ LOCAL_ID)
+    /// 	 : CREATE  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier  AS  string_id2
     /// </summary>
     public partial class AstCreateXmlSchemaCollection
     {
@@ -2739,7 +3447,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_partition_function
-    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
+    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT | RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
     /// </summary>
     public partial class AstCreatePartitionFunction
     {
@@ -2751,7 +3459,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_partition_scheme
-    /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_name  AS  PARTITION  partition_function_name  ALL?  TO  LR_BRACKET  file_group_names += id_  (COMMA  file_group_names += id_)*?  RR_BRACKET
+    /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_name  AS  PARTITION  partition_function_name  ALL?  TO  LR_BRACKET  file_group_names += id_  (COMMA  file_group_names += id_)*  RR_BRACKET
     /// </summary>
     public partial class AstCreatePartitionScheme
     {
@@ -2763,7 +3471,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_queue
-    /// 	 : CREATE  QUEUE  (complete_table_name queue_name)  queue_settings?  (ON  file_group_name DEFAULT)?
+    /// 	 : CREATE  QUEUE  (complete_table_name | queue_name)  queue_settings?  (ON  file_group_name | DEFAULT)?
     /// </summary>
     public partial class AstCreateQueue
     {
@@ -2775,7 +3483,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// queue_settings
-    /// 	 : WITH  (STATUS  EQUAL  on_off  COMMA?)?  (RETENTION  EQUAL  on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF username = STRING OWNER)  COMMA?)?) DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
+    /// 	 : WITH  (STATUS  EQUAL  on_off  COMMA?)?  (RETENTION  EQUAL  on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF | username = STRING | OWNER)  COMMA?)?) | DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
     /// </summary>
     public partial class AstQueueSettings
     {
@@ -2787,7 +3495,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_queue
-    /// 	 : ALTER  QUEUE  (complete_table_name queue_name)  (queue_settings queue_action)
+    /// 	 : ALTER  QUEUE  (complete_table_name | queue_name)  (queue_settings | queue_action)
     /// </summary>
     public partial class AstAlterQueue
     {
@@ -2801,7 +3509,7 @@ namespace Bb.Asts.TSql
     /// queue_action
     /// 	 : REBUILD  (WITH  LR_BRACKET  queue_rebuild_options  RR_BRACKET)?
     /// 	 | REORGANIZE  (WITH  LOB_COMPACTION  EQUAL  on_off)?
-    /// 	 | MOVE  TO  (id_ DEFAULT)
+    /// 	 | MOVE  TO  (id_ | DEFAULT)
     /// </summary>
     public partial class AstQueueAction
     {
@@ -2825,7 +3533,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_contract
-    /// 	 : CREATE  CONTRACT  contract_name  (AUTHORIZATION  owner_name)?  LR_BRACKET  ((message_type_name DEFAULT)  SENT  BY  (INITIATOR TARGET ANY)  COMMA?)+  RR_BRACKET
+    /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_name)?  LR_BRACKET  ((message_type_name | DEFAULT)  SENT  BY  (INITIATOR | TARGET | ANY)  COMMA?)+  RR_BRACKET
     /// </summary>
     public partial class AstCreateContract
     {
@@ -2837,7 +3545,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// message_statement
-    /// 	 : CREATE  MESSAGE  TYPE  message_type_name  (AUTHORIZATION  owner_name)?  (VALIDATION  EQUAL  (NONE EMPTY WELL_FORMED_XML VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name))
+    /// 	 : CREATE  MESSAGE  TYPE  message_type_name  (AUTHORIZATION  owner_name)?  (VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name))
     /// </summary>
     public partial class AstMessageStatement
     {
@@ -2888,7 +3596,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem_merges
-    /// 	 : update_elem_merge  (COMMA  update_elem_merge)*?
+    /// 	 : update_elem_merge  (COMMA  update_elem_merge)*
     /// </summary>
     public partial class AstUpdateElemMerges
     {
@@ -2900,7 +3608,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// merge_not_matched
-    /// 	 : INSERT  (LR_BRACKET  column_name_list  RR_BRACKET)?  (table_value_constructor DEFAULT  VALUES)
+    /// 	 : INSERT  (LR_BRACKET  column_name_list  RR_BRACKET)?  (table_value_constructor | DEFAULT  VALUES)
     /// </summary>
     public partial class AstMergeNotMatched
     {
@@ -2912,7 +3620,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// delete_statement
-    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? TOP  DECIMAL)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition CURRENT  OF  (GLOBAL?  cursor_name cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? | TOP  DECIMAL)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstDeleteStatement
     {
@@ -2938,7 +3646,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_statement
-    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstInsertStatement
     {
@@ -2965,7 +3673,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// receive_statement
-    /// 	 : LR_BRACKET?  RECEIVE  (ALL DISTINCT top_clause STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*?  FROM  complete_table_name  (INTO  table_variable  (WHERE  where = search_condition))?  RR_BRACKET?
+    /// 	 : LR_BRACKET?  RECEIVE  (ALL | DISTINCT | top_clause | STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*  FROM  complete_table_name  (INTO  table_variable  (WHERE  where = search_condition))?  RR_BRACKET?
     /// </summary>
     public partial class AstReceiveStatement
     {
@@ -3001,7 +3709,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// time
-    /// 	 : (LOCAL_ID constant)
+    /// 	 : (LOCAL_ID | constant)
     /// </summary>
     public partial class AstTime
     {
@@ -3013,7 +3721,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statement
-    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition CURRENT  OF  (GLOBAL?  cursor_name cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = LOCAL_ID)))?  for_clause?  option_clause?  SEMI?
     /// </summary>
     public partial class AstUpdateStatement
     {
@@ -3025,7 +3733,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elems
-    /// 	 : update_elem  (COMMA  update_elem)*?
+    /// 	 : update_elem  (COMMA  update_elem)*
     /// </summary>
     public partial class AstUpdateElems
     {
@@ -3037,7 +3745,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_clause
-    /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID full_table_name)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
+    /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID | full_table_name)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
     /// </summary>
     public partial class AstOutputClause
     {
@@ -3049,7 +3757,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_dml_list_elems
-    /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*?
+    /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*
     /// </summary>
     public partial class AstOutputDmlListElems
     {
@@ -3061,7 +3769,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// output_dml_list_elem
-    /// 	 : (expression asterisk)  as_column_alias?
+    /// 	 : (expression | asterisk)  as_column_alias?
     /// </summary>
     public partial class AstOutputDmlListElem
     {
@@ -3073,9 +3781,106 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_database
-    /// 	 : CREATE  DATABASE  (database_name)  (CONTAINMENT  EQUAL  (NONE PARTIAL))?  (ON  PRIMARY?  database_file_spec  (COMMA  database_file_spec)*?)?  (LOG  ON  database_file_spec  (COMMA  database_file_spec)*?)?  (COLLATE  collation_name)?  (WITH  create_database_option  (COMMA  create_database_option)*?)?
+    /// 	 : CREATE  DATABASE  database_name  database_containment?  database_on_primary?  database_on_log?  database_collate?  database_create_with?
     /// </summary>
     public partial class AstCreateDatabase
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_containment
+    /// 	 : CONTAINMENT  EQUAL  none_partial
+    /// </summary>
+    public partial class AstDatabaseContainment
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_on_primary
+    /// 	 : ON  PRIMARY?  database_file_spec_list
+    /// </summary>
+    public partial class AstDatabaseOnPrimary
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_on_log
+    /// 	 : ON  PRIMARY?  database_file_spec_list
+    /// </summary>
+    public partial class AstDatabaseOnLog
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_collate
+    /// 	 : COLLATE  collation_name
+    /// </summary>
+    public partial class AstDatabaseCollate
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_create_with
+    /// 	 : WITH  create_database_option_list
+    /// </summary>
+    public partial class AstDatabaseCreateWith
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// create_database_option_list
+    /// 	 : create_database_option  (COMMA  create_database_option)*
+    /// </summary>
+    public partial class AstCreateDatabaseOptionList
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// database_file_spec_list
+    /// 	 : database_file_spec  (COMMA  database_file_spec)*
+    /// </summary>
+    public partial class AstDatabaseFileSpecList
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// none_partial
+    /// 	 : NONE
+    /// 	 | PARTIAL
+    /// </summary>
+    public partial class AstNonePartial
     {
         
         public override void ToString(Writer wrt)
@@ -3109,7 +3914,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// relational_index_options
-    /// 	 : relational_index_option  (COMMA  relational_index_option)*?
+    /// 	 : relational_index_option  (COMMA  relational_index_option)*
     /// </summary>
     public partial class AstRelationalIndexOptions
     {
@@ -3135,7 +3940,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_index
-    /// 	 : ALTER  INDEX  (id_ ALL)  ON  full_table_name  (DISABLE PAUSE ABORT RESUME  resumable_index_options? reorganize_partition set_index_options rebuild_partition)
+    /// 	 : ALTER  INDEX  (id_ | ALL)  ON  full_table_name  (DISABLE | PAUSE | ABORT | RESUME  resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
     /// </summary>
     public partial class AstAlterIndex
     {
@@ -3147,7 +3952,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// resumable_index_options
-    /// 	 : WITH  LR_BRACKET  (resumable_index_option  (COMMA  resumable_index_option)*?)  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  (resumable_index_option  (COMMA  resumable_index_option)*)  RR_BRACKET
     /// </summary>
     public partial class AstResumableIndexOptions
     {
@@ -3185,7 +3990,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// reorganize_options
-    /// 	 : WITH  LR_BRACKET  (reorganize_option  (COMMA  reorganize_option)*?)  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  (reorganize_option  (COMMA  reorganize_option)*)  RR_BRACKET
     /// </summary>
     public partial class AstReorganizeOptions
     {
@@ -3210,7 +4015,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// set_index_options
-    /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*?  RR_BRACKET
+    /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstSetIndexOptions
     {
@@ -3252,7 +4057,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// rebuild_index_options
-    /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstRebuildIndexOptions
     {
@@ -3270,13 +4075,13 @@ namespace Bb.Asts.TSql
     /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
     /// 	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
     /// 	 | STATISTICS_INCREMENTAL  EQUAL  on_off
-    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? | OFF)
     /// 	 | RESUMABLE  EQUAL  on_off
     /// 	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
     /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
-    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     public partial class AstRebuildIndexOption
@@ -3289,7 +4094,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// single_partition_rebuild_index_options
-    /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstSinglePartitionRebuildIndexOptions
     {
@@ -3304,9 +4109,9 @@ namespace Bb.Asts.TSql
     /// 	 : SORT_IN_TEMPDB  EQUAL  on_off
     /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
     /// 	 | RESUMABLE  EQUAL  on_off
-    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
-    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? | OFF)
     /// </summary>
     public partial class AstSinglePartitionRebuildIndexOption
     {
@@ -3318,7 +4123,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_partitions
-    /// 	 : ON  PARTITIONS  LR_BRACKET  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?  (COMMA  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?)*?  RR_BRACKET
+    /// 	 : ON  PARTITIONS  LR_BRACKET  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?  (COMMA  partition_number = DECIMAL  (TO  to_partition_number = DECIMAL)?)*  RR_BRACKET
     /// </summary>
     public partial class AstOnPartitions
     {
@@ -3342,7 +4147,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_columnstore_index_options
-    /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstCreateColumnstoreIndexOptions
     {
@@ -3358,7 +4163,7 @@ namespace Bb.Asts.TSql
     /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
     /// 	 | ONLINE  EQUAL  on_off
     /// 	 | COMPRESSION_DELAY  EQUAL  delay = DECIMAL  MINUTES?
-    /// 	 | DATA_COMPRESSION  EQUAL  (COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (COLUMNSTORE | COLUMNSTORE_ARCHIVE)  on_partitions?
     /// </summary>
     public partial class AstColumnstoreIndexOption
     {
@@ -3382,7 +4187,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_xml_index
-    /// 	 : CREATE  PRIMARY?  XML  INDEX  id_  ON  full_table_name  LR_BRACKET  id_  RR_BRACKET  (USING  XML  INDEX  id_  (FOR  (VALUE PATH PROPERTY)?)?)?  xml_index_options?  SEMI?
+    /// 	 : CREATE  PRIMARY?  XML  INDEX  id_  ON  full_table_name  LR_BRACKET  id_  RR_BRACKET  (USING  XML  INDEX  id_  (FOR  (VALUE | PATH | PROPERTY)?)?)?  xml_index_options?  SEMI?
     /// </summary>
     public partial class AstCreateXmlIndex
     {
@@ -3394,7 +4199,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_index_options
-    /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstXmlIndexOptions
     {
@@ -3411,7 +4216,7 @@ namespace Bb.Asts.TSql
     /// 	 | SORT_IN_TEMPDB  EQUAL  on_off
     /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
     /// 	 | DROP_EXISTING  EQUAL  on_off
-    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? | OFF)
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
     /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
@@ -3427,7 +4232,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_procedure
-    /// 	 : ((CREATE  (OR  (ALTER REPLACE))?) ALTER)  proc = (PROC PROCEDURE)  procName = func_proc_name_schema  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name sql_clause)
+    /// 	 : ((CREATE  (OR  (ALTER | REPLACE))?) | ALTER)  proc = (PROC | PROCEDURE)  procName = func_proc_name_schema  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
     /// </summary>
     public partial class AstCreateOrAlterProcedure
     {
@@ -3439,7 +4244,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_options
-    /// 	 : WITH  procedure_option  (COMMA  procedure_option)*?
+    /// 	 : WITH  procedure_option  (COMMA  procedure_option)*
     /// </summary>
     public partial class AstProcedureOptions
     {
@@ -3463,7 +4268,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_dml_trigger
-    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  TRIGGER  simple_name  ON  full_table_name  dml_trigger_options?  (FOR AFTER INSTEAD  OF)  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
+    /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  full_table_name  dml_trigger_options?  (FOR | AFTER | INSTEAD  OF)  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
     /// </summary>
     public partial class AstCreateOrAlterDmlTrigger
     {
@@ -3475,7 +4280,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_options
-    /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*?
+    /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*
     /// </summary>
     public partial class AstDmlTriggerOptions
     {
@@ -3487,7 +4292,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_operations
-    /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*?
+    /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*
     /// </summary>
     public partial class AstDmlTriggerOperations
     {
@@ -3512,7 +4317,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dml_trigger_operation
-    /// 	 : (INSERT UPDATE DELETE)
+    /// 	 : (INSERT | UPDATE | DELETE)
     /// </summary>
     public partial class AstDmlTriggerOperation
     {
@@ -3524,7 +4329,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_ddl_trigger
-    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  TRIGGER  simple_name  ON  (ALL  SERVER DATABASE)  dml_trigger_options?  (FOR AFTER)  dml_trigger_operations  AS  sql_clauses
+    /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  (ALL  SERVER | DATABASE)  dml_trigger_options?  (FOR | AFTER)  dml_trigger_operations  AS  sql_clauses
     /// </summary>
     public partial class AstCreateOrAlterDdlTrigger
     {
@@ -3536,7 +4341,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_function
-    /// 	 : ((CREATE  (OR  ALTER)?) ALTER)  FUNCTION  funcName = func_proc_name_schema  ((LR_BRACKET  procedure_params  RR_BRACKET) LR_BRACKET  RR_BRACKET)  (func_body_returns_select func_body_returns_table func_body_returns_scalar)  SEMI?
+    /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  FUNCTION  funcName = func_proc_name_schema  ((LR_BRACKET  procedure_params  RR_BRACKET) | LR_BRACKET  RR_BRACKET)  (func_body_returns_select | func_body_returns_table | func_body_returns_scalar)  SEMI?
     /// </summary>
     public partial class AstCreateOrAlterFunction
     {
@@ -3548,7 +4353,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_params
-    /// 	 : procedure_param  (COMMA  procedure_param)*?
+    /// 	 : procedure_param  (COMMA  procedure_param)*
     /// </summary>
     public partial class AstProcedureParams
     {
@@ -3560,7 +4365,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_select
-    /// 	 : RETURNS  TABLE  function_options?  AS?  (as_external_name RETURN  (LR_BRACKET  select_statement_standalone  RR_BRACKET select_statement_standalone))
+    /// 	 : RETURNS  TABLE  function_options?  AS?  (as_external_name | RETURN  (LR_BRACKET  select_statement_standalone  RR_BRACKET | select_statement_standalone))
     /// </summary>
     public partial class AstFuncBodyReturnsSelect
     {
@@ -3572,7 +4377,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// function_options
-    /// 	 : WITH  function_option  (COMMA  function_option)*?
+    /// 	 : WITH  function_option  (COMMA  function_option)*
     /// </summary>
     public partial class AstFunctionOptions
     {
@@ -3584,7 +4389,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_table
-    /// 	 : RETURNS  LOCAL_ID  table_type_definition  function_options?  AS?  (as_external_name BEGIN  sql_clauses?  RETURN  SEMI?  END  SEMI?)
+    /// 	 : RETURNS  LOCAL_ID  table_type_definition  function_options?  AS?  (as_external_name | BEGIN  sql_clauses?  RETURN  SEMI?  END  SEMI?)
     /// </summary>
     public partial class AstFuncBodyReturnsTable
     {
@@ -3596,7 +4401,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_body_returns_scalar
-    /// 	 : RETURNS  data_type  function_options?  AS?  (as_external_name BEGIN  sql_clause?  RETURN  ret = expression  SEMI?  END)
+    /// 	 : RETURNS  data_type  function_options?  AS?  (as_external_name | BEGIN  sql_clause?  RETURN  ret = expression  SEMI?  END)
     /// </summary>
     public partial class AstFuncBodyReturnsScalar
     {
@@ -3608,7 +4413,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_param
-    /// 	 : LOCAL_ID  AS?  (type_schema  DOT)?  data_type  VARYING?  (EQUAL  default_val = default_value)?  (OUT OUTPUT READONLY)?
+    /// 	 : LOCAL_ID  AS?  (type_schema  DOT)?  data_type  VARYING?  (EQUAL  default_val = default_value)?  (OUT | OUTPUT | READONLY)?
     /// </summary>
     public partial class AstProcedureParam
     {
@@ -3650,7 +4455,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_statistics
-    /// 	 : CREATE  STATISTICS  id_  ON  full_table_name  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN SAMPLE  DECIMAL  (PERCENT ROWS) STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
+    /// 	 : CREATE  STATISTICS  id_  ON  full_table_name  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN | SAMPLE  DECIMAL  (PERCENT | ROWS) | STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstCreateStatistics
     {
@@ -3662,7 +4467,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statistics
-    /// 	 : UPDATE  STATISTICS  complete_table_name  (id_ LR_BRACKET  id_  (COMMA  id_)*?  RR_BRACKET)?  update_statistics_options?
+    /// 	 : UPDATE  STATISTICS  complete_table_name  (id_ | LR_BRACKET  id_  (COMMA  id_)*  RR_BRACKET)?  update_statistics_options?
     /// </summary>
     public partial class AstUpdateStatistics
     {
@@ -3674,7 +4479,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_statistics_options
-    /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*?
+    /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*
     /// </summary>
     public partial class AstUpdateStatisticsOptions
     {
@@ -3687,7 +4492,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// update_statistics_option
     /// 	 : (FULLSCAN  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
-    /// 	 | (SAMPLE  number = DECIMAL  (PERCENT ROWS)  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
+    /// 	 | (SAMPLE  number = DECIMAL  (PERCENT | ROWS)  (COMMA?  PERSIST_SAMPLE_PERCENT  EQUAL  on_off)?)
     /// 	 | RESAMPLE  on_partitions?
     /// 	 | STATS_STREAM  EQUAL  stats_stream_ = expression
     /// 	 | ROWCOUNT  EQUAL  DECIMAL
@@ -3710,7 +4515,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_table
-    /// 	 : CREATE  TABLE  full_table_name  LR_BRACKET  column_def_table_constraints  (COMMA?  table_indices)*?  COMMA?  RR_BRACKET  (LOCK  simple_id)?  table_options*?  (ON  id_ DEFAULT)?  (TEXTIMAGE_ON  id_ DEFAULT)?  SEMI?
+    /// 	 : CREATE  TABLE  full_table_name  LR_BRACKET  column_def_table_constraints  (COMMA?  table_indices)*  COMMA?  RR_BRACKET  (LOCK  simple_id)?  table_options*  (ON  id_ | DEFAULT)?  (TEXTIMAGE_ON  id_ | DEFAULT)?  SEMI?
     /// </summary>
     public partial class AstCreateTable
     {
@@ -3736,7 +4541,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_options
-    /// 	 : WITH  (LR_BRACKET  table_option  (COMMA  table_option)*?  RR_BRACKET table_option  (COMMA  table_option)*?)
+    /// 	 : WITH  (LR_BRACKET  table_option  (COMMA  table_option)*  RR_BRACKET | table_option  (COMMA  table_option)*)
     /// </summary>
     public partial class AstTableOptions
     {
@@ -3748,12 +4553,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_option
-    /// 	 : (simple_id keyword)  EQUAL  (simple_id keyword on_off DECIMAL)
+    /// 	 : (simple_id | keyword)  EQUAL  (simple_id | keyword | on_off | DECIMAL)
     /// 	 | CLUSTERED  COLUMNSTORE  INDEX
     /// 	 | HEAP
     /// 	 | FILLFACTOR  EQUAL  DECIMAL
     /// 	 | distribution
-    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE | ROW | PAGE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     public partial class AstTableOption
@@ -3779,7 +4584,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_table_index_options
-    /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstCreateTableIndexOptions
     {
@@ -3799,10 +4604,26 @@ namespace Bb.Asts.TSql
     /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
     /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
-    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  index_strategy  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// </summary>
     public partial class AstCreateTableIndexOption
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// index_strategy
+    /// 	 : NONE
+    /// 	 | ROW
+    /// 	 | PAGE
+    /// 	 | COLUMNSTORE
+    /// 	 | COLUMNSTORE_ARCHIVE
+    /// </summary>
+    public partial class AstIndexStrategy
     {
         
         public override void ToString(Writer wrt)
@@ -3824,7 +4645,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// view_attributes
-    /// 	 : (WITH  view_attribute  (COMMA  view_attribute)*?)
+    /// 	 : (WITH  view_attribute  (COMMA  view_attribute)*)
     /// </summary>
     public partial class AstViewAttributes
     {
@@ -3850,7 +4671,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_table
-    /// 	 : ALTER  TABLE  full_table_name  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO TABLE DISABLE)  RR_BRACKET ADD  column_def_table_constraints ALTER  COLUMN  (column_definition column_modifier) DROP  COLUMN  ids_ DROP  CONSTRAINT  constraint_name WITH  (CHECK NOCHECK)  ADD  (CONSTRAINT  constraint_name)?  (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_name  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  (on_delete on_update)*? CHECK  LR_BRACKET  search_condition  RR_BRACKET) (NOCHECK CHECK)  CONSTRAINT  constraint_name (ENABLE DISABLE)  TRIGGER  id_? REBUILD  table_options SWITCH  switch_partition)  SEMI?
+    /// 	 : ALTER  TABLE  full_table_name  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO | TABLE | DISABLE)  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids_ | DROP  CONSTRAINT  constraint_name | WITH  (CHECK | NOCHECK)  ADD  (CONSTRAINT  constraint_name)?  (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_name  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  (on_delete | on_update)* | CHECK  LR_BRACKET  search_condition  RR_BRACKET) | (NOCHECK | CHECK)  CONSTRAINT  constraint_name | (ENABLE | DISABLE)  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
     /// </summary>
     public partial class AstAlterTable
     {
@@ -3862,7 +4683,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// ids_
-    /// 	 : id_  (COMMA  id_)*?
+    /// 	 : id_  (COMMA  id_)*
     /// </summary>
     public partial class AstIds
     {
@@ -3886,7 +4707,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// low_priority_lock_wait
-    /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL  max_duration = time  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wait = (NONE SELF BLOCKERS)  RR_BRACKET
+    /// 	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL  max_duration = time  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wait = (NONE | SELF | BLOCKERS)  RR_BRACKET
     /// </summary>
     public partial class AstLowPriorityLockWait
     {
@@ -3898,7 +4719,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_database
-    /// 	 : ALTER  DATABASE  (database_name CURRENT)  (MODIFY  NAME  EQUAL  database_name COLLATE  collation_name SET  database_optionspec  (WITH  termination)? add_or_modify_files add_or_modify_filegroups)  SEMI?
+    /// 	 : ALTER  DATABASE  (database_name | CURRENT)  (MODIFY  NAME  EQUAL  database_name | COLLATE  collation_name | SET  database_optionspec  (WITH  termination)? | add_or_modify_files | add_or_modify_filegroups)  SEMI?
     /// </summary>
     public partial class AstAlterDatabase
     {
@@ -3925,7 +4746,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// filespecs
-    /// 	 : filespec  (COMMA  filespec)*?
+    /// 	 : filespec  (COMMA  filespec)*
     /// </summary>
     public partial class AstFilespecs
     {
@@ -3937,7 +4758,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// filespec
-    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_name  (COMMA  NEWNAME  EQUAL  new_file_group_name STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  (max_size = file_size) UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_name  (COMMA  NEWNAME  EQUAL  new_file_group_name | STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  (max_size = file_size) | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
     /// </summary>
     public partial class AstFilespec
     {
@@ -3949,9 +4770,9 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// add_or_modify_filegroups
-    /// 	 : ADD  FILEGROUP  file_group_name  (CONTAINS  FILESTREAM CONTAINS  MEMORY_OPTIMIZED_DATA)?
+    /// 	 : ADD  FILEGROUP  file_group_name  (CONTAINS  FILESTREAM | CONTAINS  MEMORY_OPTIMIZED_DATA)?
     /// 	 | REMOVE  FILEGROUP  file_group_name
-    /// 	 | MODIFY  FILEGROUP  file_group_name  (filegroup_updatability_option DEFAULT NAME  EQUAL  new_file_group_name AUTOGROW_SINGLE_FILE AUTOGROW_ALL_FILES)
+    /// 	 | MODIFY  FILEGROUP  file_group_name  (filegroup_updatability_option | DEFAULT | NAME  EQUAL  new_file_group_name | AUTOGROW_SINGLE_FILE | AUTOGROW_ALL_FILES)
     /// </summary>
     public partial class AstAddOrModifyFilegroups
     {
@@ -4013,7 +4834,7 @@ namespace Bb.Asts.TSql
     /// auto_option
     /// 	 : AUTO_CLOSE  on_off
     /// 	 | AUTO_CREATE_STATISTICS  OFF
-    /// 	 | ON  (INCREMENTAL  EQUAL  ON OFF)
+    /// 	 | ON  (INCREMENTAL  EQUAL  ON | OFF)
     /// 	 | AUTO_SHRINK  on_off
     /// 	 | AUTO_UPDATE_STATISTICS  on_off
     /// 	 | AUTO_UPDATE_STATISTICS_ASYNC  on_off
@@ -4028,7 +4849,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_tracking_option
-    /// 	 : CHANGE_TRACKING  EQUAL  (OFF ON  (change_tracking_option_list  change_tracking_option_lists)*?)
+    /// 	 : CHANGE_TRACKING  EQUAL  (OFF | ON  (change_tracking_option_list  change_tracking_option_lists)*)
     /// </summary>
     public partial class AstChangeTrackingOption
     {
@@ -4040,7 +4861,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_tracking_option_lists
-    /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*?
+    /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*
     /// </summary>
     public partial class AstChangeTrackingOptionLists
     {
@@ -4053,7 +4874,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// change_tracking_option_list
     /// 	 : AUTO_CLEANUP  EQUAL  on_off
-    /// 	 | CHANGE_RETENTION  EQUAL  (DAYS HOURS MINUTES)
+    /// 	 | CHANGE_RETENTION  EQUAL  period
     /// </summary>
     public partial class AstChangeTrackingOptionList
     {
@@ -4064,8 +4885,22 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// period
+    /// 	 : DAYS
+    /// 	 | HOURS
+    /// 	 | MINUTES
+    /// </summary>
+    public partial class AstPeriod
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// containment_option
-    /// 	 : CONTAINMENT  EQUAL  (NONE PARTIAL)
+    /// 	 : CONTAINMENT  EQUAL  none_partial
     /// </summary>
     public partial class AstContainmentOption
     {
@@ -4102,10 +4937,110 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// state_enum
+    /// 	 : STARTED
+    /// 	 | STOPPED
+    /// 	 | DISABLED
+    /// </summary>
+    public partial class AstStateEnum
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// listener_ip
+    /// 	 : LISTENER_IP  EQUAL  (ALL | IPV4_ADDR | IPV6_ADDR | STRING)
+    /// </summary>
+    public partial class AstListenerIp
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// alter_endpoint
-    /// 	 : ALTER  ENDPOINT  endpoint_name  (AUTHORIZATION  login_name)?  (STATE  EQUAL  (state = STARTED state = STOPPED state = DISABLED))?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  port = DECIMAL  (COMMA  LISTENER_IP  EQUAL  (ALL IPV4_ADDR IPV6_ADDR STRING))?  RR_BRACKET  (TSQL FOR  SERVICE_BROKER  LR_BRACKET  AUTHENTICATION  EQUAL  (WINDOWS  (NTLM KERBEROS NEGOTIATE)?  (CERTIFICATE  certificate_name)? CERTIFICATE  certificate_name  WINDOWS?  (NTLM KERBEROS NEGOTIATE)?)  (COMMA?  ENCRYPTION  EQUAL  (DISABLED SUPPORTED REQUIRED)  (ALGORITHM  (AES RC4 AES  RC4 RC4  AES))?)?  (COMMA?  MESSAGE_FORWARDING  EQUAL  (ENABLED DISABLED))?  (COMMA?  MESSAGE_FORWARD_SIZE  EQUAL  DECIMAL)?  RR_BRACKET FOR  DATABASE_MIRRORING  LR_BRACKET  AUTHENTICATION  EQUAL  (WINDOWS  (NTLM KERBEROS NEGOTIATE)?  (CERTIFICATE  certificate_name)? CERTIFICATE  certificate_name  WINDOWS?  (NTLM KERBEROS NEGOTIATE)?)  (COMMA?  ENCRYPTION  EQUAL  (DISABLED SUPPORTED REQUIRED)  (ALGORITHM  (AES RC4 AES  RC4 RC4  AES))?)?  COMMA?  ROLE  EQUAL  (WITNESS PARTNER ALL)  RR_BRACKET)
+    /// 	 : ALTER  ENDPOINT  endpoint_name  (AUTHORIZATION  login_name)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  DECIMAL  (COMMA  listener_ip)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
     /// </summary>
     public partial class AstAlterEndpoint
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// authentication_configuration
+    /// 	 : AUTHENTICATION  EQUAL  (WINDOWS  authentication_mode?  (CERTIFICATE  certificate_name)? | CERTIFICATE  certificate_name  WINDOWS?  authentication_mode?)
+    /// </summary>
+    public partial class AstAuthenticationConfiguration
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// authentication_mode
+    /// 	 : NTLM
+    /// 	 | KERBEROS
+    /// 	 | NEGOTIATE
+    /// </summary>
+    public partial class AstAuthenticationMode
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// encryption_state
+    /// 	 : ENCRYPTION  EQUAL  (DISABLED | SUPPORTED | REQUIRED)
+    /// </summary>
+    public partial class AstEncryptionState
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// encryption_algorithm
+    /// 	 : ALGORITHM  (AES | RC4 | AES  RC4 | RC4  AES)
+    /// </summary>
+    public partial class AstEncryptionAlgorithm
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_endpoint_database_mirroring
+    /// 	 : FOR  DATABASE_MIRRORING  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  COMMA?  ROLE  EQUAL  (WITNESS | PARTNER | ALL)  RR_BRACKET
+    /// </summary>
+    public partial class AstAlterEndpointDatabaseMirroring
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// alter_endpoint_service_broker
+    /// 	 : FOR  SERVICE_BROKER  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  (COMMA?  MESSAGE_FORWARDING  EQUAL  enable_disable)?  (COMMA?  MESSAGE_FORWARD_SIZE  EQUAL  DECIMAL)?  RR_BRACKET
+    /// </summary>
+    public partial class AstAlterEndpointServiceBroker
     {
         
         public override void ToString(Writer wrt)
@@ -4169,7 +5104,7 @@ namespace Bb.Asts.TSql
     /// 	 | FORCE_SERVICE_ALLOW_DATA_LOSS
     /// 	 | OFF
     /// 	 | RESUME
-    /// 	 | SAFETY  (FULL OFF)
+    /// 	 | SAFETY  (FULL | OFF)
     /// 	 | SUSPEND
     /// 	 | TIMEOUT  DECIMAL
     /// </summary>
@@ -4245,7 +5180,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// host
     /// 	 : id_  DOT  host
-    /// 	 | (id_  DOT id_)
+    /// 	 | (id_  DOT | id_)
     /// </summary>
     public partial class AstHost
     {
@@ -4281,7 +5216,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// db_state_option
-    /// 	 : (ONLINE OFFLINE EMERGENCY)
+    /// 	 : (ONLINE | OFFLINE | EMERGENCY)
     /// </summary>
     public partial class AstDbStateOption
     {
@@ -4320,7 +5255,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// delayed_durability_option
-    /// 	 : DELAYED_DURABILITY  EQUAL  (DISABLED ALLOWED FORCED)
+    /// 	 : DELAYED_DURABILITY  EQUAL  (DISABLED | ALLOWED | FORCED)
     /// </summary>
     public partial class AstDelayedDurabilityOption
     {
@@ -4363,7 +5298,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// hadr_options
-    /// 	 : HADR  ((AVAILABILITY  GROUP  EQUAL  group_name OFF) (SUSPEND RESUME))
+    /// 	 : HADR  ((AVAILABILITY  GROUP  EQUAL  group_name | OFF) | (SUSPEND | RESUME))
     /// </summary>
     public partial class AstHadrOptions
     {
@@ -4387,7 +5322,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// parameterization_option
-    /// 	 : PARAMETERIZATION  (SIMPLE FORCED)
+    /// 	 : PARAMETERIZATION  (SIMPLE | FORCED)
     /// </summary>
     public partial class AstParameterizationOption
     {
@@ -4399,10 +5334,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// recovery_option
-    /// 	 : RECOVERY  (FULL BULK_LOGGED SIMPLE)
+    /// 	 : RECOVERY  (FULL | BULK_LOGGED | SIMPLE)
     /// 	 | TORN_PAGE_DETECTION  on_off
     /// 	 | ACCELERATED_DATABASE_RECOVERY  EQUAL  on_off
-    /// 	 | PAGE_VERIFY  (CHECKSUM TORN_PAGE_DETECTION NONE)
+    /// 	 | PAGE_VERIFY  (CHECKSUM | TORN_PAGE_DETECTION | NONE)
     /// </summary>
     public partial class AstRecoveryOption
     {
@@ -4465,7 +5400,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// target_recovery_time_option
-    /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  (SECONDS MINUTES)
+    /// 	 : TARGET_RECOVERY_TIME  EQUAL  DECIMAL  (SECONDS | MINUTES)
     /// </summary>
     public partial class AstTargetRecoveryTimeOption
     {
@@ -4491,7 +5426,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_index
-    /// 	 : DROP  INDEX  (IF  EXISTS)?  (drop_relational_or_xml_or_spatial_indexs drop_backward_compatible_indexs)  SEMI?
+    /// 	 : DROP  INDEX  (IF  EXISTS)?  (drop_relational_or_xml_or_spatial_indexs | drop_backward_compatible_indexs)  SEMI?
     /// </summary>
     public partial class AstDropIndex
     {
@@ -4503,7 +5438,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_relational_or_xml_or_spatial_indexs
-    /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*?
+    /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*
     /// </summary>
     public partial class AstDropRelationalOrXmlOrSpatialIndexs
     {
@@ -4515,7 +5450,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_backward_compatible_indexs
-    /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*?
+    /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*
     /// </summary>
     public partial class AstDropBackwardCompatibleIndexs
     {
@@ -4551,7 +5486,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_procedure
-    /// 	 : DROP  proc = (PROC PROCEDURE)  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
+    /// 	 : DROP  proc = (PROC | PROCEDURE)  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
     /// </summary>
     public partial class AstDropProcedure
     {
@@ -4563,7 +5498,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// func_proc_name_schemas
-    /// 	 : func_proc_name_schema  (COMMA  func_proc_name_schema)*?
+    /// 	 : func_proc_name_schema  (COMMA  func_proc_name_schema)*
     /// </summary>
     public partial class AstFuncProcNameSchemas
     {
@@ -4587,7 +5522,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_ddl_trigger
-    /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  ON  (DATABASE ALL  SERVER)  SEMI?
+    /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  ON  (DATABASE | ALL  SERVER)  SEMI?
     /// </summary>
     public partial class AstDropDdlTrigger
     {
@@ -4599,7 +5534,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// simple_names
-    /// 	 : simple_name  (COMMA  simple_name)*?
+    /// 	 : simple_name  (COMMA  simple_name)*
     /// </summary>
     public partial class AstSimpleNames
     {
@@ -4611,7 +5546,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_names
-    /// 	 : full_table_name  (COMMA  full_table_name)*?
+    /// 	 : full_table_name  (COMMA  full_table_name)*
     /// </summary>
     public partial class AstTableNames
     {
@@ -4719,7 +5654,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_statement
-    /// 	 : DECLARE  LOCAL_ID  AS?  (table_type_definition full_table_name)  SEMI?
+    /// 	 : DECLARE  LOCAL_ID  AS?  (table_type_definition | full_table_name)  SEMI?
     /// 	 | DECLARE  loc += declare_locals  SEMI?
     /// 	 | DECLARE  LOCAL_ID  AS?  xml_type_definition  SEMI?
     /// 	 | WITH  XMLNAMESPACES  LR_BRACKET  xml_dec += xml_declarations  RR_BRACKET  SEMI?
@@ -4734,7 +5669,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_locals
-    /// 	 : declare_local  (COMMA  loc += declare_local)*?
+    /// 	 : declare_local  (COMMA  loc += declare_local)*
     /// </summary>
     public partial class AstDeclareLocals
     {
@@ -4746,7 +5681,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_declarations
-    /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*?
+    /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*
     /// </summary>
     public partial class AstXmlDeclarations
     {
@@ -4786,8 +5721,56 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// compression
+    /// 	 : (COMPRESSION | NO_COMPRESSION)
+    /// </summary>
+    public partial class AstCompression
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// init_no_init
+    /// 	 : (NOINIT | INIT)
+    /// </summary>
+    public partial class AstInitNoInit
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// no_skip
+    /// 	 : (NOSKIP | SKIP_KEYWORD)
+    /// </summary>
+    public partial class AstNoSkip
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// format_noformat
+    /// 	 : (NOFORMAT | FORMAT)
+    /// </summary>
+    public partial class AstFormatNoformat
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// backup_database
-    /// 	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*?)?  (COMMA?  (FILE FILEGROUP)  EQUAL  file_or_filegroup = STRING)*?  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*?)?
+    /// 	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*)?  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
     /// </summary>
     public partial class AstBackupDatabase
     {
@@ -4799,7 +5782,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_log
-    /// 	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ (MIRROR  TO  (COMMA?  (DISK TAPE URL)  EQUAL  (STRING id_))+)+)?  (WITH  (COMMA?  DIFFERENTIAL COMMA?  COPY_ONLY COMMA?  (COMPRESSION NO_COMPRESSION) COMMA?  DESCRIPTION  EQUAL  (STRING id_) COMMA?  NAME  EQUAL  backup_name COMMA?  CREDENTIAL COMMA?  FILE_SNAPSHOT COMMA?  (EXPIREDATE  EQUAL  (STRING id_) RETAINDAYS  EQUAL  (DECIMAL id_)) COMMA?  (NOINIT INIT) COMMA?  (NOSKIP SKIP_KEYWORD) COMMA?  (NOFORMAT FORMAT) COMMA?  MEDIADESCRIPTION  EQUAL  (STRING id_) COMMA?  MEDIANAME  EQUAL  (medianame = STRING) COMMA?  BLOCKSIZE  EQUAL  (DECIMAL id_) COMMA?  BUFFERCOUNT  EQUAL  (DECIMAL id_) COMMA?  MAXTRANSFER  EQUAL  (DECIMAL id_) COMMA?  (NO_CHECKSUM CHECKSUM) COMMA?  (STOP_ON_ERROR CONTINUE_AFTER_ERROR) COMMA?  RESTART COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? COMMA?  (REWIND NOREWIND) COMMA?  (LOAD NOUNLOAD) COMMA?  (NORECOVERY STANDBY  EQUAL  undo_file_name = STRING) COMMA?  NO_TRUNCATE COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  (AES_128 AES_192 AES_256 TRIPLE_DES_3KEY)  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name))*?)?
+    /// 	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
     /// </summary>
     public partial class AstBackupLog
     {
@@ -4811,9 +5794,89 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// backup_certificate
-    /// 	 : BACKUP  CERTIFICATE  certificate_name  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
+    /// 	 : BACKUP  CERTIFICATE  certificate_name  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING | COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING | COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
     /// </summary>
     public partial class AstBackupCertificate
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// disk_tape_url
+    /// 	 : DISK
+    /// 	 | TAPE
+    /// 	 | URL
+    /// </summary>
+    public partial class AstDiskTapeUrl
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// backup_settings
+    /// 	 : WITH  (COMMA?  DIFFERENTIAL | COMMA?  COPY_ONLY | COMMA?  compression | COMMA?  DESCRIPTION  EQUAL  string_id | COMMA?  NAME  EQUAL  backup_name | COMMA?  CREDENTIAL | COMMA?  FILE_SNAPSHOT | COMMA?  (EXPIREDATE  EQUAL  string_id | RETAINDAYS  EQUAL  decimal_id) | COMMA?  init_no_init | COMMA?  no_skip | COMMA?  format_noformat | COMMA?  MEDIADESCRIPTION  EQUAL  string_id | COMMA?  MEDIANAME  EQUAL  (medianame = STRING) | COMMA?  BLOCKSIZE  EQUAL  decimal_id | COMMA?  BUFFERCOUNT  EQUAL  decimal_id | COMMA?  MAXTRANSFER  EQUAL  decimal_id | COMMA?  (NO_CHECKSUM | CHECKSUM) | COMMA?  (STOP_ON_ERROR | CONTINUE_AFTER_ERROR) | COMMA?  RESTART | COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? | COMMA?  rewind | COMMA?  load_moun_load | COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  algorithm_short  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_name | SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_name)  RR_BRACKET)*
+    /// </summary>
+    public partial class AstBackupSettings
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// file_file_group
+    /// 	 : FILE
+    /// 	 | FILEGROUP
+    /// </summary>
+    public partial class AstFileFileGroup
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// load_moun_load
+    /// 	 : LOAD
+    /// 	 | NOUNLOAD
+    /// </summary>
+    public partial class AstLoadMounLoad
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// rewind
+    /// 	 : REWIND
+    /// 	 | NOREWIND
+    /// </summary>
+    public partial class AstRewind
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// algorithm_short
+    /// 	 : AES_128
+    /// 	 | AES_192
+    /// 	 | AES_256
+    /// 	 | TRIPLE_DES_3KEY
+    /// </summary>
+    public partial class AstAlgorithmShort
     {
         
         public override void ToString(Writer wrt)
@@ -4847,7 +5910,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_statement
-    /// 	 : KILL  (kill_process kill_query_notification kill_stats_job)
+    /// 	 : KILL  (kill_process | kill_query_notification | kill_stats_job)
     /// </summary>
     public partial class AstKillStatement
     {
@@ -4859,7 +5922,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_process
-    /// 	 : (session_id = (DECIMAL STRING) UOW)  (WITH  STATUSONLY)?
+    /// 	 : (session_id = decimal_string | UOW)  (WITH  STATUSONLY)?
     /// </summary>
     public partial class AstKillProcess
     {
@@ -4871,7 +5934,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// kill_query_notification
-    /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  (ALL subscription_id = DECIMAL)
+    /// 	 : QUERY  NOTIFICATION  SUBSCRIPTION  (ALL | subscription_id = DECIMAL)
     /// </summary>
     public partial class AstKillQueryNotification
     {
@@ -4919,8 +5982,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_body
-    /// 	 : (return_status = LOCAL_ID  EQUAL)?  (func_proc_name_server_database_schema execute_var_string)  execute_statement_arg?
-    /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  (AS?  (LOGIN USER)  EQUAL  STRING)?  (AT_KEYWORD  linked_server)?
+    /// 	 : (return_status = LOCAL_ID  EQUAL)?  (func_proc_name_server_database_schema | execute_var_string)  execute_statement_arg?
+    /// 	 | LR_BRACKET  execute_var_strings  RR_BRACKET  (AS?  (LOGIN | USER)  EQUAL  STRING)?  (AT_KEYWORD  linked_server)?
     /// </summary>
     public partial class AstExecuteBody
     {
@@ -4932,7 +5995,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_var_strings
-    /// 	 : execute_var_string  (COMMA  execute_var_string)*?
+    /// 	 : execute_var_string  (COMMA  execute_var_string)*
     /// </summary>
     public partial class AstExecuteVarStrings
     {
@@ -4944,7 +6007,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg
-    /// 	 : execute_statement_arg_unnamed  (COMMA  execute_statement_arg)*?
+    /// 	 : execute_statement_arg_unnamed  (COMMA  execute_statement_arg)*
     /// 	 | execute_statement_arg_nameds
     /// </summary>
     public partial class AstExecuteStatementArg
@@ -4957,7 +6020,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_arg_nameds
-    /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*?
+    /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*
     /// </summary>
     public partial class AstExecuteStatementArgNameds
     {
@@ -4969,7 +6032,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_statement_args
-    /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*?
+    /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*
     /// </summary>
     public partial class AstExecuteStatementArgs
     {
@@ -5005,7 +6068,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_parameter
-    /// 	 : (constant LOCAL_ID  (OUTPUT OUT)? id_ DEFAULT NULL_)
+    /// 	 : (constant | LOCAL_ID  (OUTPUT | OUT)? | id_ | DEFAULT | NULL_)
     /// </summary>
     public partial class AstExecuteParameter
     {
@@ -5017,7 +6080,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_var_string
-    /// 	 : LOCAL_ID  (OUTPUT OUT)?  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?
+    /// 	 : LOCAL_ID  (OUTPUT | OUT)?  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?
     /// 	 | STRING  (PLUS  LOCAL_ID  (PLUS  execute_var_string)?)?
     /// </summary>
     public partial class AstExecuteVarString
@@ -5031,7 +6094,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// security_statement
     /// 	 : execute_clause  SEMI?
-    /// 	 | GRANT  (ALL  PRIVILEGES? grant_permission  (LR_BRACKET  column_name_list  RR_BRACKET)?)  (ON  (class_type_for_grant  DOUBLE_COLON)?  on_id = full_table_name)?  TO  to_principal_rincipal_ids  (WITH  GRANT  OPTION)?  (AS  as_principal = principal_id)?  SEMI?
+    /// 	 | GRANT  (ALL  PRIVILEGES? | grant_permission  (LR_BRACKET  column_name_list  RR_BRACKET)?)  (ON  (class_type_for_grant  DOUBLE_COLON)?  on_id = full_table_name)?  TO  to_principal_rincipal_ids  (WITH  GRANT  OPTION)?  (AS  as_principal = principal_id)?  SEMI?
     /// 	 | REVERT  (LR_BRACKET  WITH  COOKIE  EQUAL  LOCAL_ID  RR_BRACKET)?  SEMI?
     /// 	 | open_key
     /// 	 | close_key
@@ -5048,7 +6111,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// to_principal_rincipal_ids
-    /// 	 : to_principal += principal_id  (COMMA  to_principal += principal_id)*?
+    /// 	 : to_principal += principal_id  (COMMA  to_principal += principal_id)*
     /// </summary>
     public partial class AstToPrincipalRincipalIds
     {
@@ -5074,7 +6137,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_certificate
-    /// 	 : CREATE  CERTIFICATE  certificate_name  (AUTHORIZATION  user_name)?  (FROM  existing_keys generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
+    /// 	 : CREATE  CERTIFICATE  certificate_name  (AUTHORIZATION  user_name)?  (FROM  existing_keys | generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
     /// </summary>
     public partial class AstCreateCertificate
     {
@@ -5099,7 +6162,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// private_key_options
-    /// 	 : (FILE BINARY)  EQUAL  path = STRING  (COMMA  (DECRYPTION ENCRYPTION)  BY  PASSWORD  EQUAL  password = STRING)?
+    /// 	 : (FILE | BINARY)  EQUAL  path = STRING  (COMMA  (DECRYPTION | ENCRYPTION)  BY  PASSWORD  EQUAL  password = STRING)?
     /// </summary>
     public partial class AstPrivateKeyOptions
     {
@@ -5111,7 +6174,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// generate_new_keys
-    /// 	 : (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?  WITH  SUBJECT  EQUAL  certificate_subject_name = STRING  (COMMA  date_options)*?
+    /// 	 : (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?  WITH  SUBJECT  EQUAL  certificate_subject_name = STRING  (COMMA  date_options)*
     /// </summary>
     public partial class AstGenerateNewKeys
     {
@@ -5123,7 +6186,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// date_options
-    /// 	 : (START_DATE EXPIRY_DATE)  EQUAL  STRING
+    /// 	 : (START_DATE | EXPIRY_DATE)  EQUAL  STRING
     /// </summary>
     public partial class AstDateOptions
     {
@@ -5163,7 +6226,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// create_key
     /// 	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
-    /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  (AUTHORIZATION  user_name)?  (FROM  PROVIDER  provider_name)?  WITH  ((key_options ENCRYPTION  BY  encryption_mechanism)  COMMA?)+
+    /// 	 | CREATE  SYMMETRIC  KEY  symmetric_key_name  (AUTHORIZATION  user_name)?  (FROM  PROVIDER  provider_name)?  WITH  ((key_options | ENCRYPTION  BY  encryption_mechanism)  COMMA?)+
     /// </summary>
     public partial class AstCreateKey
     {
@@ -5179,7 +6242,7 @@ namespace Bb.Asts.TSql
     /// 	 | ALGORITHM  EQUAL  algorithm
     /// 	 | IDENTITY_VALUE  EQUAL  identity_phrase = STRING
     /// 	 | PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = STRING
-    /// 	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW OPEN_EXISTING)
+    /// 	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)
     /// </summary>
     public partial class AstKeyOptions
     {
@@ -5241,15 +6304,39 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// grant_permission_alter
+    /// 	 : ALTER  (ANY  (APPLICATION  ROLE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | COLUMN  (ENCRYPTION  KEY | MASTER  KEY) | CONNECTION | CONTRACT | CREDENTIAL | DATABASE  (AUDIT | DDL  TRIGGER | EVENT  (NOTIFICATION | SESSION) | SCOPED  CONFIGURATION)? | DATASPACE | ENDPOINT | EVENT  (NOTIFICATION | SESSION) | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY) | FULLTEXT  CATALOG | LINKED  SERVER | LOGIN | MASK | MESSAGE  TYPE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | SCHEMA | SECURITY  POLICY | SERVER  (AUDIT | ROLE) | SERVICE | SYMMETRIC  KEY | USER) | RESOURCES | SERVER  STATE | SETTINGS | TRACE)?
+    /// </summary>
+    public partial class AstGrantPermissionAlter
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// grant_permission_create
+    /// 	 : CREATE  (AGGREGATE | ANY  DATABASE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | CONTRACT | DATABASE  (DDL  EVENT  NOTIFICATION)? | DDL  EVENT  NOTIFICATION | DEFAULT | ENDPOINT | EXTERNAL  LIBRARY | FULLTEXT  CATALOG | FUNCTION | MESSAGE  TYPE | PROCEDURE | QUEUE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | RULE | SCHEMA | SEQUENCE | SERVER  ROLE | SERVICE | SYMMETRIC  KEY | SYNONYM | TABLE | TRACE  EVENT  NOTIFICATION | TYPE | VIEW | XML  SCHEMA  COLLECTION)
+    /// </summary>
+    public partial class AstGrantPermissionCreate
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// grant_permission
-    /// 	 : ADMINISTER  (BULK  OPERATIONS DATABASE  BULK  OPERATIONS)
-    /// 	 | ALTER  (ANY  (APPLICATION  ROLE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE COLUMN  (ENCRYPTION  KEY MASTER  KEY) CONNECTION CONTRACT CREDENTIAL DATABASE  (AUDIT DDL  TRIGGER EVENT  (NOTIFICATION SESSION) SCOPED  CONFIGURATION)? DATASPACE ENDPOINT EVENT  (NOTIFICATION SESSION) EXTERNAL  (DATA  SOURCE FILE  FORMAT LIBRARY) FULLTEXT  CATALOG LINKED  SERVER LOGIN MASK MESSAGE  TYPE REMOTE  SERVICE  BINDING ROLE ROUTE SCHEMA SECURITY  POLICY SERVER  (AUDIT ROLE) SERVICE SYMMETRIC  KEY USER) RESOURCES SERVER  STATE SETTINGS TRACE)?
+    /// 	 : ADMINISTER  (BULK  OPERATIONS | DATABASE  BULK  OPERATIONS)
+    /// 	 | grant_permission_alter
     /// 	 | AUTHENTICATE  SERVER?
-    /// 	 | BACKUP  (DATABASE LOG)
+    /// 	 | BACKUP  (DATABASE | LOG)
     /// 	 | CHECKPOINT
-    /// 	 | CONNECT  (ANY  DATABASE REPLICATION SQL)?
+    /// 	 | CONNECT  (ANY  DATABASE | REPLICATION | SQL)?
     /// 	 | CONTROL  SERVER?
-    /// 	 | CREATE  (AGGREGATE ANY  DATABASE ASSEMBLY ASYMMETRIC  KEY AVAILABILITY  GROUP CERTIFICATE CONTRACT DATABASE  (DDL  EVENT  NOTIFICATION)? DDL  EVENT  NOTIFICATION DEFAULT ENDPOINT EXTERNAL  LIBRARY FULLTEXT  CATALOG FUNCTION MESSAGE  TYPE PROCEDURE QUEUE REMOTE  SERVICE  BINDING ROLE ROUTE RULE SCHEMA SEQUENCE SERVER  ROLE SERVICE SYMMETRIC  KEY SYNONYM TABLE TRACE  EVENT  NOTIFICATION TYPE VIEW XML  SCHEMA  COLLECTION)
+    /// 	 | grant_permission_create
     /// 	 | DELETE
     /// 	 | EXECUTE  (ANY  EXTERNAL  SCRIPT)?
     /// 	 | EXTERNAL  ACCESS  ASSEMBLY
@@ -5267,7 +6354,7 @@ namespace Bb.Asts.TSql
     /// 	 | UNMASK
     /// 	 | UNSAFE  ASSEMBLY
     /// 	 | UPDATE
-    /// 	 | VIEW  (ANY  (DATABASE DEFINITION COLUMN  (ENCRYPTION MASTER)  KEY  DEFINITION) CHANGE  TRACKING DATABASE  STATE DEFINITION SERVER  STATE)
+    /// 	 | VIEW  (ANY  (DATABASE | DEFINITION | COLUMN  (ENCRYPTION | MASTER)  KEY  DEFINITION) | CHANGE  TRACKING | DATABASE  STATE | DEFINITION | SERVER  STATE)
     /// </summary>
     public partial class AstGrantPermission
     {
@@ -5281,7 +6368,7 @@ namespace Bb.Asts.TSql
     /// set_statement
     /// 	 : SET  LOCAL_ID  (DOT  member_name = id_)?  EQUAL  expression  SEMI?
     /// 	 | SET  LOCAL_ID  assignment_operator  expression  SEMI?
-    /// 	 | SET  LOCAL_ID  EQUAL  CURSOR  declare_set_cursor_common  (FOR  (READ  ONLY UPDATE  (OF  column_name_list)?))?  SEMI?
+    /// 	 | SET  LOCAL_ID  EQUAL  CURSOR  declare_set_cursor_common  (FOR  (READ  ONLY | UPDATE  (OF  column_name_list)?))?  SEMI?
     /// 	 | set_special
     /// </summary>
     public partial class AstSetStatement
@@ -5294,15 +6381,15 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// transaction_statement
-    /// 	 : BEGIN  DISTRIBUTED  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
-    /// 	 | BEGIN  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  MARK  STRING)?)?  SEMI?
-    /// 	 | COMMIT  (TRAN TRANSACTION)  ((id_ LOCAL_ID)  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  (OFF ON)  RR_BRACKET)?)?  SEMI?
+    /// 	 : BEGIN  DISTRIBUTED  (TRAN | TRANSACTION)  (id_ | LOCAL_ID)?  SEMI?
+    /// 	 | BEGIN  (TRAN | TRANSACTION)  ((id_ | LOCAL_ID)  (WITH  MARK  STRING)?)?  SEMI?
+    /// 	 | COMMIT  (TRAN | TRANSACTION)  ((id_ | LOCAL_ID)  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  (OFF | ON)  RR_BRACKET)?)?  SEMI?
     /// 	 | COMMIT  WORK?  SEMI?
     /// 	 | COMMIT  id_
     /// 	 | ROLLBACK  id_
-    /// 	 | ROLLBACK  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+    /// 	 | ROLLBACK  (TRAN | TRANSACTION)  (id_ | LOCAL_ID)?  SEMI?
     /// 	 | ROLLBACK  WORK?  SEMI?
-    /// 	 | SAVE  (TRAN TRANSACTION)  (id_ LOCAL_ID)?  SEMI?
+    /// 	 | SAVE  (TRAN | TRANSACTION)  (id_ | LOCAL_ID)?  SEMI?
     /// </summary>
     public partial class AstTransactionStatement
     {
@@ -5386,7 +6473,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// dbcc_special
-    /// 	 : DBCC  SHRINKLOG  (LR_BRACKET  SIZE  EQUAL  (constant_expression id_ DEFAULT)  RR_BRACKET)?  SEMI?
+    /// 	 : DBCC  SHRINKLOG  (LR_BRACKET  SIZE  EQUAL  (constant_expression | id_ | DEFAULT)  RR_BRACKET)?  SEMI?
     /// </summary>
     public partial class AstDbccSpecial
     {
@@ -5435,7 +6522,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// execute_clause
-    /// 	 : EXECUTE  AS  clause = (CALLER SELF OWNER STRING)
+    /// 	 : EXECUTE  AS  clause = (CALLER | SELF | OWNER | STRING)
     /// </summary>
     public partial class AstExecuteClause
     {
@@ -5459,7 +6546,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_type_definition
-    /// 	 : TABLE  LR_BRACKET  column_def_table_constraints  (COMMA?  table_type_indices)*?  RR_BRACKET
+    /// 	 : TABLE  LR_BRACKET  column_def_table_constraints  (COMMA?  table_type_indices)*  RR_BRACKET
     /// </summary>
     public partial class AstTableTypeDefinition
     {
@@ -5471,7 +6558,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_type_indices
-    /// 	 : (((PRIMARY  KEY INDEX  id_)  (CLUSTERED NONCLUSTERED)?) UNIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+    /// 	 : (((PRIMARY  KEY | INDEX  id_)  (CLUSTERED | NONCLUSTERED)?) | UNIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET
     /// 	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
     /// </summary>
     public partial class AstTableTypeIndices
@@ -5484,7 +6571,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_type_definition
-    /// 	 : XML  LR_BRACKET  (CONTENT DOCUMENT)?  xml_schema_collection  RR_BRACKET
+    /// 	 : XML  LR_BRACKET  (CONTENT | DOCUMENT)?  xml_schema_collection  RR_BRACKET
     /// </summary>
     public partial class AstXmlTypeDefinition
     {
@@ -5508,7 +6595,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_def_table_constraints
-    /// 	 : column_def_table_constraint  (COMMA?  column_def_table_constraint)*?
+    /// 	 : column_def_table_constraint  (COMMA?  column_def_table_constraint)*
     /// </summary>
     public partial class AstColumnDefTableConstraints
     {
@@ -5534,7 +6621,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_definition
-    /// 	 : column_name  (data_type AS  expression  PERSISTED?)  column_definition_element*?  column_index?
+    /// 	 : column_name  (data_type | AS  expression  PERSISTED?)  column_definition_element*  column_index?
     /// </summary>
     public partial class AstColumnDefinition
     {
@@ -5553,9 +6640,9 @@ namespace Bb.Asts.TSql
     /// 	 | (CONSTRAINT  constraint_name)?  DEFAULT  constant_expr = expression
     /// 	 | IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  increment = DECIMAL  RR_BRACKET)?
     /// 	 | NOT  FOR  REPLICATION
-    /// 	 | GENERATED  ALWAYS  AS  (ROW TRANSACTION_ID SEQUENCE_NUMBER)  (START END)  HIDDEN_KEYWORD?
+    /// 	 | GENERATED  ALWAYS  AS  (ROW | TRANSACTION_ID | SEQUENCE_NUMBER)  (START | END)  HIDDEN_KEYWORD?
     /// 	 | ROWGUIDCOL
-    /// 	 | ENCRYPTED  WITH  LR_BRACKET  COLUMN_ENCRYPTION_KEY  EQUAL  key_name = STRING  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = STRING  RR_BRACKET
+    /// 	 | ENCRYPTED  WITH  LR_BRACKET  COLUMN_ENCRYPTION_KEY  EQUAL  key_name = STRING  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC | RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = STRING  RR_BRACKET
     /// 	 | column_constraint
     /// </summary>
     public partial class AstColumnDefinitionElement
@@ -5568,7 +6655,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_modifier
-    /// 	 : id_  add_drop  (ROWGUIDCOL PERSISTED NOT  FOR  REPLICATION SPARSE HIDDEN_KEYWORD MASKED  (WITH  (FUNCTION  EQUAL  STRING LR_BRACKET  FUNCTION  EQUAL  STRING  RR_BRACKET))?)
+    /// 	 : id_  add_drop  (ROWGUIDCOL | PERSISTED | NOT  FOR  REPLICATION | SPARSE | HIDDEN_KEYWORD | MASKED  (WITH  (FUNCTION  EQUAL  STRING | LR_BRACKET  FUNCTION  EQUAL  STRING  RR_BRACKET))?)
     /// </summary>
     public partial class AstColumnModifier
     {
@@ -5580,7 +6667,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// materialized_column_definition
-    /// 	 : id_  (COMPUTE AS)  expression  (MATERIALIZED NOT  MATERIALIZED)?
+    /// 	 : id_  (COMPUTE | AS)  expression  (MATERIALIZED | NOT  MATERIALIZED)?
     /// </summary>
     public partial class AstMaterializedColumnDefinition
     {
@@ -5592,7 +6679,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_constraint
-    /// 	 : (CONSTRAINT  constraint_name)?  (null_notnull ((PRIMARY  KEY UNIQUE)  clustered?  primary_key_options) ((FOREIGN  KEY)?  foreign_key_options) check_constraint)
+    /// 	 : (CONSTRAINT  constraint_name)?  (null_notnull | ((PRIMARY  KEY | UNIQUE)  clustered?  primary_key_options) | ((FOREIGN  KEY)?  foreign_key_options) | check_constraint)
     /// </summary>
     public partial class AstColumnConstraint
     {
@@ -5604,7 +6691,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_index
-    /// 	 : INDEX  index_name?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_name NULL_DOUBLE_QUOTE))?
+    /// 	 : INDEX  index_name?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_name | NULL_DOUBLE_QUOTE))?
     /// </summary>
     public partial class AstColumnIndex
     {
@@ -5616,7 +6703,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_partition_or_filegroup
-    /// 	 : ON  ((partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET) file_group_name DEFAULT_DOUBLE_QUOTE)
+    /// 	 : ON  ((partition_scheme_name  LR_BRACKET  partition_column_name  RR_BRACKET) | file_group_name | DEFAULT_DOUBLE_QUOTE)
     /// </summary>
     public partial class AstOnPartitionOrFilegroup
     {
@@ -5628,7 +6715,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_constraint
-    /// 	 : (CONSTRAINT  constraint_name)?  (((PRIMARY  KEY UNIQUE)  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options) (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  foreign_key_options) (CONNECTION  LR_BRACKET  connection_node  (COMMA  connection_node)*?  RR_BRACKET) (DEFAULT  LR_BRACKET?  ((STRING PLUS function_call DECIMAL)+ NEXT  VALUE  FOR  full_table_name)  RR_BRACKET?  FOR  id_) check_constraint)
+    /// 	 : (CONSTRAINT  constraint_name)?  (((PRIMARY  KEY | UNIQUE)  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options) | (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  foreign_key_options) | (CONNECTION  LR_BRACKET  connection_node  (COMMA  connection_node)*  RR_BRACKET) | (DEFAULT  LR_BRACKET?  ((STRING | PLUS | function_call | DECIMAL)+ | NEXT  VALUE  FOR  full_table_name)  RR_BRACKET?  FOR  id_) | check_constraint)
     /// </summary>
     public partial class AstTableConstraint
     {
@@ -5688,7 +6775,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_delete
-    /// 	 : ON  DELETE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)
+    /// 	 : ON  DELETE  (NO  ACTION | CASCADE | SET  NULL_ | SET  DEFAULT)
     /// </summary>
     public partial class AstOnDelete
     {
@@ -5700,7 +6787,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// on_update
-    /// 	 : ON  UPDATE  (NO  ACTION CASCADE SET  NULL_ SET  DEFAULT)
+    /// 	 : ON  UPDATE  (NO  ACTION | CASCADE | SET  NULL_ | SET  DEFAULT)
     /// </summary>
     public partial class AstOnUpdate
     {
@@ -5712,7 +6799,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_table_index_options
-    /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*  RR_BRACKET
     /// </summary>
     public partial class AstAlterTableIndexOptions
     {
@@ -5733,10 +6820,10 @@ namespace Bb.Asts.TSql
     /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
     /// 	 | SORT_IN_TEMPDB  EQUAL  on_off
     /// 	 | MAXDOP  EQUAL  max_degree_of_parallelism = DECIMAL
-    /// 	 | DATA_COMPRESSION  EQUAL  (NONE ROW PAGE COLUMNSTORE COLUMNSTORE_ARCHIVE)  on_partitions?
+    /// 	 | DATA_COMPRESSION  EQUAL  (NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE)  on_partitions?
     /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
     /// 	 | distribution
-    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? OFF)
+    /// 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? | OFF)
     /// 	 | RESUMABLE  EQUAL  on_off
     /// 	 | MAX_DURATION  EQUAL  times = DECIMAL  MINUTES?
     /// </summary>
@@ -5750,7 +6837,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_cursor
-    /// 	 : DECLARE  cursor_name  (CURSOR  (declare_set_cursor_common  (FOR  UPDATE  (OF  column_name_list)?)?)? sensitive?  SCROLL?  CURSOR  FOR  select_statement_standalone  (FOR  (READ  ONLY UPDATE (OF  column_name_list)))?)  SEMI?
+    /// 	 : DECLARE  cursor_name  (CURSOR  (declare_set_cursor_common  (FOR  UPDATE  (OF  column_name_list)?)?)? | sensitive?  SCROLL?  CURSOR  FOR  select_statement_standalone  (FOR  (READ  ONLY | UPDATE | (OF  column_name_list)))?)  SEMI?
     /// </summary>
     public partial class AstDeclareCursor
     {
@@ -5775,7 +6862,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// declare_set_cursor_common
-    /// 	 : declare_set_cursor_common_partial*?  FOR  select_statement_standalone
+    /// 	 : declare_set_cursor_common_partial*  FOR  select_statement_standalone
     /// </summary>
     public partial class AstDeclareSetCursorCommon
     {
@@ -5788,9 +6875,9 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// declare_set_cursor_common_partial
     /// 	 : local_global
-    /// 	 | (FORWARD_ONLY SCROLL)
-    /// 	 | (STATIC KEYSET DYNAMIC FAST_FORWARD)
-    /// 	 | (READ_ONLY SCROLL_LOCKS OPTIMISTIC)
+    /// 	 | (FORWARD_ONLY | SCROLL)
+    /// 	 | (STATIC | KEYSET | DYNAMIC | FAST_FORWARD)
+    /// 	 | (READ_ONLY | SCROLL_LOCKS | OPTIMISTIC)
     /// 	 | TYPE_WARNING
     /// </summary>
     public partial class AstDeclareSetCursorCommonPartial
@@ -5803,7 +6890,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// fetch_cursor
-    /// 	 : FETCH  ((fetch_cursor_strategy absolute_relative  expression)?  FROM)?  GLOBAL?  cursor_name  (INTO  local_ids)?  SEMI?
+    /// 	 : FETCH  ((fetch_cursor_strategy | absolute_relative  expression)?  FROM)?  GLOBAL?  cursor_name  (INTO  local_ids)?  SEMI?
     /// </summary>
     public partial class AstFetchCursor
     {
@@ -5843,7 +6930,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// local_ids
-    /// 	 : LOCAL_ID  (COMMA  LOCAL_ID)*?
+    /// 	 : LOCAL_ID  (COMMA  LOCAL_ID)*
     /// </summary>
     public partial class AstLocalIds
     {
@@ -5855,13 +6942,13 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// set_special
-    /// 	 : SET  id_  (id_ constant_LOCAL_ID on_off)  SEMI?
-    /// 	 | SET  STATISTICS  (IO TIME XML PROFILE)  on_off  SEMI?
-    /// 	 | SET  ROWCOUNT  (LOCAL_ID DECIMAL)  SEMI?
+    /// 	 : SET  id_  (id_ | constant_LOCAL_ID | on_off)  SEMI?
+    /// 	 | SET  STATISTICS  (IO | TIME | XML | PROFILE)  on_off  SEMI?
+    /// 	 | SET  ROWCOUNT  (LOCAL_ID | DECIMAL)  SEMI?
     /// 	 | SET  TEXTSIZE  DECIMAL  SEMI?
-    /// 	 | SET  TRANSACTION  ISOLATION  LEVEL  (READ  UNCOMMITTED READ  COMMITTED REPEATABLE  READ SNAPSHOT SERIALIZABLE DECIMAL)  SEMI?
+    /// 	 | SET  TRANSACTION  ISOLATION  LEVEL  (READ  UNCOMMITTED | READ  COMMITTED | REPEATABLE  READ | SNAPSHOT | SERIALIZABLE | DECIMAL)  SEMI?
     /// 	 | SET  IDENTITY_INSERT  full_table_name  on_off  SEMI?
-    /// 	 | SET  special_list  (COMMA  special_list)*?  on_off
+    /// 	 | SET  special_list  (COMMA  special_list)*  on_off
     /// 	 | SET  modify_method
     /// </summary>
     public partial class AstSetSpecial
@@ -5923,15 +7010,15 @@ namespace Bb.Asts.TSql
     /// expression
     /// 	 : primitive_expression
     /// 	 | function_call
-    /// 	 | expression  DOT  (value_call query_call exist_call modify_call)
+    /// 	 | expression  DOT  (value_call | query_call | exist_call | modify_call)
     /// 	 | expression  DOT  hierarchyid_call
     /// 	 | expression  COLLATE  id_
     /// 	 | case_expression
     /// 	 | full_column_name
     /// 	 | bracket_expression
     /// 	 | unary_operator_expression
-    /// 	 | expression  op = (STAR DIVIDE MODULE)  expression
-    /// 	 | expression  op = (PLUS MINUS BIT_AND BIT_XOR BIT_OR DOUBLE_BAR)  expression
+    /// 	 | expression  op = (STAR | DIVIDE | MODULE)  expression
+    /// 	 | expression  op = (PLUS | MINUS | BIT_AND | BIT_XOR | BIT_OR | DOUBLE_BAR)  expression
     /// 	 | expression  time_zone
     /// 	 | over_clause
     /// 	 | DOLLAR_ACTION
@@ -5999,7 +7086,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// unary_operator_expression
     /// 	 : BIT_NOT  expression
-    /// 	 | op = (PLUS MINUS)  expression
+    /// 	 | op = (PLUS | MINUS)  expression
     /// </summary>
     public partial class AstUnaryOperatorExpression
     {
@@ -6040,7 +7127,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// with_expression
-    /// 	 : WITH  ctes += common_table_expression  (COMMA  ctes += common_table_expression)*?
+    /// 	 : WITH  ctes += common_table_expression  (COMMA  ctes += common_table_expression)*
     /// </summary>
     public partial class AstWithExpression
     {
@@ -6064,8 +7151,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem
-    /// 	 : LOCAL_ID  EQUAL  full_column_name  (EQUAL assignment_operator)  expression
-    /// 	 | (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  expression
+    /// 	 : LOCAL_ID  EQUAL  full_column_name  (EQUAL | assignment_operator)  expression
+    /// 	 | (full_column_name | LOCAL_ID)  (EQUAL | assignment_operator)  expression
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
     public partial class AstUpdateElem
@@ -6078,7 +7165,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// update_elem_merge
-    /// 	 : (full_column_name LOCAL_ID)  (EQUAL assignment_operator)  expression
+    /// 	 : (full_column_name | LOCAL_ID)  (EQUAL | assignment_operator)  expression
     /// 	 | udt_column_name  DOT  method_name  LR_BRACKET  expression_list  RR_BRACKET
     /// </summary>
     public partial class AstUpdateElemMerge
@@ -6091,7 +7178,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// search_condition
-    /// 	 : NOT*?  (predicate LR_BRACKET  search_condition  RR_BRACKET)
+    /// 	 : NOT*  (predicate | LR_BRACKET  search_condition  RR_BRACKET)
     /// 	 | search_condition  AND  search_condition
     /// 	 | search_condition  OR  search_condition
     /// </summary>
@@ -6109,10 +7196,10 @@ namespace Bb.Asts.TSql
     /// 	 | freetext_predicate
     /// 	 | expression  comparison_operator  expression
     /// 	 | expression  MULT_ASSIGN  expression
-    /// 	 | expression  comparison_operator  (ALL SOME ANY)  LR_BRACKET  subquery  RR_BRACKET
-    /// 	 | expression  NOT*?  BETWEEN  expression  AND  expression
-    /// 	 | expression  NOT*?  IN  LR_BRACKET  (subquery expression_list)  RR_BRACKET
-    /// 	 | expression  NOT*?  LIKE  expression  (ESCAPE  expression)?
+    /// 	 | expression  comparison_operator  (ALL | SOME | ANY)  LR_BRACKET  subquery  RR_BRACKET
+    /// 	 | expression  NOT*  BETWEEN  expression  AND  expression
+    /// 	 | expression  NOT*  IN  LR_BRACKET  (subquery | expression_list)  RR_BRACKET
+    /// 	 | expression  NOT*  LIKE  expression  (ESCAPE  expression)?
     /// 	 | expression  IS  null_notnull
     /// </summary>
     public partial class AstPredicate
@@ -6125,7 +7212,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_expression
-    /// 	 : (query_specification LR_BRACKET  query_expression  RR_BRACKET  (UNION  ALL?  query_expression)?)
+    /// 	 : (query_specification | LR_BRACKET  query_expression  RR_BRACKET  (UNION  ALL?  query_expression)?)
     /// 	 | query_specification  select_order_by_clause?  unions += sql_union
     /// </summary>
     public partial class AstQueryExpression
@@ -6138,7 +7225,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// sql_union
-    /// 	 : (UNION  ALL? EXCEPT INTERSECT)  (spec = query_specification (LR_BRACKET  op = query_expression  RR_BRACKET))
+    /// 	 : (UNION  ALL? | EXCEPT | INTERSECT)  (spec = query_specification | (LR_BRACKET  op = query_expression  RR_BRACKET))
     /// </summary>
     public partial class AstSqlUnion
     {
@@ -6150,7 +7237,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_specification
-    /// 	 : SELECT  allOrDistinct = (ALL DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_name)?  (FROM  from = table_sources)?  (WHERE  where = search_condition)?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
+    /// 	 : SELECT  allOrDistinct = (ALL | DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_name)?  (FROM  from = table_sources)?  (WHERE  where = search_condition)?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
     /// </summary>
     public partial class AstQuerySpecification
     {
@@ -6162,7 +7249,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// groupSet_list
-    /// 	 : groupSets += grouping_sets_item  (COMMA  groupSets += grouping_sets_item)*?
+    /// 	 : groupSets += grouping_sets_item  (COMMA  groupSets += grouping_sets_item)*
     /// </summary>
     public partial class AstGroupSetList
     {
@@ -6174,7 +7261,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// groupBys_list
-    /// 	 : groupBys += group_by_item  (COMMA  groupBys += group_by_item)*?
+    /// 	 : groupBys += group_by_item  (COMMA  groupBys += group_by_item)*
     /// </summary>
     public partial class AstGroupBysList
     {
@@ -6186,7 +7273,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// top_clause
-    /// 	 : TOP  (top_percent top_count)  (WITH  TIES)?
+    /// 	 : TOP  (top_percent | top_count)  (WITH  TIES)?
     /// </summary>
     public partial class AstTopClause
     {
@@ -6198,7 +7285,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// top_percent
-    /// 	 : percent_constant = (REAL FLOAT DECIMAL)  PERCENT
+    /// 	 : percent_constant = (REAL | FLOAT | DECIMAL)  PERCENT
     /// 	 | LR_BRACKET  topper_expression = expression  RR_BRACKET  PERCENT
     /// </summary>
     public partial class AstTopPercent
@@ -6224,7 +7311,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// order_by_clause
-    /// 	 : ORDER  BY  order_bys += order_by_expression  (COMMA  order_bys += order_by_expression)*?
+    /// 	 : ORDER  BY  order_bys += order_by_expression  (COMMA  order_bys += order_by_expression)*
     /// </summary>
     public partial class AstOrderByClause
     {
@@ -6236,7 +7323,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_order_by_clause
-    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW ROWS)  (FETCH  fetch_offset = (FIRST NEXT)  fetch_exp = expression  fetch_rows = (ROW ROWS)  ONLY)?)?
+    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW | ROWS)  (FETCH  fetch_offset = (FIRST | NEXT)  fetch_exp = expression  fetch_rows = (ROW | ROWS)  ONLY)?)?
     /// </summary>
     public partial class AstSelectOrderByClause
     {
@@ -6249,10 +7336,10 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// for_clause
     /// 	 : FOR  BROWSE
-    /// 	 | FOR  XML  (RAW  (LR_BRACKET  STRING  RR_BRACKET)? AUTO)  xml_common_directives*?  (COMMA  (XMLDATA XMLSCHEMA  (LR_BRACKET  STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
-    /// 	 | FOR  XML  EXPLICIT  xml_common_directives*?  (COMMA  XMLDATA)?
-    /// 	 | FOR  XML  PATH  (LR_BRACKET  STRING  RR_BRACKET)?  xml_common_directives*?  (COMMA  ELEMENTS  (XSINIL ABSENT)?)?
-    /// 	 | FOR  JSON  (AUTO PATH)  (COMMA  (ROOT  (LR_BRACKET  STRING  RR_BRACKET) INCLUDE_NULL_VALUES WITHOUT_ARRAY_WRAPPER))*?
+    /// 	 | FOR  XML  (RAW  (LR_BRACKET  STRING  RR_BRACKET)? | AUTO)  xml_common_directives*  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
+    /// 	 | FOR  XML  EXPLICIT  xml_common_directives*  (COMMA  XMLDATA)?
+    /// 	 | FOR  XML  PATH  (LR_BRACKET  STRING  RR_BRACKET)?  xml_common_directives*  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
+    /// 	 | FOR  JSON  (AUTO | PATH)  (COMMA  (ROOT  (LR_BRACKET  STRING  RR_BRACKET) | INCLUDE_NULL_VALUES | WITHOUT_ARRAY_WRAPPER))*
     /// </summary>
     public partial class AstForClause
     {
@@ -6264,7 +7351,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_common_directives
-    /// 	 : COMMA  (BINARY_KEYWORD  BASE64 TYPE ROOT  (LR_BRACKET  STRING  RR_BRACKET)?)
+    /// 	 : COMMA  (BINARY_KEYWORD  BASE64 | TYPE | ROOT  (LR_BRACKET  STRING  RR_BRACKET)?)
     /// </summary>
     public partial class AstXmlCommonDirectives
     {
@@ -6276,7 +7363,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// order_by_expression
-    /// 	 : order_by = expression  (ascending = ASC descending = DESC)?
+    /// 	 : order_by = expression  (ascending = ASC | descending = DESC)?
     /// </summary>
     public partial class AstOrderByExpression
     {
@@ -6301,7 +7388,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// grouping_sets_list
-    /// 	 : groupSetItems += group_by_item  (COMMA  groupSetItems += group_by_item)*?
+    /// 	 : groupSetItems += group_by_item  (COMMA  groupSetItems += group_by_item)*
     /// </summary>
     public partial class AstGroupingSetsList
     {
@@ -6313,7 +7400,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// option_clause
-    /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*?  RR_BRACKET
+    /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*  RR_BRACKET
     /// </summary>
     public partial class AstOptionClause
     {
@@ -6326,9 +7413,9 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// option
     /// 	 : FAST  number_rows = DECIMAL
-    /// 	 | (HASH ORDER)  GROUP
-    /// 	 | (MERGE HASH CONCAT)  UNION
-    /// 	 | (LOOP MERGE HASH)  JOIN
+    /// 	 | (HASH | ORDER)  GROUP
+    /// 	 | (MERGE | HASH | CONCAT)  UNION
+    /// 	 | (LOOP | MERGE | HASH)  JOIN
     /// 	 | EXPAND  VIEWS
     /// 	 | FORCE  ORDER
     /// 	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
@@ -6338,7 +7425,7 @@ namespace Bb.Asts.TSql
     /// 	 | MAXRECURSION  number_recursion = DECIMAL
     /// 	 | OPTIMIZE  FOR  LR_BRACKET  optimize_for_args  RR_BRACKET
     /// 	 | OPTIMIZE  FOR  UNKNOWN
-    /// 	 | PARAMETERIZATION  (SIMPLE FORCED)
+    /// 	 | PARAMETERIZATION  (SIMPLE | FORCED)
     /// 	 | RECOMPILE
     /// 	 | ROBUST  PLAN
     /// 	 | USE  PLAN  STRING
@@ -6353,7 +7440,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// optimize_for_args
-    /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*?
+    /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*
     /// </summary>
     public partial class AstOptimizeForArgs
     {
@@ -6365,7 +7452,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// optimize_for_arg
-    /// 	 : LOCAL_ID  (UNKNOWN EQUAL  (constant NULL_))
+    /// 	 : LOCAL_ID  (UNKNOWN | EQUAL  (constant | NULL_))
     /// </summary>
     public partial class AstOptimizeForArg
     {
@@ -6377,7 +7464,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_list
-    /// 	 : selectElement += select_list_elem  (COMMA  selectElement += select_list_elem)*?
+    /// 	 : selectElement += select_list_elem  (COMMA  selectElement += select_list_elem)*
     /// </summary>
     public partial class AstSelectList
     {
@@ -6389,7 +7476,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// udt_method_arguments
-    /// 	 : LR_BRACKET  argument += execute_var_string  (COMMA  argument += execute_var_string)*?  RR_BRACKET
+    /// 	 : LR_BRACKET  argument += execute_var_string  (COMMA  argument += execute_var_string)*  RR_BRACKET
     /// </summary>
     public partial class AstUdtMethodArguments
     {
@@ -6425,7 +7512,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// updated_asterisk
-    /// 	 : (INSERTED DELETED)  DOT  STAR
+    /// 	 : (INSERTED | DELETED)  DOT  STAR
     /// </summary>
     public partial class AstUpdatedAsterisk
     {
@@ -6490,7 +7577,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expression_assign_elem
-    /// 	 : LOCAL_ID  (assignment_operator EQUAL)  expression
+    /// 	 : LOCAL_ID  (assignment_operator | EQUAL)  expression
     /// </summary>
     public partial class AstExpressionAssignElem
     {
@@ -6502,7 +7589,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_sources
-    /// 	 : source += table_source  (COMMA  source += table_source)*?
+    /// 	 : source += table_source  (COMMA  source += table_source)*
     /// </summary>
     public partial class AstTableSources
     {
@@ -6541,7 +7628,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// table_source_item
     /// 	 : complete_table_name  deprecated_table_hint  as_table_alias
-    /// 	 | complete_table_name  as_table_alias?  (with_table_hints deprecated_table_hint sybase_legacy_hints)?
+    /// 	 | complete_table_name  as_table_alias?  (with_table_hints | deprecated_table_hint | sybase_legacy_hints)?
     /// 	 | rowset_function  as_table_alias?
     /// 	 | LR_BRACKET  derived_table  RR_BRACKET  (as_table_alias  column_alias_list?)?
     /// 	 | change_table  as_table_alias?
@@ -6599,7 +7686,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// json_declaration
-    /// 	 : json_col += json_column_declaration  (COMMA  json_col += json_column_declaration)*?
+    /// 	 : json_col += json_column_declaration  (COMMA  json_col += json_column_declaration)*
     /// </summary>
     public partial class AstJsonDeclaration
     {
@@ -6623,7 +7710,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// schema_declaration
-    /// 	 : xml_col += column_declaration  (COMMA  xml_col += column_declaration)*?
+    /// 	 : xml_col += column_declaration  (COMMA  xml_col += column_declaration)*
     /// </summary>
     public partial class AstSchemaDeclaration
     {
@@ -6647,7 +7734,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// change_table_changes
-    /// 	 : CHANGETABLE  LR_BRACKET  CHANGES  changetable = full_table_name  COMMA  changesid = (NULL_ DECIMAL LOCAL_ID)  RR_BRACKET
+    /// 	 : CHANGETABLE  LR_BRACKET  CHANGES  changetable = full_table_name  COMMA  (NULL_ | decimal_local_id)  RR_BRACKET
     /// </summary>
     public partial class AstChangeTableChanges
     {
@@ -6671,7 +7758,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// join_on
-    /// 	 : (inner = INNER join_type = (LEFT RIGHT FULL)  outer = OUTER)  (join_hint = (LOOP HASH MERGE REMOTE))?  JOIN  source = table_source  ON  cond = search_condition
+    /// 	 : (inner = INNER | join_type = (LEFT | RIGHT | FULL)  outer = OUTER)  (join_hint = (LOOP | HASH | MERGE | REMOTE))?  JOIN  source = table_source  ON  cond = search_condition
     /// </summary>
     public partial class AstJoinOn
     {
@@ -6695,7 +7782,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// apply_
-    /// 	 : apply_style = (CROSS OUTER)  APPLY  source = table_source
+    /// 	 : apply_style = (CROSS | OUTER)  APPLY  source = table_source
     /// </summary>
     public partial class AstApply
     {
@@ -6755,7 +7842,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name_list
-    /// 	 : column += full_column_name  (COMMA  column += full_column_name)*?
+    /// 	 : column += full_column_name  (COMMA  column += full_column_name)*
     /// </summary>
     public partial class AstFullColumnNameList
     {
@@ -6768,7 +7855,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// rowset_function
     /// 	 : (OPENROWSET  LR_BRACKET  providerName = STRING  COMMA  connectionString = STRING  COMMA  sql = STRING  RR_BRACKET)
-    /// 	 | (OPENROWSET  LR_BRACKET  BULK  data_file = STRING  COMMA  (bulk_options id_)  RR_BRACKET)
+    /// 	 | (OPENROWSET  LR_BRACKET  BULK  data_file = STRING  COMMA  (bulk_options | id_)  RR_BRACKET)
     /// </summary>
     public partial class AstRowsetFunction
     {
@@ -6780,7 +7867,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// bulk_options
-    /// 	 : bulk_option  (COMMA  bulk_option)*?
+    /// 	 : bulk_option  (COMMA  bulk_option)*
     /// </summary>
     public partial class AstBulkOptions
     {
@@ -6792,7 +7879,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// bulk_option
-    /// 	 : id_  EQUAL  bulk_option_value = (DECIMAL STRING)
+    /// 	 : id_  EQUAL  bulk_option_value = decimal_string
     /// </summary>
     public partial class AstBulkOption
     {
@@ -6805,7 +7892,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// derived_table
     /// 	 : subquery
-    /// 	 | LR_BRACKET  subquery  (UNION  ALL  subquery)*?  RR_BRACKET
+    /// 	 | LR_BRACKET  subquery  (UNION  ALL  subquery)*  RR_BRACKET
     /// 	 | table_value_constructor
     /// 	 | LR_BRACKET  table_value_constructor  RR_BRACKET
     /// </summary>
@@ -6850,8 +7937,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_function
-    /// 	 : (CONTAINSTABLE FREETEXTTABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  (COMMA  expression)?  RR_BRACKET
-    /// 	 | (SEMANTICSIMILARITYTABLE SEMANTICKEYPHRASETABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
+    /// 	 : (CONTAINSTABLE | FREETEXTTABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  (COMMA  expression)?  RR_BRACKET
+    /// 	 | (SEMANTICSIMILARITYTABLE | SEMANTICKEYPHRASETABLE)  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression  RR_BRACKET
     /// 	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  full_table_name  COMMA  full_column_name  COMMA  expression  COMMA  full_column_name  COMMA  expression  RR_BRACKET
     /// </summary>
     public partial class AstFreetextFunction
@@ -6864,7 +7951,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_predicate
-    /// 	 : CONTAINS  LR_BRACKET  (full_column_name full_column_names STAR PROPERTY  LR_BRACKET  full_column_name  COMMA  expression  RR_BRACKET)  COMMA  expression  RR_BRACKET
+    /// 	 : CONTAINS  LR_BRACKET  (full_column_name | full_column_names | STAR | PROPERTY  LR_BRACKET  full_column_name  COMMA  expression  RR_BRACKET)  COMMA  expression  RR_BRACKET
     /// 	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET
     /// </summary>
     public partial class AstFreetextPredicate
@@ -6889,7 +7976,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// freetext_table_andcolumn_names
-    /// 	 : full_table_name  COMMA  (full_column_name full_column_names STAR)
+    /// 	 : full_table_name  COMMA  (full_column_name | full_column_names | STAR)
     /// </summary>
     public partial class AstFreetextTableAndcolumnNames
     {
@@ -6901,7 +7988,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_names
-    /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*?  RR_BRACKET
+    /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*  RR_BRACKET
     /// </summary>
     public partial class AstFullColumnNames
     {
@@ -6956,8 +8043,8 @@ namespace Bb.Asts.TSql
     /// 	 | ASCIIASCII  LR_BRACKET  character_expression = expression  RR_BRACKET
     /// 	 | CHARCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
     /// 	 | CHARINDEXCHARINDEX  LR_BRACKET  expressionToFind = expression  COMMA  expressionToSearch = expression  (COMMA  start_location = expression)?  RR_BRACKET
-    /// 	 | CONCATCONCAT  LR_BRACKET  string_value_1 = expression  COMMA  string_value_2 = expression  (COMMA  string_value_n += expression)*?  RR_BRACKET
-    /// 	 | CONCAT_WSCONCAT_WS  LR_BRACKET  separator = expression  COMMA  argument_1 = expression  COMMA  argument_2 = expression  (COMMA  argument_n += expression)*?  RR_BRACKET
+    /// 	 | CONCATCONCAT  LR_BRACKET  string_value_1 = expression  COMMA  string_value_2 = expression  (COMMA  string_value_n += expression)*  RR_BRACKET
+    /// 	 | CONCAT_WSCONCAT_WS  LR_BRACKET  separator = expression  COMMA  argument_1 = expression  COMMA  argument_2 = expression  (COMMA  argument_n += expression)*  RR_BRACKET
     /// 	 | DIFFERENCEDIFFERENCE  LR_BRACKET  character_expression_1 = expression  COMMA  character_expression_2 = expression  RR_BRACKET
     /// 	 | FORMATFORMAT  LR_BRACKET  value = expression  COMMA  format = expression  (COMMA  culture = expression)?  RR_BRACKET
     /// 	 | LEFTLEFT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
@@ -6983,8 +8070,8 @@ namespace Bb.Asts.TSql
     /// 	 | TRIMTRIM  LR_BRACKET  (characters = expression  FROM)?  string_ = expression  RR_BRACKET
     /// 	 | UNICODEUNICODE  LR_BRACKET  ncharacter_expression = expression  RR_BRACKET
     /// 	 | UPPERUPPER  LR_BRACKET  character_expression = expression  RR_BRACKET
-    /// 	 | BINARY_CHECKSUMBINARY_CHECKSUM  LR_BRACKET  (star = STAR expressions)  RR_BRACKET
-    /// 	 | CHECKSUMCHECKSUM  LR_BRACKET  (star = STAR expressions)  RR_BRACKET
+    /// 	 | BINARY_CHECKSUMBINARY_CHECKSUM  LR_BRACKET  (star = STAR | expressions)  RR_BRACKET
+    /// 	 | CHECKSUMCHECKSUM  LR_BRACKET  (star = STAR | expressions)  RR_BRACKET
     /// 	 | COMPRESSCOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
     /// 	 | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_BRACKET  property = STRING  RR_BRACKET
     /// 	 | CONTEXT_INFOCONTEXT_INFO  LR_BRACKET  RR_BRACKET
@@ -6997,7 +8084,7 @@ namespace Bb.Asts.TSql
     /// 	 | ERROR_PROCEDUREERROR_PROCEDURE  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_SEVERITYERROR_SEVERITY  LR_BRACKET  RR_BRACKET
     /// 	 | ERROR_STATEERROR_STATE  LR_BRACKET  RR_BRACKET
-    /// 	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL msg_string = STRING msg_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET
+    /// 	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL | msg_string = STRING | msg_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET
     /// 	 | GET_FILESTREAM_TRANSACTION_CONTEXTGET_FILESTREAM_TRANSACTION_CONTEXT  LR_BRACKET  RR_BRACKET
     /// 	 | GETANSINULLGETANSINULL  LR_BRACKET  (database = STRING)?  RR_BRACKET
     /// 	 | HOST_IDHOST_ID  LR_BRACKET  RR_BRACKET
@@ -7043,7 +8130,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expressions
-    /// 	 : expression  (COMMA  expression)*?
+    /// 	 : expression  (COMMA  expression)*
     /// </summary>
     public partial class AstExpressions
     {
@@ -7055,7 +8142,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// value_method
-    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name eventdata = EVENTDATA  LR_BRACKET  RR_BRACKET query = query_method LR_BRACKET  subquery  RR_BRACKET)  DOT  call = value_call
+    /// 	 : (loc_id = LOCAL_ID | value_id = full_column_name | eventdata = EVENTDATA  LR_BRACKET  RR_BRACKET | query = query_method | LR_BRACKET  subquery  RR_BRACKET)  DOT  call = value_call
     /// </summary>
     public partial class AstValueMethod
     {
@@ -7079,7 +8166,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// query_method
-    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = query_call
+    /// 	 : (loc_id = LOCAL_ID | value_id = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  call = query_call
     /// </summary>
     public partial class AstQueryMethod
     {
@@ -7103,7 +8190,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// exist_method
-    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = exist_call
+    /// 	 : (loc_id = LOCAL_ID | value_id = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  call = exist_call
     /// </summary>
     public partial class AstExistMethod
     {
@@ -7127,7 +8214,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// modify_method
-    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  call = modify_call
+    /// 	 : (loc_id = LOCAL_ID | value_id = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  call = modify_call
     /// </summary>
     public partial class AstModifyMethod
     {
@@ -7168,7 +8255,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// hierarchyid_static_method
-    /// 	 : HIERARCHYID  DOUBLE_COLON  (GETROOT  LR_BRACKET  RR_BRACKET PARSE  LR_BRACKET  input = expression  RR_BRACKET)
+    /// 	 : HIERARCHYID  DOUBLE_COLON  (GETROOT  LR_BRACKET  RR_BRACKET | PARSE  LR_BRACKET  input = expression  RR_BRACKET)
     /// </summary>
     public partial class AstHierarchyidStaticMethod
     {
@@ -7180,7 +8267,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// nodes_method
-    /// 	 : (loc_id = LOCAL_ID value_id = full_column_name LR_BRACKET  subquery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = STRING  RR_BRACKET
+    /// 	 : (loc_id = LOCAL_ID | value_id = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = STRING  RR_BRACKET
     /// </summary>
     public partial class AstNodesMethod
     {
@@ -7252,7 +8339,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// with_table_hints
-    /// 	 : WITH  LR_BRACKET  hint += table_hint  (COMMA?  hint += table_hint)*?  RR_BRACKET
+    /// 	 : WITH  LR_BRACKET  hint += table_hint  (COMMA?  hint += table_hint)*  RR_BRACKET
     /// </summary>
     public partial class AstWithTableHints
     {
@@ -7303,7 +8390,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// index_values
-    /// 	 : index_value  (COMMA  index_value)*?
+    /// 	 : index_value  (COMMA  index_value)*
     /// </summary>
     public partial class AstIndexValues
     {
@@ -7316,7 +8403,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// table_hint
     /// 	 : NOEXPAND
-    /// 	 | INDEX  (LR_BRACKET  index_values  RR_BRACKET EQUAL  LR_BRACKET  index_value  RR_BRACKET EQUAL  index_value)
+    /// 	 | INDEX  (LR_BRACKET  index_values  RR_BRACKET | EQUAL  LR_BRACKET  index_value  RR_BRACKET | EQUAL  index_value)
     /// 	 | FORCESEEK  (LR_BRACKET  index_value  LR_BRACKET  column_name_list  RR_BRACKET  RR_BRACKET)?
     /// 	 | FORCESCAN
     /// 	 | HOLDLOCK
@@ -7364,7 +8451,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_alias_list
-    /// 	 : LR_BRACKET  alias += column_alias  (COMMA  alias += column_alias)*?  RR_BRACKET
+    /// 	 : LR_BRACKET  alias += column_alias  (COMMA  alias += column_alias)*  RR_BRACKET
     /// </summary>
     public partial class AstColumnAliasList
     {
@@ -7389,7 +8476,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// table_value_constructor
-    /// 	 : VALUES  LR_BRACKET  exps += expression_list  RR_BRACKET  (COMMA  LR_BRACKET  exps += expression_list  RR_BRACKET)*?
+    /// 	 : VALUES  LR_BRACKET  exps += expression_list  RR_BRACKET  (COMMA  LR_BRACKET  exps += expression_list  RR_BRACKET)*
     /// </summary>
     public partial class AstTableValueConstructor
     {
@@ -7401,7 +8488,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// expression_list
-    /// 	 : exp += expression  (COMMA  exp += expression)*?
+    /// 	 : exp += expression  (COMMA  exp += expression)*
     /// </summary>
     public partial class AstExpressionList
     {
@@ -7413,7 +8500,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// ranking_windowed_function
-    /// 	 : (RANK DENSE_RANK ROW_NUMBER)  LR_BRACKET  RR_BRACKET  over_clause
+    /// 	 : (RANK | DENSE_RANK | ROW_NUMBER)  LR_BRACKET  RR_BRACKET  over_clause
     /// 	 | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause
     /// </summary>
     public partial class AstRankingWindowedFunction
@@ -7426,8 +8513,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// aggregate_windowed_function
-    /// 	 : agg_func = (AVG MAX MIN SUM STDEV STDEVP VAR VARP)  LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
-    /// 	 | cnt = (COUNT COUNT_BIG)  LR_BRACKET  (STAR all_distinct_expression)  RR_BRACKET  over_clause?
+    /// 	 : agg_func = (AVG | MAX | MIN | SUM | STDEV | STDEVP | VAR | VARP)  LR_BRACKET  all_distinct_expression  RR_BRACKET  over_clause?
+    /// 	 | cnt = (COUNT | COUNT_BIG)  LR_BRACKET  (STAR | all_distinct_expression)  RR_BRACKET  over_clause?
     /// 	 | CHECKSUM_AGG  LR_BRACKET  all_distinct_expression  RR_BRACKET
     /// 	 | GROUPING  LR_BRACKET  expression  RR_BRACKET
     /// 	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET
@@ -7442,10 +8529,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// analytic_windowed_function
-    /// 	 : (FIRST_VALUE LAST_VALUE)  LR_BRACKET  expression  RR_BRACKET  over_clause
-    /// 	 | (LAG LEAD)  LR_BRACKET  expression  (COMMA  expression2)?  RR_BRACKET  over_clause
-    /// 	 | (CUME_DIST PERCENT_RANK)  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  order_by_clause  RR_BRACKET
-    /// 	 | (PERCENTILE_CONT PERCENTILE_DISC)  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET
+    /// 	 : (FIRST_VALUE | LAST_VALUE)  LR_BRACKET  expression  RR_BRACKET  over_clause
+    /// 	 | (LAG | LEAD)  LR_BRACKET  expression  (COMMA  expression2)?  RR_BRACKET  over_clause
+    /// 	 | (CUME_DIST | PERCENT_RANK)  LR_BRACKET  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  order_by_clause  RR_BRACKET
+    /// 	 | (PERCENTILE_CONT | PERCENTILE_DISC)  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET
     /// </summary>
     public partial class AstAnalyticWindowedFunction
     {
@@ -7457,7 +8544,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// all_distinct_expression
-    /// 	 : (ALL DISTINCT)?  expression
+    /// 	 : (ALL | DISTINCT)?  expression
     /// </summary>
     public partial class AstAllDistinctExpression
     {
@@ -7481,7 +8568,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// row_or_range_clause
-    /// 	 : (ROWS RANGE)  window_frame_extent
+    /// 	 : (ROWS | RANGE)  window_frame_extent
     /// </summary>
     public partial class AstRowOrRangeClause
     {
@@ -7552,7 +8639,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// database_filestream_options
-    /// 	 : database_filestream_option  (COMMA  database_filestream_option)*?
+    /// 	 : database_filestream_option  (COMMA  database_filestream_option)*
     /// </summary>
     public partial class AstDatabaseFilestreamOptions
     {
@@ -7564,7 +8651,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// database_filestream_option
-    /// 	 : LR_BRACKET  ((NON_TRANSACTED_ACCESS  EQUAL  (OFF READ_ONLY FULL)) (DIRECTORY_NAME  EQUAL  STRING))  RR_BRACKET
+    /// 	 : LR_BRACKET  ((NON_TRANSACTED_ACCESS  EQUAL  (OFF | READ_ONLY | FULL)) | (DIRECTORY_NAME  EQUAL  STRING))  RR_BRACKET
     /// </summary>
     public partial class AstDatabaseFilestreamOption
     {
@@ -7576,7 +8663,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// file_group
-    /// 	 : FILEGROUP  id_  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_spec  (COMMA  file_spec)*?
+    /// 	 : FILEGROUP  id_  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_spec  (COMMA  file_spec)*
     /// </summary>
     public partial class AstFileGroup
     {
@@ -7588,7 +8675,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// file_spec
-    /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  file_size  COMMA?)?  (MAXSIZE  EQUAL  (file_size UNLIMITED)  COMMA?)?  (FILEGROWTH  EQUAL  file_size  COMMA?)?  RR_BRACKET
+    /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  file_size  COMMA?)?  (MAXSIZE  EQUAL  (file_size | UNLIMITED)  COMMA?)?  (FILEGROWTH  EQUAL  file_size  COMMA?)?  RR_BRACKET
     /// </summary>
     public partial class AstFileSpec
     {
@@ -7600,7 +8687,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// entity_name
-    /// 	 : (server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
+    /// 	 : (server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
     /// </summary>
     public partial class AstEntityName
     {
@@ -7638,7 +8725,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// complete_table_name
-    /// 	 : (linked_server  DOT  DOT  schema_name  DOT server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
+    /// 	 : (linked_server  DOT  DOT  schema_name  DOT | server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
     /// </summary>
     public partial class AstCompleteTableName
     {
@@ -7738,7 +8825,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name
-    /// 	 : (DELETED INSERTED)  DOT  column_name
+    /// 	 : (DELETED | INSERTED)  DOT  column_name
     /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | tableName?  DOT  column_name
@@ -7754,7 +8841,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_name_list_with_order
-    /// 	 : id_  (ASC DESC)?  (COMMA  id_  (ASC DESC)?)*?
+    /// 	 : id_  (ASC | DESC)?  (COMMA  id_  (ASC | DESC)?)*
     /// </summary>
     public partial class AstColumnNameListWithOrder
     {
@@ -7766,7 +8853,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_column_name_list
-    /// 	 : col += insert_column_id  (COMMA  col += insert_column_id)*?
+    /// 	 : col += insert_column_id  (COMMA  col += insert_column_id)*
     /// </summary>
     public partial class AstInsertColumnNameList
     {
@@ -7778,7 +8865,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_column_id
-    /// 	 : (ignore += id_  DOT)*?  id_
+    /// 	 : (ignore += id_  DOT)*  id_
     /// </summary>
     public partial class AstInsertColumnId
     {
@@ -7790,7 +8877,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_name_list
-    /// 	 : col += id_  (COMMA  col += id_)*?
+    /// 	 : col += id_  (COMMA  col += id_)*
     /// </summary>
     public partial class AstColumnNameList
     {
@@ -7853,7 +8940,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// null_or_default
-    /// 	 : (null_notnull DEFAULT  constant_expression  (COLLATE  id_)?  (WITH  VALUES)?)
+    /// 	 : (null_notnull | DEFAULT  constant_expression  (COLLATE  id_)?  (WITH  VALUES)?)
     /// </summary>
     public partial class AstNullOrDefault
     {
@@ -7893,7 +8980,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// begin_conversation_dialog
-    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = STRING)?  ON  CONTRACT  contract_name  (WITH  ((RELATED_CONVERSATION RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  (DECIMAL LOCAL_ID)  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
+    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = STRING)?  ON  CONTRACT  contract_name_expression  (WITH  ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstBeginConversationDialog
     {
@@ -7904,10 +8991,10 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// contract_name
-    /// 	 : (id_ expression)
+    /// contract_name_expression
+    /// 	 : (id_ | expression)
     /// </summary>
-    public partial class AstContractName
+    public partial class AstContractNameExpression
     {
         
         public override void ToString(Writer wrt)
@@ -7917,7 +9004,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// service_name
-    /// 	 : (id_ expression)
+    /// 	 : (id_ | expression)
     /// </summary>
     public partial class AstServiceName
     {
@@ -7929,7 +9016,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// end_conversation
-    /// 	 : END  CONVERSATION  conversation_handle = LOCAL_ID  SEMI?  (WITH  (ERROR  EQUAL  faliure_code = (LOCAL_ID STRING)  DESCRIPTION  EQUAL  failure_text = (LOCAL_ID STRING))?  CLEANUP?)?
+    /// 	 : END  CONVERSATION  conversation_handle = LOCAL_ID  SEMI?  (WITH  (ERROR  EQUAL  faliure_code = (LOCAL_ID | STRING)  DESCRIPTION  EQUAL  failure_text = (LOCAL_ID | STRING))?  CLEANUP?)?
     /// </summary>
     public partial class AstEndConversation
     {
@@ -7953,7 +9040,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// get_conversation
-    /// 	 : GET  CONVERSATION  GROUP  conversation_group_id = (STRING LOCAL_ID)  FROM  queue = queue_id  SEMI?
+    /// 	 : GET  CONVERSATION  GROUP  conversation_group_id = string_local_id  FROM  queue = queue_id  SEMI?
     /// </summary>
     public partial class AstGetConversation
     {
@@ -7978,7 +9065,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// send_conversation
-    /// 	 : SEND  ON  CONVERSATION  conversation_handle = (STRING LOCAL_ID)  MESSAGE  TYPE  messageTypeName = expression  (LR_BRACKET  messageBodyEexpression = (STRING LOCAL_ID)  RR_BRACKET)?  SEMI?
+    /// 	 : SEND  ON  CONVERSATION  conversation_handle = string_local_id  MESSAGE  TYPE  messageTypeName = expression  (LR_BRACKET  messageBodyEexpression = string_local_id  RR_BRACKET)?  SEMI?
     /// </summary>
     public partial class AstSendConversation
     {
@@ -7990,7 +9077,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// data_type
-    /// 	 : scaled = (VARCHAR NVARCHAR BINARY_KEYWORD VARBINARY_KEYWORD SQUARE_BRACKET_ID)  LR_BRACKET  MAX  RR_BRACKET
+    /// 	 : scaled = (VARCHAR | NVARCHAR | BINARY_KEYWORD | VARBINARY_KEYWORD | SQUARE_BRACKET_ID)  LR_BRACKET  MAX  RR_BRACKET
     /// 	 | ext_type  LR_BRACKET  scale = DECIMAL  COMMA  prec = DECIMAL  RR_BRACKET
     /// 	 | ext_type  LR_BRACKET  scale = DECIMAL  RR_BRACKET
     /// 	 | ext_type  IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  inc = DECIMAL  RR_BRACKET)?
@@ -8024,8 +9111,8 @@ namespace Bb.Asts.TSql
     /// 	 : STRING
     /// 	 | BINARY
     /// 	 | sign?  DECIMAL
-    /// 	 | sign?  (REAL FLOAT)
-    /// 	 | sign?  dollar = DOLLAR  (DECIMAL FLOAT)
+    /// 	 | sign?  (REAL | FLOAT)
+    /// 	 | sign?  dollar = DOLLAR  (DECIMAL | FLOAT)
     /// 	 | parameter
     /// </summary>
     public partial class AstConstant
@@ -9933,6 +11020,30 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// full_sequence_name
+    /// 	 : (schema_name  DOT)?  sequence_name
+    /// </summary>
+    public partial class AstFullSequenceName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// full_queue_name
+    /// 	 : (schema_name  DOT)  queue_name
+    /// </summary>
+    public partial class AstFullQueueName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
     /// server_name
     /// 	 : id_
     /// </summary>
@@ -10201,6 +11312,139 @@ namespace Bb.Asts.TSql
     /// 	 : id_
     /// </summary>
     public partial class AstWorkloadGroupPoolName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// full_aggregate_name
+    /// 	 : (schema_name  DOT)?  aggregate_name
+    /// </summary>
+    public partial class AstFullAggregateName
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// string_id
+    /// 	 : STRING
+    /// 	 | id_
+    /// </summary>
+    public partial class AstStringId
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// string_id2
+    /// 	 : STRING
+    /// 	 | id_
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstStringId2
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// string_local_id
+    /// 	 : STRING
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstStringLocalId
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// decimal_local_id
+    /// 	 : DECIMAL
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstDecimalLocalId
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// decimal_string
+    /// 	 : DECIMAL
+    /// 	 | STRING
+    /// </summary>
+    public partial class AstDecimalString
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// log_seterror_nowait
+    /// 	 : LOG
+    /// 	 | SETERROR
+    /// 	 | NOWAIT
+    /// </summary>
+    public partial class AstLogSeterrorNowait
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// decimal_string_local_id
+    /// 	 : DECIMAL
+    /// 	 | STRING
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstDecimalStringLocalId
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// string_local_id_double_quote_id
+    /// 	 : STRING
+    /// 	 | LOCAL_ID
+    /// 	 | DOUBLE_QUOTE_ID
+    /// </summary>
+    public partial class AstStringLocalIdDoubleQuoteId
+    {
+        
+        public override void ToString(Writer wrt)
+        {
+        }
+    }
+    
+    /// <summary>
+    /// decimal_id
+    /// 	 : DECIMAL
+    /// 	 | id_
+    /// </summary>
+    public partial class AstDecimalId
     {
         
         public override void ToString(Writer wrt)

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Bb.Asts
 {
 
+
     public abstract class AstBase<TVisitor> : IStrategyResolver
     {
 
@@ -31,10 +32,7 @@ namespace Bb.Asts
         }
 
 
-
         public Position Position { get; }
-
-
 
 
         public AstBase<TVisitor> Parent { get; set; }

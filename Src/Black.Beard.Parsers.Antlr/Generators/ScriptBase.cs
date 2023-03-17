@@ -72,7 +72,7 @@ namespace Bb.Generators
 
         protected string TemplateSelector(AstRule ast, Context context)
         {
-
+           
             if (!string.IsNullOrEmpty(ast.Strategy))
                 return ast.Strategy;
 
@@ -128,10 +128,10 @@ namespace Bb.Generators
                             var p = i.Occurence;
                             switch (p.Value)
                             {
-                                case Occurence.Enum.Any:
+                                case OccurenceEnum.Any:
                                     return "ClassList";
 
-                                case Occurence.Enum.One:
+                                case OccurenceEnum.One:
                                     if (i.IsTerminal)
                                         return "ClassTerminalAlias";
                                     break;
@@ -179,7 +179,7 @@ namespace Bb.Generators
                         var i = itemRules[0].ToList();
 
                         if (i.Count == 1)
-                            if (i[0].ResolveOccurence() <= (int)Occurence.Enum.One)
+                            if (i[0].ResolveOccurence() <= (int)OccurenceEnum.One)
                                 if (i[0].ResolveName() == "id_")
                                     return "ClassTerminalAlias";
 
@@ -187,7 +187,7 @@ namespace Bb.Generators
                             return "ClassList";
 
                         foreach (var item in i)
-                            if (item.ResolveOccurence() >= (int)Occurence.Enum.Any)
+                            if (item.ResolveOccurence() >= (int)OccurenceEnum.Any)
                                 return "ClassList";
 
                     }
@@ -198,7 +198,7 @@ namespace Bb.Generators
                         if (splitChar.Contains(o.ResolveName()))
                         {
                             var oc = ast.GetRules().First().ResolveOccurence();
-                            if (oc > (int)Occurence.Enum.One)
+                            if (oc > (int)OccurenceEnum.One)
                                 return "ClassList";
                         }
                     }
@@ -217,7 +217,6 @@ namespace Bb.Generators
             return "_";
 
         }
-
 
         protected virtual bool Generate(AstRule ast, Context context)
         {

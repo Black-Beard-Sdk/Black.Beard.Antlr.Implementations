@@ -11,7 +11,7 @@ namespace Bb.ParsersConfiguration.Ast
         public GrammarSpec(ParserRuleContext ctx)
             : base(ctx)
         {
-            this._list = new Dictionary<string, GrammarConfigDeclaration>();
+            this._list = new Dictionary<string, GrammarConfigBaseDeclaration>();
             this.Defaults = new DefaultTemplateSetting(Position.Default, new TemplateSetting(Position.Default, "_"));
             this._selectors = new List<TemplateSelector>();
             this._lists = new List<ListDeclaration>();
@@ -21,7 +21,7 @@ namespace Bb.ParsersConfiguration.Ast
         public GrammarSpec(Position position)
             : base(position)
         {
-            this._list = new Dictionary<string, GrammarConfigDeclaration>();
+            this._list = new Dictionary<string, GrammarConfigBaseDeclaration>();
             this.Defaults = new DefaultTemplateSetting(Position.Default, new TemplateSetting(Position.Default, "_"));
             this._selectors = new List<TemplateSelector>();
             this._lists = new List<ListDeclaration>();
@@ -31,29 +31,55 @@ namespace Bb.ParsersConfiguration.Ast
         public GrammarSpec Append(AstGrammarSpec ast)
         {
 
+            foreach (AstLexerRule rule in ast.Rules.Terminals)
+                this.Append(rule);
+
             foreach (AstRule rule in ast.Rules.Rules)
                 this.Append(rule);
 
-            //foreach (AstLexerRule rule in ast.Rules.Terminals)
-            //    this.Append(rule);
 
             return this;
 
         }
 
-        private void Append(AstRule rule)
+        private void Append(AstLexerRule rule)
         {
 
+            GrammarConfigTermDeclaration g = null;
             var name = rule.Name;
-            if (!this._list.TryGetValue(name, out GrammarConfigDeclaration grammar))
-                this._list.Add(name,
-                    grammar = new GrammarConfigDeclaration(Position.Default, name,
-                        new GrammarRuleConfig(Position.Default, true, new TemplateSetting(Position.Default, name), new CalculatedTemplateSetting(Position.Default, new TemplateSetting(Position.Default, null)))
+            if (!this._list.TryGetValue(name.Text, out GrammarConfigBaseDeclaration grammar))
+            {
+                this._list.Add(name.Text,
+                    g = new GrammarConfigTermDeclaration(Position.Default, name,
+                        new GrammarRuleTermConfig(Position.Default, TokenTypeEnum.Other, null)
                     )
                     );
+            }
+            else
+                g = (GrammarConfigTermDeclaration)grammar;
 
-            grammar.Rule = rule;
-            rule.Configuration = grammar;
+            g.Rule = rule;
+            rule.Configuration = g;
+
+        }
+
+        private void Append(AstRule rule)
+        {
+            GrammarConfigDeclaration g;
+            var name = rule.Name;
+            if (!this._list.TryGetValue(name.Text, out GrammarConfigBaseDeclaration grammar))
+            {
+                this._list.Add(name.Text,
+                    g = new GrammarConfigDeclaration(Position.Default, name,
+                        new GrammarRuleConfig(Position.Default, true, new IdentifierConfig(""), new TemplateSetting(Position.Default, name.Text), new CalculatedTemplateSetting(Position.Default, new TemplateSetting(Position.Default, null)))
+                    )
+                    );
+            }
+            else
+                g = (GrammarConfigDeclaration)grammar;
+            
+            g.Rule = rule;
+            rule.Configuration = g;
 
         }
 
@@ -75,7 +101,13 @@ namespace Bb.ParsersConfiguration.Ast
 
         public GrammarSpec Add(GrammarConfigDeclaration grammar)
         {
-            this._list.Add(grammar.RuleName, grammar);
+            this._list.Add(grammar.RuleName.Text, grammar);
+            return this;
+        }
+
+        public GrammarSpec Add(GrammarConfigTermDeclaration grammar)
+        {
+            this._list.Add(grammar.RuleName.Text, grammar);
             return this;
         }
 
@@ -88,7 +120,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         public GrammarSpec Remove(GrammarConfigDeclaration grammar)
         {
-            this._list.Remove(grammar.RuleName);
+            this._list.Remove(grammar.RuleName.Text);
             return this;
         }
 
@@ -155,7 +187,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         }
 
-        private readonly Dictionary<string, GrammarConfigDeclaration> _list;
+        private readonly Dictionary<string, GrammarConfigBaseDeclaration> _list;
         private readonly List<TemplateSelector> _selectors;
         private readonly List<ListDeclaration> _lists;
 
@@ -181,11 +213,6 @@ namespace Bb.ParsersConfiguration.Ast
             }
 
             public void VisitCalculatedTemplateSetting(CalculatedTemplateSetting a)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void VisitConstant(ConstantConfig a)
             {
                 throw new NotImplementedException();
             }
@@ -260,6 +287,22 @@ namespace Bb.ParsersConfiguration.Ast
             }
 
             public void VisitTemplateSetting(TemplateSetting a)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void VisitGammarTermDeclaration(GrammarConfigTermDeclaration a)
+            {
+
+
+            }
+
+            public void VisitRuleTerm(GrammarRuleTermConfig a)
+            {
+
+            }
+
+            public void VisitConstant(ConstantStringConfig a)
             {
                 throw new NotImplementedException();
             }

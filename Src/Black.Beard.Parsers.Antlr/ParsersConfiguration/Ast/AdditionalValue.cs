@@ -8,14 +8,14 @@ namespace Bb.ParsersConfiguration.Ast
     public class AdditionalValue : AntlrConfigAstBase
     {
 
-        public AdditionalValue(ParserRuleContext ctx, IdentifierConfig key, string value)
+        public AdditionalValue(ParserRuleContext ctx, IdentifierConfig key, IdentifierConfig value)
             : base(ctx)
         {
             this.Key = key.Text;
             this._value = value;
         }
 
-        public AdditionalValue(ParserRuleContext ctx, string key, string value)
+        public AdditionalValue(ParserRuleContext ctx, string key, IdentifierConfig value)
             : base(ctx)
         {
 
@@ -31,7 +31,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         internal string Get()
         {
-            return _value;
+            return _value.Text;
         }
 
         public override void ToString(Writer writer)
@@ -54,7 +54,7 @@ namespace Bb.ParsersConfiguration.Ast
             
         }
 
-        private readonly string _value;
+        private readonly IdentifierConfig _value;
 
     }
 

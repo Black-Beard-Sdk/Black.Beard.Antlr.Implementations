@@ -117,7 +117,7 @@ namespace Bb.Parsers
                 return g;
             }
             var e = (AstArgActionBlock)VisitActionBlock(context.actionBlock());
-            e.Occurence = new Occurence(Occurence.Enum.One, context.QUESTION() != null);
+            e.Occurence = new Occurence(OccurenceEnum.One, context.QUESTION() != null);
 
             return e;
 
@@ -165,8 +165,12 @@ namespace Bb.Parsers
 
                         var t1 = context.terminal();
                         if (t1 != null)
+                        {
                             value = (AstTerminal)VisitTerminal(t1);
-                        
+
+                           
+
+                        }
                         else
                         {
 

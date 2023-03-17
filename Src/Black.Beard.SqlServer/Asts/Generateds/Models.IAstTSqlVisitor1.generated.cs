@@ -48,6 +48,8 @@ namespace Bb.Asts.TSql
         
         void VisitWaitforStatement(AstWaitforStatement a);
         
+        void VisitDelayTimeTimeout(AstDelayTimeTimeout a);
+        
         void VisitWhileStatement(AstWhileStatement a);
         
         void VisitPrintStatement(AstPrintStatement a);
@@ -82,19 +84,13 @@ namespace Bb.Asts.TSql
         
         void VisitAlterAssemblyAddClause(AstAlterAssemblyAddClause a);
         
-        void VisitAlterAsssemblyAddClauseStart(AstAlterAsssemblyAddClauseStart a);
-        
         void VisitAlterAssemblyClientFileClause(AstAlterAssemblyClientFileClause a);
         
-        void VisitAlterAssemblyFileName(AstAlterAssemblyFileName a);
+        void VisitAssemblyFileName(AstAssemblyFileName a);
         
         void VisitAlterAssemblyFileBits(AstAlterAssemblyFileBits a);
         
-        void VisitAlterAssemblyAs(AstAlterAssemblyAs a);
-        
         void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
-        
-        void VisitAlterAssemblyWith(AstAlterAssemblyWith a);
         
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a);
         
@@ -128,11 +124,7 @@ namespace Bb.Asts.TSql
         
         void VisitAlterAsymmetricKey(AstAlterAsymmetricKey a);
         
-        void VisitAlterAsymmetricKeyStart(AstAlterAsymmetricKeyStart a);
-        
         void VisitAsymmetricKeyOption(AstAsymmetricKeyOption a);
-        
-        void VisitAsymmetricKeyOptionStart(AstAsymmetricKeyOptionStart a);
         
         void VisitAsymmetricKeyPasswordChangeOption(AstAsymmetricKeyPasswordChangeOption a);
         
@@ -143,12 +135,6 @@ namespace Bb.Asts.TSql
         void VisitAlterAuthorization(AstAlterAuthorization a);
         
         void VisitAuthorizationGrantee(AstAuthorizationGrantee a);
-        
-        void VisitEntityTo(AstEntityTo a);
-        
-        void VisitColonColon(AstColonColon a);
-        
-        void VisitAlterAuthorizationStart(AstAlterAuthorizationStart a);
         
         void VisitAlterAuthorizationForSqlDatabase(AstAlterAuthorizationForSqlDatabase a);
         
@@ -172,19 +158,71 @@ namespace Bb.Asts.TSql
         
         void VisitAlterAvailabilityGroupStart(AstAlterAvailabilityGroupStart a);
         
+        void VisitAlterAvailabilityGroupOptionsDatabase(AstAlterAvailabilityGroupOptionsDatabase a);
+        
+        void VisitAlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListener a);
+        
+        void VisitAddRemove(AstAddRemove a);
+        
+        void VisitRestartRemove(AstRestartRemove a);
+        
+        void VisitSynchAsynch(AstSynchAsynch a);
+        
+        void VisitAutoManual(AstAutoManual a);
+        
+        void VisitRealWriteAll(AstRealWriteAll a);
+        
+        void VisitNoRealWriteAll(AstNoRealWriteAll a);
+        
+        void VisitPrimarySecondaryNone(AstPrimarySecondaryNone a);
+        
+        void VisitGrantDeny(AstGrantDeny a);
+        
+        void VisitAlterAvailabilityReplicatModify(AstAlterAvailabilityReplicatModify a);
+        
+        void VisitBackupPriority(AstBackupPriority a);
+        
+        void VisitAlterAvailabilityReplicatAdd(AstAlterAvailabilityReplicatAdd a);
+        
+        void VisitAlterAvailabilityGroupOptionsReplicat(AstAlterAvailabilityGroupOptionsReplicat a);
+        
+        void VisitAlterAvailabilityGroupOptionsGroup(AstAlterAvailabilityGroupOptionsGroup a);
+        
+        void VisitListenerUrl(AstListenerUrl a);
+        
+        void VisitAvailabilityMode(AstAvailabilityMode a);
+        
+        void VisitFailoverModeManuel(AstFailoverModeManuel a);
+        
+        void VisitSeedingMode(AstSeedingMode a);
+        
+        void VisitAlterAvailabilityGroupOptionsRole(AstAlterAvailabilityGroupOptionsRole a);
+        
+        void VisitAllowConnections(AstAllowConnections a);
+        
+        void VisitStringList(AstStringList a);
+        
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions a);
         
         void VisitServerInstance(AstServerInstance a);
         
-        void VisitIpV4Failover(AstIpV4Failover a);
-        
-        void VisitIpV6Failover(AstIpV6Failover a);
-        
         void VisitCreateOrAlterBrokerPriority(AstCreateOrAlterBrokerPriority a);
+        
+        void VisitBrokerContractName(AstBrokerContractName a);
+        
+        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName a);
+        
+        void VisitBrokerRemoteServiceName(AstBrokerRemoteServiceName a);
+        
+        void VisitBrokerPriorityLevel(AstBrokerPriorityLevel a);
+        
+        void VisitCreateAlter(AstCreateAlter a);
         
         void VisitDropBrokerPriority(AstDropBrokerPriority a);
         
         void VisitAlterCertificate(AstAlterCertificate a);
+        
+        void VisitAddDrop(AstAddDrop a);
         
         void VisitAlterColumnEncryptionKey(AstAlterColumnEncryptionKey a);
         
@@ -314,6 +352,30 @@ namespace Bb.Asts.TSql
         
         void VisitCreateOrAlterEventSession(AstCreateOrAlterEventSession a);
         
+        void VisitCreateOrAlterEventSessionWith(AstCreateOrAlterEventSessionWith a);
+        
+        void VisitSessionArgMaxMemory(AstSessionArgMaxMemory a);
+        
+        void VisitSessionArgEventRetentionMode(AstSessionArgEventRetentionMode a);
+        
+        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch a);
+        
+        void VisitSessionArgMaxEventSize(AstSessionArgMaxEventSize a);
+        
+        void VisitSessionArgMemoryPartition(AstSessionArgMemoryPartition a);
+        
+        void VisitSessionArgTrackCausality(AstSessionArgTrackCausality a);
+        
+        void VisitSessionArgStartupState(AstSessionArgStartupState a);
+        
+        void VisitCreateOrAlterEventSessionAddEvent(AstCreateOrAlterEventSessionAddEvent a);
+        
+        void VisitCreateOrAlterEventSessionAddTarget(AstCreateOrAlterEventSessionAddTarget a);
+        
+        void VisitCreateOrAlterEventSessionDelTarget(AstCreateOrAlterEventSessionDelTarget a);
+        
+        void VisitCreateOrAlterEventSessionDelEvent(AstCreateOrAlterEventSessionDelEvent a);
+        
         void VisitStartStop(AstStartStop a);
         
         void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression a);
@@ -326,11 +388,29 @@ namespace Bb.Asts.TSql
         
         void VisitAlterExternalLibrary(AstAlterExternalLibrary a);
         
+        void VisitSetAdd(AstSetAdd a);
+        
         void VisitCreateExternalLibrary(AstCreateExternalLibrary a);
+        
+        void VisitFileSpec2(AstFileSpec2 a);
+        
+        void VisitPlatform(AstPlatform a);
+        
+        void VisitCodeContent(AstCodeContent a);
+        
+        void VisitCodeLanguage(AstCodeLanguage a);
         
         void VisitAlterExternalResourcePool(AstAlterExternalResourcePool a);
         
         void VisitCreateExternalResourcePool(AstCreateExternalResourcePool a);
+        
+        void VisitExternalResourceWith(AstExternalResourceWith a);
+        
+        void VisitMawProcess(AstMawProcess a);
+        
+        void VisitMaxMemory(AstMaxMemory a);
+        
+        void VisitMaxCpu(AstMaxCpu a);
         
         void VisitAlterFulltextCatalog(AstAlterFulltextCatalog a);
         
@@ -342,7 +422,13 @@ namespace Bb.Asts.TSql
         
         void VisitAlterLoginSqlServer(AstAlterLoginSqlServer a);
         
+        void VisitAlterLoginSqlServerSettings(AstAlterLoginSqlServerSettings a);
+        
         void VisitCreateLoginSqlServer(AstCreateLoginSqlServer a);
+        
+        void VisitCreateLoginSqlServerSettings(AstCreateLoginSqlServerSettings a);
+        
+        void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom a);
         
         void VisitAlterLoginAzureSql(AstAlterLoginAzureSql a);
         
@@ -380,8 +466,6 @@ namespace Bb.Asts.TSql
         
         void VisitAlterDbRole(AstAlterDbRole a);
         
-        void VisitAddDrop(AstAddDrop a);
-        
         void VisitCreateDbRole(AstCreateDbRole a);
         
         void VisitCreateRoute(AstCreateRoute a);
@@ -393,8 +477,6 @@ namespace Bb.Asts.TSql
         void VisitCreateSchema(AstCreateSchema a);
         
         void VisitEnumDml(AstEnumDml a);
-        
-        void VisitGrantDeny(AstGrantDeny a);
         
         void VisitCreateSchemaAzureSqlDwAndPdw(AstCreateSchemaAzureSqlDwAndPdw a);
         
@@ -408,7 +490,25 @@ namespace Bb.Asts.TSql
         
         void VisitCreateSequence(AstCreateSequence a);
         
+        void VisitReal(AstReal a);
+        
+        void VisitCreateSequenceStart(AstCreateSequenceStart a);
+        
+        void VisitCycle(AstCycle a);
+        
+        void VisitSizeUnity(AstSizeUnity a);
+        
         void VisitAlterServerAudit(AstAlterServerAudit a);
+        
+        void VisitServerAuditFile(AstServerAuditFile a);
+        
+        void VisitAlterServerAuditCondition(AstAlterServerAuditCondition a);
+        
+        void VisitContinueShutdown(AstContinueShutdown a);
+        
+        void VisitAuditOperator(AstAuditOperator a);
+        
+        void VisitAndOr(AstAndOr a);
         
         void VisitCreateServerAudit(AstCreateServerAudit a);
         
@@ -437,6 +537,18 @@ namespace Bb.Asts.TSql
         void VisitAlterUser(AstAlterUser a);
         
         void VisitCreateUser(AstCreateUser a);
+        
+        void VisitCreateUserWithLogin(AstCreateUserWithLogin a);
+        
+        void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin a);
+        
+        void VisitCreateUserWindowsPrincipal(AstCreateUserWindowsPrincipal a);
+        
+        void VisitForFrom(AstForFrom a);
+        
+        void VisitUserSettingsShort(AstUserSettingsShort a);
+        
+        void VisitUserSettings(AstUserSettings a);
         
         void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw a);
         
@@ -503,6 +615,22 @@ namespace Bb.Asts.TSql
         void VisitOutputDmlListElem(AstOutputDmlListElem a);
         
         void VisitCreateDatabase(AstCreateDatabase a);
+        
+        void VisitDatabaseContainment(AstDatabaseContainment a);
+        
+        void VisitDatabaseOnPrimary(AstDatabaseOnPrimary a);
+        
+        void VisitDatabaseOnLog(AstDatabaseOnLog a);
+        
+        void VisitDatabaseCollate(AstDatabaseCollate a);
+        
+        void VisitDatabaseCreateWith(AstDatabaseCreateWith a);
+        
+        void VisitCreateDatabaseOptionList(AstCreateDatabaseOptionList a);
+        
+        void VisitDatabaseFileSpecList(AstDatabaseFileSpecList a);
+        
+        void VisitNonePartial(AstNonePartial a);
         
         void VisitCreateIndex(AstCreateIndex a);
         
@@ -612,6 +740,8 @@ namespace Bb.Asts.TSql
         
         void VisitCreateTableIndexOption(AstCreateTableIndexOption a);
         
+        void VisitIndexStrategy(AstIndexStrategy a);
+        
         void VisitCreateView(AstCreateView a);
         
         void VisitViewAttributes(AstViewAttributes a);
@@ -648,13 +778,31 @@ namespace Bb.Asts.TSql
         
         void VisitChangeTrackingOptionList(AstChangeTrackingOptionList a);
         
+        void VisitPeriod(AstPeriod a);
+        
         void VisitContainmentOption(AstContainmentOption a);
         
         void VisitCursorOption(AstCursorOption a);
         
         void VisitLocalGlobal(AstLocalGlobal a);
         
+        void VisitStateEnum(AstStateEnum a);
+        
+        void VisitListenerIp(AstListenerIp a);
+        
         void VisitAlterEndpoint(AstAlterEndpoint a);
+        
+        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration a);
+        
+        void VisitAuthenticationMode(AstAuthenticationMode a);
+        
+        void VisitEncryptionState(AstEncryptionState a);
+        
+        void VisitEncryptionAlgorithm(AstEncryptionAlgorithm a);
+        
+        void VisitAlterEndpointDatabaseMirroring(AstAlterEndpointDatabaseMirroring a);
+        
+        void VisitAlterEndpointServiceBroker(AstAlterEndpointServiceBroker a);
         
         void VisitMirroringSetOption(AstMirroringSetOption a);
         
@@ -760,11 +908,31 @@ namespace Bb.Asts.TSql
         
         void VisitCursorStatement(AstCursorStatement a);
         
+        void VisitCompression(AstCompression a);
+        
+        void VisitInitNoInit(AstInitNoInit a);
+        
+        void VisitNoSkip(AstNoSkip a);
+        
+        void VisitFormatNoformat(AstFormatNoformat a);
+        
         void VisitBackupDatabase(AstBackupDatabase a);
         
         void VisitBackupLog(AstBackupLog a);
         
         void VisitBackupCertificate(AstBackupCertificate a);
+        
+        void VisitDiskTapeUrl(AstDiskTapeUrl a);
+        
+        void VisitBackupSettings(AstBackupSettings a);
+        
+        void VisitFileFileGroup(AstFileFileGroup a);
+        
+        void VisitLoadMounLoad(AstLoadMounLoad a);
+        
+        void VisitRewind(AstRewind a);
+        
+        void VisitAlgorithmShort(AstAlgorithmShort a);
         
         void VisitBackupMasterKey(AstBackupMasterKey a);
         
@@ -829,6 +997,10 @@ namespace Bb.Asts.TSql
         void VisitEncryptionMechanism(AstEncryptionMechanism a);
         
         void VisitDecryptionMechanism(AstDecryptionMechanism a);
+        
+        void VisitGrantPermissionAlter(AstGrantPermissionAlter a);
+        
+        void VisitGrantPermissionCreate(AstGrantPermissionCreate a);
         
         void VisitGrantPermission(AstGrantPermission a);
         
@@ -1210,7 +1382,7 @@ namespace Bb.Asts.TSql
         
         void VisitBeginConversationDialog(AstBeginConversationDialog a);
         
-        void VisitContractName(AstContractName a);
+        void VisitContractNameExpression(AstContractNameExpression a);
         
         void VisitServiceName(AstServiceName a);
         
@@ -1406,6 +1578,10 @@ namespace Bb.Asts.TSql
         
         void VisitSequenceName(AstSequenceName a);
         
+        void VisitFullSequenceName(AstFullSequenceName a);
+        
+        void VisitFullQueueName(AstFullQueueName a);
+        
         void VisitServerName(AstServerName a);
         
         void VisitServerRoleName(AstServerRoleName a);
@@ -1451,5 +1627,25 @@ namespace Bb.Asts.TSql
         void VisitWorkloadGroupGroupName(AstWorkloadGroupGroupName a);
         
         void VisitWorkloadGroupPoolName(AstWorkloadGroupPoolName a);
+        
+        void VisitFullAggregateName(AstFullAggregateName a);
+        
+        void VisitStringId(AstStringId a);
+        
+        void VisitStringId2(AstStringId2 a);
+        
+        void VisitStringLocalId(AstStringLocalId a);
+        
+        void VisitDecimalLocalId(AstDecimalLocalId a);
+        
+        void VisitDecimalString(AstDecimalString a);
+        
+        void VisitLogSeterrorNowait(AstLogSeterrorNowait a);
+        
+        void VisitDecimalStringLocalId(AstDecimalStringLocalId a);
+        
+        void VisitStringLocalIdDoubleQuoteId(AstStringLocalIdDoubleQuoteId a);
+        
+        void VisitDecimalId(AstDecimalId a);
     }
 }

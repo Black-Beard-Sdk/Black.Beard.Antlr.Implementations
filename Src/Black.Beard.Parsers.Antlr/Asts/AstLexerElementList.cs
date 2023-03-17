@@ -30,17 +30,6 @@ namespace Bb.Asts
             }
         }
 
-        public bool IsKeyword
-        {
-            get
-            {
-                if (this.Count == 1)
-                    if (this[0] != null && this[0] is AstAtom a)
-                        return a.IsKeyword;
-                return false;
-            }
-        }
-
 
         public bool OutputContainsAlwayOneTerminal
         {

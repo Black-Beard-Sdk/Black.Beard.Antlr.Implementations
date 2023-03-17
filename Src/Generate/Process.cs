@@ -25,21 +25,12 @@ namespace Generate
             if (antlrParser.Exists)
             {
 
+
                 ctx.RootAst = LoadGrammar(ctx, antlrParser);
-
-                //var visitor = new RuleIdVisitor();
-                //visitor.Visit(ctx.RootAst);
-                //foreach (var item in visitor.Items)
-                //{
-                //    var o = item.Value.ToString();
-                //    Console.WriteLine(item.Key + " : " + o);
-                //}
-
-
-
                 ctx.Configuration = LoadConfiguration(ctx);
+                PostTreatments(ctx);
 
-                
+                var newConfiguration = Path.Combine(ctx.GrammarFolder, ctx.GrammarFile.Name + ".newConf");
 
                 new ScriptList("Models")
                 {
@@ -86,21 +77,43 @@ namespace Generate
                     a.Using("Bb.Asts.TSql");
                 })
 
-                
                 .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = "Bb.Parsers.TSql")
                 .Add<ScriptClassToString>()
 
                 .Add<ScriptVisitor1>("IAstTSqlVisitor1")
                 .Add<ScriptVisitor2>("IAstTSqlVisitor2")
-                
+
                 .Generate(ctx);
 
-                ctx.Configuration.Save(ctx.ConfigurationFile);
+                ctx.Configuration.Save(newConfiguration);
 
             }
 
         }
 
+        private static void PostTreatments(Context ctx)
+        {
+
+            var r = new Dictionary<string, AstBase>();
+
+            foreach (var item in ctx.RootAst.Rules.Terminals)
+                r.Add(item.Name.Text, item);
+
+            foreach (var item in ctx.RootAst.Rules.Rules)
+                r.Add(item.Name.Text, item);
+
+
+            //foreach (var item in ctx.PatternMatches)
+            //    if (r.TryGetValue(item.Name, out var itemFound))
+            //    {
+
+            //        // itemFound.TerminalKind = item.Kind;
+
+            //    }
+
+            new ParentVisitor(r).Visit(ctx.RootAst);
+
+        }
 
         private AstGrammarSpec LoadGrammar(Context ctx, FileInfo antlrFile)
         {
@@ -117,15 +130,13 @@ namespace Generate
                         rootAst.Rules.Terminals.Add(rule);
             }
 
-            new ParentVisitor().Visit(rootAst);
-
             return rootAst;
 
         }
 
         private static IEnumerable<AstGrammarSpec> LoadGrammar(FileInfo antlrFile)
         {
-            
+
             if (antlrFile.Exists)
             {
                 var sb = new StringBuilder(antlrFile.LoadFromFile());

@@ -1,19 +1,26 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
+using System.Diagnostics;
 
 namespace Generate.Scripts
 {
-
-
 
     public class ScriptClassDefaults : ScriptBase
     {
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRule";
+
+            var config = ast.Configuration.Config;
+
+            if (config.Inherit == null)
+                config.Inherit = new IdentifierConfig("'AstRule'");
+
+            return config.Inherit.Text;
+
         }
 
         protected override bool Generate(AstRule ast, Context context)
@@ -23,10 +30,6 @@ namespace Generate.Scripts
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {
-
-            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
-            var spliterVisitor = new SpliterBuilderVisitor();
-
 
             generator.Add(this.Name, template =>
             {
@@ -44,7 +47,7 @@ namespace Generate.Scripts
                     type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                         .GenerateIf(() => Generate(ast, ctx))
                         .Documentation(c => c.Summary(() => ast.ToString()))
-                        .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
+                        .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                         .Inherit(() => GetInherit(ast, ctx))
 
 
@@ -75,21 +78,21 @@ namespace Generate.Scripts
 
 
                         .Method(method =>
-                               {
-                                   method
-                                    .Name(g => "Accept")
-                                    .Argument("IAstTSqlVisitor", "visitor")
-                                    .Attribute(MemberAttributes.Override | MemberAttributes.Public)
-                                    .Body(b =>
-                                    {
-                                        b.Statements.Call
-                                        (
-                                            CodeHelper.Var("visitor"),
-                                            "Visit" + CodeHelper.FormatCsharp(ast.Name),
-                                            CodeHelper.This()
-                                        );
-                                    });
-                               })
+                        {
+                            method
+                             .Name(g => "Accept")
+                             .Argument("IAstTSqlVisitor", "visitor")
+                             .Attribute(MemberAttributes.Override | MemberAttributes.Public)
+                             .Body(b =>
+                             {
+                                 b.Statements.Call
+                                 (
+                                     CodeHelper.Var("visitor"),
+                                     "Visit" + CodeHelper.FormatCsharp(ast.Name.Text),
+                                     CodeHelper.This()
+                                 );
+                             });
+                        })
 
                         .Field(field =>
                         {
@@ -102,49 +105,118 @@ namespace Generate.Scripts
                             })
 
                             ;
-                        });
+                        })
 
-                    if (ast.Name == "create_or_alter_event_session")
-                    {
-
-                    }
-                    var visitor1 = new RuleIdVisitor();
-                    var p = ast.Alternatives.Accept(visitor1);
-                    var possibilites = p.Accept(removeOptionalsVisitor);
-                    var possibilites2 = possibilites.Accept(spliterVisitor);
-
-                    foreach (var alt in possibilites2)
-                        if (alt.ContainsRules)
+                        .Make(t =>
                         {
 
-                            item.Ctor((f) =>
+                            var r = ast.Root();
+
+                            List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+
+                            foreach (AstLabeledAlt alternative in ast.Alternatives)
                             {
-                                var ctor = f.Attribute(MemberAttributes.Public);
 
-                                List<string> _args = new List<string>(alt.Count)
-                                {
-                                "Position.Default"
-                                };
+                                var allCombinations = alternative.ResolveAllCombinations();
+                                foreach (var item_poss in allCombinations.OrderBy(c => c.ToString()))
+                                    Debug.WriteLine(ast.Name + " : " + item_poss.ToString());
 
-                                foreach (var arg in alt.Where(c => c.IsRuleRef))
+                                foreach (var alt in allCombinations)
                                 {
 
-                                    var argName = "arg" + _args.Count;
-                                    _args.Add(argName);
-                                    var vv = CodeHelper.FormatCsharp(arg.Name);
-                                    ctor.Argument(() => ("Ast" + vv).AsType(), argName);
+                                    var method = new CodeMemberMethod() 
+                                    {
+                                        Attributes = MemberAttributes.Public | MemberAttributes.Static 
+                                    };
+
+                                    foreach (var item in alt)
+                                    {
+
+                                        var itemResult = ast.ResolveByName(ResolveKey(item));
+                                        if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
+                                        {
+                                            var config = r1.Configuration.Config;
+                                            if (config.Generate)
+                                            {
+
+                                                var typeName = new CodeTypeReference("Ast" + CodeHelper.FormatCsharp(item.Name));
+
+                                                if (item.Occurence.Value == OccurenceEnum.Any)
+                                                    typeName = new CodeTypeReference(typeof(IEnumerable<>).Name, typeName);
+
+                                                method.Parameters.Add(new CodeParameterDeclarationExpression(typeName, CodeHelper.FormatCsharpArgument(item.Name)));
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+                                        else if (itemResult != null && itemResult is AstLexerRule r2)
+                                        {
+                                            //var config = r2.Configuration.Config;
+                                            //if (config.Generate)
+                                            //{
+
+                                            //    var typeName = new CodeTypeReference("Ast" + CodeHelper.FormatCsharp(item.Name));
+
+                                            //    if (item.Occurence.Value == OccurenceEnum.Any)
+                                            //        typeName = new CodeTypeReference(typeof(IEnumerable<>).Name, typeName);
+
+                                            //    method.Parameters.Add(new CodeParameterDeclarationExpression(typeName, CodeHelper.FormatCsharpArgument(item.Name)));
+
+                                            //}
+                                            //else
+                                            //{
+
+                                            //}
+                                        }
+                                        else
+                                        {
+
+                                        }
+                                    }
+
+                                    methods.Add(method);
 
                                 }
 
-                                ctor.CallBase(_args.ToArray());
+                                foreach (var item in methods)
+                                {
+                                    t.Members.Add(item);
+                                }
 
 
-                            });
+                                //if (alt.ContainsRules)
+                                //        t.Ctor((f) =>
+                                //        {
+                                //            var ctor = f.Attribute(MemberAttributes.Public);
+                                //            List<string> _args = new List<string>(alt.Count)
+                                //        {
+                                //            "Position.Default"
+                                //        };
+                                //            foreach (var arg in alt.Where(c => c.IsRuleRef))
+                                //            {
+                                //                var argName = "arg" + _args.Count;
+                                //                _args.Add(argName);
+                                //                var vv = CodeHelper.FormatCsharp(arg.Name);
+                                //                ctor.Argument(() => ("Ast" + vv).AsType(), argName);
+                                //            }
+                                //            ctor.CallBase(_args.ToArray());
+                                //        });
 
-                        }
+                            }
+
+
+                        })
+
+                        ;
+
+
+
 
                 })
-                
+
                 .CreateTypeFrom<AstLabeledAlt>((ast, type) =>
                        {
                            type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text))
@@ -175,13 +247,22 @@ namespace Generate.Scripts
                                     });
                                });
                        });
-                
+
                 });
 
-             });
+            });
 
         }
 
+        private string ResolveKey(TreeRuleItem item)
+        {
+
+            if (!string.IsNullOrEmpty(item.Name))
+                return item.Name;
+
+            return null;
+
+        }
     }
 
 

@@ -8,10 +8,9 @@ namespace Bb.Parsers
     public class ParentVisitor : WalkerVisitor
     {
 
-
-        public ParentVisitor()
+        public ParentVisitor(Dictionary<string, AstBase> dictionary)
         {
-
+            _dictionary = dictionary;
         }
 
         public override void VisitActionBlock(AstActionBlock a)
@@ -65,7 +64,7 @@ namespace Bb.Parsers
         public override void VisitElementOption(AstElementOption a)
         {
             a.Parent = Parent;
-            base.VisitElementOption(a);            
+            base.VisitElementOption(a);
         }
 
         public override void VisitExceptionGroup(AstExceptionGroup a)
@@ -119,7 +118,7 @@ namespace Bb.Parsers
         public override void VisitModeSpecList(AstModeSpecList a)
         {
             a.Parent = Parent;
-            base.VisitModeSpecList(a);            
+            base.VisitModeSpecList(a);
         }
 
         public override void VisitOption(AstOption a)
@@ -168,6 +167,13 @@ namespace Bb.Parsers
         {
             a.Parent = Parent;
             base.VisitRule(a);
+
+            if (a.Alternatives.Count == 1 && a.ContainsOneTerminal)
+            {
+                // a.TerminalKind = a.Alternatives[0].TerminalKind;
+            }
+
+
         }
 
         public override void VisitRuleAction(AstRuleAction a)
@@ -198,7 +204,9 @@ namespace Bb.Parsers
         {
             a.Parent = Parent;
             base.VisitRuleRef(a);
-
+            if (a != null)
+                if (_dictionary.TryGetValue(a.ResolveName(), out var value))
+                    a.Link = value;
         }
 
         public override void VisitRulesList(AstRulesList a)
@@ -216,10 +224,15 @@ namespace Bb.Parsers
         public override void VisitTerminalText(AstTerminalText a)
         {
             a.Parent = Parent;
+            if (a != null && !string.IsNullOrEmpty(a.Text))
+                if (_dictionary.TryGetValue(a.Text, out var value))
+                    a.Link = value;
+
             base.VisitTerminalText(a);
+
         }
 
-      
+
         public override void VisitAstAlternativeList(AstAlternativeList a)
         {
             a.Parent = Parent;
@@ -254,6 +267,9 @@ namespace Bb.Parsers
         {
             a.Parent = Parent;
             base.VisitLexerRule(a);
+            if (_dictionary.TryGetValue(a.Name.Text, out var value))
+                a.Link = value;
+
         }
 
         public override void VisitLexerLabeledElement(AstLexerLabeledElement a)
@@ -297,6 +313,8 @@ namespace Bb.Parsers
             a.Parent = Parent;
             base.VisitLexerCommand(a);
         }
+
+        private readonly Dictionary<string, AstBase> _dictionary;
 
     }
 

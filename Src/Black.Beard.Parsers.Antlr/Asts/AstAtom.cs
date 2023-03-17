@@ -110,8 +110,6 @@ namespace Bb.Asts
 
         public bool IsConstant => (Value as AstTerminal)?.IsConstant ?? false;
 
-        public bool IsKeyword => (Value as AstTerminal)?.IsKeyword ?? false;
-
         public override bool IsRule { get => Value.IsRule; }
 
         public override bool ContainsRules => Value.ContainsRules;

@@ -58,7 +58,7 @@ fragment BlockComment
    ;
 
 fragment DocComment
-   : '/**' .*? ('*/' | EOF)
+   : '//**' .*? ('**//' | EOF)
    ;
 
 fragment LineComment

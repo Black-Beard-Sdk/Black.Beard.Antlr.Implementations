@@ -87,7 +87,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// ids_
-        /// 	 : id_  (COMMA  id_)*?
+        /// 	 : id_  (COMMA  id_)*
         /// </summary>
         public override AstRoot VisitIds_(TSqlParser.Ids_Context context)
         {
@@ -109,7 +109,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// host
         /// 	 : id_  DOT  host
-        /// 	 | (id_  DOT id_)
+        /// 	 | (id_  DOT | id_)
         /// </summary>
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
@@ -218,7 +218,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// complete_table_name
-        /// 	 : (linked_server  DOT  DOT  schema_name  DOT server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
+        /// 	 : (linked_server  DOT  DOT  schema_name  DOT | server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
         /// </summary>
         public override AstRoot VisitComplete_table_name(TSqlParser.Complete_table_nameContext context)
         {
@@ -390,7 +390,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// full_column_name
-        /// 	 : (DELETED INSERTED)  DOT  column_name
+        /// 	 : (DELETED | INSERTED)  DOT  column_name
         /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
         /// 	 | schema_name?  DOT  tableName?  DOT  column_name
         /// 	 | tableName?  DOT  column_name
@@ -415,7 +415,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// insert_column_id
-        /// 	 : (ignore += id_  DOT)*?  id_
+        /// 	 : (ignore += id_  DOT)*  id_
         /// </summary>
         public override AstRoot VisitInsert_column_id(TSqlParser.Insert_column_idContext context)
         {
@@ -443,6 +443,52 @@ namespace Bb.Parsers.TSql
         {
             IList<IParseTree> source = context.children;
             AstCursorName list = new AstCursorName(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// id_
+        /// 	 : ID
+        /// 	 | DOUBLE_QUOTE_ID
+        /// 	 | DOUBLE_QUOTE_BLANK
+        /// 	 | SQUARE_BRACKET_ID
+        /// 	 | keyword
+        /// </summary>
+        public override AstRoot VisitId_(TSqlParser.Id_Context context)
+        {
+            IList<IParseTree> source = context.children;
+            AstId list = new AstId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// simple_id
+        /// 	 : ID
+        /// </summary>
+        public override AstRoot VisitSimple_id(TSqlParser.Simple_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstSimpleId list = new AstSimpleId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {

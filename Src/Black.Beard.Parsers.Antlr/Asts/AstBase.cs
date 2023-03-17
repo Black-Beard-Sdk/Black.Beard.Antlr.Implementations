@@ -36,9 +36,9 @@ namespace Bb.Asts
 
 
         public AstGrammarSpec? Root()
-        { 
-        
-            if (this.Parent!= null)
+        {
+
+            if (this.Parent != null)
                 return this.Ancestor<AstGrammarSpec>();
 
             return null;
@@ -49,12 +49,19 @@ namespace Bb.Asts
         public bool IsList { get; protected set; }
 
 
-        public virtual bool IsRule { get; }
+        public virtual TokenTypeEnum TerminalKind { get; protected set; }
+
+
         public virtual bool IsTerminal { get => this is AstTerminal || this is AstTerminalText; }
+
+
+
+        public virtual bool IsRule { get; }
         public virtual bool IsBlock { get => this is AstBlock; }
         public virtual bool IsAlternative { get => this is AstAlternativeList; }
 
 
+        public AstBase Link { get; internal set; }
 
 
         public virtual bool ContainsRules { get; }
@@ -68,7 +75,7 @@ namespace Bb.Asts
         public virtual bool ContainsTerminals => false;
         public virtual bool ContainsOneTerminal => false;
         public virtual bool ContainsOnlyTerminals => false;
-        public virtual AstTerminalText GetTerminal() =>  null;
+        public virtual AstTerminalText GetTerminal() => null;
         public virtual IEnumerable<AstTerminalText> GetTerminals() { yield break; }
 
 
@@ -113,22 +120,23 @@ namespace Bb.Asts
             switch (occurence.Value)
             {
 
-                case Occurence.Enum.Any:
+                case OccurenceEnum.Any:
                     if (occurence.Optional)
-                    wrt.Append("*");
+                        wrt.Append("*");
                     else
                         wrt.Append("+");
-
                     break;
 
-                case Occurence.Enum.One:
+                case OccurenceEnum.One:
+                    if (occurence.Optional)
+                        wrt.Append("?");
+                    break;
+
                 default:
                     break;
 
             }
 
-            if (occurence.Optional)
-                wrt.Append("?");
 
         }
 

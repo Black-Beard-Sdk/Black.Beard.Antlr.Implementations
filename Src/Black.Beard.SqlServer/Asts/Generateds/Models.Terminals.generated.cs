@@ -19,7 +19,7 @@ namespace Bb.Asts.TSql
     /// empty_statement
     /// 	 : SEMI
     /// </summary>
-    public partial class AstEmptyStatement : AstTerminal<string>
+    public partial class AstEmptyStatement : AstRule<AstTerminal<string>
     {
         
         public AstEmptyStatement(ITerminalNode t) : 
@@ -47,7 +47,7 @@ namespace Bb.Asts.TSql
     /// alter_assembly_from_clause_start
     /// 	 : FROM
     /// </summary>
-    public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string>
+    public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string
     {
         
         public AstAlterAssemblyFromClauseStart(ITerminalNode t) : 
@@ -96,90 +96,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterAssemblyDrop(this);
-        }
-    }
-    
-    /// <summary>
-    /// alter_assembly_file_name
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstAlterAssemblyFileName : AstTerminal<string>
-    {
-        
-        public AstAlterAssemblyFileName(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyFileName(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyFileName(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitAlterAssemblyFileName(this);
-        }
-    }
-    
-    /// <summary>
-    /// alter_assembly_as
-    /// 	 : AS
-    /// </summary>
-    public partial class AstAlterAssemblyAs : AstTerminal<string>
-    {
-        
-        public AstAlterAssemblyAs(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyAs(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyAs(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitAlterAssemblyAs(this);
-        }
-    }
-    
-    /// <summary>
-    /// alter_assembly_with
-    /// 	 : WITH
-    /// </summary>
-    public partial class AstAlterAssemblyWith : AstTerminal<string>
-    {
-        
-        public AstAlterAssemblyWith(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyWith(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstAlterAssemblyWith(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitAlterAssemblyWith(this);
         }
     }
     
@@ -296,62 +212,6 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// entity_to
-    /// 	 : TO
-    /// </summary>
-    public partial class AstEntityTo : AstTerminal<string>
-    {
-        
-        public AstEntityTo(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstEntityTo(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstEntityTo(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitEntityTo(this);
-        }
-    }
-    
-    /// <summary>
-    /// colon_colon
-    /// 	 : DOUBLE_COLON
-    /// </summary>
-    public partial class AstColonColon : AstTerminal<string>
-    {
-        
-        public AstColonColon(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstColonColon(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstColonColon(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitColonColon(this);
-        }
-    }
-    
-    /// <summary>
     /// server_instance
     /// 	 : STRING
     /// </summary>
@@ -376,62 +236,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitServerInstance(this);
-        }
-    }
-    
-    /// <summary>
-    /// ip_v4_failover
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstIpV4Failover : AstTerminal<string>
-    {
-        
-        public AstIpV4Failover(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstIpV4Failover(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstIpV4Failover(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitIpV4Failover(this);
-        }
-    }
-    
-    /// <summary>
-    /// ip_v6_failover
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstIpV6Failover : AstTerminal<string>
-    {
-        
-        public AstIpV6Failover(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstIpV6Failover(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstIpV6Failover(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitIpV6Failover(this);
         }
     }
     
@@ -604,62 +408,35 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// id_
-    /// 	 : ID
-    /// 	 | DOUBLE_QUOTE_ID
-    /// 	 | DOUBLE_QUOTE_BLANK
-    /// 	 | SQUARE_BRACKET_ID
-    /// 	 | keyword
+    /// constant
+    /// 	 : STRING
+    /// 	 | BINARY
+    /// 	 | sign?  DECIMAL
+    /// 	 | sign?  (REAL | FLOAT)
+    /// 	 | sign?  dollar = DOLLAR  (DECIMAL | FLOAT)
+    /// 	 | parameter
     /// </summary>
-    public partial class AstId : AstTerminal<string>
+    public partial class AstConstant : AstTerminal<string>
     {
         
-        public AstId(ITerminalNode t) : 
+        public AstConstant(ITerminalNode t) : 
                 base(t, t.GetText())
         {
         }
         
-        public AstId(ParserRuleContext ctx) : 
+        public AstConstant(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
         {
         }
         
-        public AstId(Position t, string value) : 
+        public AstConstant(Position t, string value) : 
                 base(t, value)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitId(this);
-        }
-    }
-    
-    /// <summary>
-    /// simple_id
-    /// 	 : ID
-    /// </summary>
-    public partial class AstSimpleId : AstTerminal<string>
-    {
-        
-        public AstSimpleId(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstSimpleId(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstSimpleId(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitSimpleId(this);
+            visitor.VisitConstant(this);
         }
     }
 }

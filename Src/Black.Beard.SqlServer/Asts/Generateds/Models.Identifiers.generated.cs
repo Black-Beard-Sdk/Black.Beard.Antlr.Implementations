@@ -101,7 +101,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// ids_
-    /// 	 : id_  (COMMA  id_)*?
+    /// 	 : id_  (COMMA  id_)*
     /// </summary>
     public partial class AstIds : AstTerminalIdentifier
     {
@@ -130,7 +130,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// host
     /// 	 : id_  DOT  host
-    /// 	 | (id_  DOT id_)
+    /// 	 | (id_  DOT | id_)
     /// </summary>
     public partial class AstHost : AstTerminalIdentifier
     {
@@ -274,7 +274,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// complete_table_name
-    /// 	 : (linked_server  DOT  DOT  schema_name  DOT server_name  DOT  database_name  DOT  schema_name  DOT database_name  DOT  schema_name?  DOT schema_name  DOT)?  tableName
+    /// 	 : (linked_server  DOT  DOT  schema_name  DOT | server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
     /// </summary>
     public partial class AstCompleteTableName : AstTerminalIdentifier
     {
@@ -502,7 +502,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name
-    /// 	 : (DELETED INSERTED)  DOT  column_name
+    /// 	 : (DELETED | INSERTED)  DOT  column_name
     /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | schema_name?  DOT  tableName?  DOT  column_name
     /// 	 | tableName?  DOT  column_name
@@ -534,7 +534,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// insert_column_id
-    /// 	 : (ignore += id_  DOT)*?  id_
+    /// 	 : (ignore += id_  DOT)*  id_
     /// </summary>
     public partial class AstInsertColumnId : AstTerminalIdentifier
     {
@@ -586,6 +586,66 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitCursorName(this);
+        }
+    }
+    
+    /// <summary>
+    /// id_
+    /// 	 : ID
+    /// 	 | DOUBLE_QUOTE_ID
+    /// 	 | DOUBLE_QUOTE_BLANK
+    /// 	 | SQUARE_BRACKET_ID
+    /// 	 | keyword
+    /// </summary>
+    public partial class AstId : AstTerminalIdentifier
+    {
+        
+        public AstId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitId(this);
+        }
+    }
+    
+    /// <summary>
+    /// simple_id
+    /// 	 : ID
+    /// </summary>
+    public partial class AstSimpleId : AstTerminalIdentifier
+    {
+        
+        public AstSimpleId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstSimpleId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstSimpleId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSimpleId(this);
         }
     }
     

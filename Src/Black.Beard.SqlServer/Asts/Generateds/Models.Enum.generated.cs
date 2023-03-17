@@ -17,6 +17,58 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
+    /// binary_content
+    /// 	 : STRING
+    /// 	 | BINARY
+    /// </summary>
+    public partial class AstBinaryContent : AstRule
+    {
+        
+        public AstBinaryContent(ITerminalNode t, string value) : 
+                base(t, AstBinaryContent.GetValue(value))
+        {
+        }
+        
+        public AstBinaryContent(ITerminalNode t, AstBinaryContentEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBinaryContent(ParserRuleContext ctx, string value) : 
+                base(ctx, AstBinaryContent.GetValue(value))
+        {
+        }
+        
+        public AstBinaryContent(Position p, string value) : 
+                base(p, AstBinaryContent.GetValue(value))
+        {
+        }
+        
+        public AstBinaryContent(Position p, AstBinaryContentEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitBinaryContent(this);
+        }
+        
+        protected static AstBinaryContentEnum GetValue(string value)
+        {
+            if ((value == "STRING"))
+            {
+                return AstBinaryContentEnum.String;
+            }
+            if ((value == "BINARY"))
+            {
+                return AstBinaryContentEnum.Binary;
+            }
+            return AstBinaryContentEnum._undefined;
+        }
+    }
+    
+    /// <summary>
     /// class_type_for_azure_dw
     /// 	 : SCHEMA
     /// 	 | OBJECT
@@ -126,6 +178,110 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// grant_deny
+    /// 	 : GRANT
+    /// 	 | DENY
+    /// </summary>
+    public partial class AstGrantDeny : AstTerminal<AstGrantDenyEnum>
+    {
+        
+        public AstGrantDeny(ITerminalNode t, string value) : 
+                base(t, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(ITerminalNode t, AstGrantDenyEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGrantDeny(ParserRuleContext ctx, string value) : 
+                base(ctx, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(Position p, string value) : 
+                base(p, AstGrantDeny.GetValue(value))
+        {
+        }
+        
+        public AstGrantDeny(Position p, AstGrantDenyEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitGrantDeny(this);
+        }
+        
+        protected static AstGrantDenyEnum GetValue(string value)
+        {
+            if ((value == "GRANT"))
+            {
+                return AstGrantDenyEnum.Grant;
+            }
+            if ((value == "DENY"))
+            {
+                return AstGrantDenyEnum.Deny;
+            }
+            return AstGrantDenyEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// add_drop
+    /// 	 : ADD
+    /// 	 | DROP
+    /// </summary>
+    public partial class AstAddDrop : AstTerminal<AstAddDropEnum>
+    {
+        
+        public AstAddDrop(ITerminalNode t, string value) : 
+                base(t, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(ITerminalNode t, AstAddDropEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAddDrop(ParserRuleContext ctx, string value) : 
+                base(ctx, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(Position p, string value) : 
+                base(p, AstAddDrop.GetValue(value))
+        {
+        }
+        
+        public AstAddDrop(Position p, AstAddDropEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitAddDrop(this);
+        }
+        
+        protected static AstAddDropEnum GetValue(string value)
+        {
+            if ((value == "ADD"))
+            {
+                return AstAddDropEnum.Add;
+            }
+            if ((value == "DROP"))
+            {
+                return AstAddDropEnum.Drop;
+            }
+            return AstAddDropEnum._undefined;
+        }
+    }
+    
+    /// <summary>
     /// start_stop
     /// 	 : START
     /// 	 | STOP
@@ -174,6 +330,115 @@ namespace Bb.Asts.TSql
                 return AstStartStopEnum.Stop;
             }
             return AstStartStopEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// code_content
+    /// 	 : STRING
+    /// 	 | BINARY
+    /// 	 | NONE
+    /// </summary>
+    public partial class AstCodeContent : AstTerminal<AstCodeContentEnum>
+    {
+        
+        public AstCodeContent(ITerminalNode t, string value) : 
+                base(t, AstCodeContent.GetValue(value))
+        {
+        }
+        
+        public AstCodeContent(ITerminalNode t, AstCodeContentEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCodeContent(ParserRuleContext ctx, string value) : 
+                base(ctx, AstCodeContent.GetValue(value))
+        {
+        }
+        
+        public AstCodeContent(Position p, string value) : 
+                base(p, AstCodeContent.GetValue(value))
+        {
+        }
+        
+        public AstCodeContent(Position p, AstCodeContentEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCodeContent(this);
+        }
+        
+        protected static AstCodeContentEnum GetValue(string value)
+        {
+            if ((value == "STRING"))
+            {
+                return AstCodeContentEnum.String;
+            }
+            if ((value == "BINARY"))
+            {
+                return AstCodeContentEnum.Binary;
+            }
+            if ((value == "NONE"))
+            {
+                return AstCodeContentEnum.None;
+            }
+            return AstCodeContentEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// code_language
+    /// 	 : R
+    /// 	 | PYTHON
+    /// </summary>
+    public partial class AstCodeLanguage : AstTerminal<AstCodeLanguageEnum>
+    {
+        
+        public AstCodeLanguage(ITerminalNode t, string value) : 
+                base(t, AstCodeLanguage.GetValue(value))
+        {
+        }
+        
+        public AstCodeLanguage(ITerminalNode t, AstCodeLanguageEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCodeLanguage(ParserRuleContext ctx, string value) : 
+                base(ctx, AstCodeLanguage.GetValue(value))
+        {
+        }
+        
+        public AstCodeLanguage(Position p, string value) : 
+                base(p, AstCodeLanguage.GetValue(value))
+        {
+        }
+        
+        public AstCodeLanguage(Position p, AstCodeLanguageEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCodeLanguage(this);
+        }
+        
+        protected static AstCodeLanguageEnum GetValue(string value)
+        {
+            if ((value == "R"))
+            {
+                return AstCodeLanguageEnum.R;
+            }
+            if ((value == "PYTHON"))
+            {
+                return AstCodeLanguageEnum.Python;
+            }
+            return AstCodeLanguageEnum._undefined;
         }
     }
     
@@ -282,58 +547,6 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// add_drop
-    /// 	 : ADD
-    /// 	 | DROP
-    /// </summary>
-    public partial class AstAddDrop : AstTerminal<AstAddDropEnum>
-    {
-        
-        public AstAddDrop(ITerminalNode t, string value) : 
-                base(t, AstAddDrop.GetValue(value))
-        {
-        }
-        
-        public AstAddDrop(ITerminalNode t, AstAddDropEnum value) : 
-                base(t, value)
-        {
-        }
-        
-        public AstAddDrop(ParserRuleContext ctx, string value) : 
-                base(ctx, AstAddDrop.GetValue(value))
-        {
-        }
-        
-        public AstAddDrop(Position p, string value) : 
-                base(p, AstAddDrop.GetValue(value))
-        {
-        }
-        
-        public AstAddDrop(Position p, AstAddDropEnum value) : 
-                base(p, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitAddDrop(this);
-        }
-        
-        protected static AstAddDropEnum GetValue(string value)
-        {
-            if ((value == "ADD"))
-            {
-                return AstAddDropEnum.Add;
-            }
-            if ((value == "DROP"))
-            {
-                return AstAddDropEnum.Drop;
-            }
-            return AstAddDropEnum._undefined;
-        }
-    }
-    
-    /// <summary>
     /// enum_dml
     /// 	 : SELECT
     /// 	 | INSERT
@@ -396,60 +609,8 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// grant_deny
-    /// 	 : GRANT
-    /// 	 | DENY
-    /// </summary>
-    public partial class AstGrantDeny : AstTerminal<AstGrantDenyEnum>
-    {
-        
-        public AstGrantDeny(ITerminalNode t, string value) : 
-                base(t, AstGrantDeny.GetValue(value))
-        {
-        }
-        
-        public AstGrantDeny(ITerminalNode t, AstGrantDenyEnum value) : 
-                base(t, value)
-        {
-        }
-        
-        public AstGrantDeny(ParserRuleContext ctx, string value) : 
-                base(ctx, AstGrantDeny.GetValue(value))
-        {
-        }
-        
-        public AstGrantDeny(Position p, string value) : 
-                base(p, AstGrantDeny.GetValue(value))
-        {
-        }
-        
-        public AstGrantDeny(Position p, AstGrantDenyEnum value) : 
-                base(p, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitGrantDeny(this);
-        }
-        
-        protected static AstGrantDenyEnum GetValue(string value)
-        {
-            if ((value == "GRANT"))
-            {
-                return AstGrantDenyEnum.Grant;
-            }
-            if ((value == "DENY"))
-            {
-                return AstGrantDenyEnum.Deny;
-            }
-            return AstGrantDenyEnum._undefined;
-        }
-    }
-    
-    /// <summary>
     /// dml_trigger_operation
-    /// 	 : (INSERT UPDATE DELETE)
+    /// 	 : (INSERT | UPDATE | DELETE)
     /// </summary>
     public partial class AstDmlTriggerOperation : AstTerminal<AstDmlTriggerOperationEnum>
     {
@@ -675,7 +836,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// db_state_option
-    /// 	 : (ONLINE OFFLINE EMERGENCY)
+    /// 	 : (ONLINE | OFFLINE | EMERGENCY)
     /// </summary>
     public partial class AstDbStateOption : AstTerminal<AstDbStateOptionEnum>
     {
@@ -1415,6 +1576,58 @@ namespace Bb.Asts.TSql
                 return AstClusteredEnum.Nonclustered;
             }
             return AstClusteredEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// sign
+    /// 	 : PLUS
+    /// 	 | MINUS
+    /// </summary>
+    public partial class AstSign : AstTerminal<AstSignEnum>
+    {
+        
+        public AstSign(ITerminalNode t, string value) : 
+                base(t, AstSign.GetValue(value))
+        {
+        }
+        
+        public AstSign(ITerminalNode t, AstSignEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSign(ParserRuleContext ctx, string value) : 
+                base(ctx, AstSign.GetValue(value))
+        {
+        }
+        
+        public AstSign(Position p, string value) : 
+                base(p, AstSign.GetValue(value))
+        {
+        }
+        
+        public AstSign(Position p, AstSignEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSign(this);
+        }
+        
+        protected static AstSignEnum GetValue(string value)
+        {
+            if ((value == "PLUS"))
+            {
+                return AstSignEnum.Plus;
+            }
+            if ((value == "MINUS"))
+            {
+                return AstSignEnum.Minus;
+            }
+            return AstSignEnum._undefined;
         }
     }
     
@@ -5542,6 +5755,125 @@ namespace Bb.Asts.TSql
                 return AstKeywordEnum.Precision;
             }
             return AstKeywordEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// file_size_unity
+    /// 	 : KB
+    /// 	 | MB
+    /// 	 | GB
+    /// 	 | TB
+    /// 	 | MODULE
+    /// </summary>
+    public partial class AstFileSizeUnity : AstTerminal<AstFileSizeUnityEnum>
+    {
+        
+        public AstFileSizeUnity(ITerminalNode t, string value) : 
+                base(t, AstFileSizeUnity.GetValue(value))
+        {
+        }
+        
+        public AstFileSizeUnity(ITerminalNode t, AstFileSizeUnityEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFileSizeUnity(ParserRuleContext ctx, string value) : 
+                base(ctx, AstFileSizeUnity.GetValue(value))
+        {
+        }
+        
+        public AstFileSizeUnity(Position p, string value) : 
+                base(p, AstFileSizeUnity.GetValue(value))
+        {
+        }
+        
+        public AstFileSizeUnity(Position p, AstFileSizeUnityEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitFileSizeUnity(this);
+        }
+        
+        protected static AstFileSizeUnityEnum GetValue(string value)
+        {
+            if ((value == "KB"))
+            {
+                return AstFileSizeUnityEnum.Kb;
+            }
+            if ((value == "MB"))
+            {
+                return AstFileSizeUnityEnum.Mb;
+            }
+            if ((value == "GB"))
+            {
+                return AstFileSizeUnityEnum.Gb;
+            }
+            if ((value == "TB"))
+            {
+                return AstFileSizeUnityEnum.Tb;
+            }
+            if ((value == "MODULE"))
+            {
+                return AstFileSizeUnityEnum.Module;
+            }
+            return AstFileSizeUnityEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// decimal_string
+    /// 	 : DECIMAL
+    /// 	 | STRING
+    /// </summary>
+    public partial class AstDecimalString : AstTerminal<AstDecimalStringEnum>
+    {
+        
+        public AstDecimalString(ITerminalNode t, string value) : 
+                base(t, AstDecimalString.GetValue(value))
+        {
+        }
+        
+        public AstDecimalString(ITerminalNode t, AstDecimalStringEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDecimalString(ParserRuleContext ctx, string value) : 
+                base(ctx, AstDecimalString.GetValue(value))
+        {
+        }
+        
+        public AstDecimalString(Position p, string value) : 
+                base(p, AstDecimalString.GetValue(value))
+        {
+        }
+        
+        public AstDecimalString(Position p, AstDecimalStringEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalString(this);
+        }
+        
+        protected static AstDecimalStringEnum GetValue(string value)
+        {
+            if ((value == "DECIMAL"))
+            {
+                return AstDecimalStringEnum.Decimal;
+            }
+            if ((value == "STRING"))
+            {
+                return AstDecimalStringEnum.String;
+            }
+            return AstDecimalStringEnum._undefined;
         }
     }
 }

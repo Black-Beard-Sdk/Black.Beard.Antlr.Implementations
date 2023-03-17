@@ -6,13 +6,15 @@
         void VisitAdditionalValue(AdditionalValue a);
         void VisitAdditionalValues(AdditionalValues a);
         void VisitCalculatedTemplateSetting(CalculatedTemplateSetting a);
-        void VisitConstant(ConstantConfig a);
+        void VisitConstant(ConstantStringConfig a);
         void VisitDefaultTemplateSetting(DefaultTemplateSetting a);
         void VisitGamarDeclaration(GrammarConfigDeclaration a);
+        void VisitGammarTermDeclaration(GrammarConfigTermDeclaration grammarConfigTermDeclaration);
         void VisitGrammarSpec(GrammarSpec a);
         void VisitIdentifier(IdentifierConfig a);
         void VisitListDeclaration(ListDeclaration a);
         void VisitRule(GrammarRuleConfig a);
+        void VisitRuleTerm(GrammarRuleTermConfig grammarRuleTermConfig);
         void VisitSelectorExpression(SelectorExpressionItem a);
         void VisitSelectorExpressionItemBinary(SelectorExpressionItemBinary a);
         void VisitSelectorExpressionItemHas(SelectorExpressionItemHas a);

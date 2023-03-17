@@ -34,8 +34,8 @@ namespace Generate.Scripts
                             .IsInterface()
                             .Method(m =>
                             {
-                                m.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name))
-                                 .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name), "a")
+                                m.Name(g => "Visit" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                 .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text), "a")
                                 ;
                             });
                     });

@@ -50,33 +50,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// alter_assembly_file_name
-        /// 	 : STRING
-        /// </summary>
-        public override AstRoot VisitAlter_assembly_file_name(TSqlParser.Alter_assembly_file_nameContext context)
-        {
-            return new AstAlterAssemblyFileName(context);
-        }
-        
-        /// <summary>
-        /// alter_assembly_as
-        /// 	 : AS
-        /// </summary>
-        public override AstRoot VisitAlter_assembly_as(TSqlParser.Alter_assembly_asContext context)
-        {
-            return new AstAlterAssemblyAs(context);
-        }
-        
-        /// <summary>
-        /// alter_assembly_with
-        /// 	 : WITH
-        /// </summary>
-        public override AstRoot VisitAlter_assembly_with(TSqlParser.Alter_assembly_withContext context)
-        {
-            return new AstAlterAssemblyWith(context);
-        }
-        
-        /// <summary>
         /// network_file_start
         /// 	 : DOUBLE_BACK_SLASH
         /// </summary>
@@ -113,48 +86,12 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// entity_to
-        /// 	 : TO
-        /// </summary>
-        public override AstRoot VisitEntity_to(TSqlParser.Entity_toContext context)
-        {
-            return new AstEntityTo(context);
-        }
-        
-        /// <summary>
-        /// colon_colon
-        /// 	 : DOUBLE_COLON
-        /// </summary>
-        public override AstRoot VisitColon_colon(TSqlParser.Colon_colonContext context)
-        {
-            return new AstColonColon(context);
-        }
-        
-        /// <summary>
         /// server_instance
         /// 	 : STRING
         /// </summary>
         public override AstRoot VisitServer_instance(TSqlParser.Server_instanceContext context)
         {
             return new AstServerInstance(context);
-        }
-        
-        /// <summary>
-        /// ip_v4_failover
-        /// 	 : STRING
-        /// </summary>
-        public override AstRoot VisitIp_v4_failover(TSqlParser.Ip_v4_failoverContext context)
-        {
-            return new AstIpV4Failover(context);
-        }
-        
-        /// <summary>
-        /// ip_v6_failover
-        /// 	 : STRING
-        /// </summary>
-        public override AstRoot VisitIp_v6_failover(TSqlParser.Ip_v6_failoverContext context)
-        {
-            return new AstIpV6Failover(context);
         }
         
         /// <summary>
@@ -212,25 +149,17 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// id_
-        /// 	 : ID
-        /// 	 | DOUBLE_QUOTE_ID
-        /// 	 | DOUBLE_QUOTE_BLANK
-        /// 	 | SQUARE_BRACKET_ID
-        /// 	 | keyword
+        /// constant
+        /// 	 : STRING
+        /// 	 | BINARY
+        /// 	 | sign?  DECIMAL
+        /// 	 | sign?  (REAL | FLOAT)
+        /// 	 | sign?  dollar = DOLLAR  (DECIMAL | FLOAT)
+        /// 	 | parameter
         /// </summary>
-        public override AstRoot VisitId_(TSqlParser.Id_Context context)
+        public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
-            return new AstId(context);
-        }
-        
-        /// <summary>
-        /// simple_id
-        /// 	 : ID
-        /// </summary>
-        public override AstRoot VisitSimple_id(TSqlParser.Simple_idContext context)
-        {
-            return new AstSimpleId(context);
+            return new AstConstant(context);
         }
     }
 }

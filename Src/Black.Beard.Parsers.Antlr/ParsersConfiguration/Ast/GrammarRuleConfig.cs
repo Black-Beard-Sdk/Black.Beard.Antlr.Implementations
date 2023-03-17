@@ -5,27 +5,32 @@ using System.Data;
 
 namespace Bb.ParsersConfiguration.Ast
 {
+
+
     public class GrammarRuleConfig : AntlrConfigAstBase
     {
 
-        public GrammarRuleConfig(ParserRuleContext ctx, bool generate, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
+        public GrammarRuleConfig(ParserRuleContext ctx, bool generate, IdentifierConfig inheritClass, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
             : base(ctx)
         {
             this.Generate = generate;
+            this.Inherit = inheritClass;
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
 
-        public GrammarRuleConfig(Position position, bool generate, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
+        public GrammarRuleConfig(Position position, bool generate, IdentifierConfig inheritClass, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
             : base(position)
         {
             this.Generate = generate;
+            this.Inherit = inheritClass;
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
 
-
         public bool Generate { get; set; }
+
+        public IdentifierConfig Inherit { get; set;  }
 
         public TemplateSetting TemplateSetting { get; }
 
@@ -48,11 +53,18 @@ namespace Bb.ParsersConfiguration.Ast
                 writer.AppendEndLine("GENERATE");
             else
                 writer.AppendEndLine("NO GENERATE");
-            
+
+
+            writer.Append("INHERIT ");
+            if (Inherit != null)
+                Inherit.ToString(writer);
+
+            writer.AppendEndLine();
             TemplateSetting.ToString(writer);
 
             writer.AppendEndLine();
             CalculatedTemplateSetting?.ToString(writer);
+            
             writer.AppendEndLine();
 
         }

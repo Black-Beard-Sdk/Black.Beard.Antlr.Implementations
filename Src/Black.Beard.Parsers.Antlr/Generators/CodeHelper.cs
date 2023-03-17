@@ -263,6 +263,37 @@ namespace Bb.Generators
 
         }
 
+        public static string FormatCsharpArgument(this string code)
+        {
+
+            StringBuilder sb = new StringBuilder(code.Length);
+
+            char last = '\0';
+            for (int i = 0; i < code.Length; i++)
+            {
+                var s = code[i];
+
+                if (sb.Length == 0)
+                    s = char.ToLower(s);
+
+                else if (s == '_')
+                {
+                    last = '_';
+                    continue;
+                }
+
+                else if (last == '_')
+                    s = char.ToUpper(s);
+
+                sb.Append(s);
+                last = s;
+
+            }
+
+            return sb.ToString();
+
+        }
+
         public static string FormatCamelUpercase(this string code)
         {
             StringBuilder sb = new StringBuilder(code.Length);

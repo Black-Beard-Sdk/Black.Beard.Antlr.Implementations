@@ -58,6 +58,9 @@ namespace Bb.Parsers
                 else if (t is ListDeclaration t4)
                     result.Add(t4);
 
+                else if (t is GrammarConfigTermDeclaration t5)
+                    result.Add(t5);
+
                 else
                 {
                     Pause();
@@ -321,7 +324,7 @@ namespace Bb.Parsers
                     IsNot = context.NOT() != null,
                     ListName = context.identifier()?.GetText() ?? string.Empty,
                 };
-                            
+
                 return result1;
 
             }
@@ -380,12 +383,13 @@ namespace Bb.Parsers
         /// <returns></returns>
         public override AntlrConfigAstBase VisitValue_item([NotNull] AntlrConfigParser.Value_itemContext context)
         {
-            var key = (IdentifierConfig)context.identifier().Accept(this);
-            var value = context.constant().Accept(this);
+            var i = context.identifier();
+            var key = (IdentifierConfig)i[0].Accept(this);
+            var value = (IdentifierConfig)i[1].Accept(this);
             if (value is IdentifierConfig c)
-                return new AdditionalValue(context, key, c.Text);
+                return new AdditionalValue(context, key, c);
 
-            return new AdditionalValue(context, key, (value as ConstantConfig).Text);
+            return new AdditionalValue(context, key, value);
 
         }
 
@@ -398,18 +402,94 @@ namespace Bb.Parsers
         /// </para>
         /// grammarDeclaration
         ///     : RULE identifier COLON ruleConfig SEMI
+        ///     | TERM identifier ruleTermConfig SEMI
         ///     ;
         /// </summary>
         /// <param name="context">The parse tree.</param>
         /// <returns></returns>
-        /// <return>The visitor result.</return>
+        /// <return>The visitor result.</return>>	Generate.dll!Generate.Scripts.ScriptClassDefaults.ConfigureTemplate.AnonymousMethod__14(System.CodeDom.CodeTypeDeclaration t) Ligne 135	C#
+
         public override AntlrConfigAstBase VisitGrammar_declaration([NotNull] AntlrConfigParser.Grammar_declarationContext context)
         {
 
             var name = (IdentifierConfig)context.identifier().Accept(this);
-            var template = (GrammarRuleConfig)context.ruleConfig().Accept(this);
 
-            return new GrammarConfigDeclaration(context, name.Text, template);
+            if (context.RULE() != null)
+            {
+                var template = (GrammarRuleConfig)context.ruleConfig().Accept(this);
+                return new GrammarConfigDeclaration(context, name, template);
+            }
+
+            var config = (GrammarRuleTermConfig)context.ruleTermConfig().Accept(this);
+            return new GrammarConfigTermDeclaration(context, name, config);
+
+        }
+
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.ParserConfigurations.Antlr.AntlrConfigParser.ruleTermConfig" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// ruleTermConfig
+        ///   : KIND termKindEnum identifier?
+        ///   ;
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
+        public override AntlrConfigAstBase VisitRuleTermConfig([NotNull] AntlrConfigParser.RuleTermConfigContext context)
+        {
+
+            var extendedData = (context.identifier()?.Accept(this) as IdentifierConfig);
+
+            TokenTypeEnum v = TokenTypeEnum.Other; 
+
+            var e = context.termKindEnum();
+            if (e.OTHER_() != null)
+                v = TokenTypeEnum.Other;
+
+            else if (e.CONSTANT_() != null)
+                v = TokenTypeEnum.Constant;
+
+            else if (e.IDENTIFIER_() != null)
+                v = TokenTypeEnum.Identifier;
+
+            else if (e.COMMENT_() != null)
+                v = TokenTypeEnum.Comment;
+
+            else if (e.BOOLEAN_() != null)
+                v = TokenTypeEnum.Boolean;
+
+            else if (e.STRING_() != null)
+                v = TokenTypeEnum.String;
+
+            else if (e.DECIMAL_() != null)
+                v = TokenTypeEnum.Decimal;
+
+            else if (e.INTEGER_() != null)
+                v = TokenTypeEnum.Int;
+
+            else if (e.REAL_() != null)
+                v = TokenTypeEnum.Real;
+
+            else if (e.HEXA_() != null)
+                v = TokenTypeEnum.Hexa;
+
+            else if (e.BINARY_() != null)
+                v = TokenTypeEnum.Binary;
+
+            else if (e.PATTERN_() != null)
+                v = TokenTypeEnum.Pattern;
+
+            else if (e.OPERATOR_() != null)
+                v = TokenTypeEnum.Operator;
+
+            else if (e.PONCTUATION_() != null)
+                v = TokenTypeEnum.Ponctuation;
+
+            return new GrammarRuleTermConfig(context, v, extendedData);
+        
         }
 
         /// <summary>
@@ -420,6 +500,7 @@ namespace Bb.Parsers
         /// </para>
         /// ruleConfig
         ///     : NO? GENERATE
+        ///       rule_tune_inherit?
         ///       template_setting
         ///       calculated_template_setting?
         ///     ;
@@ -431,10 +512,38 @@ namespace Bb.Parsers
         {
 
             var generate = context.NO() == null;
+
+            var rule_tune_inherit = (IdentifierConfig)context.rule_tune_inherit()?.Accept(this);
+
             var templateSetting = (TemplateSetting)context.optional_template_setting()?.Accept(this);
             var calculatedTemplateSetting = (CalculatedTemplateSetting)context.calculated_template_setting()?.Accept(this);
 
-            return new GrammarRuleConfig(context, generate, templateSetting, calculatedTemplateSetting);
+            return new GrammarRuleConfig(context, generate, rule_tune_inherit, templateSetting, calculatedTemplateSetting);
+
+        }
+
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.ParserConfigurations.Antlr.AntlrConfigParser.rule_tune_inherit" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// rule_tune_inherit : INHERIT STRING_LITERAL?
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
+        public override AntlrConfigAstBase VisitRule_tune_inherit([NotNull] AntlrConfigParser.Rule_tune_inheritContext context)
+        {
+
+            if (context != null)
+            {
+                var constant = context.STRING_LITERAL();
+                if (constant != null)
+                    return new IdentifierConfig(constant);
+            }
+
+            return null;
 
         }
 
@@ -452,20 +561,6 @@ namespace Bb.Parsers
         {
             return new IdentifierConfig(context);
         }
-
-        public override AntlrConfigAstBase VisitConstant([NotNull] AntlrConfigParser.ConstantContext context)
-        {
-
-            var result = context.identifier().Accept(this);
-            if (result != null)
-                return result;
-
-            return new ConstantConfig(context.STRING_LITERAL());
-
-        }
-
-
-
 
     }
 

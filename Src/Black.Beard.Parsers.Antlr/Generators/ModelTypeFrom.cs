@@ -146,6 +146,11 @@ namespace Bb.Generators
             return this;
         }
 
+        public new ModelTypeFrom<T> Make(Action<CodeTypeDeclaration> action)
+        {
+            this._actions.Add(action);
+            return this;
+        }
 
         public ModelTypeFrom<T> Properties(Func<IEnumerable<object>> items, Action<ModelProperty, object> action)
         {
@@ -293,6 +298,9 @@ namespace Bb.Generators
                         }
                     }
 
+                    foreach (var a in _actions)                    
+                        a(type);
+                    
                 }
 
             }
@@ -361,6 +369,7 @@ namespace Bb.Generators
         public ModelTypeFrom(ModelNamespace modelNamespace)
         {
             this._modelNamespace = modelNamespace;
+            _actions = new List<Action<CodeTypeDeclaration>>();
         }
 
         public abstract Type Type { get; }
@@ -379,10 +388,18 @@ namespace Bb.Generators
 
         }
 
+        public ModelTypeFrom Make(Action<CodeTypeDeclaration> action)
+        {
+            this._actions.Add(action);
+            return this;
+        }
+
         internal abstract void Generate(Context ctx, AstBase ast, CodeNamespace @namespace);
 
 
         protected Action<Documentation> _actionDocumentation;
+        protected readonly List<Action<CodeTypeDeclaration>> _actions;
+
     }
 
 

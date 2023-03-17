@@ -285,7 +285,9 @@ namespace Bb.Parsers
 
         public virtual void VisitTerminalText(AstTerminalText a)
         {
-            //a.Code.Name = a.Text;
+
+
+            
         }
 
         public virtual void VisitParserRuleSpec(AstParserRuleSpec a)
@@ -315,7 +317,8 @@ namespace Bb.Parsers
         public virtual void VisitLexerRulesList(AstLexerRulesList a)
         {
             _stack.Push(a);
-
+            foreach(var item in a)
+                item.Accept(this);
             _stack.Pop();
         }
 

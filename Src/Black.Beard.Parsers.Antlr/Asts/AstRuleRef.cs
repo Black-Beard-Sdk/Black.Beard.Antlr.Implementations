@@ -62,9 +62,6 @@ namespace Bb.Asts
         public override bool ContainsBlocks { get => false; }
         public override bool ContainsAlternatives { get => false; }
 
-
-
-
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
         public override void Accept(IAstBaseVisitor visitor)

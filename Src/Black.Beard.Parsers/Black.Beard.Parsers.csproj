@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
-    <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
+    <Compile Remove="Codes\**" />
+    <EmbeddedResource Remove="Codes\**" />
+    <None Remove="Codes\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Codes\" />
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
+    <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

@@ -21,7 +21,7 @@ namespace Bb.ParsersConfiguration.Ast
         }
 
 
-        public string TemplateName { get;  }
+        public string TemplateName { get; }
 
         public AdditionalValues AddtionnalSettings { get; set; }
 
@@ -38,12 +38,18 @@ namespace Bb.ParsersConfiguration.Ast
         public override void ToString(Writer writer)
         {
             writer.Append("TEMPLATE ");
-            writer.Append(TemplateName);
-            writer.Append(" ");
+            if (!string.IsNullOrEmpty(TemplateName))
+                writer.Append(TemplateName);
 
-            AddtionnalSettings?.ToString(writer);
+            if (AddtionnalSettings != null)
+            {
 
-            writer.Append(" ");
+                writer.Append(" ");
+
+                AddtionnalSettings.ToString(writer);
+
+            }
+
 
         }
 

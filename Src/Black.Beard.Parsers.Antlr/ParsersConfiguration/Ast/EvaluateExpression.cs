@@ -7,10 +7,8 @@ namespace Bb.ParsersConfiguration.Ast
 
         public EvaluateExpression(AstRule rule, GrammarSpec grammarSpec)
         {
-
             this._rule = rule;
             this._grammarSpec = grammarSpec;
-
         }
 
         public bool VisitAdditionalValue(AdditionalValue a)
@@ -28,17 +26,12 @@ namespace Bb.ParsersConfiguration.Ast
             throw new NotImplementedException();
         }
 
-        public bool VisitConstant(ConstantConfig a)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool VisitDefaultTemplateSetting(DefaultTemplateSetting a)
         {
             throw new NotImplementedException();
         }
 
-        public bool VisitGamarDeclaration(GrammarConfigDeclaration a)
+        public bool VisitGammarDeclaration(GrammarConfigDeclaration a)
         {
             throw new NotImplementedException();
         }
@@ -77,6 +70,7 @@ namespace Bb.ParsersConfiguration.Ast
             return a.Left.Accept(this) && a.Right.Accept(this);
 
         }
+
 
         public bool VisitSelectorExpressionItemHas(SelectorExpressionItemHas a)
         {
@@ -289,6 +283,21 @@ namespace Bb.ParsersConfiguration.Ast
         }
 
         public bool VisitTemplateSetting(TemplateSetting a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool VisitGammarDeclaration(GrammarConfigTermDeclaration a)
+        {
+            return a.Config.Accept(this);
+        }
+
+        public bool VisitRuleTerm(GrammarRuleTermConfig a)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool VisitConstant(ConstantStringConfig a)
         {
             throw new NotImplementedException();
         }

@@ -23,6 +23,16 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
+        /// binary_content
+        /// 	 : STRING
+        /// 	 | BINARY
+        /// </summary>
+        public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
+        {
+            return new AstBinaryContent(context, context.GetText());
+        }
+        
+        /// <summary>
         /// class_type_for_azure_dw
         /// 	 : SCHEMA
         /// 	 | OBJECT
@@ -44,6 +54,26 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// grant_deny
+        /// 	 : GRANT
+        /// 	 | DENY
+        /// </summary>
+        public override AstRoot VisitGrant_deny(TSqlParser.Grant_denyContext context)
+        {
+            return new AstGrantDeny(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// add_drop
+        /// 	 : ADD
+        /// 	 | DROP
+        /// </summary>
+        public override AstRoot VisitAdd_drop(TSqlParser.Add_dropContext context)
+        {
+            return new AstAddDrop(context, context.GetText());
+        }
+        
+        /// <summary>
         /// start_stop
         /// 	 : START
         /// 	 | STOP
@@ -51,6 +81,27 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitStart_stop(TSqlParser.Start_stopContext context)
         {
             return new AstStartStop(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// code_content
+        /// 	 : STRING
+        /// 	 | BINARY
+        /// 	 | NONE
+        /// </summary>
+        public override AstRoot VisitCode_content(TSqlParser.Code_contentContext context)
+        {
+            return new AstCodeContent(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// code_language
+        /// 	 : R
+        /// 	 | PYTHON
+        /// </summary>
+        public override AstRoot VisitCode_language(TSqlParser.Code_languageContext context)
+        {
+            return new AstCodeLanguage(context, context.GetText());
         }
         
         /// <summary>
@@ -74,16 +125,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// add_drop
-        /// 	 : ADD
-        /// 	 | DROP
-        /// </summary>
-        public override AstRoot VisitAdd_drop(TSqlParser.Add_dropContext context)
-        {
-            return new AstAddDrop(context, context.GetText());
-        }
-        
-        /// <summary>
         /// enum_dml
         /// 	 : SELECT
         /// 	 | INSERT
@@ -96,18 +137,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// grant_deny
-        /// 	 : GRANT
-        /// 	 | DENY
-        /// </summary>
-        public override AstRoot VisitGrant_deny(TSqlParser.Grant_denyContext context)
-        {
-            return new AstGrantDeny(context, context.GetText());
-        }
-        
-        /// <summary>
         /// dml_trigger_operation
-        /// 	 : (INSERT UPDATE DELETE)
+        /// 	 : (INSERT | UPDATE | DELETE)
         /// </summary>
         public override AstRoot VisitDml_trigger_operation(TSqlParser.Dml_trigger_operationContext context)
         {
@@ -149,7 +180,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// db_state_option
-        /// 	 : (ONLINE OFFLINE EMERGENCY)
+        /// 	 : (ONLINE | OFFLINE | EMERGENCY)
         /// </summary>
         public override AstRoot VisitDb_state_option(TSqlParser.Db_state_optionContext context)
         {
@@ -288,6 +319,16 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitClustered(TSqlParser.ClusteredContext context)
         {
             return new AstClustered(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// sign
+        /// 	 : PLUS
+        /// 	 | MINUS
+        /// </summary>
+        public override AstRoot VisitSign(TSqlParser.SignContext context)
+        {
+            return new AstSign(context, context.GetText());
         }
         
         /// <summary>
@@ -1113,6 +1154,29 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitKeyword(TSqlParser.KeywordContext context)
         {
             return new AstKeyword(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// file_size_unity
+        /// 	 : KB
+        /// 	 | MB
+        /// 	 | GB
+        /// 	 | TB
+        /// 	 | MODULE
+        /// </summary>
+        public override AstRoot VisitFile_size_unity(TSqlParser.File_size_unityContext context)
+        {
+            return new AstFileSizeUnity(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// decimal_string
+        /// 	 : DECIMAL
+        /// 	 | STRING
+        /// </summary>
+        public override AstRoot VisitDecimal_string(TSqlParser.Decimal_stringContext context)
+        {
+            return new AstDecimalString(context, context.GetText());
         }
     }
 }

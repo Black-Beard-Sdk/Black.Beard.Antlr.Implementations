@@ -4,24 +4,22 @@ using Bb.Parsers;
 
 namespace Bb.ParsersConfiguration.Ast
 {
-    public class GrammarConfigDeclaration : AntlrConfigAstBase
+
+    public class GrammarConfigDeclaration : GrammarConfigBaseDeclaration
     {
 
-        public GrammarConfigDeclaration(ParserRuleContext ctx, string ruleName, GrammarRuleConfig template)
-            : base(ctx)
+        public GrammarConfigDeclaration(ParserRuleContext ctx, IdentifierConfig ruleName, GrammarRuleConfig template)
+            : base(ctx, ruleName)
         {
-            this.RuleName = ruleName;
             this.Config = template;
         }
 
-        public GrammarConfigDeclaration(Position position, string ruleName, GrammarRuleConfig template)
-            : base(position)
+        public GrammarConfigDeclaration(Position position, IdentifierConfig ruleName, GrammarRuleConfig template)
+            : base(position, ruleName)
         {
-            this.RuleName = ruleName;
             this.Config = template;
         }
 
-        public string RuleName { get; }
 
         public GrammarRuleConfig Config { get; }
 
@@ -34,12 +32,12 @@ namespace Bb.ParsersConfiguration.Ast
 
         public override T Accept<T>(IAstConfigBaseWithResultVisitor<T> visitor)
         {
-            return visitor.VisitGamarDeclaration(this);
+            return visitor.VisitGammarDeclaration(this);
         }
 
         public override void ToString(Writer writer)
         {
-            
+
             if (Rule != null)
             {
 
@@ -48,11 +46,11 @@ namespace Bb.ParsersConfiguration.Ast
                 writer.Append(this.RuleName);
                 writer.AppendEndLine(" ");
 
-                writer.Append("/* ");
+                writer.Append("//** ");
                 Rule.ToString(writer);
                 writer.TrimEnd();
                 writer.AppendEndLine();
-                writer.AppendEndLine("  */ ");
+                writer.AppendEndLine("  **// ");
 
                 using (writer.Indent())
                 {
@@ -69,3 +67,4 @@ namespace Bb.ParsersConfiguration.Ast
     }
 
 }
+

@@ -5,13 +5,15 @@
         T VisitAdditionalValue(AdditionalValue a);
         T VisitAdditionalValues(AdditionalValues a);
         T VisitCalculatedTemplateSetting(CalculatedTemplateSetting a);
-        T VisitConstant(ConstantConfig a);
+        T VisitConstant(ConstantStringConfig a);
         T VisitDefaultTemplateSetting(DefaultTemplateSetting a);
-        T VisitGamarDeclaration(GrammarConfigDeclaration a);
+        T VisitGammarDeclaration(GrammarConfigDeclaration a);
+        T VisitGammarDeclaration(GrammarConfigTermDeclaration a);
         T VisitGrammarSpec(GrammarSpec a);
         T VisitIdentifier(IdentifierConfig a);
         T VisitListDeclaration(ListDeclaration a);
         T VisitRule(GrammarRuleConfig a);
+        T VisitRuleTerm(GrammarRuleTermConfig a);
         T VisitSelectorExpression(SelectorExpressionItem a);
         T VisitSelectorExpressionItemBinary(SelectorExpressionItemBinary a);
         T VisitSelectorExpressionItemHas(SelectorExpressionItemHas a);

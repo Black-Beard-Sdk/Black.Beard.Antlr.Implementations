@@ -1,4 +1,5 @@
 ﻿using Antlr4.Runtime;
+using Bb.Parsers;
 using Bb.Parsers.Antlr;
 using Bb.ParsersConfiguration.Ast;
 using System.Diagnostics;
@@ -15,14 +16,14 @@ namespace Bb.Asts
     {
 
         public AstRuleBase(ParserRuleContext ctx
-            , string ruleName
+            , IdentifierConfig ruleName
             )
             : base(ctx)
         {
             this.Name = ruleName;
         }
 
-        public string Name { get; }
+        public IdentifierConfig Name { get; }
 
     }
 
@@ -41,7 +42,7 @@ namespace Bb.Asts
             , AstPrequelList? prequels
             , AstRuleAltList? ruleBlock
             , AstExceptionGroup? exceptionGroup
-            ) : base(ctx, ruleName.ResolveName())
+            ) : base(ctx, new IdentifierConfig(ruleName.ToString()))
         {
             this.Modifiers = modifiers;
             this.Rule = rule;
@@ -66,6 +67,11 @@ namespace Bb.Asts
         public AstExceptionGroup ExceptionGroup { get; }
 
         public bool CanBeRemoved { get; internal set; }
+
+        public AstGrammarSpec Root => _root ?? (_root = Ancestor<AstGrammarSpec>());
+
+
+        public AstRuleBase? ResolveByName(string name) => Root?.Rules?.ResolveByName(name);
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
@@ -194,6 +200,7 @@ namespace Bb.Asts
         public string Strategy { get; set; }
 
         public GrammarConfigDeclaration Configuration { get; internal set; }
+
         public int Index { get; internal set; }
 
         public override IEnumerable<AstTerminalText> GetTerminals()
@@ -238,8 +245,11 @@ namespace Bb.Asts
 
                 Alternatives.ToString(wrt);
             }
+            wrt.TrimEnd();
+
         }
 
+        AstGrammarSpec _root;
 
 
     }

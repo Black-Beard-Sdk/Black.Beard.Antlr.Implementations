@@ -11,6 +11,16 @@ namespace Bb.Asts.TSql
 {
     
     
+    public enum AstBinaryContentEnum
+    {
+        
+        _undefined,
+        
+        String,
+        
+        Binary,
+    }
+    
     public enum AstClassTypeForAzureDwEnum
     {
         
@@ -33,6 +43,26 @@ namespace Bb.Asts.TSql
         Object,
     }
     
+    public enum AstGrantDenyEnum
+    {
+        
+        _undefined,
+        
+        Grant,
+        
+        Deny,
+    }
+    
+    public enum AstAddDropEnum
+    {
+        
+        _undefined,
+        
+        Add,
+        
+        Drop,
+    }
+    
     public enum AstStartStopEnum
     {
         
@@ -41,6 +71,28 @@ namespace Bb.Asts.TSql
         Start,
         
         Stop,
+    }
+    
+    public enum AstCodeContentEnum
+    {
+        
+        _undefined,
+        
+        String,
+        
+        Binary,
+        
+        None,
+    }
+    
+    public enum AstCodeLanguageEnum
+    {
+        
+        _undefined,
+        
+        R,
+        
+        Python,
     }
     
     public enum AstEnableDisableEnum
@@ -63,16 +115,6 @@ namespace Bb.Asts.TSql
         Merge,
     }
     
-    public enum AstAddDropEnum
-    {
-        
-        _undefined,
-        
-        Add,
-        
-        Drop,
-    }
-    
     public enum AstEnumDmlEnum
     {
         
@@ -85,16 +127,6 @@ namespace Bb.Asts.TSql
         Delete,
         
         Update,
-    }
-    
-    public enum AstGrantDenyEnum
-    {
-        
-        _undefined,
-        
-        Grant,
-        
-        Deny,
     }
     
     public enum AstDmlTriggerOperationEnum
@@ -323,6 +355,16 @@ namespace Bb.Asts.TSql
         Clustered,
         
         Nonclustered,
+    }
+    
+    public enum AstSignEnum
+    {
+        
+        _undefined,
+        
+        Plus,
+        
+        Minus,
     }
     
     public enum AstKeywordEnum
@@ -1963,5 +2005,31 @@ namespace Bb.Asts.TSql
         Nvarchar,
         
         Precision,
+    }
+    
+    public enum AstFileSizeUnityEnum
+    {
+        
+        _undefined,
+        
+        Kb,
+        
+        Mb,
+        
+        Gb,
+        
+        Tb,
+        
+        Module,
+    }
+    
+    public enum AstDecimalStringEnum
+    {
+        
+        _undefined,
+        
+        Decimal,
+        
+        String,
     }
 }

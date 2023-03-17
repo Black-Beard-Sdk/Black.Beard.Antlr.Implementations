@@ -26,6 +26,9 @@ namespace Bb.Parsers
 
         public void Add(TreeRuleItem item)
         {
+            if (_list.Count > 0)
+                this._list[_list.Count - 1].IsLast = false;
+            item.IsLast = true;
             this._list.Add(item);
         }
 
@@ -41,6 +44,7 @@ namespace Bb.Parsers
         }
 
         private List<TreeRuleItem> _list;
+        private string _txt;
 
         public string Name { get; }
 
@@ -55,21 +59,21 @@ namespace Bb.Parsers
         public bool IsBlock { get; internal set; }
 
         public bool IsRange { get; internal set; }
-        
+
         public bool IsRuleRef { get; internal set; }
-        
+
         public bool IsEmpty { get; private set; }
 
         public bool ContainsRules
         {
             get
             {
-                
+
                 if (this._list.Any(c => c.IsRuleRef))
                     return true;
 
                 foreach (var item in this._list)
-                    if (item.ContainsRules) 
+                    if (item.ContainsRules)
                         return true;
 
                 return false;
@@ -77,12 +81,21 @@ namespace Bb.Parsers
             }
         }
 
+        public bool IsLast { get; private set; }
+        public bool IsConstant { get; internal set; }
 
         public override string ToString()
         {
-            var wrt = new Writer();
-            ToString(wrt);
-            return wrt.ToString();
+
+            if (string.IsNullOrEmpty(this._txt))
+            {
+                var wrt = new Writer();
+                ToString(wrt);
+                _txt = wrt.ToString();
+            }
+
+            return _txt;
+
         }
 
         private void ToString(Writer wrt)
@@ -94,7 +107,11 @@ namespace Bb.Parsers
             if (IsBlock)
             {
                 wrt.Append("(");
-                ToString(wrt, " ");
+
+                if (IsAlternative)
+                    ToString(wrt, " | ");
+                else
+                    ToString(wrt, " ");
                 wrt.TrimEnd();
                 wrt.Append(")");
             }
@@ -121,6 +138,7 @@ namespace Bb.Parsers
             foreach (var item in this)
             {
                 wrt.TrimEnd();
+                wrt.EnsureEndBy(' ');
                 wrt.EnsureEndBy(comma);
                 item.ToString(wrt);
                 comma = com;
@@ -136,14 +154,14 @@ namespace Bb.Parsers
             switch (this.Occurence.Value)
             {
 
-                case Occurence.Enum.Any:
+                case OccurenceEnum.Any:
                     if (this.Occurence.Optional)
                         wrt.Append("*");
                     else
                         wrt.Append("+");
                     break;
 
-                case Occurence.Enum.One:
+                case OccurenceEnum.One:
                     if (this.Occurence.Optional)
                         wrt.Append("?");
                     break;
@@ -153,7 +171,7 @@ namespace Bb.Parsers
 
             }
 
-            
+
 
         }
 
@@ -208,18 +226,21 @@ namespace Bb.Parsers
 
         }
 
-        public TreeRuleItem Clone()
+        public TreeRuleItem Clone(Action<TreeRuleItem> action = null)
         {
             var result = CloneWithOutChildren();
 
             foreach (var item in this)
                 result.Add(item.Clone());
 
+            if (action != null)
+                action(result);
+
             return result;
 
         }
 
-        public TreeRuleItem CloneWithOutChildren()
+        public TreeRuleItem CloneWithOutChildren(Action<TreeRuleItem> action = null)
         {
             var result = new TreeRuleItem(this.Name)
             {
@@ -231,7 +252,11 @@ namespace Bb.Parsers
                 IsBlock = this.IsBlock,
                 IsRange = this.IsRange,
                 IsEmpty = this.IsEmpty,
+                IsConstant = this.IsConstant,
             };
+
+            if (action!= null)
+                action(result);
 
             return result;
 
@@ -245,6 +270,17 @@ namespace Bb.Parsers
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this._list.GetEnumerator();
+        }
+
+        internal void Remove(TreeRuleItem item)
+        {
+            _list.Remove(item);
+            CleanText();
+        }
+
+        internal void CleanText()
+        {
+            _txt = null;
         }
 
     }

@@ -218,7 +218,8 @@ namespace Bb.Parsers
 
         private AstIdentifier VisitSTRING_LITERAL(ITerminalNode l)
         {
-            return VisitTerminalNode(l, "STRING_LITERAL");
+            var o = VisitTerminalNode(l, "STRING_LITERAL");      
+            return o;
         }
 
         private AstIdentifier VisitInt(ITerminalNode l)
@@ -247,11 +248,6 @@ namespace Bb.Parsers
                     var item2 = VisitRuleSpec(item);
                     if (item2 is AstRule rule)
                     {
-                        //if (rule.Name == "go_statement")
-                        //{
-                        //    var p = rule.ToString();
-                        //}
-
                         rule.Index = result.Rules.Count; // count from 0
                         result.Rules.Add(rule);
                     }
@@ -756,7 +752,7 @@ namespace Bb.Parsers
                 return g;
 
             var e = (AstArgActionBlock)VisitActionBlock(context.actionBlock());
-            e.Occurence = new Occurence(Occurence.Enum.One, context.QUESTION() != null);
+            e.Occurence = new Occurence(OccurenceEnum.One, context.QUESTION() != null);
 
             return e;
 
@@ -935,13 +931,13 @@ namespace Bb.Parsers
                 var o = context.QUESTION().Length;
 
                 if (context.STAR() != null)
-                        c.Occurence = new Occurence(Occurence.Enum.Any, o > 0) { Optional = true };
+                        c.Occurence = new Occurence(OccurenceEnum.Any, o > 0) { Optional = true };
                 
                 else if (context.PLUS() != null)
-                    c.Occurence = new Occurence(Occurence.Enum.Any, o > 0);
+                    c.Occurence = new Occurence(OccurenceEnum.Any, o > 0);
                 
                 else
-                    c.Occurence = new Occurence(  Occurence.Enum.One, o > 0);
+                    c.Occurence = new Occurence(  OccurenceEnum.One, o > 0);
 
                 return c;
 
@@ -1216,7 +1212,9 @@ namespace Bb.Parsers
                 {
                     var v2 = context.STRING_LITERAL();
                     if (v2 != null)
+                    {
                         value = VisitSTRING_LITERAL(v2);
+                    }
                 }
 
                 AstElementOptionList options = null;

@@ -17,29 +17,6 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
-    /// sql_clauses
-    /// 	 : sql_clause+
-    /// </summary>
-    public partial class AstSqlClauses : AstRuleList<AstSqlClause>
-    {
-        
-        public AstSqlClauses(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstSqlClauses(ParserRuleContext ctx, int capacity) : 
-                base(ctx, capacity)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitSqlClauses(this);
-        }
-    }
-    
-    /// <summary>
     /// binary_content_nexts
     /// 	 : binary_content_next+
     /// </summary>

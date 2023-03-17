@@ -4,6 +4,7 @@ using Bb.Generators;
 using Bb.Parsers;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Bb.Asts
 {
@@ -42,13 +43,23 @@ namespace Bb.Asts
 
         public override void ToString(Writer wrt)
         {
+
+            if (Enquoted)
+                wrt.Append("'");
+
             wrt.Append(this.Text?.Trim());
+
+            if (Enquoted)
+                wrt.Append("'");
+
         }
 
         public override string ResolveName()
         {
             return Text;
         }
+
+        public bool Enquoted { get; private set; }
 
         public bool IsLetter()
         {
@@ -64,9 +75,7 @@ namespace Bb.Asts
 
         public override string Type { get; }
 
-        public string Text { get; }
-        public bool IsConstant { get; protected set; }
-        public bool IsKeyword { get; protected set; }
+        public string Text { get; private set; }
 
         public override bool ContainsOnlyRules => false;
         public override bool ContainsOneRule => false;
@@ -105,19 +114,23 @@ namespace Bb.Asts
             if (!string.IsNullOrEmpty(Text))
             {
 
-                this.IsConstant
-                    = this.Text.StartsWith("'")
-                    && this.Text.EndsWith("'");
+                if (Text.StartsWith("'") && Text.EndsWith("'") && Text.Length > 1)
+                {
+                    this.Text = this.Text.Substring(1, this.Text.Length - 2);
+                    this.Enquoted = true;
+                    this.TerminalKind = TokenTypeEnum.Constant;
+                }
+                else
+                {
 
-                this.IsKeyword
-                    = this.IsConstant
-                    && this.IsLetter();
+                    if (int.TryParse(this.Text, out var i))
+                        this.TerminalKind = TokenTypeEnum.Int;
 
-                if (!this.IsConstant)
-                    this.IsConstant = int.TryParse(this.Text, out var i);
+                    else if (decimal.TryParse(this.Text, out var j))
+                        this.TerminalKind = TokenTypeEnum.Real;
 
-                else if (!this.IsConstant)
-                    this.IsConstant = decimal.TryParse(this.Text, out var i);
+                }
+
             }
         }
 

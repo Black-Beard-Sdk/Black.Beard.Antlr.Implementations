@@ -1,6 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 
 namespace Generate.Scripts
@@ -10,7 +11,13 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstRoot";
+            var config = ast.Configuration.Config;
+
+            if (config.Inherit == null)
+                config.Inherit = new IdentifierConfig("'AstRoot'");
+
+            return config.Inherit.Text;
+            
         }
 
         protected override bool Generate(AstRule ast, Context context)
@@ -41,8 +48,8 @@ namespace Generate.Scripts
 
                               .Method(m =>
                               {
-                                  m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name))
-                                   .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Name) + "Context", "context")
+                                  m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text))
+                                   .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Name.Text) + "Context", "context")
                                    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                    .Return(() => "AstRoot")
                                    .Documentation(c => c.Summary(() => ast.ToString()))
@@ -55,7 +62,7 @@ namespace Generate.Scripts
                                        t1.ArrayRank = 1;
                                        b.Statements.DeclareAndInitialize("source", t1, "context".Var().Call(astChild.ResolveName()));
 
-                                       var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType();
+                                       var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
                                        b.Statements.DeclareAndInitialize("list", type, type.Create("context".Var(), "source".Var().Field("Length")));
                                        b.Statements.ForEach(t.AsType(), "item", "source", stm =>
                                        {

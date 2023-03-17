@@ -7,9 +7,10 @@ namespace Bb.Asts
     public class AstIdentifier : AstTerminalText
     {
 
-        public AstIdentifier(ITerminalNode n, string type, string text) 
+        public AstIdentifier(ITerminalNode n, string type, string text)
             : base(n, type, text)
         {
+                       
 
         }
 
@@ -25,6 +26,7 @@ namespace Bb.Asts
         }
 
         public AstIdentifier Child { get; private set; }
+
 
         public void Add(AstIdentifier iDentifier)
         {

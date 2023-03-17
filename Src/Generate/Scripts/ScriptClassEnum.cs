@@ -1,6 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 
 namespace Generate.Scripts
@@ -10,7 +11,14 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum>";
+
+            var config = ast.Configuration.Config;
+
+            if (config.Inherit == null)
+                config.Inherit = new IdentifierConfig("'AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum>'");
+
+            return config.Inherit.Text;
+
         }
 
         protected override bool Generate(AstRule ast, Context context)
@@ -37,7 +45,7 @@ namespace Generate.Scripts
                           type.AddTemplateSelector(() => TemplateSelector(ast, context))
                               .GenerateIf(() => Generate(ast, context))
                               .Documentation(c => c.Summary(() => ast.ToString()))
-                              .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
+                              .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                               .Inherit(() => GetInherit(ast, context))
 
                               .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
@@ -45,12 +53,12 @@ namespace Generate.Scripts
                                   f.Argument(() => "ITerminalNode", "t")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("t".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType().Call("GetValue", "value".Var()));
+                                   .CallBase("t".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Call("GetValue", "value".Var()));
                               })
                               .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
                               {
                                   f.Argument(() => "ITerminalNode", "t")
-                                   .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum", "value")
+                                   .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum", "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "value".Var());
                               })
@@ -59,19 +67,19 @@ namespace Generate.Scripts
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType().Call("GetValue", "value".Var()));
+                                   .CallBase("ctx".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Call("GetValue", "value".Var()));
                               })
                               .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
                               {
                                   f.Argument(() => "Position", "p")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("p".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name)).AsType().Call("GetValue", "value".Var()));
+                                   .CallBase("p".Var(), ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Call("GetValue", "value".Var()));
                               })
                               .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
                               {
                                   f.Argument(() => "Position", "p")
-                                   .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum", "value")
+                                   .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum", "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("p".Var(), "value".Var());
                               })
@@ -87,7 +95,7 @@ namespace Generate.Scripts
                                        b.Statements.Call
                                        (
                                            CodeHelper.Var("visitor"),
-                                           "Visit" + CodeHelper.FormatCsharp(ast.Name),
+                                           "Visit" + CodeHelper.FormatCsharp(ast.Name.Text),
                                            CodeHelper.This()
                                        );
                                    });
@@ -99,10 +107,10 @@ namespace Generate.Scripts
                                    .Name(g => "GetValue")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Family | MemberAttributes.Static)
-                                   .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum")
+                                   .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum")
                                    .Body(b =>
                                    {
-                                       string typeEnum = "Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum";
+                                       string typeEnum = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum";
 
                                        var items = ast.GetTerminals().ToList();
                                        foreach (AstTerminalText text in items)

@@ -1,6 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 
 namespace Generate.Scripts
@@ -12,7 +13,14 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstTerminal<string>";
+
+            var config = ast.Configuration.Config;
+
+            if (config.Inherit == null)
+                config.Inherit = new IdentifierConfig("'AstTerminal<string>'");
+
+            return config.Inherit.Text;
+
         }
 
         protected override bool Generate(AstRule ast, Context context)
@@ -38,7 +46,7 @@ namespace Generate.Scripts
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                               .GenerateIf(() => Generate(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
-                              .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name))
+                              .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                               .Inherit(() => GetInherit(ast, ctx))
 
 
@@ -73,7 +81,7 @@ namespace Generate.Scripts
                                        b.Statements.Call
                                        (
                                            CodeHelper.Var("visitor"),
-                                           "Visit" + CodeHelper.FormatCsharp(ast.Name),
+                                           "Visit" + CodeHelper.FormatCsharp(ast.Name.Text),
                                            CodeHelper.This()
                                        );
                                    });
