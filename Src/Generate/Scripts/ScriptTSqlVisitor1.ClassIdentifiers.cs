@@ -14,16 +14,13 @@ namespace Generate.Scripts
             var config = ast.Configuration.Config;
 
             if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("'AstRoot'");
+                config.Inherit = new IdentifierConfig("\"AstRoot\"");
 
             return config.Inherit.Text;
             
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "ClassIdentifiers";
-        }
+        public override string StrategyTemplateKey => "ClassIdentifiers";
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

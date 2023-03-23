@@ -17,17 +17,15 @@ namespace Generate.Scripts
             if (config.Inherit == null)
             {
                 var astChild = ast.GetRules().FirstOrDefault();
-                config.Inherit = new IdentifierConfig("'AstRuleList<Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text) + ">'");
+                config.Inherit = new IdentifierConfig("\"AstRuleList<Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text) + ">\"");
             }
 
             return config.Inherit.Text;
 
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "ClassList";
-        }
+        public override string StrategyTemplateKey => "ClassList";
+
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {
 

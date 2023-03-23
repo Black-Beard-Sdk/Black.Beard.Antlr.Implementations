@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Black.Beard.Parsers\Black.Beard.Parsers.csproj" />
     <ProjectReference Include="..\Black.Beard.SqlServer\Black.Beard.Parsers.SqlServer.csproj" />
   </ItemGroup>
 

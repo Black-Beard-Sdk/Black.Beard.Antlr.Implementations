@@ -50,6 +50,15 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// assembly_file_name
+        /// 	 : STRING
+        /// </summary>
+        public override AstRoot VisitAssembly_file_name(TSqlParser.Assembly_file_nameContext context)
+        {
+            return new AstAssemblyFileName(context);
+        }
+        
+        /// <summary>
         /// network_file_start
         /// 	 : DOUBLE_BACK_SLASH
         /// </summary>
@@ -160,6 +169,24 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
             return new AstConstant(context);
+        }
+        
+        /// <summary>
+        /// stringtext
+        /// 	 : STRING
+        /// </summary>
+        public override AstRoot VisitStringtext(TSqlParser.StringtextContext context)
+        {
+            return new AstStringtext(context);
+        }
+        
+        /// <summary>
+        /// local_id
+        /// 	 : LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitLocal_id(TSqlParser.Local_idContext context)
+        {
+            return new AstLocalId(context);
         }
     }
 }

@@ -4,6 +4,7 @@ using Bb.Parsers;
 using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 using System.Diagnostics;
+using System.Text;
 
 namespace Generate.Scripts
 {
@@ -17,16 +18,13 @@ namespace Generate.Scripts
             var config = ast.Configuration.Config;
 
             if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("'AstRule'");
+                config.Inherit = new IdentifierConfig("\"AstRule\"");
 
             return config.Inherit.Text;
 
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "_";
-        }
+        public override string StrategyTemplateKey => "_";
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {
@@ -53,29 +51,31 @@ namespace Generate.Scripts
 
                         .Ctor((f) =>
                                {
-                                   f.Argument(() => "ITerminalNode", "t")
+                                   f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                    .Argument(() => "ITerminalNode", "t")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .Attribute(MemberAttributes.Public)
                                     .CallBase("t", "list");
-
                                })
                         .Ctor((f) =>
                                {
-                                   f.Argument(() => "ParserRuleContext", "ctx")
+                                   f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                    .Argument(() => "ParserRuleContext", "ctx")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .Attribute(MemberAttributes.Public)
                                     .CallBase("ctx", "list");
-
                                })
                         .Ctor((f) =>
                                {
-                                   f.Argument(() => "Position", "p")
+                                   f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                    .Argument(() => "Position", "p")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .Attribute(MemberAttributes.Public)
                                     .CallBase("p", "list");
-
                                })
-
+                        .Ctor((f) =>
+                               {
+                                   f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                    .Argument(() => "List<AstRoot>", "list")
+                                    .CallBase("Position.Default", "list");
+                               })
 
                         .Method(method =>
                         {
@@ -103,7 +103,6 @@ namespace Generate.Scripts
                             {
                                 return ast.ToString();
                             })
-
                             ;
                         })
 
@@ -112,101 +111,150 @@ namespace Generate.Scripts
 
                             var r = ast.Root();
 
+                            HashSet<string> _h = new HashSet<string>();
                             List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
                             foreach (AstLabeledAlt alternative in ast.Alternatives)
                             {
 
                                 var allCombinations = alternative.ResolveAllCombinations();
-                                foreach (var item_poss in allCombinations.OrderBy(c => c.ToString()))
-                                    Debug.WriteLine(ast.Name + " : " + item_poss.ToString());
 
-                                foreach (var alt in allCombinations)
+                                foreach (TreeRuleItem alt in allCombinations)
                                 {
 
-                                    var method = new CodeMemberMethod() 
+                                    StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                    var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
+                                    List<string> arguments = new List<string>();
+
+                                    var method = new CodeMemberMethod()
                                     {
-                                        Attributes = MemberAttributes.Public | MemberAttributes.Static 
+                                        Name = CodeHelper.FormatCsharp(ast.Name.Text),
+                                        ReturnType = t1,
+                                        Attributes = MemberAttributes.Public | MemberAttributes.Static,
                                     };
 
-                                    foreach (var item in alt)
+                                    method.Comments.Add(new CodeCommentStatement("<summary>", true));
+                                    method.Comments.Add(new CodeCommentStatement($"{ast.Name} : ", true));
+                                    method.Comments.Add(new CodeCommentStatement(alt.GenerateDoc(ctx), true));
+                                    method.Comments.Add(new CodeCommentStatement("</summary>", true));
+
+                                    var t2 = "List<AstRoot>".AsType();
+                                    method.Statements.Add(CodeHelper.DeclareAndCreate("arguments", t2));
+
+                                    Action<TreeRuleItem> act = itemAst =>
                                     {
 
-                                        var itemResult = ast.ResolveByName(ResolveKey(item));
+                                        string name = null;
+                                        CodeTypeReference argumentTypeName = null;
+                                        string varName = null;
+
+                                        var itemResult = ast.ResolveByName(itemAst.ResolveKey());
                                         if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
-                                        {
-                                            var config = r1.Configuration.Config;
-                                            if (config.Generate)
-                                            {
-
-                                                var typeName = new CodeTypeReference("Ast" + CodeHelper.FormatCsharp(item.Name));
-
-                                                if (item.Occurence.Value == OccurenceEnum.Any)
-                                                    typeName = new CodeTypeReference(typeof(IEnumerable<>).Name, typeName);
-
-                                                method.Parameters.Add(new CodeParameterDeclarationExpression(typeName, CodeHelper.FormatCsharpArgument(item.Name)));
-
-                                            }
+                                        {                                            
+                                            name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
+                                            argumentTypeName = new CodeTypeReference(name);
+                                            
+                                            if (string.IsNullOrEmpty(itemAst.Label))
+                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
                                             else
-                                            {
+                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
 
-                                            }
+
                                         }
                                         else if (itemResult != null && itemResult is AstLexerRule r2)
                                         {
-                                            //var config = r2.Configuration.Config;
-                                            //if (config.Generate)
-                                            //{
 
-                                            //    var typeName = new CodeTypeReference("Ast" + CodeHelper.FormatCsharp(item.Name));
+                                            switch (r2.Configuration.Config.Kind)
+                                            {
+                                                case TokenTypeEnum.Pattern:
+                                                case TokenTypeEnum.String:
+                                                case TokenTypeEnum.Identifier:
+                                                    name = nameof(String);
+                                                    varName = "txt";
+                                                    break;
+                                                case TokenTypeEnum.Boolean:
+                                                    name = nameof(Boolean);
+                                                    varName = "boolean";
+                                                    break;
+                                                case TokenTypeEnum.Decimal:
+                                                    name = nameof(Decimal);
+                                                    varName = "_decimal";
+                                                    break;
+                                                case TokenTypeEnum.Int:
+                                                    name = nameof(Int64);
+                                                    varName = "integer";
+                                                    break;
+                                                case TokenTypeEnum.Real:
+                                                    name = nameof(Double);
+                                                    varName = "real";
+                                                    break;
+                                                case TokenTypeEnum.Hexa:
+                                                    name = "";
+                                                    varName = "";
+                                                    break;
+                                                case TokenTypeEnum.Binary:
+                                                    name = "Object";
+                                                    varName = "_binary";
+                                                    break;
 
-                                            //    if (item.Occurence.Value == OccurenceEnum.Any)
-                                            //        typeName = new CodeTypeReference(typeof(IEnumerable<>).Name, typeName);
+                                                case TokenTypeEnum.Operator:
+                                                case TokenTypeEnum.Ponctuation:
+                                                case TokenTypeEnum.Other:
+                                                case TokenTypeEnum.Comment:
+                                                case TokenTypeEnum.Constant:
+                                                default:
+                                                    break;
+                                            }
 
-                                            //    method.Parameters.Add(new CodeParameterDeclarationExpression(typeName, CodeHelper.FormatCsharpArgument(item.Name)));
+                                            argumentTypeName = new CodeTypeReference(name);
 
-                                            //}
-                                            //else
-                                            //{
+                                            if (!string.IsNullOrEmpty(itemAst.Label))
+                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
 
-                                            //}
                                         }
-                                        else
+
+                                        if (name != null)
                                         {
 
+                                            if (itemAst.Occurence.Value == OccurenceEnum.Any)
+                                                argumentTypeName = new CodeTypeReference(typeof(IEnumerable<>).Name, argumentTypeName);
+
+                                            method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
+                                            uniqeConstraintKeyMethod.Append(name);
+                                            arguments.Add(varName);
                                         }
+                                        
+
+                                    };
+
+                                    if (alt.Count > 0)
+                                        foreach (var itemAlt in alt)
+                                            act(itemAlt);
+                                    else
+                                        act(alt);
+
+                                    if (method.Parameters.Count > 0)
+                                    {
+
+                                        var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                        if (_h.Add(noDuplicateKey))
+                                        {
+                                            methods.Add(method);
+                                            method.Statements.Add(CodeHelper.DeclareAndCreate("result", t1, "arguments".Var()));
+                                            method.Statements.Return("result".Var());
+                                        }
+
                                     }
 
-                                    methods.Add(method);
-
-                                }
-
-                                foreach (var item in methods)
-                                {
-                                    t.Members.Add(item);
-                                }
-
-
-                                //if (alt.ContainsRules)
-                                //        t.Ctor((f) =>
-                                //        {
-                                //            var ctor = f.Attribute(MemberAttributes.Public);
-                                //            List<string> _args = new List<string>(alt.Count)
-                                //        {
-                                //            "Position.Default"
-                                //        };
-                                //            foreach (var arg in alt.Where(c => c.IsRuleRef))
-                                //            {
-                                //                var argName = "arg" + _args.Count;
-                                //                _args.Add(argName);
-                                //                var vv = CodeHelper.FormatCsharp(arg.Name);
-                                //                ctor.Argument(() => ("Ast" + vv).AsType(), argName);
-                                //            }
-                                //            ctor.CallBase(_args.ToArray());
-                                //        });
+                                }                       
 
                             }
 
+                            foreach (var item in methods)
+                            {
+                                t.Members.Add(item);
+                            }
 
                         })
 
@@ -254,15 +302,7 @@ namespace Generate.Scripts
 
         }
 
-        private string ResolveKey(TreeRuleItem item)
-        {
-
-            if (!string.IsNullOrEmpty(item.Name))
-                return item.Name;
-
-            return null;
-
-        }
+       
     }
 
 

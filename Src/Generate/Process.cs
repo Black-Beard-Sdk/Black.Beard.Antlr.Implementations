@@ -38,10 +38,12 @@ namespace Generate
                 }
                 .Using("System", "Bb.Parsers")
 
+                .Add<ScriptClassBases>()
                 .Add<ScriptClassIdentifiers>()
                 .Add<ScriptClassEnum>()
                 .Add<ScriptClassTerminals>()
                 .Add<ScriptClassLists>()
+                .Add<ScriptClassIdentifiertWithProperties>()
                 .Add<ScriptClassWithProperties>()
                 .Add<ScriptClassDefaults>()
                 .Add<ScriptEnums>("Enums")
@@ -78,7 +80,7 @@ namespace Generate
                 })
 
                 .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = "Bb.Parsers.TSql")
-                .Add<ScriptClassToString>()
+                //.Add<ScriptClassToString>()
 
                 .Add<ScriptVisitor1>("IAstTSqlVisitor1")
                 .Add<ScriptVisitor2>("IAstTSqlVisitor2")
@@ -94,24 +96,7 @@ namespace Generate
         private static void PostTreatments(Context ctx)
         {
 
-            var r = new Dictionary<string, AstBase>();
-
-            foreach (var item in ctx.RootAst.Rules.Terminals)
-                r.Add(item.Name.Text, item);
-
-            foreach (var item in ctx.RootAst.Rules.Rules)
-                r.Add(item.Name.Text, item);
-
-
-            //foreach (var item in ctx.PatternMatches)
-            //    if (r.TryGetValue(item.Name, out var itemFound))
-            //    {
-
-            //        // itemFound.TerminalKind = item.Kind;
-
-            //    }
-
-            new ParentVisitor(r).Visit(ctx.RootAst);
+            new ParentVisitor().Visit(ctx.RootAst);
 
         }
 

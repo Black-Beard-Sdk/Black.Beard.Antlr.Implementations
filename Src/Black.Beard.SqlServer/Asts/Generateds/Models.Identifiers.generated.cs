@@ -16,118 +16,6 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
-    /// message_type_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstMessageTypeName : AstTerminalIdentifier
-    {
-        
-        public AstMessageTypeName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstMessageTypeName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstMessageTypeName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitMessageTypeName(this);
-        }
-    }
-    
-    /// <summary>
-    /// partition_function_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstPartitionFunctionName : AstTerminalIdentifier
-    {
-        
-        public AstPartitionFunctionName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstPartitionFunctionName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstPartitionFunctionName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitPartitionFunctionName(this);
-        }
-    }
-    
-    /// <summary>
-    /// partition_scheme_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstPartitionSchemeName : AstTerminalIdentifier
-    {
-        
-        public AstPartitionSchemeName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstPartitionSchemeName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstPartitionSchemeName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitPartitionSchemeName(this);
-        }
-    }
-    
-    /// <summary>
-    /// ids_
-    /// 	 : id_  (COMMA  id_)*
-    /// </summary>
-    public partial class AstIds : AstTerminalIdentifier
-    {
-        
-        public AstIds(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstIds(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstIds(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitIds(this);
-        }
-    }
-    
-    /// <summary>
     /// host
     /// 	 : id_  DOT  host
     /// 	 | (id_  DOT | id_)
@@ -216,6 +104,35 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// transaction_ref
+    /// 	 : id_
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstTransactionRef : AstTerminalIdentifier
+    {
+        
+        public AstTransactionRef(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstTransactionRef(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstTransactionRef(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitTransactionRef(this);
+        }
+    }
+    
+    /// <summary>
     /// table_alias
     /// 	 : id_
     /// </summary>
@@ -269,294 +186,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitColumnAlias(this);
-        }
-    }
-    
-    /// <summary>
-    /// complete_table_name
-    /// 	 : (linked_server  DOT  DOT  schema_name  DOT | server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
-    /// </summary>
-    public partial class AstCompleteTableName : AstTerminalIdentifier
-    {
-        
-        public AstCompleteTableName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstCompleteTableName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstCompleteTableName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitCompleteTableName(this);
-        }
-    }
-    
-    /// <summary>
-    /// full_table_name
-    /// 	 : full_schema_name?  tableName
-    /// 	 | full_schema_name?  blocking_hierarchy = BLOCKING_HIERARCHY
-    /// </summary>
-    public partial class AstFullTableName : AstTerminalIdentifier
-    {
-        
-        public AstFullTableName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFullTableName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFullTableName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFullTableName(this);
-        }
-    }
-    
-    /// <summary>
-    /// full_schema_name
-    /// 	 : (database_name  DOT)?  schema_name
-    /// </summary>
-    public partial class AstFullSchemaName : AstTerminalIdentifier
-    {
-        
-        public AstFullSchemaName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFullSchemaName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFullSchemaName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFullSchemaName(this);
-        }
-    }
-    
-    /// <summary>
-    /// simple_name
-    /// 	 : (schema_name  DOT)?  name = id_
-    /// </summary>
-    public partial class AstSimpleName : AstTerminalIdentifier
-    {
-        
-        public AstSimpleName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstSimpleName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstSimpleName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitSimpleName(this);
-        }
-    }
-    
-    /// <summary>
-    /// func_proc_name_schema
-    /// 	 : (schema_name  DOT)?  function_name
-    /// </summary>
-    public partial class AstFuncProcNameSchema : AstTerminalIdentifier
-    {
-        
-        public AstFuncProcNameSchema(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFuncProcNameSchema(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFuncProcNameSchema(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFuncProcNameSchema(this);
-        }
-    }
-    
-    /// <summary>
-    /// func_proc_name_database_schema
-    /// 	 : database_name?  DOT  schema_name?  DOT  function_name
-    /// 	 | func_proc_name_schema
-    /// </summary>
-    public partial class AstFuncProcNameDatabaseSchema : AstTerminalIdentifier
-    {
-        
-        public AstFuncProcNameDatabaseSchema(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFuncProcNameDatabaseSchema(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFuncProcNameDatabaseSchema(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFuncProcNameDatabaseSchema(this);
-        }
-    }
-    
-    /// <summary>
-    /// func_proc_name_server_database_schema
-    /// 	 : server_name?  DOT  database_name?  DOT  schema_name?  DOT  function_name
-    /// 	 | func_proc_name_database_schema
-    /// </summary>
-    public partial class AstFuncProcNameServerDatabaseSchema : AstTerminalIdentifier
-    {
-        
-        public AstFuncProcNameServerDatabaseSchema(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFuncProcNameServerDatabaseSchema(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFuncProcNameServerDatabaseSchema(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFuncProcNameServerDatabaseSchema(this);
-        }
-    }
-    
-    /// <summary>
-    /// ddl_object
-    /// 	 : complete_table_name
-    /// 	 | LOCAL_ID
-    /// </summary>
-    public partial class AstDdlObject : AstTerminalIdentifier
-    {
-        
-        public AstDdlObject(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstDdlObject(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstDdlObject(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitDdlObject(this);
-        }
-    }
-    
-    /// <summary>
-    /// full_column_name
-    /// 	 : (DELETED | INSERTED)  DOT  column_name
-    /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
-    /// 	 | schema_name?  DOT  tableName?  DOT  column_name
-    /// 	 | tableName?  DOT  column_name
-    /// 	 | column_name
-    /// </summary>
-    public partial class AstFullColumnName : AstTerminalIdentifier
-    {
-        
-        public AstFullColumnName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFullColumnName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFullColumnName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFullColumnName(this);
-        }
-    }
-    
-    /// <summary>
-    /// insert_column_id
-    /// 	 : (ignore += id_  DOT)*  id_
-    /// </summary>
-    public partial class AstInsertColumnId : AstTerminalIdentifier
-    {
-        
-        public AstInsertColumnId(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstInsertColumnId(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstInsertColumnId(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitInsertColumnId(this);
         }
     }
     
@@ -650,1318 +279,1094 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// filestream_filegroup_or_partition_schema_name
+    /// filestream_filegroup_or_partition_schema_id
     /// 	 : id_
     /// </summary>
-    public partial class AstFilestreamFilegroupOrPartitionSchemaName : AstTerminalIdentifier
+    public partial class AstFilestreamFilegroupOrPartitionSchemaId : AstTerminalIdentifier
     {
         
-        public AstFilestreamFilegroupOrPartitionSchemaName(ITerminalNode t) : 
+        public AstFilestreamFilegroupOrPartitionSchemaId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstFilestreamFilegroupOrPartitionSchemaName(ParserRuleContext ctx) : 
+        public AstFilestreamFilegroupOrPartitionSchemaId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstFilestreamFilegroupOrPartitionSchemaName(Position position) : 
+        public AstFilestreamFilegroupOrPartitionSchemaId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitFilestreamFilegroupOrPartitionSchemaName(this);
+            visitor.VisitFilestreamFilegroupOrPartitionSchemaId(this);
         }
     }
     
     /// <summary>
-    /// action_name
+    /// action_id
     /// 	 : id_
     /// </summary>
-    public partial class AstActionName : AstTerminalIdentifier
+    public partial class AstActionId : AstTerminalIdentifier
     {
         
-        public AstActionName(ITerminalNode t) : 
+        public AstActionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstActionName(ParserRuleContext ctx) : 
+        public AstActionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstActionName(Position position) : 
+        public AstActionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitActionName(this);
+            visitor.VisitActionId(this);
         }
     }
     
     /// <summary>
-    /// aggregate_name
+    /// aggregate_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAggregateName : AstTerminalIdentifier
+    public partial class AstAggregateId : AstTerminalIdentifier
     {
         
-        public AstAggregateName(ITerminalNode t) : 
+        public AstAggregateId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAggregateName(ParserRuleContext ctx) : 
+        public AstAggregateId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAggregateName(Position position) : 
+        public AstAggregateId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAggregateName(this);
+            visitor.VisitAggregateId(this);
         }
     }
     
     /// <summary>
-    /// app_role_schema
+    /// schema_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAppRoleSchema : AstTerminalIdentifier
+    public partial class AstSchemaId : AstTerminalIdentifier
     {
         
-        public AstAppRoleSchema(ITerminalNode t) : 
+        public AstSchemaId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAppRoleSchema(ParserRuleContext ctx) : 
+        public AstSchemaId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAppRoleSchema(Position position) : 
+        public AstSchemaId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAppRoleSchema(this);
+            visitor.VisitSchemaId(this);
         }
     }
     
     /// <summary>
-    /// application_role
+    /// assembly_id
     /// 	 : id_
     /// </summary>
-    public partial class AstApplicationRole : AstTerminalIdentifier
+    public partial class AstAssemblyId : AstTerminalIdentifier
     {
         
-        public AstApplicationRole(ITerminalNode t) : 
+        public AstAssemblyId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstApplicationRole(ParserRuleContext ctx) : 
+        public AstAssemblyId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstApplicationRole(Position position) : 
+        public AstAssemblyId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitApplicationRole(this);
+            visitor.VisitAssemblyId(this);
         }
     }
     
     /// <summary>
-    /// assembly_name
+    /// asym_key_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAssemblyName : AstTerminalIdentifier
+    public partial class AstAsymKeyId : AstTerminalIdentifier
     {
         
-        public AstAssemblyName(ITerminalNode t) : 
+        public AstAsymKeyId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAssemblyName(ParserRuleContext ctx) : 
+        public AstAsymKeyId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAssemblyName(Position position) : 
+        public AstAsymKeyId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAssemblyName(this);
+            visitor.VisitAsymKeyId(this);
         }
     }
     
     /// <summary>
-    /// asym_key_name
+    /// audit_action_group_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAsymKeyName : AstTerminalIdentifier
+    public partial class AstAuditActionGroupId : AstTerminalIdentifier
     {
         
-        public AstAsymKeyName(ITerminalNode t) : 
+        public AstAuditActionGroupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAsymKeyName(ParserRuleContext ctx) : 
+        public AstAuditActionGroupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAsymKeyName(Position position) : 
+        public AstAuditActionGroupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAsymKeyName(this);
+            visitor.VisitAuditActionGroupId(this);
         }
     }
     
     /// <summary>
-    /// audit_action_group_name
+    /// audit_guid_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAuditActionGroupName : AstTerminalIdentifier
+    public partial class AstAuditGuidId : AstTerminalIdentifier
     {
         
-        public AstAuditActionGroupName(ITerminalNode t) : 
+        public AstAuditGuidId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAuditActionGroupName(ParserRuleContext ctx) : 
+        public AstAuditGuidId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAuditActionGroupName(Position position) : 
+        public AstAuditGuidId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAuditActionGroupName(this);
+            visitor.VisitAuditGuidId(this);
         }
     }
     
     /// <summary>
-    /// audit_guid
+    /// audit_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAuditGuid : AstTerminalIdentifier
+    public partial class AstAuditId : AstTerminalIdentifier
     {
         
-        public AstAuditGuid(ITerminalNode t) : 
+        public AstAuditId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAuditGuid(ParserRuleContext ctx) : 
+        public AstAuditId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAuditGuid(Position position) : 
+        public AstAuditId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAuditGuid(this);
+            visitor.VisitAuditId(this);
         }
     }
     
     /// <summary>
-    /// audit_name
+    /// user_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAuditName : AstTerminalIdentifier
+    public partial class AstUserId : AstTerminalIdentifier
     {
         
-        public AstAuditName(ITerminalNode t) : 
+        public AstUserId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAuditName(ParserRuleContext ctx) : 
+        public AstUserId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAuditName(Position position) : 
+        public AstUserId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAuditName(this);
+            visitor.VisitUserId(this);
         }
     }
     
     /// <summary>
-    /// audit_specification_name
+    /// backup_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAuditSpecificationName : AstTerminalIdentifier
+    public partial class AstBackupId : AstTerminalIdentifier
     {
         
-        public AstAuditSpecificationName(ITerminalNode t) : 
+        public AstBackupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAuditSpecificationName(ParserRuleContext ctx) : 
+        public AstBackupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAuditSpecificationName(Position position) : 
+        public AstBackupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAuditSpecificationName(this);
+            visitor.VisitBackupId(this);
         }
     }
     
     /// <summary>
-    /// azure_active_directory_principal
+    /// binding_id
     /// 	 : id_
     /// </summary>
-    public partial class AstAzureActiveDirectoryPrincipal : AstTerminalIdentifier
+    public partial class AstBindingId : AstTerminalIdentifier
     {
         
-        public AstAzureActiveDirectoryPrincipal(ITerminalNode t) : 
+        public AstBindingId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstAzureActiveDirectoryPrincipal(ParserRuleContext ctx) : 
+        public AstBindingId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstAzureActiveDirectoryPrincipal(Position position) : 
+        public AstBindingId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitAzureActiveDirectoryPrincipal(this);
+            visitor.VisitBindingId(this);
         }
     }
     
     /// <summary>
-    /// backup_name
+    /// catalog_id
     /// 	 : id_
     /// </summary>
-    public partial class AstBackupName : AstTerminalIdentifier
+    public partial class AstCatalogId : AstTerminalIdentifier
     {
         
-        public AstBackupName(ITerminalNode t) : 
+        public AstCatalogId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstBackupName(ParserRuleContext ctx) : 
+        public AstCatalogId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstBackupName(Position position) : 
+        public AstCatalogId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitBackupName(this);
+            visitor.VisitCatalogId(this);
         }
     }
     
     /// <summary>
-    /// binding_name
+    /// certificate_id
     /// 	 : id_
     /// </summary>
-    public partial class AstBindingName : AstTerminalIdentifier
+    public partial class AstCertificateId : AstTerminalIdentifier
     {
         
-        public AstBindingName(ITerminalNode t) : 
+        public AstCertificateId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstBindingName(ParserRuleContext ctx) : 
+        public AstCertificateId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstBindingName(Position position) : 
+        public AstCertificateId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitBindingName(this);
+            visitor.VisitCertificateId(this);
         }
     }
     
     /// <summary>
-    /// catalog_name
+    /// class_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCatalogName : AstTerminalIdentifier
+    public partial class AstClassId : AstTerminalIdentifier
     {
         
-        public AstCatalogName(ITerminalNode t) : 
+        public AstClassId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCatalogName(ParserRuleContext ctx) : 
+        public AstClassId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCatalogName(Position position) : 
+        public AstClassId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCatalogName(this);
+            visitor.VisitClassId(this);
         }
     }
     
     /// <summary>
-    /// cert_name
+    /// collation_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCertName : AstTerminalIdentifier
+    public partial class AstCollationId : AstTerminalIdentifier
     {
         
-        public AstCertName(ITerminalNode t) : 
+        public AstCollationId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCertName(ParserRuleContext ctx) : 
+        public AstCollationId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCertName(Position position) : 
+        public AstCollationId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCertName(this);
+            visitor.VisitCollationId(this);
         }
     }
     
     /// <summary>
-    /// certificate_name
+    /// column_encryption_key_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCertificateName : AstTerminalIdentifier
+    public partial class AstColumnEncryptionKeyId : AstTerminalIdentifier
     {
         
-        public AstCertificateName(ITerminalNode t) : 
+        public AstColumnEncryptionKeyId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCertificateName(ParserRuleContext ctx) : 
+        public AstColumnEncryptionKeyId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCertificateName(Position position) : 
+        public AstColumnEncryptionKeyId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCertificateName(this);
+            visitor.VisitColumnEncryptionKeyId(this);
         }
     }
     
     /// <summary>
-    /// class_name
+    /// column_or_argument_id
     /// 	 : id_
     /// </summary>
-    public partial class AstClassName : AstTerminalIdentifier
+    public partial class AstColumnOrArgumentId : AstTerminalIdentifier
     {
         
-        public AstClassName(ITerminalNode t) : 
+        public AstColumnOrArgumentId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstClassName(ParserRuleContext ctx) : 
+        public AstColumnOrArgumentId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstClassName(Position position) : 
+        public AstColumnOrArgumentId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitClassName(this);
+            visitor.VisitColumnOrArgumentId(this);
         }
     }
     
     /// <summary>
-    /// collation_name
+    /// constraint_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCollationName : AstTerminalIdentifier
+    public partial class AstConstraintId : AstTerminalIdentifier
     {
         
-        public AstCollationName(ITerminalNode t) : 
+        public AstConstraintId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCollationName(ParserRuleContext ctx) : 
+        public AstConstraintId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCollationName(Position position) : 
+        public AstConstraintId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCollationName(this);
+            visitor.VisitConstraintId(this);
         }
     }
     
     /// <summary>
-    /// column_encryption_key
+    /// credential_id
     /// 	 : id_
     /// </summary>
-    public partial class AstColumnEncryptionKey : AstTerminalIdentifier
+    public partial class AstCredentialId : AstTerminalIdentifier
     {
         
-        public AstColumnEncryptionKey(ITerminalNode t) : 
+        public AstCredentialId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstColumnEncryptionKey(ParserRuleContext ctx) : 
+        public AstCredentialId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstColumnEncryptionKey(Position position) : 
+        public AstCredentialId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitColumnEncryptionKey(this);
+            visitor.VisitCredentialId(this);
         }
     }
     
     /// <summary>
-    /// column_name
+    /// cryptographic_provider_id
     /// 	 : id_
     /// </summary>
-    public partial class AstColumnName : AstTerminalIdentifier
+    public partial class AstCryptographicProviderId : AstTerminalIdentifier
     {
         
-        public AstColumnName(ITerminalNode t) : 
+        public AstCryptographicProviderId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstColumnName(ParserRuleContext ctx) : 
+        public AstCryptographicProviderId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstColumnName(Position position) : 
+        public AstCryptographicProviderId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitColumnName(this);
+            visitor.VisitCryptographicProviderId(this);
         }
     }
     
     /// <summary>
-    /// column_name_or_arguments
+    /// data_source_id
     /// 	 : id_
     /// </summary>
-    public partial class AstColumnNameOrArguments : AstTerminalIdentifier
+    public partial class AstDataSourceId : AstTerminalIdentifier
     {
         
-        public AstColumnNameOrArguments(ITerminalNode t) : 
+        public AstDataSourceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstColumnNameOrArguments(ParserRuleContext ctx) : 
+        public AstDataSourceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstColumnNameOrArguments(Position position) : 
+        public AstDataSourceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitColumnNameOrArguments(this);
+            visitor.VisitDataSourceId(this);
         }
     }
     
     /// <summary>
-    /// constraint_name
+    /// service_id
     /// 	 : id_
     /// </summary>
-    public partial class AstConstraintName : AstTerminalIdentifier
+    public partial class AstServiceId : AstTerminalIdentifier
     {
         
-        public AstConstraintName(ITerminalNode t) : 
+        public AstServiceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstConstraintName(ParserRuleContext ctx) : 
+        public AstServiceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstConstraintName(Position position) : 
+        public AstServiceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitConstraintName(this);
+            visitor.VisitServiceId(this);
         }
     }
     
     /// <summary>
-    /// create_service_name
+    /// encryptor_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCreateServiceName : AstTerminalIdentifier
+    public partial class AstEncryptorId : AstTerminalIdentifier
     {
         
-        public AstCreateServiceName(ITerminalNode t) : 
+        public AstEncryptorId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCreateServiceName(ParserRuleContext ctx) : 
+        public AstEncryptorId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCreateServiceName(Position position) : 
+        public AstEncryptorId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCreateServiceName(this);
+            visitor.VisitEncryptorId(this);
         }
     }
     
     /// <summary>
-    /// credential_name
+    /// endpoint_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCredentialName : AstTerminalIdentifier
+    public partial class AstEndpointId : AstTerminalIdentifier
     {
         
-        public AstCredentialName(ITerminalNode t) : 
+        public AstEndpointId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCredentialName(ParserRuleContext ctx) : 
+        public AstEndpointId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCredentialName(Position position) : 
+        public AstEndpointId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCredentialName(this);
+            visitor.VisitEndpointId(this);
         }
     }
     
     /// <summary>
-    /// cryptographic_provider_name
+    /// event_customizable_attribute_id
     /// 	 : id_
     /// </summary>
-    public partial class AstCryptographicProviderName : AstTerminalIdentifier
+    public partial class AstEventCustomizableAttributeId : AstTerminalIdentifier
     {
         
-        public AstCryptographicProviderName(ITerminalNode t) : 
+        public AstEventCustomizableAttributeId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstCryptographicProviderName(ParserRuleContext ctx) : 
+        public AstEventCustomizableAttributeId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstCryptographicProviderName(Position position) : 
+        public AstEventCustomizableAttributeId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitCryptographicProviderName(this);
+            visitor.VisitEventCustomizableAttributeId(this);
         }
     }
     
     /// <summary>
-    /// data_source_name
+    /// event_field_id
     /// 	 : id_
     /// </summary>
-    public partial class AstDataSourceName : AstTerminalIdentifier
+    public partial class AstEventFieldId : AstTerminalIdentifier
     {
         
-        public AstDataSourceName(ITerminalNode t) : 
+        public AstEventFieldId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstDataSourceName(ParserRuleContext ctx) : 
+        public AstEventFieldId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstDataSourceName(Position position) : 
+        public AstEventFieldId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitDataSourceName(this);
+            visitor.VisitEventFieldId(this);
         }
     }
     
     /// <summary>
-    /// database_name
+    /// event_module_guid_id
     /// 	 : id_
     /// </summary>
-    public partial class AstDatabaseName : AstTerminalIdentifier
+    public partial class AstEventModuleGuidId : AstTerminalIdentifier
     {
         
-        public AstDatabaseName(ITerminalNode t) : 
+        public AstEventModuleGuidId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstDatabaseName(ParserRuleContext ctx) : 
+        public AstEventModuleGuidId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstDatabaseName(Position position) : 
+        public AstEventModuleGuidId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitDatabaseName(this);
+            visitor.VisitEventModuleGuidId(this);
         }
     }
     
     /// <summary>
-    /// dropped_service_name
+    /// event_notification_id
     /// 	 : id_
     /// </summary>
-    public partial class AstDroppedServiceName : AstTerminalIdentifier
+    public partial class AstEventNotificationId : AstTerminalIdentifier
     {
         
-        public AstDroppedServiceName(ITerminalNode t) : 
+        public AstEventNotificationId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstDroppedServiceName(ParserRuleContext ctx) : 
+        public AstEventNotificationId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstDroppedServiceName(Position position) : 
+        public AstEventNotificationId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitDroppedServiceName(this);
+            visitor.VisitEventNotificationId(this);
         }
     }
     
     /// <summary>
-    /// encryptor_name
+    /// event_package_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEncryptorName : AstTerminalIdentifier
+    public partial class AstEventPackageId : AstTerminalIdentifier
     {
         
-        public AstEncryptorName(ITerminalNode t) : 
+        public AstEventPackageId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEncryptorName(ParserRuleContext ctx) : 
+        public AstEventPackageId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEncryptorName(Position position) : 
+        public AstEventPackageId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEncryptorName(this);
+            visitor.VisitEventPackageId(this);
         }
     }
     
     /// <summary>
-    /// endpoint_name
+    /// event_session_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEndpointName : AstTerminalIdentifier
+    public partial class AstEventSessionId : AstTerminalIdentifier
     {
         
-        public AstEndpointName(ITerminalNode t) : 
+        public AstEventSessionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEndpointName(ParserRuleContext ctx) : 
+        public AstEventSessionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEndpointName(Position position) : 
+        public AstEventSessionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEndpointName(this);
+            visitor.VisitEventSessionId(this);
         }
     }
     
     /// <summary>
-    /// event_customizable_attributue
+    /// event_type_or_group_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventCustomizableAttributue : AstTerminalIdentifier
+    public partial class AstEventTypeOrGroupId : AstTerminalIdentifier
     {
         
-        public AstEventCustomizableAttributue(ITerminalNode t) : 
+        public AstEventTypeOrGroupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventCustomizableAttributue(ParserRuleContext ctx) : 
+        public AstEventTypeOrGroupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventCustomizableAttributue(Position position) : 
+        public AstEventTypeOrGroupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventCustomizableAttributue(this);
+            visitor.VisitEventTypeOrGroupId(this);
         }
     }
     
     /// <summary>
-    /// event_field_name
+    /// ext_type_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventFieldName : AstTerminalIdentifier
+    public partial class AstExtTypeId : AstTerminalIdentifier
     {
         
-        public AstEventFieldName(ITerminalNode t) : 
+        public AstExtTypeId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventFieldName(ParserRuleContext ctx) : 
+        public AstExtTypeId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventFieldName(Position position) : 
+        public AstExtTypeId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventFieldName(this);
+            visitor.VisitExtTypeId(this);
         }
     }
     
     /// <summary>
-    /// event_module_guid
+    /// external_data_source_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventModuleGuid : AstTerminalIdentifier
+    public partial class AstExternalDataSourceId : AstTerminalIdentifier
     {
         
-        public AstEventModuleGuid(ITerminalNode t) : 
+        public AstExternalDataSourceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventModuleGuid(ParserRuleContext ctx) : 
+        public AstExternalDataSourceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventModuleGuid(Position position) : 
+        public AstExternalDataSourceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventModuleGuid(this);
+            visitor.VisitExternalDataSourceId(this);
         }
     }
     
     /// <summary>
-    /// event_name
+    /// external_file_format_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventName : AstTerminalIdentifier
+    public partial class AstExternalFileFormatId : AstTerminalIdentifier
     {
         
-        public AstEventName(ITerminalNode t) : 
+        public AstExternalFileFormatId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventName(ParserRuleContext ctx) : 
+        public AstExternalFileFormatId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventName(Position position) : 
+        public AstExternalFileFormatId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventName(this);
+            visitor.VisitExternalFileFormatId(this);
         }
     }
     
     /// <summary>
-    /// event_notification_name
+    /// external_pool_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventNotificationName : AstTerminalIdentifier
+    public partial class AstExternalPoolId : AstTerminalIdentifier
     {
         
-        public AstEventNotificationName(ITerminalNode t) : 
+        public AstExternalPoolId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventNotificationName(ParserRuleContext ctx) : 
+        public AstExternalPoolId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventNotificationName(Position position) : 
+        public AstExternalPoolId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventNotificationName(this);
+            visitor.VisitExternalPoolId(this);
         }
     }
     
     /// <summary>
-    /// event_package_name
+    /// function_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventPackageName : AstTerminalIdentifier
+    public partial class AstFunctionId : AstTerminalIdentifier
     {
         
-        public AstEventPackageName(ITerminalNode t) : 
+        public AstFunctionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventPackageName(ParserRuleContext ctx) : 
+        public AstFunctionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventPackageName(Position position) : 
+        public AstFunctionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventPackageName(this);
+            visitor.VisitFunctionId(this);
         }
     }
     
     /// <summary>
-    /// event_session_name
+    /// group_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventSessionName : AstTerminalIdentifier
+    public partial class AstGroupId : AstTerminalIdentifier
     {
         
-        public AstEventSessionName(ITerminalNode t) : 
+        public AstGroupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventSessionName(ParserRuleContext ctx) : 
+        public AstGroupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventSessionName(Position position) : 
+        public AstGroupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventSessionName(this);
+            visitor.VisitGroupId(this);
         }
     }
     
     /// <summary>
-    /// event_type_or_group
+    /// index_id
     /// 	 : id_
     /// </summary>
-    public partial class AstEventTypeOrGroup : AstTerminalIdentifier
+    public partial class AstIndexId : AstTerminalIdentifier
     {
         
-        public AstEventTypeOrGroup(ITerminalNode t) : 
+        public AstIndexId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstEventTypeOrGroup(ParserRuleContext ctx) : 
+        public AstIndexId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstEventTypeOrGroup(Position position) : 
+        public AstIndexId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitEventTypeOrGroup(this);
-        }
-    }
-    
-    /// <summary>
-    /// ext_type
-    /// 	 : id_
-    /// </summary>
-    public partial class AstExtType : AstTerminalIdentifier
-    {
-        
-        public AstExtType(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstExtType(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstExtType(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitExtType(this);
-        }
-    }
-    
-    /// <summary>
-    /// external_data_source_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstExternalDataSourceName : AstTerminalIdentifier
-    {
-        
-        public AstExternalDataSourceName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstExternalDataSourceName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstExternalDataSourceName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitExternalDataSourceName(this);
-        }
-    }
-    
-    /// <summary>
-    /// external_file_format_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstExternalFileFormatName : AstTerminalIdentifier
-    {
-        
-        public AstExternalFileFormatName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstExternalFileFormatName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstExternalFileFormatName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitExternalFileFormatName(this);
-        }
-    }
-    
-    /// <summary>
-    /// external_pool_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstExternalPoolName : AstTerminalIdentifier
-    {
-        
-        public AstExternalPoolName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstExternalPoolName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstExternalPoolName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitExternalPoolName(this);
-        }
-    }
-    
-    /// <summary>
-    /// file_group_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstFileGroupName : AstTerminalIdentifier
-    {
-        
-        public AstFileGroupName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFileGroupName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFileGroupName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFileGroupName(this);
-        }
-    }
-    
-    /// <summary>
-    /// function_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstFunctionName : AstTerminalIdentifier
-    {
-        
-        public AstFunctionName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstFunctionName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstFunctionName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitFunctionName(this);
-        }
-    }
-    
-    /// <summary>
-    /// group_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstGroupName : AstTerminalIdentifier
-    {
-        
-        public AstGroupName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstGroupName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstGroupName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitGroupName(this);
-        }
-    }
-    
-    /// <summary>
-    /// index_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstIndexName : AstTerminalIdentifier
-    {
-        
-        public AstIndexName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstIndexName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstIndexName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitIndexName(this);
+            visitor.VisitIndexId(this);
         }
     }
     
@@ -1994,114 +1399,114 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// library_name
+    /// library_id
     /// 	 : id_
     /// </summary>
-    public partial class AstLibraryName : AstTerminalIdentifier
+    public partial class AstLibraryId : AstTerminalIdentifier
     {
         
-        public AstLibraryName(ITerminalNode t) : 
+        public AstLibraryId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstLibraryName(ParserRuleContext ctx) : 
+        public AstLibraryId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstLibraryName(Position position) : 
+        public AstLibraryId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitLibraryName(this);
+            visitor.VisitLibraryId(this);
         }
     }
     
     /// <summary>
-    /// linked_server
+    /// server_id
     /// 	 : id_
     /// </summary>
-    public partial class AstLinkedServer : AstTerminalIdentifier
+    public partial class AstServerId : AstTerminalIdentifier
     {
         
-        public AstLinkedServer(ITerminalNode t) : 
+        public AstServerId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstLinkedServer(ParserRuleContext ctx) : 
+        public AstServerId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstLinkedServer(Position position) : 
+        public AstServerId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitLinkedServer(this);
+            visitor.VisitServerId(this);
         }
     }
     
     /// <summary>
-    /// logical_device_name
+    /// logical_device_id
     /// 	 : id_
     /// </summary>
-    public partial class AstLogicalDeviceName : AstTerminalIdentifier
+    public partial class AstLogicalDeviceId : AstTerminalIdentifier
     {
         
-        public AstLogicalDeviceName(ITerminalNode t) : 
+        public AstLogicalDeviceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstLogicalDeviceName(ParserRuleContext ctx) : 
+        public AstLogicalDeviceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstLogicalDeviceName(Position position) : 
+        public AstLogicalDeviceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitLogicalDeviceName(this);
+            visitor.VisitLogicalDeviceId(this);
         }
     }
     
     /// <summary>
-    /// login_name
+    /// login_id
     /// 	 : id_
     /// </summary>
-    public partial class AstLoginName : AstTerminalIdentifier
+    public partial class AstLoginId : AstTerminalIdentifier
     {
         
-        public AstLoginName(ITerminalNode t) : 
+        public AstLoginId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstLoginName(ParserRuleContext ctx) : 
+        public AstLoginId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstLoginName(Position position) : 
+        public AstLoginId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitLoginName(this);
+            visitor.VisitLoginId(this);
         }
     }
     
@@ -2134,114 +1539,86 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// method_name
+    /// method_id
     /// 	 : id_
     /// </summary>
-    public partial class AstMethodName : AstTerminalIdentifier
+    public partial class AstMethodId : AstTerminalIdentifier
     {
         
-        public AstMethodName(ITerminalNode t) : 
+        public AstMethodId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstMethodName(ParserRuleContext ctx) : 
+        public AstMethodId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstMethodName(Position position) : 
+        public AstMethodId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitMethodName(this);
+            visitor.VisitMethodId(this);
         }
     }
     
     /// <summary>
-    /// modified_contract_name
+    /// modified_contract_id
     /// 	 : id_
     /// </summary>
-    public partial class AstModifiedContractName : AstTerminalIdentifier
+    public partial class AstModifiedContractId : AstTerminalIdentifier
     {
         
-        public AstModifiedContractName(ITerminalNode t) : 
+        public AstModifiedContractId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstModifiedContractName(ParserRuleContext ctx) : 
+        public AstModifiedContractId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstModifiedContractName(Position position) : 
+        public AstModifiedContractId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitModifiedContractName(this);
+            visitor.VisitModifiedContractId(this);
         }
     }
     
     /// <summary>
-    /// modified_service_name
+    /// module_id
     /// 	 : id_
     /// </summary>
-    public partial class AstModifiedServiceName : AstTerminalIdentifier
+    public partial class AstModuleId : AstTerminalIdentifier
     {
         
-        public AstModifiedServiceName(ITerminalNode t) : 
+        public AstModuleId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstModifiedServiceName(ParserRuleContext ctx) : 
+        public AstModuleId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstModifiedServiceName(Position position) : 
+        public AstModuleId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitModifiedServiceName(this);
-        }
-    }
-    
-    /// <summary>
-    /// module_name
-    /// 	 : id_
-    /// </summary>
-    public partial class AstModuleName : AstTerminalIdentifier
-    {
-        
-        public AstModuleName(ITerminalNode t) : 
-                base(t)
-        {
-        }
-        
-        public AstModuleName(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstModuleName(Position position) : 
-                base(position)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitModuleName(this);
+            visitor.VisitModuleId(this);
         }
     }
     
@@ -2274,1262 +1651,1582 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// new_application_role_name
+    /// role_id
     /// 	 : id_
     /// </summary>
-    public partial class AstNewApplicationRoleName : AstTerminalIdentifier
+    public partial class AstRoleId : AstTerminalIdentifier
     {
         
-        public AstNewApplicationRoleName(ITerminalNode t) : 
+        public AstRoleId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstNewApplicationRoleName(ParserRuleContext ctx) : 
+        public AstRoleId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstNewApplicationRoleName(Position position) : 
+        public AstRoleId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitNewApplicationRoleName(this);
+            visitor.VisitRoleId(this);
         }
     }
     
     /// <summary>
-    /// new_file_group_name
+    /// file_group_id
     /// 	 : id_
     /// </summary>
-    public partial class AstNewFileGroupName : AstTerminalIdentifier
+    public partial class AstFileGroupId : AstTerminalIdentifier
     {
         
-        public AstNewFileGroupName(ITerminalNode t) : 
+        public AstFileGroupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstNewFileGroupName(ParserRuleContext ctx) : 
+        public AstFileGroupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstNewFileGroupName(Position position) : 
+        public AstFileGroupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitNewFileGroupName(this);
+            visitor.VisitFileGroupId(this);
         }
     }
     
     /// <summary>
-    /// non_static_attr
+    /// non_static_attr_id
     /// 	 : id_
     /// </summary>
-    public partial class AstNonStaticAttr : AstTerminalIdentifier
+    public partial class AstNonStaticAttrId : AstTerminalIdentifier
     {
         
-        public AstNonStaticAttr(ITerminalNode t) : 
+        public AstNonStaticAttrId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstNonStaticAttr(ParserRuleContext ctx) : 
+        public AstNonStaticAttrId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstNonStaticAttr(Position position) : 
+        public AstNonStaticAttrId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitNonStaticAttr(this);
+            visitor.VisitNonStaticAttrId(this);
         }
     }
     
     /// <summary>
-    /// notification_name
+    /// notification_id
     /// 	 : id_
     /// </summary>
-    public partial class AstNotificationName : AstTerminalIdentifier
+    public partial class AstNotificationId : AstTerminalIdentifier
     {
         
-        public AstNotificationName(ITerminalNode t) : 
+        public AstNotificationId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstNotificationName(ParserRuleContext ctx) : 
+        public AstNotificationId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstNotificationName(Position position) : 
+        public AstNotificationId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitNotificationName(this);
+            visitor.VisitNotificationId(this);
         }
     }
     
     /// <summary>
-    /// object_name
+    /// object_id
     /// 	 : id_
     /// </summary>
-    public partial class AstObjectName : AstTerminalIdentifier
+    public partial class AstObjectId : AstTerminalIdentifier
     {
         
-        public AstObjectName(ITerminalNode t) : 
+        public AstObjectId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstObjectName(ParserRuleContext ctx) : 
+        public AstObjectId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstObjectName(Position position) : 
+        public AstObjectId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitObjectName(this);
+            visitor.VisitObjectId(this);
         }
     }
     
     /// <summary>
-    /// owner_name
+    /// owner_id
     /// 	 : id_
     /// </summary>
-    public partial class AstOwnerName : AstTerminalIdentifier
+    public partial class AstOwnerId : AstTerminalIdentifier
     {
         
-        public AstOwnerName(ITerminalNode t) : 
+        public AstOwnerId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstOwnerName(ParserRuleContext ctx) : 
+        public AstOwnerId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstOwnerName(Position position) : 
+        public AstOwnerId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitOwnerName(this);
+            visitor.VisitOwnerId(this);
         }
     }
     
     /// <summary>
-    /// partition_column_name
+    /// partition_column_id
     /// 	 : id_
     /// </summary>
-    public partial class AstPartitionColumnName : AstTerminalIdentifier
+    public partial class AstPartitionColumnId : AstTerminalIdentifier
     {
         
-        public AstPartitionColumnName(ITerminalNode t) : 
+        public AstPartitionColumnId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstPartitionColumnName(ParserRuleContext ctx) : 
+        public AstPartitionColumnId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstPartitionColumnName(Position position) : 
+        public AstPartitionColumnId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitPartitionColumnName(this);
+            visitor.VisitPartitionColumnId(this);
         }
     }
     
     /// <summary>
-    /// pool_name
+    /// pool_id
     /// 	 : id_
     /// </summary>
-    public partial class AstPoolName : AstTerminalIdentifier
+    public partial class AstPoolId : AstTerminalIdentifier
     {
         
-        public AstPoolName(ITerminalNode t) : 
+        public AstPoolId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstPoolName(ParserRuleContext ctx) : 
+        public AstPoolId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstPoolName(Position position) : 
+        public AstPoolId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitPoolName(this);
+            visitor.VisitPoolId(this);
         }
     }
     
     /// <summary>
-    /// predicate_compare_name
+    /// predicate_source_id
     /// 	 : id_
     /// </summary>
-    public partial class AstPredicateCompareName : AstTerminalIdentifier
+    public partial class AstPredicateSourceId : AstTerminalIdentifier
     {
         
-        public AstPredicateCompareName(ITerminalNode t) : 
+        public AstPredicateSourceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstPredicateCompareName(ParserRuleContext ctx) : 
+        public AstPredicateSourceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstPredicateCompareName(Position position) : 
+        public AstPredicateSourceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitPredicateCompareName(this);
+            visitor.VisitPredicateSourceId(this);
         }
     }
     
     /// <summary>
-    /// predicate_source_name
+    /// property_list_id
     /// 	 : id_
     /// </summary>
-    public partial class AstPredicateSourceName : AstTerminalIdentifier
+    public partial class AstPropertyListId : AstTerminalIdentifier
     {
         
-        public AstPredicateSourceName(ITerminalNode t) : 
+        public AstPropertyListId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstPredicateSourceName(ParserRuleContext ctx) : 
+        public AstPropertyListId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstPredicateSourceName(Position position) : 
+        public AstPropertyListId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitPredicateSourceName(this);
+            visitor.VisitPropertyListId(this);
         }
     }
     
     /// <summary>
-    /// property_list_name
+    /// provider_id
     /// 	 : id_
     /// </summary>
-    public partial class AstPropertyListName : AstTerminalIdentifier
+    public partial class AstProviderId : AstTerminalIdentifier
     {
         
-        public AstPropertyListName(ITerminalNode t) : 
+        public AstProviderId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstPropertyListName(ParserRuleContext ctx) : 
+        public AstProviderId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstPropertyListName(Position position) : 
+        public AstProviderId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitPropertyListName(this);
+            visitor.VisitProviderId(this);
         }
     }
     
     /// <summary>
-    /// provider_name
+    /// database_id
     /// 	 : id_
     /// </summary>
-    public partial class AstProviderName : AstTerminalIdentifier
+    public partial class AstDatabaseId : AstTerminalIdentifier
     {
         
-        public AstProviderName(ITerminalNode t) : 
+        public AstDatabaseId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstProviderName(ParserRuleContext ctx) : 
+        public AstDatabaseId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstProviderName(Position position) : 
+        public AstDatabaseId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitProviderName(this);
+            visitor.VisitDatabaseId(this);
         }
     }
     
     /// <summary>
-    /// queue_name
+    /// route_id
     /// 	 : id_
     /// </summary>
-    public partial class AstQueueName : AstTerminalIdentifier
+    public partial class AstRouteId : AstTerminalIdentifier
     {
         
-        public AstQueueName(ITerminalNode t) : 
+        public AstRouteId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstQueueName(ParserRuleContext ctx) : 
+        public AstRouteId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstQueueName(Position position) : 
+        public AstRouteId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitQueueName(this);
+            visitor.VisitRouteId(this);
         }
     }
     
     /// <summary>
-    /// relational_schema
+    /// rule_id
     /// 	 : id_
     /// </summary>
-    public partial class AstRelationalSchema : AstTerminalIdentifier
+    public partial class AstRuleId : AstTerminalIdentifier
     {
         
-        public AstRelationalSchema(ITerminalNode t) : 
+        public AstRuleId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstRelationalSchema(ParserRuleContext ctx) : 
+        public AstRuleId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstRelationalSchema(Position position) : 
+        public AstRuleId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitRelationalSchema(this);
+            visitor.VisitRuleId(this);
         }
     }
     
     /// <summary>
-    /// role_name
+    /// column_id
     /// 	 : id_
     /// </summary>
-    public partial class AstRoleName : AstTerminalIdentifier
+    public partial class AstColumnId : AstTerminalIdentifier
     {
         
-        public AstRoleName(ITerminalNode t) : 
+        public AstColumnId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstRoleName(ParserRuleContext ctx) : 
+        public AstColumnId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstRoleName(Position position) : 
+        public AstColumnId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitRoleName(this);
+            visitor.VisitColumnId(this);
         }
     }
     
     /// <summary>
-    /// route_name
+    /// schema_collection_id
     /// 	 : id_
     /// </summary>
-    public partial class AstRouteName : AstTerminalIdentifier
+    public partial class AstSchemaCollectionId : AstTerminalIdentifier
     {
         
-        public AstRouteName(ITerminalNode t) : 
+        public AstSchemaCollectionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstRouteName(ParserRuleContext ctx) : 
+        public AstSchemaCollectionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstRouteName(Position position) : 
+        public AstSchemaCollectionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitRouteName(this);
+            visitor.VisitSchemaCollectionId(this);
         }
     }
     
     /// <summary>
-    /// rule_name
+    /// security_policy_id
     /// 	 : id_
     /// </summary>
-    public partial class AstRuleName : AstTerminalIdentifier
+    public partial class AstSecurityPolicyId : AstTerminalIdentifier
     {
         
-        public AstRuleName(ITerminalNode t) : 
+        public AstSecurityPolicyId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstRuleName(ParserRuleContext ctx) : 
+        public AstSecurityPolicyId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstRuleName(Position position) : 
+        public AstSecurityPolicyId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitRuleName(this);
+            visitor.VisitSecurityPolicyId(this);
         }
     }
     
     /// <summary>
-    /// schema_name
+    /// security_predicate_function_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSchemaName : AstTerminalIdentifier
+    public partial class AstSecurityPredicateFunctionId : AstTerminalIdentifier
     {
         
-        public AstSchemaName(ITerminalNode t) : 
+        public AstSecurityPredicateFunctionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSchemaName(ParserRuleContext ctx) : 
+        public AstSecurityPredicateFunctionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSchemaName(Position position) : 
+        public AstSecurityPredicateFunctionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSchemaName(this);
+            visitor.VisitSecurityPredicateFunctionId(this);
         }
     }
     
     /// <summary>
-    /// schema_collection_name
+    /// sequence_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSchemaCollectionName : AstTerminalIdentifier
+    public partial class AstSequenceId : AstTerminalIdentifier
     {
         
-        public AstSchemaCollectionName(ITerminalNode t) : 
+        public AstSequenceId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSchemaCollectionName(ParserRuleContext ctx) : 
+        public AstSequenceId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSchemaCollectionName(Position position) : 
+        public AstSequenceId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSchemaCollectionName(this);
+            visitor.VisitSequenceId(this);
         }
     }
     
     /// <summary>
-    /// security_policy_name
+    /// server_role_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSecurityPolicyName : AstTerminalIdentifier
+    public partial class AstServerRoleId : AstTerminalIdentifier
     {
         
-        public AstSecurityPolicyName(ITerminalNode t) : 
+        public AstServerRoleId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSecurityPolicyName(ParserRuleContext ctx) : 
+        public AstServerRoleId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSecurityPolicyName(Position position) : 
+        public AstServerRoleId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSecurityPolicyName(this);
+            visitor.VisitServerRoleId(this);
         }
     }
     
     /// <summary>
-    /// security_predicate_function_name
+    /// source_list_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSecurityPredicateFunctionName : AstTerminalIdentifier
+    public partial class AstSourceListId : AstTerminalIdentifier
     {
         
-        public AstSecurityPredicateFunctionName(ITerminalNode t) : 
+        public AstSourceListId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSecurityPredicateFunctionName(ParserRuleContext ctx) : 
+        public AstSourceListId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSecurityPredicateFunctionName(Position position) : 
+        public AstSourceListId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSecurityPredicateFunctionName(this);
+            visitor.VisitSourceListId(this);
         }
     }
     
     /// <summary>
-    /// sequence_name
+    /// sql_identifier_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSequenceName : AstTerminalIdentifier
+    public partial class AstSqlIdentifierId : AstTerminalIdentifier
     {
         
-        public AstSequenceName(ITerminalNode t) : 
+        public AstSqlIdentifierId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSequenceName(ParserRuleContext ctx) : 
+        public AstSqlIdentifierId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSequenceName(Position position) : 
+        public AstSqlIdentifierId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSequenceName(this);
+            visitor.VisitSqlIdentifierId(this);
         }
     }
     
     /// <summary>
-    /// server_name
+    /// static_attr_id
     /// 	 : id_
     /// </summary>
-    public partial class AstServerName : AstTerminalIdentifier
+    public partial class AstStaticAttrId : AstTerminalIdentifier
     {
         
-        public AstServerName(ITerminalNode t) : 
+        public AstStaticAttrId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstServerName(ParserRuleContext ctx) : 
+        public AstStaticAttrId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstServerName(Position position) : 
+        public AstStaticAttrId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitServerName(this);
+            visitor.VisitStaticAttrId(this);
         }
     }
     
     /// <summary>
-    /// server_role_name
+    /// statistics_id
     /// 	 : id_
     /// </summary>
-    public partial class AstServerRoleName : AstTerminalIdentifier
+    public partial class AstStatisticsId : AstTerminalIdentifier
     {
         
-        public AstServerRoleName(ITerminalNode t) : 
+        public AstStatisticsId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstServerRoleName(ParserRuleContext ctx) : 
+        public AstStatisticsId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstServerRoleName(Position position) : 
+        public AstStatisticsId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitServerRoleName(this);
+            visitor.VisitStatisticsId(this);
         }
     }
     
     /// <summary>
-    /// source_list_name
+    /// stoplist_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSourceListName : AstTerminalIdentifier
+    public partial class AstStoplistId : AstTerminalIdentifier
     {
         
-        public AstSourceListName(ITerminalNode t) : 
+        public AstStoplistId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSourceListName(ParserRuleContext ctx) : 
+        public AstStoplistId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSourceListName(Position position) : 
+        public AstStoplistId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSourceListName(this);
+            visitor.VisitStoplistId(this);
         }
     }
     
     /// <summary>
-    /// sql_identifier
+    /// symmetric_key_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSqlIdentifier : AstTerminalIdentifier
+    public partial class AstSymmetricKeyId : AstTerminalIdentifier
     {
         
-        public AstSqlIdentifier(ITerminalNode t) : 
+        public AstSymmetricKeyId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSqlIdentifier(ParserRuleContext ctx) : 
+        public AstSymmetricKeyId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSqlIdentifier(Position position) : 
+        public AstSymmetricKeyId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSqlIdentifier(this);
+            visitor.VisitSymmetricKeyId(this);
         }
     }
     
     /// <summary>
-    /// static_attr
+    /// synonym_id
     /// 	 : id_
     /// </summary>
-    public partial class AstStaticAttr : AstTerminalIdentifier
+    public partial class AstSynonymId : AstTerminalIdentifier
     {
         
-        public AstStaticAttr(ITerminalNode t) : 
+        public AstSynonymId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstStaticAttr(ParserRuleContext ctx) : 
+        public AstSynonymId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstStaticAttr(Position position) : 
+        public AstSynonymId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitStaticAttr(this);
+            visitor.VisitSynonymId(this);
         }
     }
     
     /// <summary>
-    /// statistics_name
+    /// table_or_view_id
     /// 	 : id_
     /// </summary>
-    public partial class AstStatisticsName : AstTerminalIdentifier
+    public partial class AstTableOrViewId : AstTerminalIdentifier
     {
         
-        public AstStatisticsName(ITerminalNode t) : 
+        public AstTableOrViewId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstStatisticsName(ParserRuleContext ctx) : 
+        public AstTableOrViewId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstStatisticsName(Position position) : 
+        public AstTableOrViewId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitStatisticsName(this);
+            visitor.VisitTableOrViewId(this);
         }
     }
     
     /// <summary>
-    /// stoplist_name
+    /// view_id
     /// 	 : id_
     /// </summary>
-    public partial class AstStoplistName : AstTerminalIdentifier
+    public partial class AstViewId : AstTerminalIdentifier
     {
         
-        public AstStoplistName(ITerminalNode t) : 
+        public AstViewId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstStoplistName(ParserRuleContext ctx) : 
+        public AstViewId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstStoplistName(Position position) : 
+        public AstViewId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitStoplistName(this);
+            visitor.VisitViewId(this);
         }
     }
     
     /// <summary>
-    /// symmetric_key_name
+    /// table_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSymmetricKeyName : AstTerminalIdentifier
+    public partial class AstTableId : AstTerminalIdentifier
     {
         
-        public AstSymmetricKeyName(ITerminalNode t) : 
+        public AstTableId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSymmetricKeyName(ParserRuleContext ctx) : 
+        public AstTableId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSymmetricKeyName(Position position) : 
+        public AstTableId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSymmetricKeyName(this);
+            visitor.VisitTableId(this);
         }
     }
     
     /// <summary>
-    /// synonym_name
+    /// target_id
     /// 	 : id_
     /// </summary>
-    public partial class AstSynonymName : AstTerminalIdentifier
+    public partial class AstTargetId : AstTerminalIdentifier
     {
         
-        public AstSynonymName(ITerminalNode t) : 
+        public AstTargetId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstSynonymName(ParserRuleContext ctx) : 
+        public AstTargetId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstSynonymName(Position position) : 
+        public AstTargetId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitSynonymName(this);
+            visitor.VisitTargetId(this);
         }
     }
     
     /// <summary>
-    /// table_or_view_name
+    /// target_parameter_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTableOrViewName : AstTerminalIdentifier
+    public partial class AstTargetParameterId : AstTerminalIdentifier
     {
         
-        public AstTableOrViewName(ITerminalNode t) : 
+        public AstTargetParameterId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTableOrViewName(ParserRuleContext ctx) : 
+        public AstTargetParameterId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTableOrViewName(Position position) : 
+        public AstTargetParameterId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTableOrViewName(this);
+            visitor.VisitTargetParameterId(this);
         }
     }
     
     /// <summary>
-    /// table_variable
+    /// trigger_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTableVariable : AstTerminalIdentifier
+    public partial class AstTriggerId : AstTerminalIdentifier
     {
         
-        public AstTableVariable(ITerminalNode t) : 
+        public AstTriggerId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTableVariable(ParserRuleContext ctx) : 
+        public AstTriggerId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTableVariable(Position position) : 
+        public AstTriggerId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTableVariable(this);
+            visitor.VisitTriggerId(this);
         }
     }
     
     /// <summary>
-    /// tableName
+    /// tvf_schema_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTableName : AstTerminalIdentifier
+    public partial class AstTvfSchemaId : AstTerminalIdentifier
     {
         
-        public AstTableName(ITerminalNode t) : 
+        public AstTvfSchemaId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTableName(ParserRuleContext ctx) : 
+        public AstTvfSchemaId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTableName(Position position) : 
+        public AstTvfSchemaId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTableName(this);
+            visitor.VisitTvfSchemaId(this);
         }
     }
     
     /// <summary>
-    /// target_name
+    /// udt_column_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTargetName : AstTerminalIdentifier
+    public partial class AstUdtColumnId : AstTerminalIdentifier
     {
         
-        public AstTargetName(ITerminalNode t) : 
+        public AstUdtColumnId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTargetName(ParserRuleContext ctx) : 
+        public AstUdtColumnId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTargetName(Position position) : 
+        public AstUdtColumnId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTargetName(this);
+            visitor.VisitUdtColumnId(this);
         }
     }
     
     /// <summary>
-    /// target_parameter_name
+    /// unscaled_type_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTargetParameterName : AstTerminalIdentifier
+    public partial class AstUnscaledTypeId : AstTerminalIdentifier
     {
         
-        public AstTargetParameterName(ITerminalNode t) : 
+        public AstUnscaledTypeId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTargetParameterName(ParserRuleContext ctx) : 
+        public AstUnscaledTypeId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTargetParameterName(Position position) : 
+        public AstUnscaledTypeId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTargetParameterName(this);
+            visitor.VisitUnscaledTypeId(this);
         }
     }
     
     /// <summary>
-    /// trigger_name
+    /// windows_principal_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTriggerName : AstTerminalIdentifier
+    public partial class AstWindowsPrincipalId : AstTerminalIdentifier
     {
         
-        public AstTriggerName(ITerminalNode t) : 
+        public AstWindowsPrincipalId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTriggerName(ParserRuleContext ctx) : 
+        public AstWindowsPrincipalId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTriggerName(Position position) : 
+        public AstWindowsPrincipalId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTriggerName(this);
+            visitor.VisitWindowsPrincipalId(this);
         }
     }
     
     /// <summary>
-    /// tvf_schema_name
+    /// workload_group_group_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTvfSchemaName : AstTerminalIdentifier
+    public partial class AstWorkloadGroupGroupId : AstTerminalIdentifier
     {
         
-        public AstTvfSchemaName(ITerminalNode t) : 
+        public AstWorkloadGroupGroupId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTvfSchemaName(ParserRuleContext ctx) : 
+        public AstWorkloadGroupGroupId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTvfSchemaName(Position position) : 
+        public AstWorkloadGroupGroupId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTvfSchemaName(this);
+            visitor.VisitWorkloadGroupGroupId(this);
         }
     }
     
     /// <summary>
-    /// type_schema
+    /// workload_group_pool_id
     /// 	 : id_
     /// </summary>
-    public partial class AstTypeSchema : AstTerminalIdentifier
+    public partial class AstWorkloadGroupPoolId : AstTerminalIdentifier
     {
         
-        public AstTypeSchema(ITerminalNode t) : 
+        public AstWorkloadGroupPoolId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstTypeSchema(ParserRuleContext ctx) : 
+        public AstWorkloadGroupPoolId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTypeSchema(Position position) : 
+        public AstWorkloadGroupPoolId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTypeSchema(this);
+            visitor.VisitWorkloadGroupPoolId(this);
         }
     }
     
     /// <summary>
-    /// udt_column_name
+    /// partition_scheme_id
     /// 	 : id_
     /// </summary>
-    public partial class AstUdtColumnName : AstTerminalIdentifier
+    public partial class AstPartitionSchemeId : AstTerminalIdentifier
     {
         
-        public AstUdtColumnName(ITerminalNode t) : 
+        public AstPartitionSchemeId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstUdtColumnName(ParserRuleContext ctx) : 
+        public AstPartitionSchemeId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstUdtColumnName(Position position) : 
+        public AstPartitionSchemeId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitUdtColumnName(this);
+            visitor.VisitPartitionSchemeId(this);
         }
     }
     
     /// <summary>
-    /// unscaled_type
+    /// queue_id
     /// 	 : id_
     /// </summary>
-    public partial class AstUnscaledType : AstTerminalIdentifier
+    public partial class AstQueueId : AstTerminalIdentifier
     {
         
-        public AstUnscaledType(ITerminalNode t) : 
+        public AstQueueId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstUnscaledType(ParserRuleContext ctx) : 
+        public AstQueueId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstUnscaledType(Position position) : 
+        public AstQueueId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitUnscaledType(this);
+            visitor.VisitQueueId(this);
         }
     }
     
     /// <summary>
-    /// user_name
+    /// partition_function_id
     /// 	 : id_
     /// </summary>
-    public partial class AstUserName : AstTerminalIdentifier
+    public partial class AstPartitionFunctionId : AstTerminalIdentifier
     {
         
-        public AstUserName(ITerminalNode t) : 
+        public AstPartitionFunctionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstUserName(ParserRuleContext ctx) : 
+        public AstPartitionFunctionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstUserName(Position position) : 
+        public AstPartitionFunctionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitUserName(this);
+            visitor.VisitPartitionFunctionId(this);
         }
     }
     
     /// <summary>
-    /// windows_principal
+    /// message_type_id
     /// 	 : id_
     /// </summary>
-    public partial class AstWindowsPrincipal : AstTerminalIdentifier
+    public partial class AstMessageTypeId : AstTerminalIdentifier
     {
         
-        public AstWindowsPrincipal(ITerminalNode t) : 
+        public AstMessageTypeId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstWindowsPrincipal(ParserRuleContext ctx) : 
+        public AstMessageTypeId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstWindowsPrincipal(Position position) : 
+        public AstMessageTypeId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitWindowsPrincipal(this);
+            visitor.VisitMessageTypeId(this);
         }
     }
     
     /// <summary>
-    /// workload_group_group_name
+    /// code_location_id
     /// 	 : id_
     /// </summary>
-    public partial class AstWorkloadGroupGroupName : AstTerminalIdentifier
+    public partial class AstCodeLocationId : AstTerminalIdentifier
     {
         
-        public AstWorkloadGroupGroupName(ITerminalNode t) : 
+        public AstCodeLocationId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstWorkloadGroupGroupName(ParserRuleContext ctx) : 
+        public AstCodeLocationId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstWorkloadGroupGroupName(Position position) : 
+        public AstCodeLocationId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitWorkloadGroupGroupName(this);
+            visitor.VisitCodeLocationId(this);
         }
     }
     
     /// <summary>
-    /// workload_group_pool_name
+    /// transaction_id
     /// 	 : id_
     /// </summary>
-    public partial class AstWorkloadGroupPoolName : AstTerminalIdentifier
+    public partial class AstTransactionId : AstTerminalIdentifier
     {
         
-        public AstWorkloadGroupPoolName(ITerminalNode t) : 
+        public AstTransactionId(ITerminalNode t) : 
                 base(t)
         {
         }
         
-        public AstWorkloadGroupPoolName(ParserRuleContext ctx) : 
+        public AstTransactionId(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstWorkloadGroupPoolName(Position position) : 
+        public AstTransactionId(Position position) : 
                 base(position)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitWorkloadGroupPoolName(this);
+            visitor.VisitTransactionId(this);
+        }
+    }
+    
+    /// <summary>
+    /// decimal_id
+    /// 	 : DECIMAL
+    /// 	 | id_
+    /// </summary>
+    public partial class AstDecimalId : AstTerminalIdentifier
+    {
+        
+        public AstDecimalId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstDecimalId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDecimalId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalId(this);
+        }
+    }
+    
+    /// <summary>
+    /// string_id
+    /// 	 : STRING
+    /// 	 | id_
+    /// </summary>
+    public partial class AstStringId : AstTerminalIdentifier
+    {
+        
+        public AstStringId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstStringId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstStringId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStringId(this);
+        }
+    }
+    
+    /// <summary>
+    /// string_local_id
+    /// 	 : STRING
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstStringLocalId : AstTerminalIdentifier
+    {
+        
+        public AstStringLocalId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstStringLocalId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstStringLocalId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStringLocalId(this);
+        }
+    }
+    
+    /// <summary>
+    /// decimal_local_id
+    /// 	 : DECIMAL
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstDecimalLocalId : AstTerminalIdentifier
+    {
+        
+        public AstDecimalLocalId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstDecimalLocalId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDecimalLocalId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalLocalId(this);
+        }
+    }
+    
+    /// <summary>
+    /// decimal_string
+    /// 	 : DECIMAL
+    /// 	 | STRING
+    /// </summary>
+    public partial class AstDecimalString : AstTerminal<string>
+    {
+        
+        public AstDecimalString(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstDecimalString(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDecimalString(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalString(this);
+        }
+    }
+    
+    /// <summary>
+    /// decimal_string_local_id
+    /// 	 : DECIMAL
+    /// 	 | STRING
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstDecimalStringLocalId : AstTerminalIdentifier
+    {
+        
+        public AstDecimalStringLocalId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstDecimalStringLocalId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDecimalStringLocalId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalStringLocalId(this);
+        }
+    }
+    
+    /// <summary>
+    /// string_local_id_double_quote_id
+    /// 	 : STRING
+    /// 	 | LOCAL_ID
+    /// 	 | DOUBLE_QUOTE_ID
+    /// </summary>
+    public partial class AstStringLocalIdDoubleQuoteId : AstTerminalIdentifier
+    {
+        
+        public AstStringLocalIdDoubleQuoteId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstStringLocalIdDoubleQuoteId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstStringLocalIdDoubleQuoteId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStringLocalIdDoubleQuoteId(this);
+        }
+    }
+    
+    /// <summary>
+    /// func_proc_name_server_database_schema
+    /// 	 : server_id?  DOT  database_id?  DOT  schema_id?  DOT  function_id
+    /// 	 | func_proc_name_database_schema_ref
+    /// </summary>
+    public partial class AstFuncProcNameServerDatabaseSchema : AstTerminalIdentifier
+    {
+        
+        public AstFuncProcNameServerDatabaseSchema(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstFuncProcNameServerDatabaseSchema(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstFuncProcNameServerDatabaseSchema(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitFuncProcNameServerDatabaseSchema(this);
+        }
+    }
+    
+    /// <summary>
+    /// ddl_object
+    /// 	 : complete_table_ref
+    /// 	 | LOCAL_ID
+    /// </summary>
+    public partial class AstDdlObject : AstTerminalIdentifier
+    {
+        
+        public AstDdlObject(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstDdlObject(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDdlObject(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDdlObject(this);
+        }
+    }
+    
+    /// <summary>
+    /// full_column_name
+    /// 	 : (DELETED | INSERTED)  DOT  column_id
+    /// 	 | full_column_ref
+    /// </summary>
+    public partial class AstFullColumnName : AstTerminalIdentifier
+    {
+        
+        public AstFullColumnName(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstFullColumnName(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstFullColumnName(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitFullColumnName(this);
+        }
+    }
+    
+    /// <summary>
+    /// insert_column_id
+    /// 	 : (ignore += id_  DOT)*  id_
+    /// </summary>
+    public partial class AstInsertColumnId : AstTerminalIdentifier
+    {
+        
+        public AstInsertColumnId(ITerminalNode t) : 
+                base(t)
+        {
+        }
+        
+        public AstInsertColumnId(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstInsertColumnId(Position position) : 
+                base(position)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitInsertColumnId(this);
         }
     }
 }

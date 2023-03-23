@@ -23,26 +23,6 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
-        /// sql_clauses
-        /// 	 : sql_clause  (SEMI+  sql_clause)*
-        /// </summary>
-        public override AstRoot VisitSql_clauses(TSqlParser.Sql_clausesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSqlClauses(context, list);
-        }
-        
-        /// <summary>
         /// block_statement
         /// 	 : BEGIN  SEMI?  sql_clauses?  END  SEMI?
         /// </summary>
@@ -204,7 +184,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_application_role
-        /// 	 : ALTER  APPLICATION  ROLE  application_role  WITH  (COMMA?  NAME  EQUAL  new_application_role_name)?  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  app_role_schema)?
+        /// 	 : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
         /// </summary>
         public override AstRoot VisitAlter_application_role(TSqlParser.Alter_application_roleContext context)
         {
@@ -224,7 +204,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_application_role
-        /// 	 : CREATE  APPLICATION  ROLE  application_role  WITH  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  app_role_schema)?
+        /// 	 : CREATE  APPLICATION  ROLE  role_id  WITH  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
         /// </summary>
         public override AstRoot VisitCreate_application_role(TSqlParser.Create_application_roleContext context)
         {
@@ -244,7 +224,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_aggregate
-        /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  full_aggregate_name
+        /// 	 : DROP  AGGREGATE  (IF  EXISTS)?  schema_aggregate_ref
         /// </summary>
         public override AstRoot VisitDrop_aggregate(TSqlParser.Drop_aggregateContext context)
         {
@@ -264,7 +244,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_application_role
-        /// 	 : DROP  APPLICATION  ROLE  role_name
+        /// 	 : DROP  APPLICATION  ROLE  role_id
         /// </summary>
         public override AstRoot VisitDrop_application_role(TSqlParser.Drop_application_roleContext context)
         {
@@ -284,7 +264,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_assembly
-        /// 	 : alter_assembly_start  assembly_name  alter_assembly_clause
+        /// 	 : alter_assembly_start  assembly_id  alter_assembly_clause
         /// </summary>
         public override AstRoot VisitAlter_assembly(TSqlParser.Alter_assemblyContext context)
         {
@@ -484,7 +464,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_assembly
-        /// 	 : CREATE  ASSEMBLY  assembly_name  (AUTHORIZATION  owner_name)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE | EXTERNAL_ACCESS | UNSAFE))?
+        /// 	 : CREATE  ASSEMBLY  assembly_id  (AUTHORIZATION  owner_id)?  FROM  binary_content_nexts  (WITH  PERMISSION_SET  EQUAL  (SAFE | EXTERNAL_ACCESS | UNSAFE))?
         /// </summary>
         public override AstRoot VisitCreate_assembly(TSqlParser.Create_assemblyContext context)
         {
@@ -523,8 +503,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// drop_assembly
+        /// 	 : DROP  ASSEMBLY  (IF  EXISTS)?  assemblies  (WITH  NO  DEPENDENTS)?
+        /// </summary>
+        public override AstRoot VisitDrop_assembly(TSqlParser.Drop_assemblyContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDropAssembly(context, list);
+        }
+        
+        /// <summary>
         /// alter_asymmetric_key
-        /// 	 : ALTER  ASYMMETRIC  KEY  asym_key_name  (asymmetric_key_option | REMOVE  PRIVATE  KEY)
+        /// 	 : ALTER  ASYMMETRIC  KEY  asym_key_id  (asymmetric_key_option | REMOVE  PRIVATE  KEY)
         /// </summary>
         public override AstRoot VisitAlter_asymmetric_key(TSqlParser.Alter_asymmetric_keyContext context)
         {
@@ -543,28 +543,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// asymmetric_key_option
-        /// 	 : WITH  PRIVATE  KEY  LR_BRACKET  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitAsymmetric_key_option(TSqlParser.Asymmetric_key_optionContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAsymmetricKeyOption(context, list);
-        }
-        
-        /// <summary>
         /// create_asymmetric_key
-        /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_name  (AUTHORIZATION  database_name)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_name | PROVIDER  provider_name))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
+        /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_id  (AUTHORIZATION  database_id)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_id | PROVIDER  provider_id))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
         /// </summary>
         public override AstRoot VisitCreate_asymmetric_key(TSqlParser.Create_asymmetric_keyContext context)
         {
@@ -624,7 +604,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_authorization_for_azure_dw
-        /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_azure_dw  DOUBLE_COLON)?  entity = entity_name_for_azure_dw  TO  authorization_grantee
+        /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_azure_dw  DOUBLE_COLON)?  entity = entity_name_for_azure_dw_ref  TO  authorization_grantee
         /// </summary>
         public override AstRoot VisitAlter_authorization_for_azure_dw(TSqlParser.Alter_authorization_for_azure_dwContext context)
         {
@@ -644,7 +624,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_authorization_for_parallel_dw
-        /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_parallel_dw  DOUBLE_COLON)?  entity = entity_name_for_parallel_dw  TO  authorization_grantee
+        /// 	 : ALTER  AUTHORIZATION  ON  (class_type_for_parallel_dw  DOUBLE_COLON)?  entity = entity_name_for_parallel_dw_ref  TO  authorization_grantee
         /// </summary>
         public override AstRoot VisitAlter_authorization_for_parallel_dw(TSqlParser.Alter_authorization_for_parallel_dwContext context)
         {
@@ -664,7 +644,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_availability_group
-        /// 	 : DROP  AVAILABILITY  GROUP  group_name
+        /// 	 : DROP  AVAILABILITY  GROUP  group_id
         /// </summary>
         public override AstRoot VisitDrop_availability_group(TSqlParser.Drop_availability_groupContext context)
         {
@@ -704,7 +684,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_availability_group_start
-        /// 	 : ALTER  AVAILABILITY  GROUP  group_name
+        /// 	 : ALTER  AVAILABILITY  GROUP  group_id
         /// </summary>
         public override AstRoot VisitAlter_availability_group_start(TSqlParser.Alter_availability_group_startContext context)
         {
@@ -720,6 +700,206 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstAlterAvailabilityGroupStart(context, list);
+        }
+        
+        /// <summary>
+        /// alter_availability_group_options_database
+        /// 	 : add_remove  DATABASE  database_id
+        /// </summary>
+        public override AstRoot VisitAlter_availability_group_options_database(TSqlParser.Alter_availability_group_options_databaseContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterAvailabilityGroupOptionsDatabase(context, list);
+        }
+        
+        /// <summary>
+        /// range_ip_v4
+        /// 	 : left = IPV4_ADDR  right = IPV4_ADDR
+        /// </summary>
+        public override AstRoot VisitRange_ip_v4(TSqlParser.Range_ip_v4Context context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstRangeIpV4(context, list);
+        }
+        
+        /// <summary>
+        /// range_ip_comma_v4
+        /// 	 : left = IPV4_ADDR  COMMA  right = IPV4_ADDR
+        /// </summary>
+        public override AstRoot VisitRange_ip_comma_v4(TSqlParser.Range_ip_comma_v4Context context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstRangeIpCommaV4(context, list);
+        }
+        
+        /// <summary>
+        /// alter_availability_group_options_listener_restart
+        /// 	 : restart_remove  LISTENER  STRING
+        /// </summary>
+        public override AstRoot VisitAlter_availability_group_options_listener_restart(TSqlParser.Alter_availability_group_options_listener_restartContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterAvailabilityGroupOptionsListenerRestart(context, list);
+        }
+        
+        /// <summary>
+        /// alter_availability_group_options_listener_dhcp
+        /// 	 : WITH  DHCP  ON  LR_BRACKET  range_ip_v4  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAlter_availability_group_options_listener_dhcp(TSqlParser.Alter_availability_group_options_listener_dhcpContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterAvailabilityGroupOptionsListenerDhcp(context, list);
+        }
+        
+        /// <summary>
+        /// alter_availability_replicat_modify
+        /// 	 : MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING | availability_mode | FAILOVER_MODE  EQUAL  auto_manual | seeding_mode | backup_priority)  RR_BRACKET | SECONDARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET)  RR_BRACKET | PRIMARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  (string_list | NONE)  RR_BRACKET | SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)  RR_BRACKET)
+        /// </summary>
+        public override AstRoot VisitAlter_availability_replicat_modify(TSqlParser.Alter_availability_replicat_modifyContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterAvailabilityReplicatModify(context, list);
+        }
+        
+        /// <summary>
+        /// alter_availability_replicat_add
+        /// 	 : ADD  REPLICA  ON  server_instance  WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING)?  (COMMA?  availability_mode)?  (COMMA?  FAILOVER_MODE  EQUAL  auto_manual)?  (COMMA?  seeding_mode)?  (COMMA?  backup_priority)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAlter_availability_replicat_add(TSqlParser.Alter_availability_replicat_addContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterAvailabilityReplicatAdd(context, list);
+        }
+        
+        /// <summary>
+        /// availability_mode
+        /// 	 : AVAILABILITY_MODE  EQUAL  synch_asynch
+        /// </summary>
+        public override AstRoot VisitAvailability_mode(TSqlParser.Availability_modeContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAvailabilityMode(context, list);
+        }
+        
+        /// <summary>
+        /// seeding_mode
+        /// 	 : SEEDING_MODE  EQUAL  auto_manual
+        /// </summary>
+        public override AstRoot VisitSeeding_mode(TSqlParser.Seeding_modeContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSeedingMode(context, list);
+        }
+        
+        /// <summary>
+        /// allow_connections
+        /// 	 : ALLOW_CONNECTIONS  EQUAL  no_real_write_all
+        /// </summary>
+        public override AstRoot VisitAllow_connections(TSqlParser.Allow_connectionsContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAllowConnections(context, list);
         }
         
         /// <summary>
@@ -744,7 +924,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_certificate
-        /// 	 : ALTER  CERTIFICATE  certificate_name  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? | DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? | ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
+        /// 	 : ALTER  CERTIFICATE  certificate_id  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? | DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? | ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
         /// </summary>
         public override AstRoot VisitAlter_certificate(TSqlParser.Alter_certificateContext context)
         {
@@ -764,7 +944,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_column_encryption_key
-        /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
+        /// 	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
         /// </summary>
         public override AstRoot VisitAlter_column_encryption_key(TSqlParser.Alter_column_encryption_keyContext context)
         {
@@ -784,7 +964,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_column_encryption_key
-        /// 	 : CREATE  COLUMN  ENCRYPTION  KEY  column_encryption_key  WITH  VALUES  (LR_BRACKET  COMMA?  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  encrypted_value = BINARY  RR_BRACKET  COMMA?)+
+        /// 	 : CREATE  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  WITH  VALUES  (LR_BRACKET  COMMA?  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  encrypted_value = BINARY  RR_BRACKET  COMMA?)+
         /// </summary>
         public override AstRoot VisitCreate_column_encryption_key(TSqlParser.Create_column_encryption_keyContext context)
         {
@@ -804,7 +984,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_certificate
-        /// 	 : DROP  CERTIFICATE  certificate_name
+        /// 	 : DROP  CERTIFICATE  certificate_id
         /// </summary>
         public override AstRoot VisitDrop_certificate(TSqlParser.Drop_certificateContext context)
         {
@@ -824,7 +1004,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_column_encryption_key
-        /// 	 : DROP  COLUMN  ENCRYPTION  KEY  encryptor_name
+        /// 	 : DROP  COLUMN  ENCRYPTION  KEY  encryptor_id
         /// </summary>
         public override AstRoot VisitDrop_column_encryption_key(TSqlParser.Drop_column_encryption_keyContext context)
         {
@@ -864,7 +1044,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_credential
-        /// 	 : DROP  CREDENTIAL  credential_name
+        /// 	 : DROP  CREDENTIAL  credential_id
         /// </summary>
         public override AstRoot VisitDrop_credential(TSqlParser.Drop_credentialContext context)
         {
@@ -884,7 +1064,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_cryptograhic_provider
-        /// 	 : DROP  CRYPTOGRAPHIC  PROVIDER  provider_name
+        /// 	 : DROP  CRYPTOGRAPHIC  PROVIDER  provider_id
         /// </summary>
         public override AstRoot VisitDrop_cryptograhic_provider(TSqlParser.Drop_cryptograhic_providerContext context)
         {
@@ -904,7 +1084,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_database_audit_specification
-        /// 	 : DROP  DATABASE  AUDIT  SPECIFICATION  audit_name
+        /// 	 : DROP  DATABASE  AUDIT  SPECIFICATION  audit_id
         /// </summary>
         public override AstRoot VisitDrop_database_audit_specification(TSqlParser.Drop_database_audit_specificationContext context)
         {
@@ -924,7 +1104,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_database_scoped_credential
-        /// 	 : DROP  DATABASE  SCOPED  CREDENTIAL  credential_name
+        /// 	 : DROP  DATABASE  SCOPED  CREDENTIAL  credential_id
         /// </summary>
         public override AstRoot VisitDrop_database_scoped_credential(TSqlParser.Drop_database_scoped_credentialContext context)
         {
@@ -944,7 +1124,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_endpoint
-        /// 	 : DROP  ENDPOINT  endpoint_name
+        /// 	 : DROP  ENDPOINT  endpoint_id
         /// </summary>
         public override AstRoot VisitDrop_endpoint(TSqlParser.Drop_endpointContext context)
         {
@@ -964,7 +1144,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_external_data_source
-        /// 	 : DROP  EXTERNAL  DATA  SOURCE  external_data_source_name
+        /// 	 : DROP  EXTERNAL  DATA  SOURCE  external_data_source_id
         /// </summary>
         public override AstRoot VisitDrop_external_data_source(TSqlParser.Drop_external_data_sourceContext context)
         {
@@ -984,7 +1164,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_external_file_format
-        /// 	 : DROP  EXTERNAL  FILE  FORMAT  external_file_format_name
+        /// 	 : DROP  EXTERNAL  FILE  FORMAT  external_file_format_id
         /// </summary>
         public override AstRoot VisitDrop_external_file_format(TSqlParser.Drop_external_file_formatContext context)
         {
@@ -1004,7 +1184,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_external_library
-        /// 	 : DROP  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?
+        /// 	 : DROP  EXTERNAL  LIBRARY  library_id  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitDrop_external_library(TSqlParser.Drop_external_libraryContext context)
         {
@@ -1024,7 +1204,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_external_resource_pool
-        /// 	 : DROP  EXTERNAL  RESOURCE  POOL  pool_name
+        /// 	 : DROP  EXTERNAL  RESOURCE  POOL  pool_id
         /// </summary>
         public override AstRoot VisitDrop_external_resource_pool(TSqlParser.Drop_external_resource_poolContext context)
         {
@@ -1044,7 +1224,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_external_table
-        /// 	 : DROP  EXTERNAL  TABLE  (database_name  DOT)?  (schema_name  DOT)?  tableName
+        /// 	 : DROP  EXTERNAL  TABLE  database_schema_table_ref
         /// </summary>
         public override AstRoot VisitDrop_external_table(TSqlParser.Drop_external_tableContext context)
         {
@@ -1064,7 +1244,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_event_session
-        /// 	 : DROP  EVENT  SESSION  event_session_name  ON  SERVER
+        /// 	 : DROP  EVENT  SESSION  event_session_id  ON  SERVER
         /// </summary>
         public override AstRoot VisitDrop_event_session(TSqlParser.Drop_event_sessionContext context)
         {
@@ -1084,7 +1264,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_fulltext_catalog
-        /// 	 : DROP  FULLTEXT  CATALOG  catalog_name
+        /// 	 : DROP  FULLTEXT  CATALOG  catalog_id
         /// </summary>
         public override AstRoot VisitDrop_fulltext_catalog(TSqlParser.Drop_fulltext_catalogContext context)
         {
@@ -1104,7 +1284,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_fulltext_index
-        /// 	 : DROP  FULLTEXT  INDEX  ON  (schema_name  DOT)?  tableName
+        /// 	 : DROP  FULLTEXT  INDEX  ON  database_schema_table_ref
         /// </summary>
         public override AstRoot VisitDrop_fulltext_index(TSqlParser.Drop_fulltext_indexContext context)
         {
@@ -1124,7 +1304,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_fulltext_stoplist
-        /// 	 : DROP  FULLTEXT  STOPLIST  stoplist_name
+        /// 	 : DROP  FULLTEXT  STOPLIST  stoplist_id
         /// </summary>
         public override AstRoot VisitDrop_fulltext_stoplist(TSqlParser.Drop_fulltext_stoplistContext context)
         {
@@ -1144,7 +1324,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_login
-        /// 	 : DROP  LOGIN  login_name
+        /// 	 : DROP  LOGIN  login_id
         /// </summary>
         public override AstRoot VisitDrop_login(TSqlParser.Drop_loginContext context)
         {
@@ -1164,7 +1344,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_message_type
-        /// 	 : DROP  MESSAGE  TYPE  message_type_name
+        /// 	 : DROP  MESSAGE  TYPE  message_type_id
         /// </summary>
         public override AstRoot VisitDrop_message_type(TSqlParser.Drop_message_typeContext context)
         {
@@ -1184,7 +1364,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_partition_function
-        /// 	 : DROP  PARTITION  FUNCTION  partition_function_name
+        /// 	 : DROP  PARTITION  FUNCTION  partition_function_id
         /// </summary>
         public override AstRoot VisitDrop_partition_function(TSqlParser.Drop_partition_functionContext context)
         {
@@ -1204,7 +1384,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_partition_scheme
-        /// 	 : DROP  PARTITION  SCHEME  partition_scheme_name
+        /// 	 : DROP  PARTITION  SCHEME  partition_scheme_id
         /// </summary>
         public override AstRoot VisitDrop_partition_scheme(TSqlParser.Drop_partition_schemeContext context)
         {
@@ -1224,7 +1404,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_queue
-        /// 	 : DROP  QUEUE  (database_name  DOT)?  full_queue_name
+        /// 	 : DROP  QUEUE  database_schema_queue_ref
         /// </summary>
         public override AstRoot VisitDrop_queue(TSqlParser.Drop_queueContext context)
         {
@@ -1244,7 +1424,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_remote_service_binding
-        /// 	 : DROP  REMOTE  SERVICE  BINDING  binding_name
+        /// 	 : DROP  REMOTE  SERVICE  BINDING  binding_id
         /// </summary>
         public override AstRoot VisitDrop_remote_service_binding(TSqlParser.Drop_remote_service_bindingContext context)
         {
@@ -1264,7 +1444,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_resource_pool
-        /// 	 : DROP  RESOURCE  POOL  pool_name
+        /// 	 : DROP  RESOURCE  POOL  pool_id
         /// </summary>
         public override AstRoot VisitDrop_resource_pool(TSqlParser.Drop_resource_poolContext context)
         {
@@ -1284,7 +1464,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_db_role
-        /// 	 : DROP  ROLE  (IF  EXISTS)?  role_name
+        /// 	 : DROP  ROLE  (IF  EXISTS)?  role_id
         /// </summary>
         public override AstRoot VisitDrop_db_role(TSqlParser.Drop_db_roleContext context)
         {
@@ -1304,7 +1484,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_route
-        /// 	 : DROP  ROUTE  route_name
+        /// 	 : DROP  ROUTE  route_id
         /// </summary>
         public override AstRoot VisitDrop_route(TSqlParser.Drop_routeContext context)
         {
@@ -1324,7 +1504,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_schema
-        /// 	 : DROP  SCHEMA  (IF  EXISTS)?  schema_name
+        /// 	 : DROP  SCHEMA  (IF  EXISTS)?  schema_id
         /// </summary>
         public override AstRoot VisitDrop_schema(TSqlParser.Drop_schemaContext context)
         {
@@ -1344,7 +1524,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_search_property_list
-        /// 	 : DROP  SEARCH  PROPERTY  LIST  property_list_name
+        /// 	 : DROP  SEARCH  PROPERTY  LIST  property_list_id
         /// </summary>
         public override AstRoot VisitDrop_search_property_list(TSqlParser.Drop_search_property_listContext context)
         {
@@ -1364,7 +1544,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_security_policy
-        /// 	 : DROP  SECURITY  POLICY  (IF  EXISTS)?  (schema_name  DOT)?  security_policy_name
+        /// 	 : DROP  SECURITY  POLICY  (IF  EXISTS)?  schema_security_policy_ref
         /// </summary>
         public override AstRoot VisitDrop_security_policy(TSqlParser.Drop_security_policyContext context)
         {
@@ -1384,7 +1564,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_server_audit
-        /// 	 : DROP  SERVER  AUDIT  audit_name
+        /// 	 : DROP  SERVER  AUDIT  audit_id
         /// </summary>
         public override AstRoot VisitDrop_server_audit(TSqlParser.Drop_server_auditContext context)
         {
@@ -1404,7 +1584,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_server_audit_specification
-        /// 	 : DROP  SERVER  AUDIT  SPECIFICATION  audit_name
+        /// 	 : DROP  SERVER  AUDIT  SPECIFICATION  audit_id
         /// </summary>
         public override AstRoot VisitDrop_server_audit_specification(TSqlParser.Drop_server_audit_specificationContext context)
         {
@@ -1424,7 +1604,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_server_role
-        /// 	 : DROP  SERVER  ROLE  role_name
+        /// 	 : DROP  SERVER  ROLE  role_id
         /// </summary>
         public override AstRoot VisitDrop_server_role(TSqlParser.Drop_server_roleContext context)
         {
@@ -1444,7 +1624,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_service
-        /// 	 : DROP  SERVICE  dropped_service_name
+        /// 	 : DROP  SERVICE  service_id
         /// </summary>
         public override AstRoot VisitDrop_service(TSqlParser.Drop_serviceContext context)
         {
@@ -1464,7 +1644,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_signature
-        /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  (schema_name  DOT)?  module_name  BY  (COMMA?  CERTIFICATE  certificate_name | COMMA?  ASYMMETRIC  KEY  asym_key_name)+
+        /// 	 : DROP  (COUNTER)?  SIGNATURE  FROM  schema_module_ref  BY  (COMMA?  CERTIFICATE  certificate_id | COMMA?  ASYMMETRIC  KEY  asym_key_id)+
         /// </summary>
         public override AstRoot VisitDrop_signature(TSqlParser.Drop_signatureContext context)
         {
@@ -1483,10 +1663,10 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// drop_statistics_name_azure_dw_and_pdw
-        /// 	 : DROP  STATISTICS  (schema_name  DOT)?  object_name  DOT  statistics_name
+        /// drop_statistics_id_azure_dw_and_pdw
+        /// 	 : DROP  STATISTICS  schema_object_statistics_ref
         /// </summary>
-        public override AstRoot VisitDrop_statistics_name_azure_dw_and_pdw(TSqlParser.Drop_statistics_name_azure_dw_and_pdwContext context)
+        public override AstRoot VisitDrop_statistics_id_azure_dw_and_pdw(TSqlParser.Drop_statistics_id_azure_dw_and_pdwContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -1499,12 +1679,12 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstDropStatisticsNameAzureDwAndPdw(context, list);
+            return new AstDropStatisticsIdAzureDwAndPdw(context, list);
         }
         
         /// <summary>
         /// drop_symmetric_key
-        /// 	 : DROP  SYMMETRIC  KEY  symmetric_key_name  (REMOVE  PROVIDER  KEY)?
+        /// 	 : DROP  SYMMETRIC  KEY  symmetric_key_id  (REMOVE  PROVIDER  KEY)?
         /// </summary>
         public override AstRoot VisitDrop_symmetric_key(TSqlParser.Drop_symmetric_keyContext context)
         {
@@ -1524,7 +1704,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_synonym
-        /// 	 : DROP  SYNONYM  (IF  EXISTS)?  (schema_name  DOT)?  synonym_name
+        /// 	 : DROP  SYNONYM  (IF  EXISTS)?  schema_synonym_ref
         /// </summary>
         public override AstRoot VisitDrop_synonym(TSqlParser.Drop_synonymContext context)
         {
@@ -1544,7 +1724,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_user
-        /// 	 : DROP  USER  (IF  EXISTS)?  user_name
+        /// 	 : DROP  USER  (IF  EXISTS)?  user_id
         /// </summary>
         public override AstRoot VisitDrop_user(TSqlParser.Drop_userContext context)
         {
@@ -1564,7 +1744,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_workload_group
-        /// 	 : DROP  WORKLOAD  GROUP  group_name
+        /// 	 : DROP  WORKLOAD  GROUP  group_id
         /// </summary>
         public override AstRoot VisitDrop_workload_group(TSqlParser.Drop_workload_groupContext context)
         {
@@ -1584,7 +1764,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_xml_schema_collection
-        /// 	 : DROP  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier
+        /// 	 : DROP  XML  SCHEMA  COLLECTION  schema_sql_identifier_id
         /// </summary>
         public override AstRoot VisitDrop_xml_schema_collection(TSqlParser.Drop_xml_schema_collectionContext context)
         {
@@ -1604,7 +1784,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// lock_table
-        /// 	 : LOCK  TABLE  full_table_name  IN  (SHARE | EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL | NOWAIT)?  SEMI?
+        /// 	 : LOCK  TABLE  full_table_ref  IN  (SHARE | EXCLUSIVE)  MODE  (WAIT  seconds = DECIMAL | NOWAIT)?  SEMI?
         /// </summary>
         public override AstRoot VisitLock_table(TSqlParser.Lock_tableContext context)
         {
@@ -1624,7 +1804,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// truncate_table
-        /// 	 : TRUNCATE  TABLE  full_table_name  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET  RR_BRACKET)?
+        /// 	 : TRUNCATE  TABLE  full_table_ref  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  decimal_range  RR_BRACKET  (COMMA  DECIMAL)*)?
         /// </summary>
         public override AstRoot VisitTruncate_table(TSqlParser.Truncate_tableContext context)
         {
@@ -1644,7 +1824,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_credential
-        /// 	 : ALTER  CREDENTIAL  credential_name  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?
+        /// 	 : ALTER  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?
         /// </summary>
         public override AstRoot VisitAlter_credential(TSqlParser.Alter_credentialContext context)
         {
@@ -1664,7 +1844,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_credential
-        /// 	 : CREATE  CREDENTIAL  credential_name  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?  (FOR  CRYPTOGRAPHIC  PROVIDER  cryptographic_provider_name)?
+        /// 	 : CREATE  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?  (FOR  CRYPTOGRAPHIC  PROVIDER  cryptographic_provider_id)?
         /// </summary>
         public override AstRoot VisitCreate_credential(TSqlParser.Create_credentialContext context)
         {
@@ -1684,7 +1864,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_cryptographic_provider
-        /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_name  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  (ENABLE | DISABLE)?
+        /// 	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_id  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  enable_disable?
         /// </summary>
         public override AstRoot VisitAlter_cryptographic_provider(TSqlParser.Alter_cryptographic_providerContext context)
         {
@@ -1704,7 +1884,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_cryptographic_provider
-        /// 	 : CREATE  CRYPTOGRAPHIC  PROVIDER  provider_name  FROM  FILE  EQUAL  path_of_DLL = STRING
+        /// 	 : CREATE  CRYPTOGRAPHIC  PROVIDER  provider_id  FROM  FILE  EQUAL  path_of_DLL = STRING
         /// </summary>
         public override AstRoot VisitCreate_cryptographic_provider(TSqlParser.Create_cryptographic_providerContext context)
         {
@@ -1724,7 +1904,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_event_notification
-        /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_name  ON  (SERVER | DATABASE | QUEUE  queue_name)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
+        /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  (SERVER | DATABASE | QUEUE  queue_id)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
         /// </summary>
         public override AstRoot VisitCreate_event_notification(TSqlParser.Create_event_notificationContext context)
         {
@@ -1744,7 +1924,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_or_alter_event_session
-        /// 	 : (CREATE | ALTER)  EVENT  SESSION  event_session_name  ON  SERVER  create_or_alter_event_session_add_event*  create_or_alter_event_session_del_event*  create_or_alter_event_session_add_target*  create_or_alter_event_session_del_target*  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
+        /// 	 : (CREATE | ALTER)  EVENT  SESSION  event_session_id  ON  SERVER  create_or_alter_event_session_add_event*  create_or_alter_event_session_del_event*  create_or_alter_event_session_add_target*  create_or_alter_event_session_del_target*  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
         /// </summary>
         public override AstRoot VisitCreate_or_alter_event_session(TSqlParser.Create_or_alter_event_sessionContext context)
         {
@@ -1763,8 +1943,88 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// session_arg_track_causality
+        /// 	 : TRACK_CAUSALITY  EQUAL  on_off
+        /// </summary>
+        public override AstRoot VisitSession_arg_track_causality(TSqlParser.Session_arg_track_causalityContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSessionArgTrackCausality(context, list);
+        }
+        
+        /// <summary>
+        /// session_arg_startup_state
+        /// 	 : STARTUP_STATE  EQUAL  on_off
+        /// </summary>
+        public override AstRoot VisitSession_arg_startup_state(TSqlParser.Session_arg_startup_stateContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSessionArgStartupState(context, list);
+        }
+        
+        /// <summary>
+        /// create_or_alter_event_session_add_event
+        /// 	 : COMMA?  ADD  EVENT  module_package_event_ref  (LR_BRACKET  (SET  (COMMA?  event_customizable_attribute_id  EQUAL  decimal_string)*)?  (ACTION  LR_BRACKET  (COMMA?  event_module_package_action_ref)+  RR_BRACKET)+  (WHERE  event_session_predicate_expression)?  RR_BRACKET)
+        /// </summary>
+        public override AstRoot VisitCreate_or_alter_event_session_add_event(TSqlParser.Create_or_alter_event_session_add_eventContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateOrAlterEventSessionAddEvent(context, list);
+        }
+        
+        /// <summary>
+        /// create_or_alter_event_session_del_event
+        /// 	 : COMMA?  DROP  EVENT  module_package_event_ref
+        /// </summary>
+        public override AstRoot VisitCreate_or_alter_event_session_del_event(TSqlParser.Create_or_alter_event_session_del_eventContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateOrAlterEventSessionDelEvent(context, list);
+        }
+        
+        /// <summary>
         /// alter_external_library
-        /// 	 : ALTER  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  set_add  file_spec2  WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET
+        /// 	 : ALTER  EXTERNAL  LIBRARY  library_id  (AUTHORIZATION  owner_id)?  set_add  file_spec2  WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_id)+  RR_BRACKET
         /// </summary>
         public override AstRoot VisitAlter_external_library(TSqlParser.Alter_external_libraryContext context)
         {
@@ -1784,7 +2044,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_external_library
-        /// 	 : CREATE  EXTERNAL  LIBRARY  library_name  (AUTHORIZATION  owner_name)?  FROM  file_spec2  (WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_name)+  RR_BRACKET)?
+        /// 	 : CREATE  EXTERNAL  LIBRARY  library_id  (AUTHORIZATION  owner_id)?  FROM  file_spec2  (WITH  LR_BRACKET  (COMMA?  LANGUAGE  EQUAL  code_language | DATA_SOURCE  EQUAL  external_data_source_id)+  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitCreate_external_library(TSqlParser.Create_external_libraryContext context)
         {
@@ -1803,8 +2063,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// file_spec2
+        /// 	 : LR_BRACKET  CONTENT  EQUAL  code_content  (COMMA  PLATFORM  EQUAL  platform)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitFile_spec2(TSqlParser.File_spec2Context context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstFileSpec2(context, list);
+        }
+        
+        /// <summary>
         /// alter_external_resource_pool
-        /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_name | DEFAULT_DOUBLE_QUOTE)  WITH  external_resource_with
+        /// 	 : ALTER  EXTERNAL  RESOURCE  POOL  (pool_id | DEFAULT_DOUBLE_QUOTE)  WITH  external_resource_with
         /// </summary>
         public override AstRoot VisitAlter_external_resource_pool(TSqlParser.Alter_external_resource_poolContext context)
         {
@@ -1824,7 +2104,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_external_resource_pool
-        /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_name  WITH  external_resource_with
+        /// 	 : CREATE  EXTERNAL  RESOURCE  POOL  pool_id  WITH  external_resource_with
         /// </summary>
         public override AstRoot VisitCreate_external_resource_pool(TSqlParser.Create_external_resource_poolContext context)
         {
@@ -1843,8 +2123,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// external_resource_with
+        /// 	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | (COMMA?  DECIMAL  TO  DECIMAL | COMMA  DECIMAL)+) | NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL | COMMA?  DECIMAL)+)  (COMMA?  max_memory)?  (COMMA?  maw_process)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitExternal_resource_with(TSqlParser.External_resource_withContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstExternalResourceWith(context, list);
+        }
+        
+        /// <summary>
         /// alter_fulltext_catalog
-        /// 	 : ALTER  FULLTEXT  CATALOG  catalog_name  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? | REORGANIZE | AS  DEFAULT)
+        /// 	 : ALTER  FULLTEXT  CATALOG  catalog_id  (REBUILD  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)? | REORGANIZE | AS  DEFAULT)
         /// </summary>
         public override AstRoot VisitAlter_fulltext_catalog(TSqlParser.Alter_fulltext_catalogContext context)
         {
@@ -1864,7 +2164,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_fulltext_catalog
-        /// 	 : CREATE  FULLTEXT  CATALOG  catalog_name  (ON  FILEGROUP  file_group_name)?  (IN  PATH  rootpath = STRING)?  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)?  (AS  DEFAULT)?  (AUTHORIZATION  owner_name)?
+        /// 	 : CREATE  FULLTEXT  CATALOG  catalog_id  (ON  FILEGROUP  file_group_id)?  (IN  PATH  rootpath = STRING)?  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)?  (AS  DEFAULT)?  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitCreate_fulltext_catalog(TSqlParser.Create_fulltext_catalogContext context)
         {
@@ -1884,7 +2184,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_fulltext_stoplist
-        /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_name  (ADD  stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
+        /// 	 : ALTER  FULLTEXT  STOPLIST  stoplist_id  (ADD  stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
         /// </summary>
         public override AstRoot VisitAlter_fulltext_stoplist(TSqlParser.Alter_fulltext_stoplistContext context)
         {
@@ -1904,7 +2204,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_fulltext_stoplist
-        /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_name  (FROM  ((database_name  DOT)?  stoplist_name | SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_name)?
+        /// 	 : CREATE  FULLTEXT  STOPLIST  stoplist_id  (FROM  (database_stoplist_ref | SYSTEM  STOPLIST))?  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitCreate_fulltext_stoplist(TSqlParser.Create_fulltext_stoplistContext context)
         {
@@ -1924,7 +2224,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_login_sql_server
-        /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  alter_login_sql_server_settings | add_drop  CREDENTIAL  credential_name)
+        /// 	 : ALTER  LOGIN  login_id  alter_login_sql_server_infos
         /// </summary>
         public override AstRoot VisitAlter_login_sql_server(TSqlParser.Alter_login_sql_serverContext context)
         {
@@ -1944,7 +2244,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_login_sql_server
-        /// 	 : CREATE  LOGIN  login_name  (WITH  create_login_sql_server_settings | FROM  create_login_sql_server_from)
+        /// 	 : CREATE  LOGIN  login_id  (WITH  create_login_sql_server_settings | FROM  create_login_sql_server_from)
         /// </summary>
         public override AstRoot VisitCreate_login_sql_server(TSqlParser.Create_login_sql_serverContext context)
         {
@@ -1964,7 +2264,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_login_azure_sql
-        /// 	 : ALTER  LOGIN  login_name  ((ENABLE | DISABLE)? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)? | NAME  EQUAL  login_name))
+        /// 	 : ALTER  LOGIN  login_id  alter_login_azure_sql_infos
         /// </summary>
         public override AstRoot VisitAlter_login_azure_sql(TSqlParser.Alter_login_azure_sqlContext context)
         {
@@ -1984,7 +2284,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_login_azure_sql
-        /// 	 : CREATE  LOGIN  login_name  WITH  PASSWORD  EQUAL  STRING  (SID  EQUAL  sid = BINARY)?
+        /// 	 : CREATE  LOGIN  login_id  WITH  PASSWORD  EQUAL  STRING  (SID  EQUAL  sid = BINARY)?
         /// </summary>
         public override AstRoot VisitCreate_login_azure_sql(TSqlParser.Create_login_azure_sqlContext context)
         {
@@ -2004,7 +2304,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_login_azure_sql_dw_and_pdw
-        /// 	 : ALTER  LOGIN  login_name  (enable_disable? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)? | NAME  EQUAL  login_name))
+        /// 	 : ALTER  LOGIN  login_id  (enable_disable? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)? | NAME  EQUAL  new_name = login_id))
         /// </summary>
         public override AstRoot VisitAlter_login_azure_sql_dw_and_pdw(TSqlParser.Alter_login_azure_sql_dw_and_pdwContext context)
         {
@@ -2024,7 +2324,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_login_pdw
-        /// 	 : CREATE  LOGIN  login_name  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
+        /// 	 : CREATE  LOGIN  login_id  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
         /// </summary>
         public override AstRoot VisitCreate_login_pdw(TSqlParser.Create_login_pdwContext context)
         {
@@ -2044,7 +2344,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_message_type
-        /// 	 : ALTER  MESSAGE  TYPE  message_type_name  VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name)
+        /// 	 : ALTER  MESSAGE  TYPE  message_type_id  VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_id)
         /// </summary>
         public override AstRoot VisitAlter_message_type(TSqlParser.Alter_message_typeContext context)
         {
@@ -2064,7 +2364,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_partition_function
-        /// 	 : ALTER  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  RR_BRACKET  split_or_merge  RANGE  LR_BRACKET  DECIMAL  RR_BRACKET
+        /// 	 : ALTER  PARTITION  FUNCTION  partition_function_id  LR_BRACKET  RR_BRACKET  split_or_merge  RANGE  LR_BRACKET  DECIMAL  RR_BRACKET
         /// </summary>
         public override AstRoot VisitAlter_partition_function(TSqlParser.Alter_partition_functionContext context)
         {
@@ -2084,7 +2384,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_partition_scheme
-        /// 	 : ALTER  PARTITION  SCHEME  partition_scheme_name  NEXT  USED  (file_group_name)?
+        /// 	 : ALTER  PARTITION  SCHEME  partition_scheme_id  NEXT  USED  (file_group_id)?
         /// </summary>
         public override AstRoot VisitAlter_partition_scheme(TSqlParser.Alter_partition_schemeContext context)
         {
@@ -2104,7 +2404,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_remote_service_binding
-        /// 	 : ALTER  REMOTE  SERVICE  BINDING  binding_name  WITH  (USER  EQUAL  user_name)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
+        /// 	 : ALTER  REMOTE  SERVICE  BINDING  binding_id  WITH  (USER  EQUAL  user_id)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
         /// </summary>
         public override AstRoot VisitAlter_remote_service_binding(TSqlParser.Alter_remote_service_bindingContext context)
         {
@@ -2124,7 +2424,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_remote_service_binding
-        /// 	 : CREATE  REMOTE  SERVICE  BINDING  binding_name  (AUTHORIZATION  owner_name)?  TO  SERVICE  remote_service_name = STRING  WITH  (USER  EQUAL  user_name)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
+        /// 	 : CREATE  REMOTE  SERVICE  BINDING  binding_id  (AUTHORIZATION  owner_id)?  TO  SERVICE  remote_service_name = STRING  WITH  (USER  EQUAL  user_id)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
         /// </summary>
         public override AstRoot VisitCreate_remote_service_binding(TSqlParser.Create_remote_service_bindingContext context)
         {
@@ -2144,7 +2444,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_resource_pool
-        /// 	 : CREATE  RESOURCE  POOL  pool_name  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO | LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET | NUMANODE  EQUAL  LR_BRACKET  (COMMA?  (DECIMAL | DECIMAL  TO  DECIMAL))+  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  DECIMAL)?  RR_BRACKET)?
+        /// 	 : CREATE  RESOURCE  POOL  pool_id  (WITH  LR_BRACKET  (COMMA?  MIN_CPU_PERCENT  EQUAL  min_cpu_percent = DECIMAL)?  (COMMA?  MAX_CPU_PERCENT  EQUAL  max_cpu_percent = DECIMAL)?  (COMMA?  CAP_CPU_PERCENT  EQUAL  cap_cpu_percent = DECIMAL)?  (COMMA?  AFFINITY  SCHEDULER  EQUAL  (AUTO | LR_BRACKET  decimal_ranges  RR_BRACKET | NUMANODE  EQUAL  LR_BRACKET  decimal_ranges  RR_BRACKET))?  (COMMA?  MIN_MEMORY_PERCENT  EQUAL  min_memory_percent = DECIMAL)?  (COMMA?  MAX_MEMORY_PERCENT  EQUAL  max_memory_percent = DECIMAL)?  (COMMA?  MIN_IOPS_PER_VOLUME  EQUAL  min_tops_percent = DECIMAL)?  (COMMA?  MAX_IOPS_PER_VOLUME  EQUAL  max_tops_percent = DECIMAL)?  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitCreate_resource_pool(TSqlParser.Create_resource_poolContext context)
         {
@@ -2163,10 +2463,11 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// alter_db_role
-        /// 	 : ALTER  ROLE  role_name  (add_drop  MEMBER  database_name | WITH  NAME  EQUAL  role_name)
+        /// decimal_range
+        /// 	 : dec_start = DECIMAL
+        /// 	 | dec_start = DECIMAL  TO  dec_end = DECIMAL
         /// </summary>
-        public override AstRoot VisitAlter_db_role(TSqlParser.Alter_db_roleContext context)
+        public override AstRoot VisitDecimal_range(TSqlParser.Decimal_rangeContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -2179,12 +2480,12 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstAlterDbRole(context, list);
+            return new AstDecimalRange(context, list);
         }
         
         /// <summary>
         /// create_db_role
-        /// 	 : CREATE  ROLE  role_name  (AUTHORIZATION  owner_name)?
+        /// 	 : CREATE  ROLE  role_id  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitCreate_db_role(TSqlParser.Create_db_roleContext context)
         {
@@ -2204,7 +2505,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_route
-        /// 	 : CREATE  ROUTE  route_name  (AUTHORIZATION  owner_name)?  WITH  (COMMA?  SERVICE_NAME  EQUAL  route_service_name = STRING)?  (COMMA?  BROKER_INSTANCE  EQUAL  broker_instance_identifier = STRING)?  (COMMA?  LIFETIME  EQUAL  DECIMAL)?  COMMA?  ADDRESS  EQUAL  STRING  (COMMA  MIRROR_ADDRESS  EQUAL  STRING)?
+        /// 	 : CREATE  ROUTE  route_id  (AUTHORIZATION  owner_id)?  WITH  (COMMA?  SERVICE_NAME  EQUAL  route_service_name = STRING)?  (COMMA?  BROKER_INSTANCE  EQUAL  broker_instance_identifier = STRING)?  (COMMA?  LIFETIME  EQUAL  lifetime = DECIMAL)?  COMMA?  ADDRESS  EQUAL  address = STRING  (COMMA  MIRROR_ADDRESS  EQUAL  mirror_address = STRING)?
         /// </summary>
         public override AstRoot VisitCreate_route(TSqlParser.Create_routeContext context)
         {
@@ -2224,7 +2525,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_rule
-        /// 	 : CREATE  RULE  (schema_name  DOT)?  rule_name  AS  search_condition
+        /// 	 : CREATE  RULE  schema_rule_ref  AS  search_condition
         /// </summary>
         public override AstRoot VisitCreate_rule(TSqlParser.Create_ruleContext context)
         {
@@ -2244,7 +2545,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_schema_sql
-        /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  ((OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_  (DOT  id_)?
+        /// 	 : ALTER  SCHEMA  schema_id  TRANSFER  ((OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_dot_id
         /// </summary>
         public override AstRoot VisitAlter_schema_sql(TSqlParser.Alter_schema_sqlContext context)
         {
@@ -2263,8 +2564,48 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// create_schema
+        /// 	 : CREATE  SCHEMA  create_schema_name  create_schema_target*
+        /// </summary>
+        public override AstRoot VisitCreate_schema(TSqlParser.Create_schemaContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateSchema(context, list);
+        }
+        
+        /// <summary>
+        /// schema_authorization
+        /// 	 : AUTHORIZATION  owner_id
+        /// </summary>
+        public override AstRoot VisitSchema_authorization(TSqlParser.Schema_authorizationContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaAuthorization(context, list);
+        }
+        
+        /// <summary>
         /// create_schema_azure_sql_dw_and_pdw
-        /// 	 : CREATE  SCHEMA  schema_name  (AUTHORIZATION  owner_name)?
+        /// 	 : CREATE  SCHEMA  schema_id  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitCreate_schema_azure_sql_dw_and_pdw(TSqlParser.Create_schema_azure_sql_dw_and_pdwContext context)
         {
@@ -2284,7 +2625,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_schema_azure_sql_dw_and_pdw
-        /// 	 : ALTER  SCHEMA  schema_name  TRANSFER  (OBJECT  DOUBLE_COLON)?  id_  (DOT  ID)?
+        /// 	 : ALTER  SCHEMA  schema_id  TRANSFER  (OBJECT  DOUBLE_COLON)?  id_  (DOT  ID)?
         /// </summary>
         public override AstRoot VisitAlter_schema_azure_sql_dw_and_pdw(TSqlParser.Alter_schema_azure_sql_dw_and_pdwContext context)
         {
@@ -2304,7 +2645,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_search_property_list
-        /// 	 : CREATE  SEARCH  PROPERTY  LIST  source_list_name  (FROM  (database_name  DOT)?  source_list_name)?  (AUTHORIZATION  owner_name)?
+        /// 	 : CREATE  SEARCH  PROPERTY  LIST  source_list_id  (FROM  database_source_list_ref)?  (AUTHORIZATION  owner_id)?
         /// </summary>
         public override AstRoot VisitCreate_search_property_list(TSqlParser.Create_search_property_listContext context)
         {
@@ -2324,7 +2665,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_security_policy
-        /// 	 : CREATE  SECURITY  POLICY  (schema_name  DOT)?  security_policy_name  (COMMA?  ADD  (FILTER | BLOCK)?  PREDICATE  tvf_schema_name  DOT  security_predicate_function_name  LR_BRACKET  (COMMA?  column_name_or_arguments)+  RR_BRACKET  ON  schema_name  DOT  tableName  (COMMA?  AFTER  (INSERT | UPDATE) | COMMA?  BEFORE  (UPDATE | DELETE))*)+  (WITH  LR_BRACKET  STATE  EQUAL  on_off  (SCHEMABINDING  on_off)?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
+        /// 	 : CREATE  SECURITY  POLICY  schema_security_policy_ref  create_security_policy_adds  (WITH  LR_BRACKET  STATE  EQUAL  on_off  schema_binding?  RR_BRACKET)?  (NOT  FOR  REPLICATION)?
         /// </summary>
         public override AstRoot VisitCreate_security_policy(TSqlParser.Create_security_policyContext context)
         {
@@ -2343,8 +2684,48 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// schema_binding
+        /// 	 : SCHEMABINDING  on_off
+        /// </summary>
+        public override AstRoot VisitSchema_binding(TSqlParser.Schema_bindingContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaBinding(context, list);
+        }
+        
+        /// <summary>
+        /// create_security_policy_add
+        /// 	 : ADD  filter_block?  PREDICATE  schema_security_predicate_function_id  LR_BRACKET  column_or_argument_ids  RR_BRACKET  ON  database_schema_table_ref  schema_table_ref_impacts*
+        /// </summary>
+        public override AstRoot VisitCreate_security_policy_add(TSqlParser.Create_security_policy_addContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateSecurityPolicyAdd(context, list);
+        }
+        
+        /// <summary>
         /// alter_sequence
-        /// 	 : ALTER  SEQUENCE  full_sequence_name  (RESTART  (WITH  DECIMAL)?)?  (INCREMENT  BY  sequnce_increment = DECIMAL)?  (MINVALUE  DECIMAL | NO  MINVALUE)?  (MAXVALUE  DECIMAL | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL | NO  CACHE)?
+        /// 	 : ALTER  SEQUENCE  schema_sequence_ref  alter_sequence_restart?  alter_sequence_increment?  alter_sequence_min_value?  alter_sequence_max_value  cycle?  sequence_cache?
         /// </summary>
         public override AstRoot VisitAlter_sequence(TSqlParser.Alter_sequenceContext context)
         {
@@ -2364,7 +2745,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_sequence
-        /// 	 : CREATE  SEQUENCE  full_sequence_name  (AS  data_type)?  create_sequence_start?  (INCREMENT  BY  real)?  (MINVALUE  real? | NO  MINVALUE)?  (MAXVALUE  real? | NO  MAXVALUE)?  cycle?  (CACHE  DECIMAL? | NO  CACHE)?
+        /// 	 : CREATE  SEQUENCE  schema_sequence_ref  (AS  data_type)?  create_sequence_start?  create_sequence_increment?  create_sequence_min_value?  create_sequence_max_value?  cycle?  sequence_cache?
         /// </summary>
         public override AstRoot VisitCreate_sequence(TSqlParser.Create_sequenceContext context)
         {
@@ -2383,8 +2764,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// create_sequence_increment
+        /// 	 : INCREMENT  BY  real
+        /// </summary>
+        public override AstRoot VisitCreate_sequence_increment(TSqlParser.Create_sequence_incrementContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateSequenceIncrement(context, list);
+        }
+        
+        /// <summary>
         /// alter_server_audit
-        /// 	 : ALTER  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
+        /// 	 : ALTER  SERVER  AUDIT  audit_id  alter_server_audit_infos
         /// </summary>
         public override AstRoot VisitAlter_server_audit(TSqlParser.Alter_server_auditContext context)
         {
@@ -2404,7 +2805,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_server_audit
-        /// 	 : CREATE  SERVER  AUDIT  audit_name  ((TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off | COMMA?  AUDIT_GUID  EQUAL  audit_guid)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)? | REMOVE  WHERE | MODIFY  NAME  EQUAL  audit_name)
+        /// 	 : CREATE  SERVER  AUDIT  audit_id  create_server_audit_to_infos
         /// </summary>
         public override AstRoot VisitCreate_server_audit(TSqlParser.Create_server_auditContext context)
         {
@@ -2424,7 +2825,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_server_audit_specification
-        /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (add_drop  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+        /// 	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  (add_drop  LR_BRACKET  audit_action_group_id  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitAlter_server_audit_specification(TSqlParser.Alter_server_audit_specificationContext context)
         {
@@ -2443,8 +2844,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// alter_server_audit_specification_server
+        /// 	 : FOR  SERVER  AUDIT  audit_id
+        /// </summary>
+        public override AstRoot VisitAlter_server_audit_specification_server(TSqlParser.Alter_server_audit_specification_serverContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterServerAuditSpecificationServer(context, list);
+        }
+        
+        /// <summary>
         /// create_server_audit_specification
-        /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_name  (FOR  SERVER  AUDIT  audit_name)?  (ADD  LR_BRACKET  audit_action_group_name  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+        /// 	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  (ADD  LR_BRACKET  audit_action_group_id  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitCreate_server_audit_specification(TSqlParser.Create_server_audit_specificationContext context)
         {
@@ -2464,7 +2885,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_server_role
-        /// 	 : ALTER  SERVER  ROLE  server_role_name  (add_drop  MEMBER  server_name | WITH  NAME  EQUAL  server_role_name)
+        /// 	 : ALTER  SERVER  ROLE  server_role_id  (add_drop  MEMBER  server_id | alter_server_role_new_name)
         /// </summary>
         public override AstRoot VisitAlter_server_role(TSqlParser.Alter_server_roleContext context)
         {
@@ -2483,8 +2904,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// alter_server_role_new_name
+        /// 	 : WITH  NAME  EQUAL  server_role_id
+        /// </summary>
+        public override AstRoot VisitAlter_server_role_new_name(TSqlParser.Alter_server_role_new_nameContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterServerRoleNewName(context, list);
+        }
+        
+        /// <summary>
         /// create_server_role
-        /// 	 : CREATE  SERVER  ROLE  server_role_name  (AUTHORIZATION  server_name)?
+        /// 	 : CREATE  SERVER  ROLE  server_role_id  (AUTHORIZATION  server_id)?
         /// </summary>
         public override AstRoot VisitCreate_server_role(TSqlParser.Create_server_roleContext context)
         {
@@ -2504,7 +2945,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_server_role_pdw
-        /// 	 : ALTER  SERVER  ROLE  server_role_name  add_drop  MEMBER  login_name
+        /// 	 : ALTER  SERVER  ROLE  server_role_id  add_drop  MEMBER  login_id
         /// </summary>
         public override AstRoot VisitAlter_server_role_pdw(TSqlParser.Alter_server_role_pdwContext context)
         {
@@ -2524,7 +2965,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_service
-        /// 	 : ALTER  SERVICE  modified_service_name  (ON  QUEUE  full_queue_name)?  (COMMA?  add_drop  modified_contract_name)*
+        /// 	 : ALTER  SERVICE  service_id  (ON  QUEUE  schema_queue_ref)?  alter_service_contracts?
         /// </summary>
         public override AstRoot VisitAlter_service(TSqlParser.Alter_serviceContext context)
         {
@@ -2543,8 +2984,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// alter_service_contract
+        /// 	 : add_drop  modified_contract_id
+        /// </summary>
+        public override AstRoot VisitAlter_service_contract(TSqlParser.Alter_service_contractContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterServiceContract(context, list);
+        }
+        
+        /// <summary>
         /// create_service
-        /// 	 : CREATE  SERVICE  create_service_name  (AUTHORIZATION  owner_name)?  ON  QUEUE  full_queue_name  (LR_BRACKET  (COMMA?  (id_ | DEFAULT))+  RR_BRACKET)?
+        /// 	 : CREATE  SERVICE  service_id  (AUTHORIZATION  owner_id)?  ON  QUEUE  schema_queue_ref  (LR_BRACKET  contracts  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitCreate_service(TSqlParser.Create_serviceContext context)
         {
@@ -2564,7 +3025,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_symmetric_key
-        /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_name  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_name | PASSWORD  EQUAL  password = STRING | SYMMETRIC  KEY  symmetric_key_name | ASYMMETRIC  KEY  asym_key_name))
+        /// 	 : ALTER  SYMMETRIC  KEY  symmetric_key_id  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_id | PASSWORD  EQUAL  password = STRING | SYMMETRIC  KEY  newkey = symmetric_key_id | ASYMMETRIC  KEY  asym_key_id))
         /// </summary>
         public override AstRoot VisitAlter_symmetric_key(TSqlParser.Alter_symmetric_keyContext context)
         {
@@ -2584,7 +3045,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_synonym
-        /// 	 : CREATE  SYNONYM  (schema_name  DOT)?  synonym_name  FOR  ((server_name  DOT)?  (database_name  DOT)?  (schema_name  DOT)?  object_name | (database_name  DOT)?  (schema_id_2_or_object_name = id_  DOT)?)
+        /// 	 : CREATE  SYNONYM  schema_synonym_ref  FOR  server_database_schema_object_ref
         /// </summary>
         public override AstRoot VisitCreate_synonym(TSqlParser.Create_synonymContext context)
         {
@@ -2604,7 +3065,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_user
-        /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  (schema_name | NULL_) | COMMA?  LOGIN  EQUAL  login_name | COMMA?  PASSWORD  EQUAL  STRING  (OLD_PASSWORD  EQUAL  STRING)+ | COMMA?  DEFAULT_LANGUAGE  EQUAL  (NONE | lcid = DECIMAL | language) | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+        /// 	 : ALTER  USER  user_id  WITH  alter_user_item+
         /// </summary>
         public override AstRoot VisitAlter_user(TSqlParser.Alter_userContext context)
         {
@@ -2624,7 +3085,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_user_azure_sql
-        /// 	 : ALTER  USER  user_name  WITH  (COMMA?  NAME  EQUAL  user_name | COMMA?  DEFAULT_SCHEMA  EQUAL  schema_name | COMMA?  LOGIN  EQUAL  login_name | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off)+
+        /// 	 : ALTER  USER  user_id  WITH  alter_user_azure_sql_infos
         /// </summary>
         public override AstRoot VisitAlter_user_azure_sql(TSqlParser.Alter_user_azure_sqlContext context)
         {
@@ -2644,7 +3105,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_workload_group
-        /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_name  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_name | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_name | DEFAULT_DOUBLE_QUOTE)?)?
+        /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_id  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_id | DEFAULT_DOUBLE_QUOTE)?)?
         /// </summary>
         public override AstRoot VisitCreate_workload_group(TSqlParser.Create_workload_groupContext context)
         {
@@ -2664,7 +3125,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_xml_schema_collection
-        /// 	 : CREATE  XML  SCHEMA  COLLECTION  (relational_schema  DOT)?  sql_identifier  AS  string_id2
+        /// 	 : CREATE  XML  SCHEMA  COLLECTION  schema_sql_identifier_id  AS  string_id2
         /// </summary>
         public override AstRoot VisitCreate_xml_schema_collection(TSqlParser.Create_xml_schema_collectionContext context)
         {
@@ -2684,7 +3145,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_partition_function
-        /// 	 : CREATE  PARTITION  FUNCTION  partition_function_name  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT | RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
+        /// 	 : CREATE  PARTITION  FUNCTION  partition_function_id  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT | RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
         /// </summary>
         public override AstRoot VisitCreate_partition_function(TSqlParser.Create_partition_functionContext context)
         {
@@ -2704,7 +3165,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_partition_scheme
-        /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_name  AS  PARTITION  partition_function_name  ALL?  TO  LR_BRACKET  file_group_names += id_  (COMMA  file_group_names += id_)*  RR_BRACKET
+        /// 	 : CREATE  PARTITION  SCHEME  partition_scheme_id  AS  PARTITION  partition_function_id  ALL?  TO  LR_BRACKET  file_group_ids  RR_BRACKET
         /// </summary>
         public override AstRoot VisitCreate_partition_scheme(TSqlParser.Create_partition_schemeContext context)
         {
@@ -2724,7 +3185,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_queue
-        /// 	 : CREATE  QUEUE  (complete_table_name | queue_name)  queue_settings?  (ON  file_group_name | DEFAULT)?
+        /// 	 : CREATE  QUEUE  (complete_table_ref | queue_id)  queue_settings?  (ON  file_group_id | DEFAULT)?
         /// </summary>
         public override AstRoot VisitCreate_queue(TSqlParser.Create_queueContext context)
         {
@@ -2744,7 +3205,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_contract
-        /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_name)?  LR_BRACKET  ((message_type_name | DEFAULT)  SENT  BY  (INITIATOR | TARGET | ANY)  COMMA?)+  RR_BRACKET
+        /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_id)?  LR_BRACKET  ((message_type_id | DEFAULT)  SENT  BY  (INITIATOR | TARGET | ANY)  COMMA?)+  RR_BRACKET
         /// </summary>
         public override AstRoot VisitCreate_contract(TSqlParser.Create_contractContext context)
         {
@@ -2764,7 +3225,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// message_statement
-        /// 	 : CREATE  MESSAGE  TYPE  message_type_name  (AUTHORIZATION  owner_name)?  (VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_name))
+        /// 	 : CREATE  MESSAGE  TYPE  message_type_id  (AUTHORIZATION  owner_id)?  (VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_id))
         /// </summary>
         public override AstRoot VisitMessage_statement(TSqlParser.Message_statementContext context)
         {
@@ -2800,26 +3261,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstMergeStatement(context, list);
-        }
-        
-        /// <summary>
-        /// update_elem_merges
-        /// 	 : update_elem_merge  (COMMA  update_elem_merge)*
-        /// </summary>
-        public override AstRoot VisitUpdate_elem_merges(TSqlParser.Update_elem_mergesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstUpdateElemMerges(context, list);
         }
         
         /// <summary>
@@ -2864,7 +3305,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// receive_statement
-        /// 	 : LR_BRACKET?  RECEIVE  (ALL | DISTINCT | top_clause | STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*  FROM  complete_table_name  (INTO  table_variable  (WHERE  where = search_condition))?  RR_BRACKET?
+        /// 	 : LR_BRACKET?  RECEIVE  (ALL | DISTINCT | top_clause | STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*  FROM  complete_table_ref  (INTO  table_id  (WHERE  where = search_condition))?  RR_BRACKET?
         /// </summary>
         public override AstRoot VisitReceive_statement(TSqlParser.Receive_statementContext context)
         {
@@ -2943,28 +3384,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// update_elems
-        /// 	 : update_elem  (COMMA  update_elem)*
-        /// </summary>
-        public override AstRoot VisitUpdate_elems(TSqlParser.Update_elemsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstUpdateElems(context, list);
-        }
-        
-        /// <summary>
         /// output_clause
-        /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID | full_table_name)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
+        /// 	 : OUTPUT  output_dml_list_elems  (INTO  (LOCAL_ID | full_table_ref)  (LR_BRACKET  column_name_list  RR_BRACKET)?)?
         /// </summary>
         public override AstRoot VisitOutput_clause(TSqlParser.Output_clauseContext context)
         {
@@ -2983,48 +3404,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// output_dml_list_elems
-        /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*
-        /// </summary>
-        public override AstRoot VisitOutput_dml_list_elems(TSqlParser.Output_dml_list_elemsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOutputDmlListElems(context, list);
-        }
-        
-        /// <summary>
-        /// output_dml_list_elem
-        /// 	 : (expression | asterisk)  as_column_alias?
-        /// </summary>
-        public override AstRoot VisitOutput_dml_list_elem(TSqlParser.Output_dml_list_elemContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOutputDmlListElem(context, list);
-        }
-        
-        /// <summary>
         /// create_database
-        /// 	 : CREATE  DATABASE  database_name  database_containment?  database_on_primary?  database_on_log?  database_collate?  database_create_with?
+        /// 	 : CREATE  DATABASE  database_id  database_containment?  database_on_primary?  database_on_log?  database_collate?  database_create_with?
         /// </summary>
         public override AstRoot VisitCreate_database(TSqlParser.Create_databaseContext context)
         {
@@ -3043,8 +3424,108 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// database_containment
+        /// 	 : CONTAINMENT  EQUAL  none_partial
+        /// </summary>
+        public override AstRoot VisitDatabase_containment(TSqlParser.Database_containmentContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDatabaseContainment(context, list);
+        }
+        
+        /// <summary>
+        /// database_on_primary
+        /// 	 : ON  PRIMARY?  database_file_spec_list
+        /// </summary>
+        public override AstRoot VisitDatabase_on_primary(TSqlParser.Database_on_primaryContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDatabaseOnPrimary(context, list);
+        }
+        
+        /// <summary>
+        /// database_on_log
+        /// 	 : ON  PRIMARY?  database_file_spec_list
+        /// </summary>
+        public override AstRoot VisitDatabase_on_log(TSqlParser.Database_on_logContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDatabaseOnLog(context, list);
+        }
+        
+        /// <summary>
+        /// database_collate
+        /// 	 : COLLATE  collation_id
+        /// </summary>
+        public override AstRoot VisitDatabase_collate(TSqlParser.Database_collateContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDatabaseCollate(context, list);
+        }
+        
+        /// <summary>
+        /// database_create_with
+        /// 	 : WITH  create_database_option_list
+        /// </summary>
+        public override AstRoot VisitDatabase_create_with(TSqlParser.Database_create_withContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDatabaseCreateWith(context, list);
+        }
+        
+        /// <summary>
         /// create_index
-        /// 	 : CREATE  UNIQUE?  clustered?  INDEX  id_  ON  full_table_name  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (INCLUDE  LR_BRACKET  column_name_list  RR_BRACKET)?  (WHERE  where = search_condition)?  (create_index_options)?  (ON  id_)?  SEMI?
+        /// 	 : CREATE  UNIQUE?  clustered?  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (INCLUDE  LR_BRACKET  column_name_list  RR_BRACKET)?  (WHERE  search_condition)?  (create_index_options)?  (ON  file_group_id)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_index(TSqlParser.Create_indexContext context)
         {
@@ -3063,48 +3544,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// create_index_options
-        /// 	 : WITH  LR_BRACKET  relational_index_options  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitCreate_index_options(TSqlParser.Create_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateIndexOptions(context, list);
-        }
-        
-        /// <summary>
-        /// relational_index_options
-        /// 	 : relational_index_option  (COMMA  relational_index_option)*
-        /// </summary>
-        public override AstRoot VisitRelational_index_options(TSqlParser.Relational_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstRelationalIndexOptions(context, list);
-        }
-        
-        /// <summary>
         /// alter_index
-        /// 	 : ALTER  INDEX  (id_ | ALL)  ON  full_table_name  (DISABLE | PAUSE | ABORT | RESUME  resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
+        /// 	 : ALTER  INDEX  (id_ | ALL)  ON  full_table_ref  (DISABLE | PAUSE | ABORT | RESUME  resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
         /// </summary>
         public override AstRoot VisitAlter_index(TSqlParser.Alter_indexContext context)
         {
@@ -3143,68 +3584,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// set_index_options
-        /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitSet_index_options(TSqlParser.Set_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSetIndexOptions(context, list);
-        }
-        
-        /// <summary>
-        /// rebuild_index_options
-        /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitRebuild_index_options(TSqlParser.Rebuild_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstRebuildIndexOptions(context, list);
-        }
-        
-        /// <summary>
-        /// single_partition_rebuild_index_options
-        /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSinglePartitionRebuildIndexOptions(context, list);
-        }
-        
-        /// <summary>
         /// create_columnstore_index
-        /// 	 : CREATE  CLUSTERED  COLUMNSTORE  INDEX  id_  ON  full_table_name  create_columnstore_index_options?  (ON  id_)?  SEMI?
+        /// 	 : CREATE  CLUSTERED  COLUMNSTORE  INDEX  id_  ON  full_table_ref  create_columnstore_index_options?  (ON  table_id)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_columnstore_index(TSqlParser.Create_columnstore_indexContext context)
         {
@@ -3223,28 +3604,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// create_columnstore_index_options
-        /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateColumnstoreIndexOptions(context, list);
-        }
-        
-        /// <summary>
         /// create_nonclustered_columnstore_index
-        /// 	 : CREATE  NONCLUSTERED?  COLUMNSTORE  INDEX  id_  ON  full_table_name  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (WHERE  search_condition)?  create_columnstore_index_options?  (ON  id_)?  SEMI?
+        /// 	 : CREATE  NONCLUSTERED?  COLUMNSTORE  INDEX  id_  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (WHERE  search_condition)?  create_columnstore_index_options?  (ON  group_id)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_nonclustered_columnstore_index(TSqlParser.Create_nonclustered_columnstore_indexContext context)
         {
@@ -3264,7 +3625,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_xml_index
-        /// 	 : CREATE  PRIMARY?  XML  INDEX  id_  ON  full_table_name  LR_BRACKET  id_  RR_BRACKET  (USING  XML  INDEX  id_  (FOR  (VALUE | PATH | PROPERTY)?)?)?  xml_index_options?  SEMI?
+        /// 	 : CREATE  PRIMARY?  XML  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_id  RR_BRACKET  (USING  XML  INDEX  parent_index = index_id  (FOR  (VALUE | PATH | PROPERTY)?)?)?  xml_index_options?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_xml_index(TSqlParser.Create_xml_indexContext context)
         {
@@ -3283,28 +3644,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// xml_index_options
-        /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitXml_index_options(TSqlParser.Xml_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstXmlIndexOptions(context, list);
-        }
-        
-        /// <summary>
         /// create_or_alter_procedure
-        /// 	 : ((CREATE  (OR  (ALTER | REPLACE))?) | ALTER)  proc = (PROC | PROCEDURE)  procName = func_proc_name_schema  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
+        /// 	 : ((CREATE  (OR  (ALTER | REPLACE))?) | ALTER)  proc = (PROC | PROCEDURE)  procName = schema_func_proc_ref  (SEMI  DECIMAL)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
         /// </summary>
         public override AstRoot VisitCreate_or_alter_procedure(TSqlParser.Create_or_alter_procedureContext context)
         {
@@ -3323,28 +3664,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// procedure_options
-        /// 	 : WITH  procedure_option  (COMMA  procedure_option)*
-        /// </summary>
-        public override AstRoot VisitProcedure_options(TSqlParser.Procedure_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstProcedureOptions(context, list);
-        }
-        
-        /// <summary>
         /// as_external_name
-        /// 	 : EXTERNAL  NAME  assembly_name  DOT  class_name  DOT  method_name
+        /// 	 : EXTERNAL  NAME  assembly_id  DOT  class_id  DOT  method_id
         /// </summary>
         public override AstRoot VisitAs_external_name(TSqlParser.As_external_nameContext context)
         {
@@ -3364,7 +3685,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_or_alter_dml_trigger
-        /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  full_table_name  dml_trigger_options?  (FOR | AFTER | INSTEAD  OF)  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
+        /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  schema_trigger_ref  ON  full_table_ref  dml_trigger_options?  for_after_instead  dml_trigger_operations  (WITH  APPEND)?  (NOT  FOR  REPLICATION)?  AS  sql_clauses
         /// </summary>
         public override AstRoot VisitCreate_or_alter_dml_trigger(TSqlParser.Create_or_alter_dml_triggerContext context)
         {
@@ -3383,48 +3704,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// dml_trigger_options
-        /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*
-        /// </summary>
-        public override AstRoot VisitDml_trigger_options(TSqlParser.Dml_trigger_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDmlTriggerOptions(context, list);
-        }
-        
-        /// <summary>
-        /// dml_trigger_operations
-        /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*
-        /// </summary>
-        public override AstRoot VisitDml_trigger_operations(TSqlParser.Dml_trigger_operationsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDmlTriggerOperations(context, list);
-        }
-        
-        /// <summary>
         /// create_or_alter_ddl_trigger
-        /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  simple_name  ON  (ALL  SERVER | DATABASE)  dml_trigger_options?  (FOR | AFTER)  dml_trigger_operations  AS  sql_clauses
+        /// 	 : ((CREATE  (OR  ALTER)?) | ALTER)  TRIGGER  schema_trigger_ref  ON  all_server_database  dml_trigger_options?  for_after  dml_trigger_operations  AS  sql_clauses
         /// </summary>
         public override AstRoot VisitCreate_or_alter_ddl_trigger(TSqlParser.Create_or_alter_ddl_triggerContext context)
         {
@@ -3440,26 +3721,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstCreateOrAlterDdlTrigger(context, list);
-        }
-        
-        /// <summary>
-        /// procedure_params
-        /// 	 : procedure_param  (COMMA  procedure_param)*
-        /// </summary>
-        public override AstRoot VisitProcedure_params(TSqlParser.Procedure_paramsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstProcedureParams(context, list);
         }
         
         /// <summary>
@@ -3480,26 +3741,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstFuncBodyReturnsSelect(context, list);
-        }
-        
-        /// <summary>
-        /// function_options
-        /// 	 : WITH  function_option  (COMMA  function_option)*
-        /// </summary>
-        public override AstRoot VisitFunction_options(TSqlParser.Function_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstFunctionOptions(context, list);
         }
         
         /// <summary>
@@ -3544,7 +3785,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// procedure_param
-        /// 	 : LOCAL_ID  AS?  (type_schema  DOT)?  data_type  VARYING?  (EQUAL  default_val = default_value)?  (OUT | OUTPUT | READONLY)?
+        /// 	 : LOCAL_ID  AS?  schema_type_ref  VARYING?  (EQUAL  default_val = default_value)?  (OUT | OUTPUT | READONLY)?
         /// </summary>
         public override AstRoot VisitProcedure_param(TSqlParser.Procedure_paramContext context)
         {
@@ -3564,7 +3805,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// create_statistics
-        /// 	 : CREATE  STATISTICS  id_  ON  full_table_name  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN | SAMPLE  DECIMAL  (PERCENT | ROWS) | STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
+        /// 	 : CREATE  STATISTICS  id_  ON  full_table_ref  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN | SAMPLE  DECIMAL  (PERCENT | ROWS) | STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_statistics(TSqlParser.Create_statisticsContext context)
         {
@@ -3584,7 +3825,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// update_statistics
-        /// 	 : UPDATE  STATISTICS  complete_table_name  (id_ | LR_BRACKET  id_  (COMMA  id_)*  RR_BRACKET)?  update_statistics_options?
+        /// 	 : UPDATE  STATISTICS  complete_table_ref  (id_ | LR_BRACKET  ids  RR_BRACKET)?  update_statistics_options?
         /// </summary>
         public override AstRoot VisitUpdate_statistics(TSqlParser.Update_statisticsContext context)
         {
@@ -3603,28 +3844,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// update_statistics_options
-        /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*
-        /// </summary>
-        public override AstRoot VisitUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstUpdateStatisticsOptions(context, list);
-        }
-        
-        /// <summary>
         /// create_table
-        /// 	 : CREATE  TABLE  full_table_name  LR_BRACKET  column_def_table_constraints  (COMMA?  table_indices)*  COMMA?  RR_BRACKET  (LOCK  simple_id)?  table_options*  (ON  id_ | DEFAULT)?  (TEXTIMAGE_ON  id_ | DEFAULT)?  SEMI?
+        /// 	 : CREATE  TABLE  full_table_ref  LR_BRACKET  column_def_table_constraints  table_indices_list?  RR_BRACKET  (LOCK  simple_id)?  table_options*  (ON  on = group_id | DEFAULT)?  (TEXTIMAGE_ON  text_image = group_id | DEFAULT)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_table(TSqlParser.Create_tableContext context)
         {
@@ -3643,28 +3864,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// create_table_index_options
-        /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitCreate_table_index_options(TSqlParser.Create_table_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstCreateTableIndexOptions(context, list);
-        }
-        
-        /// <summary>
         /// create_view
-        /// 	 : CREATE  VIEW  simple_name  (LR_BRACKET  column_name_list  RR_BRACKET)?  view_attributes?  AS  select_statement_standalone  (WITH  CHECK  OPTION)?  SEMI?
+        /// 	 : CREATE  VIEW  schema_view_ref  (LR_BRACKET  column_name_list  RR_BRACKET)?  view_attributes?  AS  select_statement_standalone  (WITH  CHECK  OPTION)?  SEMI?
         /// </summary>
         public override AstRoot VisitCreate_view(TSqlParser.Create_viewContext context)
         {
@@ -3684,7 +3885,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_table
-        /// 	 : ALTER  TABLE  full_table_name  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO | TABLE | DISABLE)  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids_ | DROP  CONSTRAINT  constraint_name | WITH  (CHECK | NOCHECK)  ADD  (CONSTRAINT  constraint_name)?  (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_name  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  (on_delete | on_update)* | CHECK  LR_BRACKET  search_condition  RR_BRACKET) | (NOCHECK | CHECK)  CONSTRAINT  constraint_name | (ENABLE | DISABLE)  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
+        /// 	 : ALTER  TABLE  full_table_ref  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO | TABLE | DISABLE)  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids | DROP  CONSTRAINT  constraint_id | WITH  (CHECK | NOCHECK)  ADD  alter_table_constraint | (NOCHECK | CHECK)  CONSTRAINT  constraint_id | enable_disable  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
         /// </summary>
         public override AstRoot VisitAlter_table(TSqlParser.Alter_tableContext context)
         {
@@ -3703,10 +3904,10 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// filespecs
-        /// 	 : filespec  (COMMA  filespec)*
+        /// alter_table_constraint_foreign
+        /// 	 : FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  REFERENCES  full_table_ref  (LR_BRACKET  pk = column_name_list  RR_BRACKET)?  on1 = constraint_delete_or_update  on2 = constraint_delete_or_update
         /// </summary>
-        public override AstRoot VisitFilespecs(TSqlParser.FilespecsContext context)
+        public override AstRoot VisitAlter_table_constraint_foreign(TSqlParser.Alter_table_constraint_foreignContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -3719,14 +3920,14 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstFilespecs(context, list);
+            return new AstAlterTableConstraintForeign(context, list);
         }
         
         /// <summary>
-        /// filespec
-        /// 	 : LR_BRACKET  NAME  EQUAL  file_group_name  (COMMA  NEWNAME  EQUAL  new_file_group_name | STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  (max_size = file_size) | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+        /// alter_database
+        /// 	 : ALTER  DATABASE  (database_id | CURRENT)  alter_database_new_infos  SEMI?
         /// </summary>
-        public override AstRoot VisitFilespec(TSqlParser.FilespecContext context)
+        public override AstRoot VisitAlter_database(TSqlParser.Alter_databaseContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -3739,27 +3940,7 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstFilespec(context, list);
-        }
-        
-        /// <summary>
-        /// change_tracking_option_lists
-        /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*
-        /// </summary>
-        public override AstRoot VisitChange_tracking_option_lists(TSqlParser.Change_tracking_option_listsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstChangeTrackingOptionLists(context, list);
+            return new AstAlterDatabase(context, list);
         }
         
         /// <summary>
@@ -3784,7 +3965,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_endpoint
-        /// 	 : ALTER  ENDPOINT  endpoint_name  (AUTHORIZATION  login_name)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  DECIMAL  (COMMA  listener_ip)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
+        /// 	 : ALTER  ENDPOINT  endpoint_id  (AUTHORIZATION  login_id)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  DECIMAL  (COMMA  listener_ip)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
         /// </summary>
         public override AstRoot VisitAlter_endpoint(TSqlParser.Alter_endpointContext context)
         {
@@ -3800,6 +3981,46 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstAlterEndpoint(context, list);
+        }
+        
+        /// <summary>
+        /// alter_endpoint_database_mirroring
+        /// 	 : FOR  DATABASE_MIRRORING  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  COMMA?  ROLE  EQUAL  (WITNESS | PARTNER | ALL)  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAlter_endpoint_database_mirroring(TSqlParser.Alter_endpoint_database_mirroringContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterEndpointDatabaseMirroring(context, list);
+        }
+        
+        /// <summary>
+        /// alter_endpoint_service_broker
+        /// 	 : FOR  SERVICE_BROKER  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  (COMMA?  MESSAGE_FORWARDING  EQUAL  enable_disable)?  (COMMA?  MESSAGE_FORWARD_SIZE  EQUAL  DECIMAL)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAlter_endpoint_service_broker(TSqlParser.Alter_endpoint_service_brokerContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterEndpointServiceBroker(context, list);
         }
         
         /// <summary>
@@ -3883,48 +4104,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// drop_relational_or_xml_or_spatial_indexs
-        /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*
-        /// </summary>
-        public override AstRoot VisitDrop_relational_or_xml_or_spatial_indexs(TSqlParser.Drop_relational_or_xml_or_spatial_indexsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropRelationalOrXmlOrSpatialIndexs(context, list);
-        }
-        
-        /// <summary>
-        /// drop_backward_compatible_indexs
-        /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*
-        /// </summary>
-        public override AstRoot VisitDrop_backward_compatible_indexs(TSqlParser.Drop_backward_compatible_indexsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropBackwardCompatibleIndexs(context, list);
-        }
-        
-        /// <summary>
         /// drop_relational_or_xml_or_spatial_index
-        /// 	 : index_name  ON  complete_table_name
+        /// 	 : index_id  ON  complete_table_ref
         /// </summary>
         public override AstRoot VisitDrop_relational_or_xml_or_spatial_index(TSqlParser.Drop_relational_or_xml_or_spatial_indexContext context)
         {
@@ -3940,26 +4121,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstDropRelationalOrXmlOrSpatialIndex(context, list);
-        }
-        
-        /// <summary>
-        /// drop_backward_compatible_index
-        /// 	 : (schema_name  DOT)?  table_or_view_name  DOT  index_name
-        /// </summary>
-        public override AstRoot VisitDrop_backward_compatible_index(TSqlParser.Drop_backward_compatible_indexContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDropBackwardCompatibleIndex(context, list);
         }
         
         /// <summary>
@@ -3983,28 +4144,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// func_proc_name_schemas
-        /// 	 : func_proc_name_schema  (COMMA  func_proc_name_schema)*
-        /// </summary>
-        public override AstRoot VisitFunc_proc_name_schemas(TSqlParser.Func_proc_name_schemasContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstFuncProcNameSchemas(context, list);
-        }
-        
-        /// <summary>
         /// drop_dml_trigger
-        /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  SEMI?
+        /// 	 : DROP  TRIGGER  (IF  EXISTS)?  schema_trigger_refs  SEMI?
         /// </summary>
         public override AstRoot VisitDrop_dml_trigger(TSqlParser.Drop_dml_triggerContext context)
         {
@@ -4024,7 +4165,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_ddl_trigger
-        /// 	 : DROP  TRIGGER  (IF  EXISTS)?  simple_names  ON  (DATABASE | ALL  SERVER)  SEMI?
+        /// 	 : DROP  TRIGGER  (IF  EXISTS)?  schema_view_refs  ON  (DATABASE | ALL  SERVER)  SEMI?
         /// </summary>
         public override AstRoot VisitDrop_ddl_trigger(TSqlParser.Drop_ddl_triggerContext context)
         {
@@ -4040,46 +4181,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstDropDdlTrigger(context, list);
-        }
-        
-        /// <summary>
-        /// simple_names
-        /// 	 : simple_name  (COMMA  simple_name)*
-        /// </summary>
-        public override AstRoot VisitSimple_names(TSqlParser.Simple_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstSimpleNames(context, list);
-        }
-        
-        /// <summary>
-        /// table_names
-        /// 	 : full_table_name  (COMMA  full_table_name)*
-        /// </summary>
-        public override AstRoot VisitTable_names(TSqlParser.Table_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstTableNames(context, list);
         }
         
         /// <summary>
@@ -4124,7 +4225,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// drop_view
-        /// 	 : DROP  VIEW  (IF  EXISTS)?  simple_names  SEMI?
+        /// 	 : DROP  VIEW  (IF  EXISTS)?  schema_view_refs  SEMI?
         /// </summary>
         public override AstRoot VisitDrop_view(TSqlParser.Drop_viewContext context)
         {
@@ -4144,7 +4245,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// openquery
-        /// 	 : OPENQUERY  LR_BRACKET  linked_server  COMMA  query = STRING  RR_BRACKET
+        /// 	 : OPENQUERY  LR_BRACKET  server_id  COMMA  query = STRING  RR_BRACKET
         /// </summary>
         public override AstRoot VisitOpenquery(TSqlParser.OpenqueryContext context)
         {
@@ -4163,10 +4264,10 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// declare_locals
-        /// 	 : declare_local  (COMMA  loc += declare_local)*
+        /// opendatasource
+        /// 	 : OPENDATASOURCE  LR_BRACKET  provider = STRING  COMMA  init = STRING  RR_BRACKET  DOT  database_schema_table_ref
         /// </summary>
-        public override AstRoot VisitDeclare_locals(TSqlParser.Declare_localsContext context)
+        public override AstRoot VisitOpendatasource(TSqlParser.OpendatasourceContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -4179,32 +4280,12 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstDeclareLocals(context, list);
-        }
-        
-        /// <summary>
-        /// xml_declarations
-        /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*
-        /// </summary>
-        public override AstRoot VisitXml_declarations(TSqlParser.Xml_declarationsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstXmlDeclarations(context, list);
+            return new AstOpendatasource(context, list);
         }
         
         /// <summary>
         /// backup_database
-        /// 	 : BACKUP  DATABASE  (database_name)  (READ_WRITE_FILEGROUPS  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*)?  (COMMA?  file_file_group  EQUAL  file_or_filegroup = STRING)*  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
+        /// 	 : BACKUP  DATABASE  (database_id)  (READ_WRITE_FILEGROUPS  group1 = file_group_list)?  group2 = file_group_list  backup_target?  backup_settings?
         /// </summary>
         public override AstRoot VisitBackup_database(TSqlParser.Backup_databaseContext context)
         {
@@ -4223,8 +4304,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// file_group_assign
+        /// 	 : file_file_group  EQUAL  file_or_filegroup = STRING
+        /// </summary>
+        public override AstRoot VisitFile_group_assign(TSqlParser.File_group_assignContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstFileGroupAssign(context, list);
+        }
+        
+        /// <summary>
         /// backup_log
-        /// 	 : BACKUP  LOG  (database_name)  (TO  (COMMA?  logical_device_name)+ | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)  ((MIRROR  TO  (COMMA?  logical_device_name)+)+ | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+)?  backup_settings?
+        /// 	 : BACKUP  LOG  database_id  backup_target?  backup_settings?
         /// </summary>
         public override AstRoot VisitBackup_log(TSqlParser.Backup_logContext context)
         {
@@ -4243,8 +4344,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// backup_target
+        /// 	 : backup_to  backup_to_mirror
+        /// </summary>
+        public override AstRoot VisitBackup_target(TSqlParser.Backup_targetContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstBackupTarget(context, list);
+        }
+        
+        /// <summary>
         /// backup_certificate
-        /// 	 : BACKUP  CERTIFICATE  certificate_name  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING | COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING | COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
+        /// 	 : BACKUP  CERTIFICATE  certificate_id  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING | COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING | COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
         /// </summary>
         public override AstRoot VisitBackup_certificate(TSqlParser.Backup_certificateContext context)
         {
@@ -4303,68 +4424,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// execute_var_strings
-        /// 	 : execute_var_string  (COMMA  execute_var_string)*
-        /// </summary>
-        public override AstRoot VisitExecute_var_strings(TSqlParser.Execute_var_stringsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExecuteVarStrings(context, list);
-        }
-        
-        /// <summary>
-        /// execute_statement_arg_nameds
-        /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*
-        /// </summary>
-        public override AstRoot VisitExecute_statement_arg_nameds(TSqlParser.Execute_statement_arg_namedsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExecuteStatementArgNameds(context, list);
-        }
-        
-        /// <summary>
-        /// execute_statement_args
-        /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*
-        /// </summary>
-        public override AstRoot VisitExecute_statement_args(TSqlParser.Execute_statement_argsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExecuteStatementArgs(context, list);
-        }
-        
-        /// <summary>
         /// create_certificate
-        /// 	 : CREATE  CERTIFICATE  certificate_name  (AUTHORIZATION  user_name)?  (FROM  existing_keys | generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
+        /// 	 : CREATE  CERTIFICATE  certificate_id  (AUTHORIZATION  user_id)?  (FROM  existing_keys | generate_new_keys)  (ACTIVE  FOR  BEGIN  DIALOG  EQUAL  on_off)?
         /// </summary>
         public override AstRoot VisitCreate_certificate(TSqlParser.Create_certificateContext context)
         {
@@ -4384,7 +4445,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// use_statement
-        /// 	 : USE  database_name  SEMI?
+        /// 	 : USE  database_id  SEMI?
         /// </summary>
         public override AstRoot VisitUse_statement(TSqlParser.Use_statementContext context)
         {
@@ -4400,26 +4461,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstUseStatement(context, list);
-        }
-        
-        /// <summary>
-        /// dbcc_options
-        /// 	 : simple_id  (COMMA  simple_id)?
-        /// </summary>
-        public override AstRoot VisitDbcc_options(TSqlParser.Dbcc_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDbccOptions(context, list);
         }
         
         /// <summary>
@@ -4504,7 +4545,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// column_definition
-        /// 	 : column_name  (data_type | AS  expression  PERSISTED?)  column_definition_element*  column_index?
+        /// 	 : column_id  (data_type | AS  expression  PERSISTED?)  column_definition_element*  column_index?
         /// </summary>
         public override AstRoot VisitColumn_definition(TSqlParser.Column_definitionContext context)
         {
@@ -4564,7 +4605,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// column_index
-        /// 	 : INDEX  index_name?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_name | NULL_DOUBLE_QUOTE))?
+        /// 	 : INDEX  index_id?  create_table_index_options?  on_partition_or_filegroup?  (FILESTREAM_ON  (filestream_filegroup_or_partition_schema_id | NULL_DOUBLE_QUOTE))?
         /// </summary>
         public override AstRoot VisitColumn_index(TSqlParser.Column_indexContext context)
         {
@@ -4604,7 +4645,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// foreign_key_options
-        /// 	 : REFERENCES  full_table_name  LR_BRACKET  pk = column_name_list  RR_BRACKET  on_delete?  on_update?  (NOT  FOR  REPLICATION)?
+        /// 	 : REFERENCES  full_table_ref  LR_BRACKET  pk = column_name_list  RR_BRACKET  on_delete?  on_update?  (NOT  FOR  REPLICATION)?
         /// </summary>
         public override AstRoot VisitForeign_key_options(TSqlParser.Foreign_key_optionsContext context)
         {
@@ -4640,26 +4681,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstCheckConstraint(context, list);
-        }
-        
-        /// <summary>
-        /// alter_table_index_options
-        /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstAlterTableIndexOptions(context, list);
         }
         
         /// <summary>
@@ -4743,6 +4764,106 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// predicate_multi_assign
+        /// 	 : left = expression  MULT_ASSIGN  right = expression
+        /// </summary>
+        public override AstRoot VisitPredicate_multi_assign(TSqlParser.Predicate_multi_assignContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPredicateMultiAssign(context, list);
+        }
+        
+        /// <summary>
+        /// predicate_binary
+        /// 	 : left = expression  comparison_operator  right = expression
+        /// </summary>
+        public override AstRoot VisitPredicate_binary(TSqlParser.Predicate_binaryContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPredicateBinary(context, list);
+        }
+        
+        /// <summary>
+        /// predicate_tier
+        /// 	 : init = expression  NOT*  BETWEEN  left = expression  AND  right = expression
+        /// </summary>
+        public override AstRoot VisitPredicate_tier(TSqlParser.Predicate_tierContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPredicateTier(context, list);
+        }
+        
+        /// <summary>
+        /// predicate_not_like
+        /// 	 : left = expression  NOT*  LIKE  right = expression  (ESCAPE  escape = expression)?
+        /// </summary>
+        public override AstRoot VisitPredicate_not_like(TSqlParser.Predicate_not_likeContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPredicateNotLike(context, list);
+        }
+        
+        /// <summary>
+        /// predicate_not_in
+        /// 	 : left = expression  NOT*  IN  LR_BRACKET  (subquery | expression_list)  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitPredicate_not_in(TSqlParser.Predicate_not_inContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPredicateNotIn(context, list);
+        }
+        
+        /// <summary>
         /// select_order_by_clause
         /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW | ROWS)  (FETCH  fetch_offset = (FIRST | NEXT)  fetch_exp = expression  fetch_rows = (ROW | ROWS)  ONLY)?)?
         /// </summary>
@@ -4763,10 +4884,10 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// option_clause
-        /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*  RR_BRACKET
+        /// for_clause_xml_raw
+        /// 	 : FOR  XML  (RAW  (LR_BRACKET  xmlraw = STRING  RR_BRACKET)? | AUTO)  xml_common_directives*  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  xml_schema = STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
         /// </summary>
-        public override AstRoot VisitOption_clause(TSqlParser.Option_clauseContext context)
+        public override AstRoot VisitFor_clause_xml_raw(TSqlParser.For_clause_xml_rawContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -4779,32 +4900,12 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstOptionClause(context, list);
-        }
-        
-        /// <summary>
-        /// optimize_for_args
-        /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*
-        /// </summary>
-        public override AstRoot VisitOptimize_for_args(TSqlParser.Optimize_for_argsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstOptimizeForArgs(context, list);
+            return new AstForClauseXmlRaw(context, list);
         }
         
         /// <summary>
         /// table_asterisk
-        /// 	 : full_table_name  DOT  STAR
+        /// 	 : full_table_ref  DOT  STAR
         /// </summary>
         public override AstRoot VisitTable_asterisk(TSqlParser.Table_asteriskContext context)
         {
@@ -4860,26 +4961,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstExpressionAssignElem(context, list);
-        }
-        
-        /// <summary>
-        /// expression2
-        /// 	 : expression  (COMMA  expression)?
-        /// </summary>
-        public override AstRoot VisitExpression2(TSqlParser.Expression2Context context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExpression2(context, list);
         }
         
         /// <summary>
@@ -5063,26 +5144,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// bulk_options
-        /// 	 : bulk_option  (COMMA  bulk_option)*
-        /// </summary>
-        public override AstRoot VisitBulk_options(TSqlParser.Bulk_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstBulkOptions(context, list);
-        }
-        
-        /// <summary>
         /// bulk_option
         /// 	 : id_  EQUAL  bulk_option_value = decimal_string
         /// </summary>
@@ -5104,7 +5165,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// partition_function
-        /// 	 : (database_name  DOT)?  DOLLAR_PARTITION  DOT  function_name  LR_BRACKET  expression  RR_BRACKET
+        /// 	 : (database_id  DOT)?  DOLLAR_PARTITION  DOT  function_id  LR_BRACKET  expression  RR_BRACKET
         /// </summary>
         public override AstRoot VisitPartition_function(TSqlParser.Partition_functionContext context)
         {
@@ -5123,28 +5184,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// expression_language
-        /// 	 : expression  (COMMA  LANGUAGE  expression)?
-        /// </summary>
-        public override AstRoot VisitExpression_language(TSqlParser.Expression_languageContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExpressionLanguage(context, list);
-        }
-        
-        /// <summary>
         /// freetext_table_andcolumn_names
-        /// 	 : full_table_name  COMMA  (full_column_name | full_column_names | STAR)
+        /// 	 : full_table_ref  COMMA  (full_column_name | full_column_names | STAR)
         /// </summary>
         public override AstRoot VisitFreetext_table_andcolumn_names(TSqlParser.Freetext_table_andcolumn_namesContext context)
         {
@@ -5160,46 +5201,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstFreetextTableAndcolumnNames(context, list);
-        }
-        
-        /// <summary>
-        /// full_column_names
-        /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*  RR_BRACKET
-        /// </summary>
-        public override AstRoot VisitFull_column_names(TSqlParser.Full_column_namesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstFullColumnNames(context, list);
-        }
-        
-        /// <summary>
-        /// expressions
-        /// 	 : expression  (COMMA  expression)*
-        /// </summary>
-        public override AstRoot VisitExpressions(TSqlParser.ExpressionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstExpressions(context, list);
         }
         
         /// <summary>
@@ -5303,26 +5304,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// index_values
-        /// 	 : index_value  (COMMA  index_value)*
-        /// </summary>
-        public override AstRoot VisitIndex_values(TSqlParser.Index_valuesContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstIndexValues(context, list);
-        }
-        
-        /// <summary>
         /// all_distinct_expression
         /// 	 : (ALL | DISTINCT)?  expression
         /// </summary>
@@ -5383,28 +5364,8 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// database_filestream_options
-        /// 	 : database_filestream_option  (COMMA  database_filestream_option)*
-        /// </summary>
-        public override AstRoot VisitDatabase_filestream_options(TSqlParser.Database_filestream_optionsContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstDatabaseFilestreamOptions(context, list);
-        }
-        
-        /// <summary>
         /// file_group
-        /// 	 : FILEGROUP  id_  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_spec  (COMMA  file_spec)*
+        /// 	 : FILEGROUP  file_group_id  (CONTAINS  FILESTREAM)?  (DEFAULT)?  (CONTAINS  MEMORY_OPTIMIZED_DATA)?  file_specs
         /// </summary>
         public override AstRoot VisitFile_group(TSqlParser.File_groupContext context)
         {
@@ -5424,7 +5385,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// file_spec
-        /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  file_size  COMMA?)?  (MAXSIZE  EQUAL  (file_size | UNLIMITED)  COMMA?)?  (FILEGROWTH  EQUAL  file_size  COMMA?)?  RR_BRACKET
+        /// 	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = STRING  COMMA?  (SIZE  EQUAL  size = file_size  COMMA?)?  (MAXSIZE  EQUAL  max_size  COMMA?)?  (FILEGROWTH  EQUAL  filegrowth = file_size  COMMA?)?  RR_BRACKET
         /// </summary>
         public override AstRoot VisitFile_spec(TSqlParser.File_specContext context)
         {
@@ -5440,46 +5401,6 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstFileSpec(context, list);
-        }
-        
-        /// <summary>
-        /// entity_name
-        /// 	 : (server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
-        /// </summary>
-        public override AstRoot VisitEntity_name(TSqlParser.Entity_nameContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstEntityName(context, list);
-        }
-        
-        /// <summary>
-        /// column_name_list_with_order
-        /// 	 : id_  (ASC | DESC)?  (COMMA  id_  (ASC | DESC)?)*
-        /// </summary>
-        public override AstRoot VisitColumn_name_list_with_order(TSqlParser.Column_name_list_with_orderContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstColumnNameListWithOrder(context, list);
         }
         
         /// <summary>
@@ -5560,6 +5481,266 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstFileSize(context, list);
+        }
+        
+        /// <summary>
+        /// schema_security_predicate_function_id
+        /// 	 : tvf_schema_id  DOT  security_predicate_function_id
+        /// </summary>
+        public override AstRoot VisitSchema_security_predicate_function_id(TSqlParser.Schema_security_predicate_function_idContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaSecurityPredicateFunctionId(context, list);
+        }
+        
+        /// <summary>
+        /// schema_schema_id
+        /// 	 : (schema_id  DOT)?  schema_id
+        /// </summary>
+        public override AstRoot VisitSchema_schema_id(TSqlParser.Schema_schema_idContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaSchemaId(context, list);
+        }
+        
+        /// <summary>
+        /// schema_sql_identifier_id
+        /// 	 : (schema_id  DOT)?  sql_identifier_id
+        /// </summary>
+        public override AstRoot VisitSchema_sql_identifier_id(TSqlParser.Schema_sql_identifier_idContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaSqlIdentifierId(context, list);
+        }
+        
+        /// <summary>
+        /// schema_security_policy_ref
+        /// 	 : (schema_id  DOT)?  security_policy_id
+        /// </summary>
+        public override AstRoot VisitSchema_security_policy_ref(TSqlParser.Schema_security_policy_refContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstSchemaSecurityPolicyRef(context, list);
+        }
+        
+        /// <summary>
+        /// drop_backward_compatible_index
+        /// 	 : (schema_id  DOT)?  table_or_view_id  DOT  index_id
+        /// </summary>
+        public override AstRoot VisitDrop_backward_compatible_index(TSqlParser.Drop_backward_compatible_indexContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstDropBackwardCompatibleIndex(context, list);
+        }
+        
+        /// <summary>
+        /// entity_name
+        /// 	 : (server_id  DOT  database_id  DOT  schema_id  DOT | database_id  DOT  schema_id?  DOT | schema_id  DOT)?  object_id
+        /// </summary>
+        public override AstRoot VisitEntity_name(TSqlParser.Entity_nameContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstEntityName(context, list);
+        }
+        
+        /// <summary>
+        /// column_ordered
+        /// 	 : column_id  asc_desc?
+        /// </summary>
+        public override AstRoot VisitColumn_ordered(TSqlParser.Column_orderedContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstColumnOrdered(context, list);
+        }
+        
+        /// <summary>
+        /// column_or_argument_ids
+        /// 	 : column_or_argument_id  (COMMA?  column_or_argument_id)*
+        /// </summary>
+        public override AstRoot VisitColumn_or_argument_ids(TSqlParser.Column_or_argument_idsContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstColumnOrArgumentIds(context, list);
+        }
+        
+        /// <summary>
+        /// create_index_options
+        /// 	 : WITH  LR_BRACKET  relational_index_options  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitCreate_index_options(TSqlParser.Create_index_optionsContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstCreateIndexOptions(context, list);
+        }
+        
+        /// <summary>
+        /// expression_language
+        /// 	 : expression  (COMMA  LANGUAGE  expression)?
+        /// </summary>
+        public override AstRoot VisitExpression_language(TSqlParser.Expression_languageContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstExpressionLanguage(context, list);
+        }
+        
+        /// <summary>
+        /// grouping_sets_list
+        /// 	 : group_by_item  (COMMA  group_by_item)*
+        /// </summary>
+        public override AstRoot VisitGrouping_sets_list(TSqlParser.Grouping_sets_listContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstGroupingSetsList(context, list);
+        }
+        
+        /// <summary>
+        /// groupBys_list
+        /// 	 : group_by_item  (COMMA  group_by_item)*
+        /// </summary>
+        public override AstRoot VisitGroupBys_list(TSqlParser.GroupBys_listContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstGroupBysList(context, list);
+        }
+        
+        /// <summary>
+        /// alter_table_index_options
+        /// 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAlter_table_index_options(TSqlParser.Alter_table_index_optionsContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstAlterTableIndexOptions(context, list);
         }
     }
 }

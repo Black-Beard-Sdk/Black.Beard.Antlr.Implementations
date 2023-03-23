@@ -46,7 +46,7 @@ namespace Bb.Parsers
         private List<TreeRuleItem> _list;
         private string _txt;
 
-        public string Name { get; }
+        public string Name { get; internal set; }
 
         public int Id { get; set; }
 
@@ -83,6 +83,8 @@ namespace Bb.Parsers
 
         public bool IsLast { get; private set; }
         public bool IsConstant { get; internal set; }
+        public AstBase Origin { get; internal set; }
+        public string Label { get; internal set; }
 
         public override string ToString()
         {
@@ -100,6 +102,12 @@ namespace Bb.Parsers
 
         private void ToString(Writer wrt)
         {
+
+            if (!string.IsNullOrEmpty(Label))
+            {
+                wrt.Append(Label);
+                wrt.Append('=');
+            }
 
             if (!string.IsNullOrEmpty(Name))
                 wrt.Append(Name);
@@ -228,6 +236,7 @@ namespace Bb.Parsers
 
         public TreeRuleItem Clone(Action<TreeRuleItem> action = null)
         {
+
             var result = CloneWithOutChildren();
 
             foreach (var item in this)
@@ -242,6 +251,7 @@ namespace Bb.Parsers
 
         public TreeRuleItem CloneWithOutChildren(Action<TreeRuleItem> action = null)
         {
+
             var result = new TreeRuleItem(this.Name)
             {
                 Id = this.Id,
@@ -253,6 +263,8 @@ namespace Bb.Parsers
                 IsRange = this.IsRange,
                 IsEmpty = this.IsEmpty,
                 IsConstant = this.IsConstant,
+                Origin = this.Origin,
+                Label= this.Label,
             };
 
             if (action!= null)

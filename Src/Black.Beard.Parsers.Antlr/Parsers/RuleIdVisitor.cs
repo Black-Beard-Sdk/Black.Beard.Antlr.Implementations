@@ -5,67 +5,8 @@ using System.Xml.Linq;
 namespace Bb.Parsers
 {
 
-
-    public static class RuleHelper
-    {
-
-
-        public static List<TreeRuleItem> ResolveAllCombinations(this AstLabeledAlt self)
-        {
-
-            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
-            var spliterVisitor = new SpliterBuilderVisitor();
-            var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
-
-            var visitor1 = new RuleIdVisitor();
-            var p = self.Rule.Accept(visitor1);
-            var possibilites = p.Accept(removeOptionalsVisitor);
-            var possibilites2 = possibilites.Accept(spliterVisitor);
-            possibilites2 = cleanDuplicated.Visit(possibilites2);
-            var possibilites3 = new List<TreeRuleItem>(possibilites.Count);
-            HashSet<string> names = new HashSet<string>();
-            foreach (var p1 in possibilites2)
-            {
-                var txt = p1.ToString();
-                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
-                    possibilites3.Add(p1);
-            }
-
-            return possibilites3;
-
-        }
-
-        public static List<TreeRuleItem> ResolveAllCombinations(this AstRule self)
-        {
-
-            var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
-            var spliterVisitor = new SpliterBuilderVisitor();
-            var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
-
-            var visitor1 = new RuleIdVisitor();
-            var p = self.Alternatives.Accept(visitor1);
-            var possibilites = p.Accept(removeOptionalsVisitor);
-            var possibilites2 = possibilites.Accept(spliterVisitor);
-            possibilites2 = cleanDuplicated.Visit(possibilites2);
-            var possibilites3 = new List<TreeRuleItem>(possibilites.Count);
-            HashSet<string> names = new HashSet<string>();
-            foreach (var p1 in possibilites2)
-            {
-                var txt = p1.ToString();
-                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
-                    possibilites3.Add(p1);
-            }
-
-            return possibilites3;
-
-        }
-
-
-    }
-
     public class RuleIdVisitor : IAstVisitor<TreeRuleItem>
     {
-
 
         public void Visit(AstGrammarSpec rootAst)
         {
@@ -89,6 +30,7 @@ namespace Bb.Parsers
             var result = new TreeRuleItem(null)
             {
                 IsAlternative = true,
+                Origin = a,                
             };
 
             foreach (var item in a)
@@ -114,6 +56,7 @@ namespace Bb.Parsers
             var result = new TreeRuleItem(null)
             {
                 IsAlternative = true,
+                Origin = a,
             };
 
             foreach (var item in a)
@@ -142,7 +85,9 @@ namespace Bb.Parsers
 
             }
 
-            return a.Rule.Accept(this);
+            var result = a.Rule.Accept(this);
+
+            return result;
 
         }
 
@@ -150,7 +95,10 @@ namespace Bb.Parsers
         public TreeRuleItem VisitElementList(AstElementList a)
         {
 
-            var result = new TreeRuleItem(null);
+            var result = new TreeRuleItem(null)
+            {
+                Origin = a,
+            };
 
             foreach (var item in a)
             {
@@ -178,11 +126,14 @@ namespace Bb.Parsers
 
         public TreeRuleItem VisitAtom(AstAtom a)
         {
+
             var result = a.Value?.Accept(this);
 
             if (result != null)
                 result.Occurence = a.Occurence.Clone();
+
             return result;
+
         }
 
         public TreeRuleItem VisitGrammarSpec(AstGrammarSpec a)
@@ -237,7 +188,12 @@ namespace Bb.Parsers
             if (a.Text != "EOF")
             {
                 // var p = a.Link as AstLexerRule;
-                return new TreeRuleItem(a.Text) { IsTerminal = true,  IsConstant = a.TerminalKind == TokenTypeEnum.Constant };
+                return new TreeRuleItem(a.Text) 
+                {
+                    IsTerminal = true,  
+                    IsConstant = a.TerminalKind == TokenTypeEnum.Constant,
+                    Origin = a,
+                };
             }
             return null;
         }
@@ -245,12 +201,19 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLabeledElement(AstLabeledElement a)
         {
             var u = a.Occurence;
-            return a.Right.Accept(this);
+            var result = a.Right.Accept(this);
+            result.Label = a.Left.Text;
+            return result;
+
         }
 
         public TreeRuleItem VisitRuleRef(AstRuleRef a)
         {
-            return new TreeRuleItem(a.ResolveName()) { IsRuleRef = true };
+            return new TreeRuleItem(a.ResolveName()) 
+            {
+                IsRuleRef = true,
+                Origin = a
+            };
         }
 
         public TreeRuleItem VisitActionBlock(AstActionBlock a)
@@ -403,7 +366,10 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLexerAlternativeList(AstLexerAlternativeList a)
         {
 
-            var result = new TreeRuleItem();
+            var result = new TreeRuleItem()
+            {
+                Origin = a
+            };
 
             foreach (var item in a)
             {
@@ -432,7 +398,10 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLexerElementList(AstLexerElementList a)
         {
 
-            var result = new TreeRuleItem();
+            var result = new TreeRuleItem()
+            {
+                Origin = a
+            };
 
             foreach (var item in a)
             {
@@ -454,7 +423,11 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLexerBlock(AstLexerBlock a)
         {
 
-            var result = new TreeRuleItem();
+            var result = new TreeRuleItem()
+            {
+                Origin = a
+            };
+
             foreach (var item in a.AlternativeList)
             {
                 var p = item.Accept(this);
@@ -484,12 +457,15 @@ namespace Bb.Parsers
             throw new NotImplementedException();
         }
 
-        public TreeRuleItem VisitNot(AstNot astNot)
+        public TreeRuleItem VisitNot(AstNot a)
         {
 
-            var result = new TreeRuleItem("~");
+            var result = new TreeRuleItem("~")
+            {
+                Origin = a,
+            };
 
-            var r = astNot.Value.Accept(this);
+            var r = a.Value.Accept(this);
             if (r != null)
                 result.Add(r);
 
@@ -500,7 +476,12 @@ namespace Bb.Parsers
         public TreeRuleItem VisitRange(AstRange a)
         {
 
-            var result = new TreeRuleItem("..") { IsRange = true };
+            var result = new TreeRuleItem("..") 
+            {
+                IsRange = true,
+                Origin = a,
+            };
+
             result.Add(a.ValueStart.Accept(this));
             result.Add(a.ValueEnd.Accept(this));
 

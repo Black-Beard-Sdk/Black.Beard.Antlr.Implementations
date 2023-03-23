@@ -13,6 +13,8 @@ namespace Generate.Scripts
             return null; // "AstRule";
         }
 
+        public override string StrategyTemplateKey => "ScriptVisitor1";
+
         protected override bool Generate(AstRule ast, Context context)
         {
             return true; // TemplateSelector(ast, context) == "_";

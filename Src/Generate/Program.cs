@@ -25,6 +25,8 @@ var ctx = new Context()
 var p = new Process();
 p.Run(file, ctx);
 
+Console.WriteLine("End.");
+
 //ctx.Configuration.Save();
 
 

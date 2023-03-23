@@ -5,6 +5,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,10 +22,8 @@ namespace Generate.Scripts
             return null; // "AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum>";
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "ClassEnum";
-        }
+        public override string StrategyTemplateKey => "ClassEnum";
+
 
         protected override void ConfigureTemplate(Context context, CodeGeneratorVisitor generator)
         {
@@ -42,7 +41,7 @@ namespace Generate.Scripts
                             .GenerateIf(() => Generate(ast, context))
                             .IsEnum()
                             .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum")
-                            .Attribute(MemberAttributes.Public)
+                            .Attribute(TypeAttributes.Public)
                             .Field((field) =>
                             {
                                 field.Name(n => "_undefined");

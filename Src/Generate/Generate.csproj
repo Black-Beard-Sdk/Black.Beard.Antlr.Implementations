@@ -8,12 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Scripts\ScriptClassToString.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
     <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Newtonsoft" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Black.Beard.Parsers.Antlr\Black.Beard.Parsers.Antlr.csproj" />
+    <ProjectReference Include="..\Black.Beard.Parsers\Black.Beard.Parsers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

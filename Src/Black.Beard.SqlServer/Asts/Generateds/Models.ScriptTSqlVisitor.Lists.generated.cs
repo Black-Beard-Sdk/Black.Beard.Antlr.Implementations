@@ -23,6 +23,27 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
+        /// sql_clauses
+        /// 	 : sql_clause  (SEMI+  sql_clause)*  SEMI*
+        /// </summary>
+        public override AstRoot VisitSql_clauses(TSqlParser.Sql_clausesContext context)
+        {
+            TSqlParser.Sql_clauseContext[] source = context.sql_clause();
+            AstSqlClauses list = new AstSqlClauses(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Sql_clauseContext item = ((TSqlParser.Sql_clauseContext)(enumerator.Current));
+                AstSqlClause acceptResult = ((AstSqlClause)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// binary_content_nexts
         /// 	 : binary_content_next+
         /// </summary>
@@ -44,6 +65,237 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// id_dot_id
+        /// 	 : id_  (DOT  id_)?
+        /// </summary>
+        public override AstRoot VisitId_dot_id(TSqlParser.Id_dot_idContext context)
+        {
+            TSqlParser.Id_Context[] source = context.id_();
+            AstIdDotId list = new AstIdDotId(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Id_Context item = ((TSqlParser.Id_Context)(enumerator.Current));
+                AstId acceptResult = ((AstId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// alter_user_azure_sql_infos
+        /// 	 : alter_user_azure_sql_info  (COMMA  alter_user_azure_sql_info)*
+        /// </summary>
+        public override AstRoot VisitAlter_user_azure_sql_infos(TSqlParser.Alter_user_azure_sql_infosContext context)
+        {
+            TSqlParser.Alter_user_azure_sql_infoContext[] source = context.alter_user_azure_sql_info();
+            AstAlterUserAzureSqlInfos list = new AstAlterUserAzureSqlInfos(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Alter_user_azure_sql_infoContext item = ((TSqlParser.Alter_user_azure_sql_infoContext)(enumerator.Current));
+                AstAlterUserAzureSqlInfo acceptResult = ((AstAlterUserAzureSqlInfo)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// output_dml_list_elem
+        /// 	 : (expression | asterisk)  as_column_alias?
+        /// </summary>
+        public override AstRoot VisitOutput_dml_list_elem(TSqlParser.Output_dml_list_elemContext context)
+        {
+            TSqlParser.ExpressionContext[] source = context.expression();
+            AstOutputDmlListElem list = new AstOutputDmlListElem(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.ExpressionContext item = ((TSqlParser.ExpressionContext)(enumerator.Current));
+                AstExpression acceptResult = ((AstExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// on_partitions
+        /// 	 : ON  PARTITIONS  LR_BRACKET  partition_nums  (COMMA  partition_nums)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitOn_partitions(TSqlParser.On_partitionsContext context)
+        {
+            TSqlParser.Partition_numsContext[] source = context.partition_nums();
+            AstOnPartitions list = new AstOnPartitions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Partition_numsContext item = ((TSqlParser.Partition_numsContext)(enumerator.Current));
+                AstPartitionNums acceptResult = ((AstPartitionNums)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// table_indices_list
+        /// 	 : table_indices  (COMMA  table_indices)*
+        /// </summary>
+        public override AstRoot VisitTable_indices_list(TSqlParser.Table_indices_listContext context)
+        {
+            TSqlParser.Table_indicesContext[] source = context.table_indices();
+            AstTableIndicesList list = new AstTableIndicesList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Table_indicesContext item = ((TSqlParser.Table_indicesContext)(enumerator.Current));
+                AstTableIndices acceptResult = ((AstTableIndices)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// filespec
+        /// 	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitFilespec(TSqlParser.FilespecContext context)
+        {
+            TSqlParser.File_group_idContext[] source = context.file_group_id();
+            AstFilespec list = new AstFilespec(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.File_group_idContext item = ((TSqlParser.File_group_idContext)(enumerator.Current));
+                AstFileGroupId acceptResult = ((AstFileGroupId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// file_group_list
+        /// 	 : file_group_assign  (COMMA  file_group_assign)*
+        /// </summary>
+        public override AstRoot VisitFile_group_list(TSqlParser.File_group_listContext context)
+        {
+            TSqlParser.File_group_assignContext[] source = context.file_group_assign();
+            AstFileGroupList list = new AstFileGroupList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.File_group_assignContext item = ((TSqlParser.File_group_assignContext)(enumerator.Current));
+                AstFileGroupAssign acceptResult = ((AstFileGroupAssign)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// to_principal_rincipal_ids
+        /// 	 : to_principal += principal_id  (COMMA  to_principal += principal_id)*
+        /// </summary>
+        public override AstRoot VisitTo_principal_rincipal_ids(TSqlParser.To_principal_rincipal_idsContext context)
+        {
+            TSqlParser.Principal_idContext[] source = context.principal_id();
+            AstToPrincipalRincipalIds list = new AstToPrincipalRincipalIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Principal_idContext item = ((TSqlParser.Principal_idContext)(enumerator.Current));
+                AstPrincipalId acceptResult = ((AstPrincipalId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// order_by_clause
+        /// 	 : ORDER  BY  order_by_expression  (COMMA  order_by_expression)*
+        /// </summary>
+        public override AstRoot VisitOrder_by_clause(TSqlParser.Order_by_clauseContext context)
+        {
+            TSqlParser.Order_by_expressionContext[] source = context.order_by_expression();
+            AstOrderByClause list = new AstOrderByClause(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Order_by_expressionContext item = ((TSqlParser.Order_by_expressionContext)(enumerator.Current));
+                AstOrderByExpression acceptResult = ((AstOrderByExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// subqueries
+        /// 	 : subquery  (UNION  ALL  subquery)*
+        /// </summary>
+        public override AstRoot VisitSubqueries(TSqlParser.SubqueriesContext context)
+        {
+            TSqlParser.SubqueryContext[] source = context.subquery();
+            AstSubqueries list = new AstSubqueries(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.SubqueryContext item = ((TSqlParser.SubqueryContext)(enumerator.Current));
+                AstSubquery acceptResult = ((AstSubquery)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// with_table_hints
+        /// 	 : WITH  LR_BRACKET  table_hint  (COMMA?  table_hint)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitWith_table_hints(TSqlParser.With_table_hintsContext context)
+        {
+            TSqlParser.Table_hintContext[] source = context.table_hint();
+            AstWithTableHints list = new AstWithTableHints(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Table_hintContext item = ((TSqlParser.Table_hintContext)(enumerator.Current));
+                AstTableHint acceptResult = ((AstTableHint)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// sybase_legacy_hints
         /// 	 : sybase_legacy_hint+
         /// </summary>
@@ -56,6 +308,1539 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Sybase_legacy_hintContext item = ((TSqlParser.Sybase_legacy_hintContext)(enumerator.Current));
                 AstSybaseLegacyHint acceptResult = ((AstSybaseLegacyHint)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// column_name_list_with_order
+        /// 	 : column_ordered  (COMMA  column_ordered)*
+        /// </summary>
+        public override AstRoot VisitColumn_name_list_with_order(TSqlParser.Column_name_list_with_orderContext context)
+        {
+            TSqlParser.Column_orderedContext[] source = context.column_ordered();
+            AstColumnNameListWithOrder list = new AstColumnNameListWithOrder(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Column_orderedContext item = ((TSqlParser.Column_orderedContext)(enumerator.Current));
+                AstColumnOrdered acceptResult = ((AstColumnOrdered)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// schema_trigger_refs
+        /// 	 : schema_trigger_ref  (COMMA  schema_trigger_ref)*
+        /// </summary>
+        public override AstRoot VisitSchema_trigger_refs(TSqlParser.Schema_trigger_refsContext context)
+        {
+            TSqlParser.Schema_trigger_refContext[] source = context.schema_trigger_ref();
+            AstSchemaTriggerRefs list = new AstSchemaTriggerRefs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Schema_trigger_refContext item = ((TSqlParser.Schema_trigger_refContext)(enumerator.Current));
+                AstSchemaTriggerRef acceptResult = ((AstSchemaTriggerRef)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// ids
+        /// 	 : id_  (COMMA  id_)*
+        /// </summary>
+        public override AstRoot VisitIds(TSqlParser.IdsContext context)
+        {
+            TSqlParser.Id_Context[] source = context.id_();
+            AstIds list = new AstIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Id_Context item = ((TSqlParser.Id_Context)(enumerator.Current));
+                AstId acceptResult = ((AstId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// update_statistics_options
+        /// 	 : WITH  update_statistics_option  (COMMA  update_statistics_option)*
+        /// </summary>
+        public override AstRoot VisitUpdate_statistics_options(TSqlParser.Update_statistics_optionsContext context)
+        {
+            TSqlParser.Update_statistics_optionContext[] source = context.update_statistics_option();
+            AstUpdateStatisticsOptions list = new AstUpdateStatisticsOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Update_statistics_optionContext item = ((TSqlParser.Update_statistics_optionContext)(enumerator.Current));
+                AstUpdateStatisticsOption acceptResult = ((AstUpdateStatisticsOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// function_options
+        /// 	 : WITH  function_option  (COMMA  function_option)*
+        /// </summary>
+        public override AstRoot VisitFunction_options(TSqlParser.Function_optionsContext context)
+        {
+            TSqlParser.Function_optionContext[] source = context.function_option();
+            AstFunctionOptions list = new AstFunctionOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Function_optionContext item = ((TSqlParser.Function_optionContext)(enumerator.Current));
+                AstFunctionOption acceptResult = ((AstFunctionOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// procedure_params
+        /// 	 : procedure_param  (COMMA  procedure_param)*
+        /// </summary>
+        public override AstRoot VisitProcedure_params(TSqlParser.Procedure_paramsContext context)
+        {
+            TSqlParser.Procedure_paramContext[] source = context.procedure_param();
+            AstProcedureParams list = new AstProcedureParams(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Procedure_paramContext item = ((TSqlParser.Procedure_paramContext)(enumerator.Current));
+                AstProcedureParam acceptResult = ((AstProcedureParam)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// dml_trigger_options
+        /// 	 : WITH  dml_trigger_option  (COMMA  dml_trigger_option)*
+        /// </summary>
+        public override AstRoot VisitDml_trigger_options(TSqlParser.Dml_trigger_optionsContext context)
+        {
+            TSqlParser.Dml_trigger_optionContext[] source = context.dml_trigger_option();
+            AstDmlTriggerOptions list = new AstDmlTriggerOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Dml_trigger_optionContext item = ((TSqlParser.Dml_trigger_optionContext)(enumerator.Current));
+                AstDmlTriggerOption acceptResult = ((AstDmlTriggerOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// dml_trigger_operations
+        /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*
+        /// </summary>
+        public override AstRoot VisitDml_trigger_operations(TSqlParser.Dml_trigger_operationsContext context)
+        {
+            TSqlParser.Dml_trigger_operationContext[] source = context.dml_trigger_operation();
+            AstDmlTriggerOperations list = new AstDmlTriggerOperations(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Dml_trigger_operationContext item = ((TSqlParser.Dml_trigger_operationContext)(enumerator.Current));
+                AstDmlTriggerOperation acceptResult = ((AstDmlTriggerOperation)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// procedure_options
+        /// 	 : WITH  procedure_option  (COMMA  procedure_option)*
+        /// </summary>
+        public override AstRoot VisitProcedure_options(TSqlParser.Procedure_optionsContext context)
+        {
+            TSqlParser.Procedure_optionContext[] source = context.procedure_option();
+            AstProcedureOptions list = new AstProcedureOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Procedure_optionContext item = ((TSqlParser.Procedure_optionContext)(enumerator.Current));
+                AstProcedureOption acceptResult = ((AstProcedureOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// xml_index_options
+        /// 	 : WITH  LR_BRACKET  xml_index_option  (COMMA  xml_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitXml_index_options(TSqlParser.Xml_index_optionsContext context)
+        {
+            TSqlParser.Xml_index_optionContext[] source = context.xml_index_option();
+            AstXmlIndexOptions list = new AstXmlIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Xml_index_optionContext item = ((TSqlParser.Xml_index_optionContext)(enumerator.Current));
+                AstXmlIndexOption acceptResult = ((AstXmlIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// create_columnstore_index_options
+        /// 	 : WITH  LR_BRACKET  columnstore_index_option  (COMMA  columnstore_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitCreate_columnstore_index_options(TSqlParser.Create_columnstore_index_optionsContext context)
+        {
+            TSqlParser.Columnstore_index_optionContext[] source = context.columnstore_index_option();
+            AstCreateColumnstoreIndexOptions list = new AstCreateColumnstoreIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Columnstore_index_optionContext item = ((TSqlParser.Columnstore_index_optionContext)(enumerator.Current));
+                AstColumnstoreIndexOption acceptResult = ((AstColumnstoreIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// single_partition_rebuild_index_options
+        /// 	 : WITH  LR_BRACKET  single_partition_rebuild_index_option  (COMMA  single_partition_rebuild_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitSingle_partition_rebuild_index_options(TSqlParser.Single_partition_rebuild_index_optionsContext context)
+        {
+            TSqlParser.Single_partition_rebuild_index_optionContext[] source = context.single_partition_rebuild_index_option();
+            AstSinglePartitionRebuildIndexOptions list = new AstSinglePartitionRebuildIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Single_partition_rebuild_index_optionContext item = ((TSqlParser.Single_partition_rebuild_index_optionContext)(enumerator.Current));
+                AstSinglePartitionRebuildIndexOption acceptResult = ((AstSinglePartitionRebuildIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// rebuild_index_options
+        /// 	 : WITH  LR_BRACKET  rebuild_index_option  (COMMA  rebuild_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitRebuild_index_options(TSqlParser.Rebuild_index_optionsContext context)
+        {
+            TSqlParser.Rebuild_index_optionContext[] source = context.rebuild_index_option();
+            AstRebuildIndexOptions list = new AstRebuildIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Rebuild_index_optionContext item = ((TSqlParser.Rebuild_index_optionContext)(enumerator.Current));
+                AstRebuildIndexOption acceptResult = ((AstRebuildIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// set_index_options
+        /// 	 : SET  LR_BRACKET  set_index_option  (COMMA  set_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitSet_index_options(TSqlParser.Set_index_optionsContext context)
+        {
+            TSqlParser.Set_index_optionContext[] source = context.set_index_option();
+            AstSetIndexOptions list = new AstSetIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Set_index_optionContext item = ((TSqlParser.Set_index_optionContext)(enumerator.Current));
+                AstSetIndexOption acceptResult = ((AstSetIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// reorganize_options
+        /// 	 : WITH  LR_BRACKET  (reorganize_option  (COMMA  reorganize_option)*)  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitReorganize_options(TSqlParser.Reorganize_optionsContext context)
+        {
+            TSqlParser.Reorganize_optionContext[] source = context.reorganize_option();
+            AstReorganizeOptions list = new AstReorganizeOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Reorganize_optionContext item = ((TSqlParser.Reorganize_optionContext)(enumerator.Current));
+                AstReorganizeOption acceptResult = ((AstReorganizeOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// resumable_index_options
+        /// 	 : WITH  LR_BRACKET  (resumable_index_option  (COMMA  resumable_index_option)*)  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitResumable_index_options(TSqlParser.Resumable_index_optionsContext context)
+        {
+            TSqlParser.Resumable_index_optionContext[] source = context.resumable_index_option();
+            AstResumableIndexOptions list = new AstResumableIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Resumable_index_optionContext item = ((TSqlParser.Resumable_index_optionContext)(enumerator.Current));
+                AstResumableIndexOption acceptResult = ((AstResumableIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// relational_index_options
+        /// 	 : relational_index_option  (COMMA  relational_index_option)*
+        /// </summary>
+        public override AstRoot VisitRelational_index_options(TSqlParser.Relational_index_optionsContext context)
+        {
+            TSqlParser.Relational_index_optionContext[] source = context.relational_index_option();
+            AstRelationalIndexOptions list = new AstRelationalIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Relational_index_optionContext item = ((TSqlParser.Relational_index_optionContext)(enumerator.Current));
+                AstRelationalIndexOption acceptResult = ((AstRelationalIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// create_database_option_list
+        /// 	 : create_database_option  (COMMA  create_database_option)*
+        /// </summary>
+        public override AstRoot VisitCreate_database_option_list(TSqlParser.Create_database_option_listContext context)
+        {
+            TSqlParser.Create_database_optionContext[] source = context.create_database_option();
+            AstCreateDatabaseOptionList list = new AstCreateDatabaseOptionList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Create_database_optionContext item = ((TSqlParser.Create_database_optionContext)(enumerator.Current));
+                AstCreateDatabaseOption acceptResult = ((AstCreateDatabaseOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// database_file_spec_list
+        /// 	 : database_file_spec  (COMMA  database_file_spec)*
+        /// </summary>
+        public override AstRoot VisitDatabase_file_spec_list(TSqlParser.Database_file_spec_listContext context)
+        {
+            TSqlParser.Database_file_specContext[] source = context.database_file_spec();
+            AstDatabaseFileSpecList list = new AstDatabaseFileSpecList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Database_file_specContext item = ((TSqlParser.Database_file_specContext)(enumerator.Current));
+                AstDatabaseFileSpec acceptResult = ((AstDatabaseFileSpec)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// output_dml_list_elems
+        /// 	 : output_dml_list_elem  (COMMA  output_dml_list_elem)*
+        /// </summary>
+        public override AstRoot VisitOutput_dml_list_elems(TSqlParser.Output_dml_list_elemsContext context)
+        {
+            TSqlParser.Output_dml_list_elemContext[] source = context.output_dml_list_elem();
+            AstOutputDmlListElems list = new AstOutputDmlListElems(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Output_dml_list_elemContext item = ((TSqlParser.Output_dml_list_elemContext)(enumerator.Current));
+                AstOutputDmlListElem acceptResult = ((AstOutputDmlListElem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// update_elems
+        /// 	 : update_elem  (COMMA  update_elem)*
+        /// </summary>
+        public override AstRoot VisitUpdate_elems(TSqlParser.Update_elemsContext context)
+        {
+            TSqlParser.Update_elemContext[] source = context.update_elem();
+            AstUpdateElems list = new AstUpdateElems(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Update_elemContext item = ((TSqlParser.Update_elemContext)(enumerator.Current));
+                AstUpdateElem acceptResult = ((AstUpdateElem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// create_security_policy_adds
+        /// 	 : create_security_policy_add  (COMMA?  create_security_policy_add)*
+        /// </summary>
+        public override AstRoot VisitCreate_security_policy_adds(TSqlParser.Create_security_policy_addsContext context)
+        {
+            TSqlParser.Create_security_policy_addContext[] source = context.create_security_policy_add();
+            AstCreateSecurityPolicyAdds list = new AstCreateSecurityPolicyAdds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Create_security_policy_addContext item = ((TSqlParser.Create_security_policy_addContext)(enumerator.Current));
+                AstCreateSecurityPolicyAdd acceptResult = ((AstCreateSecurityPolicyAdd)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// update_elem_merges
+        /// 	 : update_elem_merge  (COMMA  update_elem_merge)*
+        /// </summary>
+        public override AstRoot VisitUpdate_elem_merges(TSqlParser.Update_elem_mergesContext context)
+        {
+            TSqlParser.Update_elem_mergeContext[] source = context.update_elem_merge();
+            AstUpdateElemMerges list = new AstUpdateElemMerges(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Update_elem_mergeContext item = ((TSqlParser.Update_elem_mergeContext)(enumerator.Current));
+                AstUpdateElemMerge acceptResult = ((AstUpdateElemMerge)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// file_group_ids
+        /// 	 : file_group_id  (COMMA  file_group_id)*
+        /// </summary>
+        public override AstRoot VisitFile_group_ids(TSqlParser.File_group_idsContext context)
+        {
+            TSqlParser.File_group_idContext[] source = context.file_group_id();
+            AstFileGroupIds list = new AstFileGroupIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.File_group_idContext item = ((TSqlParser.File_group_idContext)(enumerator.Current));
+                AstFileGroupId acceptResult = ((AstFileGroupId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// string_list
+        /// 	 : stringtext  (COMMA  stringtext)*
+        /// </summary>
+        public override AstRoot VisitString_list(TSqlParser.String_listContext context)
+        {
+            TSqlParser.StringtextContext[] source = context.stringtext();
+            AstStringList list = new AstStringList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.StringtextContext item = ((TSqlParser.StringtextContext)(enumerator.Current));
+                AstStringtext acceptResult = ((AstStringtext)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// asymmetric_key_option
+        /// 	 : WITH  PRIVATE  KEY  LR_BRACKET  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitAsymmetric_key_option(TSqlParser.Asymmetric_key_optionContext context)
+        {
+            TSqlParser.Asymmetric_key_password_change_optionContext[] source = context.asymmetric_key_password_change_option();
+            AstAsymmetricKeyOption list = new AstAsymmetricKeyOption(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Asymmetric_key_password_change_optionContext item = ((TSqlParser.Asymmetric_key_password_change_optionContext)(enumerator.Current));
+                AstAsymmetricKeyPasswordChangeOption acceptResult = ((AstAsymmetricKeyPasswordChangeOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// assemblies
+        /// 	 : assembly_id  (COMMA?  assembly_id)+
+        /// </summary>
+        public override AstRoot VisitAssemblies(TSqlParser.AssembliesContext context)
+        {
+            TSqlParser.Assembly_idContext[] source = context.assembly_id();
+            AstAssemblies list = new AstAssemblies(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Assembly_idContext item = ((TSqlParser.Assembly_idContext)(enumerator.Current));
+                AstAssemblyId acceptResult = ((AstAssemblyId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_string_locals
+        /// 	 : decimal_string_local_id  (COMMA  decimal_string_local_id)*
+        /// </summary>
+        public override AstRoot VisitDecimal_string_locals(TSqlParser.Decimal_string_localsContext context)
+        {
+            TSqlParser.Decimal_string_local_idContext[] source = context.decimal_string_local_id();
+            AstDecimalStringLocals list = new AstDecimalStringLocals(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Decimal_string_local_idContext item = ((TSqlParser.Decimal_string_local_idContext)(enumerator.Current));
+                AstDecimalStringLocalId acceptResult = ((AstDecimalStringLocalId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// column_name_list
+        /// 	 : id_  (COMMA  id_)*
+        /// </summary>
+        public override AstRoot VisitColumn_name_list(TSqlParser.Column_name_listContext context)
+        {
+            TSqlParser.Id_Context[] source = context.id_();
+            AstColumnNameList list = new AstColumnNameList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Id_Context item = ((TSqlParser.Id_Context)(enumerator.Current));
+                AstId acceptResult = ((AstId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// insert_column_name_list
+        /// 	 : col += insert_column_id  (COMMA  col += insert_column_id)*
+        /// </summary>
+        public override AstRoot VisitInsert_column_name_list(TSqlParser.Insert_column_name_listContext context)
+        {
+            TSqlParser.Insert_column_idContext[] source = context.insert_column_id();
+            AstInsertColumnNameList list = new AstInsertColumnNameList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Insert_column_idContext item = ((TSqlParser.Insert_column_idContext)(enumerator.Current));
+                AstInsertColumnId acceptResult = ((AstInsertColumnId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// file_specs
+        /// 	 : file_spec  (COMMA  file_spec)*
+        /// </summary>
+        public override AstRoot VisitFile_specs(TSqlParser.File_specsContext context)
+        {
+            TSqlParser.File_specContext[] source = context.file_spec();
+            AstFileSpecs list = new AstFileSpecs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.File_specContext item = ((TSqlParser.File_specContext)(enumerator.Current));
+                AstFileSpec acceptResult = ((AstFileSpec)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// database_filestream_options
+        /// 	 : database_filestream_option  (COMMA  database_filestream_option)*
+        /// </summary>
+        public override AstRoot VisitDatabase_filestream_options(TSqlParser.Database_filestream_optionsContext context)
+        {
+            TSqlParser.Database_filestream_optionContext[] source = context.database_filestream_option();
+            AstDatabaseFilestreamOptions list = new AstDatabaseFilestreamOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Database_filestream_optionContext item = ((TSqlParser.Database_filestream_optionContext)(enumerator.Current));
+                AstDatabaseFilestreamOption acceptResult = ((AstDatabaseFilestreamOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// expression_list
+        /// 	 : expression  (COMMA  expression)*
+        /// </summary>
+        public override AstRoot VisitExpression_list(TSqlParser.Expression_listContext context)
+        {
+            TSqlParser.ExpressionContext[] source = context.expression();
+            AstExpressionList list = new AstExpressionList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.ExpressionContext item = ((TSqlParser.ExpressionContext)(enumerator.Current));
+                AstExpression acceptResult = ((AstExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// table_value_constructor
+        /// 	 : VALUES  LR_BRACKET  expression_list  RR_BRACKET  (COMMA  LR_BRACKET  expression_list  RR_BRACKET)*
+        /// </summary>
+        public override AstRoot VisitTable_value_constructor(TSqlParser.Table_value_constructorContext context)
+        {
+            TSqlParser.Expression_listContext[] source = context.expression_list();
+            AstTableValueConstructor list = new AstTableValueConstructor(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Expression_listContext item = ((TSqlParser.Expression_listContext)(enumerator.Current));
+                AstExpressionList acceptResult = ((AstExpressionList)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// column_alias_list
+        /// 	 : LR_BRACKET  alias += column_alias  (COMMA  alias += column_alias)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitColumn_alias_list(TSqlParser.Column_alias_listContext context)
+        {
+            TSqlParser.Column_aliasContext[] source = context.column_alias();
+            AstColumnAliasList list = new AstColumnAliasList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Column_aliasContext item = ((TSqlParser.Column_aliasContext)(enumerator.Current));
+                AstColumnAlias acceptResult = ((AstColumnAlias)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// index_values
+        /// 	 : index_value  (COMMA  index_value)*
+        /// </summary>
+        public override AstRoot VisitIndex_values(TSqlParser.Index_valuesContext context)
+        {
+            TSqlParser.Index_valueContext[] source = context.index_value();
+            AstIndexValues list = new AstIndexValues(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Index_valueContext item = ((TSqlParser.Index_valueContext)(enumerator.Current));
+                AstIndexValue acceptResult = ((AstIndexValue)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// expressions
+        /// 	 : expression  (COMMA  expression)*
+        /// </summary>
+        public override AstRoot VisitExpressions(TSqlParser.ExpressionsContext context)
+        {
+            TSqlParser.ExpressionContext[] source = context.expression();
+            AstExpressions list = new AstExpressions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.ExpressionContext item = ((TSqlParser.ExpressionContext)(enumerator.Current));
+                AstExpression acceptResult = ((AstExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// full_column_names
+        /// 	 : LR_BRACKET  full_column_name  (COMMA  full_column_name)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitFull_column_names(TSqlParser.Full_column_namesContext context)
+        {
+            TSqlParser.Full_column_nameContext[] source = context.full_column_name();
+            AstFullColumnNames list = new AstFullColumnNames(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Full_column_nameContext item = ((TSqlParser.Full_column_nameContext)(enumerator.Current));
+                AstFullColumnName acceptResult = ((AstFullColumnName)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// bulk_options
+        /// 	 : bulk_option  (COMMA  bulk_option)*
+        /// </summary>
+        public override AstRoot VisitBulk_options(TSqlParser.Bulk_optionsContext context)
+        {
+            TSqlParser.Bulk_optionContext[] source = context.bulk_option();
+            AstBulkOptions list = new AstBulkOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Bulk_optionContext item = ((TSqlParser.Bulk_optionContext)(enumerator.Current));
+                AstBulkOption acceptResult = ((AstBulkOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// full_column_name_list
+        /// 	 : full_column_name  (COMMA  full_column_name)*
+        /// </summary>
+        public override AstRoot VisitFull_column_name_list(TSqlParser.Full_column_name_listContext context)
+        {
+            TSqlParser.Full_column_nameContext[] source = context.full_column_name();
+            AstFullColumnNameList list = new AstFullColumnNameList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Full_column_nameContext item = ((TSqlParser.Full_column_nameContext)(enumerator.Current));
+                AstFullColumnName acceptResult = ((AstFullColumnName)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// schema_declaration
+        /// 	 : column_declaration  (COMMA  column_declaration)*
+        /// </summary>
+        public override AstRoot VisitSchema_declaration(TSqlParser.Schema_declarationContext context)
+        {
+            TSqlParser.Column_declarationContext[] source = context.column_declaration();
+            AstSchemaDeclaration list = new AstSchemaDeclaration(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Column_declarationContext item = ((TSqlParser.Column_declarationContext)(enumerator.Current));
+                AstColumnDeclaration acceptResult = ((AstColumnDeclaration)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// json_declaration
+        /// 	 : json_column_declaration  (COMMA  json_column_declaration)*
+        /// </summary>
+        public override AstRoot VisitJson_declaration(TSqlParser.Json_declarationContext context)
+        {
+            TSqlParser.Json_column_declarationContext[] source = context.json_column_declaration();
+            AstJsonDeclaration list = new AstJsonDeclaration(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Json_column_declarationContext item = ((TSqlParser.Json_column_declarationContext)(enumerator.Current));
+                AstJsonColumnDeclaration acceptResult = ((AstJsonColumnDeclaration)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// expression2
+        /// 	 : expression  (COMMA  expression)?
+        /// </summary>
+        public override AstRoot VisitExpression2(TSqlParser.Expression2Context context)
+        {
+            TSqlParser.ExpressionContext[] source = context.expression();
+            AstExpression2 list = new AstExpression2(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.ExpressionContext item = ((TSqlParser.ExpressionContext)(enumerator.Current));
+                AstExpression acceptResult = ((AstExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// table_sources
+        /// 	 : table_source  (COMMA  table_source)*
+        /// </summary>
+        public override AstRoot VisitTable_sources(TSqlParser.Table_sourcesContext context)
+        {
+            TSqlParser.Table_sourceContext[] source = context.table_source();
+            AstTableSources list = new AstTableSources(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Table_sourceContext item = ((TSqlParser.Table_sourceContext)(enumerator.Current));
+                AstTableSource acceptResult = ((AstTableSource)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// select_list
+        /// 	 : select_list_elem  (COMMA  select_list_elem)*
+        /// </summary>
+        public override AstRoot VisitSelect_list(TSqlParser.Select_listContext context)
+        {
+            TSqlParser.Select_list_elemContext[] source = context.select_list_elem();
+            AstSelectList list = new AstSelectList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Select_list_elemContext item = ((TSqlParser.Select_list_elemContext)(enumerator.Current));
+                AstSelectListElem acceptResult = ((AstSelectListElem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// udt_method_arguments
+        /// 	 : LR_BRACKET  execute_var_string  (COMMA  execute_var_string)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitUdt_method_arguments(TSqlParser.Udt_method_argumentsContext context)
+        {
+            TSqlParser.Execute_var_stringContext[] source = context.execute_var_string();
+            AstUdtMethodArguments list = new AstUdtMethodArguments(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Execute_var_stringContext item = ((TSqlParser.Execute_var_stringContext)(enumerator.Current));
+                AstExecuteVarString acceptResult = ((AstExecuteVarString)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// optimize_for_args
+        /// 	 : optimize_for_arg  (COMMA  optimize_for_arg)*
+        /// </summary>
+        public override AstRoot VisitOptimize_for_args(TSqlParser.Optimize_for_argsContext context)
+        {
+            TSqlParser.Optimize_for_argContext[] source = context.optimize_for_arg();
+            AstOptimizeForArgs list = new AstOptimizeForArgs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Optimize_for_argContext item = ((TSqlParser.Optimize_for_argContext)(enumerator.Current));
+                AstOptimizeForArg acceptResult = ((AstOptimizeForArg)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// option_clause
+        /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitOption_clause(TSqlParser.Option_clauseContext context)
+        {
+            TSqlParser.OptionContext[] source = context.option();
+            AstOptionClause list = new AstOptionClause(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.OptionContext item = ((TSqlParser.OptionContext)(enumerator.Current));
+                AstOption acceptResult = ((AstOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// groupSet_list
+        /// 	 : grouping_sets_item  (COMMA  grouping_sets_item)*
+        /// </summary>
+        public override AstRoot VisitGroupSet_list(TSqlParser.GroupSet_listContext context)
+        {
+            TSqlParser.Grouping_sets_itemContext[] source = context.grouping_sets_item();
+            AstGroupSetList list = new AstGroupSetList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Grouping_sets_itemContext item = ((TSqlParser.Grouping_sets_itemContext)(enumerator.Current));
+                AstGroupingSetsItem acceptResult = ((AstGroupingSetsItem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// with_expression
+        /// 	 : WITH  common_table_expression  (COMMA  common_table_expression)*
+        /// </summary>
+        public override AstRoot VisitWith_expression(TSqlParser.With_expressionContext context)
+        {
+            TSqlParser.Common_table_expressionContext[] source = context.common_table_expression();
+            AstWithExpression list = new AstWithExpression(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Common_table_expressionContext item = ((TSqlParser.Common_table_expressionContext)(enumerator.Current));
+                AstCommonTableExpression acceptResult = ((AstCommonTableExpression)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// special_lists
+        /// 	 : special_list  (COMMA  special_list)*
+        /// </summary>
+        public override AstRoot VisitSpecial_lists(TSqlParser.Special_listsContext context)
+        {
+            TSqlParser.Special_listContext[] source = context.special_list();
+            AstSpecialLists list = new AstSpecialLists(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Special_listContext item = ((TSqlParser.Special_listContext)(enumerator.Current));
+                AstSpecialList acceptResult = ((AstSpecialList)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// local_ids
+        /// 	 : local_id  (COMMA  local_id)*
+        /// </summary>
+        public override AstRoot VisitLocal_ids(TSqlParser.Local_idsContext context)
+        {
+            TSqlParser.Local_idContext[] source = context.local_id();
+            AstLocalIds list = new AstLocalIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Local_idContext item = ((TSqlParser.Local_idContext)(enumerator.Current));
+                AstLocalId acceptResult = ((AstLocalId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// connection_nodes
+        /// 	 : connection_node  (COMMA  connection_node)*
+        /// </summary>
+        public override AstRoot VisitConnection_nodes(TSqlParser.Connection_nodesContext context)
+        {
+            TSqlParser.Connection_nodeContext[] source = context.connection_node();
+            AstConnectionNodes list = new AstConnectionNodes(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Connection_nodeContext item = ((TSqlParser.Connection_nodeContext)(enumerator.Current));
+                AstConnectionNode acceptResult = ((AstConnectionNode)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// dbcc_options
+        /// 	 : simple_id  (COMMA  simple_id)?
+        /// </summary>
+        public override AstRoot VisitDbcc_options(TSqlParser.Dbcc_optionsContext context)
+        {
+            TSqlParser.Simple_idContext[] source = context.simple_id();
+            AstDbccOptions list = new AstDbccOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Simple_idContext item = ((TSqlParser.Simple_idContext)(enumerator.Current));
+                AstSimpleId acceptResult = ((AstSimpleId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// execute_var_strings
+        /// 	 : execute_var_string  (COMMA  execute_var_string)*
+        /// </summary>
+        public override AstRoot VisitExecute_var_strings(TSqlParser.Execute_var_stringsContext context)
+        {
+            TSqlParser.Execute_var_stringContext[] source = context.execute_var_string();
+            AstExecuteVarStrings list = new AstExecuteVarStrings(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Execute_var_stringContext item = ((TSqlParser.Execute_var_stringContext)(enumerator.Current));
+                AstExecuteVarString acceptResult = ((AstExecuteVarString)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// execute_statement_arg_nameds
+        /// 	 : execute_statement_arg_named  (COMMA  execute_statement_arg_named)*
+        /// </summary>
+        public override AstRoot VisitExecute_statement_arg_nameds(TSqlParser.Execute_statement_arg_namedsContext context)
+        {
+            TSqlParser.Execute_statement_arg_namedContext[] source = context.execute_statement_arg_named();
+            AstExecuteStatementArgNameds list = new AstExecuteStatementArgNameds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Execute_statement_arg_namedContext item = ((TSqlParser.Execute_statement_arg_namedContext)(enumerator.Current));
+                AstExecuteStatementArgNamed acceptResult = ((AstExecuteStatementArgNamed)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// execute_statement_args
+        /// 	 : execute_statement_arg  (COMMA  execute_statement_arg)*
+        /// </summary>
+        public override AstRoot VisitExecute_statement_args(TSqlParser.Execute_statement_argsContext context)
+        {
+            TSqlParser.Execute_statement_argContext[] source = context.execute_statement_arg();
+            AstExecuteStatementArgs list = new AstExecuteStatementArgs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Execute_statement_argContext item = ((TSqlParser.Execute_statement_argContext)(enumerator.Current));
+                AstExecuteStatementArg acceptResult = ((AstExecuteStatementArg)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// declare_locals
+        /// 	 : declare_local  (COMMA  loc += declare_local)*
+        /// </summary>
+        public override AstRoot VisitDeclare_locals(TSqlParser.Declare_localsContext context)
+        {
+            TSqlParser.Declare_localContext[] source = context.declare_local();
+            AstDeclareLocals list = new AstDeclareLocals(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Declare_localContext item = ((TSqlParser.Declare_localContext)(enumerator.Current));
+                AstDeclareLocal acceptResult = ((AstDeclareLocal)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// xml_declarations
+        /// 	 : xml_declaration  (COMMA  xml_dec += xml_declaration)*
+        /// </summary>
+        public override AstRoot VisitXml_declarations(TSqlParser.Xml_declarationsContext context)
+        {
+            TSqlParser.Xml_declarationContext[] source = context.xml_declaration();
+            AstXmlDeclarations list = new AstXmlDeclarations(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Xml_declarationContext item = ((TSqlParser.Xml_declarationContext)(enumerator.Current));
+                AstXmlDeclaration acceptResult = ((AstXmlDeclaration)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// schema_view_refs
+        /// 	 : schema_view_ref  (COMMA  schema_view_ref)*
+        /// </summary>
+        public override AstRoot VisitSchema_view_refs(TSqlParser.Schema_view_refsContext context)
+        {
+            TSqlParser.Schema_view_refContext[] source = context.schema_view_ref();
+            AstSchemaViewRefs list = new AstSchemaViewRefs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Schema_view_refContext item = ((TSqlParser.Schema_view_refContext)(enumerator.Current));
+                AstSchemaViewRef acceptResult = ((AstSchemaViewRef)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// table_names
+        /// 	 : full_table_ref  (COMMA  full_table_ref)*
+        /// </summary>
+        public override AstRoot VisitTable_names(TSqlParser.Table_namesContext context)
+        {
+            TSqlParser.Full_table_refContext[] source = context.full_table_ref();
+            AstTableNames list = new AstTableNames(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Full_table_refContext item = ((TSqlParser.Full_table_refContext)(enumerator.Current));
+                AstFullTableRef acceptResult = ((AstFullTableRef)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// func_proc_name_schemas
+        /// 	 : schema_func_proc_ref  (COMMA  schema_func_proc_ref)*
+        /// </summary>
+        public override AstRoot VisitFunc_proc_name_schemas(TSqlParser.Func_proc_name_schemasContext context)
+        {
+            TSqlParser.Schema_func_proc_refContext[] source = context.schema_func_proc_ref();
+            AstFuncProcNameSchemas list = new AstFuncProcNameSchemas(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Schema_func_proc_refContext item = ((TSqlParser.Schema_func_proc_refContext)(enumerator.Current));
+                AstSchemaFuncProcRef acceptResult = ((AstSchemaFuncProcRef)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// drop_backward_compatible_indexs
+        /// 	 : drop_backward_compatible_index  (COMMA  drop_backward_compatible_index)*
+        /// </summary>
+        public override AstRoot VisitDrop_backward_compatible_indexs(TSqlParser.Drop_backward_compatible_indexsContext context)
+        {
+            TSqlParser.Drop_backward_compatible_indexContext[] source = context.drop_backward_compatible_index();
+            AstDropBackwardCompatibleIndexs list = new AstDropBackwardCompatibleIndexs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Drop_backward_compatible_indexContext item = ((TSqlParser.Drop_backward_compatible_indexContext)(enumerator.Current));
+                AstDropBackwardCompatibleIndex acceptResult = ((AstDropBackwardCompatibleIndex)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// drop_relational_or_xml_or_spatial_indexs
+        /// 	 : drop_relational_or_xml_or_spatial_index  (COMMA  drop_relational_or_xml_or_spatial_index)*
+        /// </summary>
+        public override AstRoot VisitDrop_relational_or_xml_or_spatial_indexs(TSqlParser.Drop_relational_or_xml_or_spatial_indexsContext context)
+        {
+            TSqlParser.Drop_relational_or_xml_or_spatial_indexContext[] source = context.drop_relational_or_xml_or_spatial_index();
+            AstDropRelationalOrXmlOrSpatialIndexs list = new AstDropRelationalOrXmlOrSpatialIndexs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Drop_relational_or_xml_or_spatial_indexContext item = ((TSqlParser.Drop_relational_or_xml_or_spatial_indexContext)(enumerator.Current));
+                AstDropRelationalOrXmlOrSpatialIndex acceptResult = ((AstDropRelationalOrXmlOrSpatialIndex)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// change_tracking_option_lists
+        /// 	 : change_tracking_option_list  (COMMA  change_tracking_option_list)*
+        /// </summary>
+        public override AstRoot VisitChange_tracking_option_lists(TSqlParser.Change_tracking_option_listsContext context)
+        {
+            TSqlParser.Change_tracking_option_listContext[] source = context.change_tracking_option_list();
+            AstChangeTrackingOptionLists list = new AstChangeTrackingOptionLists(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Change_tracking_option_listContext item = ((TSqlParser.Change_tracking_option_listContext)(enumerator.Current));
+                AstChangeTrackingOptionList acceptResult = ((AstChangeTrackingOptionList)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// filespecs
+        /// 	 : filespec  (COMMA  filespec)*
+        /// </summary>
+        public override AstRoot VisitFilespecs(TSqlParser.FilespecsContext context)
+        {
+            TSqlParser.FilespecContext[] source = context.filespec();
+            AstFilespecs list = new AstFilespecs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.FilespecContext item = ((TSqlParser.FilespecContext)(enumerator.Current));
+                AstFilespec acceptResult = ((AstFilespec)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// view_attributes
+        /// 	 : WITH  view_attribute  (COMMA  view_attribute)*
+        /// </summary>
+        public override AstRoot VisitView_attributes(TSqlParser.View_attributesContext context)
+        {
+            TSqlParser.View_attributeContext[] source = context.view_attribute();
+            AstViewAttributes list = new AstViewAttributes(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.View_attributeContext item = ((TSqlParser.View_attributeContext)(enumerator.Current));
+                AstViewAttribute acceptResult = ((AstViewAttribute)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// create_table_index_options
+        /// 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*  RR_BRACKET
+        /// </summary>
+        public override AstRoot VisitCreate_table_index_options(TSqlParser.Create_table_index_optionsContext context)
+        {
+            TSqlParser.Create_table_index_optionContext[] source = context.create_table_index_option();
+            AstCreateTableIndexOptions list = new AstCreateTableIndexOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Create_table_index_optionContext item = ((TSqlParser.Create_table_index_optionContext)(enumerator.Current));
+                AstCreateTableIndexOption acceptResult = ((AstCreateTableIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// tableoptions
+        /// 	 : table_option  (COMMA  table_option)*
+        /// </summary>
+        public override AstRoot VisitTableoptions(TSqlParser.TableoptionsContext context)
+        {
+            TSqlParser.Table_optionContext[] source = context.table_option();
+            AstTableoptions list = new AstTableoptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Table_optionContext item = ((TSqlParser.Table_optionContext)(enumerator.Current));
+                AstTableOption acceptResult = ((AstTableOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// alter_user_items
+        /// 	 : alter_user_item  (COMMA  alter_user_item)*
+        /// </summary>
+        public override AstRoot VisitAlter_user_items(TSqlParser.Alter_user_itemsContext context)
+        {
+            TSqlParser.Alter_user_itemContext[] source = context.alter_user_item();
+            AstAlterUserItems list = new AstAlterUserItems(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Alter_user_itemContext item = ((TSqlParser.Alter_user_itemContext)(enumerator.Current));
+                AstAlterUserItem acceptResult = ((AstAlterUserItem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// contracts
+        /// 	 : contract  (COMMA  contract)*
+        /// </summary>
+        public override AstRoot VisitContracts(TSqlParser.ContractsContext context)
+        {
+            TSqlParser.ContractContext[] source = context.contract();
+            AstContracts list = new AstContracts(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.ContractContext item = ((TSqlParser.ContractContext)(enumerator.Current));
+                AstContract acceptResult = ((AstContract)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// alter_service_contracts
+        /// 	 : modified_contract_id  (COMMA  modified_contract_id)
+        /// </summary>
+        public override AstRoot VisitAlter_service_contracts(TSqlParser.Alter_service_contractsContext context)
+        {
+            TSqlParser.Modified_contract_idContext[] source = context.modified_contract_id();
+            AstAlterServiceContracts list = new AstAlterServiceContracts(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Modified_contract_idContext item = ((TSqlParser.Modified_contract_idContext)(enumerator.Current));
+                AstModifiedContractId acceptResult = ((AstModifiedContractId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_ranges
+        /// 	 : decimal_range  (COMMA?  decimal_range)*
+        /// </summary>
+        public override AstRoot VisitDecimal_ranges(TSqlParser.Decimal_rangesContext context)
+        {
+            TSqlParser.Decimal_rangeContext[] source = context.decimal_range();
+            AstDecimalRanges list = new AstDecimalRanges(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Decimal_rangeContext item = ((TSqlParser.Decimal_rangeContext)(enumerator.Current));
+                AstDecimalRange acceptResult = ((AstDecimalRange)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);

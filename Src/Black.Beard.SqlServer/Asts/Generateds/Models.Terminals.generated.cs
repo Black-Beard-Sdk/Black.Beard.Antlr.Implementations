@@ -19,7 +19,7 @@ namespace Bb.Asts.TSql
     /// empty_statement
     /// 	 : SEMI
     /// </summary>
-    public partial class AstEmptyStatement : AstRule<AstTerminal<string>
+    public partial class AstEmptyStatement : AstTerminal<string>
     {
         
         public AstEmptyStatement(ITerminalNode t) : 
@@ -47,7 +47,7 @@ namespace Bb.Asts.TSql
     /// alter_assembly_from_clause_start
     /// 	 : FROM
     /// </summary>
-    public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string
+    public partial class AstAlterAssemblyFromClauseStart : AstTerminal<string>
     {
         
         public AstAlterAssemblyFromClauseStart(ITerminalNode t) : 
@@ -96,6 +96,34 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterAssemblyDrop(this);
+        }
+    }
+    
+    /// <summary>
+    /// assembly_file_name
+    /// 	 : STRING
+    /// </summary>
+    public partial class AstAssemblyFileName : AstTerminal<string>
+    {
+        
+        public AstAssemblyFileName(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstAssemblyFileName(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAssemblyFileName(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitAssemblyFileName(this);
         }
     }
     
@@ -383,7 +411,7 @@ namespace Bb.Asts.TSql
     /// star_asterisk
     /// 	 : STAR
     /// </summary>
-    public partial class AstStarAsterisk : AstTerminal<string>
+    public partial class AstStarAsterisk : AstSelectListElem
     {
         
         public AstStarAsterisk(ITerminalNode t) : 
@@ -437,6 +465,62 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitConstant(this);
+        }
+    }
+    
+    /// <summary>
+    /// stringtext
+    /// 	 : STRING
+    /// </summary>
+    public partial class AstStringtext : AstTerminal<string>
+    {
+        
+        public AstStringtext(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstStringtext(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstStringtext(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStringtext(this);
+        }
+    }
+    
+    /// <summary>
+    /// local_id
+    /// 	 : LOCAL_ID
+    /// </summary>
+    public partial class AstLocalId : AstTerminal<string>
+    {
+        
+        public AstLocalId(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstLocalId(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstLocalId(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitLocalId(this);
         }
     }
 }

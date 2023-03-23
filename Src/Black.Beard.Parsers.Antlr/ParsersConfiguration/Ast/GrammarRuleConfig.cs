@@ -19,7 +19,7 @@ namespace Bb.ParsersConfiguration.Ast
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
 
-        public GrammarRuleConfig(Position position, bool generate, IdentifierConfig inheritClass, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
+        public GrammarRuleConfig(Position position, bool generate, IdentifierConfig inheritClass, TemplateSetting? templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
             : base(position)
         {
             this.Generate = generate;
@@ -32,7 +32,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         public IdentifierConfig Inherit { get; set;  }
 
-        public TemplateSetting TemplateSetting { get; }
+        public TemplateSetting? TemplateSetting { get; }
 
         public CalculatedTemplateSetting CalculatedTemplateSetting { get; set; }
 
@@ -57,7 +57,9 @@ namespace Bb.ParsersConfiguration.Ast
 
             writer.Append("INHERIT ");
             if (Inherit != null)
+            {
                 Inherit.ToString(writer);
+            }
 
             writer.AppendEndLine();
             TemplateSetting.ToString(writer);

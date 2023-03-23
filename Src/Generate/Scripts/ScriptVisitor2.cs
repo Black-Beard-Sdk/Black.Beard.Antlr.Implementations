@@ -20,10 +20,7 @@ namespace Generate.Scripts
 
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "_";
-        }
+        public override string StrategyTemplateKey => "_";
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

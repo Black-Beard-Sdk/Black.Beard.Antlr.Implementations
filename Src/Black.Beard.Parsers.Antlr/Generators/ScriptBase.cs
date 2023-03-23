@@ -1,6 +1,7 @@
 ﻿using Bb.Asts;
 using Bb.Parsers;
 using Bb.ParsersConfiguration.Ast;
+using Microsoft.VisualBasic;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
@@ -21,7 +22,9 @@ namespace Bb.Generators
         }
 
 
-        public string Namespace {  get; set; }  
+        public string Namespace { get; set; }
+
+        public abstract string StrategyTemplateKey { get; }
 
         public string Name
         {
@@ -52,27 +55,38 @@ namespace Bb.Generators
         {
             return DefaultFilename(typeof(T));
         }
-        
-        
+
+
 
         public abstract string GetInherit(AstRule ast, Context context);
 
         public IEnumerable<string> Generate(Context context)
         {
-
             var visitor = new CodeGeneratorVisitor(context);
-
             ConfigureTemplate(context, visitor);
-
             return visitor.Visit(context.RootAst);
-
         }
 
         protected abstract void ConfigureTemplate(Context context, CodeGeneratorVisitor generator);
 
         protected string TemplateSelector(AstRule ast, Context context)
         {
-           
+            var result = _templateSelector(ast, context);
+
+            if (!context.StrategyKeyExists(result))
+                Console.WriteLine($"{ast.Name.Text} : {result} strategy is not found");
+
+            return result;
+
+        }
+
+        private string _templateSelector(AstRule ast, Context context)
+        {
+
+            var t = ast.Configuration.Config.TemplateSetting.TemplateName;
+            if (t != null)
+                return t;
+
             if (!string.IsNullOrEmpty(ast.Strategy))
                 return ast.Strategy;
 
@@ -163,7 +177,6 @@ namespace Bb.Generators
 
             }
 
-
             if (ast.ContainsJustOneAlternative)
             {
 
@@ -220,7 +233,8 @@ namespace Bb.Generators
 
         protected virtual bool Generate(AstRule ast, Context context)
         {
-            return true;
+            return ast.Configuration.Config.Generate
+                && TemplateSelector(ast, context) == this.StrategyTemplateKey;
         }
 
         public void Using(params string[] usings)

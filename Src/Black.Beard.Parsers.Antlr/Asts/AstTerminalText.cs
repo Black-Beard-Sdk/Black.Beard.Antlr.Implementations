@@ -118,7 +118,15 @@ namespace Bb.Asts
                 {
                     this.Text = this.Text.Substring(1, this.Text.Length - 2);
                     this.Enquoted = true;
-                    this.TerminalKind = TokenTypeEnum.Constant;
+
+                    if (IsLetters(this.Text))
+                        this.TerminalKind = TokenTypeEnum.Constant;
+                    else
+                    {
+
+
+                    }
+
                 }
                 else
                 {
@@ -132,6 +140,17 @@ namespace Bb.Asts
                 }
 
             }
+        }
+
+        private bool IsLetters(string txt)
+        {
+
+            foreach (var item in txt)
+                if (!char.IsLetter(item) && item != '_')
+                    return false;
+
+            return true;
+
         }
 
     }

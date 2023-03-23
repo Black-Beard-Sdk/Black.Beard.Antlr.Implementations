@@ -1,4 +1,6 @@
 ﻿using Bb.Asts;
+using Bb.Generators;
+using Bb.ParsersConfiguration.Ast;
 using System.Diagnostics;
 
 namespace Bb.Parsers
@@ -8,9 +10,9 @@ namespace Bb.Parsers
     public class ParentVisitor : WalkerVisitor
     {
 
-        public ParentVisitor(Dictionary<string, AstBase> dictionary)
+        public ParentVisitor()
         {
-            _dictionary = dictionary;
+            
         }
 
         public override void VisitActionBlock(AstActionBlock a)
@@ -163,10 +165,53 @@ namespace Bb.Parsers
             base.VisitPrequelList(a);
         }
 
+
+        private void ResolveInheritedClass(AstRule a, AstRule b)
+        {
+
+            var rules = b.GetRules().ToList();
+
+            foreach (var rule in rules)
+            {
+
+                if (_rules.TryGetValue(rule.Identifier.Text, out var v1))
+                {
+                    if (v1 is AstRule r1)
+                    {
+                        var c2 = r1.Configuration.Config;
+                        if (c2.Generate)
+                        {
+                            c2.Inherit = new IdentifierConfig(@"""" + "Ast" + CodeHelper.FormatCsharp(a.Name.Text) + @"""");
+                        }
+                        else
+                        {
+                            ResolveInheritedClass(a, r1);
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+        }
+
         public override void VisitRule(AstRule a)
         {
+
             a.Parent = Parent;
             base.VisitRule(a);
+
+            var c = a.Configuration;
+            if (!c.Config.Generate)
+            {
+
+                List<AstRule> references = a.Root.GetReferences(a);
+                if (references.Count == 1)
+                    ResolveInheritedClass(a, a);
+                
+            }
 
             if (a.Alternatives.Count == 1 && a.ContainsOneTerminal)
             {
@@ -205,8 +250,11 @@ namespace Bb.Parsers
             a.Parent = Parent;
             base.VisitRuleRef(a);
             if (a != null)
-                if (_dictionary.TryGetValue(a.ResolveName(), out var value))
+            {                
+                if (_rules.TryGetValue(a.ResolveName(), out var value))
                     a.Link = value;
+            }
+
         }
 
         public override void VisitRulesList(AstRulesList a)
@@ -225,7 +273,7 @@ namespace Bb.Parsers
         {
             a.Parent = Parent;
             if (a != null && !string.IsNullOrEmpty(a.Text))
-                if (_dictionary.TryGetValue(a.Text, out var value))
+                if (_rules.TryGetValue(a.Text, out var value))
                     a.Link = value;
 
             base.VisitTerminalText(a);
@@ -259,6 +307,7 @@ namespace Bb.Parsers
 
         public override void VisitRules(AstRules a)
         {
+            this._rules = a;
             a.Parent = Parent;
             base.VisitRules(a);
         }
@@ -267,7 +316,7 @@ namespace Bb.Parsers
         {
             a.Parent = Parent;
             base.VisitLexerRule(a);
-            if (_dictionary.TryGetValue(a.Name.Text, out var value))
+            if (_rules.TryGetValue(a.Name.Text, out var value))
                 a.Link = value;
 
         }
@@ -314,7 +363,7 @@ namespace Bb.Parsers
             base.VisitLexerCommand(a);
         }
 
-        private readonly Dictionary<string, AstBase> _dictionary;
+        private AstRules _rules;        
 
     }
 

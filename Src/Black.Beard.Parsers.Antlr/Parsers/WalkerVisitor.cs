@@ -23,10 +23,10 @@ namespace Bb.Parsers
         public virtual void VisitGrammarSpec(AstGrammarSpec a)
         {
             _stack.Push(a);
+            a.Rules?.Accept(this);
             a.Declaration?.Accept(this);
             a.Modes?.Accept(this);
             a.Prequels?.Accept(this);
-            a.Rules?.Accept(this);
             _stack.Pop();
         }
 
@@ -39,10 +39,12 @@ namespace Bb.Parsers
 
         public virtual void VisitAlternative(AstAlternative a)
         {
+            _countBlock++;
             _stack.Push(a);
             a.Rule?.Accept(this);
             a.Options?.Accept(this);
             _stack.Pop();
+            _countBlock--;
         }
 
         public virtual void VisitArgActionBlock(AstArgActionBlock a)
@@ -60,9 +62,11 @@ namespace Bb.Parsers
 
         public virtual void VisitBlock(AstBlock a)
         {
+            _countBlock++;
             _stack.Push(a);
-
+            a.AlternativeList?.Accept(this);
             _stack.Pop();
+            _countBlock--;
         }
 
         public virtual void VisitElement(AstElement a)
@@ -235,10 +239,12 @@ namespace Bb.Parsers
 
         public virtual void VisitRuleAltList(AstRuleAltList a)
         {
+            _countBlock++;
             _stack.Push(a);
             foreach (var item in a)
                 item.Accept(this);
             _stack.Pop();
+            _countBlock--;
         }
 
         public virtual void VisitRuleModifierList(AstRuleModifierList a)
@@ -287,7 +293,7 @@ namespace Bb.Parsers
         {
 
 
-            
+
         }
 
         public virtual void VisitParserRuleSpec(AstParserRuleSpec a)
@@ -317,7 +323,7 @@ namespace Bb.Parsers
         public virtual void VisitLexerRulesList(AstLexerRulesList a)
         {
             _stack.Push(a);
-            foreach(var item in a)
+            foreach (var item in a)
                 item.Accept(this);
             _stack.Pop();
         }
@@ -416,7 +422,9 @@ namespace Bb.Parsers
         protected AstBase Parent { get => _stack.Peek(); }
 
         private Stack<AstBase> _stack = new Stack<AstBase>();
+        private int _countBlock;
 
+        protected int Level => _countBlock;
 
     }
 

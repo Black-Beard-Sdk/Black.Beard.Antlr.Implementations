@@ -13,1639 +13,3767 @@ namespace Bb.Asts.TSql
     using Bb.Parsers;
     
     
-    public partial interface IAstTSqlVisitor
+    public partial class IAstTSqlVisitor
     {
         
-        void VisitTsqlFile(AstTsqlFile a);
-        
-        void VisitBatch(AstBatch a);
-        
-        void VisitSqlClauses(AstSqlClauses a);
-        
-        void VisitSqlClause(AstSqlClause a);
-        
-        void VisitBlockStatement(AstBlockStatement a);
-        
-        void VisitBreakStatement(AstBreakStatement a);
-        
-        void VisitContinueStatement(AstContinueStatement a);
-        
-        void VisitGotoStatement(AstGotoStatement a);
-        
-        void VisitReturnStatement(AstReturnStatement a);
-        
-        void VisitIfStatement(AstIfStatement a);
-        
-        void VisitThrowStatement(AstThrowStatement a);
-        
-        void VisitThrowErrorNumber(AstThrowErrorNumber a);
-        
-        void VisitThrowMessage(AstThrowMessage a);
-        
-        void VisitThrowState(AstThrowState a);
-        
-        void VisitTryCatchStatement(AstTryCatchStatement a);
-        
-        void VisitWaitforStatement(AstWaitforStatement a);
-        
-        void VisitDelayTimeTimeout(AstDelayTimeTimeout a);
-        
-        void VisitWhileStatement(AstWhileStatement a);
-        
-        void VisitPrintStatement(AstPrintStatement a);
-        
-        void VisitRaiseerrorStatement(AstRaiseerrorStatement a);
-        
-        void VisitEmptyStatement(AstEmptyStatement a);
-        
-        void VisitAlterApplicationRole(AstAlterApplicationRole a);
-        
-        void VisitCreateApplicationRole(AstCreateApplicationRole a);
-        
-        void VisitDropAggregate(AstDropAggregate a);
-        
-        void VisitDropApplicationRole(AstDropApplicationRole a);
-        
-        void VisitAlterAssembly(AstAlterAssembly a);
-        
-        void VisitAlterAssemblyStart(AstAlterAssemblyStart a);
-        
-        void VisitAlterAssemblyClause(AstAlterAssemblyClause a);
-        
-        void VisitAlterAssemblyFromClause(AstAlterAssemblyFromClause a);
-        
-        void VisitAlterAssemblyFromClauseStart(AstAlterAssemblyFromClauseStart a);
-        
-        void VisitAlterAssemblyDropClause(AstAlterAssemblyDropClause a);
-        
-        void VisitAlterAssemblyDropMultipleFiles(AstAlterAssemblyDropMultipleFiles a);
-        
-        void VisitAlterAssemblyDrop(AstAlterAssemblyDrop a);
-        
-        void VisitAlterAssemblyAddClause(AstAlterAssemblyAddClause a);
-        
-        void VisitAlterAssemblyClientFileClause(AstAlterAssemblyClientFileClause a);
-        
-        void VisitAssemblyFileName(AstAssemblyFileName a);
-        
-        void VisitAlterAssemblyFileBits(AstAlterAssemblyFileBits a);
-        
-        void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
-        
-        void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a);
-        
-        void VisitAssemblyOption(AstAssemblyOption a);
-        
-        void VisitNetworkFileShare(AstNetworkFileShare a);
-        
-        void VisitNetworkFileStart(AstNetworkFileStart a);
-        
-        void VisitFilePath(AstFilePath a);
-        
-        void VisitFileDirectoryPathSeparator(AstFileDirectoryPathSeparator a);
-        
-        void VisitLocalFile(AstLocalFile a);
-        
-        void VisitLocalDrive(AstLocalDrive a);
-        
-        void VisitMultipleLocalFiles(AstMultipleLocalFiles a);
-        
-        void VisitMultipleLocalFileStart(AstMultipleLocalFileStart a);
-        
-        void VisitCreateAssembly(AstCreateAssembly a);
-        
-        void VisitBinaryContentNexts(AstBinaryContentNexts a);
-        
-        void VisitBinaryContentNext(AstBinaryContentNext a);
-        
-        void VisitBinaryContent(AstBinaryContent a);
-        
-        void VisitDropAssembly(AstDropAssembly a);
-        
-        void VisitAlterAsymmetricKey(AstAlterAsymmetricKey a);
-        
-        void VisitAsymmetricKeyOption(AstAsymmetricKeyOption a);
-        
-        void VisitAsymmetricKeyPasswordChangeOption(AstAsymmetricKeyPasswordChangeOption a);
-        
-        void VisitCreateAsymmetricKey(AstCreateAsymmetricKey a);
-        
-        void VisitDropAsymmetricKey(AstDropAsymmetricKey a);
-        
-        void VisitAlterAuthorization(AstAlterAuthorization a);
-        
-        void VisitAuthorizationGrantee(AstAuthorizationGrantee a);
-        
-        void VisitAlterAuthorizationForSqlDatabase(AstAlterAuthorizationForSqlDatabase a);
-        
-        void VisitAlterAuthorizationForAzureDw(AstAlterAuthorizationForAzureDw a);
-        
-        void VisitAlterAuthorizationForParallelDw(AstAlterAuthorizationForParallelDw a);
-        
-        void VisitClassType(AstClassType a);
-        
-        void VisitClassTypeForSqlDatabase(AstClassTypeForSqlDatabase a);
-        
-        void VisitClassTypeForAzureDw(AstClassTypeForAzureDw a);
-        
-        void VisitClassTypeForParallelDw(AstClassTypeForParallelDw a);
-        
-        void VisitClassTypeForGrant(AstClassTypeForGrant a);
-        
-        void VisitDropAvailabilityGroup(AstDropAvailabilityGroup a);
-        
-        void VisitAlterAvailabilityGroup(AstAlterAvailabilityGroup a);
-        
-        void VisitAlterAvailabilityGroupStart(AstAlterAvailabilityGroupStart a);
-        
-        void VisitAlterAvailabilityGroupOptionsDatabase(AstAlterAvailabilityGroupOptionsDatabase a);
-        
-        void VisitAlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListener a);
-        
-        void VisitAddRemove(AstAddRemove a);
-        
-        void VisitRestartRemove(AstRestartRemove a);
-        
-        void VisitSynchAsynch(AstSynchAsynch a);
-        
-        void VisitAutoManual(AstAutoManual a);
-        
-        void VisitRealWriteAll(AstRealWriteAll a);
-        
-        void VisitNoRealWriteAll(AstNoRealWriteAll a);
-        
-        void VisitPrimarySecondaryNone(AstPrimarySecondaryNone a);
-        
-        void VisitGrantDeny(AstGrantDeny a);
-        
-        void VisitAlterAvailabilityReplicatModify(AstAlterAvailabilityReplicatModify a);
-        
-        void VisitBackupPriority(AstBackupPriority a);
-        
-        void VisitAlterAvailabilityReplicatAdd(AstAlterAvailabilityReplicatAdd a);
-        
-        void VisitAlterAvailabilityGroupOptionsReplicat(AstAlterAvailabilityGroupOptionsReplicat a);
-        
-        void VisitAlterAvailabilityGroupOptionsGroup(AstAlterAvailabilityGroupOptionsGroup a);
-        
-        void VisitListenerUrl(AstListenerUrl a);
-        
-        void VisitAvailabilityMode(AstAvailabilityMode a);
-        
-        void VisitFailoverModeManuel(AstFailoverModeManuel a);
-        
-        void VisitSeedingMode(AstSeedingMode a);
-        
-        void VisitAlterAvailabilityGroupOptionsRole(AstAlterAvailabilityGroupOptionsRole a);
-        
-        void VisitAllowConnections(AstAllowConnections a);
-        
-        void VisitStringList(AstStringList a);
-        
-        void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions a);
-        
-        void VisitServerInstance(AstServerInstance a);
-        
-        void VisitCreateOrAlterBrokerPriority(AstCreateOrAlterBrokerPriority a);
-        
-        void VisitBrokerContractName(AstBrokerContractName a);
-        
-        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName a);
-        
-        void VisitBrokerRemoteServiceName(AstBrokerRemoteServiceName a);
-        
-        void VisitBrokerPriorityLevel(AstBrokerPriorityLevel a);
-        
-        void VisitCreateAlter(AstCreateAlter a);
-        
-        void VisitDropBrokerPriority(AstDropBrokerPriority a);
-        
-        void VisitAlterCertificate(AstAlterCertificate a);
-        
-        void VisitAddDrop(AstAddDrop a);
-        
-        void VisitAlterColumnEncryptionKey(AstAlterColumnEncryptionKey a);
-        
-        void VisitCreateColumnEncryptionKey(AstCreateColumnEncryptionKey a);
-        
-        void VisitDropCertificate(AstDropCertificate a);
-        
-        void VisitDropColumnEncryptionKey(AstDropColumnEncryptionKey a);
-        
-        void VisitDropColumnMasterKey(AstDropColumnMasterKey a);
-        
-        void VisitDropContract(AstDropContract a);
-        
-        void VisitDropCredential(AstDropCredential a);
-        
-        void VisitDropCryptograhicProvider(AstDropCryptograhicProvider a);
-        
-        void VisitDropDatabase(AstDropDatabase a);
-        
-        void VisitDropDatabaseAuditSpecification(AstDropDatabaseAuditSpecification a);
-        
-        void VisitDropDatabaseEncryptionKey(AstDropDatabaseEncryptionKey a);
-        
-        void VisitDropDatabaseScopedCredential(AstDropDatabaseScopedCredential a);
-        
-        void VisitDropDefault(AstDropDefault a);
-        
-        void VisitDropEndpoint(AstDropEndpoint a);
-        
-        void VisitDropExternalDataSource(AstDropExternalDataSource a);
-        
-        void VisitDropExternalFileFormat(AstDropExternalFileFormat a);
-        
-        void VisitDropExternalLibrary(AstDropExternalLibrary a);
-        
-        void VisitDropExternalResourcePool(AstDropExternalResourcePool a);
-        
-        void VisitDropExternalTable(AstDropExternalTable a);
-        
-        void VisitDropEventNotifications(AstDropEventNotifications a);
-        
-        void VisitDropEventSession(AstDropEventSession a);
-        
-        void VisitDropFulltextCatalog(AstDropFulltextCatalog a);
-        
-        void VisitDropFulltextIndex(AstDropFulltextIndex a);
-        
-        void VisitDropFulltextStoplist(AstDropFulltextStoplist a);
-        
-        void VisitDropLogin(AstDropLogin a);
-        
-        void VisitDropMasterKey(AstDropMasterKey a);
-        
-        void VisitDropMessageType(AstDropMessageType a);
-        
-        void VisitMessageTypeName(AstMessageTypeName a);
-        
-        void VisitDropPartitionFunction(AstDropPartitionFunction a);
-        
-        void VisitPartitionFunctionName(AstPartitionFunctionName a);
-        
-        void VisitDropPartitionScheme(AstDropPartitionScheme a);
-        
-        void VisitPartitionSchemeName(AstPartitionSchemeName a);
-        
-        void VisitDropQueue(AstDropQueue a);
-        
-        void VisitDropRemoteServiceBinding(AstDropRemoteServiceBinding a);
-        
-        void VisitDropResourcePool(AstDropResourcePool a);
-        
-        void VisitDropDbRole(AstDropDbRole a);
-        
-        void VisitDropRoute(AstDropRoute a);
-        
-        void VisitDropRule(AstDropRule a);
-        
-        void VisitDropSchema(AstDropSchema a);
-        
-        void VisitDropSearchPropertyList(AstDropSearchPropertyList a);
-        
-        void VisitDropSecurityPolicy(AstDropSecurityPolicy a);
-        
-        void VisitDropSequence(AstDropSequence a);
-        
-        void VisitDropServerAudit(AstDropServerAudit a);
-        
-        void VisitDropServerAuditSpecification(AstDropServerAuditSpecification a);
-        
-        void VisitDropServerRole(AstDropServerRole a);
-        
-        void VisitDropService(AstDropService a);
-        
-        void VisitDropSignature(AstDropSignature a);
-        
-        void VisitDropStatisticsNameAzureDwAndPdw(AstDropStatisticsNameAzureDwAndPdw a);
-        
-        void VisitDropSymmetricKey(AstDropSymmetricKey a);
-        
-        void VisitDropSynonym(AstDropSynonym a);
-        
-        void VisitDropUser(AstDropUser a);
-        
-        void VisitDropWorkloadGroup(AstDropWorkloadGroup a);
-        
-        void VisitDropXmlSchemaCollection(AstDropXmlSchemaCollection a);
-        
-        void VisitDisableTrigger(AstDisableTrigger a);
-        
-        void VisitEnableTrigger(AstEnableTrigger a);
-        
-        void VisitLockTable(AstLockTable a);
-        
-        void VisitTruncateTable(AstTruncateTable a);
-        
-        void VisitCreateColumnMasterKey(AstCreateColumnMasterKey a);
-        
-        void VisitAlterCredential(AstAlterCredential a);
-        
-        void VisitCreateCredential(AstCreateCredential a);
-        
-        void VisitAlterCryptographicProvider(AstAlterCryptographicProvider a);
-        
-        void VisitCreateCryptographicProvider(AstCreateCryptographicProvider a);
-        
-        void VisitCreateEventNotification(AstCreateEventNotification a);
-        
-        void VisitCreateOrAlterEventSession(AstCreateOrAlterEventSession a);
-        
-        void VisitCreateOrAlterEventSessionWith(AstCreateOrAlterEventSessionWith a);
-        
-        void VisitSessionArgMaxMemory(AstSessionArgMaxMemory a);
-        
-        void VisitSessionArgEventRetentionMode(AstSessionArgEventRetentionMode a);
-        
-        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch a);
-        
-        void VisitSessionArgMaxEventSize(AstSessionArgMaxEventSize a);
-        
-        void VisitSessionArgMemoryPartition(AstSessionArgMemoryPartition a);
-        
-        void VisitSessionArgTrackCausality(AstSessionArgTrackCausality a);
-        
-        void VisitSessionArgStartupState(AstSessionArgStartupState a);
-        
-        void VisitCreateOrAlterEventSessionAddEvent(AstCreateOrAlterEventSessionAddEvent a);
-        
-        void VisitCreateOrAlterEventSessionAddTarget(AstCreateOrAlterEventSessionAddTarget a);
-        
-        void VisitCreateOrAlterEventSessionDelTarget(AstCreateOrAlterEventSessionDelTarget a);
-        
-        void VisitCreateOrAlterEventSessionDelEvent(AstCreateOrAlterEventSessionDelEvent a);
-        
-        void VisitStartStop(AstStartStop a);
-        
-        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression a);
-        
-        void VisitEventSessionPredicateFactor(AstEventSessionPredicateFactor a);
-        
-        void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf a);
-        
-        void VisitAlterExternalDataSource(AstAlterExternalDataSource a);
-        
-        void VisitAlterExternalLibrary(AstAlterExternalLibrary a);
-        
-        void VisitSetAdd(AstSetAdd a);
-        
-        void VisitCreateExternalLibrary(AstCreateExternalLibrary a);
-        
-        void VisitFileSpec2(AstFileSpec2 a);
-        
-        void VisitPlatform(AstPlatform a);
-        
-        void VisitCodeContent(AstCodeContent a);
-        
-        void VisitCodeLanguage(AstCodeLanguage a);
-        
-        void VisitAlterExternalResourcePool(AstAlterExternalResourcePool a);
-        
-        void VisitCreateExternalResourcePool(AstCreateExternalResourcePool a);
-        
-        void VisitExternalResourceWith(AstExternalResourceWith a);
-        
-        void VisitMawProcess(AstMawProcess a);
-        
-        void VisitMaxMemory(AstMaxMemory a);
-        
-        void VisitMaxCpu(AstMaxCpu a);
-        
-        void VisitAlterFulltextCatalog(AstAlterFulltextCatalog a);
-        
-        void VisitCreateFulltextCatalog(AstCreateFulltextCatalog a);
-        
-        void VisitAlterFulltextStoplist(AstAlterFulltextStoplist a);
-        
-        void VisitCreateFulltextStoplist(AstCreateFulltextStoplist a);
-        
-        void VisitAlterLoginSqlServer(AstAlterLoginSqlServer a);
-        
-        void VisitAlterLoginSqlServerSettings(AstAlterLoginSqlServerSettings a);
-        
-        void VisitCreateLoginSqlServer(AstCreateLoginSqlServer a);
-        
-        void VisitCreateLoginSqlServerSettings(AstCreateLoginSqlServerSettings a);
-        
-        void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom a);
-        
-        void VisitAlterLoginAzureSql(AstAlterLoginAzureSql a);
-        
-        void VisitCreateLoginAzureSql(AstCreateLoginAzureSql a);
-        
-        void VisitAlterLoginAzureSqlDwAndPdw(AstAlterLoginAzureSqlDwAndPdw a);
-        
-        void VisitEnableDisable(AstEnableDisable a);
-        
-        void VisitCreateLoginPdw(AstCreateLoginPdw a);
-        
-        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer a);
-        
-        void VisitCreateMasterKeySqlServer(AstCreateMasterKeySqlServer a);
-        
-        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql a);
-        
-        void VisitCreateMasterKeyAzureSql(AstCreateMasterKeyAzureSql a);
-        
-        void VisitAlterMessageType(AstAlterMessageType a);
-        
-        void VisitAlterPartitionFunction(AstAlterPartitionFunction a);
-        
-        void VisitSplitOrMerge(AstSplitOrMerge a);
-        
-        void VisitAlterPartitionScheme(AstAlterPartitionScheme a);
-        
-        void VisitAlterRemoteServiceBinding(AstAlterRemoteServiceBinding a);
-        
-        void VisitCreateRemoteServiceBinding(AstCreateRemoteServiceBinding a);
-        
-        void VisitCreateResourcePool(AstCreateResourcePool a);
-        
-        void VisitAlterResourceGovernor(AstAlterResourceGovernor a);
-        
-        void VisitAlterDbRole(AstAlterDbRole a);
-        
-        void VisitCreateDbRole(AstCreateDbRole a);
-        
-        void VisitCreateRoute(AstCreateRoute a);
-        
-        void VisitCreateRule(AstCreateRule a);
-        
-        void VisitAlterSchemaSql(AstAlterSchemaSql a);
-        
-        void VisitCreateSchema(AstCreateSchema a);
-        
-        void VisitEnumDml(AstEnumDml a);
-        
-        void VisitCreateSchemaAzureSqlDwAndPdw(AstCreateSchemaAzureSqlDwAndPdw a);
-        
-        void VisitAlterSchemaAzureSqlDwAndPdw(AstAlterSchemaAzureSqlDwAndPdw a);
-        
-        void VisitCreateSearchPropertyList(AstCreateSearchPropertyList a);
-        
-        void VisitCreateSecurityPolicy(AstCreateSecurityPolicy a);
-        
-        void VisitAlterSequence(AstAlterSequence a);
-        
-        void VisitCreateSequence(AstCreateSequence a);
-        
-        void VisitReal(AstReal a);
-        
-        void VisitCreateSequenceStart(AstCreateSequenceStart a);
-        
-        void VisitCycle(AstCycle a);
-        
-        void VisitSizeUnity(AstSizeUnity a);
-        
-        void VisitAlterServerAudit(AstAlterServerAudit a);
-        
-        void VisitServerAuditFile(AstServerAuditFile a);
-        
-        void VisitAlterServerAuditCondition(AstAlterServerAuditCondition a);
-        
-        void VisitContinueShutdown(AstContinueShutdown a);
-        
-        void VisitAuditOperator(AstAuditOperator a);
-        
-        void VisitAndOr(AstAndOr a);
-        
-        void VisitCreateServerAudit(AstCreateServerAudit a);
-        
-        void VisitAlterServerAuditSpecification(AstAlterServerAuditSpecification a);
-        
-        void VisitCreateServerAuditSpecification(AstCreateServerAuditSpecification a);
-        
-        void VisitAlterServerConfiguration(AstAlterServerConfiguration a);
-        
-        void VisitAlterServerRole(AstAlterServerRole a);
-        
-        void VisitCreateServerRole(AstCreateServerRole a);
-        
-        void VisitAlterServerRolePdw(AstAlterServerRolePdw a);
-        
-        void VisitAlterService(AstAlterService a);
-        
-        void VisitCreateService(AstCreateService a);
-        
-        void VisitAlterServiceMasterKey(AstAlterServiceMasterKey a);
-        
-        void VisitAlterSymmetricKey(AstAlterSymmetricKey a);
-        
-        void VisitCreateSynonym(AstCreateSynonym a);
-        
-        void VisitAlterUser(AstAlterUser a);
-        
-        void VisitCreateUser(AstCreateUser a);
-        
-        void VisitCreateUserWithLogin(AstCreateUserWithLogin a);
-        
-        void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin a);
-        
-        void VisitCreateUserWindowsPrincipal(AstCreateUserWindowsPrincipal a);
-        
-        void VisitForFrom(AstForFrom a);
-        
-        void VisitUserSettingsShort(AstUserSettingsShort a);
-        
-        void VisitUserSettings(AstUserSettings a);
-        
-        void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw a);
-        
-        void VisitAlterUserAzureSql(AstAlterUserAzureSql a);
-        
-        void VisitAlterWorkloadGroup(AstAlterWorkloadGroup a);
-        
-        void VisitCreateWorkloadGroup(AstCreateWorkloadGroup a);
-        
-        void VisitCreateXmlSchemaCollection(AstCreateXmlSchemaCollection a);
-        
-        void VisitCreatePartitionFunction(AstCreatePartitionFunction a);
-        
-        void VisitCreatePartitionScheme(AstCreatePartitionScheme a);
-        
-        void VisitCreateQueue(AstCreateQueue a);
-        
-        void VisitQueueSettings(AstQueueSettings a);
-        
-        void VisitAlterQueue(AstAlterQueue a);
-        
-        void VisitQueueAction(AstQueueAction a);
-        
-        void VisitQueueRebuildOptions(AstQueueRebuildOptions a);
-        
-        void VisitCreateContract(AstCreateContract a);
-        
-        void VisitMessageStatement(AstMessageStatement a);
-        
-        void VisitMergeStatement(AstMergeStatement a);
-        
-        void VisitWhenMatches(AstWhenMatches a);
-        
-        void VisitMergeMatched(AstMergeMatched a);
-        
-        void VisitUpdateElemMerges(AstUpdateElemMerges a);
-        
-        void VisitMergeNotMatched(AstMergeNotMatched a);
-        
-        void VisitDeleteStatement(AstDeleteStatement a);
-        
-        void VisitDeleteStatementFrom(AstDeleteStatementFrom a);
-        
-        void VisitInsertStatement(AstInsertStatement a);
-        
-        void VisitInsertStatementValue(AstInsertStatementValue a);
-        
-        void VisitReceiveStatement(AstReceiveStatement a);
-        
-        void VisitSelectStatementStandalone(AstSelectStatementStandalone a);
-        
-        void VisitSelectStatement(AstSelectStatement a);
-        
-        void VisitTime(AstTime a);
-        
-        void VisitUpdateStatement(AstUpdateStatement a);
-        
-        void VisitUpdateElems(AstUpdateElems a);
-        
-        void VisitOutputClause(AstOutputClause a);
-        
-        void VisitOutputDmlListElems(AstOutputDmlListElems a);
-        
-        void VisitOutputDmlListElem(AstOutputDmlListElem a);
-        
-        void VisitCreateDatabase(AstCreateDatabase a);
-        
-        void VisitDatabaseContainment(AstDatabaseContainment a);
-        
-        void VisitDatabaseOnPrimary(AstDatabaseOnPrimary a);
-        
-        void VisitDatabaseOnLog(AstDatabaseOnLog a);
-        
-        void VisitDatabaseCollate(AstDatabaseCollate a);
-        
-        void VisitDatabaseCreateWith(AstDatabaseCreateWith a);
-        
-        void VisitCreateDatabaseOptionList(AstCreateDatabaseOptionList a);
-        
-        void VisitDatabaseFileSpecList(AstDatabaseFileSpecList a);
-        
-        void VisitNonePartial(AstNonePartial a);
-        
-        void VisitCreateIndex(AstCreateIndex a);
-        
-        void VisitCreateIndexOptions(AstCreateIndexOptions a);
-        
-        void VisitRelationalIndexOptions(AstRelationalIndexOptions a);
-        
-        void VisitRelationalIndexOption(AstRelationalIndexOption a);
-        
-        void VisitAlterIndex(AstAlterIndex a);
-        
-        void VisitResumableIndexOptions(AstResumableIndexOptions a);
-        
-        void VisitResumableIndexOption(AstResumableIndexOption a);
-        
-        void VisitReorganizePartition(AstReorganizePartition a);
-        
-        void VisitReorganizeOptions(AstReorganizeOptions a);
-        
-        void VisitReorganizeOption(AstReorganizeOption a);
-        
-        void VisitSetIndexOptions(AstSetIndexOptions a);
-        
-        void VisitSetIndexOption(AstSetIndexOption a);
-        
-        void VisitRebuildPartition(AstRebuildPartition a);
-        
-        void VisitRebuildIndexOptions(AstRebuildIndexOptions a);
-        
-        void VisitRebuildIndexOption(AstRebuildIndexOption a);
-        
-        void VisitSinglePartitionRebuildIndexOptions(AstSinglePartitionRebuildIndexOptions a);
-        
-        void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption a);
-        
-        void VisitOnPartitions(AstOnPartitions a);
-        
-        void VisitCreateColumnstoreIndex(AstCreateColumnstoreIndex a);
-        
-        void VisitCreateColumnstoreIndexOptions(AstCreateColumnstoreIndexOptions a);
-        
-        void VisitColumnstoreIndexOption(AstColumnstoreIndexOption a);
-        
-        void VisitCreateNonclusteredColumnstoreIndex(AstCreateNonclusteredColumnstoreIndex a);
-        
-        void VisitCreateXmlIndex(AstCreateXmlIndex a);
-        
-        void VisitXmlIndexOptions(AstXmlIndexOptions a);
-        
-        void VisitXmlIndexOption(AstXmlIndexOption a);
-        
-        void VisitCreateOrAlterProcedure(AstCreateOrAlterProcedure a);
-        
-        void VisitProcedureOptions(AstProcedureOptions a);
-        
-        void VisitAsExternalName(AstAsExternalName a);
-        
-        void VisitCreateOrAlterDmlTrigger(AstCreateOrAlterDmlTrigger a);
-        
-        void VisitDmlTriggerOptions(AstDmlTriggerOptions a);
-        
-        void VisitDmlTriggerOperations(AstDmlTriggerOperations a);
-        
-        void VisitDmlTriggerOption(AstDmlTriggerOption a);
-        
-        void VisitDmlTriggerOperation(AstDmlTriggerOperation a);
-        
-        void VisitCreateOrAlterDdlTrigger(AstCreateOrAlterDdlTrigger a);
-        
-        void VisitCreateOrAlterFunction(AstCreateOrAlterFunction a);
-        
-        void VisitProcedureParams(AstProcedureParams a);
-        
-        void VisitFuncBodyReturnsSelect(AstFuncBodyReturnsSelect a);
-        
-        void VisitFunctionOptions(AstFunctionOptions a);
-        
-        void VisitFuncBodyReturnsTable(AstFuncBodyReturnsTable a);
-        
-        void VisitFuncBodyReturnsScalar(AstFuncBodyReturnsScalar a);
-        
-        void VisitProcedureParam(AstProcedureParam a);
-        
-        void VisitProcedureOption(AstProcedureOption a);
-        
-        void VisitFunctionOption(AstFunctionOption a);
-        
-        void VisitCreateStatistics(AstCreateStatistics a);
-        
-        void VisitUpdateStatistics(AstUpdateStatistics a);
-        
-        void VisitUpdateStatisticsOptions(AstUpdateStatisticsOptions a);
-        
-        void VisitUpdateStatisticsOption(AstUpdateStatisticsOption a);
-        
-        void VisitCreateTable(AstCreateTable a);
-        
-        void VisitTableIndices(AstTableIndices a);
-        
-        void VisitTableOptions(AstTableOptions a);
-        
-        void VisitTableOption(AstTableOption a);
-        
-        void VisitDistribution(AstDistribution a);
-        
-        void VisitCreateTableIndexOptions(AstCreateTableIndexOptions a);
-        
-        void VisitCreateTableIndexOption(AstCreateTableIndexOption a);
-        
-        void VisitIndexStrategy(AstIndexStrategy a);
-        
-        void VisitCreateView(AstCreateView a);
-        
-        void VisitViewAttributes(AstViewAttributes a);
-        
-        void VisitViewAttribute(AstViewAttribute a);
-        
-        void VisitAlterTable(AstAlterTable a);
-        
-        void VisitIds(AstIds a);
-        
-        void VisitSwitchPartition(AstSwitchPartition a);
-        
-        void VisitLowPriorityLockWait(AstLowPriorityLockWait a);
-        
-        void VisitAlterDatabase(AstAlterDatabase a);
-        
-        void VisitAddOrModifyFiles(AstAddOrModifyFiles a);
-        
-        void VisitFilespecs(AstFilespecs a);
-        
-        void VisitFilespec(AstFilespec a);
-        
-        void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups a);
-        
-        void VisitFilegroupUpdatabilityOption(AstFilegroupUpdatabilityOption a);
-        
-        void VisitDatabaseOptionspec(AstDatabaseOptionspec a);
-        
-        void VisitAutoOption(AstAutoOption a);
-        
-        void VisitChangeTrackingOption(AstChangeTrackingOption a);
-        
-        void VisitChangeTrackingOptionLists(AstChangeTrackingOptionLists a);
-        
-        void VisitChangeTrackingOptionList(AstChangeTrackingOptionList a);
-        
-        void VisitPeriod(AstPeriod a);
-        
-        void VisitContainmentOption(AstContainmentOption a);
-        
-        void VisitCursorOption(AstCursorOption a);
-        
-        void VisitLocalGlobal(AstLocalGlobal a);
-        
-        void VisitStateEnum(AstStateEnum a);
-        
-        void VisitListenerIp(AstListenerIp a);
-        
-        void VisitAlterEndpoint(AstAlterEndpoint a);
-        
-        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration a);
-        
-        void VisitAuthenticationMode(AstAuthenticationMode a);
-        
-        void VisitEncryptionState(AstEncryptionState a);
-        
-        void VisitEncryptionAlgorithm(AstEncryptionAlgorithm a);
-        
-        void VisitAlterEndpointDatabaseMirroring(AstAlterEndpointDatabaseMirroring a);
-        
-        void VisitAlterEndpointServiceBroker(AstAlterEndpointServiceBroker a);
-        
-        void VisitMirroringSetOption(AstMirroringSetOption a);
-        
-        void VisitMirroringPartner(AstMirroringPartner a);
-        
-        void VisitMirroringWitness(AstMirroringWitness a);
-        
-        void VisitWitnessPartnerEqual(AstWitnessPartnerEqual a);
-        
-        void VisitPartnerOption(AstPartnerOption a);
-        
-        void VisitWitnessOption(AstWitnessOption a);
-        
-        void VisitPartnerServer(AstPartnerServer a);
-        
-        void VisitMirroringHostPortSeperator(AstMirroringHostPortSeperator a);
-        
-        void VisitPartnerServerTcpPrefix(AstPartnerServerTcpPrefix a);
-        
-        void VisitPortNumber(AstPortNumber a);
-        
-        void VisitHost(AstHost a);
-        
-        void VisitDateCorrelationOptimizationOption(AstDateCorrelationOptimizationOption a);
-        
-        void VisitDbEncryptionOption(AstDbEncryptionOption a);
-        
-        void VisitDbStateOption(AstDbStateOption a);
-        
-        void VisitDbUpdateOption(AstDbUpdateOption a);
-        
-        void VisitDbUserAccessOption(AstDbUserAccessOption a);
-        
-        void VisitDelayedDurabilityOption(AstDelayedDurabilityOption a);
-        
-        void VisitExternalAccessOption(AstExternalAccessOption a);
-        
-        void VisitIdOrString(AstIdOrString a);
-        
-        void VisitHadrOptions(AstHadrOptions a);
-        
-        void VisitMixedPageAllocationOption(AstMixedPageAllocationOption a);
-        
-        void VisitParameterizationOption(AstParameterizationOption a);
-        
-        void VisitRecoveryOption(AstRecoveryOption a);
-        
-        void VisitServiceBrokerOption(AstServiceBrokerOption a);
-        
-        void VisitSnapshotOption(AstSnapshotOption a);
-        
-        void VisitSqlOption(AstSqlOption a);
-        
-        void VisitTargetRecoveryTimeOption(AstTargetRecoveryTimeOption a);
-        
-        void VisitTermination(AstTermination a);
-        
-        void VisitDropIndex(AstDropIndex a);
-        
-        void VisitDropRelationalOrXmlOrSpatialIndexs(AstDropRelationalOrXmlOrSpatialIndexs a);
-        
-        void VisitDropBackwardCompatibleIndexs(AstDropBackwardCompatibleIndexs a);
-        
-        void VisitDropRelationalOrXmlOrSpatialIndex(AstDropRelationalOrXmlOrSpatialIndex a);
-        
-        void VisitDropBackwardCompatibleIndex(AstDropBackwardCompatibleIndex a);
-        
-        void VisitDropProcedure(AstDropProcedure a);
-        
-        void VisitFuncProcNameSchemas(AstFuncProcNameSchemas a);
-        
-        void VisitDropDmlTrigger(AstDropDmlTrigger a);
-        
-        void VisitDropDdlTrigger(AstDropDdlTrigger a);
-        
-        void VisitSimpleNames(AstSimpleNames a);
-        
-        void VisitTableNames(AstTableNames a);
-        
-        void VisitDropFunction(AstDropFunction a);
-        
-        void VisitDropStatistics(AstDropStatistics a);
-        
-        void VisitDropTable(AstDropTable a);
-        
-        void VisitDropView(AstDropView a);
-        
-        void VisitCreateType(AstCreateType a);
-        
-        void VisitDropType(AstDropType a);
-        
-        void VisitOpenquery(AstOpenquery a);
-        
-        void VisitOpendatasource(AstOpendatasource a);
-        
-        void VisitDeclareStatement(AstDeclareStatement a);
-        
-        void VisitDeclareLocals(AstDeclareLocals a);
-        
-        void VisitXmlDeclarations(AstXmlDeclarations a);
-        
-        void VisitXmlDeclaration(AstXmlDeclaration a);
-        
-        void VisitCursorStatement(AstCursorStatement a);
-        
-        void VisitCompression(AstCompression a);
-        
-        void VisitInitNoInit(AstInitNoInit a);
-        
-        void VisitNoSkip(AstNoSkip a);
-        
-        void VisitFormatNoformat(AstFormatNoformat a);
-        
-        void VisitBackupDatabase(AstBackupDatabase a);
-        
-        void VisitBackupLog(AstBackupLog a);
-        
-        void VisitBackupCertificate(AstBackupCertificate a);
-        
-        void VisitDiskTapeUrl(AstDiskTapeUrl a);
-        
-        void VisitBackupSettings(AstBackupSettings a);
-        
-        void VisitFileFileGroup(AstFileFileGroup a);
-        
-        void VisitLoadMounLoad(AstLoadMounLoad a);
-        
-        void VisitRewind(AstRewind a);
-        
-        void VisitAlgorithmShort(AstAlgorithmShort a);
-        
-        void VisitBackupMasterKey(AstBackupMasterKey a);
-        
-        void VisitBackupServiceMasterKey(AstBackupServiceMasterKey a);
-        
-        void VisitKillStatement(AstKillStatement a);
-        
-        void VisitKillProcess(AstKillProcess a);
-        
-        void VisitKillQueryNotification(AstKillQueryNotification a);
-        
-        void VisitKillStatsJob(AstKillStatsJob a);
-        
-        void VisitExecuteStatement(AstExecuteStatement a);
-        
-        void VisitExecuteBodyBatch(AstExecuteBodyBatch a);
-        
-        void VisitExecuteBody(AstExecuteBody a);
-        
-        void VisitExecuteVarStrings(AstExecuteVarStrings a);
-        
-        void VisitExecuteStatementArg(AstExecuteStatementArg a);
-        
-        void VisitExecuteStatementArgNameds(AstExecuteStatementArgNameds a);
-        
-        void VisitExecuteStatementArgs(AstExecuteStatementArgs a);
-        
-        void VisitExecuteStatementArgNamed(AstExecuteStatementArgNamed a);
-        
-        void VisitExecuteStatementArgUnnamed(AstExecuteStatementArgUnnamed a);
-        
-        void VisitExecuteParameter(AstExecuteParameter a);
-        
-        void VisitExecuteVarString(AstExecuteVarString a);
-        
-        void VisitSecurityStatement(AstSecurityStatement a);
-        
-        void VisitToPrincipalRincipalIds(AstToPrincipalRincipalIds a);
-        
-        void VisitPrincipalId(AstPrincipalId a);
-        
-        void VisitCreateCertificate(AstCreateCertificate a);
-        
-        void VisitExistingKeys(AstExistingKeys a);
-        
-        void VisitPrivateKeyOptions(AstPrivateKeyOptions a);
-        
-        void VisitGenerateNewKeys(AstGenerateNewKeys a);
-        
-        void VisitDateOptions(AstDateOptions a);
-        
-        void VisitOpenKey(AstOpenKey a);
-        
-        void VisitCloseKey(AstCloseKey a);
-        
-        void VisitCreateKey(AstCreateKey a);
-        
-        void VisitKeyOptions(AstKeyOptions a);
-        
-        void VisitAlgorithm(AstAlgorithm a);
-        
-        void VisitEncryptionMechanism(AstEncryptionMechanism a);
-        
-        void VisitDecryptionMechanism(AstDecryptionMechanism a);
-        
-        void VisitGrantPermissionAlter(AstGrantPermissionAlter a);
-        
-        void VisitGrantPermissionCreate(AstGrantPermissionCreate a);
-        
-        void VisitGrantPermission(AstGrantPermission a);
-        
-        void VisitSetStatement(AstSetStatement a);
-        
-        void VisitTransactionStatement(AstTransactionStatement a);
-        
-        void VisitGoStatement(AstGoStatement a);
-        
-        void VisitUseStatement(AstUseStatement a);
-        
-        void VisitSetuserStatement(AstSetuserStatement a);
-        
-        void VisitReconfigureStatement(AstReconfigureStatement a);
-        
-        void VisitShutdownStatement(AstShutdownStatement a);
-        
-        void VisitCheckpointStatement(AstCheckpointStatement a);
-        
-        void VisitDbccSpecial(AstDbccSpecial a);
-        
-        void VisitDbccClause(AstDbccClause a);
-        
-        void VisitDbccCommand(AstDbccCommand a);
-        
-        void VisitDbccOptions(AstDbccOptions a);
-        
-        void VisitExecuteClause(AstExecuteClause a);
-        
-        void VisitDeclareLocal(AstDeclareLocal a);
-        
-        void VisitTableTypeDefinition(AstTableTypeDefinition a);
-        
-        void VisitTableTypeIndices(AstTableTypeIndices a);
-        
-        void VisitXmlTypeDefinition(AstXmlTypeDefinition a);
-        
-        void VisitXmlSchemaCollection(AstXmlSchemaCollection a);
-        
-        void VisitColumnDefTableConstraints(AstColumnDefTableConstraints a);
-        
-        void VisitColumnDefTableConstraint(AstColumnDefTableConstraint a);
-        
-        void VisitColumnDefinition(AstColumnDefinition a);
-        
-        void VisitColumnDefinitionElement(AstColumnDefinitionElement a);
-        
-        void VisitColumnModifier(AstColumnModifier a);
-        
-        void VisitMaterializedColumnDefinition(AstMaterializedColumnDefinition a);
-        
-        void VisitColumnConstraint(AstColumnConstraint a);
-        
-        void VisitColumnIndex(AstColumnIndex a);
-        
-        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup a);
-        
-        void VisitTableConstraint(AstTableConstraint a);
-        
-        void VisitConnectionNode(AstConnectionNode a);
-        
-        void VisitPrimaryKeyOptions(AstPrimaryKeyOptions a);
-        
-        void VisitForeignKeyOptions(AstForeignKeyOptions a);
-        
-        void VisitCheckConstraint(AstCheckConstraint a);
-        
-        void VisitOnDelete(AstOnDelete a);
-        
-        void VisitOnUpdate(AstOnUpdate a);
-        
-        void VisitAlterTableIndexOptions(AstAlterTableIndexOptions a);
-        
-        void VisitAlterTableIndexOption(AstAlterTableIndexOption a);
-        
-        void VisitDeclareCursor(AstDeclareCursor a);
-        
-        void VisitSensitive(AstSensitive a);
-        
-        void VisitDeclareSetCursorCommon(AstDeclareSetCursorCommon a);
-        
-        void VisitDeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartial a);
-        
-        void VisitFetchCursor(AstFetchCursor a);
-        
-        void VisitAbsoluteRelative(AstAbsoluteRelative a);
-        
-        void VisitFetchCursorStrategy(AstFetchCursorStrategy a);
-        
-        void VisitLocalIds(AstLocalIds a);
-        
-        void VisitSetSpecial(AstSetSpecial a);
-        
-        void VisitSpecialList(AstSpecialList a);
-        
-        void VisitConstantLOCALID(AstConstantLOCALID a);
-        
-        void VisitExpression(AstExpression a);
-        
-        void VisitParameter(AstParameter a);
-        
-        void VisitTimeZone(AstTimeZone a);
-        
-        void VisitPrimitiveExpression(AstPrimitiveExpression a);
-        
-        void VisitCaseExpression(AstCaseExpression a);
-        
-        void VisitUnaryOperatorExpression(AstUnaryOperatorExpression a);
-        
-        void VisitBracketExpression(AstBracketExpression a);
-        
-        void VisitConstantExpression(AstConstantExpression a);
-        
-        void VisitWithExpression(AstWithExpression a);
-        
-        void VisitCommonTableExpression(AstCommonTableExpression a);
-        
-        void VisitUpdateElem(AstUpdateElem a);
-        
-        void VisitUpdateElemMerge(AstUpdateElemMerge a);
-        
-        void VisitSearchCondition(AstSearchCondition a);
-        
-        void VisitPredicate(AstPredicate a);
-        
-        void VisitQueryExpression(AstQueryExpression a);
-        
-        void VisitSqlUnion(AstSqlUnion a);
-        
-        void VisitQuerySpecification(AstQuerySpecification a);
-        
-        void VisitGroupSetList(AstGroupSetList a);
-        
-        void VisitGroupBysList(AstGroupBysList a);
-        
-        void VisitTopClause(AstTopClause a);
-        
-        void VisitTopPercent(AstTopPercent a);
-        
-        void VisitTopCount(AstTopCount a);
-        
-        void VisitOrderByClause(AstOrderByClause a);
-        
-        void VisitSelectOrderByClause(AstSelectOrderByClause a);
-        
-        void VisitForClause(AstForClause a);
-        
-        void VisitXmlCommonDirectives(AstXmlCommonDirectives a);
-        
-        void VisitOrderByExpression(AstOrderByExpression a);
-        
-        void VisitGroupingSetsItem(AstGroupingSetsItem a);
-        
-        void VisitGroupingSetsList(AstGroupingSetsList a);
-        
-        void VisitOptionClause(AstOptionClause a);
-        
-        void VisitOption(AstOption a);
-        
-        void VisitOptimizeForArgs(AstOptimizeForArgs a);
-        
-        void VisitOptimizeForArg(AstOptimizeForArg a);
-        
-        void VisitSelectList(AstSelectList a);
-        
-        void VisitUdtMethodArguments(AstUdtMethodArguments a);
-        
-        void VisitStarAsterisk(AstStarAsterisk a);
-        
-        void VisitTableAsterisk(AstTableAsterisk a);
-        
-        void VisitUpdatedAsterisk(AstUpdatedAsterisk a);
-        
-        void VisitColumnElem(AstColumnElem a);
-        
-        void VisitColumnElemTarget(AstColumnElemTarget a);
-        
-        void VisitUdtElem(AstUdtElem a);
-        
-        void VisitExpressionElem(AstExpressionElem a);
-        
-        void VisitExpressionAssignElem(AstExpressionAssignElem a);
-        
-        void VisitTableSources(AstTableSources a);
-        
-        void VisitTableSource(AstTableSource a);
-        
-        void VisitTableSourceItemJoined(AstTableSourceItemJoined a);
-        
-        void VisitTableSourceItem(AstTableSourceItem a);
-        
-        void VisitExpression2(AstExpression2 a);
-        
-        void VisitOpenXml(AstOpenXml a);
-        
-        void VisitOpenJson(AstOpenJson a);
-        
-        void VisitJsonDeclaration(AstJsonDeclaration a);
-        
-        void VisitJsonColumnDeclaration(AstJsonColumnDeclaration a);
-        
-        void VisitSchemaDeclaration(AstSchemaDeclaration a);
-        
-        void VisitColumnDeclaration(AstColumnDeclaration a);
-        
-        void VisitChangeTableChanges(AstChangeTableChanges a);
-        
-        void VisitChangeTableVersion(AstChangeTableVersion a);
-        
-        void VisitJoinOn(AstJoinOn a);
-        
-        void VisitCrossJoin(AstCrossJoin a);
-        
-        void VisitApply(AstApply a);
-        
-        void VisitPivot(AstPivot a);
-        
-        void VisitUnpivot(AstUnpivot a);
-        
-        void VisitPivotClause(AstPivotClause a);
-        
-        void VisitUnpivotClause(AstUnpivotClause a);
-        
-        void VisitFullColumnNameList(AstFullColumnNameList a);
-        
-        void VisitRowsetFunction(AstRowsetFunction a);
-        
-        void VisitBulkOptions(AstBulkOptions a);
-        
-        void VisitBulkOption(AstBulkOption a);
-        
-        void VisitDerivedTable(AstDerivedTable a);
-        
-        void VisitFunctionCall(AstFunctionCall a);
-        
-        void VisitPartitionFunction(AstPartitionFunction a);
-        
-        void VisitFreetextFunction(AstFreetextFunction a);
-        
-        void VisitFreetextPredicate(AstFreetextPredicate a);
-        
-        void VisitExpressionLanguage(AstExpressionLanguage a);
-        
-        void VisitFreetextTableAndcolumnNames(AstFreetextTableAndcolumnNames a);
-        
-        void VisitFullColumnNames(AstFullColumnNames a);
-        
-        void VisitBuiltInFunctions(AstBuiltInFunctions a);
-        
-        void VisitExpressions(AstExpressions a);
-        
-        void VisitValueMethod(AstValueMethod a);
-        
-        void VisitValueCall(AstValueCall a);
-        
-        void VisitQueryMethod(AstQueryMethod a);
-        
-        void VisitQueryCall(AstQueryCall a);
-        
-        void VisitExistMethod(AstExistMethod a);
-        
-        void VisitExistCall(AstExistCall a);
-        
-        void VisitModifyMethod(AstModifyMethod a);
-        
-        void VisitModifyCall(AstModifyCall a);
-        
-        void VisitHierarchyidCall(AstHierarchyidCall a);
-        
-        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod a);
-        
-        void VisitNodesMethod(AstNodesMethod a);
-        
-        void VisitSwitchSection(AstSwitchSection a);
-        
-        void VisitSwitchSearchConditionSection(AstSwitchSearchConditionSection a);
-        
-        void VisitAsColumnAlias(AstAsColumnAlias a);
-        
-        void VisitAsTableAlias(AstAsTableAlias a);
-        
-        void VisitTableAlias(AstTableAlias a);
-        
-        void VisitWithTableHints(AstWithTableHints a);
-        
-        void VisitDeprecatedTableHint(AstDeprecatedTableHint a);
-        
-        void VisitSybaseLegacyHints(AstSybaseLegacyHints a);
-        
-        void VisitSybaseLegacyHint(AstSybaseLegacyHint a);
-        
-        void VisitIndexValues(AstIndexValues a);
-        
-        void VisitTableHint(AstTableHint a);
-        
-        void VisitIndexValue(AstIndexValue a);
-        
-        void VisitColumnAliasList(AstColumnAliasList a);
-        
-        void VisitColumnAlias(AstColumnAlias a);
-        
-        void VisitTableValueConstructor(AstTableValueConstructor a);
-        
-        void VisitExpressionList(AstExpressionList a);
-        
-        void VisitRankingWindowedFunction(AstRankingWindowedFunction a);
-        
-        void VisitAggregateWindowedFunction(AstAggregateWindowedFunction a);
-        
-        void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction a);
-        
-        void VisitAllDistinctExpression(AstAllDistinctExpression a);
-        
-        void VisitOverClause(AstOverClause a);
-        
-        void VisitRowOrRangeClause(AstRowOrRangeClause a);
-        
-        void VisitWindowFrameExtent(AstWindowFrameExtent a);
-        
-        void VisitWindowFramePreceding(AstWindowFramePreceding a);
-        
-        void VisitWindowFrameFollowing(AstWindowFrameFollowing a);
-        
-        void VisitCreateDatabaseOption(AstCreateDatabaseOption a);
-        
-        void VisitDatabaseFilestreamOptions(AstDatabaseFilestreamOptions a);
-        
-        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption a);
-        
-        void VisitFileGroup(AstFileGroup a);
-        
-        void VisitFileSpec(AstFileSpec a);
-        
-        void VisitEntityName(AstEntityName a);
-        
-        void VisitEntityNameForAzureDw(AstEntityNameForAzureDw a);
-        
-        void VisitEntityNameForParallelDw(AstEntityNameForParallelDw a);
-        
-        void VisitCompleteTableName(AstCompleteTableName a);
-        
-        void VisitFullTableName(AstFullTableName a);
-        
-        void VisitFullSchemaName(AstFullSchemaName a);
-        
-        void VisitSimpleName(AstSimpleName a);
-        
-        void VisitFuncProcNameSchema(AstFuncProcNameSchema a);
-        
-        void VisitFuncProcNameDatabaseSchema(AstFuncProcNameDatabaseSchema a);
-        
-        void VisitFuncProcNameServerDatabaseSchema(AstFuncProcNameServerDatabaseSchema a);
-        
-        void VisitDdlObject(AstDdlObject a);
-        
-        void VisitFullColumnName(AstFullColumnName a);
-        
-        void VisitColumnNameListWithOrder(AstColumnNameListWithOrder a);
-        
-        void VisitInsertColumnNameList(AstInsertColumnNameList a);
-        
-        void VisitInsertColumnId(AstInsertColumnId a);
-        
-        void VisitColumnNameList(AstColumnNameList a);
-        
-        void VisitCursorName(AstCursorName a);
-        
-        void VisitOnOff(AstOnOff a);
-        
-        void VisitClustered(AstClustered a);
-        
-        void VisitNullNotnull(AstNullNotnull a);
-        
-        void VisitNullOrDefault(AstNullOrDefault a);
-        
-        void VisitScalarFunctionName(AstScalarFunctionName a);
-        
-        void VisitBeginConversationTimer(AstBeginConversationTimer a);
-        
-        void VisitBeginConversationDialog(AstBeginConversationDialog a);
-        
-        void VisitContractNameExpression(AstContractNameExpression a);
-        
-        void VisitServiceName(AstServiceName a);
-        
-        void VisitEndConversation(AstEndConversation a);
-        
-        void VisitWaitforConversation(AstWaitforConversation a);
-        
-        void VisitGetConversation(AstGetConversation a);
-        
-        void VisitQueueId(AstQueueId a);
-        
-        void VisitSendConversation(AstSendConversation a);
-        
-        void VisitDataType(AstDataType a);
-        
-        void VisitDefaultValue(AstDefaultValue a);
-        
-        void VisitConstant(AstConstant a);
-        
-        void VisitSign(AstSign a);
-        
-        void VisitKeyword(AstKeyword a);
-        
-        void VisitId(AstId a);
-        
-        void VisitSimpleId(AstSimpleId a);
-        
-        void VisitComparisonOperator(AstComparisonOperator a);
-        
-        void VisitAssignmentOperator(AstAssignmentOperator a);
-        
-        void VisitFileSize(AstFileSize a);
-        
-        void VisitFileSizeUnity(AstFileSizeUnity a);
-        
-        void VisitFilestreamFilegroupOrPartitionSchemaName(AstFilestreamFilegroupOrPartitionSchemaName a);
-        
-        void VisitActionName(AstActionName a);
-        
-        void VisitAggregateName(AstAggregateName a);
-        
-        void VisitAppRoleSchema(AstAppRoleSchema a);
-        
-        void VisitApplicationRole(AstApplicationRole a);
-        
-        void VisitAssemblyName(AstAssemblyName a);
-        
-        void VisitAsymKeyName(AstAsymKeyName a);
-        
-        void VisitAuditActionGroupName(AstAuditActionGroupName a);
-        
-        void VisitAuditGuid(AstAuditGuid a);
-        
-        void VisitAuditName(AstAuditName a);
-        
-        void VisitAuditSpecificationName(AstAuditSpecificationName a);
-        
-        void VisitAzureActiveDirectoryPrincipal(AstAzureActiveDirectoryPrincipal a);
-        
-        void VisitBackupName(AstBackupName a);
-        
-        void VisitBindingName(AstBindingName a);
-        
-        void VisitCatalogName(AstCatalogName a);
-        
-        void VisitCertName(AstCertName a);
-        
-        void VisitCertificateName(AstCertificateName a);
-        
-        void VisitClassName(AstClassName a);
-        
-        void VisitCollationName(AstCollationName a);
-        
-        void VisitColumnEncryptionKey(AstColumnEncryptionKey a);
-        
-        void VisitColumnName(AstColumnName a);
-        
-        void VisitColumnNameOrArguments(AstColumnNameOrArguments a);
-        
-        void VisitConstraintName(AstConstraintName a);
-        
-        void VisitCreateServiceName(AstCreateServiceName a);
-        
-        void VisitCredentialName(AstCredentialName a);
-        
-        void VisitCryptographicProviderName(AstCryptographicProviderName a);
-        
-        void VisitDataSourceName(AstDataSourceName a);
-        
-        void VisitDatabaseName(AstDatabaseName a);
-        
-        void VisitDroppedServiceName(AstDroppedServiceName a);
-        
-        void VisitEncryptorName(AstEncryptorName a);
-        
-        void VisitEndpointName(AstEndpointName a);
-        
-        void VisitEventCustomizableAttributue(AstEventCustomizableAttributue a);
-        
-        void VisitEventFieldName(AstEventFieldName a);
-        
-        void VisitEventModuleGuid(AstEventModuleGuid a);
-        
-        void VisitEventName(AstEventName a);
-        
-        void VisitEventNotificationName(AstEventNotificationName a);
-        
-        void VisitEventPackageName(AstEventPackageName a);
-        
-        void VisitEventSessionName(AstEventSessionName a);
-        
-        void VisitEventTypeOrGroup(AstEventTypeOrGroup a);
-        
-        void VisitExtType(AstExtType a);
-        
-        void VisitExternalDataSourceName(AstExternalDataSourceName a);
-        
-        void VisitExternalFileFormatName(AstExternalFileFormatName a);
-        
-        void VisitExternalPoolName(AstExternalPoolName a);
-        
-        void VisitFileGroupName(AstFileGroupName a);
-        
-        void VisitFunctionName(AstFunctionName a);
-        
-        void VisitGroupName(AstGroupName a);
-        
-        void VisitIndexName(AstIndexName a);
-        
-        void VisitLanguage(AstLanguage a);
-        
-        void VisitLibraryName(AstLibraryName a);
-        
-        void VisitLinkedServer(AstLinkedServer a);
-        
-        void VisitLogicalDeviceName(AstLogicalDeviceName a);
-        
-        void VisitLoginName(AstLoginName a);
-        
-        void VisitMasterKey(AstMasterKey a);
-        
-        void VisitMethodName(AstMethodName a);
-        
-        void VisitModifiedContractName(AstModifiedContractName a);
-        
-        void VisitModifiedServiceName(AstModifiedServiceName a);
-        
-        void VisitModuleName(AstModuleName a);
-        
-        void VisitNetworkComputer(AstNetworkComputer a);
-        
-        void VisitNewApplicationRoleName(AstNewApplicationRoleName a);
-        
-        void VisitNewFileGroupName(AstNewFileGroupName a);
-        
-        void VisitNonStaticAttr(AstNonStaticAttr a);
-        
-        void VisitNotificationName(AstNotificationName a);
-        
-        void VisitObjectName(AstObjectName a);
-        
-        void VisitOwnerName(AstOwnerName a);
-        
-        void VisitPartitionColumnName(AstPartitionColumnName a);
-        
-        void VisitPoolName(AstPoolName a);
-        
-        void VisitPredicateCompareName(AstPredicateCompareName a);
-        
-        void VisitPredicateSourceName(AstPredicateSourceName a);
-        
-        void VisitPropertyListName(AstPropertyListName a);
-        
-        void VisitProviderName(AstProviderName a);
-        
-        void VisitQueueName(AstQueueName a);
-        
-        void VisitRelationalSchema(AstRelationalSchema a);
-        
-        void VisitRoleName(AstRoleName a);
-        
-        void VisitRouteName(AstRouteName a);
-        
-        void VisitRuleName(AstRuleName a);
-        
-        void VisitSchemaName(AstSchemaName a);
-        
-        void VisitSchemaCollectionName(AstSchemaCollectionName a);
-        
-        void VisitSecurityPolicyName(AstSecurityPolicyName a);
-        
-        void VisitSecurityPredicateFunctionName(AstSecurityPredicateFunctionName a);
-        
-        void VisitSequenceName(AstSequenceName a);
-        
-        void VisitFullSequenceName(AstFullSequenceName a);
-        
-        void VisitFullQueueName(AstFullQueueName a);
-        
-        void VisitServerName(AstServerName a);
-        
-        void VisitServerRoleName(AstServerRoleName a);
-        
-        void VisitSourceListName(AstSourceListName a);
-        
-        void VisitSqlIdentifier(AstSqlIdentifier a);
-        
-        void VisitStaticAttr(AstStaticAttr a);
-        
-        void VisitStatisticsName(AstStatisticsName a);
-        
-        void VisitStoplistName(AstStoplistName a);
-        
-        void VisitSymmetricKeyName(AstSymmetricKeyName a);
-        
-        void VisitSynonymName(AstSynonymName a);
-        
-        void VisitTableOrViewName(AstTableOrViewName a);
-        
-        void VisitTableVariable(AstTableVariable a);
-        
-        void VisitTableName(AstTableName a);
-        
-        void VisitTargetName(AstTargetName a);
-        
-        void VisitTargetParameterName(AstTargetParameterName a);
-        
-        void VisitTriggerName(AstTriggerName a);
-        
-        void VisitTvfSchemaName(AstTvfSchemaName a);
-        
-        void VisitTypeSchema(AstTypeSchema a);
-        
-        void VisitUdtColumnName(AstUdtColumnName a);
-        
-        void VisitUnscaledType(AstUnscaledType a);
-        
-        void VisitUserName(AstUserName a);
-        
-        void VisitWindowsPrincipal(AstWindowsPrincipal a);
-        
-        void VisitWorkloadGroupGroupName(AstWorkloadGroupGroupName a);
-        
-        void VisitWorkloadGroupPoolName(AstWorkloadGroupPoolName a);
-        
-        void VisitFullAggregateName(AstFullAggregateName a);
-        
-        void VisitStringId(AstStringId a);
-        
-        void VisitStringId2(AstStringId2 a);
-        
-        void VisitStringLocalId(AstStringLocalId a);
-        
-        void VisitDecimalLocalId(AstDecimalLocalId a);
-        
-        void VisitDecimalString(AstDecimalString a);
-        
-        void VisitLogSeterrorNowait(AstLogSeterrorNowait a);
-        
-        void VisitDecimalStringLocalId(AstDecimalStringLocalId a);
-        
-        void VisitStringLocalIdDoubleQuoteId(AstStringLocalIdDoubleQuoteId a);
-        
-        void VisitDecimalId(AstDecimalId a);
+        void VisitTsqlFile(AstTsqlFile a)
+        {
+        }
+        
+        void VisitBatch(AstBatch a)
+        {
+        }
+        
+        void VisitBatchLevelStatement(AstBatchLevelStatement a)
+        {
+        }
+        
+        void VisitSqlClauses(AstSqlClauses a)
+        {
+        }
+        
+        void VisitSqlClause(AstSqlClause a)
+        {
+        }
+        
+        void VisitDmlClause(AstDmlClause a)
+        {
+        }
+        
+        void VisitDdlClause(AstDdlClause a)
+        {
+        }
+        
+        void VisitBackupStatement(AstBackupStatement a)
+        {
+        }
+        
+        void VisitCflStatement(AstCflStatement a)
+        {
+        }
+        
+        void VisitBlockStatement(AstBlockStatement a)
+        {
+        }
+        
+        void VisitBreakStatement(AstBreakStatement a)
+        {
+        }
+        
+        void VisitContinueStatement(AstContinueStatement a)
+        {
+        }
+        
+        void VisitGotoStatement(AstGotoStatement a)
+        {
+        }
+        
+        void VisitReturnStatement(AstReturnStatement a)
+        {
+        }
+        
+        void VisitIfStatement(AstIfStatement a)
+        {
+        }
+        
+        void VisitThrowStatement(AstThrowStatement a)
+        {
+        }
+        
+        void VisitThrowErrorNumber(AstThrowErrorNumber a)
+        {
+        }
+        
+        void VisitThrowMessage(AstThrowMessage a)
+        {
+        }
+        
+        void VisitThrowState(AstThrowState a)
+        {
+        }
+        
+        void VisitTryCatchStatement(AstTryCatchStatement a)
+        {
+        }
+        
+        void VisitWaitforStatement(AstWaitforStatement a)
+        {
+        }
+        
+        void VisitDelayTimeTimeout(AstDelayTimeTimeout a)
+        {
+        }
+        
+        void VisitWhileStatement(AstWhileStatement a)
+        {
+        }
+        
+        void VisitPrintStatement(AstPrintStatement a)
+        {
+        }
+        
+        void VisitRaiseerrorStatement(AstRaiseerrorStatement a)
+        {
+        }
+        
+        void VisitEmptyStatement(AstEmptyStatement a)
+        {
+        }
+        
+        void VisitAnotherStatement(AstAnotherStatement a)
+        {
+        }
+        
+        void VisitAlterApplicationRole(AstAlterApplicationRole a)
+        {
+        }
+        
+        void VisitCreateApplicationRole(AstCreateApplicationRole a)
+        {
+        }
+        
+        void VisitDropAggregate(AstDropAggregate a)
+        {
+        }
+        
+        void VisitDropApplicationRole(AstDropApplicationRole a)
+        {
+        }
+        
+        void VisitAlterAssembly(AstAlterAssembly a)
+        {
+        }
+        
+        void VisitAlterAssemblyStart(AstAlterAssemblyStart a)
+        {
+        }
+        
+        void VisitAlterAssemblyClause(AstAlterAssemblyClause a)
+        {
+        }
+        
+        void VisitAlterAssemblyFromClause(AstAlterAssemblyFromClause a)
+        {
+        }
+        
+        void VisitAlterAssemblyFromClauseStart(AstAlterAssemblyFromClauseStart a)
+        {
+        }
+        
+        void VisitAlterAssemblyDropClause(AstAlterAssemblyDropClause a)
+        {
+        }
+        
+        void VisitAlterAssemblyDropMultipleFiles(AstAlterAssemblyDropMultipleFiles a)
+        {
+        }
+        
+        void VisitAlterAssemblyDrop(AstAlterAssemblyDrop a)
+        {
+        }
+        
+        void VisitAlterAssemblyAddClause(AstAlterAssemblyAddClause a)
+        {
+        }
+        
+        void VisitAlterAssemblyClientFileClause(AstAlterAssemblyClientFileClause a)
+        {
+        }
+        
+        void VisitAssemblyFileName(AstAssemblyFileName a)
+        {
+        }
+        
+        void VisitAlterAssemblyFileBits(AstAlterAssemblyFileBits a)
+        {
+        }
+        
+        void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a)
+        {
+        }
+        
+        void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a)
+        {
+        }
+        
+        void VisitAssemblyOption(AstAssemblyOption a)
+        {
+        }
+        
+        void VisitNetworkFileShare(AstNetworkFileShare a)
+        {
+        }
+        
+        void VisitNetworkFileStart(AstNetworkFileStart a)
+        {
+        }
+        
+        void VisitFilePath(AstFilePath a)
+        {
+        }
+        
+        void VisitFileDirectoryPathSeparator(AstFileDirectoryPathSeparator a)
+        {
+        }
+        
+        void VisitLocalFile(AstLocalFile a)
+        {
+        }
+        
+        void VisitLocalDrive(AstLocalDrive a)
+        {
+        }
+        
+        void VisitMultipleLocalFiles(AstMultipleLocalFiles a)
+        {
+        }
+        
+        void VisitMultipleLocalFileStart(AstMultipleLocalFileStart a)
+        {
+        }
+        
+        void VisitCreateAssembly(AstCreateAssembly a)
+        {
+        }
+        
+        void VisitBinaryContentNexts(AstBinaryContentNexts a)
+        {
+        }
+        
+        void VisitBinaryContentNext(AstBinaryContentNext a)
+        {
+        }
+        
+        void VisitBinaryContent(AstBinaryContent a)
+        {
+        }
+        
+        void VisitDropAssembly(AstDropAssembly a)
+        {
+        }
+        
+        void VisitAlterAsymmetricKey(AstAlterAsymmetricKey a)
+        {
+        }
+        
+        void VisitAsymmetricKeyPasswordChangeOption(AstAsymmetricKeyPasswordChangeOption a)
+        {
+        }
+        
+        void VisitCreateAsymmetricKey(AstCreateAsymmetricKey a)
+        {
+        }
+        
+        void VisitDropAsymmetricKey(AstDropAsymmetricKey a)
+        {
+        }
+        
+        void VisitAlterAuthorization(AstAlterAuthorization a)
+        {
+        }
+        
+        void VisitAuthorizationGrantee(AstAuthorizationGrantee a)
+        {
+        }
+        
+        void VisitAlterAuthorizationForSqlDatabase(AstAlterAuthorizationForSqlDatabase a)
+        {
+        }
+        
+        void VisitAlterAuthorizationForAzureDw(AstAlterAuthorizationForAzureDw a)
+        {
+        }
+        
+        void VisitAlterAuthorizationForParallelDw(AstAlterAuthorizationForParallelDw a)
+        {
+        }
+        
+        void VisitClassType(AstClassType a)
+        {
+        }
+        
+        void VisitClassTypeForSqlDatabase(AstClassTypeForSqlDatabase a)
+        {
+        }
+        
+        void VisitClassTypeForAzureDw(AstClassTypeForAzureDw a)
+        {
+        }
+        
+        void VisitClassTypeForParallelDw(AstClassTypeForParallelDw a)
+        {
+        }
+        
+        void VisitClassTypeForGrant(AstClassTypeForGrant a)
+        {
+        }
+        
+        void VisitDropAvailabilityGroup(AstDropAvailabilityGroup a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroup(AstAlterAvailabilityGroup a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupStart(AstAlterAvailabilityGroupStart a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsDatabase(AstAlterAvailabilityGroupOptionsDatabase a)
+        {
+        }
+        
+        void VisitRangeIpV4(AstRangeIpV4 a)
+        {
+        }
+        
+        void VisitRangeIpCommaV4(AstRangeIpCommaV4 a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListener a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListenerRestart(AstAlterAvailabilityGroupOptionsListenerRestart a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListenerModify(AstAlterAvailabilityGroupOptionsListenerModify a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListenerAdd(AstAlterAvailabilityGroupOptionsListenerAdd a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListenerDhcp(AstAlterAvailabilityGroupOptionsListenerDhcp a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsListenerIp(AstAlterAvailabilityGroupOptionsListenerIp a)
+        {
+        }
+        
+        void VisitAddRemove(AstAddRemove a)
+        {
+        }
+        
+        void VisitRestartRemove(AstRestartRemove a)
+        {
+        }
+        
+        void VisitSynchAsynch(AstSynchAsynch a)
+        {
+        }
+        
+        void VisitAutoManual(AstAutoManual a)
+        {
+        }
+        
+        void VisitRealWriteAll(AstRealWriteAll a)
+        {
+        }
+        
+        void VisitNoRealWriteAll(AstNoRealWriteAll a)
+        {
+        }
+        
+        void VisitPrimarySecondaryNone(AstPrimarySecondaryNone a)
+        {
+        }
+        
+        void VisitGrantDeny(AstGrantDeny a)
+        {
+        }
+        
+        void VisitAlterAvailabilityReplicatModify(AstAlterAvailabilityReplicatModify a)
+        {
+        }
+        
+        void VisitBackupPriority(AstBackupPriority a)
+        {
+        }
+        
+        void VisitAlterAvailabilityReplicatAdd(AstAlterAvailabilityReplicatAdd a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsReplicat(AstAlterAvailabilityGroupOptionsReplicat a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsGroup(AstAlterAvailabilityGroupOptionsGroup a)
+        {
+        }
+        
+        void VisitListenerUrl(AstListenerUrl a)
+        {
+        }
+        
+        void VisitAvailabilityMode(AstAvailabilityMode a)
+        {
+        }
+        
+        void VisitFailoverModeManuel(AstFailoverModeManuel a)
+        {
+        }
+        
+        void VisitSeedingMode(AstSeedingMode a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptionsRole(AstAlterAvailabilityGroupOptionsRole a)
+        {
+        }
+        
+        void VisitAllowConnections(AstAllowConnections a)
+        {
+        }
+        
+        void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions a)
+        {
+        }
+        
+        void VisitServerInstance(AstServerInstance a)
+        {
+        }
+        
+        void VisitCreateOrAlterBrokerPriority(AstCreateOrAlterBrokerPriority a)
+        {
+        }
+        
+        void VisitBrokerContractName(AstBrokerContractName a)
+        {
+        }
+        
+        void VisitBrokerLocalServiceName(AstBrokerLocalServiceName a)
+        {
+        }
+        
+        void VisitBrokerRemoteServiceName(AstBrokerRemoteServiceName a)
+        {
+        }
+        
+        void VisitBrokerPriorityLevel(AstBrokerPriorityLevel a)
+        {
+        }
+        
+        void VisitCreateAlter(AstCreateAlter a)
+        {
+        }
+        
+        void VisitDropBrokerPriority(AstDropBrokerPriority a)
+        {
+        }
+        
+        void VisitAlterCertificate(AstAlterCertificate a)
+        {
+        }
+        
+        void VisitAddDrop(AstAddDrop a)
+        {
+        }
+        
+        void VisitAlterColumnEncryptionKey(AstAlterColumnEncryptionKey a)
+        {
+        }
+        
+        void VisitCreateColumnEncryptionKey(AstCreateColumnEncryptionKey a)
+        {
+        }
+        
+        void VisitDropCertificate(AstDropCertificate a)
+        {
+        }
+        
+        void VisitDropColumnEncryptionKey(AstDropColumnEncryptionKey a)
+        {
+        }
+        
+        void VisitDropColumnMasterKey(AstDropColumnMasterKey a)
+        {
+        }
+        
+        void VisitDropContract(AstDropContract a)
+        {
+        }
+        
+        void VisitDropCredential(AstDropCredential a)
+        {
+        }
+        
+        void VisitDropCryptograhicProvider(AstDropCryptograhicProvider a)
+        {
+        }
+        
+        void VisitDropDatabase(AstDropDatabase a)
+        {
+        }
+        
+        void VisitDropDatabaseAuditSpecification(AstDropDatabaseAuditSpecification a)
+        {
+        }
+        
+        void VisitDropDatabaseEncryptionKey(AstDropDatabaseEncryptionKey a)
+        {
+        }
+        
+        void VisitDropDatabaseScopedCredential(AstDropDatabaseScopedCredential a)
+        {
+        }
+        
+        void VisitDropDefault(AstDropDefault a)
+        {
+        }
+        
+        void VisitDropEndpoint(AstDropEndpoint a)
+        {
+        }
+        
+        void VisitDropExternalDataSource(AstDropExternalDataSource a)
+        {
+        }
+        
+        void VisitDropExternalFileFormat(AstDropExternalFileFormat a)
+        {
+        }
+        
+        void VisitDropExternalLibrary(AstDropExternalLibrary a)
+        {
+        }
+        
+        void VisitDropExternalResourcePool(AstDropExternalResourcePool a)
+        {
+        }
+        
+        void VisitDropExternalTable(AstDropExternalTable a)
+        {
+        }
+        
+        void VisitDropEventNotifications(AstDropEventNotifications a)
+        {
+        }
+        
+        void VisitDropEventSession(AstDropEventSession a)
+        {
+        }
+        
+        void VisitDropFulltextCatalog(AstDropFulltextCatalog a)
+        {
+        }
+        
+        void VisitDropFulltextIndex(AstDropFulltextIndex a)
+        {
+        }
+        
+        void VisitDropFulltextStoplist(AstDropFulltextStoplist a)
+        {
+        }
+        
+        void VisitDropLogin(AstDropLogin a)
+        {
+        }
+        
+        void VisitDropMasterKey(AstDropMasterKey a)
+        {
+        }
+        
+        void VisitDropMessageType(AstDropMessageType a)
+        {
+        }
+        
+        void VisitDropPartitionFunction(AstDropPartitionFunction a)
+        {
+        }
+        
+        void VisitDropPartitionScheme(AstDropPartitionScheme a)
+        {
+        }
+        
+        void VisitDropQueue(AstDropQueue a)
+        {
+        }
+        
+        void VisitDropRemoteServiceBinding(AstDropRemoteServiceBinding a)
+        {
+        }
+        
+        void VisitDropResourcePool(AstDropResourcePool a)
+        {
+        }
+        
+        void VisitDropDbRole(AstDropDbRole a)
+        {
+        }
+        
+        void VisitDropRoute(AstDropRoute a)
+        {
+        }
+        
+        void VisitDropRule(AstDropRule a)
+        {
+        }
+        
+        void VisitDropSchema(AstDropSchema a)
+        {
+        }
+        
+        void VisitDropSearchPropertyList(AstDropSearchPropertyList a)
+        {
+        }
+        
+        void VisitDropSecurityPolicy(AstDropSecurityPolicy a)
+        {
+        }
+        
+        void VisitDropSequence(AstDropSequence a)
+        {
+        }
+        
+        void VisitDropServerAudit(AstDropServerAudit a)
+        {
+        }
+        
+        void VisitDropServerAuditSpecification(AstDropServerAuditSpecification a)
+        {
+        }
+        
+        void VisitDropServerRole(AstDropServerRole a)
+        {
+        }
+        
+        void VisitDropService(AstDropService a)
+        {
+        }
+        
+        void VisitDropSignature(AstDropSignature a)
+        {
+        }
+        
+        void VisitDropStatisticsIdAzureDwAndPdw(AstDropStatisticsIdAzureDwAndPdw a)
+        {
+        }
+        
+        void VisitDropSymmetricKey(AstDropSymmetricKey a)
+        {
+        }
+        
+        void VisitDropSynonym(AstDropSynonym a)
+        {
+        }
+        
+        void VisitDropUser(AstDropUser a)
+        {
+        }
+        
+        void VisitDropWorkloadGroup(AstDropWorkloadGroup a)
+        {
+        }
+        
+        void VisitDropXmlSchemaCollection(AstDropXmlSchemaCollection a)
+        {
+        }
+        
+        void VisitDisableTrigger(AstDisableTrigger a)
+        {
+        }
+        
+        void VisitEnableTrigger(AstEnableTrigger a)
+        {
+        }
+        
+        void VisitLockTable(AstLockTable a)
+        {
+        }
+        
+        void VisitTruncateTable(AstTruncateTable a)
+        {
+        }
+        
+        void VisitCreateColumnMasterKey(AstCreateColumnMasterKey a)
+        {
+        }
+        
+        void VisitAlterCredential(AstAlterCredential a)
+        {
+        }
+        
+        void VisitCreateCredential(AstCreateCredential a)
+        {
+        }
+        
+        void VisitAlterCryptographicProvider(AstAlterCryptographicProvider a)
+        {
+        }
+        
+        void VisitCreateCryptographicProvider(AstCreateCryptographicProvider a)
+        {
+        }
+        
+        void VisitCreateEventNotification(AstCreateEventNotification a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSession(AstCreateOrAlterEventSession a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSessionWith(AstCreateOrAlterEventSessionWith a)
+        {
+        }
+        
+        void VisitSessionArgMaxMemory(AstSessionArgMaxMemory a)
+        {
+        }
+        
+        void VisitSessionArgEventRetentionMode(AstSessionArgEventRetentionMode a)
+        {
+        }
+        
+        void VisitSessionArgMaxDispatch(AstSessionArgMaxDispatch a)
+        {
+        }
+        
+        void VisitSessionArgMaxEventSize(AstSessionArgMaxEventSize a)
+        {
+        }
+        
+        void VisitSessionArgMemoryPartition(AstSessionArgMemoryPartition a)
+        {
+        }
+        
+        void VisitSessionArgTrackCausality(AstSessionArgTrackCausality a)
+        {
+        }
+        
+        void VisitSessionArgStartupState(AstSessionArgStartupState a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSessionAddEvent(AstCreateOrAlterEventSessionAddEvent a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSessionAddTarget(AstCreateOrAlterEventSessionAddTarget a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSessionDelTarget(AstCreateOrAlterEventSessionDelTarget a)
+        {
+        }
+        
+        void VisitCreateOrAlterEventSessionDelEvent(AstCreateOrAlterEventSessionDelEvent a)
+        {
+        }
+        
+        void VisitStartStop(AstStartStop a)
+        {
+        }
+        
+        void VisitEventSessionPredicateExpression(AstEventSessionPredicateExpression a)
+        {
+        }
+        
+        void VisitEventSessionPredicateFactor(AstEventSessionPredicateFactor a)
+        {
+        }
+        
+        void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf a)
+        {
+        }
+        
+        void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe a)
+        {
+        }
+        
+        void VisitAlterExternalDataSource(AstAlterExternalDataSource a)
+        {
+        }
+        
+        void VisitAlterExternalLibrary(AstAlterExternalLibrary a)
+        {
+        }
+        
+        void VisitSetAdd(AstSetAdd a)
+        {
+        }
+        
+        void VisitCreateExternalLibrary(AstCreateExternalLibrary a)
+        {
+        }
+        
+        void VisitFileSpec2(AstFileSpec2 a)
+        {
+        }
+        
+        void VisitPlatform(AstPlatform a)
+        {
+        }
+        
+        void VisitCodeContent(AstCodeContent a)
+        {
+        }
+        
+        void VisitCodeLanguage(AstCodeLanguage a)
+        {
+        }
+        
+        void VisitAlterExternalResourcePool(AstAlterExternalResourcePool a)
+        {
+        }
+        
+        void VisitCreateExternalResourcePool(AstCreateExternalResourcePool a)
+        {
+        }
+        
+        void VisitExternalResourceWith(AstExternalResourceWith a)
+        {
+        }
+        
+        void VisitMawProcess(AstMawProcess a)
+        {
+        }
+        
+        void VisitMaxMemory(AstMaxMemory a)
+        {
+        }
+        
+        void VisitMaxCpu(AstMaxCpu a)
+        {
+        }
+        
+        void VisitAlterFulltextCatalog(AstAlterFulltextCatalog a)
+        {
+        }
+        
+        void VisitCreateFulltextCatalog(AstCreateFulltextCatalog a)
+        {
+        }
+        
+        void VisitAlterFulltextStoplist(AstAlterFulltextStoplist a)
+        {
+        }
+        
+        void VisitCreateFulltextStoplist(AstCreateFulltextStoplist a)
+        {
+        }
+        
+        void VisitAlterLoginSqlServer(AstAlterLoginSqlServer a)
+        {
+        }
+        
+        void VisitAlterLoginSqlServerInfos(AstAlterLoginSqlServerInfos a)
+        {
+        }
+        
+        void VisitAlterLoginSqlServerSettings(AstAlterLoginSqlServerSettings a)
+        {
+        }
+        
+        void VisitCreateLoginSqlServer(AstCreateLoginSqlServer a)
+        {
+        }
+        
+        void VisitCreateLoginSqlServerSettings(AstCreateLoginSqlServerSettings a)
+        {
+        }
+        
+        void VisitCreateLoginSqlServerFrom(AstCreateLoginSqlServerFrom a)
+        {
+        }
+        
+        void VisitAlterLoginAzureSql(AstAlterLoginAzureSql a)
+        {
+        }
+        
+        void VisitAlterLoginAzureSqlInfos(AstAlterLoginAzureSqlInfos a)
+        {
+        }
+        
+        void VisitAlterLoginAzureSqlWith(AstAlterLoginAzureSqlWith a)
+        {
+        }
+        
+        void VisitCreateLoginAzureSql(AstCreateLoginAzureSql a)
+        {
+        }
+        
+        void VisitAlterLoginAzureSqlDwAndPdw(AstAlterLoginAzureSqlDwAndPdw a)
+        {
+        }
+        
+        void VisitEnableDisable(AstEnableDisable a)
+        {
+        }
+        
+        void VisitCreateLoginPdw(AstCreateLoginPdw a)
+        {
+        }
+        
+        void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer a)
+        {
+        }
+        
+        void VisitCreateMasterKeySqlServer(AstCreateMasterKeySqlServer a)
+        {
+        }
+        
+        void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql a)
+        {
+        }
+        
+        void VisitCreateMasterKeyAzureSql(AstCreateMasterKeyAzureSql a)
+        {
+        }
+        
+        void VisitAlterMessageType(AstAlterMessageType a)
+        {
+        }
+        
+        void VisitAlterPartitionFunction(AstAlterPartitionFunction a)
+        {
+        }
+        
+        void VisitSplitOrMerge(AstSplitOrMerge a)
+        {
+        }
+        
+        void VisitAlterPartitionScheme(AstAlterPartitionScheme a)
+        {
+        }
+        
+        void VisitAlterRemoteServiceBinding(AstAlterRemoteServiceBinding a)
+        {
+        }
+        
+        void VisitCreateRemoteServiceBinding(AstCreateRemoteServiceBinding a)
+        {
+        }
+        
+        void VisitCreateResourcePool(AstCreateResourcePool a)
+        {
+        }
+        
+        void VisitDecimalRange(AstDecimalRange a)
+        {
+        }
+        
+        void VisitAlterResourceGovernor(AstAlterResourceGovernor a)
+        {
+        }
+        
+        void VisitAlterDbRole(AstAlterDbRole a)
+        {
+        }
+        
+        void VisitCreateDbRole(AstCreateDbRole a)
+        {
+        }
+        
+        void VisitCreateRoute(AstCreateRoute a)
+        {
+        }
+        
+        void VisitCreateRule(AstCreateRule a)
+        {
+        }
+        
+        void VisitAlterSchemaSql(AstAlterSchemaSql a)
+        {
+        }
+        
+        void VisitIdDotId(AstIdDotId a)
+        {
+        }
+        
+        void VisitCreateSchema(AstCreateSchema a)
+        {
+        }
+        
+        void VisitCreateSchemaName(AstCreateSchemaName a)
+        {
+        }
+        
+        void VisitCreateSchemaTarget(AstCreateSchemaTarget a)
+        {
+        }
+        
+        void VisitSchemaAuthorization(AstSchemaAuthorization a)
+        {
+        }
+        
+        void VisitEnumDml(AstEnumDml a)
+        {
+        }
+        
+        void VisitCreateSchemaAzureSqlDwAndPdw(AstCreateSchemaAzureSqlDwAndPdw a)
+        {
+        }
+        
+        void VisitAlterSchemaAzureSqlDwAndPdw(AstAlterSchemaAzureSqlDwAndPdw a)
+        {
+        }
+        
+        void VisitCreateSearchPropertyList(AstCreateSearchPropertyList a)
+        {
+        }
+        
+        void VisitCreateSecurityPolicy(AstCreateSecurityPolicy a)
+        {
+        }
+        
+        void VisitSchemaBinding(AstSchemaBinding a)
+        {
+        }
+        
+        void VisitCreateSecurityPolicyAdd(AstCreateSecurityPolicyAdd a)
+        {
+        }
+        
+        void VisitSchemaTableRefImpacts(AstSchemaTableRefImpacts a)
+        {
+        }
+        
+        void VisitFilterBlock(AstFilterBlock a)
+        {
+        }
+        
+        void VisitAlterSequence(AstAlterSequence a)
+        {
+        }
+        
+        void VisitAlterSequenceRestart(AstAlterSequenceRestart a)
+        {
+        }
+        
+        void VisitAlterSequenceIncrement(AstAlterSequenceIncrement a)
+        {
+        }
+        
+        void VisitSequenceCache(AstSequenceCache a)
+        {
+        }
+        
+        void VisitAlterSequenceMaxValue(AstAlterSequenceMaxValue a)
+        {
+        }
+        
+        void VisitAlterSequenceMinValue(AstAlterSequenceMinValue a)
+        {
+        }
+        
+        void VisitMaxValueDecimal(AstMaxValueDecimal a)
+        {
+        }
+        
+        void VisitCreateSequence(AstCreateSequence a)
+        {
+        }
+        
+        void VisitCreateSequenceIncrement(AstCreateSequenceIncrement a)
+        {
+        }
+        
+        void VisitCreateSequenceMinValue(AstCreateSequenceMinValue a)
+        {
+        }
+        
+        void VisitCreateSequenceMaxValue(AstCreateSequenceMaxValue a)
+        {
+        }
+        
+        void VisitReal(AstReal a)
+        {
+        }
+        
+        void VisitCreateSequenceStart(AstCreateSequenceStart a)
+        {
+        }
+        
+        void VisitCycle(AstCycle a)
+        {
+        }
+        
+        void VisitSizeUnity(AstSizeUnity a)
+        {
+        }
+        
+        void VisitAlterServerAudit(AstAlterServerAudit a)
+        {
+        }
+        
+        void VisitAlterServerAuditInfos(AstAlterServerAuditInfos a)
+        {
+        }
+        
+        void VisitServerAuditFile(AstServerAuditFile a)
+        {
+        }
+        
+        void VisitAlterServerAuditCondition(AstAlterServerAuditCondition a)
+        {
+        }
+        
+        void VisitContinueShutdown(AstContinueShutdown a)
+        {
+        }
+        
+        void VisitAuditOperator(AstAuditOperator a)
+        {
+        }
+        
+        void VisitAndOr(AstAndOr a)
+        {
+        }
+        
+        void VisitCreateServerAudit(AstCreateServerAudit a)
+        {
+        }
+        
+        void VisitCreateServerAuditToInfos(AstCreateServerAuditToInfos a)
+        {
+        }
+        
+        void VisitCreateServerAuditWith(AstCreateServerAuditWith a)
+        {
+        }
+        
+        void VisitAlterServerAuditSpecification(AstAlterServerAuditSpecification a)
+        {
+        }
+        
+        void VisitAlterServerAuditSpecificationServer(AstAlterServerAuditSpecificationServer a)
+        {
+        }
+        
+        void VisitCreateServerAuditSpecification(AstCreateServerAuditSpecification a)
+        {
+        }
+        
+        void VisitAlterServerConfiguration(AstAlterServerConfiguration a)
+        {
+        }
+        
+        void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity a)
+        {
+        }
+        
+        void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog a)
+        {
+        }
+        
+        void VisitSizeValue(AstSizeValue a)
+        {
+        }
+        
+        void VisitDecimalDefault(AstDecimalDefault a)
+        {
+        }
+        
+        void VisitServerConfigFailover(AstServerConfigFailover a)
+        {
+        }
+        
+        void VisitServerConfigBufferPoolExt(AstServerConfigBufferPoolExt a)
+        {
+        }
+        
+        void VisitStringOrDefault(AstStringOrDefault a)
+        {
+        }
+        
+        void VisitAlterServerRole(AstAlterServerRole a)
+        {
+        }
+        
+        void VisitAlterServerRoleNewName(AstAlterServerRoleNewName a)
+        {
+        }
+        
+        void VisitCreateServerRole(AstCreateServerRole a)
+        {
+        }
+        
+        void VisitAlterServerRolePdw(AstAlterServerRolePdw a)
+        {
+        }
+        
+        void VisitAlterService(AstAlterService a)
+        {
+        }
+        
+        void VisitAlterServiceContract(AstAlterServiceContract a)
+        {
+        }
+        
+        void VisitCreateService(AstCreateService a)
+        {
+        }
+        
+        void VisitContract(AstContract a)
+        {
+        }
+        
+        void VisitAlterServiceMasterKey(AstAlterServiceMasterKey a)
+        {
+        }
+        
+        void VisitAlterSymmetricKey(AstAlterSymmetricKey a)
+        {
+        }
+        
+        void VisitCreateSynonym(AstCreateSynonym a)
+        {
+        }
+        
+        void VisitAlterUser(AstAlterUser a)
+        {
+        }
+        
+        void VisitAlterUserItem(AstAlterUserItem a)
+        {
+        }
+        
+        void VisitCreateUser(AstCreateUser a)
+        {
+        }
+        
+        void VisitCreateUserWithLogin(AstCreateUserWithLogin a)
+        {
+        }
+        
+        void VisitCreateUserWithoutLogin(AstCreateUserWithoutLogin a)
+        {
+        }
+        
+        void VisitCreateUserWindowsPrincipalId(AstCreateUserWindowsPrincipalId a)
+        {
+        }
+        
+        void VisitForFrom(AstForFrom a)
+        {
+        }
+        
+        void VisitUserSettingsShort(AstUserSettingsShort a)
+        {
+        }
+        
+        void VisitUserSettings(AstUserSettings a)
+        {
+        }
+        
+        void VisitCreateUserAzureSqlDw(AstCreateUserAzureSqlDw a)
+        {
+        }
+        
+        void VisitAlterUserAzureSql(AstAlterUserAzureSql a)
+        {
+        }
+        
+        void VisitAlterUserAzureSqlInfos(AstAlterUserAzureSqlInfos a)
+        {
+        }
+        
+        void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo a)
+        {
+        }
+        
+        void VisitAlterWorkloadGroup(AstAlterWorkloadGroup a)
+        {
+        }
+        
+        void VisitCreateWorkloadGroup(AstCreateWorkloadGroup a)
+        {
+        }
+        
+        void VisitCreateXmlSchemaCollection(AstCreateXmlSchemaCollection a)
+        {
+        }
+        
+        void VisitCreatePartitionFunction(AstCreatePartitionFunction a)
+        {
+        }
+        
+        void VisitCreatePartitionScheme(AstCreatePartitionScheme a)
+        {
+        }
+        
+        void VisitCreateQueue(AstCreateQueue a)
+        {
+        }
+        
+        void VisitQueueSettings(AstQueueSettings a)
+        {
+        }
+        
+        void VisitAlterQueue(AstAlterQueue a)
+        {
+        }
+        
+        void VisitQueueAction(AstQueueAction a)
+        {
+        }
+        
+        void VisitQueueRebuildOptions(AstQueueRebuildOptions a)
+        {
+        }
+        
+        void VisitCreateContract(AstCreateContract a)
+        {
+        }
+        
+        void VisitConversationStatement(AstConversationStatement a)
+        {
+        }
+        
+        void VisitMessageStatement(AstMessageStatement a)
+        {
+        }
+        
+        void VisitMergeStatement(AstMergeStatement a)
+        {
+        }
+        
+        void VisitWhenMatches(AstWhenMatches a)
+        {
+        }
+        
+        void VisitMergeMatched(AstMergeMatched a)
+        {
+        }
+        
+        void VisitMergeNotMatched(AstMergeNotMatched a)
+        {
+        }
+        
+        void VisitDeleteStatement(AstDeleteStatement a)
+        {
+        }
+        
+        void VisitDeleteStatementFrom(AstDeleteStatementFrom a)
+        {
+        }
+        
+        void VisitInsertStatement(AstInsertStatement a)
+        {
+        }
+        
+        void VisitInsertStatementValue(AstInsertStatementValue a)
+        {
+        }
+        
+        void VisitReceiveStatement(AstReceiveStatement a)
+        {
+        }
+        
+        void VisitSelectStatementStandalone(AstSelectStatementStandalone a)
+        {
+        }
+        
+        void VisitSelectStatement(AstSelectStatement a)
+        {
+        }
+        
+        void VisitTime(AstTime a)
+        {
+        }
+        
+        void VisitUpdateStatement(AstUpdateStatement a)
+        {
+        }
+        
+        void VisitOutputClause(AstOutputClause a)
+        {
+        }
+        
+        void VisitOutputDmlListElem(AstOutputDmlListElem a)
+        {
+        }
+        
+        void VisitCreateDatabase(AstCreateDatabase a)
+        {
+        }
+        
+        void VisitDatabaseContainment(AstDatabaseContainment a)
+        {
+        }
+        
+        void VisitDatabaseOnPrimary(AstDatabaseOnPrimary a)
+        {
+        }
+        
+        void VisitDatabaseOnLog(AstDatabaseOnLog a)
+        {
+        }
+        
+        void VisitDatabaseCollate(AstDatabaseCollate a)
+        {
+        }
+        
+        void VisitDatabaseCreateWith(AstDatabaseCreateWith a)
+        {
+        }
+        
+        void VisitNonePartial(AstNonePartial a)
+        {
+        }
+        
+        void VisitCreateIndex(AstCreateIndex a)
+        {
+        }
+        
+        void VisitRelationalIndexOption(AstRelationalIndexOption a)
+        {
+        }
+        
+        void VisitAlterIndex(AstAlterIndex a)
+        {
+        }
+        
+        void VisitResumableIndexOption(AstResumableIndexOption a)
+        {
+        }
+        
+        void VisitReorganizePartition(AstReorganizePartition a)
+        {
+        }
+        
+        void VisitReorganizeOption(AstReorganizeOption a)
+        {
+        }
+        
+        void VisitSetIndexOption(AstSetIndexOption a)
+        {
+        }
+        
+        void VisitRebuildPartition(AstRebuildPartition a)
+        {
+        }
+        
+        void VisitRebuildIndexOption(AstRebuildIndexOption a)
+        {
+        }
+        
+        void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption a)
+        {
+        }
+        
+        void VisitDatacompressionMode(AstDatacompressionMode a)
+        {
+        }
+        
+        void VisitOnPartitions(AstOnPartitions a)
+        {
+        }
+        
+        void VisitPartitionNums(AstPartitionNums a)
+        {
+        }
+        
+        void VisitCreateColumnstoreIndex(AstCreateColumnstoreIndex a)
+        {
+        }
+        
+        void VisitColumnstoreIndexOption(AstColumnstoreIndexOption a)
+        {
+        }
+        
+        void VisitCreateNonclusteredColumnstoreIndex(AstCreateNonclusteredColumnstoreIndex a)
+        {
+        }
+        
+        void VisitCreateXmlIndex(AstCreateXmlIndex a)
+        {
+        }
+        
+        void VisitXmlIndexOption(AstXmlIndexOption a)
+        {
+        }
+        
+        void VisitCreateOrAlterProcedure(AstCreateOrAlterProcedure a)
+        {
+        }
+        
+        void VisitAsExternalName(AstAsExternalName a)
+        {
+        }
+        
+        void VisitCreateOrAlterTrigger(AstCreateOrAlterTrigger a)
+        {
+        }
+        
+        void VisitCreateOrAlterDmlTrigger(AstCreateOrAlterDmlTrigger a)
+        {
+        }
+        
+        void VisitForAfterInstead(AstForAfterInstead a)
+        {
+        }
+        
+        void VisitDmlTriggerOption(AstDmlTriggerOption a)
+        {
+        }
+        
+        void VisitDmlTriggerOperation(AstDmlTriggerOperation a)
+        {
+        }
+        
+        void VisitCreateOrAlterDdlTrigger(AstCreateOrAlterDdlTrigger a)
+        {
+        }
+        
+        void VisitAllServerDatabase(AstAllServerDatabase a)
+        {
+        }
+        
+        void VisitForAfter(AstForAfter a)
+        {
+        }
+        
+        void VisitCreateOrAlterFunction(AstCreateOrAlterFunction a)
+        {
+        }
+        
+        void VisitFuncBodyReturnsSelect(AstFuncBodyReturnsSelect a)
+        {
+        }
+        
+        void VisitFuncBodyReturnsTable(AstFuncBodyReturnsTable a)
+        {
+        }
+        
+        void VisitFuncBodyReturnsScalar(AstFuncBodyReturnsScalar a)
+        {
+        }
+        
+        void VisitProcedureParam(AstProcedureParam a)
+        {
+        }
+        
+        void VisitProcedureOption(AstProcedureOption a)
+        {
+        }
+        
+        void VisitFunctionOption(AstFunctionOption a)
+        {
+        }
+        
+        void VisitCreateStatistics(AstCreateStatistics a)
+        {
+        }
+        
+        void VisitUpdateStatistics(AstUpdateStatistics a)
+        {
+        }
+        
+        void VisitUpdateStatisticsOption(AstUpdateStatisticsOption a)
+        {
+        }
+        
+        void VisitCreateTable(AstCreateTable a)
+        {
+        }
+        
+        void VisitTableIndicesList(AstTableIndicesList a)
+        {
+        }
+        
+        void VisitTableIndices(AstTableIndices a)
+        {
+        }
+        
+        void VisitTableOptions(AstTableOptions a)
+        {
+        }
+        
+        void VisitTableOption(AstTableOption a)
+        {
+        }
+        
+        void VisitTableOptVarname(AstTableOptVarname a)
+        {
+        }
+        
+        void VisitTableOptVarValue(AstTableOptVarValue a)
+        {
+        }
+        
+        void VisitDistribution(AstDistribution a)
+        {
+        }
+        
+        void VisitCreateTableIndexOption(AstCreateTableIndexOption a)
+        {
+        }
+        
+        void VisitIndexStrategy(AstIndexStrategy a)
+        {
+        }
+        
+        void VisitCreateView(AstCreateView a)
+        {
+        }
+        
+        void VisitViewAttribute(AstViewAttribute a)
+        {
+        }
+        
+        void VisitAlterTable(AstAlterTable a)
+        {
+        }
+        
+        void VisitAlterTableConstraint(AstAlterTableConstraint a)
+        {
+        }
+        
+        void VisitAlterTableConstraintForeign(AstAlterTableConstraintForeign a)
+        {
+        }
+        
+        void VisitConstraintDeleteOrUpdate(AstConstraintDeleteOrUpdate a)
+        {
+        }
+        
+        void VisitSwitchPartition(AstSwitchPartition a)
+        {
+        }
+        
+        void VisitLowPriorityLockWait(AstLowPriorityLockWait a)
+        {
+        }
+        
+        void VisitAlterDatabase(AstAlterDatabase a)
+        {
+        }
+        
+        void VisitAlterDatabaseNewInfos(AstAlterDatabaseNewInfos a)
+        {
+        }
+        
+        void VisitAddOrModifyFiles(AstAddOrModifyFiles a)
+        {
+        }
+        
+        void VisitFilespec(AstFilespec a)
+        {
+        }
+        
+        void VisitAddOrModifyFilegroups(AstAddOrModifyFilegroups a)
+        {
+        }
+        
+        void VisitFilegroupUpdatabilityOption(AstFilegroupUpdatabilityOption a)
+        {
+        }
+        
+        void VisitDatabaseOptionspec(AstDatabaseOptionspec a)
+        {
+        }
+        
+        void VisitAutoOption(AstAutoOption a)
+        {
+        }
+        
+        void VisitChangeTrackingOption(AstChangeTrackingOption a)
+        {
+        }
+        
+        void VisitChangeTrackingOptionList(AstChangeTrackingOptionList a)
+        {
+        }
+        
+        void VisitPeriod(AstPeriod a)
+        {
+        }
+        
+        void VisitContainmentOption(AstContainmentOption a)
+        {
+        }
+        
+        void VisitCursorOption(AstCursorOption a)
+        {
+        }
+        
+        void VisitLocalGlobal(AstLocalGlobal a)
+        {
+        }
+        
+        void VisitStateEnum(AstStateEnum a)
+        {
+        }
+        
+        void VisitListenerIp(AstListenerIp a)
+        {
+        }
+        
+        void VisitAlterEndpoint(AstAlterEndpoint a)
+        {
+        }
+        
+        void VisitAuthenticationConfiguration(AstAuthenticationConfiguration a)
+        {
+        }
+        
+        void VisitAuthenticationMode(AstAuthenticationMode a)
+        {
+        }
+        
+        void VisitEncryptionState(AstEncryptionState a)
+        {
+        }
+        
+        void VisitEncryptionAlgorithm(AstEncryptionAlgorithm a)
+        {
+        }
+        
+        void VisitAlterEndpointDatabaseMirroring(AstAlterEndpointDatabaseMirroring a)
+        {
+        }
+        
+        void VisitAlterEndpointServiceBroker(AstAlterEndpointServiceBroker a)
+        {
+        }
+        
+        void VisitDatabaseMirroringOption(AstDatabaseMirroringOption a)
+        {
+        }
+        
+        void VisitMirroringSetOption(AstMirroringSetOption a)
+        {
+        }
+        
+        void VisitMirroringPartner(AstMirroringPartner a)
+        {
+        }
+        
+        void VisitMirroringWitness(AstMirroringWitness a)
+        {
+        }
+        
+        void VisitWitnessPartnerEqual(AstWitnessPartnerEqual a)
+        {
+        }
+        
+        void VisitPartnerOption(AstPartnerOption a)
+        {
+        }
+        
+        void VisitWitnessOption(AstWitnessOption a)
+        {
+        }
+        
+        void VisitWitnessServer(AstWitnessServer a)
+        {
+        }
+        
+        void VisitPartnerServer(AstPartnerServer a)
+        {
+        }
+        
+        void VisitMirroringHostPortSeperator(AstMirroringHostPortSeperator a)
+        {
+        }
+        
+        void VisitPartnerServerTcpPrefix(AstPartnerServerTcpPrefix a)
+        {
+        }
+        
+        void VisitPortNumber(AstPortNumber a)
+        {
+        }
+        
+        void VisitHost(AstHost a)
+        {
+        }
+        
+        void VisitDateCorrelationOptimizationOption(AstDateCorrelationOptimizationOption a)
+        {
+        }
+        
+        void VisitDbEncryptionOption(AstDbEncryptionOption a)
+        {
+        }
+        
+        void VisitDbStateOption(AstDbStateOption a)
+        {
+        }
+        
+        void VisitDbUpdateOption(AstDbUpdateOption a)
+        {
+        }
+        
+        void VisitDbUserAccessOption(AstDbUserAccessOption a)
+        {
+        }
+        
+        void VisitDelayedDurabilityOption(AstDelayedDurabilityOption a)
+        {
+        }
+        
+        void VisitExternalAccessOption(AstExternalAccessOption a)
+        {
+        }
+        
+        void VisitIdOrString(AstIdOrString a)
+        {
+        }
+        
+        void VisitHadrOptions(AstHadrOptions a)
+        {
+        }
+        
+        void VisitMixedPageAllocationOption(AstMixedPageAllocationOption a)
+        {
+        }
+        
+        void VisitParameterizationOption(AstParameterizationOption a)
+        {
+        }
+        
+        void VisitRecoveryOption(AstRecoveryOption a)
+        {
+        }
+        
+        void VisitServiceBrokerOption(AstServiceBrokerOption a)
+        {
+        }
+        
+        void VisitSnapshotOption(AstSnapshotOption a)
+        {
+        }
+        
+        void VisitSqlOption(AstSqlOption a)
+        {
+        }
+        
+        void VisitTargetRecoveryTimeOption(AstTargetRecoveryTimeOption a)
+        {
+        }
+        
+        void VisitTermination(AstTermination a)
+        {
+        }
+        
+        void VisitDropIndex(AstDropIndex a)
+        {
+        }
+        
+        void VisitDropRelationalOrXmlOrSpatialIndex(AstDropRelationalOrXmlOrSpatialIndex a)
+        {
+        }
+        
+        void VisitDropProcedure(AstDropProcedure a)
+        {
+        }
+        
+        void VisitDropTrigger(AstDropTrigger a)
+        {
+        }
+        
+        void VisitDropDmlTrigger(AstDropDmlTrigger a)
+        {
+        }
+        
+        void VisitDropDdlTrigger(AstDropDdlTrigger a)
+        {
+        }
+        
+        void VisitDropFunction(AstDropFunction a)
+        {
+        }
+        
+        void VisitDropStatistics(AstDropStatistics a)
+        {
+        }
+        
+        void VisitDropTable(AstDropTable a)
+        {
+        }
+        
+        void VisitDropView(AstDropView a)
+        {
+        }
+        
+        void VisitCreateType(AstCreateType a)
+        {
+        }
+        
+        void VisitDropType(AstDropType a)
+        {
+        }
+        
+        void VisitRowsetFunctionLimited(AstRowsetFunctionLimited a)
+        {
+        }
+        
+        void VisitOpenquery(AstOpenquery a)
+        {
+        }
+        
+        void VisitOpendatasource(AstOpendatasource a)
+        {
+        }
+        
+        void VisitDeclareStatement(AstDeclareStatement a)
+        {
+        }
+        
+        void VisitXmlDeclaration(AstXmlDeclaration a)
+        {
+        }
+        
+        void VisitCursorStatement(AstCursorStatement a)
+        {
+        }
+        
+        void VisitCompression(AstCompression a)
+        {
+        }
+        
+        void VisitInitNoInit(AstInitNoInit a)
+        {
+        }
+        
+        void VisitNoSkip(AstNoSkip a)
+        {
+        }
+        
+        void VisitFormatNoformat(AstFormatNoformat a)
+        {
+        }
+        
+        void VisitBackupDatabase(AstBackupDatabase a)
+        {
+        }
+        
+        void VisitFileGroupList(AstFileGroupList a)
+        {
+        }
+        
+        void VisitFileGroupAssign(AstFileGroupAssign a)
+        {
+        }
+        
+        void VisitBackupLog(AstBackupLog a)
+        {
+        }
+        
+        void VisitBackupTarget(AstBackupTarget a)
+        {
+        }
+        
+        void VisitBackupTo(AstBackupTo a)
+        {
+        }
+        
+        void VisitBackupToMirror(AstBackupToMirror a)
+        {
+        }
+        
+        void VisitBackupCertificate(AstBackupCertificate a)
+        {
+        }
+        
+        void VisitDiskTapeUrl(AstDiskTapeUrl a)
+        {
+        }
+        
+        void VisitBackupSettings(AstBackupSettings a)
+        {
+        }
+        
+        void VisitFileFileGroup(AstFileFileGroup a)
+        {
+        }
+        
+        void VisitLoadMounLoad(AstLoadMounLoad a)
+        {
+        }
+        
+        void VisitRewind(AstRewind a)
+        {
+        }
+        
+        void VisitAlgorithmShort(AstAlgorithmShort a)
+        {
+        }
+        
+        void VisitBackupMasterKey(AstBackupMasterKey a)
+        {
+        }
+        
+        void VisitBackupServiceMasterKey(AstBackupServiceMasterKey a)
+        {
+        }
+        
+        void VisitKillStatement(AstKillStatement a)
+        {
+        }
+        
+        void VisitKillProcess(AstKillProcess a)
+        {
+        }
+        
+        void VisitKillQueryNotification(AstKillQueryNotification a)
+        {
+        }
+        
+        void VisitKillStatsJob(AstKillStatsJob a)
+        {
+        }
+        
+        void VisitExecuteStatement(AstExecuteStatement a)
+        {
+        }
+        
+        void VisitExecuteBodyBatch(AstExecuteBodyBatch a)
+        {
+        }
+        
+        void VisitExecuteBody(AstExecuteBody a)
+        {
+        }
+        
+        void VisitExecuteStatementArg(AstExecuteStatementArg a)
+        {
+        }
+        
+        void VisitExecuteStatementArgNamed(AstExecuteStatementArgNamed a)
+        {
+        }
+        
+        void VisitExecuteStatementArgUnnamed(AstExecuteStatementArgUnnamed a)
+        {
+        }
+        
+        void VisitExecuteParameter(AstExecuteParameter a)
+        {
+        }
+        
+        void VisitExecuteVarString(AstExecuteVarString a)
+        {
+        }
+        
+        void VisitSecurityStatement(AstSecurityStatement a)
+        {
+        }
+        
+        void VisitToPrincipalRincipalIds(AstToPrincipalRincipalIds a)
+        {
+        }
+        
+        void VisitPrincipalId(AstPrincipalId a)
+        {
+        }
+        
+        void VisitCreateCertificate(AstCreateCertificate a)
+        {
+        }
+        
+        void VisitExistingKeys(AstExistingKeys a)
+        {
+        }
+        
+        void VisitPrivateKeyOptions(AstPrivateKeyOptions a)
+        {
+        }
+        
+        void VisitGenerateNewKeys(AstGenerateNewKeys a)
+        {
+        }
+        
+        void VisitDateOptions(AstDateOptions a)
+        {
+        }
+        
+        void VisitOpenKey(AstOpenKey a)
+        {
+        }
+        
+        void VisitCloseKey(AstCloseKey a)
+        {
+        }
+        
+        void VisitCreateKey(AstCreateKey a)
+        {
+        }
+        
+        void VisitKeyOptions(AstKeyOptions a)
+        {
+        }
+        
+        void VisitAlgorithm(AstAlgorithm a)
+        {
+        }
+        
+        void VisitEncryptionMechanism(AstEncryptionMechanism a)
+        {
+        }
+        
+        void VisitDecryptionMechanism(AstDecryptionMechanism a)
+        {
+        }
+        
+        void VisitGrantPermissionAlter(AstGrantPermissionAlter a)
+        {
+        }
+        
+        void VisitGrantPermissionCreate(AstGrantPermissionCreate a)
+        {
+        }
+        
+        void VisitGrantPermission(AstGrantPermission a)
+        {
+        }
+        
+        void VisitSetStatement(AstSetStatement a)
+        {
+        }
+        
+        void VisitTransactionStatement(AstTransactionStatement a)
+        {
+        }
+        
+        void VisitTransaction(AstTransaction a)
+        {
+        }
+        
+        void VisitTransactionRef(AstTransactionRef a)
+        {
+        }
+        
+        void VisitGoStatement(AstGoStatement a)
+        {
+        }
+        
+        void VisitUseStatement(AstUseStatement a)
+        {
+        }
+        
+        void VisitSetuserStatement(AstSetuserStatement a)
+        {
+        }
+        
+        void VisitReconfigureStatement(AstReconfigureStatement a)
+        {
+        }
+        
+        void VisitShutdownStatement(AstShutdownStatement a)
+        {
+        }
+        
+        void VisitCheckpointStatement(AstCheckpointStatement a)
+        {
+        }
+        
+        void VisitDbccSpecial(AstDbccSpecial a)
+        {
+        }
+        
+        void VisitDbccClause(AstDbccClause a)
+        {
+        }
+        
+        void VisitDbccCommand(AstDbccCommand a)
+        {
+        }
+        
+        void VisitExecuteClause(AstExecuteClause a)
+        {
+        }
+        
+        void VisitDeclareLocal(AstDeclareLocal a)
+        {
+        }
+        
+        void VisitTableTypeDefinition(AstTableTypeDefinition a)
+        {
+        }
+        
+        void VisitTableTypeIndices(AstTableTypeIndices a)
+        {
+        }
+        
+        void VisitXmlTypeDefinition(AstXmlTypeDefinition a)
+        {
+        }
+        
+        void VisitXmlSchemaCollection(AstXmlSchemaCollection a)
+        {
+        }
+        
+        void VisitColumnDefTableConstraints(AstColumnDefTableConstraints a)
+        {
+        }
+        
+        void VisitColumnDefTableConstraint(AstColumnDefTableConstraint a)
+        {
+        }
+        
+        void VisitColumnDefinition(AstColumnDefinition a)
+        {
+        }
+        
+        void VisitColumnDefinitionElement(AstColumnDefinitionElement a)
+        {
+        }
+        
+        void VisitColumnModifier(AstColumnModifier a)
+        {
+        }
+        
+        void VisitMaterializedColumnDefinition(AstMaterializedColumnDefinition a)
+        {
+        }
+        
+        void VisitColumnConstraint(AstColumnConstraint a)
+        {
+        }
+        
+        void VisitColumnIndex(AstColumnIndex a)
+        {
+        }
+        
+        void VisitOnPartitionOrFilegroup(AstOnPartitionOrFilegroup a)
+        {
+        }
+        
+        void VisitTableConstraint(AstTableConstraint a)
+        {
+        }
+        
+        void VisitConnectionNode(AstConnectionNode a)
+        {
+        }
+        
+        void VisitPrimaryKeyOptions(AstPrimaryKeyOptions a)
+        {
+        }
+        
+        void VisitForeignKeyOptions(AstForeignKeyOptions a)
+        {
+        }
+        
+        void VisitCheckConstraint(AstCheckConstraint a)
+        {
+        }
+        
+        void VisitOnDelete(AstOnDelete a)
+        {
+        }
+        
+        void VisitOnUpdate(AstOnUpdate a)
+        {
+        }
+        
+        void VisitAlterTableIndexOption(AstAlterTableIndexOption a)
+        {
+        }
+        
+        void VisitDeclareCursor(AstDeclareCursor a)
+        {
+        }
+        
+        void VisitSensitive(AstSensitive a)
+        {
+        }
+        
+        void VisitDeclareSetCursorCommon(AstDeclareSetCursorCommon a)
+        {
+        }
+        
+        void VisitDeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartial a)
+        {
+        }
+        
+        void VisitFetchCursor(AstFetchCursor a)
+        {
+        }
+        
+        void VisitAbsoluteRelative(AstAbsoluteRelative a)
+        {
+        }
+        
+        void VisitFetchCursorStrategy(AstFetchCursorStrategy a)
+        {
+        }
+        
+        void VisitSetSpecial(AstSetSpecial a)
+        {
+        }
+        
+        void VisitSetSpecialSetValue(AstSetSpecialSetValue a)
+        {
+        }
+        
+        void VisitSpecialList(AstSpecialList a)
+        {
+        }
+        
+        void VisitConstantLOCALID(AstConstantLOCALID a)
+        {
+        }
+        
+        void VisitExpression(AstExpression a)
+        {
+        }
+        
+        void VisitParameter(AstParameter a)
+        {
+        }
+        
+        void VisitTimeZone(AstTimeZone a)
+        {
+        }
+        
+        void VisitPrimitiveExpression(AstPrimitiveExpression a)
+        {
+        }
+        
+        void VisitCaseExpression(AstCaseExpression a)
+        {
+        }
+        
+        void VisitUnaryOperatorExpression(AstUnaryOperatorExpression a)
+        {
+        }
+        
+        void VisitBracketExpression(AstBracketExpression a)
+        {
+        }
+        
+        void VisitConstantExpression(AstConstantExpression a)
+        {
+        }
+        
+        void VisitSubquery(AstSubquery a)
+        {
+        }
+        
+        void VisitCommonTableExpression(AstCommonTableExpression a)
+        {
+        }
+        
+        void VisitUpdateElem(AstUpdateElem a)
+        {
+        }
+        
+        void VisitUpdateElemMerge(AstUpdateElemMerge a)
+        {
+        }
+        
+        void VisitSearchCondition(AstSearchCondition a)
+        {
+        }
+        
+        void VisitPredicate(AstPredicate a)
+        {
+        }
+        
+        void VisitPredicateMultiAssign(AstPredicateMultiAssign a)
+        {
+        }
+        
+        void VisitPredicateBinary(AstPredicateBinary a)
+        {
+        }
+        
+        void VisitPredicateTier(AstPredicateTier a)
+        {
+        }
+        
+        void VisitPredicateNotLike(AstPredicateNotLike a)
+        {
+        }
+        
+        void VisitPredicateNotIn(AstPredicateNotIn a)
+        {
+        }
+        
+        void VisitQueryExpression(AstQueryExpression a)
+        {
+        }
+        
+        void VisitSqlUnion(AstSqlUnion a)
+        {
+        }
+        
+        void VisitQuerySpecification(AstQuerySpecification a)
+        {
+        }
+        
+        void VisitTopClause(AstTopClause a)
+        {
+        }
+        
+        void VisitTopPercent(AstTopPercent a)
+        {
+        }
+        
+        void VisitTopCount(AstTopCount a)
+        {
+        }
+        
+        void VisitOrderByClause(AstOrderByClause a)
+        {
+        }
+        
+        void VisitSelectOrderByClause(AstSelectOrderByClause a)
+        {
+        }
+        
+        void VisitForClause(AstForClause a)
+        {
+        }
+        
+        void VisitForClauseXmlRaw(AstForClauseXmlRaw a)
+        {
+        }
+        
+        void VisitForClauseJson(AstForClauseJson a)
+        {
+        }
+        
+        void VisitXmlCommonDirectives(AstXmlCommonDirectives a)
+        {
+        }
+        
+        void VisitOrderByExpression(AstOrderByExpression a)
+        {
+        }
+        
+        void VisitGroupingSetsItem(AstGroupingSetsItem a)
+        {
+        }
+        
+        void VisitGroupByItem(AstGroupByItem a)
+        {
+        }
+        
+        void VisitOption(AstOption a)
+        {
+        }
+        
+        void VisitOptimizeForArg(AstOptimizeForArg a)
+        {
+        }
+        
+        void VisitAsterisk(AstAsterisk a)
+        {
+        }
+        
+        void VisitStarAsterisk(AstStarAsterisk a)
+        {
+        }
+        
+        void VisitTableAsterisk(AstTableAsterisk a)
+        {
+        }
+        
+        void VisitUpdatedAsterisk(AstUpdatedAsterisk a)
+        {
+        }
+        
+        void VisitColumnElem(AstColumnElem a)
+        {
+        }
+        
+        void VisitColumnElemTarget(AstColumnElemTarget a)
+        {
+        }
+        
+        void VisitUdtElem(AstUdtElem a)
+        {
+        }
+        
+        void VisitExpressionElem(AstExpressionElem a)
+        {
+        }
+        
+        void VisitSelectListElem(AstSelectListElem a)
+        {
+        }
+        
+        void VisitExpressionAssignElem(AstExpressionAssignElem a)
+        {
+        }
+        
+        void VisitTableSource(AstTableSource a)
+        {
+        }
+        
+        void VisitTableSourceItemJoined(AstTableSourceItemJoined a)
+        {
+        }
+        
+        void VisitTableSourceItem(AstTableSourceItem a)
+        {
+        }
+        
+        void VisitOpenXml(AstOpenXml a)
+        {
+        }
+        
+        void VisitOpenJson(AstOpenJson a)
+        {
+        }
+        
+        void VisitJsonColumnDeclaration(AstJsonColumnDeclaration a)
+        {
+        }
+        
+        void VisitColumnDeclaration(AstColumnDeclaration a)
+        {
+        }
+        
+        void VisitChangeTable(AstChangeTable a)
+        {
+        }
+        
+        void VisitChangeTableChanges(AstChangeTableChanges a)
+        {
+        }
+        
+        void VisitChangeTableVersion(AstChangeTableVersion a)
+        {
+        }
+        
+        void VisitJoinPart(AstJoinPart a)
+        {
+        }
+        
+        void VisitJoinOn(AstJoinOn a)
+        {
+        }
+        
+        void VisitCrossJoin(AstCrossJoin a)
+        {
+        }
+        
+        void VisitApply(AstApply a)
+        {
+        }
+        
+        void VisitPivot(AstPivot a)
+        {
+        }
+        
+        void VisitUnpivot(AstUnpivot a)
+        {
+        }
+        
+        void VisitPivotClause(AstPivotClause a)
+        {
+        }
+        
+        void VisitUnpivotClause(AstUnpivotClause a)
+        {
+        }
+        
+        void VisitRowsetFunction(AstRowsetFunction a)
+        {
+        }
+        
+        void VisitBulkOption(AstBulkOption a)
+        {
+        }
+        
+        void VisitDerivedTable(AstDerivedTable a)
+        {
+        }
+        
+        void VisitSubqueries(AstSubqueries a)
+        {
+        }
+        
+        void VisitFunctionCall(AstFunctionCall a)
+        {
+        }
+        
+        void VisitPartitionFunction(AstPartitionFunction a)
+        {
+        }
+        
+        void VisitFreetextFunction(AstFreetextFunction a)
+        {
+        }
+        
+        void VisitFreetextPredicate(AstFreetextPredicate a)
+        {
+        }
+        
+        void VisitFreetextTableAndcolumnNames(AstFreetextTableAndcolumnNames a)
+        {
+        }
+        
+        void VisitBuiltInFunctions(AstBuiltInFunctions a)
+        {
+        }
+        
+        void VisitXmlDataTypeMethods(AstXmlDataTypeMethods a)
+        {
+        }
+        
+        void VisitValueMethod(AstValueMethod a)
+        {
+        }
+        
+        void VisitValueCall(AstValueCall a)
+        {
+        }
+        
+        void VisitQueryMethod(AstQueryMethod a)
+        {
+        }
+        
+        void VisitQueryCall(AstQueryCall a)
+        {
+        }
+        
+        void VisitExistMethod(AstExistMethod a)
+        {
+        }
+        
+        void VisitExistCall(AstExistCall a)
+        {
+        }
+        
+        void VisitModifyMethod(AstModifyMethod a)
+        {
+        }
+        
+        void VisitModifyCall(AstModifyCall a)
+        {
+        }
+        
+        void VisitHierarchyidCall(AstHierarchyidCall a)
+        {
+        }
+        
+        void VisitHierarchyidStaticMethod(AstHierarchyidStaticMethod a)
+        {
+        }
+        
+        void VisitNodesMethod(AstNodesMethod a)
+        {
+        }
+        
+        void VisitSwitchSection(AstSwitchSection a)
+        {
+        }
+        
+        void VisitSwitchSearchConditionSection(AstSwitchSearchConditionSection a)
+        {
+        }
+        
+        void VisitAsColumnAlias(AstAsColumnAlias a)
+        {
+        }
+        
+        void VisitAsTableAlias(AstAsTableAlias a)
+        {
+        }
+        
+        void VisitTableAlias(AstTableAlias a)
+        {
+        }
+        
+        void VisitWithTableHints(AstWithTableHints a)
+        {
+        }
+        
+        void VisitDeprecatedTableHint(AstDeprecatedTableHint a)
+        {
+        }
+        
+        void VisitSybaseLegacyHints(AstSybaseLegacyHints a)
+        {
+        }
+        
+        void VisitSybaseLegacyHint(AstSybaseLegacyHint a)
+        {
+        }
+        
+        void VisitTableHint(AstTableHint a)
+        {
+        }
+        
+        void VisitIndexValue(AstIndexValue a)
+        {
+        }
+        
+        void VisitColumnAlias(AstColumnAlias a)
+        {
+        }
+        
+        void VisitRankingWindowedFunction(AstRankingWindowedFunction a)
+        {
+        }
+        
+        void VisitAggregateWindowedFunction(AstAggregateWindowedFunction a)
+        {
+        }
+        
+        void VisitAnalyticWindowedFunction(AstAnalyticWindowedFunction a)
+        {
+        }
+        
+        void VisitAllDistinctExpression(AstAllDistinctExpression a)
+        {
+        }
+        
+        void VisitOverClause(AstOverClause a)
+        {
+        }
+        
+        void VisitRowOrRangeClause(AstRowOrRangeClause a)
+        {
+        }
+        
+        void VisitWindowFrameExtent(AstWindowFrameExtent a)
+        {
+        }
+        
+        void VisitWindowFrameBound(AstWindowFrameBound a)
+        {
+        }
+        
+        void VisitWindowFramePreceding(AstWindowFramePreceding a)
+        {
+        }
+        
+        void VisitWindowFrameFollowing(AstWindowFrameFollowing a)
+        {
+        }
+        
+        void VisitCreateDatabaseOption(AstCreateDatabaseOption a)
+        {
+        }
+        
+        void VisitDatabaseFilestreamOption(AstDatabaseFilestreamOption a)
+        {
+        }
+        
+        void VisitDatabaseFileSpec(AstDatabaseFileSpec a)
+        {
+        }
+        
+        void VisitFileGroup(AstFileGroup a)
+        {
+        }
+        
+        void VisitFileSpec(AstFileSpec a)
+        {
+        }
+        
+        void VisitMaxSize(AstMaxSize a)
+        {
+        }
+        
+        void VisitAscDesc(AstAscDesc a)
+        {
+        }
+        
+        void VisitCursorName(AstCursorName a)
+        {
+        }
+        
+        void VisitOnOff(AstOnOff a)
+        {
+        }
+        
+        void VisitClustered(AstClustered a)
+        {
+        }
+        
+        void VisitNullNotnull(AstNullNotnull a)
+        {
+        }
+        
+        void VisitNullOrDefault(AstNullOrDefault a)
+        {
+        }
+        
+        void VisitScalarFunctionName(AstScalarFunctionName a)
+        {
+        }
+        
+        void VisitBeginConversationTimer(AstBeginConversationTimer a)
+        {
+        }
+        
+        void VisitBeginConversationDialog(AstBeginConversationDialog a)
+        {
+        }
+        
+        void VisitContractNameExpression(AstContractNameExpression a)
+        {
+        }
+        
+        void VisitServiceName(AstServiceName a)
+        {
+        }
+        
+        void VisitEndConversation(AstEndConversation a)
+        {
+        }
+        
+        void VisitWaitforConversation(AstWaitforConversation a)
+        {
+        }
+        
+        void VisitGetConversation(AstGetConversation a)
+        {
+        }
+        
+        void VisitSendConversation(AstSendConversation a)
+        {
+        }
+        
+        void VisitDataType(AstDataType a)
+        {
+        }
+        
+        void VisitDefaultValue(AstDefaultValue a)
+        {
+        }
+        
+        void VisitConstant(AstConstant a)
+        {
+        }
+        
+        void VisitSign(AstSign a)
+        {
+        }
+        
+        void VisitKeyword(AstKeyword a)
+        {
+        }
+        
+        void VisitId(AstId a)
+        {
+        }
+        
+        void VisitSimpleId(AstSimpleId a)
+        {
+        }
+        
+        void VisitComparisonOperator(AstComparisonOperator a)
+        {
+        }
+        
+        void VisitAssignmentOperator(AstAssignmentOperator a)
+        {
+        }
+        
+        void VisitFileSize(AstFileSize a)
+        {
+        }
+        
+        void VisitFileSizeUnity(AstFileSizeUnity a)
+        {
+        }
+        
+        void VisitFilestreamFilegroupOrPartitionSchemaId(AstFilestreamFilegroupOrPartitionSchemaId a)
+        {
+        }
+        
+        void VisitActionId(AstActionId a)
+        {
+        }
+        
+        void VisitAggregateId(AstAggregateId a)
+        {
+        }
+        
+        void VisitSchemaId(AstSchemaId a)
+        {
+        }
+        
+        void VisitAssemblyId(AstAssemblyId a)
+        {
+        }
+        
+        void VisitAsymKeyId(AstAsymKeyId a)
+        {
+        }
+        
+        void VisitAuditActionGroupId(AstAuditActionGroupId a)
+        {
+        }
+        
+        void VisitAuditGuidId(AstAuditGuidId a)
+        {
+        }
+        
+        void VisitAuditId(AstAuditId a)
+        {
+        }
+        
+        void VisitUserId(AstUserId a)
+        {
+        }
+        
+        void VisitBackupId(AstBackupId a)
+        {
+        }
+        
+        void VisitBindingId(AstBindingId a)
+        {
+        }
+        
+        void VisitCatalogId(AstCatalogId a)
+        {
+        }
+        
+        void VisitCertificateId(AstCertificateId a)
+        {
+        }
+        
+        void VisitClassId(AstClassId a)
+        {
+        }
+        
+        void VisitCollationId(AstCollationId a)
+        {
+        }
+        
+        void VisitColumnEncryptionKeyId(AstColumnEncryptionKeyId a)
+        {
+        }
+        
+        void VisitColumnOrArgumentId(AstColumnOrArgumentId a)
+        {
+        }
+        
+        void VisitConstraintId(AstConstraintId a)
+        {
+        }
+        
+        void VisitCredentialId(AstCredentialId a)
+        {
+        }
+        
+        void VisitCryptographicProviderId(AstCryptographicProviderId a)
+        {
+        }
+        
+        void VisitDataSourceId(AstDataSourceId a)
+        {
+        }
+        
+        void VisitServiceId(AstServiceId a)
+        {
+        }
+        
+        void VisitEncryptorId(AstEncryptorId a)
+        {
+        }
+        
+        void VisitEndpointId(AstEndpointId a)
+        {
+        }
+        
+        void VisitEventCustomizableAttributeId(AstEventCustomizableAttributeId a)
+        {
+        }
+        
+        void VisitEventFieldId(AstEventFieldId a)
+        {
+        }
+        
+        void VisitEventModuleGuidId(AstEventModuleGuidId a)
+        {
+        }
+        
+        void VisitEventNotificationId(AstEventNotificationId a)
+        {
+        }
+        
+        void VisitEventPackageId(AstEventPackageId a)
+        {
+        }
+        
+        void VisitEventSessionId(AstEventSessionId a)
+        {
+        }
+        
+        void VisitEventTypeOrGroupId(AstEventTypeOrGroupId a)
+        {
+        }
+        
+        void VisitExtTypeId(AstExtTypeId a)
+        {
+        }
+        
+        void VisitExternalDataSourceId(AstExternalDataSourceId a)
+        {
+        }
+        
+        void VisitExternalFileFormatId(AstExternalFileFormatId a)
+        {
+        }
+        
+        void VisitExternalPoolId(AstExternalPoolId a)
+        {
+        }
+        
+        void VisitFunctionId(AstFunctionId a)
+        {
+        }
+        
+        void VisitGroupId(AstGroupId a)
+        {
+        }
+        
+        void VisitIndexId(AstIndexId a)
+        {
+        }
+        
+        void VisitLanguage(AstLanguage a)
+        {
+        }
+        
+        void VisitLibraryId(AstLibraryId a)
+        {
+        }
+        
+        void VisitServerId(AstServerId a)
+        {
+        }
+        
+        void VisitLogicalDeviceId(AstLogicalDeviceId a)
+        {
+        }
+        
+        void VisitLoginId(AstLoginId a)
+        {
+        }
+        
+        void VisitMasterKey(AstMasterKey a)
+        {
+        }
+        
+        void VisitMethodId(AstMethodId a)
+        {
+        }
+        
+        void VisitModifiedContractId(AstModifiedContractId a)
+        {
+        }
+        
+        void VisitModuleId(AstModuleId a)
+        {
+        }
+        
+        void VisitNetworkComputer(AstNetworkComputer a)
+        {
+        }
+        
+        void VisitRoleId(AstRoleId a)
+        {
+        }
+        
+        void VisitFileGroupId(AstFileGroupId a)
+        {
+        }
+        
+        void VisitNonStaticAttrId(AstNonStaticAttrId a)
+        {
+        }
+        
+        void VisitNotificationId(AstNotificationId a)
+        {
+        }
+        
+        void VisitObjectId(AstObjectId a)
+        {
+        }
+        
+        void VisitOwnerId(AstOwnerId a)
+        {
+        }
+        
+        void VisitPartitionColumnId(AstPartitionColumnId a)
+        {
+        }
+        
+        void VisitPoolId(AstPoolId a)
+        {
+        }
+        
+        void VisitPredicateSourceId(AstPredicateSourceId a)
+        {
+        }
+        
+        void VisitPropertyListId(AstPropertyListId a)
+        {
+        }
+        
+        void VisitProviderId(AstProviderId a)
+        {
+        }
+        
+        void VisitDatabaseId(AstDatabaseId a)
+        {
+        }
+        
+        void VisitRouteId(AstRouteId a)
+        {
+        }
+        
+        void VisitRuleId(AstRuleId a)
+        {
+        }
+        
+        void VisitColumnId(AstColumnId a)
+        {
+        }
+        
+        void VisitSchemaCollectionId(AstSchemaCollectionId a)
+        {
+        }
+        
+        void VisitSecurityPolicyId(AstSecurityPolicyId a)
+        {
+        }
+        
+        void VisitSecurityPredicateFunctionId(AstSecurityPredicateFunctionId a)
+        {
+        }
+        
+        void VisitSequenceId(AstSequenceId a)
+        {
+        }
+        
+        void VisitServerRoleId(AstServerRoleId a)
+        {
+        }
+        
+        void VisitSourceListId(AstSourceListId a)
+        {
+        }
+        
+        void VisitSqlIdentifierId(AstSqlIdentifierId a)
+        {
+        }
+        
+        void VisitStaticAttrId(AstStaticAttrId a)
+        {
+        }
+        
+        void VisitStatisticsId(AstStatisticsId a)
+        {
+        }
+        
+        void VisitStoplistId(AstStoplistId a)
+        {
+        }
+        
+        void VisitSymmetricKeyId(AstSymmetricKeyId a)
+        {
+        }
+        
+        void VisitSynonymId(AstSynonymId a)
+        {
+        }
+        
+        void VisitTableOrViewId(AstTableOrViewId a)
+        {
+        }
+        
+        void VisitViewId(AstViewId a)
+        {
+        }
+        
+        void VisitTableId(AstTableId a)
+        {
+        }
+        
+        void VisitTargetId(AstTargetId a)
+        {
+        }
+        
+        void VisitTargetParameterId(AstTargetParameterId a)
+        {
+        }
+        
+        void VisitTriggerId(AstTriggerId a)
+        {
+        }
+        
+        void VisitTvfSchemaId(AstTvfSchemaId a)
+        {
+        }
+        
+        void VisitUdtColumnId(AstUdtColumnId a)
+        {
+        }
+        
+        void VisitUnscaledTypeId(AstUnscaledTypeId a)
+        {
+        }
+        
+        void VisitWindowsPrincipalId(AstWindowsPrincipalId a)
+        {
+        }
+        
+        void VisitWorkloadGroupGroupId(AstWorkloadGroupGroupId a)
+        {
+        }
+        
+        void VisitWorkloadGroupPoolId(AstWorkloadGroupPoolId a)
+        {
+        }
+        
+        void VisitPartitionSchemeId(AstPartitionSchemeId a)
+        {
+        }
+        
+        void VisitQueueId(AstQueueId a)
+        {
+        }
+        
+        void VisitPartitionFunctionId(AstPartitionFunctionId a)
+        {
+        }
+        
+        void VisitMessageTypeId(AstMessageTypeId a)
+        {
+        }
+        
+        void VisitCodeLocationId(AstCodeLocationId a)
+        {
+        }
+        
+        void VisitTransactionId(AstTransactionId a)
+        {
+        }
+        
+        void VisitSchemaSecurityPredicateFunctionId(AstSchemaSecurityPredicateFunctionId a)
+        {
+        }
+        
+        void VisitDecimalId(AstDecimalId a)
+        {
+        }
+        
+        void VisitStringId(AstStringId a)
+        {
+        }
+        
+        void VisitStringtext(AstStringtext a)
+        {
+        }
+        
+        void VisitStringId2(AstStringId2 a)
+        {
+        }
+        
+        void VisitStringLocalId(AstStringLocalId a)
+        {
+        }
+        
+        void VisitDecimalLocalId(AstDecimalLocalId a)
+        {
+        }
+        
+        void VisitDecimalString(AstDecimalString a)
+        {
+        }
+        
+        void VisitLogSeterrorNowait(AstLogSeterrorNowait a)
+        {
+        }
+        
+        void VisitDecimalStringLocalId(AstDecimalStringLocalId a)
+        {
+        }
+        
+        void VisitStringLocalIdDoubleQuoteId(AstStringLocalIdDoubleQuoteId a)
+        {
+        }
+        
+        void VisitServerDatabaseSchemaObjectRef(AstServerDatabaseSchemaObjectRef a)
+        {
+        }
+        
+        void VisitDatabaseStoplistRef(AstDatabaseStoplistRef a)
+        {
+        }
+        
+        void VisitEventModulePackageActionRef(AstEventModulePackageActionRef a)
+        {
+        }
+        
+        void VisitSchemaSequenceRef(AstSchemaSequenceRef a)
+        {
+        }
+        
+        void VisitSchemaQueueRef(AstSchemaQueueRef a)
+        {
+        }
+        
+        void VisitModulePackageEventRef(AstModulePackageEventRef a)
+        {
+        }
+        
+        void VisitSchemaRuleRef(AstSchemaRuleRef a)
+        {
+        }
+        
+        void VisitSchemaModuleRef(AstSchemaModuleRef a)
+        {
+        }
+        
+        void VisitDatabaseSchemaSequenceRef(AstDatabaseSchemaSequenceRef a)
+        {
+        }
+        
+        void VisitSchemaObjectStatisticsRef(AstSchemaObjectStatisticsRef a)
+        {
+        }
+        
+        void VisitSchemaSynonymRef(AstSchemaSynonymRef a)
+        {
+        }
+        
+        void VisitSchemaSchemaId(AstSchemaSchemaId a)
+        {
+        }
+        
+        void VisitSchemaSqlIdentifierId(AstSchemaSqlIdentifierId a)
+        {
+        }
+        
+        void VisitSchemaTriggerRef(AstSchemaTriggerRef a)
+        {
+        }
+        
+        void VisitLocalId(AstLocalId a)
+        {
+        }
+        
+        void VisitSchemaObjectRef(AstSchemaObjectRef a)
+        {
+        }
+        
+        void VisitSchemaSecurityPolicyRef(AstSchemaSecurityPolicyRef a)
+        {
+        }
+        
+        void VisitSchemaAggregateRef(AstSchemaAggregateRef a)
+        {
+        }
+        
+        void VisitDatabaseSchemaQueueRef(AstDatabaseSchemaQueueRef a)
+        {
+        }
+        
+        void VisitDatabaseSchemaRef(AstDatabaseSchemaRef a)
+        {
+        }
+        
+        void VisitDropBackwardCompatibleIndex(AstDropBackwardCompatibleIndex a)
+        {
+        }
+        
+        void VisitCompleteTableRef(AstCompleteTableRef a)
+        {
+        }
+        
+        void VisitFullTableRef(AstFullTableRef a)
+        {
+        }
+        
+        void VisitDatabaseSchemaTableRef(AstDatabaseSchemaTableRef a)
+        {
+        }
+        
+        void VisitEntityNameForAzureDwRef(AstEntityNameForAzureDwRef a)
+        {
+        }
+        
+        void VisitEntityNameForParallelDwRef(AstEntityNameForParallelDwRef a)
+        {
+        }
+        
+        void VisitFuncProcNameDatabaseSchemaRef(AstFuncProcNameDatabaseSchemaRef a)
+        {
+        }
+        
+        void VisitDatabaseSchemaFunctionRef(AstDatabaseSchemaFunctionRef a)
+        {
+        }
+        
+        void VisitFuncProcNameServerDatabaseSchema(AstFuncProcNameServerDatabaseSchema a)
+        {
+        }
+        
+        void VisitDdlObject(AstDdlObject a)
+        {
+        }
+        
+        void VisitFullColumnName(AstFullColumnName a)
+        {
+        }
+        
+        void VisitFullColumnRef(AstFullColumnRef a)
+        {
+        }
+        
+        void VisitEntityName(AstEntityName a)
+        {
+        }
+        
+        void VisitColumnNameListWithOrder(AstColumnNameListWithOrder a)
+        {
+        }
+        
+        void VisitColumnOrdered(AstColumnOrdered a)
+        {
+        }
+        
+        void VisitColumnOrArgumentIds(AstColumnOrArgumentIds a)
+        {
+        }
+        
+        void VisitSchemaViewRef(AstSchemaViewRef a)
+        {
+        }
+        
+        void VisitSchemaTypeRef(AstSchemaTypeRef a)
+        {
+        }
+        
+        void VisitSchemaFuncProcRef(AstSchemaFuncProcRef a)
+        {
+        }
+        
+        void VisitDatabaseSourceListRef(AstDatabaseSourceListRef a)
+        {
+        }
+        
+        void VisitFullPredicateSourceRef(AstFullPredicateSourceRef a)
+        {
+        }
+        
+        void VisitAssemblyClassMethodRef(AstAssemblyClassMethodRef a)
+        {
+        }
+        
+        void VisitSchemaTriggerRefs(AstSchemaTriggerRefs a)
+        {
+        }
+        
+        void VisitIds(AstIds a)
+        {
+        }
+        
+        void VisitUpdateStatisticsOptions(AstUpdateStatisticsOptions a)
+        {
+        }
+        
+        void VisitFunctionOptions(AstFunctionOptions a)
+        {
+        }
+        
+        void VisitProcedureParams(AstProcedureParams a)
+        {
+        }
+        
+        void VisitDmlTriggerOptions(AstDmlTriggerOptions a)
+        {
+        }
+        
+        void VisitDmlTriggerOperations(AstDmlTriggerOperations a)
+        {
+        }
+        
+        void VisitProcedureOptions(AstProcedureOptions a)
+        {
+        }
+        
+        void VisitXmlIndexOptions(AstXmlIndexOptions a)
+        {
+        }
+        
+        void VisitCreateColumnstoreIndexOptions(AstCreateColumnstoreIndexOptions a)
+        {
+        }
+        
+        void VisitSinglePartitionRebuildIndexOptions(AstSinglePartitionRebuildIndexOptions a)
+        {
+        }
+        
+        void VisitRebuildIndexOptions(AstRebuildIndexOptions a)
+        {
+        }
+        
+        void VisitSetIndexOptions(AstSetIndexOptions a)
+        {
+        }
+        
+        void VisitReorganizeOptions(AstReorganizeOptions a)
+        {
+        }
+        
+        void VisitResumableIndexOptions(AstResumableIndexOptions a)
+        {
+        }
+        
+        void VisitCreateIndexOptions(AstCreateIndexOptions a)
+        {
+        }
+        
+        void VisitRelationalIndexOptions(AstRelationalIndexOptions a)
+        {
+        }
+        
+        void VisitCreateDatabaseOptionList(AstCreateDatabaseOptionList a)
+        {
+        }
+        
+        void VisitDatabaseFileSpecList(AstDatabaseFileSpecList a)
+        {
+        }
+        
+        void VisitOutputDmlListElems(AstOutputDmlListElems a)
+        {
+        }
+        
+        void VisitUpdateElems(AstUpdateElems a)
+        {
+        }
+        
+        void VisitCreateSecurityPolicyAdds(AstCreateSecurityPolicyAdds a)
+        {
+        }
+        
+        void VisitUpdateElemMerges(AstUpdateElemMerges a)
+        {
+        }
+        
+        void VisitFileGroupIds(AstFileGroupIds a)
+        {
+        }
+        
+        void VisitStringList(AstStringList a)
+        {
+        }
+        
+        void VisitAsymmetricKeyOption(AstAsymmetricKeyOption a)
+        {
+        }
+        
+        void VisitAssemblies(AstAssemblies a)
+        {
+        }
+        
+        void VisitDecimalStringLocals(AstDecimalStringLocals a)
+        {
+        }
+        
+        void VisitColumnNameList(AstColumnNameList a)
+        {
+        }
+        
+        void VisitInsertColumnNameList(AstInsertColumnNameList a)
+        {
+        }
+        
+        void VisitInsertColumnId(AstInsertColumnId a)
+        {
+        }
+        
+        void VisitFileSpecs(AstFileSpecs a)
+        {
+        }
+        
+        void VisitDatabaseFilestreamOptions(AstDatabaseFilestreamOptions a)
+        {
+        }
+        
+        void VisitExpressionList(AstExpressionList a)
+        {
+        }
+        
+        void VisitTableValueConstructor(AstTableValueConstructor a)
+        {
+        }
+        
+        void VisitColumnAliasList(AstColumnAliasList a)
+        {
+        }
+        
+        void VisitIndexValues(AstIndexValues a)
+        {
+        }
+        
+        void VisitExpressions(AstExpressions a)
+        {
+        }
+        
+        void VisitFullColumnNames(AstFullColumnNames a)
+        {
+        }
+        
+        void VisitExpressionLanguage(AstExpressionLanguage a)
+        {
+        }
+        
+        void VisitBulkOptions(AstBulkOptions a)
+        {
+        }
+        
+        void VisitFullColumnNameList(AstFullColumnNameList a)
+        {
+        }
+        
+        void VisitSchemaDeclaration(AstSchemaDeclaration a)
+        {
+        }
+        
+        void VisitJsonDeclaration(AstJsonDeclaration a)
+        {
+        }
+        
+        void VisitExpression2(AstExpression2 a)
+        {
+        }
+        
+        void VisitTableSources(AstTableSources a)
+        {
+        }
+        
+        void VisitSelectList(AstSelectList a)
+        {
+        }
+        
+        void VisitUdtMethodArguments(AstUdtMethodArguments a)
+        {
+        }
+        
+        void VisitOptimizeForArgs(AstOptimizeForArgs a)
+        {
+        }
+        
+        void VisitOptionClause(AstOptionClause a)
+        {
+        }
+        
+        void VisitGroupingSetsList(AstGroupingSetsList a)
+        {
+        }
+        
+        void VisitGroupSetList(AstGroupSetList a)
+        {
+        }
+        
+        void VisitGroupBysList(AstGroupBysList a)
+        {
+        }
+        
+        void VisitWithExpression(AstWithExpression a)
+        {
+        }
+        
+        void VisitSpecialLists(AstSpecialLists a)
+        {
+        }
+        
+        void VisitLocalIds(AstLocalIds a)
+        {
+        }
+        
+        void VisitAlterTableIndexOptions(AstAlterTableIndexOptions a)
+        {
+        }
+        
+        void VisitConnectionNodes(AstConnectionNodes a)
+        {
+        }
+        
+        void VisitDbccOptions(AstDbccOptions a)
+        {
+        }
+        
+        void VisitExecuteVarStrings(AstExecuteVarStrings a)
+        {
+        }
+        
+        void VisitExecuteStatementArgNameds(AstExecuteStatementArgNameds a)
+        {
+        }
+        
+        void VisitExecuteStatementArgs(AstExecuteStatementArgs a)
+        {
+        }
+        
+        void VisitDeclareLocals(AstDeclareLocals a)
+        {
+        }
+        
+        void VisitXmlDeclarations(AstXmlDeclarations a)
+        {
+        }
+        
+        void VisitSchemaViewRefs(AstSchemaViewRefs a)
+        {
+        }
+        
+        void VisitTableNames(AstTableNames a)
+        {
+        }
+        
+        void VisitFuncProcNameSchemas(AstFuncProcNameSchemas a)
+        {
+        }
+        
+        void VisitDropBackwardCompatibleIndexs(AstDropBackwardCompatibleIndexs a)
+        {
+        }
+        
+        void VisitDropRelationalOrXmlOrSpatialIndexs(AstDropRelationalOrXmlOrSpatialIndexs a)
+        {
+        }
+        
+        void VisitChangeTrackingOptionLists(AstChangeTrackingOptionLists a)
+        {
+        }
+        
+        void VisitFilespecs(AstFilespecs a)
+        {
+        }
+        
+        void VisitViewAttributes(AstViewAttributes a)
+        {
+        }
+        
+        void VisitCreateTableIndexOptions(AstCreateTableIndexOptions a)
+        {
+        }
+        
+        void VisitTableoptions(AstTableoptions a)
+        {
+        }
+        
+        void VisitAlterUserItems(AstAlterUserItems a)
+        {
+        }
+        
+        void VisitContracts(AstContracts a)
+        {
+        }
+        
+        void VisitAlterServiceContracts(AstAlterServiceContracts a)
+        {
+        }
+        
+        void VisitDecimalRanges(AstDecimalRanges a)
+        {
+        }
     }
 }

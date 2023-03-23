@@ -19,24 +19,26 @@ namespace Bb.Generators
             where TScriptBase : ScriptBase, new()
         {
             var _name = name ?? ScriptBase.DefaultFilename<TScriptBase>();
-            var script = new TScriptBase() 
+            var script = new TScriptBase()
             {
-                Filename = Prefix + _name, 
-                Namespace = this.Namespace 
+                Filename = Prefix + _name,
+                Namespace = this.Namespace
             };
             foreach (var item in this.Usings)
                 script.Usings.Add(item);
-            
+
             if (action != null)
                 action(script);
-            
+
             this.Add(script);
             return this;
         }
 
-
         public ScriptList Generate(Context context)
         {
+
+            foreach (var generator in this)
+                context.AddStrategyKey(generator.StrategyTemplateKey);
 
             var names = context.GetGeneratedFiles();
 

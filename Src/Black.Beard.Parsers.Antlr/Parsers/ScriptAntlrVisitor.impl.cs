@@ -62,8 +62,6 @@ namespace Bb.Parsers
                             if (option.Key.ResolveName() == "tokenVocab")
                                 _lexerList.Add(option.Value.ResolveName());
 
-
-
                 return result;
 
             }

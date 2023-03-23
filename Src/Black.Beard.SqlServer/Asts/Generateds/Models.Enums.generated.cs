@@ -11,6 +11,18 @@ namespace Bb.Asts.TSql
 {
     
     
+    public enum AstDelayTimeTimeoutEnum
+    {
+        
+        _undefined,
+        
+        Delay,
+        
+        Time,
+        
+        Timeout,
+    }
+    
     public enum AstBinaryContentEnum
     {
         
@@ -43,6 +55,82 @@ namespace Bb.Asts.TSql
         Object,
     }
     
+    public enum AstAddRemoveEnum
+    {
+        
+        _undefined,
+        
+        Add,
+        
+        Remove,
+    }
+    
+    public enum AstRestartRemoveEnum
+    {
+        
+        _undefined,
+        
+        Restart,
+        
+        Remove,
+    }
+    
+    public enum AstSynchAsynchEnum
+    {
+        
+        _undefined,
+        
+        SynchronousCommit,
+        
+        AsynchronousCommit,
+    }
+    
+    public enum AstAutoManualEnum
+    {
+        
+        _undefined,
+        
+        Automatic,
+        
+        Manual,
+    }
+    
+    public enum AstRealWriteAllEnum
+    {
+        
+        _undefined,
+        
+        ReadWrite,
+        
+        All,
+    }
+    
+    public enum AstNoRealWriteAllEnum
+    {
+        
+        _undefined,
+        
+        No,
+        
+        ReadWrite,
+        
+        All,
+    }
+    
+    public enum AstPrimarySecondaryNoneEnum
+    {
+        
+        _undefined,
+        
+        Primary,
+        
+        SecondaryOnly,
+        
+        Secondary,
+        
+        None,
+    }
+    
     public enum AstGrantDenyEnum
     {
         
@@ -51,6 +139,16 @@ namespace Bb.Asts.TSql
         Grant,
         
         Deny,
+    }
+    
+    public enum AstCreateAlterEnum
+    {
+        
+        _undefined,
+        
+        Create,
+        
+        Alter,
     }
     
     public enum AstAddDropEnum
@@ -71,6 +169,26 @@ namespace Bb.Asts.TSql
         Start,
         
         Stop,
+    }
+    
+    public enum AstSetAddEnum
+    {
+        
+        _undefined,
+        
+        Set,
+        
+        Add,
+    }
+    
+    public enum AstPlatformEnum
+    {
+        
+        _undefined,
+        
+        Windows,
+        
+        Linux,
     }
     
     public enum AstCodeContentEnum
@@ -129,6 +247,110 @@ namespace Bb.Asts.TSql
         Update,
     }
     
+    public enum AstFilterBlockEnum
+    {
+        
+        _undefined,
+        
+        Filter,
+        
+        Block,
+    }
+    
+    public enum AstSizeUnityEnum
+    {
+        
+        _undefined,
+        
+        Mb,
+        
+        Gb,
+        
+        Tb,
+    }
+    
+    public enum AstContinueShutdownEnum
+    {
+        
+        _undefined,
+        
+        Continue,
+        
+        Shutdown,
+        
+        FailOperation,
+    }
+    
+    public enum AstAuditOperatorEnum
+    {
+        
+        _undefined,
+        
+        Equal,
+        
+        Less,
+        
+        Greater,
+        
+        Exclamation,
+    }
+    
+    public enum AstAndOrEnum
+    {
+        
+        _undefined,
+        
+        And,
+        
+        Or,
+    }
+    
+    public enum AstCreateUserWithLoginEnum
+    {
+        
+        _undefined,
+        
+        Login,
+        
+        With,
+    }
+    
+    public enum AstForFromEnum
+    {
+        
+        _undefined,
+        
+        For,
+        
+        From,
+    }
+    
+    public enum AstNonePartialEnum
+    {
+        
+        _undefined,
+        
+        None,
+        
+        Partial,
+    }
+    
+    public enum AstDatacompressionModeEnum
+    {
+        
+        _undefined,
+        
+        None,
+        
+        Row,
+        
+        Page,
+        
+        Columnstore,
+        
+        ColumnstoreArchive,
+    }
+    
     public enum AstDmlTriggerOperationEnum
     {
         
@@ -139,6 +361,32 @@ namespace Bb.Asts.TSql
         Update,
         
         Delete,
+    }
+    
+    public enum AstForAfterEnum
+    {
+        
+        _undefined,
+        
+        For,
+        
+        After,
+    }
+    
+    public enum AstIndexStrategyEnum
+    {
+        
+        _undefined,
+        
+        None,
+        
+        Row,
+        
+        Page,
+        
+        Columnstore,
+        
+        ColumnstoreArchive,
     }
     
     public enum AstViewAttributeEnum
@@ -167,6 +415,18 @@ namespace Bb.Asts.TSql
         ReadWrite,
     }
     
+    public enum AstPeriodEnum
+    {
+        
+        _undefined,
+        
+        Days,
+        
+        Hours,
+        
+        Minutes,
+    }
+    
     public enum AstLocalGlobalEnum
     {
         
@@ -175,6 +435,30 @@ namespace Bb.Asts.TSql
         Local,
         
         Global,
+    }
+    
+    public enum AstStateEnumEnum
+    {
+        
+        _undefined,
+        
+        Started,
+        
+        Stopped,
+        
+        Disabled,
+    }
+    
+    public enum AstAuthenticationModeEnum
+    {
+        
+        _undefined,
+        
+        Ntlm,
+        
+        Kerberos,
+        
+        Negotiate,
     }
     
     public enum AstDbStateOptionEnum
@@ -211,6 +495,102 @@ namespace Bb.Asts.TSql
         MultiUser,
     }
     
+    public enum AstCompressionEnum
+    {
+        
+        _undefined,
+        
+        Compression,
+        
+        NoCompression,
+    }
+    
+    public enum AstInitNoInitEnum
+    {
+        
+        _undefined,
+        
+        Noinit,
+        
+        Init,
+    }
+    
+    public enum AstNoSkipEnum
+    {
+        
+        _undefined,
+        
+        Noskip,
+        
+        SkipKeyword,
+    }
+    
+    public enum AstFormatNoformatEnum
+    {
+        
+        _undefined,
+        
+        Noformat,
+        
+        Format,
+    }
+    
+    public enum AstDiskTapeUrlEnum
+    {
+        
+        _undefined,
+        
+        Disk,
+        
+        Tape,
+        
+        Url,
+    }
+    
+    public enum AstFileFileGroupEnum
+    {
+        
+        _undefined,
+        
+        File,
+        
+        Filegroup,
+    }
+    
+    public enum AstLoadMounLoadEnum
+    {
+        
+        _undefined,
+        
+        Load,
+        
+        Nounload,
+    }
+    
+    public enum AstRewindEnum
+    {
+        
+        _undefined,
+        
+        Rewind,
+        
+        Norewind,
+    }
+    
+    public enum AstAlgorithmShortEnum
+    {
+        
+        _undefined,
+        
+        Aes128,
+        
+        Aes192,
+        
+        Aes256,
+        
+        TripleDes3key,
+    }
+    
     public enum AstAlgorithmEnum
     {
         
@@ -235,6 +615,16 @@ namespace Bb.Asts.TSql
         Aes192,
         
         Aes256,
+    }
+    
+    public enum AstTransactionEnum
+    {
+        
+        _undefined,
+        
+        Tran,
+        
+        Transaction,
     }
     
     public enum AstSensitiveEnum
@@ -335,6 +725,16 @@ namespace Bb.Asts.TSql
         Readpast,
         
         Shared,
+    }
+    
+    public enum AstAscDescEnum
+    {
+        
+        _undefined,
+        
+        Asc,
+        
+        Desc,
     }
     
     public enum AstOnOffEnum
@@ -2023,13 +2423,15 @@ namespace Bb.Asts.TSql
         Module,
     }
     
-    public enum AstDecimalStringEnum
+    public enum AstLogSeterrorNowaitEnum
     {
         
         _undefined,
         
-        Decimal,
+        Log,
         
-        String,
+        Seterror,
+        
+        Nowait,
     }
 }

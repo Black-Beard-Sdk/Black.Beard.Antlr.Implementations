@@ -61,6 +61,11 @@ namespace Bb.ParsersConfiguration.Ast
             g.Rule = rule;
             rule.Configuration = g;
 
+            if (g.Config.Kind != rule.TerminalKind && g.Config.Kind == TokenTypeEnum.Other)
+            {
+                
+            }
+
         }
 
         private void Append(AstRule rule)
@@ -71,7 +76,7 @@ namespace Bb.ParsersConfiguration.Ast
             {
                 this._list.Add(name.Text,
                     g = new GrammarConfigDeclaration(Position.Default, name,
-                        new GrammarRuleConfig(Position.Default, true, new IdentifierConfig(""), new TemplateSetting(Position.Default, name.Text), new CalculatedTemplateSetting(Position.Default, new TemplateSetting(Position.Default, null)))
+                        new GrammarRuleConfig(Position.Default, true, new IdentifierConfig(""), new TemplateSetting(Position.Default, null), new CalculatedTemplateSetting(Position.Default, new TemplateSetting(Position.Default, null)))
                     )
                     );
             }

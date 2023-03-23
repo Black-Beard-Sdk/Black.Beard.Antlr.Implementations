@@ -2,6 +2,7 @@
 using Bb.Parsers;
 using System;
 using System.CodeDom;
+using System.Reflection;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -20,12 +21,13 @@ namespace Bb.Generators
             _methods = new List<ModelMethod>();
             _fields = new List<ModelField>();
             _properties = new List<ModelProperty>();
+            this._attributes = TypeAttributes.Class | TypeAttributes.Public;
             this._action = action;
         }
 
         public override Type Type => typeof(T);
 
-        public ModelTypeFrom<T> Attribute(MemberAttributes attributes)
+        public ModelTypeFrom<T> Attribute(TypeAttributes attributes)
         {
             this._attributes = attributes;
             return this;
@@ -47,13 +49,13 @@ namespace Bb.Generators
             return this;
         }
 
-        
+
         public ModelTypeFrom<T> Documentation(Action<Documentation> action)
         {
             this._actionDocumentation = action;
             return this;
         }
-               
+
         public ModelTypeFrom<T> IsStruct()
         {
             this._isInterface = false;
@@ -195,16 +197,15 @@ namespace Bb.Generators
             {
 
                 ctx.CurrentConfiguration = (ast as AstRule).Configuration;
-                if (ctx.CurrentConfiguration.Config.Generate)
+
+                var b = new ModelTypeFrom<T>(_modelNamespace, _action);
+                var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
+                if (t)
                 {
-                    var b = new ModelTypeFrom<T>(_modelNamespace, _action);
-                    var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
-                    if (t)
-                    {
-                        if (_justOne)
-                            _type = typeResult;
-                    }
+                    if (_justOne)
+                        _type = typeResult;
                 }
+
             }
 
         }
@@ -237,7 +238,7 @@ namespace Bb.Generators
                             IsInterface = _isInterface,
                             IsEnum = _isEnum,
                             IsStruct = _isStruct,
-                            Attributes = _attributes,
+                            TypeAttributes = _attributes,
                         };
 
                         GenerateDocumentation(type, ctx);
@@ -298,13 +299,13 @@ namespace Bb.Generators
                         }
                     }
 
-                    foreach (var a in _actions)                    
+                    foreach (var a in _actions)
                         a(type);
-                    
+
                 }
 
             }
-            
+
             return result;
 
         }
@@ -352,7 +353,7 @@ namespace Bb.Generators
         private CodeTypeDeclaration _type;
         private Func<string> _templateSelectoraction;
         private Func<bool> _generateIf;
-        private MemberAttributes _attributes;
+        private TypeAttributes _attributes;
 
         protected internal Func<string> _nameOfClass { get; set; }
 
@@ -378,7 +379,7 @@ namespace Bb.Generators
 
         protected void GenerateDocumentation(CodeTypeMember member, Context context)
         {
-           
+
             if (_actionDocumentation != null)
             {
                 var doc = new Documentation();

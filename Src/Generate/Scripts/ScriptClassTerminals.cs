@@ -17,16 +17,14 @@ namespace Generate.Scripts
             var config = ast.Configuration.Config;
 
             if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("'AstTerminal<string>'");
+                config.Inherit = new IdentifierConfig("\"AstTerminal<string>\"");
 
             return config.Inherit.Text;
 
         }
 
-        protected override bool Generate(AstRule ast, Context context)
-        {
-            return TemplateSelector(ast, context) == "ClassTerminalAlias";
-        }
+        public override string StrategyTemplateKey => "ClassTerminalAlias";
+
 
         protected override void ConfigureTemplate(Context ctx, CodeGeneratorVisitor generator)
         {

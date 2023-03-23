@@ -23,16 +23,33 @@ namespace Bb.Asts
                 if (v.Count == 1)
                 {
 
-                    var tyxt = v.Rule.ToString();
+                    var txt = v.Rule.ToString();
 
-                    if (tyxt.StartsWith("'") == tyxt.EndsWith("'"))
-                        this.TerminalKind = TokenTypeEnum.Constant;
+                    if (txt.StartsWith("'") && txt.EndsWith("'"))
+                    {
+                        var v1 = txt.Substring(1, txt.Length - 2);
+                        if (IsLetters(v1))
+                            this.TerminalKind = TokenTypeEnum.Constant;                        
+                    }
 
                 }
 
             }
 
         }
+
+        private bool IsLetters(string txt)
+        {
+
+            foreach (var item in txt)
+                if (!char.IsLetter(item) && item != '_')
+                    return false;
+
+            return true;
+
+        }
+
+        
 
         public AstLexerAlternativeList Value { get; }
 

@@ -23,90 +23,6 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
-        /// message_type_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitMessage_type_name(TSqlParser.Message_type_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstMessageTypeName list = new AstMessageTypeName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// partition_function_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitPartition_function_name(TSqlParser.Partition_function_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstPartitionFunctionName list = new AstPartitionFunctionName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// partition_scheme_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitPartition_scheme_name(TSqlParser.Partition_scheme_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstPartitionSchemeName list = new AstPartitionSchemeName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// ids_
-        /// 	 : id_  (COMMA  id_)*
-        /// </summary>
-        public override AstRoot VisitIds_(TSqlParser.Ids_Context context)
-        {
-            IList<IParseTree> source = context.children;
-            AstIds list = new AstIds(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
         /// host
         /// 	 : id_  DOT  host
         /// 	 | (id_  DOT | id_)
@@ -174,6 +90,28 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// transaction_ref
+        /// 	 : id_
+        /// 	 | LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitTransaction_ref(TSqlParser.Transaction_refContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstTransactionRef list = new AstTransactionRef(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// table_alias
         /// 	 : id_
         /// </summary>
@@ -203,224 +141,6 @@ namespace Bb.Parsers.TSql
         {
             IList<IParseTree> source = context.children;
             AstColumnAlias list = new AstColumnAlias(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// complete_table_name
-        /// 	 : (linked_server  DOT  DOT  schema_name  DOT | server_name  DOT  database_name  DOT  schema_name  DOT | database_name  DOT  schema_name?  DOT | schema_name  DOT)?  tableName
-        /// </summary>
-        public override AstRoot VisitComplete_table_name(TSqlParser.Complete_table_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstCompleteTableName list = new AstCompleteTableName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// full_table_name
-        /// 	 : full_schema_name?  tableName
-        /// 	 | full_schema_name?  blocking_hierarchy = BLOCKING_HIERARCHY
-        /// </summary>
-        public override AstRoot VisitFull_table_name(TSqlParser.Full_table_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFullTableName list = new AstFullTableName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// full_schema_name
-        /// 	 : (database_name  DOT)?  schema_name
-        /// </summary>
-        public override AstRoot VisitFull_schema_name(TSqlParser.Full_schema_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFullSchemaName list = new AstFullSchemaName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// simple_name
-        /// 	 : (schema_name  DOT)?  name = id_
-        /// </summary>
-        public override AstRoot VisitSimple_name(TSqlParser.Simple_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstSimpleName list = new AstSimpleName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// func_proc_name_schema
-        /// 	 : (schema_name  DOT)?  function_name
-        /// </summary>
-        public override AstRoot VisitFunc_proc_name_schema(TSqlParser.Func_proc_name_schemaContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFuncProcNameSchema list = new AstFuncProcNameSchema(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// func_proc_name_database_schema
-        /// 	 : database_name?  DOT  schema_name?  DOT  function_name
-        /// 	 | func_proc_name_schema
-        /// </summary>
-        public override AstRoot VisitFunc_proc_name_database_schema(TSqlParser.Func_proc_name_database_schemaContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFuncProcNameDatabaseSchema list = new AstFuncProcNameDatabaseSchema(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// func_proc_name_server_database_schema
-        /// 	 : server_name?  DOT  database_name?  DOT  schema_name?  DOT  function_name
-        /// 	 | func_proc_name_database_schema
-        /// </summary>
-        public override AstRoot VisitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFuncProcNameServerDatabaseSchema list = new AstFuncProcNameServerDatabaseSchema(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// ddl_object
-        /// 	 : complete_table_name
-        /// 	 | LOCAL_ID
-        /// </summary>
-        public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstDdlObject list = new AstDdlObject(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// full_column_name
-        /// 	 : (DELETED | INSERTED)  DOT  column_name
-        /// 	 | server_name?  DOT  schema_name?  DOT  tableName?  DOT  column_name
-        /// 	 | schema_name?  DOT  tableName?  DOT  column_name
-        /// 	 | tableName?  DOT  column_name
-        /// 	 | column_name
-        /// </summary>
-        public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFullColumnName list = new AstFullColumnName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// insert_column_id
-        /// 	 : (ignore += id_  DOT)*  id_
-        /// </summary>
-        public override AstRoot VisitInsert_column_id(TSqlParser.Insert_column_idContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstInsertColumnId list = new AstInsertColumnId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -503,13 +223,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// filestream_filegroup_or_partition_schema_name
+        /// filestream_filegroup_or_partition_schema_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitFilestream_filegroup_or_partition_schema_name(TSqlParser.Filestream_filegroup_or_partition_schema_nameContext context)
+        public override AstRoot VisitFilestream_filegroup_or_partition_schema_id(TSqlParser.Filestream_filegroup_or_partition_schema_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstFilestreamFilegroupOrPartitionSchemaName list = new AstFilestreamFilegroupOrPartitionSchemaName(context);
+            AstFilestreamFilegroupOrPartitionSchemaId list = new AstFilestreamFilegroupOrPartitionSchemaId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -524,13 +244,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// action_name
+        /// action_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAction_name(TSqlParser.Action_nameContext context)
+        public override AstRoot VisitAction_id(TSqlParser.Action_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstActionName list = new AstActionName(context);
+            AstActionId list = new AstActionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -545,13 +265,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// aggregate_name
+        /// aggregate_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAggregate_name(TSqlParser.Aggregate_nameContext context)
+        public override AstRoot VisitAggregate_id(TSqlParser.Aggregate_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAggregateName list = new AstAggregateName(context);
+            AstAggregateId list = new AstAggregateId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -566,13 +286,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// app_role_schema
+        /// schema_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitApp_role_schema(TSqlParser.App_role_schemaContext context)
+        public override AstRoot VisitSchema_id(TSqlParser.Schema_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAppRoleSchema list = new AstAppRoleSchema(context);
+            AstSchemaId list = new AstSchemaId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -587,13 +307,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// application_role
+        /// assembly_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitApplication_role(TSqlParser.Application_roleContext context)
+        public override AstRoot VisitAssembly_id(TSqlParser.Assembly_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstApplicationRole list = new AstApplicationRole(context);
+            AstAssemblyId list = new AstAssemblyId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -608,13 +328,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// assembly_name
+        /// asym_key_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAssembly_name(TSqlParser.Assembly_nameContext context)
+        public override AstRoot VisitAsym_key_id(TSqlParser.Asym_key_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAssemblyName list = new AstAssemblyName(context);
+            AstAsymKeyId list = new AstAsymKeyId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -629,13 +349,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// asym_key_name
+        /// audit_action_group_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAsym_key_name(TSqlParser.Asym_key_nameContext context)
+        public override AstRoot VisitAudit_action_group_id(TSqlParser.Audit_action_group_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAsymKeyName list = new AstAsymKeyName(context);
+            AstAuditActionGroupId list = new AstAuditActionGroupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -650,13 +370,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// audit_action_group_name
+        /// audit_guid_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAudit_action_group_name(TSqlParser.Audit_action_group_nameContext context)
+        public override AstRoot VisitAudit_guid_id(TSqlParser.Audit_guid_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAuditActionGroupName list = new AstAuditActionGroupName(context);
+            AstAuditGuidId list = new AstAuditGuidId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -671,13 +391,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// audit_guid
+        /// audit_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAudit_guid(TSqlParser.Audit_guidContext context)
+        public override AstRoot VisitAudit_id(TSqlParser.Audit_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAuditGuid list = new AstAuditGuid(context);
+            AstAuditId list = new AstAuditId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -692,13 +412,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// audit_name
+        /// user_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAudit_name(TSqlParser.Audit_nameContext context)
+        public override AstRoot VisitUser_id(TSqlParser.User_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAuditName list = new AstAuditName(context);
+            AstUserId list = new AstUserId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -713,13 +433,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// audit_specification_name
+        /// backup_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAudit_specification_name(TSqlParser.Audit_specification_nameContext context)
+        public override AstRoot VisitBackup_id(TSqlParser.Backup_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAuditSpecificationName list = new AstAuditSpecificationName(context);
+            AstBackupId list = new AstBackupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -734,13 +454,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// azure_active_directory_principal
+        /// binding_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitAzure_active_directory_principal(TSqlParser.Azure_active_directory_principalContext context)
+        public override AstRoot VisitBinding_id(TSqlParser.Binding_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstAzureActiveDirectoryPrincipal list = new AstAzureActiveDirectoryPrincipal(context);
+            AstBindingId list = new AstBindingId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -755,13 +475,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// backup_name
+        /// catalog_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitBackup_name(TSqlParser.Backup_nameContext context)
+        public override AstRoot VisitCatalog_id(TSqlParser.Catalog_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstBackupName list = new AstBackupName(context);
+            AstCatalogId list = new AstCatalogId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -776,13 +496,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// binding_name
+        /// certificate_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitBinding_name(TSqlParser.Binding_nameContext context)
+        public override AstRoot VisitCertificate_id(TSqlParser.Certificate_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstBindingName list = new AstBindingName(context);
+            AstCertificateId list = new AstCertificateId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -797,13 +517,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// catalog_name
+        /// class_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCatalog_name(TSqlParser.Catalog_nameContext context)
+        public override AstRoot VisitClass_id(TSqlParser.Class_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCatalogName list = new AstCatalogName(context);
+            AstClassId list = new AstClassId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -818,13 +538,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// cert_name
+        /// collation_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCert_name(TSqlParser.Cert_nameContext context)
+        public override AstRoot VisitCollation_id(TSqlParser.Collation_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCertName list = new AstCertName(context);
+            AstCollationId list = new AstCollationId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -839,13 +559,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// certificate_name
+        /// column_encryption_key_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCertificate_name(TSqlParser.Certificate_nameContext context)
+        public override AstRoot VisitColumn_encryption_key_id(TSqlParser.Column_encryption_key_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCertificateName list = new AstCertificateName(context);
+            AstColumnEncryptionKeyId list = new AstColumnEncryptionKeyId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -860,13 +580,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// class_name
+        /// column_or_argument_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitClass_name(TSqlParser.Class_nameContext context)
+        public override AstRoot VisitColumn_or_argument_id(TSqlParser.Column_or_argument_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstClassName list = new AstClassName(context);
+            AstColumnOrArgumentId list = new AstColumnOrArgumentId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -881,13 +601,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// collation_name
+        /// constraint_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCollation_name(TSqlParser.Collation_nameContext context)
+        public override AstRoot VisitConstraint_id(TSqlParser.Constraint_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCollationName list = new AstCollationName(context);
+            AstConstraintId list = new AstConstraintId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -902,13 +622,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// column_encryption_key
+        /// credential_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitColumn_encryption_key(TSqlParser.Column_encryption_keyContext context)
+        public override AstRoot VisitCredential_id(TSqlParser.Credential_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstColumnEncryptionKey list = new AstColumnEncryptionKey(context);
+            AstCredentialId list = new AstCredentialId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -923,13 +643,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// column_name
+        /// cryptographic_provider_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitColumn_name(TSqlParser.Column_nameContext context)
+        public override AstRoot VisitCryptographic_provider_id(TSqlParser.Cryptographic_provider_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstColumnName list = new AstColumnName(context);
+            AstCryptographicProviderId list = new AstCryptographicProviderId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -944,13 +664,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// column_name_or_arguments
+        /// data_source_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitColumn_name_or_arguments(TSqlParser.Column_name_or_argumentsContext context)
+        public override AstRoot VisitData_source_id(TSqlParser.Data_source_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstColumnNameOrArguments list = new AstColumnNameOrArguments(context);
+            AstDataSourceId list = new AstDataSourceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -965,13 +685,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// constraint_name
+        /// service_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitConstraint_name(TSqlParser.Constraint_nameContext context)
+        public override AstRoot VisitService_id(TSqlParser.Service_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstConstraintName list = new AstConstraintName(context);
+            AstServiceId list = new AstServiceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -986,13 +706,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// create_service_name
+        /// encryptor_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCreate_service_name(TSqlParser.Create_service_nameContext context)
+        public override AstRoot VisitEncryptor_id(TSqlParser.Encryptor_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCreateServiceName list = new AstCreateServiceName(context);
+            AstEncryptorId list = new AstEncryptorId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1007,13 +727,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// credential_name
+        /// endpoint_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCredential_name(TSqlParser.Credential_nameContext context)
+        public override AstRoot VisitEndpoint_id(TSqlParser.Endpoint_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCredentialName list = new AstCredentialName(context);
+            AstEndpointId list = new AstEndpointId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1028,13 +748,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// cryptographic_provider_name
+        /// event_customizable_attribute_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitCryptographic_provider_name(TSqlParser.Cryptographic_provider_nameContext context)
+        public override AstRoot VisitEvent_customizable_attribute_id(TSqlParser.Event_customizable_attribute_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstCryptographicProviderName list = new AstCryptographicProviderName(context);
+            AstEventCustomizableAttributeId list = new AstEventCustomizableAttributeId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1049,13 +769,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// data_source_name
+        /// event_field_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitData_source_name(TSqlParser.Data_source_nameContext context)
+        public override AstRoot VisitEvent_field_id(TSqlParser.Event_field_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstDataSourceName list = new AstDataSourceName(context);
+            AstEventFieldId list = new AstEventFieldId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1070,13 +790,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// database_name
+        /// event_module_guid_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitDatabase_name(TSqlParser.Database_nameContext context)
+        public override AstRoot VisitEvent_module_guid_id(TSqlParser.Event_module_guid_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstDatabaseName list = new AstDatabaseName(context);
+            AstEventModuleGuidId list = new AstEventModuleGuidId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1091,13 +811,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// dropped_service_name
+        /// event_notification_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitDropped_service_name(TSqlParser.Dropped_service_nameContext context)
+        public override AstRoot VisitEvent_notification_id(TSqlParser.Event_notification_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstDroppedServiceName list = new AstDroppedServiceName(context);
+            AstEventNotificationId list = new AstEventNotificationId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1112,13 +832,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// encryptor_name
+        /// event_package_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEncryptor_name(TSqlParser.Encryptor_nameContext context)
+        public override AstRoot VisitEvent_package_id(TSqlParser.Event_package_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEncryptorName list = new AstEncryptorName(context);
+            AstEventPackageId list = new AstEventPackageId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1133,13 +853,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// endpoint_name
+        /// event_session_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEndpoint_name(TSqlParser.Endpoint_nameContext context)
+        public override AstRoot VisitEvent_session_id(TSqlParser.Event_session_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEndpointName list = new AstEndpointName(context);
+            AstEventSessionId list = new AstEventSessionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1154,13 +874,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_customizable_attributue
+        /// event_type_or_group_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_customizable_attributue(TSqlParser.Event_customizable_attributueContext context)
+        public override AstRoot VisitEvent_type_or_group_id(TSqlParser.Event_type_or_group_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventCustomizableAttributue list = new AstEventCustomizableAttributue(context);
+            AstEventTypeOrGroupId list = new AstEventTypeOrGroupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1175,13 +895,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_field_name
+        /// ext_type_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_field_name(TSqlParser.Event_field_nameContext context)
+        public override AstRoot VisitExt_type_id(TSqlParser.Ext_type_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventFieldName list = new AstEventFieldName(context);
+            AstExtTypeId list = new AstExtTypeId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1196,13 +916,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_module_guid
+        /// external_data_source_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_module_guid(TSqlParser.Event_module_guidContext context)
+        public override AstRoot VisitExternal_data_source_id(TSqlParser.External_data_source_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventModuleGuid list = new AstEventModuleGuid(context);
+            AstExternalDataSourceId list = new AstExternalDataSourceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1217,13 +937,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_name
+        /// external_file_format_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_name(TSqlParser.Event_nameContext context)
+        public override AstRoot VisitExternal_file_format_id(TSqlParser.External_file_format_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventName list = new AstEventName(context);
+            AstExternalFileFormatId list = new AstExternalFileFormatId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1238,13 +958,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_notification_name
+        /// external_pool_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_notification_name(TSqlParser.Event_notification_nameContext context)
+        public override AstRoot VisitExternal_pool_id(TSqlParser.External_pool_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventNotificationName list = new AstEventNotificationName(context);
+            AstExternalPoolId list = new AstExternalPoolId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1259,13 +979,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_package_name
+        /// function_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_package_name(TSqlParser.Event_package_nameContext context)
+        public override AstRoot VisitFunction_id(TSqlParser.Function_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventPackageName list = new AstEventPackageName(context);
+            AstFunctionId list = new AstFunctionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1280,13 +1000,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_session_name
+        /// group_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_session_name(TSqlParser.Event_session_nameContext context)
+        public override AstRoot VisitGroup_id(TSqlParser.Group_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventSessionName list = new AstEventSessionName(context);
+            AstGroupId list = new AstGroupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1301,181 +1021,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// event_type_or_group
+        /// index_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitEvent_type_or_group(TSqlParser.Event_type_or_groupContext context)
+        public override AstRoot VisitIndex_id(TSqlParser.Index_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstEventTypeOrGroup list = new AstEventTypeOrGroup(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// ext_type
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitExt_type(TSqlParser.Ext_typeContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstExtType list = new AstExtType(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// external_data_source_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitExternal_data_source_name(TSqlParser.External_data_source_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstExternalDataSourceName list = new AstExternalDataSourceName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// external_file_format_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitExternal_file_format_name(TSqlParser.External_file_format_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstExternalFileFormatName list = new AstExternalFileFormatName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// external_pool_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitExternal_pool_name(TSqlParser.External_pool_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstExternalPoolName list = new AstExternalPoolName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// file_group_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitFile_group_name(TSqlParser.File_group_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFileGroupName list = new AstFileGroupName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// function_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitFunction_name(TSqlParser.Function_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstFunctionName list = new AstFunctionName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// group_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitGroup_name(TSqlParser.Group_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstGroupName list = new AstGroupName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// index_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitIndex_name(TSqlParser.Index_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstIndexName list = new AstIndexName(context);
+            AstIndexId list = new AstIndexId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1511,13 +1063,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// library_name
+        /// library_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitLibrary_name(TSqlParser.Library_nameContext context)
+        public override AstRoot VisitLibrary_id(TSqlParser.Library_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstLibraryName list = new AstLibraryName(context);
+            AstLibraryId list = new AstLibraryId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1532,13 +1084,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// linked_server
+        /// server_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitLinked_server(TSqlParser.Linked_serverContext context)
+        public override AstRoot VisitServer_id(TSqlParser.Server_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstLinkedServer list = new AstLinkedServer(context);
+            AstServerId list = new AstServerId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1553,13 +1105,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// logical_device_name
+        /// logical_device_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitLogical_device_name(TSqlParser.Logical_device_nameContext context)
+        public override AstRoot VisitLogical_device_id(TSqlParser.Logical_device_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstLogicalDeviceName list = new AstLogicalDeviceName(context);
+            AstLogicalDeviceId list = new AstLogicalDeviceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1574,13 +1126,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// login_name
+        /// login_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitLogin_name(TSqlParser.Login_nameContext context)
+        public override AstRoot VisitLogin_id(TSqlParser.Login_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstLoginName list = new AstLoginName(context);
+            AstLoginId list = new AstLoginId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1616,13 +1168,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// method_name
+        /// method_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitMethod_name(TSqlParser.Method_nameContext context)
+        public override AstRoot VisitMethod_id(TSqlParser.Method_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstMethodName list = new AstMethodName(context);
+            AstMethodId list = new AstMethodId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1637,13 +1189,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// modified_contract_name
+        /// modified_contract_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitModified_contract_name(TSqlParser.Modified_contract_nameContext context)
+        public override AstRoot VisitModified_contract_id(TSqlParser.Modified_contract_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstModifiedContractName list = new AstModifiedContractName(context);
+            AstModifiedContractId list = new AstModifiedContractId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1658,34 +1210,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// modified_service_name
+        /// module_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitModified_service_name(TSqlParser.Modified_service_nameContext context)
+        public override AstRoot VisitModule_id(TSqlParser.Module_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstModifiedServiceName list = new AstModifiedServiceName(context);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// module_name
-        /// 	 : id_
-        /// </summary>
-        public override AstRoot VisitModule_name(TSqlParser.Module_nameContext context)
-        {
-            IList<IParseTree> source = context.children;
-            AstModuleName list = new AstModuleName(context);
+            AstModuleId list = new AstModuleId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1721,13 +1252,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// new_application_role_name
+        /// role_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitNew_application_role_name(TSqlParser.New_application_role_nameContext context)
+        public override AstRoot VisitRole_id(TSqlParser.Role_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstNewApplicationRoleName list = new AstNewApplicationRoleName(context);
+            AstRoleId list = new AstRoleId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1742,13 +1273,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// new_file_group_name
+        /// file_group_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitNew_file_group_name(TSqlParser.New_file_group_nameContext context)
+        public override AstRoot VisitFile_group_id(TSqlParser.File_group_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstNewFileGroupName list = new AstNewFileGroupName(context);
+            AstFileGroupId list = new AstFileGroupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1763,13 +1294,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// non_static_attr
+        /// non_static_attr_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitNon_static_attr(TSqlParser.Non_static_attrContext context)
+        public override AstRoot VisitNon_static_attr_id(TSqlParser.Non_static_attr_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstNonStaticAttr list = new AstNonStaticAttr(context);
+            AstNonStaticAttrId list = new AstNonStaticAttrId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1784,13 +1315,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// notification_name
+        /// notification_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitNotification_name(TSqlParser.Notification_nameContext context)
+        public override AstRoot VisitNotification_id(TSqlParser.Notification_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstNotificationName list = new AstNotificationName(context);
+            AstNotificationId list = new AstNotificationId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1805,13 +1336,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// object_name
+        /// object_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitObject_name(TSqlParser.Object_nameContext context)
+        public override AstRoot VisitObject_id(TSqlParser.Object_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstObjectName list = new AstObjectName(context);
+            AstObjectId list = new AstObjectId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1826,13 +1357,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// owner_name
+        /// owner_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitOwner_name(TSqlParser.Owner_nameContext context)
+        public override AstRoot VisitOwner_id(TSqlParser.Owner_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstOwnerName list = new AstOwnerName(context);
+            AstOwnerId list = new AstOwnerId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1847,13 +1378,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// partition_column_name
+        /// partition_column_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitPartition_column_name(TSqlParser.Partition_column_nameContext context)
+        public override AstRoot VisitPartition_column_id(TSqlParser.Partition_column_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstPartitionColumnName list = new AstPartitionColumnName(context);
+            AstPartitionColumnId list = new AstPartitionColumnId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1868,13 +1399,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// pool_name
+        /// pool_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitPool_name(TSqlParser.Pool_nameContext context)
+        public override AstRoot VisitPool_id(TSqlParser.Pool_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstPoolName list = new AstPoolName(context);
+            AstPoolId list = new AstPoolId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1889,13 +1420,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// predicate_compare_name
+        /// predicate_source_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitPredicate_compare_name(TSqlParser.Predicate_compare_nameContext context)
+        public override AstRoot VisitPredicate_source_id(TSqlParser.Predicate_source_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstPredicateCompareName list = new AstPredicateCompareName(context);
+            AstPredicateSourceId list = new AstPredicateSourceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1910,13 +1441,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// predicate_source_name
+        /// property_list_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitPredicate_source_name(TSqlParser.Predicate_source_nameContext context)
+        public override AstRoot VisitProperty_list_id(TSqlParser.Property_list_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstPredicateSourceName list = new AstPredicateSourceName(context);
+            AstPropertyListId list = new AstPropertyListId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1931,13 +1462,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// property_list_name
+        /// provider_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitProperty_list_name(TSqlParser.Property_list_nameContext context)
+        public override AstRoot VisitProvider_id(TSqlParser.Provider_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstPropertyListName list = new AstPropertyListName(context);
+            AstProviderId list = new AstProviderId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1952,13 +1483,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// provider_name
+        /// database_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitProvider_name(TSqlParser.Provider_nameContext context)
+        public override AstRoot VisitDatabase_id(TSqlParser.Database_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstProviderName list = new AstProviderName(context);
+            AstDatabaseId list = new AstDatabaseId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1973,13 +1504,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// queue_name
+        /// route_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitQueue_name(TSqlParser.Queue_nameContext context)
+        public override AstRoot VisitRoute_id(TSqlParser.Route_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstQueueName list = new AstQueueName(context);
+            AstRouteId list = new AstRouteId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -1994,13 +1525,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// relational_schema
+        /// rule_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitRelational_schema(TSqlParser.Relational_schemaContext context)
+        public override AstRoot VisitRule_id(TSqlParser.Rule_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstRelationalSchema list = new AstRelationalSchema(context);
+            AstRuleId list = new AstRuleId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2015,13 +1546,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// role_name
+        /// column_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitRole_name(TSqlParser.Role_nameContext context)
+        public override AstRoot VisitColumn_id(TSqlParser.Column_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstRoleName list = new AstRoleName(context);
+            AstColumnId list = new AstColumnId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2036,13 +1567,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// route_name
+        /// schema_collection_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitRoute_name(TSqlParser.Route_nameContext context)
+        public override AstRoot VisitSchema_collection_id(TSqlParser.Schema_collection_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstRouteName list = new AstRouteName(context);
+            AstSchemaCollectionId list = new AstSchemaCollectionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2057,13 +1588,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// rule_name
+        /// security_policy_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitRule_name(TSqlParser.Rule_nameContext context)
+        public override AstRoot VisitSecurity_policy_id(TSqlParser.Security_policy_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstRuleName list = new AstRuleName(context);
+            AstSecurityPolicyId list = new AstSecurityPolicyId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2078,13 +1609,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// schema_name
+        /// security_predicate_function_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSchema_name(TSqlParser.Schema_nameContext context)
+        public override AstRoot VisitSecurity_predicate_function_id(TSqlParser.Security_predicate_function_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSchemaName list = new AstSchemaName(context);
+            AstSecurityPredicateFunctionId list = new AstSecurityPredicateFunctionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2099,13 +1630,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// schema_collection_name
+        /// sequence_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSchema_collection_name(TSqlParser.Schema_collection_nameContext context)
+        public override AstRoot VisitSequence_id(TSqlParser.Sequence_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSchemaCollectionName list = new AstSchemaCollectionName(context);
+            AstSequenceId list = new AstSequenceId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2120,13 +1651,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// security_policy_name
+        /// server_role_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSecurity_policy_name(TSqlParser.Security_policy_nameContext context)
+        public override AstRoot VisitServer_role_id(TSqlParser.Server_role_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSecurityPolicyName list = new AstSecurityPolicyName(context);
+            AstServerRoleId list = new AstServerRoleId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2141,13 +1672,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// security_predicate_function_name
+        /// source_list_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSecurity_predicate_function_name(TSqlParser.Security_predicate_function_nameContext context)
+        public override AstRoot VisitSource_list_id(TSqlParser.Source_list_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSecurityPredicateFunctionName list = new AstSecurityPredicateFunctionName(context);
+            AstSourceListId list = new AstSourceListId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2162,13 +1693,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// sequence_name
+        /// sql_identifier_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSequence_name(TSqlParser.Sequence_nameContext context)
+        public override AstRoot VisitSql_identifier_id(TSqlParser.Sql_identifier_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSequenceName list = new AstSequenceName(context);
+            AstSqlIdentifierId list = new AstSqlIdentifierId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2183,13 +1714,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// server_name
+        /// static_attr_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitServer_name(TSqlParser.Server_nameContext context)
+        public override AstRoot VisitStatic_attr_id(TSqlParser.Static_attr_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstServerName list = new AstServerName(context);
+            AstStaticAttrId list = new AstStaticAttrId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2204,13 +1735,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// server_role_name
+        /// statistics_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitServer_role_name(TSqlParser.Server_role_nameContext context)
+        public override AstRoot VisitStatistics_id(TSqlParser.Statistics_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstServerRoleName list = new AstServerRoleName(context);
+            AstStatisticsId list = new AstStatisticsId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2225,13 +1756,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// source_list_name
+        /// stoplist_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSource_list_name(TSqlParser.Source_list_nameContext context)
+        public override AstRoot VisitStoplist_id(TSqlParser.Stoplist_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSourceListName list = new AstSourceListName(context);
+            AstStoplistId list = new AstStoplistId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2246,13 +1777,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// sql_identifier
+        /// symmetric_key_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSql_identifier(TSqlParser.Sql_identifierContext context)
+        public override AstRoot VisitSymmetric_key_id(TSqlParser.Symmetric_key_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSqlIdentifier list = new AstSqlIdentifier(context);
+            AstSymmetricKeyId list = new AstSymmetricKeyId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2267,13 +1798,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// static_attr
+        /// synonym_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitStatic_attr(TSqlParser.Static_attrContext context)
+        public override AstRoot VisitSynonym_id(TSqlParser.Synonym_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstStaticAttr list = new AstStaticAttr(context);
+            AstSynonymId list = new AstSynonymId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2288,13 +1819,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// statistics_name
+        /// table_or_view_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitStatistics_name(TSqlParser.Statistics_nameContext context)
+        public override AstRoot VisitTable_or_view_id(TSqlParser.Table_or_view_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstStatisticsName list = new AstStatisticsName(context);
+            AstTableOrViewId list = new AstTableOrViewId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2309,13 +1840,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// stoplist_name
+        /// view_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitStoplist_name(TSqlParser.Stoplist_nameContext context)
+        public override AstRoot VisitView_id(TSqlParser.View_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstStoplistName list = new AstStoplistName(context);
+            AstViewId list = new AstViewId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2330,13 +1861,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// symmetric_key_name
+        /// table_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSymmetric_key_name(TSqlParser.Symmetric_key_nameContext context)
+        public override AstRoot VisitTable_id(TSqlParser.Table_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSymmetricKeyName list = new AstSymmetricKeyName(context);
+            AstTableId list = new AstTableId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2351,13 +1882,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// synonym_name
+        /// target_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitSynonym_name(TSqlParser.Synonym_nameContext context)
+        public override AstRoot VisitTarget_id(TSqlParser.Target_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstSynonymName list = new AstSynonymName(context);
+            AstTargetId list = new AstTargetId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2372,13 +1903,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// table_or_view_name
+        /// target_parameter_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTable_or_view_name(TSqlParser.Table_or_view_nameContext context)
+        public override AstRoot VisitTarget_parameter_id(TSqlParser.Target_parameter_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTableOrViewName list = new AstTableOrViewName(context);
+            AstTargetParameterId list = new AstTargetParameterId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2393,13 +1924,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// table_variable
+        /// trigger_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTable_variable(TSqlParser.Table_variableContext context)
+        public override AstRoot VisitTrigger_id(TSqlParser.Trigger_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTableVariable list = new AstTableVariable(context);
+            AstTriggerId list = new AstTriggerId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2414,13 +1945,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// tableName
+        /// tvf_schema_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTableName(TSqlParser.TableNameContext context)
+        public override AstRoot VisitTvf_schema_id(TSqlParser.Tvf_schema_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTableName list = new AstTableName(context);
+            AstTvfSchemaId list = new AstTvfSchemaId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2435,13 +1966,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// target_name
+        /// udt_column_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTarget_name(TSqlParser.Target_nameContext context)
+        public override AstRoot VisitUdt_column_id(TSqlParser.Udt_column_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTargetName list = new AstTargetName(context);
+            AstUdtColumnId list = new AstUdtColumnId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2456,13 +1987,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// target_parameter_name
+        /// unscaled_type_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTarget_parameter_name(TSqlParser.Target_parameter_nameContext context)
+        public override AstRoot VisitUnscaled_type_id(TSqlParser.Unscaled_type_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTargetParameterName list = new AstTargetParameterName(context);
+            AstUnscaledTypeId list = new AstUnscaledTypeId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2477,13 +2008,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// trigger_name
+        /// windows_principal_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTrigger_name(TSqlParser.Trigger_nameContext context)
+        public override AstRoot VisitWindows_principal_id(TSqlParser.Windows_principal_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTriggerName list = new AstTriggerName(context);
+            AstWindowsPrincipalId list = new AstWindowsPrincipalId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2498,13 +2029,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// tvf_schema_name
+        /// workload_group_group_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitTvf_schema_name(TSqlParser.Tvf_schema_nameContext context)
+        public override AstRoot VisitWorkload_group_group_id(TSqlParser.Workload_group_group_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTvfSchemaName list = new AstTvfSchemaName(context);
+            AstWorkloadGroupGroupId list = new AstWorkloadGroupGroupId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2519,13 +2050,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// type_schema
+        /// workload_group_pool_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitType_schema(TSqlParser.Type_schemaContext context)
+        public override AstRoot VisitWorkload_group_pool_id(TSqlParser.Workload_group_pool_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstTypeSchema list = new AstTypeSchema(context);
+            AstWorkloadGroupPoolId list = new AstWorkloadGroupPoolId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2540,13 +2071,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// udt_column_name
+        /// partition_scheme_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitUdt_column_name(TSqlParser.Udt_column_nameContext context)
+        public override AstRoot VisitPartition_scheme_id(TSqlParser.Partition_scheme_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstUdtColumnName list = new AstUdtColumnName(context);
+            AstPartitionSchemeId list = new AstPartitionSchemeId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2561,13 +2092,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// unscaled_type
+        /// queue_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitUnscaled_type(TSqlParser.Unscaled_typeContext context)
+        public override AstRoot VisitQueue_id(TSqlParser.Queue_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstUnscaledType list = new AstUnscaledType(context);
+            AstQueueId list = new AstQueueId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2582,13 +2113,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// user_name
+        /// partition_function_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitUser_name(TSqlParser.User_nameContext context)
+        public override AstRoot VisitPartition_function_id(TSqlParser.Partition_function_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstUserName list = new AstUserName(context);
+            AstPartitionFunctionId list = new AstPartitionFunctionId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2603,13 +2134,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// windows_principal
+        /// message_type_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitWindows_principal(TSqlParser.Windows_principalContext context)
+        public override AstRoot VisitMessage_type_id(TSqlParser.Message_type_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstWindowsPrincipal list = new AstWindowsPrincipal(context);
+            AstMessageTypeId list = new AstMessageTypeId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2624,13 +2155,13 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// workload_group_group_name
+        /// code_location_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitWorkload_group_group_name(TSqlParser.Workload_group_group_nameContext context)
+        public override AstRoot VisitCode_location_id(TSqlParser.Code_location_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstWorkloadGroupGroupName list = new AstWorkloadGroupGroupName(context);
+            AstCodeLocationId list = new AstCodeLocationId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
@@ -2645,13 +2176,256 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// workload_group_pool_name
+        /// transaction_id
         /// 	 : id_
         /// </summary>
-        public override AstRoot VisitWorkload_group_pool_name(TSqlParser.Workload_group_pool_nameContext context)
+        public override AstRoot VisitTransaction_id(TSqlParser.Transaction_idContext context)
         {
             IList<IParseTree> source = context.children;
-            AstWorkloadGroupPoolName list = new AstWorkloadGroupPoolName(context);
+            AstTransactionId list = new AstTransactionId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_id
+        /// 	 : DECIMAL
+        /// 	 | id_
+        /// </summary>
+        public override AstRoot VisitDecimal_id(TSqlParser.Decimal_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstDecimalId list = new AstDecimalId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// string_id
+        /// 	 : STRING
+        /// 	 | id_
+        /// </summary>
+        public override AstRoot VisitString_id(TSqlParser.String_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstStringId list = new AstStringId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// string_local_id
+        /// 	 : STRING
+        /// 	 | LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitString_local_id(TSqlParser.String_local_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstStringLocalId list = new AstStringLocalId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_local_id
+        /// 	 : DECIMAL
+        /// 	 | LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitDecimal_local_id(TSqlParser.Decimal_local_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstDecimalLocalId list = new AstDecimalLocalId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_string
+        /// 	 : DECIMAL
+        /// 	 | STRING
+        /// </summary>
+        public override AstRoot VisitDecimal_string(TSqlParser.Decimal_stringContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstDecimalString list = new AstDecimalString(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// decimal_string_local_id
+        /// 	 : DECIMAL
+        /// 	 | STRING
+        /// 	 | LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitDecimal_string_local_id(TSqlParser.Decimal_string_local_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstDecimalStringLocalId list = new AstDecimalStringLocalId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// string_local_id_double_quote_id
+        /// 	 : STRING
+        /// 	 | LOCAL_ID
+        /// 	 | DOUBLE_QUOTE_ID
+        /// </summary>
+        public override AstRoot VisitString_local_id_double_quote_id(TSqlParser.String_local_id_double_quote_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstStringLocalIdDoubleQuoteId list = new AstStringLocalIdDoubleQuoteId(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// func_proc_name_server_database_schema
+        /// 	 : server_id?  DOT  database_id?  DOT  schema_id?  DOT  function_id
+        /// 	 | func_proc_name_database_schema_ref
+        /// </summary>
+        public override AstRoot VisitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstFuncProcNameServerDatabaseSchema list = new AstFuncProcNameServerDatabaseSchema(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// ddl_object
+        /// 	 : complete_table_ref
+        /// 	 | LOCAL_ID
+        /// </summary>
+        public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstDdlObject list = new AstDdlObject(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// full_column_name
+        /// 	 : (DELETED | INSERTED)  DOT  column_id
+        /// 	 | full_column_ref
+        /// </summary>
+        public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstFullColumnName list = new AstFullColumnName(context);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = ((AstRoot)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// insert_column_id
+        /// 	 : (ignore += id_  DOT)*  id_
+        /// </summary>
+        public override AstRoot VisitInsert_column_id(TSqlParser.Insert_column_idContext context)
+        {
+            IList<IParseTree> source = context.children;
+            AstInsertColumnId list = new AstInsertColumnId(context);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
