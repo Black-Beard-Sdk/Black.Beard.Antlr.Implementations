@@ -266,6 +266,17 @@ namespace Bb.Parsers
         public override void VisitTerminal(AstTerminal a)
         {
             a.Parent = Parent;
+
+            if (a != null)
+            {
+                if (_rules.TryGetValue(a.ResolveName(), out var value))
+                {
+                    a.Link = value;
+                    a.TerminalKind = value.TerminalKind;
+                }
+            }
+
+
             base.VisitTerminal(a);
         }
 

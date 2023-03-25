@@ -234,12 +234,21 @@ namespace Bb.Generators
 
                         type = new CodeTypeDeclaration(_n)
                         {
-                            IsPartial = true,
-                            IsInterface = _isInterface,
-                            IsEnum = _isEnum,
-                            IsStruct = _isStruct,
+                            IsPartial = true,                            
                             TypeAttributes = _attributes,
                         };
+
+                        if (_isInterface)
+                            type.IsInterface = true;
+
+                        else if (_isEnum)
+                            type.IsEnum = true;
+
+                        else if (_isStruct)
+                            type.IsStruct = true
+
+                        ;
+
 
                         GenerateDocumentation(type, ctx);
 

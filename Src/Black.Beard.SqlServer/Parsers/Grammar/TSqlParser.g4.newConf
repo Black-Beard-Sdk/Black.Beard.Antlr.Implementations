@@ -17,7 +17,7 @@ SELECT TEMPLATE ClassEnum WHEN
 RULE tsql_file 
 //** tsql_file
 	 : batch*  EOF
-	 | execute_body_batch  go_statement*  EOF
+	 | execute_body_batch  go_statements  EOF
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -28,8 +28,8 @@ RULE tsql_file
 RULE batch 
 //** batch
 	 : go_statement
-	 | execute_body_batch?  (go_statement | sql_clauses)  go_statement*
-	 | batch_level_statement  go_statement*
+	 | execute_body_batch?  (go_statement | sql_clauses)  go_statements
+	 | batch_level_statement  go_statements
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -428,17 +428,17 @@ RULE while_statement
 
 RULE print_statement 
 //** print_statement
-	 : PRINT  (expression | DOUBLE_QUOTE_ID)  (COMMA  txt2 = LOCAL_ID)*  SEMI?
+	 : PRINT  (expression | empty_value)  local_ids?  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstCflStatement"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE _
 ;
 
 RULE raiseerror_statement 
 //** raiseerror_statement
-	 : RAISERROR  LR_BRACKET  msg = decimal_string_local_id  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  (COMMA  (constant_LOCAL_ID | NULL_))*  RR_BRACKET  (WITH  log_seterror_nowait)?  SEMI?
+	 : RAISERROR  LR_BRACKET  msg = decimal_string_local_id  COMMA  severity = constant_LOCAL_ID  COMMA  state = constant_LOCAL_ID  constant_local_ids?  RR_BRACKET  (WITH  log_seterror_nowait)?  SEMI?
 	 | RAISERROR  DECIMAL  formatstring = string_local_id_double_quote_id  decimal_string_locals?
   **// 
 	GENERATE
@@ -485,7 +485,7 @@ RULE another_statement
 
 RULE alter_application_role 
 //** alter_application_role
-	 : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
+	 : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  PASSWORD  EQUAL  application_role_password = stringtext)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -495,7 +495,7 @@ RULE alter_application_role
 
 RULE create_application_role 
 //** create_application_role
-	 : CREATE  APPLICATION  ROLE  role_id  WITH  (COMMA?  PASSWORD  EQUAL  application_role_password = STRING)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
+	 : CREATE  APPLICATION  ROLE  role_id  WITH  (COMMA?  PASSWORD  EQUAL  application_role_password = stringtext)?  (COMMA?  DEFAULT_SCHEMA  EQUAL  schema_id)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -814,28 +814,17 @@ RULE alter_asymmetric_key
 
 RULE asymmetric_key_option 
 //** asymmetric_key_option
-	 : WITH  PRIVATE  KEY  LR_BRACKET  asymmetric_key_password_change_option  (COMMA  asymmetric_key_password_change_option)?  RR_BRACKET
+	 : WITH  PRIVATE  KEY  LR_BRACKET  by_password_crypt  (COMMA  by_password_crypt)?  RR_BRACKET
   **// 
 	GENERATE
-	INHERIT "AstRuleList<AstAsymmetricKeyPasswordChangeOption>"
+	INHERIT "AstRuleList<AstByPasswordCrypt>"
 	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE asymmetric_key_password_change_option 
-//** asymmetric_key_password_change_option
-	 : DECRYPTION  BY  PASSWORD  EQUAL  STRING
-	 | ENCRYPTION  BY  PASSWORD  EQUAL  STRING
-  **// 
-	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
 RULE create_asymmetric_key 
 //** create_asymmetric_key
-	 : CREATE  ASYMMETRIC  KEY  asym_key_id  (AUTHORIZATION  database_id)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_id | PROVIDER  provider_id))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = STRING | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  (ENCRYPTION  BY  PASSWORD  EQUAL  asymmetric_key_password = STRING)?
+	 : CREATE  ASYMMETRIC  KEY  asym_key_id  (AUTHORIZATION  database_id)?  (FROM  (FILE  EQUAL  STRING | EXECUTABLE_FILE  EQUAL  STRING | ASSEMBLY  assembly_id | PROVIDER  provider_id))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = stringtext | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  encryption_by_pwd?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1105,7 +1094,7 @@ RULE drop_broker_priority
 
 RULE alter_certificate 
 //** alter_certificate
-	 : ALTER  CERTIFICATE  certificate_id  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  (FILE  EQUAL  STRING  COMMA? | DECRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA? | ENCRYPTION  BY  PASSWORD  EQUAL  STRING  COMMA?)+  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
+	 : ALTER  CERTIFICATE  certificate_id  (REMOVE  PRIVATE_KEY | WITH  PRIVATE  KEY  LR_BRACKET  private_keys  RR_BRACKET | WITH  ACTIVE  FOR  BEGIN_DIALOG  EQUAL  on_off)
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1115,7 +1104,7 @@ RULE alter_certificate
 
 RULE alter_column_encryption_key 
 //** alter_column_encryption_key
-	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
+	 : ALTER  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  add_drop  VALUE  LR_BRACKET  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  (COMMA  ALGORITHM  EQUAL  algorithm_name = stringtext  COMMA  ENCRYPTED_VALUE  EQUAL  BINARY)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1125,7 +1114,7 @@ RULE alter_column_encryption_key
 
 RULE create_column_encryption_key 
 //** create_column_encryption_key
-	 : CREATE  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  WITH  VALUES  (LR_BRACKET  COMMA?  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  COMMA  ALGORITHM  EQUAL  algorithm_name = STRING  COMMA  ENCRYPTED_VALUE  EQUAL  encrypted_value = BINARY  RR_BRACKET  COMMA?)+
+	 : CREATE  COLUMN  ENCRYPTION  KEY  column_encryption_key_id  WITH  VALUES  (LR_BRACKET  COMMA?  COLUMN_MASTER_KEY  EQUAL  column_master_key_name = id_  COMMA  ALGORITHM  EQUAL  algorithm_name = stringtext  COMMA  ENCRYPTED_VALUE  EQUAL  encrypted_value = BINARY  RR_BRACKET  COMMA?)+
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1235,7 +1224,7 @@ RULE drop_database_scoped_credential
 
 RULE drop_default 
 //** drop_default
-	 : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  schema_schema_id)
+	 : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  default_ref)
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1635,7 +1624,7 @@ RULE lock_table
 
 RULE truncate_table 
 //** truncate_table
-	 : TRUNCATE  TABLE  full_table_ref  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  decimal_range  RR_BRACKET  (COMMA  DECIMAL)*)?
+	 : TRUNCATE  TABLE  full_table_ref  (WITH  LR_BRACKET  PARTITIONS  LR_BRACKET  decimal_range  RR_BRACKET  decimals?)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1645,7 +1634,7 @@ RULE truncate_table
 
 RULE create_column_master_key 
 //** create_column_master_key
-	 : CREATE  COLUMN  MASTER  KEY  key_name = id_  WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL  key_store_provider_name = STRING  COMMA  KEY_PATH  EQUAL  key_path = STRING  RR_BRACKET
+	 : CREATE  COLUMN  MASTER  KEY  key_name = id_  WITH  LR_BRACKET  KEY_STORE_PROVIDER_NAME  EQUAL  key_store_provider_name = stringtext  COMMA  KEY_PATH  EQUAL  key_path = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1655,7 +1644,7 @@ RULE create_column_master_key
 
 RULE alter_credential 
 //** alter_credential
-	 : ALTER  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?
+	 : ALTER  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = stringtext  (COMMA  SECRET  EQUAL  secret = stringtext)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1665,7 +1654,7 @@ RULE alter_credential
 
 RULE create_credential 
 //** create_credential
-	 : CREATE  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = STRING  (COMMA  SECRET  EQUAL  secret = STRING)?  (FOR  CRYPTOGRAPHIC  PROVIDER  cryptographic_provider_id)?
+	 : CREATE  CREDENTIAL  credential_id  WITH  IDENTITY  EQUAL  identity_name = stringtext  (COMMA  SECRET  EQUAL  secret = stringtext)?  (FOR  CRYPTOGRAPHIC  PROVIDER  cryptographic_provider_id)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1675,7 +1664,7 @@ RULE create_credential
 
 RULE alter_cryptographic_provider 
 //** alter_cryptographic_provider
-	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_id  (FROM  FILE  EQUAL  crypto_provider_ddl_file = STRING)?  enable_disable?
+	 : ALTER  CRYPTOGRAPHIC  PROVIDER  provider_id  (FROM  FILE  EQUAL  crypto_provider_ddl_file = stringtext)?  enable_disable?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1685,7 +1674,7 @@ RULE alter_cryptographic_provider
 
 RULE create_cryptographic_provider 
 //** create_cryptographic_provider
-	 : CREATE  CRYPTOGRAPHIC  PROVIDER  provider_id  FROM  FILE  EQUAL  path_of_DLL = STRING
+	 : CREATE  CRYPTOGRAPHIC  PROVIDER  provider_id  FROM  FILE  EQUAL  path_of_DLL = stringtext
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1695,7 +1684,7 @@ RULE create_cryptographic_provider
 
 RULE create_event_notification 
 //** create_event_notification
-	 : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  (SERVER | DATABASE | QUEUE  queue_id)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = STRING  COMMA  broker_service_specifier_or_current_database = STRING
+	 : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  (SERVER | DATABASE | QUEUE  queue_id)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = stringtext  COMMA  broker_service_specifier_or_current_database = stringtext
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1705,7 +1694,7 @@ RULE create_event_notification
 
 RULE create_or_alter_event_session 
 //** create_or_alter_event_session
-	 : (CREATE | ALTER)  EVENT  SESSION  event_session_id  ON  SERVER  create_or_alter_event_session_add_event*  create_or_alter_event_session_del_event*  create_or_alter_event_session_add_target*  create_or_alter_event_session_del_target*  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
+	 : (CREATE | ALTER)  EVENT  SESSION  event_session_id  ON  SERVER  create_or_alter_event_session_add_events?  create_or_alter_event_session_del_events?  create_or_alter_event_session_add_targets?  create_or_alter_event_session_del_targets?  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1758,8 +1747,8 @@ RULE event_session_predicate_leaf
 
 RULE alter_external_data_source 
 //** alter_external_data_source
-	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  SET  (LOCATION  EQUAL  location = STRING  COMMA? | RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = STRING  COMMA? | CREDENTIAL  EQUAL  credential_id)+
-	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = STRING  (COMMA  CREDENTIAL  EQUAL  credential_id)?  RR_BRACKET
+	 : ALTER  EXTERNAL  DATA  SOURCE  data_source_id  SET  (LOCATION  EQUAL  location = stringtext  COMMA? | RESOURCE_MANAGER_LOCATION  EQUAL  resource_manager_location = stringtext  COMMA? | CREDENTIAL  EQUAL  credential_id)+
+	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = stringtext  (COMMA  CREDENTIAL  EQUAL  credential_id)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1803,8 +1792,8 @@ RULE create_external_resource_pool
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
+	TEMPLATE _
+	CALCULATED TEMPLATE 
 ;
 
 RULE alter_fulltext_catalog 
@@ -1819,7 +1808,7 @@ RULE alter_fulltext_catalog
 
 RULE create_fulltext_catalog 
 //** create_fulltext_catalog
-	 : CREATE  FULLTEXT  CATALOG  catalog_id  (ON  FILEGROUP  file_group_id)?  (IN  PATH  rootpath = STRING)?  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)?  (AS  DEFAULT)?  (AUTHORIZATION  owner_id)?
+	 : CREATE  FULLTEXT  CATALOG  catalog_id  (ON  FILEGROUP  file_group_id)?  (IN  PATH  rootpath = stringtext)?  (WITH  ACCENT_SENSITIVITY  EQUAL  on_off)?  (AS  DEFAULT)?  (AUTHORIZATION  owner_id)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1829,7 +1818,7 @@ RULE create_fulltext_catalog
 
 RULE alter_fulltext_stoplist 
 //** alter_fulltext_stoplist
-	 : ALTER  FULLTEXT  STOPLIST  stoplist_id  (ADD  stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = STRING  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
+	 : ALTER  FULLTEXT  STOPLIST  stoplist_id  (ADD  stopword = stringtext  LANGUAGE  (STRING | DECIMAL | BINARY) | DROP  (stopword = stringtext  LANGUAGE  (STRING | DECIMAL | BINARY) | ALL  (STRING | DECIMAL | BINARY) | ALL))
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1889,7 +1878,7 @@ RULE create_login_azure_sql
 
 RULE alter_login_azure_sql_dw_and_pdw 
 //** alter_login_azure_sql_dw_and_pdw
-	 : ALTER  LOGIN  login_id  (enable_disable? | WITH  (PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)? | NAME  EQUAL  new_name = login_id))
+	 : ALTER  LOGIN  login_id  (enable_disable? | WITH  (PASSWORD  EQUAL  password = stringtext  (OLD_PASSWORD  EQUAL  old_password = stringtext  pwd_strategy*)? | NAME  EQUAL  new_name = login_id))
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1910,7 +1899,7 @@ RULE enable_disable
 
 RULE create_login_pdw 
 //** create_login_pdw
-	 : CREATE  LOGIN  login_id  (WITH  (PASSWORD  EQUAL  password = STRING  (MUST_CHANGE)?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
+	 : CREATE  LOGIN  login_id  (WITH  (PASSWORD  EQUAL  password = stringtext  MUST_CHANGE?  (CHECK_POLICY  EQUAL  on_off?)?) | FROM  WINDOWS)
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1920,7 +1909,7 @@ RULE create_login_pdw
 
 RULE alter_master_key_sql_server 
 //** alter_master_key_sql_server
-	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING | add_drop  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = STRING))
+	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  encryption_by_pwd | add_drop  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = stringtext))
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1930,17 +1919,17 @@ RULE alter_master_key_sql_server
 
 RULE create_master_key_sql_server 
 //** create_master_key_sql_server
-	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
+	 : CREATE  MASTER  KEY  encryption_by_pwd
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE alter_master_key_azure_sql 
 //** alter_master_key_azure_sql
-	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING | ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = STRING) | DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING)
+	 : ALTER  MASTER  KEY  ((FORCE)?  REGENERATE  WITH  encryption_by_pwd | ADD  ENCRYPTION  BY  (SERVICE  MASTER  KEY | PASSWORD  EQUAL  encryption_password = stringtext) | DROP  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = stringtext)
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -1950,12 +1939,12 @@ RULE alter_master_key_azure_sql
 
 RULE create_master_key_azure_sql 
 //** create_master_key_azure_sql
-	 : CREATE  MASTER  KEY  (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?
+	 : CREATE  MASTER  KEY  encryption_by_pwd?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE alter_message_type 
@@ -2011,7 +2000,7 @@ RULE alter_remote_service_binding
 
 RULE create_remote_service_binding 
 //** create_remote_service_binding
-	 : CREATE  REMOTE  SERVICE  BINDING  binding_id  (AUTHORIZATION  owner_id)?  TO  SERVICE  remote_service_name = STRING  WITH  (USER  EQUAL  user_id)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
+	 : CREATE  REMOTE  SERVICE  BINDING  binding_id  (AUTHORIZATION  owner_id)?  TO  SERVICE  remote_service_name = stringtext  WITH  (USER  EQUAL  user_id)?  (COMMA  ANONYMOUS  EQUAL  on_off)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2072,7 +2061,7 @@ RULE create_db_role
 
 RULE create_route 
 //** create_route
-	 : CREATE  ROUTE  route_id  (AUTHORIZATION  owner_id)?  WITH  (COMMA?  SERVICE_NAME  EQUAL  route_service_name = STRING)?  (COMMA?  BROKER_INSTANCE  EQUAL  broker_instance_identifier = STRING)?  (COMMA?  LIFETIME  EQUAL  lifetime = DECIMAL)?  COMMA?  ADDRESS  EQUAL  address = STRING  (COMMA  MIRROR_ADDRESS  EQUAL  mirror_address = STRING)?
+	 : CREATE  ROUTE  route_id  (AUTHORIZATION  owner_id)?  WITH  (COMMA?  SERVICE_NAME  EQUAL  route_service_name = stringtext)?  (COMMA?  BROKER_INSTANCE  EQUAL  broker_instance_identifier = stringtext)?  (COMMA?  LIFETIME  EQUAL  lifetime = DECIMAL)?  COMMA?  ADDRESS  EQUAL  address = stringtext  (COMMA  MIRROR_ADDRESS  EQUAL  mirror_address = stringtext)?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2216,7 +2205,7 @@ RULE create_server_audit
 
 RULE alter_server_audit_specification 
 //** alter_server_audit_specification
-	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  (add_drop  LR_BRACKET  audit_action_group_id  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+	 : ALTER  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  add_drop_audit_action_groups?  server_audit_state?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2226,7 +2215,7 @@ RULE alter_server_audit_specification
 
 RULE create_server_audit_specification 
 //** create_server_audit_specification
-	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  (ADD  LR_BRACKET  audit_action_group_id  RR_BRACKET)*  (WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET)?
+	 : CREATE  SERVER  AUDIT  SPECIFICATION  audit_id  alter_server_audit_specification_server?  server_audit_specification_add_groups?  server_audit_state?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2296,7 +2285,7 @@ RULE create_service
 
 RULE alter_service_master_key 
 //** alter_service_master_key
-	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE | (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = STRING  COMMA  OLD_PASSWORD  EQUAL  old_password = STRING | NEW_ACCOUNT  EQUAL  new_account_name = STRING  COMMA  NEW_PASSWORD  EQUAL  new_password = STRING)?))
+	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE | (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = stringtext  COMMA  OLD_PASSWORD  EQUAL  old_password = stringtext | NEW_ACCOUNT  EQUAL  new_account_name = stringtext  COMMA  NEW_PASSWORD  EQUAL  new_password = stringtext)?))
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2306,7 +2295,7 @@ RULE alter_service_master_key
 
 RULE alter_symmetric_key 
 //** alter_symmetric_key
-	 : ALTER  SYMMETRIC  KEY  symmetric_key_id  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_id | PASSWORD  EQUAL  password = STRING | SYMMETRIC  KEY  newkey = symmetric_key_id | ASYMMETRIC  KEY  asym_key_id))
+	 : ALTER  SYMMETRIC  KEY  symmetric_key_id  (add_drop  ENCRYPTION  BY  (CERTIFICATE  certificate_id | PASSWORD  EQUAL  password = stringtext | SYMMETRIC  KEY  newkey = symmetric_key_id | ASYMMETRIC  KEY  asym_key_id))
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2369,12 +2358,12 @@ RULE alter_user_azure_sql
 
 RULE alter_workload_group 
 //** alter_workload_group
-	 : ALTER  WORKLOAD  GROUP  (workload_group_group_id | DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  (USING  (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE))?
+	 : ALTER  WORKLOAD  GROUP  (workload_group_group_id | DEFAULT_DOUBLE_QUOTE)  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  importance_level | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = DECIMAL | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = DECIMAL | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = DECIMAL | MAX_DOP  EQUAL  max_dop = DECIMAL | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = DECIMAL)+  RR_BRACKET)?  alter_workload_group_using?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE create_workload_group 
@@ -2429,7 +2418,7 @@ RULE create_queue
 
 RULE queue_settings 
 //** queue_settings
-	 : WITH  (STATUS  EQUAL  status = on_off  COMMA?)?  (RETENTION  EQUAL  retention = on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  activation_status = on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema_ref  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF | username = STRING | OWNER)  COMMA?)?) | DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
+	 : WITH  (STATUS  EQUAL  status = on_off  COMMA?)?  (RETENTION  EQUAL  retention = on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  activation_status = on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema_ref  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = DECIMAL  COMMA?)?  (EXECUTE  AS  (SELF | username = stringtext | OWNER)  COMMA?)?) | DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -2604,7 +2593,7 @@ RULE insert_statement_value
 
 RULE receive_statement 
 //** receive_statement
-	 : LR_BRACKET?  RECEIVE  (ALL | DISTINCT | top_clause | STAR)  (LOCAL_ID  EQUAL  expression  COMMA?)*  FROM  complete_table_ref  (INTO  table_id  (WHERE  where = search_condition))?  RR_BRACKET?
+	 : LR_BRACKET?  RECEIVE  receive_mode  receive_ids?  FROM  complete_table_ref  receive_into?  RR_BRACKET?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -2704,7 +2693,7 @@ RULE create_database
 
 RULE create_index 
 //** create_index
-	 : CREATE  UNIQUE?  clustered?  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (INCLUDE  LR_BRACKET  column_name_list  RR_BRACKET)?  (WHERE  search_condition)?  (create_index_options)?  (ON  file_group_id)?  SEMI?
+	 : CREATE  UNIQUE?  clustered?  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (INCLUDE  LR_BRACKET  column_name_list  RR_BRACKET)?  where_condition?  (create_index_options)?  (ON  file_group_id)?  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -2947,7 +2936,7 @@ RULE columnstore_index_option
 
 RULE create_nonclustered_columnstore_index 
 //** create_nonclustered_columnstore_index
-	 : CREATE  NONCLUSTERED?  COLUMNSTORE  INDEX  id_  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  (WHERE  search_condition)?  create_columnstore_index_options?  (ON  group_id)?  SEMI?
+	 : CREATE  NONCLUSTERED?  COLUMNSTORE  INDEX  id_  ON  full_table_ref  LR_BRACKET  column_name_list_with_order  RR_BRACKET  where_condition?  create_columnstore_index_options?  (ON  group_id)?  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -3432,7 +3421,7 @@ RULE filespecs
 
 RULE filespec 
 //** filespec
-	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | STRING)?  (COMMA  FILENAME  EQUAL  file_name = STRING)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | STRING)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRuleList<AstFileGroupId>"
@@ -3468,7 +3457,7 @@ RULE filegroup_updatability_option
 RULE database_optionspec 
 //** database_optionspec
 	 : auto_option
-	 | change_tracking_option
+	 | change_tracking
 	 | containment_option
 	 | cursor_option
 	 | database_mirroring_option
@@ -3504,16 +3493,6 @@ RULE auto_option
 	 | AUTO_SHRINK  on_off
 	 | AUTO_UPDATE_STATISTICS  on_off
 	 | AUTO_UPDATE_STATISTICS_ASYNC  on_off
-  **// 
-	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE change_tracking_option 
-//** change_tracking_option
-	 : CHANGE_TRACKING  EQUAL  (OFF | ON  (change_tracking_option_list  change_tracking_option_lists)*)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -3928,12 +3907,12 @@ RULE termination
 
 RULE drop_index 
 //** drop_index
-	 : DROP  INDEX  (IF  EXISTS)?  (drop_relational_or_xml_or_spatial_indexs | drop_backward_compatible_indexs)  SEMI?
+	 : DROP  INDEX  if_exists?  (drop_relational_or_xml_or_spatial_indexs | drop_backward_compatible_indexs)  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_relational_or_xml_or_spatial_indexs 
@@ -3972,13 +3951,13 @@ RULE drop_backward_compatible_index
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE drop_procedure 
 //** drop_procedure
-	 : DROP  proc = (PROC | PROCEDURE)  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
+	 : DROP  proc = (PROC | PROCEDURE)  if_exists?  func_proc_name_schemas  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -4009,7 +3988,7 @@ RULE drop_trigger
 
 RULE drop_dml_trigger 
 //** drop_dml_trigger
-	 : DROP  TRIGGER  (IF  EXISTS)?  schema_trigger_refs  SEMI?
+	 : DROP  TRIGGER  if_exists?  schema_trigger_refs  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDropTrigger"
@@ -4019,7 +3998,7 @@ RULE drop_dml_trigger
 
 RULE drop_ddl_trigger 
 //** drop_ddl_trigger
-	 : DROP  TRIGGER  (IF  EXISTS)?  schema_view_refs  ON  (DATABASE | ALL  SERVER)  SEMI?
+	 : DROP  TRIGGER  if_exists?  schema_view_refs  ON  (DATABASE | ALL  SERVER)  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDropTrigger"
@@ -4039,7 +4018,7 @@ RULE table_names
 
 RULE drop_function 
 //** drop_function
-	 : DROP  FUNCTION  (IF  EXISTS)?  func_proc_name_schemas  SEMI?
+	 : DROP  FUNCTION  if_exists?  func_proc_name_schemas  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -4053,13 +4032,13 @@ RULE drop_statistics
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE _
 ;
 
 RULE drop_table 
 //** drop_table
-	 : DROP  TABLE  (IF  EXISTS)?  table_names  SEMI?
+	 : DROP  TABLE  if_exists?  table_names  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -4069,7 +4048,7 @@ RULE drop_table
 
 RULE drop_view 
 //** drop_view
-	 : DROP  VIEW  (IF  EXISTS)?  schema_view_refs  SEMI?
+	 : DROP  VIEW  if_exists?  schema_view_refs  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstDdlClause"
@@ -4110,7 +4089,7 @@ RULE rowset_function_limited
 
 RULE openquery 
 //** openquery
-	 : OPENQUERY  LR_BRACKET  server_id  COMMA  query = STRING  RR_BRACKET
+	 : OPENQUERY  LR_BRACKET  server_id  COMMA  query = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRowsetFunctionLimited"
@@ -4120,7 +4099,7 @@ RULE openquery
 
 RULE opendatasource 
 //** opendatasource
-	 : OPENDATASOURCE  LR_BRACKET  provider = STRING  COMMA  init = STRING  RR_BRACKET  DOT  database_schema_table_ref
+	 : OPENDATASOURCE  LR_BRACKET  provider = stringtext  COMMA  init = stringtext  RR_BRACKET  DOT  database_schema_table_ref
   **// 
 	GENERATE
 	INHERIT "AstRowsetFunctionLimited"
@@ -4163,7 +4142,7 @@ RULE xml_declarations
 
 RULE xml_declaration 
 //** xml_declaration
-	 : xml_namespace_uri = STRING  AS  id_
+	 : xml_namespace_uri = stringtext  AS  id_
 	 | DEFAULT  STRING
   **// 
 	GENERATE
@@ -4208,7 +4187,7 @@ RULE backup_log
 
 RULE backup_certificate 
 //** backup_certificate
-	 : BACKUP  CERTIFICATE  certificate_id  TO  FILE  EQUAL  cert_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  (COMMA?  FILE  EQUAL  private_key_file = STRING | COMMA?  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING | COMMA?  DECRYPTION  BY  PASSWORD  EQUAL  decryption_pasword = STRING)+  RR_BRACKET)?
+	 : BACKUP  CERTIFICATE  certificate_id  TO  FILE  EQUAL  cert_file = stringtext  (WITH  PRIVATE  KEY  LR_BRACKET  backup_certificate_private_keys  RR_BRACKET)?
   **// 
 	GENERATE
 	INHERIT "AstBackupStatement"
@@ -4218,22 +4197,22 @@ RULE backup_certificate
 
 RULE backup_master_key 
 //** backup_master_key
-	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL  master_key_backup_file = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING
+	 : BACKUP  MASTER  KEY  TO  FILE  EQUAL  master_key_backup_file = stringtext  encryption_by_pwd
   **// 
 	GENERATE
 	INHERIT "AstBackupStatement"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE backup_service_master_key 
 //** backup_service_master_key
-	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL  service_master_key_backup_file = STRING  ENCRYPTION  BY  PASSWORD  EQUAL  encryption_password = STRING
+	 : BACKUP  SERVICE  MASTER  KEY  TO  FILE  EQUAL  service_master_key_backup_file = stringtext  encryption_by_pwd
   **// 
 	GENERATE
 	INHERIT "AstBackupStatement"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE kill_statement 
@@ -4319,7 +4298,7 @@ RULE execute_var_strings
 
 RULE execute_statement_arg 
 //** execute_statement_arg
-	 : execute_statement_arg_unnamed  (COMMA  execute_statement_arg)*
+	 : execute_statement_arg_unnamed  execute_statement_args?
 	 | execute_statement_arg_nameds
   **// 
 	GENERATE
@@ -4407,7 +4386,7 @@ RULE security_statement
 
 RULE to_principal_rincipal_ids 
 //** to_principal_rincipal_ids
-	 : to_principal += principal_id  (COMMA  to_principal += principal_id)*
+	 : principal_id  (COMMA  principal_id)*
   **// 
 	GENERATE
 	INHERIT "AstRuleList<AstPrincipalId>"
@@ -4440,7 +4419,7 @@ RULE create_certificate
 RULE existing_keys 
 //** existing_keys
 	 : ASSEMBLY  assembly_id
-	 | EXECUTABLE?  FILE  EQUAL  path_to_file = STRING  (WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET)?
+	 | EXECUTABLE?  FILE  EQUAL  path_to_file = stringtext  (WITH  PRIVATE  KEY  LR_BRACKET  private_key_options  RR_BRACKET)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -4450,7 +4429,7 @@ RULE existing_keys
 
 RULE private_key_options 
 //** private_key_options
-	 : (FILE | BINARY)  EQUAL  path = STRING  (COMMA  (DECRYPTION | ENCRYPTION)  BY  PASSWORD  EQUAL  password = STRING)?
+	 : (FILE | BINARY)  EQUAL  path = stringtext  (COMMA  encryption_decryption  BY  PASSWORD  EQUAL  password = stringtext)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -4460,28 +4439,28 @@ RULE private_key_options
 
 RULE generate_new_keys 
 //** generate_new_keys
-	 : (ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING)?  WITH  SUBJECT  EQUAL  certificate_subject_name = STRING  (COMMA  date_options)*
+	 : encryption_by_pwd?  WITH  SUBJECT  EQUAL  certificate_subject_name = stringtext  (COMMA  date_options)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE date_options 
 //** date_options
-	 : (START_DATE | EXPIRY_DATE)  EQUAL  STRING
+	 : date_option  (COMMA  date_option)+
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstDateOption>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE _
 ;
 
 RULE open_key 
 //** open_key
 	 : OPEN  SYMMETRIC  KEY  symmetric_key_id  DECRYPTION  BY  decryption_mechanism
-	 | OPEN  MASTER  KEY  DECRYPTION  BY  PASSWORD  EQUAL  password = STRING
+	 | OPEN  MASTER  KEY  decryption_by_pwd
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -4503,7 +4482,7 @@ RULE close_key
 
 RULE create_key 
 //** create_key
-	 : CREATE  MASTER  KEY  ENCRYPTION  BY  PASSWORD  EQUAL  password = STRING
+	 : CREATE  MASTER  KEY  encryption_by_pwd
 	 | CREATE  SYMMETRIC  KEY  symmetric_key_id  (AUTHORIZATION  user_id)?  (FROM  PROVIDER  provider_id)?  WITH  ((key_options | ENCRYPTION  BY  encryption_mechanism)  COMMA?)+
   **// 
 	GENERATE
@@ -4514,10 +4493,10 @@ RULE create_key
 
 RULE key_options 
 //** key_options
-	 : KEY_SOURCE  EQUAL  pass_phrase = STRING
+	 : KEY_SOURCE  EQUAL  pass_phrase = stringtext
 	 | ALGORITHM  EQUAL  algorithm
-	 | IDENTITY_VALUE  EQUAL  identity_phrase = STRING
-	 | PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = STRING
+	 | IDENTITY_VALUE  EQUAL  identity_phrase = stringtext
+	 | PROVIDER_KEY_NAME  EQUAL  key_name_in_provider = stringtext
 	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)
   **// 
 	GENERATE
@@ -4622,7 +4601,7 @@ RULE set_statement
 RULE transaction_statement 
 //** transaction_statement
 	 : BEGIN  DISTRIBUTED  transaction  transaction_ref?
-	 | BEGIN  transaction  (transaction_ref  (WITH  MARK  mark = STRING)?)?
+	 | BEGIN  transaction  (transaction_ref  (WITH  MARK  mark = stringtext)?)?
 	 | COMMIT  transaction  (transaction_ref  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  on_off  RR_BRACKET)?)?
 	 | COMMIT  WORK?
 	 | COMMIT  transaction_id
@@ -4659,7 +4638,7 @@ RULE use_statement
 
 RULE setuser_statement 
 //** setuser_statement
-	 : SETUSER  user = STRING
+	 : SETUSER  user = stringtext
   **// 
 	GENERATE
 	INHERIT "AstAnotherStatement"
@@ -4760,7 +4739,7 @@ RULE declare_local
 
 RULE table_type_definition 
 //** table_type_definition
-	 : TABLE  LR_BRACKET  column_def_table_constraints  (COMMA?  table_type_indices)*  RR_BRACKET
+	 : TABLE  LR_BRACKET  column_def_table_constraints  table_type_indices?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -4770,12 +4749,11 @@ RULE table_type_definition
 
 RULE table_type_indices 
 //** table_type_indices
-	 : (((PRIMARY  KEY | INDEX  id_)  (CLUSTERED | NONCLUSTERED)?) | UNIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET
-	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
+	 : table_type_indice  (COMMA  table_type_indice)*
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstTableTypeIndice>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE _
 ;
 
@@ -4804,9 +4782,9 @@ RULE column_def_table_constraints
 	 : column_def_table_constraint  (COMMA?  column_def_table_constraint)*
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
+	INHERIT "AstRuleList<AstColumnDefTableConstraint>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE 
 ;
 
 RULE column_def_table_constraint 
@@ -4836,13 +4814,13 @@ RULE column_definition_element
 	 : FILESTREAM
 	 | COLLATE  collation_id
 	 | SPARSE
-	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = STRING  RR_BRACKET
+	 | MASKED  WITH  LR_BRACKET  FUNCTION  EQUAL  mask_function = stringtext  RR_BRACKET
 	 | (CONSTRAINT  constraint_id)?  DEFAULT  constant_expr = expression
 	 | IDENTITY  (LR_BRACKET  seed = DECIMAL  COMMA  increment = DECIMAL  RR_BRACKET)?
 	 | NOT  FOR  REPLICATION
 	 | GENERATED  ALWAYS  AS  (ROW | TRANSACTION_ID | SEQUENCE_NUMBER)  (START | END)  HIDDEN_KEYWORD?
 	 | ROWGUIDCOL
-	 | ENCRYPTED  WITH  LR_BRACKET  column_encryption_key_id  EQUAL  key_name = STRING  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC | RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = STRING  RR_BRACKET
+	 | ENCRYPTED  WITH  LR_BRACKET  column_encryption_key_id  EQUAL  key_name = stringtext  COMMA  ENCRYPTION_TYPE  EQUAL  (DETERMINISTIC | RANDOMIZED)  COMMA  ALGORITHM  EQUAL  algo = stringtext  RR_BRACKET
 	 | column_constraint
   **// 
 	GENERATE
@@ -4976,8 +4954,8 @@ RULE alter_table_index_options
 	 : WITH  LR_BRACKET  alter_table_index_option  (COMMA  alter_table_index_option)*  RR_BRACKET
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstAlterTableIndexOption>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -5363,12 +5341,12 @@ RULE sql_union
 
 RULE query_specification 
 //** query_specification
-	 : SELECT  allOrDistinct = (ALL | DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  (WHERE  where = search_condition)?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
+	 : SELECT  allOrDistinct = (ALL | DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  where_condition?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE groupSet_list 
@@ -5386,8 +5364,8 @@ RULE groupBys_list
 	 : group_by_item  (COMMA  group_by_item)*
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstGroupByItem>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -5493,8 +5471,8 @@ RULE grouping_sets_list
 	 : group_by_item  (COMMA  group_by_item)*
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstGroupByItem>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -5502,7 +5480,7 @@ RULE group_by_item
 //** group_by_item
 	 : expression
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
@@ -5946,7 +5924,7 @@ RULE full_column_name_list
 RULE rowset_function 
 //** rowset_function
 	 : (OPENROWSET  LR_BRACKET  providerName = STRING  COMMA  connectionString = STRING  COMMA  sql = STRING  RR_BRACKET)
-	 | (OPENROWSET  LR_BRACKET  BULK  data_file = STRING  COMMA  (bulk_options | id_)  RR_BRACKET)
+	 | (OPENROWSET  LR_BRACKET  BULK  data_file = stringtext  COMMA  (bulk_options | id_)  RR_BRACKET)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -5989,14 +5967,14 @@ RULE derived_table
 
 RULE function_call 
 //** function_call
-	 : RANKING_WINDOWED_FUNCranking_windowed_function
-	 | AGGREGATE_WINDOWED_FUNCaggregate_windowed_function
-	 | ANALYTIC_WINDOWED_FUNCanalytic_windowed_function
-	 | BUILT_IN_FUNCbuilt_in_functions
-	 | SCALAR_FUNCTIONscalar_function_name  LR_BRACKET  expression_list?  RR_BRACKET
-	 | FREE_TEXTfreetext_function
-	 | PARTITION_FUNCpartition_function
-	 | HIERARCHYID_METHODhierarchyid_static_method
+	 : ranking_windowed_function
+	 | aggregate_windowed_function
+	 | analytic_windowed_function
+	 | built_in_functions
+	 | scalar_function_name  LR_BRACKET  expression_list?  RR_BRACKET
+	 | freetext_function
+	 | partition_function
+	 | hierarchyid_static_method
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6010,7 +5988,7 @@ RULE partition_function
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6042,8 +6020,8 @@ RULE expression_language
 	 : expression  (COMMA  LANGUAGE  expression)?
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstExpression>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6112,10 +6090,10 @@ RULE built_in_functions
 	 | ASCIIASCII  LR_BRACKET  character_expression = expression  RR_BRACKET
 	 | CHARCHAR  LR_BRACKET  integer_expression = expression  RR_BRACKET
 	 | CHARINDEXCHARINDEX  LR_BRACKET  expressionToFind = expression  COMMA  expressionToSearch = expression  (COMMA  start_location = expression)?  RR_BRACKET
-	 | CONCATCONCAT  LR_BRACKET  string_value_1 = expression  COMMA  string_value_2 = expression  (COMMA  string_value_n += expression)*  RR_BRACKET
-	 | CONCAT_WSCONCAT_WS  LR_BRACKET  separator = expression  COMMA  argument_1 = expression  COMMA  argument_2 = expression  (COMMA  argument_n += expression)*  RR_BRACKET
+	 | CONCATCONCAT  LR_BRACKET  expressions  RR_BRACKET
+	 | CONCAT_WSCONCAT_WS  LR_BRACKET  expressions  RR_BRACKET
 	 | DIFFERENCEDIFFERENCE  LR_BRACKET  character_expression_1 = expression  COMMA  character_expression_2 = expression  RR_BRACKET
-	 | FORMATFORMAT  LR_BRACKET  value = expression  COMMA  format = expression  (COMMA  culture = expression)?  RR_BRACKET
+	 | FORMATFORMAT  LR_BRACKET  expressions  RR_BRACKET
 	 | LEFTLEFT  LR_BRACKET  character_expression = expression  COMMA  integer_expression = expression  RR_BRACKET
 	 | LENLEN  LR_BRACKET  string_expression = expression  RR_BRACKET
 	 | LOWERLOWER  LR_BRACKET  character_expression = expression  RR_BRACKET
@@ -6130,7 +6108,7 @@ RULE built_in_functions
 	 | RTRIMRTRIM  LR_BRACKET  character_expression = expression  RR_BRACKET
 	 | SOUNDEXSOUNDEX  LR_BRACKET  character_expression = expression  RR_BRACKET
 	 | SPACESPACE_KEYWORD  LR_BRACKET  integer_expression = expression  RR_BRACKET
-	 | STRSTR  LR_BRACKET  float_expression = expression  (COMMA  length_expression = expression  (COMMA  decimal = expression)?)?  RR_BRACKET
+	 | STRSTR  LR_BRACKET  float_expression = expression  (COMMA  length_expression = expression  (COMMA  decimal_expr = expression)?)?  RR_BRACKET
 	 | STRINGAGGSTRING_AGG  LR_BRACKET  expr = expression  COMMA  separator = expression  RR_BRACKET  (WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET)?
 	 | STRING_ESCAPESTRING_ESCAPE  LR_BRACKET  text_ = expression  COMMA  type_ = expression  RR_BRACKET
 	 | STUFFSTUFF  LR_BRACKET  str = expression  COMMA  from = DECIMAL  COMMA  to = DECIMAL  COMMA  str_with = expression  RR_BRACKET
@@ -6142,7 +6120,7 @@ RULE built_in_functions
 	 | BINARY_CHECKSUMBINARY_CHECKSUM  LR_BRACKET  (star = STAR | expressions)  RR_BRACKET
 	 | CHECKSUMCHECKSUM  LR_BRACKET  (star = STAR | expressions)  RR_BRACKET
 	 | COMPRESSCOMPRESS  LR_BRACKET  expr = expression  RR_BRACKET
-	 | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_BRACKET  property = STRING  RR_BRACKET
+	 | CONNECTIONPROPERTYCONNECTIONPROPERTY  LR_BRACKET  property = stringtext  RR_BRACKET
 	 | CONTEXT_INFOCONTEXT_INFO  LR_BRACKET  RR_BRACKET
 	 | CURRENT_REQUEST_IDCURRENT_REQUEST_ID  LR_BRACKET  RR_BRACKET
 	 | CURRENT_TRANSACTION_IDCURRENT_TRANSACTION_ID  LR_BRACKET  RR_BRACKET
@@ -6153,9 +6131,9 @@ RULE built_in_functions
 	 | ERROR_PROCEDUREERROR_PROCEDURE  LR_BRACKET  RR_BRACKET
 	 | ERROR_SEVERITYERROR_SEVERITY  LR_BRACKET  RR_BRACKET
 	 | ERROR_STATEERROR_STATE  LR_BRACKET  RR_BRACKET
-	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL | msg_string = STRING | msg_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET
+	 | FORMATMESSAGEFORMATMESSAGE  LR_BRACKET  (msg_number = DECIMAL | msg_string = stringtext | msg_variable = LOCAL_ID)  COMMA  expressions  RR_BRACKET
 	 | GET_FILESTREAM_TRANSACTION_CONTEXTGET_FILESTREAM_TRANSACTION_CONTEXT  LR_BRACKET  RR_BRACKET
-	 | GETANSINULLGETANSINULL  LR_BRACKET  (database = STRING)?  RR_BRACKET
+	 | GETANSINULLGETANSINULL  LR_BRACKET  (database = stringtext)?  RR_BRACKET
 	 | HOST_IDHOST_ID  LR_BRACKET  RR_BRACKET
 	 | HOST_NAMEHOST_NAME  LR_BRACKET  RR_BRACKET
 	 | ISNULLISNULL  LR_BRACKET  left = expression  COMMA  right = expression  RR_BRACKET
@@ -6164,7 +6142,7 @@ RULE built_in_functions
 	 | NEWIDNEWID  LR_BRACKET  RR_BRACKET
 	 | NEWSEQUENTIALIDNEWSEQUENTIALID  LR_BRACKET  RR_BRACKET
 	 | ROWCOUNT_BIGROWCOUNT_BIG  LR_BRACKET  RR_BRACKET
-	 | SESSION_CONTEXTSESSION_CONTEXT  LR_BRACKET  key = STRING  RR_BRACKET
+	 | SESSION_CONTEXTSESSION_CONTEXT  LR_BRACKET  key = stringtext  RR_BRACKET
 	 | XACT_STATEXACT_STATE  LR_BRACKET  RR_BRACKET
 	 | CASTCAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
 	 | TRY_CASTTRY_CAST  LR_BRACKET  expression  AS  data_type  RR_BRACKET
@@ -6230,7 +6208,7 @@ RULE value_method
 
 RULE value_call 
 //** value_call
-	 : VALUE  LR_BRACKET  xquery = STRING  COMMA  sqltype = STRING  RR_BRACKET
+	 : VALUE  LR_BRACKET  xquery = stringtext  COMMA  sqltype = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6250,7 +6228,7 @@ RULE query_method
 
 RULE query_call 
 //** query_call
-	 : QUERY  LR_BRACKET  xquery = STRING  RR_BRACKET
+	 : QUERY  LR_BRACKET  xquery = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6270,7 +6248,7 @@ RULE exist_method
 
 RULE exist_call 
 //** exist_call
-	 : EXIST  LR_BRACKET  xquery = STRING  RR_BRACKET
+	 : EXIST  LR_BRACKET  xquery = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6290,7 +6268,7 @@ RULE modify_method
 
 RULE modify_call 
 //** modify_call
-	 : MODIFY  LR_BRACKET  xml_dml = STRING  RR_BRACKET
+	 : MODIFY  LR_BRACKET  xml_dml = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6325,7 +6303,7 @@ RULE hierarchyid_static_method
 
 RULE nodes_method 
 //** nodes_method
-	 : (loc = LOCAL_ID | value = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = STRING  RR_BRACKET
+	 : (loc = LOCAL_ID | value = full_column_name | LR_BRACKET  subquery  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = stringtext  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -6335,11 +6313,11 @@ RULE nodes_method
 
 RULE switch_section 
 //** switch_section
-	 : WHEN  expression  THEN  expression
+	 : WHEN  when_expr = expression  THEN  then_expr = expression
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6349,7 +6327,7 @@ RULE switch_search_condition_section
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6359,7 +6337,7 @@ RULE as_column_alias
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6369,7 +6347,7 @@ RULE as_table_alias
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6399,7 +6377,7 @@ RULE deprecated_table_hint
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6709,7 +6687,7 @@ RULE entity_name
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6758,7 +6736,7 @@ RULE column_name_list_with_order
 
 RULE insert_column_name_list 
 //** insert_column_name_list
-	 : col += insert_column_id  (COMMA  col += insert_column_id)*
+	 : insert_column_id  (COMMA  insert_column_id)*
   **// 
 	GENERATE
 	INHERIT "AstRuleList<AstInsertColumnId>"
@@ -6768,11 +6746,11 @@ RULE insert_column_name_list
 
 RULE insert_column_id 
 //** insert_column_id
-	 : (ignore += id_  DOT)*  id_
+	 : (source = id_  DOT)*  column_id
   **// 
 	GENERATE
-	INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
+	INHERIT "AstRuleList<AstId>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -6865,7 +6843,7 @@ RULE begin_conversation_timer
 
 RULE begin_conversation_dialog 
 //** begin_conversation_dialog
-	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = STRING)?  ON  CONTRACT  contract_name_expression  (WITH  ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
+	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = LOCAL_ID  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = stringtext)?  ON  CONTRACT  contract_name_expression  (WITH  ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP)  EQUAL  LOCAL_ID  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstConversationStatement"
@@ -7815,7 +7793,7 @@ RULE keyword
 RULE id_ 
 //** id_
 	 : ID
-	 | DOUBLE_QUOTE_ID
+	 | empty_value
 	 | DOUBLE_QUOTE_BLANK
 	 | SQUARE_BRACKET_ID
 	 | keyword
@@ -8051,7 +8029,7 @@ RULE primary_secondary_none
 
 RULE alter_availability_replicat_modify 
 //** alter_availability_replicat_modify
-	 : MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  STRING | availability_mode | FAILOVER_MODE  EQUAL  auto_manual | seeding_mode | backup_priority)  RR_BRACKET | SECONDARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  STRING  RR_BRACKET)  RR_BRACKET | PRIMARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  (string_list | NONE)  RR_BRACKET | SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL)  RR_BRACKET)
+	 : MODIFY  REPLICA  ON  server_instance  (WITH  LR_BRACKET  alter_availability_replicat_primary  RR_BRACKET | SECONDARY_ROLE  LR_BRACKET  alter_availability_secondary_role  RR_BRACKET | PRIMARY_ROLE  LR_BRACKET  alter_availability_primary_role  RR_BRACKET)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8094,8 +8072,8 @@ RULE alter_availability_group_options_replicat
 RULE alter_availability_group_options_group 
 //** alter_availability_group_options_group
 	 : JOIN
-	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = STRING  WITH  LR_BRACKET  (listener_url  COMMA  availability_mode  COMMA  failover_mode_manuel  COMMA  seeding_mode)  RR_BRACKET)+
-	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = STRING  WITH  LR_BRACKET  (listener_url  (COMMA?  availability_mode)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode)?)  RR_BRACKET)+
+	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = stringtext  WITH  LR_BRACKET  (listener_url  COMMA  availability_mode  COMMA  failover_mode_manuel  COMMA  seeding_mode)  RR_BRACKET)+
+	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url  (COMMA?  availability_mode)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode)?)  RR_BRACKET)+
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8307,7 +8285,7 @@ RULE session_arg_startup_state
 
 RULE create_or_alter_event_session_add_event 
 //** create_or_alter_event_session_add_event
-	 : COMMA?  ADD  EVENT  module_package_event_ref  (LR_BRACKET  (SET  (COMMA?  event_customizable_attribute_id  EQUAL  decimal_string)*)?  (ACTION  LR_BRACKET  (COMMA?  event_module_package_action_ref)+  RR_BRACKET)+  (WHERE  event_session_predicate_expression)?  RR_BRACKET)
+	 : ADD  EVENT  module_package_event_ref  (LR_BRACKET  (SET  set_attributes)?  event_session_actions  where_session_condition?  RR_BRACKET)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8317,27 +8295,27 @@ RULE create_or_alter_event_session_add_event
 
 RULE create_or_alter_event_session_add_target 
 //** create_or_alter_event_session_add_target
-	 : ((ADD  TARGET  module_package_event_ref)  (LR_BRACKET  SET  (COMMA?  target_parameter_id  EQUAL  (LR_BRACKET?  DECIMAL  RR_BRACKET? | STRING))+  RR_BRACKET)*)
+	 : ADD  TARGET  module_package_event_ref  target_parameter_blocks
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE create_or_alter_event_session_del_target 
 //** create_or_alter_event_session_del_target
-	 : (DROP  TARGET  module_package_event_ref)
+	 : DROP  TARGET  module_package_event_ref
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE create_or_alter_event_session_del_event 
 //** create_or_alter_event_session_del_event
-	 : COMMA?  DROP  EVENT  module_package_event_ref
+	 : DROP  EVENT  module_package_event_ref
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8402,7 +8380,7 @@ RULE code_language
 
 RULE external_resource_with 
 //** external_resource_with
-	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | (COMMA?  DECIMAL  TO  DECIMAL | COMMA  DECIMAL)+) | NUMANODE  EQUAL  (COMMA?  DECIMAL  TO  DECIMAL | COMMA?  DECIMAL)+)  (COMMA?  max_memory)?  (COMMA?  maw_process)?  RR_BRACKET
+	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | decimal_ranges) | NUMANODE  EQUAL  decimal_ranges)  (COMMA?  max_memory)?  (COMMA?  maw_process)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8442,17 +8420,17 @@ RULE max_cpu
 
 RULE alter_login_sql_server_settings 
 //** alter_login_sql_server_settings
-	 : ((PASSWORD  EQUAL  (password = STRING | password_hash = BINARY  HASHED))  (MUST_CHANGE | UNLOCK)*)?  (OLD_PASSWORD  EQUAL  old_password = STRING  (MUST_CHANGE | UNLOCK)*)?  (DEFAULT_DATABASE  EQUAL  database_id)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
+	 : login_settings_pwd?  login_settings_old_pwd?  (DEFAULT_DATABASE  EQUAL  database_id)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE create_login_sql_server_settings 
 //** create_login_sql_server_settings
-	 : ((PASSWORD  EQUAL  (password = STRING | password_hash = BINARY  HASHED))  (MUST_CHANGE | UNLOCK)*)?  (COMMA?  SID  EQUAL  sid = BINARY)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
+	 : ((PASSWORD  EQUAL  (password = stringtext | password_hash = BINARY  HASHED))  pwd_strategies)?  (COMMA?  SID  EQUAL  sid = BINARY)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -8462,7 +8440,7 @@ RULE create_login_sql_server_settings
 
 RULE create_login_sql_server_from 
 //** create_login_sql_server_from
-	 : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = STRING)?)
+	 : WINDOWS  (WITH  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  default_language = stringtext)?)
 	 | CERTIFICATE  certificate_id
 	 | ASYMMETRIC  KEY  asym_key_id
   **// 
@@ -8517,7 +8495,7 @@ RULE size_unity
 
 RULE server_audit_file 
 //** server_audit_file
-	 : FILE  (LR_BRACKET  (COMMA?  FILEPATH  EQUAL  filepath = STRING | COMMA?  MAXSIZE  EQUAL  (DECIMAL  size_unity | UNLIMITED) | COMMA?  MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL | UNLIMITED) | COMMA?  MAX_FILES  EQUAL  max_files = DECIMAL | COMMA?  RESERVE_DISK_SPACE  EQUAL  on_off)*  RR_BRACKET)
+	 : FILE  LR_BRACKET  server_audit_file_specs?  RR_BRACKET
 	 | APPLICATION_LOG
 	 | SECURITY_LOG
   **// 
@@ -8879,12 +8857,12 @@ RULE disk_tape_url
 
 RULE backup_settings 
 //** backup_settings
-	 : WITH  (COMMA?  DIFFERENTIAL | COMMA?  COPY_ONLY | COMMA?  compression | COMMA?  DESCRIPTION  EQUAL  string_id | COMMA?  NAME  EQUAL  backup_id | COMMA?  CREDENTIAL | COMMA?  FILE_SNAPSHOT | COMMA?  (EXPIREDATE  EQUAL  string_id | RETAINDAYS  EQUAL  decimal_id) | COMMA?  init_no_init | COMMA?  no_skip | COMMA?  format_noformat | COMMA?  MEDIADESCRIPTION  EQUAL  string_id | COMMA?  MEDIANAME  EQUAL  (medianame = STRING) | COMMA?  BLOCKSIZE  EQUAL  decimal_id | COMMA?  BUFFERCOUNT  EQUAL  decimal_id | COMMA?  MAXTRANSFER  EQUAL  decimal_id | COMMA?  (NO_CHECKSUM | CHECKSUM) | COMMA?  (STOP_ON_ERROR | CONTINUE_AFTER_ERROR) | COMMA?  RESTART | COMMA?  STATS  (EQUAL  stats_percent = DECIMAL)? | COMMA?  rewind | COMMA?  load_moun_load | COMMA?  ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  algorithm_short  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_id | SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_id)  RR_BRACKET)*
+	 : WITH  backup_setting+
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE file_file_group 
@@ -9047,7 +9025,7 @@ RULE string_local_id_double_quote_id
 //** string_local_id_double_quote_id
 	 : STRING
 	 | LOCAL_ID
-	 | DOUBLE_QUOTE_ID
+	 | empty_value
   **// 
 	GENERATE
 	INHERIT "AstTerminalIdentifier"
@@ -9503,7 +9481,7 @@ TERM EXCEPT
 TERM EXECUTE 
 //** EXECUTE : 'EXEC'  'UTE'?
   **// 
-	KIND #OTHER
+	KIND #CONSTANT
 	
 ;
 
@@ -11274,7 +11252,7 @@ TERM DECRYPTION
 TERM DEFAULT_DOUBLE_QUOTE 
 //** DEFAULT_DOUBLE_QUOTE : ["]  'DEFAULT'  ["]
   **// 
-	KIND #OTHER
+	KIND #CONSTANT
 	
 ;
 
@@ -12639,7 +12617,7 @@ TERM NTILE
 TERM NULL_DOUBLE_QUOTE 
 //** NULL_DOUBLE_QUOTE : ["]  'NULL'  ["]
   **// 
-	KIND #OTHER
+	KIND #CONSTANT
 	
 ;
 
@@ -16669,7 +16647,7 @@ RULE create_sequence_max_value
 
 RULE alter_server_audit_infos 
 //** alter_server_audit_infos
-	 : (TO  server_audit_file)?  (WITH  LR_BRACKET  (COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL | COMMA?  ON_FAILURE  EQUAL  continue_shutdown | COMMA?  STATE  EQUAL  on_off)*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)?
+	 : (TO  server_audit_file)?  with_server_audit_file?  where_server_audit_condition?
 	 | REMOVE  WHERE
 	 | MODIFY  NAME  EQUAL  audit_id
   **// 
@@ -16706,7 +16684,7 @@ RULE alter_login_azure_sql_infos
 
 RULE alter_login_azure_sql_with 
 //** alter_login_azure_sql_with
-	 : PASSWORD  EQUAL  password = STRING  (OLD_PASSWORD  EQUAL  old_password = STRING)?
+	 : PASSWORD  EQUAL  password = stringtext  (OLD_PASSWORD  EQUAL  old_password = stringtext)?
 	 | NAME  EQUAL  login_id
   **// 
 	GENERATE
@@ -16791,7 +16769,7 @@ RULE server_config_failover
 
 RULE server_config_buffer_pool_ext 
 //** server_config_buffer_pool_ext
-	 : BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  filename = STRING  COMMA  SIZE  EQUAL  size = DECIMAL  size_unity  RR_BRACKET | OFF)
+	 : BUFFER  POOL  EXTENSION  (ON  LR_BRACKET  FILENAME  EQUAL  filename = stringtext  COMMA  SIZE  EQUAL  size = DECIMAL  size_unity  RR_BRACKET | OFF)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -16812,7 +16790,7 @@ RULE string_or_default
 
 RULE create_server_audit_to_infos 
 //** create_server_audit_to_infos
-	 : (TO  server_audit_file)?  (WITH  LR_BRACKET  create_server_audit_with*  RR_BRACKET)?  (WHERE  alter_server_audit_condition)?
+	 : (TO  server_audit_file)?  (WITH  LR_BRACKET  create_server_audit_withs?  RR_BRACKET)?  where_server_audit_condition?
 	 | REMOVE  WHERE
 	 | MODIFY  NAME  EQUAL  audit_id
   **// 
@@ -16824,10 +16802,10 @@ RULE create_server_audit_to_infos
 
 RULE create_server_audit_with 
 //** create_server_audit_with
-	 : COMMA?  QUEUE_DELAY  EQUAL  queue_delay = DECIMAL
-	 | COMMA?  ON_FAILURE  EQUAL  continue_shutdown
-	 | COMMA?  STATE  EQUAL  state = on_off
-	 | COMMA?  audit1 = audit_guid_id  EQUAL  audit2 = audit_guid_id
+	 : QUEUE_DELAY  EQUAL  queue_delay = DECIMAL
+	 | ON_FAILURE  EQUAL  continue_shutdown
+	 | STATE  EQUAL  state = on_off
+	 | audit1 = audit_guid_id  EQUAL  audit2 = audit_guid_id
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -16877,7 +16855,7 @@ RULE alter_availability_group_options_listener_modify
 
 RULE alter_availability_group_options_listener_add 
 //** alter_availability_group_options_listener_add
-	 : ADD  LISTENER  listener_name = STRING  LR_BRACKET  (alter_availability_group_options_listener_dhcp | WITH  IP  LR_BRACKET  alter_availability_group_options_listener_ip)  RR_BRACKET
+	 : ADD  LISTENER  listener_name = stringtext  LR_BRACKET  (alter_availability_group_options_listener_dhcp | WITH  IP  LR_BRACKET  alter_availability_group_options_listener_ip)  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -16960,7 +16938,7 @@ RULE filter_block
 RULE create_user_windows_principal_id 
 //** create_user_windows_principal_id
 	 : windows_principal_id  (WITH  user_settings*)?
-	 | user_id  WITH  PASSWORD  EQUAL  password = STRING  user_settings*
+	 | user_id  WITH  PASSWORD  EQUAL  password = stringtext  user_settings*
 	 | user_id  FROM  EXTERNAL  PROVIDER
   **// 
 	GENERATE
@@ -16995,8 +16973,7 @@ RULE backup_target
 
 RULE backup_to 
 //** backup_to
-	 : TO  (COMMA?  logical_device_id)+
-	 | TO  (COMMA?  disk_tape_url  EQUAL  string_id)+
+	 : TO  (logical_device_ids  TO  disk_tape_url_values)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -17006,8 +16983,7 @@ RULE backup_to
 
 RULE backup_to_mirror 
 //** backup_to_mirror
-	 : (MIRROR  TO  (COMMA?  logical_device_id)+)+
-	 | (MIRROR  TO  (COMMA?  disk_tape_url  EQUAL  string_id)+)+
+	 : MIRROR  TO  (logical_device_ids | disk_tape_url_values)
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -18046,23 +18022,13 @@ RULE schema_synonym_ref
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE schema_schema_id 
-//** schema_schema_id
-	 : (schema_id  DOT)?  schema_id
-  **// 
-	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE schema_sql_identifier_id 
 //** schema_sql_identifier_id
 	 : (schema_id  DOT)?  sql_identifier_id
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -18092,7 +18058,7 @@ RULE schema_security_policy_ref
   **// 
 	GENERATE
 	INHERIT "AstRule"
-	TEMPLATE 
+	TEMPLATE ClassIdentifierWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -18218,8 +18184,8 @@ RULE column_or_argument_ids
 	 : column_or_argument_id  (COMMA?  column_or_argument_id)*
   **// 
 	GENERATE
-	INHERIT "AstRule"
-	TEMPLATE 
+	INHERIT "AstRuleList<AstColumnOrArgumentId>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -18450,7 +18416,7 @@ RULE alter_user_item
 	 : NAME  EQUAL  user_id
 	 | DEFAULT_SCHEMA  EQUAL  (schema_id | NULL_)
 	 | LOGIN  EQUAL  login_id
-	 | PASSWORD  EQUAL  newpwd = STRING  (OLD_PASSWORD  EQUAL  oldpwd = STRING)+
+	 | PASSWORD  EQUAL  newpwd = stringtext  (OLD_PASSWORD  EQUAL  oldpwd = stringtext)+
 	 | DEFAULT_LANGUAGE  EQUAL  (NONE | lcid = DECIMAL | language)
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
@@ -18596,7 +18562,7 @@ RULE file_group_list
 
 RULE file_group_assign 
 //** file_group_assign
-	 : file_file_group  EQUAL  file_or_filegroup = STRING
+	 : file_file_group  EQUAL  file_or_filegroup = stringtext
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -18655,7 +18621,7 @@ RULE event_session_predicate_leaf_ope
 
 RULE for_clause_xml_raw 
 //** for_clause_xml_raw
-	 : FOR  XML  (RAW  (LR_BRACKET  xmlraw = STRING  RR_BRACKET)? | AUTO)  xml_common_directives*  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  xml_schema = STRING  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
+	 : FOR  XML  (RAW  (LR_BRACKET  xmlraw = stringtext  RR_BRACKET)? | AUTO)  xml_common_directives*  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  xml_schema = stringtext  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -18665,12 +18631,12 @@ RULE for_clause_xml_raw
 
 RULE for_clause_json 
 //** for_clause_json
-	 : FOR  JSON  (AUTO | PATH)  (COMMA  (ROOT  (LR_BRACKET  STRING  RR_BRACKET) | INCLUDE_NULL_VALUES | WITHOUT_ARRAY_WRAPPER))*
+	 : FOR  JSON  (AUTO | PATH)  clause_json_infos?
   **// 
 	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
-	CALCULATED TEMPLATE _
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE subqueries 
@@ -18801,5 +18767,754 @@ RULE set_special_set_value
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
+;
+
+RULE importance_level 
+//** importance_level
+	 : LOW
+	 | MEDIUM
+	 | HIGH
+  **// 
+	GENERATE
+	INHERIT "AstTerminal<AstImportanceLevelEnum>"
+	TEMPLATE ClassEnum
+	CALCULATED TEMPLATE ClassEnum
+;
+
+RULE alter_workload_group_using 
+//** alter_workload_group_using
+	 : USING  (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE)
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE alter_availability_replicat_primary 
+//** alter_availability_replicat_primary
+	 : ENDPOINT_URL  EQUAL  endpoint_url = stringtext
+	 | availability_mode
+	 | FAILOVER_MODE  EQUAL  failover = auto_manual
+	 | seeding_mode
+	 | backup_priority
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE alter_availability_primary_role 
+//** alter_availability_primary_role
+	 : allow_connections
+	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routing_list  RR_BRACKET
+	 | SESSION_TIMEOUT  EQUAL  session_timeout = DECIMAL
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE routing_list 
+//** routing_list
+	 : string_list
+	 | NONE
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE alter_availability_secondary_role 
+//** alter_availability_secondary_role
+	 : allow_connections
+	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routingList = stringtext  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE if_exists 
+//** if_exists
+	 : IF  EXISTS
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE default_ref 
+//** default_ref
+	 : (schema_id  DOT)?  id_
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassIdentifierWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE decimals 
+//** decimals
+	 : decimal  (COMMA  decimal)+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstDecimal>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE _
+;
+
+RULE pwd_strategy 
+//** pwd_strategy
+	 : MUST_CHANGE
+	 | UNLOCK
+  **// 
+	GENERATE
+	INHERIT "AstTerminal<AstPwdStrategyEnum>"
+	TEMPLATE ClassEnum
+	CALCULATED TEMPLATE ClassEnum
+;
+
+RULE constant_local_ids 
+//** constant_local_ids
+	 : constant_local_id_or_null  (COMMA  constant_local_id_or_null)+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstConstantLocalIdOrNull>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE constant_local_id_or_null 
+//** constant_local_id_or_null
+	 : constant_LOCAL_ID
+	 | NULL_
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE _
+;
+
+RULE decimal 
+//** decimal
+	 : DECIMAL
+  **// 
+	GENERATE
+	INHERIT "AstTerminal<string>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE go_statements 
+//** go_statements
+	 : go_statement*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstGoStatement>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE where_session_condition 
+//** where_session_condition
+	 : WHERE  event_session_predicate_expression
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE where_server_audit_condition 
+//** where_server_audit_condition
+	 : WHERE  alter_server_audit_condition?
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE server_audit_state 
+//** server_audit_state
+	 : WITH  LR_BRACKET  STATE  EQUAL  on_off  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE add_drop_audit_action_groups 
+//** add_drop_audit_action_groups
+	 : add_drop_audit_action_group  add_drop_audit_action_group+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstAddDropAuditActionGroup>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE add_drop_audit_action_group 
+//** add_drop_audit_action_group
+	 : add_drop  LR_BRACKET  audit_action_group_id  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE server_audit_specification_add_group 
+//** server_audit_specification_add_group
+	 : ADD  LR_BRACKET  audit_action_group_id  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE server_audit_specification_add_groups 
+//** server_audit_specification_add_groups
+	 : server_audit_specification_add_group  server_audit_specification_add_group+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstServerAuditSpecificationAddGroup>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE receive_into 
+//** receive_into
+	 : INTO  table_id  where_condition
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE where_condition 
+//** where_condition
+	 : WHERE  search_condition
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE receive_ids 
+//** receive_ids
+	 : receive_id  (COMMA  receive_id)+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstReceiveId>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE receive_id 
+//** receive_id
+	 : LOCAL_ID  EQUAL  expression
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE receive_mode 
+//** receive_mode
+	 : (ALL | DISTINCT | top_clause | STAR)
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE create_server_audit_withs 
+//** create_server_audit_withs
+	 : create_server_audit_with  (COMMA  create_server_audit_with)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstCreateServerAuditWith>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE change_tracking_option_item 
+//** change_tracking_option_item
+	 : change_tracking_option_list  change_tracking_option_lists
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE change_tracking_option_items 
+//** change_tracking_option_items
+	 : change_tracking_option_item  (change_tracking_option_item)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstChangeTrackingOptionItem>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE by_password_crypt 
+//** by_password_crypt
+	 : decryption_by_pwd
+	 | encryption_by_pwd
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE encryption_by_pwd 
+//** encryption_by_pwd
+	 : ENCRYPTION  BY  PASSWORD  EQUAL  encryption_pwd = stringtext
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE decryption_by_pwd 
+//** decryption_by_pwd
+	 : DECRYPTION  BY  PASSWORD  EQUAL  encryption_pwd = stringtext
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE private_key 
+//** private_key
+	 : FILE  EQUAL  STRING  COMMA?
+	 | by_password_crypt  COMMA?
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE disk_tape_url_value 
+//** disk_tape_url_value
+	 : disk_tape_url  EQUAL  string_id
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE backup_certificate_private_keys 
+//** backup_certificate_private_keys
+	 : backup_certificate_private_key  (COMMA  backup_certificate_private_key)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstBackupCertificatePrivateKey>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE backup_certificate_private_key 
+//** backup_certificate_private_key
+	 : FILE  EQUAL  private_key_file = stringtext
+	 | by_password_crypt
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE backup_setting 
+//** backup_setting
+	 : DIFFERENTIAL
+	 | COPY_ONLY
+	 | compression
+	 | DESCRIPTION  EQUAL  string_id
+	 | NAME  EQUAL  backup_id
+	 | CREDENTIAL
+	 | FILE_SNAPSHOT
+	 | EXPIREDATE  EQUAL  string_id
+	 | RETAINDAYS  EQUAL  decimal_id
+	 | init_no_init
+	 | no_skip
+	 | format_noformat
+	 | MEDIADESCRIPTION  EQUAL  string_id
+	 | MEDIANAME  EQUAL  STRING
+	 | BLOCKSIZE  EQUAL  decimal_id
+	 | BUFFERCOUNT  EQUAL  decimal_id
+	 | MAXTRANSFER  EQUAL  decimal_id
+	 | (NO_CHECKSUM | CHECKSUM)
+	 | (STOP_ON_ERROR | CONTINUE_AFTER_ERROR)
+	 | RESTART
+	 | STATS  (EQUAL  DECIMAL)?
+	 | rewind
+	 | load_moun_load
+	 | ENCRYPTION  LR_BRACKET  ALGORITHM  EQUAL  algorithm_short  COMMA  SERVER  CERTIFICATE  EQUAL  (encryptor_id | SERVER  ASYMMETRIC  KEY  EQUAL  encryptor_id)  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE encryption_decryption 
+//** encryption_decryption
+	 : DECRYPTION
+	 | ENCRYPTION
+  **// 
+	GENERATE
+	INHERIT "AstTerminal<AstEncryptionDecryptionEnum>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassEnum
+;
+
+RULE logical_device_ids 
+//** logical_device_ids
+	 : logical_device_id  (COMMA  logical_device_id)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstLogicalDeviceId>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE disk_tape_url_values 
+//** disk_tape_url_values
+	 : disk_tape_url_value  (COMMA  disk_tape_url_value)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstDiskTapeUrlValue>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE private_keys 
+//** private_keys
+	 : private_key  (COMMA  private_key)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstPrivateKey>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE set_attribute 
+//** set_attribute
+	 : event_customizable_attribute_id  EQUAL  decimal_string
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE event_session_action 
+//** event_session_action
+	 : ACTION  LR_BRACKET  event_module_package_action_refs  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE target_parameter_blocks 
+//** target_parameter_blocks
+	 : target_parameter_block*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstTargetParameterBlock>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE target_parameter_block 
+//** target_parameter_block
+	 : LR_BRACKET  SET  target_parameter_sets  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE target_parameter_sets 
+//** target_parameter_sets
+	 : target_parameter_value  (COMMA  target_parameter_id)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstTargetParameterValue>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE target_parameter_set 
+//** target_parameter_set
+	 : target_parameter_id  EQUAL  target_parameter_value
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE target_parameter_value 
+//** target_parameter_value
+	 : (LR_BRACKET?  DECIMAL  RR_BRACKET? | STRING)
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE create_or_alter_event_session_del_events 
+//** create_or_alter_event_session_del_events
+	 : create_or_alter_event_session_del_event  (COMMA  create_or_alter_event_session_del_event)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstCreateOrAlterEventSessionDelEvent>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE create_or_alter_event_session_add_events 
+//** create_or_alter_event_session_add_events
+	 : create_or_alter_event_session_add_event  (COMMA  create_or_alter_event_session_add_event)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstCreateOrAlterEventSessionAddEvent>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE create_or_alter_event_session_add_targets 
+//** create_or_alter_event_session_add_targets
+	 : create_or_alter_event_session_add_target+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstCreateOrAlterEventSessionAddTarget>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE create_or_alter_event_session_del_targets 
+//** create_or_alter_event_session_del_targets
+	 : create_or_alter_event_session_del_target+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstCreateOrAlterEventSessionDelTarget>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE event_session_actions 
+//** event_session_actions
+	 : event_session_action  (COMMA  event_session_action)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstEventSessionAction>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE set_attributes 
+//** set_attributes
+	 : set_attribute  (COMMA  set_attribute)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstSetAttribute>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE event_module_package_action_refs 
+//** event_module_package_action_refs
+	 : event_module_package_action_ref  (COMMA  event_module_package_action_ref)
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstEventModulePackageActionRef>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE with_server_audit_file 
+//** with_server_audit_file
+	 : WITH  LR_BRACKET  server_audit_file_infos?  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE server_audit_file_info 
+//** server_audit_file_info
+	 : QUEUE_DELAY  EQUAL  queue_delay = DECIMAL
+	 | ON_FAILURE  EQUAL  continue_shutdown
+	 | STATE  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE server_audit_file_spec 
+//** server_audit_file_spec
+	 : FILEPATH  EQUAL  filepath = stringtext
+	 | MAXSIZE  EQUAL  (DECIMAL  size_unity | UNLIMITED)
+	 | MAX_ROLLOVER_FILES  EQUAL  max_rollover_files = (DECIMAL | UNLIMITED)
+	 | MAX_FILES  EQUAL  max_files = DECIMAL
+	 | RESERVE_DISK_SPACE  EQUAL  on_off
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE change_tracking 
+//** change_tracking
+	 : CHANGE_TRACKING  EQUAL  (OFF | ON  change_tracking_option_list)
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE clause_json_info 
+//** clause_json_info
+	 : ROOT  (LR_BRACKET  STRING  RR_BRACKET)
+	 | INCLUDE_NULL_VALUES
+	 | WITHOUT_ARRAY_WRAPPER
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE server_audit_file_specs 
+//** server_audit_file_specs
+	 : server_audit_file_spec  (COMMA  server_audit_file_spec)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstServerAuditFileSpec>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE pwd_strategies 
+//** pwd_strategies
+	 : pwd_strategy*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstPwdStrategy>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE server_audit_file_infos 
+//** server_audit_file_infos
+	 : server_audit_file_info  (COMMA  server_audit_file_info)*
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstServerAuditFileInfo>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE clause_json_infos 
+//** clause_json_infos
+	 : (COMMA  clause_json_info)+
+  **// 
+	GENERATE
+	INHERIT "AstRuleList<AstClauseJsonInfo>"
+	TEMPLATE ClassList
+	CALCULATED TEMPLATE _
+;
+
+RULE date_option 
+//** date_option
+	 : (START_DATE | EXPIRY_DATE)  EQUAL  STRING
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE table_type_indice 
+//** table_type_indice
+	 : (((PRIMARY  KEY | INDEX  id_)  clustered?) | UNIQUE)  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+	 | CHECK  LR_BRACKET  search_condition  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE empty_value 
+//** empty_value
+	 : DOUBLE_QUOTE_ID
+  **// 
+	GENERATE
+	INHERIT "AstTerminal<string>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE pwd_value 
+//** pwd_value
+	 : stringtext
+	 | BINARY  HASHED
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE login_settings_old_pwd 
+//** login_settings_old_pwd
+	 : OLD_PASSWORD  EQUAL  old_password = stringtext  pwd_strategies
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE login_settings_pwd 
+//** login_settings_pwd
+	 : PASSWORD  EQUAL  pwd_value  pwd_strategies
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE ClassWithProperties
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 

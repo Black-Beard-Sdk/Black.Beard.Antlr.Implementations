@@ -9,9 +9,6 @@ namespace Bb.Asts
 {
 
 
-
-
-
     public abstract class AstRuleBase : AstBase
     {
 
@@ -26,7 +23,6 @@ namespace Bb.Asts
         public IdentifierConfig Name { get; }
 
     }
-
 
 
     public class AstRule : AstRuleBase
@@ -80,6 +76,10 @@ namespace Bb.Asts
             visitor.VisitRule(this);
         }
 
+        public override string ResolveName()
+        {
+            return this.Name.Text;
+        }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

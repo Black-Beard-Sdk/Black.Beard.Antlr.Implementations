@@ -15,10 +15,10 @@ namespace Bb.Parsers
 
             var visitor1 = new RuleIdVisitor();
             var p = self.Rule.Accept(visitor1);
-            var possibilites = p.Accept(removeOptionalsVisitor);
-            var possibilites2 = possibilites.Accept(spliterVisitor);
+            //var possibilites = p.Accept(removeOptionalsVisitor);
+            var possibilites2 = p.Accept(spliterVisitor);
             possibilites2 = cleanDuplicated.Visit(possibilites2);
-            var possibilites3 = new List<TreeRuleItem>(possibilites.Count);
+            var possibilites3 = new List<TreeRuleItem>(p.Count);
             HashSet<string> names = new HashSet<string>();
             foreach (var p1 in possibilites2)
             {

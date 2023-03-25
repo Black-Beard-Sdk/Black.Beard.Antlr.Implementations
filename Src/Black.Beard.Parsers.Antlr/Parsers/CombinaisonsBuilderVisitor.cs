@@ -106,55 +106,6 @@ namespace Bb.Parsers
 
             return i.Accept(this);
 
-            bool optional = i.Occurence.Optional;
-            List<TreeRuleItem> list = new List<TreeRuleItem>(i.Count + 1);
-
-            if (optional)
-                i.Occurence = new Occurence(i.Occurence, false);
-
-            list.Add(i.CloneWithOutChildren(c => c.IsBlock = false));
-
-            foreach (var item in i)
-            {
-
-                var p = item.Accept(this);
-
-                for (int j = list.Count; j < p.Count; j++)
-                    list.Add(list[list.Count - 1].Clone());
-
-                for (int j = 0; j < p.Count; j++)
-                {
-                    var o = p[j];
-                    if (!o.IsEmpty)
-                        list[j].Add(o);
-                }
-
-            }
-
-            for (int j = 0; j < list.Count; j++)
-            {
-                var k = list[j];
-                if (k.Count == 0)
-                    list[j] = TreeRuleItem.Default();
-
-                else if (k.Count == 1)
-                {
-                    list[j] = k[0];
-                    k.IsBlock = false;
-                }
-                else
-                {
-                    k.IsBlock = false;
-                    foreach (var item in k.Accept(this))
-                        list.AddRange(item);
-                    list.Remove(k);
-                }
-            }
-
-            list.Add(TreeRuleItem.Default());
-
-            return list;
-
         }
 
         public override List<TreeRuleItem> VisitTerminal(TreeRuleItem i)
@@ -163,11 +114,11 @@ namespace Bb.Parsers
             var result = new List<TreeRuleItem>(2);
             var c = i.Clone();
 
-            if (i.Occurence.Optional)
-            {
-                c.Occurence = new Occurence(c.Occurence.Value, false);
-                result.Add(TreeRuleItem.Default());
-            }
+            //if (i.Occurence.Optional)
+            //{
+            //    c.Occurence = new Occurence(c.Occurence.Value, false);
+            //    result.Add(TreeRuleItem.Default());
+            //}
 
             result.Add(c);
 

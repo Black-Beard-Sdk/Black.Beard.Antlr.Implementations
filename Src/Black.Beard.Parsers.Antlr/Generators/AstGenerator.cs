@@ -10,7 +10,6 @@ namespace Bb.Generators
 
         public AstGenerator()
         {
-
             CompileUnit = new CodeCompileUnit();
             this.Namespaces = new List<ModelNamespace>();
         }
@@ -40,6 +39,7 @@ namespace Bb.Generators
         private List<ModelNamespace> Namespaces;
 
     }
+
 
 
 

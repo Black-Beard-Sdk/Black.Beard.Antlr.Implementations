@@ -17,8 +17,14 @@ namespace Generate.Scripts
             if (config.Inherit == null)
                 config.Inherit = new IdentifierConfig("\"AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum>\"");
 
-            return config.Inherit.Text;
+            var result = config.Inherit.Text;
 
+            if (result == null)
+            {
+
+            }
+
+            return result;
         }
 
         public override string StrategyTemplateKey => "ClassEnum";       

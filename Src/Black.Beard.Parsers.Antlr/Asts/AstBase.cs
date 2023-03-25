@@ -49,7 +49,7 @@ namespace Bb.Asts
         public bool IsList { get; protected set; }
 
 
-        public virtual TokenTypeEnum TerminalKind { get; protected set; }
+        public virtual TokenTypeEnum TerminalKind { get; internal set; }
 
 
         public virtual bool IsTerminal { get => this is AstTerminal || this is AstTerminalText; }

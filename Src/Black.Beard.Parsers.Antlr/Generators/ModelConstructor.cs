@@ -36,6 +36,17 @@ namespace Bb.Generators
             return this;
         }
 
+        public ModelConstructor Arguments(Func<List<object>> list,  Func<object, (string, string)> func)
+        {
+            foreach (var item in list())
+            {
+                var i = func(item);
+                base.Argument(i.Item1, i.Item2);
+            }
+
+            return this;
+        }
+
         public ModelConstructor CallBase(params string[] values)
         {
             foreach (var value in values)

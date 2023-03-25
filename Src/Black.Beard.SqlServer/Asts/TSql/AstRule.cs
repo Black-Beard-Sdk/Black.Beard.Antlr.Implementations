@@ -13,21 +13,24 @@ namespace Bb.Asts.TSql
             : base(t)
         {
             _list = new List<AstRoot>();
-            _list.AddRange(list);
+            if (list != null)
+                _list.AddRange(list);
         }
 
         public AstRule(ParserRuleContext ctx, List<AstRoot> list)
             : base(ctx)
         {
             _list = new List<AstRoot>();
-            _list.AddRange(list);
+            if (list != null)
+                _list.AddRange(list);
         }
 
         public AstRule(Position position, List<AstRoot> list)
             : base(position)
         {
             _list = new List<AstRoot>();
-            _list.AddRange(list);
+            if (list != null)
+                _list.AddRange(list);
         }
 
         protected List<AstRoot> _list;

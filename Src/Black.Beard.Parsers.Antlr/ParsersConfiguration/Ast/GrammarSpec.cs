@@ -61,9 +61,9 @@ namespace Bb.ParsersConfiguration.Ast
             g.Rule = rule;
             rule.Configuration = g;
 
-            if (g.Config.Kind != rule.TerminalKind && g.Config.Kind == TokenTypeEnum.Other)
+            if (g.Config.Kind != rule.TerminalKind && g.Config.Kind != TokenTypeEnum.Other)
             {
-                
+                rule.TerminalKind = g.Config.Kind;
             }
 
         }

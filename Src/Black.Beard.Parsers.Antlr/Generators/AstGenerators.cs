@@ -53,12 +53,16 @@ namespace Bb.Generators
 
         private string WriteFile(Context ctx, AstGenerator g)
         {
-
+            
             var filename = Path.Combine(ctx.OutputPath, g.Name + ".generated.cs");                      
 
             using (StreamWriter sw = new StreamWriter(filename, false))
             {
                 IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
+                tw.Write("#nullable disable");
+                tw.WriteLine();
+                tw.Write("// Generate by " + g.Name);
+                tw.WriteLine();
                 _provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw, _options);
                 tw.Close();
             }

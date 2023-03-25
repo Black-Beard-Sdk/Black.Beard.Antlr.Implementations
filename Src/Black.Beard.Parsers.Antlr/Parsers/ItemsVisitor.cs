@@ -3,34 +3,112 @@
 namespace Bb.Parsers
 {
 
-    public class MatchClassList : WalkerVisitor
+    public static class AstBaseExtension
     {
 
-        public MatchClassList()
+        public static IEnumerable<AstBase> GetAllItems(this AstBase ast, Func<AstBase, bool> filter = null)
         {
-            _stack = new Stack<List<AstBase>>();
+
+            var result = ItemsVisitor.Get(ast);
+
+            if (filter != null)
+                return result.Where(filter).ToList();
+
+            return result;
+
+        }
+
+        public static IEnumerable<AstBase> KeepRuleRef(this IEnumerable<AstBase> astList, Func<AstRuleRef, bool> filter)
+        {
+            List<AstBase> result = new List<AstBase>(astList.Count());
+            foreach (var ast in astList)
+            {
+                if (ast is AstRuleRef r && filter(r))
+                    result.Add(ast);
+                else
+                    result.Add(ast);
+            }
+            return result;
+        }
+
+        public static IEnumerable<AstBase> KeepTerminal(this IEnumerable<AstBase> astList, Func<AstTerminal, bool> filter)
+        {
+            List<AstBase> result = new List<AstBase>(astList.Count());
+            foreach (var ast in astList)
+            {
+                if (ast is AstTerminal t)
+                {
+                    if (filter(t))
+                        result.Add(ast);
+                }
+                else
+                    result.Add(ast);
+            }
+            return result;
+        }
+
+        public static IEnumerable<AstBase> KeepAlternatives(this IEnumerable<AstBase> astList, Func<AstAlternative, bool> filter)
+        {
+            List<AstBase> result = new List<AstBase>(astList.Count());
+            foreach (var ast in astList)
+                if (ast is AstAlternative a)
+                {
+                    if (filter(a))
+                        result.Add(ast);
+                }
+                else
+                    result.Add(ast);
+
+            return result;
+        }
+
+        public static IEnumerable<AstBase> KeepBlocs(this IEnumerable<AstBase> astList, Func<AstBlock, bool> filter)
+        {
+            List<AstBase> result = new List<AstBase>(astList.Count());
+            foreach (var ast in astList)
+            {
+                if (ast is AstBlock b)
+                {
+                    if (filter(b))
+                        result.Add(ast);
+                }
+                else
+                    result.Add(ast);
+            }
+            return result;
+        }
+
+
+    }
+
+
+    public class ItemsVisitor : WalkerVisitor
+    {
+
+        public static IEnumerable<AstBase> Get(AstBase self)
+        {
+            var visitor = new ItemsVisitor();
+            visitor.Visit(self);
+            return visitor._listRules;
+        }
+
+        private ItemsVisitor()
+        {
+            _listRules = new List<AstBase>();
         }
 
         public override void Visit(AstBase a)
         {
-         
+
             _listRules = new List<AstBase>();
             base.Visit(a);
 
         }
 
-        public override void VisitBlock(AstBlock a)
-        {
-            base.VisitBlock(a);
-        }
-
         public override void VisitRuleRef(AstRuleRef a)
         {
-
             _listRules.Add(a);
-
             base.VisitRuleRef(a);
-
         }
 
         public override void VisitTerminal(AstTerminal a)
@@ -39,18 +117,17 @@ namespace Bb.Parsers
             base.VisitTerminal(a);
         }
 
-        public override void VisitRule(AstRule a)
-        {
-            
-            base.VisitRule(a);
-
-        }
-
-        
         private List<AstBase> _listRules;
-        private readonly Stack<List<AstBase>> _stack;
 
+        //public override void VisitRule(AstRule a)
+        //{            
+        //    base.VisitRule(a);
+        //}
 
+        //public override void VisitBlock(AstBlock a)
+        //{
+        //    base.VisitBlock(a);
+        //}
 
         //public override void VisitRules(AstRules a)
         //{

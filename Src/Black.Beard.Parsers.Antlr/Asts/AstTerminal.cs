@@ -27,6 +27,11 @@ namespace Bb.Asts
             yield return Value;
         }
 
+        public override string ResolveName()
+        {
+            return Value.Text;
+        }
+
         public bool IsConstant => Value.TerminalKind == TokenTypeEnum.Constant;
 
 
