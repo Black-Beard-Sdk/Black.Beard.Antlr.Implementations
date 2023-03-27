@@ -13,2459 +13,6184 @@ namespace Bb.Asts.TSql
 {
     
     
-    public enum AstDelayTimeTimeoutEnum
+    public partial class AstDelayTimeTimeout
     {
         
-        _undefined,
+        public AstDelayTimeTimeout(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Delay,
+        public static AstDelayTimeTimeout _undefined()
+        {
+            return new AstDelayTimeTimeout(null);
+        }
         
-        Time,
+        public static AstDelayTimeTimeout Delay()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "DELAY");
+        }
         
-        Timeout,
+        public static AstDelayTimeTimeout Time()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "TIME");
+        }
+        
+        public static AstDelayTimeTimeout Timeout()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "TIMEOUT");
+        }
     }
     
-    public enum AstBinaryContentEnum
+    public partial class AstAssemblyPermission
     {
+        
+        public AstAssemblyPermission(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstAssemblyPermission _undefined()
+        {
+            return new AstAssemblyPermission(null);
+        }
         
-        String,
+        public static AstAssemblyPermission Safe()
+        {
+            return new AstAssemblyPermission(Position.Default, "SAFE");
+        }
         
-        Binary,
+        public static AstAssemblyPermission ExternalAccess()
+        {
+            return new AstAssemblyPermission(Position.Default, "EXTERNAL_ACCESS");
+        }
+        
+        public static AstAssemblyPermission Unsafe()
+        {
+            return new AstAssemblyPermission(Position.Default, "UNSAFE");
+        }
     }
     
-    public enum AstClassTypeForAzureDwEnum
+    public partial class AstBinaryContent
     {
-        
-        _undefined,
         
-        Schema,
+        public AstBinaryContent(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Object,
+        public static AstBinaryContent _undefined()
+        {
+            return new AstBinaryContent(null);
+        }
     }
     
-    public enum AstClassTypeForParallelDwEnum
+    public partial class AstClassTypeForAzureDw
     {
         
-        _undefined,
+        public AstClassTypeForAzureDw(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Database,
+        public static AstClassTypeForAzureDw _undefined()
+        {
+            return new AstClassTypeForAzureDw(null);
+        }
         
-        Schema,
+        public static AstClassTypeForAzureDw Schema()
+        {
+            return new AstClassTypeForAzureDw(Position.Default, "SCHEMA");
+        }
         
-        Object,
+        public static AstClassTypeForAzureDw Object()
+        {
+            return new AstClassTypeForAzureDw(Position.Default, "OBJECT");
+        }
     }
     
-    public enum AstAddRemoveEnum
+    public partial class AstClassTypeForParallelDw
     {
         
-        _undefined,
+        public AstClassTypeForParallelDw(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Add,
+        public static AstClassTypeForParallelDw _undefined()
+        {
+            return new AstClassTypeForParallelDw(null);
+        }
         
-        Remove,
+        public static AstClassTypeForParallelDw Database()
+        {
+            return new AstClassTypeForParallelDw(Position.Default, "DATABASE");
+        }
+        
+        public static AstClassTypeForParallelDw Schema()
+        {
+            return new AstClassTypeForParallelDw(Position.Default, "SCHEMA");
+        }
+        
+        public static AstClassTypeForParallelDw Object()
+        {
+            return new AstClassTypeForParallelDw(Position.Default, "OBJECT");
+        }
     }
     
-    public enum AstRestartRemoveEnum
+    public partial class AstEncryptionMaster
     {
         
-        _undefined,
+        public AstEncryptionMaster(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Restart,
+        public static AstEncryptionMaster _undefined()
+        {
+            return new AstEncryptionMaster(null);
+        }
         
-        Remove,
+        public static AstEncryptionMaster Encryption()
+        {
+            return new AstEncryptionMaster(Position.Default, "ENCRYPTION");
+        }
+        
+        public static AstEncryptionMaster Master()
+        {
+            return new AstEncryptionMaster(Position.Default, "MASTER");
+        }
     }
     
-    public enum AstSynchAsynchEnum
+    public partial class AstDatabaseObjectServer
     {
+        
+        public AstDatabaseObjectServer(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstDatabaseObjectServer _undefined()
+        {
+            return new AstDatabaseObjectServer(null);
+        }
         
-        SynchronousCommit,
+        public static AstDatabaseObjectServer Database()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "DATABASE");
+        }
         
-        AsynchronousCommit,
+        public static AstDatabaseObjectServer Object()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "OBJECT");
+        }
+        
+        public static AstDatabaseObjectServer Server()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "SERVER");
+        }
     }
     
-    public enum AstAutoManualEnum
+    public partial class AstAddRemove
     {
+        
+        public AstAddRemove(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstAddRemove _undefined()
+        {
+            return new AstAddRemove(null);
+        }
         
-        Automatic,
+        public static AstAddRemove Add()
+        {
+            return new AstAddRemove(Position.Default, "ADD");
+        }
         
-        Manual,
+        public static AstAddRemove Remove()
+        {
+            return new AstAddRemove(Position.Default, "REMOVE");
+        }
     }
     
-    public enum AstRealWriteAllEnum
+    public partial class AstRestartRemove
     {
         
-        _undefined,
+        public AstRestartRemove(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        ReadWrite,
+        public static AstRestartRemove _undefined()
+        {
+            return new AstRestartRemove(null);
+        }
         
-        All,
+        public static AstRestartRemove Restart()
+        {
+            return new AstRestartRemove(Position.Default, "RESTART");
+        }
+        
+        public static AstRestartRemove Remove()
+        {
+            return new AstRestartRemove(Position.Default, "REMOVE");
+        }
     }
     
-    public enum AstNoRealWriteAllEnum
+    public partial class AstSynchAsynch
     {
         
-        _undefined,
+        public AstSynchAsynch(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        No,
+        public static AstSynchAsynch _undefined()
+        {
+            return new AstSynchAsynch(null);
+        }
         
-        ReadWrite,
+        public static AstSynchAsynch SynchronousCommit()
+        {
+            return new AstSynchAsynch(Position.Default, "SYNCHRONOUS_COMMIT");
+        }
         
-        All,
+        public static AstSynchAsynch AsynchronousCommit()
+        {
+            return new AstSynchAsynch(Position.Default, "ASYNCHRONOUS_COMMIT");
+        }
     }
     
-    public enum AstPrimarySecondaryNoneEnum
+    public partial class AstAutoManual
     {
-        
-        _undefined,
         
-        Primary,
+        public AstAutoManual(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        SecondaryOnly,
+        public static AstAutoManual _undefined()
+        {
+            return new AstAutoManual(null);
+        }
         
-        Secondary,
+        public static AstAutoManual Automatic()
+        {
+            return new AstAutoManual(Position.Default, "AUTOMATIC");
+        }
         
-        None,
+        public static AstAutoManual Manual()
+        {
+            return new AstAutoManual(Position.Default, "MANUAL");
+        }
     }
     
-    public enum AstGrantDenyEnum
+    public partial class AstRealWriteAll
     {
         
-        _undefined,
+        public AstRealWriteAll(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Grant,
+        public static AstRealWriteAll _undefined()
+        {
+            return new AstRealWriteAll(null);
+        }
         
-        Deny,
+        public static AstRealWriteAll ReadWrite()
+        {
+            return new AstRealWriteAll(Position.Default, "READ_WRITE");
+        }
+        
+        public static AstRealWriteAll All()
+        {
+            return new AstRealWriteAll(Position.Default, "ALL");
+        }
     }
     
-    public enum AstCreateAlterEnum
+    public partial class AstNoRealWriteAll
     {
+        
+        public AstNoRealWriteAll(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstNoRealWriteAll _undefined()
+        {
+            return new AstNoRealWriteAll(null);
+        }
         
-        Create,
+        public static AstNoRealWriteAll No()
+        {
+            return new AstNoRealWriteAll(Position.Default, "NO");
+        }
         
-        Alter,
+        public static AstNoRealWriteAll ReadWrite()
+        {
+            return new AstNoRealWriteAll(Position.Default, "READ_WRITE");
+        }
+        
+        public static AstNoRealWriteAll All()
+        {
+            return new AstNoRealWriteAll(Position.Default, "ALL");
+        }
     }
     
-    public enum AstAddDropEnum
+    public partial class AstPrimarySecondaryNone
     {
         
-        _undefined,
+        public AstPrimarySecondaryNone(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Add,
+        public static AstPrimarySecondaryNone _undefined()
+        {
+            return new AstPrimarySecondaryNone(null);
+        }
         
-        Drop,
-    }
-    
-    public enum AstStartStopEnum
-    {
+        public static AstPrimarySecondaryNone Primary()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "PRIMARY");
+        }
         
-        _undefined,
+        public static AstPrimarySecondaryNone SecondaryOnly()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY_ONLY");
+        }
         
-        Start,
+        public static AstPrimarySecondaryNone Secondary()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY");
+        }
         
-        Stop,
+        public static AstPrimarySecondaryNone None()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "NONE");
+        }
     }
     
-    public enum AstSetAddEnum
+    public partial class AstGrantDeny
     {
         
-        _undefined,
+        public AstGrantDeny(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Set,
+        public static AstGrantDeny _undefined()
+        {
+            return new AstGrantDeny(null);
+        }
         
-        Add,
+        public static AstGrantDeny Grant()
+        {
+            return new AstGrantDeny(Position.Default, "GRANT");
+        }
+        
+        public static AstGrantDeny Deny()
+        {
+            return new AstGrantDeny(Position.Default, "DENY");
+        }
     }
     
-    public enum AstPlatformEnum
+    public partial class AstCreateAlter
     {
+        
+        public AstCreateAlter(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstCreateAlter _undefined()
+        {
+            return new AstCreateAlter(null);
+        }
         
-        Windows,
+        public static AstCreateAlter Create()
+        {
+            return new AstCreateAlter(Position.Default, "CREATE");
+        }
         
-        Linux,
+        public static AstCreateAlter Alter()
+        {
+            return new AstCreateAlter(Position.Default, "ALTER");
+        }
     }
     
-    public enum AstCodeContentEnum
+    public partial class AstAddDrop
     {
         
-        _undefined,
+        public AstAddDrop(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        String,
+        public static AstAddDrop _undefined()
+        {
+            return new AstAddDrop(null);
+        }
         
-        Binary,
+        public static AstAddDrop Add()
+        {
+            return new AstAddDrop(Position.Default, "ADD");
+        }
         
-        None,
+        public static AstAddDrop Drop()
+        {
+            return new AstAddDrop(Position.Default, "DROP");
+        }
     }
     
-    public enum AstCodeLanguageEnum
+    public partial class AstStartStop
     {
         
-        _undefined,
+        public AstStartStop(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        R,
+        public static AstStartStop _undefined()
+        {
+            return new AstStartStop(null);
+        }
         
-        Python,
+        public static AstStartStop Start()
+        {
+            return new AstStartStop(Position.Default, "START");
+        }
+        
+        public static AstStartStop Stop()
+        {
+            return new AstStartStop(Position.Default, "STOP");
+        }
     }
     
-    public enum AstPwdStrategyEnum
+    public partial class AstSetAdd
     {
+        
+        public AstSetAdd(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstSetAdd _undefined()
+        {
+            return new AstSetAdd(null);
+        }
         
-        MustChange,
+        public static AstSetAdd Set()
+        {
+            return new AstSetAdd(Position.Default, "SET");
+        }
         
-        Unlock,
+        public static AstSetAdd Add()
+        {
+            return new AstSetAdd(Position.Default, "ADD");
+        }
     }
     
-    public enum AstEnableDisableEnum
+    public partial class AstPlatform
     {
         
-        _undefined,
+        public AstPlatform(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Enable,
+        public static AstPlatform _undefined()
+        {
+            return new AstPlatform(null);
+        }
         
-        Disable,
+        public static AstPlatform Windows()
+        {
+            return new AstPlatform(Position.Default, "WINDOWS");
+        }
+        
+        public static AstPlatform Linux()
+        {
+            return new AstPlatform(Position.Default, "LINUX");
+        }
     }
     
-    public enum AstSplitOrMergeEnum
+    public partial class AstCodeContent
     {
         
-        _undefined,
+        public AstCodeContent(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Split,
+        public static AstCodeContent _undefined()
+        {
+            return new AstCodeContent(null);
+        }
         
-        Merge,
+        public static AstCodeContent None()
+        {
+            return new AstCodeContent(Position.Default, "NONE");
+        }
     }
     
-    public enum AstEnumDmlEnum
+    public partial class AstCodeLanguage
     {
-        
-        _undefined,
         
-        Select,
+        public AstCodeLanguage(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Insert,
+        public static AstCodeLanguage _undefined()
+        {
+            return new AstCodeLanguage(null);
+        }
         
-        Delete,
+        public static AstCodeLanguage R()
+        {
+            return new AstCodeLanguage(Position.Default, "R");
+        }
         
-        Update,
+        public static AstCodeLanguage Python()
+        {
+            return new AstCodeLanguage(Position.Default, "PYTHON");
+        }
     }
     
-    public enum AstFilterBlockEnum
+    public partial class AstPwdStrategy
     {
         
-        _undefined,
+        public AstPwdStrategy(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Filter,
+        public static AstPwdStrategy _undefined()
+        {
+            return new AstPwdStrategy(null);
+        }
         
-        Block,
+        public static AstPwdStrategy MustChange()
+        {
+            return new AstPwdStrategy(Position.Default, "MUST_CHANGE");
+        }
+        
+        public static AstPwdStrategy Unlock()
+        {
+            return new AstPwdStrategy(Position.Default, "UNLOCK");
+        }
     }
     
-    public enum AstSizeUnityEnum
+    public partial class AstEnableDisable
     {
         
-        _undefined,
+        public AstEnableDisable(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Mb,
+        public static AstEnableDisable _undefined()
+        {
+            return new AstEnableDisable(null);
+        }
         
-        Gb,
+        public static AstEnableDisable Enable()
+        {
+            return new AstEnableDisable(Position.Default, "ENABLE");
+        }
         
-        Tb,
+        public static AstEnableDisable Disable()
+        {
+            return new AstEnableDisable(Position.Default, "DISABLE");
+        }
     }
     
-    public enum AstContinueShutdownEnum
+    public partial class AstSplitOrMerge
     {
         
-        _undefined,
+        public AstSplitOrMerge(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Continue,
+        public static AstSplitOrMerge _undefined()
+        {
+            return new AstSplitOrMerge(null);
+        }
         
-        Shutdown,
+        public static AstSplitOrMerge Split()
+        {
+            return new AstSplitOrMerge(Position.Default, "SPLIT");
+        }
         
-        FailOperation,
+        public static AstSplitOrMerge Merge()
+        {
+            return new AstSplitOrMerge(Position.Default, "MERGE");
+        }
     }
     
-    public enum AstAuditOperatorEnum
+    public partial class AstEnumDml
     {
+        
+        public AstEnumDml(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstEnumDml _undefined()
+        {
+            return new AstEnumDml(null);
+        }
         
-        Equal,
+        public static AstEnumDml Select()
+        {
+            return new AstEnumDml(Position.Default, "SELECT");
+        }
         
-        Less,
+        public static AstEnumDml Insert()
+        {
+            return new AstEnumDml(Position.Default, "INSERT");
+        }
         
-        Greater,
+        public static AstEnumDml Delete()
+        {
+            return new AstEnumDml(Position.Default, "DELETE");
+        }
         
-        Exclamation,
+        public static AstEnumDml Update()
+        {
+            return new AstEnumDml(Position.Default, "UPDATE");
+        }
     }
     
-    public enum AstAndOrEnum
+    public partial class AstInsertUpdate
     {
         
-        _undefined,
+        public AstInsertUpdate(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        And,
+        public static AstInsertUpdate _undefined()
+        {
+            return new AstInsertUpdate(null);
+        }
         
-        Or,
+        public static AstInsertUpdate Insert()
+        {
+            return new AstInsertUpdate(Position.Default, "INSERT");
+        }
+        
+        public static AstInsertUpdate Update()
+        {
+            return new AstInsertUpdate(Position.Default, "UPDATE");
+        }
     }
     
-    public enum AstCreateUserWithLoginEnum
+    public partial class AstUpdateDelate
     {
+        
+        public AstUpdateDelate(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstUpdateDelate _undefined()
+        {
+            return new AstUpdateDelate(null);
+        }
         
-        Login,
+        public static AstUpdateDelate Update()
+        {
+            return new AstUpdateDelate(Position.Default, "UPDATE");
+        }
         
-        With,
+        public static AstUpdateDelate Delete()
+        {
+            return new AstUpdateDelate(Position.Default, "DELETE");
+        }
     }
     
-    public enum AstForFromEnum
+    public partial class AstFilterBlock
     {
         
-        _undefined,
+        public AstFilterBlock(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        For,
+        public static AstFilterBlock _undefined()
+        {
+            return new AstFilterBlock(null);
+        }
         
-        From,
+        public static AstFilterBlock Filter()
+        {
+            return new AstFilterBlock(Position.Default, "FILTER");
+        }
+        
+        public static AstFilterBlock Block()
+        {
+            return new AstFilterBlock(Position.Default, "BLOCK");
+        }
     }
     
-    public enum AstImportanceLevelEnum
+    public partial class AstSizeUnity
     {
+        
+        public AstSizeUnity(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstSizeUnity _undefined()
+        {
+            return new AstSizeUnity(null);
+        }
         
-        Low,
+        public static AstSizeUnity Mb()
+        {
+            return new AstSizeUnity(Position.Default, "MB");
+        }
         
-        Medium,
+        public static AstSizeUnity Gb()
+        {
+            return new AstSizeUnity(Position.Default, "GB");
+        }
         
-        High,
+        public static AstSizeUnity Tb()
+        {
+            return new AstSizeUnity(Position.Default, "TB");
+        }
     }
     
-    public enum AstNonePartialEnum
+    public partial class AstContinueShutdown
     {
+        
+        public AstContinueShutdown(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
+        
+        public static AstContinueShutdown _undefined()
+        {
+            return new AstContinueShutdown(null);
+        }
         
-        _undefined,
+        public static AstContinueShutdown Continue()
+        {
+            return new AstContinueShutdown(Position.Default, "CONTINUE");
+        }
         
-        None,
+        public static AstContinueShutdown Shutdown()
+        {
+            return new AstContinueShutdown(Position.Default, "SHUTDOWN");
+        }
         
-        Partial,
+        public static AstContinueShutdown FailOperation()
+        {
+            return new AstContinueShutdown(Position.Default, "FAIL_OPERATION");
+        }
     }
     
-    public enum AstDatacompressionModeEnum
+    public partial class AstAuditOperator
     {
         
-        _undefined,
+        public AstAuditOperator(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        None,
+        public static AstAuditOperator _undefined()
+        {
+            return new AstAuditOperator(null);
+        }
         
-        Row,
+        public static AstAuditOperator Equal()
+        {
+            return new AstAuditOperator(Position.Default, "=");
+        }
         
-        Page,
+        public static AstAuditOperator Less()
+        {
+            return new AstAuditOperator(Position.Default, "<");
+        }
         
-        Columnstore,
+        public static AstAuditOperator Greater()
+        {
+            return new AstAuditOperator(Position.Default, ">");
+        }
         
-        ColumnstoreArchive,
+        public static AstAuditOperator Exclamation()
+        {
+            return new AstAuditOperator(Position.Default, "!");
+        }
     }
     
-    public enum AstDmlTriggerOperationEnum
+    public partial class AstAndOr
     {
         
-        _undefined,
+        public AstAndOr(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Insert,
+        public static AstAndOr _undefined()
+        {
+            return new AstAndOr(null);
+        }
         
-        Update,
+        public static AstAndOr And()
+        {
+            return new AstAndOr(Position.Default, "AND");
+        }
         
-        Delete,
+        public static AstAndOr Or()
+        {
+            return new AstAndOr(Position.Default, "OR");
+        }
     }
     
-    public enum AstForAfterEnum
+    public partial class AstCreateUserWithLogin
     {
         
-        _undefined,
+        public AstCreateUserWithLogin(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        For,
+        public static AstCreateUserWithLogin _undefined()
+        {
+            return new AstCreateUserWithLogin(null);
+        }
         
-        After,
+        public static AstCreateUserWithLogin Login()
+        {
+            return new AstCreateUserWithLogin(Position.Default, "LOGIN");
+        }
+        
+        public static AstCreateUserWithLogin With()
+        {
+            return new AstCreateUserWithLogin(Position.Default, "WITH");
+        }
     }
     
-    public enum AstIndexStrategyEnum
+    public partial class AstForFrom
     {
-        
-        _undefined,
         
-        None,
+        public AstForFrom(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Row,
+        public static AstForFrom _undefined()
+        {
+            return new AstForFrom(null);
+        }
         
-        Page,
+        public static AstForFrom For()
+        {
+            return new AstForFrom(Position.Default, "FOR");
+        }
         
-        Columnstore,
-        
-        ColumnstoreArchive,
+        public static AstForFrom From()
+        {
+            return new AstForFrom(Position.Default, "FROM");
+        }
     }
     
-    public enum AstViewAttributeEnum
+    public partial class AstImportanceLevel
     {
+        
+        public AstImportanceLevel(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstImportanceLevel _undefined()
+        {
+            return new AstImportanceLevel(null);
+        }
         
-        Encryption,
+        public static AstImportanceLevel Low()
+        {
+            return new AstImportanceLevel(Position.Default, "LOW");
+        }
         
-        Schemabinding,
+        public static AstImportanceLevel Medium()
+        {
+            return new AstImportanceLevel(Position.Default, "MEDIUM");
+        }
         
-        ViewMetadata,
+        public static AstImportanceLevel High()
+        {
+            return new AstImportanceLevel(Position.Default, "HIGH");
+        }
     }
     
-    public enum AstFilegroupUpdatabilityOptionEnum
+    public partial class AstNonePartial
     {
         
-        _undefined,
+        public AstNonePartial(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Readonly,
+        public static AstNonePartial _undefined()
+        {
+            return new AstNonePartial(null);
+        }
         
-        Readwrite,
+        public static AstNonePartial None()
+        {
+            return new AstNonePartial(Position.Default, "NONE");
+        }
         
-        ReadOnly,
-        
-        ReadWrite,
+        public static AstNonePartial Partial()
+        {
+            return new AstNonePartial(Position.Default, "PARTIAL");
+        }
     }
     
-    public enum AstPeriodEnum
+    public partial class AstDatacompressionMode
     {
         
-        _undefined,
+        public AstDatacompressionMode(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Days,
+        public static AstDatacompressionMode _undefined()
+        {
+            return new AstDatacompressionMode(null);
+        }
         
-        Hours,
+        public static AstDatacompressionMode None()
+        {
+            return new AstDatacompressionMode(Position.Default, "NONE");
+        }
         
-        Minutes,
-    }
-    
-    public enum AstLocalGlobalEnum
-    {
+        public static AstDatacompressionMode Row()
+        {
+            return new AstDatacompressionMode(Position.Default, "ROW");
+        }
         
-        _undefined,
+        public static AstDatacompressionMode Page()
+        {
+            return new AstDatacompressionMode(Position.Default, "PAGE");
+        }
         
-        Local,
+        public static AstDatacompressionMode Columnstore()
+        {
+            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE");
+        }
         
-        Global,
+        public static AstDatacompressionMode ColumnstoreArchive()
+        {
+            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE_ARCHIVE");
+        }
     }
     
-    public enum AstStateEnumEnum
+    public partial class AstDmlTriggerOperation
     {
         
-        _undefined,
+        public AstDmlTriggerOperation(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Started,
+        public static AstDmlTriggerOperation _undefined()
+        {
+            return new AstDmlTriggerOperation(null);
+        }
         
-        Stopped,
+        public static AstDmlTriggerOperation Insert()
+        {
+            return new AstDmlTriggerOperation(Position.Default, "INSERT");
+        }
         
-        Disabled,
+        public static AstDmlTriggerOperation Update()
+        {
+            return new AstDmlTriggerOperation(Position.Default, "UPDATE");
+        }
+        
+        public static AstDmlTriggerOperation Delete()
+        {
+            return new AstDmlTriggerOperation(Position.Default, "DELETE");
+        }
     }
     
-    public enum AstAuthenticationModeEnum
+    public partial class AstForAfter
     {
         
-        _undefined,
+        public AstForAfter(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Ntlm,
+        public static AstForAfter _undefined()
+        {
+            return new AstForAfter(null);
+        }
         
-        Kerberos,
+        public static AstForAfter For()
+        {
+            return new AstForAfter(Position.Default, "FOR");
+        }
         
-        Negotiate,
+        public static AstForAfter After()
+        {
+            return new AstForAfter(Position.Default, "AFTER");
+        }
     }
     
-    public enum AstDbStateOptionEnum
+    public partial class AstIndexStrategy
     {
         
-        _undefined,
+        public AstIndexStrategy(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Online,
+        public static AstIndexStrategy _undefined()
+        {
+            return new AstIndexStrategy(null);
+        }
         
-        Offline,
+        public static AstIndexStrategy None()
+        {
+            return new AstIndexStrategy(Position.Default, "NONE");
+        }
         
-        Emergency,
-    }
-    
-    public enum AstDbUpdateOptionEnum
-    {
+        public static AstIndexStrategy Row()
+        {
+            return new AstIndexStrategy(Position.Default, "ROW");
+        }
         
-        _undefined,
+        public static AstIndexStrategy Page()
+        {
+            return new AstIndexStrategy(Position.Default, "PAGE");
+        }
         
-        ReadOnly,
+        public static AstIndexStrategy Columnstore()
+        {
+            return new AstIndexStrategy(Position.Default, "COLUMNSTORE");
+        }
         
-        ReadWrite,
+        public static AstIndexStrategy ColumnstoreArchive()
+        {
+            return new AstIndexStrategy(Position.Default, "COLUMNSTORE_ARCHIVE");
+        }
     }
     
-    public enum AstDbUserAccessOptionEnum
+    public partial class AstViewAttribute
     {
         
-        _undefined,
+        public AstViewAttribute(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        SingleUser,
+        public static AstViewAttribute _undefined()
+        {
+            return new AstViewAttribute(null);
+        }
         
-        RestrictedUser,
+        public static AstViewAttribute Encryption()
+        {
+            return new AstViewAttribute(Position.Default, "ENCRYPTION");
+        }
         
-        MultiUser,
+        public static AstViewAttribute Schemabinding()
+        {
+            return new AstViewAttribute(Position.Default, "SCHEMABINDING");
+        }
+        
+        public static AstViewAttribute ViewMetadata()
+        {
+            return new AstViewAttribute(Position.Default, "VIEW_METADATA");
+        }
     }
     
-    public enum AstCompressionEnum
+    public partial class AstFilegroupUpdatabilityOption
     {
         
-        _undefined,
+        public AstFilegroupUpdatabilityOption(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Compression,
+        public static AstFilegroupUpdatabilityOption _undefined()
+        {
+            return new AstFilegroupUpdatabilityOption(null);
+        }
         
-        NoCompression,
-    }
-    
-    public enum AstInitNoInitEnum
-    {
+        public static AstFilegroupUpdatabilityOption Readonly()
+        {
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READONLY");
+        }
         
-        _undefined,
+        public static AstFilegroupUpdatabilityOption Readwrite()
+        {
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READWRITE");
+        }
         
-        Noinit,
+        public static AstFilegroupUpdatabilityOption ReadOnly()
+        {
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_ONLY");
+        }
         
-        Init,
+        public static AstFilegroupUpdatabilityOption ReadWrite()
+        {
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_WRITE");
+        }
     }
     
-    public enum AstNoSkipEnum
+    public partial class AstPeriod
     {
         
-        _undefined,
+        public AstPeriod(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Noskip,
+        public static AstPeriod _undefined()
+        {
+            return new AstPeriod(null);
+        }
         
-        SkipKeyword,
-    }
-    
-    public enum AstFormatNoformatEnum
-    {
-        
-        _undefined,
+        public static AstPeriod Days()
+        {
+            return new AstPeriod(Position.Default, "DAYS");
+        }
         
-        Noformat,
+        public static AstPeriod Hours()
+        {
+            return new AstPeriod(Position.Default, "HOURS");
+        }
         
-        Format,
+        public static AstPeriod Minutes()
+        {
+            return new AstPeriod(Position.Default, "MINUTES");
+        }
     }
     
-    public enum AstDiskTapeUrlEnum
+    public partial class AstLocalGlobal
     {
         
-        _undefined,
+        public AstLocalGlobal(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Disk,
+        public static AstLocalGlobal _undefined()
+        {
+            return new AstLocalGlobal(null);
+        }
         
-        Tape,
+        public static AstLocalGlobal Local()
+        {
+            return new AstLocalGlobal(Position.Default, "LOCAL");
+        }
         
-        Url,
+        public static AstLocalGlobal Global()
+        {
+            return new AstLocalGlobal(Position.Default, "GLOBAL");
+        }
     }
     
-    public enum AstFileFileGroupEnum
+    public partial class AstStateEnum
     {
         
-        _undefined,
+        public AstStateEnum(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        File,
-        
-        Filegroup,
-    }
-    
-    public enum AstLoadMounLoadEnum
-    {
+        public static AstStateEnum _undefined()
+        {
+            return new AstStateEnum(null);
+        }
         
-        _undefined,
+        public static AstStateEnum Started()
+        {
+            return new AstStateEnum(Position.Default, "STARTED");
+        }
         
-        Load,
+        public static AstStateEnum Stopped()
+        {
+            return new AstStateEnum(Position.Default, "STOPPED");
+        }
         
-        Nounload,
+        public static AstStateEnum Disabled()
+        {
+            return new AstStateEnum(Position.Default, "DISABLED");
+        }
     }
     
-    public enum AstRewindEnum
+    public partial class AstAuthenticationMode
     {
         
-        _undefined,
+        public AstAuthenticationMode(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Rewind,
+        public static AstAuthenticationMode _undefined()
+        {
+            return new AstAuthenticationMode(null);
+        }
         
-        Norewind,
+        public static AstAuthenticationMode Ntlm()
+        {
+            return new AstAuthenticationMode(Position.Default, "NTLM");
+        }
+        
+        public static AstAuthenticationMode Kerberos()
+        {
+            return new AstAuthenticationMode(Position.Default, "KERBEROS");
+        }
+        
+        public static AstAuthenticationMode Negotiate()
+        {
+            return new AstAuthenticationMode(Position.Default, "NEGOTIATE");
+        }
     }
     
-    public enum AstAlgorithmShortEnum
+    public partial class AstDbStateOption
     {
         
-        _undefined,
+        public AstDbStateOption(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Aes128,
+        public static AstDbStateOption _undefined()
+        {
+            return new AstDbStateOption(null);
+        }
         
-        Aes192,
+        public static AstDbStateOption Online()
+        {
+            return new AstDbStateOption(Position.Default, "ONLINE");
+        }
         
-        Aes256,
+        public static AstDbStateOption Offline()
+        {
+            return new AstDbStateOption(Position.Default, "OFFLINE");
+        }
         
-        TripleDes3key,
+        public static AstDbStateOption Emergency()
+        {
+            return new AstDbStateOption(Position.Default, "EMERGENCY");
+        }
     }
     
-    public enum AstEncryptionDecryptionEnum
+    public partial class AstDbUpdateOption
     {
         
-        _undefined,
+        public AstDbUpdateOption(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Decryption,
+        public static AstDbUpdateOption _undefined()
+        {
+            return new AstDbUpdateOption(null);
+        }
         
-        Encryption,
+        public static AstDbUpdateOption ReadOnly()
+        {
+            return new AstDbUpdateOption(Position.Default, "READ_ONLY");
+        }
+        
+        public static AstDbUpdateOption ReadWrite()
+        {
+            return new AstDbUpdateOption(Position.Default, "READ_WRITE");
+        }
     }
     
-    public enum AstAlgorithmEnum
+    public partial class AstDbUserAccessOption
     {
-        
-        _undefined,
-        
-        Des,
-        
-        TripleDes,
-        
-        TripleDes3key,
-        
-        Rc2,
         
-        Rc4,
+        public AstDbUserAccessOption(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Rc4128,
+        public static AstDbUserAccessOption _undefined()
+        {
+            return new AstDbUserAccessOption(null);
+        }
         
-        Desx,
+        public static AstDbUserAccessOption SingleUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "SINGLE_USER");
+        }
         
-        Aes128,
+        public static AstDbUserAccessOption RestrictedUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "RESTRICTED_USER");
+        }
         
-        Aes192,
-        
-        Aes256,
+        public static AstDbUserAccessOption MultiUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "MULTI_USER");
+        }
     }
     
-    public enum AstTransactionEnum
+    public partial class AstCompression
     {
+        
+        public AstCompression(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstCompression _undefined()
+        {
+            return new AstCompression(null);
+        }
         
-        Tran,
+        public static AstCompression Compression()
+        {
+            return new AstCompression(Position.Default, "COMPRESSION");
+        }
         
-        Transaction,
+        public static AstCompression NoCompression()
+        {
+            return new AstCompression(Position.Default, "NO_COMPRESSION");
+        }
     }
     
-    public enum AstSensitiveEnum
+    public partial class AstInitNoInit
     {
         
-        _undefined,
+        public AstInitNoInit(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        SemiSensitive,
+        public static AstInitNoInit _undefined()
+        {
+            return new AstInitNoInit(null);
+        }
         
-        Insensitive,
+        public static AstInitNoInit Noinit()
+        {
+            return new AstInitNoInit(Position.Default, "NOINIT");
+        }
+        
+        public static AstInitNoInit Init()
+        {
+            return new AstInitNoInit(Position.Default, "INIT");
+        }
     }
     
-    public enum AstAbsoluteRelativeEnum
+    public partial class AstNoSkip
     {
+        
+        public AstNoSkip(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstNoSkip _undefined()
+        {
+            return new AstNoSkip(null);
+        }
         
-        Absolute,
+        public static AstNoSkip Noskip()
+        {
+            return new AstNoSkip(Position.Default, "NOSKIP");
+        }
         
-        Relative,
+        public static AstNoSkip SkipKeyword()
+        {
+            return new AstNoSkip(Position.Default, "SKIP");
+        }
     }
     
-    public enum AstFetchCursorStrategyEnum
+    public partial class AstFormatNoformat
     {
         
-        _undefined,
+        public AstFormatNoformat(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Next,
+        public static AstFormatNoformat _undefined()
+        {
+            return new AstFormatNoformat(null);
+        }
         
-        Prior,
+        public static AstFormatNoformat Noformat()
+        {
+            return new AstFormatNoformat(Position.Default, "NOFORMAT");
+        }
         
-        First,
-        
-        Last,
+        public static AstFormatNoformat Format()
+        {
+            return new AstFormatNoformat(Position.Default, "FORMAT");
+        }
     }
     
-    public enum AstSpecialListEnum
+    public partial class AstDiskTapeUrl
     {
-        
-        _undefined,
-        
-        AnsiNulls,
-        
-        QuotedIdentifier,
-        
-        AnsiPadding,
-        
-        AnsiWarnings,
-        
-        AnsiDefaults,
-        
-        AnsiNullDfltOff,
-        
-        AnsiNullDfltOn,
-        
-        Arithabort,
-        
-        Arithignore,
-        
-        ConcatNullYieldsNull,
         
-        CursorCloseOnCommit,
+        public AstDiskTapeUrl(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Fmtonly,
+        public static AstDiskTapeUrl _undefined()
+        {
+            return new AstDiskTapeUrl(null);
+        }
         
-        Forceplan,
+        public static AstDiskTapeUrl Disk()
+        {
+            return new AstDiskTapeUrl(Position.Default, "DISK");
+        }
         
-        ImplicitTransactions,
+        public static AstDiskTapeUrl Tape()
+        {
+            return new AstDiskTapeUrl(Position.Default, "TAPE");
+        }
         
-        Nocount,
-        
-        Noexec,
-        
-        NumericRoundabort,
-        
-        Parseonly,
-        
-        RemoteProcTransactions,
-        
-        ShowplanAll,
-        
-        ShowplanText,
-        
-        ShowplanXml,
-        
-        XactAbort,
+        public static AstDiskTapeUrl Url()
+        {
+            return new AstDiskTapeUrl(Position.Default, "URL");
+        }
     }
     
-    public enum AstSybaseLegacyHintEnum
+    public partial class AstFileFileGroup
     {
         
-        _undefined,
+        public AstFileFileGroup(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Holdlock,
+        public static AstFileFileGroup _undefined()
+        {
+            return new AstFileFileGroup(null);
+        }
         
-        Noholdlock,
+        public static AstFileFileGroup File()
+        {
+            return new AstFileFileGroup(Position.Default, "FILE");
+        }
         
-        Readpast,
-        
-        Shared,
+        public static AstFileFileGroup Filegroup()
+        {
+            return new AstFileFileGroup(Position.Default, "FILEGROUP");
+        }
     }
     
-    public enum AstAscDescEnum
+    public partial class AstLoadMounLoad
     {
+        
+        public AstLoadMounLoad(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        _undefined,
+        public static AstLoadMounLoad _undefined()
+        {
+            return new AstLoadMounLoad(null);
+        }
         
-        Asc,
+        public static AstLoadMounLoad Load()
+        {
+            return new AstLoadMounLoad(Position.Default, "LOAD");
+        }
         
-        Desc,
+        public static AstLoadMounLoad Nounload()
+        {
+            return new AstLoadMounLoad(Position.Default, "NOUNLOAD");
+        }
     }
     
-    public enum AstOnOffEnum
+    public partial class AstRewind
     {
         
-        _undefined,
+        public AstRewind(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        On,
+        public static AstRewind _undefined()
+        {
+            return new AstRewind(null);
+        }
         
-        Off,
+        public static AstRewind Rewind()
+        {
+            return new AstRewind(Position.Default, "REWIND");
+        }
+        
+        public static AstRewind Norewind()
+        {
+            return new AstRewind(Position.Default, "NOREWIND");
+        }
     }
     
-    public enum AstClusteredEnum
+    public partial class AstAlgorithmShort
     {
         
-        _undefined,
+        public AstAlgorithmShort(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Clustered,
+        public static AstAlgorithmShort _undefined()
+        {
+            return new AstAlgorithmShort(null);
+        }
         
-        Nonclustered,
-    }
-    
-    public enum AstSignEnum
-    {
+        public static AstAlgorithmShort Aes128()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_128");
+        }
         
-        _undefined,
+        public static AstAlgorithmShort Aes192()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_192");
+        }
         
-        Plus,
+        public static AstAlgorithmShort Aes256()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_256");
+        }
         
-        Minus,
+        public static AstAlgorithmShort TripleDes3key()
+        {
+            return new AstAlgorithmShort(Position.Default, "TRIPLE_DES_3KEY");
+        }
     }
     
-    public enum AstKeywordEnum
+    public partial class AstEncryptionDecryption
     {
-        
-        _undefined,
-        
-        Abort,
-        
-        Absolute,
-        
-        AccentSensitivity,
-        
-        Access,
-        
-        Action,
-        
-        Activation,
-        
-        Active,
-        
-        Add,
-        
-        Address,
-        
-        Aes128,
-        
-        Aes192,
-        
-        Aes256,
-        
-        Affinity,
-        
-        After,
-        
-        Aggregate,
-        
-        Algorithm,
-        
-        AllowEncryptedValueModifications,
-        
-        AllowPageLocks,
-        
-        AllowRowLocks,
-        
-        AllowSnapshotIsolation,
-        
-        Allowed,
-        
-        Always,
-        
-        AnsiDefaults,
-        
-        AnsiNullDefault,
-        
-        AnsiNullDfltOff,
-        
-        AnsiNullDfltOn,
-        
-        AnsiNulls,
-        
-        AnsiPadding,
-        
-        AnsiWarnings,
-        
-        AppName,
-        
-        ApplicationLog,
-        
-        ApplockMode,
-        
-        ApplockTest,
         
-        Apply,
+        public AstEncryptionDecryption(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Arithabort,
+        public static AstEncryptionDecryption _undefined()
+        {
+            return new AstEncryptionDecryption(null);
+        }
         
-        Arithignore,
+        public static AstEncryptionDecryption Decryption()
+        {
+            return new AstEncryptionDecryption(Position.Default, "DECRYPTION");
+        }
         
-        Ascii,
-        
-        Assembly,
-        
-        Assemblyproperty,
-        
-        AtKeyword,
-        
-        Audit,
-        
-        AuditGuid,
-        
-        Auto,
-        
-        AutoCleanup,
-        
-        AutoClose,
-        
-        AutoCreateStatistics,
-        
-        AutoDrop,
-        
-        AutoShrink,
-        
-        AutoUpdateStatistics,
-        
-        AutoUpdateStatisticsAsync,
-        
-        AutogrowAllFiles,
-        
-        AutogrowSingleFile,
-        
-        Availability,
-        
-        Avg,
-        
-        BackupPriority,
-        
-        Base64,
-        
-        BeginDialog,
-        
-        Bigint,
-        
-        BinaryKeyword,
-        
-        BinaryChecksum,
-        
-        Binding,
-        
-        BlobStorage,
-        
-        Broker,
-        
-        BrokerInstance,
-        
-        BulkLogged,
-        
-        Caller,
-        
-        CapCpuPercent,
-        
-        Cast,
-        
-        TryCast,
-        
-        Catalog,
-        
-        Catch,
-        
-        Change,
-        
-        ChangeRetention,
-        
-        ChangeTracking,
-        
-        Char,
-        
-        Charindex,
-        
-        Checksum,
-        
-        ChecksumAgg,
-        
-        Cleanup,
-        
-        ColLength,
-        
-        ColName,
-        
-        Collection,
-        
-        ColumnEncryptionKey,
-        
-        ColumnMasterKey,
-        
-        Columnproperty,
-        
-        Columns,
-        
-        Columnstore,
-        
-        ColumnstoreArchive,
-        
-        Committed,
-        
-        CompatibilityLevel,
-        
-        CompressAllRowGroups,
-        
-        CompressionDelay,
-        
-        Concat,
-        
-        ConcatWs,
-        
-        ConcatNullYieldsNull,
-        
-        Content,
-        
-        Control,
-        
-        Cookie,
-        
-        Count,
-        
-        CountBig,
-        
-        Counter,
-        
-        Cpu,
-        
-        CreateNew,
-        
-        CreationDisposition,
-        
-        Credential,
-        
-        Cryptographic,
-        
-        CumeDist,
-        
-        CursorCloseOnCommit,
-        
-        CursorDefault,
-        
-        Data,
-        
-        DatabasePrincipalId,
-        
-        Databasepropertyex,
-        
-        DateCorrelationOptimization,
-        
-        Dateadd,
-        
-        Datediff,
-        
-        Datename,
-        
-        Datepart,
-        
-        Days,
-        
-        DbChaining,
-        
-        DbFailover,
-        
-        DbId,
-        
-        DbName,
-        
-        Decryption,
-        
-        DefaultDoubleQuote,
-        
-        DefaultFulltextLanguage,
-        
-        DefaultLanguage,
-        
-        Definition,
-        
-        Delay,
-        
-        DelayedDurability,
-        
-        Deleted,
+        public static AstEncryptionDecryption Encryption()
+        {
+            return new AstEncryptionDecryption(Position.Default, "ENCRYPTION");
+        }
+    }
+    
+    public partial class AstAlgorithm
+    {
         
-        DenseRank,
+        public AstAlgorithm(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Dependents,
+        public static AstAlgorithm _undefined()
+        {
+            return new AstAlgorithm(null);
+        }
         
-        Des,
+        public static AstAlgorithm Des()
+        {
+            return new AstAlgorithm(Position.Default, "DES");
+        }
         
-        Description,
+        public static AstAlgorithm TripleDes()
+        {
+            return new AstAlgorithm(Position.Default, "TRIPLE_DES");
+        }
         
-        Desx,
+        public static AstAlgorithm TripleDes3key()
+        {
+            return new AstAlgorithm(Position.Default, "TRIPLE_DES_3KEY");
+        }
         
-        Deterministic,
+        public static AstAlgorithm Rc2()
+        {
+            return new AstAlgorithm(Position.Default, "RC2");
+        }
         
-        Dhcp,
+        public static AstAlgorithm Rc4()
+        {
+            return new AstAlgorithm(Position.Default, "RC4");
+        }
         
-        Dialog,
+        public static AstAlgorithm Rc4128()
+        {
+            return new AstAlgorithm(Position.Default, "RC4_128");
+        }
         
-        Difference,
+        public static AstAlgorithm Desx()
+        {
+            return new AstAlgorithm(Position.Default, "DESX");
+        }
         
-        DirectoryName,
+        public static AstAlgorithm Aes128()
+        {
+            return new AstAlgorithm(Position.Default, "AES_128");
+        }
         
-        Disable,
+        public static AstAlgorithm Aes192()
+        {
+            return new AstAlgorithm(Position.Default, "AES_192");
+        }
         
-        DisableBroker,
+        public static AstAlgorithm Aes256()
+        {
+            return new AstAlgorithm(Position.Default, "AES_256");
+        }
+    }
+    
+    public partial class AstTransaction
+    {
         
-        Disabled,
+        public AstTransaction(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Document,
+        public static AstTransaction _undefined()
+        {
+            return new AstTransaction(null);
+        }
         
-        DropExisting,
+        public static AstTransaction Tran()
+        {
+            return new AstTransaction(Position.Default, "TRAN");
+        }
         
-        Dynamic,
+        public static AstTransaction Transaction()
+        {
+            return new AstTransaction(Position.Default, "TRANSACTION");
+        }
+    }
+    
+    public partial class AstSensitive
+    {
         
-        Elements,
+        public AstSensitive(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Emergency,
+        public static AstSensitive _undefined()
+        {
+            return new AstSensitive(null);
+        }
         
-        Empty,
+        public static AstSensitive SemiSensitive()
+        {
+            return new AstSensitive(Position.Default, "SEMI_SENSITIVE");
+        }
         
-        Enable,
+        public static AstSensitive Insensitive()
+        {
+            return new AstSensitive(Position.Default, "INSENSITIVE");
+        }
+    }
+    
+    public partial class AstAbsoluteRelative
+    {
         
-        EnableBroker,
+        public AstAbsoluteRelative(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Encrypted,
+        public static AstAbsoluteRelative _undefined()
+        {
+            return new AstAbsoluteRelative(null);
+        }
         
-        EncryptedValue,
+        public static AstAbsoluteRelative Absolute()
+        {
+            return new AstAbsoluteRelative(Position.Default, "ABSOLUTE");
+        }
         
-        Encryption,
+        public static AstAbsoluteRelative Relative()
+        {
+            return new AstAbsoluteRelative(Position.Default, "RELATIVE");
+        }
+    }
+    
+    public partial class AstFetchCursorStrategy
+    {
         
-        EncryptionType,
+        public AstFetchCursorStrategy(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        EndpointUrl,
+        public static AstFetchCursorStrategy _undefined()
+        {
+            return new AstFetchCursorStrategy(null);
+        }
         
-        ErrorBrokerConversations,
+        public static AstFetchCursorStrategy Next()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "NEXT");
+        }
         
-        Exclusive,
+        public static AstFetchCursorStrategy Prior()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "PRIOR");
+        }
         
-        Executable,
+        public static AstFetchCursorStrategy First()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "FIRST");
+        }
         
-        Exist,
+        public static AstFetchCursorStrategy Last()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "LAST");
+        }
+    }
+    
+    public partial class AstSpecialList
+    {
         
-        Expand,
+        public AstSpecialList(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        ExpiryDate,
+        public static AstSpecialList _undefined()
+        {
+            return new AstSpecialList(null);
+        }
         
-        Explicit,
+        public static AstSpecialList AnsiNulls()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULLS");
+        }
         
-        FailOperation,
+        public static AstSpecialList QuotedIdentifier()
+        {
+            return new AstSpecialList(Position.Default, "QUOTED_IDENTIFIER");
+        }
         
-        FailoverMode,
+        public static AstSpecialList AnsiPadding()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_PADDING");
+        }
         
-        Failure,
+        public static AstSpecialList AnsiWarnings()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_WARNINGS");
+        }
         
-        FailureConditionLevel,
+        public static AstSpecialList AnsiDefaults()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_DEFAULTS");
+        }
         
-        Fast,
+        public static AstSpecialList AnsiNullDfltOff()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_OFF");
+        }
         
-        FastForward,
+        public static AstSpecialList AnsiNullDfltOn()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_ON");
+        }
         
-        FileId,
+        public static AstSpecialList Arithabort()
+        {
+            return new AstSpecialList(Position.Default, "ARITHABORT");
+        }
         
-        FileIdex,
+        public static AstSpecialList Arithignore()
+        {
+            return new AstSpecialList(Position.Default, "ARITHIGNORE");
+        }
         
-        FileName,
+        public static AstSpecialList ConcatNullYieldsNull()
+        {
+            return new AstSpecialList(Position.Default, "CONCAT_NULL_YIELDS_NULL");
+        }
         
-        Filegroup,
+        public static AstSpecialList CursorCloseOnCommit()
+        {
+            return new AstSpecialList(Position.Default, "CURSOR_CLOSE_ON_COMMIT");
+        }
         
-        FilegroupId,
+        public static AstSpecialList Fmtonly()
+        {
+            return new AstSpecialList(Position.Default, "FMTONLY");
+        }
         
-        FilegroupName,
+        public static AstSpecialList Forceplan()
+        {
+            return new AstSpecialList(Position.Default, "FORCEPLAN");
+        }
         
-        Filegroupproperty,
+        public static AstSpecialList ImplicitTransactions()
+        {
+            return new AstSpecialList(Position.Default, "IMPLICIT_TRANSACTIONS");
+        }
         
-        Filegrowth,
+        public static AstSpecialList Nocount()
+        {
+            return new AstSpecialList(Position.Default, "NOCOUNT");
+        }
         
-        Filename,
+        public static AstSpecialList Noexec()
+        {
+            return new AstSpecialList(Position.Default, "NOEXEC");
+        }
         
-        Filepath,
+        public static AstSpecialList NumericRoundabort()
+        {
+            return new AstSpecialList(Position.Default, "NUMERIC_ROUNDABORT");
+        }
         
-        Fileproperty,
+        public static AstSpecialList Parseonly()
+        {
+            return new AstSpecialList(Position.Default, "PARSEONLY");
+        }
         
-        Filepropertyex,
+        public static AstSpecialList RemoteProcTransactions()
+        {
+            return new AstSpecialList(Position.Default, "REMOTE_PROC_TRANSACTIONS");
+        }
         
-        Filestream,
+        public static AstSpecialList ShowplanAll()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_ALL");
+        }
         
-        Filter,
+        public static AstSpecialList ShowplanText()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_TEXT");
+        }
         
-        First,
+        public static AstSpecialList ShowplanXml()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_XML");
+        }
         
-        FirstValue,
+        public static AstSpecialList XactAbort()
+        {
+            return new AstSpecialList(Position.Default, "XACT_ABORT");
+        }
+    }
+    
+    public partial class AstSybaseLegacyHint
+    {
         
-        Fmtonly,
+        public AstSybaseLegacyHint(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Following,
+        public static AstSybaseLegacyHint _undefined()
+        {
+            return new AstSybaseLegacyHint(null);
+        }
         
-        Force,
+        public static AstSybaseLegacyHint Holdlock()
+        {
+            return new AstSybaseLegacyHint(Position.Default, "HOLDLOCK");
+        }
         
-        ForceFailoverAllowDataLoss,
+        public static AstSybaseLegacyHint Noholdlock()
+        {
+            return new AstSybaseLegacyHint(Position.Default, "NOHOLDLOCK");
+        }
         
-        Forced,
+        public static AstSybaseLegacyHint Readpast()
+        {
+            return new AstSybaseLegacyHint(Position.Default, "READPAST");
+        }
         
-        Forceplan,
+        public static AstSybaseLegacyHint Shared()
+        {
+            return new AstSybaseLegacyHint(Position.Default, "SHARED");
+        }
+    }
+    
+    public partial class AstAscDesc
+    {
         
-        Forcescan,
+        public AstAscDesc(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Format,
+        public static AstAscDesc _undefined()
+        {
+            return new AstAscDesc(null);
+        }
         
-        ForwardOnly,
+        public static AstAscDesc Asc()
+        {
+            return new AstAscDesc(Position.Default, "ASC");
+        }
         
-        Fullscan,
+        public static AstAscDesc Desc()
+        {
+            return new AstAscDesc(Position.Default, "DESC");
+        }
+    }
+    
+    public partial class AstOnOff
+    {
         
-        Fulltext,
+        public AstOnOff(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Fulltextcatalogproperty,
+        public static AstOnOff _undefined()
+        {
+            return new AstOnOff(null);
+        }
         
-        Fulltextserviceproperty,
+        public static AstOnOff On()
+        {
+            return new AstOnOff(Position.Default, "ON");
+        }
         
-        Gb,
+        public static AstOnOff Off()
+        {
+            return new AstOnOff(Position.Default, "OFF");
+        }
+    }
+    
+    public partial class AstClustered
+    {
         
-        Generated,
+        public AstClustered(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Getdate,
+        public static AstClustered _undefined()
+        {
+            return new AstClustered(null);
+        }
         
-        Getutcdate,
+        public static AstClustered Clustered()
+        {
+            return new AstClustered(Position.Default, "CLUSTERED");
+        }
         
-        Global,
+        public static AstClustered Nonclustered()
+        {
+            return new AstClustered(Position.Default, "NONCLUSTERED");
+        }
+    }
+    
+    public partial class AstSign
+    {
         
-        Go,
+        public AstSign(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        GroupMaxRequests,
+        public static AstSign _undefined()
+        {
+            return new AstSign(null);
+        }
         
-        Grouping,
+        public static AstSign Plus()
+        {
+            return new AstSign(Position.Default, "+");
+        }
         
-        GroupingId,
+        public static AstSign Minus()
+        {
+            return new AstSign(Position.Default, "-");
+        }
+    }
+    
+    public partial class AstKeyword
+    {
         
-        Hadr,
+        public AstKeyword(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
         
-        Hash,
+        public static AstKeyword _undefined()
+        {
+            return new AstKeyword(null);
+        }
         
-        HealthCheckTimeout,
+        public static AstKeyword Abort()
+        {
+            return new AstKeyword(Position.Default, "ABORT");
+        }
         
-        HiddenKeyword,
+        public static AstKeyword Absolute()
+        {
+            return new AstKeyword(Position.Default, "ABSOLUTE");
+        }
         
-        High,
+        public static AstKeyword AccentSensitivity()
+        {
+            return new AstKeyword(Position.Default, "ACCENT_SENSITIVITY");
+        }
         
-        HonorBrokerPriority,
+        public static AstKeyword Access()
+        {
+            return new AstKeyword(Position.Default, "ACCESS");
+        }
         
-        Hours,
+        public static AstKeyword Action()
+        {
+            return new AstKeyword(Position.Default, "ACTION");
+        }
         
-        IdentityValue,
+        public static AstKeyword Activation()
+        {
+            return new AstKeyword(Position.Default, "ACTIVATION");
+        }
         
-        IgnoreConstraints,
+        public static AstKeyword Active()
+        {
+            return new AstKeyword(Position.Default, "ACTIVE");
+        }
         
-        IgnoreDupKey,
+        public static AstKeyword Add()
+        {
+            return new AstKeyword(Position.Default, "ADD");
+        }
         
-        IgnoreNonclusteredColumnstoreIndex,
+        public static AstKeyword Address()
+        {
+            return new AstKeyword(Position.Default, "ADDRESS");
+        }
         
-        IgnoreTriggers,
+        public static AstKeyword Aes128()
+        {
+            return new AstKeyword(Position.Default, "AES_128");
+        }
         
-        Immediate,
+        public static AstKeyword Aes192()
+        {
+            return new AstKeyword(Position.Default, "AES_192");
+        }
         
-        Impersonate,
+        public static AstKeyword Aes256()
+        {
+            return new AstKeyword(Position.Default, "AES_256");
+        }
         
-        ImplicitTransactions,
+        public static AstKeyword Affinity()
+        {
+            return new AstKeyword(Position.Default, "AFFINITY");
+        }
         
-        Importance,
+        public static AstKeyword After()
+        {
+            return new AstKeyword(Position.Default, "AFTER");
+        }
         
-        IncludeNullValues,
+        public static AstKeyword Aggregate()
+        {
+            return new AstKeyword(Position.Default, "AGGREGATE");
+        }
         
-        Incremental,
+        public static AstKeyword Algorithm()
+        {
+            return new AstKeyword(Position.Default, "ALGORITHM");
+        }
         
-        IndexCol,
+        public static AstKeyword AllowEncryptedValueModifications()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS");
+        }
         
-        IndexkeyProperty,
+        public static AstKeyword AllowPageLocks()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_PAGE_LOCKS");
+        }
         
-        Indexproperty,
+        public static AstKeyword AllowRowLocks()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_ROW_LOCKS");
+        }
         
-        Initiator,
+        public static AstKeyword AllowSnapshotIsolation()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_SNAPSHOT_ISOLATION");
+        }
         
-        Input,
+        public static AstKeyword Allowed()
+        {
+            return new AstKeyword(Position.Default, "ALLOWED");
+        }
         
-        Insensitive,
+        public static AstKeyword Always()
+        {
+            return new AstKeyword(Position.Default, "ALWAYS");
+        }
         
-        Inserted,
+        public static AstKeyword AnsiDefaults()
+        {
+            return new AstKeyword(Position.Default, "ANSI_DEFAULTS");
+        }
         
-        Int,
+        public static AstKeyword AnsiNullDefault()
+        {
+            return new AstKeyword(Position.Default, "ANSI_NULL_DEFAULT");
+        }
         
-        Ip,
+        public static AstKeyword AnsiNullDfltOff()
+        {
+            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_OFF");
+        }
         
-        Isolation,
+        public static AstKeyword AnsiNullDfltOn()
+        {
+            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_ON");
+        }
         
-        Job,
+        public static AstKeyword AnsiNulls()
+        {
+            return new AstKeyword(Position.Default, "ANSI_NULLS");
+        }
         
-        Json,
+        public static AstKeyword AnsiPadding()
+        {
+            return new AstKeyword(Position.Default, "ANSI_PADDING");
+        }
         
-        Kb,
+        public static AstKeyword AnsiWarnings()
+        {
+            return new AstKeyword(Position.Default, "ANSI_WARNINGS");
+        }
         
-        Keep,
+        public static AstKeyword AppName()
+        {
+            return new AstKeyword(Position.Default, "APP_NAME");
+        }
         
-        Keepdefaults,
+        public static AstKeyword ApplicationLog()
+        {
+            return new AstKeyword(Position.Default, "APPLICATION_LOG");
+        }
         
-        Keepfixed,
+        public static AstKeyword ApplockMode()
+        {
+            return new AstKeyword(Position.Default, "APPLOCK_MODE");
+        }
         
-        Keepidentity,
+        public static AstKeyword ApplockTest()
+        {
+            return new AstKeyword(Position.Default, "APPLOCK_TEST");
+        }
         
-        KeySource,
+        public static AstKeyword Apply()
+        {
+            return new AstKeyword(Position.Default, "APPLY");
+        }
         
-        Keys,
+        public static AstKeyword Arithabort()
+        {
+            return new AstKeyword(Position.Default, "ARITHABORT");
+        }
         
-        Keyset,
+        public static AstKeyword Arithignore()
+        {
+            return new AstKeyword(Position.Default, "ARITHIGNORE");
+        }
         
-        Lag,
+        public static AstKeyword Ascii()
+        {
+            return new AstKeyword(Position.Default, "ASCII");
+        }
         
-        Last,
+        public static AstKeyword Assembly()
+        {
+            return new AstKeyword(Position.Default, "ASSEMBLY");
+        }
         
-        LastValue,
+        public static AstKeyword Assemblyproperty()
+        {
+            return new AstKeyword(Position.Default, "ASSEMBLYPROPERTY");
+        }
         
-        Lead,
+        public static AstKeyword AtKeyword()
+        {
+            return new AstKeyword(Position.Default, "AT");
+        }
         
-        Len,
+        public static AstKeyword Audit()
+        {
+            return new AstKeyword(Position.Default, "AUDIT");
+        }
         
-        Level,
+        public static AstKeyword AuditGuid()
+        {
+            return new AstKeyword(Position.Default, "AUDIT_GUID");
+        }
         
-        List,
+        public static AstKeyword Auto()
+        {
+            return new AstKeyword(Position.Default, "AUTO");
+        }
         
-        Listener,
+        public static AstKeyword AutoCleanup()
+        {
+            return new AstKeyword(Position.Default, "AUTO_CLEANUP");
+        }
         
-        ListenerUrl,
+        public static AstKeyword AutoClose()
+        {
+            return new AstKeyword(Position.Default, "AUTO_CLOSE");
+        }
         
-        LobCompaction,
+        public static AstKeyword AutoCreateStatistics()
+        {
+            return new AstKeyword(Position.Default, "AUTO_CREATE_STATISTICS");
+        }
         
-        Local,
+        public static AstKeyword AutoDrop()
+        {
+            return new AstKeyword(Position.Default, "AUTO_DROP");
+        }
         
-        Location,
+        public static AstKeyword AutoShrink()
+        {
+            return new AstKeyword(Position.Default, "AUTO_SHRINK");
+        }
         
-        Lock,
+        public static AstKeyword AutoUpdateStatistics()
+        {
+            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS");
+        }
         
-        LockEscalation,
+        public static AstKeyword AutoUpdateStatisticsAsync()
+        {
+            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS_ASYNC");
+        }
         
-        Login,
+        public static AstKeyword AutogrowAllFiles()
+        {
+            return new AstKeyword(Position.Default, "AUTOGROW_ALL_FILES");
+        }
         
-        Loop,
+        public static AstKeyword AutogrowSingleFile()
+        {
+            return new AstKeyword(Position.Default, "AUTOGROW_SINGLE_FILE");
+        }
         
-        Low,
+        public static AstKeyword Availability()
+        {
+            return new AstKeyword(Position.Default, "AVAILABILITY");
+        }
         
-        Lower,
+        public static AstKeyword Avg()
+        {
+            return new AstKeyword(Position.Default, "AVG");
+        }
         
-        Ltrim,
+        public static AstKeyword BackupPriority()
+        {
+            return new AstKeyword(Position.Default, "BACKUP_PRIORITY");
+        }
         
-        Manual,
+        public static AstKeyword Base64()
+        {
+            return new AstKeyword(Position.Default, "BASE64");
+        }
         
-        Mark,
+        public static AstKeyword BeginDialog()
+        {
+            return new AstKeyword(Position.Default, "BEGIN_DIALOG");
+        }
         
-        Masked,
+        public static AstKeyword Bigint()
+        {
+            return new AstKeyword(Position.Default, "BIGINT");
+        }
         
-        Materialized,
+        public static AstKeyword BinaryKeyword()
+        {
+            return new AstKeyword(Position.Default, "BINARY");
+        }
         
-        Max,
+        public static AstKeyword BinaryChecksum()
+        {
+            return new AstKeyword(Position.Default, "BINARY_CHECKSUM");
+        }
         
-        MaxCpuPercent,
+        public static AstKeyword Binding()
+        {
+            return new AstKeyword(Position.Default, "BINDING");
+        }
         
-        MaxDop,
+        public static AstKeyword BlobStorage()
+        {
+            return new AstKeyword(Position.Default, "BLOB_STORAGE");
+        }
         
-        MaxFiles,
+        public static AstKeyword Broker()
+        {
+            return new AstKeyword(Position.Default, "BROKER");
+        }
         
-        MaxIopsPerVolume,
+        public static AstKeyword BrokerInstance()
+        {
+            return new AstKeyword(Position.Default, "BROKER_INSTANCE");
+        }
         
-        MaxMemoryPercent,
+        public static AstKeyword BulkLogged()
+        {
+            return new AstKeyword(Position.Default, "BULK_LOGGED");
+        }
         
-        MaxProcesses,
+        public static AstKeyword Caller()
+        {
+            return new AstKeyword(Position.Default, "CALLER");
+        }
         
-        MaxQueueReaders,
+        public static AstKeyword CapCpuPercent()
+        {
+            return new AstKeyword(Position.Default, "CAP_CPU_PERCENT");
+        }
         
-        MaxRolloverFiles,
+        public static AstKeyword Cast()
+        {
+            return new AstKeyword(Position.Default, "CAST");
+        }
         
-        Maxdop,
+        public static AstKeyword TryCast()
+        {
+            return new AstKeyword(Position.Default, "TRY_CAST");
+        }
         
-        Maxrecursion,
+        public static AstKeyword Catalog()
+        {
+            return new AstKeyword(Position.Default, "CATALOG");
+        }
         
-        Maxsize,
+        public static AstKeyword Catch()
+        {
+            return new AstKeyword(Position.Default, "CATCH");
+        }
         
-        Mb,
+        public static AstKeyword Change()
+        {
+            return new AstKeyword(Position.Default, "CHANGE");
+        }
         
-        Medium,
+        public static AstKeyword ChangeRetention()
+        {
+            return new AstKeyword(Position.Default, "CHANGE_RETENTION");
+        }
         
-        MemoryOptimizedData,
+        public static AstKeyword ChangeTracking()
+        {
+            return new AstKeyword(Position.Default, "CHANGE_TRACKING");
+        }
         
-        Message,
+        public static AstKeyword Char()
+        {
+            return new AstKeyword(Position.Default, "CHAR");
+        }
         
-        Min,
+        public static AstKeyword Charindex()
+        {
+            return new AstKeyword(Position.Default, "CHARINDEX");
+        }
         
-        MinActiveRowversion,
+        public static AstKeyword Checksum()
+        {
+            return new AstKeyword(Position.Default, "CHECKSUM");
+        }
         
-        MinCpuPercent,
+        public static AstKeyword ChecksumAgg()
+        {
+            return new AstKeyword(Position.Default, "CHECKSUM_AGG");
+        }
         
-        MinIopsPerVolume,
+        public static AstKeyword Cleanup()
+        {
+            return new AstKeyword(Position.Default, "CLEANUP");
+        }
         
-        MinMemoryPercent,
+        public static AstKeyword ColLength()
+        {
+            return new AstKeyword(Position.Default, "COL_LENGTH");
+        }
         
-        Minutes,
+        public static AstKeyword ColName()
+        {
+            return new AstKeyword(Position.Default, "COL_NAME");
+        }
         
-        MirrorAddress,
+        public static AstKeyword Collection()
+        {
+            return new AstKeyword(Position.Default, "COLLECTION");
+        }
         
-        MixedPageAllocation,
+        public static AstKeyword ColumnEncryptionKey()
+        {
+            return new AstKeyword(Position.Default, "COLUMN_ENCRYPTION_KEY");
+        }
         
-        Mode,
+        public static AstKeyword ColumnMasterKey()
+        {
+            return new AstKeyword(Position.Default, "COLUMN_MASTER_KEY");
+        }
         
-        Modify,
+        public static AstKeyword Columnproperty()
+        {
+            return new AstKeyword(Position.Default, "COLUMNPROPERTY");
+        }
         
-        Move,
+        public static AstKeyword Columns()
+        {
+            return new AstKeyword(Position.Default, "COLUMNS");
+        }
         
-        MultiUser,
+        public static AstKeyword Columnstore()
+        {
+            return new AstKeyword(Position.Default, "COLUMNSTORE");
+        }
         
-        Name,
+        public static AstKeyword ColumnstoreArchive()
+        {
+            return new AstKeyword(Position.Default, "COLUMNSTORE_ARCHIVE");
+        }
         
-        Nchar,
+        public static AstKeyword Committed()
+        {
+            return new AstKeyword(Position.Default, "COMMITTED");
+        }
         
-        NestedTriggers,
+        public static AstKeyword CompatibilityLevel()
+        {
+            return new AstKeyword(Position.Default, "COMPATIBILITY_LEVEL");
+        }
         
-        NewAccount,
+        public static AstKeyword CompressAllRowGroups()
+        {
+            return new AstKeyword(Position.Default, "COMPRESS_ALL_ROW_GROUPS");
+        }
         
-        NewBroker,
+        public static AstKeyword CompressionDelay()
+        {
+            return new AstKeyword(Position.Default, "COMPRESSION_DELAY");
+        }
         
-        NewPassword,
+        public static AstKeyword Concat()
+        {
+            return new AstKeyword(Position.Default, "CONCAT");
+        }
         
-        Newname,
+        public static AstKeyword ConcatWs()
+        {
+            return new AstKeyword(Position.Default, "CONCAT_WS");
+        }
         
-        Next,
+        public static AstKeyword ConcatNullYieldsNull()
+        {
+            return new AstKeyword(Position.Default, "CONCAT_NULL_YIELDS_NULL");
+        }
         
-        No,
+        public static AstKeyword Content()
+        {
+            return new AstKeyword(Position.Default, "CONTENT");
+        }
         
-        NoTruncate,
+        public static AstKeyword Control()
+        {
+            return new AstKeyword(Position.Default, "CONTROL");
+        }
         
-        NoWait,
+        public static AstKeyword Cookie()
+        {
+            return new AstKeyword(Position.Default, "COOKIE");
+        }
         
-        Nocount,
+        public static AstKeyword Count()
+        {
+            return new AstKeyword(Position.Default, "COUNT");
+        }
         
-        Nodes,
+        public static AstKeyword CountBig()
+        {
+            return new AstKeyword(Position.Default, "COUNT_BIG");
+        }
         
-        Noexec,
+        public static AstKeyword Counter()
+        {
+            return new AstKeyword(Position.Default, "COUNTER");
+        }
         
-        Noexpand,
+        public static AstKeyword Cpu()
+        {
+            return new AstKeyword(Position.Default, "CPU");
+        }
         
-        Nolock,
+        public static AstKeyword CreateNew()
+        {
+            return new AstKeyword(Position.Default, "CREATE_NEW");
+        }
         
-        NonTransactedAccess,
+        public static AstKeyword CreationDisposition()
+        {
+            return new AstKeyword(Position.Default, "CREATION_DISPOSITION");
+        }
         
-        Norecompute,
+        public static AstKeyword Credential()
+        {
+            return new AstKeyword(Position.Default, "CREDENTIAL");
+        }
         
-        Norecovery,
+        public static AstKeyword Cryptographic()
+        {
+            return new AstKeyword(Position.Default, "CRYPTOGRAPHIC");
+        }
         
-        Notifications,
+        public static AstKeyword CumeDist()
+        {
+            return new AstKeyword(Position.Default, "CUME_DIST");
+        }
         
-        Nowait,
+        public static AstKeyword CursorCloseOnCommit()
+        {
+            return new AstKeyword(Position.Default, "CURSOR_CLOSE_ON_COMMIT");
+        }
         
-        Ntile,
+        public static AstKeyword CursorDefault()
+        {
+            return new AstKeyword(Position.Default, "CURSOR_DEFAULT");
+        }
         
-        NullDoubleQuote,
+        public static AstKeyword Data()
+        {
+            return new AstKeyword(Position.Default, "DATA");
+        }
         
-        Numanode,
+        public static AstKeyword DatabasePrincipalId()
+        {
+            return new AstKeyword(Position.Default, "DATABASE_PRINCIPAL_ID");
+        }
         
-        Number,
+        public static AstKeyword Databasepropertyex()
+        {
+            return new AstKeyword(Position.Default, "DATABASEPROPERTYEX");
+        }
         
-        NumericRoundabort,
+        public static AstKeyword DateCorrelationOptimization()
+        {
+            return new AstKeyword(Position.Default, "DATE_CORRELATION_OPTIMIZATION");
+        }
         
-        Object,
+        public static AstKeyword Dateadd()
+        {
+            return new AstKeyword(Position.Default, "DATEADD");
+        }
         
-        ObjectDefinition,
+        public static AstKeyword Datediff()
+        {
+            return new AstKeyword(Position.Default, "DATEDIFF");
+        }
         
-        ObjectId,
+        public static AstKeyword Datename()
+        {
+            return new AstKeyword(Position.Default, "DATENAME");
+        }
         
-        ObjectName,
+        public static AstKeyword Datepart()
+        {
+            return new AstKeyword(Position.Default, "DATEPART");
+        }
         
-        ObjectSchemaName,
+        public static AstKeyword Days()
+        {
+            return new AstKeyword(Position.Default, "DAYS");
+        }
         
-        Objectproperty,
+        public static AstKeyword DbChaining()
+        {
+            return new AstKeyword(Position.Default, "DB_CHAINING");
+        }
         
-        Objectpropertyex,
+        public static AstKeyword DbFailover()
+        {
+            return new AstKeyword(Position.Default, "DB_FAILOVER");
+        }
         
-        Offline,
+        public static AstKeyword DbId()
+        {
+            return new AstKeyword(Position.Default, "DB_ID");
+        }
         
-        Offset,
+        public static AstKeyword DbName()
+        {
+            return new AstKeyword(Position.Default, "DB_NAME");
+        }
         
-        OldAccount,
+        public static AstKeyword Decryption()
+        {
+            return new AstKeyword(Position.Default, "DECRYPTION");
+        }
         
-        Online,
+        public static AstKeyword DefaultDoubleQuote()
+        {
+            return new AstKeyword(Position.Default, "[\"]  \'DEFAULT\'  [\"]");
+        }
         
-        Only,
+        public static AstKeyword DefaultFulltextLanguage()
+        {
+            return new AstKeyword(Position.Default, "DEFAULT_FULLTEXT_LANGUAGE");
+        }
         
-        OpenExisting,
+        public static AstKeyword DefaultLanguage()
+        {
+            return new AstKeyword(Position.Default, "DEFAULT_LANGUAGE");
+        }
         
-        Openjson,
+        public static AstKeyword Definition()
+        {
+            return new AstKeyword(Position.Default, "DEFINITION");
+        }
         
-        Optimistic,
+        public static AstKeyword Delay()
+        {
+            return new AstKeyword(Position.Default, "DELAY");
+        }
         
-        Optimize,
+        public static AstKeyword DelayedDurability()
+        {
+            return new AstKeyword(Position.Default, "DELAYED_DURABILITY");
+        }
         
-        OptimizeForSequentialKey,
+        public static AstKeyword Deleted()
+        {
+            return new AstKeyword(Position.Default, "DELETED");
+        }
         
-        OriginalDbName,
+        public static AstKeyword DenseRank()
+        {
+            return new AstKeyword(Position.Default, "DENSE_RANK");
+        }
         
-        Out,
+        public static AstKeyword Dependents()
+        {
+            return new AstKeyword(Position.Default, "DEPENDENTS");
+        }
         
-        Output,
+        public static AstKeyword Des()
+        {
+            return new AstKeyword(Position.Default, "DES");
+        }
         
-        Override,
+        public static AstKeyword Description()
+        {
+            return new AstKeyword(Position.Default, "DESCRIPTION");
+        }
         
-        Owner,
+        public static AstKeyword Desx()
+        {
+            return new AstKeyword(Position.Default, "DESX");
+        }
         
-        Ownership,
+        public static AstKeyword Deterministic()
+        {
+            return new AstKeyword(Position.Default, "DETERMINISTIC");
+        }
         
-        PadIndex,
+        public static AstKeyword Dhcp()
+        {
+            return new AstKeyword(Position.Default, "DHCP");
+        }
         
-        PageVerify,
+        public static AstKeyword Dialog()
+        {
+            return new AstKeyword(Position.Default, "DIALOG");
+        }
         
-        Pagecount,
+        public static AstKeyword Difference()
+        {
+            return new AstKeyword(Position.Default, "DIFFERENCE");
+        }
         
-        Paglock,
+        public static AstKeyword DirectoryName()
+        {
+            return new AstKeyword(Position.Default, "DIRECTORY_NAME");
+        }
         
-        Parameterization,
+        public static AstKeyword Disable()
+        {
+            return new AstKeyword(Position.Default, "DISABLE");
+        }
         
-        Parsename,
+        public static AstKeyword DisableBroker()
+        {
+            return new AstKeyword(Position.Default, "DISABLE_BROKER");
+        }
         
-        Parseonly,
+        public static AstKeyword Disabled()
+        {
+            return new AstKeyword(Position.Default, "DISABLED");
+        }
         
-        Partition,
+        public static AstKeyword Document()
+        {
+            return new AstKeyword(Position.Default, "DOCUMENT");
+        }
         
-        Partitions,
+        public static AstKeyword DropExisting()
+        {
+            return new AstKeyword(Position.Default, "DROP_EXISTING");
+        }
         
-        Partner,
+        public static AstKeyword Dynamic()
+        {
+            return new AstKeyword(Position.Default, "DYNAMIC");
+        }
         
-        Path,
+        public static AstKeyword Elements()
+        {
+            return new AstKeyword(Position.Default, "ELEMENTS");
+        }
         
-        Patindex,
+        public static AstKeyword Emergency()
+        {
+            return new AstKeyword(Position.Default, "EMERGENCY");
+        }
         
-        Pause,
+        public static AstKeyword Empty()
+        {
+            return new AstKeyword(Position.Default, "EMPTY");
+        }
         
-        PercentRank,
+        public static AstKeyword Enable()
+        {
+            return new AstKeyword(Position.Default, "ENABLE");
+        }
         
-        PercentileCont,
+        public static AstKeyword EnableBroker()
+        {
+            return new AstKeyword(Position.Default, "ENABLE_BROKER");
+        }
         
-        PercentileDisc,
+        public static AstKeyword Encrypted()
+        {
+            return new AstKeyword(Position.Default, "ENCRYPTED");
+        }
         
-        PersistSamplePercent,
+        public static AstKeyword EncryptedValue()
+        {
+            return new AstKeyword(Position.Default, "ENCRYPTED_VALUE");
+        }
         
-        PoisonMessageHandling,
+        public static AstKeyword Encryption()
+        {
+            return new AstKeyword(Position.Default, "ENCRYPTION");
+        }
         
-        Pool,
+        public static AstKeyword EncryptionType()
+        {
+            return new AstKeyword(Position.Default, "ENCRYPTION_TYPE");
+        }
         
-        Port,
+        public static AstKeyword EndpointUrl()
+        {
+            return new AstKeyword(Position.Default, "ENDPOINT_URL");
+        }
         
-        Preceding,
+        public static AstKeyword ErrorBrokerConversations()
+        {
+            return new AstKeyword(Position.Default, "ERROR_BROKER_CONVERSATIONS");
+        }
         
-        PrimaryRole,
+        public static AstKeyword Exclusive()
+        {
+            return new AstKeyword(Position.Default, "EXCLUSIVE");
+        }
         
-        Prior,
+        public static AstKeyword Executable()
+        {
+            return new AstKeyword(Position.Default, "EXECUTABLE");
+        }
         
-        Priority,
+        public static AstKeyword Exist()
+        {
+            return new AstKeyword(Position.Default, "EXIST");
+        }
         
-        PriorityLevel,
+        public static AstKeyword Expand()
+        {
+            return new AstKeyword(Position.Default, "EXPAND");
+        }
         
-        Private,
+        public static AstKeyword ExpiryDate()
+        {
+            return new AstKeyword(Position.Default, "EXPIRY_DATE");
+        }
         
-        PrivateKey,
+        public static AstKeyword Explicit()
+        {
+            return new AstKeyword(Position.Default, "EXPLICIT");
+        }
         
-        Privileges,
+        public static AstKeyword FailOperation()
+        {
+            return new AstKeyword(Position.Default, "FAIL_OPERATION");
+        }
         
-        ProcedureName,
+        public static AstKeyword FailoverMode()
+        {
+            return new AstKeyword(Position.Default, "FAILOVER_MODE");
+        }
         
-        Property,
+        public static AstKeyword Failure()
+        {
+            return new AstKeyword(Position.Default, "FAILURE");
+        }
         
-        Provider,
+        public static AstKeyword FailureConditionLevel()
+        {
+            return new AstKeyword(Position.Default, "FAILURE_CONDITION_LEVEL");
+        }
         
-        ProviderKeyName,
+        public static AstKeyword Fast()
+        {
+            return new AstKeyword(Position.Default, "FAST");
+        }
         
-        Query,
+        public static AstKeyword FastForward()
+        {
+            return new AstKeyword(Position.Default, "FAST_FORWARD");
+        }
         
-        Queue,
+        public static AstKeyword FileId()
+        {
+            return new AstKeyword(Position.Default, "FILE_ID");
+        }
         
-        QueueDelay,
+        public static AstKeyword FileIdex()
+        {
+            return new AstKeyword(Position.Default, "FILE_IDEX");
+        }
         
-        QuotedIdentifier,
+        public static AstKeyword FileName()
+        {
+            return new AstKeyword(Position.Default, "FILE_NAME");
+        }
         
-        Quotename,
+        public static AstKeyword Filegroup()
+        {
+            return new AstKeyword(Position.Default, "FILEGROUP");
+        }
         
-        Randomized,
+        public static AstKeyword FilegroupId()
+        {
+            return new AstKeyword(Position.Default, "FILEGROUP_ID");
+        }
         
-        Range,
+        public static AstKeyword FilegroupName()
+        {
+            return new AstKeyword(Position.Default, "FILEGROUP_NAME");
+        }
         
-        Rank,
+        public static AstKeyword Filegroupproperty()
+        {
+            return new AstKeyword(Position.Default, "FILEGROUPPROPERTY");
+        }
         
-        Rc2,
+        public static AstKeyword Filegrowth()
+        {
+            return new AstKeyword(Position.Default, "FILEGROWTH");
+        }
         
-        Rc4,
+        public static AstKeyword Filename()
+        {
+            return new AstKeyword(Position.Default, "FILENAME");
+        }
         
-        Rc4128,
-        
-        ReadCommittedSnapshot,
-        
-        ReadOnly,
-        
-        ReadOnlyRoutingList,
-        
-        ReadWrite,
-        
-        Readcommitted,
-        
-        Readcommittedlock,
-        
-        Readonly,
-        
-        Readpast,
-        
-        Readuncommitted,
-        
-        Readwrite,
-        
-        Rebuild,
-        
-        Receive,
-        
-        Recompile,
-        
-        Recovery,
-        
-        RecursiveTriggers,
-        
-        Relative,
-        
-        Remote,
-        
-        RemoteProcTransactions,
-        
-        RemoteServiceName,
-        
-        Remove,
-        
-        Reorganize,
-        
-        Repeatable,
-        
-        Repeatableread,
-        
-        Replace,
-        
-        Replica,
-        
-        Replicate,
-        
-        RequestMaxCpuTimeSec,
-        
-        RequestMaxMemoryGrantPercent,
-        
-        RequestMemoryGrantTimeoutSec,
-        
-        RequiredSynchronizedSecondariesToCommit,
-        
-        Resample,
-        
-        ReserveDiskSpace,
-        
-        Resource,
-        
-        ResourceManagerLocation,
-        
-        RestrictedUser,
-        
-        Resumable,
-        
-        Retention,
-        
-        Reverse,
-        
-        Robust,
-        
-        Root,
-        
-        Route,
-        
-        Row,
-        
-        RowNumber,
-        
-        Rowguid,
-        
-        Rowlock,
-        
-        Rows,
-        
-        Rtrim,
-        
-        Sample,
-        
-        SchemaId,
-        
-        SchemaName,
-        
-        Schemabinding,
-        
-        ScopeIdentity,
-        
-        Scoped,
-        
-        Scroll,
-        
-        ScrollLocks,
-        
-        Search,
-        
-        Secondary,
-        
-        SecondaryOnly,
-        
-        SecondaryRole,
-        
-        Seconds,
-        
-        Secret,
-        
-        Securables,
-        
-        Security,
-        
-        SecurityLog,
-        
-        SeedingMode,
-        
-        Self,
-        
-        SemiSensitive,
-        
-        Send,
-        
-        Sent,
-        
-        Sequence,
-        
-        SequenceNumber,
-        
-        Serializable,
-        
-        Serverproperty,
-        
-        SessionTimeout,
-        
-        Seterror,
-        
-        Share,
-        
-        Shared,
-        
-        Showplan,
-        
-        ShowplanAll,
-        
-        ShowplanText,
-        
-        ShowplanXml,
-        
-        Signature,
-        
-        Simple,
-        
-        SingleUser,
-        
-        Size,
-        
-        Smallint,
-        
-        Snapshot,
-        
-        SortInTempdb,
-        
-        Soundex,
-        
-        SpaceKeyword,
-        
-        Sparse,
-        
-        SpatialWindowMaxCells,
-        
-        Standby,
-        
-        StartDate,
-        
-        Static,
-        
-        StatisticsIncremental,
-        
-        StatisticsNorecompute,
-        
-        StatsDate,
-        
-        StatsStream,
-        
-        Status,
-        
-        Statusonly,
-        
-        Stdev,
-        
-        Stdevp,
-        
-        Stoplist,
-        
-        Str,
-        
-        StringAgg,
-        
-        StringEscape,
-        
-        Stuff,
-        
-        Subject,
-        
-        Subscribe,
-        
-        Subscription,
-        
-        Substring,
-        
-        Sum,
-        
-        Suspend,
-        
-        Symmetric,
-        
-        SynchronousCommit,
-        
-        Synonym,
-        
-        System,
-        
-        Tablock,
-        
-        Tablockx,
-        
-        Take,
-        
-        TargetRecoveryTime,
-        
-        Tb,
-        
-        TextimageOn,
-        
-        Throw,
-        
-        Ties,
-        
-        Time,
-        
-        Timeout,
-        
-        Timer,
-        
-        Tinyint,
-        
-        TornPageDetection,
-        
-        Tracking,
-        
-        TransactionId,
-        
-        TransformNoiseWords,
-        
-        Translate,
-        
-        Trim,
-        
-        TripleDes,
-        
-        TripleDes3key,
-        
-        Trustworthy,
-        
-        Try,
-        
-        Tsql,
-        
-        TwoDigitYearCutoff,
-        
-        Type,
-        
-        TypeId,
-        
-        TypeName,
-        
-        TypeWarning,
-        
-        Typeproperty,
-        
-        Unbounded,
-        
-        Uncommitted,
-        
-        Unicode,
-        
-        Unknown,
-        
-        Unlimited,
-        
-        Unmask,
-        
-        Uow,
-        
-        Updlock,
-        
-        Upper,
-        
-        Using,
-        
-        ValidXml,
-        
-        Validation,
-        
-        Value,
-        
-        Var,
-        
-        VarbinaryKeyword,
-        
-        Varp,
-        
-        Version,
-        
-        ViewMetadata,
-        
-        Views,
-        
-        Wait,
-        
-        WellFormedXml,
-        
-        WithoutArrayWrapper,
-        
-        Work,
-        
-        Workload,
-        
-        Xlock,
-        
-        Xml,
-        
-        XmlCompression,
-        
-        Xmldata,
-        
-        Xmlnamespaces,
-        
-        Xmlschema,
-        
-        Xsinil,
-        
-        Zone,
-        
-        AbortAfterWait,
-        
-        Absent,
-        
-        Administer,
-        
-        Aes,
-        
-        AllowConnections,
-        
-        AllowMultipleEventLoss,
-        
-        AllowSingleEventLoss,
-        
-        Anonymous,
-        
-        Append,
-        
-        Application,
-        
-        Asymmetric,
-        
-        AsynchronousCommit,
-        
-        Authenticate,
-        
-        Authentication,
-        
-        AutomatedBackupPreference,
-        
-        Automatic,
-        
-        AvailabilityMode,
-        
-        Before,
-        
-        Block,
-        
-        Blockers,
-        
-        Blocksize,
-        
-        BlockingHierarchy,
-        
-        Buffer,
-        
-        Buffercount,
-        
-        Cache,
-        
-        Called,
-        
-        Certificate,
-        
-        Changetable,
-        
-        Changes,
-        
-        CheckPolicy,
-        
-        CheckExpiration,
-        
-        ClassifierFunction,
-        
-        Cluster,
-        
-        Compress,
-        
-        Compression,
-        
-        Connect,
-        
-        Connection,
-        
-        Configuration,
-        
-        Connectionproperty,
-        
-        Containment,
-        
-        Context,
-        
-        ContextInfo,
-        
-        ContinueAfterError,
-        
-        Contract,
-        
-        ContractName,
-        
-        Conversation,
-        
-        CopyOnly,
-        
-        CurrentRequestId,
-        
-        CurrentTransactionId,
-        
-        Cycle,
-        
-        DataCompression,
-        
-        DataSource,
-        
-        DatabaseMirroring,
-        
-        Dataspace,
-        
-        Ddl,
-        
-        Decompress,
-        
-        DefaultDatabase,
-        
-        DefaultSchema,
-        
-        Diagnostics,
-        
-        Differential,
-        
-        Distribution,
-        
-        DtcSupport,
-        
-        Enabled,
-        
-        Endpoint,
-        
-        Error,
-        
-        ErrorLine,
-        
-        ErrorMessage,
-        
-        ErrorNumber,
-        
-        ErrorProcedure,
-        
-        ErrorSeverity,
-        
-        ErrorState,
-        
-        Event,
-        
-        Eventdata,
-        
-        EventRetentionMode,
-        
-        ExecutableFile,
-        
-        Expiredate,
-        
-        Extension,
-        
-        ExternalAccess,
-        
-        Failover,
-        
-        Failureconditionlevel,
-        
-        FanIn,
-        
-        FileSnapshot,
-        
-        Forceseek,
-        
-        ForceServiceAllowDataLoss,
-        
-        Formatmessage,
-        
-        Get,
-        
-        GetFilestreamTransactionContext,
-        
-        Getancestor,
-        
-        Getansinull,
-        
-        Getdescendant,
-        
-        Getlevel,
-        
-        Getreparentedvalue,
-        
-        Getroot,
-        
-        Governor,
-        
-        Hashed,
-        
-        Healthchecktimeout,
-        
-        Heap,
-        
-        Hierarchyid,
-        
-        HostId,
-        
-        HostName,
-        
-        Iif,
-        
-        Io,
-        
-        Include,
-        
-        Increment,
-        
-        Infinite,
-        
-        Init,
-        
-        Instead,
-        
-        Isdescendantof,
-        
-        Isnull,
-        
-        Isnumeric,
-        
-        Kerberos,
-        
-        KeyPath,
-        
-        KeyStoreProviderName,
-        
-        Language,
-        
-        Library,
-        
-        Lifetime,
-        
-        Linked,
-        
-        Linux,
-        
-        ListenerIp,
-        
-        ListenerPort,
-        
-        LocalServiceName,
-        
-        Log,
-        
-        Mask,
-        
-        Matched,
-        
-        Master,
-        
-        MaxMemory,
-        
-        Maxtransfer,
-        
-        Maxvalue,
-        
-        MaxDispatchLatency,
-        
-        MaxDuration,
-        
-        MaxEventSize,
-        
-        MaxSize,
-        
-        MaxOutstandingIoPerVolume,
-        
-        Mediadescription,
-        
-        Medianame,
-        
-        Member,
-        
-        MemoryPartitionMode,
-        
-        MessageForwarding,
-        
-        MessageForwardSize,
-        
-        Minvalue,
-        
-        Mirror,
-        
-        MustChange,
-        
-        Newid,
-        
-        Newsequentialid,
-        
-        Noformat,
-        
-        Noinit,
-        
-        None,
-        
-        Norewind,
-        
-        Noskip,
-        
-        Nounload,
-        
-        NoChecksum,
-        
-        NoCompression,
-        
-        NoEventLoss,
-        
-        Notification,
-        
-        Ntlm,
-        
-        OldPassword,
-        
-        OnFailure,
-        
-        Operations,
-        
-        Page,
-        
-        ParamNode,
-        
-        Partial,
-        
-        Password,
-        
-        PermissionSet,
-        
-        PerCpu,
-        
-        PerDb,
-        
-        PerNode,
-        
-        Persisted,
-        
-        Platform,
-        
-        Policy,
-        
-        Predicate,
-        
-        Process,
-        
-        Profile,
-        
-        Python,
-        
-        R,
-        
-        ReadWriteFilegroups,
-        
-        Regenerate,
-        
-        RelatedConversation,
-        
-        RelatedConversationGroup,
-        
-        Required,
-        
-        Reset,
-        
-        Resources,
-        
-        Restart,
-        
-        Resume,
-        
-        Retaindays,
-        
-        Returns,
-        
-        Rewind,
-        
-        Role,
-        
-        RoundRobin,
-        
-        RowcountBig,
-        
-        Rsa512,
-        
-        Rsa1024,
-        
-        Rsa2048,
-        
-        Rsa3072,
-        
-        Rsa4096,
-        
-        Safety,
-        
-        Safe,
-        
-        Scheduler,
-        
-        Scheme,
-        
-        Script,
-        
-        Server,
-        
-        Service,
-        
-        ServiceBroker,
-        
-        ServiceName,
-        
-        Session,
-        
-        SessionContext,
-        
-        Settings,
-        
-        Shrinklog,
-        
-        Sid,
-        
-        SkipKeyword,
-        
-        Softnuma,
-        
-        Source,
-        
-        Specification,
-        
-        Split,
-        
-        Sql,
-        
-        Sqldumperflags,
-        
-        Sqldumperpath,
-        
-        Sqldumpertimeout,
-        
-        State,
-        
-        Stats,
-        
-        Start,
-        
-        Started,
-        
-        StartupState,
-        
-        Stop,
-        
-        Stopped,
-        
-        StopOnError,
-        
-        Supported,
-        
-        Switch,
-        
-        Tape,
-        
-        Target,
-        
-        Tcp,
-        
-        Tostring,
-        
-        Trace,
-        
-        TrackCausality,
-        
-        Transfer,
-        
-        Unchecked,
-        
-        Unlock,
-        
-        Unsafe,
-        
-        Url,
-        
-        Used,
-        
-        Verboselogging,
-        
-        Visibility,
-        
-        WaitAtLowPriority,
-        
-        Windows,
-        
-        Without,
-        
-        Witness,
-        
-        XactAbort,
-        
-        XactState,
-        
-        Varchar,
-        
-        Nvarchar,
-        
-        Precision,
-    }
-    
-    public enum AstFileSizeUnityEnum
-    {
-        
-        _undefined,
-        
-        Kb,
-        
-        Mb,
-        
-        Gb,
-        
-        Tb,
-        
-        Module,
-    }
-    
-    public enum AstLogSeterrorNowaitEnum
-    {
+        public static AstKeyword Filepath()
+        {
+            return new AstKeyword(Position.Default, "FILEPATH");
+        }
         
-        _undefined,
+        public static AstKeyword Fileproperty()
+        {
+            return new AstKeyword(Position.Default, "FILEPROPERTY");
+        }
         
-        Log,
+        public static AstKeyword Filepropertyex()
+        {
+            return new AstKeyword(Position.Default, "FILEPROPERTYEX");
+        }
         
-        Seterror,
+        public static AstKeyword Filestream()
+        {
+            return new AstKeyword(Position.Default, "FILESTREAM");
+        }
         
-        Nowait,
+        public static AstKeyword Filter()
+        {
+            return new AstKeyword(Position.Default, "FILTER");
+        }
+        
+        public static AstKeyword First()
+        {
+            return new AstKeyword(Position.Default, "FIRST");
+        }
+        
+        public static AstKeyword FirstValue()
+        {
+            return new AstKeyword(Position.Default, "FIRST_VALUE");
+        }
+        
+        public static AstKeyword Fmtonly()
+        {
+            return new AstKeyword(Position.Default, "FMTONLY");
+        }
+        
+        public static AstKeyword Following()
+        {
+            return new AstKeyword(Position.Default, "FOLLOWING");
+        }
+        
+        public static AstKeyword Force()
+        {
+            return new AstKeyword(Position.Default, "FORCE");
+        }
+        
+        public static AstKeyword ForceFailoverAllowDataLoss()
+        {
+            return new AstKeyword(Position.Default, "FORCE_FAILOVER_ALLOW_DATA_LOSS");
+        }
+        
+        public static AstKeyword Forced()
+        {
+            return new AstKeyword(Position.Default, "FORCED");
+        }
+        
+        public static AstKeyword Forceplan()
+        {
+            return new AstKeyword(Position.Default, "FORCEPLAN");
+        }
+        
+        public static AstKeyword Forcescan()
+        {
+            return new AstKeyword(Position.Default, "FORCESCAN");
+        }
+        
+        public static AstKeyword Format()
+        {
+            return new AstKeyword(Position.Default, "FORMAT");
+        }
+        
+        public static AstKeyword ForwardOnly()
+        {
+            return new AstKeyword(Position.Default, "FORWARD_ONLY");
+        }
+        
+        public static AstKeyword Fullscan()
+        {
+            return new AstKeyword(Position.Default, "FULLSCAN");
+        }
+        
+        public static AstKeyword Fulltext()
+        {
+            return new AstKeyword(Position.Default, "FULLTEXT");
+        }
+        
+        public static AstKeyword Fulltextcatalogproperty()
+        {
+            return new AstKeyword(Position.Default, "FULLTEXTCATALOGPROPERTY");
+        }
+        
+        public static AstKeyword Fulltextserviceproperty()
+        {
+            return new AstKeyword(Position.Default, "FULLTEXTSERVICEPROPERTY");
+        }
+        
+        public static AstKeyword Gb()
+        {
+            return new AstKeyword(Position.Default, "GB");
+        }
+        
+        public static AstKeyword Generated()
+        {
+            return new AstKeyword(Position.Default, "GENERATED");
+        }
+        
+        public static AstKeyword Getdate()
+        {
+            return new AstKeyword(Position.Default, "GETDATE");
+        }
+        
+        public static AstKeyword Getutcdate()
+        {
+            return new AstKeyword(Position.Default, "GETUTCDATE");
+        }
+        
+        public static AstKeyword Global()
+        {
+            return new AstKeyword(Position.Default, "GLOBAL");
+        }
+        
+        public static AstKeyword Go()
+        {
+            return new AstKeyword(Position.Default, "GO");
+        }
+        
+        public static AstKeyword GroupMaxRequests()
+        {
+            return new AstKeyword(Position.Default, "GROUP_MAX_REQUESTS");
+        }
+        
+        public static AstKeyword Grouping()
+        {
+            return new AstKeyword(Position.Default, "GROUPING");
+        }
+        
+        public static AstKeyword GroupingId()
+        {
+            return new AstKeyword(Position.Default, "GROUPING_ID");
+        }
+        
+        public static AstKeyword Hadr()
+        {
+            return new AstKeyword(Position.Default, "HADR");
+        }
+        
+        public static AstKeyword Hash()
+        {
+            return new AstKeyword(Position.Default, "HASH");
+        }
+        
+        public static AstKeyword HealthCheckTimeout()
+        {
+            return new AstKeyword(Position.Default, "HEALTH_CHECK_TIMEOUT");
+        }
+        
+        public static AstKeyword HiddenKeyword()
+        {
+            return new AstKeyword(Position.Default, "HIDDEN");
+        }
+        
+        public static AstKeyword High()
+        {
+            return new AstKeyword(Position.Default, "HIGH");
+        }
+        
+        public static AstKeyword HonorBrokerPriority()
+        {
+            return new AstKeyword(Position.Default, "HONOR_BROKER_PRIORITY");
+        }
+        
+        public static AstKeyword Hours()
+        {
+            return new AstKeyword(Position.Default, "HOURS");
+        }
+        
+        public static AstKeyword IdentityValue()
+        {
+            return new AstKeyword(Position.Default, "IDENTITY_VALUE");
+        }
+        
+        public static AstKeyword IgnoreConstraints()
+        {
+            return new AstKeyword(Position.Default, "IGNORE_CONSTRAINTS");
+        }
+        
+        public static AstKeyword IgnoreDupKey()
+        {
+            return new AstKeyword(Position.Default, "IGNORE_DUP_KEY");
+        }
+        
+        public static AstKeyword IgnoreNonclusteredColumnstoreIndex()
+        {
+            return new AstKeyword(Position.Default, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+        }
+        
+        public static AstKeyword IgnoreTriggers()
+        {
+            return new AstKeyword(Position.Default, "IGNORE_TRIGGERS");
+        }
+        
+        public static AstKeyword Immediate()
+        {
+            return new AstKeyword(Position.Default, "IMMEDIATE");
+        }
+        
+        public static AstKeyword Impersonate()
+        {
+            return new AstKeyword(Position.Default, "IMPERSONATE");
+        }
+        
+        public static AstKeyword ImplicitTransactions()
+        {
+            return new AstKeyword(Position.Default, "IMPLICIT_TRANSACTIONS");
+        }
+        
+        public static AstKeyword Importance()
+        {
+            return new AstKeyword(Position.Default, "IMPORTANCE");
+        }
+        
+        public static AstKeyword IncludeNullValues()
+        {
+            return new AstKeyword(Position.Default, "INCLUDE_NULL_VALUES");
+        }
+        
+        public static AstKeyword Incremental()
+        {
+            return new AstKeyword(Position.Default, "INCREMENTAL");
+        }
+        
+        public static AstKeyword IndexCol()
+        {
+            return new AstKeyword(Position.Default, "INDEX_COL");
+        }
+        
+        public static AstKeyword IndexkeyProperty()
+        {
+            return new AstKeyword(Position.Default, "INDEXKEY_PROPERTY");
+        }
+        
+        public static AstKeyword Indexproperty()
+        {
+            return new AstKeyword(Position.Default, "INDEXPROPERTY");
+        }
+        
+        public static AstKeyword Initiator()
+        {
+            return new AstKeyword(Position.Default, "INITIATOR");
+        }
+        
+        public static AstKeyword Input()
+        {
+            return new AstKeyword(Position.Default, "INPUT");
+        }
+        
+        public static AstKeyword Insensitive()
+        {
+            return new AstKeyword(Position.Default, "INSENSITIVE");
+        }
+        
+        public static AstKeyword Inserted()
+        {
+            return new AstKeyword(Position.Default, "INSERTED");
+        }
+        
+        public static AstKeyword Int()
+        {
+            return new AstKeyword(Position.Default, "INT");
+        }
+        
+        public static AstKeyword Ip()
+        {
+            return new AstKeyword(Position.Default, "IP");
+        }
+        
+        public static AstKeyword Isolation()
+        {
+            return new AstKeyword(Position.Default, "ISOLATION");
+        }
+        
+        public static AstKeyword Job()
+        {
+            return new AstKeyword(Position.Default, "JOB");
+        }
+        
+        public static AstKeyword Json()
+        {
+            return new AstKeyword(Position.Default, "JSON");
+        }
+        
+        public static AstKeyword Kb()
+        {
+            return new AstKeyword(Position.Default, "KB");
+        }
+        
+        public static AstKeyword Keep()
+        {
+            return new AstKeyword(Position.Default, "KEEP");
+        }
+        
+        public static AstKeyword Keepdefaults()
+        {
+            return new AstKeyword(Position.Default, "KEEPDEFAULTS");
+        }
+        
+        public static AstKeyword Keepfixed()
+        {
+            return new AstKeyword(Position.Default, "KEEPFIXED");
+        }
+        
+        public static AstKeyword Keepidentity()
+        {
+            return new AstKeyword(Position.Default, "KEEPIDENTITY");
+        }
+        
+        public static AstKeyword KeySource()
+        {
+            return new AstKeyword(Position.Default, "KEY_SOURCE");
+        }
+        
+        public static AstKeyword Keys()
+        {
+            return new AstKeyword(Position.Default, "KEYS");
+        }
+        
+        public static AstKeyword Keyset()
+        {
+            return new AstKeyword(Position.Default, "KEYSET");
+        }
+        
+        public static AstKeyword Lag()
+        {
+            return new AstKeyword(Position.Default, "LAG");
+        }
+        
+        public static AstKeyword Last()
+        {
+            return new AstKeyword(Position.Default, "LAST");
+        }
+        
+        public static AstKeyword LastValue()
+        {
+            return new AstKeyword(Position.Default, "LAST_VALUE");
+        }
+        
+        public static AstKeyword Lead()
+        {
+            return new AstKeyword(Position.Default, "LEAD");
+        }
+        
+        public static AstKeyword Len()
+        {
+            return new AstKeyword(Position.Default, "LEN");
+        }
+        
+        public static AstKeyword Level()
+        {
+            return new AstKeyword(Position.Default, "LEVEL");
+        }
+        
+        public static AstKeyword List()
+        {
+            return new AstKeyword(Position.Default, "LIST");
+        }
+        
+        public static AstKeyword Listener()
+        {
+            return new AstKeyword(Position.Default, "LISTENER");
+        }
+        
+        public static AstKeyword ListenerUrl()
+        {
+            return new AstKeyword(Position.Default, "LISTENER_URL");
+        }
+        
+        public static AstKeyword LobCompaction()
+        {
+            return new AstKeyword(Position.Default, "LOB_COMPACTION");
+        }
+        
+        public static AstKeyword Local()
+        {
+            return new AstKeyword(Position.Default, "LOCAL");
+        }
+        
+        public static AstKeyword Location()
+        {
+            return new AstKeyword(Position.Default, "LOCATION");
+        }
+        
+        public static AstKeyword Lock()
+        {
+            return new AstKeyword(Position.Default, "LOCK");
+        }
+        
+        public static AstKeyword LockEscalation()
+        {
+            return new AstKeyword(Position.Default, "LOCK_ESCALATION");
+        }
+        
+        public static AstKeyword Login()
+        {
+            return new AstKeyword(Position.Default, "LOGIN");
+        }
+        
+        public static AstKeyword Loop()
+        {
+            return new AstKeyword(Position.Default, "LOOP");
+        }
+        
+        public static AstKeyword Low()
+        {
+            return new AstKeyword(Position.Default, "LOW");
+        }
+        
+        public static AstKeyword Lower()
+        {
+            return new AstKeyword(Position.Default, "LOWER");
+        }
+        
+        public static AstKeyword Ltrim()
+        {
+            return new AstKeyword(Position.Default, "LTRIM");
+        }
+        
+        public static AstKeyword Manual()
+        {
+            return new AstKeyword(Position.Default, "MANUAL");
+        }
+        
+        public static AstKeyword Mark()
+        {
+            return new AstKeyword(Position.Default, "MARK");
+        }
+        
+        public static AstKeyword Masked()
+        {
+            return new AstKeyword(Position.Default, "MASKED");
+        }
+        
+        public static AstKeyword Materialized()
+        {
+            return new AstKeyword(Position.Default, "MATERIALIZED");
+        }
+        
+        public static AstKeyword Max()
+        {
+            return new AstKeyword(Position.Default, "MAX");
+        }
+        
+        public static AstKeyword MaxCpuPercent()
+        {
+            return new AstKeyword(Position.Default, "MAX_CPU_PERCENT");
+        }
+        
+        public static AstKeyword MaxDop()
+        {
+            return new AstKeyword(Position.Default, "MAX_DOP");
+        }
+        
+        public static AstKeyword MaxFiles()
+        {
+            return new AstKeyword(Position.Default, "MAX_FILES");
+        }
+        
+        public static AstKeyword MaxIopsPerVolume()
+        {
+            return new AstKeyword(Position.Default, "MAX_IOPS_PER_VOLUME");
+        }
+        
+        public static AstKeyword MaxMemoryPercent()
+        {
+            return new AstKeyword(Position.Default, "MAX_MEMORY_PERCENT");
+        }
+        
+        public static AstKeyword MaxProcesses()
+        {
+            return new AstKeyword(Position.Default, "MAX_PROCESSES");
+        }
+        
+        public static AstKeyword MaxQueueReaders()
+        {
+            return new AstKeyword(Position.Default, "MAX_QUEUE_READERS");
+        }
+        
+        public static AstKeyword MaxRolloverFiles()
+        {
+            return new AstKeyword(Position.Default, "MAX_ROLLOVER_FILES");
+        }
+        
+        public static AstKeyword Maxdop()
+        {
+            return new AstKeyword(Position.Default, "MAXDOP");
+        }
+        
+        public static AstKeyword Maxrecursion()
+        {
+            return new AstKeyword(Position.Default, "MAXRECURSION");
+        }
+        
+        public static AstKeyword Maxsize()
+        {
+            return new AstKeyword(Position.Default, "MAXSIZE");
+        }
+        
+        public static AstKeyword Mb()
+        {
+            return new AstKeyword(Position.Default, "MB");
+        }
+        
+        public static AstKeyword Medium()
+        {
+            return new AstKeyword(Position.Default, "MEDIUM");
+        }
+        
+        public static AstKeyword MemoryOptimizedData()
+        {
+            return new AstKeyword(Position.Default, "MEMORY_OPTIMIZED_DATA");
+        }
+        
+        public static AstKeyword Message()
+        {
+            return new AstKeyword(Position.Default, "MESSAGE");
+        }
+        
+        public static AstKeyword Min()
+        {
+            return new AstKeyword(Position.Default, "MIN");
+        }
+        
+        public static AstKeyword MinActiveRowversion()
+        {
+            return new AstKeyword(Position.Default, "MIN_ACTIVE_ROWVERSION");
+        }
+        
+        public static AstKeyword MinCpuPercent()
+        {
+            return new AstKeyword(Position.Default, "MIN_CPU_PERCENT");
+        }
+        
+        public static AstKeyword MinIopsPerVolume()
+        {
+            return new AstKeyword(Position.Default, "MIN_IOPS_PER_VOLUME");
+        }
+        
+        public static AstKeyword MinMemoryPercent()
+        {
+            return new AstKeyword(Position.Default, "MIN_MEMORY_PERCENT");
+        }
+        
+        public static AstKeyword Minutes()
+        {
+            return new AstKeyword(Position.Default, "MINUTES");
+        }
+        
+        public static AstKeyword MirrorAddress()
+        {
+            return new AstKeyword(Position.Default, "MIRROR_ADDRESS");
+        }
+        
+        public static AstKeyword MixedPageAllocation()
+        {
+            return new AstKeyword(Position.Default, "MIXED_PAGE_ALLOCATION");
+        }
+        
+        public static AstKeyword Mode()
+        {
+            return new AstKeyword(Position.Default, "MODE");
+        }
+        
+        public static AstKeyword Modify()
+        {
+            return new AstKeyword(Position.Default, "MODIFY");
+        }
+        
+        public static AstKeyword Move()
+        {
+            return new AstKeyword(Position.Default, "MOVE");
+        }
+        
+        public static AstKeyword MultiUser()
+        {
+            return new AstKeyword(Position.Default, "MULTI_USER");
+        }
+        
+        public static AstKeyword Name()
+        {
+            return new AstKeyword(Position.Default, "NAME");
+        }
+        
+        public static AstKeyword Nchar()
+        {
+            return new AstKeyword(Position.Default, "NCHAR");
+        }
+        
+        public static AstKeyword NestedTriggers()
+        {
+            return new AstKeyword(Position.Default, "NESTED_TRIGGERS");
+        }
+        
+        public static AstKeyword NewAccount()
+        {
+            return new AstKeyword(Position.Default, "NEW_ACCOUNT");
+        }
+        
+        public static AstKeyword NewBroker()
+        {
+            return new AstKeyword(Position.Default, "NEW_BROKER");
+        }
+        
+        public static AstKeyword NewPassword()
+        {
+            return new AstKeyword(Position.Default, "NEW_PASSWORD");
+        }
+        
+        public static AstKeyword Newname()
+        {
+            return new AstKeyword(Position.Default, "NEWNAME");
+        }
+        
+        public static AstKeyword Next()
+        {
+            return new AstKeyword(Position.Default, "NEXT");
+        }
+        
+        public static AstKeyword No()
+        {
+            return new AstKeyword(Position.Default, "NO");
+        }
+        
+        public static AstKeyword NoTruncate()
+        {
+            return new AstKeyword(Position.Default, "NO_TRUNCATE");
+        }
+        
+        public static AstKeyword NoWait()
+        {
+            return new AstKeyword(Position.Default, "NO_WAIT");
+        }
+        
+        public static AstKeyword Nocount()
+        {
+            return new AstKeyword(Position.Default, "NOCOUNT");
+        }
+        
+        public static AstKeyword Nodes()
+        {
+            return new AstKeyword(Position.Default, "NODES");
+        }
+        
+        public static AstKeyword Noexec()
+        {
+            return new AstKeyword(Position.Default, "NOEXEC");
+        }
+        
+        public static AstKeyword Noexpand()
+        {
+            return new AstKeyword(Position.Default, "NOEXPAND");
+        }
+        
+        public static AstKeyword Nolock()
+        {
+            return new AstKeyword(Position.Default, "NOLOCK");
+        }
+        
+        public static AstKeyword NonTransactedAccess()
+        {
+            return new AstKeyword(Position.Default, "NON_TRANSACTED_ACCESS");
+        }
+        
+        public static AstKeyword Norecompute()
+        {
+            return new AstKeyword(Position.Default, "NORECOMPUTE");
+        }
+        
+        public static AstKeyword Norecovery()
+        {
+            return new AstKeyword(Position.Default, "NORECOVERY");
+        }
+        
+        public static AstKeyword Notifications()
+        {
+            return new AstKeyword(Position.Default, "NOTIFICATIONS");
+        }
+        
+        public static AstKeyword Nowait()
+        {
+            return new AstKeyword(Position.Default, "NOWAIT");
+        }
+        
+        public static AstKeyword Ntile()
+        {
+            return new AstKeyword(Position.Default, "NTILE");
+        }
+        
+        public static AstKeyword NullDoubleQuote()
+        {
+            return new AstKeyword(Position.Default, "[\"]  \'NULL\'  [\"]");
+        }
+        
+        public static AstKeyword Numanode()
+        {
+            return new AstKeyword(Position.Default, "NUMANODE");
+        }
+        
+        public static AstKeyword Number()
+        {
+            return new AstKeyword(Position.Default, "NUMBER");
+        }
+        
+        public static AstKeyword NumericRoundabort()
+        {
+            return new AstKeyword(Position.Default, "NUMERIC_ROUNDABORT");
+        }
+        
+        public static AstKeyword Object()
+        {
+            return new AstKeyword(Position.Default, "OBJECT");
+        }
+        
+        public static AstKeyword ObjectDefinition()
+        {
+            return new AstKeyword(Position.Default, "OBJECT_DEFINITION");
+        }
+        
+        public static AstKeyword ObjectId()
+        {
+            return new AstKeyword(Position.Default, "OBJECT_ID");
+        }
+        
+        public static AstKeyword ObjectName()
+        {
+            return new AstKeyword(Position.Default, "OBJECT_NAME");
+        }
+        
+        public static AstKeyword ObjectSchemaName()
+        {
+            return new AstKeyword(Position.Default, "OBJECT_SCHEMA_NAME");
+        }
+        
+        public static AstKeyword Objectproperty()
+        {
+            return new AstKeyword(Position.Default, "OBJECTPROPERTY");
+        }
+        
+        public static AstKeyword Objectpropertyex()
+        {
+            return new AstKeyword(Position.Default, "OBJECTPROPERTYEX");
+        }
+        
+        public static AstKeyword Offline()
+        {
+            return new AstKeyword(Position.Default, "OFFLINE");
+        }
+        
+        public static AstKeyword Offset()
+        {
+            return new AstKeyword(Position.Default, "OFFSET");
+        }
+        
+        public static AstKeyword OldAccount()
+        {
+            return new AstKeyword(Position.Default, "OLD_ACCOUNT");
+        }
+        
+        public static AstKeyword Online()
+        {
+            return new AstKeyword(Position.Default, "ONLINE");
+        }
+        
+        public static AstKeyword Only()
+        {
+            return new AstKeyword(Position.Default, "ONLY");
+        }
+        
+        public static AstKeyword OpenExisting()
+        {
+            return new AstKeyword(Position.Default, "OPEN_EXISTING");
+        }
+        
+        public static AstKeyword Openjson()
+        {
+            return new AstKeyword(Position.Default, "OPENJSON");
+        }
+        
+        public static AstKeyword Optimistic()
+        {
+            return new AstKeyword(Position.Default, "OPTIMISTIC");
+        }
+        
+        public static AstKeyword Optimize()
+        {
+            return new AstKeyword(Position.Default, "OPTIMIZE");
+        }
+        
+        public static AstKeyword OptimizeForSequentialKey()
+        {
+            return new AstKeyword(Position.Default, "OPTIMIZE_FOR_SEQUENTIAL_KEY");
+        }
+        
+        public static AstKeyword OriginalDbName()
+        {
+            return new AstKeyword(Position.Default, "ORIGINAL_DB_NAME");
+        }
+        
+        public static AstKeyword Out()
+        {
+            return new AstKeyword(Position.Default, "OUT");
+        }
+        
+        public static AstKeyword Output()
+        {
+            return new AstKeyword(Position.Default, "OUTPUT");
+        }
+        
+        public static AstKeyword Override()
+        {
+            return new AstKeyword(Position.Default, "OVERRIDE");
+        }
+        
+        public static AstKeyword Owner()
+        {
+            return new AstKeyword(Position.Default, "OWNER");
+        }
+        
+        public static AstKeyword Ownership()
+        {
+            return new AstKeyword(Position.Default, "OWNERSHIP");
+        }
+        
+        public static AstKeyword PadIndex()
+        {
+            return new AstKeyword(Position.Default, "PAD_INDEX");
+        }
+        
+        public static AstKeyword PageVerify()
+        {
+            return new AstKeyword(Position.Default, "PAGE_VERIFY");
+        }
+        
+        public static AstKeyword Pagecount()
+        {
+            return new AstKeyword(Position.Default, "PAGECOUNT");
+        }
+        
+        public static AstKeyword Paglock()
+        {
+            return new AstKeyword(Position.Default, "PAGLOCK");
+        }
+        
+        public static AstKeyword Parameterization()
+        {
+            return new AstKeyword(Position.Default, "PARAMETERIZATION");
+        }
+        
+        public static AstKeyword Parsename()
+        {
+            return new AstKeyword(Position.Default, "PARSENAME");
+        }
+        
+        public static AstKeyword Parseonly()
+        {
+            return new AstKeyword(Position.Default, "PARSEONLY");
+        }
+        
+        public static AstKeyword Partition()
+        {
+            return new AstKeyword(Position.Default, "PARTITION");
+        }
+        
+        public static AstKeyword Partitions()
+        {
+            return new AstKeyword(Position.Default, "PARTITIONS");
+        }
+        
+        public static AstKeyword Partner()
+        {
+            return new AstKeyword(Position.Default, "PARTNER");
+        }
+        
+        public static AstKeyword Path()
+        {
+            return new AstKeyword(Position.Default, "PATH");
+        }
+        
+        public static AstKeyword Patindex()
+        {
+            return new AstKeyword(Position.Default, "PATINDEX");
+        }
+        
+        public static AstKeyword Pause()
+        {
+            return new AstKeyword(Position.Default, "PAUSE");
+        }
+        
+        public static AstKeyword PercentRank()
+        {
+            return new AstKeyword(Position.Default, "PERCENT_RANK");
+        }
+        
+        public static AstKeyword PercentileCont()
+        {
+            return new AstKeyword(Position.Default, "PERCENTILE_CONT");
+        }
+        
+        public static AstKeyword PercentileDisc()
+        {
+            return new AstKeyword(Position.Default, "PERCENTILE_DISC");
+        }
+        
+        public static AstKeyword PersistSamplePercent()
+        {
+            return new AstKeyword(Position.Default, "PERSIST_SAMPLE_PERCENT");
+        }
+        
+        public static AstKeyword PoisonMessageHandling()
+        {
+            return new AstKeyword(Position.Default, "POISON_MESSAGE_HANDLING");
+        }
+        
+        public static AstKeyword Pool()
+        {
+            return new AstKeyword(Position.Default, "POOL");
+        }
+        
+        public static AstKeyword Port()
+        {
+            return new AstKeyword(Position.Default, "PORT");
+        }
+        
+        public static AstKeyword Preceding()
+        {
+            return new AstKeyword(Position.Default, "PRECEDING");
+        }
+        
+        public static AstKeyword PrimaryRole()
+        {
+            return new AstKeyword(Position.Default, "PRIMARY_ROLE");
+        }
+        
+        public static AstKeyword Prior()
+        {
+            return new AstKeyword(Position.Default, "PRIOR");
+        }
+        
+        public static AstKeyword Priority()
+        {
+            return new AstKeyword(Position.Default, "PRIORITY");
+        }
+        
+        public static AstKeyword PriorityLevel()
+        {
+            return new AstKeyword(Position.Default, "PRIORITY_LEVEL");
+        }
+        
+        public static AstKeyword Private()
+        {
+            return new AstKeyword(Position.Default, "PRIVATE");
+        }
+        
+        public static AstKeyword PrivateKey()
+        {
+            return new AstKeyword(Position.Default, "PRIVATE_KEY");
+        }
+        
+        public static AstKeyword Privileges()
+        {
+            return new AstKeyword(Position.Default, "PRIVILEGES");
+        }
+        
+        public static AstKeyword ProcedureName()
+        {
+            return new AstKeyword(Position.Default, "PROCEDURE_NAME");
+        }
+        
+        public static AstKeyword Property()
+        {
+            return new AstKeyword(Position.Default, "PROPERTY");
+        }
+        
+        public static AstKeyword Provider()
+        {
+            return new AstKeyword(Position.Default, "PROVIDER");
+        }
+        
+        public static AstKeyword ProviderKeyName()
+        {
+            return new AstKeyword(Position.Default, "PROVIDER_KEY_NAME");
+        }
+        
+        public static AstKeyword Query()
+        {
+            return new AstKeyword(Position.Default, "QUERY");
+        }
+        
+        public static AstKeyword Queue()
+        {
+            return new AstKeyword(Position.Default, "QUEUE");
+        }
+        
+        public static AstKeyword QueueDelay()
+        {
+            return new AstKeyword(Position.Default, "QUEUE_DELAY");
+        }
+        
+        public static AstKeyword QuotedIdentifier()
+        {
+            return new AstKeyword(Position.Default, "QUOTED_IDENTIFIER");
+        }
+        
+        public static AstKeyword Quotename()
+        {
+            return new AstKeyword(Position.Default, "QUOTENAME");
+        }
+        
+        public static AstKeyword Randomized()
+        {
+            return new AstKeyword(Position.Default, "RANDOMIZED");
+        }
+        
+        public static AstKeyword Range()
+        {
+            return new AstKeyword(Position.Default, "RANGE");
+        }
+        
+        public static AstKeyword Rank()
+        {
+            return new AstKeyword(Position.Default, "RANK");
+        }
+        
+        public static AstKeyword Rc2()
+        {
+            return new AstKeyword(Position.Default, "RC2");
+        }
+        
+        public static AstKeyword Rc4()
+        {
+            return new AstKeyword(Position.Default, "RC4");
+        }
+        
+        public static AstKeyword Rc4128()
+        {
+            return new AstKeyword(Position.Default, "RC4_128");
+        }
+        
+        public static AstKeyword ReadCommittedSnapshot()
+        {
+            return new AstKeyword(Position.Default, "READ_COMMITTED_SNAPSHOT");
+        }
+        
+        public static AstKeyword ReadOnly()
+        {
+            return new AstKeyword(Position.Default, "READ_ONLY");
+        }
+        
+        public static AstKeyword ReadOnlyRoutingList()
+        {
+            return new AstKeyword(Position.Default, "READ_ONLY_ROUTING_LIST");
+        }
+        
+        public static AstKeyword ReadWrite()
+        {
+            return new AstKeyword(Position.Default, "READ_WRITE");
+        }
+        
+        public static AstKeyword Readcommitted()
+        {
+            return new AstKeyword(Position.Default, "READCOMMITTED");
+        }
+        
+        public static AstKeyword Readcommittedlock()
+        {
+            return new AstKeyword(Position.Default, "READCOMMITTEDLOCK");
+        }
+        
+        public static AstKeyword Readonly()
+        {
+            return new AstKeyword(Position.Default, "READONLY");
+        }
+        
+        public static AstKeyword Readpast()
+        {
+            return new AstKeyword(Position.Default, "READPAST");
+        }
+        
+        public static AstKeyword Readuncommitted()
+        {
+            return new AstKeyword(Position.Default, "READUNCOMMITTED");
+        }
+        
+        public static AstKeyword Readwrite()
+        {
+            return new AstKeyword(Position.Default, "READWRITE");
+        }
+        
+        public static AstKeyword Rebuild()
+        {
+            return new AstKeyword(Position.Default, "REBUILD");
+        }
+        
+        public static AstKeyword Receive()
+        {
+            return new AstKeyword(Position.Default, "RECEIVE");
+        }
+        
+        public static AstKeyword Recompile()
+        {
+            return new AstKeyword(Position.Default, "RECOMPILE");
+        }
+        
+        public static AstKeyword Recovery()
+        {
+            return new AstKeyword(Position.Default, "RECOVERY");
+        }
+        
+        public static AstKeyword RecursiveTriggers()
+        {
+            return new AstKeyword(Position.Default, "RECURSIVE_TRIGGERS");
+        }
+        
+        public static AstKeyword Relative()
+        {
+            return new AstKeyword(Position.Default, "RELATIVE");
+        }
+        
+        public static AstKeyword Remote()
+        {
+            return new AstKeyword(Position.Default, "REMOTE");
+        }
+        
+        public static AstKeyword RemoteProcTransactions()
+        {
+            return new AstKeyword(Position.Default, "REMOTE_PROC_TRANSACTIONS");
+        }
+        
+        public static AstKeyword RemoteServiceName()
+        {
+            return new AstKeyword(Position.Default, "REMOTE_SERVICE_NAME");
+        }
+        
+        public static AstKeyword Remove()
+        {
+            return new AstKeyword(Position.Default, "REMOVE");
+        }
+        
+        public static AstKeyword Reorganize()
+        {
+            return new AstKeyword(Position.Default, "REORGANIZE");
+        }
+        
+        public static AstKeyword Repeatable()
+        {
+            return new AstKeyword(Position.Default, "REPEATABLE");
+        }
+        
+        public static AstKeyword Repeatableread()
+        {
+            return new AstKeyword(Position.Default, "REPEATABLEREAD");
+        }
+        
+        public static AstKeyword Replace()
+        {
+            return new AstKeyword(Position.Default, "REPLACE");
+        }
+        
+        public static AstKeyword Replica()
+        {
+            return new AstKeyword(Position.Default, "REPLICA");
+        }
+        
+        public static AstKeyword Replicate()
+        {
+            return new AstKeyword(Position.Default, "REPLICATE");
+        }
+        
+        public static AstKeyword RequestMaxCpuTimeSec()
+        {
+            return new AstKeyword(Position.Default, "REQUEST_MAX_CPU_TIME_SEC");
+        }
+        
+        public static AstKeyword RequestMaxMemoryGrantPercent()
+        {
+            return new AstKeyword(Position.Default, "REQUEST_MAX_MEMORY_GRANT_PERCENT");
+        }
+        
+        public static AstKeyword RequestMemoryGrantTimeoutSec()
+        {
+            return new AstKeyword(Position.Default, "REQUEST_MEMORY_GRANT_TIMEOUT_SEC");
+        }
+        
+        public static AstKeyword RequiredSynchronizedSecondariesToCommit()
+        {
+            return new AstKeyword(Position.Default, "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT");
+        }
+        
+        public static AstKeyword Resample()
+        {
+            return new AstKeyword(Position.Default, "RESAMPLE");
+        }
+        
+        public static AstKeyword ReserveDiskSpace()
+        {
+            return new AstKeyword(Position.Default, "RESERVE_DISK_SPACE");
+        }
+        
+        public static AstKeyword Resource()
+        {
+            return new AstKeyword(Position.Default, "RESOURCE");
+        }
+        
+        public static AstKeyword ResourceManagerLocation()
+        {
+            return new AstKeyword(Position.Default, "RESOURCE_MANAGER_LOCATION");
+        }
+        
+        public static AstKeyword RestrictedUser()
+        {
+            return new AstKeyword(Position.Default, "RESTRICTED_USER");
+        }
+        
+        public static AstKeyword Resumable()
+        {
+            return new AstKeyword(Position.Default, "RESUMABLE");
+        }
+        
+        public static AstKeyword Retention()
+        {
+            return new AstKeyword(Position.Default, "RETENTION");
+        }
+        
+        public static AstKeyword Reverse()
+        {
+            return new AstKeyword(Position.Default, "REVERSE");
+        }
+        
+        public static AstKeyword Robust()
+        {
+            return new AstKeyword(Position.Default, "ROBUST");
+        }
+        
+        public static AstKeyword Root()
+        {
+            return new AstKeyword(Position.Default, "ROOT");
+        }
+        
+        public static AstKeyword Route()
+        {
+            return new AstKeyword(Position.Default, "ROUTE");
+        }
+        
+        public static AstKeyword Row()
+        {
+            return new AstKeyword(Position.Default, "ROW");
+        }
+        
+        public static AstKeyword RowNumber()
+        {
+            return new AstKeyword(Position.Default, "ROW_NUMBER");
+        }
+        
+        public static AstKeyword Rowguid()
+        {
+            return new AstKeyword(Position.Default, "ROWGUID");
+        }
+        
+        public static AstKeyword Rowlock()
+        {
+            return new AstKeyword(Position.Default, "ROWLOCK");
+        }
+        
+        public static AstKeyword Rows()
+        {
+            return new AstKeyword(Position.Default, "ROWS");
+        }
+        
+        public static AstKeyword Rtrim()
+        {
+            return new AstKeyword(Position.Default, "RTRIM");
+        }
+        
+        public static AstKeyword Sample()
+        {
+            return new AstKeyword(Position.Default, "SAMPLE");
+        }
+        
+        public static AstKeyword SchemaId()
+        {
+            return new AstKeyword(Position.Default, "SCHEMA_ID");
+        }
+        
+        public static AstKeyword SchemaName()
+        {
+            return new AstKeyword(Position.Default, "SCHEMA_NAME");
+        }
+        
+        public static AstKeyword Schemabinding()
+        {
+            return new AstKeyword(Position.Default, "SCHEMABINDING");
+        }
+        
+        public static AstKeyword ScopeIdentity()
+        {
+            return new AstKeyword(Position.Default, "SCOPE_IDENTITY");
+        }
+        
+        public static AstKeyword Scoped()
+        {
+            return new AstKeyword(Position.Default, "SCOPED");
+        }
+        
+        public static AstKeyword Scroll()
+        {
+            return new AstKeyword(Position.Default, "SCROLL");
+        }
+        
+        public static AstKeyword ScrollLocks()
+        {
+            return new AstKeyword(Position.Default, "SCROLL_LOCKS");
+        }
+        
+        public static AstKeyword Search()
+        {
+            return new AstKeyword(Position.Default, "SEARCH");
+        }
+        
+        public static AstKeyword Secondary()
+        {
+            return new AstKeyword(Position.Default, "SECONDARY");
+        }
+        
+        public static AstKeyword SecondaryOnly()
+        {
+            return new AstKeyword(Position.Default, "SECONDARY_ONLY");
+        }
+        
+        public static AstKeyword SecondaryRole()
+        {
+            return new AstKeyword(Position.Default, "SECONDARY_ROLE");
+        }
+        
+        public static AstKeyword Seconds()
+        {
+            return new AstKeyword(Position.Default, "SECONDS");
+        }
+        
+        public static AstKeyword Secret()
+        {
+            return new AstKeyword(Position.Default, "SECRET");
+        }
+        
+        public static AstKeyword Securables()
+        {
+            return new AstKeyword(Position.Default, "SECURABLES");
+        }
+        
+        public static AstKeyword Security()
+        {
+            return new AstKeyword(Position.Default, "SECURITY");
+        }
+        
+        public static AstKeyword SecurityLog()
+        {
+            return new AstKeyword(Position.Default, "SECURITY_LOG");
+        }
+        
+        public static AstKeyword SeedingMode()
+        {
+            return new AstKeyword(Position.Default, "SEEDING_MODE");
+        }
+        
+        public static AstKeyword Self()
+        {
+            return new AstKeyword(Position.Default, "SELF");
+        }
+        
+        public static AstKeyword SemiSensitive()
+        {
+            return new AstKeyword(Position.Default, "SEMI_SENSITIVE");
+        }
+        
+        public static AstKeyword Send()
+        {
+            return new AstKeyword(Position.Default, "SEND");
+        }
+        
+        public static AstKeyword Sent()
+        {
+            return new AstKeyword(Position.Default, "SENT");
+        }
+        
+        public static AstKeyword Sequence()
+        {
+            return new AstKeyword(Position.Default, "SEQUENCE");
+        }
+        
+        public static AstKeyword SequenceNumber()
+        {
+            return new AstKeyword(Position.Default, "SEQUENCE_NUMBER");
+        }
+        
+        public static AstKeyword Serializable()
+        {
+            return new AstKeyword(Position.Default, "SERIALIZABLE");
+        }
+        
+        public static AstKeyword Serverproperty()
+        {
+            return new AstKeyword(Position.Default, "SERVERPROPERTY");
+        }
+        
+        public static AstKeyword SessionTimeout()
+        {
+            return new AstKeyword(Position.Default, "SESSION_TIMEOUT");
+        }
+        
+        public static AstKeyword Seterror()
+        {
+            return new AstKeyword(Position.Default, "SETERROR");
+        }
+        
+        public static AstKeyword Share()
+        {
+            return new AstKeyword(Position.Default, "SHARE");
+        }
+        
+        public static AstKeyword Shared()
+        {
+            return new AstKeyword(Position.Default, "SHARED");
+        }
+        
+        public static AstKeyword Showplan()
+        {
+            return new AstKeyword(Position.Default, "SHOWPLAN");
+        }
+        
+        public static AstKeyword ShowplanAll()
+        {
+            return new AstKeyword(Position.Default, "SHOWPLAN_ALL");
+        }
+        
+        public static AstKeyword ShowplanText()
+        {
+            return new AstKeyword(Position.Default, "SHOWPLAN_TEXT");
+        }
+        
+        public static AstKeyword ShowplanXml()
+        {
+            return new AstKeyword(Position.Default, "SHOWPLAN_XML");
+        }
+        
+        public static AstKeyword Signature()
+        {
+            return new AstKeyword(Position.Default, "SIGNATURE");
+        }
+        
+        public static AstKeyword Simple()
+        {
+            return new AstKeyword(Position.Default, "SIMPLE");
+        }
+        
+        public static AstKeyword SingleUser()
+        {
+            return new AstKeyword(Position.Default, "SINGLE_USER");
+        }
+        
+        public static AstKeyword Size()
+        {
+            return new AstKeyword(Position.Default, "SIZE");
+        }
+        
+        public static AstKeyword Smallint()
+        {
+            return new AstKeyword(Position.Default, "SMALLINT");
+        }
+        
+        public static AstKeyword Snapshot()
+        {
+            return new AstKeyword(Position.Default, "SNAPSHOT");
+        }
+        
+        public static AstKeyword SortInTempdb()
+        {
+            return new AstKeyword(Position.Default, "SORT_IN_TEMPDB");
+        }
+        
+        public static AstKeyword Soundex()
+        {
+            return new AstKeyword(Position.Default, "SOUNDEX");
+        }
+        
+        public static AstKeyword SpaceKeyword()
+        {
+            return new AstKeyword(Position.Default, "SPACE");
+        }
+        
+        public static AstKeyword Sparse()
+        {
+            return new AstKeyword(Position.Default, "SPARSE");
+        }
+        
+        public static AstKeyword SpatialWindowMaxCells()
+        {
+            return new AstKeyword(Position.Default, "SPATIAL_WINDOW_MAX_CELLS");
+        }
+        
+        public static AstKeyword Standby()
+        {
+            return new AstKeyword(Position.Default, "STANDBY");
+        }
+        
+        public static AstKeyword StartDate()
+        {
+            return new AstKeyword(Position.Default, "START_DATE");
+        }
+        
+        public static AstKeyword Static()
+        {
+            return new AstKeyword(Position.Default, "STATIC");
+        }
+        
+        public static AstKeyword StatisticsIncremental()
+        {
+            return new AstKeyword(Position.Default, "STATISTICS_INCREMENTAL");
+        }
+        
+        public static AstKeyword StatisticsNorecompute()
+        {
+            return new AstKeyword(Position.Default, "STATISTICS_NORECOMPUTE");
+        }
+        
+        public static AstKeyword StatsDate()
+        {
+            return new AstKeyword(Position.Default, "STATS_DATE");
+        }
+        
+        public static AstKeyword StatsStream()
+        {
+            return new AstKeyword(Position.Default, "STATS_STREAM");
+        }
+        
+        public static AstKeyword Status()
+        {
+            return new AstKeyword(Position.Default, "STATUS");
+        }
+        
+        public static AstKeyword Statusonly()
+        {
+            return new AstKeyword(Position.Default, "STATUSONLY");
+        }
+        
+        public static AstKeyword Stdev()
+        {
+            return new AstKeyword(Position.Default, "STDEV");
+        }
+        
+        public static AstKeyword Stdevp()
+        {
+            return new AstKeyword(Position.Default, "STDEVP");
+        }
+        
+        public static AstKeyword Stoplist()
+        {
+            return new AstKeyword(Position.Default, "STOPLIST");
+        }
+        
+        public static AstKeyword Str()
+        {
+            return new AstKeyword(Position.Default, "STR");
+        }
+        
+        public static AstKeyword StringAgg()
+        {
+            return new AstKeyword(Position.Default, "STRING_AGG");
+        }
+        
+        public static AstKeyword StringEscape()
+        {
+            return new AstKeyword(Position.Default, "STRING_ESCAPE");
+        }
+        
+        public static AstKeyword Stuff()
+        {
+            return new AstKeyword(Position.Default, "STUFF");
+        }
+        
+        public static AstKeyword Subject()
+        {
+            return new AstKeyword(Position.Default, "SUBJECT");
+        }
+        
+        public static AstKeyword Subscribe()
+        {
+            return new AstKeyword(Position.Default, "SUBSCRIBE");
+        }
+        
+        public static AstKeyword Subscription()
+        {
+            return new AstKeyword(Position.Default, "SUBSCRIPTION");
+        }
+        
+        public static AstKeyword Substring()
+        {
+            return new AstKeyword(Position.Default, "SUBSTRING");
+        }
+        
+        public static AstKeyword Sum()
+        {
+            return new AstKeyword(Position.Default, "SUM");
+        }
+        
+        public static AstKeyword Suspend()
+        {
+            return new AstKeyword(Position.Default, "SUSPEND");
+        }
+        
+        public static AstKeyword Symmetric()
+        {
+            return new AstKeyword(Position.Default, "SYMMETRIC");
+        }
+        
+        public static AstKeyword SynchronousCommit()
+        {
+            return new AstKeyword(Position.Default, "SYNCHRONOUS_COMMIT");
+        }
+        
+        public static AstKeyword Synonym()
+        {
+            return new AstKeyword(Position.Default, "SYNONYM");
+        }
+        
+        public static AstKeyword System()
+        {
+            return new AstKeyword(Position.Default, "SYSTEM");
+        }
+        
+        public static AstKeyword Tablock()
+        {
+            return new AstKeyword(Position.Default, "TABLOCK");
+        }
+        
+        public static AstKeyword Tablockx()
+        {
+            return new AstKeyword(Position.Default, "TABLOCKX");
+        }
+        
+        public static AstKeyword Take()
+        {
+            return new AstKeyword(Position.Default, "TAKE");
+        }
+        
+        public static AstKeyword TargetRecoveryTime()
+        {
+            return new AstKeyword(Position.Default, "TARGET_RECOVERY_TIME");
+        }
+        
+        public static AstKeyword Tb()
+        {
+            return new AstKeyword(Position.Default, "TB");
+        }
+        
+        public static AstKeyword TextimageOn()
+        {
+            return new AstKeyword(Position.Default, "TEXTIMAGE_ON");
+        }
+        
+        public static AstKeyword Throw()
+        {
+            return new AstKeyword(Position.Default, "THROW");
+        }
+        
+        public static AstKeyword Ties()
+        {
+            return new AstKeyword(Position.Default, "TIES");
+        }
+        
+        public static AstKeyword Time()
+        {
+            return new AstKeyword(Position.Default, "TIME");
+        }
+        
+        public static AstKeyword Timeout()
+        {
+            return new AstKeyword(Position.Default, "TIMEOUT");
+        }
+        
+        public static AstKeyword Timer()
+        {
+            return new AstKeyword(Position.Default, "TIMER");
+        }
+        
+        public static AstKeyword Tinyint()
+        {
+            return new AstKeyword(Position.Default, "TINYINT");
+        }
+        
+        public static AstKeyword TornPageDetection()
+        {
+            return new AstKeyword(Position.Default, "TORN_PAGE_DETECTION");
+        }
+        
+        public static AstKeyword Tracking()
+        {
+            return new AstKeyword(Position.Default, "TRACKING");
+        }
+        
+        public static AstKeyword TransactionId()
+        {
+            return new AstKeyword(Position.Default, "TRANSACTION_ID");
+        }
+        
+        public static AstKeyword TransformNoiseWords()
+        {
+            return new AstKeyword(Position.Default, "TRANSFORM_NOISE_WORDS");
+        }
+        
+        public static AstKeyword Translate()
+        {
+            return new AstKeyword(Position.Default, "TRANSLATE");
+        }
+        
+        public static AstKeyword Trim()
+        {
+            return new AstKeyword(Position.Default, "TRIM");
+        }
+        
+        public static AstKeyword TripleDes()
+        {
+            return new AstKeyword(Position.Default, "TRIPLE_DES");
+        }
+        
+        public static AstKeyword TripleDes3key()
+        {
+            return new AstKeyword(Position.Default, "TRIPLE_DES_3KEY");
+        }
+        
+        public static AstKeyword Trustworthy()
+        {
+            return new AstKeyword(Position.Default, "TRUSTWORTHY");
+        }
+        
+        public static AstKeyword Try()
+        {
+            return new AstKeyword(Position.Default, "TRY");
+        }
+        
+        public static AstKeyword Tsql()
+        {
+            return new AstKeyword(Position.Default, "TSQL");
+        }
+        
+        public static AstKeyword TwoDigitYearCutoff()
+        {
+            return new AstKeyword(Position.Default, "TWO_DIGIT_YEAR_CUTOFF");
+        }
+        
+        public static AstKeyword Type()
+        {
+            return new AstKeyword(Position.Default, "TYPE");
+        }
+        
+        public static AstKeyword TypeId()
+        {
+            return new AstKeyword(Position.Default, "TYPE_ID");
+        }
+        
+        public static AstKeyword TypeName()
+        {
+            return new AstKeyword(Position.Default, "TYPE_NAME");
+        }
+        
+        public static AstKeyword TypeWarning()
+        {
+            return new AstKeyword(Position.Default, "TYPE_WARNING");
+        }
+        
+        public static AstKeyword Typeproperty()
+        {
+            return new AstKeyword(Position.Default, "TYPEPROPERTY");
+        }
+        
+        public static AstKeyword Unbounded()
+        {
+            return new AstKeyword(Position.Default, "UNBOUNDED");
+        }
+        
+        public static AstKeyword Uncommitted()
+        {
+            return new AstKeyword(Position.Default, "UNCOMMITTED");
+        }
+        
+        public static AstKeyword Unicode()
+        {
+            return new AstKeyword(Position.Default, "UNICODE");
+        }
+        
+        public static AstKeyword Unknown()
+        {
+            return new AstKeyword(Position.Default, "UNKNOWN");
+        }
+        
+        public static AstKeyword Unlimited()
+        {
+            return new AstKeyword(Position.Default, "UNLIMITED");
+        }
+        
+        public static AstKeyword Unmask()
+        {
+            return new AstKeyword(Position.Default, "UNMASK");
+        }
+        
+        public static AstKeyword Uow()
+        {
+            return new AstKeyword(Position.Default, "UOW");
+        }
+        
+        public static AstKeyword Updlock()
+        {
+            return new AstKeyword(Position.Default, "UPDLOCK");
+        }
+        
+        public static AstKeyword Upper()
+        {
+            return new AstKeyword(Position.Default, "UPPER");
+        }
+        
+        public static AstKeyword Using()
+        {
+            return new AstKeyword(Position.Default, "USING");
+        }
+        
+        public static AstKeyword ValidXml()
+        {
+            return new AstKeyword(Position.Default, "VALID_XML");
+        }
+        
+        public static AstKeyword Validation()
+        {
+            return new AstKeyword(Position.Default, "VALIDATION");
+        }
+        
+        public static AstKeyword Value()
+        {
+            return new AstKeyword(Position.Default, "VALUE");
+        }
+        
+        public static AstKeyword Var()
+        {
+            return new AstKeyword(Position.Default, "VAR");
+        }
+        
+        public static AstKeyword VarbinaryKeyword()
+        {
+            return new AstKeyword(Position.Default, "VARBINARY");
+        }
+        
+        public static AstKeyword Varp()
+        {
+            return new AstKeyword(Position.Default, "VARP");
+        }
+        
+        public static AstKeyword Version()
+        {
+            return new AstKeyword(Position.Default, "VERSION");
+        }
+        
+        public static AstKeyword ViewMetadata()
+        {
+            return new AstKeyword(Position.Default, "VIEW_METADATA");
+        }
+        
+        public static AstKeyword Views()
+        {
+            return new AstKeyword(Position.Default, "VIEWS");
+        }
+        
+        public static AstKeyword Wait()
+        {
+            return new AstKeyword(Position.Default, "WAIT");
+        }
+        
+        public static AstKeyword WellFormedXml()
+        {
+            return new AstKeyword(Position.Default, "WELL_FORMED_XML");
+        }
+        
+        public static AstKeyword WithoutArrayWrapper()
+        {
+            return new AstKeyword(Position.Default, "WITHOUT_ARRAY_WRAPPER");
+        }
+        
+        public static AstKeyword Work()
+        {
+            return new AstKeyword(Position.Default, "WORK");
+        }
+        
+        public static AstKeyword Workload()
+        {
+            return new AstKeyword(Position.Default, "WORKLOAD");
+        }
+        
+        public static AstKeyword Xlock()
+        {
+            return new AstKeyword(Position.Default, "XLOCK");
+        }
+        
+        public static AstKeyword Xml()
+        {
+            return new AstKeyword(Position.Default, "XML");
+        }
+        
+        public static AstKeyword XmlCompression()
+        {
+            return new AstKeyword(Position.Default, "XML_COMPRESSION");
+        }
+        
+        public static AstKeyword Xmldata()
+        {
+            return new AstKeyword(Position.Default, "XMLDATA");
+        }
+        
+        public static AstKeyword Xmlnamespaces()
+        {
+            return new AstKeyword(Position.Default, "XMLNAMESPACES");
+        }
+        
+        public static AstKeyword Xmlschema()
+        {
+            return new AstKeyword(Position.Default, "XMLSCHEMA");
+        }
+        
+        public static AstKeyword Xsinil()
+        {
+            return new AstKeyword(Position.Default, "XSINIL");
+        }
+        
+        public static AstKeyword Zone()
+        {
+            return new AstKeyword(Position.Default, "ZONE");
+        }
+        
+        public static AstKeyword AbortAfterWait()
+        {
+            return new AstKeyword(Position.Default, "ABORT_AFTER_WAIT");
+        }
+        
+        public static AstKeyword Absent()
+        {
+            return new AstKeyword(Position.Default, "ABSENT");
+        }
+        
+        public static AstKeyword Administer()
+        {
+            return new AstKeyword(Position.Default, "ADMINISTER");
+        }
+        
+        public static AstKeyword Aes()
+        {
+            return new AstKeyword(Position.Default, "AES");
+        }
+        
+        public static AstKeyword AllowConnections()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_CONNECTIONS");
+        }
+        
+        public static AstKeyword AllowMultipleEventLoss()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_MULTIPLE_EVENT_LOSS");
+        }
+        
+        public static AstKeyword AllowSingleEventLoss()
+        {
+            return new AstKeyword(Position.Default, "ALLOW_SINGLE_EVENT_LOSS");
+        }
+        
+        public static AstKeyword Anonymous()
+        {
+            return new AstKeyword(Position.Default, "ANONYMOUS");
+        }
+        
+        public static AstKeyword Append()
+        {
+            return new AstKeyword(Position.Default, "APPEND");
+        }
+        
+        public static AstKeyword Application()
+        {
+            return new AstKeyword(Position.Default, "APPLICATION");
+        }
+        
+        public static AstKeyword Asymmetric()
+        {
+            return new AstKeyword(Position.Default, "ASYMMETRIC");
+        }
+        
+        public static AstKeyword AsynchronousCommit()
+        {
+            return new AstKeyword(Position.Default, "ASYNCHRONOUS_COMMIT");
+        }
+        
+        public static AstKeyword Authenticate()
+        {
+            return new AstKeyword(Position.Default, "AUTHENTICATE");
+        }
+        
+        public static AstKeyword Authentication()
+        {
+            return new AstKeyword(Position.Default, "AUTHENTICATION");
+        }
+        
+        public static AstKeyword AutomatedBackupPreference()
+        {
+            return new AstKeyword(Position.Default, "AUTOMATED_BACKUP_PREFERENCE");
+        }
+        
+        public static AstKeyword Automatic()
+        {
+            return new AstKeyword(Position.Default, "AUTOMATIC");
+        }
+        
+        public static AstKeyword AvailabilityMode()
+        {
+            return new AstKeyword(Position.Default, "AVAILABILITY_MODE");
+        }
+        
+        public static AstKeyword Before()
+        {
+            return new AstKeyword(Position.Default, "BEFORE");
+        }
+        
+        public static AstKeyword Block()
+        {
+            return new AstKeyword(Position.Default, "BLOCK");
+        }
+        
+        public static AstKeyword Blockers()
+        {
+            return new AstKeyword(Position.Default, "BLOCKERS");
+        }
+        
+        public static AstKeyword Blocksize()
+        {
+            return new AstKeyword(Position.Default, "BLOCKSIZE");
+        }
+        
+        public static AstKeyword BlockingHierarchy()
+        {
+            return new AstKeyword(Position.Default, "BLOCKING_HIERARCHY");
+        }
+        
+        public static AstKeyword Buffer()
+        {
+            return new AstKeyword(Position.Default, "BUFFER");
+        }
+        
+        public static AstKeyword Buffercount()
+        {
+            return new AstKeyword(Position.Default, "BUFFERCOUNT");
+        }
+        
+        public static AstKeyword Cache()
+        {
+            return new AstKeyword(Position.Default, "CACHE");
+        }
+        
+        public static AstKeyword Called()
+        {
+            return new AstKeyword(Position.Default, "CALLED");
+        }
+        
+        public static AstKeyword Certificate()
+        {
+            return new AstKeyword(Position.Default, "CERTIFICATE");
+        }
+        
+        public static AstKeyword Changetable()
+        {
+            return new AstKeyword(Position.Default, "CHANGETABLE");
+        }
+        
+        public static AstKeyword Changes()
+        {
+            return new AstKeyword(Position.Default, "CHANGES");
+        }
+        
+        public static AstKeyword CheckPolicy()
+        {
+            return new AstKeyword(Position.Default, "CHECK_POLICY");
+        }
+        
+        public static AstKeyword CheckExpiration()
+        {
+            return new AstKeyword(Position.Default, "CHECK_EXPIRATION");
+        }
+        
+        public static AstKeyword ClassifierFunction()
+        {
+            return new AstKeyword(Position.Default, "CLASSIFIER_FUNCTION");
+        }
+        
+        public static AstKeyword Cluster()
+        {
+            return new AstKeyword(Position.Default, "CLUSTER");
+        }
+        
+        public static AstKeyword Compress()
+        {
+            return new AstKeyword(Position.Default, "COMPRESS");
+        }
+        
+        public static AstKeyword Compression()
+        {
+            return new AstKeyword(Position.Default, "COMPRESSION");
+        }
+        
+        public static AstKeyword Connect()
+        {
+            return new AstKeyword(Position.Default, "CONNECT");
+        }
+        
+        public static AstKeyword Connection()
+        {
+            return new AstKeyword(Position.Default, "CONNECTION");
+        }
+        
+        public static AstKeyword Configuration()
+        {
+            return new AstKeyword(Position.Default, "CONFIGURATION");
+        }
+        
+        public static AstKeyword Connectionproperty()
+        {
+            return new AstKeyword(Position.Default, "CONNECTIONPROPERTY");
+        }
+        
+        public static AstKeyword Containment()
+        {
+            return new AstKeyword(Position.Default, "CONTAINMENT");
+        }
+        
+        public static AstKeyword Context()
+        {
+            return new AstKeyword(Position.Default, "CONTEXT");
+        }
+        
+        public static AstKeyword ContextInfo()
+        {
+            return new AstKeyword(Position.Default, "CONTEXT_INFO");
+        }
+        
+        public static AstKeyword ContinueAfterError()
+        {
+            return new AstKeyword(Position.Default, "CONTINUE_AFTER_ERROR");
+        }
+        
+        public static AstKeyword Contract()
+        {
+            return new AstKeyword(Position.Default, "CONTRACT");
+        }
+        
+        public static AstKeyword ContractName()
+        {
+            return new AstKeyword(Position.Default, "CONTRACT_NAME");
+        }
+        
+        public static AstKeyword Conversation()
+        {
+            return new AstKeyword(Position.Default, "CONVERSATION");
+        }
+        
+        public static AstKeyword CopyOnly()
+        {
+            return new AstKeyword(Position.Default, "COPY_ONLY");
+        }
+        
+        public static AstKeyword CurrentRequestId()
+        {
+            return new AstKeyword(Position.Default, "CURRENT_REQUEST_ID");
+        }
+        
+        public static AstKeyword CurrentTransactionId()
+        {
+            return new AstKeyword(Position.Default, "CURRENT_TRANSACTION_ID");
+        }
+        
+        public static AstKeyword Cycle()
+        {
+            return new AstKeyword(Position.Default, "CYCLE");
+        }
+        
+        public static AstKeyword DataCompression()
+        {
+            return new AstKeyword(Position.Default, "DATA_COMPRESSION");
+        }
+        
+        public static AstKeyword DataSource()
+        {
+            return new AstKeyword(Position.Default, "DATA_SOURCE");
+        }
+        
+        public static AstKeyword DatabaseMirroring()
+        {
+            return new AstKeyword(Position.Default, "DATABASE_MIRRORING");
+        }
+        
+        public static AstKeyword Dataspace()
+        {
+            return new AstKeyword(Position.Default, "DATASPACE");
+        }
+        
+        public static AstKeyword Ddl()
+        {
+            return new AstKeyword(Position.Default, "DDL");
+        }
+        
+        public static AstKeyword Decompress()
+        {
+            return new AstKeyword(Position.Default, "DECOMPRESS");
+        }
+        
+        public static AstKeyword DefaultDatabase()
+        {
+            return new AstKeyword(Position.Default, "DEFAULT_DATABASE");
+        }
+        
+        public static AstKeyword DefaultSchema()
+        {
+            return new AstKeyword(Position.Default, "DEFAULT_SCHEMA");
+        }
+        
+        public static AstKeyword Diagnostics()
+        {
+            return new AstKeyword(Position.Default, "DIAGNOSTICS");
+        }
+        
+        public static AstKeyword Differential()
+        {
+            return new AstKeyword(Position.Default, "DIFFERENTIAL");
+        }
+        
+        public static AstKeyword Distribution()
+        {
+            return new AstKeyword(Position.Default, "DISTRIBUTION");
+        }
+        
+        public static AstKeyword DtcSupport()
+        {
+            return new AstKeyword(Position.Default, "DTC_SUPPORT");
+        }
+        
+        public static AstKeyword Enabled()
+        {
+            return new AstKeyword(Position.Default, "ENABLED");
+        }
+        
+        public static AstKeyword Endpoint()
+        {
+            return new AstKeyword(Position.Default, "ENDPOINT");
+        }
+        
+        public static AstKeyword Error()
+        {
+            return new AstKeyword(Position.Default, "ERROR");
+        }
+        
+        public static AstKeyword ErrorLine()
+        {
+            return new AstKeyword(Position.Default, "ERROR_LINE");
+        }
+        
+        public static AstKeyword ErrorMessage()
+        {
+            return new AstKeyword(Position.Default, "ERROR_MESSAGE");
+        }
+        
+        public static AstKeyword ErrorNumber()
+        {
+            return new AstKeyword(Position.Default, "ERROR_NUMBER");
+        }
+        
+        public static AstKeyword ErrorProcedure()
+        {
+            return new AstKeyword(Position.Default, "ERROR_PROCEDURE");
+        }
+        
+        public static AstKeyword ErrorSeverity()
+        {
+            return new AstKeyword(Position.Default, "ERROR_SEVERITY");
+        }
+        
+        public static AstKeyword ErrorState()
+        {
+            return new AstKeyword(Position.Default, "ERROR_STATE");
+        }
+        
+        public static AstKeyword Event()
+        {
+            return new AstKeyword(Position.Default, "EVENT");
+        }
+        
+        public static AstKeyword Eventdata()
+        {
+            return new AstKeyword(Position.Default, "EVENTDATA");
+        }
+        
+        public static AstKeyword EventRetentionMode()
+        {
+            return new AstKeyword(Position.Default, "EVENT_RETENTION_MODE");
+        }
+        
+        public static AstKeyword ExecutableFile()
+        {
+            return new AstKeyword(Position.Default, "EXECUTABLE_FILE");
+        }
+        
+        public static AstKeyword Expiredate()
+        {
+            return new AstKeyword(Position.Default, "EXPIREDATE");
+        }
+        
+        public static AstKeyword Extension()
+        {
+            return new AstKeyword(Position.Default, "EXTENSION");
+        }
+        
+        public static AstKeyword ExternalAccess()
+        {
+            return new AstKeyword(Position.Default, "EXTERNAL_ACCESS");
+        }
+        
+        public static AstKeyword Failover()
+        {
+            return new AstKeyword(Position.Default, "FAILOVER");
+        }
+        
+        public static AstKeyword Failureconditionlevel()
+        {
+            return new AstKeyword(Position.Default, "FAILURECONDITIONLEVEL");
+        }
+        
+        public static AstKeyword FanIn()
+        {
+            return new AstKeyword(Position.Default, "FAN_IN");
+        }
+        
+        public static AstKeyword FileSnapshot()
+        {
+            return new AstKeyword(Position.Default, "FILE_SNAPSHOT");
+        }
+        
+        public static AstKeyword Forceseek()
+        {
+            return new AstKeyword(Position.Default, "FORCESEEK");
+        }
+        
+        public static AstKeyword ForceServiceAllowDataLoss()
+        {
+            return new AstKeyword(Position.Default, "FORCE_SERVICE_ALLOW_DATA_LOSS");
+        }
+        
+        public static AstKeyword Formatmessage()
+        {
+            return new AstKeyword(Position.Default, "FORMATMESSAGE");
+        }
+        
+        public static AstKeyword Get()
+        {
+            return new AstKeyword(Position.Default, "GET");
+        }
+        
+        public static AstKeyword GetFilestreamTransactionContext()
+        {
+            return new AstKeyword(Position.Default, "GET_FILESTREAM_TRANSACTION_CONTEXT");
+        }
+        
+        public static AstKeyword Getancestor()
+        {
+            return new AstKeyword(Position.Default, "GETANCESTOR");
+        }
+        
+        public static AstKeyword Getansinull()
+        {
+            return new AstKeyword(Position.Default, "GETANSINULL");
+        }
+        
+        public static AstKeyword Getdescendant()
+        {
+            return new AstKeyword(Position.Default, "GETDESCENDANT");
+        }
+        
+        public static AstKeyword Getlevel()
+        {
+            return new AstKeyword(Position.Default, "GETLEVEL");
+        }
+        
+        public static AstKeyword Getreparentedvalue()
+        {
+            return new AstKeyword(Position.Default, "GETREPARENTEDVALUE");
+        }
+        
+        public static AstKeyword Getroot()
+        {
+            return new AstKeyword(Position.Default, "GETROOT");
+        }
+        
+        public static AstKeyword Governor()
+        {
+            return new AstKeyword(Position.Default, "GOVERNOR");
+        }
+        
+        public static AstKeyword Hashed()
+        {
+            return new AstKeyword(Position.Default, "HASHED");
+        }
+        
+        public static AstKeyword Healthchecktimeout()
+        {
+            return new AstKeyword(Position.Default, "HEALTHCHECKTIMEOUT");
+        }
+        
+        public static AstKeyword Heap()
+        {
+            return new AstKeyword(Position.Default, "HEAP");
+        }
+        
+        public static AstKeyword Hierarchyid()
+        {
+            return new AstKeyword(Position.Default, "HIERARCHYID");
+        }
+        
+        public static AstKeyword HostId()
+        {
+            return new AstKeyword(Position.Default, "HOST_ID");
+        }
+        
+        public static AstKeyword HostName()
+        {
+            return new AstKeyword(Position.Default, "HOST_NAME");
+        }
+        
+        public static AstKeyword Iif()
+        {
+            return new AstKeyword(Position.Default, "IIF");
+        }
+        
+        public static AstKeyword Io()
+        {
+            return new AstKeyword(Position.Default, "IO");
+        }
+        
+        public static AstKeyword Include()
+        {
+            return new AstKeyword(Position.Default, "INCLUDE");
+        }
+        
+        public static AstKeyword Increment()
+        {
+            return new AstKeyword(Position.Default, "INCREMENT");
+        }
+        
+        public static AstKeyword Infinite()
+        {
+            return new AstKeyword(Position.Default, "INFINITE");
+        }
+        
+        public static AstKeyword Init()
+        {
+            return new AstKeyword(Position.Default, "INIT");
+        }
+        
+        public static AstKeyword Instead()
+        {
+            return new AstKeyword(Position.Default, "INSTEAD");
+        }
+        
+        public static AstKeyword Isdescendantof()
+        {
+            return new AstKeyword(Position.Default, "ISDESCENDANTOF");
+        }
+        
+        public static AstKeyword Isnull()
+        {
+            return new AstKeyword(Position.Default, "ISNULL");
+        }
+        
+        public static AstKeyword Isnumeric()
+        {
+            return new AstKeyword(Position.Default, "ISNUMERIC");
+        }
+        
+        public static AstKeyword Kerberos()
+        {
+            return new AstKeyword(Position.Default, "KERBEROS");
+        }
+        
+        public static AstKeyword KeyPath()
+        {
+            return new AstKeyword(Position.Default, "KEY_PATH");
+        }
+        
+        public static AstKeyword KeyStoreProviderName()
+        {
+            return new AstKeyword(Position.Default, "KEY_STORE_PROVIDER_NAME");
+        }
+        
+        public static AstKeyword Language()
+        {
+            return new AstKeyword(Position.Default, "LANGUAGE");
+        }
+        
+        public static AstKeyword Library()
+        {
+            return new AstKeyword(Position.Default, "LIBRARY");
+        }
+        
+        public static AstKeyword Lifetime()
+        {
+            return new AstKeyword(Position.Default, "LIFETIME");
+        }
+        
+        public static AstKeyword Linked()
+        {
+            return new AstKeyword(Position.Default, "LINKED");
+        }
+        
+        public static AstKeyword Linux()
+        {
+            return new AstKeyword(Position.Default, "LINUX");
+        }
+        
+        public static AstKeyword ListenerIp()
+        {
+            return new AstKeyword(Position.Default, "LISTENER_IP");
+        }
+        
+        public static AstKeyword ListenerPort()
+        {
+            return new AstKeyword(Position.Default, "LISTENER_PORT");
+        }
+        
+        public static AstKeyword LocalServiceName()
+        {
+            return new AstKeyword(Position.Default, "LOCAL_SERVICE_NAME");
+        }
+        
+        public static AstKeyword Log()
+        {
+            return new AstKeyword(Position.Default, "LOG");
+        }
+        
+        public static AstKeyword Mask()
+        {
+            return new AstKeyword(Position.Default, "MASK");
+        }
+        
+        public static AstKeyword Matched()
+        {
+            return new AstKeyword(Position.Default, "MATCHED");
+        }
+        
+        public static AstKeyword Master()
+        {
+            return new AstKeyword(Position.Default, "MASTER");
+        }
+        
+        public static AstKeyword MaxMemory()
+        {
+            return new AstKeyword(Position.Default, "MAX_MEMORY");
+        }
+        
+        public static AstKeyword Maxtransfer()
+        {
+            return new AstKeyword(Position.Default, "MAXTRANSFER");
+        }
+        
+        public static AstKeyword Maxvalue()
+        {
+            return new AstKeyword(Position.Default, "MAXVALUE");
+        }
+        
+        public static AstKeyword MaxDispatchLatency()
+        {
+            return new AstKeyword(Position.Default, "MAX_DISPATCH_LATENCY");
+        }
+        
+        public static AstKeyword MaxDuration()
+        {
+            return new AstKeyword(Position.Default, "MAX_DURATION");
+        }
+        
+        public static AstKeyword MaxEventSize()
+        {
+            return new AstKeyword(Position.Default, "MAX_EVENT_SIZE");
+        }
+        
+        public static AstKeyword MaxSize()
+        {
+            return new AstKeyword(Position.Default, "MAX_SIZE");
+        }
+        
+        public static AstKeyword MaxOutstandingIoPerVolume()
+        {
+            return new AstKeyword(Position.Default, "MAX_OUTSTANDING_IO_PER_VOLUME");
+        }
+        
+        public static AstKeyword Mediadescription()
+        {
+            return new AstKeyword(Position.Default, "MEDIADESCRIPTION");
+        }
+        
+        public static AstKeyword Medianame()
+        {
+            return new AstKeyword(Position.Default, "MEDIANAME");
+        }
+        
+        public static AstKeyword Member()
+        {
+            return new AstKeyword(Position.Default, "MEMBER");
+        }
+        
+        public static AstKeyword MemoryPartitionMode()
+        {
+            return new AstKeyword(Position.Default, "MEMORY_PARTITION_MODE");
+        }
+        
+        public static AstKeyword MessageForwarding()
+        {
+            return new AstKeyword(Position.Default, "MESSAGE_FORWARDING");
+        }
+        
+        public static AstKeyword MessageForwardSize()
+        {
+            return new AstKeyword(Position.Default, "MESSAGE_FORWARD_SIZE");
+        }
+        
+        public static AstKeyword Minvalue()
+        {
+            return new AstKeyword(Position.Default, "MINVALUE");
+        }
+        
+        public static AstKeyword Mirror()
+        {
+            return new AstKeyword(Position.Default, "MIRROR");
+        }
+        
+        public static AstKeyword MustChange()
+        {
+            return new AstKeyword(Position.Default, "MUST_CHANGE");
+        }
+        
+        public static AstKeyword Newid()
+        {
+            return new AstKeyword(Position.Default, "NEWID");
+        }
+        
+        public static AstKeyword Newsequentialid()
+        {
+            return new AstKeyword(Position.Default, "NEWSEQUENTIALID");
+        }
+        
+        public static AstKeyword Noformat()
+        {
+            return new AstKeyword(Position.Default, "NOFORMAT");
+        }
+        
+        public static AstKeyword Noinit()
+        {
+            return new AstKeyword(Position.Default, "NOINIT");
+        }
+        
+        public static AstKeyword None()
+        {
+            return new AstKeyword(Position.Default, "NONE");
+        }
+        
+        public static AstKeyword Norewind()
+        {
+            return new AstKeyword(Position.Default, "NOREWIND");
+        }
+        
+        public static AstKeyword Noskip()
+        {
+            return new AstKeyword(Position.Default, "NOSKIP");
+        }
+        
+        public static AstKeyword Nounload()
+        {
+            return new AstKeyword(Position.Default, "NOUNLOAD");
+        }
+        
+        public static AstKeyword NoChecksum()
+        {
+            return new AstKeyword(Position.Default, "NO_CHECKSUM");
+        }
+        
+        public static AstKeyword NoCompression()
+        {
+            return new AstKeyword(Position.Default, "NO_COMPRESSION");
+        }
+        
+        public static AstKeyword NoEventLoss()
+        {
+            return new AstKeyword(Position.Default, "NO_EVENT_LOSS");
+        }
+        
+        public static AstKeyword Notification()
+        {
+            return new AstKeyword(Position.Default, "NOTIFICATION");
+        }
+        
+        public static AstKeyword Ntlm()
+        {
+            return new AstKeyword(Position.Default, "NTLM");
+        }
+        
+        public static AstKeyword OldPassword()
+        {
+            return new AstKeyword(Position.Default, "OLD_PASSWORD");
+        }
+        
+        public static AstKeyword OnFailure()
+        {
+            return new AstKeyword(Position.Default, "ON_FAILURE");
+        }
+        
+        public static AstKeyword Operations()
+        {
+            return new AstKeyword(Position.Default, "OPERATIONS");
+        }
+        
+        public static AstKeyword Page()
+        {
+            return new AstKeyword(Position.Default, "PAGE");
+        }
+        
+        public static AstKeyword ParamNode()
+        {
+            return new AstKeyword(Position.Default, "PARAM_NODE");
+        }
+        
+        public static AstKeyword Partial()
+        {
+            return new AstKeyword(Position.Default, "PARTIAL");
+        }
+        
+        public static AstKeyword Password()
+        {
+            return new AstKeyword(Position.Default, "PASSWORD");
+        }
+        
+        public static AstKeyword PermissionSet()
+        {
+            return new AstKeyword(Position.Default, "PERMISSION_SET");
+        }
+        
+        public static AstKeyword PerCpu()
+        {
+            return new AstKeyword(Position.Default, "PER_CPU");
+        }
+        
+        public static AstKeyword PerDb()
+        {
+            return new AstKeyword(Position.Default, "PER_DB");
+        }
+        
+        public static AstKeyword PerNode()
+        {
+            return new AstKeyword(Position.Default, "PER_NODE");
+        }
+        
+        public static AstKeyword Persisted()
+        {
+            return new AstKeyword(Position.Default, "PERSISTED");
+        }
+        
+        public static AstKeyword Platform()
+        {
+            return new AstKeyword(Position.Default, "PLATFORM");
+        }
+        
+        public static AstKeyword Policy()
+        {
+            return new AstKeyword(Position.Default, "POLICY");
+        }
+        
+        public static AstKeyword Predicate()
+        {
+            return new AstKeyword(Position.Default, "PREDICATE");
+        }
+        
+        public static AstKeyword Process()
+        {
+            return new AstKeyword(Position.Default, "PROCESS");
+        }
+        
+        public static AstKeyword Profile()
+        {
+            return new AstKeyword(Position.Default, "PROFILE");
+        }
+        
+        public static AstKeyword Python()
+        {
+            return new AstKeyword(Position.Default, "PYTHON");
+        }
+        
+        public static AstKeyword R()
+        {
+            return new AstKeyword(Position.Default, "R");
+        }
+        
+        public static AstKeyword ReadWriteFilegroups()
+        {
+            return new AstKeyword(Position.Default, "READ_WRITE_FILEGROUPS");
+        }
+        
+        public static AstKeyword Regenerate()
+        {
+            return new AstKeyword(Position.Default, "REGENERATE");
+        }
+        
+        public static AstKeyword RelatedConversation()
+        {
+            return new AstKeyword(Position.Default, "RELATED_CONVERSATION");
+        }
+        
+        public static AstKeyword RelatedConversationGroup()
+        {
+            return new AstKeyword(Position.Default, "RELATED_CONVERSATION_GROUP");
+        }
+        
+        public static AstKeyword Required()
+        {
+            return new AstKeyword(Position.Default, "REQUIRED");
+        }
+        
+        public static AstKeyword Reset()
+        {
+            return new AstKeyword(Position.Default, "RESET");
+        }
+        
+        public static AstKeyword Resources()
+        {
+            return new AstKeyword(Position.Default, "RESOURCES");
+        }
+        
+        public static AstKeyword Restart()
+        {
+            return new AstKeyword(Position.Default, "RESTART");
+        }
+        
+        public static AstKeyword Resume()
+        {
+            return new AstKeyword(Position.Default, "RESUME");
+        }
+        
+        public static AstKeyword Retaindays()
+        {
+            return new AstKeyword(Position.Default, "RETAINDAYS");
+        }
+        
+        public static AstKeyword Returns()
+        {
+            return new AstKeyword(Position.Default, "RETURNS");
+        }
+        
+        public static AstKeyword Rewind()
+        {
+            return new AstKeyword(Position.Default, "REWIND");
+        }
+        
+        public static AstKeyword Role()
+        {
+            return new AstKeyword(Position.Default, "ROLE");
+        }
+        
+        public static AstKeyword RoundRobin()
+        {
+            return new AstKeyword(Position.Default, "ROUND_ROBIN");
+        }
+        
+        public static AstKeyword RowcountBig()
+        {
+            return new AstKeyword(Position.Default, "ROWCOUNT_BIG");
+        }
+        
+        public static AstKeyword Rsa512()
+        {
+            return new AstKeyword(Position.Default, "RSA_512");
+        }
+        
+        public static AstKeyword Rsa1024()
+        {
+            return new AstKeyword(Position.Default, "RSA_1024");
+        }
+        
+        public static AstKeyword Rsa2048()
+        {
+            return new AstKeyword(Position.Default, "RSA_2048");
+        }
+        
+        public static AstKeyword Rsa3072()
+        {
+            return new AstKeyword(Position.Default, "RSA_3072");
+        }
+        
+        public static AstKeyword Rsa4096()
+        {
+            return new AstKeyword(Position.Default, "RSA_4096");
+        }
+        
+        public static AstKeyword Safety()
+        {
+            return new AstKeyword(Position.Default, "SAFETY");
+        }
+        
+        public static AstKeyword Safe()
+        {
+            return new AstKeyword(Position.Default, "SAFE");
+        }
+        
+        public static AstKeyword Scheduler()
+        {
+            return new AstKeyword(Position.Default, "SCHEDULER");
+        }
+        
+        public static AstKeyword Scheme()
+        {
+            return new AstKeyword(Position.Default, "SCHEME");
+        }
+        
+        public static AstKeyword Script()
+        {
+            return new AstKeyword(Position.Default, "SCRIPT");
+        }
+        
+        public static AstKeyword Server()
+        {
+            return new AstKeyword(Position.Default, "SERVER");
+        }
+        
+        public static AstKeyword Service()
+        {
+            return new AstKeyword(Position.Default, "SERVICE");
+        }
+        
+        public static AstKeyword ServiceBroker()
+        {
+            return new AstKeyword(Position.Default, "SERVICE_BROKER");
+        }
+        
+        public static AstKeyword ServiceName()
+        {
+            return new AstKeyword(Position.Default, "SERVICE_NAME");
+        }
+        
+        public static AstKeyword Session()
+        {
+            return new AstKeyword(Position.Default, "SESSION");
+        }
+        
+        public static AstKeyword SessionContext()
+        {
+            return new AstKeyword(Position.Default, "SESSION_CONTEXT");
+        }
+        
+        public static AstKeyword Settings()
+        {
+            return new AstKeyword(Position.Default, "SETTINGS");
+        }
+        
+        public static AstKeyword Shrinklog()
+        {
+            return new AstKeyword(Position.Default, "SHRINKLOG");
+        }
+        
+        public static AstKeyword Sid()
+        {
+            return new AstKeyword(Position.Default, "SID");
+        }
+        
+        public static AstKeyword SkipKeyword()
+        {
+            return new AstKeyword(Position.Default, "SKIP");
+        }
+        
+        public static AstKeyword Softnuma()
+        {
+            return new AstKeyword(Position.Default, "SOFTNUMA");
+        }
+        
+        public static AstKeyword Source()
+        {
+            return new AstKeyword(Position.Default, "SOURCE");
+        }
+        
+        public static AstKeyword Specification()
+        {
+            return new AstKeyword(Position.Default, "SPECIFICATION");
+        }
+        
+        public static AstKeyword Split()
+        {
+            return new AstKeyword(Position.Default, "SPLIT");
+        }
+        
+        public static AstKeyword Sql()
+        {
+            return new AstKeyword(Position.Default, "SQL");
+        }
+        
+        public static AstKeyword Sqldumperflags()
+        {
+            return new AstKeyword(Position.Default, "SQLDUMPERFLAGS");
+        }
+        
+        public static AstKeyword Sqldumperpath()
+        {
+            return new AstKeyword(Position.Default, "SQLDUMPERPATH");
+        }
+        
+        public static AstKeyword Sqldumpertimeout()
+        {
+            return new AstKeyword(Position.Default, "SQLDUMPERTIMEOUT");
+        }
+        
+        public static AstKeyword State()
+        {
+            return new AstKeyword(Position.Default, "STATE");
+        }
+        
+        public static AstKeyword Stats()
+        {
+            return new AstKeyword(Position.Default, "STATS");
+        }
+        
+        public static AstKeyword Start()
+        {
+            return new AstKeyword(Position.Default, "START");
+        }
+        
+        public static AstKeyword Started()
+        {
+            return new AstKeyword(Position.Default, "STARTED");
+        }
+        
+        public static AstKeyword StartupState()
+        {
+            return new AstKeyword(Position.Default, "STARTUP_STATE");
+        }
+        
+        public static AstKeyword Stop()
+        {
+            return new AstKeyword(Position.Default, "STOP");
+        }
+        
+        public static AstKeyword Stopped()
+        {
+            return new AstKeyword(Position.Default, "STOPPED");
+        }
+        
+        public static AstKeyword StopOnError()
+        {
+            return new AstKeyword(Position.Default, "STOP_ON_ERROR");
+        }
+        
+        public static AstKeyword Supported()
+        {
+            return new AstKeyword(Position.Default, "SUPPORTED");
+        }
+        
+        public static AstKeyword Switch()
+        {
+            return new AstKeyword(Position.Default, "SWITCH");
+        }
+        
+        public static AstKeyword Tape()
+        {
+            return new AstKeyword(Position.Default, "TAPE");
+        }
+        
+        public static AstKeyword Target()
+        {
+            return new AstKeyword(Position.Default, "TARGET");
+        }
+        
+        public static AstKeyword Tcp()
+        {
+            return new AstKeyword(Position.Default, "TCP");
+        }
+        
+        public static AstKeyword Tostring()
+        {
+            return new AstKeyword(Position.Default, "TOSTRING");
+        }
+        
+        public static AstKeyword Trace()
+        {
+            return new AstKeyword(Position.Default, "TRACE");
+        }
+        
+        public static AstKeyword TrackCausality()
+        {
+            return new AstKeyword(Position.Default, "TRACK_CAUSALITY");
+        }
+        
+        public static AstKeyword Transfer()
+        {
+            return new AstKeyword(Position.Default, "TRANSFER");
+        }
+        
+        public static AstKeyword Unchecked()
+        {
+            return new AstKeyword(Position.Default, "UNCHECKED");
+        }
+        
+        public static AstKeyword Unlock()
+        {
+            return new AstKeyword(Position.Default, "UNLOCK");
+        }
+        
+        public static AstKeyword Unsafe()
+        {
+            return new AstKeyword(Position.Default, "UNSAFE");
+        }
+        
+        public static AstKeyword Url()
+        {
+            return new AstKeyword(Position.Default, "URL");
+        }
+        
+        public static AstKeyword Used()
+        {
+            return new AstKeyword(Position.Default, "USED");
+        }
+        
+        public static AstKeyword Verboselogging()
+        {
+            return new AstKeyword(Position.Default, "VERBOSELOGGING");
+        }
+        
+        public static AstKeyword Visibility()
+        {
+            return new AstKeyword(Position.Default, "VISIBILITY");
+        }
+        
+        public static AstKeyword WaitAtLowPriority()
+        {
+            return new AstKeyword(Position.Default, "WAIT_AT_LOW_PRIORITY");
+        }
+        
+        public static AstKeyword Windows()
+        {
+            return new AstKeyword(Position.Default, "WINDOWS");
+        }
+        
+        public static AstKeyword Without()
+        {
+            return new AstKeyword(Position.Default, "WITHOUT");
+        }
+        
+        public static AstKeyword Witness()
+        {
+            return new AstKeyword(Position.Default, "WITNESS");
+        }
+        
+        public static AstKeyword XactAbort()
+        {
+            return new AstKeyword(Position.Default, "XACT_ABORT");
+        }
+        
+        public static AstKeyword XactState()
+        {
+            return new AstKeyword(Position.Default, "XACT_STATE");
+        }
+        
+        public static AstKeyword Varchar()
+        {
+            return new AstKeyword(Position.Default, "VARCHAR");
+        }
+        
+        public static AstKeyword Nvarchar()
+        {
+            return new AstKeyword(Position.Default, "NVARCHAR");
+        }
+        
+        public static AstKeyword Precision()
+        {
+            return new AstKeyword(Position.Default, "PRECISION");
+        }
+    }
+    
+    public partial class AstFileSizeUnity
+    {
+        
+        public AstFileSizeUnity(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
+        
+        public static AstFileSizeUnity _undefined()
+        {
+            return new AstFileSizeUnity(null);
+        }
+        
+        public static AstFileSizeUnity Kb()
+        {
+            return new AstFileSizeUnity(Position.Default, "KB");
+        }
+        
+        public static AstFileSizeUnity Mb()
+        {
+            return new AstFileSizeUnity(Position.Default, "MB");
+        }
+        
+        public static AstFileSizeUnity Gb()
+        {
+            return new AstFileSizeUnity(Position.Default, "GB");
+        }
+        
+        public static AstFileSizeUnity Tb()
+        {
+            return new AstFileSizeUnity(Position.Default, "TB");
+        }
+        
+        public static AstFileSizeUnity Module()
+        {
+            return new AstFileSizeUnity(Position.Default, "%");
+        }
+    }
+    
+    public partial class AstLogSeterrorNowait
+    {
+        
+        public AstLogSeterrorNowait(ITerminalNode t, string value) : 
+                base(t)
+        {
+        }
+        
+        public static AstLogSeterrorNowait _undefined()
+        {
+            return new AstLogSeterrorNowait(null);
+        }
+        
+        public static AstLogSeterrorNowait Log()
+        {
+            return new AstLogSeterrorNowait(Position.Default, "LOG");
+        }
+        
+        public static AstLogSeterrorNowait Seterror()
+        {
+            return new AstLogSeterrorNowait(Position.Default, "SETERROR");
+        }
+        
+        public static AstLogSeterrorNowait Nowait()
+        {
+            return new AstLogSeterrorNowait(Position.Default, "NOWAIT");
+        }
     }
 }

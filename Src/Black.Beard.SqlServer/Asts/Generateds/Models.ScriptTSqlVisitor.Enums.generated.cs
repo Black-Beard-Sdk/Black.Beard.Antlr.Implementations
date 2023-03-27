@@ -36,9 +36,18 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// assembly_permission
+        /// 	 : (SAFE | EXTERNAL_ACCESS | UNSAFE)
+        /// </summary>
+        public override AstRoot VisitAssembly_permission(TSqlParser.Assembly_permissionContext context)
+        {
+            return new AstAssemblyPermission(context, context.GetText());
+        }
+        
+        /// <summary>
         /// binary_content
-        /// 	 : STRING
-        /// 	 | BINARY
+        /// 	 : stringtext
+        /// 	 | binary_
         /// </summary>
         public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
         {
@@ -64,6 +73,27 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitClass_type_for_parallel_dw(TSqlParser.Class_type_for_parallel_dwContext context)
         {
             return new AstClassTypeForParallelDw(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// encryption_master
+        /// 	 : ENCRYPTION
+        /// 	 | MASTER
+        /// </summary>
+        public override AstRoot VisitEncryption_master(TSqlParser.Encryption_masterContext context)
+        {
+            return new AstEncryptionMaster(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// database_object_server
+        /// 	 : DATABASE
+        /// 	 | OBJECT
+        /// 	 | SERVER
+        /// </summary>
+        public override AstRoot VisitDatabase_object_server(TSqlParser.Database_object_serverContext context)
+        {
+            return new AstDatabaseObjectServer(context, context.GetText());
         }
         
         /// <summary>
@@ -201,8 +231,8 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// code_content
-        /// 	 : STRING
-        /// 	 | BINARY
+        /// 	 : stringtext
+        /// 	 | binary_
         /// 	 | NONE
         /// </summary>
         public override AstRoot VisitCode_content(TSqlParser.Code_contentContext context)
@@ -260,6 +290,24 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitEnum_dml(TSqlParser.Enum_dmlContext context)
         {
             return new AstEnumDml(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// insert_update
+        /// 	 : (INSERT | UPDATE)
+        /// </summary>
+        public override AstRoot VisitInsert_update(TSqlParser.Insert_updateContext context)
+        {
+            return new AstInsertUpdate(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// update_delate
+        /// 	 : (UPDATE | DELETE)
+        /// </summary>
+        public override AstRoot VisitUpdate_delate(TSqlParser.Update_delateContext context)
+        {
+            return new AstUpdateDelate(context, context.GetText());
         }
         
         /// <summary>

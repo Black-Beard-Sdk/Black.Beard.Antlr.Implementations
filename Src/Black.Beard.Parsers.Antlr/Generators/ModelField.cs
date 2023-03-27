@@ -133,8 +133,6 @@ namespace Bb.Generators
         public Action<ModelField, object> Action { get; internal set; }
         public Action<ModelField> Action2 { get; internal set; }
 
-        protected Action<Documentation> _actionDocumentation;
-
     }
 
 

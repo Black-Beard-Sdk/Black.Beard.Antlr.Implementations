@@ -25,6 +25,15 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
+        /// null
+        /// 	 : NULL_
+        /// </summary>
+        public override AstRoot VisitNull(TSqlParser.NullContext context)
+        {
+            return new AstNull(context);
+        }
+        
+        /// <summary>
         /// empty_statement
         /// 	 : SEMI
         /// </summary>
@@ -49,15 +58,6 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitAlter_assembly_drop(TSqlParser.Alter_assembly_dropContext context)
         {
             return new AstAlterAssemblyDrop(context);
-        }
-        
-        /// <summary>
-        /// assembly_file_name
-        /// 	 : STRING
-        /// </summary>
-        public override AstRoot VisitAssembly_file_name(TSqlParser.Assembly_file_nameContext context)
-        {
-            return new AstAssemblyFileName(context);
         }
         
         /// <summary>
@@ -94,15 +94,6 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitMultiple_local_file_start(TSqlParser.Multiple_local_file_startContext context)
         {
             return new AstMultipleLocalFileStart(context);
-        }
-        
-        /// <summary>
-        /// server_instance
-        /// 	 : STRING
-        /// </summary>
-        public override AstRoot VisitServer_instance(TSqlParser.Server_instanceContext context)
-        {
-            return new AstServerInstance(context);
         }
         
         /// <summary>
@@ -170,16 +161,43 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// constant
-        /// 	 : STRING
-        /// 	 | BINARY
-        /// 	 | sign?  DECIMAL
-        /// 	 | sign?  (REAL | FLOAT)
-        /// 	 | sign?  dollar = DOLLAR  (DECIMAL | FLOAT)
+        /// 	 : stringtext
+        /// 	 | binary_
+        /// 	 | sign?  decimal
+        /// 	 | sign?  (real | float)
+        /// 	 | sign?  dollar = DOLLAR  (decimal | float)
         /// 	 | parameter
         /// </summary>
         public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
         {
             return new AstConstant(context);
+        }
+        
+        /// <summary>
+        /// ipv4
+        /// 	 : IPV4_ADDR
+        /// </summary>
+        public override AstRoot VisitIpv4(TSqlParser.Ipv4Context context)
+        {
+            return new AstIpv4(context);
+        }
+        
+        /// <summary>
+        /// ipv6
+        /// 	 : IPV6_ADDR
+        /// </summary>
+        public override AstRoot VisitIpv6(TSqlParser.Ipv6Context context)
+        {
+            return new AstIpv6(context);
+        }
+        
+        /// <summary>
+        /// float
+        /// 	 : FLOAT
+        /// </summary>
+        public override AstRoot VisitFloat(TSqlParser.FloatContext context)
+        {
+            return new AstFloat(context);
         }
         
         /// <summary>
@@ -192,12 +210,12 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// stringtext
-        /// 	 : STRING
+        /// binary_
+        /// 	 : BINARY
         /// </summary>
-        public override AstRoot VisitStringtext(TSqlParser.StringtextContext context)
+        public override AstRoot VisitBinary_(TSqlParser.Binary_Context context)
         {
-            return new AstStringtext(context);
+            return new AstBinary(context);
         }
         
         /// <summary>
@@ -207,6 +225,15 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitLocal_id(TSqlParser.Local_idContext context)
         {
             return new AstLocalId(context);
+        }
+        
+        /// <summary>
+        /// stringtext
+        /// 	 : STRING
+        /// </summary>
+        public override AstRoot VisitStringtext(TSqlParser.StringtextContext context)
+        {
+            return new AstStringtext(context);
         }
     }
 }

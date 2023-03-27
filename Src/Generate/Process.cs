@@ -46,7 +46,15 @@ namespace Generate
                 .Add<ScriptClassIdentifiertWithProperties>()
                 .Add<ScriptClassWithProperties>()
                 .Add<ScriptClassDefaults>()
-                .Add<ScriptEnums>("Enums")
+                .Add<ScriptEnums>("Enums", a =>
+                {
+
+
+                    a.Using("Bb.Parsers");
+                    a.Using("Antlr4.Runtime.Tree");
+                    ;
+
+                })
 
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {

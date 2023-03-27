@@ -178,10 +178,12 @@ namespace Bb.Parsers
                 {
                     if (v1 is AstRule r1)
                     {
+                    
                         var c2 = r1.Configuration.Config;
                         if (c2.Generate)
                         {
-                            c2.Inherit = new IdentifierConfig(@"""" + "Ast" + CodeHelper.FormatCsharp(a.Name.Text) + @"""");
+                            if (c2.Inherit == null)
+                                c2.Inherit = new IdentifierConfig(@"""" + "Ast" + CodeHelper.FormatCsharp(a.Name.Text) + @"""");
                         }
                         else
                         {

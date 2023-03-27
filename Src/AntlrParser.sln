@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Antlr", "Antlr", "{DA904F8A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers", "Black.Beard.Parsers\Black.Beard.Parsers.csproj", "{D25C9409-451D-4803-93F9-3C7AA2624038}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers.SqlServer.UnitTests", "Black.Beard.Parsers.SqlServer.UnitTests\Black.Beard.Parsers.SqlServer.UnitTests.csproj", "{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25C9409-451D-4803-93F9-3C7AA2624038}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D92C1A1-4A94-4651-B4F0-08D7423C8DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

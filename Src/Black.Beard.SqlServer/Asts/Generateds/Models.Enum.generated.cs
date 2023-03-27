@@ -76,9 +76,64 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// assembly_permission
+    /// 	 : (SAFE | EXTERNAL_ACCESS | UNSAFE)
+    /// </summary>
+    public partial class AstAssemblyPermission : AstTerminal<AstAssemblyPermissionEnum>
+    {
+        
+        public AstAssemblyPermission(ITerminalNode t, string value) : 
+                base(t, AstAssemblyPermission.GetValue(value))
+        {
+        }
+        
+        public AstAssemblyPermission(ITerminalNode t, AstAssemblyPermissionEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAssemblyPermission(ParserRuleContext ctx, string value) : 
+                base(ctx, AstAssemblyPermission.GetValue(value))
+        {
+        }
+        
+        public AstAssemblyPermission(Position p, string value) : 
+                base(p, AstAssemblyPermission.GetValue(value))
+        {
+        }
+        
+        public AstAssemblyPermission(Position p, AstAssemblyPermissionEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitAssemblyPermission(this);
+        }
+        
+        protected static AstAssemblyPermissionEnum GetValue(string value)
+        {
+            if ((value == "SAFE"))
+            {
+                return AstAssemblyPermissionEnum.Safe;
+            }
+            if ((value == "EXTERNAL_ACCESS"))
+            {
+                return AstAssemblyPermissionEnum.ExternalAccess;
+            }
+            if ((value == "UNSAFE"))
+            {
+                return AstAssemblyPermissionEnum.Unsafe;
+            }
+            return AstAssemblyPermissionEnum._undefined;
+        }
+    }
+    
+    /// <summary>
     /// binary_content
-    /// 	 : STRING
-    /// 	 | BINARY
+    /// 	 : stringtext
+    /// 	 | binary_
     /// </summary>
     public partial class AstBinaryContent : AstTerminal<AstBinaryContentEnum>
     {
@@ -115,14 +170,6 @@ namespace Bb.Asts.TSql
         
         protected static AstBinaryContentEnum GetValue(string value)
         {
-            if ((value == "STRING"))
-            {
-                return AstBinaryContentEnum.String;
-            }
-            if ((value == "BINARY"))
-            {
-                return AstBinaryContentEnum.Binary;
-            }
             return AstBinaryContentEnum._undefined;
         }
     }
@@ -233,6 +280,115 @@ namespace Bb.Asts.TSql
                 return AstClassTypeForParallelDwEnum.Object;
             }
             return AstClassTypeForParallelDwEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// encryption_master
+    /// 	 : ENCRYPTION
+    /// 	 | MASTER
+    /// </summary>
+    public partial class AstEncryptionMaster : AstTerminal<AstEncryptionMasterEnum>
+    {
+        
+        public AstEncryptionMaster(ITerminalNode t, string value) : 
+                base(t, AstEncryptionMaster.GetValue(value))
+        {
+        }
+        
+        public AstEncryptionMaster(ITerminalNode t, AstEncryptionMasterEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEncryptionMaster(ParserRuleContext ctx, string value) : 
+                base(ctx, AstEncryptionMaster.GetValue(value))
+        {
+        }
+        
+        public AstEncryptionMaster(Position p, string value) : 
+                base(p, AstEncryptionMaster.GetValue(value))
+        {
+        }
+        
+        public AstEncryptionMaster(Position p, AstEncryptionMasterEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitEncryptionMaster(this);
+        }
+        
+        protected static AstEncryptionMasterEnum GetValue(string value)
+        {
+            if ((value == "ENCRYPTION"))
+            {
+                return AstEncryptionMasterEnum.Encryption;
+            }
+            if ((value == "MASTER"))
+            {
+                return AstEncryptionMasterEnum.Master;
+            }
+            return AstEncryptionMasterEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// database_object_server
+    /// 	 : DATABASE
+    /// 	 | OBJECT
+    /// 	 | SERVER
+    /// </summary>
+    public partial class AstDatabaseObjectServer : AstTerminal<AstDatabaseObjectServerEnum>
+    {
+        
+        public AstDatabaseObjectServer(ITerminalNode t, string value) : 
+                base(t, AstDatabaseObjectServer.GetValue(value))
+        {
+        }
+        
+        public AstDatabaseObjectServer(ITerminalNode t, AstDatabaseObjectServerEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDatabaseObjectServer(ParserRuleContext ctx, string value) : 
+                base(ctx, AstDatabaseObjectServer.GetValue(value))
+        {
+        }
+        
+        public AstDatabaseObjectServer(Position p, string value) : 
+                base(p, AstDatabaseObjectServer.GetValue(value))
+        {
+        }
+        
+        public AstDatabaseObjectServer(Position p, AstDatabaseObjectServerEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDatabaseObjectServer(this);
+        }
+        
+        protected static AstDatabaseObjectServerEnum GetValue(string value)
+        {
+            if ((value == "DATABASE"))
+            {
+                return AstDatabaseObjectServerEnum.Database;
+            }
+            if ((value == "OBJECT"))
+            {
+                return AstDatabaseObjectServerEnum.Object;
+            }
+            if ((value == "SERVER"))
+            {
+                return AstDatabaseObjectServerEnum.Server;
+            }
+            return AstDatabaseObjectServerEnum._undefined;
         }
     }
     
@@ -929,8 +1085,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// code_content
-    /// 	 : STRING
-    /// 	 | BINARY
+    /// 	 : stringtext
+    /// 	 | binary_
     /// 	 | NONE
     /// </summary>
     public partial class AstCodeContent : AstTerminal<AstCodeContentEnum>
@@ -968,14 +1124,6 @@ namespace Bb.Asts.TSql
         
         protected static AstCodeContentEnum GetValue(string value)
         {
-            if ((value == "STRING"))
-            {
-                return AstCodeContentEnum.String;
-            }
-            if ((value == "BINARY"))
-            {
-                return AstCodeContentEnum.Binary;
-            }
             if ((value == "NONE"))
             {
                 return AstCodeContentEnum.None;
@@ -1251,6 +1399,108 @@ namespace Bb.Asts.TSql
                 return AstEnumDmlEnum.Update;
             }
             return AstEnumDmlEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// insert_update
+    /// 	 : (INSERT | UPDATE)
+    /// </summary>
+    public partial class AstInsertUpdate : AstTerminal<AstInsertUpdateEnum>
+    {
+        
+        public AstInsertUpdate(ITerminalNode t, string value) : 
+                base(t, AstInsertUpdate.GetValue(value))
+        {
+        }
+        
+        public AstInsertUpdate(ITerminalNode t, AstInsertUpdateEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstInsertUpdate(ParserRuleContext ctx, string value) : 
+                base(ctx, AstInsertUpdate.GetValue(value))
+        {
+        }
+        
+        public AstInsertUpdate(Position p, string value) : 
+                base(p, AstInsertUpdate.GetValue(value))
+        {
+        }
+        
+        public AstInsertUpdate(Position p, AstInsertUpdateEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitInsertUpdate(this);
+        }
+        
+        protected static AstInsertUpdateEnum GetValue(string value)
+        {
+            if ((value == "INSERT"))
+            {
+                return AstInsertUpdateEnum.Insert;
+            }
+            if ((value == "UPDATE"))
+            {
+                return AstInsertUpdateEnum.Update;
+            }
+            return AstInsertUpdateEnum._undefined;
+        }
+    }
+    
+    /// <summary>
+    /// update_delate
+    /// 	 : (UPDATE | DELETE)
+    /// </summary>
+    public partial class AstUpdateDelate : AstTerminal<AstUpdateDelateEnum>
+    {
+        
+        public AstUpdateDelate(ITerminalNode t, string value) : 
+                base(t, AstUpdateDelate.GetValue(value))
+        {
+        }
+        
+        public AstUpdateDelate(ITerminalNode t, AstUpdateDelateEnum value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUpdateDelate(ParserRuleContext ctx, string value) : 
+                base(ctx, AstUpdateDelate.GetValue(value))
+        {
+        }
+        
+        public AstUpdateDelate(Position p, string value) : 
+                base(p, AstUpdateDelate.GetValue(value))
+        {
+        }
+        
+        public AstUpdateDelate(Position p, AstUpdateDelateEnum value) : 
+                base(p, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitUpdateDelate(this);
+        }
+        
+        protected static AstUpdateDelateEnum GetValue(string value)
+        {
+            if ((value == "UPDATE"))
+            {
+                return AstUpdateDelateEnum.Update;
+            }
+            if ((value == "DELETE"))
+            {
+                return AstUpdateDelateEnum.Delete;
+            }
+            return AstUpdateDelateEnum._undefined;
         }
     }
     

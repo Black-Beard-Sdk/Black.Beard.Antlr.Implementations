@@ -201,6 +201,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitConstant_local_id_or_null([NotNull] TSqlParser.Constant_local_id_or_nullContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.null"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNull([NotNull] TSqlParser.NullContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.empty_statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -320,6 +326,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitClient_assembly_specifier([NotNull] TSqlParser.Client_assembly_specifierContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.assembly_permission"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAssembly_permission([NotNull] TSqlParser.Assembly_permissionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.assembly_option"/>.
 	/// </summary>
@@ -500,6 +512,18 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitClass_type_for_grant([NotNull] TSqlParser.Class_type_for_grantContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.encryption_master"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEncryption_master([NotNull] TSqlParser.Encryption_masterContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.database_object_server"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDatabase_object_server([NotNull] TSqlParser.Database_object_serverContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.drop_availability_group"/>.
 	/// </summary>
@@ -717,11 +741,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAlter_availability_group_options([NotNull] TSqlParser.Alter_availability_group_optionsContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.server_instance"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.server_instance_txt"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitServer_instance([NotNull] TSqlParser.Server_instanceContext context);
+	Result VisitServer_instance_txt([NotNull] TSqlParser.Server_instance_txtContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_or_alter_broker_priority"/>.
 	/// </summary>
@@ -1245,6 +1269,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTarget_parameter_sets([NotNull] TSqlParser.Target_parameter_setsContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.target_parameter_ids"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTarget_parameter_ids([NotNull] TSqlParser.Target_parameter_idsContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.target_parameter_set"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1400,6 +1430,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlter_fulltext_stoplist([NotNull] TSqlParser.Alter_fulltext_stoplistContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.fulltext_languageList"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFulltext_languageList([NotNull] TSqlParser.Fulltext_languageListContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_fulltext_stoplist"/>.
 	/// </summary>
@@ -1635,6 +1671,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreate_schema_name([NotNull] TSqlParser.Create_schema_nameContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.create_schema_targets"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCreate_schema_targets([NotNull] TSqlParser.Create_schema_targetsContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_schema_target"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -1689,11 +1731,23 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreate_security_policy_add([NotNull] TSqlParser.Create_security_policy_addContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.schema_table_ref_impacts"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.schema_table_ref_impact"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitSchema_table_ref_impacts([NotNull] TSqlParser.Schema_table_ref_impactsContext context);
+	Result VisitSchema_table_ref_impact([NotNull] TSqlParser.Schema_table_ref_impactContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.insert_update"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInsert_update([NotNull] TSqlParser.Insert_updateContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.update_delate"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUpdate_delate([NotNull] TSqlParser.Update_delateContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.filter_block"/>.
 	/// </summary>
@@ -1826,6 +1880,18 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitServer_audit_file_spec([NotNull] TSqlParser.Server_audit_file_specContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_unlimited"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimal_unlimited([NotNull] TSqlParser.Decimal_unlimitedContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_size_unlimited"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecimal_size_unlimited([NotNull] TSqlParser.Decimal_size_unlimitedContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_server_audit_condition"/>.
 	/// </summary>
@@ -2217,6 +2283,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitWhen_matches([NotNull] TSqlParser.When_matchesContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.when_matche"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitWhen_matche([NotNull] TSqlParser.When_matcheContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.merge_matched"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -2384,6 +2456,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlter_index([NotNull] TSqlParser.Alter_indexContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.index_name"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIndex_name([NotNull] TSqlParser.Index_nameContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.resumable_index_option"/>.
 	/// </summary>
@@ -2619,11 +2697,17 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTable_options([NotNull] TSqlParser.Table_optionsContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.table_option"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.tbl_option"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTable_option([NotNull] TSqlParser.Table_optionContext context);
+	Result VisitTbl_option([NotNull] TSqlParser.Tbl_optionContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.tableoption"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTableoption([NotNull] TSqlParser.TableoptionContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.table_opt_varname"/>.
 	/// </summary>
@@ -3555,6 +3639,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitExecute_clause([NotNull] TSqlParser.Execute_clauseContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.execute_clause_mode"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExecute_clause_mode([NotNull] TSqlParser.Execute_clause_modeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.declare_local"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3753,11 +3843,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSpecial_list([NotNull] TSqlParser.Special_listContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.constant_LOCAL_ID"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.constant_local_id"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitConstant_LOCAL_ID([NotNull] TSqlParser.Constant_LOCAL_IDContext context);
+	Result VisitConstant_local_id([NotNull] TSqlParser.Constant_local_idContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.empty_value"/>.
 	/// </summary>
@@ -3909,6 +3999,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTop_percent([NotNull] TSqlParser.Top_percentContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.percent_constant"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPercent_constant([NotNull] TSqlParser.Percent_constantContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.top_count"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3933,6 +4029,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFor_clause([NotNull] TSqlParser.For_clauseContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.xml_common_directive"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitXml_common_directive([NotNull] TSqlParser.Xml_common_directiveContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.for_clause_xml_raw"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -3950,12 +4052,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitClause_json_info([NotNull] TSqlParser.Clause_json_infoContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.xml_common_directives"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitXml_common_directives([NotNull] TSqlParser.Xml_common_directivesContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.order_by_expression"/>.
 	/// </summary>
@@ -4209,831 +4305,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFreetext_table_andcolumn_names([NotNull] TSqlParser.Freetext_table_andcolumn_namesContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>APP_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.built_in_functions"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAPP_NAME([NotNull] TSqlParser.APP_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>APPLOCK_MODE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAPPLOCK_MODE([NotNull] TSqlParser.APPLOCK_MODEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>APPLOCK_TEST</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitAPPLOCK_TEST([NotNull] TSqlParser.APPLOCK_TESTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ASSEMBLYPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitASSEMBLYPROPERTY([NotNull] TSqlParser.ASSEMBLYPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COL_LENGTH</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOL_LENGTH([NotNull] TSqlParser.COL_LENGTHContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COL_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOL_NAME([NotNull] TSqlParser.COL_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COLUMNPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOLUMNPROPERTY([NotNull] TSqlParser.COLUMNPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATABASEPROPERTYEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATABASEPROPERTYEX([NotNull] TSqlParser.DATABASEPROPERTYEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DB_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDB_ID([NotNull] TSqlParser.DB_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DB_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDB_NAME([NotNull] TSqlParser.DB_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILE_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILE_ID([NotNull] TSqlParser.FILE_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILE_IDEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILE_IDEX([NotNull] TSqlParser.FILE_IDEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILE_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILE_NAME([NotNull] TSqlParser.FILE_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILEGROUP_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILEGROUP_ID([NotNull] TSqlParser.FILEGROUP_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILEGROUP_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILEGROUP_NAME([NotNull] TSqlParser.FILEGROUP_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILEGROUPPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILEGROUPPROPERTY([NotNull] TSqlParser.FILEGROUPPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILEPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILEPROPERTY([NotNull] TSqlParser.FILEPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FILEPROPERTYEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFILEPROPERTYEX([NotNull] TSqlParser.FILEPROPERTYEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FULLTEXTCATALOGPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFULLTEXTCATALOGPROPERTY([NotNull] TSqlParser.FULLTEXTCATALOGPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FULLTEXTSERVICEPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFULLTEXTSERVICEPROPERTY([NotNull] TSqlParser.FULLTEXTSERVICEPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>INDEX_COL</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitINDEX_COL([NotNull] TSqlParser.INDEX_COLContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>INDEXKEY_PROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitINDEXKEY_PROPERTY([NotNull] TSqlParser.INDEXKEY_PROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>INDEXPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitINDEXPROPERTY([NotNull] TSqlParser.INDEXPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NEXT_VALUE_FOR</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNEXT_VALUE_FOR([NotNull] TSqlParser.NEXT_VALUE_FORContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECT_DEFINITION</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECT_DEFINITION([NotNull] TSqlParser.OBJECT_DEFINITIONContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECT_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECT_ID([NotNull] TSqlParser.OBJECT_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECT_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECT_NAME([NotNull] TSqlParser.OBJECT_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECT_SCHEMA_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECT_SCHEMA_NAME([NotNull] TSqlParser.OBJECT_SCHEMA_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECTPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECTPROPERTY([NotNull] TSqlParser.OBJECTPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>OBJECTPROPERTYEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitOBJECTPROPERTYEX([NotNull] TSqlParser.OBJECTPROPERTYEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ORIGINAL_DB_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitORIGINAL_DB_NAME([NotNull] TSqlParser.ORIGINAL_DB_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PARSENAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPARSENAME([NotNull] TSqlParser.PARSENAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SCHEMA_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSCHEMA_ID([NotNull] TSqlParser.SCHEMA_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SCHEMA_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSCHEMA_NAME([NotNull] TSqlParser.SCHEMA_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SCOPE_IDENTITY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSCOPE_IDENTITY([NotNull] TSqlParser.SCOPE_IDENTITYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SERVERPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSERVERPROPERTY([NotNull] TSqlParser.SERVERPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STATS_DATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTATS_DATE([NotNull] TSqlParser.STATS_DATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TYPE_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTYPE_ID([NotNull] TSqlParser.TYPE_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TYPE_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTYPE_NAME([NotNull] TSqlParser.TYPE_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TYPEPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTYPEPROPERTY([NotNull] TSqlParser.TYPEPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ASCII</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitASCII([NotNull] TSqlParser.ASCIIContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CHAR</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCHAR([NotNull] TSqlParser.CHARContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CHARINDEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCHARINDEX([NotNull] TSqlParser.CHARINDEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONCAT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONCAT([NotNull] TSqlParser.CONCATContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONCAT_WS</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONCAT_WS([NotNull] TSqlParser.CONCAT_WSContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DIFFERENCE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDIFFERENCE([NotNull] TSqlParser.DIFFERENCEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FORMAT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFORMAT([NotNull] TSqlParser.FORMATContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LEFT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLEFT([NotNull] TSqlParser.LEFTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LEN</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLEN([NotNull] TSqlParser.LENContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LOWER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLOWER([NotNull] TSqlParser.LOWERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>LTRIM</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLTRIM([NotNull] TSqlParser.LTRIMContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NCHAR</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNCHAR([NotNull] TSqlParser.NCHARContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PATINDEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPATINDEX([NotNull] TSqlParser.PATINDEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>QUOTENAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitQUOTENAME([NotNull] TSqlParser.QUOTENAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REPLACE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREPLACE([NotNull] TSqlParser.REPLACEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REPLICATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREPLICATE([NotNull] TSqlParser.REPLICATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>REVERSE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitREVERSE([NotNull] TSqlParser.REVERSEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RIGHT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRIGHT([NotNull] TSqlParser.RIGHTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>RTRIM</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitRTRIM([NotNull] TSqlParser.RTRIMContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SOUNDEX</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSOUNDEX([NotNull] TSqlParser.SOUNDEXContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SPACE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSPACE([NotNull] TSqlParser.SPACEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STR</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTR([NotNull] TSqlParser.STRContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STRINGAGG</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTRINGAGG([NotNull] TSqlParser.STRINGAGGContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STRING_ESCAPE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTRING_ESCAPE([NotNull] TSqlParser.STRING_ESCAPEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>STUFF</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSTUFF([NotNull] TSqlParser.STUFFContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SUBSTRING</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSUBSTRING([NotNull] TSqlParser.SUBSTRINGContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRANSLATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRANSLATE([NotNull] TSqlParser.TRANSLATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRIM</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRIM([NotNull] TSqlParser.TRIMContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>UNICODE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitUNICODE([NotNull] TSqlParser.UNICODEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>UPPER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitUPPER([NotNull] TSqlParser.UPPERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>BINARY_CHECKSUM</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitBINARY_CHECKSUM([NotNull] TSqlParser.BINARY_CHECKSUMContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CHECKSUM</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCHECKSUM([NotNull] TSqlParser.CHECKSUMContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COMPRESS</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOMPRESS([NotNull] TSqlParser.COMPRESSContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONNECTIONPROPERTY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONNECTIONPROPERTY([NotNull] TSqlParser.CONNECTIONPROPERTYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONTEXT_INFO</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONTEXT_INFO([NotNull] TSqlParser.CONTEXT_INFOContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CURRENT_REQUEST_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCURRENT_REQUEST_ID([NotNull] TSqlParser.CURRENT_REQUEST_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CURRENT_TRANSACTION_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCURRENT_TRANSACTION_ID([NotNull] TSqlParser.CURRENT_TRANSACTION_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DECOMPRESS</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDECOMPRESS([NotNull] TSqlParser.DECOMPRESSContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_LINE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_LINE([NotNull] TSqlParser.ERROR_LINEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_MESSAGE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_MESSAGE([NotNull] TSqlParser.ERROR_MESSAGEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_NUMBER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_NUMBER([NotNull] TSqlParser.ERROR_NUMBERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_PROCEDURE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_PROCEDURE([NotNull] TSqlParser.ERROR_PROCEDUREContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_SEVERITY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_SEVERITY([NotNull] TSqlParser.ERROR_SEVERITYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ERROR_STATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitERROR_STATE([NotNull] TSqlParser.ERROR_STATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>FORMATMESSAGE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFORMATMESSAGE([NotNull] TSqlParser.FORMATMESSAGEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GET_FILESTREAM_TRANSACTION_CONTEXT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGET_FILESTREAM_TRANSACTION_CONTEXT([NotNull] TSqlParser.GET_FILESTREAM_TRANSACTION_CONTEXTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GETANSINULL</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGETANSINULL([NotNull] TSqlParser.GETANSINULLContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HOST_ID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHOST_ID([NotNull] TSqlParser.HOST_IDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>HOST_NAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHOST_NAME([NotNull] TSqlParser.HOST_NAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNULL</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNULL([NotNull] TSqlParser.ISNULLContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ISNUMERIC</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitISNUMERIC([NotNull] TSqlParser.ISNUMERICContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>MIN_ACTIVE_ROWVERSION</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMIN_ACTIVE_ROWVERSION([NotNull] TSqlParser.MIN_ACTIVE_ROWVERSIONContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NEWID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNEWID([NotNull] TSqlParser.NEWIDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NEWSEQUENTIALID</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNEWSEQUENTIALID([NotNull] TSqlParser.NEWSEQUENTIALIDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>ROWCOUNT_BIG</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitROWCOUNT_BIG([NotNull] TSqlParser.ROWCOUNT_BIGContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SESSION_CONTEXT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSESSION_CONTEXT([NotNull] TSqlParser.SESSION_CONTEXTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>XACT_STATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitXACT_STATE([NotNull] TSqlParser.XACT_STATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CAST</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCAST([NotNull] TSqlParser.CASTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>TRY_CAST</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTRY_CAST([NotNull] TSqlParser.TRY_CASTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CONVERT</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCONVERT([NotNull] TSqlParser.CONVERTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>COALESCE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCOALESCE([NotNull] TSqlParser.COALESCEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CURRENT_DATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCURRENT_DATE([NotNull] TSqlParser.CURRENT_DATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CURRENT_TIMESTAMP</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCURRENT_TIMESTAMP([NotNull] TSqlParser.CURRENT_TIMESTAMPContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>CURRENT_USER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitCURRENT_USER([NotNull] TSqlParser.CURRENT_USERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATEADD</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATEADD([NotNull] TSqlParser.DATEADDContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATEDIFF</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATEDIFF([NotNull] TSqlParser.DATEDIFFContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATENAME</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATENAME([NotNull] TSqlParser.DATENAMEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>DATEPART</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitDATEPART([NotNull] TSqlParser.DATEPARTContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GETDATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGETDATE([NotNull] TSqlParser.GETDATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>GETUTCDATE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitGETUTCDATE([NotNull] TSqlParser.GETUTCDATEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IDENTITY</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIDENTITY([NotNull] TSqlParser.IDENTITYContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>NULLIF</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitNULLIF([NotNull] TSqlParser.NULLIFContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SESSION_USER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSESSION_USER([NotNull] TSqlParser.SESSION_USERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>SYSTEM_USER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSYSTEM_USER([NotNull] TSqlParser.SYSTEM_USERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>USER</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitUSER([NotNull] TSqlParser.USERContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>PARSE</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPARSE([NotNull] TSqlParser.PARSEContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>XML_DATA_TYPE_FUNC</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitXML_DATA_TYPE_FUNC([NotNull] TSqlParser.XML_DATA_TYPE_FUNCContext context);
-	/// <summary>
-	/// Visit a parse tree produced by the <c>IIF</c>
-	/// labeled alternative in <see cref="TSqlParser.built_in_functions"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIIF([NotNull] TSqlParser.IIFContext context);
+	Result VisitBuilt_in_functions([NotNull] TSqlParser.Built_in_functionsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.xml_data_type_methods"/>.
 	/// </summary>
@@ -5430,6 +4706,24 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFile_size_unity([NotNull] TSqlParser.File_size_unityContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.ipv4"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIpv4([NotNull] TSqlParser.Ipv4Context context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.ipv6"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIpv6([NotNull] TSqlParser.Ipv6Context context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.float"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFloat([NotNull] TSqlParser.FloatContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.decimal"/>.
 	/// </summary>
@@ -6007,6 +5301,18 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitSchema_security_predicate_function_id([NotNull] TSqlParser.Schema_security_predicate_function_idContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.binary_"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinary_([NotNull] TSqlParser.Binary_Context context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.local_id"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitLocal_id([NotNull] TSqlParser.Local_idContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.decimal_id"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -6150,12 +5456,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSchema_trigger_ref([NotNull] TSqlParser.Schema_trigger_refContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.local_id"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitLocal_id([NotNull] TSqlParser.Local_idContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.schema_object_ref"/>.
 	/// </summary>
@@ -6894,5 +6194,29 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDate_options([NotNull] TSqlParser.Date_optionsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.xml_common_directives"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitXml_common_directives([NotNull] TSqlParser.Xml_common_directivesContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.declare_set_cursor_common_partials"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeclare_set_cursor_common_partials([NotNull] TSqlParser.Declare_set_cursor_common_partialsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.column_definition_elements"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitColumn_definition_elements([NotNull] TSqlParser.Column_definition_elementsContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.schema_table_ref_impacts"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitSchema_table_ref_impacts([NotNull] TSqlParser.Schema_table_ref_impactsContext context);
 }
 } // namespace Bb.Parsers.TSql.Antlr

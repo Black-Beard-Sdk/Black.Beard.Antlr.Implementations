@@ -70,6 +70,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         private void Append(AstRule rule)
         {
+
             GrammarConfigDeclaration g;
             var name = rule.Name;
             if (!this._list.TryGetValue(name.Text, out GrammarConfigBaseDeclaration grammar))

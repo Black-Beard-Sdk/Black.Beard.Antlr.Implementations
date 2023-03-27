@@ -130,6 +130,11 @@ namespace Bb.Generators
         private Func<object, string> _nameOfMethod;
         protected Action<CodeMemberMethod> _body;
 
+        public Func<IEnumerable<object>> Items { get; internal set; }
+        public Action<ModelMethod, object> Action { get; internal set; }
+        public Action<ModelMethod> Action2 { get; internal set; }
+
+
     }
 
 

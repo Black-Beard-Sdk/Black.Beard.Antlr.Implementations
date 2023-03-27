@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Generate.Scripts
 {
+
     public class ScriptClassWithProperties : ScriptBase
     {
 
@@ -58,7 +59,7 @@ namespace Generate.Scripts
                                    .Body(b =>
                                    {
 
-                                       var items = GetProperties(ast);
+                                       var items = ast.GetProperties();
 
                                        b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
                                        {
@@ -66,9 +67,9 @@ namespace Generate.Scripts
                                            foreach (var item in items)
                                            {
 
-                                               var fieldName = GetFieldName(item as AstBase);
+                                               var fieldName = (item as AstBase).GetFieldName();
 
-                                               var type = GetType(item as AstBase);
+                                               var type = (item as AstBase).Type();
                                                var ty = new CodeTypeReference(type);
                                                stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
                                                {
@@ -86,20 +87,20 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "Position", "p")
-                                   .Arguments(() => GetProperties(ast), c =>
+                                   .Arguments(() => ast.GetProperties(), c =>
                                    {
-                                       return (GetType(c as AstBase), GetParameterdName(c as AstBase));
-
+                                       var a = c as AstBase;
+                                       return (a.Type(), a.GetParameterdName());
                                    })
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("p", "null")
                                    .Body(b =>
                                    {
-                                       var items = GetProperties(ast);
+                                       var items = ast.GetProperties();
                                        foreach (var item in items)
                                        {
                                            var aa = item as AstBase;
-                                           b.Statements.Assign(CodeHelper.This().Field(GetFieldName(aa)), CodeHelper.Var(GetParameterdName(aa)));
+                                           b.Statements.Assign(CodeHelper.This().Field(aa.GetFieldName()), CodeHelper.Var(aa.GetParameterdName()));
                                        }
 
                                    })
@@ -116,7 +117,7 @@ namespace Generate.Scripts
                                    .Body(b =>
                                    {
 
-                                       var items = GetProperties(ast);
+                                       var items = ast.GetProperties();
 
                                        b.Statements.ForEach("AstRoot".AsType(), "item", "list", stm =>
                                        {
@@ -124,9 +125,9 @@ namespace Generate.Scripts
                                            foreach (var item in items)
                                            {
 
-                                               var fieldName = GetFieldName(item as AstBase);
+                                               var fieldName = (item as AstBase).GetFieldName();
 
-                                               var type = GetType(item as AstBase);
+                                               var type = (item as AstBase).Type();
                                                var ty = new CodeTypeReference(type);
                                                stm.If(CodeHelper.Var("enumerator.Current").Call("Is", new CodeTypeReference[] { ty }), t =>
                                                {
@@ -161,16 +162,16 @@ namespace Generate.Scripts
                               })
 
                               .Properties(
-                                  () => GetProperties(ast),
+                                  () => ast.GetProperties(),
                                   (property, model) =>
                                   {
-                                      property.Name(m => GetPropertyName(model as AstBase))
-                                      .Type(() => GetType(model as AstBase))
+                                      property.Name(m => (model as AstBase).GetPropertyName())
+                                      .Type(() => (model as AstBase).GetType())
                                       .Attribute(MemberAttributes.Public)
                                       .Get((stm) =>
                                       {
 
-                                          stm.Return(CodeHelper.This().Field(GetFieldName(model as AstBase)));
+                                          stm.Return(CodeHelper.This().Field((model as AstBase).GetFieldName()));
 
                                       })
                                       .HasSet(false)
@@ -178,11 +179,11 @@ namespace Generate.Scripts
                                   }
                               )
 
-                              .Fields(() => GetProperties(ast),
+                              .Fields(() => ast.GetProperties(),
                                   (field, model) =>
                                   {
-                                      field.Name(m => GetFieldName(m as AstBase))
-                                      .Type(() => GetType(model as AstBase))
+                                      field.Name(m => (m as AstBase).GetFieldName())
+                                      .Type(() => (model as AstBase).Type())
                                       .Attribute(MemberAttributes.Private)
                                       ;
                                   }
@@ -376,137 +377,7 @@ namespace Generate.Scripts
 
         }
 
-        private static string GetType(AstBase ast)
-        {
-
-            switch (ast.TerminalKind)
-            {
-
-                case TokenTypeEnum.Hexa:
-                    break;
-
-                case TokenTypeEnum.Boolean:
-                    return nameof(Boolean);
-
-                case TokenTypeEnum.Decimal:
-                    return nameof(Decimal);
-
-                case TokenTypeEnum.Int:
-                    return nameof(Int64);
-
-                case TokenTypeEnum.Real:
-                    return nameof(Double);
-
-                case TokenTypeEnum.Binary:
-                case TokenTypeEnum.Identifier:
-                case TokenTypeEnum.String:
-                case TokenTypeEnum.Pattern:
-                    return nameof(String);
-
-                case TokenTypeEnum.Comment:
-                case TokenTypeEnum.Other:
-                case TokenTypeEnum.Operator:
-                case TokenTypeEnum.Constant:
-                case TokenTypeEnum.Ponctuation:
-                default:
-                    break;
-            }
-
-            string _name = (ast as AstBase).ResolveName();
-
-            if (_name == "STRING")
-            {
-
-            }
-
-            var result = "Ast" + CodeHelper.FormatCsharp(_name);
-            return result;
-        }
-
-        private static string GetPropertyName(AstBase ast)
-        {
-            string _name;
-            if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
-
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
-
-            else
-                _name = (ast as AstBase).ResolveName();
-
-            var result = CodeHelper.FormatCsharp(_name);
-
-            return result;
-        }
-
-        private static string GetFieldName(AstBase ast)
-        {
-            string _name;
-            if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
-
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
-
-            else
-                _name = (ast as AstBase).ResolveName();
-
-            var result = CodeHelper.FormatCsharpField(_name);
-
-            return result;
-        }
-
-        private static string GetParameterdName(AstBase ast)
-        {
-            string _name;
-            if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
-
-            if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
-
-            else
-                _name = (ast as AstBase).ResolveName();
-
-            var result = CodeHelper.FormatCsharpArgument(_name);
-
-            return result;
-        }
-
-        private static List<object> GetProperties(AstBase ast)
-        {
-
-            var items = ast.GetAllItems()
-            .KeepTerminal(c =>
-            {
-
-                if (c.TerminalKind == TokenTypeEnum.Comment)
-                    return false;
-
-                if (c.TerminalKind == TokenTypeEnum.Operator)
-                    return false;
-
-                if (c.TerminalKind == TokenTypeEnum.Ponctuation)
-                    return false;
-
-                if (c.TerminalKind == TokenTypeEnum.Constant)
-                    return false;
-
-                return true;
-
-            });
-
-            HashSet<string> names = new HashSet<string>();
-            List<object> _properties = new List<object>();
-            foreach (var item in items)
-                if (names.Add(GetPropertyName(item)))
-                    _properties.Add(item);
-
-            return _properties;
-
-        }
-
+  
     }
 
 

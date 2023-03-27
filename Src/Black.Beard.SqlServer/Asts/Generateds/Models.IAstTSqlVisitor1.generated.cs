@@ -74,6 +74,8 @@ namespace Bb.Asts.TSql
         
         void VisitConstantLocalIdOrNull(AstConstantLocalIdOrNull a);
         
+        void VisitNull(AstNull a);
+        
         void VisitEmptyStatement(AstEmptyStatement a);
         
         void VisitAnotherStatement(AstAnotherStatement a);
@@ -113,6 +115,8 @@ namespace Bb.Asts.TSql
         void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
         
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a);
+        
+        void VisitAssemblyPermission(AstAssemblyPermission a);
         
         void VisitAssemblyOption(AstAssemblyOption a);
         
@@ -173,6 +177,10 @@ namespace Bb.Asts.TSql
         void VisitClassTypeForParallelDw(AstClassTypeForParallelDw a);
         
         void VisitClassTypeForGrant(AstClassTypeForGrant a);
+        
+        void VisitEncryptionMaster(AstEncryptionMaster a);
+        
+        void VisitDatabaseObjectServer(AstDatabaseObjectServer a);
         
         void VisitDropAvailabilityGroup(AstDropAvailabilityGroup a);
         
@@ -246,7 +254,7 @@ namespace Bb.Asts.TSql
         
         void VisitAlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptions a);
         
-        void VisitServerInstance(AstServerInstance a);
+        void VisitServerInstanceTxt(AstServerInstanceTxt a);
         
         void VisitCreateOrAlterBrokerPriority(AstCreateOrAlterBrokerPriority a);
         
@@ -422,6 +430,8 @@ namespace Bb.Asts.TSql
         
         void VisitTargetParameterSets(AstTargetParameterSets a);
         
+        void VisitTargetParameterIds(AstTargetParameterIds a);
+        
         void VisitTargetParameterSet(AstTargetParameterSet a);
         
         void VisitTargetParameterValue(AstTargetParameterValue a);
@@ -473,6 +483,8 @@ namespace Bb.Asts.TSql
         void VisitCreateFulltextCatalog(AstCreateFulltextCatalog a);
         
         void VisitAlterFulltextStoplist(AstAlterFulltextStoplist a);
+        
+        void VisitFulltextLanguageList(AstFulltextLanguageList a);
         
         void VisitCreateFulltextStoplist(AstCreateFulltextStoplist a);
         
@@ -552,6 +564,8 @@ namespace Bb.Asts.TSql
         
         void VisitCreateSchemaName(AstCreateSchemaName a);
         
+        void VisitCreateSchemaTargets(AstCreateSchemaTargets a);
+        
         void VisitCreateSchemaTarget(AstCreateSchemaTarget a);
         
         void VisitSchemaAuthorization(AstSchemaAuthorization a);
@@ -570,7 +584,11 @@ namespace Bb.Asts.TSql
         
         void VisitCreateSecurityPolicyAdd(AstCreateSecurityPolicyAdd a);
         
-        void VisitSchemaTableRefImpacts(AstSchemaTableRefImpacts a);
+        void VisitSchemaTableRefImpact(AstSchemaTableRefImpact a);
+        
+        void VisitInsertUpdate(AstInsertUpdate a);
+        
+        void VisitUpdateDelate(AstUpdateDelate a);
         
         void VisitFilterBlock(AstFilterBlock a);
         
@@ -615,6 +633,10 @@ namespace Bb.Asts.TSql
         void VisitServerAuditFile(AstServerAuditFile a);
         
         void VisitServerAuditFileSpec(AstServerAuditFileSpec a);
+        
+        void VisitDecimalUnlimited(AstDecimalUnlimited a);
+        
+        void VisitDecimalSizeUnlimited(AstDecimalSizeUnlimited a);
         
         void VisitAlterServerAuditCondition(AstAlterServerAuditCondition a);
         
@@ -746,6 +768,8 @@ namespace Bb.Asts.TSql
         
         void VisitWhenMatches(AstWhenMatches a);
         
+        void VisitWhenMatche(AstWhenMatche a);
+        
         void VisitMergeMatched(AstMergeMatched a);
         
         void VisitMergeNotMatched(AstMergeNotMatched a);
@@ -801,6 +825,8 @@ namespace Bb.Asts.TSql
         void VisitRelationalIndexOption(AstRelationalIndexOption a);
         
         void VisitAlterIndex(AstAlterIndex a);
+        
+        void VisitIndexName(AstIndexName a);
         
         void VisitResumableIndexOption(AstResumableIndexOption a);
         
@@ -880,7 +906,9 @@ namespace Bb.Asts.TSql
         
         void VisitTableOptions(AstTableOptions a);
         
-        void VisitTableOption(AstTableOption a);
+        void VisitTblOption(AstTblOption a);
+        
+        void VisitTableoption(AstTableoption a);
         
         void VisitTableOptVarname(AstTableOptVarname a);
         
@@ -1192,6 +1220,8 @@ namespace Bb.Asts.TSql
         
         void VisitExecuteClause(AstExecuteClause a);
         
+        void VisitExecuteClauseMode(AstExecuteClauseMode a);
+        
         void VisitDeclareLocal(AstDeclareLocal a);
         
         void VisitTableTypeDefinition(AstTableTypeDefinition a);
@@ -1258,7 +1288,7 @@ namespace Bb.Asts.TSql
         
         void VisitSpecialList(AstSpecialList a);
         
-        void VisitConstantLOCALID(AstConstantLOCALID a);
+        void VisitConstantLocalId(AstConstantLocalId a);
         
         void VisitEmptyValue(AstEmptyValue a);
         
@@ -1310,6 +1340,8 @@ namespace Bb.Asts.TSql
         
         void VisitTopPercent(AstTopPercent a);
         
+        void VisitPercentConstant(AstPercentConstant a);
+        
         void VisitTopCount(AstTopCount a);
         
         void VisitOrderByClause(AstOrderByClause a);
@@ -1318,13 +1350,13 @@ namespace Bb.Asts.TSql
         
         void VisitForClause(AstForClause a);
         
+        void VisitXmlCommonDirective(AstXmlCommonDirective a);
+        
         void VisitForClauseXmlRaw(AstForClauseXmlRaw a);
         
         void VisitForClauseJson(AstForClauseJson a);
         
         void VisitClauseJsonInfo(AstClauseJsonInfo a);
-        
-        void VisitXmlCommonDirectives(AstXmlCommonDirectives a);
         
         void VisitOrderByExpression(AstOrderByExpression a);
         
@@ -1544,6 +1576,12 @@ namespace Bb.Asts.TSql
         
         void VisitFileSizeUnity(AstFileSizeUnity a);
         
+        void VisitIpv4(AstIpv4 a);
+        
+        void VisitIpv6(AstIpv6 a);
+        
+        void VisitFloat(AstFloat a);
+        
         void VisitDecimal(AstDecimal a);
         
         void VisitFilestreamFilegroupOrPartitionSchemaId(AstFilestreamFilegroupOrPartitionSchemaId a);
@@ -1736,6 +1774,10 @@ namespace Bb.Asts.TSql
         
         void VisitSchemaSecurityPredicateFunctionId(AstSchemaSecurityPredicateFunctionId a);
         
+        void VisitBinary(AstBinary a);
+        
+        void VisitLocalId(AstLocalId a);
+        
         void VisitDecimalId(AstDecimalId a);
         
         void VisitStringId(AstStringId a);
@@ -1783,8 +1825,6 @@ namespace Bb.Asts.TSql
         void VisitSchemaSqlIdentifierId(AstSchemaSqlIdentifierId a);
         
         void VisitSchemaTriggerRef(AstSchemaTriggerRef a);
-        
-        void VisitLocalId(AstLocalId a);
         
         void VisitSchemaObjectRef(AstSchemaObjectRef a);
         
@@ -2031,5 +2071,13 @@ namespace Bb.Asts.TSql
         void VisitClauseJsonInfos(AstClauseJsonInfos a);
         
         void VisitDateOptions(AstDateOptions a);
+        
+        void VisitXmlCommonDirectives(AstXmlCommonDirectives a);
+        
+        void VisitDeclareSetCursorCommonPartials(AstDeclareSetCursorCommonPartials a);
+        
+        void VisitColumnDefinitionElements(AstColumnDefinitionElements a);
+        
+        void VisitSchemaTableRefImpacts(AstSchemaTableRefImpacts a);
     }
 }

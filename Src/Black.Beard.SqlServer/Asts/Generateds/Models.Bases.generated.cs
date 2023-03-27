@@ -98,11 +98,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; DECIMAL LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
+        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, Decimal _decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, _decimal, procedureParams, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureParams, procedureOptions, asExternalName);
         }
         
         /// <summary>
@@ -116,11 +116,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; DECIMAL procedure_options? FOR REPLICATION AS as_external_name 
+        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, Decimal _decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, _decimal, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureOptions, asExternalName);
         }
         
         /// <summary>
@@ -134,11 +134,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; DECIMAL LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, Decimal _decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, _decimal, procedureParams, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureParams, procedureOptions, sqlClause);
         }
         
         /// <summary>
@@ -152,11 +152,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; DECIMAL procedure_options? FOR REPLICATION AS sql_clause 
+        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, Decimal _decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, _decimal, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureOptions, sqlClause);
         }
         
         /// <summary>
@@ -233,18 +233,18 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// merge_statement : 
-        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches+ output_clause? option_clause? ; 
+        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, IEnumerable<AstWhenMatches> whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
+        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
         {
             return AstMergeStatement.MergeStatement(withExpression, expression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, optionClause);
         }
         
         /// <summary>
         /// merge_statement : 
-        ///    with_expression? MERGE INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches+ output_clause? option_clause? ; 
+        ///    with_expression? MERGE INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, IEnumerable<AstWhenMatches> whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
+        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
         {
             return AstMergeStatement.MergeStatement(withExpression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, optionClause);
         }
@@ -260,11 +260,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, optionClause);
         }
         
         /// <summary>
@@ -278,11 +278,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, optionClause);
         }
         
         /// <summary>
@@ -296,11 +296,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, optionClause);
         }
         
         /// <summary>
@@ -314,47 +314,47 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, optionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
@@ -368,11 +368,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, optionClause);
         }
         
         /// <summary>
@@ -386,11 +386,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP DECIMAL FROM delete_statement_from with_table_hints? output_clause? for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? for_clause? option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, Decimal _decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, _decimal, deleteStatementFrom, withTableHints, outputClause, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, forClause, optionClause);
         }
         
         /// <summary>
@@ -620,72 +620,72 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=LOCAL_ID for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, String cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
         {
             return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
         }
@@ -1145,11 +1145,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_column_encryption_key : 
-        ///    ALTER COLUMN ENCRYPTION KEY column_encryption_key_id add_drop VALUE ( COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL BINARY ) 
+        ///    ALTER COLUMN ENCRYPTION KEY column_encryption_key_id add_drop VALUE ( COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL binary_ ) 
         /// </summary>
-        public static AstAlterColumnEncryptionKey AlterColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstAddDrop addDrop, AstId columnMasterKeyName, AstStringtext algorithmName, Object _binary)
+        public static AstAlterColumnEncryptionKey AlterColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstAddDrop addDrop, AstId columnMasterKeyName, AstStringtext algorithmName, AstBinary binary)
         {
-            return AstAlterColumnEncryptionKey.AlterColumnEncryptionKey(columnEncryptionKeyId, addDrop, columnMasterKeyName, algorithmName, _binary);
+            return AstAlterColumnEncryptionKey.AlterColumnEncryptionKey(columnEncryptionKeyId, addDrop, columnMasterKeyName, algorithmName, binary);
         }
         
         /// <summary>
@@ -1226,218 +1226,218 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal, listenerIp);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal, listenerIp);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal, AstListenerIp listenerIp)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal, listenerIp);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal, AstListenerIp listenerIp)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal, listenerIp);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) TSQL 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal, listenerIp, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal, listenerIp, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal, listenerIp, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal, listenerIp, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_service_broker 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal, alterEndpointServiceBroker);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, alterEndpointServiceBroker);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal, listenerIp, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal, listenerIp, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal, listenerIp, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL , listener_ip ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal, listenerIp, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, Decimal _decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, _decimal, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, Decimal _decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, _decimal, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, Decimal _decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, _decimal, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
         /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL DECIMAL ) alter_endpoint_database_mirroring 
+        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
         /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, Decimal _decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
+        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
         {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, _decimal, alterEndpointDatabaseMirroring);
+            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, alterEndpointDatabaseMirroring);
         }
         
         /// <summary>
@@ -1559,56 +1559,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id ADD stopword=stringtext LANGUAGE STRING 
+        ///    ALTER FULLTEXT STOPLIST stoplist_id ADD stopword=stringtext LANGUAGE fulltext_languageList 
         /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstStringtext stopword, String txt)
+        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstStringtext stopword, AstFulltextLanguageList fulltextLanguageList)
         {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, stopword, txt);
+            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, stopword, fulltextLanguageList);
         }
         
         /// <summary>
         /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id ADD stopword=stringtext LANGUAGE DECIMAL 
+        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL fulltext_languageList 
         /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstStringtext stopword, Decimal _decimal)
+        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstFulltextLanguageList fulltextLanguageList)
         {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, stopword, _decimal);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id ADD stopword=stringtext LANGUAGE BINARY 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstStringtext stopword, Object _binary)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, stopword, _binary);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL STRING 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, String txt)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, txt);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL DECIMAL 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, Decimal _decimal)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, _decimal);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL BINARY 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, Object _binary)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, _binary);
+            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, fulltextLanguageList);
         }
         
         /// <summary>
@@ -1622,92 +1586,47 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX id_ ON full_table_ref DISABLE 
+        ///    ALTER INDEX index_name ON full_table_ref DISABLE 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstId id, AstFullTableRef fullTableRef)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef)
         {
-            return AstAlterIndex.AlterIndex(id, fullTableRef);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef);
         }
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX ALL ON full_table_ref DISABLE 
+        ///    ALTER INDEX index_name ON full_table_ref RESUME resumable_index_options? 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstFullTableRef fullTableRef)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstResumableIndexOptions resumableIndexOptions)
         {
-            return AstAlterIndex.AlterIndex(fullTableRef);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef, resumableIndexOptions);
         }
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX id_ ON full_table_ref RESUME resumable_index_options? 
+        ///    ALTER INDEX index_name ON full_table_ref reorganize_partition 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstId id, AstFullTableRef fullTableRef, AstResumableIndexOptions resumableIndexOptions)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstReorganizePartition reorganizePartition)
         {
-            return AstAlterIndex.AlterIndex(id, fullTableRef, resumableIndexOptions);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef, reorganizePartition);
         }
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX ALL ON full_table_ref RESUME resumable_index_options? 
+        ///    ALTER INDEX index_name ON full_table_ref set_index_options 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstFullTableRef fullTableRef, AstResumableIndexOptions resumableIndexOptions)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstSetIndexOptions setIndexOptions)
         {
-            return AstAlterIndex.AlterIndex(fullTableRef, resumableIndexOptions);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef, setIndexOptions);
         }
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX id_ ON full_table_ref reorganize_partition 
+        ///    ALTER INDEX index_name ON full_table_ref rebuild_partition 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstId id, AstFullTableRef fullTableRef, AstReorganizePartition reorganizePartition)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstRebuildPartition rebuildPartition)
         {
-            return AstAlterIndex.AlterIndex(id, fullTableRef, reorganizePartition);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX ALL ON full_table_ref reorganize_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstFullTableRef fullTableRef, AstReorganizePartition reorganizePartition)
-        {
-            return AstAlterIndex.AlterIndex(fullTableRef, reorganizePartition);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX id_ ON full_table_ref set_index_options 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstId id, AstFullTableRef fullTableRef, AstSetIndexOptions setIndexOptions)
-        {
-            return AstAlterIndex.AlterIndex(id, fullTableRef, setIndexOptions);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX ALL ON full_table_ref set_index_options 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstFullTableRef fullTableRef, AstSetIndexOptions setIndexOptions)
-        {
-            return AstAlterIndex.AlterIndex(fullTableRef, setIndexOptions);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX id_ ON full_table_ref rebuild_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstId id, AstFullTableRef fullTableRef, AstRebuildPartition rebuildPartition)
-        {
-            return AstAlterIndex.AlterIndex(id, fullTableRef, rebuildPartition);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX ALL ON full_table_ref rebuild_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstFullTableRef fullTableRef, AstRebuildPartition rebuildPartition)
-        {
-            return AstAlterIndex.AlterIndex(fullTableRef, rebuildPartition);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef, rebuildPartition);
         }
         
         /// <summary>
@@ -1739,11 +1658,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id WITH PASSWORD EQUAL password=stringtext OLD_PASSWORD EQUAL old_password=stringtext pwd_strategy* 
+        ///    ALTER LOGIN login_id WITH PASSWORD EQUAL password=stringtext OLD_PASSWORD EQUAL old_password=stringtext pwd_strategies? 
         /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstStringtext password, AstStringtext oldPassword, IEnumerable<AstPwdStrategy> pwdStrategy)
+        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstStringtext password, AstStringtext oldPassword, AstPwdStrategies pwdStrategies)
         {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, password, oldPassword, pwdStrategy);
+            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, password, oldPassword, pwdStrategies);
         }
         
         /// <summary>
@@ -1829,11 +1748,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_partition_function : 
-        ///    ALTER PARTITION FUNCTION partition_function_id ( ) split_or_merge RANGE ( DECIMAL ) 
+        ///    ALTER PARTITION FUNCTION partition_function_id ( ) split_or_merge RANGE ( decimal ) 
         /// </summary>
-        public static AstAlterPartitionFunction AlterPartitionFunction(AstPartitionFunctionId partitionFunctionId, AstSplitOrMerge splitOrMerge, Decimal _decimal)
+        public static AstAlterPartitionFunction AlterPartitionFunction(AstPartitionFunctionId partitionFunctionId, AstSplitOrMerge splitOrMerge, AstDecimal @decimal)
         {
-            return AstAlterPartitionFunction.AlterPartitionFunction(partitionFunctionId, splitOrMerge, _decimal);
+            return AstAlterPartitionFunction.AlterPartitionFunction(partitionFunctionId, splitOrMerge, @decimal);
         }
         
         /// <summary>
@@ -1892,38 +1811,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_resource_governor : 
-        ///    ALTER RESOURCE GOVERNOR WITH ( MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=DECIMAL ) 
+        ///    ALTER RESOURCE GOVERNOR WITH ( MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal ) 
         /// </summary>
-        public static AstAlterResourceGovernor AlterResourceGovernor(Decimal maxOutstandingIoPerVolume)
+        public static AstAlterResourceGovernor AlterResourceGovernor(AstDecimal maxOutstandingIoPerVolume)
         {
             return AstAlterResourceGovernor.AlterResourceGovernor(maxOutstandingIoPerVolume);
         }
         
         /// <summary>
         /// alter_schema_azure_sql_dw_and_pdw : 
-        ///    ALTER SCHEMA schema_id TRANSFER OBJECT :: id_ . ID 
-        /// </summary>
-        public static AstAlterSchemaAzureSqlDwAndPdw AlterSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstId id, String txt)
-        {
-            return AstAlterSchemaAzureSqlDwAndPdw.AlterSchemaAzureSqlDwAndPdw(schemaId, id, txt);
-        }
-        
-        /// <summary>
-        /// alter_schema_azure_sql_dw_and_pdw : 
-        ///    ALTER SCHEMA schema_id TRANSFER OBJECT :: id_ 
-        /// </summary>
-        public static AstAlterSchemaAzureSqlDwAndPdw AlterSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstId id)
-        {
-            return AstAlterSchemaAzureSqlDwAndPdw.AlterSchemaAzureSqlDwAndPdw(schemaId, id);
-        }
-        
-        /// <summary>
-        /// alter_schema_sql : 
         ///    ALTER SCHEMA schema_id TRANSFER OBJECT :: id_dot_id 
         /// </summary>
-        public static AstAlterSchemaSql AlterSchemaSql(AstSchemaId schemaId, AstIdDotId idDotId)
+        public static AstAlterSchemaAzureSqlDwAndPdw AlterSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstIdDotId idDotId)
         {
-            return AstAlterSchemaSql.AlterSchemaSql(schemaId, idDotId);
+            return AstAlterSchemaAzureSqlDwAndPdw.AlterSchemaAzureSqlDwAndPdw(schemaId, idDotId);
         }
         
         /// <summary>
@@ -1978,15 +1879,6 @@ namespace Bb.Asts.TSql
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigFailover serverConfigFailover)
         {
             return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigFailover);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL STRING 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(String txt)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(txt);
         }
         
         /// <summary>
@@ -2099,6 +1991,15 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_table : 
+        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL AUTO ) ; 
+        /// </summary>
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef)
+        {
+            return AstAlterTable.AlterTable(fullTableRef);
+        }
+        
+        /// <summary>
+        /// alter_table : 
         ///    ALTER TABLE full_table_ref ADD column_def_table_constraints ; 
         /// </summary>
         public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints)
@@ -2180,11 +2081,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_user : 
-        ///    ALTER USER user_id WITH alter_user_item+ 
+        ///    ALTER USER user_id WITH alter_user_items 
         /// </summary>
-        public static AstAlterUser AlterUser(AstUserId userId, IEnumerable<AstAlterUserItem> alterUserItem)
+        public static AstAlterUser AlterUser(AstUserId userId, AstAlterUserItems alterUserItems)
         {
-            return AstAlterUser.AlterUser(userId, alterUserItem);
+            return AstAlterUser.AlterUser(userId, alterUserItems);
         }
         
         /// <summary>
@@ -2216,18 +2117,18 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) alter_workload_group_using? 
+        ///    ALTER WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) alter_workload_group_using? 
         /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, Decimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
+        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
         {
             return AstAlterWorkloadGroup.AlterWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, alterWorkloadGroupUsing);
         }
         
         /// <summary>
         /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP DEFAULT_DOUBLE_QUOTE WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) alter_workload_group_using? 
+        ///    ALTER WORKLOAD GROUP DEFAULT_DOUBLE_QUOTE WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) alter_workload_group_using? 
         /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(Decimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
+        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstDecimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
         {
             return AstAlterWorkloadGroup.AlterWorkloadGroup(requestMaxMemoryGrant, alterWorkloadGroupUsing);
         }
@@ -2252,7 +2153,25 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id AUTHORIZATION owner_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL SAFE 
+        ///    CREATE ASSEMBLY assembly_id AUTHORIZATION owner_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL assembly_permission 
+        /// </summary>
+        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstOwnerId ownerId, AstBinaryContentNexts binaryContentNexts, AstAssemblyPermission assemblyPermission)
+        {
+            return AstCreateAssembly.CreateAssembly(assemblyId, ownerId, binaryContentNexts, assemblyPermission);
+        }
+        
+        /// <summary>
+        /// create_assembly : 
+        ///    CREATE ASSEMBLY assembly_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL assembly_permission 
+        /// </summary>
+        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstBinaryContentNexts binaryContentNexts, AstAssemblyPermission assemblyPermission)
+        {
+            return AstCreateAssembly.CreateAssembly(assemblyId, binaryContentNexts, assemblyPermission);
+        }
+        
+        /// <summary>
+        /// create_assembly : 
+        ///    CREATE ASSEMBLY assembly_id AUTHORIZATION owner_id FROM binary_content_nexts 
         /// </summary>
         public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstOwnerId ownerId, AstBinaryContentNexts binaryContentNexts)
         {
@@ -2261,7 +2180,7 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL SAFE 
+        ///    CREATE ASSEMBLY assembly_id FROM binary_content_nexts 
         /// </summary>
         public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstBinaryContentNexts binaryContentNexts)
         {
@@ -2270,20 +2189,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL STRING WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, String txt, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, txt, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL STRING WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, String txt, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, txt, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, encryptionByPwd);
         }
         
         /// <summary>
@@ -2342,20 +2261,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL STRING WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, String txt, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, txt, providerKeyName, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, providerKeyName, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL STRING WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, String txt, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, txt, providerKeyName, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, providerKeyName, encryptionByPwd);
         }
         
         /// <summary>
@@ -2395,28 +2314,10 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
         /// create_column_encryption_key : 
-        ///    CREATE COLUMN ENCRYPTION KEY column_encryption_key_id WITH VALUES ( ,? COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL encrypted_value=BINARY ) ,? 
+        ///    CREATE COLUMN ENCRYPTION KEY column_encryption_key_id WITH VALUES ( ,? COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL encrypted_value=binary_ ) ,? 
         /// </summary>
-        public static AstCreateColumnEncryptionKey CreateColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstId columnMasterKeyName, AstStringtext algorithmName, Object encryptedValue)
+        public static AstCreateColumnEncryptionKey CreateColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstId columnMasterKeyName, AstStringtext algorithmName, AstBinary encryptedValue)
         {
             return AstCreateColumnEncryptionKey.CreateColumnEncryptionKey(columnEncryptionKeyId, columnMasterKeyName, algorithmName, encryptedValue);
         }
@@ -2774,20 +2675,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_login_azure_sql : 
-        ///    CREATE LOGIN login_id WITH PASSWORD EQUAL STRING SID EQUAL sid=BINARY 
+        ///    CREATE LOGIN login_id WITH PASSWORD EQUAL stringtext SID EQUAL sid=binary_ 
         /// </summary>
-        public static AstCreateLoginAzureSql CreateLoginAzureSql(AstLoginId loginId, String txt, Object sid)
+        public static AstCreateLoginAzureSql CreateLoginAzureSql(AstLoginId loginId, AstStringtext stringtext, AstBinary sid)
         {
-            return AstCreateLoginAzureSql.CreateLoginAzureSql(loginId, txt, sid);
-        }
-        
-        /// <summary>
-        /// create_login_azure_sql : 
-        ///    CREATE LOGIN login_id WITH PASSWORD EQUAL STRING 
-        /// </summary>
-        public static AstCreateLoginAzureSql CreateLoginAzureSql(AstLoginId loginId, String txt)
-        {
-            return AstCreateLoginAzureSql.CreateLoginAzureSql(loginId, txt);
+            return AstCreateLoginAzureSql.CreateLoginAzureSql(loginId, stringtext, sid);
         }
         
         /// <summary>
@@ -2900,18 +2792,18 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_resource_pool : 
-        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=DECIMAL COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=DECIMAL COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=DECIMAL COMMA? AFFINITY SCHEDULER EQUAL AUTO COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=DECIMAL COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=DECIMAL COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=DECIMAL COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=DECIMAL ) 
+        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=decimal COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=decimal COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=decimal COMMA? AFFINITY SCHEDULER EQUAL AUTO COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=decimal COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=decimal COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=decimal COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=decimal ) 
         /// </summary>
-        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, Decimal minCpuPercent, Decimal maxCpuPercent, Decimal capCpuPercent, Decimal minMemoryPercent, Decimal maxMemoryPercent, Decimal minTopsPercent, Decimal maxTopsPercent)
+        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, AstDecimal minCpuPercent, AstDecimal maxCpuPercent, AstDecimal capCpuPercent, AstDecimal minMemoryPercent, AstDecimal maxMemoryPercent, AstDecimal minTopsPercent, AstDecimal maxTopsPercent)
         {
             return AstCreateResourcePool.CreateResourcePool(poolId, minCpuPercent, maxCpuPercent, capCpuPercent, minMemoryPercent, maxMemoryPercent, minTopsPercent, maxTopsPercent);
         }
         
         /// <summary>
         /// create_resource_pool : 
-        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=DECIMAL COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=DECIMAL COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=DECIMAL COMMA? AFFINITY SCHEDULER EQUAL ( decimal_ranges ) COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=DECIMAL COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=DECIMAL COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=DECIMAL COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=DECIMAL ) 
+        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=decimal COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=decimal COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=decimal COMMA? AFFINITY SCHEDULER EQUAL ( decimal_ranges ) COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=decimal COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=decimal COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=decimal COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=decimal ) 
         /// </summary>
-        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, Decimal minCpuPercent, Decimal maxCpuPercent, Decimal capCpuPercent, AstDecimalRanges decimalRanges, Decimal minMemoryPercent, Decimal maxMemoryPercent, Decimal minTopsPercent, Decimal maxTopsPercent)
+        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, AstDecimal minCpuPercent, AstDecimal maxCpuPercent, AstDecimal capCpuPercent, AstDecimalRanges decimalRanges, AstDecimal minMemoryPercent, AstDecimal maxMemoryPercent, AstDecimal minTopsPercent, AstDecimal maxTopsPercent)
         {
             return AstCreateResourcePool.CreateResourcePool(poolId, minCpuPercent, maxCpuPercent, capCpuPercent, decimalRanges, minMemoryPercent, maxMemoryPercent, minTopsPercent, maxTopsPercent);
         }
@@ -2927,54 +2819,54 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, routeServiceName, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, routeServiceName, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, lifetime, address, mirrorAddress);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, Decimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
         {
             return AstCreateRoute.CreateRoute(routeId, lifetime, address, mirrorAddress);
         }
@@ -3035,54 +2927,54 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, routeServiceName, brokerInstanceIdentifier, lifetime, address);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, routeServiceName, brokerInstanceIdentifier, lifetime, address);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, brokerInstanceIdentifier, lifetime, address);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, brokerInstanceIdentifier, lifetime, address);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, ownerId, lifetime, address);
         }
         
         /// <summary>
         /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=DECIMAL , ADDRESS EQUAL address=stringtext 
+        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
         /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, Decimal lifetime, AstStringtext address)
+        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstDecimal lifetime, AstStringtext address)
         {
             return AstCreateRoute.CreateRoute(routeId, lifetime, address);
         }
@@ -3116,11 +3008,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_schema : 
-        ///    CREATE SCHEMA create_schema_name create_schema_target* 
+        ///    CREATE SCHEMA create_schema_name create_schema_targets? 
         /// </summary>
-        public static AstCreateSchema CreateSchema(AstCreateSchemaName createSchemaName, IEnumerable<AstCreateSchemaTarget> createSchemaTarget)
+        public static AstCreateSchema CreateSchema(AstCreateSchemaName createSchemaName, AstCreateSchemaTargets createSchemaTargets)
         {
-            return AstCreateSchema.CreateSchema(createSchemaName, createSchemaTarget);
+            return AstCreateSchema.CreateSchema(createSchemaName, createSchemaTargets);
         }
         
         /// <summary>
@@ -3296,11 +3188,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH SAMPLE DECIMAL PERCENT , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
+        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH SAMPLE decimal PERCENT , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
         /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, Decimal _decimal, AstOnOff onOff)
+        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstDecimal @decimal, AstOnOff onOff)
         {
-            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, _decimal, onOff);
+            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, @decimal, onOff);
         }
         
         /// <summary>
@@ -3323,54 +3215,54 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options* ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, IEnumerable<AstTableOptions> tableOptions, AstGroupId on, AstGroupId textImage)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions, AstGroupId on, AstGroupId textImage)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions, on, textImage);
         }
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options* ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, IEnumerable<AstTableOptions> tableOptions, AstGroupId on, AstGroupId textImage)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions, AstGroupId on, AstGroupId textImage)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions, on, textImage);
         }
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options* DEFAULT TEXTIMAGE_ON text_image=group_id ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? DEFAULT TEXTIMAGE_ON text_image=group_id ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, IEnumerable<AstTableOptions> tableOptions, AstGroupId textImage)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions, AstGroupId textImage)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions, textImage);
         }
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options* DEFAULT TEXTIMAGE_ON text_image=group_id ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? DEFAULT TEXTIMAGE_ON text_image=group_id ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, IEnumerable<AstTableOptions> tableOptions, AstGroupId textImage)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions, AstGroupId textImage)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions, textImage);
         }
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options* DEFAULT DEFAULT ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? DEFAULT DEFAULT ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, IEnumerable<AstTableOptions> tableOptions)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions);
         }
         
         /// <summary>
         /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options* DEFAULT DEFAULT ; 
+        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? DEFAULT DEFAULT ; 
         /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, IEnumerable<AstTableOptions> tableOptions)
+        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions)
         {
             return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions);
         }
@@ -3485,9 +3377,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, Decimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
         {
             return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, workloadGroupPoolId, externalPoolId);
         }
@@ -3503,9 +3395,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, Decimal requestMaxMemoryGrant, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstExternalPoolId externalPoolId)
         {
             return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, externalPoolId);
         }
@@ -3521,9 +3413,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, Decimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId)
         {
             return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, workloadGroupPoolId);
         }
@@ -3539,9 +3431,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=DECIMAL ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, Decimal requestMaxMemoryGrant)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant)
         {
             return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant);
         }
@@ -3998,9 +3890,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN SHARE MODE WAIT seconds=DECIMAL ; 
+        ///    LOCK TABLE full_table_ref IN SHARE MODE WAIT seconds=decimal ; 
         /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef, Decimal seconds)
+        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstDecimal seconds)
         {
             return AstLockTable.LockTable(fullTableRef, seconds);
         }
@@ -4257,47 +4149,47 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_LOCAL_ID , state=constant_LOCAL_ID constant_local_ids ) WITH log_seterror_nowait ; 
+        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id constant_local_ids ) WITH log_seterror_nowait ; 
         /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLOCALID severity, AstConstantLOCALID state, AstConstantLocalIds constantLocalIds, AstLogSeterrorNowait logSeterrorNowait)
+        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstConstantLocalIds constantLocalIds, AstLogSeterrorNowait logSeterrorNowait)
         {
             return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, constantLocalIds, logSeterrorNowait);
         }
         
         /// <summary>
         /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_LOCAL_ID , state=constant_LOCAL_ID ) WITH log_seterror_nowait ; 
+        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id ) WITH log_seterror_nowait ; 
         /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLOCALID severity, AstConstantLOCALID state, AstLogSeterrorNowait logSeterrorNowait)
+        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstLogSeterrorNowait logSeterrorNowait)
         {
             return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, logSeterrorNowait);
         }
         
         /// <summary>
         /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_LOCAL_ID , state=constant_LOCAL_ID constant_local_ids ) ; 
+        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id constant_local_ids ) ; 
         /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLOCALID severity, AstConstantLOCALID state, AstConstantLocalIds constantLocalIds)
+        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstConstantLocalIds constantLocalIds)
         {
             return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, constantLocalIds);
         }
         
         /// <summary>
         /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_LOCAL_ID , state=constant_LOCAL_ID ) ; 
+        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id ) ; 
         /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLOCALID severity, AstConstantLOCALID state)
+        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state)
         {
             return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state);
         }
         
         /// <summary>
         /// raiseerror_statement : 
-        ///    RAISERROR DECIMAL formatstring=string_local_id_double_quote_id decimal_string_locals? 
+        ///    RAISERROR decimal formatstring=string_local_id_double_quote_id decimal_string_locals? 
         /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(Decimal _decimal, AstStringLocalIdDoubleQuoteId formatstring, AstDecimalStringLocals decimalStringLocals)
+        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimal @decimal, AstStringLocalIdDoubleQuoteId formatstring, AstDecimalStringLocals decimalStringLocals)
         {
-            return AstRaiseerrorStatement.RaiseerrorStatement(_decimal, formatstring, decimalStringLocals);
+            return AstRaiseerrorStatement.RaiseerrorStatement(@decimal, formatstring, decimalStringLocals);
         }
     }
     
@@ -4341,20 +4233,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// declare_statement : 
-        ///    DECLARE LOCAL_ID AS table_type_definition ; 
+        ///    DECLARE local_id AS table_type_definition ; 
         /// </summary>
-        public static AstDeclareStatement DeclareStatement(String txt, AstTableTypeDefinition tableTypeDefinition)
+        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstTableTypeDefinition tableTypeDefinition)
         {
-            return AstDeclareStatement.DeclareStatement(txt, tableTypeDefinition);
+            return AstDeclareStatement.DeclareStatement(localId, tableTypeDefinition);
         }
         
         /// <summary>
         /// declare_statement : 
-        ///    DECLARE LOCAL_ID AS full_table_ref ; 
+        ///    DECLARE local_id AS full_table_ref ; 
         /// </summary>
-        public static AstDeclareStatement DeclareStatement(String txt, AstFullTableRef fullTableRef)
+        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstFullTableRef fullTableRef)
         {
-            return AstDeclareStatement.DeclareStatement(txt, fullTableRef);
+            return AstDeclareStatement.DeclareStatement(localId, fullTableRef);
         }
         
         /// <summary>
@@ -4368,11 +4260,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// declare_statement : 
-        ///    DECLARE LOCAL_ID AS xml_type_definition ; 
+        ///    DECLARE local_id AS xml_type_definition ; 
         /// </summary>
-        public static AstDeclareStatement DeclareStatement(String txt, AstXmlTypeDefinition xmlTypeDefinition)
+        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstXmlTypeDefinition xmlTypeDefinition)
         {
-            return AstDeclareStatement.DeclareStatement(txt, xmlTypeDefinition);
+            return AstDeclareStatement.DeclareStatement(localId, xmlTypeDefinition);
         }
         
         /// <summary>
@@ -4413,63 +4305,63 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// begin_conversation_timer : 
-        ///    BEGIN CONVERSATION TIMER ( LOCAL_ID ) TIMEOUT EQUAL time ; 
+        ///    BEGIN CONVERSATION TIMER ( conversation=local_id ) TIMEOUT EQUAL time ; 
         /// </summary>
-        public static AstBeginConversationTimer BeginConversationTimer(String txt, AstTime time)
+        public static AstBeginConversationTimer BeginConversationTimer(AstLocalId conversation, AstTime time)
         {
-            return AstBeginConversationTimer.BeginConversationTimer(txt, time);
+            return AstBeginConversationTimer.BeginConversationTimer(conversation, time);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL LOCAL_ID ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, String txt, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, txt, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL LOCAL_ID COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, String txt, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, txt, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
         {
             return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
         {
             return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression);
         }
         
         /// <summary>
         /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=LOCAL_ID ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
+        ///    END CONVERSATION conversation_handle=local_id ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
         /// </summary>
-        public static AstEndConversation EndConversation(String conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
+        public static AstEndConversation EndConversation(AstLocalId conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
         {
             return AstEndConversation.EndConversation(conversationHandle, faliureCode, failureText);
         }
         
         /// <summary>
         /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=LOCAL_ID ; 
+        ///    END CONVERSATION conversation_handle=local_id ; 
         /// </summary>
-        public static AstEndConversation EndConversation(String conversationHandle)
+        public static AstEndConversation EndConversation(AstLocalId conversationHandle)
         {
             return AstEndConversation.EndConversation(conversationHandle);
         }
@@ -4800,47 +4692,47 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// set_statement : 
-        ///    SET LOCAL_ID . member_name=id_ EQUAL expression ; 
+        ///    SET local_id . member_name=id_ EQUAL expression ; 
         /// </summary>
-        public static AstSetStatement SetStatement(String txt, AstId memberName, AstExpression expression)
+        public static AstSetStatement SetStatement(AstLocalId localId, AstId memberName, AstExpression expression)
         {
-            return AstSetStatement.SetStatement(txt, memberName, expression);
+            return AstSetStatement.SetStatement(localId, memberName, expression);
         }
         
         /// <summary>
         /// set_statement : 
-        ///    SET LOCAL_ID EQUAL expression ; 
+        ///    SET local_id EQUAL expression ; 
         /// </summary>
-        public static AstSetStatement SetStatement(String txt, AstExpression expression)
+        public static AstSetStatement SetStatement(AstLocalId localId, AstExpression expression)
         {
-            return AstSetStatement.SetStatement(txt, expression);
+            return AstSetStatement.SetStatement(localId, expression);
         }
         
         /// <summary>
         /// set_statement : 
-        ///    SET LOCAL_ID assignment_operator expression ; 
+        ///    SET local_id assignment_operator expression ; 
         /// </summary>
-        public static AstSetStatement SetStatement(String txt, AstAssignmentOperator assignmentOperator, AstExpression expression)
+        public static AstSetStatement SetStatement(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
         {
-            return AstSetStatement.SetStatement(txt, assignmentOperator, expression);
+            return AstSetStatement.SetStatement(localId, assignmentOperator, expression);
         }
         
         /// <summary>
         /// set_statement : 
-        ///    SET LOCAL_ID EQUAL CURSOR declare_set_cursor_common FOR READ ONLY ; 
+        ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR READ ONLY ; 
         /// </summary>
-        public static AstSetStatement SetStatement(String txt, AstDeclareSetCursorCommon declareSetCursorCommon)
+        public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon)
         {
-            return AstSetStatement.SetStatement(txt, declareSetCursorCommon);
+            return AstSetStatement.SetStatement(localId, declareSetCursorCommon);
         }
         
         /// <summary>
         /// set_statement : 
-        ///    SET LOCAL_ID EQUAL CURSOR declare_set_cursor_common FOR UPDATE OF column_name_list ; 
+        ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR UPDATE OF column_name_list ; 
         /// </summary>
-        public static AstSetStatement SetStatement(String txt, AstDeclareSetCursorCommon declareSetCursorCommon, AstColumnNameList columnNameList)
+        public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon, AstColumnNameList columnNameList)
         {
-            return AstSetStatement.SetStatement(txt, declareSetCursorCommon, columnNameList);
+            return AstSetStatement.SetStatement(localId, declareSetCursorCommon, columnNameList);
         }
         
         /// <summary>
@@ -4917,9 +4809,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// checkpoint_statement : 
-        ///    CHECKPOINT checkPointDuration=DECIMAL() 
+        ///    CHECKPOINT checkPointDuration=decimal()? 
         /// </summary>
-        public static AstCheckpointStatement CheckpointStatement(Decimal checkPointDuration)
+        public static AstCheckpointStatement CheckpointStatement(AstDecimal checkPointDuration)
         {
             return AstCheckpointStatement.CheckpointStatement(checkPointDuration);
         }
@@ -4954,63 +4846,63 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// begin_conversation_timer : 
-        ///    BEGIN CONVERSATION TIMER ( LOCAL_ID ) TIMEOUT EQUAL time ; 
+        ///    BEGIN CONVERSATION TIMER ( conversation=local_id ) TIMEOUT EQUAL time ; 
         /// </summary>
-        public static AstBeginConversationTimer BeginConversationTimer(String txt, AstTime time)
+        public static AstBeginConversationTimer BeginConversationTimer(AstLocalId conversation, AstTime time)
         {
-            return AstBeginConversationTimer.BeginConversationTimer(txt, time);
+            return AstBeginConversationTimer.BeginConversationTimer(conversation, time);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL LOCAL_ID ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, String txt, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, txt, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL LOCAL_ID COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, String txt, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, txt, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
         {
             return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=LOCAL_ID FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(String dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
         {
             return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression);
         }
         
         /// <summary>
         /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=LOCAL_ID ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
+        ///    END CONVERSATION conversation_handle=local_id ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
         /// </summary>
-        public static AstEndConversation EndConversation(String conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
+        public static AstEndConversation EndConversation(AstLocalId conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
         {
             return AstEndConversation.EndConversation(conversationHandle, faliureCode, failureText);
         }
         
         /// <summary>
         /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=LOCAL_ID ; 
+        ///    END CONVERSATION conversation_handle=local_id ; 
         /// </summary>
-        public static AstEndConversation EndConversation(String conversationHandle)
+        public static AstEndConversation EndConversation(AstLocalId conversationHandle)
         {
             return AstEndConversation.EndConversation(conversationHandle);
         }
@@ -5441,20 +5333,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// expression_assign_elem : 
-        ///    LOCAL_ID assignment_operator expression 
+        ///    local_id assignment_operator expression 
         /// </summary>
-        public static AstExpressionAssignElem ExpressionAssignElem(String txt, AstAssignmentOperator assignmentOperator, AstExpression expression)
+        public static AstExpressionAssignElem ExpressionAssignElem(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
         {
-            return AstExpressionAssignElem.ExpressionAssignElem(txt, assignmentOperator, expression);
+            return AstExpressionAssignElem.ExpressionAssignElem(localId, assignmentOperator, expression);
         }
         
         /// <summary>
         /// expression_assign_elem : 
-        ///    LOCAL_ID EQUAL expression 
+        ///    local_id EQUAL expression 
         /// </summary>
-        public static AstExpressionAssignElem ExpressionAssignElem(String txt, AstExpression expression)
+        public static AstExpressionAssignElem ExpressionAssignElem(AstLocalId localId, AstExpression expression)
         {
-            return AstExpressionAssignElem.ExpressionAssignElem(txt, expression);
+            return AstExpressionAssignElem.ExpressionAssignElem(localId, expression);
         }
         
         /// <summary>
@@ -5617,9 +5509,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// value_method : 
-        ///    loc=LOCAL_ID . call=value_call 
+        ///    loc=local_id . call=value_call 
         /// </summary>
-        public static AstValueMethod ValueMethod(String loc, AstValueCall call)
+        public static AstValueMethod ValueMethod(AstLocalId loc, AstValueCall call)
         {
             return AstValueMethod.ValueMethod(loc, call);
         }
@@ -5662,9 +5554,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// query_method : 
-        ///    loc=LOCAL_ID . call=query_call 
+        ///    loc=local_id . call=query_call 
         /// </summary>
-        public static AstQueryMethod QueryMethod(String loc, AstQueryCall call)
+        public static AstQueryMethod QueryMethod(AstLocalId loc, AstQueryCall call)
         {
             return AstQueryMethod.QueryMethod(loc, call);
         }
@@ -5689,9 +5581,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// exist_method : 
-        ///    loc=LOCAL_ID . call=exist_call 
+        ///    loc=local_id . call=exist_call 
         /// </summary>
-        public static AstExistMethod ExistMethod(String loc, AstExistCall call)
+        public static AstExistMethod ExistMethod(AstLocalId loc, AstExistCall call)
         {
             return AstExistMethod.ExistMethod(loc, call);
         }
@@ -5716,9 +5608,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// modify_method : 
-        ///    loc=LOCAL_ID . call=modify_call 
+        ///    loc=local_id . call=modify_call 
         /// </summary>
-        public static AstModifyMethod ModifyMethod(String loc, AstModifyCall call)
+        public static AstModifyMethod ModifyMethod(AstLocalId loc, AstModifyCall call)
         {
             return AstModifyMethod.ModifyMethod(loc, call);
         }
@@ -5767,11 +5659,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// window_frame_preceding : 
-        ///    DECIMAL PRECEDING 
+        ///    decimal PRECEDING 
         /// </summary>
-        public static AstWindowFramePreceding WindowFramePreceding(Decimal _decimal)
+        public static AstWindowFramePreceding WindowFramePreceding(AstDecimal @decimal)
         {
-            return AstWindowFramePreceding.WindowFramePreceding(_decimal);
+            return AstWindowFramePreceding.WindowFramePreceding(@decimal);
         }
     }
     
@@ -5809,63 +5701,63 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstFileSize size, AstMaxSize maxSize, AstFileSize filegrowth)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstMaxSize maxSize, AstFileSize filegrowth)
         {
             return AstFileSpec.FileSpec(idOrString, file, size, maxSize, filegrowth);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstMaxSize maxSize, AstFileSize filegrowth)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstMaxSize maxSize, AstFileSize filegrowth)
         {
             return AstFileSpec.FileSpec(idOrString, file, maxSize, filegrowth);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , SIZE EQUAL size=file_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstFileSize size, AstFileSize filegrowth)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstFileSize filegrowth)
         {
             return AstFileSpec.FileSpec(idOrString, file, size, filegrowth);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , FILEGROWTH EQUAL filegrowth=file_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , FILEGROWTH EQUAL filegrowth=file_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstFileSize filegrowth)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize filegrowth)
         {
             return AstFileSpec.FileSpec(idOrString, file, filegrowth);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstFileSize size, AstMaxSize maxSize)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstMaxSize maxSize)
         {
             return AstFileSpec.FileSpec(idOrString, file, size, maxSize);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , MAXSIZE EQUAL max_size ,? ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , MAXSIZE EQUAL max_size ,? ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file, AstMaxSize maxSize)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstMaxSize maxSize)
         {
             return AstFileSpec.FileSpec(idOrString, file, maxSize);
         }
         
         /// <summary>
         /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=STRING , ) 
+        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , ) 
         /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, String file)
+        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file)
         {
             return AstFileSpec.FileSpec(idOrString, file);
         }

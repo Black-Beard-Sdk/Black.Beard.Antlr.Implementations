@@ -130,18 +130,18 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// target_parameter_sets
-        /// 	 : target_parameter_value  (COMMA  target_parameter_id)*
+        /// target_parameter_ids
+        /// 	 : target_parameter_id  (COMMA  target_parameter_id)*
         /// </summary>
-        public override AstRoot VisitTarget_parameter_sets(TSqlParser.Target_parameter_setsContext context)
+        public override AstRoot VisitTarget_parameter_ids(TSqlParser.Target_parameter_idsContext context)
         {
-            TSqlParser.Target_parameter_valueContext[] source = context.target_parameter_value();
-            AstTargetParameterSets list = new AstTargetParameterSets(context, source.Length);
+            TSqlParser.Target_parameter_idContext[] source = context.target_parameter_id();
+            AstTargetParameterIds list = new AstTargetParameterIds(context, source.Length);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
-                TSqlParser.Target_parameter_valueContext item = ((TSqlParser.Target_parameter_valueContext)(enumerator.Current));
-                AstTargetParameterValue acceptResult = ((AstTargetParameterValue)(item.Accept(this)));
+                TSqlParser.Target_parameter_idContext item = ((TSqlParser.Target_parameter_idContext)(enumerator.Current));
+                AstTargetParameterId acceptResult = ((AstTargetParameterId)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -163,6 +163,27 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Id_Context item = ((TSqlParser.Id_Context)(enumerator.Current));
                 AstId acceptResult = ((AstId)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// create_schema_targets
+        /// 	 : create_schema_target+
+        /// </summary>
+        public override AstRoot VisitCreate_schema_targets(TSqlParser.Create_schema_targetsContext context)
+        {
+            TSqlParser.Create_schema_targetContext[] source = context.create_schema_target();
+            AstCreateSchemaTargets list = new AstCreateSchemaTargets(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Create_schema_targetContext item = ((TSqlParser.Create_schema_targetContext)(enumerator.Current));
+                AstCreateSchemaTarget acceptResult = ((AstCreateSchemaTarget)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -235,6 +256,27 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// when_matches
+        /// 	 : when_matche+
+        /// </summary>
+        public override AstRoot VisitWhen_matches(TSqlParser.When_matchesContext context)
+        {
+            TSqlParser.When_matcheContext[] source = context.when_matche();
+            AstWhenMatches list = new AstWhenMatches(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.When_matcheContext item = ((TSqlParser.When_matcheContext)(enumerator.Current));
+                AstWhenMatche acceptResult = ((AstWhenMatche)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// receive_ids
         /// 	 : receive_id  (COMMA  receive_id)+
         /// </summary>
@@ -247,27 +289,6 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Receive_idContext item = ((TSqlParser.Receive_idContext)(enumerator.Current));
                 AstReceiveId acceptResult = ((AstReceiveId)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// output_dml_list_elem
-        /// 	 : (expression | asterisk)  as_column_alias?
-        /// </summary>
-        public override AstRoot VisitOutput_dml_list_elem(TSqlParser.Output_dml_list_elemContext context)
-        {
-            TSqlParser.ExpressionContext[] source = context.expression();
-            AstOutputDmlListElem list = new AstOutputDmlListElem(context, source.Length);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                TSqlParser.ExpressionContext item = ((TSqlParser.ExpressionContext)(enumerator.Current));
-                AstExpression acceptResult = ((AstExpression)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -319,8 +340,29 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// table_options
+        /// 	 : tbl_option+
+        /// </summary>
+        public override AstRoot VisitTable_options(TSqlParser.Table_optionsContext context)
+        {
+            TSqlParser.Tbl_optionContext[] source = context.tbl_option();
+            AstTableOptions list = new AstTableOptions(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Tbl_optionContext item = ((TSqlParser.Tbl_optionContext)(enumerator.Current));
+                AstTblOption acceptResult = ((AstTblOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// filespec
-        /// 	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | STRING)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+        /// 	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | stringtext)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
         /// </summary>
         public override AstRoot VisitFilespec(TSqlParser.FilespecContext context)
         {
@@ -373,6 +415,27 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Backup_certificate_private_keyContext item = ((TSqlParser.Backup_certificate_private_keyContext)(enumerator.Current));
                 AstBackupCertificatePrivateKey acceptResult = ((AstBackupCertificatePrivateKey)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// backup_settings
+        /// 	 : WITH  backup_setting+
+        /// </summary>
+        public override AstRoot VisitBackup_settings(TSqlParser.Backup_settingsContext context)
+        {
+            TSqlParser.Backup_settingContext[] source = context.backup_setting();
+            AstBackupSettings list = new AstBackupSettings(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Backup_settingContext item = ((TSqlParser.Backup_settingContext)(enumerator.Current));
+                AstBackupSetting acceptResult = ((AstBackupSetting)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -1097,7 +1160,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// pwd_strategies
-        /// 	 : pwd_strategy*
+        /// 	 : pwd_strategy+
         /// </summary>
         public override AstRoot VisitPwd_strategies(TSqlParser.Pwd_strategiesContext context)
         {
@@ -2399,17 +2462,17 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// tableoptions
-        /// 	 : table_option  (COMMA  table_option)*
+        /// 	 : tableoption  (COMMA  tableoption)*
         /// </summary>
         public override AstRoot VisitTableoptions(TSqlParser.TableoptionsContext context)
         {
-            TSqlParser.Table_optionContext[] source = context.table_option();
+            TSqlParser.TableoptionContext[] source = context.tableoption();
             AstTableoptions list = new AstTableoptions(context, source.Length);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
-                TSqlParser.Table_optionContext item = ((TSqlParser.Table_optionContext)(enumerator.Current));
-                AstTableOption acceptResult = ((AstTableOption)(item.Accept(this)));
+                TSqlParser.TableoptionContext item = ((TSqlParser.TableoptionContext)(enumerator.Current));
+                AstTableoption acceptResult = ((AstTableoption)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -2557,6 +2620,90 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Date_optionContext item = ((TSqlParser.Date_optionContext)(enumerator.Current));
                 AstDateOption acceptResult = ((AstDateOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// xml_common_directives
+        /// 	 : xml_common_directive  (COMMA  xml_common_directive)*
+        /// </summary>
+        public override AstRoot VisitXml_common_directives(TSqlParser.Xml_common_directivesContext context)
+        {
+            TSqlParser.Xml_common_directiveContext[] source = context.xml_common_directive();
+            AstXmlCommonDirectives list = new AstXmlCommonDirectives(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Xml_common_directiveContext item = ((TSqlParser.Xml_common_directiveContext)(enumerator.Current));
+                AstXmlCommonDirective acceptResult = ((AstXmlCommonDirective)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partials
+        /// 	 : declare_set_cursor_common_partial+
+        /// </summary>
+        public override AstRoot VisitDeclare_set_cursor_common_partials(TSqlParser.Declare_set_cursor_common_partialsContext context)
+        {
+            TSqlParser.Declare_set_cursor_common_partialContext[] source = context.declare_set_cursor_common_partial();
+            AstDeclareSetCursorCommonPartials list = new AstDeclareSetCursorCommonPartials(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Declare_set_cursor_common_partialContext item = ((TSqlParser.Declare_set_cursor_common_partialContext)(enumerator.Current));
+                AstDeclareSetCursorCommonPartial acceptResult = ((AstDeclareSetCursorCommonPartial)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// column_definition_elements
+        /// 	 : column_definition_element+
+        /// </summary>
+        public override AstRoot VisitColumn_definition_elements(TSqlParser.Column_definition_elementsContext context)
+        {
+            TSqlParser.Column_definition_elementContext[] source = context.column_definition_element();
+            AstColumnDefinitionElements list = new AstColumnDefinitionElements(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Column_definition_elementContext item = ((TSqlParser.Column_definition_elementContext)(enumerator.Current));
+                AstColumnDefinitionElement acceptResult = ((AstColumnDefinitionElement)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// schema_table_ref_impacts
+        /// 	 : schema_table_ref_impact  (COMMA  schema_table_ref_impact)*
+        /// </summary>
+        public override AstRoot VisitSchema_table_ref_impacts(TSqlParser.Schema_table_ref_impactsContext context)
+        {
+            TSqlParser.Schema_table_ref_impactContext[] source = context.schema_table_ref_impact();
+            AstSchemaTableRefImpacts list = new AstSchemaTableRefImpacts(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Schema_table_ref_impactContext item = ((TSqlParser.Schema_table_ref_impactContext)(enumerator.Current));
+                AstSchemaTableRefImpact acceptResult = ((AstSchemaTableRefImpact)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);

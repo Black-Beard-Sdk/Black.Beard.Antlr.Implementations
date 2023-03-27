@@ -14,7 +14,7 @@ namespace Bb.ParsersConfiguration.Ast
             : base(ctx)
         {
             this.Generate = generate;
-            this.Inherit = inheritClass;
+            this._inherit = inheritClass;
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
@@ -23,14 +23,21 @@ namespace Bb.ParsersConfiguration.Ast
             : base(position)
         {
             this.Generate = generate;
-            this.Inherit = inheritClass;
+            this._inherit = inheritClass;
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
 
         public bool Generate { get; set; }
 
-        public IdentifierConfig Inherit { get; set;  }
+        public IdentifierConfig Inherit
+        {
+            get => _inherit; 
+            set 
+            {
+                _inherit = value; 
+            }  
+        }
 
         public TemplateSetting? TemplateSetting { get; }
 
@@ -70,6 +77,8 @@ namespace Bb.ParsersConfiguration.Ast
             writer.AppendEndLine();
 
         }
+
+        private IdentifierConfig _inherit;
 
     }
 

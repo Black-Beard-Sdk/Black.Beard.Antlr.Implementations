@@ -80,6 +80,10 @@ namespace Generate.Scripts
 
                         .Make(t =>
                         {
+                            //if (ast.Name.Text == "asterisk")
+                            //{
+
+                            //}
 
                             var r = ast.Root();
 
@@ -267,96 +271,6 @@ namespace Generate.Scripts
             });
 
         }
-
-    }
-
-    public static class ScriptExtension
-    {
-
-        public static string GenerateDoc(this TreeRuleItem alt, Context ctx)
-        {
-
-            var txt = alt.ToString();
-            var items = txt.Split(" ");
-
-            foreach (var item in items)
-            {
-                if (IsUppercase(item))
-                {
-                    var o = ctx.RootAst.Rules.ResolveByName(item) as AstLexerRule;
-                    if (o != null && o.Configuration.Config.Kind == TokenTypeEnum.Ponctuation)
-                    {
-                        txt = txt.Replace(item, o.Value.ToString().Trim('\''));
-                    }
-                }
-
-            }
-
-            return "   " + txt;
-
-        }
-
-        public static bool IsUppercase(this string text)
-        {
-
-            foreach (var item in text)
-                if (char.IsLower(item))
-                    return false;
-
-            return true;
-
-        }
-
-        public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
-        {
-
-            List<TreeRuleItem> _results = new List<TreeRuleItem>();
-
-            foreach (var alternative in ast.Alternatives)
-            {
-
-                var rule = alternative.GetRules().FirstOrDefault();
-                if (rule != null)
-                {
-
-                    var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Identifier.Text) as AstRule;
-
-                    if (ru1 != null)
-                    {
-                        if (ru1.Configuration.Config.Generate)
-                        {
-
-                            List<TreeRuleItem> allCombinations = ru1.ResolveAllCombinations();
-                            foreach (var item in allCombinations)
-                                _results.Add(item);
-                        }
-                        else
-                        {
-                            var res = GetAlternatives(ru1, ctx);
-                            _results.AddRange(res);
-                        }
-                    }
-
-                }
-
-            }
-
-            return _results;
-
-        }
-
-        public static string ResolveKey(this TreeRuleItem item)
-        {
-
-            if (!string.IsNullOrEmpty(item.Name))
-                return item.Name;
-
-            return null;
-
-        }
-
-
-
 
     }
 

@@ -124,6 +124,13 @@ namespace Bb.Generators
         private static string TemplateSelectorCompute(AstRule ast, Context context)
         {
 
+            /*
+            
+                a:rule ('COMMA' {a}).any
+                a:rule {a}.any
+             
+             */
+
             if (ast.Alternatives.Count == 1)
             {
 
@@ -169,6 +176,30 @@ namespace Bb.Generators
                             break;
                     }
 
+                }
+                if (r.Count == 2)
+                {
+
+                    var items = r.GetAllItems().ToList();
+                    var rules = items.Where(c => c.Type == "AstRuleRef").ToList();
+                    if (rules.Count == 2)
+                    {
+                        if (rules[0].ResolveName() == rules[1].ResolveName())
+                        {
+                            var parent = rules[1].Parent as AstAtom;
+                            if (parent.Occurence.Value == OccurenceEnum.Any)
+                                return "ClassList";
+                            else
+                            {
+                                var parent2 = parent.Ancestor<AstBlock>();
+                                if (parent2?.Occurence.Value == OccurenceEnum.Any)
+                                    return "ClassList";
+
+                            }
+                        }
+
+                    }
+                    
                 }
                 else
                 {

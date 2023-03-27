@@ -38,18 +38,55 @@ namespace Generate.Scripts
                     {
 
                         type.AddTemplateSelector(() => TemplateSelector(ast, context))
-                            .GenerateIf(() => Generate(ast, context))
-                            .IsEnum()
-                            .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum")
+                            .GenerateIf(() => Generate(ast, context))                            
+                            .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                             .Attribute(TypeAttributes.Public)
                             .Field((field) =>
                             {
                                 field.Name(n => "_undefined");
                             })
-                            .Fields(() => ast.GetTerminals(), (field, ast2) =>
+
+                            .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
+                            {
+                                f.Attribute(MemberAttributes.Family)
+                                .Argument(() => "ITerminalNode", "t")
+                                 .Argument(() => typeof(string), "value")
+                                 .Attribute(MemberAttributes.Public)
+                                 .CallBase("t".Var());
+                            })
+
+                            .Method((method) =>
                             {
 
-                                field.Name(n => CodeHelper.FormatCsharp((ast2 as AstTerminalText).Text.ToLower()))
+                                method.Name(n => "_undefined")
+                                .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                                .Body(m =>
+                                {
+                                    var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                    m.Statements.Return(CodeHelper.Create(typeName.AsType(), CodeHelper.Null()));
+
+                                })
+                                ;
+
+                            })
+
+                            .Methods(() => ast.GetTerminals(), (method, ast2) =>
+                            {
+
+                                method.Name(n => CodeHelper.FormatCsharp((ast2 as AstTerminalText).Text.ToLower()))
+                                .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                                .Body(m =>
+                                {
+
+                                    var a = ast2 as AstBase;
+                                    var l = a.Link as AstLexerRule;
+
+                                    var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                    m.Statements.Return(CodeHelper.Create(typeName.AsType(), "Position.Default".Var(), l.Value.ToString().Trim('\'').AsConstant()));
+
+                                })
                                 ;
 
                             });

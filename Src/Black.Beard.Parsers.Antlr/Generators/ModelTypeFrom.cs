@@ -127,6 +127,7 @@ namespace Bb.Generators
             this._fields.Add(m);
             return this;
         }
+
         public ModelTypeFrom<T> FieldsWhen(Func<bool> test, Func<IEnumerable<object>> items, Action<ModelField, object> action)
         {
             var m = new ModelField(this) { Test = test, Items = items, Action = action };
@@ -180,6 +181,13 @@ namespace Bb.Generators
             var m = new ModelMethod(this);
             this._methods.Add(m);
             action(m);
+            return this;
+        }
+
+        public ModelTypeFrom<T> Methods(Func<IEnumerable<object>> items, Action<ModelMethod, object> action)
+        {
+            var m = new ModelMethod(this) { Items = items, Action = action };
+            this._methods.Add(m);
             return this;
         }
 
@@ -288,7 +296,25 @@ namespace Bb.Generators
 
 
                     foreach (var m in _methods)
-                        m.Generate(ctx, ast, type);
+                    {
+
+                        if (m.Items != null)
+                        {
+                            var items = m.Items();
+                            foreach (var item in items)
+                            {
+                                m.Action(m, item);
+                                m.Generate(ctx, item, type);
+                            }
+                        }
+                        else
+                        {
+                            if (m.Action2 != null)
+                                m.Action2(m);
+                            m.Generate(ctx, ast, type);
+                        }
+
+                    }
 
                     foreach (var f in _fields)
                     {

@@ -115,11 +115,13 @@ namespace Bb.Asts
         public override void ToString(Writer wrt)
         {
 
-            if (Identifier != null)
-                Identifier.ToString(wrt);
-
             Rule.ToString(wrt);
 
+            if (Identifier != null)
+            {
+                wrt.Append("        #");
+                Identifier.ToString(wrt);
+            }
         }
     }
 

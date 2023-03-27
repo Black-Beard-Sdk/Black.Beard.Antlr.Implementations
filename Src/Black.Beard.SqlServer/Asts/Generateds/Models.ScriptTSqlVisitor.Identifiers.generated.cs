@@ -49,7 +49,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// id_or_string
         /// 	 : id_
-        /// 	 | STRING
+        /// 	 | stringtext
         /// </summary>
         public override AstRoot VisitId_or_string(TSqlParser.Id_or_stringContext context)
         {
@@ -94,7 +94,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// transaction_ref
         /// 	 : id_
-        /// 	 | LOCAL_ID
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitTransaction_ref(TSqlParser.Transaction_refContext context)
         {
@@ -137,7 +137,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// column_alias
         /// 	 : id_
-        /// 	 | STRING
+        /// 	 | stringtext
         /// </summary>
         public override AstRoot VisitColumn_alias(TSqlParser.Column_aliasContext context)
         {
@@ -159,7 +159,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// cursor_name
         /// 	 : id_
-        /// 	 | LOCAL_ID
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitCursor_name(TSqlParser.Cursor_nameContext context)
         {
@@ -2200,7 +2200,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// decimal_id
-        /// 	 : DECIMAL
+        /// 	 : decimal
         /// 	 | id_
         /// </summary>
         public override AstRoot VisitDecimal_id(TSqlParser.Decimal_idContext context)
@@ -2222,7 +2222,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// string_id
-        /// 	 : STRING
+        /// 	 : stringtext
         /// 	 | id_
         /// </summary>
         public override AstRoot VisitString_id(TSqlParser.String_idContext context)
@@ -2244,8 +2244,8 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// string_local_id
-        /// 	 : STRING
-        /// 	 | LOCAL_ID
+        /// 	 : stringtext
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitString_local_id(TSqlParser.String_local_idContext context)
         {
@@ -2266,8 +2266,8 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// decimal_local_id
-        /// 	 : DECIMAL
-        /// 	 | LOCAL_ID
+        /// 	 : decimal
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitDecimal_local_id(TSqlParser.Decimal_local_idContext context)
         {
@@ -2288,8 +2288,8 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// decimal_string
-        /// 	 : DECIMAL
-        /// 	 | STRING
+        /// 	 : decimal
+        /// 	 | stringtext
         /// </summary>
         public override AstRoot VisitDecimal_string(TSqlParser.Decimal_stringContext context)
         {
@@ -2310,9 +2310,9 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// decimal_string_local_id
-        /// 	 : DECIMAL
-        /// 	 | STRING
-        /// 	 | LOCAL_ID
+        /// 	 : decimal
+        /// 	 | stringtext
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitDecimal_string_local_id(TSqlParser.Decimal_string_local_idContext context)
         {
@@ -2333,8 +2333,8 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// string_local_id_double_quote_id
-        /// 	 : STRING
-        /// 	 | LOCAL_ID
+        /// 	 : stringtext
+        /// 	 | local_id
         /// 	 | empty_value
         /// </summary>
         public override AstRoot VisitString_local_id_double_quote_id(TSqlParser.String_local_id_double_quote_idContext context)
@@ -2379,7 +2379,7 @@ namespace Bb.Parsers.TSql
         /// <summary>
         /// ddl_object
         /// 	 : complete_table_ref
-        /// 	 | LOCAL_ID
+        /// 	 | local_id
         /// </summary>
         public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
         {

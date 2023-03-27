@@ -9,12 +9,12 @@
         void VisitConstant(ConstantStringConfig a);
         void VisitDefaultTemplateSetting(DefaultTemplateSetting a);
         void VisitGamarDeclaration(GrammarConfigDeclaration a);
-        void VisitGammarTermDeclaration(GrammarConfigTermDeclaration grammarConfigTermDeclaration);
+        void VisitGammarTermDeclaration(GrammarConfigTermDeclaration a);
         void VisitGrammarSpec(GrammarSpec a);
         void VisitIdentifier(IdentifierConfig a);
         void VisitListDeclaration(ListDeclaration a);
         void VisitRule(GrammarRuleConfig a);
-        void VisitRuleTerm(GrammarRuleTermConfig grammarRuleTermConfig);
+        void VisitRuleTerm(GrammarRuleTermConfig a);
         void VisitSelectorExpression(SelectorExpressionItem a);
         void VisitSelectorExpressionItemBinary(SelectorExpressionItemBinary a);
         void VisitSelectorExpressionItemHas(SelectorExpressionItemHas a);

@@ -18,6 +18,34 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
+    /// null
+    /// 	 : NULL_
+    /// </summary>
+    public partial class AstNull : AstTerminal<string>
+    {
+        
+        public AstNull(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstNull(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstNull(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitNull(this);
+        }
+    }
+    
+    /// <summary>
     /// empty_statement
     /// 	 : SEMI
     /// </summary>
@@ -98,34 +126,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterAssemblyDrop(this);
-        }
-    }
-    
-    /// <summary>
-    /// assembly_file_name
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstAssemblyFileName : AstTerminal<string>
-    {
-        
-        public AstAssemblyFileName(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstAssemblyFileName(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstAssemblyFileName(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitAssemblyFileName(this);
         }
     }
     
@@ -238,34 +238,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitMultipleLocalFileStart(this);
-        }
-    }
-    
-    /// <summary>
-    /// server_instance
-    /// 	 : STRING
-    /// </summary>
-    public partial class AstServerInstance : AstTerminal<string>
-    {
-        
-        public AstServerInstance(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstServerInstance(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstServerInstance(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitServerInstance(this);
         }
     }
     
@@ -441,7 +413,7 @@ namespace Bb.Asts.TSql
     /// star_asterisk
     /// 	 : STAR
     /// </summary>
-    public partial class AstStarAsterisk : AstSelectListElem
+    public partial class AstStarAsterisk : AstTerminal<string>
     {
         
         public AstStarAsterisk(ITerminalNode t) : 
@@ -467,11 +439,11 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// constant
-    /// 	 : STRING
-    /// 	 | BINARY
-    /// 	 | sign?  DECIMAL
-    /// 	 | sign?  (REAL | FLOAT)
-    /// 	 | sign?  dollar = DOLLAR  (DECIMAL | FLOAT)
+    /// 	 : stringtext
+    /// 	 | binary_
+    /// 	 | sign?  decimal
+    /// 	 | sign?  (real | float)
+    /// 	 | sign?  dollar = DOLLAR  (decimal | float)
     /// 	 | parameter
     /// </summary>
     public partial class AstConstant : AstTerminal<string>
@@ -495,6 +467,90 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitConstant(this);
+        }
+    }
+    
+    /// <summary>
+    /// ipv4
+    /// 	 : IPV4_ADDR
+    /// </summary>
+    public partial class AstIpv4 : AstTerminal<string>
+    {
+        
+        public AstIpv4(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstIpv4(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstIpv4(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitIpv4(this);
+        }
+    }
+    
+    /// <summary>
+    /// ipv6
+    /// 	 : IPV6_ADDR
+    /// </summary>
+    public partial class AstIpv6 : AstTerminal<string>
+    {
+        
+        public AstIpv6(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstIpv6(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstIpv6(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitIpv6(this);
+        }
+    }
+    
+    /// <summary>
+    /// float
+    /// 	 : FLOAT
+    /// </summary>
+    public partial class AstFloat : AstTerminal<string>
+    {
+        
+        public AstFloat(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstFloat(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstFloat(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitFloat(this);
         }
     }
     
@@ -527,30 +583,30 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// stringtext
-    /// 	 : STRING
+    /// binary_
+    /// 	 : BINARY
     /// </summary>
-    public partial class AstStringtext : AstTerminal<string>
+    public partial class AstBinary : AstTerminal<string>
     {
         
-        public AstStringtext(ITerminalNode t) : 
+        public AstBinary(ITerminalNode t) : 
                 base(t, t.GetText())
         {
         }
         
-        public AstStringtext(ParserRuleContext ctx) : 
+        public AstBinary(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
         {
         }
         
-        public AstStringtext(Position t, string value) : 
+        public AstBinary(Position t, string value) : 
                 base(t, value)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitStringtext(this);
+            visitor.VisitBinary(this);
         }
     }
     
@@ -579,6 +635,34 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitLocalId(this);
+        }
+    }
+    
+    /// <summary>
+    /// stringtext
+    /// 	 : STRING
+    /// </summary>
+    public partial class AstStringtext : AstTerminal<string>
+    {
+        
+        public AstStringtext(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstStringtext(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstStringtext(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStringtext(this);
         }
     }
 }

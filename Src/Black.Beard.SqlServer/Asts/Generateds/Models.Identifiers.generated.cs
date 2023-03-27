@@ -49,7 +49,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// id_or_string
     /// 	 : id_
-    /// 	 | STRING
+    /// 	 | stringtext
     /// </summary>
     public partial class AstIdOrString : AstTerminalIdentifier
     {
@@ -108,7 +108,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// transaction_ref
     /// 	 : id_
-    /// 	 | LOCAL_ID
+    /// 	 | local_id
     /// </summary>
     public partial class AstTransactionRef : AstTerminalIdentifier
     {
@@ -165,7 +165,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// column_alias
     /// 	 : id_
-    /// 	 | STRING
+    /// 	 | stringtext
     /// </summary>
     public partial class AstColumnAlias : AstTerminalIdentifier
     {
@@ -194,7 +194,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// cursor_name
     /// 	 : id_
-    /// 	 | LOCAL_ID
+    /// 	 | local_id
     /// </summary>
     public partial class AstCursorName : AstTerminalIdentifier
     {
@@ -2914,7 +2914,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// decimal_id
-    /// 	 : DECIMAL
+    /// 	 : decimal
     /// 	 | id_
     /// </summary>
     public partial class AstDecimalId : AstTerminalIdentifier
@@ -2943,7 +2943,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// string_id
-    /// 	 : STRING
+    /// 	 : stringtext
     /// 	 | id_
     /// </summary>
     public partial class AstStringId : AstTerminalIdentifier
@@ -2972,8 +2972,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// string_local_id
-    /// 	 : STRING
-    /// 	 | LOCAL_ID
+    /// 	 : stringtext
+    /// 	 | local_id
     /// </summary>
     public partial class AstStringLocalId : AstTerminalIdentifier
     {
@@ -3001,8 +3001,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// decimal_local_id
-    /// 	 : DECIMAL
-    /// 	 | LOCAL_ID
+    /// 	 : decimal
+    /// 	 | local_id
     /// </summary>
     public partial class AstDecimalLocalId : AstTerminalIdentifier
     {
@@ -3030,10 +3030,10 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// decimal_string
-    /// 	 : DECIMAL
-    /// 	 | STRING
+    /// 	 : decimal
+    /// 	 | stringtext
     /// </summary>
-    public partial class AstDecimalString : AstTerminal<string>
+    public partial class AstDecimalString : AstTerminalIdentifier
     {
         
         public AstDecimalString(ITerminalNode t) : 
@@ -3059,9 +3059,9 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// decimal_string_local_id
-    /// 	 : DECIMAL
-    /// 	 | STRING
-    /// 	 | LOCAL_ID
+    /// 	 : decimal
+    /// 	 | stringtext
+    /// 	 | local_id
     /// </summary>
     public partial class AstDecimalStringLocalId : AstTerminalIdentifier
     {
@@ -3089,8 +3089,8 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// string_local_id_double_quote_id
-    /// 	 : STRING
-    /// 	 | LOCAL_ID
+    /// 	 : stringtext
+    /// 	 | local_id
     /// 	 | empty_value
     /// </summary>
     public partial class AstStringLocalIdDoubleQuoteId : AstTerminalIdentifier
@@ -3149,7 +3149,7 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// ddl_object
     /// 	 : complete_table_ref
-    /// 	 | LOCAL_ID
+    /// 	 | local_id
     /// </summary>
     public partial class AstDdlObject : AstTerminalIdentifier
     {

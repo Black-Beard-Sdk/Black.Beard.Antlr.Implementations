@@ -134,25 +134,25 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// target_parameter_sets
-    /// 	 : target_parameter_value  (COMMA  target_parameter_id)*
+    /// target_parameter_ids
+    /// 	 : target_parameter_id  (COMMA  target_parameter_id)*
     /// </summary>
-    public partial class AstTargetParameterSets : AstRuleList<AstTargetParameterValue>
+    public partial class AstTargetParameterIds : AstRuleList<AstTargetParameterId>
     {
         
-        public AstTargetParameterSets(ParserRuleContext ctx) : 
+        public AstTargetParameterIds(ParserRuleContext ctx) : 
                 base(ctx)
         {
         }
         
-        public AstTargetParameterSets(ParserRuleContext ctx, int capacity) : 
+        public AstTargetParameterIds(ParserRuleContext ctx, int capacity) : 
                 base(ctx, capacity)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTargetParameterSets(this);
+            visitor.VisitTargetParameterIds(this);
         }
     }
     
@@ -176,6 +176,29 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitIdDotId(this);
+        }
+    }
+    
+    /// <summary>
+    /// create_schema_targets
+    /// 	 : create_schema_target+
+    /// </summary>
+    public partial class AstCreateSchemaTargets : AstRuleList<AstCreateSchemaTarget>
+    {
+        
+        public AstCreateSchemaTargets(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstCreateSchemaTargets(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCreateSchemaTargets(this);
         }
     }
     
@@ -249,6 +272,29 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// when_matches
+    /// 	 : when_matche+
+    /// </summary>
+    public partial class AstWhenMatches : AstRuleList<AstWhenMatche>
+    {
+        
+        public AstWhenMatches(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstWhenMatches(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitWhenMatches(this);
+        }
+    }
+    
+    /// <summary>
     /// receive_ids
     /// 	 : receive_id  (COMMA  receive_id)+
     /// </summary>
@@ -268,29 +314,6 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitReceiveIds(this);
-        }
-    }
-    
-    /// <summary>
-    /// output_dml_list_elem
-    /// 	 : (expression | asterisk)  as_column_alias?
-    /// </summary>
-    public partial class AstOutputDmlListElem : AstRuleList<AstExpression>
-    {
-        
-        public AstOutputDmlListElem(ParserRuleContext ctx) : 
-                base(ctx)
-        {
-        }
-        
-        public AstOutputDmlListElem(ParserRuleContext ctx, int capacity) : 
-                base(ctx, capacity)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitOutputDmlListElem(this);
         }
     }
     
@@ -341,8 +364,31 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// table_options
+    /// 	 : tbl_option+
+    /// </summary>
+    public partial class AstTableOptions : AstRuleList<AstTblOption>
+    {
+        
+        public AstTableOptions(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstTableOptions(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitTableOptions(this);
+        }
+    }
+    
+    /// <summary>
     /// filespec
-    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | STRING)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
+    /// 	 : LR_BRACKET  NAME  EQUAL  file_group_id  (COMMA  NEWNAME  EQUAL  file_group_id | stringtext)?  (COMMA  FILENAME  EQUAL  file_name = stringtext)?  (COMMA  SIZE  EQUAL  size = file_size)?  (COMMA  MAXSIZE  EQUAL  max = file_size | UNLIMITED)?  (COMMA  FILEGROWTH  EQUAL  growth_increment = file_size)?  (COMMA  OFFLINE)?  RR_BRACKET
     /// </summary>
     public partial class AstFilespec : AstRuleList<AstFileGroupId>
     {
@@ -406,6 +452,29 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitBackupCertificatePrivateKeys(this);
+        }
+    }
+    
+    /// <summary>
+    /// backup_settings
+    /// 	 : WITH  backup_setting+
+    /// </summary>
+    public partial class AstBackupSettings : AstRuleList<AstBackupSetting>
+    {
+        
+        public AstBackupSettings(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstBackupSettings(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitBackupSettings(this);
         }
     }
     
@@ -1193,7 +1262,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// pwd_strategies
-    /// 	 : pwd_strategy*
+    /// 	 : pwd_strategy+
     /// </summary>
     public partial class AstPwdStrategies : AstRuleList<AstPwdStrategy>
     {
@@ -2619,9 +2688,9 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// tableoptions
-    /// 	 : table_option  (COMMA  table_option)*
+    /// 	 : tableoption  (COMMA  tableoption)*
     /// </summary>
-    public partial class AstTableoptions : AstRuleList<AstTableOption>
+    public partial class AstTableoptions : AstRuleList<AstTableoption>
     {
         
         public AstTableoptions(ParserRuleContext ctx) : 
@@ -2798,6 +2867,98 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDateOptions(this);
+        }
+    }
+    
+    /// <summary>
+    /// xml_common_directives
+    /// 	 : xml_common_directive  (COMMA  xml_common_directive)*
+    /// </summary>
+    public partial class AstXmlCommonDirectives : AstRuleList<AstXmlCommonDirective>
+    {
+        
+        public AstXmlCommonDirectives(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstXmlCommonDirectives(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitXmlCommonDirectives(this);
+        }
+    }
+    
+    /// <summary>
+    /// declare_set_cursor_common_partials
+    /// 	 : declare_set_cursor_common_partial+
+    /// </summary>
+    public partial class AstDeclareSetCursorCommonPartials : AstRuleList<AstDeclareSetCursorCommonPartial>
+    {
+        
+        public AstDeclareSetCursorCommonPartials(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstDeclareSetCursorCommonPartials(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDeclareSetCursorCommonPartials(this);
+        }
+    }
+    
+    /// <summary>
+    /// column_definition_elements
+    /// 	 : column_definition_element+
+    /// </summary>
+    public partial class AstColumnDefinitionElements : AstRuleList<AstColumnDefinitionElement>
+    {
+        
+        public AstColumnDefinitionElements(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstColumnDefinitionElements(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitColumnDefinitionElements(this);
+        }
+    }
+    
+    /// <summary>
+    /// schema_table_ref_impacts
+    /// 	 : schema_table_ref_impact  (COMMA  schema_table_ref_impact)*
+    /// </summary>
+    public partial class AstSchemaTableRefImpacts : AstRuleList<AstSchemaTableRefImpact>
+    {
+        
+        public AstSchemaTableRefImpacts(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstSchemaTableRefImpacts(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSchemaTableRefImpacts(this);
         }
     }
 }
