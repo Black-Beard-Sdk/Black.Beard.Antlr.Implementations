@@ -317,9 +317,6 @@ waitfor_statement
     : WAITFOR receive_statement? COMMA? (delay_time_timeout time)?  expression? SEMI?
     ;
 
-delay_time_timeout : DELAY | TIME | TIMEOUT;
-
-
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/while-transact-sql
 while_statement
     : WHILE search_condition (sql_clause | BREAK SEMI? | CONTINUE SEMI?)
@@ -453,7 +450,6 @@ client_assembly_specifier
     | stringtext
     ;
 
-assembly_permission : (SAFE|EXTERNAL_ACCESS|UNSAFE);
 assembly_option
     : PERMISSION_SET EQUAL assembly_permission
     | VISIBILITY EQUAL on_off
@@ -540,7 +536,12 @@ create_asymmetric_key
     : CREATE ASYMMETRIC KEY asym_key_id
        (AUTHORIZATION database_id)?
        ( FROM (FILE EQUAL stringtext |EXECUTABLE_FILE EQUAL stringtext | ASSEMBLY assembly_id | PROVIDER provider_id) )?
-       (WITH (ALGORITHM EQUAL ( RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512)  |PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext | CREATION_DISPOSITION EQUAL (CREATE_NEW|OPEN_EXISTING)  )   )?
+       (WITH 
+       (
+              ALGORITHM EQUAL asymetric_algorithm  
+            | PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext 
+            | CREATION_DISPOSITION EQUAL creation_disposition  
+        ))?
        encryption_by_pwd?
     ;
 
@@ -628,59 +629,13 @@ class_type_for_parallel_dw
 // SELECT DISTINCT '| ' + CLASS_DESC
 // FROM sys.dm_audit_actions
 // ORDER BY 1
-class_type_for_grant
-    : APPLICATION ROLE
-    | ASSEMBLY
-    | ASYMMETRIC KEY
-    | AUDIT
-    | AVAILABILITY GROUP
-    | BROKER PRIORITY
-    | CERTIFICATE
-    | COLUMN encryption_master KEY
-    | CONTRACT
-    | CREDENTIAL
-    | CRYPTOGRAPHIC PROVIDER
-    | DATABASE ( AUDIT SPECIFICATION
-               | ENCRYPTION KEY
-               | EVENT SESSION
-               | SCOPED ( CONFIGURATION
-                        | CREDENTIAL
-                        | RESOURCE GOVERNOR )
-               )?
-    | ENDPOINT
-    | EVENT SESSION
-    | NOTIFICATION database_object_server
-    | EXTERNAL ( DATA SOURCE
-               | FILE FORMAT
-               | LIBRARY
-               | RESOURCE POOL
-               | TABLE
-               | CATALOG
-               | STOPLIST
-               )
-    | LOGIN
-    | MASTER KEY
-    | MESSAGE TYPE
-    | OBJECT
-    | PARTITION ( FUNCTION | SCHEME)
-    | REMOTE SERVICE BINDING
-    | RESOURCE GOVERNOR
-    | ROLE
-    | ROUTE
-    | SCHEMA
-    | SEARCH PROPERTY LIST
-    | SERVER ( ( AUDIT SPECIFICATION? ) | ROLE )?
-    | SERVICE
-    | SQL LOGIN
-    | SYMMETRIC KEY
-    | TRIGGER ( DATABASE | SERVER)
-    | TYPE
-    | USER
-    | XML SCHEMA COLLECTION
-    ;
 
-encryption_master : ENCRYPTION | MASTER ;
-database_object_server : DATABASE | OBJECT | SERVER;
+class_type_for_grant
+    : COLUMN encryption_master KEY
+    | NOTIFICATION database_object_server
+    | object_type_for_grant    
+    ; 
+
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-availability-group-transact-sql
 drop_availability_group
     : DROP AVAILABILITY GROUP group_id
@@ -731,15 +686,6 @@ alter_availability_group_options_listener_dhcp
 alter_availability_group_options_listener_ip 
     : (COMMA? LR_BRACKET ( range_ip_comma_v4 | IPV6_ADDR ) RR_BRACKET)+ (COMMA port=PORT EQUAL decimal)?
     ;
-
-add_remove : ADD | REMOVE;
-restart_remove : RESTART | REMOVE;
-synch_asynch :SYNCHRONOUS_COMMIT | ASYNCHRONOUS_COMMIT;
-auto_manual : AUTOMATIC | MANUAL;
-real_write_all : READ_WRITE | ALL;
-no_real_write_all : NO | READ_WRITE | ALL;
-primary_secondary_none : PRIMARY | SECONDARY_ONLY| SECONDARY | NONE;
-grant_deny : GRANT | DENY;
 
 alter_availability_replicat_modify
     : MODIFY REPLICA ON server_instance_txt 
@@ -879,8 +825,6 @@ broker_local_service_name : ( LOCAL_SERVICE_NAME EQUAL (DOUBLE_FORWARD_SLASH? id
 broker_remote_service_name : ( REMOTE_SERVICE_NAME EQUAL (stringtext | ANY ) COMMA? );
 broker_priority_level : ( PRIORITY_LEVEL EQUAL (decimal | DEFAULT) );
 
-create_alter : CREATE | ALTER;
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-broker-priority-transact-sql
 drop_broker_priority
     : DROP BROKER PRIORITY ConversationPriorityName=id_
@@ -897,8 +841,6 @@ alter_certificate
     ;
 
 private_key : FILE EQUAL stringtext COMMA? | by_password_crypt COMMA?;
-
-add_drop : ADD | DROP;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-column-encryption-key-transact-sql
 alter_column_encryption_key
@@ -1010,8 +952,13 @@ drop_external_table
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-event-notification-transact-sql
 drop_event_notifications
-    : DROP EVENT NOTIFICATION (COMMA? notification_id)+
-        ON (SERVER | DATABASE | QUEUE queue_id)
+    : DROP EVENT NOTIFICATION notification_ids
+        ON event_notification_on
+    ;
+
+event_notification_on
+    : server_database 
+    | QUEUE queue_id
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-event-session-transact-sql
@@ -1169,15 +1116,21 @@ drop_xml_schema_collection
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/disable-trigger-transact-sql
 disable_trigger
-    : DISABLE TRIGGER ( ( COMMA? schema_trigger_ref)+ | ALL) ON (schema_object_ref|DATABASE|ALL SERVER)
-    ;
-// https://docs.microsoft.com/en-us/sql/t-sql/statements/enable-trigger-transact-sql
-enable_trigger
-    : ENABLE TRIGGER ( ( COMMA? schema_trigger_ref)+ | ALL) ON ( schema_object_ref | DATABASE| ALL SERVER)
+    : DISABLE trigger_setting
     ;
 
+// https://docs.microsoft.com/en-us/sql/t-sql/statements/enable-trigger-transact-sql
+enable_trigger
+    : ENABLE trigger_setting
+    ;
+
+trigger_setting : TRIGGER trigger_name ON trigger_target;
+
+trigger_name : schema_trigger_refs | ALL;
+trigger_target : schema_object_ref | all_server_database;
+
 lock_table
-    : LOCK TABLE full_table_ref IN (SHARE | EXCLUSIVE) MODE (WAIT seconds=decimal | NOWAIT)? SEMI?
+    : LOCK TABLE full_table_ref IN share_exclusive MODE (WAIT seconds=decimal | NOWAIT)? SEMI?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql
@@ -1225,7 +1178,7 @@ create_cryptographic_provider
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-event-notification-transact-sql
 create_event_notification
     : CREATE EVENT NOTIFICATION event_notification_id
-      ON (SERVER | DATABASE | QUEUE queue_id)
+      ON  event_notification_on
         (WITH FAN_IN)?
         FOR (COMMA? event_type_or_group_id)+
           TO SERVICE  broker_service=stringtext  COMMA
@@ -1236,7 +1189,7 @@ create_event_notification
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-event-session-transact-sql
 // todo: not implemented
 create_or_alter_event_session
-    : (CREATE | ALTER) EVENT SESSION event_session_id ON SERVER 
+    : create_alter EVENT SESSION event_session_id ON SERVER 
       create_or_alter_event_session_add_events?
       create_or_alter_event_session_del_events?
       create_or_alter_event_session_add_targets?
@@ -1258,11 +1211,11 @@ create_or_alter_event_session_with
            RR_BRACKET     
     ;
 
-session_arg_max_memory : MAX_MEMORY EQUAL decimal (KB|MB);
-session_arg_event_retention_mode : EVENT_RETENTION_MODE EQUAL (ALLOW_SINGLE_EVENT_LOSS | ALLOW_MULTIPLE_EVENT_LOSS | NO_EVENT_LOSS );
+session_arg_max_memory : MAX_MEMORY EQUAL decimal memory_size_unity;
+session_arg_event_retention_mode : EVENT_RETENTION_MODE EQUAL session_mode;
 session_arg_max_dispatch : MAX_DISPATCH_LATENCY EQUAL (decimal SECONDS | INFINITE);
-session_arg_max_event_size : MAX_EVENT_SIZE EQUAL decimal (KB|MB);
-session_arg_memory_partition : MEMORY_PARTITION_MODE EQUAL (NONE | PER_NODE | PER_CPU);
+session_arg_max_event_size : MAX_EVENT_SIZE EQUAL decimal memory_size_unity;
+session_arg_memory_partition : MEMORY_PARTITION_MODE EQUAL partition_mode;
 session_arg_track_causality : TRACK_CAUSALITY EQUAL on_off;
 session_arg_startup_state : STARTUP_STATE EQUAL on_off;
 
@@ -1330,8 +1283,6 @@ event_session_predicate_leaf
     | source1=full_predicate_source_ref LR_BRACKET (event_field_id | source2=full_predicate_source_ref COMMA decimal_string ) RR_BRACKET
     ;
 
-event_session_predicate_leaf_ope :EQUAL | (LESS GREATER) | (EXCLAMATION EQUAL) | GREATER  | (GREATER EQUAL) | LESS | LESS EQUAL;
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-external-data-source-transact-sql
 alter_external_data_source
     : ALTER EXTERNAL DATA SOURCE data_source_id SET
@@ -1348,8 +1299,6 @@ alter_external_library
         RR_BRACKET 
         
     ;
-
-set_add : SET|ADD;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-external-library-transact-sql
 create_external_library
@@ -1370,9 +1319,7 @@ file_spec2
       RR_BRACKET
     ;
 
-platform : WINDOWS | LINUX;
 code_content : stringtext | binary_ | NONE;
-code_language : R | PYTHON;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-external-resource-pool-transact-sql
 alter_external_resource_pool
@@ -1515,13 +1462,6 @@ alter_login_azure_sql_dw_and_pdw
     ) )
     ;
 
-pwd_strategy : MUST_CHANGE | UNLOCK;
-
-enable_disable 
-    : ENABLE
-    | DISABLE
-    ;
-
 create_login_pdw
     : CREATE LOGIN login_id
         (WITH
@@ -1534,7 +1474,11 @@ create_login_pdw
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-master-key-transact-sql
 alter_master_key_sql_server
-    : ALTER MASTER KEY ( (FORCE)? REGENERATE WITH encryption_by_pwd | add_drop ENCRYPTION BY (SERVICE MASTER KEY | PASSWORD EQUAL encryption_password=stringtext) )
+    : ALTER MASTER KEY 
+    ( 
+          regenerate_mater_key
+        | add_drop add_master_key
+    )
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-master-key-transact-sql
@@ -1543,16 +1487,35 @@ create_master_key_sql_server
     ;
 
 alter_master_key_azure_sql
-    : ALTER MASTER KEY ( (FORCE)? REGENERATE WITH encryption_by_pwd | ADD ENCRYPTION BY (SERVICE MASTER KEY | PASSWORD EQUAL encryption_password=stringtext) | DROP ENCRYPTION BY  PASSWORD EQUAL encryption_password=stringtext )
+    : ALTER MASTER KEY 
+    (
+          regenerate_mater_key 
+        | ADD add_master_key
+        | DROP encryption_by_pwd
+    )
     ;
 
+regenerate_mater_key : (FORCE)? REGENERATE WITH encryption_by_pwd;
+
+add_master_key 
+    : ENCRYPTION BY 
+    (
+          SERVICE MASTER KEY 
+        | PASSWORD EQUAL encryption_password=stringtext
+    ) 
+    ; 
 create_master_key_azure_sql
     : CREATE MASTER KEY encryption_by_pwd?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-message-type-transact-sql
 alter_message_type
-    : ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL (NONE | EMPTY | WELL_FORMED_XML | VALID_XML WITH SCHEMA COLLECTION  schema_collection_id)
+    : ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL message_validation_value
+    ;
+
+message_validation_value
+    : message_validation_value_enum
+    | VALID_XML WITH SCHEMA COLLECTION  schema_collection_id
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-partition-function-transact-sql
@@ -1615,7 +1578,12 @@ decimal_range
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-resource-governor-transact-sql
 alter_resource_governor
-    : ALTER RESOURCE GOVERNOR ( (DISABLE | RECONFIGURE) | WITH LR_BRACKET CLASSIFIER_FUNCTION EQUAL ( schema_func_proc_ref | NULL_ ) RR_BRACKET | RESET STATISTICS | WITH LR_BRACKET MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal RR_BRACKET )
+    : ALTER RESOURCE GOVERNOR 
+    (     disable_reconfigure 
+        | WITH LR_BRACKET CLASSIFIER_FUNCTION EQUAL ( schema_func_proc_ref | NULL_ ) RR_BRACKET 
+        | RESET STATISTICS 
+        | WITH LR_BRACKET MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal RR_BRACKET 
+    )
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-role-transact-sql
@@ -1650,7 +1618,7 @@ create_rule
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-schema-transact-sql
 alter_schema_sql
-    : ALTER SCHEMA schema_id TRANSFER ((OBJECT|TYPE|XML SCHEMA COLLECTION) DOUBLE_COLON )? id_dot_id
+    : ALTER SCHEMA schema_id TRANSFER transfert_target? id_dot_id
     ;
 
 id_dot_id : id_ (DOT id_)?;
@@ -1718,11 +1686,6 @@ schema_table_ref_impact
     | BEFORE update_delate
     ;
 
-insert_update : (INSERT | UPDATE);
-update_delate : (UPDATE | DELETE);
-
-filter_block : FILTER | BLOCK;
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-sequence-transact-sql
 alter_sequence
     : ALTER SEQUENCE schema_sequence_ref 
@@ -1786,10 +1749,6 @@ real : MINUS? decimal;
 
 create_sequence_start : START WITH decimal;
 
-cycle : CYCLE | NO CYCLE;
-
-size_unity : MB | GB | TB;
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-server-audit-transact-sql
 alter_server_audit
     : ALTER SERVER AUDIT audit_id
@@ -1834,23 +1793,6 @@ alter_server_audit_condition
       COMMA? (NOT?) event_field_id audit_operator decimal_string
     | COMMA? and_or NOT? audit_operator decimal_string
                   
-    ;
-
-continue_shutdown : CONTINUE | SHUTDOWN | FAIL_OPERATION;
-
-audit_operator 
-    : EQUAL
-    | LESS GREATER
-    | EXCLAMATION EQUAL
-    | GREATER
-    | GREATER EQUAL
-    | LESS
-    | LESS EQUAL
-    ;
-
-and_or
-    : AND
-    | OR
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-server-audit-transact-sql
@@ -1932,8 +1874,6 @@ server_config_diagnostic_log
     )
     ;
 
-size_value : decimal MB | DEFAULT;
-decimal_default : decimal | DEFAULT;
 server_config_failover
     : FAILOVER CLUSTER PROPERTY 
     (
@@ -2071,8 +2011,6 @@ create_user_windows_principal_id
     | user_id FROM EXTERNAL PROVIDER
     ;
 
-for_from : FOR | FROM;
-
 user_settings_short
     : COMMA? DEFAULT_SCHEMA EQUAL schema_id
     | COMMA? ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off    
@@ -2130,15 +2068,13 @@ alter_workload_group
         alter_workload_group_using?
     ;
 
-importance_level : LOW | MEDIUM | HIGH;
-
 alter_workload_group_using : USING (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE);
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-workload-group-transact-sql
 create_workload_group
     : CREATE WORKLOAD GROUP workload_group_group_id
          (WITH LR_BRACKET
-           (IMPORTANCE EQUAL (LOW|MEDIUM|HIGH)
+           (IMPORTANCE EQUAL importance_level
            | COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal
            | COMMA? REQUEST_MAX_CPU_TIME_SEC EQUAL request_max_cpu_time_sec=decimal
            | REQUEST_MEMORY_GRANT_TIMEOUT_SEC EQUAL request_memory_grant_timeout_sec=decimal
@@ -2158,7 +2094,7 @@ create_xml_schema_collection
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-partition-function-transact-sql?view=sql-server-ver15
 create_partition_function
     : CREATE PARTITION FUNCTION partition_function_id LR_BRACKET input_parameter_type=data_type RR_BRACKET
-      AS RANGE ( LEFT | RIGHT )?
+      AS RANGE left_right?
       FOR VALUES LR_BRACKET boundary_values=expression_list RR_BRACKET
     ;
 
@@ -2210,9 +2146,11 @@ queue_rebuild_options
 create_contract
     : CREATE CONTRACT contract_name_expression
       (AUTHORIZATION owner_id)?
-      LR_BRACKET ((message_type_id | DEFAULT)
-          SENT BY (INITIATOR | TARGET | ANY ) COMMA?)+
-      RR_BRACKET
+      LR_BRACKET contract_items RR_BRACKET
+    ;
+
+contract_item 
+    : (message_type_id | DEFAULT) SENT BY init_target_any
     ;
 
 conversation_statement
@@ -2245,7 +2183,7 @@ merge_statement
       ON search_condition
       when_matches
       output_clause?
-      option_clause? SEMI
+      update_option_clause? SEMI
     ;
 
 when_matches : when_matche+;
@@ -2275,7 +2213,7 @@ delete_statement
       output_clause?
       (FROM table_sources)?
       (WHERE (search_condition | CURRENT OF (GLOBAL? cursor_name | cursor_var=local_id)))?
-      for_clause? option_clause? SEMI?
+      for_clause? update_option_clause? SEMI?
     ;
 
 delete_statement_from
@@ -2293,7 +2231,7 @@ insert_statement
       (LR_BRACKET insert_column_name_list RR_BRACKET)?
       output_clause?
       insert_statement_value
-      for_clause? option_clause? SEMI?
+      for_clause? update_option_clause? SEMI?
     ;
 
 insert_statement_value
@@ -2314,10 +2252,8 @@ receive_into : INTO table_id where_condition;
 
 where_condition : WHERE search_condition;
 
-receive_ids : receive_id (COMMA receive_id)+;
-
 receive_id : local_id EQUAL expression;
-receive_mode : (ALL | DISTINCT | top_clause | STAR);
+receive_mode : receive_mode_enum | top_clause;
 
 // https://msdn.microsoft.com/en-us/library/ms189499.aspx
 select_statement_standalone
@@ -2325,7 +2261,7 @@ select_statement_standalone
     ;
 
 select_statement
-    : query_expression select_order_by_clause? for_clause? option_clause? SEMI?
+    : query_expression select_order_by_clause? for_clause? update_option_clause? SEMI?
     ;
 
 time
@@ -2342,7 +2278,7 @@ update_statement
       output_clause?
       (FROM table_sources)?
       (WHERE (search_condition | CURRENT OF (GLOBAL? cursor_name | cursor_var=local_id)))?
-      for_clause? option_clause? SEMI?
+      for_clause? update_option_clause? SEMI?
     ;
 
 
@@ -2374,8 +2310,6 @@ database_on_log : ON PRIMARY? database_file_spec_list;
 database_collate : COLLATE collation_id;
 database_create_with : WITH create_database_option_list;
 
-none_partial : NONE | PARTIAL;
-
 // https://msdn.microsoft.com/en-us/library/ms188783.aspx
 create_index
     : CREATE UNIQUE? clustered? INDEX index_id ON full_table_ref LR_BRACKET column_name_list_with_order RR_BRACKET
@@ -2394,7 +2328,21 @@ relational_index_option
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-index-transact-sql
 alter_index
-    : ALTER INDEX index_name ON full_table_ref (DISABLE | PAUSE | ABORT | RESUME resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
+    : ALTER INDEX index_name ON full_table_ref index_status
+    ;
+
+index_status 
+    : index_status_enum 
+    | RESUME resumable_index_options? 
+    | reorganize_partition 
+    | set_index_options 
+    | rebuild_partition
+    ;
+
+index_status_enum 
+    : DISABLE 
+    | PAUSE 
+    | ABORT 
     ;
 
 index_name : (id_ | ALL);
@@ -2441,7 +2389,7 @@ rebuild_index_option
     | ALLOW_ROW_LOCKS EQUAL on_off
     | ALLOW_PAGE_LOCKS EQUAL on_off
     | MAXDOP EQUAL max_degree_of_parallelism=decimal
-    | DATA_COMPRESSION EQUAL (NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE)
+    | DATA_COMPRESSION EQUAL datacompression_mode
         on_partitions?
     | XML_COMPRESSION EQUAL on_off
         on_partitions?
@@ -2456,7 +2404,6 @@ single_partition_rebuild_index_option
     | ONLINE EQUAL (ON (LR_BRACKET low_priority_lock_wait RR_BRACKET)? | OFF)
     ;
 
-datacompression_mode : NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE;
 on_partitions
     : ON PARTITIONS LR_BRACKET
         partition_nums ( COMMA partition_nums )*
@@ -2479,7 +2426,7 @@ columnstore_index_option
     | MAXDOP EQUAL max_degree_of_parallelism=decimal
     | ONLINE EQUAL online=on_off
     | COMPRESSION_DELAY EQUAL delay=decimal MINUTES?
-    | DATA_COMPRESSION EQUAL (COLUMNSTORE | COLUMNSTORE_ARCHIVE)
+    | DATA_COMPRESSION EQUAL datacompression_column_mode
         on_partitions?
     ;
 
@@ -2494,10 +2441,11 @@ create_nonclustered_columnstore_index
 
 create_xml_index
     : CREATE PRIMARY? XML INDEX index_id ON full_table_ref LR_BRACKET column_id RR_BRACKET
-    (USING XML INDEX parent_index=index_id (FOR (VALUE | PATH | PROPERTY)?)?)?
-    xml_index_options?
+    using_xml_index? xml_index_options?
     SEMI?
     ;
+
+using_xml_index : USING XML INDEX index_id index_using_xml_mode?;
 
 xml_index_option
     : PAD_INDEX EQUAL pad_index=on_off
@@ -2515,7 +2463,7 @@ xml_index_option
 
 // https://msdn.microsoft.com/en-us/library/ms187926(v=sql.120).aspx
 create_or_alter_procedure
-    : ((CREATE (OR (ALTER | REPLACE))?) | ALTER) proc=(PROC | PROCEDURE) procName=schema_func_proc_ref (SEMI decimal)?
+    : ((CREATE (OR alter_replace)?) | ALTER) proc_keyword procName=schema_func_proc_ref (SEMI decimal)?
       (LR_BRACKET? procedure_params RR_BRACKET?)?
       procedure_options?
       (FOR REPLICATION)? AS (as_external_name | sql_clause)
@@ -2566,16 +2514,6 @@ create_or_alter_ddl_trigger
       AS sql_clauses
     ;
 
-all_server_database
-    : ALL SERVER 
-    | DATABASE
-    ;
-
-for_after
-    : FOR 
-    | AFTER
-    ;
-
 // https://msdn.microsoft.com/en-us/library/ms186755.aspx
 create_or_alter_function
     : ((CREATE (OR ALTER)?) | ALTER) FUNCTION funcName=schema_func_proc_ref
@@ -2610,29 +2548,31 @@ func_body_returns_scalar
     ;
 
 procedure_param
-    : arg_name=local_id AS? schema_type_ref VARYING? (EQUAL default_val=default_value)? (OUT | OUTPUT | READONLY)?
+    : arg_name=local_id AS? schema_type_ref VARYING? (EQUAL default_val=default_value)? param_way?
     ;
 
 procedure_option
-    : ENCRYPTION
-    | RECOMPILE
+    : procedure_option_enum
     | execute_clause
     ;
 
 function_option
-    : ENCRYPTION
-    | SCHEMABINDING
-    | RETURNS NULL_ ON NULL_ INPUT
-    | CALLED ON NULL_ INPUT
+    : function_option_enum
     | execute_clause
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms188038.aspx
 create_statistics
     : CREATE STATISTICS id_ ON full_table_ref LR_BRACKET column_name_list RR_BRACKET
-      (WITH (FULLSCAN | SAMPLE decimal (PERCENT | ROWS) | STATS_STREAM)
-            (COMMA NORECOMPUTE)? (COMMA INCREMENTAL EQUAL on_off)? )? SEMI?
+      (WITH statistics_with (COMMA NORECOMPUTE)? (COMMA INCREMENTAL EQUAL on_off)? )? 
+      SEMI?
     ;
+
+statistics_with 
+    : FULLSCAN 
+    | SAMPLE decimal percent_row 
+    | STATS_STREAM
+    ; 
 
 update_statistics
     : UPDATE STATISTICS complete_table_ref
@@ -2642,7 +2582,7 @@ update_statistics
 
 update_statistics_option
     : ( FULLSCAN (COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off )? )
-    | ( SAMPLE number=decimal (PERCENT | ROWS)
+    | ( SAMPLE number=decimal percent_row
         (COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off )? )
     | RESAMPLE on_partitions?
     | STATS_STREAM EQUAL stats_stream_=expression
@@ -2686,10 +2626,10 @@ tbl_option
 
 tableoption 
     : table_opt_varname EQUAL table_opt_var_value
-    | CLUSTERED COLUMNSTORE INDEX | HEAP
+    | tableoption_cluster_mode
     | FILLFACTOR EQUAL decimal
     | distribution
-    | DATA_COMPRESSION EQUAL (NONE | ROW | PAGE) on_partitions?
+    | DATA_COMPRESSION EQUAL compression_mode on_partitions?
     | XML_COMPRESSION EQUAL on_off on_partitions?
     ;
 
@@ -2697,7 +2637,8 @@ table_opt_varname : (simple_id | keyword);
 table_opt_var_value : (simple_id | keyword | on_off | decimal);
 
 distribution
-    : DISTRIBUTION EQUAL HASH LR_BRACKET id_ RR_BRACKET | CLUSTERED INDEX LR_BRACKET column_name_list_with_order RR_BRACKET
+    : DISTRIBUTION EQUAL HASH LR_BRACKET id_ RR_BRACKET 
+    | CLUSTERED INDEX LR_BRACKET column_name_list_with_order RR_BRACKET
     ;
 
 create_table_index_option
@@ -2713,7 +2654,6 @@ create_table_index_option
     | XML_COMPRESSION EQUAL on_off on_partitions?
     ;
 
-index_strategy : NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE;
 
 // https://msdn.microsoft.com/en-us/library/ms187956.aspx
 create_view
@@ -2722,21 +2662,17 @@ create_view
       AS select_statement_standalone (WITH CHECK OPTION)? SEMI?
     ;
 
-view_attribute
-    : ENCRYPTION | SCHEMABINDING | VIEW_METADATA
-    ;
-
 // https://msdn.microsoft.com/en-us/library/ms190273.aspx
 alter_table
     : ALTER TABLE full_table_ref 
     (
-          SET LR_BRACKET LOCK_ESCALATION EQUAL (AUTO | TABLE | DISABLE) RR_BRACKET
+          SET LR_BRACKET LOCK_ESCALATION EQUAL lock_mode RR_BRACKET
         | ADD column_def_table_constraints
         | ALTER COLUMN (column_definition | column_modifier)
         | DROP COLUMN ids
         | DROP CONSTRAINT constraint_id
-        | WITH (CHECK | NOCHECK) ADD alter_table_constraint
-        | (NOCHECK | CHECK) CONSTRAINT constraint_id
+        | WITH check_nocheck check_nocheck ADD alter_table_constraint
+        | check_nocheck CONSTRAINT constraint_id
         | enable_disable TRIGGER id_?
         | REBUILD table_options
         | SWITCH switch_partition
@@ -2772,7 +2708,7 @@ switch_partition
 low_priority_lock_wait
     : WAIT_AT_LOW_PRIORITY LR_BRACKET
       MAX_DURATION EQUAL max_duration=time MINUTES? COMMA
-      ABORT_AFTER_WAIT EQUAL abort_after_wait=(NONE | SELF | BLOCKERS) RR_BRACKET
+      ABORT_AFTER_WAIT EQUAL abort_after_wait=abord_after_mode RR_BRACKET
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms174269.aspx
@@ -2808,7 +2744,7 @@ filespec
     ;
 
 add_or_modify_filegroups
-    : ADD FILEGROUP file_group_id (CONTAINS FILESTREAM | CONTAINS MEMORY_OPTIMIZED_DATA)?
+    : ADD FILEGROUP file_group_id filegroup_predicate?
     | REMOVE FILEGROUP file_group_id
     | MODIFY FILEGROUP file_group_id 
     (
@@ -2858,7 +2794,7 @@ database_optionspec
 
 auto_option
     : AUTO_CLOSE on_off
-    | AUTO_CREATE_STATISTICS  OFF | ON ( INCREMENTAL EQUAL ON | OFF  )
+    | AUTO_CREATE_STATISTICS  statistic_value
     | AUTO_SHRINK  on_off
     | AUTO_UPDATE_STATISTICS on_off
     | AUTO_UPDATE_STATISTICS_ASYNC  on_off
@@ -2875,8 +2811,6 @@ change_tracking_option_list
     | CHANGE_RETENTION EQUAL period
     ;
 
-period : DAYS | HOURS | MINUTES;
-
 containment_option
     : CONTAINMENT EQUAL none_partial
     ;
@@ -2885,10 +2819,6 @@ cursor_option
     : CURSOR_CLOSE_ON_COMMIT on_off
     | CURSOR_DEFAULT local_global
     ;
-
-local_global : LOCAL | GLOBAL;
-
-state_enum : STARTED | STOPPED | DISABLED;
 
 listener_ip : LISTENER_IP EQUAL (ALL | ipv4 | ipv6 | stringtext);
 
@@ -2910,16 +2840,11 @@ authentication_configuration
     )
     ;
 
-authentication_mode : NTLM |KERBEROS | NEGOTIATE;
-
-encryption_state : ENCRYPTION EQUAL ( DISABLED | SUPPORTED | REQUIRED );
-encryption_algorithm :  ALGORITHM ( AES | RC4 | AES RC4 | RC4 AES );
-
 alter_endpoint_database_mirroring
     : FOR DATABASE_MIRRORING LR_BRACKET
                     authentication_configuration
                     ( COMMA? encryption_state encryption_algorithm? )?
-                    COMMA? ROLE EQUAL ( WITNESS | PARTNER | ALL )
+                    COMMA? ROLE EQUAL role_mirroring
                     RR_BRACKET
     ;
 
@@ -2960,13 +2885,8 @@ witness_partner_equal
 
 partner_option
     : witness_partner_equal partner_server
-    | FAILOVER
-    | FORCE_SERVICE_ALLOW_DATA_LOSS
-    | OFF
-    | RESUME
-    | SAFETY (FULL | OFF )
-    | SUSPEND
     | TIMEOUT decimal
+    | partner_option_enum
     ;
 
 witness_option
@@ -2994,8 +2914,7 @@ port_number
     ;
 
 host
-    : id_ DOT host
-    | (id_ DOT |id_)
+    : id_ (DOT id_)+
     ;
 
 date_correlation_optimization_option
@@ -3005,16 +2924,8 @@ date_correlation_optimization_option
 db_encryption_option
     : ENCRYPTION on_off
     ;
-db_state_option
-    : ONLINE 
-    | OFFLINE 
-    | EMERGENCY
-    ;
 
-db_update_option : READ_ONLY | READ_WRITE;
-
-db_user_access_option : SINGLE_USER | RESTRICTED_USER | MULTI_USER;
-delayed_durability_option : DELAYED_DURABILITY EQUAL ( DISABLED | ALLOWED | FORCED );
+delayed_durability_option : DELAYED_DURABILITY EQUAL delayed_durability;
 
 external_access_option
     : DB_CHAINING on_off
@@ -3032,22 +2943,21 @@ id_or_string
     ;
 
 hadr_options
-    : HADR ( ( AVAILABILITY GROUP EQUAL group_id | OFF ) |(SUSPEND|RESUME) )
+    : HADR 
+    ( 
+          ( AVAILABILITY GROUP EQUAL group_id | OFF ) 
+        | suspend_resume 
+    )
     ;
 
 mixed_page_allocation_option
     : MIXED_PAGE_ALLOCATION on_off
     ;
 
-parameterization_option
-    : PARAMETERIZATION ( SIMPLE | FORCED )
-    ;
-
 recovery_option
-    : RECOVERY ( FULL | BULK_LOGGED | SIMPLE )
+    : recovery_option_enum
     | TORN_PAGE_DETECTION on_off
     | ACCELERATED_DATABASE_RECOVERY EQUAL on_off
-    | PAGE_VERIFY ( CHECKSUM | TORN_PAGE_DETECTION | NONE )
     ;
 
 service_broker_option:
@@ -3077,7 +2987,7 @@ sql_option
     ;
 
 target_recovery_time_option
-    : TARGET_RECOVERY_TIME EQUAL decimal ( SECONDS | MINUTES )
+    : TARGET_RECOVERY_TIME EQUAL decimal seconds_minutes
     ;
 
 termination
@@ -3101,7 +3011,7 @@ drop_relational_or_xml_or_spatial_index
 
 // https://msdn.microsoft.com/en-us/library/ms174969.aspx
 drop_procedure
-    : DROP proc=(PROC | PROCEDURE) if_exists? func_proc_name_schemas SEMI?
+    : DROP proc_keyword if_exists? func_proc_name_schemas SEMI?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-trigger-transact-sql
@@ -3116,7 +3026,7 @@ drop_dml_trigger
 
 drop_ddl_trigger
     : DROP TRIGGER if_exists? schema_view_refs
-    ON (DATABASE | ALL SERVER) SEMI?
+    ON all_server_database SEMI?
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms190290.aspx
@@ -3126,8 +3036,11 @@ drop_function
 
 // https://msdn.microsoft.com/en-us/library/ms175075.aspx
 drop_statistics
-    : DROP STATISTICS (COMMA? (full_table_ref DOT)? name=id_)+ SEMI
+    : DROP STATISTICS full_table_ref_columns SEMI
     ;
+
+full_table_ref_column : (full_table_ref DOT)? name=id_;
+
 
 // https://msdn.microsoft.com/en-us/library/ms173790.aspx
 drop_table
@@ -3195,19 +3108,12 @@ cursor_statement
     | OPEN GLOBAL? cursor_name SEMI?
     ;
 
-compression : (COMPRESSION|NO_COMPRESSION);
-init_no_init : (NOINIT|INIT);
-no_skip : (NOSKIP|SKIP_KEYWORD);
-format_noformat : (NOFORMAT|FORMAT);
-
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/backup-transact-sql
 backup_database
     : BACKUP DATABASE ( database_id )
           (READ_WRITE_FILEGROUPS group1=file_group_list? )? group2=file_group_list?
     backup_target? backup_settings?
     ;
-
-file_group_list :  file_group_assign (COMMA file_group_assign)*;
 
 file_group_assign : file_file_group EQUAL file_or_filegroup=stringtext;
 
@@ -3241,34 +3147,28 @@ backup_certificate_private_key
     | by_password_crypt
     ;
 
-disk_tape_url : DISK | TAPE | URL;
-
 backup_settings : WITH backup_setting+;
 
 backup_setting
     : DIFFERENTIAL
     | COPY_ONLY
-    | compression
-    | DESCRIPTION EQUAL string_id
-    | NAME EQUAL backup_id
     | CREDENTIAL
     | FILE_SNAPSHOT
+    | NO_CHECKSUM
+    | CHECKSUM
+    | STOP_ON_ERROR
+    | CONTINUE_AFTER_ERROR
+    | RESTART
+    | DESCRIPTION EQUAL string_id
+    | NAME EQUAL backup_id
     | EXPIREDATE EQUAL string_id 
     | RETAINDAYS EQUAL decimal_id
-    | init_no_init
-    | no_skip
-    | format_noformat
     | MEDIADESCRIPTION EQUAL string_id
     | MEDIANAME EQUAL stringtext
     | BLOCKSIZE EQUAL decimal_id
     | BUFFERCOUNT EQUAL decimal_id
     | MAXTRANSFER EQUAL decimal_id
-    | (NO_CHECKSUM|CHECKSUM)
-    | (STOP_ON_ERROR|CONTINUE_AFTER_ERROR)
-    | RESTART
     | STATS (EQUAL decimal)?
-    | rewind
-    | load_moun_load
     | ENCRYPTION LR_BRACKET
         ALGORITHM EQUAL algorithm_short
         COMMA SERVER CERTIFICATE EQUAL
@@ -3277,18 +3177,12 @@ backup_setting
             | SERVER ASYMMETRIC KEY EQUAL encryptor_id
         )
         RR_BRACKET
-    ;
-
-file_file_group : FILE|FILEGROUP;
-
-load_moun_load : LOAD | NOUNLOAD;
-rewind : REWIND | NOREWIND;
-
-algorithm_short
-    : AES_128
-    | AES_192
-    | AES_256
-    | TRIPLE_DES_3KEY
+    | compression
+    | rewind
+    | load_moun_load
+    | init_no_init
+    | no_skip
+    | format_noformat
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/backup-master-key-transact-sql
@@ -3334,7 +3228,7 @@ execute_body_batch
 //https://docs.microsoft.com/it-it/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver15
 execute_body
     : (return_status=local_id EQUAL)? (func_proc_name_server_database_schema | execute_var_string)  execute_statement_arg?
-    | LR_BRACKET execute_var_strings RR_BRACKET (AS? (LOGIN | USER) EQUAL stringtext)? (AT_KEYWORD server_id)?
+    | LR_BRACKET execute_var_strings RR_BRACKET (AS? login_user EQUAL stringtext)? (AT_KEYWORD server_id)?
     ;
 
 execute_statement_arg
@@ -3351,11 +3245,11 @@ execute_statement_arg_unnamed
     ;
 
 execute_parameter
-    : (constant | local_id (OUTPUT | OUT)? | id_ | DEFAULT | NULL_)
+    : (constant | local_id output_out? | id_ | DEFAULT | NULL_)
     ;
 
 execute_var_string
-    : source=local_id (OUTPUT | OUT)? (PLUS more=local_id (PLUS execute_var_string)?)?
+    : source=local_id output_out? (PLUS more=local_id (PLUS execute_var_string)?)?
     | stringtext (PLUS local_id (PLUS execute_var_string)?)?
     ;
 
@@ -3395,15 +3289,13 @@ private_key_options
     : (FILE | binary_) EQUAL path=stringtext (COMMA encryption_decryption BY PASSWORD EQUAL password=stringtext)?
     ;
 
-encryption_decryption : DECRYPTION | ENCRYPTION;
-
 generate_new_keys
     : encryption_by_pwd?
       WITH SUBJECT EQUAL certificate_subject_name=stringtext (COMMA date_options)?
     ;
 
 date_option
-    : (START_DATE | EXPIRY_DATE) EQUAL stringtext
+    : start_date_expiry_date EQUAL stringtext
     ;
 
 open_key
@@ -3433,18 +3325,6 @@ key_options
     | CREATION_DISPOSITION EQUAL (CREATE_NEW | OPEN_EXISTING)
     ;
 
-algorithm
-    : DES
-    | TRIPLE_DES
-    | TRIPLE_DES_3KEY
-    | RC2
-    | RC4
-    | RC4_128
-    | DESX
-    | AES_128
-    | AES_192
-    | AES_256
-    ;
 
 encryption_mechanism
     : CERTIFICATE certificate_id
@@ -3543,37 +3423,9 @@ grant_permission_create
 // FROM sys.fn_builtin_permissions (DEFAULT)
 // ORDER BY 1
 grant_permission
-    : ADMINISTER ( BULK OPERATIONS | DATABASE BULK OPERATIONS)
+    : grant_permission_enum
     | grant_permission_alter
-    | AUTHENTICATE SERVER?
-    | BACKUP ( DATABASE | LOG )
-    | CHECKPOINT
-    | CONNECT ( ANY DATABASE | REPLICATION | SQL )?
-    | CONTROL SERVER?
     | grant_permission_create
-    | DELETE
-    | EXECUTE ( ANY EXTERNAL SCRIPT )?
-    | EXTERNAL ACCESS ASSEMBLY
-    | IMPERSONATE ( ANY LOGIN )?
-    | INSERT
-    | KILL DATABASE CONNECTION
-    | RECEIVE
-    | REFERENCES
-    | SELECT ( ALL USER SECURABLES )?
-    | SEND
-    | SHOWPLAN
-    | SHUTDOWN
-    | SUBSCRIBE QUERY NOTIFICATIONS
-    | TAKE OWNERSHIP
-    | UNMASK
-    | UNSAFE ASSEMBLY
-    | UPDATE
-    | VIEW ( ANY ( DATABASE | DEFINITION | COLUMN ( ENCRYPTION | MASTER ) KEY DEFINITION )
-           | CHANGE TRACKING
-           | DATABASE STATE
-           | DEFINITION
-           | SERVER STATE
-           )
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms190356.aspx
@@ -3607,7 +3459,6 @@ transaction_statement
     | SAVE transaction transaction_ref?
     ;
 
-transaction : TRAN | TRANSACTION;
 transaction_ref
     : id_
     | local_id
@@ -3658,7 +3509,10 @@ execute_clause
     : EXECUTE AS execute_clause_mode
     ;
 
-execute_clause_mode : (CALLER | SELF | OWNER | stringtext);
+execute_clause_mode 
+    : execute_clause_mode_enum 
+    | stringtext
+    ;
 
 declare_local
     : local_id AS? data_type (EQUAL expression)?
@@ -3668,15 +3522,13 @@ table_type_definition
     : TABLE LR_BRACKET column_def_table_constraints table_type_indices?  RR_BRACKET
     ;
 
-table_type_indices : table_type_indice (COMMA table_type_indice)*;
-
 table_type_indice
     :  (((PRIMARY KEY | INDEX id_) clustered?) | UNIQUE) LR_BRACKET column_name_list_with_order RR_BRACKET
     | CHECK LR_BRACKET search_condition RR_BRACKET
     ;
 
 xml_type_definition
-    : XML LR_BRACKET ( CONTENT | DOCUMENT )? xml_schema_collection RR_BRACKET
+    : XML LR_BRACKET content_document? xml_schema_collection RR_BRACKET
     ;
 
 xml_schema_collection
@@ -3710,29 +3562,27 @@ column_definition_element
     | (CONSTRAINT constraint_id)? DEFAULT  constant_expr=expression
     | IDENTITY (LR_BRACKET seed=decimal COMMA increment=decimal RR_BRACKET)?
     | NOT FOR REPLICATION
-    | GENERATED ALWAYS AS ( ROW | TRANSACTION_ID | SEQUENCE_NUMBER ) ( START | END ) HIDDEN_KEYWORD?
+    | GENERATED ALWAYS AS generation_mode start_end  HIDDEN_KEYWORD?
     // NULL / NOT NULL is a constraint
     | ROWGUIDCOL
     | ENCRYPTED WITH
         LR_BRACKET column_encryption_key_id EQUAL key_name=stringtext COMMA
-            ENCRYPTION_TYPE EQUAL ( DETERMINISTIC | RANDOMIZED ) COMMA
+            ENCRYPTION_TYPE EQUAL encryption_mode COMMA
             ALGORITHM EQUAL algo=stringtext
         RR_BRACKET
     | column_constraint
     ;
 
 column_modifier
-    : id_ add_drop (
-      ROWGUIDCOL
-      | PERSISTED
-      | NOT FOR REPLICATION
-      | SPARSE
-      | HIDDEN_KEYWORD
-      | MASKED (WITH (FUNCTION EQUAL stringtext | LR_BRACKET FUNCTION EQUAL stringtext RR_BRACKET))?)
+    : id_ add_drop 
+    (
+        column_modifier_enum
+      | MASKED (WITH (FUNCTION EQUAL stringtext | LR_BRACKET FUNCTION EQUAL stringtext RR_BRACKET))?
+    )
     ;
 
 materialized_column_definition
-    : id_ (COMPUTE | AS) expression (MATERIALIZED | NOT MATERIALIZED)?
+    : id_ compute_as expression materialized_mode?
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms186712.aspx
@@ -3743,7 +3593,7 @@ column_constraint
       (
         null_notnull
       | (
-            (PRIMARY KEY | UNIQUE)
+            primary_key_unique
             clustered?
             primary_key_options
         )
@@ -3777,7 +3627,7 @@ table_constraint
     : (CONSTRAINT constraint_id)?
         (
             (
-                (PRIMARY KEY | UNIQUE)
+                primary_key_unique
                 clustered?
                 LR_BRACKET column_name_list_with_order RR_BRACKET
                 primary_key_options
@@ -3823,14 +3673,6 @@ check_constraint
     : CHECK (NOT FOR REPLICATION)? LR_BRACKET search_condition RR_BRACKET
     ;
 
-on_delete
-    : ON DELETE (NO ACTION | CASCADE | SET NULL_ | SET DEFAULT)
-    ;
-
-on_update
-    : ON UPDATE (NO ACTION | CASCADE | SET NULL_ | SET DEFAULT)
-    ;
-
 
 // https://msdn.microsoft.com/en-us/library/ms186869.aspx
 alter_table_index_option
@@ -3843,7 +3685,7 @@ alter_table_index_option
     | OPTIMIZE_FOR_SEQUENTIAL_KEY EQUAL on_off
     | SORT_IN_TEMPDB EQUAL on_off
     | MAXDOP EQUAL max_degree_of_parallelism=decimal
-    | DATA_COMPRESSION EQUAL (NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE) on_partitions?
+    | DATA_COMPRESSION EQUAL index_strategy on_partitions?
     | XML_COMPRESSION EQUAL on_off on_partitions?
     | distribution
     | ONLINE EQUAL (ON (LR_BRACKET low_priority_lock_wait RR_BRACKET)? | OFF)
@@ -3859,11 +3701,6 @@ declare_cursor
       ) SEMI?
     ;
 
-sensitive
-    : SEMI_SENSITIVE 
-    | INSENSITIVE
-    ;
-
 declare_set_cursor_common
     : declare_set_cursor_common_partials?
       FOR select_statement_standalone
@@ -3871,10 +3708,7 @@ declare_set_cursor_common
 
 declare_set_cursor_common_partial
     : local_global
-    | (FORWARD_ONLY | SCROLL)
-    | (STATIC | KEYSET | DYNAMIC | FAST_FORWARD)
-    | (READ_ONLY | SCROLL_LOCKS | OPTIMISTIC)
-    | TYPE_WARNING
+    | declare_set_cursor_common_partial_enum
     ;
 
 fetch_cursor
@@ -3882,28 +3716,15 @@ fetch_cursor
       GLOBAL? cursor_name (INTO local_ids)? SEMI?
     ;
 
-absolute_relative
-    : ABSOLUTE 
-    | RELATIVE
-    ;
-
-fetch_cursor_strategy
-    : NEXT 
-    | PRIOR 
-    | FIRST 
-    | LAST
-    ;
-
-
 // https://msdn.microsoft.com/en-us/library/ms190356.aspx
 // Runtime check.
 set_special
     : SET left=id_ set_special_set_value SEMI?
-    | SET STATISTICS (IO | TIME | XML | PROFILE) statistics=on_off SEMI?
+    | SET STATISTICS statistic_kind statistics=on_off SEMI?
     | SET ROWCOUNT (local_id | decimal) SEMI?
     | SET TEXTSIZE decimal SEMI?
     // https://msdn.microsoft.com/en-us/library/ms173763.aspx
-    | SET TRANSACTION ISOLATION LEVEL (READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SNAPSHOT | SERIALIZABLE | decimal) SEMI?
+    | SET TRANSACTION ISOLATION LEVEL (transaction_isolation | decimal) SEMI?
     // https://msdn.microsoft.com/en-us/library/ms188059.aspx
     | SET IDENTITY_INSERT full_table_ref identity_insert=on_off SEMI?
     | SET special_lists list=on_off
@@ -3911,32 +3732,6 @@ set_special
     ;
 
 set_special_set_value : (id_ | constant_local_id | on_off);
-
-special_list
-    : ANSI_NULLS
-    | QUOTED_IDENTIFIER
-    | ANSI_PADDING
-    | ANSI_WARNINGS
-    | ANSI_DEFAULTS
-    | ANSI_NULL_DFLT_OFF
-    | ANSI_NULL_DFLT_ON
-    | ARITHABORT
-    | ARITHIGNORE
-    | CONCAT_NULL_YIELDS_NULL
-    | CURSOR_CLOSE_ON_COMMIT
-    | FMTONLY
-    | FORCEPLAN
-    | IMPLICIT_TRANSACTIONS
-    | NOCOUNT
-    | NOEXEC
-    | NUMERIC_ROUNDABORT
-    | PARSEONLY
-    | REMOTE_PROC_TRANSACTIONS
-    | SHOWPLAN_ALL
-    | SHOWPLAN_TEXT
-    | SHOWPLAN_XML
-    | XACT_ABORT
-    ;
 
 constant_local_id
     : constant
@@ -3959,15 +3754,11 @@ expression
     | full_column_name
     | bracket_expression
     | unary_operator_expression
-    | left=expression op=(STAR | DIVIDE | MODULE) right=expression
-    | left=expression op=(PLUS | MINUS | BIT_AND | BIT_XOR | BIT_OR | DOUBLE_BAR) right=expression
+    | left=expression op=expression_operator right=expression
     | expression time_zone
     | over_clause
     | DOLLAR_ACTION
     ;
-
-parameter
-    : PLACEHOLDER;
 
 time_zone
     : AT_KEYWORD TIME ZONE expression
@@ -3984,8 +3775,8 @@ case_expression
     ;
 
 unary_operator_expression
-    : BIT_NOT expression
-    | op=(PLUS | MINUS) expression
+    : BIT_NOT expression 
+    | plus_minus expression
     ;
 
 bracket_expression
@@ -4034,7 +3825,7 @@ predicate
     | freetext_predicate
     | predicate_binary
     | predicate_multi_assign
-    | expression comparison_operator (ALL | SOME | ANY) LR_BRACKET subquery RR_BRACKET
+    | expression comparison_operator all_some_any LR_BRACKET subquery RR_BRACKET
     | predicate_tier
     | predicate_not_in
     | predicate_not_like
@@ -4058,12 +3849,12 @@ query_expression
     ;
 
 sql_union
-    : (UNION ALL? | EXCEPT | INTERSECT) (spec=query_specification | (LR_BRACKET op=query_expression RR_BRACKET))
+    : join_mode (spec=query_specification | (LR_BRACKET op=query_expression RR_BRACKET))
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms176104.aspx
 query_specification
-    : SELECT allOrDistinct=(ALL | DISTINCT)? top=top_clause?
+    : SELECT allOrDistinct=all_distinct? top=top_clause?
       columns=select_list
       // https://msdn.microsoft.com/en-us/library/ms188029.aspx
       (INTO into=full_table_ref)?
@@ -4101,7 +3892,7 @@ order_by_clause
 // https://msdn.microsoft.com/en-us/library/ms188385.aspx
 select_order_by_clause
     : order_by_clause
-      (OFFSET offset_exp=expression offset_rows=(ROW | ROWS) (FETCH fetch_offset=(FIRST | NEXT) fetch_exp=expression fetch_rows=(ROW | ROWS) ONLY)?)?
+      (OFFSET offset_exp=expression offset_rows=row_rows (FETCH fetch_offset=first_next fetch_exp=expression fetch_rows=row_rows ONLY)?)?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/queries/select-for-clause-transact-sql
@@ -4109,22 +3900,24 @@ for_clause
     : FOR BROWSE
     | for_clause_xml_raw
     | FOR XML EXPLICIT xml_common_directives? (COMMA XMLDATA)?
-    | FOR XML PATH (LR_BRACKET stringtext RR_BRACKET)? xml_common_directives? (COMMA ELEMENTS (XSINIL | ABSENT)?)?
+    | FOR XML PATH (LR_BRACKET stringtext RR_BRACKET)? xml_common_directives? (COMMA ELEMENTS absent_xsinil?)?
     | for_clause_json
     ;
 
 xml_common_directive
-    : BINARY_KEYWORD BASE64 | TYPE | ROOT (LR_BRACKET stringtext RR_BRACKET)?
+    : BINARY_KEYWORD BASE64 
+    | TYPE 
+    | ROOT (LR_BRACKET stringtext RR_BRACKET)?
     ;
 
 for_clause_xml_raw
     : FOR XML (RAW (LR_BRACKET xmlraw=stringtext RR_BRACKET)? | AUTO) xml_common_directives?
       (COMMA (XMLDATA | XMLSCHEMA (LR_BRACKET xml_schema=stringtext RR_BRACKET)?))?
-      (COMMA ELEMENTS (XSINIL | ABSENT)?)?
+      (COMMA ELEMENTS absent_xsinil?)?
       ;
 
 for_clause_json
-    : FOR JSON (AUTO | PATH) clause_json_infos?
+    : FOR JSON auto_path clause_json_infos?
     ;
 
 clause_json_info
@@ -4151,26 +3944,15 @@ group_by_item
     | grand_total*/
     ;
 
-option
+update_option
     : FAST number_rows=decimal
-    | (HASH | ORDER) GROUP
-    | (MERGE | HASH | CONCAT) UNION
-    | (LOOP | MERGE | HASH) JOIN
-    | EXPAND VIEWS
-    | FORCE ORDER
-    | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
-    | KEEP PLAN
-    | KEEPFIXED PLAN
     | MAXDOP number_of_processors=decimal
     | MAXRECURSION number_recursion=decimal
-    | OPTIMIZE FOR LR_BRACKET optimize_for_args RR_BRACKET
-    | OPTIMIZE FOR UNKNOWN
-    | PARAMETERIZATION (SIMPLE | FORCED)
-    | RECOMPILE
-    | ROBUST PLAN
     | USE PLAN stringtext
+    | OPTIMIZE FOR LR_BRACKET optimize_for_args RR_BRACKET
+    | update_option_enum
     ;
-
+ 
 optimize_for_arg
     : local_id (UNKNOWN | EQUAL (constant | NULL_))
     ;
@@ -4182,16 +3964,8 @@ asterisk
     | updated_asterisk
     ;
 
-star_asterisk
-    : STAR
-    ;
-
 table_asterisk
     : full_table_ref DOT STAR
-    ;
-
-updated_asterisk
-    : (INSERTED | DELETED) DOT STAR
     ;
 
 column_elem
@@ -4290,12 +4064,12 @@ join_part
     // https://msdn.microsoft.com/en-us/library/ms173815(v=sql.120).aspx
     : join_on
     | cross_join
-    | apply_
+    | apply_enum
     | pivot
     | unpivot
     ;
 join_on
-    : (inner=INNER? | join_type=(LEFT | RIGHT | FULL) outer=OUTER?) (join_hint=(LOOP | HASH | MERGE | REMOTE))?
+    : (inner=INNER? | join_type outer=OUTER?) join_hint?
        JOIN source=table_source ON cond=search_condition
     ;
 
@@ -4303,8 +4077,8 @@ cross_join
     : CROSS JOIN table_source
     ;
 
-apply_
-    : apply_style=(CROSS | OUTER) APPLY source=table_source
+apply_enum
+    : apply_style APPLY source=table_source
     ;
 
 pivot
@@ -4361,8 +4135,8 @@ partition_function
     ;
 
 freetext_function
-    : (CONTAINSTABLE | FREETEXTTABLE) LR_BRACKET freetext_table_andcolumn_names COMMA expression_language (COMMA expression)? RR_BRACKET
-    | (SEMANTICSIMILARITYTABLE | SEMANTICKEYPHRASETABLE) LR_BRACKET freetext_table_andcolumn_names COMMA expression RR_BRACKET
+    : containstable_freetexttable LR_BRACKET freetext_table_andcolumn_names COMMA expression_language (COMMA expression)? RR_BRACKET
+    | semantic_table LR_BRACKET freetext_table_andcolumn_names COMMA expression RR_BRACKET
     | SEMANTICSIMILARITYDETAILSTABLE LR_BRACKET full_table_ref COMMA name1=full_column_name COMMA expr1=expression COMMA name2=full_column_name COMMA expr2=expression RR_BRACKET
     ;
 
@@ -4388,7 +4162,7 @@ built_in_functions
     // https://docs.microsoft.com/en-us/sql/t-sql/functions/applock-mode-transact-sql?view=sql-server-ver16
     | APPLOCK_MODE LR_BRACKET database_principal=expression COMMA resource_name=expression COMMA lock_owner=expression RR_BRACKET //#APPLOCK_MODE
     // https://docs.microsoft.com/en-us/sql/t-sql/functions/applock-test-transact-sql?view=sql-server-ver16
-    | APPLOCK_TEST LR_BRACKET database_principal=expression COMMA resource_name=expression COMMA lock_mode=expression COMMA lock_owner=expression RR_BRACKET //#APPLOCK_TEST
+    | APPLOCK_TEST LR_BRACKET database_principal=expression COMMA resource_name=expression COMMA lockmode=expression COMMA lock_owner=expression RR_BRACKET //#APPLOCK_TEST
     // https://docs.microsoft.com/en-us/sql/t-sql/functions/assemblyproperty-transact-sql?view=sql-server-ver16
     | ASSEMBLYPROPERTY LR_BRACKET assemblyName=expression COMMA propertyName=expression RR_BRACKET          //#ASSEMBLYPROPERTY
     // https://docs.microsoft.com/en-us/sql/t-sql/functions/col-length-transact-sql?view=sql-server-ver16
@@ -4771,16 +4545,14 @@ column_alias
 
 // https://msdn.microsoft.com/en-us/library/ms189798.aspx
 ranking_windowed_function
-    : (RANK | DENSE_RANK | ROW_NUMBER) LR_BRACKET RR_BRACKET over_clause
+    : ranking_windowed LR_BRACKET RR_BRACKET over_clause
     | NTILE LR_BRACKET expression RR_BRACKET over_clause
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms173454.aspx
 aggregate_windowed_function
-    : agg_func=(AVG | MAX | MIN | SUM | STDEV | STDEVP | VAR | VARP)
-      LR_BRACKET all_distinct_expression RR_BRACKET over_clause?
-    | cnt=(COUNT | COUNT_BIG)
-      LR_BRACKET (STAR | all_distinct_expression) RR_BRACKET over_clause?
+    : agg_function LR_BRACKET all_distinct_expression RR_BRACKET over_clause?
+    | count_count_big LR_BRACKET (STAR | all_distinct_expression) RR_BRACKET over_clause?
     | CHECKSUM_AGG LR_BRACKET all_distinct_expression RR_BRACKET
     | GROUPING LR_BRACKET expression RR_BRACKET
     | GROUPING_ID LR_BRACKET expression_list RR_BRACKET
@@ -4788,14 +4560,14 @@ aggregate_windowed_function
 
 // https://docs.microsoft.com/en-us/sql/t-sql/functions/analytic-functions-transact-sql
 analytic_windowed_function
-    : (FIRST_VALUE | LAST_VALUE) LR_BRACKET expression RR_BRACKET over_clause
-    | (LAG | LEAD) LR_BRACKET expression  (COMMA expression2 )? RR_BRACKET over_clause
-    | (CUME_DIST | PERCENT_RANK) LR_BRACKET RR_BRACKET OVER LR_BRACKET (PARTITION BY expression_list)? order_by_clause RR_BRACKET
-    | (PERCENTILE_CONT | PERCENTILE_DISC) LR_BRACKET expression RR_BRACKET WITHIN GROUP LR_BRACKET order_by_clause RR_BRACKET OVER LR_BRACKET (PARTITION BY expression_list)? RR_BRACKET
+    : first_last_value LR_BRACKET expression RR_BRACKET over_clause
+    | lag_lead LR_BRACKET expression  (COMMA expression2 )? RR_BRACKET over_clause
+    | cume_percent LR_BRACKET RR_BRACKET OVER LR_BRACKET (PARTITION BY expression_list)? order_by_clause RR_BRACKET
+    | percentil LR_BRACKET expression RR_BRACKET WITHIN GROUP LR_BRACKET order_by_clause RR_BRACKET OVER LR_BRACKET (PARTITION BY expression_list)? RR_BRACKET
     ;
 
 all_distinct_expression
-    : (ALL | DISTINCT)? expression
+    : all_distinct? expression
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms189461.aspx
@@ -4804,7 +4576,7 @@ over_clause
     ;
 
 row_or_range_clause
-    : (ROWS | RANGE) window_frame_extent
+    : row_range window_frame_extent
     ;
 
 window_frame_extent
@@ -4842,7 +4614,7 @@ create_database_option
 database_filestream_option
     : LR_BRACKET
      (
-         ( NON_TRANSACTED_ACCESS EQUAL ( OFF | READ_ONLY | FULL ) )
+         ( NON_TRANSACTED_ACCESS EQUAL off_read_only_full )
          |
          ( DIRECTORY_NAME EQUAL stringtext )
      )
@@ -4873,26 +4645,9 @@ file_spec
 
 max_size : file_size | UNLIMITED;
 
-// Primitive.
-asc_desc : ASC | DESC;
-
 cursor_name
     : id_
     | local_id
-    ;
-
-on_off
-    : ON
-    | OFF
-    ;
-
-clustered
-    : CLUSTERED
-    | NONCLUSTERED
-    ;
-
-null_notnull
-    : NOT? NULL_
     ;
 
 null_or_default
@@ -4901,10 +4656,7 @@ null_or_default
 
 scalar_function_name
     : func_proc_name_server_database_schema
-    | RIGHT
-    | LEFT
-    | BINARY_CHECKSUM
-    | CHECKSUM
+    | scalar_function_name_enum
     ;
 
 begin_conversation_timer
@@ -4917,7 +4669,7 @@ begin_conversation_dialog
       TO SERVICE target_service_name=service_name (COMMA service_broker_guid=stringtext)?
       ON CONTRACT contract_name_expression
       (WITH
-        ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP) EQUAL group=local_id COMMA?)?
+        (relayed_conversation EQUAL group=local_id COMMA?)?
         (LIFETIME EQUAL decimal_local_id COMMA?)?
         (ENCRYPTION EQUAL on_off)? 
       )?
@@ -4962,13 +4714,16 @@ send_conversation
 // TODO: implement runtime check or add new tokens.
 
 data_type
-    : scaled=(VARCHAR | NVARCHAR | BINARY_KEYWORD | VARBINARY_KEYWORD | SQUARE_BRACKET_ID) LR_BRACKET MAX RR_BRACKET
-    | ext_type_id LR_BRACKET scale=decimal COMMA prec=decimal RR_BRACKET
+    : scaled=data_type_scaled LR_BRACKET MAX RR_BRACKET
+    | ext_type_id LR_BRACKET decimal_scale_prec RR_BRACKET
     | ext_type_id LR_BRACKET scale=decimal RR_BRACKET
-    | ext_type_id IDENTITY (LR_BRACKET seed=decimal COMMA inc=decimal RR_BRACKET)?
+    | ext_type_id IDENTITY (LR_BRACKET identity_seed RR_BRACKET)?
     | double_prec=DOUBLE PRECISION?
     | unscaled_type_id
     ;
+
+decimal_scale_prec : scale=decimal COMMA prec=decimal;
+identity_seed : seed=decimal COMMA inc=decimal;
 
 default_value
     : NULL_
@@ -5828,22 +5583,9 @@ simple_id
 
 // https://msdn.microsoft.com/en-us/library/ms188074.aspx
 // Spaces are allowed for comparison operators.
-comparison_operator
-    : EQUAL | GREATER | LESS | LESS EQUAL | GREATER EQUAL | LESS GREATER | EXCLAMATION EQUAL | EXCLAMATION GREATER | EXCLAMATION LESS
-    ;
-
-assignment_operator
-    : PLUS_ASSIGN | MINUS_ASSIGN | MULT_ASSIGN | DIV_ASSIGN | MOD_ASSIGN | AND_ASSIGN | XOR_ASSIGN | OR_ASSIGN
-    ;
-
 file_size
     : decimal file_size_unity?
     ;
-
-file_size_unity
-    : KB | MB | GB | TB | MODULE
-    ;
-
 
 ipv4 : IPV4_ADDR;
 ipv6 : IPV6_ADDR;
@@ -5957,7 +5699,6 @@ string_id2 : stringtext | id_ | local_id;
 string_local_id : stringtext | local_id;
 decimal_local_id : decimal | local_id;
 decimal_string : decimal | stringtext;
-log_seterror_nowait : LOG | SETERROR | NOWAIT;
 decimal_string_local_id : decimal | stringtext | local_id;
 string_local_id_double_quote_id : stringtext | local_id | empty_value;
 
@@ -6047,7 +5788,7 @@ ddl_object
     ;
 
 full_column_name
-    : (DELETED | INSERTED) DOT column_id
+    : deleteed_inserted DOT column_id
     | full_column_ref
     ;
 
@@ -6100,6 +5841,8 @@ procedure_params : procedure_param (COMMA procedure_param)*;
 
 dml_trigger_options : WITH dml_trigger_option (COMMA dml_trigger_option)*;
 
+table_type_indices : table_type_indice (COMMA table_type_indice)*;
+
 dml_trigger_operations : dml_trigger_operation (COMMA dml_trigger_operation)*;
 
 procedure_options : WITH procedure_option (COMMA procedure_option)*;
@@ -6115,6 +5858,8 @@ create_columnstore_index_options : WITH LR_BRACKET columnstore_index_option (COM
 single_partition_rebuild_index_options : WITH LR_BRACKET single_partition_rebuild_index_option (COMMA single_partition_rebuild_index_option)* RR_BRACKET;
 
 rebuild_index_options : WITH LR_BRACKET rebuild_index_option (COMMA rebuild_index_option)* RR_BRACKET;
+
+full_table_ref_columns : full_table_ref_column (COMMA full_table_ref_column)*;
 
 set_index_options : SET LR_BRACKET set_index_option (COMMA set_index_option)* RR_BRACKET;
 
@@ -6212,7 +5957,7 @@ udt_method_arguments : LR_BRACKET execute_var_string (COMMA execute_var_string)*
 optimize_for_args : optimize_for_arg (COMMA optimize_for_arg)*;
 
 // https://msdn.microsoft.com/en-us/library/ms181714.aspx
-option_clause : OPTION LR_BRACKET option (COMMA option)* RR_BRACKET;
+update_option_clause : OPTION LR_BRACKET update_option (COMMA update_option)* RR_BRACKET;
 
 grouping_sets_list : group_by_item (COMMA group_by_item)*;
 
@@ -6269,19 +6014,580 @@ contracts : contract (COMMA contract)*;
 
 alter_service_contracts : modified_contract_id (COMMA modified_contract_id);
 
-
 decimal_ranges : decimal_range (COMMA? decimal_range )*;
 
 server_audit_file_infos : server_audit_file_info (COMMA server_audit_file_info)*;
 
 clause_json_infos : (COMMA clause_json_info)+;
 
+contract_items : contract_item (COMMA contract_item+)*;
+
 date_options : date_option (COMMA date_option)+;
 
 xml_common_directives : xml_common_directive (COMMA xml_common_directive)*;
+
+receive_ids : receive_id (COMMA receive_id)+;
 
 declare_set_cursor_common_partials : declare_set_cursor_common_partial+;
 
 column_definition_elements : column_definition_element+;
 
+file_group_list :  file_group_assign (COMMA file_group_assign)*;
+
 schema_table_ref_impacts : schema_table_ref_impact (COMMA schema_table_ref_impact)*;
+
+notification_ids : notification_id (COMMA notification_id)*;
+
+assembly_permission : SAFE | EXTERNAL_ACCESS | UNSAFE;
+
+object_type_for_grant
+    : APPLICATION ROLE
+    | ASSEMBLY
+    | ASYMMETRIC KEY
+    | AUDIT
+    | AVAILABILITY GROUP
+    | BROKER PRIORITY
+    | CERTIFICATE
+    | CONTRACT
+    | CREDENTIAL
+    | CRYPTOGRAPHIC PROVIDER
+    | DATABASE ( AUDIT SPECIFICATION
+               | ENCRYPTION KEY
+               | EVENT SESSION
+               | SCOPED ( CONFIGURATION
+                        | CREDENTIAL
+                        | RESOURCE GOVERNOR )
+               )?
+    | ENDPOINT
+    | EVENT SESSION
+    | EXTERNAL ( DATA SOURCE
+               | FILE FORMAT
+               | LIBRARY
+               | RESOURCE POOL
+               | TABLE
+               | CATALOG
+               | STOPLIST
+               )
+    | LOGIN
+    | MASTER KEY
+    | MESSAGE TYPE
+    | OBJECT
+    | PARTITION ( FUNCTION | SCHEME)
+    | REMOTE SERVICE BINDING
+    | RESOURCE GOVERNOR
+    | ROLE
+    | ROUTE
+    | SCHEMA
+    | SEARCH PROPERTY LIST
+    | SERVER ( ( AUDIT SPECIFICATION? ) | ROLE )?
+    | SERVICE
+    | SQL LOGIN
+    | SYMMETRIC KEY
+    | TRIGGER ( DATABASE | SERVER)
+    | TYPE
+    | USER
+    | XML SCHEMA COLLECTION
+    ;
+encryption_master : ENCRYPTION | MASTER ;
+database_object_server : DATABASE | OBJECT | SERVER;
+
+all_server_database
+    : ALL SERVER 
+    | DATABASE
+    ;
+
+server_database
+    : SERVER 
+    | DATABASE
+    ;
+
+for_after
+    : FOR 
+    | AFTER
+    ;
+share_exclusive : SHARE | EXCLUSIVE;
+
+create_alter : CREATE | ALTER;
+
+
+file_size_unity
+    : KB | MB | GB | TB | MODULE
+    ;
+
+memory_size_unity
+    : KB | MB
+    ;
+
+partition_mode : NONE | PER_NODE | PER_CPU;
+
+session_mode 
+    : ALLOW_SINGLE_EVENT_LOSS 
+    | ALLOW_MULTIPLE_EVENT_LOSS | NO_EVENT_LOSS
+    ;
+
+disable_reconfigure : DISABLE | RECONFIGURE;
+
+transfert_target : (OBJECT | TYPE | XML SCHEMA COLLECTION) DOUBLE_COLON;
+
+insert_update : INSERT | UPDATE;
+update_delate : UPDATE | DELETE;
+
+filter_block : FILTER | BLOCK;
+
+init_target_any : INITIATOR | TARGET | ANY;
+
+receive_mode_enum : ALL | DISTINCT | STAR;
+
+datacompression_mode : NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE;
+datacompression_column_mode : COLUMNSTORE | COLUMNSTORE_ARCHIVE;
+
+index_using_xml_mode : FOR (VALUE | PATH | PROPERTY)?;
+
+proc_keyword : PROC | PROCEDURE;
+alter_replace : ALTER | REPLACE;
+
+param_way : OUT | OUTPUT | READONLY;
+
+percent_row : PERCENT | ROWS;
+
+function_option_enum
+    : ENCRYPTION
+    | SCHEMABINDING
+    | RETURNS NULL_ ON NULL_ INPUT
+    | CALLED ON NULL_ INPUT
+    ;
+
+procedure_option_enum
+    : ENCRYPTION
+    | RECOMPILE
+    ;
+
+row_rows : ROW | ROWS;
+
+compression_mode : NONE | ROW | PAGE;
+start_end : START | END;
+generation_mode : ROW | TRANSACTION_ID | SEQUENCE_NUMBER;
+
+encryption_mode : DETERMINISTIC | RANDOMIZED;
+
+tableoption_cluster_mode : CLUSTERED COLUMNSTORE INDEX | HEAP;
+
+lock_mode : AUTO | TABLE | DISABLE;
+
+ check_nocheck : CHECK | NOCHECK;
+
+data_type_scaled : VARCHAR | NVARCHAR | BINARY_KEYWORD | VARBINARY_KEYWORD | SQUARE_BRACKET_ID;
+
+abord_after_mode : NONE | SELF | BLOCKERS;
+
+local_global : LOCAL | GLOBAL;
+
+state_enum : STARTED | STOPPED | DISABLED;
+
+authentication_mode : NTLM |KERBEROS | NEGOTIATE;
+
+encryption_state : ENCRYPTION EQUAL ( DISABLED | SUPPORTED | REQUIRED );
+encryption_algorithm :  ALGORITHM ( AES | RC4 | AES RC4 | RC4 AES );
+role_mirroring : WITNESS | PARTNER | ALL;
+
+partner_option_enum
+    : FAILOVER
+    | FORCE_SERVICE_ALLOW_DATA_LOSS
+    | OFF
+    | RESUME
+    | SAFETY (FULL | OFF )
+    | SUSPEND
+    ;
+
+delayed_durability : DISABLED | ALLOWED | FORCED;
+
+suspend_resume : SUSPEND | RESUME;
+
+
+parameterization_option
+    : PARAMETERIZATION ( SIMPLE | FORCED )
+    ;
+
+recovery_option_enum
+    : RECOVERY ( FULL | BULK_LOGGED | SIMPLE )
+    | PAGE_VERIFY ( CHECKSUM | TORN_PAGE_DETECTION | NONE )
+    ;
+
+seconds_minutes : SECONDS | MINUTES;
+
+compression : COMPRESSION | NO_COMPRESSION;
+init_no_init : NOINIT | INIT;
+no_skip : NOSKIP | SKIP_KEYWORD;
+format_noformat : NOFORMAT | FORMAT;
+
+login_user : LOGIN | USER;
+
+output_out : OUTPUT | OUT;
+
+start_date_expiry_date : START_DATE | EXPIRY_DATE;
+
+execute_clause_mode_enum : CALLER | SELF | OWNER;
+
+content_document : CONTENT | DOCUMENT;
+
+materialized_mode : MATERIALIZED | NOT MATERIALIZED;
+
+column_modifier_enum
+    :   ROWGUIDCOL
+      | PERSISTED
+      | NOT FOR REPLICATION
+      | SPARSE
+      | HIDDEN_KEYWORD
+    ;
+
+compute_as : COMPUTE | AS;
+
+primary_key_unique : PRIMARY KEY | UNIQUE;
+
+declare_set_cursor_common_partial_enum
+    : (FORWARD_ONLY | SCROLL)
+    | (STATIC | KEYSET | DYNAMIC | FAST_FORWARD)
+    | (READ_ONLY | SCROLL_LOCKS | OPTIMISTIC)
+    | TYPE_WARNING
+    ;
+
+absolute_relative
+    : ABSOLUTE 
+    | RELATIVE
+    ;
+
+fetch_cursor_strategy
+    : NEXT 
+    | PRIOR 
+    | FIRST 
+    | LAST
+    ;
+
+statistic_kind : IO | TIME | XML | PROFILE;
+
+transaction_isolation 
+    : READ UNCOMMITTED 
+    | READ COMMITTED 
+    | REPEATABLE READ 
+    | SNAPSHOT 
+    | SERIALIZABLE 
+    ;
+
+special_list
+    : ANSI_NULLS
+    | QUOTED_IDENTIFIER
+    | ANSI_PADDING
+    | ANSI_WARNINGS
+    | ANSI_DEFAULTS
+    | ANSI_NULL_DFLT_OFF
+    | ANSI_NULL_DFLT_ON
+    | ARITHABORT
+    | ARITHIGNORE
+    | CONCAT_NULL_YIELDS_NULL
+    | CURSOR_CLOSE_ON_COMMIT
+    | FMTONLY
+    | FORCEPLAN
+    | IMPLICIT_TRANSACTIONS
+    | NOCOUNT
+    | NOEXEC
+    | NUMERIC_ROUNDABORT
+    | PARSEONLY
+    | REMOTE_PROC_TRANSACTIONS
+    | SHOWPLAN_ALL
+    | SHOWPLAN_TEXT
+    | SHOWPLAN_XML
+    | XACT_ABORT
+    ;
+
+expression_operator 
+    : STAR | DIVIDE | MODULE | PLUS | MINUS
+    | BIT_AND | BIT_XOR | BIT_OR | DOUBLE_BAR
+    ;
+
+parameter
+    : PLACEHOLDER;
+
+all_some_any : ALL | SOME | ANY;
+
+join_mode : UNION ALL? | EXCEPT | INTERSECT;
+
+all_distinct : ALL | DISTINCT;
+
+delay_time_timeout : DELAY | TIME | TIMEOUT;
+
+creation_disposition : CREATE_NEW|OPEN_EXISTING;
+
+asymetric_algorithm : RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512;
+
+add_remove : ADD | REMOVE;
+restart_remove : RESTART | REMOVE;
+synch_asynch :SYNCHRONOUS_COMMIT | ASYNCHRONOUS_COMMIT;
+auto_manual : AUTOMATIC | MANUAL;
+real_write_all : READ_WRITE | ALL;
+no_real_write_all : NO | READ_WRITE | ALL;
+primary_secondary_none : PRIMARY | SECONDARY_ONLY| SECONDARY | NONE;
+grant_deny : GRANT | DENY;
+
+add_drop : ADD | DROP;
+
+event_session_predicate_leaf_ope 
+    : EQUAL 
+    | (LESS GREATER) 
+    | (EXCLAMATION EQUAL) 
+    | GREATER  
+    | (GREATER EQUAL) 
+    | LESS 
+    | LESS EQUAL;
+
+set_add : SET|ADD;
+
+
+platform : WINDOWS | LINUX;
+code_language : R | PYTHON;
+
+
+pwd_strategy : MUST_CHANGE | UNLOCK;
+
+enable_disable 
+    : ENABLE
+    | DISABLE
+    ;
+
+
+message_validation_value_enum
+    : NONE 
+    | EMPTY 
+    | WELL_FORMED_XML
+    ;
+
+cycle : CYCLE | NO CYCLE;
+
+size_unity : MB | GB | TB;
+
+
+continue_shutdown : CONTINUE | SHUTDOWN | FAIL_OPERATION;
+
+audit_operator 
+    : EQUAL
+    | LESS GREATER
+    | EXCLAMATION EQUAL
+    | GREATER
+    | GREATER EQUAL
+    | LESS
+    | LESS EQUAL
+    ;
+
+and_or
+    : AND
+    | OR
+    ;
+
+size_value : decimal MB | DEFAULT;
+decimal_default : decimal | DEFAULT;
+
+for_from : FOR | FROM;
+
+
+importance_level : LOW | MEDIUM | HIGH;
+
+left_right : LEFT | RIGHT;
+
+none_partial : NONE | PARTIAL;
+
+index_strategy : NONE | ROW | PAGE | COLUMNSTORE | COLUMNSTORE_ARCHIVE;
+
+view_attribute
+    : ENCRYPTION | SCHEMABINDING | VIEW_METADATA
+    ;
+
+filegroup_predicate : CONTAINS FILESTREAM | CONTAINS MEMORY_OPTIMIZED_DATA;
+
+
+statistic_value 
+    : OFF 
+    | ON ( INCREMENTAL EQUAL ON | OFF  )
+    ;
+period : DAYS | HOURS | MINUTES;
+
+db_state_option
+    : ONLINE 
+    | OFFLINE 
+    | EMERGENCY
+    ;
+
+db_update_option : READ_ONLY | READ_WRITE;
+
+db_user_access_option : SINGLE_USER | RESTRICTED_USER | MULTI_USER;
+disk_tape_url : DISK | TAPE | URL;
+
+
+
+file_file_group : FILE|FILEGROUP;
+
+load_moun_load : LOAD | NOUNLOAD;
+rewind : REWIND | NOREWIND;
+
+algorithm_short
+    : AES_128
+    | AES_192
+    | AES_256
+    | TRIPLE_DES_3KEY
+    ;
+
+encryption_decryption : DECRYPTION | ENCRYPTION;
+
+algorithm
+    : DES
+    | TRIPLE_DES
+    | TRIPLE_DES_3KEY
+    | RC2
+    | RC4
+    | RC4_128
+    | DESX
+    | AES_128
+    | AES_192
+    | AES_256
+    ;
+
+    grant_permission_enum
+    : ADMINISTER ( BULK OPERATIONS | DATABASE BULK OPERATIONS)
+    | AUTHENTICATE SERVER?
+    | BACKUP ( DATABASE | LOG )
+    | CHECKPOINT
+    | CONNECT ( ANY DATABASE | REPLICATION | SQL )?
+    | CONTROL SERVER?
+    | DELETE
+    | EXECUTE ( ANY EXTERNAL SCRIPT )?
+    | EXTERNAL ACCESS ASSEMBLY
+    | IMPERSONATE ( ANY LOGIN )?
+    | INSERT
+    | KILL DATABASE CONNECTION
+    | RECEIVE
+    | REFERENCES
+    | SELECT ( ALL USER SECURABLES )?
+    | SEND
+    | SHOWPLAN
+    | SHUTDOWN
+    | SUBSCRIBE QUERY NOTIFICATIONS
+    | TAKE OWNERSHIP
+    | UNMASK
+    | UNSAFE ASSEMBLY
+    | UPDATE
+    | VIEW ( ANY ( DATABASE | DEFINITION | COLUMN ( ENCRYPTION | MASTER ) KEY DEFINITION )
+           | CHANGE TRACKING
+           | DATABASE STATE
+           | DEFINITION
+           | SERVER STATE
+           )
+    ;
+
+transaction : TRAN | TRANSACTION;
+
+on_delete
+    : ON DELETE (NO ACTION | CASCADE | SET NULL_ | SET DEFAULT)
+    ;
+
+on_update
+    : ON UPDATE (NO ACTION | CASCADE | SET NULL_ | SET DEFAULT)
+    ;
+
+sensitive
+    : SEMI_SENSITIVE 
+    | INSENSITIVE
+    ;
+
+
+plus_minus : PLUS | MINUS;
+
+first_next : FIRST | NEXT;
+
+absent_xsinil : ABSENT | XSINIL;
+
+auto_path : AUTO | PATH;
+
+update_option_enum
+    : (HASH | ORDER) GROUP
+    | (MERGE | HASH | CONCAT) UNION
+    | (LOOP | MERGE | HASH) JOIN
+    | EXPAND VIEWS
+    | FORCE ORDER
+    | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+    | KEEP PLAN
+    | KEEPFIXED PLAN
+    | OPTIMIZE FOR UNKNOWN
+    | PARAMETERIZATION (SIMPLE | FORCED)
+    | RECOMPILE
+    | ROBUST PLAN
+    ;
+
+star_asterisk
+    : STAR
+    ;
+
+    updated_asterisk
+    : (INSERTED | DELETED) DOT STAR
+    ;
+
+
+join_type : LEFT | RIGHT | FULL;
+
+join_hint : LOOP | HASH | MERGE | REMOTE;
+
+apply_style : CROSS | OUTER;
+
+containstable_freetexttable : CONTAINSTABLE | FREETEXTTABLE;
+semantic_table : SEMANTICSIMILARITYTABLE | SEMANTICKEYPHRASETABLE;
+
+
+ranking_windowed : RANK | DENSE_RANK | ROW_NUMBER;
+agg_function : AVG | MAX | MIN | SUM | STDEV | STDEVP | VAR | VARP;
+
+count_count_big : COUNT | COUNT_BIG;
+
+percentil : PERCENTILE_CONT | PERCENTILE_DISC;
+cume_percent : CUME_DIST | PERCENT_RANK;
+first_last_value : FIRST_VALUE | LAST_VALUE;
+lag_lead : LAG | LEAD;
+
+row_range : ROWS | RANGE;
+
+off_read_only_full : OFF | READ_ONLY | FULL;
+
+asc_desc : ASC | DESC;
+
+on_off
+    : ON
+    | OFF
+    ;
+clustered
+    : CLUSTERED
+    | NONCLUSTERED
+    ;
+
+null_notnull
+    : NOT? NULL_
+    ;
+
+scalar_function_name_enum
+    : RIGHT
+    | LEFT
+    | BINARY_CHECKSUM
+    | CHECKSUM
+    ;
+
+
+relayed_conversation : RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP;
+
+
+comparison_operator
+    : EQUAL | GREATER | LESS | LESS EQUAL | GREATER EQUAL | LESS GREATER | EXCLAMATION EQUAL | EXCLAMATION GREATER | EXCLAMATION LESS
+    ;
+
+assignment_operator
+    : PLUS_ASSIGN | MINUS_ASSIGN | MULT_ASSIGN | DIV_ASSIGN | MOD_ASSIGN | AND_ASSIGN | XOR_ASSIGN | OR_ASSIGN
+    ;
+
+log_seterror_nowait : LOG | SETERROR | NOWAIT;
+
+deleteed_inserted : DELETED | INSERTED;
+

@@ -8,6 +8,12 @@ namespace Bb.Asts.TSql
     public partial class AstTerminalKeyword : AstTerminal<string>
     {
 
+        public AstTerminalKeyword(ITerminalNode t, string type, string value) :
+        base(t, value)
+        {
+            this.Type = type;
+        }
+
         public AstTerminalKeyword(ITerminalNode t, string value) :
                 base(t, value)
         {
@@ -16,6 +22,12 @@ namespace Bb.Asts.TSql
         public AstTerminalKeyword(ParserRuleContext ctx) :
                 base(ctx, ctx.GetText())
         {
+        }
+
+        public AstTerminalKeyword(Position t, string type, string value) :
+        base(t, value)
+        {
+            this.Type = type;
         }
 
         public AstTerminalKeyword(Position t, string value) :
@@ -28,8 +40,13 @@ namespace Bb.Asts.TSql
             visitor.VisitKeyword(this);
         }
 
-        public string Type { get; internal set; }
+        public override void ToString(Writer w)
+        {
+            w.Append(base.Value);
+        }
 
+        public string Type { get; internal set; }
+    
     }
 
 

@@ -35,12 +35,20 @@ namespace Bb.Generators
         /// </summary>
         /// <param name="members">The members.</param>
         /// <param name="n">The n.</param>        
-        protected virtual bool MemberExists(CodeTypeMemberCollection members, string n)
+        protected virtual bool MemberExists(CodeTypeMemberCollection members, CodeTypeMember member)
         {
+
+            var n = member.Name;
+
             foreach (CodeTypeMember item in members)
                 if (item.Name == n)
                     return true;
             return false;
+        }
+
+        public virtual void Clean()
+        {
+
         }
 
         protected Action<Documentation> _actionDocumentation;

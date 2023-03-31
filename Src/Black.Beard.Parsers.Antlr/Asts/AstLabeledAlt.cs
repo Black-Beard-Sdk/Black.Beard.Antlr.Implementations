@@ -22,6 +22,10 @@ namespace Bb.Asts
 
         public AstAlternative Rule { get; }
 
+        public override string ResolveName()
+        {
+            return Rule.ResolveName();
+        }
 
         public override bool ContainsTerminals { get => this.Rule?.ContainsTerminals ?? false; }
         public override bool ContainsRules { get => this.Rule?.ContainsRules ?? false; }

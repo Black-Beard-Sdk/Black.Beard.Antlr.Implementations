@@ -13,17 +13,13 @@ namespace Generate.Scripts
         {
 
             var config = ast.Configuration.Config;
-
+             
             if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum>\"");
+                //config.Inherit = new IdentifierConfig("\"AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + "Enum>\"");
+                config.Inherit = new IdentifierConfig("\"AstTerminalKeyword\"");
 
             var result = config.Inherit.Text;
-
-            if (result == null)
-            {
-
-            }
-
+        
             return result;
         }
 

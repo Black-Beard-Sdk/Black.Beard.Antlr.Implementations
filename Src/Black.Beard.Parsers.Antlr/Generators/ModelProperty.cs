@@ -81,43 +81,40 @@ namespace Bb.Generators
                 return;
 
             var _n = this._nameOfProperty(model);
-            if (!MemberExists(t.Members, _n))
+
+            CodeTypeReference type = null;
+            if (_actionType != null)
             {
+                var t1 = _actionType();
 
-                CodeTypeReference type = null;
-                if (_actionType != null)
-                {
-                    var t1 = _actionType();
+                if (t1 is string s)
+                    type = new CodeTypeReference(s);
 
-                    if (t1 is string s)
-                        type = new CodeTypeReference(s);
-
-                    else if (t1 is Type i)
-                        type = new CodeTypeReference(i);
-                }
-                else
-                    type = new CodeTypeReference(typeof(object));
-
-                CodeMemberProperty property = new CodeMemberProperty()
-                {
-                    Name = _n,
-                    Attributes = _attributes,
-                    Type = type,
-                    HasGet= _hasGet,
-                    HasSet= _hasSet,
-                };
-
-                GenerateDocumentation(property, ctx);
-
-                if (_getAction != null)
-                    _getAction(property.GetStatements);
-
-                if (_setAction != null)
-                    _setAction(property.SetStatements);
-
-                t.Members.Add(property);
-
+                else if (t1 is Type i)
+                    type = new CodeTypeReference(i);
             }
+            else
+                type = new CodeTypeReference(typeof(object));
+
+            CodeMemberProperty property = new CodeMemberProperty()
+            {
+                Name = _n,
+                Attributes = _attributes,
+                Type = type,
+                HasGet = _hasGet,
+                HasSet = _hasSet,
+            };
+
+            GenerateDocumentation(property, ctx);
+
+            if (_getAction != null)
+                _getAction(property.GetStatements);
+
+            if (_setAction != null)
+                _setAction(property.SetStatements);
+
+            if (!MemberExists(t.Members, property))
+                t.Members.Add(property);
 
         }
 

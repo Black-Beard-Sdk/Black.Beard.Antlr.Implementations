@@ -26,8 +26,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// host
-        /// 	 : id_  DOT  host
-        /// 	 | (id_  DOT | id_)
+        /// 	 : id_  (DOT  id_)+
         /// </summary>
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
@@ -2400,7 +2399,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// full_column_name
-        /// 	 : (DELETED | INSERTED)  DOT  column_id
+        /// 	 : deleteed_inserted  DOT  column_id
         /// 	 | full_column_ref
         /// </summary>
         public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)

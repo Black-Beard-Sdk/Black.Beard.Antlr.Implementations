@@ -30,7 +30,7 @@ namespace Bb.Generators
             this._actionDocumentation = action;
             return this;
         }
-    
+
 
         public ModelField Value(Func<object, string> value)
         {
@@ -85,39 +85,36 @@ namespace Bb.Generators
                 return;
 
             var _n = this._nameOfField(model);
-            if (!MemberExists(t.Members, _n))
+
+            CodeTypeReference type = null;
+
+            if (_actionType != null)
             {
+                var t1 = _actionType();
 
-                CodeTypeReference type = null;
+                if (t1 is string s)
+                    type = new CodeTypeReference(s);
 
-                if (_actionType != null)
-                {
-                    var t1 = _actionType();
-
-                    if (t1 is string s)
-                        type = new CodeTypeReference(s);
-
-                    else if (t1 is Type i)
-                        type = new CodeTypeReference(i);
-                }
-
-                CodeMemberField field = new CodeMemberField()
-                {
-                    Name = _n,
-                    Attributes = _attributes,
-                    Type = type,
-                };
-
-                GenerateDocumentation(field, ctx);
-
-                if (_valueOfField != null)
-                    field.InitExpression = new CodePrimitiveExpression((string)_valueOfField(model));
-                else if (_valueOfField2 != null)
-                    field.InitExpression = _valueOfField2(model);
-
-                t.Members.Add(field);
-
+                else if (t1 is Type i)
+                    type = new CodeTypeReference(i);
             }
+
+            CodeMemberField field = new CodeMemberField()
+            {
+                Name = _n,
+                Attributes = _attributes,
+                Type = type,
+            };
+
+            GenerateDocumentation(field, ctx);
+
+            if (_valueOfField != null)
+                field.InitExpression = new CodePrimitiveExpression((string)_valueOfField(model));
+            else if (_valueOfField2 != null)
+                field.InitExpression = _valueOfField2(model);
+
+            if (!MemberExists(t.Members, field))
+                t.Members.Add(field);
 
         }
 

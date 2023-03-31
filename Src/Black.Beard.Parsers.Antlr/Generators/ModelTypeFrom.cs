@@ -283,6 +283,7 @@ namespace Bb.Generators
                             var items = p.Items();
                             foreach (var item in items)
                             {
+                                p.Clean();
                                 p.Action(p, item);
                                 p.Generate(ctx, item, type);
                             }
@@ -303,6 +304,7 @@ namespace Bb.Generators
                             var items = m.Items();
                             foreach (var item in items)
                             {
+                                m.Clean();
                                 m.Action(m, item);
                                 m.Generate(ctx, item, type);
                             }
@@ -323,6 +325,7 @@ namespace Bb.Generators
                             var items = f.Items();
                             foreach (var item in items)
                             {
+                                f.Clean();
                                 f.Action(f, item);
                                 f.Generate(ctx, item, type);
                             }

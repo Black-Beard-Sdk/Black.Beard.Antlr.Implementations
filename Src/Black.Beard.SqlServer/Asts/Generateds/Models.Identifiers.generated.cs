@@ -19,8 +19,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// host
-    /// 	 : id_  DOT  host
-    /// 	 | (id_  DOT | id_)
+    /// 	 : id_  (DOT  id_)+
     /// </summary>
     public partial class AstHost : AstTerminalIdentifier
     {
@@ -3177,7 +3176,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// full_column_name
-    /// 	 : (DELETED | INSERTED)  DOT  column_id
+    /// 	 : deleteed_inserted  DOT  column_id
     /// 	 | full_column_ref
     /// </summary>
     public partial class AstFullColumnName : AstTerminalIdentifier

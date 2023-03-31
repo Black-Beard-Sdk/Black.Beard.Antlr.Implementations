@@ -142,24 +142,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// parameter
-        /// 	 : PLACEHOLDER
-        /// </summary>
-        public override AstRoot VisitParameter(TSqlParser.ParameterContext context)
-        {
-            return new AstParameter(context);
-        }
-        
-        /// <summary>
-        /// star_asterisk
-        /// 	 : STAR
-        /// </summary>
-        public override AstRoot VisitStar_asterisk(TSqlParser.Star_asteriskContext context)
-        {
-            return new AstStarAsterisk(context);
-        }
-        
-        /// <summary>
         /// constant
         /// 	 : stringtext
         /// 	 | binary_
@@ -234,6 +216,24 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitStringtext(TSqlParser.StringtextContext context)
         {
             return new AstStringtext(context);
+        }
+        
+        /// <summary>
+        /// parameter
+        /// 	 : PLACEHOLDER
+        /// </summary>
+        public override AstRoot VisitParameter(TSqlParser.ParameterContext context)
+        {
+            return new AstParameter(context);
+        }
+        
+        /// <summary>
+        /// star_asterisk
+        /// 	 : STAR
+        /// </summary>
+        public override AstRoot VisitStar_asterisk(TSqlParser.Star_asteriskContext context)
+        {
+            return new AstStarAsterisk(context);
         }
     }
 }

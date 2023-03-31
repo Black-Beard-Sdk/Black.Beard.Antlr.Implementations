@@ -382,62 +382,6 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
-    /// parameter
-    /// 	 : PLACEHOLDER
-    /// </summary>
-    public partial class AstParameter : AstTerminal<string>
-    {
-        
-        public AstParameter(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstParameter(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstParameter(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitParameter(this);
-        }
-    }
-    
-    /// <summary>
-    /// star_asterisk
-    /// 	 : STAR
-    /// </summary>
-    public partial class AstStarAsterisk : AstTerminal<string>
-    {
-        
-        public AstStarAsterisk(ITerminalNode t) : 
-                base(t, t.GetText())
-        {
-        }
-        
-        public AstStarAsterisk(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstStarAsterisk(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitStarAsterisk(this);
-        }
-    }
-    
-    /// <summary>
     /// constant
     /// 	 : stringtext
     /// 	 | binary_
@@ -663,6 +607,62 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitStringtext(this);
+        }
+    }
+    
+    /// <summary>
+    /// parameter
+    /// 	 : PLACEHOLDER
+    /// </summary>
+    public partial class AstParameter : AstTerminal<string>
+    {
+        
+        public AstParameter(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstParameter(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstParameter(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitParameter(this);
+        }
+    }
+    
+    /// <summary>
+    /// star_asterisk
+    /// 	 : STAR
+    /// </summary>
+    public partial class AstStarAsterisk : AstTerminal<string>
+    {
+        
+        public AstStarAsterisk(ITerminalNode t) : 
+                base(t, t.GetText())
+        {
+        }
+        
+        public AstStarAsterisk(ParserRuleContext ctx) : 
+                base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstStarAsterisk(Position t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitStarAsterisk(this);
         }
     }
 }

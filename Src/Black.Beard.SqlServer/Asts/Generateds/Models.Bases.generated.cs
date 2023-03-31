@@ -98,74 +98,146 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureParams, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureParams, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, procedureParams, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureParams, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureParams, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS as_external_name 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, procedureOptions, asExternalName);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureParams, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureParams, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, procedureParams, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, @decimal, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureOptions, asExternalName);
         }
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS sql_clause 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
         {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procName, procedureOptions, sqlClause);
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureOptions, asExternalName);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureParams, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureParams, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureParams, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureParams, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureOptions, sqlClause);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
+        {
+            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureOptions, sqlClause);
         }
         
         /// <summary>
@@ -233,236 +305,236 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// merge_statement : 
-        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? option_clause? ; 
+        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
+        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstMergeStatement.MergeStatement(withExpression, expression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, optionClause);
+            return AstMergeStatement.MergeStatement(withExpression, expression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, updateOptionClause);
         }
         
         /// <summary>
         /// merge_statement : 
-        ///    with_expression? MERGE INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? option_clause? ; 
+        ///    with_expression? MERGE INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstOptionClause optionClause)
+        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstMergeStatement.MergeStatement(withExpression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, optionClause);
+            return AstMergeStatement.MergeStatement(withExpression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? for_clause? option_clause? ; 
+        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, forClause, optionClause);
+            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? option_clause? ; 
+        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, optionClause);
+            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
         }
         
         /// <summary>
@@ -476,290 +548,290 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? for_clause? option_clause? ; 
+        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? option_clause? ; 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? option_clause? ; 
+        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, optionClause);
+            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
         }
     }
     
@@ -1442,20 +1514,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_event_session : 
-        ///    CREATE EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? STATE EQUAL start_stop 
+        ///    create_alter EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? STATE EQUAL start_stop 
         /// </summary>
-        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith, AstStartStop startStop)
+        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith, AstStartStop startStop)
         {
-            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith, startStop);
+            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(createAlter, eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith, startStop);
         }
         
         /// <summary>
         /// create_or_alter_event_session : 
-        ///    CREATE EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? 
+        ///    create_alter EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? 
         /// </summary>
-        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith)
+        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith)
         {
-            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith);
+            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(createAlter, eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith);
         }
         
         /// <summary>
@@ -1586,47 +1658,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref DISABLE 
+        ///    ALTER INDEX index_name ON full_table_ref index_status 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstIndexStatus indexStatus)
         {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref RESUME resumable_index_options? 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstResumableIndexOptions resumableIndexOptions)
-        {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef, resumableIndexOptions);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref reorganize_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstReorganizePartition reorganizePartition)
-        {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef, reorganizePartition);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref set_index_options 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstSetIndexOptions setIndexOptions)
-        {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef, setIndexOptions);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref rebuild_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstRebuildPartition rebuildPartition)
-        {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef, rebuildPartition);
+            return AstAlterIndex.AlterIndex(indexName, fullTableRef, indexStatus);
         }
         
         /// <summary>
@@ -1694,7 +1730,25 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_master_key_azure_sql : 
-        ///    ALTER MASTER KEY FORCE() REGENERATE WITH encryption_by_pwd 
+        ///    ALTER MASTER KEY regenerate_mater_key 
+        /// </summary>
+        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstRegenerateMaterKey regenerateMaterKey)
+        {
+            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(regenerateMaterKey);
+        }
+        
+        /// <summary>
+        /// alter_master_key_azure_sql : 
+        ///    ALTER MASTER KEY ADD add_master_key 
+        /// </summary>
+        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstAddMasterKey addMasterKey)
+        {
+            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(addMasterKey);
+        }
+        
+        /// <summary>
+        /// alter_master_key_azure_sql : 
+        ///    ALTER MASTER KEY DROP encryption_by_pwd 
         /// </summary>
         public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstEncryptionByPwd encryptionByPwd)
         {
@@ -1702,48 +1756,21 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_azure_sql : 
-        ///    ALTER MASTER KEY ADD ENCRYPTION BY PASSWORD EQUAL encryption_password=stringtext 
-        /// </summary>
-        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstStringtext encryptionPassword)
-        {
-            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(encryptionPassword);
-        }
-        
-        /// <summary>
         /// alter_master_key_sql_server : 
-        ///    ALTER MASTER KEY add_drop ENCRYPTION BY SERVICE MASTER KEY 
+        ///    ALTER MASTER KEY add_drop add_master_key 
         /// </summary>
-        public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstAddDrop addDrop)
+        public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstAddDrop addDrop, AstAddMasterKey addMasterKey)
         {
-            return AstAlterMasterKeySqlServer.AlterMasterKeySqlServer(addDrop);
-        }
-        
-        /// <summary>
-        /// alter_master_key_sql_server : 
-        ///    ALTER MASTER KEY add_drop ENCRYPTION BY PASSWORD EQUAL encryption_password=stringtext 
-        /// </summary>
-        public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstAddDrop addDrop, AstStringtext encryptionPassword)
-        {
-            return AstAlterMasterKeySqlServer.AlterMasterKeySqlServer(addDrop, encryptionPassword);
+            return AstAlterMasterKeySqlServer.AlterMasterKeySqlServer(addDrop, addMasterKey);
         }
         
         /// <summary>
         /// alter_message_type : 
-        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL NONE 
+        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL message_validation_value 
         /// </summary>
-        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId)
+        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId, AstMessageValidationValue messageValidationValue)
         {
-            return AstAlterMessageType.AlterMessageType(messageTypeId);
-        }
-        
-        /// <summary>
-        /// alter_message_type : 
-        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
-        /// </summary>
-        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId, AstSchemaCollectionId schemaCollectionId)
-        {
-            return AstAlterMessageType.AlterMessageType(messageTypeId, schemaCollectionId);
+            return AstAlterMessageType.AlterMessageType(messageTypeId, messageValidationValue);
         }
         
         /// <summary>
@@ -1802,6 +1829,15 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_resource_governor : 
+        ///    ALTER RESOURCE GOVERNOR disable_reconfigure 
+        /// </summary>
+        public static AstAlterResourceGovernor AlterResourceGovernor(AstDisableReconfigure disableReconfigure)
+        {
+            return AstAlterResourceGovernor.AlterResourceGovernor(disableReconfigure);
+        }
+        
+        /// <summary>
+        /// alter_resource_governor : 
         ///    ALTER RESOURCE GOVERNOR WITH ( CLASSIFIER_FUNCTION EQUAL schema_func_proc_ref ) 
         /// </summary>
         public static AstAlterResourceGovernor AlterResourceGovernor(AstSchemaFuncProcRef schemaFuncProcRef)
@@ -1825,6 +1861,15 @@ namespace Bb.Asts.TSql
         public static AstAlterSchemaAzureSqlDwAndPdw AlterSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstIdDotId idDotId)
         {
             return AstAlterSchemaAzureSqlDwAndPdw.AlterSchemaAzureSqlDwAndPdw(schemaId, idDotId);
+        }
+        
+        /// <summary>
+        /// alter_schema_sql : 
+        ///    ALTER SCHEMA schema_id TRANSFER transfert_target? id_dot_id 
+        /// </summary>
+        public static AstAlterSchemaSql AlterSchemaSql(AstSchemaId schemaId, AstTransfertTarget transfertTarget, AstIdDotId idDotId)
+        {
+            return AstAlterSchemaSql.AlterSchemaSql(schemaId, transfertTarget, idDotId);
         }
         
         /// <summary>
@@ -1879,6 +1924,15 @@ namespace Bb.Asts.TSql
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigFailover serverConfigFailover)
         {
             return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigFailover);
+        }
+        
+        /// <summary>
+        /// alter_server_configuration : 
+        ///    ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL stringtext 
+        /// </summary>
+        public static AstAlterServerConfiguration AlterServerConfiguration(AstStringtext stringtext)
+        {
+            return AstAlterServerConfiguration.AlterServerConfiguration(stringtext);
         }
         
         /// <summary>
@@ -1991,11 +2045,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_table : 
-        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL AUTO ) ; 
+        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL lock_mode ) ; 
         /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef)
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstLockMode lockMode)
         {
-            return AstAlterTable.AlterTable(fullTableRef);
+            return AstAlterTable.AlterTable(fullTableRef, lockMode);
         }
         
         /// <summary>
@@ -2045,11 +2099,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_table : 
-        ///    ALTER TABLE full_table_ref WITH CHECK ADD alter_table_constraint ; 
+        ///    ALTER TABLE full_table_ref WITH check_nocheck check_nocheck ADD alter_table_constraint ; 
         /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstAlterTableConstraint alterTableConstraint)
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstCheckNocheck checkNocheck, AstAlterTableConstraint alterTableConstraint)
         {
-            return AstAlterTable.AlterTable(fullTableRef, alterTableConstraint);
+            return AstAlterTable.AlterTable(fullTableRef, checkNocheck, checkNocheck, alterTableConstraint);
+        }
+        
+        /// <summary>
+        /// alter_table : 
+        ///    ALTER TABLE full_table_ref check_nocheck CONSTRAINT constraint_id ; 
+        /// </summary>
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstConstraintId constraintId)
+        {
+            return AstAlterTable.AlterTable(fullTableRef, checkNocheck, constraintId);
         }
         
         /// <summary>
@@ -2189,74 +2252,74 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstEncryptionByPwd encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
         {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, encryptionByPwd);
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, asymetricAlgorithm, encryptionByPwd);
         }
         
         /// <summary>
@@ -2311,6 +2374,150 @@ namespace Bb.Asts.TSql
         public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
         {
             return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, providerKeyName, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerKeyName, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerKeyName, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, creationDisposition, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, encryptionByPwd);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstEncryptionByPwd encryptionByPwd)
+        {
+            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, encryptionByPwd);
         }
         
         /// <summary>
@@ -2378,20 +2585,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_event_notification : 
-        ///    CREATE EVENT NOTIFICATION event_notification_id ON SERVER WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
+        ///    CREATE EVENT NOTIFICATION event_notification_id ON event_notification_on WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
         /// </summary>
-        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
+        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstEventNotificationOn eventNotificationOn, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
         {
-            return AstCreateEventNotification.CreateEventNotification(eventNotificationId, eventTypeOrGroupId, brokerService, brokerServiceSpecifierOrCurrentDatabase);
-        }
-        
-        /// <summary>
-        /// create_event_notification : 
-        ///    CREATE EVENT NOTIFICATION event_notification_id ON QUEUE queue_id WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
-        /// </summary>
-        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstQueueId queueId, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
-        {
-            return AstCreateEventNotification.CreateEventNotification(eventNotificationId, queueId, eventTypeOrGroupId, brokerService, brokerServiceSpecifierOrCurrentDatabase);
+            return AstCreateEventNotification.CreateEventNotification(eventNotificationId, eventNotificationOn, eventTypeOrGroupId, brokerService, brokerServiceSpecifierOrCurrentDatabase);
         }
         
         /// <summary>
@@ -3179,20 +3377,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH FULLSCAN , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
+        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH statistics_with , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
         /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstOnOff onOff)
+        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstStatisticsWith statisticsWith, AstOnOff onOff)
         {
-            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, onOff);
-        }
-        
-        /// <summary>
-        /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH SAMPLE decimal PERCENT , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
-        /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstDecimal @decimal, AstOnOff onOff)
-        {
-            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, @decimal, onOff);
+            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, statisticsWith, onOff);
         }
         
         /// <summary>
@@ -3368,11 +3557,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
         {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId, externalPoolId);
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, workloadGroupPoolId, externalPoolId);
         }
         
         /// <summary>
@@ -3386,11 +3575,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
         {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, externalPoolId);
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId, externalPoolId);
+        }
+        
+        /// <summary>
+        /// create_workload_group : 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
+        /// </summary>
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstExternalPoolId externalPoolId)
+        {
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, externalPoolId);
         }
         
         /// <summary>
@@ -3404,11 +3602,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstExternalPoolId externalPoolId)
         {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId);
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, externalPoolId);
+        }
+        
+        /// <summary>
+        /// create_workload_group : 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
+        /// </summary>
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId)
+        {
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, workloadGroupPoolId);
         }
         
         /// <summary>
@@ -3422,11 +3629,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId)
         {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId);
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId);
+        }
+        
+        /// <summary>
+        /// create_workload_group : 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
+        /// </summary>
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel)
+        {
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel);
         }
         
         /// <summary>
@@ -3439,21 +3655,21 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_xml_index : 
-        ///    CREATE PRIMARY XML INDEX index_id ON full_table_ref ( column_id ) USING XML INDEX parent_index=index_id FOR VALUE xml_index_options? ; 
+        /// create_workload_group : 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstIndexId parentIndex, AstXmlIndexOptions xmlIndexOptions)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId)
         {
-            return AstCreateXmlIndex.CreateXmlIndex(indexId, fullTableRef, columnId, parentIndex, xmlIndexOptions);
+            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId);
         }
         
         /// <summary>
         /// create_xml_index : 
-        ///    CREATE PRIMARY XML INDEX index_id ON full_table_ref ( column_id ) xml_index_options? ; 
+        ///    CREATE PRIMARY XML INDEX index_id ON full_table_ref ( column_id ) using_xml_index? xml_index_options? ; 
         /// </summary>
-        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstXmlIndexOptions xmlIndexOptions)
+        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstUsingXmlIndex usingXmlIndex, AstXmlIndexOptions xmlIndexOptions)
         {
-            return AstCreateXmlIndex.CreateXmlIndex(indexId, fullTableRef, columnId, xmlIndexOptions);
+            return AstCreateXmlIndex.CreateXmlIndex(indexId, fullTableRef, columnId, usingXmlIndex, xmlIndexOptions);
         }
         
         /// <summary>
@@ -3467,11 +3683,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_partition_function : 
-        ///    CREATE PARTITION FUNCTION partition_function_id ( input_parameter_type=data_type ) AS RANGE LEFT FOR VALUES ( boundary_values=expression_list ) 
+        ///    CREATE PARTITION FUNCTION partition_function_id ( input_parameter_type=data_type ) AS RANGE left_right? FOR VALUES ( boundary_values=expression_list ) 
         /// </summary>
-        public static AstCreatePartitionFunction CreatePartitionFunction(AstPartitionFunctionId partitionFunctionId, AstDataType inputParameterType, AstExpressionList boundaryValues)
+        public static AstCreatePartitionFunction CreatePartitionFunction(AstPartitionFunctionId partitionFunctionId, AstDataType inputParameterType, AstLeftRight leftRight, AstExpressionList boundaryValues)
         {
-            return AstCreatePartitionFunction.CreatePartitionFunction(partitionFunctionId, inputParameterType, boundaryValues);
+            return AstCreatePartitionFunction.CreatePartitionFunction(partitionFunctionId, inputParameterType, leftRight, boundaryValues);
         }
         
         /// <summary>
@@ -3593,20 +3809,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_event_notifications : 
-        ///    DROP EVENT NOTIFICATION COMMA? notification_id ON SERVER 
+        ///    DROP EVENT NOTIFICATION notification_ids ON event_notification_on 
         /// </summary>
-        public static AstDropEventNotifications DropEventNotifications(AstNotificationId notificationId)
+        public static AstDropEventNotifications DropEventNotifications(AstNotificationIds notificationIds, AstEventNotificationOn eventNotificationOn)
         {
-            return AstDropEventNotifications.DropEventNotifications(notificationId);
-        }
-        
-        /// <summary>
-        /// drop_event_notifications : 
-        ///    DROP EVENT NOTIFICATION COMMA? notification_id ON QUEUE queue_id 
-        /// </summary>
-        public static AstDropEventNotifications DropEventNotifications(AstNotificationId notificationId, AstQueueId queueId)
-        {
-            return AstDropEventNotifications.DropEventNotifications(notificationId, queueId);
+            return AstDropEventNotifications.DropEventNotifications(notificationIds, eventNotificationOn);
         }
         
         /// <summary>
@@ -3691,6 +3898,15 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
+        /// drop_message_type : 
+        ///    DROP MESSAGE TYPE message_type_id 
+        /// </summary>
+        public static AstDropMessageType DropMessageType(AstMessageTypeId messageTypeId)
+        {
+            return AstDropMessageType.DropMessageType(messageTypeId);
+        }
+        
+        /// <summary>
         /// drop_partition_function : 
         ///    DROP PARTITION FUNCTION partition_function_id 
         /// </summary>
@@ -3706,6 +3922,15 @@ namespace Bb.Asts.TSql
         public static AstDropPartitionScheme DropPartitionScheme(AstPartitionSchemeId partitionSchemeId)
         {
             return AstDropPartitionScheme.DropPartitionScheme(partitionSchemeId);
+        }
+        
+        /// <summary>
+        /// drop_procedure : 
+        ///    DROP proc_keyword if_exists? func_proc_name_schemas ; 
+        /// </summary>
+        public static AstDropProcedure DropProcedure(AstProcKeyword procKeyword, AstIfExists ifExists, AstFuncProcNameSchemas funcProcNameSchemas)
+        {
+            return AstDropProcedure.DropProcedure(procKeyword, ifExists, funcProcNameSchemas);
         }
         
         /// <summary>
@@ -3791,11 +4016,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_statistics : 
-        ///    DROP STATISTICS COMMA? full_table_ref . name=id_ ; 
+        ///    DROP STATISTICS full_table_ref_columns ; 
         /// </summary>
-        public static AstDropStatistics DropStatistics(AstFullTableRef fullTableRef, AstId name)
+        public static AstDropStatistics DropStatistics(AstFullTableRefColumns fullTableRefColumns)
         {
-            return AstDropStatistics.DropStatistics(fullTableRef, name);
+            return AstDropStatistics.DropStatistics(fullTableRefColumns);
         }
         
         /// <summary>
@@ -3845,11 +4070,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_ddl_trigger : 
-        ///    DROP TRIGGER if_exists? schema_view_refs ON DATABASE ; 
+        ///    DROP TRIGGER if_exists? schema_view_refs ON all_server_database ; 
         /// </summary>
-        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs)
+        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase)
         {
-            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs);
+            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs, allServerDatabase);
+        }
+        
+        /// <summary>
+        /// drop_view : 
+        ///    DROP VIEW if_exists? schema_view_refs ; 
+        /// </summary>
+        public static AstDropView DropView(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs)
+        {
+            return AstDropView.DropView(ifExists, schemaViewRefs);
         }
         
         /// <summary>
@@ -3863,38 +4097,29 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// disable_trigger : 
-        ///    DISABLE TRIGGER COMMA? schema_trigger_ref ON schema_object_ref 
+        ///    DISABLE trigger_setting 
         /// </summary>
-        public static AstDisableTrigger DisableTrigger(AstSchemaTriggerRef schemaTriggerRef, AstSchemaObjectRef schemaObjectRef)
+        public static AstDisableTrigger DisableTrigger(AstTriggerSetting triggerSetting)
         {
-            return AstDisableTrigger.DisableTrigger(schemaTriggerRef, schemaObjectRef);
-        }
-        
-        /// <summary>
-        /// disable_trigger : 
-        ///    DISABLE TRIGGER ALL ON schema_object_ref 
-        /// </summary>
-        public static AstDisableTrigger DisableTrigger(AstSchemaObjectRef schemaObjectRef)
-        {
-            return AstDisableTrigger.DisableTrigger(schemaObjectRef);
-        }
-        
-        /// <summary>
-        /// disable_trigger : 
-        ///    DISABLE TRIGGER COMMA? schema_trigger_ref ON DATABASE 
-        /// </summary>
-        public static AstDisableTrigger DisableTrigger(AstSchemaTriggerRef schemaTriggerRef)
-        {
-            return AstDisableTrigger.DisableTrigger(schemaTriggerRef);
+            return AstDisableTrigger.DisableTrigger(triggerSetting);
         }
         
         /// <summary>
         /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN SHARE MODE WAIT seconds=decimal ; 
+        ///    LOCK TABLE full_table_ref IN share_exclusive MODE WAIT seconds=decimal ; 
         /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstDecimal seconds)
+        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive, AstDecimal seconds)
         {
-            return AstLockTable.LockTable(fullTableRef, seconds);
+            return AstLockTable.LockTable(fullTableRef, shareExclusive, seconds);
+        }
+        
+        /// <summary>
+        /// lock_table : 
+        ///    LOCK TABLE full_table_ref IN share_exclusive MODE NOWAIT ; 
+        /// </summary>
+        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive)
+        {
+            return AstLockTable.LockTable(fullTableRef, shareExclusive);
         }
         
         /// <summary>
@@ -3904,6 +4129,15 @@ namespace Bb.Asts.TSql
         public static AstTruncateTable TruncateTable(AstFullTableRef fullTableRef, AstDecimalRange decimalRange, AstDecimals decimals)
         {
             return AstTruncateTable.TruncateTable(fullTableRef, decimalRange, decimals);
+        }
+        
+        /// <summary>
+        /// truncate_table : 
+        ///    TRUNCATE TABLE full_table_ref 
+        /// </summary>
+        public static AstTruncateTable TruncateTable(AstFullTableRef fullTableRef)
+        {
+            return AstTruncateTable.TruncateTable(fullTableRef);
         }
         
         /// <summary>
@@ -4314,20 +4548,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, group, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, group, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
         }
         
         /// <summary>
@@ -4413,38 +4647,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( message_type_id SENT BY INITIATOR COMMA? ) 
+        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( contract_items ) 
         /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstMessageTypeId messageTypeId)
+        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstContractItems contractItems)
         {
-            return AstCreateContract.CreateContract(contractNameExpression, ownerId, messageTypeId);
+            return AstCreateContract.CreateContract(contractNameExpression, ownerId, contractItems);
         }
         
         /// <summary>
         /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression ( message_type_id SENT BY INITIATOR COMMA? ) 
+        ///    CREATE CONTRACT contract_name_expression ( contract_items ) 
         /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstMessageTypeId messageTypeId)
+        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstContractItems contractItems)
         {
-            return AstCreateContract.CreateContract(contractNameExpression, messageTypeId);
-        }
-        
-        /// <summary>
-        /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( DEFAULT SENT BY INITIATOR COMMA? ) 
-        /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId)
-        {
-            return AstCreateContract.CreateContract(contractNameExpression, ownerId);
-        }
-        
-        /// <summary>
-        /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression ( DEFAULT SENT BY INITIATOR COMMA? ) 
-        /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression)
-        {
-            return AstCreateContract.CreateContract(contractNameExpression);
+            return AstCreateContract.CreateContract(contractNameExpression, contractItems);
         }
         
         /// <summary>
@@ -4855,20 +5071,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, group, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
         }
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
+        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, group, decimalLocalId, onOff);
+            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
         }
         
         /// <summary>
@@ -5126,11 +5342,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_ddl_trigger : 
-        ///    DROP TRIGGER if_exists? schema_view_refs ON DATABASE ; 
+        ///    DROP TRIGGER if_exists? schema_view_refs ON all_server_database ; 
         /// </summary>
-        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs)
+        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase)
         {
-            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs);
+            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs, allServerDatabase);
         }
     }
     
@@ -5200,11 +5416,11 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// select_statement : 
-        ///    query_expression select_order_by_clause? for_clause? option_clause? ; 
+        ///    query_expression select_order_by_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstOptionClause optionClause)
+        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstSelectStatement.SelectStatement(queryExpression, selectOrderByClause, forClause, optionClause);
+            return AstSelectStatement.SelectStatement(queryExpression, selectOrderByClause, forClause, updateOptionClause);
         }
     }
     
@@ -5423,7 +5639,7 @@ namespace Bb.Asts.TSql
     /// join_part
     /// 	 : join_on
     /// 	 | cross_join
-    /// 	 | apply_
+    /// 	 | apply_enum
     /// 	 | pivot
     /// 	 | unpivot
     /// </summary>
@@ -5447,11 +5663,20 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// join_on : 
-        ///    inner=INNER LOOP JOIN source=table_source ON cond=search_condition 
+        ///    inner=INNER join_hint? JOIN source=table_source ON cond=search_condition 
         /// </summary>
-        public static AstJoinOn JoinOn(AstTableSource source, AstSearchCondition cond)
+        public static AstJoinOn JoinOn(AstJoinHint joinHint, AstTableSource source, AstSearchCondition cond)
         {
-            return AstJoinOn.JoinOn(source, cond);
+            return AstJoinOn.JoinOn(joinHint, source, cond);
+        }
+        
+        /// <summary>
+        /// join_on : 
+        ///    join_type outer=OUTER join_hint? JOIN source=table_source ON cond=search_condition 
+        /// </summary>
+        public static AstJoinOn JoinOn(AstJoinType joinType, AstJoinHint joinHint, AstTableSource source, AstSearchCondition cond)
+        {
+            return AstJoinOn.JoinOn(joinType, joinHint, source, cond);
         }
         
         /// <summary>
@@ -5461,6 +5686,15 @@ namespace Bb.Asts.TSql
         public static AstCrossJoin CrossJoin(AstTableSource tableSource)
         {
             return AstCrossJoin.CrossJoin(tableSource);
+        }
+        
+        /// <summary>
+        /// apply_enum : 
+        ///    apply_style APPLY source=table_source 
+        /// </summary>
+        public static AstApplyEnum ApplyEnum(AstApplyStyle applyStyle, AstTableSource source)
+        {
+            return AstApplyEnum.ApplyEnum(applyStyle, source);
         }
         
         /// <summary>

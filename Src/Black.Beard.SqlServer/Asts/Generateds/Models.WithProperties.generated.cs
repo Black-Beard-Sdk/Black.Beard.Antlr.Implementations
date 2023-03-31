@@ -2579,7 +2579,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_asymmetric_key
-    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_id  (AUTHORIZATION  database_id)?  (FROM  (FILE  EQUAL  stringtext | EXECUTABLE_FILE  EQUAL  stringtext | ASSEMBLY  assembly_id | PROVIDER  provider_id))?  (WITH  (ALGORITHM  EQUAL  (RSA_4096 | RSA_3072 | RSA_2048 | RSA_1024 | RSA_512) | PROVIDER_KEY_NAME  EQUAL  provider_key_name = stringtext | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)))?  encryption_by_pwd?
+    /// 	 : CREATE  ASYMMETRIC  KEY  asym_key_id  (AUTHORIZATION  database_id)?  (FROM  (FILE  EQUAL  stringtext | EXECUTABLE_FILE  EQUAL  stringtext | ASSEMBLY  assembly_id | PROVIDER  provider_id))?  (WITH  (ALGORITHM  EQUAL  asymetric_algorithm | PROVIDER_KEY_NAME  EQUAL  provider_key_name = stringtext | CREATION_DISPOSITION  EQUAL  creation_disposition))?  encryption_by_pwd?
     /// </summary>
     public partial class AstCreateAsymmetricKey : AstDdlClause
     {
@@ -2593,6 +2593,10 @@ namespace Bb.Asts.TSql
         private AstAssemblyId _assemblyId;
         
         private AstProviderId _providerId;
+        
+        private AstAsymetricAlgorithm _asymetricAlgorithm;
+        
+        private AstCreationDisposition _creationDisposition;
         
         private AstEncryptionByPwd _encryptionByPwd;
         
@@ -2623,6 +2627,14 @@ namespace Bb.Asts.TSql
                 {
                     this._providerId = ((AstProviderId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstAsymetricAlgorithm>())
+                {
+                    this._asymetricAlgorithm = ((AstAsymetricAlgorithm)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreationDisposition>())
+                {
+                    this._creationDisposition = ((AstCreationDisposition)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstEncryptionByPwd>())
                 {
                     this._encryptionByPwd = ((AstEncryptionByPwd)(enumerator.Current));
@@ -2630,7 +2642,7 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateAsymmetricKey(Position p, AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstAssemblyId assemblyId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd) : 
+        public AstCreateAsymmetricKey(Position p, AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstAssemblyId assemblyId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd) : 
                 base(p, null)
         {
             this._asymKeyId = asymKeyId;
@@ -2638,6 +2650,8 @@ namespace Bb.Asts.TSql
             this._stringtext = stringtext;
             this._assemblyId = assemblyId;
             this._providerId = providerId;
+            this._asymetricAlgorithm = asymetricAlgorithm;
+            this._creationDisposition = creationDisposition;
             this._encryptionByPwd = encryptionByPwd;
         }
         
@@ -2667,6 +2681,14 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstProviderId>())
                 {
                     this._providerId = ((AstProviderId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAsymetricAlgorithm>())
+                {
+                    this._asymetricAlgorithm = ((AstAsymetricAlgorithm)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCreationDisposition>())
+                {
+                    this._creationDisposition = ((AstCreationDisposition)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEncryptionByPwd>())
                 {
@@ -2715,6 +2737,22 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef AsymetricAlgorithm
+        {
+            get
+            {
+                return this._asymetricAlgorithm;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef CreationDisposition
+        {
+            get
+            {
+                return this._creationDisposition;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef EncryptionByPwd
         {
             get
@@ -2730,42 +2768,45 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstEncryptionByPwd? encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd? encryptionByPwd)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(asymKeyId);
             list.Add(databaseId);
             list.Add(stringtext);
+            list.Add(asymetricAlgorithm);
             list.Add(encryptionByPwd);
             return new AstCreateAsymmetricKey(Position.Default, list);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstEncryptionByPwd? encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd? encryptionByPwd)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(asymKeyId);
             list.Add(databaseId);
             list.Add(assemblyId);
+            list.Add(asymetricAlgorithm);
             list.Add(encryptionByPwd);
             return new AstCreateAsymmetricKey(Position.Default, list);
         }
         
         /// <summary>
         /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL RSA_4096 encryption_by_pwd? 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
         /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstEncryptionByPwd? encryptionByPwd)
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd? encryptionByPwd)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(asymKeyId);
             list.Add(databaseId);
             list.Add(providerId);
+            list.Add(asymetricAlgorithm);
             list.Add(encryptionByPwd);
             return new AstCreateAsymmetricKey(Position.Default, list);
         }
@@ -2811,6 +2852,51 @@ namespace Bb.Asts.TSql
             list.Add(databaseId);
             list.Add(providerId);
             list.Add(providerKeyName);
+            list.Add(encryptionByPwd);
+            return new AstCreateAsymmetricKey(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstCreationDisposition creationDisposition, AstEncryptionByPwd? encryptionByPwd)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(asymKeyId);
+            list.Add(databaseId);
+            list.Add(stringtext);
+            list.Add(creationDisposition);
+            list.Add(encryptionByPwd);
+            return new AstCreateAsymmetricKey(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd? encryptionByPwd)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(asymKeyId);
+            list.Add(databaseId);
+            list.Add(assemblyId);
+            list.Add(creationDisposition);
+            list.Add(encryptionByPwd);
+            return new AstCreateAsymmetricKey(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_asymmetric_key : 
+        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
+        /// </summary>
+        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstCreationDisposition creationDisposition, AstEncryptionByPwd? encryptionByPwd)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(asymKeyId);
+            list.Add(databaseId);
+            list.Add(providerId);
+            list.Add(creationDisposition);
             list.Add(encryptionByPwd);
             return new AstCreateAsymmetricKey(Position.Default, list);
         }
@@ -6247,6 +6333,94 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// drop_event_notifications
+    /// 	 : DROP  EVENT  NOTIFICATION  notification_ids  ON  event_notification_on
+    /// </summary>
+    public partial class AstDropEventNotifications : AstDdlClause
+    {
+        
+        private AstNotificationIds _notificationIds;
+        
+        private AstEventNotificationOn _eventNotificationOn;
+        
+        public AstDropEventNotifications(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstNotificationIds>())
+                {
+                    this._notificationIds = ((AstNotificationIds)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEventNotificationOn>())
+                {
+                    this._eventNotificationOn = ((AstEventNotificationOn)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstDropEventNotifications(Position p, AstNotificationIds notificationIds, AstEventNotificationOn eventNotificationOn) : 
+                base(p, null)
+        {
+            this._notificationIds = notificationIds;
+            this._eventNotificationOn = eventNotificationOn;
+        }
+        
+        public AstDropEventNotifications(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstNotificationIds>())
+                {
+                    this._notificationIds = ((AstNotificationIds)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstEventNotificationOn>())
+                {
+                    this._eventNotificationOn = ((AstEventNotificationOn)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef NotificationIds
+        {
+            get
+            {
+                return this._notificationIds;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef EventNotificationOn
+        {
+            get
+            {
+                return this._eventNotificationOn;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDropEventNotifications(this);
+        }
+        
+        /// <summary>
+        /// drop_event_notifications : 
+        ///    DROP EVENT NOTIFICATION notification_ids ON event_notification_on 
+        /// </summary>
+        public static AstDropEventNotifications DropEventNotifications(AstNotificationIds notificationIds, AstEventNotificationOn eventNotificationOn)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(notificationIds);
+            list.Add(eventNotificationOn);
+            return new AstDropEventNotifications(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// drop_event_session
     /// 	 : DROP  EVENT  SESSION  event_session_id  ON  SERVER
     /// </summary>
@@ -8134,13 +8308,239 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// disable_trigger
+    /// 	 : DISABLE  trigger_setting
+    /// </summary>
+    public partial class AstDisableTrigger : AstDdlClause
+    {
+        
+        private AstTriggerSetting _triggerSetting;
+        
+        public AstDisableTrigger(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerSetting>())
+                {
+                    this._triggerSetting = ((AstTriggerSetting)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstDisableTrigger(Position p, AstTriggerSetting triggerSetting) : 
+                base(p, null)
+        {
+            this._triggerSetting = triggerSetting;
+        }
+        
+        public AstDisableTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerSetting>())
+                {
+                    this._triggerSetting = ((AstTriggerSetting)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TriggerSetting
+        {
+            get
+            {
+                return this._triggerSetting;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDisableTrigger(this);
+        }
+        
+        /// <summary>
+        /// disable_trigger : 
+        ///    DISABLE trigger_setting 
+        /// </summary>
+        public static AstDisableTrigger DisableTrigger(AstTriggerSetting triggerSetting)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(triggerSetting);
+            return new AstDisableTrigger(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// enable_trigger
+    /// 	 : ENABLE  trigger_setting
+    /// </summary>
+    public partial class AstEnableTrigger : AstDdlClause
+    {
+        
+        private AstTriggerSetting _triggerSetting;
+        
+        public AstEnableTrigger(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerSetting>())
+                {
+                    this._triggerSetting = ((AstTriggerSetting)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstEnableTrigger(Position p, AstTriggerSetting triggerSetting) : 
+                base(p, null)
+        {
+            this._triggerSetting = triggerSetting;
+        }
+        
+        public AstEnableTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerSetting>())
+                {
+                    this._triggerSetting = ((AstTriggerSetting)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TriggerSetting
+        {
+            get
+            {
+                return this._triggerSetting;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitEnableTrigger(this);
+        }
+        
+        /// <summary>
+        /// enable_trigger : 
+        ///    ENABLE trigger_setting 
+        /// </summary>
+        public static AstEnableTrigger EnableTrigger(AstTriggerSetting triggerSetting)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(triggerSetting);
+            return new AstEnableTrigger(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// trigger_setting
+    /// 	 : TRIGGER  trigger_name  ON  trigger_target
+    /// </summary>
+    public partial class AstTriggerSetting : AstRule
+    {
+        
+        private AstTriggerName _triggerName;
+        
+        private AstTriggerTarget _triggerTarget;
+        
+        public AstTriggerSetting(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerName>())
+                {
+                    this._triggerName = ((AstTriggerName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTriggerTarget>())
+                {
+                    this._triggerTarget = ((AstTriggerTarget)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstTriggerSetting(Position p, AstTriggerName triggerName, AstTriggerTarget triggerTarget) : 
+                base(p, null)
+        {
+            this._triggerName = triggerName;
+            this._triggerTarget = triggerTarget;
+        }
+        
+        public AstTriggerSetting(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstTriggerName>())
+                {
+                    this._triggerName = ((AstTriggerName)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTriggerTarget>())
+                {
+                    this._triggerTarget = ((AstTriggerTarget)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TriggerName
+        {
+            get
+            {
+                return this._triggerName;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TriggerTarget
+        {
+            get
+            {
+                return this._triggerTarget;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitTriggerSetting(this);
+        }
+        
+        /// <summary>
+        /// trigger_setting : 
+        ///    TRIGGER trigger_name ON trigger_target 
+        /// </summary>
+        public static AstTriggerSetting TriggerSetting(AstTriggerName triggerName, AstTriggerTarget triggerTarget)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(triggerName);
+            list.Add(triggerTarget);
+            return new AstTriggerSetting(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// lock_table
-    /// 	 : LOCK  TABLE  full_table_ref  IN  (SHARE | EXCLUSIVE)  MODE  (WAIT  seconds = decimal | NOWAIT)?  SEMI?
+    /// 	 : LOCK  TABLE  full_table_ref  IN  share_exclusive  MODE  (WAIT  seconds = decimal | NOWAIT)?  SEMI?
     /// </summary>
     public partial class AstLockTable : AstDdlClause
     {
         
         private AstFullTableRef _fullTableRef;
+        
+        private AstShareExclusive _shareExclusive;
         
         private AstDecimal _decimal;
         
@@ -8155,6 +8555,10 @@ namespace Bb.Asts.TSql
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstShareExclusive>())
+                {
+                    this._shareExclusive = ((AstShareExclusive)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstDecimal>())
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
@@ -8162,10 +8566,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstLockTable(Position p, AstFullTableRef fullTableRef, AstDecimal @decimal) : 
+        public AstLockTable(Position p, AstFullTableRef fullTableRef, AstShareExclusive shareExclusive, AstDecimal @decimal) : 
                 base(p, null)
         {
             this._fullTableRef = fullTableRef;
+            this._shareExclusive = shareExclusive;
             this._decimal = @decimal;
         }
         
@@ -8180,6 +8585,10 @@ namespace Bb.Asts.TSql
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstShareExclusive>())
+                {
+                    this._shareExclusive = ((AstShareExclusive)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstDecimal>())
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
@@ -8192,6 +8601,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._fullTableRef;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ShareExclusive
+        {
+            get
+            {
+                return this._shareExclusive;
             }
         }
         
@@ -8210,24 +8627,26 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN SHARE MODE WAIT seconds=decimal SEMI? 
+        ///    LOCK TABLE full_table_ref IN share_exclusive MODE WAIT seconds=decimal SEMI? 
         /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstDecimal seconds)
+        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive, AstDecimal seconds)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(fullTableRef);
+            list.Add(shareExclusive);
             list.Add(seconds);
             return new AstLockTable(Position.Default, list);
         }
         
         /// <summary>
         /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN SHARE MODE NOWAIT SEMI? 
+        ///    LOCK TABLE full_table_ref IN share_exclusive MODE NOWAIT SEMI? 
         /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef)
+        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(fullTableRef);
+            list.Add(shareExclusive);
             return new AstLockTable(Position.Default, list);
         }
     }
@@ -8736,14 +9155,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_event_notification
-    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  (SERVER | DATABASE | QUEUE  queue_id)  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = stringtext  COMMA  broker_service_specifier_or_current_database = stringtext
+    /// 	 : CREATE  EVENT  NOTIFICATION  event_notification_id  ON  event_notification_on  (WITH  FAN_IN)?  FOR  (COMMA?  event_type_or_group_id)+  TO  SERVICE  broker_service = stringtext  COMMA  broker_service_specifier_or_current_database = stringtext
     /// </summary>
     public partial class AstCreateEventNotification : AstDdlClause
     {
         
         private AstEventNotificationId _eventNotificationId;
         
-        private AstQueueId _queueId;
+        private AstEventNotificationOn _eventNotificationOn;
         
         private AstEventTypeOrGroupId _eventTypeOrGroupId;
         
@@ -8760,9 +9179,9 @@ namespace Bb.Asts.TSql
                 {
                     this._eventNotificationId = ((AstEventNotificationId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstQueueId>())
+                if (enumerator.Current.Is<AstEventNotificationOn>())
                 {
-                    this._queueId = ((AstQueueId)(enumerator.Current));
+                    this._eventNotificationOn = ((AstEventNotificationOn)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEventTypeOrGroupId>())
                 {
@@ -8775,11 +9194,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateEventNotification(Position p, AstEventNotificationId eventNotificationId, AstQueueId queueId, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext stringtext) : 
+        public AstCreateEventNotification(Position p, AstEventNotificationId eventNotificationId, AstEventNotificationOn eventNotificationOn, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext stringtext) : 
                 base(p, null)
         {
             this._eventNotificationId = eventNotificationId;
-            this._queueId = queueId;
+            this._eventNotificationOn = eventNotificationOn;
             this._eventTypeOrGroupId = eventTypeOrGroupId;
             this._stringtext = stringtext;
         }
@@ -8795,9 +9214,9 @@ namespace Bb.Asts.TSql
                 {
                     this._eventNotificationId = ((AstEventNotificationId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstQueueId>())
+                if (enumerator.Current.Is<AstEventNotificationOn>())
                 {
-                    this._queueId = ((AstQueueId)(enumerator.Current));
+                    this._eventNotificationOn = ((AstEventNotificationOn)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstEventTypeOrGroupId>())
                 {
@@ -8818,11 +9237,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef QueueId
+        public virtual Bb.Asts.AstRuleRef EventNotificationOn
         {
             get
             {
-                return this._queueId;
+                return this._eventNotificationOn;
             }
         }
         
@@ -8849,27 +9268,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_event_notification : 
-        ///    CREATE EVENT NOTIFICATION event_notification_id ON SERVER WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
+        ///    CREATE EVENT NOTIFICATION event_notification_id ON event_notification_on WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
         /// </summary>
-        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
+        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstEventNotificationOn eventNotificationOn, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(eventNotificationId);
-            list.Add(eventTypeOrGroupId);
-            list.Add(brokerService);
-            list.Add(brokerServiceSpecifierOrCurrentDatabase);
-            return new AstCreateEventNotification(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// create_event_notification : 
-        ///    CREATE EVENT NOTIFICATION event_notification_id ON QUEUE queue_id WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
-        /// </summary>
-        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstQueueId queueId, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(eventNotificationId);
-            list.Add(queueId);
+            list.Add(eventNotificationOn);
             list.Add(eventTypeOrGroupId);
             list.Add(brokerService);
             list.Add(brokerServiceSpecifierOrCurrentDatabase);
@@ -8879,10 +9284,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_or_alter_event_session
-    /// 	 : (CREATE | ALTER)  EVENT  SESSION  event_session_id  ON  SERVER  create_or_alter_event_session_add_events?  create_or_alter_event_session_del_events?  create_or_alter_event_session_add_targets?  create_or_alter_event_session_del_targets?  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
+    /// 	 : create_alter  EVENT  SESSION  event_session_id  ON  SERVER  create_or_alter_event_session_add_events?  create_or_alter_event_session_del_events?  create_or_alter_event_session_add_targets?  create_or_alter_event_session_del_targets?  create_or_alter_event_session_with?  (STATE  EQUAL  start_stop)?
     /// </summary>
     public partial class AstCreateOrAlterEventSession : AstDdlClause
     {
+        
+        private AstCreateAlter _createAlter;
         
         private AstEventSessionId _eventSessionId;
         
@@ -8905,6 +9312,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateAlter>())
+                {
+                    this._createAlter = ((AstCreateAlter)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstEventSessionId>())
                 {
                     this._eventSessionId = ((AstEventSessionId)(enumerator.Current));
@@ -8936,9 +9347,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateOrAlterEventSession(Position p, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith, AstStartStop startStop) : 
+        public AstCreateOrAlterEventSession(Position p, AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith, AstStartStop startStop) : 
                 base(p, null)
         {
+            this._createAlter = createAlter;
             this._eventSessionId = eventSessionId;
             this._createOrAlterEventSessionAddEvents = createOrAlterEventSessionAddEvents;
             this._createOrAlterEventSessionDelEvents = createOrAlterEventSessionDelEvents;
@@ -8955,6 +9367,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstCreateAlter>())
+                {
+                    this._createAlter = ((AstCreateAlter)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstEventSessionId>())
                 {
                     this._eventSessionId = ((AstEventSessionId)(enumerator.Current));
@@ -8983,6 +9399,14 @@ namespace Bb.Asts.TSql
                 {
                     this._startStop = ((AstStartStop)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef CreateAlter
+        {
+            get
+            {
+                return this._createAlter;
             }
         }
         
@@ -9049,11 +9473,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_event_session : 
-        ///    CREATE EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? STATE EQUAL start_stop 
+        ///    create_alter EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? STATE EQUAL start_stop 
         /// </summary>
-        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents? createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents? createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets? createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets? createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith? createOrAlterEventSessionWith, AstStartStop startStop)
+        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents? createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents? createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets? createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets? createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith? createOrAlterEventSessionWith, AstStartStop startStop)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(createAlter);
             list.Add(eventSessionId);
             list.Add(createOrAlterEventSessionAddEvents);
             list.Add(createOrAlterEventSessionDelEvents);
@@ -9067,12 +9492,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// session_arg_max_memory
-    /// 	 : MAX_MEMORY  EQUAL  decimal  (KB | MB)
+    /// 	 : MAX_MEMORY  EQUAL  decimal  memory_size_unity
     /// </summary>
     public partial class AstSessionArgMaxMemory : AstRule
     {
         
         private AstDecimal _decimal;
+        
+        private AstMemorySizeUnity _memorySizeUnity;
         
         public AstSessionArgMaxMemory(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -9085,13 +9512,18 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstMemorySizeUnity>())
+                {
+                    this._memorySizeUnity = ((AstMemorySizeUnity)(enumerator.Current));
+                }
             }
         }
         
-        public AstSessionArgMaxMemory(Position p, AstDecimal @decimal) : 
+        public AstSessionArgMaxMemory(Position p, AstDecimal @decimal, AstMemorySizeUnity memorySizeUnity) : 
                 base(p, null)
         {
             this._decimal = @decimal;
+            this._memorySizeUnity = memorySizeUnity;
         }
         
         public AstSessionArgMaxMemory(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -9105,6 +9537,10 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstMemorySizeUnity>())
+                {
+                    this._memorySizeUnity = ((AstMemorySizeUnity)(enumerator.Current));
+                }
             }
         }
         
@@ -9116,6 +9552,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef MemorySizeUnity
+        {
+            get
+            {
+                return this._memorySizeUnity;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSessionArgMaxMemory(this);
@@ -9123,24 +9567,95 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// session_arg_max_memory : 
-        ///    MAX_MEMORY EQUAL decimal KB 
+        ///    MAX_MEMORY EQUAL decimal memory_size_unity 
         /// </summary>
-        public static AstSessionArgMaxMemory SessionArgMaxMemory(AstDecimal @decimal)
+        public static AstSessionArgMaxMemory SessionArgMaxMemory(AstDecimal @decimal, AstMemorySizeUnity memorySizeUnity)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(@decimal);
+            list.Add(memorySizeUnity);
             return new AstSessionArgMaxMemory(Position.Default, list);
         }
     }
     
     /// <summary>
+    /// session_arg_event_retention_mode
+    /// 	 : EVENT_RETENTION_MODE  EQUAL  session_mode
+    /// </summary>
+    public partial class AstSessionArgEventRetentionMode : AstRule
+    {
+        
+        private AstSessionMode _sessionMode;
+        
+        public AstSessionArgEventRetentionMode(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSessionMode>())
+                {
+                    this._sessionMode = ((AstSessionMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstSessionArgEventRetentionMode(Position p, AstSessionMode sessionMode) : 
+                base(p, null)
+        {
+            this._sessionMode = sessionMode;
+        }
+        
+        public AstSessionArgEventRetentionMode(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstSessionMode>())
+                {
+                    this._sessionMode = ((AstSessionMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef SessionMode
+        {
+            get
+            {
+                return this._sessionMode;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSessionArgEventRetentionMode(this);
+        }
+        
+        /// <summary>
+        /// session_arg_event_retention_mode : 
+        ///    EVENT_RETENTION_MODE EQUAL session_mode 
+        /// </summary>
+        public static AstSessionArgEventRetentionMode SessionArgEventRetentionMode(AstSessionMode sessionMode)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(sessionMode);
+            return new AstSessionArgEventRetentionMode(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// session_arg_max_event_size
-    /// 	 : MAX_EVENT_SIZE  EQUAL  decimal  (KB | MB)
+    /// 	 : MAX_EVENT_SIZE  EQUAL  decimal  memory_size_unity
     /// </summary>
     public partial class AstSessionArgMaxEventSize : AstRule
     {
         
         private AstDecimal _decimal;
+        
+        private AstMemorySizeUnity _memorySizeUnity;
         
         public AstSessionArgMaxEventSize(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -9153,13 +9668,18 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstMemorySizeUnity>())
+                {
+                    this._memorySizeUnity = ((AstMemorySizeUnity)(enumerator.Current));
+                }
             }
         }
         
-        public AstSessionArgMaxEventSize(Position p, AstDecimal @decimal) : 
+        public AstSessionArgMaxEventSize(Position p, AstDecimal @decimal, AstMemorySizeUnity memorySizeUnity) : 
                 base(p, null)
         {
             this._decimal = @decimal;
+            this._memorySizeUnity = memorySizeUnity;
         }
         
         public AstSessionArgMaxEventSize(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -9173,6 +9693,10 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstMemorySizeUnity>())
+                {
+                    this._memorySizeUnity = ((AstMemorySizeUnity)(enumerator.Current));
+                }
             }
         }
         
@@ -9184,6 +9708,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef MemorySizeUnity
+        {
+            get
+            {
+                return this._memorySizeUnity;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSessionArgMaxEventSize(this);
@@ -9191,13 +9723,82 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// session_arg_max_event_size : 
-        ///    MAX_EVENT_SIZE EQUAL decimal KB 
+        ///    MAX_EVENT_SIZE EQUAL decimal memory_size_unity 
         /// </summary>
-        public static AstSessionArgMaxEventSize SessionArgMaxEventSize(AstDecimal @decimal)
+        public static AstSessionArgMaxEventSize SessionArgMaxEventSize(AstDecimal @decimal, AstMemorySizeUnity memorySizeUnity)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(@decimal);
+            list.Add(memorySizeUnity);
             return new AstSessionArgMaxEventSize(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// session_arg_memory_partition
+    /// 	 : MEMORY_PARTITION_MODE  EQUAL  partition_mode
+    /// </summary>
+    public partial class AstSessionArgMemoryPartition : AstRule
+    {
+        
+        private AstPartitionMode _partitionMode;
+        
+        public AstSessionArgMemoryPartition(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionMode>())
+                {
+                    this._partitionMode = ((AstPartitionMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstSessionArgMemoryPartition(Position p, AstPartitionMode partitionMode) : 
+                base(p, null)
+        {
+            this._partitionMode = partitionMode;
+        }
+        
+        public AstSessionArgMemoryPartition(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstPartitionMode>())
+                {
+                    this._partitionMode = ((AstPartitionMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef PartitionMode
+        {
+            get
+            {
+                return this._partitionMode;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSessionArgMemoryPartition(this);
+        }
+        
+        /// <summary>
+        /// session_arg_memory_partition : 
+        ///    MEMORY_PARTITION_MODE EQUAL partition_mode 
+        /// </summary>
+        public static AstSessionArgMemoryPartition SessionArgMemoryPartition(AstPartitionMode partitionMode)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(partitionMode);
+            return new AstSessionArgMemoryPartition(Position.Default, list);
         }
     }
     
@@ -12638,6 +13239,74 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// regenerate_mater_key
+    /// 	 : (FORCE)?  REGENERATE  WITH  encryption_by_pwd
+    /// </summary>
+    public partial class AstRegenerateMaterKey : AstRule
+    {
+        
+        private AstEncryptionByPwd _encryptionByPwd;
+        
+        public AstRegenerateMaterKey(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEncryptionByPwd>())
+                {
+                    this._encryptionByPwd = ((AstEncryptionByPwd)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstRegenerateMaterKey(Position p, AstEncryptionByPwd encryptionByPwd) : 
+                base(p, null)
+        {
+            this._encryptionByPwd = encryptionByPwd;
+        }
+        
+        public AstRegenerateMaterKey(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstEncryptionByPwd>())
+                {
+                    this._encryptionByPwd = ((AstEncryptionByPwd)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef EncryptionByPwd
+        {
+            get
+            {
+                return this._encryptionByPwd;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitRegenerateMaterKey(this);
+        }
+        
+        /// <summary>
+        /// regenerate_mater_key : 
+        ///    FORCE()? REGENERATE WITH encryption_by_pwd 
+        /// </summary>
+        public static AstRegenerateMaterKey RegenerateMaterKey(AstEncryptionByPwd encryptionByPwd)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(encryptionByPwd);
+            return new AstRegenerateMaterKey(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// create_master_key_azure_sql
     /// 	 : CREATE  MASTER  KEY  encryption_by_pwd?
     /// </summary>
@@ -12707,14 +13376,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_message_type
-    /// 	 : ALTER  MESSAGE  TYPE  message_type_id  VALIDATION  EQUAL  (NONE | EMPTY | WELL_FORMED_XML | VALID_XML  WITH  SCHEMA  COLLECTION  schema_collection_id)
+    /// 	 : ALTER  MESSAGE  TYPE  message_type_id  VALIDATION  EQUAL  message_validation_value
     /// </summary>
     public partial class AstAlterMessageType : AstDdlClause
     {
         
         private AstMessageTypeId _messageTypeId;
         
-        private AstSchemaCollectionId _schemaCollectionId;
+        private AstMessageValidationValue _messageValidationValue;
         
         public AstAlterMessageType(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -12727,18 +13396,18 @@ namespace Bb.Asts.TSql
                 {
                     this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstSchemaCollectionId>())
+                if (enumerator.Current.Is<AstMessageValidationValue>())
                 {
-                    this._schemaCollectionId = ((AstSchemaCollectionId)(enumerator.Current));
+                    this._messageValidationValue = ((AstMessageValidationValue)(enumerator.Current));
                 }
             }
         }
         
-        public AstAlterMessageType(Position p, AstMessageTypeId messageTypeId, AstSchemaCollectionId schemaCollectionId) : 
+        public AstAlterMessageType(Position p, AstMessageTypeId messageTypeId, AstMessageValidationValue messageValidationValue) : 
                 base(p, null)
         {
             this._messageTypeId = messageTypeId;
-            this._schemaCollectionId = schemaCollectionId;
+            this._messageValidationValue = messageValidationValue;
         }
         
         public AstAlterMessageType(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -12752,9 +13421,9 @@ namespace Bb.Asts.TSql
                 {
                     this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstSchemaCollectionId>())
+                if (enumerator.Current.Is<AstMessageValidationValue>())
                 {
-                    this._schemaCollectionId = ((AstSchemaCollectionId)(enumerator.Current));
+                    this._messageValidationValue = ((AstMessageValidationValue)(enumerator.Current));
                 }
             }
         }
@@ -12767,11 +13436,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef SchemaCollectionId
+        public virtual Bb.Asts.AstRuleRef MessageValidationValue
         {
             get
             {
-                return this._schemaCollectionId;
+                return this._messageValidationValue;
             }
         }
         
@@ -12782,24 +13451,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_message_type : 
-        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL NONE 
+        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL message_validation_value 
         /// </summary>
-        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId)
+        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId, AstMessageValidationValue messageValidationValue)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(messageTypeId);
-            return new AstAlterMessageType(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// alter_message_type : 
-        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
-        /// </summary>
-        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId, AstSchemaCollectionId schemaCollectionId)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(messageTypeId);
-            list.Add(schemaCollectionId);
+            list.Add(messageValidationValue);
             return new AstAlterMessageType(Position.Default, list);
         }
     }
@@ -13778,12 +14436,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_schema_sql
-    /// 	 : ALTER  SCHEMA  schema_id  TRANSFER  ((OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON)?  id_dot_id
+    /// 	 : ALTER  SCHEMA  schema_id  TRANSFER  transfert_target?  id_dot_id
     /// </summary>
     public partial class AstAlterSchemaSql : AstDdlClause
     {
         
         private AstSchemaId _schemaId;
+        
+        private AstTransfertTarget _transfertTarget;
         
         private AstIdDotId _idDotId;
         
@@ -13798,6 +14458,10 @@ namespace Bb.Asts.TSql
                 {
                     this._schemaId = ((AstSchemaId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstTransfertTarget>())
+                {
+                    this._transfertTarget = ((AstTransfertTarget)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstIdDotId>())
                 {
                     this._idDotId = ((AstIdDotId)(enumerator.Current));
@@ -13805,10 +14469,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstAlterSchemaSql(Position p, AstSchemaId schemaId, AstIdDotId idDotId) : 
+        public AstAlterSchemaSql(Position p, AstSchemaId schemaId, AstTransfertTarget transfertTarget, AstIdDotId idDotId) : 
                 base(p, null)
         {
             this._schemaId = schemaId;
+            this._transfertTarget = transfertTarget;
             this._idDotId = idDotId;
         }
         
@@ -13823,6 +14488,10 @@ namespace Bb.Asts.TSql
                 {
                     this._schemaId = ((AstSchemaId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstTransfertTarget>())
+                {
+                    this._transfertTarget = ((AstTransfertTarget)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstIdDotId>())
                 {
                     this._idDotId = ((AstIdDotId)(enumerator.Current));
@@ -13835,6 +14504,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._schemaId;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TransfertTarget
+        {
+            get
+            {
+                return this._transfertTarget;
             }
         }
         
@@ -13853,12 +14530,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_schema_sql : 
-        ///    ALTER SCHEMA schema_id TRANSFER OBJECT :: id_dot_id 
+        ///    ALTER SCHEMA schema_id TRANSFER transfert_target? id_dot_id 
         /// </summary>
-        public static AstAlterSchemaSql AlterSchemaSql(AstSchemaId schemaId, AstIdDotId idDotId)
+        public static AstAlterSchemaSql AlterSchemaSql(AstSchemaId schemaId, AstTransfertTarget? transfertTarget, AstIdDotId idDotId)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(schemaId);
+            list.Add(transfertTarget);
             list.Add(idDotId);
             return new AstAlterSchemaSql(Position.Default, list);
         }
@@ -17518,12 +18196,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_workload_group
-    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_id  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  (LOW | MEDIUM | HIGH) | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = decimal | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = decimal | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = decimal | MAX_DOP  EQUAL  max_dop = decimal | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = decimal)+  RR_BRACKET)?  (USING  (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_id | DEFAULT_DOUBLE_QUOTE)?)?
+    /// 	 : CREATE  WORKLOAD  GROUP  workload_group_group_id  (WITH  LR_BRACKET  (IMPORTANCE  EQUAL  importance_level | COMMA?  REQUEST_MAX_MEMORY_GRANT_PERCENT  EQUAL  request_max_memory_grant = decimal | COMMA?  REQUEST_MAX_CPU_TIME_SEC  EQUAL  request_max_cpu_time_sec = decimal | REQUEST_MEMORY_GRANT_TIMEOUT_SEC  EQUAL  request_memory_grant_timeout_sec = decimal | MAX_DOP  EQUAL  max_dop = decimal | GROUP_MAX_REQUESTS  EQUAL  group_max_requests = decimal)+  RR_BRACKET)?  (USING  (workload_group_pool_id | DEFAULT_DOUBLE_QUOTE)?  (COMMA?  EXTERNAL  external_pool_id | DEFAULT_DOUBLE_QUOTE)?)?
     /// </summary>
     public partial class AstCreateWorkloadGroup : AstDdlClause
     {
         
         private AstWorkloadGroupGroupId _workloadGroupGroupId;
+        
+        private AstImportanceLevel _importanceLevel;
         
         private AstDecimal _decimal;
         
@@ -17542,6 +18222,10 @@ namespace Bb.Asts.TSql
                 {
                     this._workloadGroupGroupId = ((AstWorkloadGroupGroupId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstImportanceLevel>())
+                {
+                    this._importanceLevel = ((AstImportanceLevel)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstDecimal>())
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
@@ -17557,10 +18241,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateWorkloadGroup(Position p, AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal @decimal, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId) : 
+        public AstCreateWorkloadGroup(Position p, AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstDecimal @decimal, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId) : 
                 base(p, null)
         {
             this._workloadGroupGroupId = workloadGroupGroupId;
+            this._importanceLevel = importanceLevel;
             this._decimal = @decimal;
             this._workloadGroupPoolId = workloadGroupPoolId;
             this._externalPoolId = externalPoolId;
@@ -17576,6 +18261,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstWorkloadGroupGroupId>())
                 {
                     this._workloadGroupGroupId = ((AstWorkloadGroupGroupId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstImportanceLevel>())
+                {
+                    this._importanceLevel = ((AstImportanceLevel)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDecimal>())
                 {
@@ -17597,6 +18286,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._workloadGroupGroupId;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ImportanceLevel
+        {
+            get
+            {
+                return this._importanceLevel;
             }
         }
         
@@ -17631,12 +18328,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(workloadGroupGroupId);
+            list.Add(importanceLevel);
             list.Add(workloadGroupPoolId);
             list.Add(externalPoolId);
             return new AstCreateWorkloadGroup(Position.Default, list);
@@ -17658,12 +18356,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstExternalPoolId externalPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstExternalPoolId externalPoolId)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(workloadGroupGroupId);
+            list.Add(importanceLevel);
             list.Add(externalPoolId);
             return new AstCreateWorkloadGroup(Position.Default, list);
         }
@@ -17683,12 +18382,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(workloadGroupGroupId);
+            list.Add(importanceLevel);
             list.Add(workloadGroupPoolId);
             return new AstCreateWorkloadGroup(Position.Default, list);
         }
@@ -17708,12 +18408,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL LOW ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
+        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
         /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId)
+        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(workloadGroupGroupId);
+            list.Add(importanceLevel);
             return new AstCreateWorkloadGroup(Position.Default, list);
         }
         
@@ -17820,7 +18521,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_partition_function
-    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_id  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  (LEFT | RIGHT)?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
+    /// 	 : CREATE  PARTITION  FUNCTION  partition_function_id  LR_BRACKET  input_parameter_type = data_type  RR_BRACKET  AS  RANGE  left_right?  FOR  VALUES  LR_BRACKET  boundary_values = expression_list  RR_BRACKET
     /// </summary>
     public partial class AstCreatePartitionFunction : AstDdlClause
     {
@@ -17828,6 +18529,8 @@ namespace Bb.Asts.TSql
         private AstPartitionFunctionId _partitionFunctionId;
         
         private AstDataType _dataType;
+        
+        private AstLeftRight _leftRight;
         
         private AstExpressionList _expressionList;
         
@@ -17846,6 +18549,10 @@ namespace Bb.Asts.TSql
                 {
                     this._dataType = ((AstDataType)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstLeftRight>())
+                {
+                    this._leftRight = ((AstLeftRight)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstExpressionList>())
                 {
                     this._expressionList = ((AstExpressionList)(enumerator.Current));
@@ -17853,11 +18560,12 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreatePartitionFunction(Position p, AstPartitionFunctionId partitionFunctionId, AstDataType dataType, AstExpressionList expressionList) : 
+        public AstCreatePartitionFunction(Position p, AstPartitionFunctionId partitionFunctionId, AstDataType dataType, AstLeftRight leftRight, AstExpressionList expressionList) : 
                 base(p, null)
         {
             this._partitionFunctionId = partitionFunctionId;
             this._dataType = dataType;
+            this._leftRight = leftRight;
             this._expressionList = expressionList;
         }
         
@@ -17875,6 +18583,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstDataType>())
                 {
                     this._dataType = ((AstDataType)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstLeftRight>())
+                {
+                    this._leftRight = ((AstLeftRight)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstExpressionList>())
                 {
@@ -17899,6 +18611,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef LeftRight
+        {
+            get
+            {
+                return this._leftRight;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef ExpressionList
         {
             get
@@ -17914,13 +18634,14 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_partition_function : 
-        ///    CREATE PARTITION FUNCTION partition_function_id ( input_parameter_type=data_type ) AS RANGE LEFT FOR VALUES ( boundary_values=expression_list ) 
+        ///    CREATE PARTITION FUNCTION partition_function_id ( input_parameter_type=data_type ) AS RANGE left_right? FOR VALUES ( boundary_values=expression_list ) 
         /// </summary>
-        public static AstCreatePartitionFunction CreatePartitionFunction(AstPartitionFunctionId partitionFunctionId, AstDataType inputParameterType, AstExpressionList boundaryValues)
+        public static AstCreatePartitionFunction CreatePartitionFunction(AstPartitionFunctionId partitionFunctionId, AstDataType inputParameterType, AstLeftRight? leftRight, AstExpressionList boundaryValues)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(partitionFunctionId);
             list.Add(inputParameterType);
+            list.Add(leftRight);
             list.Add(boundaryValues);
             return new AstCreatePartitionFunction(Position.Default, list);
         }
@@ -18268,7 +18989,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_contract
-    /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_id)?  LR_BRACKET  ((message_type_id | DEFAULT)  SENT  BY  (INITIATOR | TARGET | ANY)  COMMA?)+  RR_BRACKET
+    /// 	 : CREATE  CONTRACT  contract_name_expression  (AUTHORIZATION  owner_id)?  LR_BRACKET  contract_items  RR_BRACKET
     /// </summary>
     public partial class AstCreateContract : AstAnotherStatement
     {
@@ -18277,7 +18998,7 @@ namespace Bb.Asts.TSql
         
         private AstOwnerId _ownerId;
         
-        private AstMessageTypeId _messageTypeId;
+        private AstContractItems _contractItems;
         
         public AstCreateContract(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -18294,19 +19015,19 @@ namespace Bb.Asts.TSql
                 {
                     this._ownerId = ((AstOwnerId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstMessageTypeId>())
+                if (enumerator.Current.Is<AstContractItems>())
                 {
-                    this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
+                    this._contractItems = ((AstContractItems)(enumerator.Current));
                 }
             }
         }
         
-        public AstCreateContract(Position p, AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstMessageTypeId messageTypeId) : 
+        public AstCreateContract(Position p, AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstContractItems contractItems) : 
                 base(p, null)
         {
             this._contractNameExpression = contractNameExpression;
             this._ownerId = ownerId;
-            this._messageTypeId = messageTypeId;
+            this._contractItems = contractItems;
         }
         
         public AstCreateContract(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -18324,9 +19045,9 @@ namespace Bb.Asts.TSql
                 {
                     this._ownerId = ((AstOwnerId)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstMessageTypeId>())
+                if (enumerator.Current.Is<AstContractItems>())
                 {
-                    this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
+                    this._contractItems = ((AstContractItems)(enumerator.Current));
                 }
             }
         }
@@ -18347,11 +19068,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef MessageTypeId
+        public virtual Bb.Asts.AstRuleRef ContractItems
         {
             get
             {
-                return this._messageTypeId;
+                return this._contractItems;
             }
         }
         
@@ -18362,27 +19083,114 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( message_type_id SENT BY INITIATOR COMMA? ) 
+        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( contract_items ) 
         /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstMessageTypeId messageTypeId)
+        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstContractItems contractItems)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(contractNameExpression);
             list.Add(ownerId);
-            list.Add(messageTypeId);
+            list.Add(contractItems);
             return new AstCreateContract(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// contract_item
+    /// 	 : (message_type_id | DEFAULT)  SENT  BY  init_target_any
+    /// </summary>
+    public partial class AstContractItem : AstRule
+    {
+        
+        private AstMessageTypeId _messageTypeId;
+        
+        private AstInitTargetAny _initTargetAny;
+        
+        public AstContractItem(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMessageTypeId>())
+                {
+                    this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstInitTargetAny>())
+                {
+                    this._initTargetAny = ((AstInitTargetAny)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstContractItem(Position p, AstMessageTypeId messageTypeId, AstInitTargetAny initTargetAny) : 
+                base(p, null)
+        {
+            this._messageTypeId = messageTypeId;
+            this._initTargetAny = initTargetAny;
+        }
+        
+        public AstContractItem(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstMessageTypeId>())
+                {
+                    this._messageTypeId = ((AstMessageTypeId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstInitTargetAny>())
+                {
+                    this._initTargetAny = ((AstInitTargetAny)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef MessageTypeId
+        {
+            get
+            {
+                return this._messageTypeId;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef InitTargetAny
+        {
+            get
+            {
+                return this._initTargetAny;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitContractItem(this);
         }
         
         /// <summary>
-        /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( DEFAULT SENT BY INITIATOR COMMA? ) 
+        /// contract_item : 
+        ///    message_type_id SENT BY init_target_any 
         /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId)
+        public static AstContractItem ContractItem(AstMessageTypeId messageTypeId, AstInitTargetAny initTargetAny)
         {
             List<AstRoot> list = new List<AstRoot>();
-            list.Add(contractNameExpression);
-            list.Add(ownerId);
-            return new AstCreateContract(Position.Default, list);
+            list.Add(messageTypeId);
+            list.Add(initTargetAny);
+            return new AstContractItem(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// contract_item : 
+        ///    DEFAULT SENT BY init_target_any 
+        /// </summary>
+        public static AstContractItem ContractItem(AstInitTargetAny initTargetAny)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(initTargetAny);
+            return new AstContractItem(Position.Default, list);
         }
     }
     
@@ -18508,7 +19316,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// merge_statement
-    /// 	 : with_expression?  MERGE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  ddl_object  with_table_hints?  as_table_alias?  USING  table_sources  ON  search_condition  when_matches  output_clause?  option_clause?  SEMI
+    /// 	 : with_expression?  MERGE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  ddl_object  with_table_hints?  as_table_alias?  USING  table_sources  ON  search_condition  when_matches  output_clause?  update_option_clause?  SEMI
     /// </summary>
     public partial class AstMergeStatement : AstDmlClause
     {
@@ -18531,7 +19339,7 @@ namespace Bb.Asts.TSql
         
         private AstOutputClause _outputClause;
         
-        private AstOptionClause _optionClause;
+        private AstUpdateOptionClause _updateOptionClause;
         
         public AstMergeStatement(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -18576,14 +19384,14 @@ namespace Bb.Asts.TSql
                 {
                     this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
         
-        public AstMergeStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstOptionClause optionClause) : 
+        public AstMergeStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause) : 
                 base(p, null)
         {
             this._withExpression = withExpression;
@@ -18595,7 +19403,7 @@ namespace Bb.Asts.TSql
             this._searchCondition = searchCondition;
             this._whenMatches = whenMatches;
             this._outputClause = outputClause;
-            this._optionClause = optionClause;
+            this._updateOptionClause = updateOptionClause;
         }
         
         public AstMergeStatement(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -18641,9 +19449,9 @@ namespace Bb.Asts.TSql
                 {
                     this._outputClause = ((AstOutputClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -18720,11 +19528,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef OptionClause
+        public virtual Bb.Asts.AstRuleRef UpdateOptionClause
         {
             get
             {
-                return this._optionClause;
+                return this._updateOptionClause;
             }
         }
         
@@ -18735,9 +19543,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// merge_statement : 
-        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO? ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? option_clause? ; 
+        ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO? ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstAsTableAlias? asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause? outputClause, AstOptionClause? optionClause)
+        public static AstMergeStatement MergeStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstAsTableAlias? asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause? outputClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -18749,14 +19557,14 @@ namespace Bb.Asts.TSql
             list.Add(searchCondition);
             list.Add(whenMatches);
             list.Add(outputClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstMergeStatement(Position.Default, list);
         }
     }
     
     /// <summary>
     /// delete_statement
-    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? | TOP  decimal)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  DELETE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT? | TOP  decimal)?  FROM?  delete_statement_from  with_table_hints?  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  update_option_clause?  SEMI?
     /// </summary>
     public partial class AstDeleteStatement : AstDmlClause
     {
@@ -18783,7 +19591,7 @@ namespace Bb.Asts.TSql
         
         private AstForClause _forClause;
         
-        private AstOptionClause _optionClause;
+        private AstUpdateOptionClause _updateOptionClause;
         
         public AstDeleteStatement(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -18836,14 +19644,14 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
         
-        public AstDeleteStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstCursorName cursorName, AstLocalId localId, AstForClause forClause, AstOptionClause optionClause) : 
+        public AstDeleteStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstCursorName cursorName, AstLocalId localId, AstForClause forClause, AstUpdateOptionClause updateOptionClause) : 
                 base(p, null)
         {
             this._withExpression = withExpression;
@@ -18857,7 +19665,7 @@ namespace Bb.Asts.TSql
             this._cursorName = cursorName;
             this._localId = localId;
             this._forClause = forClause;
-            this._optionClause = optionClause;
+            this._updateOptionClause = updateOptionClause;
         }
         
         public AstDeleteStatement(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -18911,9 +19719,9 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -19006,11 +19814,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef OptionClause
+        public virtual Bb.Asts.AstRuleRef UpdateOptionClause
         {
             get
             {
-                return this._optionClause;
+                return this._updateOptionClause;
             }
         }
         
@@ -19021,9 +19829,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19034,15 +19842,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(searchCondition);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19053,15 +19861,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(searchCondition);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19072,15 +19880,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorName);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19091,15 +19899,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorName);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP ( expression ) PERCENT? FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19110,15 +19918,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorVar);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
         
         /// <summary>
         /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? SEMI? 
+        ///    with_expression? DELETE TOP decimal FROM? delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstDeleteStatement DeleteStatement(AstWithExpression? withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints? withTableHints, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19129,14 +19937,14 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorVar);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstDeleteStatement(Position.Default, list);
         }
     }
     
     /// <summary>
     /// insert_statement
-    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  INSERT  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  INTO?  (ddl_object | rowset_function_limited)  with_table_hints?  (LR_BRACKET  insert_column_name_list  RR_BRACKET)?  output_clause?  insert_statement_value  for_clause?  update_option_clause?  SEMI?
     /// </summary>
     public partial class AstInsertStatement : AstDmlClause
     {
@@ -19159,7 +19967,7 @@ namespace Bb.Asts.TSql
         
         private AstForClause _forClause;
         
-        private AstOptionClause _optionClause;
+        private AstUpdateOptionClause _updateOptionClause;
         
         public AstInsertStatement(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -19204,14 +20012,14 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
         
-        public AstInsertStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstOptionClause optionClause) : 
+        public AstInsertStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause) : 
                 base(p, null)
         {
             this._withExpression = withExpression;
@@ -19223,7 +20031,7 @@ namespace Bb.Asts.TSql
             this._outputClause = outputClause;
             this._insertStatementValue = insertStatementValue;
             this._forClause = forClause;
-            this._optionClause = optionClause;
+            this._updateOptionClause = updateOptionClause;
         }
         
         public AstInsertStatement(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -19269,9 +20077,9 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -19348,11 +20156,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef OptionClause
+        public virtual Bb.Asts.AstRuleRef UpdateOptionClause
         {
             get
             {
-                return this._optionClause;
+                return this._updateOptionClause;
             }
         }
         
@@ -19363,9 +20171,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO? ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? SEMI? 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO? ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause? outputClause, AstInsertStatementValue insertStatementValue, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause? outputClause, AstInsertStatementValue insertStatementValue, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19376,15 +20184,15 @@ namespace Bb.Asts.TSql
             list.Add(outputClause);
             list.Add(insertStatementValue);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstInsertStatement(Position.Default, list);
         }
         
         /// <summary>
         /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO? rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? option_clause? SEMI? 
+        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO? rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause? outputClause, AstInsertStatementValue insertStatementValue, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstInsertStatement InsertStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause? outputClause, AstInsertStatementValue insertStatementValue, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -19395,7 +20203,7 @@ namespace Bb.Asts.TSql
             list.Add(outputClause);
             list.Add(insertStatementValue);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstInsertStatement(Position.Default, list);
         }
     }
@@ -19862,7 +20670,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_statement
-    /// 	 : query_expression  select_order_by_clause?  for_clause?  option_clause?  SEMI?
+    /// 	 : query_expression  select_order_by_clause?  for_clause?  update_option_clause?  SEMI?
     /// </summary>
     public partial class AstSelectStatement : AstRule
     {
@@ -19873,7 +20681,7 @@ namespace Bb.Asts.TSql
         
         private AstForClause _forClause;
         
-        private AstOptionClause _optionClause;
+        private AstUpdateOptionClause _updateOptionClause;
         
         public AstSelectStatement(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -19894,20 +20702,20 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
         
-        public AstSelectStatement(Position p, AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstOptionClause optionClause) : 
+        public AstSelectStatement(Position p, AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause) : 
                 base(p, null)
         {
             this._queryExpression = queryExpression;
             this._selectOrderByClause = selectOrderByClause;
             this._forClause = forClause;
-            this._optionClause = optionClause;
+            this._updateOptionClause = updateOptionClause;
         }
         
         public AstSelectStatement(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -19929,9 +20737,9 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -19960,11 +20768,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef OptionClause
+        public virtual Bb.Asts.AstRuleRef UpdateOptionClause
         {
             get
             {
-                return this._optionClause;
+                return this._updateOptionClause;
             }
         }
         
@@ -19975,22 +20783,22 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// select_statement : 
-        ///    query_expression select_order_by_clause? for_clause? option_clause? SEMI? 
+        ///    query_expression select_order_by_clause? for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause? selectOrderByClause, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause? selectOrderByClause, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(queryExpression);
             list.Add(selectOrderByClause);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstSelectStatement(Position.Default, list);
         }
     }
     
     /// <summary>
     /// update_statement
-    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  option_clause?  SEMI?
+    /// 	 : with_expression?  UPDATE  (TOP  LR_BRACKET  expression  RR_BRACKET  PERCENT?)?  (ddl_object | rowset_function_limited)  with_table_hints?  SET  update_elems  output_clause?  (FROM  table_sources)?  (WHERE  (search_condition | CURRENT  OF  (GLOBAL?  cursor_name | cursor_var = local_id)))?  for_clause?  update_option_clause?  SEMI?
     /// </summary>
     public partial class AstUpdateStatement : AstDmlClause
     {
@@ -20019,7 +20827,7 @@ namespace Bb.Asts.TSql
         
         private AstForClause _forClause;
         
-        private AstOptionClause _optionClause;
+        private AstUpdateOptionClause _updateOptionClause;
         
         public AstUpdateStatement(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -20076,14 +20884,14 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
         
-        public AstUpdateStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstCursorName cursorName, AstLocalId localId, AstForClause forClause, AstOptionClause optionClause) : 
+        public AstUpdateStatement(Position p, AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstCursorName cursorName, AstLocalId localId, AstForClause forClause, AstUpdateOptionClause updateOptionClause) : 
                 base(p, null)
         {
             this._withExpression = withExpression;
@@ -20098,7 +20906,7 @@ namespace Bb.Asts.TSql
             this._cursorName = cursorName;
             this._localId = localId;
             this._forClause = forClause;
-            this._optionClause = optionClause;
+            this._updateOptionClause = updateOptionClause;
         }
         
         public AstUpdateStatement(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -20156,9 +20964,9 @@ namespace Bb.Asts.TSql
                 {
                     this._forClause = ((AstForClause)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstOptionClause>())
+                if (enumerator.Current.Is<AstUpdateOptionClause>())
                 {
-                    this._optionClause = ((AstOptionClause)(enumerator.Current));
+                    this._updateOptionClause = ((AstUpdateOptionClause)(enumerator.Current));
                 }
             }
         }
@@ -20259,11 +21067,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef OptionClause
+        public virtual Bb.Asts.AstRuleRef UpdateOptionClause
         {
             get
             {
-                return this._optionClause;
+                return this._updateOptionClause;
             }
         }
         
@@ -20274,9 +21082,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20288,15 +21096,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(searchCondition);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20308,15 +21116,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(searchCondition);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20328,15 +21136,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorName);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20348,15 +21156,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorName);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20368,15 +21176,15 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorVar);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
         
         /// <summary>
         /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? option_clause? SEMI? 
+        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? SEMI? 
         /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstOptionClause? optionClause)
+        public static AstUpdateStatement UpdateStatement(AstWithExpression? withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints? withTableHints, AstUpdateElems updateElems, AstOutputClause? outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause? forClause, AstUpdateOptionClause? updateOptionClause)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(withExpression);
@@ -20388,7 +21196,7 @@ namespace Bb.Asts.TSql
             list.Add(tableSources);
             list.Add(cursorVar);
             list.Add(forClause);
-            list.Add(optionClause);
+            list.Add(updateOptionClause);
             return new AstUpdateStatement(Position.Default, list);
         }
     }
@@ -21370,7 +22178,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_index
-    /// 	 : ALTER  INDEX  index_name  ON  full_table_ref  (DISABLE | PAUSE | ABORT | RESUME  resumable_index_options? | reorganize_partition | set_index_options | rebuild_partition)
+    /// 	 : ALTER  INDEX  index_name  ON  full_table_ref  index_status
     /// </summary>
     public partial class AstAlterIndex : AstDdlClause
     {
@@ -21379,13 +22187,7 @@ namespace Bb.Asts.TSql
         
         private AstFullTableRef _fullTableRef;
         
-        private AstResumableIndexOptions _resumableIndexOptions;
-        
-        private AstReorganizePartition _reorganizePartition;
-        
-        private AstSetIndexOptions _setIndexOptions;
-        
-        private AstRebuildPartition _rebuildPartition;
+        private AstIndexStatus _indexStatus;
         
         public AstAlterIndex(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -21402,34 +22204,19 @@ namespace Bb.Asts.TSql
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstResumableIndexOptions>())
+                if (enumerator.Current.Is<AstIndexStatus>())
                 {
-                    this._resumableIndexOptions = ((AstResumableIndexOptions)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstReorganizePartition>())
-                {
-                    this._reorganizePartition = ((AstReorganizePartition)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstSetIndexOptions>())
-                {
-                    this._setIndexOptions = ((AstSetIndexOptions)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstRebuildPartition>())
-                {
-                    this._rebuildPartition = ((AstRebuildPartition)(enumerator.Current));
+                    this._indexStatus = ((AstIndexStatus)(enumerator.Current));
                 }
             }
         }
         
-        public AstAlterIndex(Position p, AstIndexName indexName, AstFullTableRef fullTableRef, AstResumableIndexOptions resumableIndexOptions, AstReorganizePartition reorganizePartition, AstSetIndexOptions setIndexOptions, AstRebuildPartition rebuildPartition) : 
+        public AstAlterIndex(Position p, AstIndexName indexName, AstFullTableRef fullTableRef, AstIndexStatus indexStatus) : 
                 base(p, null)
         {
             this._indexName = indexName;
             this._fullTableRef = fullTableRef;
-            this._resumableIndexOptions = resumableIndexOptions;
-            this._reorganizePartition = reorganizePartition;
-            this._setIndexOptions = setIndexOptions;
-            this._rebuildPartition = rebuildPartition;
+            this._indexStatus = indexStatus;
         }
         
         public AstAlterIndex(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -21447,21 +22234,9 @@ namespace Bb.Asts.TSql
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstResumableIndexOptions>())
+                if (enumerator.Current.Is<AstIndexStatus>())
                 {
-                    this._resumableIndexOptions = ((AstResumableIndexOptions)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstReorganizePartition>())
-                {
-                    this._reorganizePartition = ((AstReorganizePartition)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstSetIndexOptions>())
-                {
-                    this._setIndexOptions = ((AstSetIndexOptions)(enumerator.Current));
-                }
-                if (enumerator.Current.Is<AstRebuildPartition>())
-                {
-                    this._rebuildPartition = ((AstRebuildPartition)(enumerator.Current));
+                    this._indexStatus = ((AstIndexStatus)(enumerator.Current));
                 }
             }
         }
@@ -21482,35 +22257,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef ResumableIndexOptions
+        public virtual Bb.Asts.AstRuleRef IndexStatus
         {
             get
             {
-                return this._resumableIndexOptions;
-            }
-        }
-        
-        public virtual Bb.Asts.AstRuleRef ReorganizePartition
-        {
-            get
-            {
-                return this._reorganizePartition;
-            }
-        }
-        
-        public virtual Bb.Asts.AstRuleRef SetIndexOptions
-        {
-            get
-            {
-                return this._setIndexOptions;
-            }
-        }
-        
-        public virtual Bb.Asts.AstRuleRef RebuildPartition
-        {
-            get
-            {
-                return this._rebuildPartition;
+                return this._indexStatus;
             }
         }
         
@@ -21521,65 +22272,14 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref DISABLE 
+        ///    ALTER INDEX index_name ON full_table_ref index_status 
         /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef)
+        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstIndexStatus indexStatus)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(indexName);
             list.Add(fullTableRef);
-            return new AstAlterIndex(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref RESUME resumable_index_options? 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstResumableIndexOptions? resumableIndexOptions)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(indexName);
-            list.Add(fullTableRef);
-            list.Add(resumableIndexOptions);
-            return new AstAlterIndex(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref reorganize_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstReorganizePartition reorganizePartition)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(indexName);
-            list.Add(fullTableRef);
-            list.Add(reorganizePartition);
-            return new AstAlterIndex(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref set_index_options 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstSetIndexOptions setIndexOptions)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(indexName);
-            list.Add(fullTableRef);
-            list.Add(setIndexOptions);
-            return new AstAlterIndex(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref rebuild_partition 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstRebuildPartition rebuildPartition)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(indexName);
-            list.Add(fullTableRef);
-            list.Add(rebuildPartition);
+            list.Add(indexStatus);
             return new AstAlterIndex(Position.Default, list);
         }
     }
@@ -21970,7 +22670,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// create_xml_index
-    /// 	 : CREATE  PRIMARY?  XML  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_id  RR_BRACKET  (USING  XML  INDEX  parent_index = index_id  (FOR  (VALUE | PATH | PROPERTY)?)?)?  xml_index_options?  SEMI?
+    /// 	 : CREATE  PRIMARY?  XML  INDEX  index_id  ON  full_table_ref  LR_BRACKET  column_id  RR_BRACKET  using_xml_index?  xml_index_options?  SEMI?
     /// </summary>
     public partial class AstCreateXmlIndex : AstDdlClause
     {
@@ -21980,6 +22680,8 @@ namespace Bb.Asts.TSql
         private AstFullTableRef _fullTableRef;
         
         private AstColumnId _columnId;
+        
+        private AstUsingXmlIndex _usingXmlIndex;
         
         private AstXmlIndexOptions _xmlIndexOptions;
         
@@ -22002,6 +22704,10 @@ namespace Bb.Asts.TSql
                 {
                     this._columnId = ((AstColumnId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstUsingXmlIndex>())
+                {
+                    this._usingXmlIndex = ((AstUsingXmlIndex)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstXmlIndexOptions>())
                 {
                     this._xmlIndexOptions = ((AstXmlIndexOptions)(enumerator.Current));
@@ -22009,12 +22715,13 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateXmlIndex(Position p, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstXmlIndexOptions xmlIndexOptions) : 
+        public AstCreateXmlIndex(Position p, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstUsingXmlIndex usingXmlIndex, AstXmlIndexOptions xmlIndexOptions) : 
                 base(p, null)
         {
             this._indexId = indexId;
             this._fullTableRef = fullTableRef;
             this._columnId = columnId;
+            this._usingXmlIndex = usingXmlIndex;
             this._xmlIndexOptions = xmlIndexOptions;
         }
         
@@ -22036,6 +22743,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstColumnId>())
                 {
                     this._columnId = ((AstColumnId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstUsingXmlIndex>())
+                {
+                    this._usingXmlIndex = ((AstUsingXmlIndex)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstXmlIndexOptions>())
                 {
@@ -22068,6 +22779,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef UsingXmlIndex
+        {
+            get
+            {
+                return this._usingXmlIndex;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef XmlIndexOptions
         {
             get
@@ -22083,26 +22802,118 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_xml_index : 
-        ///    CREATE PRIMARY? XML INDEX index_id ON full_table_ref ( column_id ) USING XML INDEX parent_index=index_id FOR VALUE xml_index_options? SEMI? 
+        ///    CREATE PRIMARY? XML INDEX index_id ON full_table_ref ( column_id ) using_xml_index? xml_index_options? SEMI? 
         /// </summary>
-        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstIndexId parentIndex, AstXmlIndexOptions? xmlIndexOptions)
+        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstUsingXmlIndex? usingXmlIndex, AstXmlIndexOptions? xmlIndexOptions)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(indexId);
             list.Add(fullTableRef);
             list.Add(columnId);
-            list.Add(parentIndex);
+            list.Add(usingXmlIndex);
             list.Add(xmlIndexOptions);
             return new AstCreateXmlIndex(Position.Default, list);
         }
     }
     
     /// <summary>
+    /// using_xml_index
+    /// 	 : USING  XML  INDEX  index_id  index_using_xml_mode?
+    /// </summary>
+    public partial class AstUsingXmlIndex : AstRule
+    {
+        
+        private AstIndexId _indexId;
+        
+        private AstIndexUsingXmlMode _indexUsingXmlMode;
+        
+        public AstUsingXmlIndex(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIndexId>())
+                {
+                    this._indexId = ((AstIndexId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstIndexUsingXmlMode>())
+                {
+                    this._indexUsingXmlMode = ((AstIndexUsingXmlMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstUsingXmlIndex(Position p, AstIndexId indexId, AstIndexUsingXmlMode indexUsingXmlMode) : 
+                base(p, null)
+        {
+            this._indexId = indexId;
+            this._indexUsingXmlMode = indexUsingXmlMode;
+        }
+        
+        public AstUsingXmlIndex(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstIndexId>())
+                {
+                    this._indexId = ((AstIndexId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstIndexUsingXmlMode>())
+                {
+                    this._indexUsingXmlMode = ((AstIndexUsingXmlMode)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef IndexId
+        {
+            get
+            {
+                return this._indexId;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef IndexUsingXmlMode
+        {
+            get
+            {
+                return this._indexUsingXmlMode;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitUsingXmlIndex(this);
+        }
+        
+        /// <summary>
+        /// using_xml_index : 
+        ///    USING XML INDEX index_id index_using_xml_mode? 
+        /// </summary>
+        public static AstUsingXmlIndex UsingXmlIndex(AstIndexId indexId, AstIndexUsingXmlMode? indexUsingXmlMode)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(indexId);
+            list.Add(indexUsingXmlMode);
+            return new AstUsingXmlIndex(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// create_or_alter_procedure
-    /// 	 : ((CREATE  (OR  (ALTER | REPLACE))?) | ALTER)  proc = (PROC | PROCEDURE)  procName = schema_func_proc_ref  (SEMI  decimal)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
+    /// 	 : ((CREATE  (OR  alter_replace)?) | ALTER)  proc_keyword  procName = schema_func_proc_ref  (SEMI  decimal)?  (LR_BRACKET?  procedure_params  RR_BRACKET?)?  procedure_options?  (FOR  REPLICATION)?  AS  (as_external_name | sql_clause)
     /// </summary>
     public partial class AstCreateOrAlterProcedure : AstBatchLevelStatement
     {
+        
+        private AstAlterReplace _alterReplace;
+        
+        private AstProcKeyword _procKeyword;
         
         private AstSchemaFuncProcRef _schemaFuncProcRef;
         
@@ -22123,6 +22934,14 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterReplace>())
+                {
+                    this._alterReplace = ((AstAlterReplace)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstProcKeyword>())
+                {
+                    this._procKeyword = ((AstProcKeyword)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstSchemaFuncProcRef>())
                 {
                     this._schemaFuncProcRef = ((AstSchemaFuncProcRef)(enumerator.Current));
@@ -22150,9 +22969,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateOrAlterProcedure(Position p, AstSchemaFuncProcRef schemaFuncProcRef, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName, AstSqlClause sqlClause) : 
+        public AstCreateOrAlterProcedure(Position p, AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef schemaFuncProcRef, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName, AstSqlClause sqlClause) : 
                 base(p, null)
         {
+            this._alterReplace = alterReplace;
+            this._procKeyword = procKeyword;
             this._schemaFuncProcRef = schemaFuncProcRef;
             this._decimal = @decimal;
             this._procedureParams = procedureParams;
@@ -22168,6 +22989,14 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAlterReplace>())
+                {
+                    this._alterReplace = ((AstAlterReplace)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstProcKeyword>())
+                {
+                    this._procKeyword = ((AstProcKeyword)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstSchemaFuncProcRef>())
                 {
                     this._schemaFuncProcRef = ((AstSchemaFuncProcRef)(enumerator.Current));
@@ -22192,6 +23021,22 @@ namespace Bb.Asts.TSql
                 {
                     this._sqlClause = ((AstSqlClause)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef AlterReplace
+        {
+            get
+            {
+                return this._alterReplace;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ProcKeyword
+        {
+            get
+            {
+                return this._procKeyword;
             }
         }
         
@@ -22250,11 +23095,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstAsExternalName asExternalName)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstAsExternalName asExternalName)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(alterReplace);
+            list.Add(procKeyword);
             list.Add(procName);
             list.Add(@decimal);
             list.Add(procedureParams);
@@ -22265,11 +23112,45 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_or_alter_procedure : 
-        ///    CREATE OR ALTER PROC procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
         /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstSqlClause sqlClause)
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstAsExternalName asExternalName)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(procKeyword);
+            list.Add(procName);
+            list.Add(@decimal);
+            list.Add(procedureParams);
+            list.Add(procedureOptions);
+            list.Add(asExternalName);
+            return new AstCreateOrAlterProcedure(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstSqlClause sqlClause)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(alterReplace);
+            list.Add(procKeyword);
+            list.Add(procName);
+            list.Add(@decimal);
+            list.Add(procedureParams);
+            list.Add(procedureOptions);
+            list.Add(sqlClause);
+            return new AstCreateOrAlterProcedure(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_or_alter_procedure : 
+        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
+        /// </summary>
+        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions? procedureOptions, AstSqlClause sqlClause)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(procKeyword);
             list.Add(procName);
             list.Add(@decimal);
             list.Add(procedureParams);
@@ -23165,7 +24046,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// procedure_param
-    /// 	 : arg_name = local_id  AS?  schema_type_ref  VARYING?  (EQUAL  default_val = default_value)?  (OUT | OUTPUT | READONLY)?
+    /// 	 : arg_name = local_id  AS?  schema_type_ref  VARYING?  (EQUAL  default_val = default_value)?  param_way?
     /// </summary>
     public partial class AstProcedureParam : AstRule
     {
@@ -23175,6 +24056,8 @@ namespace Bb.Asts.TSql
         private AstSchemaTypeRef _schemaTypeRef;
         
         private AstDefaultValue _defaultValue;
+        
+        private AstParamWay _paramWay;
         
         public AstProcedureParam(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -23195,15 +24078,20 @@ namespace Bb.Asts.TSql
                 {
                     this._defaultValue = ((AstDefaultValue)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstParamWay>())
+                {
+                    this._paramWay = ((AstParamWay)(enumerator.Current));
+                }
             }
         }
         
-        public AstProcedureParam(Position p, AstLocalId localId, AstSchemaTypeRef schemaTypeRef, AstDefaultValue defaultValue) : 
+        public AstProcedureParam(Position p, AstLocalId localId, AstSchemaTypeRef schemaTypeRef, AstDefaultValue defaultValue, AstParamWay paramWay) : 
                 base(p, null)
         {
             this._localId = localId;
             this._schemaTypeRef = schemaTypeRef;
             this._defaultValue = defaultValue;
+            this._paramWay = paramWay;
         }
         
         public AstProcedureParam(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -23224,6 +24112,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstDefaultValue>())
                 {
                     this._defaultValue = ((AstDefaultValue)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstParamWay>())
+                {
+                    this._paramWay = ((AstParamWay)(enumerator.Current));
                 }
             }
         }
@@ -23252,6 +24144,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef ParamWay
+        {
+            get
+            {
+                return this._paramWay;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitProcedureParam(this);
@@ -23259,21 +24159,22 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// procedure_param : 
-        ///    arg_name=local_id AS? schema_type_ref VARYING? EQUAL default_val=default_value OUT 
+        ///    arg_name=local_id AS? schema_type_ref VARYING? EQUAL default_val=default_value param_way? 
         /// </summary>
-        public static AstProcedureParam ProcedureParam(AstLocalId argName, AstSchemaTypeRef schemaTypeRef, AstDefaultValue defaultVal)
+        public static AstProcedureParam ProcedureParam(AstLocalId argName, AstSchemaTypeRef schemaTypeRef, AstDefaultValue defaultVal, AstParamWay? paramWay)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(argName);
             list.Add(schemaTypeRef);
             list.Add(defaultVal);
+            list.Add(paramWay);
             return new AstProcedureParam(Position.Default, list);
         }
     }
     
     /// <summary>
     /// create_statistics
-    /// 	 : CREATE  STATISTICS  id_  ON  full_table_ref  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  (FULLSCAN | SAMPLE  decimal  (PERCENT | ROWS) | STATS_STREAM)  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
+    /// 	 : CREATE  STATISTICS  id_  ON  full_table_ref  LR_BRACKET  column_name_list  RR_BRACKET  (WITH  statistics_with  (COMMA  NORECOMPUTE)?  (COMMA  INCREMENTAL  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstCreateStatistics : AstDdlClause
     {
@@ -23284,7 +24185,7 @@ namespace Bb.Asts.TSql
         
         private AstColumnNameList _columnNameList;
         
-        private AstDecimal _decimal;
+        private AstStatisticsWith _statisticsWith;
         
         private AstOnOff _onOff;
         
@@ -23307,9 +24208,9 @@ namespace Bb.Asts.TSql
                 {
                     this._columnNameList = ((AstColumnNameList)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstDecimal>())
+                if (enumerator.Current.Is<AstStatisticsWith>())
                 {
-                    this._decimal = ((AstDecimal)(enumerator.Current));
+                    this._statisticsWith = ((AstStatisticsWith)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnOff>())
                 {
@@ -23318,13 +24219,13 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstCreateStatistics(Position p, AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstDecimal @decimal, AstOnOff onOff) : 
+        public AstCreateStatistics(Position p, AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstStatisticsWith statisticsWith, AstOnOff onOff) : 
                 base(p, null)
         {
             this._id = id;
             this._fullTableRef = fullTableRef;
             this._columnNameList = columnNameList;
-            this._decimal = @decimal;
+            this._statisticsWith = statisticsWith;
             this._onOff = onOff;
         }
         
@@ -23347,9 +24248,9 @@ namespace Bb.Asts.TSql
                 {
                     this._columnNameList = ((AstColumnNameList)(enumerator.Current));
                 }
-                if (enumerator.Current.Is<AstDecimal>())
+                if (enumerator.Current.Is<AstStatisticsWith>())
                 {
-                    this._decimal = ((AstDecimal)(enumerator.Current));
+                    this._statisticsWith = ((AstStatisticsWith)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstOnOff>())
                 {
@@ -23382,11 +24283,11 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public virtual Bb.Asts.AstRuleRef Decimal
+        public virtual Bb.Asts.AstRuleRef StatisticsWith
         {
             get
             {
-                return this._decimal;
+                return this._statisticsWith;
             }
         }
         
@@ -23405,29 +24306,15 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH FULLSCAN , NORECOMPUTE , INCREMENTAL EQUAL on_off SEMI? 
+        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH statistics_with , NORECOMPUTE , INCREMENTAL EQUAL on_off SEMI? 
         /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstOnOff onOff)
+        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstStatisticsWith statisticsWith, AstOnOff onOff)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(id);
             list.Add(fullTableRef);
             list.Add(columnNameList);
-            list.Add(onOff);
-            return new AstCreateStatistics(Position.Default, list);
-        }
-        
-        /// <summary>
-        /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH SAMPLE decimal PERCENT , NORECOMPUTE , INCREMENTAL EQUAL on_off SEMI? 
-        /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstDecimal @decimal, AstOnOff onOff)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            list.Add(id);
-            list.Add(fullTableRef);
-            list.Add(columnNameList);
-            list.Add(@decimal);
+            list.Add(statisticsWith);
             list.Add(onOff);
             return new AstCreateStatistics(Position.Default, list);
         }
@@ -23774,6 +24661,175 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// create_table_index_option
+    /// 	 : PAD_INDEX  EQUAL  on_off
+    /// 	 | FILLFACTOR  EQUAL  decimal
+    /// 	 | IGNORE_DUP_KEY  EQUAL  on_off
+    /// 	 | STATISTICS_NORECOMPUTE  EQUAL  on_off
+    /// 	 | STATISTICS_INCREMENTAL  EQUAL  on_off
+    /// 	 | ALLOW_ROW_LOCKS  EQUAL  on_off
+    /// 	 | ALLOW_PAGE_LOCKS  EQUAL  on_off
+    /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off
+    /// 	 | DATA_COMPRESSION  EQUAL  index_strategy  on_partitions?
+    /// 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
+    /// </summary>
+    public partial class AstCreateTableIndexOption : AstRule
+    {
+        
+        private AstOnOff _onOff;
+        
+        private AstDecimal _decimal;
+        
+        private AstIndexStrategy _indexStrategy;
+        
+        private AstOnPartitions _onPartitions;
+        
+        public AstCreateTableIndexOption(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOnOff>())
+                {
+                    this._onOff = ((AstOnOff)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstIndexStrategy>())
+                {
+                    this._indexStrategy = ((AstIndexStrategy)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnPartitions>())
+                {
+                    this._onPartitions = ((AstOnPartitions)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstCreateTableIndexOption(Position p, AstOnOff onOff, AstDecimal @decimal, AstIndexStrategy indexStrategy, AstOnPartitions onPartitions) : 
+                base(p, null)
+        {
+            this._onOff = onOff;
+            this._decimal = @decimal;
+            this._indexStrategy = indexStrategy;
+            this._onPartitions = onPartitions;
+        }
+        
+        public AstCreateTableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstOnOff>())
+                {
+                    this._onOff = ((AstOnOff)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstIndexStrategy>())
+                {
+                    this._indexStrategy = ((AstIndexStrategy)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstOnPartitions>())
+                {
+                    this._onPartitions = ((AstOnPartitions)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef OnOff
+        {
+            get
+            {
+                return this._onOff;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef Decimal
+        {
+            get
+            {
+                return this._decimal;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef IndexStrategy
+        {
+            get
+            {
+                return this._indexStrategy;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef OnPartitions
+        {
+            get
+            {
+                return this._onPartitions;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitCreateTableIndexOption(this);
+        }
+        
+        /// <summary>
+        /// create_table_index_option : 
+        ///    PAD_INDEX EQUAL on_off 
+        /// </summary>
+        public static AstCreateTableIndexOption CreateTableIndexOption(AstOnOff onOff)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(onOff);
+            return new AstCreateTableIndexOption(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_table_index_option : 
+        ///    FILLFACTOR EQUAL decimal 
+        /// </summary>
+        public static AstCreateTableIndexOption CreateTableIndexOption(AstDecimal @decimal)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(@decimal);
+            return new AstCreateTableIndexOption(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_table_index_option : 
+        ///    DATA_COMPRESSION EQUAL index_strategy on_partitions? 
+        /// </summary>
+        public static AstCreateTableIndexOption CreateTableIndexOption(AstIndexStrategy indexStrategy, AstOnPartitions? onPartitions)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(indexStrategy);
+            list.Add(onPartitions);
+            return new AstCreateTableIndexOption(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// create_table_index_option : 
+        ///    XML_COMPRESSION EQUAL on_off on_partitions? 
+        /// </summary>
+        public static AstCreateTableIndexOption CreateTableIndexOption(AstOnOff onOff, AstOnPartitions? onPartitions)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(onOff);
+            list.Add(onPartitions);
+            return new AstCreateTableIndexOption(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// create_view
     /// 	 : CREATE  VIEW  schema_view_ref  (LR_BRACKET  column_name_list  RR_BRACKET)?  view_attributes?  AS  select_statement_standalone  (WITH  CHECK  OPTION)?  SEMI?
     /// </summary>
@@ -23903,12 +24959,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_table
-    /// 	 : ALTER  TABLE  full_table_ref  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  (AUTO | TABLE | DISABLE)  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids | DROP  CONSTRAINT  constraint_id | WITH  (CHECK | NOCHECK)  ADD  alter_table_constraint | (NOCHECK | CHECK)  CONSTRAINT  constraint_id | enable_disable  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
+    /// 	 : ALTER  TABLE  full_table_ref  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  lock_mode  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids | DROP  CONSTRAINT  constraint_id | WITH  check_nocheck  check_nocheck  ADD  alter_table_constraint | check_nocheck  CONSTRAINT  constraint_id | enable_disable  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
     /// </summary>
     public partial class AstAlterTable : AstDdlClause
     {
         
         private AstFullTableRef _fullTableRef;
+        
+        private AstLockMode _lockMode;
         
         private AstColumnDefTableConstraints _columnDefTableConstraints;
         
@@ -23919,6 +24977,8 @@ namespace Bb.Asts.TSql
         private AstIds _ids;
         
         private AstConstraintId _constraintId;
+        
+        private AstCheckNocheck _checkNocheck;
         
         private AstAlterTableConstraint _alterTableConstraint;
         
@@ -23941,6 +25001,10 @@ namespace Bb.Asts.TSql
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstLockMode>())
+                {
+                    this._lockMode = ((AstLockMode)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstColumnDefTableConstraints>())
                 {
                     this._columnDefTableConstraints = ((AstColumnDefTableConstraints)(enumerator.Current));
@@ -23960,6 +25024,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstConstraintId>())
                 {
                     this._constraintId = ((AstConstraintId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCheckNocheck>())
+                {
+                    this._checkNocheck = ((AstCheckNocheck)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterTableConstraint>())
                 {
@@ -23984,15 +25052,17 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstAlterTable(Position p, AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstColumnDefinition columnDefinition, AstColumnModifier columnModifier, AstIds ids, AstConstraintId constraintId, AstAlterTableConstraint alterTableConstraint, AstEnableDisable enableDisable, AstId id, AstTableOptions tableOptions, AstSwitchPartition switchPartition) : 
+        public AstAlterTable(Position p, AstFullTableRef fullTableRef, AstLockMode lockMode, AstColumnDefTableConstraints columnDefTableConstraints, AstColumnDefinition columnDefinition, AstColumnModifier columnModifier, AstIds ids, AstConstraintId constraintId, AstCheckNocheck checkNocheck, AstAlterTableConstraint alterTableConstraint, AstEnableDisable enableDisable, AstId id, AstTableOptions tableOptions, AstSwitchPartition switchPartition) : 
                 base(p, null)
         {
             this._fullTableRef = fullTableRef;
+            this._lockMode = lockMode;
             this._columnDefTableConstraints = columnDefTableConstraints;
             this._columnDefinition = columnDefinition;
             this._columnModifier = columnModifier;
             this._ids = ids;
             this._constraintId = constraintId;
+            this._checkNocheck = checkNocheck;
             this._alterTableConstraint = alterTableConstraint;
             this._enableDisable = enableDisable;
             this._id = id;
@@ -24010,6 +25080,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstFullTableRef>())
                 {
                     this._fullTableRef = ((AstFullTableRef)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstLockMode>())
+                {
+                    this._lockMode = ((AstLockMode)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstColumnDefTableConstraints>())
                 {
@@ -24030,6 +25104,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstConstraintId>())
                 {
                     this._constraintId = ((AstConstraintId)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstCheckNocheck>())
+                {
+                    this._checkNocheck = ((AstCheckNocheck)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstAlterTableConstraint>())
                 {
@@ -24059,6 +25137,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._fullTableRef;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef LockMode
+        {
+            get
+            {
+                return this._lockMode;
             }
         }
         
@@ -24099,6 +25185,14 @@ namespace Bb.Asts.TSql
             get
             {
                 return this._constraintId;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef CheckNocheck
+        {
+            get
+            {
+                return this._checkNocheck;
             }
         }
         
@@ -24149,12 +25243,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_table : 
-        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL AUTO ) SEMI? 
+        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL lock_mode ) SEMI? 
         /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef)
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstLockMode lockMode)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(fullTableRef);
+            list.Add(lockMode);
             return new AstAlterTable(Position.Default, list);
         }
         
@@ -24220,13 +25315,28 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_table : 
-        ///    ALTER TABLE full_table_ref WITH CHECK ADD alter_table_constraint SEMI? 
+        ///    ALTER TABLE full_table_ref WITH check_nocheck check_nocheck ADD alter_table_constraint SEMI? 
         /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstAlterTableConstraint alterTableConstraint)
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstCheckNocheck checkNocheck, AstAlterTableConstraint alterTableConstraint)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(fullTableRef);
+            list.Add(checkNocheck);
+            list.Add(checkNocheck);
             list.Add(alterTableConstraint);
+            return new AstAlterTable(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// alter_table : 
+        ///    ALTER TABLE full_table_ref check_nocheck CONSTRAINT constraint_id SEMI? 
+        /// </summary>
+        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstConstraintId constraintId)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(fullTableRef);
+            list.Add(checkNocheck);
+            list.Add(constraintId);
             return new AstAlterTable(Position.Default, list);
         }
         
@@ -24853,7 +25963,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// alter_endpoint_database_mirroring
-    /// 	 : FOR  DATABASE_MIRRORING  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  COMMA?  ROLE  EQUAL  (WITNESS | PARTNER | ALL)  RR_BRACKET
+    /// 	 : FOR  DATABASE_MIRRORING  LR_BRACKET  authentication_configuration  (COMMA?  encryption_state  encryption_algorithm?)?  COMMA?  ROLE  EQUAL  role_mirroring  RR_BRACKET
     /// </summary>
     public partial class AstAlterEndpointDatabaseMirroring : AstRule
     {
@@ -24863,6 +25973,8 @@ namespace Bb.Asts.TSql
         private AstEncryptionState _encryptionState;
         
         private AstEncryptionAlgorithm _encryptionAlgorithm;
+        
+        private AstRoleMirroring _roleMirroring;
         
         public AstAlterEndpointDatabaseMirroring(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -24883,15 +25995,20 @@ namespace Bb.Asts.TSql
                 {
                     this._encryptionAlgorithm = ((AstEncryptionAlgorithm)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstRoleMirroring>())
+                {
+                    this._roleMirroring = ((AstRoleMirroring)(enumerator.Current));
+                }
             }
         }
         
-        public AstAlterEndpointDatabaseMirroring(Position p, AstAuthenticationConfiguration authenticationConfiguration, AstEncryptionState encryptionState, AstEncryptionAlgorithm encryptionAlgorithm) : 
+        public AstAlterEndpointDatabaseMirroring(Position p, AstAuthenticationConfiguration authenticationConfiguration, AstEncryptionState encryptionState, AstEncryptionAlgorithm encryptionAlgorithm, AstRoleMirroring roleMirroring) : 
                 base(p, null)
         {
             this._authenticationConfiguration = authenticationConfiguration;
             this._encryptionState = encryptionState;
             this._encryptionAlgorithm = encryptionAlgorithm;
+            this._roleMirroring = roleMirroring;
         }
         
         public AstAlterEndpointDatabaseMirroring(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -24912,6 +26029,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstEncryptionAlgorithm>())
                 {
                     this._encryptionAlgorithm = ((AstEncryptionAlgorithm)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstRoleMirroring>())
+                {
+                    this._roleMirroring = ((AstRoleMirroring)(enumerator.Current));
                 }
             }
         }
@@ -24940,6 +26061,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef RoleMirroring
+        {
+            get
+            {
+                return this._roleMirroring;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterEndpointDatabaseMirroring(this);
@@ -24947,14 +26076,15 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// alter_endpoint_database_mirroring : 
-        ///    FOR DATABASE_MIRRORING ( authentication_configuration COMMA? encryption_state encryption_algorithm? COMMA? ROLE EQUAL WITNESS ) 
+        ///    FOR DATABASE_MIRRORING ( authentication_configuration COMMA? encryption_state encryption_algorithm? COMMA? ROLE EQUAL role_mirroring ) 
         /// </summary>
-        public static AstAlterEndpointDatabaseMirroring AlterEndpointDatabaseMirroring(AstAuthenticationConfiguration authenticationConfiguration, AstEncryptionState encryptionState, AstEncryptionAlgorithm? encryptionAlgorithm)
+        public static AstAlterEndpointDatabaseMirroring AlterEndpointDatabaseMirroring(AstAuthenticationConfiguration authenticationConfiguration, AstEncryptionState encryptionState, AstEncryptionAlgorithm? encryptionAlgorithm, AstRoleMirroring roleMirroring)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(authenticationConfiguration);
             list.Add(encryptionState);
             list.Add(encryptionAlgorithm);
+            list.Add(roleMirroring);
             return new AstAlterEndpointDatabaseMirroring(Position.Default, list);
         }
     }
@@ -25372,6 +26502,74 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// delayed_durability_option
+    /// 	 : DELAYED_DURABILITY  EQUAL  delayed_durability
+    /// </summary>
+    public partial class AstDelayedDurabilityOption : AstRule
+    {
+        
+        private AstDelayedDurability _delayedDurability;
+        
+        public AstDelayedDurabilityOption(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDelayedDurability>())
+                {
+                    this._delayedDurability = ((AstDelayedDurability)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstDelayedDurabilityOption(Position p, AstDelayedDurability delayedDurability) : 
+                base(p, null)
+        {
+            this._delayedDurability = delayedDurability;
+        }
+        
+        public AstDelayedDurabilityOption(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDelayedDurability>())
+                {
+                    this._delayedDurability = ((AstDelayedDurability)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef DelayedDurability
+        {
+            get
+            {
+                return this._delayedDurability;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDelayedDurabilityOption(this);
+        }
+        
+        /// <summary>
+        /// delayed_durability_option : 
+        ///    DELAYED_DURABILITY EQUAL delayed_durability 
+        /// </summary>
+        public static AstDelayedDurabilityOption DelayedDurabilityOption(AstDelayedDurability delayedDurability)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(delayedDurability);
+            return new AstDelayedDurabilityOption(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// mixed_page_allocation_option
     /// 	 : MIXED_PAGE_ALLOCATION  on_off
     /// </summary>
@@ -25441,12 +26639,14 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// target_recovery_time_option
-    /// 	 : TARGET_RECOVERY_TIME  EQUAL  decimal  (SECONDS | MINUTES)
+    /// 	 : TARGET_RECOVERY_TIME  EQUAL  decimal  seconds_minutes
     /// </summary>
     public partial class AstTargetRecoveryTimeOption : AstRule
     {
         
         private AstDecimal _decimal;
+        
+        private AstSecondsMinutes _secondsMinutes;
         
         public AstTargetRecoveryTimeOption(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -25459,13 +26659,18 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstSecondsMinutes>())
+                {
+                    this._secondsMinutes = ((AstSecondsMinutes)(enumerator.Current));
+                }
             }
         }
         
-        public AstTargetRecoveryTimeOption(Position p, AstDecimal @decimal) : 
+        public AstTargetRecoveryTimeOption(Position p, AstDecimal @decimal, AstSecondsMinutes secondsMinutes) : 
                 base(p, null)
         {
             this._decimal = @decimal;
+            this._secondsMinutes = secondsMinutes;
         }
         
         public AstTargetRecoveryTimeOption(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -25479,6 +26684,10 @@ namespace Bb.Asts.TSql
                 {
                     this._decimal = ((AstDecimal)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstSecondsMinutes>())
+                {
+                    this._secondsMinutes = ((AstSecondsMinutes)(enumerator.Current));
+                }
             }
         }
         
@@ -25490,6 +26699,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef SecondsMinutes
+        {
+            get
+            {
+                return this._secondsMinutes;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitTargetRecoveryTimeOption(this);
@@ -25497,12 +26714,13 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// target_recovery_time_option : 
-        ///    TARGET_RECOVERY_TIME EQUAL decimal SECONDS 
+        ///    TARGET_RECOVERY_TIME EQUAL decimal seconds_minutes 
         /// </summary>
-        public static AstTargetRecoveryTimeOption TargetRecoveryTimeOption(AstDecimal @decimal)
+        public static AstTargetRecoveryTimeOption TargetRecoveryTimeOption(AstDecimal @decimal, AstSecondsMinutes secondsMinutes)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(@decimal);
+            list.Add(secondsMinutes);
             return new AstTargetRecoveryTimeOption(Position.Default, list);
         }
     }
@@ -25716,10 +26934,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_procedure
-    /// 	 : DROP  proc = (PROC | PROCEDURE)  if_exists?  func_proc_name_schemas  SEMI?
+    /// 	 : DROP  proc_keyword  if_exists?  func_proc_name_schemas  SEMI?
     /// </summary>
     public partial class AstDropProcedure : AstDdlClause
     {
+        
+        private AstProcKeyword _procKeyword;
         
         private AstIfExists _ifExists;
         
@@ -25732,6 +26952,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProcKeyword>())
+                {
+                    this._procKeyword = ((AstProcKeyword)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstIfExists>())
                 {
                     this._ifExists = ((AstIfExists)(enumerator.Current));
@@ -25743,9 +26967,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstDropProcedure(Position p, AstIfExists ifExists, AstFuncProcNameSchemas funcProcNameSchemas) : 
+        public AstDropProcedure(Position p, AstProcKeyword procKeyword, AstIfExists ifExists, AstFuncProcNameSchemas funcProcNameSchemas) : 
                 base(p, null)
         {
+            this._procKeyword = procKeyword;
             this._ifExists = ifExists;
             this._funcProcNameSchemas = funcProcNameSchemas;
         }
@@ -25757,6 +26982,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstProcKeyword>())
+                {
+                    this._procKeyword = ((AstProcKeyword)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstIfExists>())
                 {
                     this._ifExists = ((AstIfExists)(enumerator.Current));
@@ -25765,6 +26994,14 @@ namespace Bb.Asts.TSql
                 {
                     this._funcProcNameSchemas = ((AstFuncProcNameSchemas)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ProcKeyword
+        {
+            get
+            {
+                return this._procKeyword;
             }
         }
         
@@ -25791,11 +27028,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_procedure : 
-        ///    DROP PROC if_exists? func_proc_name_schemas SEMI? 
+        ///    DROP proc_keyword if_exists? func_proc_name_schemas SEMI? 
         /// </summary>
-        public static AstDropProcedure DropProcedure(AstIfExists? ifExists, AstFuncProcNameSchemas funcProcNameSchemas)
+        public static AstDropProcedure DropProcedure(AstProcKeyword procKeyword, AstIfExists? ifExists, AstFuncProcNameSchemas funcProcNameSchemas)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(procKeyword);
             list.Add(ifExists);
             list.Add(funcProcNameSchemas);
             return new AstDropProcedure(Position.Default, list);
@@ -25892,7 +27130,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_ddl_trigger
-    /// 	 : DROP  TRIGGER  if_exists?  schema_view_refs  ON  (DATABASE | ALL  SERVER)  SEMI?
+    /// 	 : DROP  TRIGGER  if_exists?  schema_view_refs  ON  all_server_database  SEMI?
     /// </summary>
     public partial class AstDropDdlTrigger : AstDropTrigger
     {
@@ -25900,6 +27138,8 @@ namespace Bb.Asts.TSql
         private AstIfExists _ifExists;
         
         private AstSchemaViewRefs _schemaViewRefs;
+        
+        private AstAllServerDatabase _allServerDatabase;
         
         public AstDropDdlTrigger(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -25916,14 +27156,19 @@ namespace Bb.Asts.TSql
                 {
                     this._schemaViewRefs = ((AstSchemaViewRefs)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstAllServerDatabase>())
+                {
+                    this._allServerDatabase = ((AstAllServerDatabase)(enumerator.Current));
+                }
             }
         }
         
-        public AstDropDdlTrigger(Position p, AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs) : 
+        public AstDropDdlTrigger(Position p, AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase) : 
                 base(p, null)
         {
             this._ifExists = ifExists;
             this._schemaViewRefs = schemaViewRefs;
+            this._allServerDatabase = allServerDatabase;
         }
         
         public AstDropDdlTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -25940,6 +27185,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstSchemaViewRefs>())
                 {
                     this._schemaViewRefs = ((AstSchemaViewRefs)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAllServerDatabase>())
+                {
+                    this._allServerDatabase = ((AstAllServerDatabase)(enumerator.Current));
                 }
             }
         }
@@ -25960,6 +27209,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef AllServerDatabase
+        {
+            get
+            {
+                return this._allServerDatabase;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDropDdlTrigger(this);
@@ -25967,13 +27224,14 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// drop_ddl_trigger : 
-        ///    DROP TRIGGER if_exists? schema_view_refs ON DATABASE SEMI? 
+        ///    DROP TRIGGER if_exists? schema_view_refs ON all_server_database SEMI? 
         /// </summary>
-        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists? ifExists, AstSchemaViewRefs schemaViewRefs)
+        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists? ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(ifExists);
             list.Add(schemaViewRefs);
+            list.Add(allServerDatabase);
             return new AstDropDdlTrigger(Position.Default, list);
         }
     }
@@ -27631,10 +28889,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// date_option
-    /// 	 : (START_DATE | EXPIRY_DATE)  EQUAL  stringtext
+    /// 	 : start_date_expiry_date  EQUAL  stringtext
     /// </summary>
     public partial class AstDateOption : AstRule
     {
+        
+        private AstStartDateExpiryDate _startDateExpiryDate;
         
         private AstStringtext _stringtext;
         
@@ -27645,6 +28905,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStartDateExpiryDate>())
+                {
+                    this._startDateExpiryDate = ((AstStartDateExpiryDate)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstStringtext>())
                 {
                     this._stringtext = ((AstStringtext)(enumerator.Current));
@@ -27652,9 +28916,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstDateOption(Position p, AstStringtext stringtext) : 
+        public AstDateOption(Position p, AstStartDateExpiryDate startDateExpiryDate, AstStringtext stringtext) : 
                 base(p, null)
         {
+            this._startDateExpiryDate = startDateExpiryDate;
             this._stringtext = stringtext;
         }
         
@@ -27665,10 +28930,22 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstStartDateExpiryDate>())
+                {
+                    this._startDateExpiryDate = ((AstStartDateExpiryDate)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstStringtext>())
                 {
                     this._stringtext = ((AstStringtext)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef StartDateExpiryDate
+        {
+            get
+            {
+                return this._startDateExpiryDate;
             }
         }
         
@@ -27687,11 +28964,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// date_option : 
-        ///    START_DATE EQUAL stringtext 
+        ///    start_date_expiry_date EQUAL stringtext 
         /// </summary>
-        public static AstDateOption DateOption(AstStringtext stringtext)
+        public static AstDateOption DateOption(AstStartDateExpiryDate startDateExpiryDate, AstStringtext stringtext)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(startDateExpiryDate);
             list.Add(stringtext);
             return new AstDateOption(Position.Default, list);
         }
@@ -28031,10 +29309,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// xml_type_definition
-    /// 	 : XML  LR_BRACKET  (CONTENT | DOCUMENT)?  xml_schema_collection  RR_BRACKET
+    /// 	 : XML  LR_BRACKET  content_document?  xml_schema_collection  RR_BRACKET
     /// </summary>
     public partial class AstXmlTypeDefinition : AstRule
     {
+        
+        private AstContentDocument _contentDocument;
         
         private AstXmlSchemaCollection _xmlSchemaCollection;
         
@@ -28045,6 +29325,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstContentDocument>())
+                {
+                    this._contentDocument = ((AstContentDocument)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstXmlSchemaCollection>())
                 {
                     this._xmlSchemaCollection = ((AstXmlSchemaCollection)(enumerator.Current));
@@ -28052,9 +29336,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstXmlTypeDefinition(Position p, AstXmlSchemaCollection xmlSchemaCollection) : 
+        public AstXmlTypeDefinition(Position p, AstContentDocument contentDocument, AstXmlSchemaCollection xmlSchemaCollection) : 
                 base(p, null)
         {
+            this._contentDocument = contentDocument;
             this._xmlSchemaCollection = xmlSchemaCollection;
         }
         
@@ -28065,10 +29350,22 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstContentDocument>())
+                {
+                    this._contentDocument = ((AstContentDocument)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstXmlSchemaCollection>())
                 {
                     this._xmlSchemaCollection = ((AstXmlSchemaCollection)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ContentDocument
+        {
+            get
+            {
+                return this._contentDocument;
             }
         }
         
@@ -28087,11 +29384,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// xml_type_definition : 
-        ///    XML ( CONTENT xml_schema_collection ) 
+        ///    XML ( content_document? xml_schema_collection ) 
         /// </summary>
-        public static AstXmlTypeDefinition XmlTypeDefinition(AstXmlSchemaCollection xmlSchemaCollection)
+        public static AstXmlTypeDefinition XmlTypeDefinition(AstContentDocument? contentDocument, AstXmlSchemaCollection xmlSchemaCollection)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(contentDocument);
             list.Add(xmlSchemaCollection);
             return new AstXmlTypeDefinition(Position.Default, list);
         }
@@ -28260,7 +29558,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// column_modifier
-    /// 	 : id_  add_drop  (ROWGUIDCOL | PERSISTED | NOT  FOR  REPLICATION | SPARSE | HIDDEN_KEYWORD | MASKED  (WITH  (FUNCTION  EQUAL  stringtext | LR_BRACKET  FUNCTION  EQUAL  stringtext  RR_BRACKET))?)
+    /// 	 : id_  add_drop  (column_modifier_enum | MASKED  (WITH  (FUNCTION  EQUAL  stringtext | LR_BRACKET  FUNCTION  EQUAL  stringtext  RR_BRACKET))?)
     /// </summary>
     public partial class AstColumnModifier : AstRule
     {
@@ -28268,6 +29566,8 @@ namespace Bb.Asts.TSql
         private AstId _id;
         
         private AstAddDrop _addDrop;
+        
+        private AstColumnModifierEnum _columnModifierEnum;
         
         private AstStringtext _stringtext;
         
@@ -28286,6 +29586,10 @@ namespace Bb.Asts.TSql
                 {
                     this._addDrop = ((AstAddDrop)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstColumnModifierEnum>())
+                {
+                    this._columnModifierEnum = ((AstColumnModifierEnum)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstStringtext>())
                 {
                     this._stringtext = ((AstStringtext)(enumerator.Current));
@@ -28293,11 +29597,12 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstColumnModifier(Position p, AstId id, AstAddDrop addDrop, AstStringtext stringtext) : 
+        public AstColumnModifier(Position p, AstId id, AstAddDrop addDrop, AstColumnModifierEnum columnModifierEnum, AstStringtext stringtext) : 
                 base(p, null)
         {
             this._id = id;
             this._addDrop = addDrop;
+            this._columnModifierEnum = columnModifierEnum;
             this._stringtext = stringtext;
         }
         
@@ -28315,6 +29620,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstAddDrop>())
                 {
                     this._addDrop = ((AstAddDrop)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstColumnModifierEnum>())
+                {
+                    this._columnModifierEnum = ((AstColumnModifierEnum)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstStringtext>())
                 {
@@ -28339,6 +29648,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef ColumnModifierEnum
+        {
+            get
+            {
+                return this._columnModifierEnum;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef Stringtext
         {
             get
@@ -28354,13 +29671,14 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// column_modifier : 
-        ///    id_ add_drop ROWGUIDCOL 
+        ///    id_ add_drop column_modifier_enum 
         /// </summary>
-        public static AstColumnModifier ColumnModifier(AstId id, AstAddDrop addDrop)
+        public static AstColumnModifier ColumnModifier(AstId id, AstAddDrop addDrop, AstColumnModifierEnum columnModifierEnum)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(id);
             list.Add(addDrop);
+            list.Add(columnModifierEnum);
             return new AstColumnModifier(Position.Default, list);
         }
         
@@ -28380,14 +29698,18 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// materialized_column_definition
-    /// 	 : id_  (COMPUTE | AS)  expression  (MATERIALIZED | NOT  MATERIALIZED)?
+    /// 	 : id_  compute_as  expression  materialized_mode?
     /// </summary>
     public partial class AstMaterializedColumnDefinition : AstRule
     {
         
         private AstId _id;
         
+        private AstComputeAs _computeAs;
+        
         private AstExpression _expression;
+        
+        private AstMaterializedMode _materializedMode;
         
         public AstMaterializedColumnDefinition(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -28400,18 +29722,28 @@ namespace Bb.Asts.TSql
                 {
                     this._id = ((AstId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstComputeAs>())
+                {
+                    this._computeAs = ((AstComputeAs)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstExpression>())
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstMaterializedMode>())
+                {
+                    this._materializedMode = ((AstMaterializedMode)(enumerator.Current));
+                }
             }
         }
         
-        public AstMaterializedColumnDefinition(Position p, AstId id, AstExpression expression) : 
+        public AstMaterializedColumnDefinition(Position p, AstId id, AstComputeAs computeAs, AstExpression expression, AstMaterializedMode materializedMode) : 
                 base(p, null)
         {
             this._id = id;
+            this._computeAs = computeAs;
             this._expression = expression;
+            this._materializedMode = materializedMode;
         }
         
         public AstMaterializedColumnDefinition(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -28425,9 +29757,17 @@ namespace Bb.Asts.TSql
                 {
                     this._id = ((AstId)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstComputeAs>())
+                {
+                    this._computeAs = ((AstComputeAs)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstExpression>())
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstMaterializedMode>())
+                {
+                    this._materializedMode = ((AstMaterializedMode)(enumerator.Current));
                 }
             }
         }
@@ -28440,11 +29780,27 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef ComputeAs
+        {
+            get
+            {
+                return this._computeAs;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef Expression
         {
             get
             {
                 return this._expression;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef MaterializedMode
+        {
+            get
+            {
+                return this._materializedMode;
             }
         }
         
@@ -28455,13 +29811,15 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// materialized_column_definition : 
-        ///    id_ COMPUTE expression MATERIALIZED 
+        ///    id_ compute_as expression materialized_mode? 
         /// </summary>
-        public static AstMaterializedColumnDefinition MaterializedColumnDefinition(AstId id, AstExpression expression)
+        public static AstMaterializedColumnDefinition MaterializedColumnDefinition(AstId id, AstComputeAs computeAs, AstExpression expression, AstMaterializedMode? materializedMode)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(id);
+            list.Add(computeAs);
             list.Add(expression);
+            list.Add(materializedMode);
             return new AstMaterializedColumnDefinition(Position.Default, list);
         }
     }
@@ -29818,11 +31176,132 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// sql_union
+    /// 	 : join_mode  (spec = query_specification | (LR_BRACKET  op = query_expression  RR_BRACKET))
+    /// </summary>
+    public partial class AstSqlUnion : AstRule
+    {
+        
+        private AstJoinMode _joinMode;
+        
+        private AstQuerySpecification _querySpecification;
+        
+        private AstQueryExpression _queryExpression;
+        
+        public AstSqlUnion(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstJoinMode>())
+                {
+                    this._joinMode = ((AstJoinMode)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstQuerySpecification>())
+                {
+                    this._querySpecification = ((AstQuerySpecification)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstQueryExpression>())
+                {
+                    this._queryExpression = ((AstQueryExpression)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstSqlUnion(Position p, AstJoinMode joinMode, AstQuerySpecification querySpecification, AstQueryExpression queryExpression) : 
+                base(p, null)
+        {
+            this._joinMode = joinMode;
+            this._querySpecification = querySpecification;
+            this._queryExpression = queryExpression;
+        }
+        
+        public AstSqlUnion(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstJoinMode>())
+                {
+                    this._joinMode = ((AstJoinMode)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstQuerySpecification>())
+                {
+                    this._querySpecification = ((AstQuerySpecification)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstQueryExpression>())
+                {
+                    this._queryExpression = ((AstQueryExpression)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef JoinMode
+        {
+            get
+            {
+                return this._joinMode;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef QuerySpecification
+        {
+            get
+            {
+                return this._querySpecification;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef QueryExpression
+        {
+            get
+            {
+                return this._queryExpression;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitSqlUnion(this);
+        }
+        
+        /// <summary>
+        /// sql_union : 
+        ///    join_mode spec=query_specification 
+        /// </summary>
+        public static AstSqlUnion SqlUnion(AstJoinMode joinMode, AstQuerySpecification spec)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(joinMode);
+            list.Add(spec);
+            return new AstSqlUnion(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// sql_union : 
+        ///    join_mode ( op=query_expression ) 
+        /// </summary>
+        public static AstSqlUnion SqlUnion(AstJoinMode joinMode, AstQueryExpression op)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(joinMode);
+            list.Add(op);
+            return new AstSqlUnion(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// query_specification
-    /// 	 : SELECT  allOrDistinct = (ALL | DISTINCT)  top = top_clause  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  where_condition?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
+    /// 	 : SELECT  allOrDistinct = all_distinct  top = top_clause  columns = select_list  (INTO  into = full_table_ref)?  (FROM  from = table_sources)?  where_condition?  (GROUP  BY  ((groupByAll = ALL  groupBys_list) | GROUPING  SETS  LR_BRACKET  groupSet_list  RR_BRACKET))?  (HAVING  having = search_condition)?
     /// </summary>
     public partial class AstQuerySpecification : AstRule
     {
+        
+        private AstAllDistinct _allDistinct;
         
         private AstTopClause _topClause;
         
@@ -29847,6 +31326,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAllDistinct>())
+                {
+                    this._allDistinct = ((AstAllDistinct)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstTopClause>())
                 {
                     this._topClause = ((AstTopClause)(enumerator.Current));
@@ -29882,9 +31365,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstQuerySpecification(Position p, AstTopClause topClause, AstSelectList selectList, AstFullTableRef fullTableRef, AstTableSources tableSources, AstWhereCondition whereCondition, AstGroupBysList groupBysList, AstGroupSetList groupSetList, AstSearchCondition searchCondition) : 
+        public AstQuerySpecification(Position p, AstAllDistinct allDistinct, AstTopClause topClause, AstSelectList selectList, AstFullTableRef fullTableRef, AstTableSources tableSources, AstWhereCondition whereCondition, AstGroupBysList groupBysList, AstGroupSetList groupSetList, AstSearchCondition searchCondition) : 
                 base(p, null)
         {
+            this._allDistinct = allDistinct;
             this._topClause = topClause;
             this._selectList = selectList;
             this._fullTableRef = fullTableRef;
@@ -29902,6 +31386,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAllDistinct>())
+                {
+                    this._allDistinct = ((AstAllDistinct)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstTopClause>())
                 {
                     this._topClause = ((AstTopClause)(enumerator.Current));
@@ -29934,6 +31422,14 @@ namespace Bb.Asts.TSql
                 {
                     this._searchCondition = ((AstSearchCondition)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef AllDistinct
+        {
+            get
+            {
+                return this._allDistinct;
             }
         }
         
@@ -30008,11 +31504,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// query_specification : 
-        ///    SELECT ALL top=top_clause columns=select_list INTO into=full_table_ref FROM from=table_sources where_condition? GROUP BY groupByAll=ALL groupBys_list HAVING having=search_condition 
+        ///    SELECT allOrDistinct=all_distinct top=top_clause columns=select_list INTO into=full_table_ref FROM from=table_sources where_condition? GROUP BY groupByAll=ALL groupBys_list HAVING having=search_condition 
         /// </summary>
-        public static AstQuerySpecification QuerySpecification(AstTopClause top, AstSelectList columns, AstFullTableRef into, AstTableSources from, AstWhereCondition? whereCondition, AstGroupBysList groupBysList, AstSearchCondition having)
+        public static AstQuerySpecification QuerySpecification(AstAllDistinct allOrDistinct, AstTopClause top, AstSelectList columns, AstFullTableRef into, AstTableSources from, AstWhereCondition? whereCondition, AstGroupBysList groupBysList, AstSearchCondition having)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(allOrDistinct);
             list.Add(top);
             list.Add(columns);
             list.Add(into);
@@ -30025,11 +31522,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// query_specification : 
-        ///    SELECT ALL top=top_clause columns=select_list INTO into=full_table_ref FROM from=table_sources where_condition? GROUP BY GROUPING SETS ( groupSet_list ) HAVING having=search_condition 
+        ///    SELECT allOrDistinct=all_distinct top=top_clause columns=select_list INTO into=full_table_ref FROM from=table_sources where_condition? GROUP BY GROUPING SETS ( groupSet_list ) HAVING having=search_condition 
         /// </summary>
-        public static AstQuerySpecification QuerySpecification(AstTopClause top, AstSelectList columns, AstFullTableRef into, AstTableSources from, AstWhereCondition? whereCondition, AstGroupSetList groupSetList, AstSearchCondition having)
+        public static AstQuerySpecification QuerySpecification(AstAllDistinct allOrDistinct, AstTopClause top, AstSelectList columns, AstFullTableRef into, AstTableSources from, AstWhereCondition? whereCondition, AstGroupSetList groupSetList, AstSearchCondition having)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(allOrDistinct);
             list.Add(top);
             list.Add(columns);
             list.Add(into);
@@ -30043,7 +31541,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// select_order_by_clause
-    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = (ROW | ROWS)  (FETCH  fetch_offset = (FIRST | NEXT)  fetch_exp = expression  fetch_rows = (ROW | ROWS)  ONLY)?)?
+    /// 	 : order_by_clause  (OFFSET  offset_exp = expression  offset_rows = row_rows  (FETCH  fetch_offset = first_next  fetch_exp = expression  fetch_rows = row_rows  ONLY)?)?
     /// </summary>
     public partial class AstSelectOrderByClause : AstRule
     {
@@ -30051,6 +31549,10 @@ namespace Bb.Asts.TSql
         private AstOrderByClause _orderByClause;
         
         private AstExpression _expression;
+        
+        private AstRowRows _rowRows;
+        
+        private AstFirstNext _firstNext;
         
         public AstSelectOrderByClause(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -30067,14 +31569,24 @@ namespace Bb.Asts.TSql
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstRowRows>())
+                {
+                    this._rowRows = ((AstRowRows)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFirstNext>())
+                {
+                    this._firstNext = ((AstFirstNext)(enumerator.Current));
+                }
             }
         }
         
-        public AstSelectOrderByClause(Position p, AstOrderByClause orderByClause, AstExpression expression) : 
+        public AstSelectOrderByClause(Position p, AstOrderByClause orderByClause, AstExpression expression, AstRowRows rowRows, AstFirstNext firstNext) : 
                 base(p, null)
         {
             this._orderByClause = orderByClause;
             this._expression = expression;
+            this._rowRows = rowRows;
+            this._firstNext = firstNext;
         }
         
         public AstSelectOrderByClause(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -30091,6 +31603,14 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstExpression>())
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstRowRows>())
+                {
+                    this._rowRows = ((AstRowRows)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstFirstNext>())
+                {
+                    this._firstNext = ((AstFirstNext)(enumerator.Current));
                 }
             }
         }
@@ -30111,6 +31631,22 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef RowRows
+        {
+            get
+            {
+                return this._rowRows;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef FirstNext
+        {
+            get
+            {
+                return this._firstNext;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitSelectOrderByClause(this);
@@ -30118,21 +31654,24 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// select_order_by_clause : 
-        ///    order_by_clause OFFSET offset_exp=expression ROW FETCH FIRST fetch_exp=expression ROW ONLY 
+        ///    order_by_clause OFFSET offset_exp=expression offset_rows=row_rows FETCH fetch_offset=first_next fetch_exp=expression fetch_rows=row_rows ONLY 
         /// </summary>
-        public static AstSelectOrderByClause SelectOrderByClause(AstOrderByClause orderByClause, AstExpression offsetExp, AstExpression fetchExp)
+        public static AstSelectOrderByClause SelectOrderByClause(AstOrderByClause orderByClause, AstExpression offsetExp, AstRowRows offsetRows, AstFirstNext fetchOffset, AstExpression fetchExp, AstRowRows fetchRows)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(orderByClause);
             list.Add(offsetExp);
+            list.Add(offsetRows);
+            list.Add(fetchOffset);
             list.Add(fetchExp);
+            list.Add(fetchRows);
             return new AstSelectOrderByClause(Position.Default, list);
         }
     }
     
     /// <summary>
     /// for_clause_xml_raw
-    /// 	 : FOR  XML  (RAW  (LR_BRACKET  xmlraw = stringtext  RR_BRACKET)? | AUTO)  xml_common_directives?  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  xml_schema = stringtext  RR_BRACKET)?))?  (COMMA  ELEMENTS  (XSINIL | ABSENT)?)?
+    /// 	 : FOR  XML  (RAW  (LR_BRACKET  xmlraw = stringtext  RR_BRACKET)? | AUTO)  xml_common_directives?  (COMMA  (XMLDATA | XMLSCHEMA  (LR_BRACKET  xml_schema = stringtext  RR_BRACKET)?))?  (COMMA  ELEMENTS  absent_xsinil?)?
     /// </summary>
     public partial class AstForClauseXmlRaw : AstRule
     {
@@ -30140,6 +31679,8 @@ namespace Bb.Asts.TSql
         private AstStringtext _stringtext;
         
         private AstXmlCommonDirectives _xmlCommonDirectives;
+        
+        private AstAbsentXsinil _absentXsinil;
         
         public AstForClauseXmlRaw(Position p, List<AstRoot> list) : 
                 base(p, list)
@@ -30156,14 +31697,19 @@ namespace Bb.Asts.TSql
                 {
                     this._xmlCommonDirectives = ((AstXmlCommonDirectives)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstAbsentXsinil>())
+                {
+                    this._absentXsinil = ((AstAbsentXsinil)(enumerator.Current));
+                }
             }
         }
         
-        public AstForClauseXmlRaw(Position p, AstStringtext stringtext, AstXmlCommonDirectives xmlCommonDirectives) : 
+        public AstForClauseXmlRaw(Position p, AstStringtext stringtext, AstXmlCommonDirectives xmlCommonDirectives, AstAbsentXsinil absentXsinil) : 
                 base(p, null)
         {
             this._stringtext = stringtext;
             this._xmlCommonDirectives = xmlCommonDirectives;
+            this._absentXsinil = absentXsinil;
         }
         
         public AstForClauseXmlRaw(ParserRuleContext ctx, List<AstRoot> list) : 
@@ -30180,6 +31726,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstXmlCommonDirectives>())
                 {
                     this._xmlCommonDirectives = ((AstXmlCommonDirectives)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstAbsentXsinil>())
+                {
+                    this._absentXsinil = ((AstAbsentXsinil)(enumerator.Current));
                 }
             }
         }
@@ -30200,6 +31750,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef AbsentXsinil
+        {
+            get
+            {
+                return this._absentXsinil;
+            }
+        }
+        
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitForClauseXmlRaw(this);
@@ -30207,59 +31765,65 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// for_clause_xml_raw : 
-        ///    FOR XML RAW ( xmlraw=stringtext ) xml_common_directives? , XMLDATA , ELEMENTS XSINIL 
+        ///    FOR XML RAW ( xmlraw=stringtext ) xml_common_directives? , XMLDATA , ELEMENTS absent_xsinil? 
         /// </summary>
-        public static AstForClauseXmlRaw ForClauseXmlRaw(AstStringtext xmlraw, AstXmlCommonDirectives? xmlCommonDirectives)
+        public static AstForClauseXmlRaw ForClauseXmlRaw(AstStringtext xmlraw, AstXmlCommonDirectives? xmlCommonDirectives, AstAbsentXsinil? absentXsinil)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(xmlraw);
             list.Add(xmlCommonDirectives);
+            list.Add(absentXsinil);
             return new AstForClauseXmlRaw(Position.Default, list);
         }
         
         /// <summary>
         /// for_clause_xml_raw : 
-        ///    FOR XML AUTO xml_common_directives? , XMLDATA , ELEMENTS XSINIL 
+        ///    FOR XML AUTO xml_common_directives? , XMLDATA , ELEMENTS absent_xsinil? 
         /// </summary>
-        public static AstForClauseXmlRaw ForClauseXmlRaw(AstXmlCommonDirectives? xmlCommonDirectives)
+        public static AstForClauseXmlRaw ForClauseXmlRaw(AstXmlCommonDirectives? xmlCommonDirectives, AstAbsentXsinil? absentXsinil)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(xmlCommonDirectives);
+            list.Add(absentXsinil);
             return new AstForClauseXmlRaw(Position.Default, list);
         }
         
         /// <summary>
         /// for_clause_xml_raw : 
-        ///    FOR XML RAW ( xmlraw=stringtext ) xml_common_directives? , XMLSCHEMA ( xml_schema=stringtext ) , ELEMENTS XSINIL 
+        ///    FOR XML RAW ( xmlraw=stringtext ) xml_common_directives? , XMLSCHEMA ( xml_schema=stringtext ) , ELEMENTS absent_xsinil? 
         /// </summary>
-        public static AstForClauseXmlRaw ForClauseXmlRaw(AstStringtext xmlraw, AstXmlCommonDirectives? xmlCommonDirectives, AstStringtext xmlSchema)
+        public static AstForClauseXmlRaw ForClauseXmlRaw(AstStringtext xmlraw, AstXmlCommonDirectives? xmlCommonDirectives, AstStringtext xmlSchema, AstAbsentXsinil? absentXsinil)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(xmlraw);
             list.Add(xmlCommonDirectives);
             list.Add(xmlSchema);
+            list.Add(absentXsinil);
             return new AstForClauseXmlRaw(Position.Default, list);
         }
         
         /// <summary>
         /// for_clause_xml_raw : 
-        ///    FOR XML AUTO xml_common_directives? , XMLSCHEMA ( xml_schema=stringtext ) , ELEMENTS XSINIL 
+        ///    FOR XML AUTO xml_common_directives? , XMLSCHEMA ( xml_schema=stringtext ) , ELEMENTS absent_xsinil? 
         /// </summary>
-        public static AstForClauseXmlRaw ForClauseXmlRaw(AstXmlCommonDirectives? xmlCommonDirectives, AstStringtext xmlSchema)
+        public static AstForClauseXmlRaw ForClauseXmlRaw(AstXmlCommonDirectives? xmlCommonDirectives, AstStringtext xmlSchema, AstAbsentXsinil? absentXsinil)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(xmlCommonDirectives);
             list.Add(xmlSchema);
+            list.Add(absentXsinil);
             return new AstForClauseXmlRaw(Position.Default, list);
         }
     }
     
     /// <summary>
     /// for_clause_json
-    /// 	 : FOR  JSON  (AUTO | PATH)  clause_json_infos?
+    /// 	 : FOR  JSON  auto_path  clause_json_infos?
     /// </summary>
     public partial class AstForClauseJson : AstRule
     {
+        
+        private AstAutoPath _autoPath;
         
         private AstClauseJsonInfos _clauseJsonInfos;
         
@@ -30270,6 +31834,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAutoPath>())
+                {
+                    this._autoPath = ((AstAutoPath)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstClauseJsonInfos>())
                 {
                     this._clauseJsonInfos = ((AstClauseJsonInfos)(enumerator.Current));
@@ -30277,9 +31845,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstForClauseJson(Position p, AstClauseJsonInfos clauseJsonInfos) : 
+        public AstForClauseJson(Position p, AstAutoPath autoPath, AstClauseJsonInfos clauseJsonInfos) : 
                 base(p, null)
         {
+            this._autoPath = autoPath;
             this._clauseJsonInfos = clauseJsonInfos;
         }
         
@@ -30290,10 +31859,22 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAutoPath>())
+                {
+                    this._autoPath = ((AstAutoPath)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstClauseJsonInfos>())
                 {
                     this._clauseJsonInfos = ((AstClauseJsonInfos)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef AutoPath
+        {
+            get
+            {
+                return this._autoPath;
             }
         }
         
@@ -30312,11 +31893,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// for_clause_json : 
-        ///    FOR JSON AUTO clause_json_infos? 
+        ///    FOR JSON auto_path clause_json_infos? 
         /// </summary>
-        public static AstForClauseJson ForClauseJson(AstClauseJsonInfos? clauseJsonInfos)
+        public static AstForClauseJson ForClauseJson(AstAutoPath autoPath, AstClauseJsonInfos? clauseJsonInfos)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(autoPath);
             list.Add(clauseJsonInfos);
             return new AstForClauseJson(Position.Default, list);
         }
@@ -31178,6 +32760,147 @@ namespace Bb.Asts.TSql
     }
     
     /// <summary>
+    /// join_on
+    /// 	 : (inner = INNER | join_type  outer = OUTER)  join_hint?  JOIN  source = table_source  ON  cond = search_condition
+    /// </summary>
+    public partial class AstJoinOn : AstJoinPart
+    {
+        
+        private AstJoinType _joinType;
+        
+        private AstJoinHint _joinHint;
+        
+        private AstTableSource _tableSource;
+        
+        private AstSearchCondition _searchCondition;
+        
+        public AstJoinOn(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstJoinType>())
+                {
+                    this._joinType = ((AstJoinType)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstJoinHint>())
+                {
+                    this._joinHint = ((AstJoinHint)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableSource>())
+                {
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstJoinOn(Position p, AstJoinType joinType, AstJoinHint joinHint, AstTableSource tableSource, AstSearchCondition searchCondition) : 
+                base(p, null)
+        {
+            this._joinType = joinType;
+            this._joinHint = joinHint;
+            this._tableSource = tableSource;
+            this._searchCondition = searchCondition;
+        }
+        
+        public AstJoinOn(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstJoinType>())
+                {
+                    this._joinType = ((AstJoinType)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstJoinHint>())
+                {
+                    this._joinHint = ((AstJoinHint)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableSource>())
+                {
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstSearchCondition>())
+                {
+                    this._searchCondition = ((AstSearchCondition)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef JoinType
+        {
+            get
+            {
+                return this._joinType;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef JoinHint
+        {
+            get
+            {
+                return this._joinHint;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TableSource
+        {
+            get
+            {
+                return this._tableSource;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef SearchCondition
+        {
+            get
+            {
+                return this._searchCondition;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitJoinOn(this);
+        }
+        
+        /// <summary>
+        /// join_on : 
+        ///    inner=INNER join_hint? JOIN source=table_source ON cond=search_condition 
+        /// </summary>
+        public static AstJoinOn JoinOn(AstJoinHint? joinHint, AstTableSource source, AstSearchCondition cond)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(joinHint);
+            list.Add(source);
+            list.Add(cond);
+            return new AstJoinOn(Position.Default, list);
+        }
+        
+        /// <summary>
+        /// join_on : 
+        ///    join_type outer=OUTER join_hint? JOIN source=table_source ON cond=search_condition 
+        /// </summary>
+        public static AstJoinOn JoinOn(AstJoinType joinType, AstJoinHint? joinHint, AstTableSource source, AstSearchCondition cond)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(joinType);
+            list.Add(joinHint);
+            list.Add(source);
+            list.Add(cond);
+            return new AstJoinOn(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
     /// cross_join
     /// 	 : CROSS  JOIN  table_source
     /// </summary>
@@ -31242,6 +32965,94 @@ namespace Bb.Asts.TSql
             List<AstRoot> list = new List<AstRoot>();
             list.Add(tableSource);
             return new AstCrossJoin(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// apply_enum
+    /// 	 : apply_style  APPLY  source = table_source
+    /// </summary>
+    public partial class AstApplyEnum : AstJoinPart
+    {
+        
+        private AstApplyStyle _applyStyle;
+        
+        private AstTableSource _tableSource;
+        
+        public AstApplyEnum(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstApplyStyle>())
+                {
+                    this._applyStyle = ((AstApplyStyle)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableSource>())
+                {
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstApplyEnum(Position p, AstApplyStyle applyStyle, AstTableSource tableSource) : 
+                base(p, null)
+        {
+            this._applyStyle = applyStyle;
+            this._tableSource = tableSource;
+        }
+        
+        public AstApplyEnum(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstApplyStyle>())
+                {
+                    this._applyStyle = ((AstApplyStyle)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstTableSource>())
+                {
+                    this._tableSource = ((AstTableSource)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef ApplyStyle
+        {
+            get
+            {
+                return this._applyStyle;
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef TableSource
+        {
+            get
+            {
+                return this._tableSource;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitApplyEnum(this);
+        }
+        
+        /// <summary>
+        /// apply_enum : 
+        ///    apply_style APPLY source=table_source 
+        /// </summary>
+        public static AstApplyEnum ApplyEnum(AstApplyStyle applyStyle, AstTableSource source)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(applyStyle);
+            list.Add(source);
+            return new AstApplyEnum(Position.Default, list);
         }
     }
     
@@ -32218,10 +34029,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// all_distinct_expression
-    /// 	 : (ALL | DISTINCT)?  expression
+    /// 	 : all_distinct?  expression
     /// </summary>
     public partial class AstAllDistinctExpression : AstRule
     {
+        
+        private AstAllDistinct _allDistinct;
         
         private AstExpression _expression;
         
@@ -32232,6 +34045,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAllDistinct>())
+                {
+                    this._allDistinct = ((AstAllDistinct)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstExpression>())
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
@@ -32239,9 +34056,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstAllDistinctExpression(Position p, AstExpression expression) : 
+        public AstAllDistinctExpression(Position p, AstAllDistinct allDistinct, AstExpression expression) : 
                 base(p, null)
         {
+            this._allDistinct = allDistinct;
             this._expression = expression;
         }
         
@@ -32252,10 +34070,22 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstAllDistinct>())
+                {
+                    this._allDistinct = ((AstAllDistinct)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstExpression>())
                 {
                     this._expression = ((AstExpression)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef AllDistinct
+        {
+            get
+            {
+                return this._allDistinct;
             }
         }
         
@@ -32274,11 +34104,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// all_distinct_expression : 
-        ///    ALL expression 
+        ///    all_distinct? expression 
         /// </summary>
-        public static AstAllDistinctExpression AllDistinctExpression(AstExpression expression)
+        public static AstAllDistinctExpression AllDistinctExpression(AstAllDistinct? allDistinct, AstExpression expression)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(allDistinct);
             list.Add(expression);
             return new AstAllDistinctExpression(Position.Default, list);
         }
@@ -32394,10 +34225,12 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// row_or_range_clause
-    /// 	 : (ROWS | RANGE)  window_frame_extent
+    /// 	 : row_range  window_frame_extent
     /// </summary>
     public partial class AstRowOrRangeClause : AstRule
     {
+        
+        private AstRowRange _rowRange;
         
         private AstWindowFrameExtent _windowFrameExtent;
         
@@ -32408,6 +34241,10 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRowRange>())
+                {
+                    this._rowRange = ((AstRowRange)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstWindowFrameExtent>())
                 {
                     this._windowFrameExtent = ((AstWindowFrameExtent)(enumerator.Current));
@@ -32415,9 +34252,10 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstRowOrRangeClause(Position p, AstWindowFrameExtent windowFrameExtent) : 
+        public AstRowOrRangeClause(Position p, AstRowRange rowRange, AstWindowFrameExtent windowFrameExtent) : 
                 base(p, null)
         {
+            this._rowRange = rowRange;
             this._windowFrameExtent = windowFrameExtent;
         }
         
@@ -32428,10 +34266,22 @@ namespace Bb.Asts.TSql
             )
             {
                 AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstRowRange>())
+                {
+                    this._rowRange = ((AstRowRange)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstWindowFrameExtent>())
                 {
                     this._windowFrameExtent = ((AstWindowFrameExtent)(enumerator.Current));
                 }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef RowRange
+        {
+            get
+            {
+                return this._rowRange;
             }
         }
         
@@ -32450,11 +34300,12 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// row_or_range_clause : 
-        ///    ROWS window_frame_extent 
+        ///    row_range window_frame_extent 
         /// </summary>
-        public static AstRowOrRangeClause RowOrRangeClause(AstWindowFrameExtent windowFrameExtent)
+        public static AstRowOrRangeClause RowOrRangeClause(AstRowRange rowRange, AstWindowFrameExtent windowFrameExtent)
         {
             List<AstRoot> list = new List<AstRoot>();
+            list.Add(rowRange);
             list.Add(windowFrameExtent);
             return new AstRowOrRangeClause(Position.Default, list);
         }
@@ -32767,7 +34618,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// begin_conversation_dialog
-    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = local_id  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = stringtext)?  ON  CONTRACT  contract_name_expression  (WITH  ((RELATED_CONVERSATION | RELATED_CONVERSATION_GROUP)  EQUAL  group = local_id  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
+    /// 	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = local_id  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = stringtext)?  ON  CONTRACT  contract_name_expression  (WITH  (relayed_conversation  EQUAL  group = local_id  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?  SEMI?
     /// </summary>
     public partial class AstBeginConversationDialog : AstConversationStatement
     {
@@ -32779,6 +34630,8 @@ namespace Bb.Asts.TSql
         private AstStringtext _stringtext;
         
         private AstContractNameExpression _contractNameExpression;
+        
+        private AstRelayedConversation _relayedConversation;
         
         private AstDecimalLocalId _decimalLocalId;
         
@@ -32807,6 +34660,10 @@ namespace Bb.Asts.TSql
                 {
                     this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
                 }
+                if (enumerator.Current.Is<AstRelayedConversation>())
+                {
+                    this._relayedConversation = ((AstRelayedConversation)(enumerator.Current));
+                }
                 if (enumerator.Current.Is<AstDecimalLocalId>())
                 {
                     this._decimalLocalId = ((AstDecimalLocalId)(enumerator.Current));
@@ -32818,13 +34675,14 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstBeginConversationDialog(Position p, AstLocalId localId, AstServiceName serviceName, AstStringtext stringtext, AstContractNameExpression contractNameExpression, AstDecimalLocalId decimalLocalId, AstOnOff onOff) : 
+        public AstBeginConversationDialog(Position p, AstLocalId localId, AstServiceName serviceName, AstStringtext stringtext, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstDecimalLocalId decimalLocalId, AstOnOff onOff) : 
                 base(p, null)
         {
             this._localId = localId;
             this._serviceName = serviceName;
             this._stringtext = stringtext;
             this._contractNameExpression = contractNameExpression;
+            this._relayedConversation = relayedConversation;
             this._decimalLocalId = decimalLocalId;
             this._onOff = onOff;
         }
@@ -32851,6 +34709,10 @@ namespace Bb.Asts.TSql
                 if (enumerator.Current.Is<AstContractNameExpression>())
                 {
                     this._contractNameExpression = ((AstContractNameExpression)(enumerator.Current));
+                }
+                if (enumerator.Current.Is<AstRelayedConversation>())
+                {
+                    this._relayedConversation = ((AstRelayedConversation)(enumerator.Current));
                 }
                 if (enumerator.Current.Is<AstDecimalLocalId>())
                 {
@@ -32895,6 +34757,14 @@ namespace Bb.Asts.TSql
             }
         }
         
+        public virtual Bb.Asts.AstRuleRef RelayedConversation
+        {
+            get
+            {
+                return this._relayedConversation;
+            }
+        }
+        
         public virtual Bb.Asts.AstRuleRef DecimalLocalId
         {
             get
@@ -32918,9 +34788,9 @@ namespace Bb.Asts.TSql
         
         /// <summary>
         /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION()? dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH RELATED_CONVERSATION EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off SEMI? 
+        ///    BEGIN DIALOG CONVERSATION()? dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off SEMI? 
         /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
+        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
         {
             List<AstRoot> list = new List<AstRoot>();
             list.Add(dialogHandle);
@@ -32928,6 +34798,7 @@ namespace Bb.Asts.TSql
             list.Add(targetServiceName);
             list.Add(serviceBrokerGuid);
             list.Add(contractNameExpression);
+            list.Add(relayedConversation);
             list.Add(group);
             list.Add(decimalLocalId);
             list.Add(onOff);
@@ -33020,6 +34891,144 @@ namespace Bb.Asts.TSql
             list.Add(getConversation);
             list.Add(timeout);
             return new AstWaitforConversation(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// decimal_scale_prec
+    /// 	 : scale = decimal  COMMA  prec = decimal
+    /// </summary>
+    public partial class AstDecimalScalePrec : AstRule
+    {
+        
+        private AstDecimal _decimal;
+        
+        public AstDecimalScalePrec(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstDecimalScalePrec(Position p, AstDecimal @decimal) : 
+                base(p, null)
+        {
+            this._decimal = @decimal;
+        }
+        
+        public AstDecimalScalePrec(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef Decimal
+        {
+            get
+            {
+                return this._decimal;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDecimalScalePrec(this);
+        }
+        
+        /// <summary>
+        /// decimal_scale_prec : 
+        ///    scale=decimal , prec=decimal 
+        /// </summary>
+        public static AstDecimalScalePrec DecimalScalePrec(AstDecimal scale, AstDecimal prec)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(scale);
+            list.Add(prec);
+            return new AstDecimalScalePrec(Position.Default, list);
+        }
+    }
+    
+    /// <summary>
+    /// identity_seed
+    /// 	 : seed = decimal  COMMA  inc = decimal
+    /// </summary>
+    public partial class AstIdentitySeed : AstRule
+    {
+        
+        private AstDecimal _decimal;
+        
+        public AstIdentitySeed(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstIdentitySeed(Position p, AstDecimal @decimal) : 
+                base(p, null)
+        {
+            this._decimal = @decimal;
+        }
+        
+        public AstIdentitySeed(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstDecimal>())
+                {
+                    this._decimal = ((AstDecimal)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual Bb.Asts.AstRuleRef Decimal
+        {
+            get
+            {
+                return this._decimal;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitIdentitySeed(this);
+        }
+        
+        /// <summary>
+        /// identity_seed : 
+        ///    seed=decimal , inc=decimal 
+        /// </summary>
+        public static AstIdentitySeed IdentitySeed(AstDecimal seed, AstDecimal inc)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            list.Add(seed);
+            list.Add(inc);
+            return new AstIdentitySeed(Position.Default, list);
         }
     }
     

@@ -20,7 +20,7 @@ namespace Bb.Generators
         {
             this._nameOfMethod = name;
             return this;
-        }              
+        }
 
         public ModelMethod Documentation(Action<Documentation> action)
         {
@@ -84,43 +84,84 @@ namespace Bb.Generators
                 return;
 
             var _n = this._nameOfMethod(model);
-            if (!MemberExists(t.Members, _n))
+
+
+            CodeTypeReference type = null;
+            if (_actionType != null)
+            {
+                var t1 = _actionType();
+
+                if (t1 is string s)
+                    type = new CodeTypeReference(s);
+
+                else if (t1 is Type i)
+                    type = new CodeTypeReference(i);
+            }
+            else
+                type = new CodeTypeReference(typeof(void));
+
+            CodeMemberMethod method = new CodeMemberMethod()
+            {
+                Name = _n,
+                Attributes = _attributes,
+                ReturnType = type,
+            };
+
+            GenerateDocumentation(method, ctx);
+
+            foreach (var arg in _arguments)
+                arg.Generate(ctx, model, method);
+
+            if (this._body != null)
+                this._body(method);
+
+            if (!MemberExists(t.Members, method))
+                t.Members.Add(method);
+
+        }
+
+
+        protected override bool MemberExists(CodeTypeMemberCollection members, CodeTypeMember member)
+        {
+            var result = base.MemberExists(members, member);
+
+            if (result)
             {
 
-                CodeTypeReference type = null;
-                if (_actionType != null)
-                {
-                    var t1 = _actionType();
+                var m1 = member as CodeMemberMethod;
+                var n = member.Name;
 
-                    if (t1 is string s)
-                        type = new CodeTypeReference(s);
+                foreach (CodeTypeMember item in members)
+                    if (item.Name == n)
+                    {
 
-                    else if (t1 is Type i)
-                        type = new CodeTypeReference(i);
-                }
-                else
-                    type = new CodeTypeReference(typeof(void));
+                        var m2 = item as CodeMemberMethod;
 
-                CodeMemberMethod method = new CodeMemberMethod()
-                {
-                    Name = _n,
-                    Attributes = _attributes,
-                    ReturnType = type,
-                };
+                        var countParameter = m1.Parameters.Count;
+                        if (m2.Parameters.Count != countParameter)
+                            continue;
 
-                GenerateDocumentation(method, ctx);
+                        for (int i = 0; i < countParameter; i++)
+                        {
 
-                foreach (var arg in _arguments)
-                    arg.Generate(ctx, model, method);
+                            var p1 = m1.Parameters[i];
+                            var p2 = m2.Parameters[i];
 
-                if (this._body != null)
-                    this._body(method);
+                            if (p1.Name == p2.Name)
+                                return true;
 
-                t.Members.Add(method);
+                        }
+
+                    }
+
+                return false;
 
             }
 
+            return result;
+
         }
+
 
 
         protected ModelTypeFrom modelTypeFrom;
@@ -129,6 +170,13 @@ namespace Bb.Generators
         private Func<object> _actionType;
         private Func<object, string> _nameOfMethod;
         protected Action<CodeMemberMethod> _body;
+
+        public override void Clean()
+        {
+
+            _arguments.Clear();
+
+        }
 
         public Func<IEnumerable<object>> Items { get; internal set; }
         public Action<ModelMethod, object> Action { get; internal set; }

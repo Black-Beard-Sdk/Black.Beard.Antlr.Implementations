@@ -218,7 +218,8 @@ namespace Bb.Asts
         }
         public override IEnumerable<AstAlternative> GetAlternatives()
         {
-            return this.Alternatives.GetAlternatives();
+            var result = this.Alternatives.GetAlternatives().ToList();
+            return result;
         }
 
 

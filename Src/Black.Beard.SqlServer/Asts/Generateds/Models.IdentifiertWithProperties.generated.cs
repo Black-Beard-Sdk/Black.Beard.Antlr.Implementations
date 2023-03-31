@@ -20,12 +20,63 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// drop_statistics
-    /// 	 : DROP  STATISTICS  (COMMA?  (full_table_ref  DOT)?  name = id_)+  SEMI
+    /// 	 : DROP  STATISTICS  full_table_ref_columns  SEMI
     /// </summary>
     public partial class AstDropStatistics : AstDdlClause
     {
         
+        private AstFullTableRefColumns _fullTableRefColumns;
+        
         public AstDropStatistics(Position p, List<AstRoot> list) : 
+                base(p, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullTableRefColumns>())
+                {
+                    this._fullTableRefColumns = ((AstFullTableRefColumns)(enumerator.Current));
+                }
+            }
+        }
+        
+        public AstDropStatistics(ParserRuleContext ctx, List<AstRoot> list) : 
+                base(ctx, list)
+        {
+            for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                AstRoot item = ((AstRoot)(enumerator.Current));
+                if (enumerator.Current.Is<AstFullTableRefColumns>())
+                {
+                    this._fullTableRefColumns = ((AstFullTableRefColumns)(enumerator.Current));
+                }
+            }
+        }
+        
+        public virtual AstFullTableRefColumns FullTableRefColumns
+        {
+            get
+            {
+                return this._fullTableRefColumns;
+            }
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitDropStatistics(this);
+        }
+    }
+    
+    /// <summary>
+    /// full_table_ref_column
+    /// 	 : (full_table_ref  DOT)?  name = id_
+    /// </summary>
+    public partial class AstFullTableRefColumn : AstRule
+    {
+        
+        public AstFullTableRefColumn(Position p, List<AstRoot> list) : 
                 base(p, list)
         {
             for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
@@ -35,7 +86,7 @@ namespace Bb.Asts.TSql
             }
         }
         
-        public AstDropStatistics(ParserRuleContext ctx, List<AstRoot> list) : 
+        public AstFullTableRefColumn(ParserRuleContext ctx, List<AstRoot> list) : 
                 base(ctx, list)
         {
             for (IEnumerator enumerator = list.GetEnumerator(); enumerator.MoveNext(); 
@@ -47,7 +98,7 @@ namespace Bb.Asts.TSql
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitDropStatistics(this);
+            visitor.VisitFullTableRefColumn(this);
         }
     }
     

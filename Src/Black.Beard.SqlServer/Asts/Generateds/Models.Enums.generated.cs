@@ -11,6186 +11,27574 @@
 
 namespace Bb.Asts.TSql
 {
+    using System;
+    using Bb.Parsers;
+    using Antlr4.Runtime;
+    using Antlr4.Runtime.Tree;
     
     
-    public partial class AstDelayTimeTimeout
+    /// <summary>
+    /// class_type
+    /// 	 : OBJECT
+    /// 	 | ASSEMBLY
+    /// 	 | ASYMMETRIC  KEY
+    /// 	 | AVAILABILITY  GROUP
+    /// 	 | CERTIFICATE
+    /// 	 | CONTRACT
+    /// 	 | TYPE
+    /// 	 | DATABASE
+    /// 	 | ENDPOINT
+    /// 	 | FULLTEXT  CATALOG
+    /// 	 | FULLTEXT  STOPLIST
+    /// 	 | MESSAGE  TYPE
+    /// 	 | REMOTE  SERVICE  BINDING
+    /// 	 | ROLE
+    /// 	 | ROUTE
+    /// 	 | SCHEMA
+    /// 	 | SEARCH  PROPERTY  LIST
+    /// 	 | SERVER  ROLE
+    /// 	 | SERVICE
+    /// 	 | SYMMETRIC  KEY
+    /// 	 | XML  SCHEMA  COLLECTION
+    /// </summary>
+    public partial class AstClassType : AstTerminalKeyword
     {
         
-        public AstDelayTimeTimeout(ITerminalNode t, string value) : 
-                base(t)
+        public AstClassType(ITerminalNode t, string value) : 
+                base(t, value)
         {
         }
         
-        public static AstDelayTimeTimeout _undefined()
+        public AstClassType(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstDelayTimeTimeout(null);
         }
         
-        public static AstDelayTimeTimeout Delay()
+        /// <summary>
+        /// class_type : OBJECT
+        /// </summary>
+        public static AstClassType Object()
         {
-            return new AstDelayTimeTimeout(Position.Default, "DELAY");
+            return new AstClassType(Position.Default, "OBJECT", "OBJECT");
         }
         
-        public static AstDelayTimeTimeout Time()
+        /// <summary>
+        /// class_type : ASSEMBLY
+        /// </summary>
+        public static AstClassType Assembly()
         {
-            return new AstDelayTimeTimeout(Position.Default, "TIME");
+            return new AstClassType(Position.Default, "ASSEMBLY", "ASSEMBLY");
         }
         
-        public static AstDelayTimeTimeout Timeout()
+        /// <summary>
+        /// class_type : ASYMMETRIC KEY
+        /// </summary>
+        public static AstClassType AsymmetricKey()
         {
-            return new AstDelayTimeTimeout(Position.Default, "TIMEOUT");
+            return new AstClassType(Position.Default, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type : AVAILABILITY GROUP
+        /// </summary>
+        public static AstClassType AvailabilityGroup()
+        {
+            return new AstClassType(Position.Default, "AVAILABILITY GROUP", "AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// class_type : CERTIFICATE
+        /// </summary>
+        public static AstClassType Certificate()
+        {
+            return new AstClassType(Position.Default, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// class_type : CONTRACT
+        /// </summary>
+        public static AstClassType Contract()
+        {
+            return new AstClassType(Position.Default, "CONTRACT", "CONTRACT");
+        }
+        
+        /// <summary>
+        /// class_type : TYPE
+        /// </summary>
+        public static AstClassType Type()
+        {
+            return new AstClassType(Position.Default, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// class_type : DATABASE
+        /// </summary>
+        public static AstClassType Database()
+        {
+            return new AstClassType(Position.Default, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// class_type : ENDPOINT
+        /// </summary>
+        public static AstClassType Endpoint()
+        {
+            return new AstClassType(Position.Default, "ENDPOINT", "ENDPOINT");
+        }
+        
+        /// <summary>
+        /// class_type : FULLTEXT CATALOG
+        /// </summary>
+        public static AstClassType FulltextCatalog()
+        {
+            return new AstClassType(Position.Default, "FULLTEXT CATALOG", "FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// class_type : FULLTEXT STOPLIST
+        /// </summary>
+        public static AstClassType FulltextStoplist()
+        {
+            return new AstClassType(Position.Default, "FULLTEXT STOPLIST", "FULLTEXT STOPLIST");
+        }
+        
+        /// <summary>
+        /// class_type : MESSAGE TYPE
+        /// </summary>
+        public static AstClassType MessageType()
+        {
+            return new AstClassType(Position.Default, "MESSAGE TYPE", "MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// class_type : REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstClassType RemoteServiceBinding()
+        {
+            return new AstClassType(Position.Default, "REMOTE SERVICE BINDING", "REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// class_type : ROLE
+        /// </summary>
+        public static AstClassType Role()
+        {
+            return new AstClassType(Position.Default, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// class_type : ROUTE
+        /// </summary>
+        public static AstClassType Route()
+        {
+            return new AstClassType(Position.Default, "ROUTE", "ROUTE");
+        }
+        
+        /// <summary>
+        /// class_type : SCHEMA
+        /// </summary>
+        public static AstClassType Schema()
+        {
+            return new AstClassType(Position.Default, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstClassType SearchPropertyList()
+        {
+            return new AstClassType(Position.Default, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// class_type : SERVER ROLE
+        /// </summary>
+        public static AstClassType ServerRole()
+        {
+            return new AstClassType(Position.Default, "SERVER ROLE", "SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// class_type : SERVICE
+        /// </summary>
+        public static AstClassType Service()
+        {
+            return new AstClassType(Position.Default, "SERVICE", "SERVICE");
+        }
+        
+        /// <summary>
+        /// class_type : SYMMETRIC KEY
+        /// </summary>
+        public static AstClassType SymmetricKey()
+        {
+            return new AstClassType(Position.Default, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstClassType XmlSchemaCollection()
+        {
+            return new AstClassType(Position.Default, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
+        }
+        
+        /// <summary>
+        /// class_type : OBJECT
+        /// </summary>
+        public static AstClassType Object(Position position)
+        {
+            return new AstClassType(position, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// class_type : ASSEMBLY
+        /// </summary>
+        public static AstClassType Assembly(Position position)
+        {
+            return new AstClassType(position, "ASSEMBLY", "ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// class_type : ASYMMETRIC KEY
+        /// </summary>
+        public static AstClassType AsymmetricKey(Position position)
+        {
+            return new AstClassType(position, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type : AVAILABILITY GROUP
+        /// </summary>
+        public static AstClassType AvailabilityGroup(Position position)
+        {
+            return new AstClassType(position, "AVAILABILITY GROUP", "AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// class_type : CERTIFICATE
+        /// </summary>
+        public static AstClassType Certificate(Position position)
+        {
+            return new AstClassType(position, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// class_type : CONTRACT
+        /// </summary>
+        public static AstClassType Contract(Position position)
+        {
+            return new AstClassType(position, "CONTRACT", "CONTRACT");
+        }
+        
+        /// <summary>
+        /// class_type : TYPE
+        /// </summary>
+        public static AstClassType Type(Position position)
+        {
+            return new AstClassType(position, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// class_type : DATABASE
+        /// </summary>
+        public static AstClassType Database(Position position)
+        {
+            return new AstClassType(position, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// class_type : ENDPOINT
+        /// </summary>
+        public static AstClassType Endpoint(Position position)
+        {
+            return new AstClassType(position, "ENDPOINT", "ENDPOINT");
+        }
+        
+        /// <summary>
+        /// class_type : FULLTEXT CATALOG
+        /// </summary>
+        public static AstClassType FulltextCatalog(Position position)
+        {
+            return new AstClassType(position, "FULLTEXT CATALOG", "FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// class_type : FULLTEXT STOPLIST
+        /// </summary>
+        public static AstClassType FulltextStoplist(Position position)
+        {
+            return new AstClassType(position, "FULLTEXT STOPLIST", "FULLTEXT STOPLIST");
+        }
+        
+        /// <summary>
+        /// class_type : MESSAGE TYPE
+        /// </summary>
+        public static AstClassType MessageType(Position position)
+        {
+            return new AstClassType(position, "MESSAGE TYPE", "MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// class_type : REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstClassType RemoteServiceBinding(Position position)
+        {
+            return new AstClassType(position, "REMOTE SERVICE BINDING", "REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// class_type : ROLE
+        /// </summary>
+        public static AstClassType Role(Position position)
+        {
+            return new AstClassType(position, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// class_type : ROUTE
+        /// </summary>
+        public static AstClassType Route(Position position)
+        {
+            return new AstClassType(position, "ROUTE", "ROUTE");
+        }
+        
+        /// <summary>
+        /// class_type : SCHEMA
+        /// </summary>
+        public static AstClassType Schema(Position position)
+        {
+            return new AstClassType(position, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstClassType SearchPropertyList(Position position)
+        {
+            return new AstClassType(position, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// class_type : SERVER ROLE
+        /// </summary>
+        public static AstClassType ServerRole(Position position)
+        {
+            return new AstClassType(position, "SERVER ROLE", "SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// class_type : SERVICE
+        /// </summary>
+        public static AstClassType Service(Position position)
+        {
+            return new AstClassType(position, "SERVICE", "SERVICE");
+        }
+        
+        /// <summary>
+        /// class_type : SYMMETRIC KEY
+        /// </summary>
+        public static AstClassType SymmetricKey(Position position)
+        {
+            return new AstClassType(position, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstClassType XmlSchemaCollection(Position position)
+        {
+            return new AstClassType(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
         }
     }
     
-    public partial class AstAssemblyPermission
+    /// <summary>
+    /// class_type_for_sql_database
+    /// 	 : OBJECT
+    /// 	 | ASSEMBLY
+    /// 	 | ASYMMETRIC  KEY
+    /// 	 | CERTIFICATE
+    /// 	 | TYPE
+    /// 	 | DATABASE
+    /// 	 | FULLTEXT  CATALOG
+    /// 	 | FULLTEXT  STOPLIST
+    /// 	 | ROLE
+    /// 	 | SCHEMA
+    /// 	 | SEARCH  PROPERTY  LIST
+    /// 	 | SYMMETRIC  KEY
+    /// 	 | XML  SCHEMA  COLLECTION
+    /// </summary>
+    public partial class AstClassTypeForSqlDatabase : AstTerminalKeyword
     {
         
-        public AstAssemblyPermission(ITerminalNode t, string value) : 
-                base(t)
+        public AstClassTypeForSqlDatabase(ITerminalNode t, string value) : 
+                base(t, value)
         {
         }
         
-        public static AstAssemblyPermission _undefined()
+        public AstClassTypeForSqlDatabase(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstAssemblyPermission(null);
         }
         
-        public static AstAssemblyPermission Safe()
+        /// <summary>
+        /// class_type_for_sql_database : OBJECT
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Object()
         {
-            return new AstAssemblyPermission(Position.Default, "SAFE");
+            return new AstClassTypeForSqlDatabase(Position.Default, "OBJECT", "OBJECT");
         }
         
-        public static AstAssemblyPermission ExternalAccess()
+        /// <summary>
+        /// class_type_for_sql_database : ASSEMBLY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Assembly()
         {
-            return new AstAssemblyPermission(Position.Default, "EXTERNAL_ACCESS");
+            return new AstClassTypeForSqlDatabase(Position.Default, "ASSEMBLY", "ASSEMBLY");
         }
         
-        public static AstAssemblyPermission Unsafe()
+        /// <summary>
+        /// class_type_for_sql_database : ASYMMETRIC KEY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase AsymmetricKey()
         {
-            return new AstAssemblyPermission(Position.Default, "UNSAFE");
+            return new AstClassTypeForSqlDatabase(Position.Default, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : CERTIFICATE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Certificate()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : TYPE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Type()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : DATABASE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Database()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : FULLTEXT CATALOG
+        /// </summary>
+        public static AstClassTypeForSqlDatabase FulltextCatalog()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "FULLTEXT CATALOG", "FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : FULLTEXT STOPLIST
+        /// </summary>
+        public static AstClassTypeForSqlDatabase FulltextStoplist()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "FULLTEXT STOPLIST", "FULLTEXT STOPLIST");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : ROLE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Role()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SCHEMA
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Schema()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstClassTypeForSqlDatabase SearchPropertyList()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SYMMETRIC KEY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase SymmetricKey()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstClassTypeForSqlDatabase XmlSchemaCollection()
+        {
+            return new AstClassTypeForSqlDatabase(Position.Default, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : OBJECT
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Object(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : ASSEMBLY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Assembly(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "ASSEMBLY", "ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : ASYMMETRIC KEY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase AsymmetricKey(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : CERTIFICATE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Certificate(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : TYPE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Type(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : DATABASE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Database(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : FULLTEXT CATALOG
+        /// </summary>
+        public static AstClassTypeForSqlDatabase FulltextCatalog(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "FULLTEXT CATALOG", "FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : FULLTEXT STOPLIST
+        /// </summary>
+        public static AstClassTypeForSqlDatabase FulltextStoplist(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "FULLTEXT STOPLIST", "FULLTEXT STOPLIST");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : ROLE
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Role(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SCHEMA
+        /// </summary>
+        public static AstClassTypeForSqlDatabase Schema(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstClassTypeForSqlDatabase SearchPropertyList(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : SYMMETRIC KEY
+        /// </summary>
+        public static AstClassTypeForSqlDatabase SymmetricKey(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// class_type_for_sql_database : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstClassTypeForSqlDatabase XmlSchemaCollection(Position position)
+        {
+            return new AstClassTypeForSqlDatabase(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
         }
     }
     
-    public partial class AstBinaryContent
-    {
-        
-        public AstBinaryContent(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstBinaryContent _undefined()
-        {
-            return new AstBinaryContent(null);
-        }
-    }
-    
-    public partial class AstClassTypeForAzureDw
+    /// <summary>
+    /// class_type_for_azure_dw
+    /// 	 : SCHEMA
+    /// 	 | OBJECT
+    /// </summary>
+    public partial class AstClassTypeForAzureDw : AstTerminalKeyword
     {
         
         public AstClassTypeForAzureDw(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstClassTypeForAzureDw _undefined()
+        public AstClassTypeForAzureDw(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstClassTypeForAzureDw(null);
         }
         
+        /// <summary>
+        /// class_type_for_azure_dw : SCHEMA
+        /// </summary>
         public static AstClassTypeForAzureDw Schema()
         {
-            return new AstClassTypeForAzureDw(Position.Default, "SCHEMA");
+            return new AstClassTypeForAzureDw(Position.Default, "SCHEMA", "SCHEMA");
         }
         
+        /// <summary>
+        /// class_type_for_azure_dw : OBJECT
+        /// </summary>
         public static AstClassTypeForAzureDw Object()
         {
-            return new AstClassTypeForAzureDw(Position.Default, "OBJECT");
+            return new AstClassTypeForAzureDw(Position.Default, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// class_type_for_azure_dw : SCHEMA
+        /// </summary>
+        public static AstClassTypeForAzureDw Schema(Position position)
+        {
+            return new AstClassTypeForAzureDw(position, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type_for_azure_dw : OBJECT
+        /// </summary>
+        public static AstClassTypeForAzureDw Object(Position position)
+        {
+            return new AstClassTypeForAzureDw(position, "OBJECT", "OBJECT");
         }
     }
     
-    public partial class AstClassTypeForParallelDw
+    /// <summary>
+    /// class_type_for_parallel_dw
+    /// 	 : DATABASE
+    /// 	 | SCHEMA
+    /// 	 | OBJECT
+    /// </summary>
+    public partial class AstClassTypeForParallelDw : AstTerminalKeyword
     {
         
         public AstClassTypeForParallelDw(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstClassTypeForParallelDw _undefined()
+        public AstClassTypeForParallelDw(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstClassTypeForParallelDw(null);
         }
         
+        /// <summary>
+        /// class_type_for_parallel_dw : DATABASE
+        /// </summary>
         public static AstClassTypeForParallelDw Database()
         {
-            return new AstClassTypeForParallelDw(Position.Default, "DATABASE");
+            return new AstClassTypeForParallelDw(Position.Default, "DATABASE", "DATABASE");
         }
         
+        /// <summary>
+        /// class_type_for_parallel_dw : SCHEMA
+        /// </summary>
         public static AstClassTypeForParallelDw Schema()
         {
-            return new AstClassTypeForParallelDw(Position.Default, "SCHEMA");
+            return new AstClassTypeForParallelDw(Position.Default, "SCHEMA", "SCHEMA");
         }
         
+        /// <summary>
+        /// class_type_for_parallel_dw : OBJECT
+        /// </summary>
         public static AstClassTypeForParallelDw Object()
         {
-            return new AstClassTypeForParallelDw(Position.Default, "OBJECT");
+            return new AstClassTypeForParallelDw(Position.Default, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// class_type_for_parallel_dw : DATABASE
+        /// </summary>
+        public static AstClassTypeForParallelDw Database(Position position)
+        {
+            return new AstClassTypeForParallelDw(position, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// class_type_for_parallel_dw : SCHEMA
+        /// </summary>
+        public static AstClassTypeForParallelDw Schema(Position position)
+        {
+            return new AstClassTypeForParallelDw(position, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// class_type_for_parallel_dw : OBJECT
+        /// </summary>
+        public static AstClassTypeForParallelDw Object(Position position)
+        {
+            return new AstClassTypeForParallelDw(position, "OBJECT", "OBJECT");
         }
     }
     
-    public partial class AstEncryptionMaster
-    {
-        
-        public AstEncryptionMaster(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstEncryptionMaster _undefined()
-        {
-            return new AstEncryptionMaster(null);
-        }
-        
-        public static AstEncryptionMaster Encryption()
-        {
-            return new AstEncryptionMaster(Position.Default, "ENCRYPTION");
-        }
-        
-        public static AstEncryptionMaster Master()
-        {
-            return new AstEncryptionMaster(Position.Default, "MASTER");
-        }
-    }
-    
-    public partial class AstDatabaseObjectServer
-    {
-        
-        public AstDatabaseObjectServer(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDatabaseObjectServer _undefined()
-        {
-            return new AstDatabaseObjectServer(null);
-        }
-        
-        public static AstDatabaseObjectServer Database()
-        {
-            return new AstDatabaseObjectServer(Position.Default, "DATABASE");
-        }
-        
-        public static AstDatabaseObjectServer Object()
-        {
-            return new AstDatabaseObjectServer(Position.Default, "OBJECT");
-        }
-        
-        public static AstDatabaseObjectServer Server()
-        {
-            return new AstDatabaseObjectServer(Position.Default, "SERVER");
-        }
-    }
-    
-    public partial class AstAddRemove
-    {
-        
-        public AstAddRemove(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAddRemove _undefined()
-        {
-            return new AstAddRemove(null);
-        }
-        
-        public static AstAddRemove Add()
-        {
-            return new AstAddRemove(Position.Default, "ADD");
-        }
-        
-        public static AstAddRemove Remove()
-        {
-            return new AstAddRemove(Position.Default, "REMOVE");
-        }
-    }
-    
-    public partial class AstRestartRemove
-    {
-        
-        public AstRestartRemove(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstRestartRemove _undefined()
-        {
-            return new AstRestartRemove(null);
-        }
-        
-        public static AstRestartRemove Restart()
-        {
-            return new AstRestartRemove(Position.Default, "RESTART");
-        }
-        
-        public static AstRestartRemove Remove()
-        {
-            return new AstRestartRemove(Position.Default, "REMOVE");
-        }
-    }
-    
-    public partial class AstSynchAsynch
-    {
-        
-        public AstSynchAsynch(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstSynchAsynch _undefined()
-        {
-            return new AstSynchAsynch(null);
-        }
-        
-        public static AstSynchAsynch SynchronousCommit()
-        {
-            return new AstSynchAsynch(Position.Default, "SYNCHRONOUS_COMMIT");
-        }
-        
-        public static AstSynchAsynch AsynchronousCommit()
-        {
-            return new AstSynchAsynch(Position.Default, "ASYNCHRONOUS_COMMIT");
-        }
-    }
-    
-    public partial class AstAutoManual
-    {
-        
-        public AstAutoManual(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAutoManual _undefined()
-        {
-            return new AstAutoManual(null);
-        }
-        
-        public static AstAutoManual Automatic()
-        {
-            return new AstAutoManual(Position.Default, "AUTOMATIC");
-        }
-        
-        public static AstAutoManual Manual()
-        {
-            return new AstAutoManual(Position.Default, "MANUAL");
-        }
-    }
-    
-    public partial class AstRealWriteAll
-    {
-        
-        public AstRealWriteAll(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstRealWriteAll _undefined()
-        {
-            return new AstRealWriteAll(null);
-        }
-        
-        public static AstRealWriteAll ReadWrite()
-        {
-            return new AstRealWriteAll(Position.Default, "READ_WRITE");
-        }
-        
-        public static AstRealWriteAll All()
-        {
-            return new AstRealWriteAll(Position.Default, "ALL");
-        }
-    }
-    
-    public partial class AstNoRealWriteAll
-    {
-        
-        public AstNoRealWriteAll(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstNoRealWriteAll _undefined()
-        {
-            return new AstNoRealWriteAll(null);
-        }
-        
-        public static AstNoRealWriteAll No()
-        {
-            return new AstNoRealWriteAll(Position.Default, "NO");
-        }
-        
-        public static AstNoRealWriteAll ReadWrite()
-        {
-            return new AstNoRealWriteAll(Position.Default, "READ_WRITE");
-        }
-        
-        public static AstNoRealWriteAll All()
-        {
-            return new AstNoRealWriteAll(Position.Default, "ALL");
-        }
-    }
-    
-    public partial class AstPrimarySecondaryNone
-    {
-        
-        public AstPrimarySecondaryNone(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstPrimarySecondaryNone _undefined()
-        {
-            return new AstPrimarySecondaryNone(null);
-        }
-        
-        public static AstPrimarySecondaryNone Primary()
-        {
-            return new AstPrimarySecondaryNone(Position.Default, "PRIMARY");
-        }
-        
-        public static AstPrimarySecondaryNone SecondaryOnly()
-        {
-            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY_ONLY");
-        }
-        
-        public static AstPrimarySecondaryNone Secondary()
-        {
-            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY");
-        }
-        
-        public static AstPrimarySecondaryNone None()
-        {
-            return new AstPrimarySecondaryNone(Position.Default, "NONE");
-        }
-    }
-    
-    public partial class AstGrantDeny
-    {
-        
-        public AstGrantDeny(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstGrantDeny _undefined()
-        {
-            return new AstGrantDeny(null);
-        }
-        
-        public static AstGrantDeny Grant()
-        {
-            return new AstGrantDeny(Position.Default, "GRANT");
-        }
-        
-        public static AstGrantDeny Deny()
-        {
-            return new AstGrantDeny(Position.Default, "DENY");
-        }
-    }
-    
-    public partial class AstCreateAlter
-    {
-        
-        public AstCreateAlter(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstCreateAlter _undefined()
-        {
-            return new AstCreateAlter(null);
-        }
-        
-        public static AstCreateAlter Create()
-        {
-            return new AstCreateAlter(Position.Default, "CREATE");
-        }
-        
-        public static AstCreateAlter Alter()
-        {
-            return new AstCreateAlter(Position.Default, "ALTER");
-        }
-    }
-    
-    public partial class AstAddDrop
-    {
-        
-        public AstAddDrop(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAddDrop _undefined()
-        {
-            return new AstAddDrop(null);
-        }
-        
-        public static AstAddDrop Add()
-        {
-            return new AstAddDrop(Position.Default, "ADD");
-        }
-        
-        public static AstAddDrop Drop()
-        {
-            return new AstAddDrop(Position.Default, "DROP");
-        }
-    }
-    
-    public partial class AstStartStop
+    /// <summary>
+    /// start_stop
+    /// 	 : START
+    /// 	 | STOP
+    /// </summary>
+    public partial class AstStartStop : AstTerminalKeyword
     {
         
         public AstStartStop(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstStartStop _undefined()
+        public AstStartStop(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstStartStop(null);
         }
         
+        /// <summary>
+        /// start_stop : START
+        /// </summary>
         public static AstStartStop Start()
         {
-            return new AstStartStop(Position.Default, "START");
+            return new AstStartStop(Position.Default, "START", "START");
         }
         
+        /// <summary>
+        /// start_stop : STOP
+        /// </summary>
         public static AstStartStop Stop()
         {
-            return new AstStartStop(Position.Default, "STOP");
+            return new AstStartStop(Position.Default, "STOP", "STOP");
+        }
+        
+        /// <summary>
+        /// start_stop : START
+        /// </summary>
+        public static AstStartStop Start(Position position)
+        {
+            return new AstStartStop(position, "START", "START");
+        }
+        
+        /// <summary>
+        /// start_stop : STOP
+        /// </summary>
+        public static AstStartStop Stop(Position position)
+        {
+            return new AstStartStop(position, "STOP", "STOP");
         }
     }
     
-    public partial class AstSetAdd
-    {
-        
-        public AstSetAdd(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstSetAdd _undefined()
-        {
-            return new AstSetAdd(null);
-        }
-        
-        public static AstSetAdd Set()
-        {
-            return new AstSetAdd(Position.Default, "SET");
-        }
-        
-        public static AstSetAdd Add()
-        {
-            return new AstSetAdd(Position.Default, "ADD");
-        }
-    }
-    
-    public partial class AstPlatform
-    {
-        
-        public AstPlatform(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstPlatform _undefined()
-        {
-            return new AstPlatform(null);
-        }
-        
-        public static AstPlatform Windows()
-        {
-            return new AstPlatform(Position.Default, "WINDOWS");
-        }
-        
-        public static AstPlatform Linux()
-        {
-            return new AstPlatform(Position.Default, "LINUX");
-        }
-    }
-    
-    public partial class AstCodeContent
-    {
-        
-        public AstCodeContent(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstCodeContent _undefined()
-        {
-            return new AstCodeContent(null);
-        }
-        
-        public static AstCodeContent None()
-        {
-            return new AstCodeContent(Position.Default, "NONE");
-        }
-    }
-    
-    public partial class AstCodeLanguage
-    {
-        
-        public AstCodeLanguage(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstCodeLanguage _undefined()
-        {
-            return new AstCodeLanguage(null);
-        }
-        
-        public static AstCodeLanguage R()
-        {
-            return new AstCodeLanguage(Position.Default, "R");
-        }
-        
-        public static AstCodeLanguage Python()
-        {
-            return new AstCodeLanguage(Position.Default, "PYTHON");
-        }
-    }
-    
-    public partial class AstPwdStrategy
-    {
-        
-        public AstPwdStrategy(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstPwdStrategy _undefined()
-        {
-            return new AstPwdStrategy(null);
-        }
-        
-        public static AstPwdStrategy MustChange()
-        {
-            return new AstPwdStrategy(Position.Default, "MUST_CHANGE");
-        }
-        
-        public static AstPwdStrategy Unlock()
-        {
-            return new AstPwdStrategy(Position.Default, "UNLOCK");
-        }
-    }
-    
-    public partial class AstEnableDisable
-    {
-        
-        public AstEnableDisable(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstEnableDisable _undefined()
-        {
-            return new AstEnableDisable(null);
-        }
-        
-        public static AstEnableDisable Enable()
-        {
-            return new AstEnableDisable(Position.Default, "ENABLE");
-        }
-        
-        public static AstEnableDisable Disable()
-        {
-            return new AstEnableDisable(Position.Default, "DISABLE");
-        }
-    }
-    
-    public partial class AstSplitOrMerge
+    /// <summary>
+    /// split_or_merge
+    /// 	 : SPLIT
+    /// 	 | MERGE
+    /// </summary>
+    public partial class AstSplitOrMerge : AstTerminalKeyword
     {
         
         public AstSplitOrMerge(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstSplitOrMerge _undefined()
+        public AstSplitOrMerge(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstSplitOrMerge(null);
         }
         
+        /// <summary>
+        /// split_or_merge : SPLIT
+        /// </summary>
         public static AstSplitOrMerge Split()
         {
-            return new AstSplitOrMerge(Position.Default, "SPLIT");
+            return new AstSplitOrMerge(Position.Default, "SPLIT", "SPLIT");
         }
         
+        /// <summary>
+        /// split_or_merge : MERGE
+        /// </summary>
         public static AstSplitOrMerge Merge()
         {
-            return new AstSplitOrMerge(Position.Default, "MERGE");
+            return new AstSplitOrMerge(Position.Default, "MERGE", "MERGE");
+        }
+        
+        /// <summary>
+        /// split_or_merge : SPLIT
+        /// </summary>
+        public static AstSplitOrMerge Split(Position position)
+        {
+            return new AstSplitOrMerge(position, "SPLIT", "SPLIT");
+        }
+        
+        /// <summary>
+        /// split_or_merge : MERGE
+        /// </summary>
+        public static AstSplitOrMerge Merge(Position position)
+        {
+            return new AstSplitOrMerge(position, "MERGE", "MERGE");
         }
     }
     
-    public partial class AstEnumDml
+    /// <summary>
+    /// enum_dml
+    /// 	 : SELECT
+    /// 	 | INSERT
+    /// 	 | DELETE
+    /// 	 | UPDATE
+    /// </summary>
+    public partial class AstEnumDml : AstTerminalKeyword
     {
         
         public AstEnumDml(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstEnumDml _undefined()
+        public AstEnumDml(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstEnumDml(null);
         }
         
+        /// <summary>
+        /// enum_dml : SELECT
+        /// </summary>
         public static AstEnumDml Select()
         {
-            return new AstEnumDml(Position.Default, "SELECT");
+            return new AstEnumDml(Position.Default, "SELECT", "SELECT");
         }
         
+        /// <summary>
+        /// enum_dml : INSERT
+        /// </summary>
         public static AstEnumDml Insert()
         {
-            return new AstEnumDml(Position.Default, "INSERT");
+            return new AstEnumDml(Position.Default, "INSERT", "INSERT");
         }
         
+        /// <summary>
+        /// enum_dml : DELETE
+        /// </summary>
         public static AstEnumDml Delete()
         {
-            return new AstEnumDml(Position.Default, "DELETE");
+            return new AstEnumDml(Position.Default, "DELETE", "DELETE");
         }
         
+        /// <summary>
+        /// enum_dml : UPDATE
+        /// </summary>
         public static AstEnumDml Update()
         {
-            return new AstEnumDml(Position.Default, "UPDATE");
+            return new AstEnumDml(Position.Default, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// enum_dml : SELECT
+        /// </summary>
+        public static AstEnumDml Select(Position position)
+        {
+            return new AstEnumDml(position, "SELECT", "SELECT");
+        }
+        
+        /// <summary>
+        /// enum_dml : INSERT
+        /// </summary>
+        public static AstEnumDml Insert(Position position)
+        {
+            return new AstEnumDml(position, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// enum_dml : DELETE
+        /// </summary>
+        public static AstEnumDml Delete(Position position)
+        {
+            return new AstEnumDml(position, "DELETE", "DELETE");
+        }
+        
+        /// <summary>
+        /// enum_dml : UPDATE
+        /// </summary>
+        public static AstEnumDml Update(Position position)
+        {
+            return new AstEnumDml(position, "UPDATE", "UPDATE");
         }
     }
     
-    public partial class AstInsertUpdate
+    /// <summary>
+    /// index_status_enum
+    /// 	 : DISABLE
+    /// 	 | PAUSE
+    /// 	 | ABORT
+    /// </summary>
+    public partial class AstIndexStatusEnum : AstTerminalKeyword
     {
         
-        public AstInsertUpdate(ITerminalNode t, string value) : 
-                base(t)
+        public AstIndexStatusEnum(ITerminalNode t, string value) : 
+                base(t, value)
         {
         }
         
-        public static AstInsertUpdate _undefined()
+        public AstIndexStatusEnum(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstInsertUpdate(null);
         }
         
-        public static AstInsertUpdate Insert()
+        /// <summary>
+        /// index_status_enum : DISABLE
+        /// </summary>
+        public static AstIndexStatusEnum Disable()
         {
-            return new AstInsertUpdate(Position.Default, "INSERT");
+            return new AstIndexStatusEnum(Position.Default, "DISABLE", "DISABLE");
         }
         
-        public static AstInsertUpdate Update()
+        /// <summary>
+        /// index_status_enum : PAUSE
+        /// </summary>
+        public static AstIndexStatusEnum Pause()
         {
-            return new AstInsertUpdate(Position.Default, "UPDATE");
+            return new AstIndexStatusEnum(Position.Default, "PAUSE", "PAUSE");
+        }
+        
+        /// <summary>
+        /// index_status_enum : ABORT
+        /// </summary>
+        public static AstIndexStatusEnum Abort()
+        {
+            return new AstIndexStatusEnum(Position.Default, "ABORT", "ABORT");
+        }
+        
+        /// <summary>
+        /// index_status_enum : DISABLE
+        /// </summary>
+        public static AstIndexStatusEnum Disable(Position position)
+        {
+            return new AstIndexStatusEnum(position, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// index_status_enum : PAUSE
+        /// </summary>
+        public static AstIndexStatusEnum Pause(Position position)
+        {
+            return new AstIndexStatusEnum(position, "PAUSE", "PAUSE");
+        }
+        
+        /// <summary>
+        /// index_status_enum : ABORT
+        /// </summary>
+        public static AstIndexStatusEnum Abort(Position position)
+        {
+            return new AstIndexStatusEnum(position, "ABORT", "ABORT");
         }
     }
     
-    public partial class AstUpdateDelate
-    {
-        
-        public AstUpdateDelate(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstUpdateDelate _undefined()
-        {
-            return new AstUpdateDelate(null);
-        }
-        
-        public static AstUpdateDelate Update()
-        {
-            return new AstUpdateDelate(Position.Default, "UPDATE");
-        }
-        
-        public static AstUpdateDelate Delete()
-        {
-            return new AstUpdateDelate(Position.Default, "DELETE");
-        }
-    }
-    
-    public partial class AstFilterBlock
-    {
-        
-        public AstFilterBlock(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstFilterBlock _undefined()
-        {
-            return new AstFilterBlock(null);
-        }
-        
-        public static AstFilterBlock Filter()
-        {
-            return new AstFilterBlock(Position.Default, "FILTER");
-        }
-        
-        public static AstFilterBlock Block()
-        {
-            return new AstFilterBlock(Position.Default, "BLOCK");
-        }
-    }
-    
-    public partial class AstSizeUnity
-    {
-        
-        public AstSizeUnity(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstSizeUnity _undefined()
-        {
-            return new AstSizeUnity(null);
-        }
-        
-        public static AstSizeUnity Mb()
-        {
-            return new AstSizeUnity(Position.Default, "MB");
-        }
-        
-        public static AstSizeUnity Gb()
-        {
-            return new AstSizeUnity(Position.Default, "GB");
-        }
-        
-        public static AstSizeUnity Tb()
-        {
-            return new AstSizeUnity(Position.Default, "TB");
-        }
-    }
-    
-    public partial class AstContinueShutdown
-    {
-        
-        public AstContinueShutdown(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstContinueShutdown _undefined()
-        {
-            return new AstContinueShutdown(null);
-        }
-        
-        public static AstContinueShutdown Continue()
-        {
-            return new AstContinueShutdown(Position.Default, "CONTINUE");
-        }
-        
-        public static AstContinueShutdown Shutdown()
-        {
-            return new AstContinueShutdown(Position.Default, "SHUTDOWN");
-        }
-        
-        public static AstContinueShutdown FailOperation()
-        {
-            return new AstContinueShutdown(Position.Default, "FAIL_OPERATION");
-        }
-    }
-    
-    public partial class AstAuditOperator
-    {
-        
-        public AstAuditOperator(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAuditOperator _undefined()
-        {
-            return new AstAuditOperator(null);
-        }
-        
-        public static AstAuditOperator Equal()
-        {
-            return new AstAuditOperator(Position.Default, "=");
-        }
-        
-        public static AstAuditOperator Less()
-        {
-            return new AstAuditOperator(Position.Default, "<");
-        }
-        
-        public static AstAuditOperator Greater()
-        {
-            return new AstAuditOperator(Position.Default, ">");
-        }
-        
-        public static AstAuditOperator Exclamation()
-        {
-            return new AstAuditOperator(Position.Default, "!");
-        }
-    }
-    
-    public partial class AstAndOr
-    {
-        
-        public AstAndOr(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAndOr _undefined()
-        {
-            return new AstAndOr(null);
-        }
-        
-        public static AstAndOr And()
-        {
-            return new AstAndOr(Position.Default, "AND");
-        }
-        
-        public static AstAndOr Or()
-        {
-            return new AstAndOr(Position.Default, "OR");
-        }
-    }
-    
-    public partial class AstCreateUserWithLogin
-    {
-        
-        public AstCreateUserWithLogin(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstCreateUserWithLogin _undefined()
-        {
-            return new AstCreateUserWithLogin(null);
-        }
-        
-        public static AstCreateUserWithLogin Login()
-        {
-            return new AstCreateUserWithLogin(Position.Default, "LOGIN");
-        }
-        
-        public static AstCreateUserWithLogin With()
-        {
-            return new AstCreateUserWithLogin(Position.Default, "WITH");
-        }
-    }
-    
-    public partial class AstForFrom
-    {
-        
-        public AstForFrom(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstForFrom _undefined()
-        {
-            return new AstForFrom(null);
-        }
-        
-        public static AstForFrom For()
-        {
-            return new AstForFrom(Position.Default, "FOR");
-        }
-        
-        public static AstForFrom From()
-        {
-            return new AstForFrom(Position.Default, "FROM");
-        }
-    }
-    
-    public partial class AstImportanceLevel
-    {
-        
-        public AstImportanceLevel(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstImportanceLevel _undefined()
-        {
-            return new AstImportanceLevel(null);
-        }
-        
-        public static AstImportanceLevel Low()
-        {
-            return new AstImportanceLevel(Position.Default, "LOW");
-        }
-        
-        public static AstImportanceLevel Medium()
-        {
-            return new AstImportanceLevel(Position.Default, "MEDIUM");
-        }
-        
-        public static AstImportanceLevel High()
-        {
-            return new AstImportanceLevel(Position.Default, "HIGH");
-        }
-    }
-    
-    public partial class AstNonePartial
-    {
-        
-        public AstNonePartial(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstNonePartial _undefined()
-        {
-            return new AstNonePartial(null);
-        }
-        
-        public static AstNonePartial None()
-        {
-            return new AstNonePartial(Position.Default, "NONE");
-        }
-        
-        public static AstNonePartial Partial()
-        {
-            return new AstNonePartial(Position.Default, "PARTIAL");
-        }
-    }
-    
-    public partial class AstDatacompressionMode
-    {
-        
-        public AstDatacompressionMode(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDatacompressionMode _undefined()
-        {
-            return new AstDatacompressionMode(null);
-        }
-        
-        public static AstDatacompressionMode None()
-        {
-            return new AstDatacompressionMode(Position.Default, "NONE");
-        }
-        
-        public static AstDatacompressionMode Row()
-        {
-            return new AstDatacompressionMode(Position.Default, "ROW");
-        }
-        
-        public static AstDatacompressionMode Page()
-        {
-            return new AstDatacompressionMode(Position.Default, "PAGE");
-        }
-        
-        public static AstDatacompressionMode Columnstore()
-        {
-            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE");
-        }
-        
-        public static AstDatacompressionMode ColumnstoreArchive()
-        {
-            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE_ARCHIVE");
-        }
-    }
-    
-    public partial class AstDmlTriggerOperation
+    /// <summary>
+    /// dml_trigger_operation
+    /// 	 : INSERT
+    /// 	 | UPDATE
+    /// 	 | DELETE
+    /// </summary>
+    public partial class AstDmlTriggerOperation : AstTerminalKeyword
     {
         
         public AstDmlTriggerOperation(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstDmlTriggerOperation _undefined()
+        public AstDmlTriggerOperation(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstDmlTriggerOperation(null);
         }
         
+        /// <summary>
+        /// dml_trigger_operation : INSERT
+        /// </summary>
         public static AstDmlTriggerOperation Insert()
         {
-            return new AstDmlTriggerOperation(Position.Default, "INSERT");
+            return new AstDmlTriggerOperation(Position.Default, "INSERT", "INSERT");
         }
         
+        /// <summary>
+        /// dml_trigger_operation : UPDATE
+        /// </summary>
         public static AstDmlTriggerOperation Update()
         {
-            return new AstDmlTriggerOperation(Position.Default, "UPDATE");
+            return new AstDmlTriggerOperation(Position.Default, "UPDATE", "UPDATE");
         }
         
+        /// <summary>
+        /// dml_trigger_operation : DELETE
+        /// </summary>
         public static AstDmlTriggerOperation Delete()
         {
-            return new AstDmlTriggerOperation(Position.Default, "DELETE");
+            return new AstDmlTriggerOperation(Position.Default, "DELETE", "DELETE");
+        }
+        
+        /// <summary>
+        /// dml_trigger_operation : INSERT
+        /// </summary>
+        public static AstDmlTriggerOperation Insert(Position position)
+        {
+            return new AstDmlTriggerOperation(position, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// dml_trigger_operation : UPDATE
+        /// </summary>
+        public static AstDmlTriggerOperation Update(Position position)
+        {
+            return new AstDmlTriggerOperation(position, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// dml_trigger_operation : DELETE
+        /// </summary>
+        public static AstDmlTriggerOperation Delete(Position position)
+        {
+            return new AstDmlTriggerOperation(position, "DELETE", "DELETE");
         }
     }
     
-    public partial class AstForAfter
-    {
-        
-        public AstForAfter(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstForAfter _undefined()
-        {
-            return new AstForAfter(null);
-        }
-        
-        public static AstForAfter For()
-        {
-            return new AstForAfter(Position.Default, "FOR");
-        }
-        
-        public static AstForAfter After()
-        {
-            return new AstForAfter(Position.Default, "AFTER");
-        }
-    }
-    
-    public partial class AstIndexStrategy
-    {
-        
-        public AstIndexStrategy(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstIndexStrategy _undefined()
-        {
-            return new AstIndexStrategy(null);
-        }
-        
-        public static AstIndexStrategy None()
-        {
-            return new AstIndexStrategy(Position.Default, "NONE");
-        }
-        
-        public static AstIndexStrategy Row()
-        {
-            return new AstIndexStrategy(Position.Default, "ROW");
-        }
-        
-        public static AstIndexStrategy Page()
-        {
-            return new AstIndexStrategy(Position.Default, "PAGE");
-        }
-        
-        public static AstIndexStrategy Columnstore()
-        {
-            return new AstIndexStrategy(Position.Default, "COLUMNSTORE");
-        }
-        
-        public static AstIndexStrategy ColumnstoreArchive()
-        {
-            return new AstIndexStrategy(Position.Default, "COLUMNSTORE_ARCHIVE");
-        }
-    }
-    
-    public partial class AstViewAttribute
-    {
-        
-        public AstViewAttribute(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstViewAttribute _undefined()
-        {
-            return new AstViewAttribute(null);
-        }
-        
-        public static AstViewAttribute Encryption()
-        {
-            return new AstViewAttribute(Position.Default, "ENCRYPTION");
-        }
-        
-        public static AstViewAttribute Schemabinding()
-        {
-            return new AstViewAttribute(Position.Default, "SCHEMABINDING");
-        }
-        
-        public static AstViewAttribute ViewMetadata()
-        {
-            return new AstViewAttribute(Position.Default, "VIEW_METADATA");
-        }
-    }
-    
-    public partial class AstFilegroupUpdatabilityOption
+    /// <summary>
+    /// filegroup_updatability_option
+    /// 	 : READONLY
+    /// 	 | READWRITE
+    /// 	 | READ_ONLY
+    /// 	 | READ_WRITE
+    /// </summary>
+    public partial class AstFilegroupUpdatabilityOption : AstTerminalKeyword
     {
         
         public AstFilegroupUpdatabilityOption(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstFilegroupUpdatabilityOption _undefined()
+        public AstFilegroupUpdatabilityOption(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstFilegroupUpdatabilityOption(null);
         }
         
+        /// <summary>
+        /// filegroup_updatability_option : READONLY
+        /// </summary>
         public static AstFilegroupUpdatabilityOption Readonly()
         {
-            return new AstFilegroupUpdatabilityOption(Position.Default, "READONLY");
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READONLY", "READONLY");
         }
         
+        /// <summary>
+        /// filegroup_updatability_option : READWRITE
+        /// </summary>
         public static AstFilegroupUpdatabilityOption Readwrite()
         {
-            return new AstFilegroupUpdatabilityOption(Position.Default, "READWRITE");
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READWRITE", "READWRITE");
         }
         
+        /// <summary>
+        /// filegroup_updatability_option : READ_ONLY
+        /// </summary>
         public static AstFilegroupUpdatabilityOption ReadOnly()
         {
-            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_ONLY");
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_ONLY", "READ_ONLY");
         }
         
+        /// <summary>
+        /// filegroup_updatability_option : READ_WRITE
+        /// </summary>
         public static AstFilegroupUpdatabilityOption ReadWrite()
         {
-            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_WRITE");
+            return new AstFilegroupUpdatabilityOption(Position.Default, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// filegroup_updatability_option : READONLY
+        /// </summary>
+        public static AstFilegroupUpdatabilityOption Readonly(Position position)
+        {
+            return new AstFilegroupUpdatabilityOption(position, "READONLY", "READONLY");
+        }
+        
+        /// <summary>
+        /// filegroup_updatability_option : READWRITE
+        /// </summary>
+        public static AstFilegroupUpdatabilityOption Readwrite(Position position)
+        {
+            return new AstFilegroupUpdatabilityOption(position, "READWRITE", "READWRITE");
+        }
+        
+        /// <summary>
+        /// filegroup_updatability_option : READ_ONLY
+        /// </summary>
+        public static AstFilegroupUpdatabilityOption ReadOnly(Position position)
+        {
+            return new AstFilegroupUpdatabilityOption(position, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// filegroup_updatability_option : READ_WRITE
+        /// </summary>
+        public static AstFilegroupUpdatabilityOption ReadWrite(Position position)
+        {
+            return new AstFilegroupUpdatabilityOption(position, "READ_WRITE", "READ_WRITE");
         }
     }
     
-    public partial class AstPeriod
+    /// <summary>
+    /// grant_permission_alter
+    /// 	 : ALTER  (ANY  (APPLICATION  ROLE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | COLUMN  (ENCRYPTION  KEY | MASTER  KEY) | CONNECTION | CONTRACT | CREDENTIAL | DATABASE  (AUDIT | DDL  TRIGGER | EVENT  (NOTIFICATION | SESSION) | SCOPED  CONFIGURATION)? | DATASPACE | ENDPOINT | EVENT  (NOTIFICATION | SESSION) | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY) | FULLTEXT  CATALOG | LINKED  SERVER | LOGIN | MASK | MESSAGE  TYPE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | SCHEMA | SECURITY  POLICY | SERVER  (AUDIT | ROLE) | SERVICE | SYMMETRIC  KEY | USER) | RESOURCES | SERVER  STATE | SETTINGS | TRACE)?
+    /// </summary>
+    public partial class AstGrantPermissionAlter : AstTerminalKeyword
     {
         
-        public AstPeriod(ITerminalNode t, string value) : 
-                base(t)
+        public AstGrantPermissionAlter(ITerminalNode t, string value) : 
+                base(t, value)
         {
         }
         
-        public static AstPeriod _undefined()
+        public AstGrantPermissionAlter(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstPeriod(null);
         }
         
-        public static AstPeriod Days()
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY APPLICATION ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyApplicationRole()
         {
-            return new AstPeriod(Position.Default, "DAYS");
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY APPLICATION ROLE", "ALTER ANY APPLICATION ROLE");
         }
         
-        public static AstPeriod Hours()
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAssembly()
         {
-            return new AstPeriod(Position.Default, "HOURS");
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY ASSEMBLY", "ALTER ANY ASSEMBLY");
         }
         
-        public static AstPeriod Minutes()
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ASYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAsymmetricKey()
         {
-            return new AstPeriod(Position.Default, "MINUTES");
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY ASYMMETRIC KEY", "ALTER ANY ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY AVAILABILITY GROUP
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAvailabilityGroup()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY AVAILABILITY GROUP", "ALTER ANY AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CERTIFICATE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyCertificate()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY CERTIFICATE", "ALTER ANY CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY COLUMN ENCRYPTION KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyColumnEncryptionKey()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY COLUMN ENCRYPTION KEY", "ALTER ANY COLUMN ENCRYPTION KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY COLUMN MASTER KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyColumnMasterKey()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY COLUMN MASTER KEY", "ALTER ANY COLUMN MASTER KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CONNECTION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyConnection()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY CONNECTION", "ALTER ANY CONNECTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CONTRACT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyContract()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY CONTRACT", "ALTER ANY CONTRACT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CREDENTIAL
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyCredential()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY CREDENTIAL", "ALTER ANY CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE AUDIT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseAudit()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATABASE AUDIT", "ALTER ANY DATABASE AUDIT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE DDL TRIGGER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseDdlTrigger()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATABASE DDL TRIGGER", "ALTER ANY DATABASE DDL TRIGGER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseEventNotification()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATABASE EVENT NOTIFICATION", "ALTER ANY DATABASE EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE EVENT SESSION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseEventSession()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATABASE EVENT SESSION", "ALTER ANY DATABASE EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE SCOPED CONFIGURATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseScopedConfiguration()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATABASE SCOPED CONFIGURATION", "ALTER ANY DATABASE SCOPED CONFIGURATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATASPACE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDataspace()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY DATASPACE", "ALTER ANY DATASPACE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ENDPOINT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEndpoint()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY ENDPOINT", "ALTER ANY ENDPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEventNotification()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY EVENT NOTIFICATION", "ALTER ANY EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EVENT SESSION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEventSession()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY EVENT SESSION", "ALTER ANY EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL DATA SOURCE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalDataSource()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY EXTERNAL DATA SOURCE", "ALTER ANY EXTERNAL DATA SOURCE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL FILE FORMAT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalFileFormat()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY EXTERNAL FILE FORMAT", "ALTER ANY EXTERNAL FILE FORMAT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL LIBRARY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalLibrary()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY EXTERNAL LIBRARY", "ALTER ANY EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY FULLTEXT CATALOG
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyFulltextCatalog()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY FULLTEXT CATALOG", "ALTER ANY FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY LINKED SERVER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyLinkedServer()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY LINKED SERVER", "ALTER ANY LINKED SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY LOGIN
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyLogin()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY LOGIN", "ALTER ANY LOGIN");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY MASK
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyMask()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY MASK", "ALTER ANY MASK");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY MESSAGE TYPE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyMessageType()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY MESSAGE TYPE", "ALTER ANY MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRemoteServiceBinding()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY REMOTE SERVICE BINDING", "ALTER ANY REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRole()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY ROLE", "ALTER ANY ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ROUTE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRoute()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY ROUTE", "ALTER ANY ROUTE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SCHEMA
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySchema()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SCHEMA", "ALTER ANY SCHEMA");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SECURITY POLICY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySecurityPolicy()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SECURITY POLICY", "ALTER ANY SECURITY POLICY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVER AUDIT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyServerAudit()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SERVER AUDIT", "ALTER ANY SERVER AUDIT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVER ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyServerRole()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SERVER ROLE", "ALTER ANY SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVICE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyService()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SERVICE", "ALTER ANY SERVICE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySymmetricKey()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY SYMMETRIC KEY", "ALTER ANY SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY USER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyUser()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER ANY USER", "ALTER ANY USER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER RESOURCES
+        /// </summary>
+        public static AstGrantPermissionAlter AlterResources()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER RESOURCES", "ALTER RESOURCES");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER SERVER STATE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterServerState()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER SERVER STATE", "ALTER SERVER STATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER SETTINGS
+        /// </summary>
+        public static AstGrantPermissionAlter AlterSettings()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER SETTINGS", "ALTER SETTINGS");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER TRACE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterTrace()
+        {
+            return new AstGrantPermissionAlter(Position.Default, "ALTER TRACE", "ALTER TRACE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY APPLICATION ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyApplicationRole(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY APPLICATION ROLE", "ALTER ANY APPLICATION ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAssembly(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY ASSEMBLY", "ALTER ANY ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ASYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAsymmetricKey(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY ASYMMETRIC KEY", "ALTER ANY ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY AVAILABILITY GROUP
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyAvailabilityGroup(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY AVAILABILITY GROUP", "ALTER ANY AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CERTIFICATE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyCertificate(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY CERTIFICATE", "ALTER ANY CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY COLUMN ENCRYPTION KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyColumnEncryptionKey(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY COLUMN ENCRYPTION KEY", "ALTER ANY COLUMN ENCRYPTION KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY COLUMN MASTER KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyColumnMasterKey(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY COLUMN MASTER KEY", "ALTER ANY COLUMN MASTER KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CONNECTION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyConnection(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY CONNECTION", "ALTER ANY CONNECTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CONTRACT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyContract(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY CONTRACT", "ALTER ANY CONTRACT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY CREDENTIAL
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyCredential(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY CREDENTIAL", "ALTER ANY CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE AUDIT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseAudit(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATABASE AUDIT", "ALTER ANY DATABASE AUDIT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE DDL TRIGGER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseDdlTrigger(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATABASE DDL TRIGGER", "ALTER ANY DATABASE DDL TRIGGER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseEventNotification(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATABASE EVENT NOTIFICATION", "ALTER ANY DATABASE EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE EVENT SESSION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseEventSession(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATABASE EVENT SESSION", "ALTER ANY DATABASE EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATABASE SCOPED CONFIGURATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDatabaseScopedConfiguration(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATABASE SCOPED CONFIGURATION", "ALTER ANY DATABASE SCOPED CONFIGURATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY DATASPACE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyDataspace(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY DATASPACE", "ALTER ANY DATASPACE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ENDPOINT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEndpoint(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY ENDPOINT", "ALTER ANY ENDPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEventNotification(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY EVENT NOTIFICATION", "ALTER ANY EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EVENT SESSION
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyEventSession(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY EVENT SESSION", "ALTER ANY EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL DATA SOURCE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalDataSource(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY EXTERNAL DATA SOURCE", "ALTER ANY EXTERNAL DATA SOURCE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL FILE FORMAT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalFileFormat(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY EXTERNAL FILE FORMAT", "ALTER ANY EXTERNAL FILE FORMAT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY EXTERNAL LIBRARY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyExternalLibrary(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY EXTERNAL LIBRARY", "ALTER ANY EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY FULLTEXT CATALOG
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyFulltextCatalog(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY FULLTEXT CATALOG", "ALTER ANY FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY LINKED SERVER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyLinkedServer(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY LINKED SERVER", "ALTER ANY LINKED SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY LOGIN
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyLogin(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY LOGIN", "ALTER ANY LOGIN");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY MASK
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyMask(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY MASK", "ALTER ANY MASK");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY MESSAGE TYPE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyMessageType(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY MESSAGE TYPE", "ALTER ANY MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRemoteServiceBinding(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY REMOTE SERVICE BINDING", "ALTER ANY REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRole(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY ROLE", "ALTER ANY ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY ROUTE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyRoute(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY ROUTE", "ALTER ANY ROUTE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SCHEMA
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySchema(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SCHEMA", "ALTER ANY SCHEMA");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SECURITY POLICY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySecurityPolicy(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SECURITY POLICY", "ALTER ANY SECURITY POLICY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVER AUDIT
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyServerAudit(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SERVER AUDIT", "ALTER ANY SERVER AUDIT");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVER ROLE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyServerRole(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SERVER ROLE", "ALTER ANY SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SERVICE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyService(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SERVICE", "ALTER ANY SERVICE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY SYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnySymmetricKey(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY SYMMETRIC KEY", "ALTER ANY SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER ANY USER
+        /// </summary>
+        public static AstGrantPermissionAlter AlterAnyUser(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER ANY USER", "ALTER ANY USER");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER RESOURCES
+        /// </summary>
+        public static AstGrantPermissionAlter AlterResources(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER RESOURCES", "ALTER RESOURCES");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER SERVER STATE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterServerState(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER SERVER STATE", "ALTER SERVER STATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER SETTINGS
+        /// </summary>
+        public static AstGrantPermissionAlter AlterSettings(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER SETTINGS", "ALTER SETTINGS");
+        }
+        
+        /// <summary>
+        /// grant_permission_alter : ALTER TRACE
+        /// </summary>
+        public static AstGrantPermissionAlter AlterTrace(Position position)
+        {
+            return new AstGrantPermissionAlter(position, "ALTER TRACE", "ALTER TRACE");
         }
     }
     
-    public partial class AstLocalGlobal
+    /// <summary>
+    /// grant_permission_create
+    /// 	 : CREATE  (AGGREGATE | ANY  DATABASE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | CONTRACT | DATABASE  (DDL  EVENT  NOTIFICATION)? | DDL  EVENT  NOTIFICATION | DEFAULT | ENDPOINT | EXTERNAL  LIBRARY | FULLTEXT  CATALOG | FUNCTION | MESSAGE  TYPE | PROCEDURE | QUEUE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | RULE | SCHEMA | SEQUENCE | SERVER  ROLE | SERVICE | SYMMETRIC  KEY | SYNONYM | TABLE | TRACE  EVENT  NOTIFICATION | TYPE | VIEW | XML  SCHEMA  COLLECTION)
+    /// </summary>
+    public partial class AstGrantPermissionCreate : AstTerminalKeyword
     {
         
-        public AstLocalGlobal(ITerminalNode t, string value) : 
-                base(t)
+        public AstGrantPermissionCreate(ITerminalNode t, string value) : 
+                base(t, value)
         {
         }
         
-        public static AstLocalGlobal _undefined()
+        public AstGrantPermissionCreate(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstLocalGlobal(null);
         }
         
-        public static AstLocalGlobal Local()
+        /// <summary>
+        /// grant_permission_create : CREATE AGGREGATE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAggregate()
         {
-            return new AstLocalGlobal(Position.Default, "LOCAL");
+            return new AstGrantPermissionCreate(Position.Default, "CREATE AGGREGATE", "CREATE AGGREGATE");
         }
         
-        public static AstLocalGlobal Global()
+        /// <summary>
+        /// grant_permission_create : CREATE ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAnyDatabase()
         {
-            return new AstLocalGlobal(Position.Default, "GLOBAL");
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ANY DATABASE", "CREATE ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAssembly()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ASSEMBLY", "CREATE ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ASYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAsymmetricKey()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ASYMMETRIC KEY", "CREATE ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE AVAILABILITY GROUP
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAvailabilityGroup()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE AVAILABILITY GROUP", "CREATE AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE CERTIFICATE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateCertificate()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE CERTIFICATE", "CREATE CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE CONTRACT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateContract()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE CONTRACT", "CREATE CONTRACT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DATABASE DDL EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDatabaseDdlEventNotification()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE DATABASE DDL EVENT NOTIFICATION", "CREATE DATABASE DDL EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DATABASE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDatabase()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE DATABASE", "CREATE DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DDL EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDdlEventNotification()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE DDL EVENT NOTIFICATION", "CREATE DDL EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DEFAULT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDefault()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE DEFAULT", "CREATE DEFAULT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ENDPOINT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateEndpoint()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ENDPOINT", "CREATE ENDPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE EXTERNAL LIBRARY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateExternalLibrary()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE EXTERNAL LIBRARY", "CREATE EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE FULLTEXT CATALOG
+        /// </summary>
+        public static AstGrantPermissionCreate CreateFulltextCatalog()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE FULLTEXT CATALOG", "CREATE FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE FUNCTION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateFunction()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE FUNCTION", "CREATE FUNCTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE MESSAGE TYPE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateMessageType()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE MESSAGE TYPE", "CREATE MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE PROCEDURE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateProcedure()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE PROCEDURE", "CREATE PROCEDURE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE QUEUE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateQueue()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE QUEUE", "CREATE QUEUE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRemoteServiceBinding()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE REMOTE SERVICE BINDING", "CREATE REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ROLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRole()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ROLE", "CREATE ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ROUTE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRoute()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE ROUTE", "CREATE ROUTE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE RULE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRule()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE RULE", "CREATE RULE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SCHEMA
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSchema()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SCHEMA", "CREATE SCHEMA");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SEQUENCE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSequence()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SEQUENCE", "CREATE SEQUENCE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SERVER ROLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateServerRole()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SERVER ROLE", "CREATE SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SERVICE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateService()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SERVICE", "CREATE SERVICE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSymmetricKey()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SYMMETRIC KEY", "CREATE SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SYNONYM
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSynonym()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE SYNONYM", "CREATE SYNONYM");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TABLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateTable()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE TABLE", "CREATE TABLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TRACE EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateTraceEventNotification()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE TRACE EVENT NOTIFICATION", "CREATE TRACE EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TYPE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateType()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE TYPE", "CREATE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE VIEW
+        /// </summary>
+        public static AstGrantPermissionCreate CreateView()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE VIEW", "CREATE VIEW");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateXmlSchemaCollection()
+        {
+            return new AstGrantPermissionCreate(Position.Default, "CREATE XML SCHEMA COLLECTION", "CREATE XML SCHEMA COLLECTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE AGGREGATE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAggregate(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE AGGREGATE", "CREATE AGGREGATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAnyDatabase(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ANY DATABASE", "CREATE ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAssembly(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ASSEMBLY", "CREATE ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ASYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAsymmetricKey(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ASYMMETRIC KEY", "CREATE ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE AVAILABILITY GROUP
+        /// </summary>
+        public static AstGrantPermissionCreate CreateAvailabilityGroup(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE AVAILABILITY GROUP", "CREATE AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE CERTIFICATE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateCertificate(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE CERTIFICATE", "CREATE CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE CONTRACT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateContract(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE CONTRACT", "CREATE CONTRACT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DATABASE DDL EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDatabaseDdlEventNotification(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE DATABASE DDL EVENT NOTIFICATION", "CREATE DATABASE DDL EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DATABASE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDatabase(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE DATABASE", "CREATE DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DDL EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDdlEventNotification(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE DDL EVENT NOTIFICATION", "CREATE DDL EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE DEFAULT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateDefault(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE DEFAULT", "CREATE DEFAULT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ENDPOINT
+        /// </summary>
+        public static AstGrantPermissionCreate CreateEndpoint(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ENDPOINT", "CREATE ENDPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE EXTERNAL LIBRARY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateExternalLibrary(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE EXTERNAL LIBRARY", "CREATE EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE FULLTEXT CATALOG
+        /// </summary>
+        public static AstGrantPermissionCreate CreateFulltextCatalog(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE FULLTEXT CATALOG", "CREATE FULLTEXT CATALOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE FUNCTION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateFunction(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE FUNCTION", "CREATE FUNCTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE MESSAGE TYPE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateMessageType(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE MESSAGE TYPE", "CREATE MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE PROCEDURE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateProcedure(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE PROCEDURE", "CREATE PROCEDURE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE QUEUE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateQueue(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE QUEUE", "CREATE QUEUE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRemoteServiceBinding(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE REMOTE SERVICE BINDING", "CREATE REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ROLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRole(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ROLE", "CREATE ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE ROUTE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRoute(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE ROUTE", "CREATE ROUTE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE RULE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateRule(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE RULE", "CREATE RULE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SCHEMA
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSchema(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SCHEMA", "CREATE SCHEMA");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SEQUENCE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSequence(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SEQUENCE", "CREATE SEQUENCE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SERVER ROLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateServerRole(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SERVER ROLE", "CREATE SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SERVICE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateService(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SERVICE", "CREATE SERVICE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SYMMETRIC KEY
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSymmetricKey(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SYMMETRIC KEY", "CREATE SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE SYNONYM
+        /// </summary>
+        public static AstGrantPermissionCreate CreateSynonym(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE SYNONYM", "CREATE SYNONYM");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TABLE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateTable(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE TABLE", "CREATE TABLE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TRACE EVENT NOTIFICATION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateTraceEventNotification(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE TRACE EVENT NOTIFICATION", "CREATE TRACE EVENT NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE TYPE
+        /// </summary>
+        public static AstGrantPermissionCreate CreateType(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE TYPE", "CREATE TYPE");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE VIEW
+        /// </summary>
+        public static AstGrantPermissionCreate CreateView(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE VIEW", "CREATE VIEW");
+        }
+        
+        /// <summary>
+        /// grant_permission_create : CREATE XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstGrantPermissionCreate CreateXmlSchemaCollection(Position position)
+        {
+            return new AstGrantPermissionCreate(position, "CREATE XML SCHEMA COLLECTION", "CREATE XML SCHEMA COLLECTION");
         }
     }
     
-    public partial class AstStateEnum
-    {
-        
-        public AstStateEnum(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstStateEnum _undefined()
-        {
-            return new AstStateEnum(null);
-        }
-        
-        public static AstStateEnum Started()
-        {
-            return new AstStateEnum(Position.Default, "STARTED");
-        }
-        
-        public static AstStateEnum Stopped()
-        {
-            return new AstStateEnum(Position.Default, "STOPPED");
-        }
-        
-        public static AstStateEnum Disabled()
-        {
-            return new AstStateEnum(Position.Default, "DISABLED");
-        }
-    }
-    
-    public partial class AstAuthenticationMode
-    {
-        
-        public AstAuthenticationMode(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAuthenticationMode _undefined()
-        {
-            return new AstAuthenticationMode(null);
-        }
-        
-        public static AstAuthenticationMode Ntlm()
-        {
-            return new AstAuthenticationMode(Position.Default, "NTLM");
-        }
-        
-        public static AstAuthenticationMode Kerberos()
-        {
-            return new AstAuthenticationMode(Position.Default, "KERBEROS");
-        }
-        
-        public static AstAuthenticationMode Negotiate()
-        {
-            return new AstAuthenticationMode(Position.Default, "NEGOTIATE");
-        }
-    }
-    
-    public partial class AstDbStateOption
-    {
-        
-        public AstDbStateOption(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDbStateOption _undefined()
-        {
-            return new AstDbStateOption(null);
-        }
-        
-        public static AstDbStateOption Online()
-        {
-            return new AstDbStateOption(Position.Default, "ONLINE");
-        }
-        
-        public static AstDbStateOption Offline()
-        {
-            return new AstDbStateOption(Position.Default, "OFFLINE");
-        }
-        
-        public static AstDbStateOption Emergency()
-        {
-            return new AstDbStateOption(Position.Default, "EMERGENCY");
-        }
-    }
-    
-    public partial class AstDbUpdateOption
-    {
-        
-        public AstDbUpdateOption(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDbUpdateOption _undefined()
-        {
-            return new AstDbUpdateOption(null);
-        }
-        
-        public static AstDbUpdateOption ReadOnly()
-        {
-            return new AstDbUpdateOption(Position.Default, "READ_ONLY");
-        }
-        
-        public static AstDbUpdateOption ReadWrite()
-        {
-            return new AstDbUpdateOption(Position.Default, "READ_WRITE");
-        }
-    }
-    
-    public partial class AstDbUserAccessOption
-    {
-        
-        public AstDbUserAccessOption(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDbUserAccessOption _undefined()
-        {
-            return new AstDbUserAccessOption(null);
-        }
-        
-        public static AstDbUserAccessOption SingleUser()
-        {
-            return new AstDbUserAccessOption(Position.Default, "SINGLE_USER");
-        }
-        
-        public static AstDbUserAccessOption RestrictedUser()
-        {
-            return new AstDbUserAccessOption(Position.Default, "RESTRICTED_USER");
-        }
-        
-        public static AstDbUserAccessOption MultiUser()
-        {
-            return new AstDbUserAccessOption(Position.Default, "MULTI_USER");
-        }
-    }
-    
-    public partial class AstCompression
-    {
-        
-        public AstCompression(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstCompression _undefined()
-        {
-            return new AstCompression(null);
-        }
-        
-        public static AstCompression Compression()
-        {
-            return new AstCompression(Position.Default, "COMPRESSION");
-        }
-        
-        public static AstCompression NoCompression()
-        {
-            return new AstCompression(Position.Default, "NO_COMPRESSION");
-        }
-    }
-    
-    public partial class AstInitNoInit
-    {
-        
-        public AstInitNoInit(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstInitNoInit _undefined()
-        {
-            return new AstInitNoInit(null);
-        }
-        
-        public static AstInitNoInit Noinit()
-        {
-            return new AstInitNoInit(Position.Default, "NOINIT");
-        }
-        
-        public static AstInitNoInit Init()
-        {
-            return new AstInitNoInit(Position.Default, "INIT");
-        }
-    }
-    
-    public partial class AstNoSkip
-    {
-        
-        public AstNoSkip(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstNoSkip _undefined()
-        {
-            return new AstNoSkip(null);
-        }
-        
-        public static AstNoSkip Noskip()
-        {
-            return new AstNoSkip(Position.Default, "NOSKIP");
-        }
-        
-        public static AstNoSkip SkipKeyword()
-        {
-            return new AstNoSkip(Position.Default, "SKIP");
-        }
-    }
-    
-    public partial class AstFormatNoformat
-    {
-        
-        public AstFormatNoformat(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstFormatNoformat _undefined()
-        {
-            return new AstFormatNoformat(null);
-        }
-        
-        public static AstFormatNoformat Noformat()
-        {
-            return new AstFormatNoformat(Position.Default, "NOFORMAT");
-        }
-        
-        public static AstFormatNoformat Format()
-        {
-            return new AstFormatNoformat(Position.Default, "FORMAT");
-        }
-    }
-    
-    public partial class AstDiskTapeUrl
-    {
-        
-        public AstDiskTapeUrl(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstDiskTapeUrl _undefined()
-        {
-            return new AstDiskTapeUrl(null);
-        }
-        
-        public static AstDiskTapeUrl Disk()
-        {
-            return new AstDiskTapeUrl(Position.Default, "DISK");
-        }
-        
-        public static AstDiskTapeUrl Tape()
-        {
-            return new AstDiskTapeUrl(Position.Default, "TAPE");
-        }
-        
-        public static AstDiskTapeUrl Url()
-        {
-            return new AstDiskTapeUrl(Position.Default, "URL");
-        }
-    }
-    
-    public partial class AstFileFileGroup
-    {
-        
-        public AstFileFileGroup(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstFileFileGroup _undefined()
-        {
-            return new AstFileFileGroup(null);
-        }
-        
-        public static AstFileFileGroup File()
-        {
-            return new AstFileFileGroup(Position.Default, "FILE");
-        }
-        
-        public static AstFileFileGroup Filegroup()
-        {
-            return new AstFileFileGroup(Position.Default, "FILEGROUP");
-        }
-    }
-    
-    public partial class AstLoadMounLoad
-    {
-        
-        public AstLoadMounLoad(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstLoadMounLoad _undefined()
-        {
-            return new AstLoadMounLoad(null);
-        }
-        
-        public static AstLoadMounLoad Load()
-        {
-            return new AstLoadMounLoad(Position.Default, "LOAD");
-        }
-        
-        public static AstLoadMounLoad Nounload()
-        {
-            return new AstLoadMounLoad(Position.Default, "NOUNLOAD");
-        }
-    }
-    
-    public partial class AstRewind
-    {
-        
-        public AstRewind(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstRewind _undefined()
-        {
-            return new AstRewind(null);
-        }
-        
-        public static AstRewind Rewind()
-        {
-            return new AstRewind(Position.Default, "REWIND");
-        }
-        
-        public static AstRewind Norewind()
-        {
-            return new AstRewind(Position.Default, "NOREWIND");
-        }
-    }
-    
-    public partial class AstAlgorithmShort
-    {
-        
-        public AstAlgorithmShort(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAlgorithmShort _undefined()
-        {
-            return new AstAlgorithmShort(null);
-        }
-        
-        public static AstAlgorithmShort Aes128()
-        {
-            return new AstAlgorithmShort(Position.Default, "AES_128");
-        }
-        
-        public static AstAlgorithmShort Aes192()
-        {
-            return new AstAlgorithmShort(Position.Default, "AES_192");
-        }
-        
-        public static AstAlgorithmShort Aes256()
-        {
-            return new AstAlgorithmShort(Position.Default, "AES_256");
-        }
-        
-        public static AstAlgorithmShort TripleDes3key()
-        {
-            return new AstAlgorithmShort(Position.Default, "TRIPLE_DES_3KEY");
-        }
-    }
-    
-    public partial class AstEncryptionDecryption
-    {
-        
-        public AstEncryptionDecryption(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstEncryptionDecryption _undefined()
-        {
-            return new AstEncryptionDecryption(null);
-        }
-        
-        public static AstEncryptionDecryption Decryption()
-        {
-            return new AstEncryptionDecryption(Position.Default, "DECRYPTION");
-        }
-        
-        public static AstEncryptionDecryption Encryption()
-        {
-            return new AstEncryptionDecryption(Position.Default, "ENCRYPTION");
-        }
-    }
-    
-    public partial class AstAlgorithm
-    {
-        
-        public AstAlgorithm(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAlgorithm _undefined()
-        {
-            return new AstAlgorithm(null);
-        }
-        
-        public static AstAlgorithm Des()
-        {
-            return new AstAlgorithm(Position.Default, "DES");
-        }
-        
-        public static AstAlgorithm TripleDes()
-        {
-            return new AstAlgorithm(Position.Default, "TRIPLE_DES");
-        }
-        
-        public static AstAlgorithm TripleDes3key()
-        {
-            return new AstAlgorithm(Position.Default, "TRIPLE_DES_3KEY");
-        }
-        
-        public static AstAlgorithm Rc2()
-        {
-            return new AstAlgorithm(Position.Default, "RC2");
-        }
-        
-        public static AstAlgorithm Rc4()
-        {
-            return new AstAlgorithm(Position.Default, "RC4");
-        }
-        
-        public static AstAlgorithm Rc4128()
-        {
-            return new AstAlgorithm(Position.Default, "RC4_128");
-        }
-        
-        public static AstAlgorithm Desx()
-        {
-            return new AstAlgorithm(Position.Default, "DESX");
-        }
-        
-        public static AstAlgorithm Aes128()
-        {
-            return new AstAlgorithm(Position.Default, "AES_128");
-        }
-        
-        public static AstAlgorithm Aes192()
-        {
-            return new AstAlgorithm(Position.Default, "AES_192");
-        }
-        
-        public static AstAlgorithm Aes256()
-        {
-            return new AstAlgorithm(Position.Default, "AES_256");
-        }
-    }
-    
-    public partial class AstTransaction
-    {
-        
-        public AstTransaction(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstTransaction _undefined()
-        {
-            return new AstTransaction(null);
-        }
-        
-        public static AstTransaction Tran()
-        {
-            return new AstTransaction(Position.Default, "TRAN");
-        }
-        
-        public static AstTransaction Transaction()
-        {
-            return new AstTransaction(Position.Default, "TRANSACTION");
-        }
-    }
-    
-    public partial class AstSensitive
-    {
-        
-        public AstSensitive(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstSensitive _undefined()
-        {
-            return new AstSensitive(null);
-        }
-        
-        public static AstSensitive SemiSensitive()
-        {
-            return new AstSensitive(Position.Default, "SEMI_SENSITIVE");
-        }
-        
-        public static AstSensitive Insensitive()
-        {
-            return new AstSensitive(Position.Default, "INSENSITIVE");
-        }
-    }
-    
-    public partial class AstAbsoluteRelative
-    {
-        
-        public AstAbsoluteRelative(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAbsoluteRelative _undefined()
-        {
-            return new AstAbsoluteRelative(null);
-        }
-        
-        public static AstAbsoluteRelative Absolute()
-        {
-            return new AstAbsoluteRelative(Position.Default, "ABSOLUTE");
-        }
-        
-        public static AstAbsoluteRelative Relative()
-        {
-            return new AstAbsoluteRelative(Position.Default, "RELATIVE");
-        }
-    }
-    
-    public partial class AstFetchCursorStrategy
-    {
-        
-        public AstFetchCursorStrategy(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstFetchCursorStrategy _undefined()
-        {
-            return new AstFetchCursorStrategy(null);
-        }
-        
-        public static AstFetchCursorStrategy Next()
-        {
-            return new AstFetchCursorStrategy(Position.Default, "NEXT");
-        }
-        
-        public static AstFetchCursorStrategy Prior()
-        {
-            return new AstFetchCursorStrategy(Position.Default, "PRIOR");
-        }
-        
-        public static AstFetchCursorStrategy First()
-        {
-            return new AstFetchCursorStrategy(Position.Default, "FIRST");
-        }
-        
-        public static AstFetchCursorStrategy Last()
-        {
-            return new AstFetchCursorStrategy(Position.Default, "LAST");
-        }
-    }
-    
-    public partial class AstSpecialList
-    {
-        
-        public AstSpecialList(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstSpecialList _undefined()
-        {
-            return new AstSpecialList(null);
-        }
-        
-        public static AstSpecialList AnsiNulls()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_NULLS");
-        }
-        
-        public static AstSpecialList QuotedIdentifier()
-        {
-            return new AstSpecialList(Position.Default, "QUOTED_IDENTIFIER");
-        }
-        
-        public static AstSpecialList AnsiPadding()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_PADDING");
-        }
-        
-        public static AstSpecialList AnsiWarnings()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_WARNINGS");
-        }
-        
-        public static AstSpecialList AnsiDefaults()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_DEFAULTS");
-        }
-        
-        public static AstSpecialList AnsiNullDfltOff()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_OFF");
-        }
-        
-        public static AstSpecialList AnsiNullDfltOn()
-        {
-            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_ON");
-        }
-        
-        public static AstSpecialList Arithabort()
-        {
-            return new AstSpecialList(Position.Default, "ARITHABORT");
-        }
-        
-        public static AstSpecialList Arithignore()
-        {
-            return new AstSpecialList(Position.Default, "ARITHIGNORE");
-        }
-        
-        public static AstSpecialList ConcatNullYieldsNull()
-        {
-            return new AstSpecialList(Position.Default, "CONCAT_NULL_YIELDS_NULL");
-        }
-        
-        public static AstSpecialList CursorCloseOnCommit()
-        {
-            return new AstSpecialList(Position.Default, "CURSOR_CLOSE_ON_COMMIT");
-        }
-        
-        public static AstSpecialList Fmtonly()
-        {
-            return new AstSpecialList(Position.Default, "FMTONLY");
-        }
-        
-        public static AstSpecialList Forceplan()
-        {
-            return new AstSpecialList(Position.Default, "FORCEPLAN");
-        }
-        
-        public static AstSpecialList ImplicitTransactions()
-        {
-            return new AstSpecialList(Position.Default, "IMPLICIT_TRANSACTIONS");
-        }
-        
-        public static AstSpecialList Nocount()
-        {
-            return new AstSpecialList(Position.Default, "NOCOUNT");
-        }
-        
-        public static AstSpecialList Noexec()
-        {
-            return new AstSpecialList(Position.Default, "NOEXEC");
-        }
-        
-        public static AstSpecialList NumericRoundabort()
-        {
-            return new AstSpecialList(Position.Default, "NUMERIC_ROUNDABORT");
-        }
-        
-        public static AstSpecialList Parseonly()
-        {
-            return new AstSpecialList(Position.Default, "PARSEONLY");
-        }
-        
-        public static AstSpecialList RemoteProcTransactions()
-        {
-            return new AstSpecialList(Position.Default, "REMOTE_PROC_TRANSACTIONS");
-        }
-        
-        public static AstSpecialList ShowplanAll()
-        {
-            return new AstSpecialList(Position.Default, "SHOWPLAN_ALL");
-        }
-        
-        public static AstSpecialList ShowplanText()
-        {
-            return new AstSpecialList(Position.Default, "SHOWPLAN_TEXT");
-        }
-        
-        public static AstSpecialList ShowplanXml()
-        {
-            return new AstSpecialList(Position.Default, "SHOWPLAN_XML");
-        }
-        
-        public static AstSpecialList XactAbort()
-        {
-            return new AstSpecialList(Position.Default, "XACT_ABORT");
-        }
-    }
-    
-    public partial class AstSybaseLegacyHint
+    /// <summary>
+    /// sybase_legacy_hint
+    /// 	 : HOLDLOCK
+    /// 	 | NOHOLDLOCK
+    /// 	 | READPAST
+    /// 	 | SHARED
+    /// </summary>
+    public partial class AstSybaseLegacyHint : AstTerminalKeyword
     {
         
         public AstSybaseLegacyHint(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstSybaseLegacyHint _undefined()
+        public AstSybaseLegacyHint(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstSybaseLegacyHint(null);
         }
         
+        /// <summary>
+        /// sybase_legacy_hint : HOLDLOCK
+        /// </summary>
         public static AstSybaseLegacyHint Holdlock()
         {
-            return new AstSybaseLegacyHint(Position.Default, "HOLDLOCK");
+            return new AstSybaseLegacyHint(Position.Default, "HOLDLOCK", "HOLDLOCK");
         }
         
+        /// <summary>
+        /// sybase_legacy_hint : NOHOLDLOCK
+        /// </summary>
         public static AstSybaseLegacyHint Noholdlock()
         {
-            return new AstSybaseLegacyHint(Position.Default, "NOHOLDLOCK");
+            return new AstSybaseLegacyHint(Position.Default, "NOHOLDLOCK", "NOHOLDLOCK");
         }
         
+        /// <summary>
+        /// sybase_legacy_hint : READPAST
+        /// </summary>
         public static AstSybaseLegacyHint Readpast()
         {
-            return new AstSybaseLegacyHint(Position.Default, "READPAST");
+            return new AstSybaseLegacyHint(Position.Default, "READPAST", "READPAST");
         }
         
+        /// <summary>
+        /// sybase_legacy_hint : SHARED
+        /// </summary>
         public static AstSybaseLegacyHint Shared()
         {
-            return new AstSybaseLegacyHint(Position.Default, "SHARED");
+            return new AstSybaseLegacyHint(Position.Default, "SHARED", "SHARED");
+        }
+        
+        /// <summary>
+        /// sybase_legacy_hint : HOLDLOCK
+        /// </summary>
+        public static AstSybaseLegacyHint Holdlock(Position position)
+        {
+            return new AstSybaseLegacyHint(position, "HOLDLOCK", "HOLDLOCK");
+        }
+        
+        /// <summary>
+        /// sybase_legacy_hint : NOHOLDLOCK
+        /// </summary>
+        public static AstSybaseLegacyHint Noholdlock(Position position)
+        {
+            return new AstSybaseLegacyHint(position, "NOHOLDLOCK", "NOHOLDLOCK");
+        }
+        
+        /// <summary>
+        /// sybase_legacy_hint : READPAST
+        /// </summary>
+        public static AstSybaseLegacyHint Readpast(Position position)
+        {
+            return new AstSybaseLegacyHint(position, "READPAST", "READPAST");
+        }
+        
+        /// <summary>
+        /// sybase_legacy_hint : SHARED
+        /// </summary>
+        public static AstSybaseLegacyHint Shared(Position position)
+        {
+            return new AstSybaseLegacyHint(position, "SHARED", "SHARED");
         }
     }
     
-    public partial class AstAscDesc
-    {
-        
-        public AstAscDesc(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstAscDesc _undefined()
-        {
-            return new AstAscDesc(null);
-        }
-        
-        public static AstAscDesc Asc()
-        {
-            return new AstAscDesc(Position.Default, "ASC");
-        }
-        
-        public static AstAscDesc Desc()
-        {
-            return new AstAscDesc(Position.Default, "DESC");
-        }
-    }
-    
-    public partial class AstOnOff
-    {
-        
-        public AstOnOff(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstOnOff _undefined()
-        {
-            return new AstOnOff(null);
-        }
-        
-        public static AstOnOff On()
-        {
-            return new AstOnOff(Position.Default, "ON");
-        }
-        
-        public static AstOnOff Off()
-        {
-            return new AstOnOff(Position.Default, "OFF");
-        }
-    }
-    
-    public partial class AstClustered
-    {
-        
-        public AstClustered(ITerminalNode t, string value) : 
-                base(t)
-        {
-        }
-        
-        public static AstClustered _undefined()
-        {
-            return new AstClustered(null);
-        }
-        
-        public static AstClustered Clustered()
-        {
-            return new AstClustered(Position.Default, "CLUSTERED");
-        }
-        
-        public static AstClustered Nonclustered()
-        {
-            return new AstClustered(Position.Default, "NONCLUSTERED");
-        }
-    }
-    
-    public partial class AstSign
+    /// <summary>
+    /// sign
+    /// 	 : PLUS
+    /// 	 | MINUS
+    /// </summary>
+    public partial class AstSign : AstTerminalKeyword
     {
         
         public AstSign(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstSign _undefined()
+        public AstSign(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstSign(null);
         }
         
+        /// <summary>
+        /// sign : '+'
+        /// </summary>
         public static AstSign Plus()
         {
-            return new AstSign(Position.Default, "+");
+            return new AstSign(Position.Default, "PLUS", "+");
         }
         
+        /// <summary>
+        /// sign : '-'
+        /// </summary>
         public static AstSign Minus()
         {
-            return new AstSign(Position.Default, "-");
+            return new AstSign(Position.Default, "MINUS", "-");
+        }
+        
+        /// <summary>
+        /// sign : '+'
+        /// </summary>
+        public static AstSign Plus(Position position)
+        {
+            return new AstSign(position, "PLUS", "+");
+        }
+        
+        /// <summary>
+        /// sign : '-'
+        /// </summary>
+        public static AstSign Minus(Position position)
+        {
+            return new AstSign(position, "MINUS", "-");
         }
     }
     
-    public partial class AstKeyword
+    /// <summary>
+    /// keyword
+    /// 	 : ABORT
+    /// 	 | ABSOLUTE
+    /// 	 | ACCENT_SENSITIVITY
+    /// 	 | ACCESS
+    /// 	 | ACTION
+    /// 	 | ACTIVATION
+    /// 	 | ACTIVE
+    /// 	 | ADD
+    /// 	 | ADDRESS
+    /// 	 | AES_128
+    /// 	 | AES_192
+    /// 	 | AES_256
+    /// 	 | AFFINITY
+    /// 	 | AFTER
+    /// 	 | AGGREGATE
+    /// 	 | ALGORITHM
+    /// 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS
+    /// 	 | ALLOW_PAGE_LOCKS
+    /// 	 | ALLOW_ROW_LOCKS
+    /// 	 | ALLOW_SNAPSHOT_ISOLATION
+    /// 	 | ALLOWED
+    /// 	 | ALWAYS
+    /// 	 | ANSI_DEFAULTS
+    /// 	 | ANSI_NULL_DEFAULT
+    /// 	 | ANSI_NULL_DFLT_OFF
+    /// 	 | ANSI_NULL_DFLT_ON
+    /// 	 | ANSI_NULLS
+    /// 	 | ANSI_PADDING
+    /// 	 | ANSI_WARNINGS
+    /// 	 | APP_NAME
+    /// 	 | APPLICATION_LOG
+    /// 	 | APPLOCK_MODE
+    /// 	 | APPLOCK_TEST
+    /// 	 | APPLY
+    /// 	 | ARITHABORT
+    /// 	 | ARITHIGNORE
+    /// 	 | ASCII
+    /// 	 | ASSEMBLY
+    /// 	 | ASSEMBLYPROPERTY
+    /// 	 | AT_KEYWORD
+    /// 	 | AUDIT
+    /// 	 | AUDIT_GUID
+    /// 	 | AUTO
+    /// 	 | AUTO_CLEANUP
+    /// 	 | AUTO_CLOSE
+    /// 	 | AUTO_CREATE_STATISTICS
+    /// 	 | AUTO_DROP
+    /// 	 | AUTO_SHRINK
+    /// 	 | AUTO_UPDATE_STATISTICS
+    /// 	 | AUTO_UPDATE_STATISTICS_ASYNC
+    /// 	 | AUTOGROW_ALL_FILES
+    /// 	 | AUTOGROW_SINGLE_FILE
+    /// 	 | AVAILABILITY
+    /// 	 | AVG
+    /// 	 | BACKUP_PRIORITY
+    /// 	 | BASE64
+    /// 	 | BEGIN_DIALOG
+    /// 	 | BIGINT
+    /// 	 | BINARY_KEYWORD
+    /// 	 | BINARY_CHECKSUM
+    /// 	 | BINDING
+    /// 	 | BLOB_STORAGE
+    /// 	 | BROKER
+    /// 	 | BROKER_INSTANCE
+    /// 	 | BULK_LOGGED
+    /// 	 | CALLER
+    /// 	 | CAP_CPU_PERCENT
+    /// 	 | CAST
+    /// 	 | TRY_CAST
+    /// 	 | CATALOG
+    /// 	 | CATCH
+    /// 	 | CHANGE
+    /// 	 | CHANGE_RETENTION
+    /// 	 | CHANGE_TRACKING
+    /// 	 | CHAR
+    /// 	 | CHARINDEX
+    /// 	 | CHECKSUM
+    /// 	 | CHECKSUM_AGG
+    /// 	 | CLEANUP
+    /// 	 | COL_LENGTH
+    /// 	 | COL_NAME
+    /// 	 | COLLECTION
+    /// 	 | COLUMN_ENCRYPTION_KEY
+    /// 	 | COLUMN_MASTER_KEY
+    /// 	 | COLUMNPROPERTY
+    /// 	 | COLUMNS
+    /// 	 | COLUMNSTORE
+    /// 	 | COLUMNSTORE_ARCHIVE
+    /// 	 | COMMITTED
+    /// 	 | COMPATIBILITY_LEVEL
+    /// 	 | COMPRESS_ALL_ROW_GROUPS
+    /// 	 | COMPRESSION_DELAY
+    /// 	 | CONCAT
+    /// 	 | CONCAT_WS
+    /// 	 | CONCAT_NULL_YIELDS_NULL
+    /// 	 | CONTENT
+    /// 	 | CONTROL
+    /// 	 | COOKIE
+    /// 	 | COUNT
+    /// 	 | COUNT_BIG
+    /// 	 | COUNTER
+    /// 	 | CPU
+    /// 	 | CREATE_NEW
+    /// 	 | CREATION_DISPOSITION
+    /// 	 | CREDENTIAL
+    /// 	 | CRYPTOGRAPHIC
+    /// 	 | CUME_DIST
+    /// 	 | CURSOR_CLOSE_ON_COMMIT
+    /// 	 | CURSOR_DEFAULT
+    /// 	 | DATA
+    /// 	 | DATABASE_PRINCIPAL_ID
+    /// 	 | DATABASEPROPERTYEX
+    /// 	 | DATE_CORRELATION_OPTIMIZATION
+    /// 	 | DATEADD
+    /// 	 | DATEDIFF
+    /// 	 | DATENAME
+    /// 	 | DATEPART
+    /// 	 | DAYS
+    /// 	 | DB_CHAINING
+    /// 	 | DB_FAILOVER
+    /// 	 | DB_ID
+    /// 	 | DB_NAME
+    /// 	 | DECRYPTION
+    /// 	 | DEFAULT_DOUBLE_QUOTE
+    /// 	 | DEFAULT_FULLTEXT_LANGUAGE
+    /// 	 | DEFAULT_LANGUAGE
+    /// 	 | DEFINITION
+    /// 	 | DELAY
+    /// 	 | DELAYED_DURABILITY
+    /// 	 | DELETED
+    /// 	 | DENSE_RANK
+    /// 	 | DEPENDENTS
+    /// 	 | DES
+    /// 	 | DESCRIPTION
+    /// 	 | DESX
+    /// 	 | DETERMINISTIC
+    /// 	 | DHCP
+    /// 	 | DIALOG
+    /// 	 | DIFFERENCE
+    /// 	 | DIRECTORY_NAME
+    /// 	 | DISABLE
+    /// 	 | DISABLE_BROKER
+    /// 	 | DISABLED
+    /// 	 | DOCUMENT
+    /// 	 | DROP_EXISTING
+    /// 	 | DYNAMIC
+    /// 	 | ELEMENTS
+    /// 	 | EMERGENCY
+    /// 	 | EMPTY
+    /// 	 | ENABLE
+    /// 	 | ENABLE_BROKER
+    /// 	 | ENCRYPTED
+    /// 	 | ENCRYPTED_VALUE
+    /// 	 | ENCRYPTION
+    /// 	 | ENCRYPTION_TYPE
+    /// 	 | ENDPOINT_URL
+    /// 	 | ERROR_BROKER_CONVERSATIONS
+    /// 	 | EXCLUSIVE
+    /// 	 | EXECUTABLE
+    /// 	 | EXIST
+    /// 	 | EXPAND
+    /// 	 | EXPIRY_DATE
+    /// 	 | EXPLICIT
+    /// 	 | FAIL_OPERATION
+    /// 	 | FAILOVER_MODE
+    /// 	 | FAILURE
+    /// 	 | FAILURE_CONDITION_LEVEL
+    /// 	 | FAST
+    /// 	 | FAST_FORWARD
+    /// 	 | FILE_ID
+    /// 	 | FILE_IDEX
+    /// 	 | FILE_NAME
+    /// 	 | FILEGROUP
+    /// 	 | FILEGROUP_ID
+    /// 	 | FILEGROUP_NAME
+    /// 	 | FILEGROUPPROPERTY
+    /// 	 | FILEGROWTH
+    /// 	 | FILENAME
+    /// 	 | FILEPATH
+    /// 	 | FILEPROPERTY
+    /// 	 | FILEPROPERTYEX
+    /// 	 | FILESTREAM
+    /// 	 | FILTER
+    /// 	 | FIRST
+    /// 	 | FIRST_VALUE
+    /// 	 | FMTONLY
+    /// 	 | FOLLOWING
+    /// 	 | FORCE
+    /// 	 | FORCE_FAILOVER_ALLOW_DATA_LOSS
+    /// 	 | FORCED
+    /// 	 | FORCEPLAN
+    /// 	 | FORCESCAN
+    /// 	 | FORMAT
+    /// 	 | FORWARD_ONLY
+    /// 	 | FULLSCAN
+    /// 	 | FULLTEXT
+    /// 	 | FULLTEXTCATALOGPROPERTY
+    /// 	 | FULLTEXTSERVICEPROPERTY
+    /// 	 | GB
+    /// 	 | GENERATED
+    /// 	 | GETDATE
+    /// 	 | GETUTCDATE
+    /// 	 | GLOBAL
+    /// 	 | GO
+    /// 	 | GROUP_MAX_REQUESTS
+    /// 	 | GROUPING
+    /// 	 | GROUPING_ID
+    /// 	 | HADR
+    /// 	 | HASH
+    /// 	 | HEALTH_CHECK_TIMEOUT
+    /// 	 | HIDDEN_KEYWORD
+    /// 	 | HIGH
+    /// 	 | HONOR_BROKER_PRIORITY
+    /// 	 | HOURS
+    /// 	 | IDENTITY_VALUE
+    /// 	 | IGNORE_CONSTRAINTS
+    /// 	 | IGNORE_DUP_KEY
+    /// 	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+    /// 	 | IGNORE_TRIGGERS
+    /// 	 | IMMEDIATE
+    /// 	 | IMPERSONATE
+    /// 	 | IMPLICIT_TRANSACTIONS
+    /// 	 | IMPORTANCE
+    /// 	 | INCLUDE_NULL_VALUES
+    /// 	 | INCREMENTAL
+    /// 	 | INDEX_COL
+    /// 	 | INDEXKEY_PROPERTY
+    /// 	 | INDEXPROPERTY
+    /// 	 | INITIATOR
+    /// 	 | INPUT
+    /// 	 | INSENSITIVE
+    /// 	 | INSERTED
+    /// 	 | INT
+    /// 	 | IP
+    /// 	 | ISOLATION
+    /// 	 | JOB
+    /// 	 | JSON
+    /// 	 | KB
+    /// 	 | KEEP
+    /// 	 | KEEPDEFAULTS
+    /// 	 | KEEPFIXED
+    /// 	 | KEEPIDENTITY
+    /// 	 | KEY_SOURCE
+    /// 	 | KEYS
+    /// 	 | KEYSET
+    /// 	 | LAG
+    /// 	 | LAST
+    /// 	 | LAST_VALUE
+    /// 	 | LEAD
+    /// 	 | LEN
+    /// 	 | LEVEL
+    /// 	 | LIST
+    /// 	 | LISTENER
+    /// 	 | LISTENER_URL
+    /// 	 | LOB_COMPACTION
+    /// 	 | LOCAL
+    /// 	 | LOCATION
+    /// 	 | LOCK
+    /// 	 | LOCK_ESCALATION
+    /// 	 | LOGIN
+    /// 	 | LOOP
+    /// 	 | LOW
+    /// 	 | LOWER
+    /// 	 | LTRIM
+    /// 	 | MANUAL
+    /// 	 | MARK
+    /// 	 | MASKED
+    /// 	 | MATERIALIZED
+    /// 	 | MAX
+    /// 	 | MAX_CPU_PERCENT
+    /// 	 | MAX_DOP
+    /// 	 | MAX_FILES
+    /// 	 | MAX_IOPS_PER_VOLUME
+    /// 	 | MAX_MEMORY_PERCENT
+    /// 	 | MAX_PROCESSES
+    /// 	 | MAX_QUEUE_READERS
+    /// 	 | MAX_ROLLOVER_FILES
+    /// 	 | MAXDOP
+    /// 	 | MAXRECURSION
+    /// 	 | MAXSIZE
+    /// 	 | MB
+    /// 	 | MEDIUM
+    /// 	 | MEMORY_OPTIMIZED_DATA
+    /// 	 | MESSAGE
+    /// 	 | MIN
+    /// 	 | MIN_ACTIVE_ROWVERSION
+    /// 	 | MIN_CPU_PERCENT
+    /// 	 | MIN_IOPS_PER_VOLUME
+    /// 	 | MIN_MEMORY_PERCENT
+    /// 	 | MINUTES
+    /// 	 | MIRROR_ADDRESS
+    /// 	 | MIXED_PAGE_ALLOCATION
+    /// 	 | MODE
+    /// 	 | MODIFY
+    /// 	 | MOVE
+    /// 	 | MULTI_USER
+    /// 	 | NAME
+    /// 	 | NCHAR
+    /// 	 | NESTED_TRIGGERS
+    /// 	 | NEW_ACCOUNT
+    /// 	 | NEW_BROKER
+    /// 	 | NEW_PASSWORD
+    /// 	 | NEWNAME
+    /// 	 | NEXT
+    /// 	 | NO
+    /// 	 | NO_TRUNCATE
+    /// 	 | NO_WAIT
+    /// 	 | NOCOUNT
+    /// 	 | NODES
+    /// 	 | NOEXEC
+    /// 	 | NOEXPAND
+    /// 	 | NOLOCK
+    /// 	 | NON_TRANSACTED_ACCESS
+    /// 	 | NORECOMPUTE
+    /// 	 | NORECOVERY
+    /// 	 | NOTIFICATIONS
+    /// 	 | NOWAIT
+    /// 	 | NTILE
+    /// 	 | NULL_DOUBLE_QUOTE
+    /// 	 | NUMANODE
+    /// 	 | NUMBER
+    /// 	 | NUMERIC_ROUNDABORT
+    /// 	 | OBJECT
+    /// 	 | OBJECT_DEFINITION
+    /// 	 | OBJECT_ID
+    /// 	 | OBJECT_NAME
+    /// 	 | OBJECT_SCHEMA_NAME
+    /// 	 | OBJECTPROPERTY
+    /// 	 | OBJECTPROPERTYEX
+    /// 	 | OFFLINE
+    /// 	 | OFFSET
+    /// 	 | OLD_ACCOUNT
+    /// 	 | ONLINE
+    /// 	 | ONLY
+    /// 	 | OPEN_EXISTING
+    /// 	 | OPENJSON
+    /// 	 | OPTIMISTIC
+    /// 	 | OPTIMIZE
+    /// 	 | OPTIMIZE_FOR_SEQUENTIAL_KEY
+    /// 	 | ORIGINAL_DB_NAME
+    /// 	 | OUT
+    /// 	 | OUTPUT
+    /// 	 | OVERRIDE
+    /// 	 | OWNER
+    /// 	 | OWNERSHIP
+    /// 	 | PAD_INDEX
+    /// 	 | PAGE_VERIFY
+    /// 	 | PAGECOUNT
+    /// 	 | PAGLOCK
+    /// 	 | PARAMETERIZATION
+    /// 	 | PARSENAME
+    /// 	 | PARSEONLY
+    /// 	 | PARTITION
+    /// 	 | PARTITIONS
+    /// 	 | PARTNER
+    /// 	 | PATH
+    /// 	 | PATINDEX
+    /// 	 | PAUSE
+    /// 	 | PERCENT_RANK
+    /// 	 | PERCENTILE_CONT
+    /// 	 | PERCENTILE_DISC
+    /// 	 | PERSIST_SAMPLE_PERCENT
+    /// 	 | POISON_MESSAGE_HANDLING
+    /// 	 | POOL
+    /// 	 | PORT
+    /// 	 | PRECEDING
+    /// 	 | PRIMARY_ROLE
+    /// 	 | PRIOR
+    /// 	 | PRIORITY
+    /// 	 | PRIORITY_LEVEL
+    /// 	 | PRIVATE
+    /// 	 | PRIVATE_KEY
+    /// 	 | PRIVILEGES
+    /// 	 | PROCEDURE_NAME
+    /// 	 | PROPERTY
+    /// 	 | PROVIDER
+    /// 	 | PROVIDER_KEY_NAME
+    /// 	 | QUERY
+    /// 	 | QUEUE
+    /// 	 | QUEUE_DELAY
+    /// 	 | QUOTED_IDENTIFIER
+    /// 	 | QUOTENAME
+    /// 	 | RANDOMIZED
+    /// 	 | RANGE
+    /// 	 | RANK
+    /// 	 | RC2
+    /// 	 | RC4
+    /// 	 | RC4_128
+    /// 	 | READ_COMMITTED_SNAPSHOT
+    /// 	 | READ_ONLY
+    /// 	 | READ_ONLY_ROUTING_LIST
+    /// 	 | READ_WRITE
+    /// 	 | READCOMMITTED
+    /// 	 | READCOMMITTEDLOCK
+    /// 	 | READONLY
+    /// 	 | READPAST
+    /// 	 | READUNCOMMITTED
+    /// 	 | READWRITE
+    /// 	 | REBUILD
+    /// 	 | RECEIVE
+    /// 	 | RECOMPILE
+    /// 	 | RECOVERY
+    /// 	 | RECURSIVE_TRIGGERS
+    /// 	 | RELATIVE
+    /// 	 | REMOTE
+    /// 	 | REMOTE_PROC_TRANSACTIONS
+    /// 	 | REMOTE_SERVICE_NAME
+    /// 	 | REMOVE
+    /// 	 | REORGANIZE
+    /// 	 | REPEATABLE
+    /// 	 | REPEATABLEREAD
+    /// 	 | REPLACE
+    /// 	 | REPLICA
+    /// 	 | REPLICATE
+    /// 	 | REQUEST_MAX_CPU_TIME_SEC
+    /// 	 | REQUEST_MAX_MEMORY_GRANT_PERCENT
+    /// 	 | REQUEST_MEMORY_GRANT_TIMEOUT_SEC
+    /// 	 | REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT
+    /// 	 | RESAMPLE
+    /// 	 | RESERVE_DISK_SPACE
+    /// 	 | RESOURCE
+    /// 	 | RESOURCE_MANAGER_LOCATION
+    /// 	 | RESTRICTED_USER
+    /// 	 | RESUMABLE
+    /// 	 | RETENTION
+    /// 	 | REVERSE
+    /// 	 | ROBUST
+    /// 	 | ROOT
+    /// 	 | ROUTE
+    /// 	 | ROW
+    /// 	 | ROW_NUMBER
+    /// 	 | ROWGUID
+    /// 	 | ROWLOCK
+    /// 	 | ROWS
+    /// 	 | RTRIM
+    /// 	 | SAMPLE
+    /// 	 | SCHEMA_ID
+    /// 	 | SCHEMA_NAME
+    /// 	 | SCHEMABINDING
+    /// 	 | SCOPE_IDENTITY
+    /// 	 | SCOPED
+    /// 	 | SCROLL
+    /// 	 | SCROLL_LOCKS
+    /// 	 | SEARCH
+    /// 	 | SECONDARY
+    /// 	 | SECONDARY_ONLY
+    /// 	 | SECONDARY_ROLE
+    /// 	 | SECONDS
+    /// 	 | SECRET
+    /// 	 | SECURABLES
+    /// 	 | SECURITY
+    /// 	 | SECURITY_LOG
+    /// 	 | SEEDING_MODE
+    /// 	 | SELF
+    /// 	 | SEMI_SENSITIVE
+    /// 	 | SEND
+    /// 	 | SENT
+    /// 	 | SEQUENCE
+    /// 	 | SEQUENCE_NUMBER
+    /// 	 | SERIALIZABLE
+    /// 	 | SERVERPROPERTY
+    /// 	 | SESSION_TIMEOUT
+    /// 	 | SETERROR
+    /// 	 | SHARE
+    /// 	 | SHARED
+    /// 	 | SHOWPLAN
+    /// 	 | SHOWPLAN_ALL
+    /// 	 | SHOWPLAN_TEXT
+    /// 	 | SHOWPLAN_XML
+    /// 	 | SIGNATURE
+    /// 	 | SIMPLE
+    /// 	 | SINGLE_USER
+    /// 	 | SIZE
+    /// 	 | SMALLINT
+    /// 	 | SNAPSHOT
+    /// 	 | SORT_IN_TEMPDB
+    /// 	 | SOUNDEX
+    /// 	 | SPACE_KEYWORD
+    /// 	 | SPARSE
+    /// 	 | SPATIAL_WINDOW_MAX_CELLS
+    /// 	 | STANDBY
+    /// 	 | START_DATE
+    /// 	 | STATIC
+    /// 	 | STATISTICS_INCREMENTAL
+    /// 	 | STATISTICS_NORECOMPUTE
+    /// 	 | STATS_DATE
+    /// 	 | STATS_STREAM
+    /// 	 | STATUS
+    /// 	 | STATUSONLY
+    /// 	 | STDEV
+    /// 	 | STDEVP
+    /// 	 | STOPLIST
+    /// 	 | STR
+    /// 	 | STRING_AGG
+    /// 	 | STRING_ESCAPE
+    /// 	 | STUFF
+    /// 	 | SUBJECT
+    /// 	 | SUBSCRIBE
+    /// 	 | SUBSCRIPTION
+    /// 	 | SUBSTRING
+    /// 	 | SUM
+    /// 	 | SUSPEND
+    /// 	 | SYMMETRIC
+    /// 	 | SYNCHRONOUS_COMMIT
+    /// 	 | SYNONYM
+    /// 	 | SYSTEM
+    /// 	 | TABLOCK
+    /// 	 | TABLOCKX
+    /// 	 | TAKE
+    /// 	 | TARGET_RECOVERY_TIME
+    /// 	 | TB
+    /// 	 | TEXTIMAGE_ON
+    /// 	 | THROW
+    /// 	 | TIES
+    /// 	 | TIME
+    /// 	 | TIMEOUT
+    /// 	 | TIMER
+    /// 	 | TINYINT
+    /// 	 | TORN_PAGE_DETECTION
+    /// 	 | TRACKING
+    /// 	 | TRANSACTION_ID
+    /// 	 | TRANSFORM_NOISE_WORDS
+    /// 	 | TRANSLATE
+    /// 	 | TRIM
+    /// 	 | TRIPLE_DES
+    /// 	 | TRIPLE_DES_3KEY
+    /// 	 | TRUSTWORTHY
+    /// 	 | TRY
+    /// 	 | TSQL
+    /// 	 | TWO_DIGIT_YEAR_CUTOFF
+    /// 	 | TYPE
+    /// 	 | TYPE_ID
+    /// 	 | TYPE_NAME
+    /// 	 | TYPE_WARNING
+    /// 	 | TYPEPROPERTY
+    /// 	 | UNBOUNDED
+    /// 	 | UNCOMMITTED
+    /// 	 | UNICODE
+    /// 	 | UNKNOWN
+    /// 	 | UNLIMITED
+    /// 	 | UNMASK
+    /// 	 | UOW
+    /// 	 | UPDLOCK
+    /// 	 | UPPER
+    /// 	 | USING
+    /// 	 | VALID_XML
+    /// 	 | VALIDATION
+    /// 	 | VALUE
+    /// 	 | VAR
+    /// 	 | VARBINARY_KEYWORD
+    /// 	 | VARP
+    /// 	 | VERSION
+    /// 	 | VIEW_METADATA
+    /// 	 | VIEWS
+    /// 	 | WAIT
+    /// 	 | WELL_FORMED_XML
+    /// 	 | WITHOUT_ARRAY_WRAPPER
+    /// 	 | WORK
+    /// 	 | WORKLOAD
+    /// 	 | XLOCK
+    /// 	 | XML
+    /// 	 | XML_COMPRESSION
+    /// 	 | XMLDATA
+    /// 	 | XMLNAMESPACES
+    /// 	 | XMLSCHEMA
+    /// 	 | XSINIL
+    /// 	 | ZONE
+    /// 	 | ABORT_AFTER_WAIT
+    /// 	 | ABSENT
+    /// 	 | ADMINISTER
+    /// 	 | AES
+    /// 	 | ALLOW_CONNECTIONS
+    /// 	 | ALLOW_MULTIPLE_EVENT_LOSS
+    /// 	 | ALLOW_SINGLE_EVENT_LOSS
+    /// 	 | ANONYMOUS
+    /// 	 | APPEND
+    /// 	 | APPLICATION
+    /// 	 | ASYMMETRIC
+    /// 	 | ASYNCHRONOUS_COMMIT
+    /// 	 | AUTHENTICATE
+    /// 	 | AUTHENTICATION
+    /// 	 | AUTOMATED_BACKUP_PREFERENCE
+    /// 	 | AUTOMATIC
+    /// 	 | AVAILABILITY_MODE
+    /// 	 | BEFORE
+    /// 	 | BLOCK
+    /// 	 | BLOCKERS
+    /// 	 | BLOCKSIZE
+    /// 	 | BLOCKING_HIERARCHY
+    /// 	 | BUFFER
+    /// 	 | BUFFERCOUNT
+    /// 	 | CACHE
+    /// 	 | CALLED
+    /// 	 | CERTIFICATE
+    /// 	 | CHANGETABLE
+    /// 	 | CHANGES
+    /// 	 | CHECK_POLICY
+    /// 	 | CHECK_EXPIRATION
+    /// 	 | CLASSIFIER_FUNCTION
+    /// 	 | CLUSTER
+    /// 	 | COMPRESS
+    /// 	 | COMPRESSION
+    /// 	 | CONNECT
+    /// 	 | CONNECTION
+    /// 	 | CONFIGURATION
+    /// 	 | CONNECTIONPROPERTY
+    /// 	 | CONTAINMENT
+    /// 	 | CONTEXT
+    /// 	 | CONTEXT_INFO
+    /// 	 | CONTINUE_AFTER_ERROR
+    /// 	 | CONTRACT
+    /// 	 | CONTRACT_NAME
+    /// 	 | CONVERSATION
+    /// 	 | COPY_ONLY
+    /// 	 | CURRENT_REQUEST_ID
+    /// 	 | CURRENT_TRANSACTION_ID
+    /// 	 | CYCLE
+    /// 	 | DATA_COMPRESSION
+    /// 	 | DATA_SOURCE
+    /// 	 | DATABASE_MIRRORING
+    /// 	 | DATASPACE
+    /// 	 | DDL
+    /// 	 | DECOMPRESS
+    /// 	 | DEFAULT_DATABASE
+    /// 	 | DEFAULT_SCHEMA
+    /// 	 | DIAGNOSTICS
+    /// 	 | DIFFERENTIAL
+    /// 	 | DISTRIBUTION
+    /// 	 | DTC_SUPPORT
+    /// 	 | ENABLED
+    /// 	 | ENDPOINT
+    /// 	 | ERROR
+    /// 	 | ERROR_LINE
+    /// 	 | ERROR_MESSAGE
+    /// 	 | ERROR_NUMBER
+    /// 	 | ERROR_PROCEDURE
+    /// 	 | ERROR_SEVERITY
+    /// 	 | ERROR_STATE
+    /// 	 | EVENT
+    /// 	 | EVENTDATA
+    /// 	 | EVENT_RETENTION_MODE
+    /// 	 | EXECUTABLE_FILE
+    /// 	 | EXPIREDATE
+    /// 	 | EXTENSION
+    /// 	 | EXTERNAL_ACCESS
+    /// 	 | FAILOVER
+    /// 	 | FAILURECONDITIONLEVEL
+    /// 	 | FAN_IN
+    /// 	 | FILE_SNAPSHOT
+    /// 	 | FORCESEEK
+    /// 	 | FORCE_SERVICE_ALLOW_DATA_LOSS
+    /// 	 | FORMATMESSAGE
+    /// 	 | GET
+    /// 	 | GET_FILESTREAM_TRANSACTION_CONTEXT
+    /// 	 | GETANCESTOR
+    /// 	 | GETANSINULL
+    /// 	 | GETDESCENDANT
+    /// 	 | GETLEVEL
+    /// 	 | GETREPARENTEDVALUE
+    /// 	 | GETROOT
+    /// 	 | GOVERNOR
+    /// 	 | HASHED
+    /// 	 | HEALTHCHECKTIMEOUT
+    /// 	 | HEAP
+    /// 	 | HIERARCHYID
+    /// 	 | HOST_ID
+    /// 	 | HOST_NAME
+    /// 	 | IIF
+    /// 	 | IO
+    /// 	 | INCLUDE
+    /// 	 | INCREMENT
+    /// 	 | INFINITE
+    /// 	 | INIT
+    /// 	 | INSTEAD
+    /// 	 | ISDESCENDANTOF
+    /// 	 | ISNULL
+    /// 	 | ISNUMERIC
+    /// 	 | KERBEROS
+    /// 	 | KEY_PATH
+    /// 	 | KEY_STORE_PROVIDER_NAME
+    /// 	 | LANGUAGE
+    /// 	 | LIBRARY
+    /// 	 | LIFETIME
+    /// 	 | LINKED
+    /// 	 | LINUX
+    /// 	 | LISTENER_IP
+    /// 	 | LISTENER_PORT
+    /// 	 | LOCAL_SERVICE_NAME
+    /// 	 | LOG
+    /// 	 | MASK
+    /// 	 | MATCHED
+    /// 	 | MASTER
+    /// 	 | MAX_MEMORY
+    /// 	 | MAXTRANSFER
+    /// 	 | MAXVALUE
+    /// 	 | MAX_DISPATCH_LATENCY
+    /// 	 | MAX_DURATION
+    /// 	 | MAX_EVENT_SIZE
+    /// 	 | MAX_SIZE
+    /// 	 | MAX_OUTSTANDING_IO_PER_VOLUME
+    /// 	 | MEDIADESCRIPTION
+    /// 	 | MEDIANAME
+    /// 	 | MEMBER
+    /// 	 | MEMORY_PARTITION_MODE
+    /// 	 | MESSAGE_FORWARDING
+    /// 	 | MESSAGE_FORWARD_SIZE
+    /// 	 | MINVALUE
+    /// 	 | MIRROR
+    /// 	 | MUST_CHANGE
+    /// 	 | NEWID
+    /// 	 | NEWSEQUENTIALID
+    /// 	 | NOFORMAT
+    /// 	 | NOINIT
+    /// 	 | NONE
+    /// 	 | NOREWIND
+    /// 	 | NOSKIP
+    /// 	 | NOUNLOAD
+    /// 	 | NO_CHECKSUM
+    /// 	 | NO_COMPRESSION
+    /// 	 | NO_EVENT_LOSS
+    /// 	 | NOTIFICATION
+    /// 	 | NTLM
+    /// 	 | OLD_PASSWORD
+    /// 	 | ON_FAILURE
+    /// 	 | OPERATIONS
+    /// 	 | PAGE
+    /// 	 | PARAM_NODE
+    /// 	 | PARTIAL
+    /// 	 | PASSWORD
+    /// 	 | PERMISSION_SET
+    /// 	 | PER_CPU
+    /// 	 | PER_DB
+    /// 	 | PER_NODE
+    /// 	 | PERSISTED
+    /// 	 | PLATFORM
+    /// 	 | POLICY
+    /// 	 | PREDICATE
+    /// 	 | PROCESS
+    /// 	 | PROFILE
+    /// 	 | PYTHON
+    /// 	 | R
+    /// 	 | READ_WRITE_FILEGROUPS
+    /// 	 | REGENERATE
+    /// 	 | RELATED_CONVERSATION
+    /// 	 | RELATED_CONVERSATION_GROUP
+    /// 	 | REQUIRED
+    /// 	 | RESET
+    /// 	 | RESOURCES
+    /// 	 | RESTART
+    /// 	 | RESUME
+    /// 	 | RETAINDAYS
+    /// 	 | RETURNS
+    /// 	 | REWIND
+    /// 	 | ROLE
+    /// 	 | ROUND_ROBIN
+    /// 	 | ROWCOUNT_BIG
+    /// 	 | RSA_512
+    /// 	 | RSA_1024
+    /// 	 | RSA_2048
+    /// 	 | RSA_3072
+    /// 	 | RSA_4096
+    /// 	 | SAFETY
+    /// 	 | SAFE
+    /// 	 | SCHEDULER
+    /// 	 | SCHEME
+    /// 	 | SCRIPT
+    /// 	 | SERVER
+    /// 	 | SERVICE
+    /// 	 | SERVICE_BROKER
+    /// 	 | SERVICE_NAME
+    /// 	 | SESSION
+    /// 	 | SESSION_CONTEXT
+    /// 	 | SETTINGS
+    /// 	 | SHRINKLOG
+    /// 	 | SID
+    /// 	 | SKIP_KEYWORD
+    /// 	 | SOFTNUMA
+    /// 	 | SOURCE
+    /// 	 | SPECIFICATION
+    /// 	 | SPLIT
+    /// 	 | SQL
+    /// 	 | SQLDUMPERFLAGS
+    /// 	 | SQLDUMPERPATH
+    /// 	 | SQLDUMPERTIMEOUT
+    /// 	 | STATE
+    /// 	 | STATS
+    /// 	 | START
+    /// 	 | STARTED
+    /// 	 | STARTUP_STATE
+    /// 	 | STOP
+    /// 	 | STOPPED
+    /// 	 | STOP_ON_ERROR
+    /// 	 | SUPPORTED
+    /// 	 | SWITCH
+    /// 	 | TAPE
+    /// 	 | TARGET
+    /// 	 | TCP
+    /// 	 | TOSTRING
+    /// 	 | TRACE
+    /// 	 | TRACK_CAUSALITY
+    /// 	 | TRANSFER
+    /// 	 | UNCHECKED
+    /// 	 | UNLOCK
+    /// 	 | UNSAFE
+    /// 	 | URL
+    /// 	 | USED
+    /// 	 | VERBOSELOGGING
+    /// 	 | VISIBILITY
+    /// 	 | WAIT_AT_LOW_PRIORITY
+    /// 	 | WINDOWS
+    /// 	 | WITHOUT
+    /// 	 | WITNESS
+    /// 	 | XACT_ABORT
+    /// 	 | XACT_STATE
+    /// 	 | VARCHAR
+    /// 	 | NVARCHAR
+    /// 	 | PRECISION
+    /// </summary>
+    public partial class AstKeyword : AstTerminalKeyword
     {
         
         public AstKeyword(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstKeyword _undefined()
+        public AstKeyword(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstKeyword(null);
         }
         
+        /// <summary>
+        /// keyword : ABORT
+        /// </summary>
         public static AstKeyword Abort()
         {
-            return new AstKeyword(Position.Default, "ABORT");
+            return new AstKeyword(Position.Default, "ABORT", "ABORT");
         }
         
+        /// <summary>
+        /// keyword : ABSOLUTE
+        /// </summary>
         public static AstKeyword Absolute()
         {
-            return new AstKeyword(Position.Default, "ABSOLUTE");
+            return new AstKeyword(Position.Default, "ABSOLUTE", "ABSOLUTE");
         }
         
+        /// <summary>
+        /// keyword : ACCENT_SENSITIVITY
+        /// </summary>
         public static AstKeyword AccentSensitivity()
         {
-            return new AstKeyword(Position.Default, "ACCENT_SENSITIVITY");
+            return new AstKeyword(Position.Default, "ACCENT_SENSITIVITY", "ACCENT_SENSITIVITY");
         }
         
+        /// <summary>
+        /// keyword : ACCESS
+        /// </summary>
         public static AstKeyword Access()
         {
-            return new AstKeyword(Position.Default, "ACCESS");
+            return new AstKeyword(Position.Default, "ACCESS", "ACCESS");
         }
         
+        /// <summary>
+        /// keyword : ACTION
+        /// </summary>
         public static AstKeyword Action()
         {
-            return new AstKeyword(Position.Default, "ACTION");
+            return new AstKeyword(Position.Default, "ACTION", "ACTION");
         }
         
+        /// <summary>
+        /// keyword : ACTIVATION
+        /// </summary>
         public static AstKeyword Activation()
         {
-            return new AstKeyword(Position.Default, "ACTIVATION");
+            return new AstKeyword(Position.Default, "ACTIVATION", "ACTIVATION");
         }
         
+        /// <summary>
+        /// keyword : ACTIVE
+        /// </summary>
         public static AstKeyword Active()
         {
-            return new AstKeyword(Position.Default, "ACTIVE");
+            return new AstKeyword(Position.Default, "ACTIVE", "ACTIVE");
         }
         
+        /// <summary>
+        /// keyword : ADD
+        /// </summary>
         public static AstKeyword Add()
         {
-            return new AstKeyword(Position.Default, "ADD");
+            return new AstKeyword(Position.Default, "ADD", "ADD");
         }
         
+        /// <summary>
+        /// keyword : ADDRESS
+        /// </summary>
         public static AstKeyword Address()
         {
-            return new AstKeyword(Position.Default, "ADDRESS");
+            return new AstKeyword(Position.Default, "ADDRESS", "ADDRESS");
         }
         
+        /// <summary>
+        /// keyword : AES_128
+        /// </summary>
         public static AstKeyword Aes128()
         {
-            return new AstKeyword(Position.Default, "AES_128");
+            return new AstKeyword(Position.Default, "AES_128", "AES_128");
         }
         
+        /// <summary>
+        /// keyword : AES_192
+        /// </summary>
         public static AstKeyword Aes192()
         {
-            return new AstKeyword(Position.Default, "AES_192");
+            return new AstKeyword(Position.Default, "AES_192", "AES_192");
         }
         
+        /// <summary>
+        /// keyword : AES_256
+        /// </summary>
         public static AstKeyword Aes256()
         {
-            return new AstKeyword(Position.Default, "AES_256");
+            return new AstKeyword(Position.Default, "AES_256", "AES_256");
         }
         
+        /// <summary>
+        /// keyword : AFFINITY
+        /// </summary>
         public static AstKeyword Affinity()
         {
-            return new AstKeyword(Position.Default, "AFFINITY");
+            return new AstKeyword(Position.Default, "AFFINITY", "AFFINITY");
         }
         
+        /// <summary>
+        /// keyword : AFTER
+        /// </summary>
         public static AstKeyword After()
         {
-            return new AstKeyword(Position.Default, "AFTER");
+            return new AstKeyword(Position.Default, "AFTER", "AFTER");
         }
         
+        /// <summary>
+        /// keyword : AGGREGATE
+        /// </summary>
         public static AstKeyword Aggregate()
         {
-            return new AstKeyword(Position.Default, "AGGREGATE");
+            return new AstKeyword(Position.Default, "AGGREGATE", "AGGREGATE");
         }
         
+        /// <summary>
+        /// keyword : ALGORITHM
+        /// </summary>
         public static AstKeyword Algorithm()
         {
-            return new AstKeyword(Position.Default, "ALGORITHM");
+            return new AstKeyword(Position.Default, "ALGORITHM", "ALGORITHM");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS
+        /// </summary>
         public static AstKeyword AllowEncryptedValueModifications()
         {
-            return new AstKeyword(Position.Default, "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS");
+            return new AstKeyword(Position.Default, "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS", "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_PAGE_LOCKS
+        /// </summary>
         public static AstKeyword AllowPageLocks()
         {
-            return new AstKeyword(Position.Default, "ALLOW_PAGE_LOCKS");
+            return new AstKeyword(Position.Default, "ALLOW_PAGE_LOCKS", "ALLOW_PAGE_LOCKS");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_ROW_LOCKS
+        /// </summary>
         public static AstKeyword AllowRowLocks()
         {
-            return new AstKeyword(Position.Default, "ALLOW_ROW_LOCKS");
+            return new AstKeyword(Position.Default, "ALLOW_ROW_LOCKS", "ALLOW_ROW_LOCKS");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_SNAPSHOT_ISOLATION
+        /// </summary>
         public static AstKeyword AllowSnapshotIsolation()
         {
-            return new AstKeyword(Position.Default, "ALLOW_SNAPSHOT_ISOLATION");
+            return new AstKeyword(Position.Default, "ALLOW_SNAPSHOT_ISOLATION", "ALLOW_SNAPSHOT_ISOLATION");
         }
         
+        /// <summary>
+        /// keyword : ALLOWED
+        /// </summary>
         public static AstKeyword Allowed()
         {
-            return new AstKeyword(Position.Default, "ALLOWED");
+            return new AstKeyword(Position.Default, "ALLOWED", "ALLOWED");
         }
         
+        /// <summary>
+        /// keyword : ALWAYS
+        /// </summary>
         public static AstKeyword Always()
         {
-            return new AstKeyword(Position.Default, "ALWAYS");
+            return new AstKeyword(Position.Default, "ALWAYS", "ALWAYS");
         }
         
+        /// <summary>
+        /// keyword : ANSI_DEFAULTS
+        /// </summary>
         public static AstKeyword AnsiDefaults()
         {
-            return new AstKeyword(Position.Default, "ANSI_DEFAULTS");
+            return new AstKeyword(Position.Default, "ANSI_DEFAULTS", "ANSI_DEFAULTS");
         }
         
+        /// <summary>
+        /// keyword : ANSI_NULL_DEFAULT
+        /// </summary>
         public static AstKeyword AnsiNullDefault()
         {
-            return new AstKeyword(Position.Default, "ANSI_NULL_DEFAULT");
+            return new AstKeyword(Position.Default, "ANSI_NULL_DEFAULT", "ANSI_NULL_DEFAULT");
         }
         
+        /// <summary>
+        /// keyword : ANSI_NULL_DFLT_OFF
+        /// </summary>
         public static AstKeyword AnsiNullDfltOff()
         {
-            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_OFF");
+            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_OFF", "ANSI_NULL_DFLT_OFF");
         }
         
+        /// <summary>
+        /// keyword : ANSI_NULL_DFLT_ON
+        /// </summary>
         public static AstKeyword AnsiNullDfltOn()
         {
-            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_ON");
+            return new AstKeyword(Position.Default, "ANSI_NULL_DFLT_ON", "ANSI_NULL_DFLT_ON");
         }
         
+        /// <summary>
+        /// keyword : ANSI_NULLS
+        /// </summary>
         public static AstKeyword AnsiNulls()
         {
-            return new AstKeyword(Position.Default, "ANSI_NULLS");
+            return new AstKeyword(Position.Default, "ANSI_NULLS", "ANSI_NULLS");
         }
         
+        /// <summary>
+        /// keyword : ANSI_PADDING
+        /// </summary>
         public static AstKeyword AnsiPadding()
         {
-            return new AstKeyword(Position.Default, "ANSI_PADDING");
+            return new AstKeyword(Position.Default, "ANSI_PADDING", "ANSI_PADDING");
         }
         
+        /// <summary>
+        /// keyword : ANSI_WARNINGS
+        /// </summary>
         public static AstKeyword AnsiWarnings()
         {
-            return new AstKeyword(Position.Default, "ANSI_WARNINGS");
+            return new AstKeyword(Position.Default, "ANSI_WARNINGS", "ANSI_WARNINGS");
         }
         
+        /// <summary>
+        /// keyword : APP_NAME
+        /// </summary>
         public static AstKeyword AppName()
         {
-            return new AstKeyword(Position.Default, "APP_NAME");
+            return new AstKeyword(Position.Default, "APP_NAME", "APP_NAME");
         }
         
+        /// <summary>
+        /// keyword : APPLICATION_LOG
+        /// </summary>
         public static AstKeyword ApplicationLog()
         {
-            return new AstKeyword(Position.Default, "APPLICATION_LOG");
+            return new AstKeyword(Position.Default, "APPLICATION_LOG", "APPLICATION_LOG");
         }
         
+        /// <summary>
+        /// keyword : APPLOCK_MODE
+        /// </summary>
         public static AstKeyword ApplockMode()
         {
-            return new AstKeyword(Position.Default, "APPLOCK_MODE");
+            return new AstKeyword(Position.Default, "APPLOCK_MODE", "APPLOCK_MODE");
         }
         
+        /// <summary>
+        /// keyword : APPLOCK_TEST
+        /// </summary>
         public static AstKeyword ApplockTest()
         {
-            return new AstKeyword(Position.Default, "APPLOCK_TEST");
+            return new AstKeyword(Position.Default, "APPLOCK_TEST", "APPLOCK_TEST");
         }
         
+        /// <summary>
+        /// keyword : APPLY
+        /// </summary>
         public static AstKeyword Apply()
         {
-            return new AstKeyword(Position.Default, "APPLY");
+            return new AstKeyword(Position.Default, "APPLY", "APPLY");
         }
         
+        /// <summary>
+        /// keyword : ARITHABORT
+        /// </summary>
         public static AstKeyword Arithabort()
         {
-            return new AstKeyword(Position.Default, "ARITHABORT");
+            return new AstKeyword(Position.Default, "ARITHABORT", "ARITHABORT");
         }
         
+        /// <summary>
+        /// keyword : ARITHIGNORE
+        /// </summary>
         public static AstKeyword Arithignore()
         {
-            return new AstKeyword(Position.Default, "ARITHIGNORE");
+            return new AstKeyword(Position.Default, "ARITHIGNORE", "ARITHIGNORE");
         }
         
+        /// <summary>
+        /// keyword : ASCII
+        /// </summary>
         public static AstKeyword Ascii()
         {
-            return new AstKeyword(Position.Default, "ASCII");
+            return new AstKeyword(Position.Default, "ASCII", "ASCII");
         }
         
+        /// <summary>
+        /// keyword : ASSEMBLY
+        /// </summary>
         public static AstKeyword Assembly()
         {
-            return new AstKeyword(Position.Default, "ASSEMBLY");
+            return new AstKeyword(Position.Default, "ASSEMBLY", "ASSEMBLY");
         }
         
+        /// <summary>
+        /// keyword : ASSEMBLYPROPERTY
+        /// </summary>
         public static AstKeyword Assemblyproperty()
         {
-            return new AstKeyword(Position.Default, "ASSEMBLYPROPERTY");
+            return new AstKeyword(Position.Default, "ASSEMBLYPROPERTY", "ASSEMBLYPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : AT
+        /// </summary>
         public static AstKeyword AtKeyword()
         {
-            return new AstKeyword(Position.Default, "AT");
+            return new AstKeyword(Position.Default, "AT_KEYWORD", "AT");
         }
         
+        /// <summary>
+        /// keyword : AUDIT
+        /// </summary>
         public static AstKeyword Audit()
         {
-            return new AstKeyword(Position.Default, "AUDIT");
+            return new AstKeyword(Position.Default, "AUDIT", "AUDIT");
         }
         
+        /// <summary>
+        /// keyword : AUDIT_GUID
+        /// </summary>
         public static AstKeyword AuditGuid()
         {
-            return new AstKeyword(Position.Default, "AUDIT_GUID");
+            return new AstKeyword(Position.Default, "AUDIT_GUID", "AUDIT_GUID");
         }
         
+        /// <summary>
+        /// keyword : AUTO
+        /// </summary>
         public static AstKeyword Auto()
         {
-            return new AstKeyword(Position.Default, "AUTO");
+            return new AstKeyword(Position.Default, "AUTO", "AUTO");
         }
         
+        /// <summary>
+        /// keyword : AUTO_CLEANUP
+        /// </summary>
         public static AstKeyword AutoCleanup()
         {
-            return new AstKeyword(Position.Default, "AUTO_CLEANUP");
+            return new AstKeyword(Position.Default, "AUTO_CLEANUP", "AUTO_CLEANUP");
         }
         
+        /// <summary>
+        /// keyword : AUTO_CLOSE
+        /// </summary>
         public static AstKeyword AutoClose()
         {
-            return new AstKeyword(Position.Default, "AUTO_CLOSE");
+            return new AstKeyword(Position.Default, "AUTO_CLOSE", "AUTO_CLOSE");
         }
         
+        /// <summary>
+        /// keyword : AUTO_CREATE_STATISTICS
+        /// </summary>
         public static AstKeyword AutoCreateStatistics()
         {
-            return new AstKeyword(Position.Default, "AUTO_CREATE_STATISTICS");
+            return new AstKeyword(Position.Default, "AUTO_CREATE_STATISTICS", "AUTO_CREATE_STATISTICS");
         }
         
+        /// <summary>
+        /// keyword : AUTO_DROP
+        /// </summary>
         public static AstKeyword AutoDrop()
         {
-            return new AstKeyword(Position.Default, "AUTO_DROP");
+            return new AstKeyword(Position.Default, "AUTO_DROP", "AUTO_DROP");
         }
         
+        /// <summary>
+        /// keyword : AUTO_SHRINK
+        /// </summary>
         public static AstKeyword AutoShrink()
         {
-            return new AstKeyword(Position.Default, "AUTO_SHRINK");
+            return new AstKeyword(Position.Default, "AUTO_SHRINK", "AUTO_SHRINK");
         }
         
+        /// <summary>
+        /// keyword : AUTO_UPDATE_STATISTICS
+        /// </summary>
         public static AstKeyword AutoUpdateStatistics()
         {
-            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS");
+            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS", "AUTO_UPDATE_STATISTICS");
         }
         
+        /// <summary>
+        /// keyword : AUTO_UPDATE_STATISTICS_ASYNC
+        /// </summary>
         public static AstKeyword AutoUpdateStatisticsAsync()
         {
-            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS_ASYNC");
+            return new AstKeyword(Position.Default, "AUTO_UPDATE_STATISTICS_ASYNC", "AUTO_UPDATE_STATISTICS_ASYNC");
         }
         
+        /// <summary>
+        /// keyword : AUTOGROW_ALL_FILES
+        /// </summary>
         public static AstKeyword AutogrowAllFiles()
         {
-            return new AstKeyword(Position.Default, "AUTOGROW_ALL_FILES");
+            return new AstKeyword(Position.Default, "AUTOGROW_ALL_FILES", "AUTOGROW_ALL_FILES");
         }
         
+        /// <summary>
+        /// keyword : AUTOGROW_SINGLE_FILE
+        /// </summary>
         public static AstKeyword AutogrowSingleFile()
         {
-            return new AstKeyword(Position.Default, "AUTOGROW_SINGLE_FILE");
+            return new AstKeyword(Position.Default, "AUTOGROW_SINGLE_FILE", "AUTOGROW_SINGLE_FILE");
         }
         
+        /// <summary>
+        /// keyword : AVAILABILITY
+        /// </summary>
         public static AstKeyword Availability()
         {
-            return new AstKeyword(Position.Default, "AVAILABILITY");
+            return new AstKeyword(Position.Default, "AVAILABILITY", "AVAILABILITY");
         }
         
+        /// <summary>
+        /// keyword : AVG
+        /// </summary>
         public static AstKeyword Avg()
         {
-            return new AstKeyword(Position.Default, "AVG");
+            return new AstKeyword(Position.Default, "AVG", "AVG");
         }
         
+        /// <summary>
+        /// keyword : BACKUP_PRIORITY
+        /// </summary>
         public static AstKeyword BackupPriority()
         {
-            return new AstKeyword(Position.Default, "BACKUP_PRIORITY");
+            return new AstKeyword(Position.Default, "BACKUP_PRIORITY", "BACKUP_PRIORITY");
         }
         
+        /// <summary>
+        /// keyword : BASE64
+        /// </summary>
         public static AstKeyword Base64()
         {
-            return new AstKeyword(Position.Default, "BASE64");
+            return new AstKeyword(Position.Default, "BASE64", "BASE64");
         }
         
+        /// <summary>
+        /// keyword : BEGIN_DIALOG
+        /// </summary>
         public static AstKeyword BeginDialog()
         {
-            return new AstKeyword(Position.Default, "BEGIN_DIALOG");
+            return new AstKeyword(Position.Default, "BEGIN_DIALOG", "BEGIN_DIALOG");
         }
         
+        /// <summary>
+        /// keyword : BIGINT
+        /// </summary>
         public static AstKeyword Bigint()
         {
-            return new AstKeyword(Position.Default, "BIGINT");
+            return new AstKeyword(Position.Default, "BIGINT", "BIGINT");
         }
         
+        /// <summary>
+        /// keyword : BINARY
+        /// </summary>
         public static AstKeyword BinaryKeyword()
         {
-            return new AstKeyword(Position.Default, "BINARY");
+            return new AstKeyword(Position.Default, "BINARY_KEYWORD", "BINARY");
         }
         
+        /// <summary>
+        /// keyword : BINARY_CHECKSUM
+        /// </summary>
         public static AstKeyword BinaryChecksum()
         {
-            return new AstKeyword(Position.Default, "BINARY_CHECKSUM");
+            return new AstKeyword(Position.Default, "BINARY_CHECKSUM", "BINARY_CHECKSUM");
         }
         
+        /// <summary>
+        /// keyword : BINDING
+        /// </summary>
         public static AstKeyword Binding()
         {
-            return new AstKeyword(Position.Default, "BINDING");
+            return new AstKeyword(Position.Default, "BINDING", "BINDING");
         }
         
+        /// <summary>
+        /// keyword : BLOB_STORAGE
+        /// </summary>
         public static AstKeyword BlobStorage()
         {
-            return new AstKeyword(Position.Default, "BLOB_STORAGE");
+            return new AstKeyword(Position.Default, "BLOB_STORAGE", "BLOB_STORAGE");
         }
         
+        /// <summary>
+        /// keyword : BROKER
+        /// </summary>
         public static AstKeyword Broker()
         {
-            return new AstKeyword(Position.Default, "BROKER");
+            return new AstKeyword(Position.Default, "BROKER", "BROKER");
         }
         
+        /// <summary>
+        /// keyword : BROKER_INSTANCE
+        /// </summary>
         public static AstKeyword BrokerInstance()
         {
-            return new AstKeyword(Position.Default, "BROKER_INSTANCE");
+            return new AstKeyword(Position.Default, "BROKER_INSTANCE", "BROKER_INSTANCE");
         }
         
+        /// <summary>
+        /// keyword : BULK_LOGGED
+        /// </summary>
         public static AstKeyword BulkLogged()
         {
-            return new AstKeyword(Position.Default, "BULK_LOGGED");
+            return new AstKeyword(Position.Default, "BULK_LOGGED", "BULK_LOGGED");
         }
         
+        /// <summary>
+        /// keyword : CALLER
+        /// </summary>
         public static AstKeyword Caller()
         {
-            return new AstKeyword(Position.Default, "CALLER");
+            return new AstKeyword(Position.Default, "CALLER", "CALLER");
         }
         
+        /// <summary>
+        /// keyword : CAP_CPU_PERCENT
+        /// </summary>
         public static AstKeyword CapCpuPercent()
         {
-            return new AstKeyword(Position.Default, "CAP_CPU_PERCENT");
+            return new AstKeyword(Position.Default, "CAP_CPU_PERCENT", "CAP_CPU_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : CAST
+        /// </summary>
         public static AstKeyword Cast()
         {
-            return new AstKeyword(Position.Default, "CAST");
+            return new AstKeyword(Position.Default, "CAST", "CAST");
         }
         
+        /// <summary>
+        /// keyword : TRY_CAST
+        /// </summary>
         public static AstKeyword TryCast()
         {
-            return new AstKeyword(Position.Default, "TRY_CAST");
+            return new AstKeyword(Position.Default, "TRY_CAST", "TRY_CAST");
         }
         
+        /// <summary>
+        /// keyword : CATALOG
+        /// </summary>
         public static AstKeyword Catalog()
         {
-            return new AstKeyword(Position.Default, "CATALOG");
+            return new AstKeyword(Position.Default, "CATALOG", "CATALOG");
         }
         
+        /// <summary>
+        /// keyword : CATCH
+        /// </summary>
         public static AstKeyword Catch()
         {
-            return new AstKeyword(Position.Default, "CATCH");
+            return new AstKeyword(Position.Default, "CATCH", "CATCH");
         }
         
+        /// <summary>
+        /// keyword : CHANGE
+        /// </summary>
         public static AstKeyword Change()
         {
-            return new AstKeyword(Position.Default, "CHANGE");
+            return new AstKeyword(Position.Default, "CHANGE", "CHANGE");
         }
         
+        /// <summary>
+        /// keyword : CHANGE_RETENTION
+        /// </summary>
         public static AstKeyword ChangeRetention()
         {
-            return new AstKeyword(Position.Default, "CHANGE_RETENTION");
+            return new AstKeyword(Position.Default, "CHANGE_RETENTION", "CHANGE_RETENTION");
         }
         
+        /// <summary>
+        /// keyword : CHANGE_TRACKING
+        /// </summary>
         public static AstKeyword ChangeTracking()
         {
-            return new AstKeyword(Position.Default, "CHANGE_TRACKING");
+            return new AstKeyword(Position.Default, "CHANGE_TRACKING", "CHANGE_TRACKING");
         }
         
+        /// <summary>
+        /// keyword : CHAR
+        /// </summary>
         public static AstKeyword Char()
         {
-            return new AstKeyword(Position.Default, "CHAR");
+            return new AstKeyword(Position.Default, "CHAR", "CHAR");
         }
         
+        /// <summary>
+        /// keyword : CHARINDEX
+        /// </summary>
         public static AstKeyword Charindex()
         {
-            return new AstKeyword(Position.Default, "CHARINDEX");
+            return new AstKeyword(Position.Default, "CHARINDEX", "CHARINDEX");
         }
         
+        /// <summary>
+        /// keyword : CHECKSUM
+        /// </summary>
         public static AstKeyword Checksum()
         {
-            return new AstKeyword(Position.Default, "CHECKSUM");
+            return new AstKeyword(Position.Default, "CHECKSUM", "CHECKSUM");
         }
         
+        /// <summary>
+        /// keyword : CHECKSUM_AGG
+        /// </summary>
         public static AstKeyword ChecksumAgg()
         {
-            return new AstKeyword(Position.Default, "CHECKSUM_AGG");
+            return new AstKeyword(Position.Default, "CHECKSUM_AGG", "CHECKSUM_AGG");
         }
         
+        /// <summary>
+        /// keyword : CLEANUP
+        /// </summary>
         public static AstKeyword Cleanup()
         {
-            return new AstKeyword(Position.Default, "CLEANUP");
+            return new AstKeyword(Position.Default, "CLEANUP", "CLEANUP");
         }
         
+        /// <summary>
+        /// keyword : COL_LENGTH
+        /// </summary>
         public static AstKeyword ColLength()
         {
-            return new AstKeyword(Position.Default, "COL_LENGTH");
+            return new AstKeyword(Position.Default, "COL_LENGTH", "COL_LENGTH");
         }
         
+        /// <summary>
+        /// keyword : COL_NAME
+        /// </summary>
         public static AstKeyword ColName()
         {
-            return new AstKeyword(Position.Default, "COL_NAME");
+            return new AstKeyword(Position.Default, "COL_NAME", "COL_NAME");
         }
         
+        /// <summary>
+        /// keyword : COLLECTION
+        /// </summary>
         public static AstKeyword Collection()
         {
-            return new AstKeyword(Position.Default, "COLLECTION");
+            return new AstKeyword(Position.Default, "COLLECTION", "COLLECTION");
         }
         
+        /// <summary>
+        /// keyword : COLUMN_ENCRYPTION_KEY
+        /// </summary>
         public static AstKeyword ColumnEncryptionKey()
         {
-            return new AstKeyword(Position.Default, "COLUMN_ENCRYPTION_KEY");
+            return new AstKeyword(Position.Default, "COLUMN_ENCRYPTION_KEY", "COLUMN_ENCRYPTION_KEY");
         }
         
+        /// <summary>
+        /// keyword : COLUMN_MASTER_KEY
+        /// </summary>
         public static AstKeyword ColumnMasterKey()
         {
-            return new AstKeyword(Position.Default, "COLUMN_MASTER_KEY");
+            return new AstKeyword(Position.Default, "COLUMN_MASTER_KEY", "COLUMN_MASTER_KEY");
         }
         
+        /// <summary>
+        /// keyword : COLUMNPROPERTY
+        /// </summary>
         public static AstKeyword Columnproperty()
         {
-            return new AstKeyword(Position.Default, "COLUMNPROPERTY");
+            return new AstKeyword(Position.Default, "COLUMNPROPERTY", "COLUMNPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : COLUMNS
+        /// </summary>
         public static AstKeyword Columns()
         {
-            return new AstKeyword(Position.Default, "COLUMNS");
+            return new AstKeyword(Position.Default, "COLUMNS", "COLUMNS");
         }
         
+        /// <summary>
+        /// keyword : COLUMNSTORE
+        /// </summary>
         public static AstKeyword Columnstore()
         {
-            return new AstKeyword(Position.Default, "COLUMNSTORE");
+            return new AstKeyword(Position.Default, "COLUMNSTORE", "COLUMNSTORE");
         }
         
+        /// <summary>
+        /// keyword : COLUMNSTORE_ARCHIVE
+        /// </summary>
         public static AstKeyword ColumnstoreArchive()
         {
-            return new AstKeyword(Position.Default, "COLUMNSTORE_ARCHIVE");
+            return new AstKeyword(Position.Default, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
         }
         
+        /// <summary>
+        /// keyword : COMMITTED
+        /// </summary>
         public static AstKeyword Committed()
         {
-            return new AstKeyword(Position.Default, "COMMITTED");
+            return new AstKeyword(Position.Default, "COMMITTED", "COMMITTED");
         }
         
+        /// <summary>
+        /// keyword : COMPATIBILITY_LEVEL
+        /// </summary>
         public static AstKeyword CompatibilityLevel()
         {
-            return new AstKeyword(Position.Default, "COMPATIBILITY_LEVEL");
+            return new AstKeyword(Position.Default, "COMPATIBILITY_LEVEL", "COMPATIBILITY_LEVEL");
         }
         
+        /// <summary>
+        /// keyword : COMPRESS_ALL_ROW_GROUPS
+        /// </summary>
         public static AstKeyword CompressAllRowGroups()
         {
-            return new AstKeyword(Position.Default, "COMPRESS_ALL_ROW_GROUPS");
+            return new AstKeyword(Position.Default, "COMPRESS_ALL_ROW_GROUPS", "COMPRESS_ALL_ROW_GROUPS");
         }
         
+        /// <summary>
+        /// keyword : COMPRESSION_DELAY
+        /// </summary>
         public static AstKeyword CompressionDelay()
         {
-            return new AstKeyword(Position.Default, "COMPRESSION_DELAY");
+            return new AstKeyword(Position.Default, "COMPRESSION_DELAY", "COMPRESSION_DELAY");
         }
         
+        /// <summary>
+        /// keyword : CONCAT
+        /// </summary>
         public static AstKeyword Concat()
         {
-            return new AstKeyword(Position.Default, "CONCAT");
+            return new AstKeyword(Position.Default, "CONCAT", "CONCAT");
         }
         
+        /// <summary>
+        /// keyword : CONCAT_WS
+        /// </summary>
         public static AstKeyword ConcatWs()
         {
-            return new AstKeyword(Position.Default, "CONCAT_WS");
+            return new AstKeyword(Position.Default, "CONCAT_WS", "CONCAT_WS");
         }
         
+        /// <summary>
+        /// keyword : CONCAT_NULL_YIELDS_NULL
+        /// </summary>
         public static AstKeyword ConcatNullYieldsNull()
         {
-            return new AstKeyword(Position.Default, "CONCAT_NULL_YIELDS_NULL");
+            return new AstKeyword(Position.Default, "CONCAT_NULL_YIELDS_NULL", "CONCAT_NULL_YIELDS_NULL");
         }
         
+        /// <summary>
+        /// keyword : CONTENT
+        /// </summary>
         public static AstKeyword Content()
         {
-            return new AstKeyword(Position.Default, "CONTENT");
+            return new AstKeyword(Position.Default, "CONTENT", "CONTENT");
         }
         
+        /// <summary>
+        /// keyword : CONTROL
+        /// </summary>
         public static AstKeyword Control()
         {
-            return new AstKeyword(Position.Default, "CONTROL");
+            return new AstKeyword(Position.Default, "CONTROL", "CONTROL");
         }
         
+        /// <summary>
+        /// keyword : COOKIE
+        /// </summary>
         public static AstKeyword Cookie()
         {
-            return new AstKeyword(Position.Default, "COOKIE");
+            return new AstKeyword(Position.Default, "COOKIE", "COOKIE");
         }
         
+        /// <summary>
+        /// keyword : COUNT
+        /// </summary>
         public static AstKeyword Count()
         {
-            return new AstKeyword(Position.Default, "COUNT");
+            return new AstKeyword(Position.Default, "COUNT", "COUNT");
         }
         
+        /// <summary>
+        /// keyword : COUNT_BIG
+        /// </summary>
         public static AstKeyword CountBig()
         {
-            return new AstKeyword(Position.Default, "COUNT_BIG");
+            return new AstKeyword(Position.Default, "COUNT_BIG", "COUNT_BIG");
         }
         
+        /// <summary>
+        /// keyword : COUNTER
+        /// </summary>
         public static AstKeyword Counter()
         {
-            return new AstKeyword(Position.Default, "COUNTER");
+            return new AstKeyword(Position.Default, "COUNTER", "COUNTER");
         }
         
+        /// <summary>
+        /// keyword : CPU
+        /// </summary>
         public static AstKeyword Cpu()
         {
-            return new AstKeyword(Position.Default, "CPU");
+            return new AstKeyword(Position.Default, "CPU", "CPU");
         }
         
+        /// <summary>
+        /// keyword : CREATE_NEW
+        /// </summary>
         public static AstKeyword CreateNew()
         {
-            return new AstKeyword(Position.Default, "CREATE_NEW");
+            return new AstKeyword(Position.Default, "CREATE_NEW", "CREATE_NEW");
         }
         
+        /// <summary>
+        /// keyword : CREATION_DISPOSITION
+        /// </summary>
         public static AstKeyword CreationDisposition()
         {
-            return new AstKeyword(Position.Default, "CREATION_DISPOSITION");
+            return new AstKeyword(Position.Default, "CREATION_DISPOSITION", "CREATION_DISPOSITION");
         }
         
+        /// <summary>
+        /// keyword : CREDENTIAL
+        /// </summary>
         public static AstKeyword Credential()
         {
-            return new AstKeyword(Position.Default, "CREDENTIAL");
+            return new AstKeyword(Position.Default, "CREDENTIAL", "CREDENTIAL");
         }
         
+        /// <summary>
+        /// keyword : CRYPTOGRAPHIC
+        /// </summary>
         public static AstKeyword Cryptographic()
         {
-            return new AstKeyword(Position.Default, "CRYPTOGRAPHIC");
+            return new AstKeyword(Position.Default, "CRYPTOGRAPHIC", "CRYPTOGRAPHIC");
         }
         
+        /// <summary>
+        /// keyword : CUME_DIST
+        /// </summary>
         public static AstKeyword CumeDist()
         {
-            return new AstKeyword(Position.Default, "CUME_DIST");
+            return new AstKeyword(Position.Default, "CUME_DIST", "CUME_DIST");
         }
         
+        /// <summary>
+        /// keyword : CURSOR_CLOSE_ON_COMMIT
+        /// </summary>
         public static AstKeyword CursorCloseOnCommit()
         {
-            return new AstKeyword(Position.Default, "CURSOR_CLOSE_ON_COMMIT");
+            return new AstKeyword(Position.Default, "CURSOR_CLOSE_ON_COMMIT", "CURSOR_CLOSE_ON_COMMIT");
         }
         
+        /// <summary>
+        /// keyword : CURSOR_DEFAULT
+        /// </summary>
         public static AstKeyword CursorDefault()
         {
-            return new AstKeyword(Position.Default, "CURSOR_DEFAULT");
+            return new AstKeyword(Position.Default, "CURSOR_DEFAULT", "CURSOR_DEFAULT");
         }
         
+        /// <summary>
+        /// keyword : DATA
+        /// </summary>
         public static AstKeyword Data()
         {
-            return new AstKeyword(Position.Default, "DATA");
+            return new AstKeyword(Position.Default, "DATA", "DATA");
         }
         
+        /// <summary>
+        /// keyword : DATABASE_PRINCIPAL_ID
+        /// </summary>
         public static AstKeyword DatabasePrincipalId()
         {
-            return new AstKeyword(Position.Default, "DATABASE_PRINCIPAL_ID");
+            return new AstKeyword(Position.Default, "DATABASE_PRINCIPAL_ID", "DATABASE_PRINCIPAL_ID");
         }
         
+        /// <summary>
+        /// keyword : DATABASEPROPERTYEX
+        /// </summary>
         public static AstKeyword Databasepropertyex()
         {
-            return new AstKeyword(Position.Default, "DATABASEPROPERTYEX");
+            return new AstKeyword(Position.Default, "DATABASEPROPERTYEX", "DATABASEPROPERTYEX");
         }
         
+        /// <summary>
+        /// keyword : DATE_CORRELATION_OPTIMIZATION
+        /// </summary>
         public static AstKeyword DateCorrelationOptimization()
         {
-            return new AstKeyword(Position.Default, "DATE_CORRELATION_OPTIMIZATION");
+            return new AstKeyword(Position.Default, "DATE_CORRELATION_OPTIMIZATION", "DATE_CORRELATION_OPTIMIZATION");
         }
         
+        /// <summary>
+        /// keyword : DATEADD
+        /// </summary>
         public static AstKeyword Dateadd()
         {
-            return new AstKeyword(Position.Default, "DATEADD");
+            return new AstKeyword(Position.Default, "DATEADD", "DATEADD");
         }
         
+        /// <summary>
+        /// keyword : DATEDIFF
+        /// </summary>
         public static AstKeyword Datediff()
         {
-            return new AstKeyword(Position.Default, "DATEDIFF");
+            return new AstKeyword(Position.Default, "DATEDIFF", "DATEDIFF");
         }
         
+        /// <summary>
+        /// keyword : DATENAME
+        /// </summary>
         public static AstKeyword Datename()
         {
-            return new AstKeyword(Position.Default, "DATENAME");
+            return new AstKeyword(Position.Default, "DATENAME", "DATENAME");
         }
         
+        /// <summary>
+        /// keyword : DATEPART
+        /// </summary>
         public static AstKeyword Datepart()
         {
-            return new AstKeyword(Position.Default, "DATEPART");
+            return new AstKeyword(Position.Default, "DATEPART", "DATEPART");
         }
         
+        /// <summary>
+        /// keyword : DAYS
+        /// </summary>
         public static AstKeyword Days()
         {
-            return new AstKeyword(Position.Default, "DAYS");
+            return new AstKeyword(Position.Default, "DAYS", "DAYS");
         }
         
+        /// <summary>
+        /// keyword : DB_CHAINING
+        /// </summary>
         public static AstKeyword DbChaining()
         {
-            return new AstKeyword(Position.Default, "DB_CHAINING");
+            return new AstKeyword(Position.Default, "DB_CHAINING", "DB_CHAINING");
         }
         
+        /// <summary>
+        /// keyword : DB_FAILOVER
+        /// </summary>
         public static AstKeyword DbFailover()
         {
-            return new AstKeyword(Position.Default, "DB_FAILOVER");
+            return new AstKeyword(Position.Default, "DB_FAILOVER", "DB_FAILOVER");
         }
         
+        /// <summary>
+        /// keyword : DB_ID
+        /// </summary>
         public static AstKeyword DbId()
         {
-            return new AstKeyword(Position.Default, "DB_ID");
+            return new AstKeyword(Position.Default, "DB_ID", "DB_ID");
         }
         
+        /// <summary>
+        /// keyword : DB_NAME
+        /// </summary>
         public static AstKeyword DbName()
         {
-            return new AstKeyword(Position.Default, "DB_NAME");
+            return new AstKeyword(Position.Default, "DB_NAME", "DB_NAME");
         }
         
+        /// <summary>
+        /// keyword : DECRYPTION
+        /// </summary>
         public static AstKeyword Decryption()
         {
-            return new AstKeyword(Position.Default, "DECRYPTION");
+            return new AstKeyword(Position.Default, "DECRYPTION", "DECRYPTION");
         }
         
+        /// <summary>
+        /// keyword : ["]  'DEFAULT'  ["]
+        /// </summary>
         public static AstKeyword DefaultDoubleQuote()
         {
-            return new AstKeyword(Position.Default, "[\"]  \'DEFAULT\'  [\"]");
+            return new AstKeyword(Position.Default, "DEFAULT_DOUBLE_QUOTE", "[\"]  \'DEFAULT\'  [\"]");
         }
         
+        /// <summary>
+        /// keyword : DEFAULT_FULLTEXT_LANGUAGE
+        /// </summary>
         public static AstKeyword DefaultFulltextLanguage()
         {
-            return new AstKeyword(Position.Default, "DEFAULT_FULLTEXT_LANGUAGE");
+            return new AstKeyword(Position.Default, "DEFAULT_FULLTEXT_LANGUAGE", "DEFAULT_FULLTEXT_LANGUAGE");
         }
         
+        /// <summary>
+        /// keyword : DEFAULT_LANGUAGE
+        /// </summary>
         public static AstKeyword DefaultLanguage()
         {
-            return new AstKeyword(Position.Default, "DEFAULT_LANGUAGE");
+            return new AstKeyword(Position.Default, "DEFAULT_LANGUAGE", "DEFAULT_LANGUAGE");
         }
         
+        /// <summary>
+        /// keyword : DEFINITION
+        /// </summary>
         public static AstKeyword Definition()
         {
-            return new AstKeyword(Position.Default, "DEFINITION");
+            return new AstKeyword(Position.Default, "DEFINITION", "DEFINITION");
         }
         
+        /// <summary>
+        /// keyword : DELAY
+        /// </summary>
         public static AstKeyword Delay()
         {
-            return new AstKeyword(Position.Default, "DELAY");
+            return new AstKeyword(Position.Default, "DELAY", "DELAY");
         }
         
+        /// <summary>
+        /// keyword : DELAYED_DURABILITY
+        /// </summary>
         public static AstKeyword DelayedDurability()
         {
-            return new AstKeyword(Position.Default, "DELAYED_DURABILITY");
+            return new AstKeyword(Position.Default, "DELAYED_DURABILITY", "DELAYED_DURABILITY");
         }
         
+        /// <summary>
+        /// keyword : DELETED
+        /// </summary>
         public static AstKeyword Deleted()
         {
-            return new AstKeyword(Position.Default, "DELETED");
+            return new AstKeyword(Position.Default, "DELETED", "DELETED");
         }
         
+        /// <summary>
+        /// keyword : DENSE_RANK
+        /// </summary>
         public static AstKeyword DenseRank()
         {
-            return new AstKeyword(Position.Default, "DENSE_RANK");
+            return new AstKeyword(Position.Default, "DENSE_RANK", "DENSE_RANK");
         }
         
+        /// <summary>
+        /// keyword : DEPENDENTS
+        /// </summary>
         public static AstKeyword Dependents()
         {
-            return new AstKeyword(Position.Default, "DEPENDENTS");
+            return new AstKeyword(Position.Default, "DEPENDENTS", "DEPENDENTS");
         }
         
+        /// <summary>
+        /// keyword : DES
+        /// </summary>
         public static AstKeyword Des()
         {
-            return new AstKeyword(Position.Default, "DES");
+            return new AstKeyword(Position.Default, "DES", "DES");
         }
         
+        /// <summary>
+        /// keyword : DESCRIPTION
+        /// </summary>
         public static AstKeyword Description()
         {
-            return new AstKeyword(Position.Default, "DESCRIPTION");
+            return new AstKeyword(Position.Default, "DESCRIPTION", "DESCRIPTION");
         }
         
+        /// <summary>
+        /// keyword : DESX
+        /// </summary>
         public static AstKeyword Desx()
         {
-            return new AstKeyword(Position.Default, "DESX");
+            return new AstKeyword(Position.Default, "DESX", "DESX");
         }
         
+        /// <summary>
+        /// keyword : DETERMINISTIC
+        /// </summary>
         public static AstKeyword Deterministic()
         {
-            return new AstKeyword(Position.Default, "DETERMINISTIC");
+            return new AstKeyword(Position.Default, "DETERMINISTIC", "DETERMINISTIC");
         }
         
+        /// <summary>
+        /// keyword : DHCP
+        /// </summary>
         public static AstKeyword Dhcp()
         {
-            return new AstKeyword(Position.Default, "DHCP");
+            return new AstKeyword(Position.Default, "DHCP", "DHCP");
         }
         
+        /// <summary>
+        /// keyword : DIALOG
+        /// </summary>
         public static AstKeyword Dialog()
         {
-            return new AstKeyword(Position.Default, "DIALOG");
+            return new AstKeyword(Position.Default, "DIALOG", "DIALOG");
         }
         
+        /// <summary>
+        /// keyword : DIFFERENCE
+        /// </summary>
         public static AstKeyword Difference()
         {
-            return new AstKeyword(Position.Default, "DIFFERENCE");
+            return new AstKeyword(Position.Default, "DIFFERENCE", "DIFFERENCE");
         }
         
+        /// <summary>
+        /// keyword : DIRECTORY_NAME
+        /// </summary>
         public static AstKeyword DirectoryName()
         {
-            return new AstKeyword(Position.Default, "DIRECTORY_NAME");
+            return new AstKeyword(Position.Default, "DIRECTORY_NAME", "DIRECTORY_NAME");
         }
         
+        /// <summary>
+        /// keyword : DISABLE
+        /// </summary>
         public static AstKeyword Disable()
         {
-            return new AstKeyword(Position.Default, "DISABLE");
+            return new AstKeyword(Position.Default, "DISABLE", "DISABLE");
         }
         
+        /// <summary>
+        /// keyword : DISABLE_BROKER
+        /// </summary>
         public static AstKeyword DisableBroker()
         {
-            return new AstKeyword(Position.Default, "DISABLE_BROKER");
+            return new AstKeyword(Position.Default, "DISABLE_BROKER", "DISABLE_BROKER");
         }
         
+        /// <summary>
+        /// keyword : DISABLED
+        /// </summary>
         public static AstKeyword Disabled()
         {
-            return new AstKeyword(Position.Default, "DISABLED");
+            return new AstKeyword(Position.Default, "DISABLED", "DISABLED");
         }
         
+        /// <summary>
+        /// keyword : DOCUMENT
+        /// </summary>
         public static AstKeyword Document()
         {
-            return new AstKeyword(Position.Default, "DOCUMENT");
+            return new AstKeyword(Position.Default, "DOCUMENT", "DOCUMENT");
         }
         
+        /// <summary>
+        /// keyword : DROP_EXISTING
+        /// </summary>
         public static AstKeyword DropExisting()
         {
-            return new AstKeyword(Position.Default, "DROP_EXISTING");
+            return new AstKeyword(Position.Default, "DROP_EXISTING", "DROP_EXISTING");
         }
         
+        /// <summary>
+        /// keyword : DYNAMIC
+        /// </summary>
         public static AstKeyword Dynamic()
         {
-            return new AstKeyword(Position.Default, "DYNAMIC");
+            return new AstKeyword(Position.Default, "DYNAMIC", "DYNAMIC");
         }
         
+        /// <summary>
+        /// keyword : ELEMENTS
+        /// </summary>
         public static AstKeyword Elements()
         {
-            return new AstKeyword(Position.Default, "ELEMENTS");
+            return new AstKeyword(Position.Default, "ELEMENTS", "ELEMENTS");
         }
         
+        /// <summary>
+        /// keyword : EMERGENCY
+        /// </summary>
         public static AstKeyword Emergency()
         {
-            return new AstKeyword(Position.Default, "EMERGENCY");
+            return new AstKeyword(Position.Default, "EMERGENCY", "EMERGENCY");
         }
         
+        /// <summary>
+        /// keyword : EMPTY
+        /// </summary>
         public static AstKeyword Empty()
         {
-            return new AstKeyword(Position.Default, "EMPTY");
+            return new AstKeyword(Position.Default, "EMPTY", "EMPTY");
         }
         
+        /// <summary>
+        /// keyword : ENABLE
+        /// </summary>
         public static AstKeyword Enable()
         {
-            return new AstKeyword(Position.Default, "ENABLE");
+            return new AstKeyword(Position.Default, "ENABLE", "ENABLE");
         }
         
+        /// <summary>
+        /// keyword : ENABLE_BROKER
+        /// </summary>
         public static AstKeyword EnableBroker()
         {
-            return new AstKeyword(Position.Default, "ENABLE_BROKER");
+            return new AstKeyword(Position.Default, "ENABLE_BROKER", "ENABLE_BROKER");
         }
         
+        /// <summary>
+        /// keyword : ENCRYPTED
+        /// </summary>
         public static AstKeyword Encrypted()
         {
-            return new AstKeyword(Position.Default, "ENCRYPTED");
+            return new AstKeyword(Position.Default, "ENCRYPTED", "ENCRYPTED");
         }
         
+        /// <summary>
+        /// keyword : ENCRYPTED_VALUE
+        /// </summary>
         public static AstKeyword EncryptedValue()
         {
-            return new AstKeyword(Position.Default, "ENCRYPTED_VALUE");
+            return new AstKeyword(Position.Default, "ENCRYPTED_VALUE", "ENCRYPTED_VALUE");
         }
         
+        /// <summary>
+        /// keyword : ENCRYPTION
+        /// </summary>
         public static AstKeyword Encryption()
         {
-            return new AstKeyword(Position.Default, "ENCRYPTION");
+            return new AstKeyword(Position.Default, "ENCRYPTION", "ENCRYPTION");
         }
         
+        /// <summary>
+        /// keyword : ENCRYPTION_TYPE
+        /// </summary>
         public static AstKeyword EncryptionType()
         {
-            return new AstKeyword(Position.Default, "ENCRYPTION_TYPE");
+            return new AstKeyword(Position.Default, "ENCRYPTION_TYPE", "ENCRYPTION_TYPE");
         }
         
+        /// <summary>
+        /// keyword : ENDPOINT_URL
+        /// </summary>
         public static AstKeyword EndpointUrl()
         {
-            return new AstKeyword(Position.Default, "ENDPOINT_URL");
+            return new AstKeyword(Position.Default, "ENDPOINT_URL", "ENDPOINT_URL");
         }
         
+        /// <summary>
+        /// keyword : ERROR_BROKER_CONVERSATIONS
+        /// </summary>
         public static AstKeyword ErrorBrokerConversations()
         {
-            return new AstKeyword(Position.Default, "ERROR_BROKER_CONVERSATIONS");
+            return new AstKeyword(Position.Default, "ERROR_BROKER_CONVERSATIONS", "ERROR_BROKER_CONVERSATIONS");
         }
         
+        /// <summary>
+        /// keyword : EXCLUSIVE
+        /// </summary>
         public static AstKeyword Exclusive()
         {
-            return new AstKeyword(Position.Default, "EXCLUSIVE");
+            return new AstKeyword(Position.Default, "EXCLUSIVE", "EXCLUSIVE");
         }
         
+        /// <summary>
+        /// keyword : EXECUTABLE
+        /// </summary>
         public static AstKeyword Executable()
         {
-            return new AstKeyword(Position.Default, "EXECUTABLE");
+            return new AstKeyword(Position.Default, "EXECUTABLE", "EXECUTABLE");
         }
         
+        /// <summary>
+        /// keyword : EXIST
+        /// </summary>
         public static AstKeyword Exist()
         {
-            return new AstKeyword(Position.Default, "EXIST");
+            return new AstKeyword(Position.Default, "EXIST", "EXIST");
         }
         
+        /// <summary>
+        /// keyword : EXPAND
+        /// </summary>
         public static AstKeyword Expand()
         {
-            return new AstKeyword(Position.Default, "EXPAND");
+            return new AstKeyword(Position.Default, "EXPAND", "EXPAND");
         }
         
+        /// <summary>
+        /// keyword : EXPIRY_DATE
+        /// </summary>
         public static AstKeyword ExpiryDate()
         {
-            return new AstKeyword(Position.Default, "EXPIRY_DATE");
+            return new AstKeyword(Position.Default, "EXPIRY_DATE", "EXPIRY_DATE");
         }
         
+        /// <summary>
+        /// keyword : EXPLICIT
+        /// </summary>
         public static AstKeyword Explicit()
         {
-            return new AstKeyword(Position.Default, "EXPLICIT");
+            return new AstKeyword(Position.Default, "EXPLICIT", "EXPLICIT");
         }
         
+        /// <summary>
+        /// keyword : FAIL_OPERATION
+        /// </summary>
         public static AstKeyword FailOperation()
         {
-            return new AstKeyword(Position.Default, "FAIL_OPERATION");
+            return new AstKeyword(Position.Default, "FAIL_OPERATION", "FAIL_OPERATION");
         }
         
+        /// <summary>
+        /// keyword : FAILOVER_MODE
+        /// </summary>
         public static AstKeyword FailoverMode()
         {
-            return new AstKeyword(Position.Default, "FAILOVER_MODE");
+            return new AstKeyword(Position.Default, "FAILOVER_MODE", "FAILOVER_MODE");
         }
         
+        /// <summary>
+        /// keyword : FAILURE
+        /// </summary>
         public static AstKeyword Failure()
         {
-            return new AstKeyword(Position.Default, "FAILURE");
+            return new AstKeyword(Position.Default, "FAILURE", "FAILURE");
         }
         
+        /// <summary>
+        /// keyword : FAILURE_CONDITION_LEVEL
+        /// </summary>
         public static AstKeyword FailureConditionLevel()
         {
-            return new AstKeyword(Position.Default, "FAILURE_CONDITION_LEVEL");
+            return new AstKeyword(Position.Default, "FAILURE_CONDITION_LEVEL", "FAILURE_CONDITION_LEVEL");
         }
         
+        /// <summary>
+        /// keyword : FAST
+        /// </summary>
         public static AstKeyword Fast()
         {
-            return new AstKeyword(Position.Default, "FAST");
+            return new AstKeyword(Position.Default, "FAST", "FAST");
         }
         
+        /// <summary>
+        /// keyword : FAST_FORWARD
+        /// </summary>
         public static AstKeyword FastForward()
         {
-            return new AstKeyword(Position.Default, "FAST_FORWARD");
+            return new AstKeyword(Position.Default, "FAST_FORWARD", "FAST_FORWARD");
         }
         
+        /// <summary>
+        /// keyword : FILE_ID
+        /// </summary>
         public static AstKeyword FileId()
         {
-            return new AstKeyword(Position.Default, "FILE_ID");
+            return new AstKeyword(Position.Default, "FILE_ID", "FILE_ID");
         }
         
+        /// <summary>
+        /// keyword : FILE_IDEX
+        /// </summary>
         public static AstKeyword FileIdex()
         {
-            return new AstKeyword(Position.Default, "FILE_IDEX");
+            return new AstKeyword(Position.Default, "FILE_IDEX", "FILE_IDEX");
         }
         
+        /// <summary>
+        /// keyword : FILE_NAME
+        /// </summary>
         public static AstKeyword FileName()
         {
-            return new AstKeyword(Position.Default, "FILE_NAME");
+            return new AstKeyword(Position.Default, "FILE_NAME", "FILE_NAME");
         }
         
+        /// <summary>
+        /// keyword : FILEGROUP
+        /// </summary>
         public static AstKeyword Filegroup()
         {
-            return new AstKeyword(Position.Default, "FILEGROUP");
+            return new AstKeyword(Position.Default, "FILEGROUP", "FILEGROUP");
         }
         
+        /// <summary>
+        /// keyword : FILEGROUP_ID
+        /// </summary>
         public static AstKeyword FilegroupId()
         {
-            return new AstKeyword(Position.Default, "FILEGROUP_ID");
+            return new AstKeyword(Position.Default, "FILEGROUP_ID", "FILEGROUP_ID");
         }
         
+        /// <summary>
+        /// keyword : FILEGROUP_NAME
+        /// </summary>
         public static AstKeyword FilegroupName()
         {
-            return new AstKeyword(Position.Default, "FILEGROUP_NAME");
+            return new AstKeyword(Position.Default, "FILEGROUP_NAME", "FILEGROUP_NAME");
         }
         
+        /// <summary>
+        /// keyword : FILEGROUPPROPERTY
+        /// </summary>
         public static AstKeyword Filegroupproperty()
         {
-            return new AstKeyword(Position.Default, "FILEGROUPPROPERTY");
+            return new AstKeyword(Position.Default, "FILEGROUPPROPERTY", "FILEGROUPPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : FILEGROWTH
+        /// </summary>
         public static AstKeyword Filegrowth()
         {
-            return new AstKeyword(Position.Default, "FILEGROWTH");
+            return new AstKeyword(Position.Default, "FILEGROWTH", "FILEGROWTH");
         }
         
+        /// <summary>
+        /// keyword : FILENAME
+        /// </summary>
         public static AstKeyword Filename()
         {
-            return new AstKeyword(Position.Default, "FILENAME");
+            return new AstKeyword(Position.Default, "FILENAME", "FILENAME");
         }
         
+        /// <summary>
+        /// keyword : FILEPATH
+        /// </summary>
         public static AstKeyword Filepath()
         {
-            return new AstKeyword(Position.Default, "FILEPATH");
+            return new AstKeyword(Position.Default, "FILEPATH", "FILEPATH");
         }
         
+        /// <summary>
+        /// keyword : FILEPROPERTY
+        /// </summary>
         public static AstKeyword Fileproperty()
         {
-            return new AstKeyword(Position.Default, "FILEPROPERTY");
+            return new AstKeyword(Position.Default, "FILEPROPERTY", "FILEPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : FILEPROPERTYEX
+        /// </summary>
         public static AstKeyword Filepropertyex()
         {
-            return new AstKeyword(Position.Default, "FILEPROPERTYEX");
+            return new AstKeyword(Position.Default, "FILEPROPERTYEX", "FILEPROPERTYEX");
         }
         
+        /// <summary>
+        /// keyword : FILESTREAM
+        /// </summary>
         public static AstKeyword Filestream()
         {
-            return new AstKeyword(Position.Default, "FILESTREAM");
+            return new AstKeyword(Position.Default, "FILESTREAM", "FILESTREAM");
         }
         
+        /// <summary>
+        /// keyword : FILTER
+        /// </summary>
         public static AstKeyword Filter()
         {
-            return new AstKeyword(Position.Default, "FILTER");
+            return new AstKeyword(Position.Default, "FILTER", "FILTER");
         }
         
+        /// <summary>
+        /// keyword : FIRST
+        /// </summary>
         public static AstKeyword First()
         {
-            return new AstKeyword(Position.Default, "FIRST");
+            return new AstKeyword(Position.Default, "FIRST", "FIRST");
         }
         
+        /// <summary>
+        /// keyword : FIRST_VALUE
+        /// </summary>
         public static AstKeyword FirstValue()
         {
-            return new AstKeyword(Position.Default, "FIRST_VALUE");
+            return new AstKeyword(Position.Default, "FIRST_VALUE", "FIRST_VALUE");
         }
         
+        /// <summary>
+        /// keyword : FMTONLY
+        /// </summary>
         public static AstKeyword Fmtonly()
         {
-            return new AstKeyword(Position.Default, "FMTONLY");
+            return new AstKeyword(Position.Default, "FMTONLY", "FMTONLY");
         }
         
+        /// <summary>
+        /// keyword : FOLLOWING
+        /// </summary>
         public static AstKeyword Following()
         {
-            return new AstKeyword(Position.Default, "FOLLOWING");
+            return new AstKeyword(Position.Default, "FOLLOWING", "FOLLOWING");
         }
         
+        /// <summary>
+        /// keyword : FORCE
+        /// </summary>
         public static AstKeyword Force()
         {
-            return new AstKeyword(Position.Default, "FORCE");
+            return new AstKeyword(Position.Default, "FORCE", "FORCE");
         }
         
+        /// <summary>
+        /// keyword : FORCE_FAILOVER_ALLOW_DATA_LOSS
+        /// </summary>
         public static AstKeyword ForceFailoverAllowDataLoss()
         {
-            return new AstKeyword(Position.Default, "FORCE_FAILOVER_ALLOW_DATA_LOSS");
+            return new AstKeyword(Position.Default, "FORCE_FAILOVER_ALLOW_DATA_LOSS", "FORCE_FAILOVER_ALLOW_DATA_LOSS");
         }
         
+        /// <summary>
+        /// keyword : FORCED
+        /// </summary>
         public static AstKeyword Forced()
         {
-            return new AstKeyword(Position.Default, "FORCED");
+            return new AstKeyword(Position.Default, "FORCED", "FORCED");
         }
         
+        /// <summary>
+        /// keyword : FORCEPLAN
+        /// </summary>
         public static AstKeyword Forceplan()
         {
-            return new AstKeyword(Position.Default, "FORCEPLAN");
+            return new AstKeyword(Position.Default, "FORCEPLAN", "FORCEPLAN");
         }
         
+        /// <summary>
+        /// keyword : FORCESCAN
+        /// </summary>
         public static AstKeyword Forcescan()
         {
-            return new AstKeyword(Position.Default, "FORCESCAN");
+            return new AstKeyword(Position.Default, "FORCESCAN", "FORCESCAN");
         }
         
+        /// <summary>
+        /// keyword : FORMAT
+        /// </summary>
         public static AstKeyword Format()
         {
-            return new AstKeyword(Position.Default, "FORMAT");
+            return new AstKeyword(Position.Default, "FORMAT", "FORMAT");
         }
         
+        /// <summary>
+        /// keyword : FORWARD_ONLY
+        /// </summary>
         public static AstKeyword ForwardOnly()
         {
-            return new AstKeyword(Position.Default, "FORWARD_ONLY");
+            return new AstKeyword(Position.Default, "FORWARD_ONLY", "FORWARD_ONLY");
         }
         
+        /// <summary>
+        /// keyword : FULLSCAN
+        /// </summary>
         public static AstKeyword Fullscan()
         {
-            return new AstKeyword(Position.Default, "FULLSCAN");
+            return new AstKeyword(Position.Default, "FULLSCAN", "FULLSCAN");
         }
         
+        /// <summary>
+        /// keyword : FULLTEXT
+        /// </summary>
         public static AstKeyword Fulltext()
         {
-            return new AstKeyword(Position.Default, "FULLTEXT");
+            return new AstKeyword(Position.Default, "FULLTEXT", "FULLTEXT");
         }
         
+        /// <summary>
+        /// keyword : FULLTEXTCATALOGPROPERTY
+        /// </summary>
         public static AstKeyword Fulltextcatalogproperty()
         {
-            return new AstKeyword(Position.Default, "FULLTEXTCATALOGPROPERTY");
+            return new AstKeyword(Position.Default, "FULLTEXTCATALOGPROPERTY", "FULLTEXTCATALOGPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : FULLTEXTSERVICEPROPERTY
+        /// </summary>
         public static AstKeyword Fulltextserviceproperty()
         {
-            return new AstKeyword(Position.Default, "FULLTEXTSERVICEPROPERTY");
+            return new AstKeyword(Position.Default, "FULLTEXTSERVICEPROPERTY", "FULLTEXTSERVICEPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : GB
+        /// </summary>
         public static AstKeyword Gb()
         {
-            return new AstKeyword(Position.Default, "GB");
+            return new AstKeyword(Position.Default, "GB", "GB");
         }
         
+        /// <summary>
+        /// keyword : GENERATED
+        /// </summary>
         public static AstKeyword Generated()
         {
-            return new AstKeyword(Position.Default, "GENERATED");
+            return new AstKeyword(Position.Default, "GENERATED", "GENERATED");
         }
         
+        /// <summary>
+        /// keyword : GETDATE
+        /// </summary>
         public static AstKeyword Getdate()
         {
-            return new AstKeyword(Position.Default, "GETDATE");
+            return new AstKeyword(Position.Default, "GETDATE", "GETDATE");
         }
         
+        /// <summary>
+        /// keyword : GETUTCDATE
+        /// </summary>
         public static AstKeyword Getutcdate()
         {
-            return new AstKeyword(Position.Default, "GETUTCDATE");
+            return new AstKeyword(Position.Default, "GETUTCDATE", "GETUTCDATE");
         }
         
+        /// <summary>
+        /// keyword : GLOBAL
+        /// </summary>
         public static AstKeyword Global()
         {
-            return new AstKeyword(Position.Default, "GLOBAL");
+            return new AstKeyword(Position.Default, "GLOBAL", "GLOBAL");
         }
         
+        /// <summary>
+        /// keyword : GO
+        /// </summary>
         public static AstKeyword Go()
         {
-            return new AstKeyword(Position.Default, "GO");
+            return new AstKeyword(Position.Default, "GO", "GO");
         }
         
+        /// <summary>
+        /// keyword : GROUP_MAX_REQUESTS
+        /// </summary>
         public static AstKeyword GroupMaxRequests()
         {
-            return new AstKeyword(Position.Default, "GROUP_MAX_REQUESTS");
+            return new AstKeyword(Position.Default, "GROUP_MAX_REQUESTS", "GROUP_MAX_REQUESTS");
         }
         
+        /// <summary>
+        /// keyword : GROUPING
+        /// </summary>
         public static AstKeyword Grouping()
         {
-            return new AstKeyword(Position.Default, "GROUPING");
+            return new AstKeyword(Position.Default, "GROUPING", "GROUPING");
         }
         
+        /// <summary>
+        /// keyword : GROUPING_ID
+        /// </summary>
         public static AstKeyword GroupingId()
         {
-            return new AstKeyword(Position.Default, "GROUPING_ID");
+            return new AstKeyword(Position.Default, "GROUPING_ID", "GROUPING_ID");
         }
         
+        /// <summary>
+        /// keyword : HADR
+        /// </summary>
         public static AstKeyword Hadr()
         {
-            return new AstKeyword(Position.Default, "HADR");
+            return new AstKeyword(Position.Default, "HADR", "HADR");
         }
         
+        /// <summary>
+        /// keyword : HASH
+        /// </summary>
         public static AstKeyword Hash()
         {
-            return new AstKeyword(Position.Default, "HASH");
+            return new AstKeyword(Position.Default, "HASH", "HASH");
         }
         
+        /// <summary>
+        /// keyword : HEALTH_CHECK_TIMEOUT
+        /// </summary>
         public static AstKeyword HealthCheckTimeout()
         {
-            return new AstKeyword(Position.Default, "HEALTH_CHECK_TIMEOUT");
+            return new AstKeyword(Position.Default, "HEALTH_CHECK_TIMEOUT", "HEALTH_CHECK_TIMEOUT");
         }
         
+        /// <summary>
+        /// keyword : HIDDEN
+        /// </summary>
         public static AstKeyword HiddenKeyword()
         {
-            return new AstKeyword(Position.Default, "HIDDEN");
+            return new AstKeyword(Position.Default, "HIDDEN_KEYWORD", "HIDDEN");
         }
         
+        /// <summary>
+        /// keyword : HIGH
+        /// </summary>
         public static AstKeyword High()
         {
-            return new AstKeyword(Position.Default, "HIGH");
+            return new AstKeyword(Position.Default, "HIGH", "HIGH");
         }
         
+        /// <summary>
+        /// keyword : HONOR_BROKER_PRIORITY
+        /// </summary>
         public static AstKeyword HonorBrokerPriority()
         {
-            return new AstKeyword(Position.Default, "HONOR_BROKER_PRIORITY");
+            return new AstKeyword(Position.Default, "HONOR_BROKER_PRIORITY", "HONOR_BROKER_PRIORITY");
         }
         
+        /// <summary>
+        /// keyword : HOURS
+        /// </summary>
         public static AstKeyword Hours()
         {
-            return new AstKeyword(Position.Default, "HOURS");
+            return new AstKeyword(Position.Default, "HOURS", "HOURS");
         }
         
+        /// <summary>
+        /// keyword : IDENTITY_VALUE
+        /// </summary>
         public static AstKeyword IdentityValue()
         {
-            return new AstKeyword(Position.Default, "IDENTITY_VALUE");
+            return new AstKeyword(Position.Default, "IDENTITY_VALUE", "IDENTITY_VALUE");
         }
         
+        /// <summary>
+        /// keyword : IGNORE_CONSTRAINTS
+        /// </summary>
         public static AstKeyword IgnoreConstraints()
         {
-            return new AstKeyword(Position.Default, "IGNORE_CONSTRAINTS");
+            return new AstKeyword(Position.Default, "IGNORE_CONSTRAINTS", "IGNORE_CONSTRAINTS");
         }
         
+        /// <summary>
+        /// keyword : IGNORE_DUP_KEY
+        /// </summary>
         public static AstKeyword IgnoreDupKey()
         {
-            return new AstKeyword(Position.Default, "IGNORE_DUP_KEY");
+            return new AstKeyword(Position.Default, "IGNORE_DUP_KEY", "IGNORE_DUP_KEY");
         }
         
+        /// <summary>
+        /// keyword : IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// </summary>
         public static AstKeyword IgnoreNonclusteredColumnstoreIndex()
         {
-            return new AstKeyword(Position.Default, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+            return new AstKeyword(Position.Default, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX", "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
         }
         
+        /// <summary>
+        /// keyword : IGNORE_TRIGGERS
+        /// </summary>
         public static AstKeyword IgnoreTriggers()
         {
-            return new AstKeyword(Position.Default, "IGNORE_TRIGGERS");
+            return new AstKeyword(Position.Default, "IGNORE_TRIGGERS", "IGNORE_TRIGGERS");
         }
         
+        /// <summary>
+        /// keyword : IMMEDIATE
+        /// </summary>
         public static AstKeyword Immediate()
         {
-            return new AstKeyword(Position.Default, "IMMEDIATE");
+            return new AstKeyword(Position.Default, "IMMEDIATE", "IMMEDIATE");
         }
         
+        /// <summary>
+        /// keyword : IMPERSONATE
+        /// </summary>
         public static AstKeyword Impersonate()
         {
-            return new AstKeyword(Position.Default, "IMPERSONATE");
+            return new AstKeyword(Position.Default, "IMPERSONATE", "IMPERSONATE");
         }
         
+        /// <summary>
+        /// keyword : IMPLICIT_TRANSACTIONS
+        /// </summary>
         public static AstKeyword ImplicitTransactions()
         {
-            return new AstKeyword(Position.Default, "IMPLICIT_TRANSACTIONS");
+            return new AstKeyword(Position.Default, "IMPLICIT_TRANSACTIONS", "IMPLICIT_TRANSACTIONS");
         }
         
+        /// <summary>
+        /// keyword : IMPORTANCE
+        /// </summary>
         public static AstKeyword Importance()
         {
-            return new AstKeyword(Position.Default, "IMPORTANCE");
+            return new AstKeyword(Position.Default, "IMPORTANCE", "IMPORTANCE");
         }
         
+        /// <summary>
+        /// keyword : INCLUDE_NULL_VALUES
+        /// </summary>
         public static AstKeyword IncludeNullValues()
         {
-            return new AstKeyword(Position.Default, "INCLUDE_NULL_VALUES");
+            return new AstKeyword(Position.Default, "INCLUDE_NULL_VALUES", "INCLUDE_NULL_VALUES");
         }
         
+        /// <summary>
+        /// keyword : INCREMENTAL
+        /// </summary>
         public static AstKeyword Incremental()
         {
-            return new AstKeyword(Position.Default, "INCREMENTAL");
+            return new AstKeyword(Position.Default, "INCREMENTAL", "INCREMENTAL");
         }
         
+        /// <summary>
+        /// keyword : INDEX_COL
+        /// </summary>
         public static AstKeyword IndexCol()
         {
-            return new AstKeyword(Position.Default, "INDEX_COL");
+            return new AstKeyword(Position.Default, "INDEX_COL", "INDEX_COL");
         }
         
+        /// <summary>
+        /// keyword : INDEXKEY_PROPERTY
+        /// </summary>
         public static AstKeyword IndexkeyProperty()
         {
-            return new AstKeyword(Position.Default, "INDEXKEY_PROPERTY");
+            return new AstKeyword(Position.Default, "INDEXKEY_PROPERTY", "INDEXKEY_PROPERTY");
         }
         
+        /// <summary>
+        /// keyword : INDEXPROPERTY
+        /// </summary>
         public static AstKeyword Indexproperty()
         {
-            return new AstKeyword(Position.Default, "INDEXPROPERTY");
+            return new AstKeyword(Position.Default, "INDEXPROPERTY", "INDEXPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : INITIATOR
+        /// </summary>
         public static AstKeyword Initiator()
         {
-            return new AstKeyword(Position.Default, "INITIATOR");
+            return new AstKeyword(Position.Default, "INITIATOR", "INITIATOR");
         }
         
+        /// <summary>
+        /// keyword : INPUT
+        /// </summary>
         public static AstKeyword Input()
         {
-            return new AstKeyword(Position.Default, "INPUT");
+            return new AstKeyword(Position.Default, "INPUT", "INPUT");
         }
         
+        /// <summary>
+        /// keyword : INSENSITIVE
+        /// </summary>
         public static AstKeyword Insensitive()
         {
-            return new AstKeyword(Position.Default, "INSENSITIVE");
+            return new AstKeyword(Position.Default, "INSENSITIVE", "INSENSITIVE");
         }
         
+        /// <summary>
+        /// keyword : INSERTED
+        /// </summary>
         public static AstKeyword Inserted()
         {
-            return new AstKeyword(Position.Default, "INSERTED");
+            return new AstKeyword(Position.Default, "INSERTED", "INSERTED");
         }
         
+        /// <summary>
+        /// keyword : INT
+        /// </summary>
         public static AstKeyword Int()
         {
-            return new AstKeyword(Position.Default, "INT");
+            return new AstKeyword(Position.Default, "INT", "INT");
         }
         
+        /// <summary>
+        /// keyword : IP
+        /// </summary>
         public static AstKeyword Ip()
         {
-            return new AstKeyword(Position.Default, "IP");
+            return new AstKeyword(Position.Default, "IP", "IP");
         }
         
+        /// <summary>
+        /// keyword : ISOLATION
+        /// </summary>
         public static AstKeyword Isolation()
         {
-            return new AstKeyword(Position.Default, "ISOLATION");
+            return new AstKeyword(Position.Default, "ISOLATION", "ISOLATION");
         }
         
+        /// <summary>
+        /// keyword : JOB
+        /// </summary>
         public static AstKeyword Job()
         {
-            return new AstKeyword(Position.Default, "JOB");
+            return new AstKeyword(Position.Default, "JOB", "JOB");
         }
         
+        /// <summary>
+        /// keyword : JSON
+        /// </summary>
         public static AstKeyword Json()
         {
-            return new AstKeyword(Position.Default, "JSON");
+            return new AstKeyword(Position.Default, "JSON", "JSON");
         }
         
+        /// <summary>
+        /// keyword : KB
+        /// </summary>
         public static AstKeyword Kb()
         {
-            return new AstKeyword(Position.Default, "KB");
+            return new AstKeyword(Position.Default, "KB", "KB");
         }
         
+        /// <summary>
+        /// keyword : KEEP
+        /// </summary>
         public static AstKeyword Keep()
         {
-            return new AstKeyword(Position.Default, "KEEP");
+            return new AstKeyword(Position.Default, "KEEP", "KEEP");
         }
         
+        /// <summary>
+        /// keyword : KEEPDEFAULTS
+        /// </summary>
         public static AstKeyword Keepdefaults()
         {
-            return new AstKeyword(Position.Default, "KEEPDEFAULTS");
+            return new AstKeyword(Position.Default, "KEEPDEFAULTS", "KEEPDEFAULTS");
         }
         
+        /// <summary>
+        /// keyword : KEEPFIXED
+        /// </summary>
         public static AstKeyword Keepfixed()
         {
-            return new AstKeyword(Position.Default, "KEEPFIXED");
+            return new AstKeyword(Position.Default, "KEEPFIXED", "KEEPFIXED");
         }
         
+        /// <summary>
+        /// keyword : KEEPIDENTITY
+        /// </summary>
         public static AstKeyword Keepidentity()
         {
-            return new AstKeyword(Position.Default, "KEEPIDENTITY");
+            return new AstKeyword(Position.Default, "KEEPIDENTITY", "KEEPIDENTITY");
         }
         
+        /// <summary>
+        /// keyword : KEY_SOURCE
+        /// </summary>
         public static AstKeyword KeySource()
         {
-            return new AstKeyword(Position.Default, "KEY_SOURCE");
+            return new AstKeyword(Position.Default, "KEY_SOURCE", "KEY_SOURCE");
         }
         
+        /// <summary>
+        /// keyword : KEYS
+        /// </summary>
         public static AstKeyword Keys()
         {
-            return new AstKeyword(Position.Default, "KEYS");
+            return new AstKeyword(Position.Default, "KEYS", "KEYS");
         }
         
+        /// <summary>
+        /// keyword : KEYSET
+        /// </summary>
         public static AstKeyword Keyset()
         {
-            return new AstKeyword(Position.Default, "KEYSET");
+            return new AstKeyword(Position.Default, "KEYSET", "KEYSET");
         }
         
+        /// <summary>
+        /// keyword : LAG
+        /// </summary>
         public static AstKeyword Lag()
         {
-            return new AstKeyword(Position.Default, "LAG");
+            return new AstKeyword(Position.Default, "LAG", "LAG");
         }
         
+        /// <summary>
+        /// keyword : LAST
+        /// </summary>
         public static AstKeyword Last()
         {
-            return new AstKeyword(Position.Default, "LAST");
+            return new AstKeyword(Position.Default, "LAST", "LAST");
         }
         
+        /// <summary>
+        /// keyword : LAST_VALUE
+        /// </summary>
         public static AstKeyword LastValue()
         {
-            return new AstKeyword(Position.Default, "LAST_VALUE");
+            return new AstKeyword(Position.Default, "LAST_VALUE", "LAST_VALUE");
         }
         
+        /// <summary>
+        /// keyword : LEAD
+        /// </summary>
         public static AstKeyword Lead()
         {
-            return new AstKeyword(Position.Default, "LEAD");
+            return new AstKeyword(Position.Default, "LEAD", "LEAD");
         }
         
+        /// <summary>
+        /// keyword : LEN
+        /// </summary>
         public static AstKeyword Len()
         {
-            return new AstKeyword(Position.Default, "LEN");
+            return new AstKeyword(Position.Default, "LEN", "LEN");
         }
         
+        /// <summary>
+        /// keyword : LEVEL
+        /// </summary>
         public static AstKeyword Level()
         {
-            return new AstKeyword(Position.Default, "LEVEL");
+            return new AstKeyword(Position.Default, "LEVEL", "LEVEL");
         }
         
+        /// <summary>
+        /// keyword : LIST
+        /// </summary>
         public static AstKeyword List()
         {
-            return new AstKeyword(Position.Default, "LIST");
+            return new AstKeyword(Position.Default, "LIST", "LIST");
         }
         
+        /// <summary>
+        /// keyword : LISTENER
+        /// </summary>
         public static AstKeyword Listener()
         {
-            return new AstKeyword(Position.Default, "LISTENER");
+            return new AstKeyword(Position.Default, "LISTENER", "LISTENER");
         }
         
+        /// <summary>
+        /// keyword : LISTENER_URL
+        /// </summary>
         public static AstKeyword ListenerUrl()
         {
-            return new AstKeyword(Position.Default, "LISTENER_URL");
+            return new AstKeyword(Position.Default, "LISTENER_URL", "LISTENER_URL");
         }
         
+        /// <summary>
+        /// keyword : LOB_COMPACTION
+        /// </summary>
         public static AstKeyword LobCompaction()
         {
-            return new AstKeyword(Position.Default, "LOB_COMPACTION");
+            return new AstKeyword(Position.Default, "LOB_COMPACTION", "LOB_COMPACTION");
         }
         
+        /// <summary>
+        /// keyword : LOCAL
+        /// </summary>
         public static AstKeyword Local()
         {
-            return new AstKeyword(Position.Default, "LOCAL");
+            return new AstKeyword(Position.Default, "LOCAL", "LOCAL");
         }
         
+        /// <summary>
+        /// keyword : LOCATION
+        /// </summary>
         public static AstKeyword Location()
         {
-            return new AstKeyword(Position.Default, "LOCATION");
+            return new AstKeyword(Position.Default, "LOCATION", "LOCATION");
         }
         
+        /// <summary>
+        /// keyword : LOCK
+        /// </summary>
         public static AstKeyword Lock()
         {
-            return new AstKeyword(Position.Default, "LOCK");
+            return new AstKeyword(Position.Default, "LOCK", "LOCK");
         }
         
+        /// <summary>
+        /// keyword : LOCK_ESCALATION
+        /// </summary>
         public static AstKeyword LockEscalation()
         {
-            return new AstKeyword(Position.Default, "LOCK_ESCALATION");
+            return new AstKeyword(Position.Default, "LOCK_ESCALATION", "LOCK_ESCALATION");
         }
         
+        /// <summary>
+        /// keyword : LOGIN
+        /// </summary>
         public static AstKeyword Login()
         {
-            return new AstKeyword(Position.Default, "LOGIN");
+            return new AstKeyword(Position.Default, "LOGIN", "LOGIN");
         }
         
+        /// <summary>
+        /// keyword : LOOP
+        /// </summary>
         public static AstKeyword Loop()
         {
-            return new AstKeyword(Position.Default, "LOOP");
+            return new AstKeyword(Position.Default, "LOOP", "LOOP");
         }
         
+        /// <summary>
+        /// keyword : LOW
+        /// </summary>
         public static AstKeyword Low()
         {
-            return new AstKeyword(Position.Default, "LOW");
+            return new AstKeyword(Position.Default, "LOW", "LOW");
         }
         
+        /// <summary>
+        /// keyword : LOWER
+        /// </summary>
         public static AstKeyword Lower()
         {
-            return new AstKeyword(Position.Default, "LOWER");
+            return new AstKeyword(Position.Default, "LOWER", "LOWER");
         }
         
+        /// <summary>
+        /// keyword : LTRIM
+        /// </summary>
         public static AstKeyword Ltrim()
         {
-            return new AstKeyword(Position.Default, "LTRIM");
+            return new AstKeyword(Position.Default, "LTRIM", "LTRIM");
         }
         
+        /// <summary>
+        /// keyword : MANUAL
+        /// </summary>
         public static AstKeyword Manual()
         {
-            return new AstKeyword(Position.Default, "MANUAL");
+            return new AstKeyword(Position.Default, "MANUAL", "MANUAL");
         }
         
+        /// <summary>
+        /// keyword : MARK
+        /// </summary>
         public static AstKeyword Mark()
         {
-            return new AstKeyword(Position.Default, "MARK");
+            return new AstKeyword(Position.Default, "MARK", "MARK");
         }
         
+        /// <summary>
+        /// keyword : MASKED
+        /// </summary>
         public static AstKeyword Masked()
         {
-            return new AstKeyword(Position.Default, "MASKED");
+            return new AstKeyword(Position.Default, "MASKED", "MASKED");
         }
         
+        /// <summary>
+        /// keyword : MATERIALIZED
+        /// </summary>
         public static AstKeyword Materialized()
         {
-            return new AstKeyword(Position.Default, "MATERIALIZED");
+            return new AstKeyword(Position.Default, "MATERIALIZED", "MATERIALIZED");
         }
         
+        /// <summary>
+        /// keyword : MAX
+        /// </summary>
         public static AstKeyword Max()
         {
-            return new AstKeyword(Position.Default, "MAX");
+            return new AstKeyword(Position.Default, "MAX", "MAX");
         }
         
+        /// <summary>
+        /// keyword : MAX_CPU_PERCENT
+        /// </summary>
         public static AstKeyword MaxCpuPercent()
         {
-            return new AstKeyword(Position.Default, "MAX_CPU_PERCENT");
+            return new AstKeyword(Position.Default, "MAX_CPU_PERCENT", "MAX_CPU_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : MAX_DOP
+        /// </summary>
         public static AstKeyword MaxDop()
         {
-            return new AstKeyword(Position.Default, "MAX_DOP");
+            return new AstKeyword(Position.Default, "MAX_DOP", "MAX_DOP");
         }
         
+        /// <summary>
+        /// keyword : MAX_FILES
+        /// </summary>
         public static AstKeyword MaxFiles()
         {
-            return new AstKeyword(Position.Default, "MAX_FILES");
+            return new AstKeyword(Position.Default, "MAX_FILES", "MAX_FILES");
         }
         
+        /// <summary>
+        /// keyword : MAX_IOPS_PER_VOLUME
+        /// </summary>
         public static AstKeyword MaxIopsPerVolume()
         {
-            return new AstKeyword(Position.Default, "MAX_IOPS_PER_VOLUME");
+            return new AstKeyword(Position.Default, "MAX_IOPS_PER_VOLUME", "MAX_IOPS_PER_VOLUME");
         }
         
+        /// <summary>
+        /// keyword : MAX_MEMORY_PERCENT
+        /// </summary>
         public static AstKeyword MaxMemoryPercent()
         {
-            return new AstKeyword(Position.Default, "MAX_MEMORY_PERCENT");
+            return new AstKeyword(Position.Default, "MAX_MEMORY_PERCENT", "MAX_MEMORY_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : MAX_PROCESSES
+        /// </summary>
         public static AstKeyword MaxProcesses()
         {
-            return new AstKeyword(Position.Default, "MAX_PROCESSES");
+            return new AstKeyword(Position.Default, "MAX_PROCESSES", "MAX_PROCESSES");
         }
         
+        /// <summary>
+        /// keyword : MAX_QUEUE_READERS
+        /// </summary>
         public static AstKeyword MaxQueueReaders()
         {
-            return new AstKeyword(Position.Default, "MAX_QUEUE_READERS");
+            return new AstKeyword(Position.Default, "MAX_QUEUE_READERS", "MAX_QUEUE_READERS");
         }
         
+        /// <summary>
+        /// keyword : MAX_ROLLOVER_FILES
+        /// </summary>
         public static AstKeyword MaxRolloverFiles()
         {
-            return new AstKeyword(Position.Default, "MAX_ROLLOVER_FILES");
+            return new AstKeyword(Position.Default, "MAX_ROLLOVER_FILES", "MAX_ROLLOVER_FILES");
         }
         
+        /// <summary>
+        /// keyword : MAXDOP
+        /// </summary>
         public static AstKeyword Maxdop()
         {
-            return new AstKeyword(Position.Default, "MAXDOP");
+            return new AstKeyword(Position.Default, "MAXDOP", "MAXDOP");
         }
         
+        /// <summary>
+        /// keyword : MAXRECURSION
+        /// </summary>
         public static AstKeyword Maxrecursion()
         {
-            return new AstKeyword(Position.Default, "MAXRECURSION");
+            return new AstKeyword(Position.Default, "MAXRECURSION", "MAXRECURSION");
         }
         
+        /// <summary>
+        /// keyword : MAXSIZE
+        /// </summary>
         public static AstKeyword Maxsize()
         {
-            return new AstKeyword(Position.Default, "MAXSIZE");
+            return new AstKeyword(Position.Default, "MAXSIZE", "MAXSIZE");
         }
         
+        /// <summary>
+        /// keyword : MB
+        /// </summary>
         public static AstKeyword Mb()
         {
-            return new AstKeyword(Position.Default, "MB");
+            return new AstKeyword(Position.Default, "MB", "MB");
         }
         
+        /// <summary>
+        /// keyword : MEDIUM
+        /// </summary>
         public static AstKeyword Medium()
         {
-            return new AstKeyword(Position.Default, "MEDIUM");
+            return new AstKeyword(Position.Default, "MEDIUM", "MEDIUM");
         }
         
+        /// <summary>
+        /// keyword : MEMORY_OPTIMIZED_DATA
+        /// </summary>
         public static AstKeyword MemoryOptimizedData()
         {
-            return new AstKeyword(Position.Default, "MEMORY_OPTIMIZED_DATA");
+            return new AstKeyword(Position.Default, "MEMORY_OPTIMIZED_DATA", "MEMORY_OPTIMIZED_DATA");
         }
         
+        /// <summary>
+        /// keyword : MESSAGE
+        /// </summary>
         public static AstKeyword Message()
         {
-            return new AstKeyword(Position.Default, "MESSAGE");
+            return new AstKeyword(Position.Default, "MESSAGE", "MESSAGE");
         }
         
+        /// <summary>
+        /// keyword : MIN
+        /// </summary>
         public static AstKeyword Min()
         {
-            return new AstKeyword(Position.Default, "MIN");
+            return new AstKeyword(Position.Default, "MIN", "MIN");
         }
         
+        /// <summary>
+        /// keyword : MIN_ACTIVE_ROWVERSION
+        /// </summary>
         public static AstKeyword MinActiveRowversion()
         {
-            return new AstKeyword(Position.Default, "MIN_ACTIVE_ROWVERSION");
+            return new AstKeyword(Position.Default, "MIN_ACTIVE_ROWVERSION", "MIN_ACTIVE_ROWVERSION");
         }
         
+        /// <summary>
+        /// keyword : MIN_CPU_PERCENT
+        /// </summary>
         public static AstKeyword MinCpuPercent()
         {
-            return new AstKeyword(Position.Default, "MIN_CPU_PERCENT");
+            return new AstKeyword(Position.Default, "MIN_CPU_PERCENT", "MIN_CPU_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : MIN_IOPS_PER_VOLUME
+        /// </summary>
         public static AstKeyword MinIopsPerVolume()
         {
-            return new AstKeyword(Position.Default, "MIN_IOPS_PER_VOLUME");
+            return new AstKeyword(Position.Default, "MIN_IOPS_PER_VOLUME", "MIN_IOPS_PER_VOLUME");
         }
         
+        /// <summary>
+        /// keyword : MIN_MEMORY_PERCENT
+        /// </summary>
         public static AstKeyword MinMemoryPercent()
         {
-            return new AstKeyword(Position.Default, "MIN_MEMORY_PERCENT");
+            return new AstKeyword(Position.Default, "MIN_MEMORY_PERCENT", "MIN_MEMORY_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : MINUTES
+        /// </summary>
         public static AstKeyword Minutes()
         {
-            return new AstKeyword(Position.Default, "MINUTES");
+            return new AstKeyword(Position.Default, "MINUTES", "MINUTES");
         }
         
+        /// <summary>
+        /// keyword : MIRROR_ADDRESS
+        /// </summary>
         public static AstKeyword MirrorAddress()
         {
-            return new AstKeyword(Position.Default, "MIRROR_ADDRESS");
+            return new AstKeyword(Position.Default, "MIRROR_ADDRESS", "MIRROR_ADDRESS");
         }
         
+        /// <summary>
+        /// keyword : MIXED_PAGE_ALLOCATION
+        /// </summary>
         public static AstKeyword MixedPageAllocation()
         {
-            return new AstKeyword(Position.Default, "MIXED_PAGE_ALLOCATION");
+            return new AstKeyword(Position.Default, "MIXED_PAGE_ALLOCATION", "MIXED_PAGE_ALLOCATION");
         }
         
+        /// <summary>
+        /// keyword : MODE
+        /// </summary>
         public static AstKeyword Mode()
         {
-            return new AstKeyword(Position.Default, "MODE");
+            return new AstKeyword(Position.Default, "MODE", "MODE");
         }
         
+        /// <summary>
+        /// keyword : MODIFY
+        /// </summary>
         public static AstKeyword Modify()
         {
-            return new AstKeyword(Position.Default, "MODIFY");
+            return new AstKeyword(Position.Default, "MODIFY", "MODIFY");
         }
         
+        /// <summary>
+        /// keyword : MOVE
+        /// </summary>
         public static AstKeyword Move()
         {
-            return new AstKeyword(Position.Default, "MOVE");
+            return new AstKeyword(Position.Default, "MOVE", "MOVE");
         }
         
+        /// <summary>
+        /// keyword : MULTI_USER
+        /// </summary>
         public static AstKeyword MultiUser()
         {
-            return new AstKeyword(Position.Default, "MULTI_USER");
+            return new AstKeyword(Position.Default, "MULTI_USER", "MULTI_USER");
         }
         
+        /// <summary>
+        /// keyword : NAME
+        /// </summary>
         public static AstKeyword Name()
         {
-            return new AstKeyword(Position.Default, "NAME");
+            return new AstKeyword(Position.Default, "NAME", "NAME");
         }
         
+        /// <summary>
+        /// keyword : NCHAR
+        /// </summary>
         public static AstKeyword Nchar()
         {
-            return new AstKeyword(Position.Default, "NCHAR");
+            return new AstKeyword(Position.Default, "NCHAR", "NCHAR");
         }
         
+        /// <summary>
+        /// keyword : NESTED_TRIGGERS
+        /// </summary>
         public static AstKeyword NestedTriggers()
         {
-            return new AstKeyword(Position.Default, "NESTED_TRIGGERS");
+            return new AstKeyword(Position.Default, "NESTED_TRIGGERS", "NESTED_TRIGGERS");
         }
         
+        /// <summary>
+        /// keyword : NEW_ACCOUNT
+        /// </summary>
         public static AstKeyword NewAccount()
         {
-            return new AstKeyword(Position.Default, "NEW_ACCOUNT");
+            return new AstKeyword(Position.Default, "NEW_ACCOUNT", "NEW_ACCOUNT");
         }
         
+        /// <summary>
+        /// keyword : NEW_BROKER
+        /// </summary>
         public static AstKeyword NewBroker()
         {
-            return new AstKeyword(Position.Default, "NEW_BROKER");
+            return new AstKeyword(Position.Default, "NEW_BROKER", "NEW_BROKER");
         }
         
+        /// <summary>
+        /// keyword : NEW_PASSWORD
+        /// </summary>
         public static AstKeyword NewPassword()
         {
-            return new AstKeyword(Position.Default, "NEW_PASSWORD");
+            return new AstKeyword(Position.Default, "NEW_PASSWORD", "NEW_PASSWORD");
         }
         
+        /// <summary>
+        /// keyword : NEWNAME
+        /// </summary>
         public static AstKeyword Newname()
         {
-            return new AstKeyword(Position.Default, "NEWNAME");
+            return new AstKeyword(Position.Default, "NEWNAME", "NEWNAME");
         }
         
+        /// <summary>
+        /// keyword : NEXT
+        /// </summary>
         public static AstKeyword Next()
         {
-            return new AstKeyword(Position.Default, "NEXT");
+            return new AstKeyword(Position.Default, "NEXT", "NEXT");
         }
         
+        /// <summary>
+        /// keyword : NO
+        /// </summary>
         public static AstKeyword No()
         {
-            return new AstKeyword(Position.Default, "NO");
+            return new AstKeyword(Position.Default, "NO", "NO");
         }
         
+        /// <summary>
+        /// keyword : NO_TRUNCATE
+        /// </summary>
         public static AstKeyword NoTruncate()
         {
-            return new AstKeyword(Position.Default, "NO_TRUNCATE");
+            return new AstKeyword(Position.Default, "NO_TRUNCATE", "NO_TRUNCATE");
         }
         
+        /// <summary>
+        /// keyword : NO_WAIT
+        /// </summary>
         public static AstKeyword NoWait()
         {
-            return new AstKeyword(Position.Default, "NO_WAIT");
+            return new AstKeyword(Position.Default, "NO_WAIT", "NO_WAIT");
         }
         
+        /// <summary>
+        /// keyword : NOCOUNT
+        /// </summary>
         public static AstKeyword Nocount()
         {
-            return new AstKeyword(Position.Default, "NOCOUNT");
+            return new AstKeyword(Position.Default, "NOCOUNT", "NOCOUNT");
         }
         
+        /// <summary>
+        /// keyword : NODES
+        /// </summary>
         public static AstKeyword Nodes()
         {
-            return new AstKeyword(Position.Default, "NODES");
+            return new AstKeyword(Position.Default, "NODES", "NODES");
         }
         
+        /// <summary>
+        /// keyword : NOEXEC
+        /// </summary>
         public static AstKeyword Noexec()
         {
-            return new AstKeyword(Position.Default, "NOEXEC");
+            return new AstKeyword(Position.Default, "NOEXEC", "NOEXEC");
         }
         
+        /// <summary>
+        /// keyword : NOEXPAND
+        /// </summary>
         public static AstKeyword Noexpand()
         {
-            return new AstKeyword(Position.Default, "NOEXPAND");
+            return new AstKeyword(Position.Default, "NOEXPAND", "NOEXPAND");
         }
         
+        /// <summary>
+        /// keyword : NOLOCK
+        /// </summary>
         public static AstKeyword Nolock()
         {
-            return new AstKeyword(Position.Default, "NOLOCK");
+            return new AstKeyword(Position.Default, "NOLOCK", "NOLOCK");
         }
         
+        /// <summary>
+        /// keyword : NON_TRANSACTED_ACCESS
+        /// </summary>
         public static AstKeyword NonTransactedAccess()
         {
-            return new AstKeyword(Position.Default, "NON_TRANSACTED_ACCESS");
+            return new AstKeyword(Position.Default, "NON_TRANSACTED_ACCESS", "NON_TRANSACTED_ACCESS");
         }
         
+        /// <summary>
+        /// keyword : NORECOMPUTE
+        /// </summary>
         public static AstKeyword Norecompute()
         {
-            return new AstKeyword(Position.Default, "NORECOMPUTE");
+            return new AstKeyword(Position.Default, "NORECOMPUTE", "NORECOMPUTE");
         }
         
+        /// <summary>
+        /// keyword : NORECOVERY
+        /// </summary>
         public static AstKeyword Norecovery()
         {
-            return new AstKeyword(Position.Default, "NORECOVERY");
+            return new AstKeyword(Position.Default, "NORECOVERY", "NORECOVERY");
         }
         
+        /// <summary>
+        /// keyword : NOTIFICATIONS
+        /// </summary>
         public static AstKeyword Notifications()
         {
-            return new AstKeyword(Position.Default, "NOTIFICATIONS");
+            return new AstKeyword(Position.Default, "NOTIFICATIONS", "NOTIFICATIONS");
         }
         
+        /// <summary>
+        /// keyword : NOWAIT
+        /// </summary>
         public static AstKeyword Nowait()
         {
-            return new AstKeyword(Position.Default, "NOWAIT");
+            return new AstKeyword(Position.Default, "NOWAIT", "NOWAIT");
         }
         
+        /// <summary>
+        /// keyword : NTILE
+        /// </summary>
         public static AstKeyword Ntile()
         {
-            return new AstKeyword(Position.Default, "NTILE");
+            return new AstKeyword(Position.Default, "NTILE", "NTILE");
         }
         
+        /// <summary>
+        /// keyword : ["]  'NULL'  ["]
+        /// </summary>
         public static AstKeyword NullDoubleQuote()
         {
-            return new AstKeyword(Position.Default, "[\"]  \'NULL\'  [\"]");
+            return new AstKeyword(Position.Default, "NULL_DOUBLE_QUOTE", "[\"]  \'NULL\'  [\"]");
         }
         
+        /// <summary>
+        /// keyword : NUMANODE
+        /// </summary>
         public static AstKeyword Numanode()
         {
-            return new AstKeyword(Position.Default, "NUMANODE");
+            return new AstKeyword(Position.Default, "NUMANODE", "NUMANODE");
         }
         
+        /// <summary>
+        /// keyword : NUMBER
+        /// </summary>
         public static AstKeyword Number()
         {
-            return new AstKeyword(Position.Default, "NUMBER");
+            return new AstKeyword(Position.Default, "NUMBER", "NUMBER");
         }
         
+        /// <summary>
+        /// keyword : NUMERIC_ROUNDABORT
+        /// </summary>
         public static AstKeyword NumericRoundabort()
         {
-            return new AstKeyword(Position.Default, "NUMERIC_ROUNDABORT");
+            return new AstKeyword(Position.Default, "NUMERIC_ROUNDABORT", "NUMERIC_ROUNDABORT");
         }
         
+        /// <summary>
+        /// keyword : OBJECT
+        /// </summary>
         public static AstKeyword Object()
         {
-            return new AstKeyword(Position.Default, "OBJECT");
+            return new AstKeyword(Position.Default, "OBJECT", "OBJECT");
         }
         
+        /// <summary>
+        /// keyword : OBJECT_DEFINITION
+        /// </summary>
         public static AstKeyword ObjectDefinition()
         {
-            return new AstKeyword(Position.Default, "OBJECT_DEFINITION");
+            return new AstKeyword(Position.Default, "OBJECT_DEFINITION", "OBJECT_DEFINITION");
         }
         
+        /// <summary>
+        /// keyword : OBJECT_ID
+        /// </summary>
         public static AstKeyword ObjectId()
         {
-            return new AstKeyword(Position.Default, "OBJECT_ID");
+            return new AstKeyword(Position.Default, "OBJECT_ID", "OBJECT_ID");
         }
         
+        /// <summary>
+        /// keyword : OBJECT_NAME
+        /// </summary>
         public static AstKeyword ObjectName()
         {
-            return new AstKeyword(Position.Default, "OBJECT_NAME");
+            return new AstKeyword(Position.Default, "OBJECT_NAME", "OBJECT_NAME");
         }
         
+        /// <summary>
+        /// keyword : OBJECT_SCHEMA_NAME
+        /// </summary>
         public static AstKeyword ObjectSchemaName()
         {
-            return new AstKeyword(Position.Default, "OBJECT_SCHEMA_NAME");
+            return new AstKeyword(Position.Default, "OBJECT_SCHEMA_NAME", "OBJECT_SCHEMA_NAME");
         }
         
+        /// <summary>
+        /// keyword : OBJECTPROPERTY
+        /// </summary>
         public static AstKeyword Objectproperty()
         {
-            return new AstKeyword(Position.Default, "OBJECTPROPERTY");
+            return new AstKeyword(Position.Default, "OBJECTPROPERTY", "OBJECTPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : OBJECTPROPERTYEX
+        /// </summary>
         public static AstKeyword Objectpropertyex()
         {
-            return new AstKeyword(Position.Default, "OBJECTPROPERTYEX");
+            return new AstKeyword(Position.Default, "OBJECTPROPERTYEX", "OBJECTPROPERTYEX");
         }
         
+        /// <summary>
+        /// keyword : OFFLINE
+        /// </summary>
         public static AstKeyword Offline()
         {
-            return new AstKeyword(Position.Default, "OFFLINE");
+            return new AstKeyword(Position.Default, "OFFLINE", "OFFLINE");
         }
         
+        /// <summary>
+        /// keyword : OFFSET
+        /// </summary>
         public static AstKeyword Offset()
         {
-            return new AstKeyword(Position.Default, "OFFSET");
+            return new AstKeyword(Position.Default, "OFFSET", "OFFSET");
         }
         
+        /// <summary>
+        /// keyword : OLD_ACCOUNT
+        /// </summary>
         public static AstKeyword OldAccount()
         {
-            return new AstKeyword(Position.Default, "OLD_ACCOUNT");
+            return new AstKeyword(Position.Default, "OLD_ACCOUNT", "OLD_ACCOUNT");
         }
         
+        /// <summary>
+        /// keyword : ONLINE
+        /// </summary>
         public static AstKeyword Online()
         {
-            return new AstKeyword(Position.Default, "ONLINE");
+            return new AstKeyword(Position.Default, "ONLINE", "ONLINE");
         }
         
+        /// <summary>
+        /// keyword : ONLY
+        /// </summary>
         public static AstKeyword Only()
         {
-            return new AstKeyword(Position.Default, "ONLY");
+            return new AstKeyword(Position.Default, "ONLY", "ONLY");
         }
         
+        /// <summary>
+        /// keyword : OPEN_EXISTING
+        /// </summary>
         public static AstKeyword OpenExisting()
         {
-            return new AstKeyword(Position.Default, "OPEN_EXISTING");
+            return new AstKeyword(Position.Default, "OPEN_EXISTING", "OPEN_EXISTING");
         }
         
+        /// <summary>
+        /// keyword : OPENJSON
+        /// </summary>
         public static AstKeyword Openjson()
         {
-            return new AstKeyword(Position.Default, "OPENJSON");
+            return new AstKeyword(Position.Default, "OPENJSON", "OPENJSON");
         }
         
+        /// <summary>
+        /// keyword : OPTIMISTIC
+        /// </summary>
         public static AstKeyword Optimistic()
         {
-            return new AstKeyword(Position.Default, "OPTIMISTIC");
+            return new AstKeyword(Position.Default, "OPTIMISTIC", "OPTIMISTIC");
         }
         
+        /// <summary>
+        /// keyword : OPTIMIZE
+        /// </summary>
         public static AstKeyword Optimize()
         {
-            return new AstKeyword(Position.Default, "OPTIMIZE");
+            return new AstKeyword(Position.Default, "OPTIMIZE", "OPTIMIZE");
         }
         
+        /// <summary>
+        /// keyword : OPTIMIZE_FOR_SEQUENTIAL_KEY
+        /// </summary>
         public static AstKeyword OptimizeForSequentialKey()
         {
-            return new AstKeyword(Position.Default, "OPTIMIZE_FOR_SEQUENTIAL_KEY");
+            return new AstKeyword(Position.Default, "OPTIMIZE_FOR_SEQUENTIAL_KEY", "OPTIMIZE_FOR_SEQUENTIAL_KEY");
         }
         
+        /// <summary>
+        /// keyword : ORIGINAL_DB_NAME
+        /// </summary>
         public static AstKeyword OriginalDbName()
         {
-            return new AstKeyword(Position.Default, "ORIGINAL_DB_NAME");
+            return new AstKeyword(Position.Default, "ORIGINAL_DB_NAME", "ORIGINAL_DB_NAME");
         }
         
+        /// <summary>
+        /// keyword : OUT
+        /// </summary>
         public static AstKeyword Out()
         {
-            return new AstKeyword(Position.Default, "OUT");
+            return new AstKeyword(Position.Default, "OUT", "OUT");
         }
         
+        /// <summary>
+        /// keyword : OUTPUT
+        /// </summary>
         public static AstKeyword Output()
         {
-            return new AstKeyword(Position.Default, "OUTPUT");
+            return new AstKeyword(Position.Default, "OUTPUT", "OUTPUT");
         }
         
+        /// <summary>
+        /// keyword : OVERRIDE
+        /// </summary>
         public static AstKeyword Override()
         {
-            return new AstKeyword(Position.Default, "OVERRIDE");
+            return new AstKeyword(Position.Default, "OVERRIDE", "OVERRIDE");
         }
         
+        /// <summary>
+        /// keyword : OWNER
+        /// </summary>
         public static AstKeyword Owner()
         {
-            return new AstKeyword(Position.Default, "OWNER");
+            return new AstKeyword(Position.Default, "OWNER", "OWNER");
         }
         
+        /// <summary>
+        /// keyword : OWNERSHIP
+        /// </summary>
         public static AstKeyword Ownership()
         {
-            return new AstKeyword(Position.Default, "OWNERSHIP");
+            return new AstKeyword(Position.Default, "OWNERSHIP", "OWNERSHIP");
         }
         
+        /// <summary>
+        /// keyword : PAD_INDEX
+        /// </summary>
         public static AstKeyword PadIndex()
         {
-            return new AstKeyword(Position.Default, "PAD_INDEX");
+            return new AstKeyword(Position.Default, "PAD_INDEX", "PAD_INDEX");
         }
         
+        /// <summary>
+        /// keyword : PAGE_VERIFY
+        /// </summary>
         public static AstKeyword PageVerify()
         {
-            return new AstKeyword(Position.Default, "PAGE_VERIFY");
+            return new AstKeyword(Position.Default, "PAGE_VERIFY", "PAGE_VERIFY");
         }
         
+        /// <summary>
+        /// keyword : PAGECOUNT
+        /// </summary>
         public static AstKeyword Pagecount()
         {
-            return new AstKeyword(Position.Default, "PAGECOUNT");
+            return new AstKeyword(Position.Default, "PAGECOUNT", "PAGECOUNT");
         }
         
+        /// <summary>
+        /// keyword : PAGLOCK
+        /// </summary>
         public static AstKeyword Paglock()
         {
-            return new AstKeyword(Position.Default, "PAGLOCK");
+            return new AstKeyword(Position.Default, "PAGLOCK", "PAGLOCK");
         }
         
+        /// <summary>
+        /// keyword : PARAMETERIZATION
+        /// </summary>
         public static AstKeyword Parameterization()
         {
-            return new AstKeyword(Position.Default, "PARAMETERIZATION");
+            return new AstKeyword(Position.Default, "PARAMETERIZATION", "PARAMETERIZATION");
         }
         
+        /// <summary>
+        /// keyword : PARSENAME
+        /// </summary>
         public static AstKeyword Parsename()
         {
-            return new AstKeyword(Position.Default, "PARSENAME");
+            return new AstKeyword(Position.Default, "PARSENAME", "PARSENAME");
         }
         
+        /// <summary>
+        /// keyword : PARSEONLY
+        /// </summary>
         public static AstKeyword Parseonly()
         {
-            return new AstKeyword(Position.Default, "PARSEONLY");
+            return new AstKeyword(Position.Default, "PARSEONLY", "PARSEONLY");
         }
         
+        /// <summary>
+        /// keyword : PARTITION
+        /// </summary>
         public static AstKeyword Partition()
         {
-            return new AstKeyword(Position.Default, "PARTITION");
+            return new AstKeyword(Position.Default, "PARTITION", "PARTITION");
         }
         
+        /// <summary>
+        /// keyword : PARTITIONS
+        /// </summary>
         public static AstKeyword Partitions()
         {
-            return new AstKeyword(Position.Default, "PARTITIONS");
+            return new AstKeyword(Position.Default, "PARTITIONS", "PARTITIONS");
         }
         
+        /// <summary>
+        /// keyword : PARTNER
+        /// </summary>
         public static AstKeyword Partner()
         {
-            return new AstKeyword(Position.Default, "PARTNER");
+            return new AstKeyword(Position.Default, "PARTNER", "PARTNER");
         }
         
+        /// <summary>
+        /// keyword : PATH
+        /// </summary>
         public static AstKeyword Path()
         {
-            return new AstKeyword(Position.Default, "PATH");
+            return new AstKeyword(Position.Default, "PATH", "PATH");
         }
         
+        /// <summary>
+        /// keyword : PATINDEX
+        /// </summary>
         public static AstKeyword Patindex()
         {
-            return new AstKeyword(Position.Default, "PATINDEX");
+            return new AstKeyword(Position.Default, "PATINDEX", "PATINDEX");
         }
         
+        /// <summary>
+        /// keyword : PAUSE
+        /// </summary>
         public static AstKeyword Pause()
         {
-            return new AstKeyword(Position.Default, "PAUSE");
+            return new AstKeyword(Position.Default, "PAUSE", "PAUSE");
         }
         
+        /// <summary>
+        /// keyword : PERCENT_RANK
+        /// </summary>
         public static AstKeyword PercentRank()
         {
-            return new AstKeyword(Position.Default, "PERCENT_RANK");
+            return new AstKeyword(Position.Default, "PERCENT_RANK", "PERCENT_RANK");
         }
         
+        /// <summary>
+        /// keyword : PERCENTILE_CONT
+        /// </summary>
         public static AstKeyword PercentileCont()
         {
-            return new AstKeyword(Position.Default, "PERCENTILE_CONT");
+            return new AstKeyword(Position.Default, "PERCENTILE_CONT", "PERCENTILE_CONT");
         }
         
+        /// <summary>
+        /// keyword : PERCENTILE_DISC
+        /// </summary>
         public static AstKeyword PercentileDisc()
         {
-            return new AstKeyword(Position.Default, "PERCENTILE_DISC");
+            return new AstKeyword(Position.Default, "PERCENTILE_DISC", "PERCENTILE_DISC");
         }
         
+        /// <summary>
+        /// keyword : PERSIST_SAMPLE_PERCENT
+        /// </summary>
         public static AstKeyword PersistSamplePercent()
         {
-            return new AstKeyword(Position.Default, "PERSIST_SAMPLE_PERCENT");
+            return new AstKeyword(Position.Default, "PERSIST_SAMPLE_PERCENT", "PERSIST_SAMPLE_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : POISON_MESSAGE_HANDLING
+        /// </summary>
         public static AstKeyword PoisonMessageHandling()
         {
-            return new AstKeyword(Position.Default, "POISON_MESSAGE_HANDLING");
+            return new AstKeyword(Position.Default, "POISON_MESSAGE_HANDLING", "POISON_MESSAGE_HANDLING");
         }
         
+        /// <summary>
+        /// keyword : POOL
+        /// </summary>
         public static AstKeyword Pool()
         {
-            return new AstKeyword(Position.Default, "POOL");
+            return new AstKeyword(Position.Default, "POOL", "POOL");
         }
         
+        /// <summary>
+        /// keyword : PORT
+        /// </summary>
         public static AstKeyword Port()
         {
-            return new AstKeyword(Position.Default, "PORT");
+            return new AstKeyword(Position.Default, "PORT", "PORT");
         }
         
+        /// <summary>
+        /// keyword : PRECEDING
+        /// </summary>
         public static AstKeyword Preceding()
         {
-            return new AstKeyword(Position.Default, "PRECEDING");
+            return new AstKeyword(Position.Default, "PRECEDING", "PRECEDING");
         }
         
+        /// <summary>
+        /// keyword : PRIMARY_ROLE
+        /// </summary>
         public static AstKeyword PrimaryRole()
         {
-            return new AstKeyword(Position.Default, "PRIMARY_ROLE");
+            return new AstKeyword(Position.Default, "PRIMARY_ROLE", "PRIMARY_ROLE");
         }
         
+        /// <summary>
+        /// keyword : PRIOR
+        /// </summary>
         public static AstKeyword Prior()
         {
-            return new AstKeyword(Position.Default, "PRIOR");
+            return new AstKeyword(Position.Default, "PRIOR", "PRIOR");
         }
         
+        /// <summary>
+        /// keyword : PRIORITY
+        /// </summary>
         public static AstKeyword Priority()
         {
-            return new AstKeyword(Position.Default, "PRIORITY");
+            return new AstKeyword(Position.Default, "PRIORITY", "PRIORITY");
         }
         
+        /// <summary>
+        /// keyword : PRIORITY_LEVEL
+        /// </summary>
         public static AstKeyword PriorityLevel()
         {
-            return new AstKeyword(Position.Default, "PRIORITY_LEVEL");
+            return new AstKeyword(Position.Default, "PRIORITY_LEVEL", "PRIORITY_LEVEL");
         }
         
+        /// <summary>
+        /// keyword : PRIVATE
+        /// </summary>
         public static AstKeyword Private()
         {
-            return new AstKeyword(Position.Default, "PRIVATE");
+            return new AstKeyword(Position.Default, "PRIVATE", "PRIVATE");
         }
         
+        /// <summary>
+        /// keyword : PRIVATE_KEY
+        /// </summary>
         public static AstKeyword PrivateKey()
         {
-            return new AstKeyword(Position.Default, "PRIVATE_KEY");
+            return new AstKeyword(Position.Default, "PRIVATE_KEY", "PRIVATE_KEY");
         }
         
+        /// <summary>
+        /// keyword : PRIVILEGES
+        /// </summary>
         public static AstKeyword Privileges()
         {
-            return new AstKeyword(Position.Default, "PRIVILEGES");
+            return new AstKeyword(Position.Default, "PRIVILEGES", "PRIVILEGES");
         }
         
+        /// <summary>
+        /// keyword : PROCEDURE_NAME
+        /// </summary>
         public static AstKeyword ProcedureName()
         {
-            return new AstKeyword(Position.Default, "PROCEDURE_NAME");
+            return new AstKeyword(Position.Default, "PROCEDURE_NAME", "PROCEDURE_NAME");
         }
         
+        /// <summary>
+        /// keyword : PROPERTY
+        /// </summary>
         public static AstKeyword Property()
         {
-            return new AstKeyword(Position.Default, "PROPERTY");
+            return new AstKeyword(Position.Default, "PROPERTY", "PROPERTY");
         }
         
+        /// <summary>
+        /// keyword : PROVIDER
+        /// </summary>
         public static AstKeyword Provider()
         {
-            return new AstKeyword(Position.Default, "PROVIDER");
+            return new AstKeyword(Position.Default, "PROVIDER", "PROVIDER");
         }
         
+        /// <summary>
+        /// keyword : PROVIDER_KEY_NAME
+        /// </summary>
         public static AstKeyword ProviderKeyName()
         {
-            return new AstKeyword(Position.Default, "PROVIDER_KEY_NAME");
+            return new AstKeyword(Position.Default, "PROVIDER_KEY_NAME", "PROVIDER_KEY_NAME");
         }
         
+        /// <summary>
+        /// keyword : QUERY
+        /// </summary>
         public static AstKeyword Query()
         {
-            return new AstKeyword(Position.Default, "QUERY");
+            return new AstKeyword(Position.Default, "QUERY", "QUERY");
         }
         
+        /// <summary>
+        /// keyword : QUEUE
+        /// </summary>
         public static AstKeyword Queue()
         {
-            return new AstKeyword(Position.Default, "QUEUE");
+            return new AstKeyword(Position.Default, "QUEUE", "QUEUE");
         }
         
+        /// <summary>
+        /// keyword : QUEUE_DELAY
+        /// </summary>
         public static AstKeyword QueueDelay()
         {
-            return new AstKeyword(Position.Default, "QUEUE_DELAY");
+            return new AstKeyword(Position.Default, "QUEUE_DELAY", "QUEUE_DELAY");
         }
         
+        /// <summary>
+        /// keyword : QUOTED_IDENTIFIER
+        /// </summary>
         public static AstKeyword QuotedIdentifier()
         {
-            return new AstKeyword(Position.Default, "QUOTED_IDENTIFIER");
+            return new AstKeyword(Position.Default, "QUOTED_IDENTIFIER", "QUOTED_IDENTIFIER");
         }
         
+        /// <summary>
+        /// keyword : QUOTENAME
+        /// </summary>
         public static AstKeyword Quotename()
         {
-            return new AstKeyword(Position.Default, "QUOTENAME");
+            return new AstKeyword(Position.Default, "QUOTENAME", "QUOTENAME");
         }
         
+        /// <summary>
+        /// keyword : RANDOMIZED
+        /// </summary>
         public static AstKeyword Randomized()
         {
-            return new AstKeyword(Position.Default, "RANDOMIZED");
+            return new AstKeyword(Position.Default, "RANDOMIZED", "RANDOMIZED");
         }
         
+        /// <summary>
+        /// keyword : RANGE
+        /// </summary>
         public static AstKeyword Range()
         {
-            return new AstKeyword(Position.Default, "RANGE");
+            return new AstKeyword(Position.Default, "RANGE", "RANGE");
         }
         
+        /// <summary>
+        /// keyword : RANK
+        /// </summary>
         public static AstKeyword Rank()
         {
-            return new AstKeyword(Position.Default, "RANK");
+            return new AstKeyword(Position.Default, "RANK", "RANK");
         }
         
+        /// <summary>
+        /// keyword : RC2
+        /// </summary>
         public static AstKeyword Rc2()
         {
-            return new AstKeyword(Position.Default, "RC2");
+            return new AstKeyword(Position.Default, "RC2", "RC2");
         }
         
+        /// <summary>
+        /// keyword : RC4
+        /// </summary>
         public static AstKeyword Rc4()
         {
-            return new AstKeyword(Position.Default, "RC4");
+            return new AstKeyword(Position.Default, "RC4", "RC4");
         }
         
+        /// <summary>
+        /// keyword : RC4_128
+        /// </summary>
         public static AstKeyword Rc4128()
         {
-            return new AstKeyword(Position.Default, "RC4_128");
+            return new AstKeyword(Position.Default, "RC4_128", "RC4_128");
         }
         
+        /// <summary>
+        /// keyword : READ_COMMITTED_SNAPSHOT
+        /// </summary>
         public static AstKeyword ReadCommittedSnapshot()
         {
-            return new AstKeyword(Position.Default, "READ_COMMITTED_SNAPSHOT");
+            return new AstKeyword(Position.Default, "READ_COMMITTED_SNAPSHOT", "READ_COMMITTED_SNAPSHOT");
         }
         
+        /// <summary>
+        /// keyword : READ_ONLY
+        /// </summary>
         public static AstKeyword ReadOnly()
         {
-            return new AstKeyword(Position.Default, "READ_ONLY");
+            return new AstKeyword(Position.Default, "READ_ONLY", "READ_ONLY");
         }
         
+        /// <summary>
+        /// keyword : READ_ONLY_ROUTING_LIST
+        /// </summary>
         public static AstKeyword ReadOnlyRoutingList()
         {
-            return new AstKeyword(Position.Default, "READ_ONLY_ROUTING_LIST");
+            return new AstKeyword(Position.Default, "READ_ONLY_ROUTING_LIST", "READ_ONLY_ROUTING_LIST");
         }
         
+        /// <summary>
+        /// keyword : READ_WRITE
+        /// </summary>
         public static AstKeyword ReadWrite()
         {
-            return new AstKeyword(Position.Default, "READ_WRITE");
+            return new AstKeyword(Position.Default, "READ_WRITE", "READ_WRITE");
         }
         
+        /// <summary>
+        /// keyword : READCOMMITTED
+        /// </summary>
         public static AstKeyword Readcommitted()
         {
-            return new AstKeyword(Position.Default, "READCOMMITTED");
+            return new AstKeyword(Position.Default, "READCOMMITTED", "READCOMMITTED");
         }
         
+        /// <summary>
+        /// keyword : READCOMMITTEDLOCK
+        /// </summary>
         public static AstKeyword Readcommittedlock()
         {
-            return new AstKeyword(Position.Default, "READCOMMITTEDLOCK");
+            return new AstKeyword(Position.Default, "READCOMMITTEDLOCK", "READCOMMITTEDLOCK");
         }
         
+        /// <summary>
+        /// keyword : READONLY
+        /// </summary>
         public static AstKeyword Readonly()
         {
-            return new AstKeyword(Position.Default, "READONLY");
+            return new AstKeyword(Position.Default, "READONLY", "READONLY");
         }
         
+        /// <summary>
+        /// keyword : READPAST
+        /// </summary>
         public static AstKeyword Readpast()
         {
-            return new AstKeyword(Position.Default, "READPAST");
+            return new AstKeyword(Position.Default, "READPAST", "READPAST");
         }
         
+        /// <summary>
+        /// keyword : READUNCOMMITTED
+        /// </summary>
         public static AstKeyword Readuncommitted()
         {
-            return new AstKeyword(Position.Default, "READUNCOMMITTED");
+            return new AstKeyword(Position.Default, "READUNCOMMITTED", "READUNCOMMITTED");
         }
         
+        /// <summary>
+        /// keyword : READWRITE
+        /// </summary>
         public static AstKeyword Readwrite()
         {
-            return new AstKeyword(Position.Default, "READWRITE");
+            return new AstKeyword(Position.Default, "READWRITE", "READWRITE");
         }
         
+        /// <summary>
+        /// keyword : REBUILD
+        /// </summary>
         public static AstKeyword Rebuild()
         {
-            return new AstKeyword(Position.Default, "REBUILD");
+            return new AstKeyword(Position.Default, "REBUILD", "REBUILD");
         }
         
+        /// <summary>
+        /// keyword : RECEIVE
+        /// </summary>
         public static AstKeyword Receive()
         {
-            return new AstKeyword(Position.Default, "RECEIVE");
+            return new AstKeyword(Position.Default, "RECEIVE", "RECEIVE");
         }
         
+        /// <summary>
+        /// keyword : RECOMPILE
+        /// </summary>
         public static AstKeyword Recompile()
         {
-            return new AstKeyword(Position.Default, "RECOMPILE");
+            return new AstKeyword(Position.Default, "RECOMPILE", "RECOMPILE");
         }
         
+        /// <summary>
+        /// keyword : RECOVERY
+        /// </summary>
         public static AstKeyword Recovery()
         {
-            return new AstKeyword(Position.Default, "RECOVERY");
+            return new AstKeyword(Position.Default, "RECOVERY", "RECOVERY");
         }
         
+        /// <summary>
+        /// keyword : RECURSIVE_TRIGGERS
+        /// </summary>
         public static AstKeyword RecursiveTriggers()
         {
-            return new AstKeyword(Position.Default, "RECURSIVE_TRIGGERS");
+            return new AstKeyword(Position.Default, "RECURSIVE_TRIGGERS", "RECURSIVE_TRIGGERS");
         }
         
+        /// <summary>
+        /// keyword : RELATIVE
+        /// </summary>
         public static AstKeyword Relative()
         {
-            return new AstKeyword(Position.Default, "RELATIVE");
+            return new AstKeyword(Position.Default, "RELATIVE", "RELATIVE");
         }
         
+        /// <summary>
+        /// keyword : REMOTE
+        /// </summary>
         public static AstKeyword Remote()
         {
-            return new AstKeyword(Position.Default, "REMOTE");
+            return new AstKeyword(Position.Default, "REMOTE", "REMOTE");
         }
         
+        /// <summary>
+        /// keyword : REMOTE_PROC_TRANSACTIONS
+        /// </summary>
         public static AstKeyword RemoteProcTransactions()
         {
-            return new AstKeyword(Position.Default, "REMOTE_PROC_TRANSACTIONS");
+            return new AstKeyword(Position.Default, "REMOTE_PROC_TRANSACTIONS", "REMOTE_PROC_TRANSACTIONS");
         }
         
+        /// <summary>
+        /// keyword : REMOTE_SERVICE_NAME
+        /// </summary>
         public static AstKeyword RemoteServiceName()
         {
-            return new AstKeyword(Position.Default, "REMOTE_SERVICE_NAME");
+            return new AstKeyword(Position.Default, "REMOTE_SERVICE_NAME", "REMOTE_SERVICE_NAME");
         }
         
+        /// <summary>
+        /// keyword : REMOVE
+        /// </summary>
         public static AstKeyword Remove()
         {
-            return new AstKeyword(Position.Default, "REMOVE");
+            return new AstKeyword(Position.Default, "REMOVE", "REMOVE");
         }
         
+        /// <summary>
+        /// keyword : REORGANIZE
+        /// </summary>
         public static AstKeyword Reorganize()
         {
-            return new AstKeyword(Position.Default, "REORGANIZE");
+            return new AstKeyword(Position.Default, "REORGANIZE", "REORGANIZE");
         }
         
+        /// <summary>
+        /// keyword : REPEATABLE
+        /// </summary>
         public static AstKeyword Repeatable()
         {
-            return new AstKeyword(Position.Default, "REPEATABLE");
+            return new AstKeyword(Position.Default, "REPEATABLE", "REPEATABLE");
         }
         
+        /// <summary>
+        /// keyword : REPEATABLEREAD
+        /// </summary>
         public static AstKeyword Repeatableread()
         {
-            return new AstKeyword(Position.Default, "REPEATABLEREAD");
+            return new AstKeyword(Position.Default, "REPEATABLEREAD", "REPEATABLEREAD");
         }
         
+        /// <summary>
+        /// keyword : REPLACE
+        /// </summary>
         public static AstKeyword Replace()
         {
-            return new AstKeyword(Position.Default, "REPLACE");
+            return new AstKeyword(Position.Default, "REPLACE", "REPLACE");
         }
         
+        /// <summary>
+        /// keyword : REPLICA
+        /// </summary>
         public static AstKeyword Replica()
         {
-            return new AstKeyword(Position.Default, "REPLICA");
+            return new AstKeyword(Position.Default, "REPLICA", "REPLICA");
         }
         
+        /// <summary>
+        /// keyword : REPLICATE
+        /// </summary>
         public static AstKeyword Replicate()
         {
-            return new AstKeyword(Position.Default, "REPLICATE");
+            return new AstKeyword(Position.Default, "REPLICATE", "REPLICATE");
         }
         
+        /// <summary>
+        /// keyword : REQUEST_MAX_CPU_TIME_SEC
+        /// </summary>
         public static AstKeyword RequestMaxCpuTimeSec()
         {
-            return new AstKeyword(Position.Default, "REQUEST_MAX_CPU_TIME_SEC");
+            return new AstKeyword(Position.Default, "REQUEST_MAX_CPU_TIME_SEC", "REQUEST_MAX_CPU_TIME_SEC");
         }
         
+        /// <summary>
+        /// keyword : REQUEST_MAX_MEMORY_GRANT_PERCENT
+        /// </summary>
         public static AstKeyword RequestMaxMemoryGrantPercent()
         {
-            return new AstKeyword(Position.Default, "REQUEST_MAX_MEMORY_GRANT_PERCENT");
+            return new AstKeyword(Position.Default, "REQUEST_MAX_MEMORY_GRANT_PERCENT", "REQUEST_MAX_MEMORY_GRANT_PERCENT");
         }
         
+        /// <summary>
+        /// keyword : REQUEST_MEMORY_GRANT_TIMEOUT_SEC
+        /// </summary>
         public static AstKeyword RequestMemoryGrantTimeoutSec()
         {
-            return new AstKeyword(Position.Default, "REQUEST_MEMORY_GRANT_TIMEOUT_SEC");
+            return new AstKeyword(Position.Default, "REQUEST_MEMORY_GRANT_TIMEOUT_SEC", "REQUEST_MEMORY_GRANT_TIMEOUT_SEC");
         }
         
+        /// <summary>
+        /// keyword : REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT
+        /// </summary>
         public static AstKeyword RequiredSynchronizedSecondariesToCommit()
         {
-            return new AstKeyword(Position.Default, "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT");
+            return new AstKeyword(Position.Default, "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT", "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT");
         }
         
+        /// <summary>
+        /// keyword : RESAMPLE
+        /// </summary>
         public static AstKeyword Resample()
         {
-            return new AstKeyword(Position.Default, "RESAMPLE");
+            return new AstKeyword(Position.Default, "RESAMPLE", "RESAMPLE");
         }
         
+        /// <summary>
+        /// keyword : RESERVE_DISK_SPACE
+        /// </summary>
         public static AstKeyword ReserveDiskSpace()
         {
-            return new AstKeyword(Position.Default, "RESERVE_DISK_SPACE");
+            return new AstKeyword(Position.Default, "RESERVE_DISK_SPACE", "RESERVE_DISK_SPACE");
         }
         
+        /// <summary>
+        /// keyword : RESOURCE
+        /// </summary>
         public static AstKeyword Resource()
         {
-            return new AstKeyword(Position.Default, "RESOURCE");
+            return new AstKeyword(Position.Default, "RESOURCE", "RESOURCE");
         }
         
+        /// <summary>
+        /// keyword : RESOURCE_MANAGER_LOCATION
+        /// </summary>
         public static AstKeyword ResourceManagerLocation()
         {
-            return new AstKeyword(Position.Default, "RESOURCE_MANAGER_LOCATION");
+            return new AstKeyword(Position.Default, "RESOURCE_MANAGER_LOCATION", "RESOURCE_MANAGER_LOCATION");
         }
         
+        /// <summary>
+        /// keyword : RESTRICTED_USER
+        /// </summary>
         public static AstKeyword RestrictedUser()
         {
-            return new AstKeyword(Position.Default, "RESTRICTED_USER");
+            return new AstKeyword(Position.Default, "RESTRICTED_USER", "RESTRICTED_USER");
         }
         
+        /// <summary>
+        /// keyword : RESUMABLE
+        /// </summary>
         public static AstKeyword Resumable()
         {
-            return new AstKeyword(Position.Default, "RESUMABLE");
+            return new AstKeyword(Position.Default, "RESUMABLE", "RESUMABLE");
         }
         
+        /// <summary>
+        /// keyword : RETENTION
+        /// </summary>
         public static AstKeyword Retention()
         {
-            return new AstKeyword(Position.Default, "RETENTION");
+            return new AstKeyword(Position.Default, "RETENTION", "RETENTION");
         }
         
+        /// <summary>
+        /// keyword : REVERSE
+        /// </summary>
         public static AstKeyword Reverse()
         {
-            return new AstKeyword(Position.Default, "REVERSE");
+            return new AstKeyword(Position.Default, "REVERSE", "REVERSE");
         }
         
+        /// <summary>
+        /// keyword : ROBUST
+        /// </summary>
         public static AstKeyword Robust()
         {
-            return new AstKeyword(Position.Default, "ROBUST");
+            return new AstKeyword(Position.Default, "ROBUST", "ROBUST");
         }
         
+        /// <summary>
+        /// keyword : ROOT
+        /// </summary>
         public static AstKeyword Root()
         {
-            return new AstKeyword(Position.Default, "ROOT");
+            return new AstKeyword(Position.Default, "ROOT", "ROOT");
         }
         
+        /// <summary>
+        /// keyword : ROUTE
+        /// </summary>
         public static AstKeyword Route()
         {
-            return new AstKeyword(Position.Default, "ROUTE");
+            return new AstKeyword(Position.Default, "ROUTE", "ROUTE");
         }
         
+        /// <summary>
+        /// keyword : ROW
+        /// </summary>
         public static AstKeyword Row()
         {
-            return new AstKeyword(Position.Default, "ROW");
+            return new AstKeyword(Position.Default, "ROW", "ROW");
         }
         
+        /// <summary>
+        /// keyword : ROW_NUMBER
+        /// </summary>
         public static AstKeyword RowNumber()
         {
-            return new AstKeyword(Position.Default, "ROW_NUMBER");
+            return new AstKeyword(Position.Default, "ROW_NUMBER", "ROW_NUMBER");
         }
         
+        /// <summary>
+        /// keyword : ROWGUID
+        /// </summary>
         public static AstKeyword Rowguid()
         {
-            return new AstKeyword(Position.Default, "ROWGUID");
+            return new AstKeyword(Position.Default, "ROWGUID", "ROWGUID");
         }
         
+        /// <summary>
+        /// keyword : ROWLOCK
+        /// </summary>
         public static AstKeyword Rowlock()
         {
-            return new AstKeyword(Position.Default, "ROWLOCK");
+            return new AstKeyword(Position.Default, "ROWLOCK", "ROWLOCK");
         }
         
+        /// <summary>
+        /// keyword : ROWS
+        /// </summary>
         public static AstKeyword Rows()
         {
-            return new AstKeyword(Position.Default, "ROWS");
+            return new AstKeyword(Position.Default, "ROWS", "ROWS");
         }
         
+        /// <summary>
+        /// keyword : RTRIM
+        /// </summary>
         public static AstKeyword Rtrim()
         {
-            return new AstKeyword(Position.Default, "RTRIM");
+            return new AstKeyword(Position.Default, "RTRIM", "RTRIM");
         }
         
+        /// <summary>
+        /// keyword : SAMPLE
+        /// </summary>
         public static AstKeyword Sample()
         {
-            return new AstKeyword(Position.Default, "SAMPLE");
+            return new AstKeyword(Position.Default, "SAMPLE", "SAMPLE");
         }
         
+        /// <summary>
+        /// keyword : SCHEMA_ID
+        /// </summary>
         public static AstKeyword SchemaId()
         {
-            return new AstKeyword(Position.Default, "SCHEMA_ID");
+            return new AstKeyword(Position.Default, "SCHEMA_ID", "SCHEMA_ID");
         }
         
+        /// <summary>
+        /// keyword : SCHEMA_NAME
+        /// </summary>
         public static AstKeyword SchemaName()
         {
-            return new AstKeyword(Position.Default, "SCHEMA_NAME");
+            return new AstKeyword(Position.Default, "SCHEMA_NAME", "SCHEMA_NAME");
         }
         
+        /// <summary>
+        /// keyword : SCHEMABINDING
+        /// </summary>
         public static AstKeyword Schemabinding()
         {
-            return new AstKeyword(Position.Default, "SCHEMABINDING");
+            return new AstKeyword(Position.Default, "SCHEMABINDING", "SCHEMABINDING");
         }
         
+        /// <summary>
+        /// keyword : SCOPE_IDENTITY
+        /// </summary>
         public static AstKeyword ScopeIdentity()
         {
-            return new AstKeyword(Position.Default, "SCOPE_IDENTITY");
+            return new AstKeyword(Position.Default, "SCOPE_IDENTITY", "SCOPE_IDENTITY");
         }
         
+        /// <summary>
+        /// keyword : SCOPED
+        /// </summary>
         public static AstKeyword Scoped()
         {
-            return new AstKeyword(Position.Default, "SCOPED");
+            return new AstKeyword(Position.Default, "SCOPED", "SCOPED");
         }
         
+        /// <summary>
+        /// keyword : SCROLL
+        /// </summary>
         public static AstKeyword Scroll()
         {
-            return new AstKeyword(Position.Default, "SCROLL");
+            return new AstKeyword(Position.Default, "SCROLL", "SCROLL");
         }
         
+        /// <summary>
+        /// keyword : SCROLL_LOCKS
+        /// </summary>
         public static AstKeyword ScrollLocks()
         {
-            return new AstKeyword(Position.Default, "SCROLL_LOCKS");
+            return new AstKeyword(Position.Default, "SCROLL_LOCKS", "SCROLL_LOCKS");
         }
         
+        /// <summary>
+        /// keyword : SEARCH
+        /// </summary>
         public static AstKeyword Search()
         {
-            return new AstKeyword(Position.Default, "SEARCH");
+            return new AstKeyword(Position.Default, "SEARCH", "SEARCH");
         }
         
+        /// <summary>
+        /// keyword : SECONDARY
+        /// </summary>
         public static AstKeyword Secondary()
         {
-            return new AstKeyword(Position.Default, "SECONDARY");
+            return new AstKeyword(Position.Default, "SECONDARY", "SECONDARY");
         }
         
+        /// <summary>
+        /// keyword : SECONDARY_ONLY
+        /// </summary>
         public static AstKeyword SecondaryOnly()
         {
-            return new AstKeyword(Position.Default, "SECONDARY_ONLY");
+            return new AstKeyword(Position.Default, "SECONDARY_ONLY", "SECONDARY_ONLY");
         }
         
+        /// <summary>
+        /// keyword : SECONDARY_ROLE
+        /// </summary>
         public static AstKeyword SecondaryRole()
         {
-            return new AstKeyword(Position.Default, "SECONDARY_ROLE");
+            return new AstKeyword(Position.Default, "SECONDARY_ROLE", "SECONDARY_ROLE");
         }
         
+        /// <summary>
+        /// keyword : SECONDS
+        /// </summary>
         public static AstKeyword Seconds()
         {
-            return new AstKeyword(Position.Default, "SECONDS");
+            return new AstKeyword(Position.Default, "SECONDS", "SECONDS");
         }
         
+        /// <summary>
+        /// keyword : SECRET
+        /// </summary>
         public static AstKeyword Secret()
         {
-            return new AstKeyword(Position.Default, "SECRET");
+            return new AstKeyword(Position.Default, "SECRET", "SECRET");
         }
         
+        /// <summary>
+        /// keyword : SECURABLES
+        /// </summary>
         public static AstKeyword Securables()
         {
-            return new AstKeyword(Position.Default, "SECURABLES");
+            return new AstKeyword(Position.Default, "SECURABLES", "SECURABLES");
         }
         
+        /// <summary>
+        /// keyword : SECURITY
+        /// </summary>
         public static AstKeyword Security()
         {
-            return new AstKeyword(Position.Default, "SECURITY");
+            return new AstKeyword(Position.Default, "SECURITY", "SECURITY");
         }
         
+        /// <summary>
+        /// keyword : SECURITY_LOG
+        /// </summary>
         public static AstKeyword SecurityLog()
         {
-            return new AstKeyword(Position.Default, "SECURITY_LOG");
+            return new AstKeyword(Position.Default, "SECURITY_LOG", "SECURITY_LOG");
         }
         
+        /// <summary>
+        /// keyword : SEEDING_MODE
+        /// </summary>
         public static AstKeyword SeedingMode()
         {
-            return new AstKeyword(Position.Default, "SEEDING_MODE");
+            return new AstKeyword(Position.Default, "SEEDING_MODE", "SEEDING_MODE");
         }
         
+        /// <summary>
+        /// keyword : SELF
+        /// </summary>
         public static AstKeyword Self()
         {
-            return new AstKeyword(Position.Default, "SELF");
+            return new AstKeyword(Position.Default, "SELF", "SELF");
         }
         
+        /// <summary>
+        /// keyword : SEMI_SENSITIVE
+        /// </summary>
         public static AstKeyword SemiSensitive()
         {
-            return new AstKeyword(Position.Default, "SEMI_SENSITIVE");
+            return new AstKeyword(Position.Default, "SEMI_SENSITIVE", "SEMI_SENSITIVE");
         }
         
+        /// <summary>
+        /// keyword : SEND
+        /// </summary>
         public static AstKeyword Send()
         {
-            return new AstKeyword(Position.Default, "SEND");
+            return new AstKeyword(Position.Default, "SEND", "SEND");
         }
         
+        /// <summary>
+        /// keyword : SENT
+        /// </summary>
         public static AstKeyword Sent()
         {
-            return new AstKeyword(Position.Default, "SENT");
+            return new AstKeyword(Position.Default, "SENT", "SENT");
         }
         
+        /// <summary>
+        /// keyword : SEQUENCE
+        /// </summary>
         public static AstKeyword Sequence()
         {
-            return new AstKeyword(Position.Default, "SEQUENCE");
+            return new AstKeyword(Position.Default, "SEQUENCE", "SEQUENCE");
         }
         
+        /// <summary>
+        /// keyword : SEQUENCE_NUMBER
+        /// </summary>
         public static AstKeyword SequenceNumber()
         {
-            return new AstKeyword(Position.Default, "SEQUENCE_NUMBER");
+            return new AstKeyword(Position.Default, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
         }
         
+        /// <summary>
+        /// keyword : SERIALIZABLE
+        /// </summary>
         public static AstKeyword Serializable()
         {
-            return new AstKeyword(Position.Default, "SERIALIZABLE");
+            return new AstKeyword(Position.Default, "SERIALIZABLE", "SERIALIZABLE");
         }
         
+        /// <summary>
+        /// keyword : SERVERPROPERTY
+        /// </summary>
         public static AstKeyword Serverproperty()
         {
-            return new AstKeyword(Position.Default, "SERVERPROPERTY");
+            return new AstKeyword(Position.Default, "SERVERPROPERTY", "SERVERPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : SESSION_TIMEOUT
+        /// </summary>
         public static AstKeyword SessionTimeout()
         {
-            return new AstKeyword(Position.Default, "SESSION_TIMEOUT");
+            return new AstKeyword(Position.Default, "SESSION_TIMEOUT", "SESSION_TIMEOUT");
         }
         
+        /// <summary>
+        /// keyword : SETERROR
+        /// </summary>
         public static AstKeyword Seterror()
         {
-            return new AstKeyword(Position.Default, "SETERROR");
+            return new AstKeyword(Position.Default, "SETERROR", "SETERROR");
         }
         
+        /// <summary>
+        /// keyword : SHARE
+        /// </summary>
         public static AstKeyword Share()
         {
-            return new AstKeyword(Position.Default, "SHARE");
+            return new AstKeyword(Position.Default, "SHARE", "SHARE");
         }
         
+        /// <summary>
+        /// keyword : SHARED
+        /// </summary>
         public static AstKeyword Shared()
         {
-            return new AstKeyword(Position.Default, "SHARED");
+            return new AstKeyword(Position.Default, "SHARED", "SHARED");
         }
         
+        /// <summary>
+        /// keyword : SHOWPLAN
+        /// </summary>
         public static AstKeyword Showplan()
         {
-            return new AstKeyword(Position.Default, "SHOWPLAN");
+            return new AstKeyword(Position.Default, "SHOWPLAN", "SHOWPLAN");
         }
         
+        /// <summary>
+        /// keyword : SHOWPLAN_ALL
+        /// </summary>
         public static AstKeyword ShowplanAll()
         {
-            return new AstKeyword(Position.Default, "SHOWPLAN_ALL");
+            return new AstKeyword(Position.Default, "SHOWPLAN_ALL", "SHOWPLAN_ALL");
         }
         
+        /// <summary>
+        /// keyword : SHOWPLAN_TEXT
+        /// </summary>
         public static AstKeyword ShowplanText()
         {
-            return new AstKeyword(Position.Default, "SHOWPLAN_TEXT");
+            return new AstKeyword(Position.Default, "SHOWPLAN_TEXT", "SHOWPLAN_TEXT");
         }
         
+        /// <summary>
+        /// keyword : SHOWPLAN_XML
+        /// </summary>
         public static AstKeyword ShowplanXml()
         {
-            return new AstKeyword(Position.Default, "SHOWPLAN_XML");
+            return new AstKeyword(Position.Default, "SHOWPLAN_XML", "SHOWPLAN_XML");
         }
         
+        /// <summary>
+        /// keyword : SIGNATURE
+        /// </summary>
         public static AstKeyword Signature()
         {
-            return new AstKeyword(Position.Default, "SIGNATURE");
+            return new AstKeyword(Position.Default, "SIGNATURE", "SIGNATURE");
         }
         
+        /// <summary>
+        /// keyword : SIMPLE
+        /// </summary>
         public static AstKeyword Simple()
         {
-            return new AstKeyword(Position.Default, "SIMPLE");
+            return new AstKeyword(Position.Default, "SIMPLE", "SIMPLE");
         }
         
+        /// <summary>
+        /// keyword : SINGLE_USER
+        /// </summary>
         public static AstKeyword SingleUser()
         {
-            return new AstKeyword(Position.Default, "SINGLE_USER");
+            return new AstKeyword(Position.Default, "SINGLE_USER", "SINGLE_USER");
         }
         
+        /// <summary>
+        /// keyword : SIZE
+        /// </summary>
         public static AstKeyword Size()
         {
-            return new AstKeyword(Position.Default, "SIZE");
+            return new AstKeyword(Position.Default, "SIZE", "SIZE");
         }
         
+        /// <summary>
+        /// keyword : SMALLINT
+        /// </summary>
         public static AstKeyword Smallint()
         {
-            return new AstKeyword(Position.Default, "SMALLINT");
+            return new AstKeyword(Position.Default, "SMALLINT", "SMALLINT");
         }
         
+        /// <summary>
+        /// keyword : SNAPSHOT
+        /// </summary>
         public static AstKeyword Snapshot()
         {
-            return new AstKeyword(Position.Default, "SNAPSHOT");
+            return new AstKeyword(Position.Default, "SNAPSHOT", "SNAPSHOT");
         }
         
+        /// <summary>
+        /// keyword : SORT_IN_TEMPDB
+        /// </summary>
         public static AstKeyword SortInTempdb()
         {
-            return new AstKeyword(Position.Default, "SORT_IN_TEMPDB");
+            return new AstKeyword(Position.Default, "SORT_IN_TEMPDB", "SORT_IN_TEMPDB");
         }
         
+        /// <summary>
+        /// keyword : SOUNDEX
+        /// </summary>
         public static AstKeyword Soundex()
         {
-            return new AstKeyword(Position.Default, "SOUNDEX");
+            return new AstKeyword(Position.Default, "SOUNDEX", "SOUNDEX");
         }
         
+        /// <summary>
+        /// keyword : SPACE
+        /// </summary>
         public static AstKeyword SpaceKeyword()
         {
-            return new AstKeyword(Position.Default, "SPACE");
+            return new AstKeyword(Position.Default, "SPACE_KEYWORD", "SPACE");
         }
         
+        /// <summary>
+        /// keyword : SPARSE
+        /// </summary>
         public static AstKeyword Sparse()
         {
-            return new AstKeyword(Position.Default, "SPARSE");
+            return new AstKeyword(Position.Default, "SPARSE", "SPARSE");
         }
         
+        /// <summary>
+        /// keyword : SPATIAL_WINDOW_MAX_CELLS
+        /// </summary>
         public static AstKeyword SpatialWindowMaxCells()
         {
-            return new AstKeyword(Position.Default, "SPATIAL_WINDOW_MAX_CELLS");
+            return new AstKeyword(Position.Default, "SPATIAL_WINDOW_MAX_CELLS", "SPATIAL_WINDOW_MAX_CELLS");
         }
         
+        /// <summary>
+        /// keyword : STANDBY
+        /// </summary>
         public static AstKeyword Standby()
         {
-            return new AstKeyword(Position.Default, "STANDBY");
+            return new AstKeyword(Position.Default, "STANDBY", "STANDBY");
         }
         
+        /// <summary>
+        /// keyword : START_DATE
+        /// </summary>
         public static AstKeyword StartDate()
         {
-            return new AstKeyword(Position.Default, "START_DATE");
+            return new AstKeyword(Position.Default, "START_DATE", "START_DATE");
         }
         
+        /// <summary>
+        /// keyword : STATIC
+        /// </summary>
         public static AstKeyword Static()
         {
-            return new AstKeyword(Position.Default, "STATIC");
+            return new AstKeyword(Position.Default, "STATIC", "STATIC");
         }
         
+        /// <summary>
+        /// keyword : STATISTICS_INCREMENTAL
+        /// </summary>
         public static AstKeyword StatisticsIncremental()
         {
-            return new AstKeyword(Position.Default, "STATISTICS_INCREMENTAL");
+            return new AstKeyword(Position.Default, "STATISTICS_INCREMENTAL", "STATISTICS_INCREMENTAL");
         }
         
+        /// <summary>
+        /// keyword : STATISTICS_NORECOMPUTE
+        /// </summary>
         public static AstKeyword StatisticsNorecompute()
         {
-            return new AstKeyword(Position.Default, "STATISTICS_NORECOMPUTE");
+            return new AstKeyword(Position.Default, "STATISTICS_NORECOMPUTE", "STATISTICS_NORECOMPUTE");
         }
         
+        /// <summary>
+        /// keyword : STATS_DATE
+        /// </summary>
         public static AstKeyword StatsDate()
         {
-            return new AstKeyword(Position.Default, "STATS_DATE");
+            return new AstKeyword(Position.Default, "STATS_DATE", "STATS_DATE");
         }
         
+        /// <summary>
+        /// keyword : STATS_STREAM
+        /// </summary>
         public static AstKeyword StatsStream()
         {
-            return new AstKeyword(Position.Default, "STATS_STREAM");
+            return new AstKeyword(Position.Default, "STATS_STREAM", "STATS_STREAM");
         }
         
+        /// <summary>
+        /// keyword : STATUS
+        /// </summary>
         public static AstKeyword Status()
         {
-            return new AstKeyword(Position.Default, "STATUS");
+            return new AstKeyword(Position.Default, "STATUS", "STATUS");
         }
         
+        /// <summary>
+        /// keyword : STATUSONLY
+        /// </summary>
         public static AstKeyword Statusonly()
         {
-            return new AstKeyword(Position.Default, "STATUSONLY");
+            return new AstKeyword(Position.Default, "STATUSONLY", "STATUSONLY");
         }
         
+        /// <summary>
+        /// keyword : STDEV
+        /// </summary>
         public static AstKeyword Stdev()
         {
-            return new AstKeyword(Position.Default, "STDEV");
+            return new AstKeyword(Position.Default, "STDEV", "STDEV");
         }
         
+        /// <summary>
+        /// keyword : STDEVP
+        /// </summary>
         public static AstKeyword Stdevp()
         {
-            return new AstKeyword(Position.Default, "STDEVP");
+            return new AstKeyword(Position.Default, "STDEVP", "STDEVP");
         }
         
+        /// <summary>
+        /// keyword : STOPLIST
+        /// </summary>
         public static AstKeyword Stoplist()
         {
-            return new AstKeyword(Position.Default, "STOPLIST");
+            return new AstKeyword(Position.Default, "STOPLIST", "STOPLIST");
         }
         
+        /// <summary>
+        /// keyword : STR
+        /// </summary>
         public static AstKeyword Str()
         {
-            return new AstKeyword(Position.Default, "STR");
+            return new AstKeyword(Position.Default, "STR", "STR");
         }
         
+        /// <summary>
+        /// keyword : STRING_AGG
+        /// </summary>
         public static AstKeyword StringAgg()
         {
-            return new AstKeyword(Position.Default, "STRING_AGG");
+            return new AstKeyword(Position.Default, "STRING_AGG", "STRING_AGG");
         }
         
+        /// <summary>
+        /// keyword : STRING_ESCAPE
+        /// </summary>
         public static AstKeyword StringEscape()
         {
-            return new AstKeyword(Position.Default, "STRING_ESCAPE");
+            return new AstKeyword(Position.Default, "STRING_ESCAPE", "STRING_ESCAPE");
         }
         
+        /// <summary>
+        /// keyword : STUFF
+        /// </summary>
         public static AstKeyword Stuff()
         {
-            return new AstKeyword(Position.Default, "STUFF");
+            return new AstKeyword(Position.Default, "STUFF", "STUFF");
         }
         
+        /// <summary>
+        /// keyword : SUBJECT
+        /// </summary>
         public static AstKeyword Subject()
         {
-            return new AstKeyword(Position.Default, "SUBJECT");
+            return new AstKeyword(Position.Default, "SUBJECT", "SUBJECT");
         }
         
+        /// <summary>
+        /// keyword : SUBSCRIBE
+        /// </summary>
         public static AstKeyword Subscribe()
         {
-            return new AstKeyword(Position.Default, "SUBSCRIBE");
+            return new AstKeyword(Position.Default, "SUBSCRIBE", "SUBSCRIBE");
         }
         
+        /// <summary>
+        /// keyword : SUBSCRIPTION
+        /// </summary>
         public static AstKeyword Subscription()
         {
-            return new AstKeyword(Position.Default, "SUBSCRIPTION");
+            return new AstKeyword(Position.Default, "SUBSCRIPTION", "SUBSCRIPTION");
         }
         
+        /// <summary>
+        /// keyword : SUBSTRING
+        /// </summary>
         public static AstKeyword Substring()
         {
-            return new AstKeyword(Position.Default, "SUBSTRING");
+            return new AstKeyword(Position.Default, "SUBSTRING", "SUBSTRING");
         }
         
+        /// <summary>
+        /// keyword : SUM
+        /// </summary>
         public static AstKeyword Sum()
         {
-            return new AstKeyword(Position.Default, "SUM");
+            return new AstKeyword(Position.Default, "SUM", "SUM");
         }
         
+        /// <summary>
+        /// keyword : SUSPEND
+        /// </summary>
         public static AstKeyword Suspend()
         {
-            return new AstKeyword(Position.Default, "SUSPEND");
+            return new AstKeyword(Position.Default, "SUSPEND", "SUSPEND");
         }
         
+        /// <summary>
+        /// keyword : SYMMETRIC
+        /// </summary>
         public static AstKeyword Symmetric()
         {
-            return new AstKeyword(Position.Default, "SYMMETRIC");
+            return new AstKeyword(Position.Default, "SYMMETRIC", "SYMMETRIC");
         }
         
+        /// <summary>
+        /// keyword : SYNCHRONOUS_COMMIT
+        /// </summary>
         public static AstKeyword SynchronousCommit()
         {
-            return new AstKeyword(Position.Default, "SYNCHRONOUS_COMMIT");
+            return new AstKeyword(Position.Default, "SYNCHRONOUS_COMMIT", "SYNCHRONOUS_COMMIT");
         }
         
+        /// <summary>
+        /// keyword : SYNONYM
+        /// </summary>
         public static AstKeyword Synonym()
         {
-            return new AstKeyword(Position.Default, "SYNONYM");
+            return new AstKeyword(Position.Default, "SYNONYM", "SYNONYM");
         }
         
+        /// <summary>
+        /// keyword : SYSTEM
+        /// </summary>
         public static AstKeyword System()
         {
-            return new AstKeyword(Position.Default, "SYSTEM");
+            return new AstKeyword(Position.Default, "SYSTEM", "SYSTEM");
         }
         
+        /// <summary>
+        /// keyword : TABLOCK
+        /// </summary>
         public static AstKeyword Tablock()
         {
-            return new AstKeyword(Position.Default, "TABLOCK");
+            return new AstKeyword(Position.Default, "TABLOCK", "TABLOCK");
         }
         
+        /// <summary>
+        /// keyword : TABLOCKX
+        /// </summary>
         public static AstKeyword Tablockx()
         {
-            return new AstKeyword(Position.Default, "TABLOCKX");
+            return new AstKeyword(Position.Default, "TABLOCKX", "TABLOCKX");
         }
         
+        /// <summary>
+        /// keyword : TAKE
+        /// </summary>
         public static AstKeyword Take()
         {
-            return new AstKeyword(Position.Default, "TAKE");
+            return new AstKeyword(Position.Default, "TAKE", "TAKE");
         }
         
+        /// <summary>
+        /// keyword : TARGET_RECOVERY_TIME
+        /// </summary>
         public static AstKeyword TargetRecoveryTime()
         {
-            return new AstKeyword(Position.Default, "TARGET_RECOVERY_TIME");
+            return new AstKeyword(Position.Default, "TARGET_RECOVERY_TIME", "TARGET_RECOVERY_TIME");
         }
         
+        /// <summary>
+        /// keyword : TB
+        /// </summary>
         public static AstKeyword Tb()
         {
-            return new AstKeyword(Position.Default, "TB");
+            return new AstKeyword(Position.Default, "TB", "TB");
         }
         
+        /// <summary>
+        /// keyword : TEXTIMAGE_ON
+        /// </summary>
         public static AstKeyword TextimageOn()
         {
-            return new AstKeyword(Position.Default, "TEXTIMAGE_ON");
+            return new AstKeyword(Position.Default, "TEXTIMAGE_ON", "TEXTIMAGE_ON");
         }
         
+        /// <summary>
+        /// keyword : THROW
+        /// </summary>
         public static AstKeyword Throw()
         {
-            return new AstKeyword(Position.Default, "THROW");
+            return new AstKeyword(Position.Default, "THROW", "THROW");
         }
         
+        /// <summary>
+        /// keyword : TIES
+        /// </summary>
         public static AstKeyword Ties()
         {
-            return new AstKeyword(Position.Default, "TIES");
+            return new AstKeyword(Position.Default, "TIES", "TIES");
         }
         
+        /// <summary>
+        /// keyword : TIME
+        /// </summary>
         public static AstKeyword Time()
         {
-            return new AstKeyword(Position.Default, "TIME");
+            return new AstKeyword(Position.Default, "TIME", "TIME");
         }
         
+        /// <summary>
+        /// keyword : TIMEOUT
+        /// </summary>
         public static AstKeyword Timeout()
         {
-            return new AstKeyword(Position.Default, "TIMEOUT");
+            return new AstKeyword(Position.Default, "TIMEOUT", "TIMEOUT");
         }
         
+        /// <summary>
+        /// keyword : TIMER
+        /// </summary>
         public static AstKeyword Timer()
         {
-            return new AstKeyword(Position.Default, "TIMER");
+            return new AstKeyword(Position.Default, "TIMER", "TIMER");
         }
         
+        /// <summary>
+        /// keyword : TINYINT
+        /// </summary>
         public static AstKeyword Tinyint()
         {
-            return new AstKeyword(Position.Default, "TINYINT");
+            return new AstKeyword(Position.Default, "TINYINT", "TINYINT");
         }
         
+        /// <summary>
+        /// keyword : TORN_PAGE_DETECTION
+        /// </summary>
         public static AstKeyword TornPageDetection()
         {
-            return new AstKeyword(Position.Default, "TORN_PAGE_DETECTION");
+            return new AstKeyword(Position.Default, "TORN_PAGE_DETECTION", "TORN_PAGE_DETECTION");
         }
         
+        /// <summary>
+        /// keyword : TRACKING
+        /// </summary>
         public static AstKeyword Tracking()
         {
-            return new AstKeyword(Position.Default, "TRACKING");
+            return new AstKeyword(Position.Default, "TRACKING", "TRACKING");
         }
         
+        /// <summary>
+        /// keyword : TRANSACTION_ID
+        /// </summary>
         public static AstKeyword TransactionId()
         {
-            return new AstKeyword(Position.Default, "TRANSACTION_ID");
+            return new AstKeyword(Position.Default, "TRANSACTION_ID", "TRANSACTION_ID");
         }
         
+        /// <summary>
+        /// keyword : TRANSFORM_NOISE_WORDS
+        /// </summary>
         public static AstKeyword TransformNoiseWords()
         {
-            return new AstKeyword(Position.Default, "TRANSFORM_NOISE_WORDS");
+            return new AstKeyword(Position.Default, "TRANSFORM_NOISE_WORDS", "TRANSFORM_NOISE_WORDS");
         }
         
+        /// <summary>
+        /// keyword : TRANSLATE
+        /// </summary>
         public static AstKeyword Translate()
         {
-            return new AstKeyword(Position.Default, "TRANSLATE");
+            return new AstKeyword(Position.Default, "TRANSLATE", "TRANSLATE");
         }
         
+        /// <summary>
+        /// keyword : TRIM
+        /// </summary>
         public static AstKeyword Trim()
         {
-            return new AstKeyword(Position.Default, "TRIM");
+            return new AstKeyword(Position.Default, "TRIM", "TRIM");
         }
         
+        /// <summary>
+        /// keyword : TRIPLE_DES
+        /// </summary>
         public static AstKeyword TripleDes()
         {
-            return new AstKeyword(Position.Default, "TRIPLE_DES");
+            return new AstKeyword(Position.Default, "TRIPLE_DES", "TRIPLE_DES");
         }
         
+        /// <summary>
+        /// keyword : TRIPLE_DES_3KEY
+        /// </summary>
         public static AstKeyword TripleDes3key()
         {
-            return new AstKeyword(Position.Default, "TRIPLE_DES_3KEY");
+            return new AstKeyword(Position.Default, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
         }
         
+        /// <summary>
+        /// keyword : TRUSTWORTHY
+        /// </summary>
         public static AstKeyword Trustworthy()
         {
-            return new AstKeyword(Position.Default, "TRUSTWORTHY");
+            return new AstKeyword(Position.Default, "TRUSTWORTHY", "TRUSTWORTHY");
         }
         
+        /// <summary>
+        /// keyword : TRY
+        /// </summary>
         public static AstKeyword Try()
         {
-            return new AstKeyword(Position.Default, "TRY");
+            return new AstKeyword(Position.Default, "TRY", "TRY");
         }
         
+        /// <summary>
+        /// keyword : TSQL
+        /// </summary>
         public static AstKeyword Tsql()
         {
-            return new AstKeyword(Position.Default, "TSQL");
+            return new AstKeyword(Position.Default, "TSQL", "TSQL");
         }
         
+        /// <summary>
+        /// keyword : TWO_DIGIT_YEAR_CUTOFF
+        /// </summary>
         public static AstKeyword TwoDigitYearCutoff()
         {
-            return new AstKeyword(Position.Default, "TWO_DIGIT_YEAR_CUTOFF");
+            return new AstKeyword(Position.Default, "TWO_DIGIT_YEAR_CUTOFF", "TWO_DIGIT_YEAR_CUTOFF");
         }
         
+        /// <summary>
+        /// keyword : TYPE
+        /// </summary>
         public static AstKeyword Type()
         {
-            return new AstKeyword(Position.Default, "TYPE");
+            return new AstKeyword(Position.Default, "TYPE", "TYPE");
         }
         
+        /// <summary>
+        /// keyword : TYPE_ID
+        /// </summary>
         public static AstKeyword TypeId()
         {
-            return new AstKeyword(Position.Default, "TYPE_ID");
+            return new AstKeyword(Position.Default, "TYPE_ID", "TYPE_ID");
         }
         
+        /// <summary>
+        /// keyword : TYPE_NAME
+        /// </summary>
         public static AstKeyword TypeName()
         {
-            return new AstKeyword(Position.Default, "TYPE_NAME");
+            return new AstKeyword(Position.Default, "TYPE_NAME", "TYPE_NAME");
         }
         
+        /// <summary>
+        /// keyword : TYPE_WARNING
+        /// </summary>
         public static AstKeyword TypeWarning()
         {
-            return new AstKeyword(Position.Default, "TYPE_WARNING");
+            return new AstKeyword(Position.Default, "TYPE_WARNING", "TYPE_WARNING");
         }
         
+        /// <summary>
+        /// keyword : TYPEPROPERTY
+        /// </summary>
         public static AstKeyword Typeproperty()
         {
-            return new AstKeyword(Position.Default, "TYPEPROPERTY");
+            return new AstKeyword(Position.Default, "TYPEPROPERTY", "TYPEPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : UNBOUNDED
+        /// </summary>
         public static AstKeyword Unbounded()
         {
-            return new AstKeyword(Position.Default, "UNBOUNDED");
+            return new AstKeyword(Position.Default, "UNBOUNDED", "UNBOUNDED");
         }
         
+        /// <summary>
+        /// keyword : UNCOMMITTED
+        /// </summary>
         public static AstKeyword Uncommitted()
         {
-            return new AstKeyword(Position.Default, "UNCOMMITTED");
+            return new AstKeyword(Position.Default, "UNCOMMITTED", "UNCOMMITTED");
         }
         
+        /// <summary>
+        /// keyword : UNICODE
+        /// </summary>
         public static AstKeyword Unicode()
         {
-            return new AstKeyword(Position.Default, "UNICODE");
+            return new AstKeyword(Position.Default, "UNICODE", "UNICODE");
         }
         
+        /// <summary>
+        /// keyword : UNKNOWN
+        /// </summary>
         public static AstKeyword Unknown()
         {
-            return new AstKeyword(Position.Default, "UNKNOWN");
+            return new AstKeyword(Position.Default, "UNKNOWN", "UNKNOWN");
         }
         
+        /// <summary>
+        /// keyword : UNLIMITED
+        /// </summary>
         public static AstKeyword Unlimited()
         {
-            return new AstKeyword(Position.Default, "UNLIMITED");
+            return new AstKeyword(Position.Default, "UNLIMITED", "UNLIMITED");
         }
         
+        /// <summary>
+        /// keyword : UNMASK
+        /// </summary>
         public static AstKeyword Unmask()
         {
-            return new AstKeyword(Position.Default, "UNMASK");
+            return new AstKeyword(Position.Default, "UNMASK", "UNMASK");
         }
         
+        /// <summary>
+        /// keyword : UOW
+        /// </summary>
         public static AstKeyword Uow()
         {
-            return new AstKeyword(Position.Default, "UOW");
+            return new AstKeyword(Position.Default, "UOW", "UOW");
         }
         
+        /// <summary>
+        /// keyword : UPDLOCK
+        /// </summary>
         public static AstKeyword Updlock()
         {
-            return new AstKeyword(Position.Default, "UPDLOCK");
+            return new AstKeyword(Position.Default, "UPDLOCK", "UPDLOCK");
         }
         
+        /// <summary>
+        /// keyword : UPPER
+        /// </summary>
         public static AstKeyword Upper()
         {
-            return new AstKeyword(Position.Default, "UPPER");
+            return new AstKeyword(Position.Default, "UPPER", "UPPER");
         }
         
+        /// <summary>
+        /// keyword : USING
+        /// </summary>
         public static AstKeyword Using()
         {
-            return new AstKeyword(Position.Default, "USING");
+            return new AstKeyword(Position.Default, "USING", "USING");
         }
         
+        /// <summary>
+        /// keyword : VALID_XML
+        /// </summary>
         public static AstKeyword ValidXml()
         {
-            return new AstKeyword(Position.Default, "VALID_XML");
+            return new AstKeyword(Position.Default, "VALID_XML", "VALID_XML");
         }
         
+        /// <summary>
+        /// keyword : VALIDATION
+        /// </summary>
         public static AstKeyword Validation()
         {
-            return new AstKeyword(Position.Default, "VALIDATION");
+            return new AstKeyword(Position.Default, "VALIDATION", "VALIDATION");
         }
         
+        /// <summary>
+        /// keyword : VALUE
+        /// </summary>
         public static AstKeyword Value()
         {
-            return new AstKeyword(Position.Default, "VALUE");
+            return new AstKeyword(Position.Default, "VALUE", "VALUE");
         }
         
+        /// <summary>
+        /// keyword : VAR
+        /// </summary>
         public static AstKeyword Var()
         {
-            return new AstKeyword(Position.Default, "VAR");
+            return new AstKeyword(Position.Default, "VAR", "VAR");
         }
         
+        /// <summary>
+        /// keyword : VARBINARY
+        /// </summary>
         public static AstKeyword VarbinaryKeyword()
         {
-            return new AstKeyword(Position.Default, "VARBINARY");
+            return new AstKeyword(Position.Default, "VARBINARY_KEYWORD", "VARBINARY");
         }
         
+        /// <summary>
+        /// keyword : VARP
+        /// </summary>
         public static AstKeyword Varp()
         {
-            return new AstKeyword(Position.Default, "VARP");
+            return new AstKeyword(Position.Default, "VARP", "VARP");
         }
         
+        /// <summary>
+        /// keyword : VERSION
+        /// </summary>
         public static AstKeyword Version()
         {
-            return new AstKeyword(Position.Default, "VERSION");
+            return new AstKeyword(Position.Default, "VERSION", "VERSION");
         }
         
+        /// <summary>
+        /// keyword : VIEW_METADATA
+        /// </summary>
         public static AstKeyword ViewMetadata()
         {
-            return new AstKeyword(Position.Default, "VIEW_METADATA");
+            return new AstKeyword(Position.Default, "VIEW_METADATA", "VIEW_METADATA");
         }
         
+        /// <summary>
+        /// keyword : VIEWS
+        /// </summary>
         public static AstKeyword Views()
         {
-            return new AstKeyword(Position.Default, "VIEWS");
+            return new AstKeyword(Position.Default, "VIEWS", "VIEWS");
         }
         
+        /// <summary>
+        /// keyword : WAIT
+        /// </summary>
         public static AstKeyword Wait()
         {
-            return new AstKeyword(Position.Default, "WAIT");
+            return new AstKeyword(Position.Default, "WAIT", "WAIT");
         }
         
+        /// <summary>
+        /// keyword : WELL_FORMED_XML
+        /// </summary>
         public static AstKeyword WellFormedXml()
         {
-            return new AstKeyword(Position.Default, "WELL_FORMED_XML");
+            return new AstKeyword(Position.Default, "WELL_FORMED_XML", "WELL_FORMED_XML");
         }
         
+        /// <summary>
+        /// keyword : WITHOUT_ARRAY_WRAPPER
+        /// </summary>
         public static AstKeyword WithoutArrayWrapper()
         {
-            return new AstKeyword(Position.Default, "WITHOUT_ARRAY_WRAPPER");
+            return new AstKeyword(Position.Default, "WITHOUT_ARRAY_WRAPPER", "WITHOUT_ARRAY_WRAPPER");
         }
         
+        /// <summary>
+        /// keyword : WORK
+        /// </summary>
         public static AstKeyword Work()
         {
-            return new AstKeyword(Position.Default, "WORK");
+            return new AstKeyword(Position.Default, "WORK", "WORK");
         }
         
+        /// <summary>
+        /// keyword : WORKLOAD
+        /// </summary>
         public static AstKeyword Workload()
         {
-            return new AstKeyword(Position.Default, "WORKLOAD");
+            return new AstKeyword(Position.Default, "WORKLOAD", "WORKLOAD");
         }
         
+        /// <summary>
+        /// keyword : XLOCK
+        /// </summary>
         public static AstKeyword Xlock()
         {
-            return new AstKeyword(Position.Default, "XLOCK");
+            return new AstKeyword(Position.Default, "XLOCK", "XLOCK");
         }
         
+        /// <summary>
+        /// keyword : XML
+        /// </summary>
         public static AstKeyword Xml()
         {
-            return new AstKeyword(Position.Default, "XML");
+            return new AstKeyword(Position.Default, "XML", "XML");
         }
         
+        /// <summary>
+        /// keyword : XML_COMPRESSION
+        /// </summary>
         public static AstKeyword XmlCompression()
         {
-            return new AstKeyword(Position.Default, "XML_COMPRESSION");
+            return new AstKeyword(Position.Default, "XML_COMPRESSION", "XML_COMPRESSION");
         }
         
+        /// <summary>
+        /// keyword : XMLDATA
+        /// </summary>
         public static AstKeyword Xmldata()
         {
-            return new AstKeyword(Position.Default, "XMLDATA");
+            return new AstKeyword(Position.Default, "XMLDATA", "XMLDATA");
         }
         
+        /// <summary>
+        /// keyword : XMLNAMESPACES
+        /// </summary>
         public static AstKeyword Xmlnamespaces()
         {
-            return new AstKeyword(Position.Default, "XMLNAMESPACES");
+            return new AstKeyword(Position.Default, "XMLNAMESPACES", "XMLNAMESPACES");
         }
         
+        /// <summary>
+        /// keyword : XMLSCHEMA
+        /// </summary>
         public static AstKeyword Xmlschema()
         {
-            return new AstKeyword(Position.Default, "XMLSCHEMA");
+            return new AstKeyword(Position.Default, "XMLSCHEMA", "XMLSCHEMA");
         }
         
+        /// <summary>
+        /// keyword : XSINIL
+        /// </summary>
         public static AstKeyword Xsinil()
         {
-            return new AstKeyword(Position.Default, "XSINIL");
+            return new AstKeyword(Position.Default, "XSINIL", "XSINIL");
         }
         
+        /// <summary>
+        /// keyword : ZONE
+        /// </summary>
         public static AstKeyword Zone()
         {
-            return new AstKeyword(Position.Default, "ZONE");
+            return new AstKeyword(Position.Default, "ZONE", "ZONE");
         }
         
+        /// <summary>
+        /// keyword : ABORT_AFTER_WAIT
+        /// </summary>
         public static AstKeyword AbortAfterWait()
         {
-            return new AstKeyword(Position.Default, "ABORT_AFTER_WAIT");
+            return new AstKeyword(Position.Default, "ABORT_AFTER_WAIT", "ABORT_AFTER_WAIT");
         }
         
+        /// <summary>
+        /// keyword : ABSENT
+        /// </summary>
         public static AstKeyword Absent()
         {
-            return new AstKeyword(Position.Default, "ABSENT");
+            return new AstKeyword(Position.Default, "ABSENT", "ABSENT");
         }
         
+        /// <summary>
+        /// keyword : ADMINISTER
+        /// </summary>
         public static AstKeyword Administer()
         {
-            return new AstKeyword(Position.Default, "ADMINISTER");
+            return new AstKeyword(Position.Default, "ADMINISTER", "ADMINISTER");
         }
         
+        /// <summary>
+        /// keyword : AES
+        /// </summary>
         public static AstKeyword Aes()
         {
-            return new AstKeyword(Position.Default, "AES");
+            return new AstKeyword(Position.Default, "AES", "AES");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_CONNECTIONS
+        /// </summary>
         public static AstKeyword AllowConnections()
         {
-            return new AstKeyword(Position.Default, "ALLOW_CONNECTIONS");
+            return new AstKeyword(Position.Default, "ALLOW_CONNECTIONS", "ALLOW_CONNECTIONS");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_MULTIPLE_EVENT_LOSS
+        /// </summary>
         public static AstKeyword AllowMultipleEventLoss()
         {
-            return new AstKeyword(Position.Default, "ALLOW_MULTIPLE_EVENT_LOSS");
+            return new AstKeyword(Position.Default, "ALLOW_MULTIPLE_EVENT_LOSS", "ALLOW_MULTIPLE_EVENT_LOSS");
         }
         
+        /// <summary>
+        /// keyword : ALLOW_SINGLE_EVENT_LOSS
+        /// </summary>
         public static AstKeyword AllowSingleEventLoss()
         {
-            return new AstKeyword(Position.Default, "ALLOW_SINGLE_EVENT_LOSS");
+            return new AstKeyword(Position.Default, "ALLOW_SINGLE_EVENT_LOSS", "ALLOW_SINGLE_EVENT_LOSS");
         }
         
+        /// <summary>
+        /// keyword : ANONYMOUS
+        /// </summary>
         public static AstKeyword Anonymous()
         {
-            return new AstKeyword(Position.Default, "ANONYMOUS");
+            return new AstKeyword(Position.Default, "ANONYMOUS", "ANONYMOUS");
         }
         
+        /// <summary>
+        /// keyword : APPEND
+        /// </summary>
         public static AstKeyword Append()
         {
-            return new AstKeyword(Position.Default, "APPEND");
+            return new AstKeyword(Position.Default, "APPEND", "APPEND");
         }
         
+        /// <summary>
+        /// keyword : APPLICATION
+        /// </summary>
         public static AstKeyword Application()
         {
-            return new AstKeyword(Position.Default, "APPLICATION");
+            return new AstKeyword(Position.Default, "APPLICATION", "APPLICATION");
         }
         
+        /// <summary>
+        /// keyword : ASYMMETRIC
+        /// </summary>
         public static AstKeyword Asymmetric()
         {
-            return new AstKeyword(Position.Default, "ASYMMETRIC");
+            return new AstKeyword(Position.Default, "ASYMMETRIC", "ASYMMETRIC");
         }
         
+        /// <summary>
+        /// keyword : ASYNCHRONOUS_COMMIT
+        /// </summary>
         public static AstKeyword AsynchronousCommit()
         {
-            return new AstKeyword(Position.Default, "ASYNCHRONOUS_COMMIT");
+            return new AstKeyword(Position.Default, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
         }
         
+        /// <summary>
+        /// keyword : AUTHENTICATE
+        /// </summary>
         public static AstKeyword Authenticate()
         {
-            return new AstKeyword(Position.Default, "AUTHENTICATE");
+            return new AstKeyword(Position.Default, "AUTHENTICATE", "AUTHENTICATE");
         }
         
+        /// <summary>
+        /// keyword : AUTHENTICATION
+        /// </summary>
         public static AstKeyword Authentication()
         {
-            return new AstKeyword(Position.Default, "AUTHENTICATION");
+            return new AstKeyword(Position.Default, "AUTHENTICATION", "AUTHENTICATION");
         }
         
+        /// <summary>
+        /// keyword : AUTOMATED_BACKUP_PREFERENCE
+        /// </summary>
         public static AstKeyword AutomatedBackupPreference()
         {
-            return new AstKeyword(Position.Default, "AUTOMATED_BACKUP_PREFERENCE");
+            return new AstKeyword(Position.Default, "AUTOMATED_BACKUP_PREFERENCE", "AUTOMATED_BACKUP_PREFERENCE");
         }
         
+        /// <summary>
+        /// keyword : AUTOMATIC
+        /// </summary>
         public static AstKeyword Automatic()
         {
-            return new AstKeyword(Position.Default, "AUTOMATIC");
+            return new AstKeyword(Position.Default, "AUTOMATIC", "AUTOMATIC");
         }
         
+        /// <summary>
+        /// keyword : AVAILABILITY_MODE
+        /// </summary>
         public static AstKeyword AvailabilityMode()
         {
-            return new AstKeyword(Position.Default, "AVAILABILITY_MODE");
+            return new AstKeyword(Position.Default, "AVAILABILITY_MODE", "AVAILABILITY_MODE");
         }
         
+        /// <summary>
+        /// keyword : BEFORE
+        /// </summary>
         public static AstKeyword Before()
         {
-            return new AstKeyword(Position.Default, "BEFORE");
+            return new AstKeyword(Position.Default, "BEFORE", "BEFORE");
         }
         
+        /// <summary>
+        /// keyword : BLOCK
+        /// </summary>
         public static AstKeyword Block()
         {
-            return new AstKeyword(Position.Default, "BLOCK");
+            return new AstKeyword(Position.Default, "BLOCK", "BLOCK");
         }
         
+        /// <summary>
+        /// keyword : BLOCKERS
+        /// </summary>
         public static AstKeyword Blockers()
         {
-            return new AstKeyword(Position.Default, "BLOCKERS");
+            return new AstKeyword(Position.Default, "BLOCKERS", "BLOCKERS");
         }
         
+        /// <summary>
+        /// keyword : BLOCKSIZE
+        /// </summary>
         public static AstKeyword Blocksize()
         {
-            return new AstKeyword(Position.Default, "BLOCKSIZE");
+            return new AstKeyword(Position.Default, "BLOCKSIZE", "BLOCKSIZE");
         }
         
+        /// <summary>
+        /// keyword : BLOCKING_HIERARCHY
+        /// </summary>
         public static AstKeyword BlockingHierarchy()
         {
-            return new AstKeyword(Position.Default, "BLOCKING_HIERARCHY");
+            return new AstKeyword(Position.Default, "BLOCKING_HIERARCHY", "BLOCKING_HIERARCHY");
         }
         
+        /// <summary>
+        /// keyword : BUFFER
+        /// </summary>
         public static AstKeyword Buffer()
         {
-            return new AstKeyword(Position.Default, "BUFFER");
+            return new AstKeyword(Position.Default, "BUFFER", "BUFFER");
         }
         
+        /// <summary>
+        /// keyword : BUFFERCOUNT
+        /// </summary>
         public static AstKeyword Buffercount()
         {
-            return new AstKeyword(Position.Default, "BUFFERCOUNT");
+            return new AstKeyword(Position.Default, "BUFFERCOUNT", "BUFFERCOUNT");
         }
         
+        /// <summary>
+        /// keyword : CACHE
+        /// </summary>
         public static AstKeyword Cache()
         {
-            return new AstKeyword(Position.Default, "CACHE");
+            return new AstKeyword(Position.Default, "CACHE", "CACHE");
         }
         
+        /// <summary>
+        /// keyword : CALLED
+        /// </summary>
         public static AstKeyword Called()
         {
-            return new AstKeyword(Position.Default, "CALLED");
+            return new AstKeyword(Position.Default, "CALLED", "CALLED");
         }
         
+        /// <summary>
+        /// keyword : CERTIFICATE
+        /// </summary>
         public static AstKeyword Certificate()
         {
-            return new AstKeyword(Position.Default, "CERTIFICATE");
+            return new AstKeyword(Position.Default, "CERTIFICATE", "CERTIFICATE");
         }
         
+        /// <summary>
+        /// keyword : CHANGETABLE
+        /// </summary>
         public static AstKeyword Changetable()
         {
-            return new AstKeyword(Position.Default, "CHANGETABLE");
+            return new AstKeyword(Position.Default, "CHANGETABLE", "CHANGETABLE");
         }
         
+        /// <summary>
+        /// keyword : CHANGES
+        /// </summary>
         public static AstKeyword Changes()
         {
-            return new AstKeyword(Position.Default, "CHANGES");
+            return new AstKeyword(Position.Default, "CHANGES", "CHANGES");
         }
         
+        /// <summary>
+        /// keyword : CHECK_POLICY
+        /// </summary>
         public static AstKeyword CheckPolicy()
         {
-            return new AstKeyword(Position.Default, "CHECK_POLICY");
+            return new AstKeyword(Position.Default, "CHECK_POLICY", "CHECK_POLICY");
         }
         
+        /// <summary>
+        /// keyword : CHECK_EXPIRATION
+        /// </summary>
         public static AstKeyword CheckExpiration()
         {
-            return new AstKeyword(Position.Default, "CHECK_EXPIRATION");
+            return new AstKeyword(Position.Default, "CHECK_EXPIRATION", "CHECK_EXPIRATION");
         }
         
+        /// <summary>
+        /// keyword : CLASSIFIER_FUNCTION
+        /// </summary>
         public static AstKeyword ClassifierFunction()
         {
-            return new AstKeyword(Position.Default, "CLASSIFIER_FUNCTION");
+            return new AstKeyword(Position.Default, "CLASSIFIER_FUNCTION", "CLASSIFIER_FUNCTION");
         }
         
+        /// <summary>
+        /// keyword : CLUSTER
+        /// </summary>
         public static AstKeyword Cluster()
         {
-            return new AstKeyword(Position.Default, "CLUSTER");
+            return new AstKeyword(Position.Default, "CLUSTER", "CLUSTER");
         }
         
+        /// <summary>
+        /// keyword : COMPRESS
+        /// </summary>
         public static AstKeyword Compress()
         {
-            return new AstKeyword(Position.Default, "COMPRESS");
+            return new AstKeyword(Position.Default, "COMPRESS", "COMPRESS");
         }
         
+        /// <summary>
+        /// keyword : COMPRESSION
+        /// </summary>
         public static AstKeyword Compression()
         {
-            return new AstKeyword(Position.Default, "COMPRESSION");
+            return new AstKeyword(Position.Default, "COMPRESSION", "COMPRESSION");
         }
         
+        /// <summary>
+        /// keyword : CONNECT
+        /// </summary>
         public static AstKeyword Connect()
         {
-            return new AstKeyword(Position.Default, "CONNECT");
+            return new AstKeyword(Position.Default, "CONNECT", "CONNECT");
         }
         
+        /// <summary>
+        /// keyword : CONNECTION
+        /// </summary>
         public static AstKeyword Connection()
         {
-            return new AstKeyword(Position.Default, "CONNECTION");
+            return new AstKeyword(Position.Default, "CONNECTION", "CONNECTION");
         }
         
+        /// <summary>
+        /// keyword : CONFIGURATION
+        /// </summary>
         public static AstKeyword Configuration()
         {
-            return new AstKeyword(Position.Default, "CONFIGURATION");
+            return new AstKeyword(Position.Default, "CONFIGURATION", "CONFIGURATION");
         }
         
+        /// <summary>
+        /// keyword : CONNECTIONPROPERTY
+        /// </summary>
         public static AstKeyword Connectionproperty()
         {
-            return new AstKeyword(Position.Default, "CONNECTIONPROPERTY");
+            return new AstKeyword(Position.Default, "CONNECTIONPROPERTY", "CONNECTIONPROPERTY");
         }
         
+        /// <summary>
+        /// keyword : CONTAINMENT
+        /// </summary>
         public static AstKeyword Containment()
         {
-            return new AstKeyword(Position.Default, "CONTAINMENT");
+            return new AstKeyword(Position.Default, "CONTAINMENT", "CONTAINMENT");
         }
         
+        /// <summary>
+        /// keyword : CONTEXT
+        /// </summary>
         public static AstKeyword Context()
         {
-            return new AstKeyword(Position.Default, "CONTEXT");
+            return new AstKeyword(Position.Default, "CONTEXT", "CONTEXT");
         }
         
+        /// <summary>
+        /// keyword : CONTEXT_INFO
+        /// </summary>
         public static AstKeyword ContextInfo()
         {
-            return new AstKeyword(Position.Default, "CONTEXT_INFO");
+            return new AstKeyword(Position.Default, "CONTEXT_INFO", "CONTEXT_INFO");
         }
         
+        /// <summary>
+        /// keyword : CONTINUE_AFTER_ERROR
+        /// </summary>
         public static AstKeyword ContinueAfterError()
         {
-            return new AstKeyword(Position.Default, "CONTINUE_AFTER_ERROR");
+            return new AstKeyword(Position.Default, "CONTINUE_AFTER_ERROR", "CONTINUE_AFTER_ERROR");
         }
         
+        /// <summary>
+        /// keyword : CONTRACT
+        /// </summary>
         public static AstKeyword Contract()
         {
-            return new AstKeyword(Position.Default, "CONTRACT");
+            return new AstKeyword(Position.Default, "CONTRACT", "CONTRACT");
         }
         
+        /// <summary>
+        /// keyword : CONTRACT_NAME
+        /// </summary>
         public static AstKeyword ContractName()
         {
-            return new AstKeyword(Position.Default, "CONTRACT_NAME");
+            return new AstKeyword(Position.Default, "CONTRACT_NAME", "CONTRACT_NAME");
         }
         
+        /// <summary>
+        /// keyword : CONVERSATION
+        /// </summary>
         public static AstKeyword Conversation()
         {
-            return new AstKeyword(Position.Default, "CONVERSATION");
+            return new AstKeyword(Position.Default, "CONVERSATION", "CONVERSATION");
         }
         
+        /// <summary>
+        /// keyword : COPY_ONLY
+        /// </summary>
         public static AstKeyword CopyOnly()
         {
-            return new AstKeyword(Position.Default, "COPY_ONLY");
+            return new AstKeyword(Position.Default, "COPY_ONLY", "COPY_ONLY");
         }
         
+        /// <summary>
+        /// keyword : CURRENT_REQUEST_ID
+        /// </summary>
         public static AstKeyword CurrentRequestId()
         {
-            return new AstKeyword(Position.Default, "CURRENT_REQUEST_ID");
+            return new AstKeyword(Position.Default, "CURRENT_REQUEST_ID", "CURRENT_REQUEST_ID");
         }
         
+        /// <summary>
+        /// keyword : CURRENT_TRANSACTION_ID
+        /// </summary>
         public static AstKeyword CurrentTransactionId()
         {
-            return new AstKeyword(Position.Default, "CURRENT_TRANSACTION_ID");
+            return new AstKeyword(Position.Default, "CURRENT_TRANSACTION_ID", "CURRENT_TRANSACTION_ID");
         }
         
+        /// <summary>
+        /// keyword : CYCLE
+        /// </summary>
         public static AstKeyword Cycle()
         {
-            return new AstKeyword(Position.Default, "CYCLE");
+            return new AstKeyword(Position.Default, "CYCLE", "CYCLE");
         }
         
+        /// <summary>
+        /// keyword : DATA_COMPRESSION
+        /// </summary>
         public static AstKeyword DataCompression()
         {
-            return new AstKeyword(Position.Default, "DATA_COMPRESSION");
+            return new AstKeyword(Position.Default, "DATA_COMPRESSION", "DATA_COMPRESSION");
         }
         
+        /// <summary>
+        /// keyword : DATA_SOURCE
+        /// </summary>
         public static AstKeyword DataSource()
         {
-            return new AstKeyword(Position.Default, "DATA_SOURCE");
+            return new AstKeyword(Position.Default, "DATA_SOURCE", "DATA_SOURCE");
         }
         
+        /// <summary>
+        /// keyword : DATABASE_MIRRORING
+        /// </summary>
         public static AstKeyword DatabaseMirroring()
         {
-            return new AstKeyword(Position.Default, "DATABASE_MIRRORING");
+            return new AstKeyword(Position.Default, "DATABASE_MIRRORING", "DATABASE_MIRRORING");
         }
         
+        /// <summary>
+        /// keyword : DATASPACE
+        /// </summary>
         public static AstKeyword Dataspace()
         {
-            return new AstKeyword(Position.Default, "DATASPACE");
+            return new AstKeyword(Position.Default, "DATASPACE", "DATASPACE");
         }
         
+        /// <summary>
+        /// keyword : DDL
+        /// </summary>
         public static AstKeyword Ddl()
         {
-            return new AstKeyword(Position.Default, "DDL");
+            return new AstKeyword(Position.Default, "DDL", "DDL");
         }
         
+        /// <summary>
+        /// keyword : DECOMPRESS
+        /// </summary>
         public static AstKeyword Decompress()
         {
-            return new AstKeyword(Position.Default, "DECOMPRESS");
+            return new AstKeyword(Position.Default, "DECOMPRESS", "DECOMPRESS");
         }
         
+        /// <summary>
+        /// keyword : DEFAULT_DATABASE
+        /// </summary>
         public static AstKeyword DefaultDatabase()
         {
-            return new AstKeyword(Position.Default, "DEFAULT_DATABASE");
+            return new AstKeyword(Position.Default, "DEFAULT_DATABASE", "DEFAULT_DATABASE");
         }
         
+        /// <summary>
+        /// keyword : DEFAULT_SCHEMA
+        /// </summary>
         public static AstKeyword DefaultSchema()
         {
-            return new AstKeyword(Position.Default, "DEFAULT_SCHEMA");
+            return new AstKeyword(Position.Default, "DEFAULT_SCHEMA", "DEFAULT_SCHEMA");
         }
         
+        /// <summary>
+        /// keyword : DIAGNOSTICS
+        /// </summary>
         public static AstKeyword Diagnostics()
         {
-            return new AstKeyword(Position.Default, "DIAGNOSTICS");
+            return new AstKeyword(Position.Default, "DIAGNOSTICS", "DIAGNOSTICS");
         }
         
+        /// <summary>
+        /// keyword : DIFFERENTIAL
+        /// </summary>
         public static AstKeyword Differential()
         {
-            return new AstKeyword(Position.Default, "DIFFERENTIAL");
+            return new AstKeyword(Position.Default, "DIFFERENTIAL", "DIFFERENTIAL");
         }
         
+        /// <summary>
+        /// keyword : DISTRIBUTION
+        /// </summary>
         public static AstKeyword Distribution()
         {
-            return new AstKeyword(Position.Default, "DISTRIBUTION");
+            return new AstKeyword(Position.Default, "DISTRIBUTION", "DISTRIBUTION");
         }
         
+        /// <summary>
+        /// keyword : DTC_SUPPORT
+        /// </summary>
         public static AstKeyword DtcSupport()
         {
-            return new AstKeyword(Position.Default, "DTC_SUPPORT");
+            return new AstKeyword(Position.Default, "DTC_SUPPORT", "DTC_SUPPORT");
         }
         
+        /// <summary>
+        /// keyword : ENABLED
+        /// </summary>
         public static AstKeyword Enabled()
         {
-            return new AstKeyword(Position.Default, "ENABLED");
+            return new AstKeyword(Position.Default, "ENABLED", "ENABLED");
         }
         
+        /// <summary>
+        /// keyword : ENDPOINT
+        /// </summary>
         public static AstKeyword Endpoint()
         {
-            return new AstKeyword(Position.Default, "ENDPOINT");
+            return new AstKeyword(Position.Default, "ENDPOINT", "ENDPOINT");
         }
         
+        /// <summary>
+        /// keyword : ERROR
+        /// </summary>
         public static AstKeyword Error()
         {
-            return new AstKeyword(Position.Default, "ERROR");
+            return new AstKeyword(Position.Default, "ERROR", "ERROR");
         }
         
+        /// <summary>
+        /// keyword : ERROR_LINE
+        /// </summary>
         public static AstKeyword ErrorLine()
         {
-            return new AstKeyword(Position.Default, "ERROR_LINE");
+            return new AstKeyword(Position.Default, "ERROR_LINE", "ERROR_LINE");
         }
         
+        /// <summary>
+        /// keyword : ERROR_MESSAGE
+        /// </summary>
         public static AstKeyword ErrorMessage()
         {
-            return new AstKeyword(Position.Default, "ERROR_MESSAGE");
+            return new AstKeyword(Position.Default, "ERROR_MESSAGE", "ERROR_MESSAGE");
         }
         
+        /// <summary>
+        /// keyword : ERROR_NUMBER
+        /// </summary>
         public static AstKeyword ErrorNumber()
         {
-            return new AstKeyword(Position.Default, "ERROR_NUMBER");
+            return new AstKeyword(Position.Default, "ERROR_NUMBER", "ERROR_NUMBER");
         }
         
+        /// <summary>
+        /// keyword : ERROR_PROCEDURE
+        /// </summary>
         public static AstKeyword ErrorProcedure()
         {
-            return new AstKeyword(Position.Default, "ERROR_PROCEDURE");
+            return new AstKeyword(Position.Default, "ERROR_PROCEDURE", "ERROR_PROCEDURE");
         }
         
+        /// <summary>
+        /// keyword : ERROR_SEVERITY
+        /// </summary>
         public static AstKeyword ErrorSeverity()
         {
-            return new AstKeyword(Position.Default, "ERROR_SEVERITY");
+            return new AstKeyword(Position.Default, "ERROR_SEVERITY", "ERROR_SEVERITY");
         }
         
+        /// <summary>
+        /// keyword : ERROR_STATE
+        /// </summary>
         public static AstKeyword ErrorState()
         {
-            return new AstKeyword(Position.Default, "ERROR_STATE");
+            return new AstKeyword(Position.Default, "ERROR_STATE", "ERROR_STATE");
         }
         
+        /// <summary>
+        /// keyword : EVENT
+        /// </summary>
         public static AstKeyword Event()
         {
-            return new AstKeyword(Position.Default, "EVENT");
+            return new AstKeyword(Position.Default, "EVENT", "EVENT");
         }
         
+        /// <summary>
+        /// keyword : EVENTDATA
+        /// </summary>
         public static AstKeyword Eventdata()
         {
-            return new AstKeyword(Position.Default, "EVENTDATA");
+            return new AstKeyword(Position.Default, "EVENTDATA", "EVENTDATA");
         }
         
+        /// <summary>
+        /// keyword : EVENT_RETENTION_MODE
+        /// </summary>
         public static AstKeyword EventRetentionMode()
         {
-            return new AstKeyword(Position.Default, "EVENT_RETENTION_MODE");
+            return new AstKeyword(Position.Default, "EVENT_RETENTION_MODE", "EVENT_RETENTION_MODE");
         }
         
+        /// <summary>
+        /// keyword : EXECUTABLE_FILE
+        /// </summary>
         public static AstKeyword ExecutableFile()
         {
-            return new AstKeyword(Position.Default, "EXECUTABLE_FILE");
+            return new AstKeyword(Position.Default, "EXECUTABLE_FILE", "EXECUTABLE_FILE");
         }
         
+        /// <summary>
+        /// keyword : EXPIREDATE
+        /// </summary>
         public static AstKeyword Expiredate()
         {
-            return new AstKeyword(Position.Default, "EXPIREDATE");
+            return new AstKeyword(Position.Default, "EXPIREDATE", "EXPIREDATE");
         }
         
+        /// <summary>
+        /// keyword : EXTENSION
+        /// </summary>
         public static AstKeyword Extension()
         {
-            return new AstKeyword(Position.Default, "EXTENSION");
+            return new AstKeyword(Position.Default, "EXTENSION", "EXTENSION");
         }
         
+        /// <summary>
+        /// keyword : EXTERNAL_ACCESS
+        /// </summary>
         public static AstKeyword ExternalAccess()
         {
-            return new AstKeyword(Position.Default, "EXTERNAL_ACCESS");
+            return new AstKeyword(Position.Default, "EXTERNAL_ACCESS", "EXTERNAL_ACCESS");
         }
         
+        /// <summary>
+        /// keyword : FAILOVER
+        /// </summary>
         public static AstKeyword Failover()
         {
-            return new AstKeyword(Position.Default, "FAILOVER");
+            return new AstKeyword(Position.Default, "FAILOVER", "FAILOVER");
         }
         
+        /// <summary>
+        /// keyword : FAILURECONDITIONLEVEL
+        /// </summary>
         public static AstKeyword Failureconditionlevel()
         {
-            return new AstKeyword(Position.Default, "FAILURECONDITIONLEVEL");
+            return new AstKeyword(Position.Default, "FAILURECONDITIONLEVEL", "FAILURECONDITIONLEVEL");
         }
         
+        /// <summary>
+        /// keyword : FAN_IN
+        /// </summary>
         public static AstKeyword FanIn()
         {
-            return new AstKeyword(Position.Default, "FAN_IN");
+            return new AstKeyword(Position.Default, "FAN_IN", "FAN_IN");
         }
         
+        /// <summary>
+        /// keyword : FILE_SNAPSHOT
+        /// </summary>
         public static AstKeyword FileSnapshot()
         {
-            return new AstKeyword(Position.Default, "FILE_SNAPSHOT");
+            return new AstKeyword(Position.Default, "FILE_SNAPSHOT", "FILE_SNAPSHOT");
         }
         
+        /// <summary>
+        /// keyword : FORCESEEK
+        /// </summary>
         public static AstKeyword Forceseek()
         {
-            return new AstKeyword(Position.Default, "FORCESEEK");
+            return new AstKeyword(Position.Default, "FORCESEEK", "FORCESEEK");
         }
         
+        /// <summary>
+        /// keyword : FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// </summary>
         public static AstKeyword ForceServiceAllowDataLoss()
         {
-            return new AstKeyword(Position.Default, "FORCE_SERVICE_ALLOW_DATA_LOSS");
+            return new AstKeyword(Position.Default, "FORCE_SERVICE_ALLOW_DATA_LOSS", "FORCE_SERVICE_ALLOW_DATA_LOSS");
         }
         
+        /// <summary>
+        /// keyword : FORMATMESSAGE
+        /// </summary>
         public static AstKeyword Formatmessage()
         {
-            return new AstKeyword(Position.Default, "FORMATMESSAGE");
+            return new AstKeyword(Position.Default, "FORMATMESSAGE", "FORMATMESSAGE");
         }
         
+        /// <summary>
+        /// keyword : GET
+        /// </summary>
         public static AstKeyword Get()
         {
-            return new AstKeyword(Position.Default, "GET");
+            return new AstKeyword(Position.Default, "GET", "GET");
         }
         
+        /// <summary>
+        /// keyword : GET_FILESTREAM_TRANSACTION_CONTEXT
+        /// </summary>
         public static AstKeyword GetFilestreamTransactionContext()
         {
-            return new AstKeyword(Position.Default, "GET_FILESTREAM_TRANSACTION_CONTEXT");
+            return new AstKeyword(Position.Default, "GET_FILESTREAM_TRANSACTION_CONTEXT", "GET_FILESTREAM_TRANSACTION_CONTEXT");
         }
         
+        /// <summary>
+        /// keyword : GETANCESTOR
+        /// </summary>
         public static AstKeyword Getancestor()
         {
-            return new AstKeyword(Position.Default, "GETANCESTOR");
+            return new AstKeyword(Position.Default, "GETANCESTOR", "GETANCESTOR");
         }
         
+        /// <summary>
+        /// keyword : GETANSINULL
+        /// </summary>
         public static AstKeyword Getansinull()
         {
-            return new AstKeyword(Position.Default, "GETANSINULL");
+            return new AstKeyword(Position.Default, "GETANSINULL", "GETANSINULL");
         }
         
+        /// <summary>
+        /// keyword : GETDESCENDANT
+        /// </summary>
         public static AstKeyword Getdescendant()
         {
-            return new AstKeyword(Position.Default, "GETDESCENDANT");
+            return new AstKeyword(Position.Default, "GETDESCENDANT", "GETDESCENDANT");
         }
         
+        /// <summary>
+        /// keyword : GETLEVEL
+        /// </summary>
         public static AstKeyword Getlevel()
         {
-            return new AstKeyword(Position.Default, "GETLEVEL");
+            return new AstKeyword(Position.Default, "GETLEVEL", "GETLEVEL");
         }
         
+        /// <summary>
+        /// keyword : GETREPARENTEDVALUE
+        /// </summary>
         public static AstKeyword Getreparentedvalue()
         {
-            return new AstKeyword(Position.Default, "GETREPARENTEDVALUE");
+            return new AstKeyword(Position.Default, "GETREPARENTEDVALUE", "GETREPARENTEDVALUE");
         }
         
+        /// <summary>
+        /// keyword : GETROOT
+        /// </summary>
         public static AstKeyword Getroot()
         {
-            return new AstKeyword(Position.Default, "GETROOT");
+            return new AstKeyword(Position.Default, "GETROOT", "GETROOT");
         }
         
+        /// <summary>
+        /// keyword : GOVERNOR
+        /// </summary>
         public static AstKeyword Governor()
         {
-            return new AstKeyword(Position.Default, "GOVERNOR");
+            return new AstKeyword(Position.Default, "GOVERNOR", "GOVERNOR");
         }
         
+        /// <summary>
+        /// keyword : HASHED
+        /// </summary>
         public static AstKeyword Hashed()
         {
-            return new AstKeyword(Position.Default, "HASHED");
+            return new AstKeyword(Position.Default, "HASHED", "HASHED");
         }
         
+        /// <summary>
+        /// keyword : HEALTHCHECKTIMEOUT
+        /// </summary>
         public static AstKeyword Healthchecktimeout()
         {
-            return new AstKeyword(Position.Default, "HEALTHCHECKTIMEOUT");
+            return new AstKeyword(Position.Default, "HEALTHCHECKTIMEOUT", "HEALTHCHECKTIMEOUT");
         }
         
+        /// <summary>
+        /// keyword : HEAP
+        /// </summary>
         public static AstKeyword Heap()
         {
-            return new AstKeyword(Position.Default, "HEAP");
+            return new AstKeyword(Position.Default, "HEAP", "HEAP");
         }
         
+        /// <summary>
+        /// keyword : HIERARCHYID
+        /// </summary>
         public static AstKeyword Hierarchyid()
         {
-            return new AstKeyword(Position.Default, "HIERARCHYID");
+            return new AstKeyword(Position.Default, "HIERARCHYID", "HIERARCHYID");
         }
         
+        /// <summary>
+        /// keyword : HOST_ID
+        /// </summary>
         public static AstKeyword HostId()
         {
-            return new AstKeyword(Position.Default, "HOST_ID");
+            return new AstKeyword(Position.Default, "HOST_ID", "HOST_ID");
         }
         
+        /// <summary>
+        /// keyword : HOST_NAME
+        /// </summary>
         public static AstKeyword HostName()
         {
-            return new AstKeyword(Position.Default, "HOST_NAME");
+            return new AstKeyword(Position.Default, "HOST_NAME", "HOST_NAME");
         }
         
+        /// <summary>
+        /// keyword : IIF
+        /// </summary>
         public static AstKeyword Iif()
         {
-            return new AstKeyword(Position.Default, "IIF");
+            return new AstKeyword(Position.Default, "IIF", "IIF");
         }
         
+        /// <summary>
+        /// keyword : IO
+        /// </summary>
         public static AstKeyword Io()
         {
-            return new AstKeyword(Position.Default, "IO");
+            return new AstKeyword(Position.Default, "IO", "IO");
         }
         
+        /// <summary>
+        /// keyword : INCLUDE
+        /// </summary>
         public static AstKeyword Include()
         {
-            return new AstKeyword(Position.Default, "INCLUDE");
+            return new AstKeyword(Position.Default, "INCLUDE", "INCLUDE");
         }
         
+        /// <summary>
+        /// keyword : INCREMENT
+        /// </summary>
         public static AstKeyword Increment()
         {
-            return new AstKeyword(Position.Default, "INCREMENT");
+            return new AstKeyword(Position.Default, "INCREMENT", "INCREMENT");
         }
         
+        /// <summary>
+        /// keyword : INFINITE
+        /// </summary>
         public static AstKeyword Infinite()
         {
-            return new AstKeyword(Position.Default, "INFINITE");
+            return new AstKeyword(Position.Default, "INFINITE", "INFINITE");
         }
         
+        /// <summary>
+        /// keyword : INIT
+        /// </summary>
         public static AstKeyword Init()
         {
-            return new AstKeyword(Position.Default, "INIT");
+            return new AstKeyword(Position.Default, "INIT", "INIT");
         }
         
+        /// <summary>
+        /// keyword : INSTEAD
+        /// </summary>
         public static AstKeyword Instead()
         {
-            return new AstKeyword(Position.Default, "INSTEAD");
+            return new AstKeyword(Position.Default, "INSTEAD", "INSTEAD");
         }
         
+        /// <summary>
+        /// keyword : ISDESCENDANTOF
+        /// </summary>
         public static AstKeyword Isdescendantof()
         {
-            return new AstKeyword(Position.Default, "ISDESCENDANTOF");
+            return new AstKeyword(Position.Default, "ISDESCENDANTOF", "ISDESCENDANTOF");
         }
         
+        /// <summary>
+        /// keyword : ISNULL
+        /// </summary>
         public static AstKeyword Isnull()
         {
-            return new AstKeyword(Position.Default, "ISNULL");
+            return new AstKeyword(Position.Default, "ISNULL", "ISNULL");
         }
         
+        /// <summary>
+        /// keyword : ISNUMERIC
+        /// </summary>
         public static AstKeyword Isnumeric()
         {
-            return new AstKeyword(Position.Default, "ISNUMERIC");
+            return new AstKeyword(Position.Default, "ISNUMERIC", "ISNUMERIC");
         }
         
+        /// <summary>
+        /// keyword : KERBEROS
+        /// </summary>
         public static AstKeyword Kerberos()
         {
-            return new AstKeyword(Position.Default, "KERBEROS");
+            return new AstKeyword(Position.Default, "KERBEROS", "KERBEROS");
         }
         
+        /// <summary>
+        /// keyword : KEY_PATH
+        /// </summary>
         public static AstKeyword KeyPath()
         {
-            return new AstKeyword(Position.Default, "KEY_PATH");
+            return new AstKeyword(Position.Default, "KEY_PATH", "KEY_PATH");
         }
         
+        /// <summary>
+        /// keyword : KEY_STORE_PROVIDER_NAME
+        /// </summary>
         public static AstKeyword KeyStoreProviderName()
         {
-            return new AstKeyword(Position.Default, "KEY_STORE_PROVIDER_NAME");
+            return new AstKeyword(Position.Default, "KEY_STORE_PROVIDER_NAME", "KEY_STORE_PROVIDER_NAME");
         }
         
+        /// <summary>
+        /// keyword : LANGUAGE
+        /// </summary>
         public static AstKeyword Language()
         {
-            return new AstKeyword(Position.Default, "LANGUAGE");
+            return new AstKeyword(Position.Default, "LANGUAGE", "LANGUAGE");
         }
         
+        /// <summary>
+        /// keyword : LIBRARY
+        /// </summary>
         public static AstKeyword Library()
         {
-            return new AstKeyword(Position.Default, "LIBRARY");
+            return new AstKeyword(Position.Default, "LIBRARY", "LIBRARY");
         }
         
+        /// <summary>
+        /// keyword : LIFETIME
+        /// </summary>
         public static AstKeyword Lifetime()
         {
-            return new AstKeyword(Position.Default, "LIFETIME");
+            return new AstKeyword(Position.Default, "LIFETIME", "LIFETIME");
         }
         
+        /// <summary>
+        /// keyword : LINKED
+        /// </summary>
         public static AstKeyword Linked()
         {
-            return new AstKeyword(Position.Default, "LINKED");
+            return new AstKeyword(Position.Default, "LINKED", "LINKED");
         }
         
+        /// <summary>
+        /// keyword : LINUX
+        /// </summary>
         public static AstKeyword Linux()
         {
-            return new AstKeyword(Position.Default, "LINUX");
+            return new AstKeyword(Position.Default, "LINUX", "LINUX");
         }
         
+        /// <summary>
+        /// keyword : LISTENER_IP
+        /// </summary>
         public static AstKeyword ListenerIp()
         {
-            return new AstKeyword(Position.Default, "LISTENER_IP");
+            return new AstKeyword(Position.Default, "LISTENER_IP", "LISTENER_IP");
         }
         
+        /// <summary>
+        /// keyword : LISTENER_PORT
+        /// </summary>
         public static AstKeyword ListenerPort()
         {
-            return new AstKeyword(Position.Default, "LISTENER_PORT");
+            return new AstKeyword(Position.Default, "LISTENER_PORT", "LISTENER_PORT");
         }
         
+        /// <summary>
+        /// keyword : LOCAL_SERVICE_NAME
+        /// </summary>
         public static AstKeyword LocalServiceName()
         {
-            return new AstKeyword(Position.Default, "LOCAL_SERVICE_NAME");
+            return new AstKeyword(Position.Default, "LOCAL_SERVICE_NAME", "LOCAL_SERVICE_NAME");
         }
         
+        /// <summary>
+        /// keyword : LOG
+        /// </summary>
         public static AstKeyword Log()
         {
-            return new AstKeyword(Position.Default, "LOG");
+            return new AstKeyword(Position.Default, "LOG", "LOG");
         }
         
+        /// <summary>
+        /// keyword : MASK
+        /// </summary>
         public static AstKeyword Mask()
         {
-            return new AstKeyword(Position.Default, "MASK");
+            return new AstKeyword(Position.Default, "MASK", "MASK");
         }
         
+        /// <summary>
+        /// keyword : MATCHED
+        /// </summary>
         public static AstKeyword Matched()
         {
-            return new AstKeyword(Position.Default, "MATCHED");
+            return new AstKeyword(Position.Default, "MATCHED", "MATCHED");
         }
         
+        /// <summary>
+        /// keyword : MASTER
+        /// </summary>
         public static AstKeyword Master()
         {
-            return new AstKeyword(Position.Default, "MASTER");
+            return new AstKeyword(Position.Default, "MASTER", "MASTER");
         }
         
+        /// <summary>
+        /// keyword : MAX_MEMORY
+        /// </summary>
         public static AstKeyword MaxMemory()
         {
-            return new AstKeyword(Position.Default, "MAX_MEMORY");
+            return new AstKeyword(Position.Default, "MAX_MEMORY", "MAX_MEMORY");
         }
         
+        /// <summary>
+        /// keyword : MAXTRANSFER
+        /// </summary>
         public static AstKeyword Maxtransfer()
         {
-            return new AstKeyword(Position.Default, "MAXTRANSFER");
+            return new AstKeyword(Position.Default, "MAXTRANSFER", "MAXTRANSFER");
         }
         
+        /// <summary>
+        /// keyword : MAXVALUE
+        /// </summary>
         public static AstKeyword Maxvalue()
         {
-            return new AstKeyword(Position.Default, "MAXVALUE");
+            return new AstKeyword(Position.Default, "MAXVALUE", "MAXVALUE");
         }
         
+        /// <summary>
+        /// keyword : MAX_DISPATCH_LATENCY
+        /// </summary>
         public static AstKeyword MaxDispatchLatency()
         {
-            return new AstKeyword(Position.Default, "MAX_DISPATCH_LATENCY");
+            return new AstKeyword(Position.Default, "MAX_DISPATCH_LATENCY", "MAX_DISPATCH_LATENCY");
         }
         
+        /// <summary>
+        /// keyword : MAX_DURATION
+        /// </summary>
         public static AstKeyword MaxDuration()
         {
-            return new AstKeyword(Position.Default, "MAX_DURATION");
+            return new AstKeyword(Position.Default, "MAX_DURATION", "MAX_DURATION");
         }
         
+        /// <summary>
+        /// keyword : MAX_EVENT_SIZE
+        /// </summary>
         public static AstKeyword MaxEventSize()
         {
-            return new AstKeyword(Position.Default, "MAX_EVENT_SIZE");
+            return new AstKeyword(Position.Default, "MAX_EVENT_SIZE", "MAX_EVENT_SIZE");
         }
         
+        /// <summary>
+        /// keyword : MAX_SIZE
+        /// </summary>
         public static AstKeyword MaxSize()
         {
-            return new AstKeyword(Position.Default, "MAX_SIZE");
+            return new AstKeyword(Position.Default, "MAX_SIZE", "MAX_SIZE");
         }
         
+        /// <summary>
+        /// keyword : MAX_OUTSTANDING_IO_PER_VOLUME
+        /// </summary>
         public static AstKeyword MaxOutstandingIoPerVolume()
         {
-            return new AstKeyword(Position.Default, "MAX_OUTSTANDING_IO_PER_VOLUME");
+            return new AstKeyword(Position.Default, "MAX_OUTSTANDING_IO_PER_VOLUME", "MAX_OUTSTANDING_IO_PER_VOLUME");
         }
         
+        /// <summary>
+        /// keyword : MEDIADESCRIPTION
+        /// </summary>
         public static AstKeyword Mediadescription()
         {
-            return new AstKeyword(Position.Default, "MEDIADESCRIPTION");
+            return new AstKeyword(Position.Default, "MEDIADESCRIPTION", "MEDIADESCRIPTION");
         }
         
+        /// <summary>
+        /// keyword : MEDIANAME
+        /// </summary>
         public static AstKeyword Medianame()
         {
-            return new AstKeyword(Position.Default, "MEDIANAME");
+            return new AstKeyword(Position.Default, "MEDIANAME", "MEDIANAME");
         }
         
+        /// <summary>
+        /// keyword : MEMBER
+        /// </summary>
         public static AstKeyword Member()
         {
-            return new AstKeyword(Position.Default, "MEMBER");
+            return new AstKeyword(Position.Default, "MEMBER", "MEMBER");
         }
         
+        /// <summary>
+        /// keyword : MEMORY_PARTITION_MODE
+        /// </summary>
         public static AstKeyword MemoryPartitionMode()
         {
-            return new AstKeyword(Position.Default, "MEMORY_PARTITION_MODE");
+            return new AstKeyword(Position.Default, "MEMORY_PARTITION_MODE", "MEMORY_PARTITION_MODE");
         }
         
+        /// <summary>
+        /// keyword : MESSAGE_FORWARDING
+        /// </summary>
         public static AstKeyword MessageForwarding()
         {
-            return new AstKeyword(Position.Default, "MESSAGE_FORWARDING");
+            return new AstKeyword(Position.Default, "MESSAGE_FORWARDING", "MESSAGE_FORWARDING");
         }
         
+        /// <summary>
+        /// keyword : MESSAGE_FORWARD_SIZE
+        /// </summary>
         public static AstKeyword MessageForwardSize()
         {
-            return new AstKeyword(Position.Default, "MESSAGE_FORWARD_SIZE");
+            return new AstKeyword(Position.Default, "MESSAGE_FORWARD_SIZE", "MESSAGE_FORWARD_SIZE");
         }
         
+        /// <summary>
+        /// keyword : MINVALUE
+        /// </summary>
         public static AstKeyword Minvalue()
         {
-            return new AstKeyword(Position.Default, "MINVALUE");
+            return new AstKeyword(Position.Default, "MINVALUE", "MINVALUE");
         }
         
+        /// <summary>
+        /// keyword : MIRROR
+        /// </summary>
         public static AstKeyword Mirror()
         {
-            return new AstKeyword(Position.Default, "MIRROR");
+            return new AstKeyword(Position.Default, "MIRROR", "MIRROR");
         }
         
+        /// <summary>
+        /// keyword : MUST_CHANGE
+        /// </summary>
         public static AstKeyword MustChange()
         {
-            return new AstKeyword(Position.Default, "MUST_CHANGE");
+            return new AstKeyword(Position.Default, "MUST_CHANGE", "MUST_CHANGE");
         }
         
+        /// <summary>
+        /// keyword : NEWID
+        /// </summary>
         public static AstKeyword Newid()
         {
-            return new AstKeyword(Position.Default, "NEWID");
+            return new AstKeyword(Position.Default, "NEWID", "NEWID");
         }
         
+        /// <summary>
+        /// keyword : NEWSEQUENTIALID
+        /// </summary>
         public static AstKeyword Newsequentialid()
         {
-            return new AstKeyword(Position.Default, "NEWSEQUENTIALID");
+            return new AstKeyword(Position.Default, "NEWSEQUENTIALID", "NEWSEQUENTIALID");
         }
         
+        /// <summary>
+        /// keyword : NOFORMAT
+        /// </summary>
         public static AstKeyword Noformat()
         {
-            return new AstKeyword(Position.Default, "NOFORMAT");
+            return new AstKeyword(Position.Default, "NOFORMAT", "NOFORMAT");
         }
         
+        /// <summary>
+        /// keyword : NOINIT
+        /// </summary>
         public static AstKeyword Noinit()
         {
-            return new AstKeyword(Position.Default, "NOINIT");
+            return new AstKeyword(Position.Default, "NOINIT", "NOINIT");
         }
         
+        /// <summary>
+        /// keyword : NONE
+        /// </summary>
         public static AstKeyword None()
         {
-            return new AstKeyword(Position.Default, "NONE");
+            return new AstKeyword(Position.Default, "NONE", "NONE");
         }
         
+        /// <summary>
+        /// keyword : NOREWIND
+        /// </summary>
         public static AstKeyword Norewind()
         {
-            return new AstKeyword(Position.Default, "NOREWIND");
+            return new AstKeyword(Position.Default, "NOREWIND", "NOREWIND");
         }
         
+        /// <summary>
+        /// keyword : NOSKIP
+        /// </summary>
         public static AstKeyword Noskip()
         {
-            return new AstKeyword(Position.Default, "NOSKIP");
+            return new AstKeyword(Position.Default, "NOSKIP", "NOSKIP");
         }
         
+        /// <summary>
+        /// keyword : NOUNLOAD
+        /// </summary>
         public static AstKeyword Nounload()
         {
-            return new AstKeyword(Position.Default, "NOUNLOAD");
+            return new AstKeyword(Position.Default, "NOUNLOAD", "NOUNLOAD");
         }
         
+        /// <summary>
+        /// keyword : NO_CHECKSUM
+        /// </summary>
         public static AstKeyword NoChecksum()
         {
-            return new AstKeyword(Position.Default, "NO_CHECKSUM");
+            return new AstKeyword(Position.Default, "NO_CHECKSUM", "NO_CHECKSUM");
         }
         
+        /// <summary>
+        /// keyword : NO_COMPRESSION
+        /// </summary>
         public static AstKeyword NoCompression()
         {
-            return new AstKeyword(Position.Default, "NO_COMPRESSION");
+            return new AstKeyword(Position.Default, "NO_COMPRESSION", "NO_COMPRESSION");
         }
         
+        /// <summary>
+        /// keyword : NO_EVENT_LOSS
+        /// </summary>
         public static AstKeyword NoEventLoss()
         {
-            return new AstKeyword(Position.Default, "NO_EVENT_LOSS");
+            return new AstKeyword(Position.Default, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
         }
         
+        /// <summary>
+        /// keyword : NOTIFICATION
+        /// </summary>
         public static AstKeyword Notification()
         {
-            return new AstKeyword(Position.Default, "NOTIFICATION");
+            return new AstKeyword(Position.Default, "NOTIFICATION", "NOTIFICATION");
         }
         
+        /// <summary>
+        /// keyword : NTLM
+        /// </summary>
         public static AstKeyword Ntlm()
         {
-            return new AstKeyword(Position.Default, "NTLM");
+            return new AstKeyword(Position.Default, "NTLM", "NTLM");
         }
         
+        /// <summary>
+        /// keyword : OLD_PASSWORD
+        /// </summary>
         public static AstKeyword OldPassword()
         {
-            return new AstKeyword(Position.Default, "OLD_PASSWORD");
+            return new AstKeyword(Position.Default, "OLD_PASSWORD", "OLD_PASSWORD");
         }
         
+        /// <summary>
+        /// keyword : ON_FAILURE
+        /// </summary>
         public static AstKeyword OnFailure()
         {
-            return new AstKeyword(Position.Default, "ON_FAILURE");
+            return new AstKeyword(Position.Default, "ON_FAILURE", "ON_FAILURE");
         }
         
+        /// <summary>
+        /// keyword : OPERATIONS
+        /// </summary>
         public static AstKeyword Operations()
         {
-            return new AstKeyword(Position.Default, "OPERATIONS");
+            return new AstKeyword(Position.Default, "OPERATIONS", "OPERATIONS");
         }
         
+        /// <summary>
+        /// keyword : PAGE
+        /// </summary>
         public static AstKeyword Page()
         {
-            return new AstKeyword(Position.Default, "PAGE");
+            return new AstKeyword(Position.Default, "PAGE", "PAGE");
         }
         
+        /// <summary>
+        /// keyword : PARAM_NODE
+        /// </summary>
         public static AstKeyword ParamNode()
         {
-            return new AstKeyword(Position.Default, "PARAM_NODE");
+            return new AstKeyword(Position.Default, "PARAM_NODE", "PARAM_NODE");
         }
         
+        /// <summary>
+        /// keyword : PARTIAL
+        /// </summary>
         public static AstKeyword Partial()
         {
-            return new AstKeyword(Position.Default, "PARTIAL");
+            return new AstKeyword(Position.Default, "PARTIAL", "PARTIAL");
         }
         
+        /// <summary>
+        /// keyword : PASSWORD
+        /// </summary>
         public static AstKeyword Password()
         {
-            return new AstKeyword(Position.Default, "PASSWORD");
+            return new AstKeyword(Position.Default, "PASSWORD", "PASSWORD");
         }
         
+        /// <summary>
+        /// keyword : PERMISSION_SET
+        /// </summary>
         public static AstKeyword PermissionSet()
         {
-            return new AstKeyword(Position.Default, "PERMISSION_SET");
+            return new AstKeyword(Position.Default, "PERMISSION_SET", "PERMISSION_SET");
         }
         
+        /// <summary>
+        /// keyword : PER_CPU
+        /// </summary>
         public static AstKeyword PerCpu()
         {
-            return new AstKeyword(Position.Default, "PER_CPU");
+            return new AstKeyword(Position.Default, "PER_CPU", "PER_CPU");
         }
         
+        /// <summary>
+        /// keyword : PER_DB
+        /// </summary>
         public static AstKeyword PerDb()
         {
-            return new AstKeyword(Position.Default, "PER_DB");
+            return new AstKeyword(Position.Default, "PER_DB", "PER_DB");
         }
         
+        /// <summary>
+        /// keyword : PER_NODE
+        /// </summary>
         public static AstKeyword PerNode()
         {
-            return new AstKeyword(Position.Default, "PER_NODE");
+            return new AstKeyword(Position.Default, "PER_NODE", "PER_NODE");
         }
         
+        /// <summary>
+        /// keyword : PERSISTED
+        /// </summary>
         public static AstKeyword Persisted()
         {
-            return new AstKeyword(Position.Default, "PERSISTED");
+            return new AstKeyword(Position.Default, "PERSISTED", "PERSISTED");
         }
         
+        /// <summary>
+        /// keyword : PLATFORM
+        /// </summary>
         public static AstKeyword Platform()
         {
-            return new AstKeyword(Position.Default, "PLATFORM");
+            return new AstKeyword(Position.Default, "PLATFORM", "PLATFORM");
         }
         
+        /// <summary>
+        /// keyword : POLICY
+        /// </summary>
         public static AstKeyword Policy()
         {
-            return new AstKeyword(Position.Default, "POLICY");
+            return new AstKeyword(Position.Default, "POLICY", "POLICY");
         }
         
+        /// <summary>
+        /// keyword : PREDICATE
+        /// </summary>
         public static AstKeyword Predicate()
         {
-            return new AstKeyword(Position.Default, "PREDICATE");
+            return new AstKeyword(Position.Default, "PREDICATE", "PREDICATE");
         }
         
+        /// <summary>
+        /// keyword : PROCESS
+        /// </summary>
         public static AstKeyword Process()
         {
-            return new AstKeyword(Position.Default, "PROCESS");
+            return new AstKeyword(Position.Default, "PROCESS", "PROCESS");
         }
         
+        /// <summary>
+        /// keyword : PROFILE
+        /// </summary>
         public static AstKeyword Profile()
         {
-            return new AstKeyword(Position.Default, "PROFILE");
+            return new AstKeyword(Position.Default, "PROFILE", "PROFILE");
         }
         
+        /// <summary>
+        /// keyword : PYTHON
+        /// </summary>
         public static AstKeyword Python()
         {
-            return new AstKeyword(Position.Default, "PYTHON");
+            return new AstKeyword(Position.Default, "PYTHON", "PYTHON");
         }
         
+        /// <summary>
+        /// keyword : R
+        /// </summary>
         public static AstKeyword R()
         {
-            return new AstKeyword(Position.Default, "R");
+            return new AstKeyword(Position.Default, "R", "R");
         }
         
+        /// <summary>
+        /// keyword : READ_WRITE_FILEGROUPS
+        /// </summary>
         public static AstKeyword ReadWriteFilegroups()
         {
-            return new AstKeyword(Position.Default, "READ_WRITE_FILEGROUPS");
+            return new AstKeyword(Position.Default, "READ_WRITE_FILEGROUPS", "READ_WRITE_FILEGROUPS");
         }
         
+        /// <summary>
+        /// keyword : REGENERATE
+        /// </summary>
         public static AstKeyword Regenerate()
         {
-            return new AstKeyword(Position.Default, "REGENERATE");
+            return new AstKeyword(Position.Default, "REGENERATE", "REGENERATE");
         }
         
+        /// <summary>
+        /// keyword : RELATED_CONVERSATION
+        /// </summary>
         public static AstKeyword RelatedConversation()
         {
-            return new AstKeyword(Position.Default, "RELATED_CONVERSATION");
+            return new AstKeyword(Position.Default, "RELATED_CONVERSATION", "RELATED_CONVERSATION");
         }
         
+        /// <summary>
+        /// keyword : RELATED_CONVERSATION_GROUP
+        /// </summary>
         public static AstKeyword RelatedConversationGroup()
         {
-            return new AstKeyword(Position.Default, "RELATED_CONVERSATION_GROUP");
+            return new AstKeyword(Position.Default, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
         }
         
+        /// <summary>
+        /// keyword : REQUIRED
+        /// </summary>
         public static AstKeyword Required()
         {
-            return new AstKeyword(Position.Default, "REQUIRED");
+            return new AstKeyword(Position.Default, "REQUIRED", "REQUIRED");
         }
         
+        /// <summary>
+        /// keyword : RESET
+        /// </summary>
         public static AstKeyword Reset()
         {
-            return new AstKeyword(Position.Default, "RESET");
+            return new AstKeyword(Position.Default, "RESET", "RESET");
         }
         
+        /// <summary>
+        /// keyword : RESOURCES
+        /// </summary>
         public static AstKeyword Resources()
         {
-            return new AstKeyword(Position.Default, "RESOURCES");
+            return new AstKeyword(Position.Default, "RESOURCES", "RESOURCES");
         }
         
+        /// <summary>
+        /// keyword : RESTART
+        /// </summary>
         public static AstKeyword Restart()
         {
-            return new AstKeyword(Position.Default, "RESTART");
+            return new AstKeyword(Position.Default, "RESTART", "RESTART");
         }
         
+        /// <summary>
+        /// keyword : RESUME
+        /// </summary>
         public static AstKeyword Resume()
         {
-            return new AstKeyword(Position.Default, "RESUME");
+            return new AstKeyword(Position.Default, "RESUME", "RESUME");
         }
         
+        /// <summary>
+        /// keyword : RETAINDAYS
+        /// </summary>
         public static AstKeyword Retaindays()
         {
-            return new AstKeyword(Position.Default, "RETAINDAYS");
+            return new AstKeyword(Position.Default, "RETAINDAYS", "RETAINDAYS");
         }
         
+        /// <summary>
+        /// keyword : RETURNS
+        /// </summary>
         public static AstKeyword Returns()
         {
-            return new AstKeyword(Position.Default, "RETURNS");
+            return new AstKeyword(Position.Default, "RETURNS", "RETURNS");
         }
         
+        /// <summary>
+        /// keyword : REWIND
+        /// </summary>
         public static AstKeyword Rewind()
         {
-            return new AstKeyword(Position.Default, "REWIND");
+            return new AstKeyword(Position.Default, "REWIND", "REWIND");
         }
         
+        /// <summary>
+        /// keyword : ROLE
+        /// </summary>
         public static AstKeyword Role()
         {
-            return new AstKeyword(Position.Default, "ROLE");
+            return new AstKeyword(Position.Default, "ROLE", "ROLE");
         }
         
+        /// <summary>
+        /// keyword : ROUND_ROBIN
+        /// </summary>
         public static AstKeyword RoundRobin()
         {
-            return new AstKeyword(Position.Default, "ROUND_ROBIN");
+            return new AstKeyword(Position.Default, "ROUND_ROBIN", "ROUND_ROBIN");
         }
         
+        /// <summary>
+        /// keyword : ROWCOUNT_BIG
+        /// </summary>
         public static AstKeyword RowcountBig()
         {
-            return new AstKeyword(Position.Default, "ROWCOUNT_BIG");
+            return new AstKeyword(Position.Default, "ROWCOUNT_BIG", "ROWCOUNT_BIG");
         }
         
+        /// <summary>
+        /// keyword : RSA_512
+        /// </summary>
         public static AstKeyword Rsa512()
         {
-            return new AstKeyword(Position.Default, "RSA_512");
+            return new AstKeyword(Position.Default, "RSA_512", "RSA_512");
         }
         
+        /// <summary>
+        /// keyword : RSA_1024
+        /// </summary>
         public static AstKeyword Rsa1024()
         {
-            return new AstKeyword(Position.Default, "RSA_1024");
+            return new AstKeyword(Position.Default, "RSA_1024", "RSA_1024");
         }
         
+        /// <summary>
+        /// keyword : RSA_2048
+        /// </summary>
         public static AstKeyword Rsa2048()
         {
-            return new AstKeyword(Position.Default, "RSA_2048");
+            return new AstKeyword(Position.Default, "RSA_2048", "RSA_2048");
         }
         
+        /// <summary>
+        /// keyword : RSA_3072
+        /// </summary>
         public static AstKeyword Rsa3072()
         {
-            return new AstKeyword(Position.Default, "RSA_3072");
+            return new AstKeyword(Position.Default, "RSA_3072", "RSA_3072");
         }
         
+        /// <summary>
+        /// keyword : RSA_4096
+        /// </summary>
         public static AstKeyword Rsa4096()
         {
-            return new AstKeyword(Position.Default, "RSA_4096");
+            return new AstKeyword(Position.Default, "RSA_4096", "RSA_4096");
         }
         
+        /// <summary>
+        /// keyword : SAFETY
+        /// </summary>
         public static AstKeyword Safety()
         {
-            return new AstKeyword(Position.Default, "SAFETY");
+            return new AstKeyword(Position.Default, "SAFETY", "SAFETY");
         }
         
+        /// <summary>
+        /// keyword : SAFE
+        /// </summary>
         public static AstKeyword Safe()
         {
-            return new AstKeyword(Position.Default, "SAFE");
+            return new AstKeyword(Position.Default, "SAFE", "SAFE");
         }
         
+        /// <summary>
+        /// keyword : SCHEDULER
+        /// </summary>
         public static AstKeyword Scheduler()
         {
-            return new AstKeyword(Position.Default, "SCHEDULER");
+            return new AstKeyword(Position.Default, "SCHEDULER", "SCHEDULER");
         }
         
+        /// <summary>
+        /// keyword : SCHEME
+        /// </summary>
         public static AstKeyword Scheme()
         {
-            return new AstKeyword(Position.Default, "SCHEME");
+            return new AstKeyword(Position.Default, "SCHEME", "SCHEME");
         }
         
+        /// <summary>
+        /// keyword : SCRIPT
+        /// </summary>
         public static AstKeyword Script()
         {
-            return new AstKeyword(Position.Default, "SCRIPT");
+            return new AstKeyword(Position.Default, "SCRIPT", "SCRIPT");
         }
         
+        /// <summary>
+        /// keyword : SERVER
+        /// </summary>
         public static AstKeyword Server()
         {
-            return new AstKeyword(Position.Default, "SERVER");
+            return new AstKeyword(Position.Default, "SERVER", "SERVER");
         }
         
+        /// <summary>
+        /// keyword : SERVICE
+        /// </summary>
         public static AstKeyword Service()
         {
-            return new AstKeyword(Position.Default, "SERVICE");
+            return new AstKeyword(Position.Default, "SERVICE", "SERVICE");
         }
         
+        /// <summary>
+        /// keyword : SERVICE_BROKER
+        /// </summary>
         public static AstKeyword ServiceBroker()
         {
-            return new AstKeyword(Position.Default, "SERVICE_BROKER");
+            return new AstKeyword(Position.Default, "SERVICE_BROKER", "SERVICE_BROKER");
         }
         
+        /// <summary>
+        /// keyword : SERVICE_NAME
+        /// </summary>
         public static AstKeyword ServiceName()
         {
-            return new AstKeyword(Position.Default, "SERVICE_NAME");
+            return new AstKeyword(Position.Default, "SERVICE_NAME", "SERVICE_NAME");
         }
         
+        /// <summary>
+        /// keyword : SESSION
+        /// </summary>
         public static AstKeyword Session()
         {
-            return new AstKeyword(Position.Default, "SESSION");
+            return new AstKeyword(Position.Default, "SESSION", "SESSION");
         }
         
+        /// <summary>
+        /// keyword : SESSION_CONTEXT
+        /// </summary>
         public static AstKeyword SessionContext()
         {
-            return new AstKeyword(Position.Default, "SESSION_CONTEXT");
+            return new AstKeyword(Position.Default, "SESSION_CONTEXT", "SESSION_CONTEXT");
         }
         
+        /// <summary>
+        /// keyword : SETTINGS
+        /// </summary>
         public static AstKeyword Settings()
         {
-            return new AstKeyword(Position.Default, "SETTINGS");
+            return new AstKeyword(Position.Default, "SETTINGS", "SETTINGS");
         }
         
+        /// <summary>
+        /// keyword : SHRINKLOG
+        /// </summary>
         public static AstKeyword Shrinklog()
         {
-            return new AstKeyword(Position.Default, "SHRINKLOG");
+            return new AstKeyword(Position.Default, "SHRINKLOG", "SHRINKLOG");
         }
         
+        /// <summary>
+        /// keyword : SID
+        /// </summary>
         public static AstKeyword Sid()
         {
-            return new AstKeyword(Position.Default, "SID");
+            return new AstKeyword(Position.Default, "SID", "SID");
         }
         
+        /// <summary>
+        /// keyword : SKIP
+        /// </summary>
         public static AstKeyword SkipKeyword()
         {
-            return new AstKeyword(Position.Default, "SKIP");
+            return new AstKeyword(Position.Default, "SKIP_KEYWORD", "SKIP");
         }
         
+        /// <summary>
+        /// keyword : SOFTNUMA
+        /// </summary>
         public static AstKeyword Softnuma()
         {
-            return new AstKeyword(Position.Default, "SOFTNUMA");
+            return new AstKeyword(Position.Default, "SOFTNUMA", "SOFTNUMA");
         }
         
+        /// <summary>
+        /// keyword : SOURCE
+        /// </summary>
         public static AstKeyword Source()
         {
-            return new AstKeyword(Position.Default, "SOURCE");
+            return new AstKeyword(Position.Default, "SOURCE", "SOURCE");
         }
         
+        /// <summary>
+        /// keyword : SPECIFICATION
+        /// </summary>
         public static AstKeyword Specification()
         {
-            return new AstKeyword(Position.Default, "SPECIFICATION");
+            return new AstKeyword(Position.Default, "SPECIFICATION", "SPECIFICATION");
         }
         
+        /// <summary>
+        /// keyword : SPLIT
+        /// </summary>
         public static AstKeyword Split()
         {
-            return new AstKeyword(Position.Default, "SPLIT");
+            return new AstKeyword(Position.Default, "SPLIT", "SPLIT");
         }
         
+        /// <summary>
+        /// keyword : SQL
+        /// </summary>
         public static AstKeyword Sql()
         {
-            return new AstKeyword(Position.Default, "SQL");
+            return new AstKeyword(Position.Default, "SQL", "SQL");
         }
         
+        /// <summary>
+        /// keyword : SQLDUMPERFLAGS
+        /// </summary>
         public static AstKeyword Sqldumperflags()
         {
-            return new AstKeyword(Position.Default, "SQLDUMPERFLAGS");
+            return new AstKeyword(Position.Default, "SQLDUMPERFLAGS", "SQLDUMPERFLAGS");
         }
         
+        /// <summary>
+        /// keyword : SQLDUMPERPATH
+        /// </summary>
         public static AstKeyword Sqldumperpath()
         {
-            return new AstKeyword(Position.Default, "SQLDUMPERPATH");
+            return new AstKeyword(Position.Default, "SQLDUMPERPATH", "SQLDUMPERPATH");
         }
         
+        /// <summary>
+        /// keyword : SQLDUMPERTIMEOUT
+        /// </summary>
         public static AstKeyword Sqldumpertimeout()
         {
-            return new AstKeyword(Position.Default, "SQLDUMPERTIMEOUT");
+            return new AstKeyword(Position.Default, "SQLDUMPERTIMEOUT", "SQLDUMPERTIMEOUT");
         }
         
+        /// <summary>
+        /// keyword : STATE
+        /// </summary>
         public static AstKeyword State()
         {
-            return new AstKeyword(Position.Default, "STATE");
+            return new AstKeyword(Position.Default, "STATE", "STATE");
         }
         
+        /// <summary>
+        /// keyword : STATS
+        /// </summary>
         public static AstKeyword Stats()
         {
-            return new AstKeyword(Position.Default, "STATS");
+            return new AstKeyword(Position.Default, "STATS", "STATS");
         }
         
+        /// <summary>
+        /// keyword : START
+        /// </summary>
         public static AstKeyword Start()
         {
-            return new AstKeyword(Position.Default, "START");
+            return new AstKeyword(Position.Default, "START", "START");
         }
         
+        /// <summary>
+        /// keyword : STARTED
+        /// </summary>
         public static AstKeyword Started()
         {
-            return new AstKeyword(Position.Default, "STARTED");
+            return new AstKeyword(Position.Default, "STARTED", "STARTED");
         }
         
+        /// <summary>
+        /// keyword : STARTUP_STATE
+        /// </summary>
         public static AstKeyword StartupState()
         {
-            return new AstKeyword(Position.Default, "STARTUP_STATE");
+            return new AstKeyword(Position.Default, "STARTUP_STATE", "STARTUP_STATE");
         }
         
+        /// <summary>
+        /// keyword : STOP
+        /// </summary>
         public static AstKeyword Stop()
         {
-            return new AstKeyword(Position.Default, "STOP");
+            return new AstKeyword(Position.Default, "STOP", "STOP");
         }
         
+        /// <summary>
+        /// keyword : STOPPED
+        /// </summary>
         public static AstKeyword Stopped()
         {
-            return new AstKeyword(Position.Default, "STOPPED");
+            return new AstKeyword(Position.Default, "STOPPED", "STOPPED");
         }
         
+        /// <summary>
+        /// keyword : STOP_ON_ERROR
+        /// </summary>
         public static AstKeyword StopOnError()
         {
-            return new AstKeyword(Position.Default, "STOP_ON_ERROR");
+            return new AstKeyword(Position.Default, "STOP_ON_ERROR", "STOP_ON_ERROR");
         }
         
+        /// <summary>
+        /// keyword : SUPPORTED
+        /// </summary>
         public static AstKeyword Supported()
         {
-            return new AstKeyword(Position.Default, "SUPPORTED");
+            return new AstKeyword(Position.Default, "SUPPORTED", "SUPPORTED");
         }
         
+        /// <summary>
+        /// keyword : SWITCH
+        /// </summary>
         public static AstKeyword Switch()
         {
-            return new AstKeyword(Position.Default, "SWITCH");
+            return new AstKeyword(Position.Default, "SWITCH", "SWITCH");
         }
         
+        /// <summary>
+        /// keyword : TAPE
+        /// </summary>
         public static AstKeyword Tape()
         {
-            return new AstKeyword(Position.Default, "TAPE");
+            return new AstKeyword(Position.Default, "TAPE", "TAPE");
         }
         
+        /// <summary>
+        /// keyword : TARGET
+        /// </summary>
         public static AstKeyword Target()
         {
-            return new AstKeyword(Position.Default, "TARGET");
+            return new AstKeyword(Position.Default, "TARGET", "TARGET");
         }
         
+        /// <summary>
+        /// keyword : TCP
+        /// </summary>
         public static AstKeyword Tcp()
         {
-            return new AstKeyword(Position.Default, "TCP");
+            return new AstKeyword(Position.Default, "TCP", "TCP");
         }
         
+        /// <summary>
+        /// keyword : TOSTRING
+        /// </summary>
         public static AstKeyword Tostring()
         {
-            return new AstKeyword(Position.Default, "TOSTRING");
+            return new AstKeyword(Position.Default, "TOSTRING", "TOSTRING");
         }
         
+        /// <summary>
+        /// keyword : TRACE
+        /// </summary>
         public static AstKeyword Trace()
         {
-            return new AstKeyword(Position.Default, "TRACE");
+            return new AstKeyword(Position.Default, "TRACE", "TRACE");
         }
         
+        /// <summary>
+        /// keyword : TRACK_CAUSALITY
+        /// </summary>
         public static AstKeyword TrackCausality()
         {
-            return new AstKeyword(Position.Default, "TRACK_CAUSALITY");
+            return new AstKeyword(Position.Default, "TRACK_CAUSALITY", "TRACK_CAUSALITY");
         }
         
+        /// <summary>
+        /// keyword : TRANSFER
+        /// </summary>
         public static AstKeyword Transfer()
         {
-            return new AstKeyword(Position.Default, "TRANSFER");
+            return new AstKeyword(Position.Default, "TRANSFER", "TRANSFER");
         }
         
+        /// <summary>
+        /// keyword : UNCHECKED
+        /// </summary>
         public static AstKeyword Unchecked()
         {
-            return new AstKeyword(Position.Default, "UNCHECKED");
+            return new AstKeyword(Position.Default, "UNCHECKED", "UNCHECKED");
         }
         
+        /// <summary>
+        /// keyword : UNLOCK
+        /// </summary>
         public static AstKeyword Unlock()
         {
-            return new AstKeyword(Position.Default, "UNLOCK");
+            return new AstKeyword(Position.Default, "UNLOCK", "UNLOCK");
         }
         
+        /// <summary>
+        /// keyword : UNSAFE
+        /// </summary>
         public static AstKeyword Unsafe()
         {
-            return new AstKeyword(Position.Default, "UNSAFE");
+            return new AstKeyword(Position.Default, "UNSAFE", "UNSAFE");
         }
         
+        /// <summary>
+        /// keyword : URL
+        /// </summary>
         public static AstKeyword Url()
         {
-            return new AstKeyword(Position.Default, "URL");
+            return new AstKeyword(Position.Default, "URL", "URL");
         }
         
+        /// <summary>
+        /// keyword : USED
+        /// </summary>
         public static AstKeyword Used()
         {
-            return new AstKeyword(Position.Default, "USED");
+            return new AstKeyword(Position.Default, "USED", "USED");
         }
         
+        /// <summary>
+        /// keyword : VERBOSELOGGING
+        /// </summary>
         public static AstKeyword Verboselogging()
         {
-            return new AstKeyword(Position.Default, "VERBOSELOGGING");
+            return new AstKeyword(Position.Default, "VERBOSELOGGING", "VERBOSELOGGING");
         }
         
+        /// <summary>
+        /// keyword : VISIBILITY
+        /// </summary>
         public static AstKeyword Visibility()
         {
-            return new AstKeyword(Position.Default, "VISIBILITY");
+            return new AstKeyword(Position.Default, "VISIBILITY", "VISIBILITY");
         }
         
+        /// <summary>
+        /// keyword : WAIT_AT_LOW_PRIORITY
+        /// </summary>
         public static AstKeyword WaitAtLowPriority()
         {
-            return new AstKeyword(Position.Default, "WAIT_AT_LOW_PRIORITY");
+            return new AstKeyword(Position.Default, "WAIT_AT_LOW_PRIORITY", "WAIT_AT_LOW_PRIORITY");
         }
         
+        /// <summary>
+        /// keyword : WINDOWS
+        /// </summary>
         public static AstKeyword Windows()
         {
-            return new AstKeyword(Position.Default, "WINDOWS");
+            return new AstKeyword(Position.Default, "WINDOWS", "WINDOWS");
         }
         
+        /// <summary>
+        /// keyword : WITHOUT
+        /// </summary>
         public static AstKeyword Without()
         {
-            return new AstKeyword(Position.Default, "WITHOUT");
+            return new AstKeyword(Position.Default, "WITHOUT", "WITHOUT");
         }
         
+        /// <summary>
+        /// keyword : WITNESS
+        /// </summary>
         public static AstKeyword Witness()
         {
-            return new AstKeyword(Position.Default, "WITNESS");
+            return new AstKeyword(Position.Default, "WITNESS", "WITNESS");
         }
         
+        /// <summary>
+        /// keyword : XACT_ABORT
+        /// </summary>
         public static AstKeyword XactAbort()
         {
-            return new AstKeyword(Position.Default, "XACT_ABORT");
+            return new AstKeyword(Position.Default, "XACT_ABORT", "XACT_ABORT");
         }
         
+        /// <summary>
+        /// keyword : XACT_STATE
+        /// </summary>
         public static AstKeyword XactState()
         {
-            return new AstKeyword(Position.Default, "XACT_STATE");
+            return new AstKeyword(Position.Default, "XACT_STATE", "XACT_STATE");
         }
         
+        /// <summary>
+        /// keyword : VARCHAR
+        /// </summary>
         public static AstKeyword Varchar()
         {
-            return new AstKeyword(Position.Default, "VARCHAR");
+            return new AstKeyword(Position.Default, "VARCHAR", "VARCHAR");
         }
         
+        /// <summary>
+        /// keyword : NVARCHAR
+        /// </summary>
         public static AstKeyword Nvarchar()
         {
-            return new AstKeyword(Position.Default, "NVARCHAR");
+            return new AstKeyword(Position.Default, "NVARCHAR", "NVARCHAR");
         }
         
+        /// <summary>
+        /// keyword : PRECISION
+        /// </summary>
         public static AstKeyword Precision()
         {
-            return new AstKeyword(Position.Default, "PRECISION");
+            return new AstKeyword(Position.Default, "PRECISION", "PRECISION");
+        }
+        
+        /// <summary>
+        /// keyword : ABORT
+        /// </summary>
+        public static AstKeyword Abort(Position position)
+        {
+            return new AstKeyword(position, "ABORT", "ABORT");
+        }
+        
+        /// <summary>
+        /// keyword : ABSOLUTE
+        /// </summary>
+        public static AstKeyword Absolute(Position position)
+        {
+            return new AstKeyword(position, "ABSOLUTE", "ABSOLUTE");
+        }
+        
+        /// <summary>
+        /// keyword : ACCENT_SENSITIVITY
+        /// </summary>
+        public static AstKeyword AccentSensitivity(Position position)
+        {
+            return new AstKeyword(position, "ACCENT_SENSITIVITY", "ACCENT_SENSITIVITY");
+        }
+        
+        /// <summary>
+        /// keyword : ACCESS
+        /// </summary>
+        public static AstKeyword Access(Position position)
+        {
+            return new AstKeyword(position, "ACCESS", "ACCESS");
+        }
+        
+        /// <summary>
+        /// keyword : ACTION
+        /// </summary>
+        public static AstKeyword Action(Position position)
+        {
+            return new AstKeyword(position, "ACTION", "ACTION");
+        }
+        
+        /// <summary>
+        /// keyword : ACTIVATION
+        /// </summary>
+        public static AstKeyword Activation(Position position)
+        {
+            return new AstKeyword(position, "ACTIVATION", "ACTIVATION");
+        }
+        
+        /// <summary>
+        /// keyword : ACTIVE
+        /// </summary>
+        public static AstKeyword Active(Position position)
+        {
+            return new AstKeyword(position, "ACTIVE", "ACTIVE");
+        }
+        
+        /// <summary>
+        /// keyword : ADD
+        /// </summary>
+        public static AstKeyword Add(Position position)
+        {
+            return new AstKeyword(position, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// keyword : ADDRESS
+        /// </summary>
+        public static AstKeyword Address(Position position)
+        {
+            return new AstKeyword(position, "ADDRESS", "ADDRESS");
+        }
+        
+        /// <summary>
+        /// keyword : AES_128
+        /// </summary>
+        public static AstKeyword Aes128(Position position)
+        {
+            return new AstKeyword(position, "AES_128", "AES_128");
+        }
+        
+        /// <summary>
+        /// keyword : AES_192
+        /// </summary>
+        public static AstKeyword Aes192(Position position)
+        {
+            return new AstKeyword(position, "AES_192", "AES_192");
+        }
+        
+        /// <summary>
+        /// keyword : AES_256
+        /// </summary>
+        public static AstKeyword Aes256(Position position)
+        {
+            return new AstKeyword(position, "AES_256", "AES_256");
+        }
+        
+        /// <summary>
+        /// keyword : AFFINITY
+        /// </summary>
+        public static AstKeyword Affinity(Position position)
+        {
+            return new AstKeyword(position, "AFFINITY", "AFFINITY");
+        }
+        
+        /// <summary>
+        /// keyword : AFTER
+        /// </summary>
+        public static AstKeyword After(Position position)
+        {
+            return new AstKeyword(position, "AFTER", "AFTER");
+        }
+        
+        /// <summary>
+        /// keyword : AGGREGATE
+        /// </summary>
+        public static AstKeyword Aggregate(Position position)
+        {
+            return new AstKeyword(position, "AGGREGATE", "AGGREGATE");
+        }
+        
+        /// <summary>
+        /// keyword : ALGORITHM
+        /// </summary>
+        public static AstKeyword Algorithm(Position position)
+        {
+            return new AstKeyword(position, "ALGORITHM", "ALGORITHM");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS
+        /// </summary>
+        public static AstKeyword AllowEncryptedValueModifications(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS", "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_PAGE_LOCKS
+        /// </summary>
+        public static AstKeyword AllowPageLocks(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_PAGE_LOCKS", "ALLOW_PAGE_LOCKS");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_ROW_LOCKS
+        /// </summary>
+        public static AstKeyword AllowRowLocks(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_ROW_LOCKS", "ALLOW_ROW_LOCKS");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_SNAPSHOT_ISOLATION
+        /// </summary>
+        public static AstKeyword AllowSnapshotIsolation(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_SNAPSHOT_ISOLATION", "ALLOW_SNAPSHOT_ISOLATION");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOWED
+        /// </summary>
+        public static AstKeyword Allowed(Position position)
+        {
+            return new AstKeyword(position, "ALLOWED", "ALLOWED");
+        }
+        
+        /// <summary>
+        /// keyword : ALWAYS
+        /// </summary>
+        public static AstKeyword Always(Position position)
+        {
+            return new AstKeyword(position, "ALWAYS", "ALWAYS");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_DEFAULTS
+        /// </summary>
+        public static AstKeyword AnsiDefaults(Position position)
+        {
+            return new AstKeyword(position, "ANSI_DEFAULTS", "ANSI_DEFAULTS");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_NULL_DEFAULT
+        /// </summary>
+        public static AstKeyword AnsiNullDefault(Position position)
+        {
+            return new AstKeyword(position, "ANSI_NULL_DEFAULT", "ANSI_NULL_DEFAULT");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_NULL_DFLT_OFF
+        /// </summary>
+        public static AstKeyword AnsiNullDfltOff(Position position)
+        {
+            return new AstKeyword(position, "ANSI_NULL_DFLT_OFF", "ANSI_NULL_DFLT_OFF");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_NULL_DFLT_ON
+        /// </summary>
+        public static AstKeyword AnsiNullDfltOn(Position position)
+        {
+            return new AstKeyword(position, "ANSI_NULL_DFLT_ON", "ANSI_NULL_DFLT_ON");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_NULLS
+        /// </summary>
+        public static AstKeyword AnsiNulls(Position position)
+        {
+            return new AstKeyword(position, "ANSI_NULLS", "ANSI_NULLS");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_PADDING
+        /// </summary>
+        public static AstKeyword AnsiPadding(Position position)
+        {
+            return new AstKeyword(position, "ANSI_PADDING", "ANSI_PADDING");
+        }
+        
+        /// <summary>
+        /// keyword : ANSI_WARNINGS
+        /// </summary>
+        public static AstKeyword AnsiWarnings(Position position)
+        {
+            return new AstKeyword(position, "ANSI_WARNINGS", "ANSI_WARNINGS");
+        }
+        
+        /// <summary>
+        /// keyword : APP_NAME
+        /// </summary>
+        public static AstKeyword AppName(Position position)
+        {
+            return new AstKeyword(position, "APP_NAME", "APP_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : APPLICATION_LOG
+        /// </summary>
+        public static AstKeyword ApplicationLog(Position position)
+        {
+            return new AstKeyword(position, "APPLICATION_LOG", "APPLICATION_LOG");
+        }
+        
+        /// <summary>
+        /// keyword : APPLOCK_MODE
+        /// </summary>
+        public static AstKeyword ApplockMode(Position position)
+        {
+            return new AstKeyword(position, "APPLOCK_MODE", "APPLOCK_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : APPLOCK_TEST
+        /// </summary>
+        public static AstKeyword ApplockTest(Position position)
+        {
+            return new AstKeyword(position, "APPLOCK_TEST", "APPLOCK_TEST");
+        }
+        
+        /// <summary>
+        /// keyword : APPLY
+        /// </summary>
+        public static AstKeyword Apply(Position position)
+        {
+            return new AstKeyword(position, "APPLY", "APPLY");
+        }
+        
+        /// <summary>
+        /// keyword : ARITHABORT
+        /// </summary>
+        public static AstKeyword Arithabort(Position position)
+        {
+            return new AstKeyword(position, "ARITHABORT", "ARITHABORT");
+        }
+        
+        /// <summary>
+        /// keyword : ARITHIGNORE
+        /// </summary>
+        public static AstKeyword Arithignore(Position position)
+        {
+            return new AstKeyword(position, "ARITHIGNORE", "ARITHIGNORE");
+        }
+        
+        /// <summary>
+        /// keyword : ASCII
+        /// </summary>
+        public static AstKeyword Ascii(Position position)
+        {
+            return new AstKeyword(position, "ASCII", "ASCII");
+        }
+        
+        /// <summary>
+        /// keyword : ASSEMBLY
+        /// </summary>
+        public static AstKeyword Assembly(Position position)
+        {
+            return new AstKeyword(position, "ASSEMBLY", "ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// keyword : ASSEMBLYPROPERTY
+        /// </summary>
+        public static AstKeyword Assemblyproperty(Position position)
+        {
+            return new AstKeyword(position, "ASSEMBLYPROPERTY", "ASSEMBLYPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : AT
+        /// </summary>
+        public static AstKeyword AtKeyword(Position position)
+        {
+            return new AstKeyword(position, "AT_KEYWORD", "AT");
+        }
+        
+        /// <summary>
+        /// keyword : AUDIT
+        /// </summary>
+        public static AstKeyword Audit(Position position)
+        {
+            return new AstKeyword(position, "AUDIT", "AUDIT");
+        }
+        
+        /// <summary>
+        /// keyword : AUDIT_GUID
+        /// </summary>
+        public static AstKeyword AuditGuid(Position position)
+        {
+            return new AstKeyword(position, "AUDIT_GUID", "AUDIT_GUID");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO
+        /// </summary>
+        public static AstKeyword Auto(Position position)
+        {
+            return new AstKeyword(position, "AUTO", "AUTO");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_CLEANUP
+        /// </summary>
+        public static AstKeyword AutoCleanup(Position position)
+        {
+            return new AstKeyword(position, "AUTO_CLEANUP", "AUTO_CLEANUP");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_CLOSE
+        /// </summary>
+        public static AstKeyword AutoClose(Position position)
+        {
+            return new AstKeyword(position, "AUTO_CLOSE", "AUTO_CLOSE");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_CREATE_STATISTICS
+        /// </summary>
+        public static AstKeyword AutoCreateStatistics(Position position)
+        {
+            return new AstKeyword(position, "AUTO_CREATE_STATISTICS", "AUTO_CREATE_STATISTICS");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_DROP
+        /// </summary>
+        public static AstKeyword AutoDrop(Position position)
+        {
+            return new AstKeyword(position, "AUTO_DROP", "AUTO_DROP");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_SHRINK
+        /// </summary>
+        public static AstKeyword AutoShrink(Position position)
+        {
+            return new AstKeyword(position, "AUTO_SHRINK", "AUTO_SHRINK");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_UPDATE_STATISTICS
+        /// </summary>
+        public static AstKeyword AutoUpdateStatistics(Position position)
+        {
+            return new AstKeyword(position, "AUTO_UPDATE_STATISTICS", "AUTO_UPDATE_STATISTICS");
+        }
+        
+        /// <summary>
+        /// keyword : AUTO_UPDATE_STATISTICS_ASYNC
+        /// </summary>
+        public static AstKeyword AutoUpdateStatisticsAsync(Position position)
+        {
+            return new AstKeyword(position, "AUTO_UPDATE_STATISTICS_ASYNC", "AUTO_UPDATE_STATISTICS_ASYNC");
+        }
+        
+        /// <summary>
+        /// keyword : AUTOGROW_ALL_FILES
+        /// </summary>
+        public static AstKeyword AutogrowAllFiles(Position position)
+        {
+            return new AstKeyword(position, "AUTOGROW_ALL_FILES", "AUTOGROW_ALL_FILES");
+        }
+        
+        /// <summary>
+        /// keyword : AUTOGROW_SINGLE_FILE
+        /// </summary>
+        public static AstKeyword AutogrowSingleFile(Position position)
+        {
+            return new AstKeyword(position, "AUTOGROW_SINGLE_FILE", "AUTOGROW_SINGLE_FILE");
+        }
+        
+        /// <summary>
+        /// keyword : AVAILABILITY
+        /// </summary>
+        public static AstKeyword Availability(Position position)
+        {
+            return new AstKeyword(position, "AVAILABILITY", "AVAILABILITY");
+        }
+        
+        /// <summary>
+        /// keyword : AVG
+        /// </summary>
+        public static AstKeyword Avg(Position position)
+        {
+            return new AstKeyword(position, "AVG", "AVG");
+        }
+        
+        /// <summary>
+        /// keyword : BACKUP_PRIORITY
+        /// </summary>
+        public static AstKeyword BackupPriority(Position position)
+        {
+            return new AstKeyword(position, "BACKUP_PRIORITY", "BACKUP_PRIORITY");
+        }
+        
+        /// <summary>
+        /// keyword : BASE64
+        /// </summary>
+        public static AstKeyword Base64(Position position)
+        {
+            return new AstKeyword(position, "BASE64", "BASE64");
+        }
+        
+        /// <summary>
+        /// keyword : BEGIN_DIALOG
+        /// </summary>
+        public static AstKeyword BeginDialog(Position position)
+        {
+            return new AstKeyword(position, "BEGIN_DIALOG", "BEGIN_DIALOG");
+        }
+        
+        /// <summary>
+        /// keyword : BIGINT
+        /// </summary>
+        public static AstKeyword Bigint(Position position)
+        {
+            return new AstKeyword(position, "BIGINT", "BIGINT");
+        }
+        
+        /// <summary>
+        /// keyword : BINARY
+        /// </summary>
+        public static AstKeyword BinaryKeyword(Position position)
+        {
+            return new AstKeyword(position, "BINARY_KEYWORD", "BINARY");
+        }
+        
+        /// <summary>
+        /// keyword : BINARY_CHECKSUM
+        /// </summary>
+        public static AstKeyword BinaryChecksum(Position position)
+        {
+            return new AstKeyword(position, "BINARY_CHECKSUM", "BINARY_CHECKSUM");
+        }
+        
+        /// <summary>
+        /// keyword : BINDING
+        /// </summary>
+        public static AstKeyword Binding(Position position)
+        {
+            return new AstKeyword(position, "BINDING", "BINDING");
+        }
+        
+        /// <summary>
+        /// keyword : BLOB_STORAGE
+        /// </summary>
+        public static AstKeyword BlobStorage(Position position)
+        {
+            return new AstKeyword(position, "BLOB_STORAGE", "BLOB_STORAGE");
+        }
+        
+        /// <summary>
+        /// keyword : BROKER
+        /// </summary>
+        public static AstKeyword Broker(Position position)
+        {
+            return new AstKeyword(position, "BROKER", "BROKER");
+        }
+        
+        /// <summary>
+        /// keyword : BROKER_INSTANCE
+        /// </summary>
+        public static AstKeyword BrokerInstance(Position position)
+        {
+            return new AstKeyword(position, "BROKER_INSTANCE", "BROKER_INSTANCE");
+        }
+        
+        /// <summary>
+        /// keyword : BULK_LOGGED
+        /// </summary>
+        public static AstKeyword BulkLogged(Position position)
+        {
+            return new AstKeyword(position, "BULK_LOGGED", "BULK_LOGGED");
+        }
+        
+        /// <summary>
+        /// keyword : CALLER
+        /// </summary>
+        public static AstKeyword Caller(Position position)
+        {
+            return new AstKeyword(position, "CALLER", "CALLER");
+        }
+        
+        /// <summary>
+        /// keyword : CAP_CPU_PERCENT
+        /// </summary>
+        public static AstKeyword CapCpuPercent(Position position)
+        {
+            return new AstKeyword(position, "CAP_CPU_PERCENT", "CAP_CPU_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : CAST
+        /// </summary>
+        public static AstKeyword Cast(Position position)
+        {
+            return new AstKeyword(position, "CAST", "CAST");
+        }
+        
+        /// <summary>
+        /// keyword : TRY_CAST
+        /// </summary>
+        public static AstKeyword TryCast(Position position)
+        {
+            return new AstKeyword(position, "TRY_CAST", "TRY_CAST");
+        }
+        
+        /// <summary>
+        /// keyword : CATALOG
+        /// </summary>
+        public static AstKeyword Catalog(Position position)
+        {
+            return new AstKeyword(position, "CATALOG", "CATALOG");
+        }
+        
+        /// <summary>
+        /// keyword : CATCH
+        /// </summary>
+        public static AstKeyword Catch(Position position)
+        {
+            return new AstKeyword(position, "CATCH", "CATCH");
+        }
+        
+        /// <summary>
+        /// keyword : CHANGE
+        /// </summary>
+        public static AstKeyword Change(Position position)
+        {
+            return new AstKeyword(position, "CHANGE", "CHANGE");
+        }
+        
+        /// <summary>
+        /// keyword : CHANGE_RETENTION
+        /// </summary>
+        public static AstKeyword ChangeRetention(Position position)
+        {
+            return new AstKeyword(position, "CHANGE_RETENTION", "CHANGE_RETENTION");
+        }
+        
+        /// <summary>
+        /// keyword : CHANGE_TRACKING
+        /// </summary>
+        public static AstKeyword ChangeTracking(Position position)
+        {
+            return new AstKeyword(position, "CHANGE_TRACKING", "CHANGE_TRACKING");
+        }
+        
+        /// <summary>
+        /// keyword : CHAR
+        /// </summary>
+        public static AstKeyword Char(Position position)
+        {
+            return new AstKeyword(position, "CHAR", "CHAR");
+        }
+        
+        /// <summary>
+        /// keyword : CHARINDEX
+        /// </summary>
+        public static AstKeyword Charindex(Position position)
+        {
+            return new AstKeyword(position, "CHARINDEX", "CHARINDEX");
+        }
+        
+        /// <summary>
+        /// keyword : CHECKSUM
+        /// </summary>
+        public static AstKeyword Checksum(Position position)
+        {
+            return new AstKeyword(position, "CHECKSUM", "CHECKSUM");
+        }
+        
+        /// <summary>
+        /// keyword : CHECKSUM_AGG
+        /// </summary>
+        public static AstKeyword ChecksumAgg(Position position)
+        {
+            return new AstKeyword(position, "CHECKSUM_AGG", "CHECKSUM_AGG");
+        }
+        
+        /// <summary>
+        /// keyword : CLEANUP
+        /// </summary>
+        public static AstKeyword Cleanup(Position position)
+        {
+            return new AstKeyword(position, "CLEANUP", "CLEANUP");
+        }
+        
+        /// <summary>
+        /// keyword : COL_LENGTH
+        /// </summary>
+        public static AstKeyword ColLength(Position position)
+        {
+            return new AstKeyword(position, "COL_LENGTH", "COL_LENGTH");
+        }
+        
+        /// <summary>
+        /// keyword : COL_NAME
+        /// </summary>
+        public static AstKeyword ColName(Position position)
+        {
+            return new AstKeyword(position, "COL_NAME", "COL_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : COLLECTION
+        /// </summary>
+        public static AstKeyword Collection(Position position)
+        {
+            return new AstKeyword(position, "COLLECTION", "COLLECTION");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMN_ENCRYPTION_KEY
+        /// </summary>
+        public static AstKeyword ColumnEncryptionKey(Position position)
+        {
+            return new AstKeyword(position, "COLUMN_ENCRYPTION_KEY", "COLUMN_ENCRYPTION_KEY");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMN_MASTER_KEY
+        /// </summary>
+        public static AstKeyword ColumnMasterKey(Position position)
+        {
+            return new AstKeyword(position, "COLUMN_MASTER_KEY", "COLUMN_MASTER_KEY");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMNPROPERTY
+        /// </summary>
+        public static AstKeyword Columnproperty(Position position)
+        {
+            return new AstKeyword(position, "COLUMNPROPERTY", "COLUMNPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMNS
+        /// </summary>
+        public static AstKeyword Columns(Position position)
+        {
+            return new AstKeyword(position, "COLUMNS", "COLUMNS");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMNSTORE
+        /// </summary>
+        public static AstKeyword Columnstore(Position position)
+        {
+            return new AstKeyword(position, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// keyword : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstKeyword ColumnstoreArchive(Position position)
+        {
+            return new AstKeyword(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+        
+        /// <summary>
+        /// keyword : COMMITTED
+        /// </summary>
+        public static AstKeyword Committed(Position position)
+        {
+            return new AstKeyword(position, "COMMITTED", "COMMITTED");
+        }
+        
+        /// <summary>
+        /// keyword : COMPATIBILITY_LEVEL
+        /// </summary>
+        public static AstKeyword CompatibilityLevel(Position position)
+        {
+            return new AstKeyword(position, "COMPATIBILITY_LEVEL", "COMPATIBILITY_LEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : COMPRESS_ALL_ROW_GROUPS
+        /// </summary>
+        public static AstKeyword CompressAllRowGroups(Position position)
+        {
+            return new AstKeyword(position, "COMPRESS_ALL_ROW_GROUPS", "COMPRESS_ALL_ROW_GROUPS");
+        }
+        
+        /// <summary>
+        /// keyword : COMPRESSION_DELAY
+        /// </summary>
+        public static AstKeyword CompressionDelay(Position position)
+        {
+            return new AstKeyword(position, "COMPRESSION_DELAY", "COMPRESSION_DELAY");
+        }
+        
+        /// <summary>
+        /// keyword : CONCAT
+        /// </summary>
+        public static AstKeyword Concat(Position position)
+        {
+            return new AstKeyword(position, "CONCAT", "CONCAT");
+        }
+        
+        /// <summary>
+        /// keyword : CONCAT_WS
+        /// </summary>
+        public static AstKeyword ConcatWs(Position position)
+        {
+            return new AstKeyword(position, "CONCAT_WS", "CONCAT_WS");
+        }
+        
+        /// <summary>
+        /// keyword : CONCAT_NULL_YIELDS_NULL
+        /// </summary>
+        public static AstKeyword ConcatNullYieldsNull(Position position)
+        {
+            return new AstKeyword(position, "CONCAT_NULL_YIELDS_NULL", "CONCAT_NULL_YIELDS_NULL");
+        }
+        
+        /// <summary>
+        /// keyword : CONTENT
+        /// </summary>
+        public static AstKeyword Content(Position position)
+        {
+            return new AstKeyword(position, "CONTENT", "CONTENT");
+        }
+        
+        /// <summary>
+        /// keyword : CONTROL
+        /// </summary>
+        public static AstKeyword Control(Position position)
+        {
+            return new AstKeyword(position, "CONTROL", "CONTROL");
+        }
+        
+        /// <summary>
+        /// keyword : COOKIE
+        /// </summary>
+        public static AstKeyword Cookie(Position position)
+        {
+            return new AstKeyword(position, "COOKIE", "COOKIE");
+        }
+        
+        /// <summary>
+        /// keyword : COUNT
+        /// </summary>
+        public static AstKeyword Count(Position position)
+        {
+            return new AstKeyword(position, "COUNT", "COUNT");
+        }
+        
+        /// <summary>
+        /// keyword : COUNT_BIG
+        /// </summary>
+        public static AstKeyword CountBig(Position position)
+        {
+            return new AstKeyword(position, "COUNT_BIG", "COUNT_BIG");
+        }
+        
+        /// <summary>
+        /// keyword : COUNTER
+        /// </summary>
+        public static AstKeyword Counter(Position position)
+        {
+            return new AstKeyword(position, "COUNTER", "COUNTER");
+        }
+        
+        /// <summary>
+        /// keyword : CPU
+        /// </summary>
+        public static AstKeyword Cpu(Position position)
+        {
+            return new AstKeyword(position, "CPU", "CPU");
+        }
+        
+        /// <summary>
+        /// keyword : CREATE_NEW
+        /// </summary>
+        public static AstKeyword CreateNew(Position position)
+        {
+            return new AstKeyword(position, "CREATE_NEW", "CREATE_NEW");
+        }
+        
+        /// <summary>
+        /// keyword : CREATION_DISPOSITION
+        /// </summary>
+        public static AstKeyword CreationDisposition(Position position)
+        {
+            return new AstKeyword(position, "CREATION_DISPOSITION", "CREATION_DISPOSITION");
+        }
+        
+        /// <summary>
+        /// keyword : CREDENTIAL
+        /// </summary>
+        public static AstKeyword Credential(Position position)
+        {
+            return new AstKeyword(position, "CREDENTIAL", "CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// keyword : CRYPTOGRAPHIC
+        /// </summary>
+        public static AstKeyword Cryptographic(Position position)
+        {
+            return new AstKeyword(position, "CRYPTOGRAPHIC", "CRYPTOGRAPHIC");
+        }
+        
+        /// <summary>
+        /// keyword : CUME_DIST
+        /// </summary>
+        public static AstKeyword CumeDist(Position position)
+        {
+            return new AstKeyword(position, "CUME_DIST", "CUME_DIST");
+        }
+        
+        /// <summary>
+        /// keyword : CURSOR_CLOSE_ON_COMMIT
+        /// </summary>
+        public static AstKeyword CursorCloseOnCommit(Position position)
+        {
+            return new AstKeyword(position, "CURSOR_CLOSE_ON_COMMIT", "CURSOR_CLOSE_ON_COMMIT");
+        }
+        
+        /// <summary>
+        /// keyword : CURSOR_DEFAULT
+        /// </summary>
+        public static AstKeyword CursorDefault(Position position)
+        {
+            return new AstKeyword(position, "CURSOR_DEFAULT", "CURSOR_DEFAULT");
+        }
+        
+        /// <summary>
+        /// keyword : DATA
+        /// </summary>
+        public static AstKeyword Data(Position position)
+        {
+            return new AstKeyword(position, "DATA", "DATA");
+        }
+        
+        /// <summary>
+        /// keyword : DATABASE_PRINCIPAL_ID
+        /// </summary>
+        public static AstKeyword DatabasePrincipalId(Position position)
+        {
+            return new AstKeyword(position, "DATABASE_PRINCIPAL_ID", "DATABASE_PRINCIPAL_ID");
+        }
+        
+        /// <summary>
+        /// keyword : DATABASEPROPERTYEX
+        /// </summary>
+        public static AstKeyword Databasepropertyex(Position position)
+        {
+            return new AstKeyword(position, "DATABASEPROPERTYEX", "DATABASEPROPERTYEX");
+        }
+        
+        /// <summary>
+        /// keyword : DATE_CORRELATION_OPTIMIZATION
+        /// </summary>
+        public static AstKeyword DateCorrelationOptimization(Position position)
+        {
+            return new AstKeyword(position, "DATE_CORRELATION_OPTIMIZATION", "DATE_CORRELATION_OPTIMIZATION");
+        }
+        
+        /// <summary>
+        /// keyword : DATEADD
+        /// </summary>
+        public static AstKeyword Dateadd(Position position)
+        {
+            return new AstKeyword(position, "DATEADD", "DATEADD");
+        }
+        
+        /// <summary>
+        /// keyword : DATEDIFF
+        /// </summary>
+        public static AstKeyword Datediff(Position position)
+        {
+            return new AstKeyword(position, "DATEDIFF", "DATEDIFF");
+        }
+        
+        /// <summary>
+        /// keyword : DATENAME
+        /// </summary>
+        public static AstKeyword Datename(Position position)
+        {
+            return new AstKeyword(position, "DATENAME", "DATENAME");
+        }
+        
+        /// <summary>
+        /// keyword : DATEPART
+        /// </summary>
+        public static AstKeyword Datepart(Position position)
+        {
+            return new AstKeyword(position, "DATEPART", "DATEPART");
+        }
+        
+        /// <summary>
+        /// keyword : DAYS
+        /// </summary>
+        public static AstKeyword Days(Position position)
+        {
+            return new AstKeyword(position, "DAYS", "DAYS");
+        }
+        
+        /// <summary>
+        /// keyword : DB_CHAINING
+        /// </summary>
+        public static AstKeyword DbChaining(Position position)
+        {
+            return new AstKeyword(position, "DB_CHAINING", "DB_CHAINING");
+        }
+        
+        /// <summary>
+        /// keyword : DB_FAILOVER
+        /// </summary>
+        public static AstKeyword DbFailover(Position position)
+        {
+            return new AstKeyword(position, "DB_FAILOVER", "DB_FAILOVER");
+        }
+        
+        /// <summary>
+        /// keyword : DB_ID
+        /// </summary>
+        public static AstKeyword DbId(Position position)
+        {
+            return new AstKeyword(position, "DB_ID", "DB_ID");
+        }
+        
+        /// <summary>
+        /// keyword : DB_NAME
+        /// </summary>
+        public static AstKeyword DbName(Position position)
+        {
+            return new AstKeyword(position, "DB_NAME", "DB_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : DECRYPTION
+        /// </summary>
+        public static AstKeyword Decryption(Position position)
+        {
+            return new AstKeyword(position, "DECRYPTION", "DECRYPTION");
+        }
+        
+        /// <summary>
+        /// keyword : ["]  'DEFAULT'  ["]
+        /// </summary>
+        public static AstKeyword DefaultDoubleQuote(Position position)
+        {
+            return new AstKeyword(position, "DEFAULT_DOUBLE_QUOTE", "[\"]  \'DEFAULT\'  [\"]");
+        }
+        
+        /// <summary>
+        /// keyword : DEFAULT_FULLTEXT_LANGUAGE
+        /// </summary>
+        public static AstKeyword DefaultFulltextLanguage(Position position)
+        {
+            return new AstKeyword(position, "DEFAULT_FULLTEXT_LANGUAGE", "DEFAULT_FULLTEXT_LANGUAGE");
+        }
+        
+        /// <summary>
+        /// keyword : DEFAULT_LANGUAGE
+        /// </summary>
+        public static AstKeyword DefaultLanguage(Position position)
+        {
+            return new AstKeyword(position, "DEFAULT_LANGUAGE", "DEFAULT_LANGUAGE");
+        }
+        
+        /// <summary>
+        /// keyword : DEFINITION
+        /// </summary>
+        public static AstKeyword Definition(Position position)
+        {
+            return new AstKeyword(position, "DEFINITION", "DEFINITION");
+        }
+        
+        /// <summary>
+        /// keyword : DELAY
+        /// </summary>
+        public static AstKeyword Delay(Position position)
+        {
+            return new AstKeyword(position, "DELAY", "DELAY");
+        }
+        
+        /// <summary>
+        /// keyword : DELAYED_DURABILITY
+        /// </summary>
+        public static AstKeyword DelayedDurability(Position position)
+        {
+            return new AstKeyword(position, "DELAYED_DURABILITY", "DELAYED_DURABILITY");
+        }
+        
+        /// <summary>
+        /// keyword : DELETED
+        /// </summary>
+        public static AstKeyword Deleted(Position position)
+        {
+            return new AstKeyword(position, "DELETED", "DELETED");
+        }
+        
+        /// <summary>
+        /// keyword : DENSE_RANK
+        /// </summary>
+        public static AstKeyword DenseRank(Position position)
+        {
+            return new AstKeyword(position, "DENSE_RANK", "DENSE_RANK");
+        }
+        
+        /// <summary>
+        /// keyword : DEPENDENTS
+        /// </summary>
+        public static AstKeyword Dependents(Position position)
+        {
+            return new AstKeyword(position, "DEPENDENTS", "DEPENDENTS");
+        }
+        
+        /// <summary>
+        /// keyword : DES
+        /// </summary>
+        public static AstKeyword Des(Position position)
+        {
+            return new AstKeyword(position, "DES", "DES");
+        }
+        
+        /// <summary>
+        /// keyword : DESCRIPTION
+        /// </summary>
+        public static AstKeyword Description(Position position)
+        {
+            return new AstKeyword(position, "DESCRIPTION", "DESCRIPTION");
+        }
+        
+        /// <summary>
+        /// keyword : DESX
+        /// </summary>
+        public static AstKeyword Desx(Position position)
+        {
+            return new AstKeyword(position, "DESX", "DESX");
+        }
+        
+        /// <summary>
+        /// keyword : DETERMINISTIC
+        /// </summary>
+        public static AstKeyword Deterministic(Position position)
+        {
+            return new AstKeyword(position, "DETERMINISTIC", "DETERMINISTIC");
+        }
+        
+        /// <summary>
+        /// keyword : DHCP
+        /// </summary>
+        public static AstKeyword Dhcp(Position position)
+        {
+            return new AstKeyword(position, "DHCP", "DHCP");
+        }
+        
+        /// <summary>
+        /// keyword : DIALOG
+        /// </summary>
+        public static AstKeyword Dialog(Position position)
+        {
+            return new AstKeyword(position, "DIALOG", "DIALOG");
+        }
+        
+        /// <summary>
+        /// keyword : DIFFERENCE
+        /// </summary>
+        public static AstKeyword Difference(Position position)
+        {
+            return new AstKeyword(position, "DIFFERENCE", "DIFFERENCE");
+        }
+        
+        /// <summary>
+        /// keyword : DIRECTORY_NAME
+        /// </summary>
+        public static AstKeyword DirectoryName(Position position)
+        {
+            return new AstKeyword(position, "DIRECTORY_NAME", "DIRECTORY_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : DISABLE
+        /// </summary>
+        public static AstKeyword Disable(Position position)
+        {
+            return new AstKeyword(position, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// keyword : DISABLE_BROKER
+        /// </summary>
+        public static AstKeyword DisableBroker(Position position)
+        {
+            return new AstKeyword(position, "DISABLE_BROKER", "DISABLE_BROKER");
+        }
+        
+        /// <summary>
+        /// keyword : DISABLED
+        /// </summary>
+        public static AstKeyword Disabled(Position position)
+        {
+            return new AstKeyword(position, "DISABLED", "DISABLED");
+        }
+        
+        /// <summary>
+        /// keyword : DOCUMENT
+        /// </summary>
+        public static AstKeyword Document(Position position)
+        {
+            return new AstKeyword(position, "DOCUMENT", "DOCUMENT");
+        }
+        
+        /// <summary>
+        /// keyword : DROP_EXISTING
+        /// </summary>
+        public static AstKeyword DropExisting(Position position)
+        {
+            return new AstKeyword(position, "DROP_EXISTING", "DROP_EXISTING");
+        }
+        
+        /// <summary>
+        /// keyword : DYNAMIC
+        /// </summary>
+        public static AstKeyword Dynamic(Position position)
+        {
+            return new AstKeyword(position, "DYNAMIC", "DYNAMIC");
+        }
+        
+        /// <summary>
+        /// keyword : ELEMENTS
+        /// </summary>
+        public static AstKeyword Elements(Position position)
+        {
+            return new AstKeyword(position, "ELEMENTS", "ELEMENTS");
+        }
+        
+        /// <summary>
+        /// keyword : EMERGENCY
+        /// </summary>
+        public static AstKeyword Emergency(Position position)
+        {
+            return new AstKeyword(position, "EMERGENCY", "EMERGENCY");
+        }
+        
+        /// <summary>
+        /// keyword : EMPTY
+        /// </summary>
+        public static AstKeyword Empty(Position position)
+        {
+            return new AstKeyword(position, "EMPTY", "EMPTY");
+        }
+        
+        /// <summary>
+        /// keyword : ENABLE
+        /// </summary>
+        public static AstKeyword Enable(Position position)
+        {
+            return new AstKeyword(position, "ENABLE", "ENABLE");
+        }
+        
+        /// <summary>
+        /// keyword : ENABLE_BROKER
+        /// </summary>
+        public static AstKeyword EnableBroker(Position position)
+        {
+            return new AstKeyword(position, "ENABLE_BROKER", "ENABLE_BROKER");
+        }
+        
+        /// <summary>
+        /// keyword : ENCRYPTED
+        /// </summary>
+        public static AstKeyword Encrypted(Position position)
+        {
+            return new AstKeyword(position, "ENCRYPTED", "ENCRYPTED");
+        }
+        
+        /// <summary>
+        /// keyword : ENCRYPTED_VALUE
+        /// </summary>
+        public static AstKeyword EncryptedValue(Position position)
+        {
+            return new AstKeyword(position, "ENCRYPTED_VALUE", "ENCRYPTED_VALUE");
+        }
+        
+        /// <summary>
+        /// keyword : ENCRYPTION
+        /// </summary>
+        public static AstKeyword Encryption(Position position)
+        {
+            return new AstKeyword(position, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// keyword : ENCRYPTION_TYPE
+        /// </summary>
+        public static AstKeyword EncryptionType(Position position)
+        {
+            return new AstKeyword(position, "ENCRYPTION_TYPE", "ENCRYPTION_TYPE");
+        }
+        
+        /// <summary>
+        /// keyword : ENDPOINT_URL
+        /// </summary>
+        public static AstKeyword EndpointUrl(Position position)
+        {
+            return new AstKeyword(position, "ENDPOINT_URL", "ENDPOINT_URL");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_BROKER_CONVERSATIONS
+        /// </summary>
+        public static AstKeyword ErrorBrokerConversations(Position position)
+        {
+            return new AstKeyword(position, "ERROR_BROKER_CONVERSATIONS", "ERROR_BROKER_CONVERSATIONS");
+        }
+        
+        /// <summary>
+        /// keyword : EXCLUSIVE
+        /// </summary>
+        public static AstKeyword Exclusive(Position position)
+        {
+            return new AstKeyword(position, "EXCLUSIVE", "EXCLUSIVE");
+        }
+        
+        /// <summary>
+        /// keyword : EXECUTABLE
+        /// </summary>
+        public static AstKeyword Executable(Position position)
+        {
+            return new AstKeyword(position, "EXECUTABLE", "EXECUTABLE");
+        }
+        
+        /// <summary>
+        /// keyword : EXIST
+        /// </summary>
+        public static AstKeyword Exist(Position position)
+        {
+            return new AstKeyword(position, "EXIST", "EXIST");
+        }
+        
+        /// <summary>
+        /// keyword : EXPAND
+        /// </summary>
+        public static AstKeyword Expand(Position position)
+        {
+            return new AstKeyword(position, "EXPAND", "EXPAND");
+        }
+        
+        /// <summary>
+        /// keyword : EXPIRY_DATE
+        /// </summary>
+        public static AstKeyword ExpiryDate(Position position)
+        {
+            return new AstKeyword(position, "EXPIRY_DATE", "EXPIRY_DATE");
+        }
+        
+        /// <summary>
+        /// keyword : EXPLICIT
+        /// </summary>
+        public static AstKeyword Explicit(Position position)
+        {
+            return new AstKeyword(position, "EXPLICIT", "EXPLICIT");
+        }
+        
+        /// <summary>
+        /// keyword : FAIL_OPERATION
+        /// </summary>
+        public static AstKeyword FailOperation(Position position)
+        {
+            return new AstKeyword(position, "FAIL_OPERATION", "FAIL_OPERATION");
+        }
+        
+        /// <summary>
+        /// keyword : FAILOVER_MODE
+        /// </summary>
+        public static AstKeyword FailoverMode(Position position)
+        {
+            return new AstKeyword(position, "FAILOVER_MODE", "FAILOVER_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : FAILURE
+        /// </summary>
+        public static AstKeyword Failure(Position position)
+        {
+            return new AstKeyword(position, "FAILURE", "FAILURE");
+        }
+        
+        /// <summary>
+        /// keyword : FAILURE_CONDITION_LEVEL
+        /// </summary>
+        public static AstKeyword FailureConditionLevel(Position position)
+        {
+            return new AstKeyword(position, "FAILURE_CONDITION_LEVEL", "FAILURE_CONDITION_LEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : FAST
+        /// </summary>
+        public static AstKeyword Fast(Position position)
+        {
+            return new AstKeyword(position, "FAST", "FAST");
+        }
+        
+        /// <summary>
+        /// keyword : FAST_FORWARD
+        /// </summary>
+        public static AstKeyword FastForward(Position position)
+        {
+            return new AstKeyword(position, "FAST_FORWARD", "FAST_FORWARD");
+        }
+        
+        /// <summary>
+        /// keyword : FILE_ID
+        /// </summary>
+        public static AstKeyword FileId(Position position)
+        {
+            return new AstKeyword(position, "FILE_ID", "FILE_ID");
+        }
+        
+        /// <summary>
+        /// keyword : FILE_IDEX
+        /// </summary>
+        public static AstKeyword FileIdex(Position position)
+        {
+            return new AstKeyword(position, "FILE_IDEX", "FILE_IDEX");
+        }
+        
+        /// <summary>
+        /// keyword : FILE_NAME
+        /// </summary>
+        public static AstKeyword FileName(Position position)
+        {
+            return new AstKeyword(position, "FILE_NAME", "FILE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : FILEGROUP
+        /// </summary>
+        public static AstKeyword Filegroup(Position position)
+        {
+            return new AstKeyword(position, "FILEGROUP", "FILEGROUP");
+        }
+        
+        /// <summary>
+        /// keyword : FILEGROUP_ID
+        /// </summary>
+        public static AstKeyword FilegroupId(Position position)
+        {
+            return new AstKeyword(position, "FILEGROUP_ID", "FILEGROUP_ID");
+        }
+        
+        /// <summary>
+        /// keyword : FILEGROUP_NAME
+        /// </summary>
+        public static AstKeyword FilegroupName(Position position)
+        {
+            return new AstKeyword(position, "FILEGROUP_NAME", "FILEGROUP_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : FILEGROUPPROPERTY
+        /// </summary>
+        public static AstKeyword Filegroupproperty(Position position)
+        {
+            return new AstKeyword(position, "FILEGROUPPROPERTY", "FILEGROUPPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : FILEGROWTH
+        /// </summary>
+        public static AstKeyword Filegrowth(Position position)
+        {
+            return new AstKeyword(position, "FILEGROWTH", "FILEGROWTH");
+        }
+        
+        /// <summary>
+        /// keyword : FILENAME
+        /// </summary>
+        public static AstKeyword Filename(Position position)
+        {
+            return new AstKeyword(position, "FILENAME", "FILENAME");
+        }
+        
+        /// <summary>
+        /// keyword : FILEPATH
+        /// </summary>
+        public static AstKeyword Filepath(Position position)
+        {
+            return new AstKeyword(position, "FILEPATH", "FILEPATH");
+        }
+        
+        /// <summary>
+        /// keyword : FILEPROPERTY
+        /// </summary>
+        public static AstKeyword Fileproperty(Position position)
+        {
+            return new AstKeyword(position, "FILEPROPERTY", "FILEPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : FILEPROPERTYEX
+        /// </summary>
+        public static AstKeyword Filepropertyex(Position position)
+        {
+            return new AstKeyword(position, "FILEPROPERTYEX", "FILEPROPERTYEX");
+        }
+        
+        /// <summary>
+        /// keyword : FILESTREAM
+        /// </summary>
+        public static AstKeyword Filestream(Position position)
+        {
+            return new AstKeyword(position, "FILESTREAM", "FILESTREAM");
+        }
+        
+        /// <summary>
+        /// keyword : FILTER
+        /// </summary>
+        public static AstKeyword Filter(Position position)
+        {
+            return new AstKeyword(position, "FILTER", "FILTER");
+        }
+        
+        /// <summary>
+        /// keyword : FIRST
+        /// </summary>
+        public static AstKeyword First(Position position)
+        {
+            return new AstKeyword(position, "FIRST", "FIRST");
+        }
+        
+        /// <summary>
+        /// keyword : FIRST_VALUE
+        /// </summary>
+        public static AstKeyword FirstValue(Position position)
+        {
+            return new AstKeyword(position, "FIRST_VALUE", "FIRST_VALUE");
+        }
+        
+        /// <summary>
+        /// keyword : FMTONLY
+        /// </summary>
+        public static AstKeyword Fmtonly(Position position)
+        {
+            return new AstKeyword(position, "FMTONLY", "FMTONLY");
+        }
+        
+        /// <summary>
+        /// keyword : FOLLOWING
+        /// </summary>
+        public static AstKeyword Following(Position position)
+        {
+            return new AstKeyword(position, "FOLLOWING", "FOLLOWING");
+        }
+        
+        /// <summary>
+        /// keyword : FORCE
+        /// </summary>
+        public static AstKeyword Force(Position position)
+        {
+            return new AstKeyword(position, "FORCE", "FORCE");
+        }
+        
+        /// <summary>
+        /// keyword : FORCE_FAILOVER_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstKeyword ForceFailoverAllowDataLoss(Position position)
+        {
+            return new AstKeyword(position, "FORCE_FAILOVER_ALLOW_DATA_LOSS", "FORCE_FAILOVER_ALLOW_DATA_LOSS");
+        }
+        
+        /// <summary>
+        /// keyword : FORCED
+        /// </summary>
+        public static AstKeyword Forced(Position position)
+        {
+            return new AstKeyword(position, "FORCED", "FORCED");
+        }
+        
+        /// <summary>
+        /// keyword : FORCEPLAN
+        /// </summary>
+        public static AstKeyword Forceplan(Position position)
+        {
+            return new AstKeyword(position, "FORCEPLAN", "FORCEPLAN");
+        }
+        
+        /// <summary>
+        /// keyword : FORCESCAN
+        /// </summary>
+        public static AstKeyword Forcescan(Position position)
+        {
+            return new AstKeyword(position, "FORCESCAN", "FORCESCAN");
+        }
+        
+        /// <summary>
+        /// keyword : FORMAT
+        /// </summary>
+        public static AstKeyword Format(Position position)
+        {
+            return new AstKeyword(position, "FORMAT", "FORMAT");
+        }
+        
+        /// <summary>
+        /// keyword : FORWARD_ONLY
+        /// </summary>
+        public static AstKeyword ForwardOnly(Position position)
+        {
+            return new AstKeyword(position, "FORWARD_ONLY", "FORWARD_ONLY");
+        }
+        
+        /// <summary>
+        /// keyword : FULLSCAN
+        /// </summary>
+        public static AstKeyword Fullscan(Position position)
+        {
+            return new AstKeyword(position, "FULLSCAN", "FULLSCAN");
+        }
+        
+        /// <summary>
+        /// keyword : FULLTEXT
+        /// </summary>
+        public static AstKeyword Fulltext(Position position)
+        {
+            return new AstKeyword(position, "FULLTEXT", "FULLTEXT");
+        }
+        
+        /// <summary>
+        /// keyword : FULLTEXTCATALOGPROPERTY
+        /// </summary>
+        public static AstKeyword Fulltextcatalogproperty(Position position)
+        {
+            return new AstKeyword(position, "FULLTEXTCATALOGPROPERTY", "FULLTEXTCATALOGPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : FULLTEXTSERVICEPROPERTY
+        /// </summary>
+        public static AstKeyword Fulltextserviceproperty(Position position)
+        {
+            return new AstKeyword(position, "FULLTEXTSERVICEPROPERTY", "FULLTEXTSERVICEPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : GB
+        /// </summary>
+        public static AstKeyword Gb(Position position)
+        {
+            return new AstKeyword(position, "GB", "GB");
+        }
+        
+        /// <summary>
+        /// keyword : GENERATED
+        /// </summary>
+        public static AstKeyword Generated(Position position)
+        {
+            return new AstKeyword(position, "GENERATED", "GENERATED");
+        }
+        
+        /// <summary>
+        /// keyword : GETDATE
+        /// </summary>
+        public static AstKeyword Getdate(Position position)
+        {
+            return new AstKeyword(position, "GETDATE", "GETDATE");
+        }
+        
+        /// <summary>
+        /// keyword : GETUTCDATE
+        /// </summary>
+        public static AstKeyword Getutcdate(Position position)
+        {
+            return new AstKeyword(position, "GETUTCDATE", "GETUTCDATE");
+        }
+        
+        /// <summary>
+        /// keyword : GLOBAL
+        /// </summary>
+        public static AstKeyword Global(Position position)
+        {
+            return new AstKeyword(position, "GLOBAL", "GLOBAL");
+        }
+        
+        /// <summary>
+        /// keyword : GO
+        /// </summary>
+        public static AstKeyword Go(Position position)
+        {
+            return new AstKeyword(position, "GO", "GO");
+        }
+        
+        /// <summary>
+        /// keyword : GROUP_MAX_REQUESTS
+        /// </summary>
+        public static AstKeyword GroupMaxRequests(Position position)
+        {
+            return new AstKeyword(position, "GROUP_MAX_REQUESTS", "GROUP_MAX_REQUESTS");
+        }
+        
+        /// <summary>
+        /// keyword : GROUPING
+        /// </summary>
+        public static AstKeyword Grouping(Position position)
+        {
+            return new AstKeyword(position, "GROUPING", "GROUPING");
+        }
+        
+        /// <summary>
+        /// keyword : GROUPING_ID
+        /// </summary>
+        public static AstKeyword GroupingId(Position position)
+        {
+            return new AstKeyword(position, "GROUPING_ID", "GROUPING_ID");
+        }
+        
+        /// <summary>
+        /// keyword : HADR
+        /// </summary>
+        public static AstKeyword Hadr(Position position)
+        {
+            return new AstKeyword(position, "HADR", "HADR");
+        }
+        
+        /// <summary>
+        /// keyword : HASH
+        /// </summary>
+        public static AstKeyword Hash(Position position)
+        {
+            return new AstKeyword(position, "HASH", "HASH");
+        }
+        
+        /// <summary>
+        /// keyword : HEALTH_CHECK_TIMEOUT
+        /// </summary>
+        public static AstKeyword HealthCheckTimeout(Position position)
+        {
+            return new AstKeyword(position, "HEALTH_CHECK_TIMEOUT", "HEALTH_CHECK_TIMEOUT");
+        }
+        
+        /// <summary>
+        /// keyword : HIDDEN
+        /// </summary>
+        public static AstKeyword HiddenKeyword(Position position)
+        {
+            return new AstKeyword(position, "HIDDEN_KEYWORD", "HIDDEN");
+        }
+        
+        /// <summary>
+        /// keyword : HIGH
+        /// </summary>
+        public static AstKeyword High(Position position)
+        {
+            return new AstKeyword(position, "HIGH", "HIGH");
+        }
+        
+        /// <summary>
+        /// keyword : HONOR_BROKER_PRIORITY
+        /// </summary>
+        public static AstKeyword HonorBrokerPriority(Position position)
+        {
+            return new AstKeyword(position, "HONOR_BROKER_PRIORITY", "HONOR_BROKER_PRIORITY");
+        }
+        
+        /// <summary>
+        /// keyword : HOURS
+        /// </summary>
+        public static AstKeyword Hours(Position position)
+        {
+            return new AstKeyword(position, "HOURS", "HOURS");
+        }
+        
+        /// <summary>
+        /// keyword : IDENTITY_VALUE
+        /// </summary>
+        public static AstKeyword IdentityValue(Position position)
+        {
+            return new AstKeyword(position, "IDENTITY_VALUE", "IDENTITY_VALUE");
+        }
+        
+        /// <summary>
+        /// keyword : IGNORE_CONSTRAINTS
+        /// </summary>
+        public static AstKeyword IgnoreConstraints(Position position)
+        {
+            return new AstKeyword(position, "IGNORE_CONSTRAINTS", "IGNORE_CONSTRAINTS");
+        }
+        
+        /// <summary>
+        /// keyword : IGNORE_DUP_KEY
+        /// </summary>
+        public static AstKeyword IgnoreDupKey(Position position)
+        {
+            return new AstKeyword(position, "IGNORE_DUP_KEY", "IGNORE_DUP_KEY");
+        }
+        
+        /// <summary>
+        /// keyword : IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// </summary>
+        public static AstKeyword IgnoreNonclusteredColumnstoreIndex(Position position)
+        {
+            return new AstKeyword(position, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX", "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+        }
+        
+        /// <summary>
+        /// keyword : IGNORE_TRIGGERS
+        /// </summary>
+        public static AstKeyword IgnoreTriggers(Position position)
+        {
+            return new AstKeyword(position, "IGNORE_TRIGGERS", "IGNORE_TRIGGERS");
+        }
+        
+        /// <summary>
+        /// keyword : IMMEDIATE
+        /// </summary>
+        public static AstKeyword Immediate(Position position)
+        {
+            return new AstKeyword(position, "IMMEDIATE", "IMMEDIATE");
+        }
+        
+        /// <summary>
+        /// keyword : IMPERSONATE
+        /// </summary>
+        public static AstKeyword Impersonate(Position position)
+        {
+            return new AstKeyword(position, "IMPERSONATE", "IMPERSONATE");
+        }
+        
+        /// <summary>
+        /// keyword : IMPLICIT_TRANSACTIONS
+        /// </summary>
+        public static AstKeyword ImplicitTransactions(Position position)
+        {
+            return new AstKeyword(position, "IMPLICIT_TRANSACTIONS", "IMPLICIT_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// keyword : IMPORTANCE
+        /// </summary>
+        public static AstKeyword Importance(Position position)
+        {
+            return new AstKeyword(position, "IMPORTANCE", "IMPORTANCE");
+        }
+        
+        /// <summary>
+        /// keyword : INCLUDE_NULL_VALUES
+        /// </summary>
+        public static AstKeyword IncludeNullValues(Position position)
+        {
+            return new AstKeyword(position, "INCLUDE_NULL_VALUES", "INCLUDE_NULL_VALUES");
+        }
+        
+        /// <summary>
+        /// keyword : INCREMENTAL
+        /// </summary>
+        public static AstKeyword Incremental(Position position)
+        {
+            return new AstKeyword(position, "INCREMENTAL", "INCREMENTAL");
+        }
+        
+        /// <summary>
+        /// keyword : INDEX_COL
+        /// </summary>
+        public static AstKeyword IndexCol(Position position)
+        {
+            return new AstKeyword(position, "INDEX_COL", "INDEX_COL");
+        }
+        
+        /// <summary>
+        /// keyword : INDEXKEY_PROPERTY
+        /// </summary>
+        public static AstKeyword IndexkeyProperty(Position position)
+        {
+            return new AstKeyword(position, "INDEXKEY_PROPERTY", "INDEXKEY_PROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : INDEXPROPERTY
+        /// </summary>
+        public static AstKeyword Indexproperty(Position position)
+        {
+            return new AstKeyword(position, "INDEXPROPERTY", "INDEXPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : INITIATOR
+        /// </summary>
+        public static AstKeyword Initiator(Position position)
+        {
+            return new AstKeyword(position, "INITIATOR", "INITIATOR");
+        }
+        
+        /// <summary>
+        /// keyword : INPUT
+        /// </summary>
+        public static AstKeyword Input(Position position)
+        {
+            return new AstKeyword(position, "INPUT", "INPUT");
+        }
+        
+        /// <summary>
+        /// keyword : INSENSITIVE
+        /// </summary>
+        public static AstKeyword Insensitive(Position position)
+        {
+            return new AstKeyword(position, "INSENSITIVE", "INSENSITIVE");
+        }
+        
+        /// <summary>
+        /// keyword : INSERTED
+        /// </summary>
+        public static AstKeyword Inserted(Position position)
+        {
+            return new AstKeyword(position, "INSERTED", "INSERTED");
+        }
+        
+        /// <summary>
+        /// keyword : INT
+        /// </summary>
+        public static AstKeyword Int(Position position)
+        {
+            return new AstKeyword(position, "INT", "INT");
+        }
+        
+        /// <summary>
+        /// keyword : IP
+        /// </summary>
+        public static AstKeyword Ip(Position position)
+        {
+            return new AstKeyword(position, "IP", "IP");
+        }
+        
+        /// <summary>
+        /// keyword : ISOLATION
+        /// </summary>
+        public static AstKeyword Isolation(Position position)
+        {
+            return new AstKeyword(position, "ISOLATION", "ISOLATION");
+        }
+        
+        /// <summary>
+        /// keyword : JOB
+        /// </summary>
+        public static AstKeyword Job(Position position)
+        {
+            return new AstKeyword(position, "JOB", "JOB");
+        }
+        
+        /// <summary>
+        /// keyword : JSON
+        /// </summary>
+        public static AstKeyword Json(Position position)
+        {
+            return new AstKeyword(position, "JSON", "JSON");
+        }
+        
+        /// <summary>
+        /// keyword : KB
+        /// </summary>
+        public static AstKeyword Kb(Position position)
+        {
+            return new AstKeyword(position, "KB", "KB");
+        }
+        
+        /// <summary>
+        /// keyword : KEEP
+        /// </summary>
+        public static AstKeyword Keep(Position position)
+        {
+            return new AstKeyword(position, "KEEP", "KEEP");
+        }
+        
+        /// <summary>
+        /// keyword : KEEPDEFAULTS
+        /// </summary>
+        public static AstKeyword Keepdefaults(Position position)
+        {
+            return new AstKeyword(position, "KEEPDEFAULTS", "KEEPDEFAULTS");
+        }
+        
+        /// <summary>
+        /// keyword : KEEPFIXED
+        /// </summary>
+        public static AstKeyword Keepfixed(Position position)
+        {
+            return new AstKeyword(position, "KEEPFIXED", "KEEPFIXED");
+        }
+        
+        /// <summary>
+        /// keyword : KEEPIDENTITY
+        /// </summary>
+        public static AstKeyword Keepidentity(Position position)
+        {
+            return new AstKeyword(position, "KEEPIDENTITY", "KEEPIDENTITY");
+        }
+        
+        /// <summary>
+        /// keyword : KEY_SOURCE
+        /// </summary>
+        public static AstKeyword KeySource(Position position)
+        {
+            return new AstKeyword(position, "KEY_SOURCE", "KEY_SOURCE");
+        }
+        
+        /// <summary>
+        /// keyword : KEYS
+        /// </summary>
+        public static AstKeyword Keys(Position position)
+        {
+            return new AstKeyword(position, "KEYS", "KEYS");
+        }
+        
+        /// <summary>
+        /// keyword : KEYSET
+        /// </summary>
+        public static AstKeyword Keyset(Position position)
+        {
+            return new AstKeyword(position, "KEYSET", "KEYSET");
+        }
+        
+        /// <summary>
+        /// keyword : LAG
+        /// </summary>
+        public static AstKeyword Lag(Position position)
+        {
+            return new AstKeyword(position, "LAG", "LAG");
+        }
+        
+        /// <summary>
+        /// keyword : LAST
+        /// </summary>
+        public static AstKeyword Last(Position position)
+        {
+            return new AstKeyword(position, "LAST", "LAST");
+        }
+        
+        /// <summary>
+        /// keyword : LAST_VALUE
+        /// </summary>
+        public static AstKeyword LastValue(Position position)
+        {
+            return new AstKeyword(position, "LAST_VALUE", "LAST_VALUE");
+        }
+        
+        /// <summary>
+        /// keyword : LEAD
+        /// </summary>
+        public static AstKeyword Lead(Position position)
+        {
+            return new AstKeyword(position, "LEAD", "LEAD");
+        }
+        
+        /// <summary>
+        /// keyword : LEN
+        /// </summary>
+        public static AstKeyword Len(Position position)
+        {
+            return new AstKeyword(position, "LEN", "LEN");
+        }
+        
+        /// <summary>
+        /// keyword : LEVEL
+        /// </summary>
+        public static AstKeyword Level(Position position)
+        {
+            return new AstKeyword(position, "LEVEL", "LEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : LIST
+        /// </summary>
+        public static AstKeyword List(Position position)
+        {
+            return new AstKeyword(position, "LIST", "LIST");
+        }
+        
+        /// <summary>
+        /// keyword : LISTENER
+        /// </summary>
+        public static AstKeyword Listener(Position position)
+        {
+            return new AstKeyword(position, "LISTENER", "LISTENER");
+        }
+        
+        /// <summary>
+        /// keyword : LISTENER_URL
+        /// </summary>
+        public static AstKeyword ListenerUrl(Position position)
+        {
+            return new AstKeyword(position, "LISTENER_URL", "LISTENER_URL");
+        }
+        
+        /// <summary>
+        /// keyword : LOB_COMPACTION
+        /// </summary>
+        public static AstKeyword LobCompaction(Position position)
+        {
+            return new AstKeyword(position, "LOB_COMPACTION", "LOB_COMPACTION");
+        }
+        
+        /// <summary>
+        /// keyword : LOCAL
+        /// </summary>
+        public static AstKeyword Local(Position position)
+        {
+            return new AstKeyword(position, "LOCAL", "LOCAL");
+        }
+        
+        /// <summary>
+        /// keyword : LOCATION
+        /// </summary>
+        public static AstKeyword Location(Position position)
+        {
+            return new AstKeyword(position, "LOCATION", "LOCATION");
+        }
+        
+        /// <summary>
+        /// keyword : LOCK
+        /// </summary>
+        public static AstKeyword Lock(Position position)
+        {
+            return new AstKeyword(position, "LOCK", "LOCK");
+        }
+        
+        /// <summary>
+        /// keyword : LOCK_ESCALATION
+        /// </summary>
+        public static AstKeyword LockEscalation(Position position)
+        {
+            return new AstKeyword(position, "LOCK_ESCALATION", "LOCK_ESCALATION");
+        }
+        
+        /// <summary>
+        /// keyword : LOGIN
+        /// </summary>
+        public static AstKeyword Login(Position position)
+        {
+            return new AstKeyword(position, "LOGIN", "LOGIN");
+        }
+        
+        /// <summary>
+        /// keyword : LOOP
+        /// </summary>
+        public static AstKeyword Loop(Position position)
+        {
+            return new AstKeyword(position, "LOOP", "LOOP");
+        }
+        
+        /// <summary>
+        /// keyword : LOW
+        /// </summary>
+        public static AstKeyword Low(Position position)
+        {
+            return new AstKeyword(position, "LOW", "LOW");
+        }
+        
+        /// <summary>
+        /// keyword : LOWER
+        /// </summary>
+        public static AstKeyword Lower(Position position)
+        {
+            return new AstKeyword(position, "LOWER", "LOWER");
+        }
+        
+        /// <summary>
+        /// keyword : LTRIM
+        /// </summary>
+        public static AstKeyword Ltrim(Position position)
+        {
+            return new AstKeyword(position, "LTRIM", "LTRIM");
+        }
+        
+        /// <summary>
+        /// keyword : MANUAL
+        /// </summary>
+        public static AstKeyword Manual(Position position)
+        {
+            return new AstKeyword(position, "MANUAL", "MANUAL");
+        }
+        
+        /// <summary>
+        /// keyword : MARK
+        /// </summary>
+        public static AstKeyword Mark(Position position)
+        {
+            return new AstKeyword(position, "MARK", "MARK");
+        }
+        
+        /// <summary>
+        /// keyword : MASKED
+        /// </summary>
+        public static AstKeyword Masked(Position position)
+        {
+            return new AstKeyword(position, "MASKED", "MASKED");
+        }
+        
+        /// <summary>
+        /// keyword : MATERIALIZED
+        /// </summary>
+        public static AstKeyword Materialized(Position position)
+        {
+            return new AstKeyword(position, "MATERIALIZED", "MATERIALIZED");
+        }
+        
+        /// <summary>
+        /// keyword : MAX
+        /// </summary>
+        public static AstKeyword Max(Position position)
+        {
+            return new AstKeyword(position, "MAX", "MAX");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_CPU_PERCENT
+        /// </summary>
+        public static AstKeyword MaxCpuPercent(Position position)
+        {
+            return new AstKeyword(position, "MAX_CPU_PERCENT", "MAX_CPU_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_DOP
+        /// </summary>
+        public static AstKeyword MaxDop(Position position)
+        {
+            return new AstKeyword(position, "MAX_DOP", "MAX_DOP");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_FILES
+        /// </summary>
+        public static AstKeyword MaxFiles(Position position)
+        {
+            return new AstKeyword(position, "MAX_FILES", "MAX_FILES");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_IOPS_PER_VOLUME
+        /// </summary>
+        public static AstKeyword MaxIopsPerVolume(Position position)
+        {
+            return new AstKeyword(position, "MAX_IOPS_PER_VOLUME", "MAX_IOPS_PER_VOLUME");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_MEMORY_PERCENT
+        /// </summary>
+        public static AstKeyword MaxMemoryPercent(Position position)
+        {
+            return new AstKeyword(position, "MAX_MEMORY_PERCENT", "MAX_MEMORY_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_PROCESSES
+        /// </summary>
+        public static AstKeyword MaxProcesses(Position position)
+        {
+            return new AstKeyword(position, "MAX_PROCESSES", "MAX_PROCESSES");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_QUEUE_READERS
+        /// </summary>
+        public static AstKeyword MaxQueueReaders(Position position)
+        {
+            return new AstKeyword(position, "MAX_QUEUE_READERS", "MAX_QUEUE_READERS");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_ROLLOVER_FILES
+        /// </summary>
+        public static AstKeyword MaxRolloverFiles(Position position)
+        {
+            return new AstKeyword(position, "MAX_ROLLOVER_FILES", "MAX_ROLLOVER_FILES");
+        }
+        
+        /// <summary>
+        /// keyword : MAXDOP
+        /// </summary>
+        public static AstKeyword Maxdop(Position position)
+        {
+            return new AstKeyword(position, "MAXDOP", "MAXDOP");
+        }
+        
+        /// <summary>
+        /// keyword : MAXRECURSION
+        /// </summary>
+        public static AstKeyword Maxrecursion(Position position)
+        {
+            return new AstKeyword(position, "MAXRECURSION", "MAXRECURSION");
+        }
+        
+        /// <summary>
+        /// keyword : MAXSIZE
+        /// </summary>
+        public static AstKeyword Maxsize(Position position)
+        {
+            return new AstKeyword(position, "MAXSIZE", "MAXSIZE");
+        }
+        
+        /// <summary>
+        /// keyword : MB
+        /// </summary>
+        public static AstKeyword Mb(Position position)
+        {
+            return new AstKeyword(position, "MB", "MB");
+        }
+        
+        /// <summary>
+        /// keyword : MEDIUM
+        /// </summary>
+        public static AstKeyword Medium(Position position)
+        {
+            return new AstKeyword(position, "MEDIUM", "MEDIUM");
+        }
+        
+        /// <summary>
+        /// keyword : MEMORY_OPTIMIZED_DATA
+        /// </summary>
+        public static AstKeyword MemoryOptimizedData(Position position)
+        {
+            return new AstKeyword(position, "MEMORY_OPTIMIZED_DATA", "MEMORY_OPTIMIZED_DATA");
+        }
+        
+        /// <summary>
+        /// keyword : MESSAGE
+        /// </summary>
+        public static AstKeyword Message(Position position)
+        {
+            return new AstKeyword(position, "MESSAGE", "MESSAGE");
+        }
+        
+        /// <summary>
+        /// keyword : MIN
+        /// </summary>
+        public static AstKeyword Min(Position position)
+        {
+            return new AstKeyword(position, "MIN", "MIN");
+        }
+        
+        /// <summary>
+        /// keyword : MIN_ACTIVE_ROWVERSION
+        /// </summary>
+        public static AstKeyword MinActiveRowversion(Position position)
+        {
+            return new AstKeyword(position, "MIN_ACTIVE_ROWVERSION", "MIN_ACTIVE_ROWVERSION");
+        }
+        
+        /// <summary>
+        /// keyword : MIN_CPU_PERCENT
+        /// </summary>
+        public static AstKeyword MinCpuPercent(Position position)
+        {
+            return new AstKeyword(position, "MIN_CPU_PERCENT", "MIN_CPU_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : MIN_IOPS_PER_VOLUME
+        /// </summary>
+        public static AstKeyword MinIopsPerVolume(Position position)
+        {
+            return new AstKeyword(position, "MIN_IOPS_PER_VOLUME", "MIN_IOPS_PER_VOLUME");
+        }
+        
+        /// <summary>
+        /// keyword : MIN_MEMORY_PERCENT
+        /// </summary>
+        public static AstKeyword MinMemoryPercent(Position position)
+        {
+            return new AstKeyword(position, "MIN_MEMORY_PERCENT", "MIN_MEMORY_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : MINUTES
+        /// </summary>
+        public static AstKeyword Minutes(Position position)
+        {
+            return new AstKeyword(position, "MINUTES", "MINUTES");
+        }
+        
+        /// <summary>
+        /// keyword : MIRROR_ADDRESS
+        /// </summary>
+        public static AstKeyword MirrorAddress(Position position)
+        {
+            return new AstKeyword(position, "MIRROR_ADDRESS", "MIRROR_ADDRESS");
+        }
+        
+        /// <summary>
+        /// keyword : MIXED_PAGE_ALLOCATION
+        /// </summary>
+        public static AstKeyword MixedPageAllocation(Position position)
+        {
+            return new AstKeyword(position, "MIXED_PAGE_ALLOCATION", "MIXED_PAGE_ALLOCATION");
+        }
+        
+        /// <summary>
+        /// keyword : MODE
+        /// </summary>
+        public static AstKeyword Mode(Position position)
+        {
+            return new AstKeyword(position, "MODE", "MODE");
+        }
+        
+        /// <summary>
+        /// keyword : MODIFY
+        /// </summary>
+        public static AstKeyword Modify(Position position)
+        {
+            return new AstKeyword(position, "MODIFY", "MODIFY");
+        }
+        
+        /// <summary>
+        /// keyword : MOVE
+        /// </summary>
+        public static AstKeyword Move(Position position)
+        {
+            return new AstKeyword(position, "MOVE", "MOVE");
+        }
+        
+        /// <summary>
+        /// keyword : MULTI_USER
+        /// </summary>
+        public static AstKeyword MultiUser(Position position)
+        {
+            return new AstKeyword(position, "MULTI_USER", "MULTI_USER");
+        }
+        
+        /// <summary>
+        /// keyword : NAME
+        /// </summary>
+        public static AstKeyword Name(Position position)
+        {
+            return new AstKeyword(position, "NAME", "NAME");
+        }
+        
+        /// <summary>
+        /// keyword : NCHAR
+        /// </summary>
+        public static AstKeyword Nchar(Position position)
+        {
+            return new AstKeyword(position, "NCHAR", "NCHAR");
+        }
+        
+        /// <summary>
+        /// keyword : NESTED_TRIGGERS
+        /// </summary>
+        public static AstKeyword NestedTriggers(Position position)
+        {
+            return new AstKeyword(position, "NESTED_TRIGGERS", "NESTED_TRIGGERS");
+        }
+        
+        /// <summary>
+        /// keyword : NEW_ACCOUNT
+        /// </summary>
+        public static AstKeyword NewAccount(Position position)
+        {
+            return new AstKeyword(position, "NEW_ACCOUNT", "NEW_ACCOUNT");
+        }
+        
+        /// <summary>
+        /// keyword : NEW_BROKER
+        /// </summary>
+        public static AstKeyword NewBroker(Position position)
+        {
+            return new AstKeyword(position, "NEW_BROKER", "NEW_BROKER");
+        }
+        
+        /// <summary>
+        /// keyword : NEW_PASSWORD
+        /// </summary>
+        public static AstKeyword NewPassword(Position position)
+        {
+            return new AstKeyword(position, "NEW_PASSWORD", "NEW_PASSWORD");
+        }
+        
+        /// <summary>
+        /// keyword : NEWNAME
+        /// </summary>
+        public static AstKeyword Newname(Position position)
+        {
+            return new AstKeyword(position, "NEWNAME", "NEWNAME");
+        }
+        
+        /// <summary>
+        /// keyword : NEXT
+        /// </summary>
+        public static AstKeyword Next(Position position)
+        {
+            return new AstKeyword(position, "NEXT", "NEXT");
+        }
+        
+        /// <summary>
+        /// keyword : NO
+        /// </summary>
+        public static AstKeyword No(Position position)
+        {
+            return new AstKeyword(position, "NO", "NO");
+        }
+        
+        /// <summary>
+        /// keyword : NO_TRUNCATE
+        /// </summary>
+        public static AstKeyword NoTruncate(Position position)
+        {
+            return new AstKeyword(position, "NO_TRUNCATE", "NO_TRUNCATE");
+        }
+        
+        /// <summary>
+        /// keyword : NO_WAIT
+        /// </summary>
+        public static AstKeyword NoWait(Position position)
+        {
+            return new AstKeyword(position, "NO_WAIT", "NO_WAIT");
+        }
+        
+        /// <summary>
+        /// keyword : NOCOUNT
+        /// </summary>
+        public static AstKeyword Nocount(Position position)
+        {
+            return new AstKeyword(position, "NOCOUNT", "NOCOUNT");
+        }
+        
+        /// <summary>
+        /// keyword : NODES
+        /// </summary>
+        public static AstKeyword Nodes(Position position)
+        {
+            return new AstKeyword(position, "NODES", "NODES");
+        }
+        
+        /// <summary>
+        /// keyword : NOEXEC
+        /// </summary>
+        public static AstKeyword Noexec(Position position)
+        {
+            return new AstKeyword(position, "NOEXEC", "NOEXEC");
+        }
+        
+        /// <summary>
+        /// keyword : NOEXPAND
+        /// </summary>
+        public static AstKeyword Noexpand(Position position)
+        {
+            return new AstKeyword(position, "NOEXPAND", "NOEXPAND");
+        }
+        
+        /// <summary>
+        /// keyword : NOLOCK
+        /// </summary>
+        public static AstKeyword Nolock(Position position)
+        {
+            return new AstKeyword(position, "NOLOCK", "NOLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : NON_TRANSACTED_ACCESS
+        /// </summary>
+        public static AstKeyword NonTransactedAccess(Position position)
+        {
+            return new AstKeyword(position, "NON_TRANSACTED_ACCESS", "NON_TRANSACTED_ACCESS");
+        }
+        
+        /// <summary>
+        /// keyword : NORECOMPUTE
+        /// </summary>
+        public static AstKeyword Norecompute(Position position)
+        {
+            return new AstKeyword(position, "NORECOMPUTE", "NORECOMPUTE");
+        }
+        
+        /// <summary>
+        /// keyword : NORECOVERY
+        /// </summary>
+        public static AstKeyword Norecovery(Position position)
+        {
+            return new AstKeyword(position, "NORECOVERY", "NORECOVERY");
+        }
+        
+        /// <summary>
+        /// keyword : NOTIFICATIONS
+        /// </summary>
+        public static AstKeyword Notifications(Position position)
+        {
+            return new AstKeyword(position, "NOTIFICATIONS", "NOTIFICATIONS");
+        }
+        
+        /// <summary>
+        /// keyword : NOWAIT
+        /// </summary>
+        public static AstKeyword Nowait(Position position)
+        {
+            return new AstKeyword(position, "NOWAIT", "NOWAIT");
+        }
+        
+        /// <summary>
+        /// keyword : NTILE
+        /// </summary>
+        public static AstKeyword Ntile(Position position)
+        {
+            return new AstKeyword(position, "NTILE", "NTILE");
+        }
+        
+        /// <summary>
+        /// keyword : ["]  'NULL'  ["]
+        /// </summary>
+        public static AstKeyword NullDoubleQuote(Position position)
+        {
+            return new AstKeyword(position, "NULL_DOUBLE_QUOTE", "[\"]  \'NULL\'  [\"]");
+        }
+        
+        /// <summary>
+        /// keyword : NUMANODE
+        /// </summary>
+        public static AstKeyword Numanode(Position position)
+        {
+            return new AstKeyword(position, "NUMANODE", "NUMANODE");
+        }
+        
+        /// <summary>
+        /// keyword : NUMBER
+        /// </summary>
+        public static AstKeyword Number(Position position)
+        {
+            return new AstKeyword(position, "NUMBER", "NUMBER");
+        }
+        
+        /// <summary>
+        /// keyword : NUMERIC_ROUNDABORT
+        /// </summary>
+        public static AstKeyword NumericRoundabort(Position position)
+        {
+            return new AstKeyword(position, "NUMERIC_ROUNDABORT", "NUMERIC_ROUNDABORT");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECT
+        /// </summary>
+        public static AstKeyword Object(Position position)
+        {
+            return new AstKeyword(position, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECT_DEFINITION
+        /// </summary>
+        public static AstKeyword ObjectDefinition(Position position)
+        {
+            return new AstKeyword(position, "OBJECT_DEFINITION", "OBJECT_DEFINITION");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECT_ID
+        /// </summary>
+        public static AstKeyword ObjectId(Position position)
+        {
+            return new AstKeyword(position, "OBJECT_ID", "OBJECT_ID");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECT_NAME
+        /// </summary>
+        public static AstKeyword ObjectName(Position position)
+        {
+            return new AstKeyword(position, "OBJECT_NAME", "OBJECT_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECT_SCHEMA_NAME
+        /// </summary>
+        public static AstKeyword ObjectSchemaName(Position position)
+        {
+            return new AstKeyword(position, "OBJECT_SCHEMA_NAME", "OBJECT_SCHEMA_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECTPROPERTY
+        /// </summary>
+        public static AstKeyword Objectproperty(Position position)
+        {
+            return new AstKeyword(position, "OBJECTPROPERTY", "OBJECTPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : OBJECTPROPERTYEX
+        /// </summary>
+        public static AstKeyword Objectpropertyex(Position position)
+        {
+            return new AstKeyword(position, "OBJECTPROPERTYEX", "OBJECTPROPERTYEX");
+        }
+        
+        /// <summary>
+        /// keyword : OFFLINE
+        /// </summary>
+        public static AstKeyword Offline(Position position)
+        {
+            return new AstKeyword(position, "OFFLINE", "OFFLINE");
+        }
+        
+        /// <summary>
+        /// keyword : OFFSET
+        /// </summary>
+        public static AstKeyword Offset(Position position)
+        {
+            return new AstKeyword(position, "OFFSET", "OFFSET");
+        }
+        
+        /// <summary>
+        /// keyword : OLD_ACCOUNT
+        /// </summary>
+        public static AstKeyword OldAccount(Position position)
+        {
+            return new AstKeyword(position, "OLD_ACCOUNT", "OLD_ACCOUNT");
+        }
+        
+        /// <summary>
+        /// keyword : ONLINE
+        /// </summary>
+        public static AstKeyword Online(Position position)
+        {
+            return new AstKeyword(position, "ONLINE", "ONLINE");
+        }
+        
+        /// <summary>
+        /// keyword : ONLY
+        /// </summary>
+        public static AstKeyword Only(Position position)
+        {
+            return new AstKeyword(position, "ONLY", "ONLY");
+        }
+        
+        /// <summary>
+        /// keyword : OPEN_EXISTING
+        /// </summary>
+        public static AstKeyword OpenExisting(Position position)
+        {
+            return new AstKeyword(position, "OPEN_EXISTING", "OPEN_EXISTING");
+        }
+        
+        /// <summary>
+        /// keyword : OPENJSON
+        /// </summary>
+        public static AstKeyword Openjson(Position position)
+        {
+            return new AstKeyword(position, "OPENJSON", "OPENJSON");
+        }
+        
+        /// <summary>
+        /// keyword : OPTIMISTIC
+        /// </summary>
+        public static AstKeyword Optimistic(Position position)
+        {
+            return new AstKeyword(position, "OPTIMISTIC", "OPTIMISTIC");
+        }
+        
+        /// <summary>
+        /// keyword : OPTIMIZE
+        /// </summary>
+        public static AstKeyword Optimize(Position position)
+        {
+            return new AstKeyword(position, "OPTIMIZE", "OPTIMIZE");
+        }
+        
+        /// <summary>
+        /// keyword : OPTIMIZE_FOR_SEQUENTIAL_KEY
+        /// </summary>
+        public static AstKeyword OptimizeForSequentialKey(Position position)
+        {
+            return new AstKeyword(position, "OPTIMIZE_FOR_SEQUENTIAL_KEY", "OPTIMIZE_FOR_SEQUENTIAL_KEY");
+        }
+        
+        /// <summary>
+        /// keyword : ORIGINAL_DB_NAME
+        /// </summary>
+        public static AstKeyword OriginalDbName(Position position)
+        {
+            return new AstKeyword(position, "ORIGINAL_DB_NAME", "ORIGINAL_DB_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : OUT
+        /// </summary>
+        public static AstKeyword Out(Position position)
+        {
+            return new AstKeyword(position, "OUT", "OUT");
+        }
+        
+        /// <summary>
+        /// keyword : OUTPUT
+        /// </summary>
+        public static AstKeyword Output(Position position)
+        {
+            return new AstKeyword(position, "OUTPUT", "OUTPUT");
+        }
+        
+        /// <summary>
+        /// keyword : OVERRIDE
+        /// </summary>
+        public static AstKeyword Override(Position position)
+        {
+            return new AstKeyword(position, "OVERRIDE", "OVERRIDE");
+        }
+        
+        /// <summary>
+        /// keyword : OWNER
+        /// </summary>
+        public static AstKeyword Owner(Position position)
+        {
+            return new AstKeyword(position, "OWNER", "OWNER");
+        }
+        
+        /// <summary>
+        /// keyword : OWNERSHIP
+        /// </summary>
+        public static AstKeyword Ownership(Position position)
+        {
+            return new AstKeyword(position, "OWNERSHIP", "OWNERSHIP");
+        }
+        
+        /// <summary>
+        /// keyword : PAD_INDEX
+        /// </summary>
+        public static AstKeyword PadIndex(Position position)
+        {
+            return new AstKeyword(position, "PAD_INDEX", "PAD_INDEX");
+        }
+        
+        /// <summary>
+        /// keyword : PAGE_VERIFY
+        /// </summary>
+        public static AstKeyword PageVerify(Position position)
+        {
+            return new AstKeyword(position, "PAGE_VERIFY", "PAGE_VERIFY");
+        }
+        
+        /// <summary>
+        /// keyword : PAGECOUNT
+        /// </summary>
+        public static AstKeyword Pagecount(Position position)
+        {
+            return new AstKeyword(position, "PAGECOUNT", "PAGECOUNT");
+        }
+        
+        /// <summary>
+        /// keyword : PAGLOCK
+        /// </summary>
+        public static AstKeyword Paglock(Position position)
+        {
+            return new AstKeyword(position, "PAGLOCK", "PAGLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : PARAMETERIZATION
+        /// </summary>
+        public static AstKeyword Parameterization(Position position)
+        {
+            return new AstKeyword(position, "PARAMETERIZATION", "PARAMETERIZATION");
+        }
+        
+        /// <summary>
+        /// keyword : PARSENAME
+        /// </summary>
+        public static AstKeyword Parsename(Position position)
+        {
+            return new AstKeyword(position, "PARSENAME", "PARSENAME");
+        }
+        
+        /// <summary>
+        /// keyword : PARSEONLY
+        /// </summary>
+        public static AstKeyword Parseonly(Position position)
+        {
+            return new AstKeyword(position, "PARSEONLY", "PARSEONLY");
+        }
+        
+        /// <summary>
+        /// keyword : PARTITION
+        /// </summary>
+        public static AstKeyword Partition(Position position)
+        {
+            return new AstKeyword(position, "PARTITION", "PARTITION");
+        }
+        
+        /// <summary>
+        /// keyword : PARTITIONS
+        /// </summary>
+        public static AstKeyword Partitions(Position position)
+        {
+            return new AstKeyword(position, "PARTITIONS", "PARTITIONS");
+        }
+        
+        /// <summary>
+        /// keyword : PARTNER
+        /// </summary>
+        public static AstKeyword Partner(Position position)
+        {
+            return new AstKeyword(position, "PARTNER", "PARTNER");
+        }
+        
+        /// <summary>
+        /// keyword : PATH
+        /// </summary>
+        public static AstKeyword Path(Position position)
+        {
+            return new AstKeyword(position, "PATH", "PATH");
+        }
+        
+        /// <summary>
+        /// keyword : PATINDEX
+        /// </summary>
+        public static AstKeyword Patindex(Position position)
+        {
+            return new AstKeyword(position, "PATINDEX", "PATINDEX");
+        }
+        
+        /// <summary>
+        /// keyword : PAUSE
+        /// </summary>
+        public static AstKeyword Pause(Position position)
+        {
+            return new AstKeyword(position, "PAUSE", "PAUSE");
+        }
+        
+        /// <summary>
+        /// keyword : PERCENT_RANK
+        /// </summary>
+        public static AstKeyword PercentRank(Position position)
+        {
+            return new AstKeyword(position, "PERCENT_RANK", "PERCENT_RANK");
+        }
+        
+        /// <summary>
+        /// keyword : PERCENTILE_CONT
+        /// </summary>
+        public static AstKeyword PercentileCont(Position position)
+        {
+            return new AstKeyword(position, "PERCENTILE_CONT", "PERCENTILE_CONT");
+        }
+        
+        /// <summary>
+        /// keyword : PERCENTILE_DISC
+        /// </summary>
+        public static AstKeyword PercentileDisc(Position position)
+        {
+            return new AstKeyword(position, "PERCENTILE_DISC", "PERCENTILE_DISC");
+        }
+        
+        /// <summary>
+        /// keyword : PERSIST_SAMPLE_PERCENT
+        /// </summary>
+        public static AstKeyword PersistSamplePercent(Position position)
+        {
+            return new AstKeyword(position, "PERSIST_SAMPLE_PERCENT", "PERSIST_SAMPLE_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : POISON_MESSAGE_HANDLING
+        /// </summary>
+        public static AstKeyword PoisonMessageHandling(Position position)
+        {
+            return new AstKeyword(position, "POISON_MESSAGE_HANDLING", "POISON_MESSAGE_HANDLING");
+        }
+        
+        /// <summary>
+        /// keyword : POOL
+        /// </summary>
+        public static AstKeyword Pool(Position position)
+        {
+            return new AstKeyword(position, "POOL", "POOL");
+        }
+        
+        /// <summary>
+        /// keyword : PORT
+        /// </summary>
+        public static AstKeyword Port(Position position)
+        {
+            return new AstKeyword(position, "PORT", "PORT");
+        }
+        
+        /// <summary>
+        /// keyword : PRECEDING
+        /// </summary>
+        public static AstKeyword Preceding(Position position)
+        {
+            return new AstKeyword(position, "PRECEDING", "PRECEDING");
+        }
+        
+        /// <summary>
+        /// keyword : PRIMARY_ROLE
+        /// </summary>
+        public static AstKeyword PrimaryRole(Position position)
+        {
+            return new AstKeyword(position, "PRIMARY_ROLE", "PRIMARY_ROLE");
+        }
+        
+        /// <summary>
+        /// keyword : PRIOR
+        /// </summary>
+        public static AstKeyword Prior(Position position)
+        {
+            return new AstKeyword(position, "PRIOR", "PRIOR");
+        }
+        
+        /// <summary>
+        /// keyword : PRIORITY
+        /// </summary>
+        public static AstKeyword Priority(Position position)
+        {
+            return new AstKeyword(position, "PRIORITY", "PRIORITY");
+        }
+        
+        /// <summary>
+        /// keyword : PRIORITY_LEVEL
+        /// </summary>
+        public static AstKeyword PriorityLevel(Position position)
+        {
+            return new AstKeyword(position, "PRIORITY_LEVEL", "PRIORITY_LEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : PRIVATE
+        /// </summary>
+        public static AstKeyword Private(Position position)
+        {
+            return new AstKeyword(position, "PRIVATE", "PRIVATE");
+        }
+        
+        /// <summary>
+        /// keyword : PRIVATE_KEY
+        /// </summary>
+        public static AstKeyword PrivateKey(Position position)
+        {
+            return new AstKeyword(position, "PRIVATE_KEY", "PRIVATE_KEY");
+        }
+        
+        /// <summary>
+        /// keyword : PRIVILEGES
+        /// </summary>
+        public static AstKeyword Privileges(Position position)
+        {
+            return new AstKeyword(position, "PRIVILEGES", "PRIVILEGES");
+        }
+        
+        /// <summary>
+        /// keyword : PROCEDURE_NAME
+        /// </summary>
+        public static AstKeyword ProcedureName(Position position)
+        {
+            return new AstKeyword(position, "PROCEDURE_NAME", "PROCEDURE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : PROPERTY
+        /// </summary>
+        public static AstKeyword Property(Position position)
+        {
+            return new AstKeyword(position, "PROPERTY", "PROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : PROVIDER
+        /// </summary>
+        public static AstKeyword Provider(Position position)
+        {
+            return new AstKeyword(position, "PROVIDER", "PROVIDER");
+        }
+        
+        /// <summary>
+        /// keyword : PROVIDER_KEY_NAME
+        /// </summary>
+        public static AstKeyword ProviderKeyName(Position position)
+        {
+            return new AstKeyword(position, "PROVIDER_KEY_NAME", "PROVIDER_KEY_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : QUERY
+        /// </summary>
+        public static AstKeyword Query(Position position)
+        {
+            return new AstKeyword(position, "QUERY", "QUERY");
+        }
+        
+        /// <summary>
+        /// keyword : QUEUE
+        /// </summary>
+        public static AstKeyword Queue(Position position)
+        {
+            return new AstKeyword(position, "QUEUE", "QUEUE");
+        }
+        
+        /// <summary>
+        /// keyword : QUEUE_DELAY
+        /// </summary>
+        public static AstKeyword QueueDelay(Position position)
+        {
+            return new AstKeyword(position, "QUEUE_DELAY", "QUEUE_DELAY");
+        }
+        
+        /// <summary>
+        /// keyword : QUOTED_IDENTIFIER
+        /// </summary>
+        public static AstKeyword QuotedIdentifier(Position position)
+        {
+            return new AstKeyword(position, "QUOTED_IDENTIFIER", "QUOTED_IDENTIFIER");
+        }
+        
+        /// <summary>
+        /// keyword : QUOTENAME
+        /// </summary>
+        public static AstKeyword Quotename(Position position)
+        {
+            return new AstKeyword(position, "QUOTENAME", "QUOTENAME");
+        }
+        
+        /// <summary>
+        /// keyword : RANDOMIZED
+        /// </summary>
+        public static AstKeyword Randomized(Position position)
+        {
+            return new AstKeyword(position, "RANDOMIZED", "RANDOMIZED");
+        }
+        
+        /// <summary>
+        /// keyword : RANGE
+        /// </summary>
+        public static AstKeyword Range(Position position)
+        {
+            return new AstKeyword(position, "RANGE", "RANGE");
+        }
+        
+        /// <summary>
+        /// keyword : RANK
+        /// </summary>
+        public static AstKeyword Rank(Position position)
+        {
+            return new AstKeyword(position, "RANK", "RANK");
+        }
+        
+        /// <summary>
+        /// keyword : RC2
+        /// </summary>
+        public static AstKeyword Rc2(Position position)
+        {
+            return new AstKeyword(position, "RC2", "RC2");
+        }
+        
+        /// <summary>
+        /// keyword : RC4
+        /// </summary>
+        public static AstKeyword Rc4(Position position)
+        {
+            return new AstKeyword(position, "RC4", "RC4");
+        }
+        
+        /// <summary>
+        /// keyword : RC4_128
+        /// </summary>
+        public static AstKeyword Rc4128(Position position)
+        {
+            return new AstKeyword(position, "RC4_128", "RC4_128");
+        }
+        
+        /// <summary>
+        /// keyword : READ_COMMITTED_SNAPSHOT
+        /// </summary>
+        public static AstKeyword ReadCommittedSnapshot(Position position)
+        {
+            return new AstKeyword(position, "READ_COMMITTED_SNAPSHOT", "READ_COMMITTED_SNAPSHOT");
+        }
+        
+        /// <summary>
+        /// keyword : READ_ONLY
+        /// </summary>
+        public static AstKeyword ReadOnly(Position position)
+        {
+            return new AstKeyword(position, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// keyword : READ_ONLY_ROUTING_LIST
+        /// </summary>
+        public static AstKeyword ReadOnlyRoutingList(Position position)
+        {
+            return new AstKeyword(position, "READ_ONLY_ROUTING_LIST", "READ_ONLY_ROUTING_LIST");
+        }
+        
+        /// <summary>
+        /// keyword : READ_WRITE
+        /// </summary>
+        public static AstKeyword ReadWrite(Position position)
+        {
+            return new AstKeyword(position, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// keyword : READCOMMITTED
+        /// </summary>
+        public static AstKeyword Readcommitted(Position position)
+        {
+            return new AstKeyword(position, "READCOMMITTED", "READCOMMITTED");
+        }
+        
+        /// <summary>
+        /// keyword : READCOMMITTEDLOCK
+        /// </summary>
+        public static AstKeyword Readcommittedlock(Position position)
+        {
+            return new AstKeyword(position, "READCOMMITTEDLOCK", "READCOMMITTEDLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : READONLY
+        /// </summary>
+        public static AstKeyword Readonly(Position position)
+        {
+            return new AstKeyword(position, "READONLY", "READONLY");
+        }
+        
+        /// <summary>
+        /// keyword : READPAST
+        /// </summary>
+        public static AstKeyword Readpast(Position position)
+        {
+            return new AstKeyword(position, "READPAST", "READPAST");
+        }
+        
+        /// <summary>
+        /// keyword : READUNCOMMITTED
+        /// </summary>
+        public static AstKeyword Readuncommitted(Position position)
+        {
+            return new AstKeyword(position, "READUNCOMMITTED", "READUNCOMMITTED");
+        }
+        
+        /// <summary>
+        /// keyword : READWRITE
+        /// </summary>
+        public static AstKeyword Readwrite(Position position)
+        {
+            return new AstKeyword(position, "READWRITE", "READWRITE");
+        }
+        
+        /// <summary>
+        /// keyword : REBUILD
+        /// </summary>
+        public static AstKeyword Rebuild(Position position)
+        {
+            return new AstKeyword(position, "REBUILD", "REBUILD");
+        }
+        
+        /// <summary>
+        /// keyword : RECEIVE
+        /// </summary>
+        public static AstKeyword Receive(Position position)
+        {
+            return new AstKeyword(position, "RECEIVE", "RECEIVE");
+        }
+        
+        /// <summary>
+        /// keyword : RECOMPILE
+        /// </summary>
+        public static AstKeyword Recompile(Position position)
+        {
+            return new AstKeyword(position, "RECOMPILE", "RECOMPILE");
+        }
+        
+        /// <summary>
+        /// keyword : RECOVERY
+        /// </summary>
+        public static AstKeyword Recovery(Position position)
+        {
+            return new AstKeyword(position, "RECOVERY", "RECOVERY");
+        }
+        
+        /// <summary>
+        /// keyword : RECURSIVE_TRIGGERS
+        /// </summary>
+        public static AstKeyword RecursiveTriggers(Position position)
+        {
+            return new AstKeyword(position, "RECURSIVE_TRIGGERS", "RECURSIVE_TRIGGERS");
+        }
+        
+        /// <summary>
+        /// keyword : RELATIVE
+        /// </summary>
+        public static AstKeyword Relative(Position position)
+        {
+            return new AstKeyword(position, "RELATIVE", "RELATIVE");
+        }
+        
+        /// <summary>
+        /// keyword : REMOTE
+        /// </summary>
+        public static AstKeyword Remote(Position position)
+        {
+            return new AstKeyword(position, "REMOTE", "REMOTE");
+        }
+        
+        /// <summary>
+        /// keyword : REMOTE_PROC_TRANSACTIONS
+        /// </summary>
+        public static AstKeyword RemoteProcTransactions(Position position)
+        {
+            return new AstKeyword(position, "REMOTE_PROC_TRANSACTIONS", "REMOTE_PROC_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// keyword : REMOTE_SERVICE_NAME
+        /// </summary>
+        public static AstKeyword RemoteServiceName(Position position)
+        {
+            return new AstKeyword(position, "REMOTE_SERVICE_NAME", "REMOTE_SERVICE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : REMOVE
+        /// </summary>
+        public static AstKeyword Remove(Position position)
+        {
+            return new AstKeyword(position, "REMOVE", "REMOVE");
+        }
+        
+        /// <summary>
+        /// keyword : REORGANIZE
+        /// </summary>
+        public static AstKeyword Reorganize(Position position)
+        {
+            return new AstKeyword(position, "REORGANIZE", "REORGANIZE");
+        }
+        
+        /// <summary>
+        /// keyword : REPEATABLE
+        /// </summary>
+        public static AstKeyword Repeatable(Position position)
+        {
+            return new AstKeyword(position, "REPEATABLE", "REPEATABLE");
+        }
+        
+        /// <summary>
+        /// keyword : REPEATABLEREAD
+        /// </summary>
+        public static AstKeyword Repeatableread(Position position)
+        {
+            return new AstKeyword(position, "REPEATABLEREAD", "REPEATABLEREAD");
+        }
+        
+        /// <summary>
+        /// keyword : REPLACE
+        /// </summary>
+        public static AstKeyword Replace(Position position)
+        {
+            return new AstKeyword(position, "REPLACE", "REPLACE");
+        }
+        
+        /// <summary>
+        /// keyword : REPLICA
+        /// </summary>
+        public static AstKeyword Replica(Position position)
+        {
+            return new AstKeyword(position, "REPLICA", "REPLICA");
+        }
+        
+        /// <summary>
+        /// keyword : REPLICATE
+        /// </summary>
+        public static AstKeyword Replicate(Position position)
+        {
+            return new AstKeyword(position, "REPLICATE", "REPLICATE");
+        }
+        
+        /// <summary>
+        /// keyword : REQUEST_MAX_CPU_TIME_SEC
+        /// </summary>
+        public static AstKeyword RequestMaxCpuTimeSec(Position position)
+        {
+            return new AstKeyword(position, "REQUEST_MAX_CPU_TIME_SEC", "REQUEST_MAX_CPU_TIME_SEC");
+        }
+        
+        /// <summary>
+        /// keyword : REQUEST_MAX_MEMORY_GRANT_PERCENT
+        /// </summary>
+        public static AstKeyword RequestMaxMemoryGrantPercent(Position position)
+        {
+            return new AstKeyword(position, "REQUEST_MAX_MEMORY_GRANT_PERCENT", "REQUEST_MAX_MEMORY_GRANT_PERCENT");
+        }
+        
+        /// <summary>
+        /// keyword : REQUEST_MEMORY_GRANT_TIMEOUT_SEC
+        /// </summary>
+        public static AstKeyword RequestMemoryGrantTimeoutSec(Position position)
+        {
+            return new AstKeyword(position, "REQUEST_MEMORY_GRANT_TIMEOUT_SEC", "REQUEST_MEMORY_GRANT_TIMEOUT_SEC");
+        }
+        
+        /// <summary>
+        /// keyword : REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT
+        /// </summary>
+        public static AstKeyword RequiredSynchronizedSecondariesToCommit(Position position)
+        {
+            return new AstKeyword(position, "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT", "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT");
+        }
+        
+        /// <summary>
+        /// keyword : RESAMPLE
+        /// </summary>
+        public static AstKeyword Resample(Position position)
+        {
+            return new AstKeyword(position, "RESAMPLE", "RESAMPLE");
+        }
+        
+        /// <summary>
+        /// keyword : RESERVE_DISK_SPACE
+        /// </summary>
+        public static AstKeyword ReserveDiskSpace(Position position)
+        {
+            return new AstKeyword(position, "RESERVE_DISK_SPACE", "RESERVE_DISK_SPACE");
+        }
+        
+        /// <summary>
+        /// keyword : RESOURCE
+        /// </summary>
+        public static AstKeyword Resource(Position position)
+        {
+            return new AstKeyword(position, "RESOURCE", "RESOURCE");
+        }
+        
+        /// <summary>
+        /// keyword : RESOURCE_MANAGER_LOCATION
+        /// </summary>
+        public static AstKeyword ResourceManagerLocation(Position position)
+        {
+            return new AstKeyword(position, "RESOURCE_MANAGER_LOCATION", "RESOURCE_MANAGER_LOCATION");
+        }
+        
+        /// <summary>
+        /// keyword : RESTRICTED_USER
+        /// </summary>
+        public static AstKeyword RestrictedUser(Position position)
+        {
+            return new AstKeyword(position, "RESTRICTED_USER", "RESTRICTED_USER");
+        }
+        
+        /// <summary>
+        /// keyword : RESUMABLE
+        /// </summary>
+        public static AstKeyword Resumable(Position position)
+        {
+            return new AstKeyword(position, "RESUMABLE", "RESUMABLE");
+        }
+        
+        /// <summary>
+        /// keyword : RETENTION
+        /// </summary>
+        public static AstKeyword Retention(Position position)
+        {
+            return new AstKeyword(position, "RETENTION", "RETENTION");
+        }
+        
+        /// <summary>
+        /// keyword : REVERSE
+        /// </summary>
+        public static AstKeyword Reverse(Position position)
+        {
+            return new AstKeyword(position, "REVERSE", "REVERSE");
+        }
+        
+        /// <summary>
+        /// keyword : ROBUST
+        /// </summary>
+        public static AstKeyword Robust(Position position)
+        {
+            return new AstKeyword(position, "ROBUST", "ROBUST");
+        }
+        
+        /// <summary>
+        /// keyword : ROOT
+        /// </summary>
+        public static AstKeyword Root(Position position)
+        {
+            return new AstKeyword(position, "ROOT", "ROOT");
+        }
+        
+        /// <summary>
+        /// keyword : ROUTE
+        /// </summary>
+        public static AstKeyword Route(Position position)
+        {
+            return new AstKeyword(position, "ROUTE", "ROUTE");
+        }
+        
+        /// <summary>
+        /// keyword : ROW
+        /// </summary>
+        public static AstKeyword Row(Position position)
+        {
+            return new AstKeyword(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// keyword : ROW_NUMBER
+        /// </summary>
+        public static AstKeyword RowNumber(Position position)
+        {
+            return new AstKeyword(position, "ROW_NUMBER", "ROW_NUMBER");
+        }
+        
+        /// <summary>
+        /// keyword : ROWGUID
+        /// </summary>
+        public static AstKeyword Rowguid(Position position)
+        {
+            return new AstKeyword(position, "ROWGUID", "ROWGUID");
+        }
+        
+        /// <summary>
+        /// keyword : ROWLOCK
+        /// </summary>
+        public static AstKeyword Rowlock(Position position)
+        {
+            return new AstKeyword(position, "ROWLOCK", "ROWLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : ROWS
+        /// </summary>
+        public static AstKeyword Rows(Position position)
+        {
+            return new AstKeyword(position, "ROWS", "ROWS");
+        }
+        
+        /// <summary>
+        /// keyword : RTRIM
+        /// </summary>
+        public static AstKeyword Rtrim(Position position)
+        {
+            return new AstKeyword(position, "RTRIM", "RTRIM");
+        }
+        
+        /// <summary>
+        /// keyword : SAMPLE
+        /// </summary>
+        public static AstKeyword Sample(Position position)
+        {
+            return new AstKeyword(position, "SAMPLE", "SAMPLE");
+        }
+        
+        /// <summary>
+        /// keyword : SCHEMA_ID
+        /// </summary>
+        public static AstKeyword SchemaId(Position position)
+        {
+            return new AstKeyword(position, "SCHEMA_ID", "SCHEMA_ID");
+        }
+        
+        /// <summary>
+        /// keyword : SCHEMA_NAME
+        /// </summary>
+        public static AstKeyword SchemaName(Position position)
+        {
+            return new AstKeyword(position, "SCHEMA_NAME", "SCHEMA_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : SCHEMABINDING
+        /// </summary>
+        public static AstKeyword Schemabinding(Position position)
+        {
+            return new AstKeyword(position, "SCHEMABINDING", "SCHEMABINDING");
+        }
+        
+        /// <summary>
+        /// keyword : SCOPE_IDENTITY
+        /// </summary>
+        public static AstKeyword ScopeIdentity(Position position)
+        {
+            return new AstKeyword(position, "SCOPE_IDENTITY", "SCOPE_IDENTITY");
+        }
+        
+        /// <summary>
+        /// keyword : SCOPED
+        /// </summary>
+        public static AstKeyword Scoped(Position position)
+        {
+            return new AstKeyword(position, "SCOPED", "SCOPED");
+        }
+        
+        /// <summary>
+        /// keyword : SCROLL
+        /// </summary>
+        public static AstKeyword Scroll(Position position)
+        {
+            return new AstKeyword(position, "SCROLL", "SCROLL");
+        }
+        
+        /// <summary>
+        /// keyword : SCROLL_LOCKS
+        /// </summary>
+        public static AstKeyword ScrollLocks(Position position)
+        {
+            return new AstKeyword(position, "SCROLL_LOCKS", "SCROLL_LOCKS");
+        }
+        
+        /// <summary>
+        /// keyword : SEARCH
+        /// </summary>
+        public static AstKeyword Search(Position position)
+        {
+            return new AstKeyword(position, "SEARCH", "SEARCH");
+        }
+        
+        /// <summary>
+        /// keyword : SECONDARY
+        /// </summary>
+        public static AstKeyword Secondary(Position position)
+        {
+            return new AstKeyword(position, "SECONDARY", "SECONDARY");
+        }
+        
+        /// <summary>
+        /// keyword : SECONDARY_ONLY
+        /// </summary>
+        public static AstKeyword SecondaryOnly(Position position)
+        {
+            return new AstKeyword(position, "SECONDARY_ONLY", "SECONDARY_ONLY");
+        }
+        
+        /// <summary>
+        /// keyword : SECONDARY_ROLE
+        /// </summary>
+        public static AstKeyword SecondaryRole(Position position)
+        {
+            return new AstKeyword(position, "SECONDARY_ROLE", "SECONDARY_ROLE");
+        }
+        
+        /// <summary>
+        /// keyword : SECONDS
+        /// </summary>
+        public static AstKeyword Seconds(Position position)
+        {
+            return new AstKeyword(position, "SECONDS", "SECONDS");
+        }
+        
+        /// <summary>
+        /// keyword : SECRET
+        /// </summary>
+        public static AstKeyword Secret(Position position)
+        {
+            return new AstKeyword(position, "SECRET", "SECRET");
+        }
+        
+        /// <summary>
+        /// keyword : SECURABLES
+        /// </summary>
+        public static AstKeyword Securables(Position position)
+        {
+            return new AstKeyword(position, "SECURABLES", "SECURABLES");
+        }
+        
+        /// <summary>
+        /// keyword : SECURITY
+        /// </summary>
+        public static AstKeyword Security(Position position)
+        {
+            return new AstKeyword(position, "SECURITY", "SECURITY");
+        }
+        
+        /// <summary>
+        /// keyword : SECURITY_LOG
+        /// </summary>
+        public static AstKeyword SecurityLog(Position position)
+        {
+            return new AstKeyword(position, "SECURITY_LOG", "SECURITY_LOG");
+        }
+        
+        /// <summary>
+        /// keyword : SEEDING_MODE
+        /// </summary>
+        public static AstKeyword SeedingMode(Position position)
+        {
+            return new AstKeyword(position, "SEEDING_MODE", "SEEDING_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : SELF
+        /// </summary>
+        public static AstKeyword Self(Position position)
+        {
+            return new AstKeyword(position, "SELF", "SELF");
+        }
+        
+        /// <summary>
+        /// keyword : SEMI_SENSITIVE
+        /// </summary>
+        public static AstKeyword SemiSensitive(Position position)
+        {
+            return new AstKeyword(position, "SEMI_SENSITIVE", "SEMI_SENSITIVE");
+        }
+        
+        /// <summary>
+        /// keyword : SEND
+        /// </summary>
+        public static AstKeyword Send(Position position)
+        {
+            return new AstKeyword(position, "SEND", "SEND");
+        }
+        
+        /// <summary>
+        /// keyword : SENT
+        /// </summary>
+        public static AstKeyword Sent(Position position)
+        {
+            return new AstKeyword(position, "SENT", "SENT");
+        }
+        
+        /// <summary>
+        /// keyword : SEQUENCE
+        /// </summary>
+        public static AstKeyword Sequence(Position position)
+        {
+            return new AstKeyword(position, "SEQUENCE", "SEQUENCE");
+        }
+        
+        /// <summary>
+        /// keyword : SEQUENCE_NUMBER
+        /// </summary>
+        public static AstKeyword SequenceNumber(Position position)
+        {
+            return new AstKeyword(position, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
+        }
+        
+        /// <summary>
+        /// keyword : SERIALIZABLE
+        /// </summary>
+        public static AstKeyword Serializable(Position position)
+        {
+            return new AstKeyword(position, "SERIALIZABLE", "SERIALIZABLE");
+        }
+        
+        /// <summary>
+        /// keyword : SERVERPROPERTY
+        /// </summary>
+        public static AstKeyword Serverproperty(Position position)
+        {
+            return new AstKeyword(position, "SERVERPROPERTY", "SERVERPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : SESSION_TIMEOUT
+        /// </summary>
+        public static AstKeyword SessionTimeout(Position position)
+        {
+            return new AstKeyword(position, "SESSION_TIMEOUT", "SESSION_TIMEOUT");
+        }
+        
+        /// <summary>
+        /// keyword : SETERROR
+        /// </summary>
+        public static AstKeyword Seterror(Position position)
+        {
+            return new AstKeyword(position, "SETERROR", "SETERROR");
+        }
+        
+        /// <summary>
+        /// keyword : SHARE
+        /// </summary>
+        public static AstKeyword Share(Position position)
+        {
+            return new AstKeyword(position, "SHARE", "SHARE");
+        }
+        
+        /// <summary>
+        /// keyword : SHARED
+        /// </summary>
+        public static AstKeyword Shared(Position position)
+        {
+            return new AstKeyword(position, "SHARED", "SHARED");
+        }
+        
+        /// <summary>
+        /// keyword : SHOWPLAN
+        /// </summary>
+        public static AstKeyword Showplan(Position position)
+        {
+            return new AstKeyword(position, "SHOWPLAN", "SHOWPLAN");
+        }
+        
+        /// <summary>
+        /// keyword : SHOWPLAN_ALL
+        /// </summary>
+        public static AstKeyword ShowplanAll(Position position)
+        {
+            return new AstKeyword(position, "SHOWPLAN_ALL", "SHOWPLAN_ALL");
+        }
+        
+        /// <summary>
+        /// keyword : SHOWPLAN_TEXT
+        /// </summary>
+        public static AstKeyword ShowplanText(Position position)
+        {
+            return new AstKeyword(position, "SHOWPLAN_TEXT", "SHOWPLAN_TEXT");
+        }
+        
+        /// <summary>
+        /// keyword : SHOWPLAN_XML
+        /// </summary>
+        public static AstKeyword ShowplanXml(Position position)
+        {
+            return new AstKeyword(position, "SHOWPLAN_XML", "SHOWPLAN_XML");
+        }
+        
+        /// <summary>
+        /// keyword : SIGNATURE
+        /// </summary>
+        public static AstKeyword Signature(Position position)
+        {
+            return new AstKeyword(position, "SIGNATURE", "SIGNATURE");
+        }
+        
+        /// <summary>
+        /// keyword : SIMPLE
+        /// </summary>
+        public static AstKeyword Simple(Position position)
+        {
+            return new AstKeyword(position, "SIMPLE", "SIMPLE");
+        }
+        
+        /// <summary>
+        /// keyword : SINGLE_USER
+        /// </summary>
+        public static AstKeyword SingleUser(Position position)
+        {
+            return new AstKeyword(position, "SINGLE_USER", "SINGLE_USER");
+        }
+        
+        /// <summary>
+        /// keyword : SIZE
+        /// </summary>
+        public static AstKeyword Size(Position position)
+        {
+            return new AstKeyword(position, "SIZE", "SIZE");
+        }
+        
+        /// <summary>
+        /// keyword : SMALLINT
+        /// </summary>
+        public static AstKeyword Smallint(Position position)
+        {
+            return new AstKeyword(position, "SMALLINT", "SMALLINT");
+        }
+        
+        /// <summary>
+        /// keyword : SNAPSHOT
+        /// </summary>
+        public static AstKeyword Snapshot(Position position)
+        {
+            return new AstKeyword(position, "SNAPSHOT", "SNAPSHOT");
+        }
+        
+        /// <summary>
+        /// keyword : SORT_IN_TEMPDB
+        /// </summary>
+        public static AstKeyword SortInTempdb(Position position)
+        {
+            return new AstKeyword(position, "SORT_IN_TEMPDB", "SORT_IN_TEMPDB");
+        }
+        
+        /// <summary>
+        /// keyword : SOUNDEX
+        /// </summary>
+        public static AstKeyword Soundex(Position position)
+        {
+            return new AstKeyword(position, "SOUNDEX", "SOUNDEX");
+        }
+        
+        /// <summary>
+        /// keyword : SPACE
+        /// </summary>
+        public static AstKeyword SpaceKeyword(Position position)
+        {
+            return new AstKeyword(position, "SPACE_KEYWORD", "SPACE");
+        }
+        
+        /// <summary>
+        /// keyword : SPARSE
+        /// </summary>
+        public static AstKeyword Sparse(Position position)
+        {
+            return new AstKeyword(position, "SPARSE", "SPARSE");
+        }
+        
+        /// <summary>
+        /// keyword : SPATIAL_WINDOW_MAX_CELLS
+        /// </summary>
+        public static AstKeyword SpatialWindowMaxCells(Position position)
+        {
+            return new AstKeyword(position, "SPATIAL_WINDOW_MAX_CELLS", "SPATIAL_WINDOW_MAX_CELLS");
+        }
+        
+        /// <summary>
+        /// keyword : STANDBY
+        /// </summary>
+        public static AstKeyword Standby(Position position)
+        {
+            return new AstKeyword(position, "STANDBY", "STANDBY");
+        }
+        
+        /// <summary>
+        /// keyword : START_DATE
+        /// </summary>
+        public static AstKeyword StartDate(Position position)
+        {
+            return new AstKeyword(position, "START_DATE", "START_DATE");
+        }
+        
+        /// <summary>
+        /// keyword : STATIC
+        /// </summary>
+        public static AstKeyword Static(Position position)
+        {
+            return new AstKeyword(position, "STATIC", "STATIC");
+        }
+        
+        /// <summary>
+        /// keyword : STATISTICS_INCREMENTAL
+        /// </summary>
+        public static AstKeyword StatisticsIncremental(Position position)
+        {
+            return new AstKeyword(position, "STATISTICS_INCREMENTAL", "STATISTICS_INCREMENTAL");
+        }
+        
+        /// <summary>
+        /// keyword : STATISTICS_NORECOMPUTE
+        /// </summary>
+        public static AstKeyword StatisticsNorecompute(Position position)
+        {
+            return new AstKeyword(position, "STATISTICS_NORECOMPUTE", "STATISTICS_NORECOMPUTE");
+        }
+        
+        /// <summary>
+        /// keyword : STATS_DATE
+        /// </summary>
+        public static AstKeyword StatsDate(Position position)
+        {
+            return new AstKeyword(position, "STATS_DATE", "STATS_DATE");
+        }
+        
+        /// <summary>
+        /// keyword : STATS_STREAM
+        /// </summary>
+        public static AstKeyword StatsStream(Position position)
+        {
+            return new AstKeyword(position, "STATS_STREAM", "STATS_STREAM");
+        }
+        
+        /// <summary>
+        /// keyword : STATUS
+        /// </summary>
+        public static AstKeyword Status(Position position)
+        {
+            return new AstKeyword(position, "STATUS", "STATUS");
+        }
+        
+        /// <summary>
+        /// keyword : STATUSONLY
+        /// </summary>
+        public static AstKeyword Statusonly(Position position)
+        {
+            return new AstKeyword(position, "STATUSONLY", "STATUSONLY");
+        }
+        
+        /// <summary>
+        /// keyword : STDEV
+        /// </summary>
+        public static AstKeyword Stdev(Position position)
+        {
+            return new AstKeyword(position, "STDEV", "STDEV");
+        }
+        
+        /// <summary>
+        /// keyword : STDEVP
+        /// </summary>
+        public static AstKeyword Stdevp(Position position)
+        {
+            return new AstKeyword(position, "STDEVP", "STDEVP");
+        }
+        
+        /// <summary>
+        /// keyword : STOPLIST
+        /// </summary>
+        public static AstKeyword Stoplist(Position position)
+        {
+            return new AstKeyword(position, "STOPLIST", "STOPLIST");
+        }
+        
+        /// <summary>
+        /// keyword : STR
+        /// </summary>
+        public static AstKeyword Str(Position position)
+        {
+            return new AstKeyword(position, "STR", "STR");
+        }
+        
+        /// <summary>
+        /// keyword : STRING_AGG
+        /// </summary>
+        public static AstKeyword StringAgg(Position position)
+        {
+            return new AstKeyword(position, "STRING_AGG", "STRING_AGG");
+        }
+        
+        /// <summary>
+        /// keyword : STRING_ESCAPE
+        /// </summary>
+        public static AstKeyword StringEscape(Position position)
+        {
+            return new AstKeyword(position, "STRING_ESCAPE", "STRING_ESCAPE");
+        }
+        
+        /// <summary>
+        /// keyword : STUFF
+        /// </summary>
+        public static AstKeyword Stuff(Position position)
+        {
+            return new AstKeyword(position, "STUFF", "STUFF");
+        }
+        
+        /// <summary>
+        /// keyword : SUBJECT
+        /// </summary>
+        public static AstKeyword Subject(Position position)
+        {
+            return new AstKeyword(position, "SUBJECT", "SUBJECT");
+        }
+        
+        /// <summary>
+        /// keyword : SUBSCRIBE
+        /// </summary>
+        public static AstKeyword Subscribe(Position position)
+        {
+            return new AstKeyword(position, "SUBSCRIBE", "SUBSCRIBE");
+        }
+        
+        /// <summary>
+        /// keyword : SUBSCRIPTION
+        /// </summary>
+        public static AstKeyword Subscription(Position position)
+        {
+            return new AstKeyword(position, "SUBSCRIPTION", "SUBSCRIPTION");
+        }
+        
+        /// <summary>
+        /// keyword : SUBSTRING
+        /// </summary>
+        public static AstKeyword Substring(Position position)
+        {
+            return new AstKeyword(position, "SUBSTRING", "SUBSTRING");
+        }
+        
+        /// <summary>
+        /// keyword : SUM
+        /// </summary>
+        public static AstKeyword Sum(Position position)
+        {
+            return new AstKeyword(position, "SUM", "SUM");
+        }
+        
+        /// <summary>
+        /// keyword : SUSPEND
+        /// </summary>
+        public static AstKeyword Suspend(Position position)
+        {
+            return new AstKeyword(position, "SUSPEND", "SUSPEND");
+        }
+        
+        /// <summary>
+        /// keyword : SYMMETRIC
+        /// </summary>
+        public static AstKeyword Symmetric(Position position)
+        {
+            return new AstKeyword(position, "SYMMETRIC", "SYMMETRIC");
+        }
+        
+        /// <summary>
+        /// keyword : SYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstKeyword SynchronousCommit(Position position)
+        {
+            return new AstKeyword(position, "SYNCHRONOUS_COMMIT", "SYNCHRONOUS_COMMIT");
+        }
+        
+        /// <summary>
+        /// keyword : SYNONYM
+        /// </summary>
+        public static AstKeyword Synonym(Position position)
+        {
+            return new AstKeyword(position, "SYNONYM", "SYNONYM");
+        }
+        
+        /// <summary>
+        /// keyword : SYSTEM
+        /// </summary>
+        public static AstKeyword System(Position position)
+        {
+            return new AstKeyword(position, "SYSTEM", "SYSTEM");
+        }
+        
+        /// <summary>
+        /// keyword : TABLOCK
+        /// </summary>
+        public static AstKeyword Tablock(Position position)
+        {
+            return new AstKeyword(position, "TABLOCK", "TABLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : TABLOCKX
+        /// </summary>
+        public static AstKeyword Tablockx(Position position)
+        {
+            return new AstKeyword(position, "TABLOCKX", "TABLOCKX");
+        }
+        
+        /// <summary>
+        /// keyword : TAKE
+        /// </summary>
+        public static AstKeyword Take(Position position)
+        {
+            return new AstKeyword(position, "TAKE", "TAKE");
+        }
+        
+        /// <summary>
+        /// keyword : TARGET_RECOVERY_TIME
+        /// </summary>
+        public static AstKeyword TargetRecoveryTime(Position position)
+        {
+            return new AstKeyword(position, "TARGET_RECOVERY_TIME", "TARGET_RECOVERY_TIME");
+        }
+        
+        /// <summary>
+        /// keyword : TB
+        /// </summary>
+        public static AstKeyword Tb(Position position)
+        {
+            return new AstKeyword(position, "TB", "TB");
+        }
+        
+        /// <summary>
+        /// keyword : TEXTIMAGE_ON
+        /// </summary>
+        public static AstKeyword TextimageOn(Position position)
+        {
+            return new AstKeyword(position, "TEXTIMAGE_ON", "TEXTIMAGE_ON");
+        }
+        
+        /// <summary>
+        /// keyword : THROW
+        /// </summary>
+        public static AstKeyword Throw(Position position)
+        {
+            return new AstKeyword(position, "THROW", "THROW");
+        }
+        
+        /// <summary>
+        /// keyword : TIES
+        /// </summary>
+        public static AstKeyword Ties(Position position)
+        {
+            return new AstKeyword(position, "TIES", "TIES");
+        }
+        
+        /// <summary>
+        /// keyword : TIME
+        /// </summary>
+        public static AstKeyword Time(Position position)
+        {
+            return new AstKeyword(position, "TIME", "TIME");
+        }
+        
+        /// <summary>
+        /// keyword : TIMEOUT
+        /// </summary>
+        public static AstKeyword Timeout(Position position)
+        {
+            return new AstKeyword(position, "TIMEOUT", "TIMEOUT");
+        }
+        
+        /// <summary>
+        /// keyword : TIMER
+        /// </summary>
+        public static AstKeyword Timer(Position position)
+        {
+            return new AstKeyword(position, "TIMER", "TIMER");
+        }
+        
+        /// <summary>
+        /// keyword : TINYINT
+        /// </summary>
+        public static AstKeyword Tinyint(Position position)
+        {
+            return new AstKeyword(position, "TINYINT", "TINYINT");
+        }
+        
+        /// <summary>
+        /// keyword : TORN_PAGE_DETECTION
+        /// </summary>
+        public static AstKeyword TornPageDetection(Position position)
+        {
+            return new AstKeyword(position, "TORN_PAGE_DETECTION", "TORN_PAGE_DETECTION");
+        }
+        
+        /// <summary>
+        /// keyword : TRACKING
+        /// </summary>
+        public static AstKeyword Tracking(Position position)
+        {
+            return new AstKeyword(position, "TRACKING", "TRACKING");
+        }
+        
+        /// <summary>
+        /// keyword : TRANSACTION_ID
+        /// </summary>
+        public static AstKeyword TransactionId(Position position)
+        {
+            return new AstKeyword(position, "TRANSACTION_ID", "TRANSACTION_ID");
+        }
+        
+        /// <summary>
+        /// keyword : TRANSFORM_NOISE_WORDS
+        /// </summary>
+        public static AstKeyword TransformNoiseWords(Position position)
+        {
+            return new AstKeyword(position, "TRANSFORM_NOISE_WORDS", "TRANSFORM_NOISE_WORDS");
+        }
+        
+        /// <summary>
+        /// keyword : TRANSLATE
+        /// </summary>
+        public static AstKeyword Translate(Position position)
+        {
+            return new AstKeyword(position, "TRANSLATE", "TRANSLATE");
+        }
+        
+        /// <summary>
+        /// keyword : TRIM
+        /// </summary>
+        public static AstKeyword Trim(Position position)
+        {
+            return new AstKeyword(position, "TRIM", "TRIM");
+        }
+        
+        /// <summary>
+        /// keyword : TRIPLE_DES
+        /// </summary>
+        public static AstKeyword TripleDes(Position position)
+        {
+            return new AstKeyword(position, "TRIPLE_DES", "TRIPLE_DES");
+        }
+        
+        /// <summary>
+        /// keyword : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstKeyword TripleDes3key(Position position)
+        {
+            return new AstKeyword(position, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+        
+        /// <summary>
+        /// keyword : TRUSTWORTHY
+        /// </summary>
+        public static AstKeyword Trustworthy(Position position)
+        {
+            return new AstKeyword(position, "TRUSTWORTHY", "TRUSTWORTHY");
+        }
+        
+        /// <summary>
+        /// keyword : TRY
+        /// </summary>
+        public static AstKeyword Try(Position position)
+        {
+            return new AstKeyword(position, "TRY", "TRY");
+        }
+        
+        /// <summary>
+        /// keyword : TSQL
+        /// </summary>
+        public static AstKeyword Tsql(Position position)
+        {
+            return new AstKeyword(position, "TSQL", "TSQL");
+        }
+        
+        /// <summary>
+        /// keyword : TWO_DIGIT_YEAR_CUTOFF
+        /// </summary>
+        public static AstKeyword TwoDigitYearCutoff(Position position)
+        {
+            return new AstKeyword(position, "TWO_DIGIT_YEAR_CUTOFF", "TWO_DIGIT_YEAR_CUTOFF");
+        }
+        
+        /// <summary>
+        /// keyword : TYPE
+        /// </summary>
+        public static AstKeyword Type(Position position)
+        {
+            return new AstKeyword(position, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// keyword : TYPE_ID
+        /// </summary>
+        public static AstKeyword TypeId(Position position)
+        {
+            return new AstKeyword(position, "TYPE_ID", "TYPE_ID");
+        }
+        
+        /// <summary>
+        /// keyword : TYPE_NAME
+        /// </summary>
+        public static AstKeyword TypeName(Position position)
+        {
+            return new AstKeyword(position, "TYPE_NAME", "TYPE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : TYPE_WARNING
+        /// </summary>
+        public static AstKeyword TypeWarning(Position position)
+        {
+            return new AstKeyword(position, "TYPE_WARNING", "TYPE_WARNING");
+        }
+        
+        /// <summary>
+        /// keyword : TYPEPROPERTY
+        /// </summary>
+        public static AstKeyword Typeproperty(Position position)
+        {
+            return new AstKeyword(position, "TYPEPROPERTY", "TYPEPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : UNBOUNDED
+        /// </summary>
+        public static AstKeyword Unbounded(Position position)
+        {
+            return new AstKeyword(position, "UNBOUNDED", "UNBOUNDED");
+        }
+        
+        /// <summary>
+        /// keyword : UNCOMMITTED
+        /// </summary>
+        public static AstKeyword Uncommitted(Position position)
+        {
+            return new AstKeyword(position, "UNCOMMITTED", "UNCOMMITTED");
+        }
+        
+        /// <summary>
+        /// keyword : UNICODE
+        /// </summary>
+        public static AstKeyword Unicode(Position position)
+        {
+            return new AstKeyword(position, "UNICODE", "UNICODE");
+        }
+        
+        /// <summary>
+        /// keyword : UNKNOWN
+        /// </summary>
+        public static AstKeyword Unknown(Position position)
+        {
+            return new AstKeyword(position, "UNKNOWN", "UNKNOWN");
+        }
+        
+        /// <summary>
+        /// keyword : UNLIMITED
+        /// </summary>
+        public static AstKeyword Unlimited(Position position)
+        {
+            return new AstKeyword(position, "UNLIMITED", "UNLIMITED");
+        }
+        
+        /// <summary>
+        /// keyword : UNMASK
+        /// </summary>
+        public static AstKeyword Unmask(Position position)
+        {
+            return new AstKeyword(position, "UNMASK", "UNMASK");
+        }
+        
+        /// <summary>
+        /// keyword : UOW
+        /// </summary>
+        public static AstKeyword Uow(Position position)
+        {
+            return new AstKeyword(position, "UOW", "UOW");
+        }
+        
+        /// <summary>
+        /// keyword : UPDLOCK
+        /// </summary>
+        public static AstKeyword Updlock(Position position)
+        {
+            return new AstKeyword(position, "UPDLOCK", "UPDLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : UPPER
+        /// </summary>
+        public static AstKeyword Upper(Position position)
+        {
+            return new AstKeyword(position, "UPPER", "UPPER");
+        }
+        
+        /// <summary>
+        /// keyword : USING
+        /// </summary>
+        public static AstKeyword Using(Position position)
+        {
+            return new AstKeyword(position, "USING", "USING");
+        }
+        
+        /// <summary>
+        /// keyword : VALID_XML
+        /// </summary>
+        public static AstKeyword ValidXml(Position position)
+        {
+            return new AstKeyword(position, "VALID_XML", "VALID_XML");
+        }
+        
+        /// <summary>
+        /// keyword : VALIDATION
+        /// </summary>
+        public static AstKeyword Validation(Position position)
+        {
+            return new AstKeyword(position, "VALIDATION", "VALIDATION");
+        }
+        
+        /// <summary>
+        /// keyword : VALUE
+        /// </summary>
+        public static AstKeyword Value(Position position)
+        {
+            return new AstKeyword(position, "VALUE", "VALUE");
+        }
+        
+        /// <summary>
+        /// keyword : VAR
+        /// </summary>
+        public static AstKeyword Var(Position position)
+        {
+            return new AstKeyword(position, "VAR", "VAR");
+        }
+        
+        /// <summary>
+        /// keyword : VARBINARY
+        /// </summary>
+        public static AstKeyword VarbinaryKeyword(Position position)
+        {
+            return new AstKeyword(position, "VARBINARY_KEYWORD", "VARBINARY");
+        }
+        
+        /// <summary>
+        /// keyword : VARP
+        /// </summary>
+        public static AstKeyword Varp(Position position)
+        {
+            return new AstKeyword(position, "VARP", "VARP");
+        }
+        
+        /// <summary>
+        /// keyword : VERSION
+        /// </summary>
+        public static AstKeyword Version(Position position)
+        {
+            return new AstKeyword(position, "VERSION", "VERSION");
+        }
+        
+        /// <summary>
+        /// keyword : VIEW_METADATA
+        /// </summary>
+        public static AstKeyword ViewMetadata(Position position)
+        {
+            return new AstKeyword(position, "VIEW_METADATA", "VIEW_METADATA");
+        }
+        
+        /// <summary>
+        /// keyword : VIEWS
+        /// </summary>
+        public static AstKeyword Views(Position position)
+        {
+            return new AstKeyword(position, "VIEWS", "VIEWS");
+        }
+        
+        /// <summary>
+        /// keyword : WAIT
+        /// </summary>
+        public static AstKeyword Wait(Position position)
+        {
+            return new AstKeyword(position, "WAIT", "WAIT");
+        }
+        
+        /// <summary>
+        /// keyword : WELL_FORMED_XML
+        /// </summary>
+        public static AstKeyword WellFormedXml(Position position)
+        {
+            return new AstKeyword(position, "WELL_FORMED_XML", "WELL_FORMED_XML");
+        }
+        
+        /// <summary>
+        /// keyword : WITHOUT_ARRAY_WRAPPER
+        /// </summary>
+        public static AstKeyword WithoutArrayWrapper(Position position)
+        {
+            return new AstKeyword(position, "WITHOUT_ARRAY_WRAPPER", "WITHOUT_ARRAY_WRAPPER");
+        }
+        
+        /// <summary>
+        /// keyword : WORK
+        /// </summary>
+        public static AstKeyword Work(Position position)
+        {
+            return new AstKeyword(position, "WORK", "WORK");
+        }
+        
+        /// <summary>
+        /// keyword : WORKLOAD
+        /// </summary>
+        public static AstKeyword Workload(Position position)
+        {
+            return new AstKeyword(position, "WORKLOAD", "WORKLOAD");
+        }
+        
+        /// <summary>
+        /// keyword : XLOCK
+        /// </summary>
+        public static AstKeyword Xlock(Position position)
+        {
+            return new AstKeyword(position, "XLOCK", "XLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : XML
+        /// </summary>
+        public static AstKeyword Xml(Position position)
+        {
+            return new AstKeyword(position, "XML", "XML");
+        }
+        
+        /// <summary>
+        /// keyword : XML_COMPRESSION
+        /// </summary>
+        public static AstKeyword XmlCompression(Position position)
+        {
+            return new AstKeyword(position, "XML_COMPRESSION", "XML_COMPRESSION");
+        }
+        
+        /// <summary>
+        /// keyword : XMLDATA
+        /// </summary>
+        public static AstKeyword Xmldata(Position position)
+        {
+            return new AstKeyword(position, "XMLDATA", "XMLDATA");
+        }
+        
+        /// <summary>
+        /// keyword : XMLNAMESPACES
+        /// </summary>
+        public static AstKeyword Xmlnamespaces(Position position)
+        {
+            return new AstKeyword(position, "XMLNAMESPACES", "XMLNAMESPACES");
+        }
+        
+        /// <summary>
+        /// keyword : XMLSCHEMA
+        /// </summary>
+        public static AstKeyword Xmlschema(Position position)
+        {
+            return new AstKeyword(position, "XMLSCHEMA", "XMLSCHEMA");
+        }
+        
+        /// <summary>
+        /// keyword : XSINIL
+        /// </summary>
+        public static AstKeyword Xsinil(Position position)
+        {
+            return new AstKeyword(position, "XSINIL", "XSINIL");
+        }
+        
+        /// <summary>
+        /// keyword : ZONE
+        /// </summary>
+        public static AstKeyword Zone(Position position)
+        {
+            return new AstKeyword(position, "ZONE", "ZONE");
+        }
+        
+        /// <summary>
+        /// keyword : ABORT_AFTER_WAIT
+        /// </summary>
+        public static AstKeyword AbortAfterWait(Position position)
+        {
+            return new AstKeyword(position, "ABORT_AFTER_WAIT", "ABORT_AFTER_WAIT");
+        }
+        
+        /// <summary>
+        /// keyword : ABSENT
+        /// </summary>
+        public static AstKeyword Absent(Position position)
+        {
+            return new AstKeyword(position, "ABSENT", "ABSENT");
+        }
+        
+        /// <summary>
+        /// keyword : ADMINISTER
+        /// </summary>
+        public static AstKeyword Administer(Position position)
+        {
+            return new AstKeyword(position, "ADMINISTER", "ADMINISTER");
+        }
+        
+        /// <summary>
+        /// keyword : AES
+        /// </summary>
+        public static AstKeyword Aes(Position position)
+        {
+            return new AstKeyword(position, "AES", "AES");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_CONNECTIONS
+        /// </summary>
+        public static AstKeyword AllowConnections(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_CONNECTIONS", "ALLOW_CONNECTIONS");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_MULTIPLE_EVENT_LOSS
+        /// </summary>
+        public static AstKeyword AllowMultipleEventLoss(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_MULTIPLE_EVENT_LOSS", "ALLOW_MULTIPLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// keyword : ALLOW_SINGLE_EVENT_LOSS
+        /// </summary>
+        public static AstKeyword AllowSingleEventLoss(Position position)
+        {
+            return new AstKeyword(position, "ALLOW_SINGLE_EVENT_LOSS", "ALLOW_SINGLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// keyword : ANONYMOUS
+        /// </summary>
+        public static AstKeyword Anonymous(Position position)
+        {
+            return new AstKeyword(position, "ANONYMOUS", "ANONYMOUS");
+        }
+        
+        /// <summary>
+        /// keyword : APPEND
+        /// </summary>
+        public static AstKeyword Append(Position position)
+        {
+            return new AstKeyword(position, "APPEND", "APPEND");
+        }
+        
+        /// <summary>
+        /// keyword : APPLICATION
+        /// </summary>
+        public static AstKeyword Application(Position position)
+        {
+            return new AstKeyword(position, "APPLICATION", "APPLICATION");
+        }
+        
+        /// <summary>
+        /// keyword : ASYMMETRIC
+        /// </summary>
+        public static AstKeyword Asymmetric(Position position)
+        {
+            return new AstKeyword(position, "ASYMMETRIC", "ASYMMETRIC");
+        }
+        
+        /// <summary>
+        /// keyword : ASYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstKeyword AsynchronousCommit(Position position)
+        {
+            return new AstKeyword(position, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
+        }
+        
+        /// <summary>
+        /// keyword : AUTHENTICATE
+        /// </summary>
+        public static AstKeyword Authenticate(Position position)
+        {
+            return new AstKeyword(position, "AUTHENTICATE", "AUTHENTICATE");
+        }
+        
+        /// <summary>
+        /// keyword : AUTHENTICATION
+        /// </summary>
+        public static AstKeyword Authentication(Position position)
+        {
+            return new AstKeyword(position, "AUTHENTICATION", "AUTHENTICATION");
+        }
+        
+        /// <summary>
+        /// keyword : AUTOMATED_BACKUP_PREFERENCE
+        /// </summary>
+        public static AstKeyword AutomatedBackupPreference(Position position)
+        {
+            return new AstKeyword(position, "AUTOMATED_BACKUP_PREFERENCE", "AUTOMATED_BACKUP_PREFERENCE");
+        }
+        
+        /// <summary>
+        /// keyword : AUTOMATIC
+        /// </summary>
+        public static AstKeyword Automatic(Position position)
+        {
+            return new AstKeyword(position, "AUTOMATIC", "AUTOMATIC");
+        }
+        
+        /// <summary>
+        /// keyword : AVAILABILITY_MODE
+        /// </summary>
+        public static AstKeyword AvailabilityMode(Position position)
+        {
+            return new AstKeyword(position, "AVAILABILITY_MODE", "AVAILABILITY_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : BEFORE
+        /// </summary>
+        public static AstKeyword Before(Position position)
+        {
+            return new AstKeyword(position, "BEFORE", "BEFORE");
+        }
+        
+        /// <summary>
+        /// keyword : BLOCK
+        /// </summary>
+        public static AstKeyword Block(Position position)
+        {
+            return new AstKeyword(position, "BLOCK", "BLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : BLOCKERS
+        /// </summary>
+        public static AstKeyword Blockers(Position position)
+        {
+            return new AstKeyword(position, "BLOCKERS", "BLOCKERS");
+        }
+        
+        /// <summary>
+        /// keyword : BLOCKSIZE
+        /// </summary>
+        public static AstKeyword Blocksize(Position position)
+        {
+            return new AstKeyword(position, "BLOCKSIZE", "BLOCKSIZE");
+        }
+        
+        /// <summary>
+        /// keyword : BLOCKING_HIERARCHY
+        /// </summary>
+        public static AstKeyword BlockingHierarchy(Position position)
+        {
+            return new AstKeyword(position, "BLOCKING_HIERARCHY", "BLOCKING_HIERARCHY");
+        }
+        
+        /// <summary>
+        /// keyword : BUFFER
+        /// </summary>
+        public static AstKeyword Buffer(Position position)
+        {
+            return new AstKeyword(position, "BUFFER", "BUFFER");
+        }
+        
+        /// <summary>
+        /// keyword : BUFFERCOUNT
+        /// </summary>
+        public static AstKeyword Buffercount(Position position)
+        {
+            return new AstKeyword(position, "BUFFERCOUNT", "BUFFERCOUNT");
+        }
+        
+        /// <summary>
+        /// keyword : CACHE
+        /// </summary>
+        public static AstKeyword Cache(Position position)
+        {
+            return new AstKeyword(position, "CACHE", "CACHE");
+        }
+        
+        /// <summary>
+        /// keyword : CALLED
+        /// </summary>
+        public static AstKeyword Called(Position position)
+        {
+            return new AstKeyword(position, "CALLED", "CALLED");
+        }
+        
+        /// <summary>
+        /// keyword : CERTIFICATE
+        /// </summary>
+        public static AstKeyword Certificate(Position position)
+        {
+            return new AstKeyword(position, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// keyword : CHANGETABLE
+        /// </summary>
+        public static AstKeyword Changetable(Position position)
+        {
+            return new AstKeyword(position, "CHANGETABLE", "CHANGETABLE");
+        }
+        
+        /// <summary>
+        /// keyword : CHANGES
+        /// </summary>
+        public static AstKeyword Changes(Position position)
+        {
+            return new AstKeyword(position, "CHANGES", "CHANGES");
+        }
+        
+        /// <summary>
+        /// keyword : CHECK_POLICY
+        /// </summary>
+        public static AstKeyword CheckPolicy(Position position)
+        {
+            return new AstKeyword(position, "CHECK_POLICY", "CHECK_POLICY");
+        }
+        
+        /// <summary>
+        /// keyword : CHECK_EXPIRATION
+        /// </summary>
+        public static AstKeyword CheckExpiration(Position position)
+        {
+            return new AstKeyword(position, "CHECK_EXPIRATION", "CHECK_EXPIRATION");
+        }
+        
+        /// <summary>
+        /// keyword : CLASSIFIER_FUNCTION
+        /// </summary>
+        public static AstKeyword ClassifierFunction(Position position)
+        {
+            return new AstKeyword(position, "CLASSIFIER_FUNCTION", "CLASSIFIER_FUNCTION");
+        }
+        
+        /// <summary>
+        /// keyword : CLUSTER
+        /// </summary>
+        public static AstKeyword Cluster(Position position)
+        {
+            return new AstKeyword(position, "CLUSTER", "CLUSTER");
+        }
+        
+        /// <summary>
+        /// keyword : COMPRESS
+        /// </summary>
+        public static AstKeyword Compress(Position position)
+        {
+            return new AstKeyword(position, "COMPRESS", "COMPRESS");
+        }
+        
+        /// <summary>
+        /// keyword : COMPRESSION
+        /// </summary>
+        public static AstKeyword Compression(Position position)
+        {
+            return new AstKeyword(position, "COMPRESSION", "COMPRESSION");
+        }
+        
+        /// <summary>
+        /// keyword : CONNECT
+        /// </summary>
+        public static AstKeyword Connect(Position position)
+        {
+            return new AstKeyword(position, "CONNECT", "CONNECT");
+        }
+        
+        /// <summary>
+        /// keyword : CONNECTION
+        /// </summary>
+        public static AstKeyword Connection(Position position)
+        {
+            return new AstKeyword(position, "CONNECTION", "CONNECTION");
+        }
+        
+        /// <summary>
+        /// keyword : CONFIGURATION
+        /// </summary>
+        public static AstKeyword Configuration(Position position)
+        {
+            return new AstKeyword(position, "CONFIGURATION", "CONFIGURATION");
+        }
+        
+        /// <summary>
+        /// keyword : CONNECTIONPROPERTY
+        /// </summary>
+        public static AstKeyword Connectionproperty(Position position)
+        {
+            return new AstKeyword(position, "CONNECTIONPROPERTY", "CONNECTIONPROPERTY");
+        }
+        
+        /// <summary>
+        /// keyword : CONTAINMENT
+        /// </summary>
+        public static AstKeyword Containment(Position position)
+        {
+            return new AstKeyword(position, "CONTAINMENT", "CONTAINMENT");
+        }
+        
+        /// <summary>
+        /// keyword : CONTEXT
+        /// </summary>
+        public static AstKeyword Context(Position position)
+        {
+            return new AstKeyword(position, "CONTEXT", "CONTEXT");
+        }
+        
+        /// <summary>
+        /// keyword : CONTEXT_INFO
+        /// </summary>
+        public static AstKeyword ContextInfo(Position position)
+        {
+            return new AstKeyword(position, "CONTEXT_INFO", "CONTEXT_INFO");
+        }
+        
+        /// <summary>
+        /// keyword : CONTINUE_AFTER_ERROR
+        /// </summary>
+        public static AstKeyword ContinueAfterError(Position position)
+        {
+            return new AstKeyword(position, "CONTINUE_AFTER_ERROR", "CONTINUE_AFTER_ERROR");
+        }
+        
+        /// <summary>
+        /// keyword : CONTRACT
+        /// </summary>
+        public static AstKeyword Contract(Position position)
+        {
+            return new AstKeyword(position, "CONTRACT", "CONTRACT");
+        }
+        
+        /// <summary>
+        /// keyword : CONTRACT_NAME
+        /// </summary>
+        public static AstKeyword ContractName(Position position)
+        {
+            return new AstKeyword(position, "CONTRACT_NAME", "CONTRACT_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : CONVERSATION
+        /// </summary>
+        public static AstKeyword Conversation(Position position)
+        {
+            return new AstKeyword(position, "CONVERSATION", "CONVERSATION");
+        }
+        
+        /// <summary>
+        /// keyword : COPY_ONLY
+        /// </summary>
+        public static AstKeyword CopyOnly(Position position)
+        {
+            return new AstKeyword(position, "COPY_ONLY", "COPY_ONLY");
+        }
+        
+        /// <summary>
+        /// keyword : CURRENT_REQUEST_ID
+        /// </summary>
+        public static AstKeyword CurrentRequestId(Position position)
+        {
+            return new AstKeyword(position, "CURRENT_REQUEST_ID", "CURRENT_REQUEST_ID");
+        }
+        
+        /// <summary>
+        /// keyword : CURRENT_TRANSACTION_ID
+        /// </summary>
+        public static AstKeyword CurrentTransactionId(Position position)
+        {
+            return new AstKeyword(position, "CURRENT_TRANSACTION_ID", "CURRENT_TRANSACTION_ID");
+        }
+        
+        /// <summary>
+        /// keyword : CYCLE
+        /// </summary>
+        public static AstKeyword Cycle(Position position)
+        {
+            return new AstKeyword(position, "CYCLE", "CYCLE");
+        }
+        
+        /// <summary>
+        /// keyword : DATA_COMPRESSION
+        /// </summary>
+        public static AstKeyword DataCompression(Position position)
+        {
+            return new AstKeyword(position, "DATA_COMPRESSION", "DATA_COMPRESSION");
+        }
+        
+        /// <summary>
+        /// keyword : DATA_SOURCE
+        /// </summary>
+        public static AstKeyword DataSource(Position position)
+        {
+            return new AstKeyword(position, "DATA_SOURCE", "DATA_SOURCE");
+        }
+        
+        /// <summary>
+        /// keyword : DATABASE_MIRRORING
+        /// </summary>
+        public static AstKeyword DatabaseMirroring(Position position)
+        {
+            return new AstKeyword(position, "DATABASE_MIRRORING", "DATABASE_MIRRORING");
+        }
+        
+        /// <summary>
+        /// keyword : DATASPACE
+        /// </summary>
+        public static AstKeyword Dataspace(Position position)
+        {
+            return new AstKeyword(position, "DATASPACE", "DATASPACE");
+        }
+        
+        /// <summary>
+        /// keyword : DDL
+        /// </summary>
+        public static AstKeyword Ddl(Position position)
+        {
+            return new AstKeyword(position, "DDL", "DDL");
+        }
+        
+        /// <summary>
+        /// keyword : DECOMPRESS
+        /// </summary>
+        public static AstKeyword Decompress(Position position)
+        {
+            return new AstKeyword(position, "DECOMPRESS", "DECOMPRESS");
+        }
+        
+        /// <summary>
+        /// keyword : DEFAULT_DATABASE
+        /// </summary>
+        public static AstKeyword DefaultDatabase(Position position)
+        {
+            return new AstKeyword(position, "DEFAULT_DATABASE", "DEFAULT_DATABASE");
+        }
+        
+        /// <summary>
+        /// keyword : DEFAULT_SCHEMA
+        /// </summary>
+        public static AstKeyword DefaultSchema(Position position)
+        {
+            return new AstKeyword(position, "DEFAULT_SCHEMA", "DEFAULT_SCHEMA");
+        }
+        
+        /// <summary>
+        /// keyword : DIAGNOSTICS
+        /// </summary>
+        public static AstKeyword Diagnostics(Position position)
+        {
+            return new AstKeyword(position, "DIAGNOSTICS", "DIAGNOSTICS");
+        }
+        
+        /// <summary>
+        /// keyword : DIFFERENTIAL
+        /// </summary>
+        public static AstKeyword Differential(Position position)
+        {
+            return new AstKeyword(position, "DIFFERENTIAL", "DIFFERENTIAL");
+        }
+        
+        /// <summary>
+        /// keyword : DISTRIBUTION
+        /// </summary>
+        public static AstKeyword Distribution(Position position)
+        {
+            return new AstKeyword(position, "DISTRIBUTION", "DISTRIBUTION");
+        }
+        
+        /// <summary>
+        /// keyword : DTC_SUPPORT
+        /// </summary>
+        public static AstKeyword DtcSupport(Position position)
+        {
+            return new AstKeyword(position, "DTC_SUPPORT", "DTC_SUPPORT");
+        }
+        
+        /// <summary>
+        /// keyword : ENABLED
+        /// </summary>
+        public static AstKeyword Enabled(Position position)
+        {
+            return new AstKeyword(position, "ENABLED", "ENABLED");
+        }
+        
+        /// <summary>
+        /// keyword : ENDPOINT
+        /// </summary>
+        public static AstKeyword Endpoint(Position position)
+        {
+            return new AstKeyword(position, "ENDPOINT", "ENDPOINT");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR
+        /// </summary>
+        public static AstKeyword Error(Position position)
+        {
+            return new AstKeyword(position, "ERROR", "ERROR");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_LINE
+        /// </summary>
+        public static AstKeyword ErrorLine(Position position)
+        {
+            return new AstKeyword(position, "ERROR_LINE", "ERROR_LINE");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_MESSAGE
+        /// </summary>
+        public static AstKeyword ErrorMessage(Position position)
+        {
+            return new AstKeyword(position, "ERROR_MESSAGE", "ERROR_MESSAGE");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_NUMBER
+        /// </summary>
+        public static AstKeyword ErrorNumber(Position position)
+        {
+            return new AstKeyword(position, "ERROR_NUMBER", "ERROR_NUMBER");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_PROCEDURE
+        /// </summary>
+        public static AstKeyword ErrorProcedure(Position position)
+        {
+            return new AstKeyword(position, "ERROR_PROCEDURE", "ERROR_PROCEDURE");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_SEVERITY
+        /// </summary>
+        public static AstKeyword ErrorSeverity(Position position)
+        {
+            return new AstKeyword(position, "ERROR_SEVERITY", "ERROR_SEVERITY");
+        }
+        
+        /// <summary>
+        /// keyword : ERROR_STATE
+        /// </summary>
+        public static AstKeyword ErrorState(Position position)
+        {
+            return new AstKeyword(position, "ERROR_STATE", "ERROR_STATE");
+        }
+        
+        /// <summary>
+        /// keyword : EVENT
+        /// </summary>
+        public static AstKeyword Event(Position position)
+        {
+            return new AstKeyword(position, "EVENT", "EVENT");
+        }
+        
+        /// <summary>
+        /// keyword : EVENTDATA
+        /// </summary>
+        public static AstKeyword Eventdata(Position position)
+        {
+            return new AstKeyword(position, "EVENTDATA", "EVENTDATA");
+        }
+        
+        /// <summary>
+        /// keyword : EVENT_RETENTION_MODE
+        /// </summary>
+        public static AstKeyword EventRetentionMode(Position position)
+        {
+            return new AstKeyword(position, "EVENT_RETENTION_MODE", "EVENT_RETENTION_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : EXECUTABLE_FILE
+        /// </summary>
+        public static AstKeyword ExecutableFile(Position position)
+        {
+            return new AstKeyword(position, "EXECUTABLE_FILE", "EXECUTABLE_FILE");
+        }
+        
+        /// <summary>
+        /// keyword : EXPIREDATE
+        /// </summary>
+        public static AstKeyword Expiredate(Position position)
+        {
+            return new AstKeyword(position, "EXPIREDATE", "EXPIREDATE");
+        }
+        
+        /// <summary>
+        /// keyword : EXTENSION
+        /// </summary>
+        public static AstKeyword Extension(Position position)
+        {
+            return new AstKeyword(position, "EXTENSION", "EXTENSION");
+        }
+        
+        /// <summary>
+        /// keyword : EXTERNAL_ACCESS
+        /// </summary>
+        public static AstKeyword ExternalAccess(Position position)
+        {
+            return new AstKeyword(position, "EXTERNAL_ACCESS", "EXTERNAL_ACCESS");
+        }
+        
+        /// <summary>
+        /// keyword : FAILOVER
+        /// </summary>
+        public static AstKeyword Failover(Position position)
+        {
+            return new AstKeyword(position, "FAILOVER", "FAILOVER");
+        }
+        
+        /// <summary>
+        /// keyword : FAILURECONDITIONLEVEL
+        /// </summary>
+        public static AstKeyword Failureconditionlevel(Position position)
+        {
+            return new AstKeyword(position, "FAILURECONDITIONLEVEL", "FAILURECONDITIONLEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : FAN_IN
+        /// </summary>
+        public static AstKeyword FanIn(Position position)
+        {
+            return new AstKeyword(position, "FAN_IN", "FAN_IN");
+        }
+        
+        /// <summary>
+        /// keyword : FILE_SNAPSHOT
+        /// </summary>
+        public static AstKeyword FileSnapshot(Position position)
+        {
+            return new AstKeyword(position, "FILE_SNAPSHOT", "FILE_SNAPSHOT");
+        }
+        
+        /// <summary>
+        /// keyword : FORCESEEK
+        /// </summary>
+        public static AstKeyword Forceseek(Position position)
+        {
+            return new AstKeyword(position, "FORCESEEK", "FORCESEEK");
+        }
+        
+        /// <summary>
+        /// keyword : FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstKeyword ForceServiceAllowDataLoss(Position position)
+        {
+            return new AstKeyword(position, "FORCE_SERVICE_ALLOW_DATA_LOSS", "FORCE_SERVICE_ALLOW_DATA_LOSS");
+        }
+        
+        /// <summary>
+        /// keyword : FORMATMESSAGE
+        /// </summary>
+        public static AstKeyword Formatmessage(Position position)
+        {
+            return new AstKeyword(position, "FORMATMESSAGE", "FORMATMESSAGE");
+        }
+        
+        /// <summary>
+        /// keyword : GET
+        /// </summary>
+        public static AstKeyword Get(Position position)
+        {
+            return new AstKeyword(position, "GET", "GET");
+        }
+        
+        /// <summary>
+        /// keyword : GET_FILESTREAM_TRANSACTION_CONTEXT
+        /// </summary>
+        public static AstKeyword GetFilestreamTransactionContext(Position position)
+        {
+            return new AstKeyword(position, "GET_FILESTREAM_TRANSACTION_CONTEXT", "GET_FILESTREAM_TRANSACTION_CONTEXT");
+        }
+        
+        /// <summary>
+        /// keyword : GETANCESTOR
+        /// </summary>
+        public static AstKeyword Getancestor(Position position)
+        {
+            return new AstKeyword(position, "GETANCESTOR", "GETANCESTOR");
+        }
+        
+        /// <summary>
+        /// keyword : GETANSINULL
+        /// </summary>
+        public static AstKeyword Getansinull(Position position)
+        {
+            return new AstKeyword(position, "GETANSINULL", "GETANSINULL");
+        }
+        
+        /// <summary>
+        /// keyword : GETDESCENDANT
+        /// </summary>
+        public static AstKeyword Getdescendant(Position position)
+        {
+            return new AstKeyword(position, "GETDESCENDANT", "GETDESCENDANT");
+        }
+        
+        /// <summary>
+        /// keyword : GETLEVEL
+        /// </summary>
+        public static AstKeyword Getlevel(Position position)
+        {
+            return new AstKeyword(position, "GETLEVEL", "GETLEVEL");
+        }
+        
+        /// <summary>
+        /// keyword : GETREPARENTEDVALUE
+        /// </summary>
+        public static AstKeyword Getreparentedvalue(Position position)
+        {
+            return new AstKeyword(position, "GETREPARENTEDVALUE", "GETREPARENTEDVALUE");
+        }
+        
+        /// <summary>
+        /// keyword : GETROOT
+        /// </summary>
+        public static AstKeyword Getroot(Position position)
+        {
+            return new AstKeyword(position, "GETROOT", "GETROOT");
+        }
+        
+        /// <summary>
+        /// keyword : GOVERNOR
+        /// </summary>
+        public static AstKeyword Governor(Position position)
+        {
+            return new AstKeyword(position, "GOVERNOR", "GOVERNOR");
+        }
+        
+        /// <summary>
+        /// keyword : HASHED
+        /// </summary>
+        public static AstKeyword Hashed(Position position)
+        {
+            return new AstKeyword(position, "HASHED", "HASHED");
+        }
+        
+        /// <summary>
+        /// keyword : HEALTHCHECKTIMEOUT
+        /// </summary>
+        public static AstKeyword Healthchecktimeout(Position position)
+        {
+            return new AstKeyword(position, "HEALTHCHECKTIMEOUT", "HEALTHCHECKTIMEOUT");
+        }
+        
+        /// <summary>
+        /// keyword : HEAP
+        /// </summary>
+        public static AstKeyword Heap(Position position)
+        {
+            return new AstKeyword(position, "HEAP", "HEAP");
+        }
+        
+        /// <summary>
+        /// keyword : HIERARCHYID
+        /// </summary>
+        public static AstKeyword Hierarchyid(Position position)
+        {
+            return new AstKeyword(position, "HIERARCHYID", "HIERARCHYID");
+        }
+        
+        /// <summary>
+        /// keyword : HOST_ID
+        /// </summary>
+        public static AstKeyword HostId(Position position)
+        {
+            return new AstKeyword(position, "HOST_ID", "HOST_ID");
+        }
+        
+        /// <summary>
+        /// keyword : HOST_NAME
+        /// </summary>
+        public static AstKeyword HostName(Position position)
+        {
+            return new AstKeyword(position, "HOST_NAME", "HOST_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : IIF
+        /// </summary>
+        public static AstKeyword Iif(Position position)
+        {
+            return new AstKeyword(position, "IIF", "IIF");
+        }
+        
+        /// <summary>
+        /// keyword : IO
+        /// </summary>
+        public static AstKeyword Io(Position position)
+        {
+            return new AstKeyword(position, "IO", "IO");
+        }
+        
+        /// <summary>
+        /// keyword : INCLUDE
+        /// </summary>
+        public static AstKeyword Include(Position position)
+        {
+            return new AstKeyword(position, "INCLUDE", "INCLUDE");
+        }
+        
+        /// <summary>
+        /// keyword : INCREMENT
+        /// </summary>
+        public static AstKeyword Increment(Position position)
+        {
+            return new AstKeyword(position, "INCREMENT", "INCREMENT");
+        }
+        
+        /// <summary>
+        /// keyword : INFINITE
+        /// </summary>
+        public static AstKeyword Infinite(Position position)
+        {
+            return new AstKeyword(position, "INFINITE", "INFINITE");
+        }
+        
+        /// <summary>
+        /// keyword : INIT
+        /// </summary>
+        public static AstKeyword Init(Position position)
+        {
+            return new AstKeyword(position, "INIT", "INIT");
+        }
+        
+        /// <summary>
+        /// keyword : INSTEAD
+        /// </summary>
+        public static AstKeyword Instead(Position position)
+        {
+            return new AstKeyword(position, "INSTEAD", "INSTEAD");
+        }
+        
+        /// <summary>
+        /// keyword : ISDESCENDANTOF
+        /// </summary>
+        public static AstKeyword Isdescendantof(Position position)
+        {
+            return new AstKeyword(position, "ISDESCENDANTOF", "ISDESCENDANTOF");
+        }
+        
+        /// <summary>
+        /// keyword : ISNULL
+        /// </summary>
+        public static AstKeyword Isnull(Position position)
+        {
+            return new AstKeyword(position, "ISNULL", "ISNULL");
+        }
+        
+        /// <summary>
+        /// keyword : ISNUMERIC
+        /// </summary>
+        public static AstKeyword Isnumeric(Position position)
+        {
+            return new AstKeyword(position, "ISNUMERIC", "ISNUMERIC");
+        }
+        
+        /// <summary>
+        /// keyword : KERBEROS
+        /// </summary>
+        public static AstKeyword Kerberos(Position position)
+        {
+            return new AstKeyword(position, "KERBEROS", "KERBEROS");
+        }
+        
+        /// <summary>
+        /// keyword : KEY_PATH
+        /// </summary>
+        public static AstKeyword KeyPath(Position position)
+        {
+            return new AstKeyword(position, "KEY_PATH", "KEY_PATH");
+        }
+        
+        /// <summary>
+        /// keyword : KEY_STORE_PROVIDER_NAME
+        /// </summary>
+        public static AstKeyword KeyStoreProviderName(Position position)
+        {
+            return new AstKeyword(position, "KEY_STORE_PROVIDER_NAME", "KEY_STORE_PROVIDER_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : LANGUAGE
+        /// </summary>
+        public static AstKeyword Language(Position position)
+        {
+            return new AstKeyword(position, "LANGUAGE", "LANGUAGE");
+        }
+        
+        /// <summary>
+        /// keyword : LIBRARY
+        /// </summary>
+        public static AstKeyword Library(Position position)
+        {
+            return new AstKeyword(position, "LIBRARY", "LIBRARY");
+        }
+        
+        /// <summary>
+        /// keyword : LIFETIME
+        /// </summary>
+        public static AstKeyword Lifetime(Position position)
+        {
+            return new AstKeyword(position, "LIFETIME", "LIFETIME");
+        }
+        
+        /// <summary>
+        /// keyword : LINKED
+        /// </summary>
+        public static AstKeyword Linked(Position position)
+        {
+            return new AstKeyword(position, "LINKED", "LINKED");
+        }
+        
+        /// <summary>
+        /// keyword : LINUX
+        /// </summary>
+        public static AstKeyword Linux(Position position)
+        {
+            return new AstKeyword(position, "LINUX", "LINUX");
+        }
+        
+        /// <summary>
+        /// keyword : LISTENER_IP
+        /// </summary>
+        public static AstKeyword ListenerIp(Position position)
+        {
+            return new AstKeyword(position, "LISTENER_IP", "LISTENER_IP");
+        }
+        
+        /// <summary>
+        /// keyword : LISTENER_PORT
+        /// </summary>
+        public static AstKeyword ListenerPort(Position position)
+        {
+            return new AstKeyword(position, "LISTENER_PORT", "LISTENER_PORT");
+        }
+        
+        /// <summary>
+        /// keyword : LOCAL_SERVICE_NAME
+        /// </summary>
+        public static AstKeyword LocalServiceName(Position position)
+        {
+            return new AstKeyword(position, "LOCAL_SERVICE_NAME", "LOCAL_SERVICE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : LOG
+        /// </summary>
+        public static AstKeyword Log(Position position)
+        {
+            return new AstKeyword(position, "LOG", "LOG");
+        }
+        
+        /// <summary>
+        /// keyword : MASK
+        /// </summary>
+        public static AstKeyword Mask(Position position)
+        {
+            return new AstKeyword(position, "MASK", "MASK");
+        }
+        
+        /// <summary>
+        /// keyword : MATCHED
+        /// </summary>
+        public static AstKeyword Matched(Position position)
+        {
+            return new AstKeyword(position, "MATCHED", "MATCHED");
+        }
+        
+        /// <summary>
+        /// keyword : MASTER
+        /// </summary>
+        public static AstKeyword Master(Position position)
+        {
+            return new AstKeyword(position, "MASTER", "MASTER");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_MEMORY
+        /// </summary>
+        public static AstKeyword MaxMemory(Position position)
+        {
+            return new AstKeyword(position, "MAX_MEMORY", "MAX_MEMORY");
+        }
+        
+        /// <summary>
+        /// keyword : MAXTRANSFER
+        /// </summary>
+        public static AstKeyword Maxtransfer(Position position)
+        {
+            return new AstKeyword(position, "MAXTRANSFER", "MAXTRANSFER");
+        }
+        
+        /// <summary>
+        /// keyword : MAXVALUE
+        /// </summary>
+        public static AstKeyword Maxvalue(Position position)
+        {
+            return new AstKeyword(position, "MAXVALUE", "MAXVALUE");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_DISPATCH_LATENCY
+        /// </summary>
+        public static AstKeyword MaxDispatchLatency(Position position)
+        {
+            return new AstKeyword(position, "MAX_DISPATCH_LATENCY", "MAX_DISPATCH_LATENCY");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_DURATION
+        /// </summary>
+        public static AstKeyword MaxDuration(Position position)
+        {
+            return new AstKeyword(position, "MAX_DURATION", "MAX_DURATION");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_EVENT_SIZE
+        /// </summary>
+        public static AstKeyword MaxEventSize(Position position)
+        {
+            return new AstKeyword(position, "MAX_EVENT_SIZE", "MAX_EVENT_SIZE");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_SIZE
+        /// </summary>
+        public static AstKeyword MaxSize(Position position)
+        {
+            return new AstKeyword(position, "MAX_SIZE", "MAX_SIZE");
+        }
+        
+        /// <summary>
+        /// keyword : MAX_OUTSTANDING_IO_PER_VOLUME
+        /// </summary>
+        public static AstKeyword MaxOutstandingIoPerVolume(Position position)
+        {
+            return new AstKeyword(position, "MAX_OUTSTANDING_IO_PER_VOLUME", "MAX_OUTSTANDING_IO_PER_VOLUME");
+        }
+        
+        /// <summary>
+        /// keyword : MEDIADESCRIPTION
+        /// </summary>
+        public static AstKeyword Mediadescription(Position position)
+        {
+            return new AstKeyword(position, "MEDIADESCRIPTION", "MEDIADESCRIPTION");
+        }
+        
+        /// <summary>
+        /// keyword : MEDIANAME
+        /// </summary>
+        public static AstKeyword Medianame(Position position)
+        {
+            return new AstKeyword(position, "MEDIANAME", "MEDIANAME");
+        }
+        
+        /// <summary>
+        /// keyword : MEMBER
+        /// </summary>
+        public static AstKeyword Member(Position position)
+        {
+            return new AstKeyword(position, "MEMBER", "MEMBER");
+        }
+        
+        /// <summary>
+        /// keyword : MEMORY_PARTITION_MODE
+        /// </summary>
+        public static AstKeyword MemoryPartitionMode(Position position)
+        {
+            return new AstKeyword(position, "MEMORY_PARTITION_MODE", "MEMORY_PARTITION_MODE");
+        }
+        
+        /// <summary>
+        /// keyword : MESSAGE_FORWARDING
+        /// </summary>
+        public static AstKeyword MessageForwarding(Position position)
+        {
+            return new AstKeyword(position, "MESSAGE_FORWARDING", "MESSAGE_FORWARDING");
+        }
+        
+        /// <summary>
+        /// keyword : MESSAGE_FORWARD_SIZE
+        /// </summary>
+        public static AstKeyword MessageForwardSize(Position position)
+        {
+            return new AstKeyword(position, "MESSAGE_FORWARD_SIZE", "MESSAGE_FORWARD_SIZE");
+        }
+        
+        /// <summary>
+        /// keyword : MINVALUE
+        /// </summary>
+        public static AstKeyword Minvalue(Position position)
+        {
+            return new AstKeyword(position, "MINVALUE", "MINVALUE");
+        }
+        
+        /// <summary>
+        /// keyword : MIRROR
+        /// </summary>
+        public static AstKeyword Mirror(Position position)
+        {
+            return new AstKeyword(position, "MIRROR", "MIRROR");
+        }
+        
+        /// <summary>
+        /// keyword : MUST_CHANGE
+        /// </summary>
+        public static AstKeyword MustChange(Position position)
+        {
+            return new AstKeyword(position, "MUST_CHANGE", "MUST_CHANGE");
+        }
+        
+        /// <summary>
+        /// keyword : NEWID
+        /// </summary>
+        public static AstKeyword Newid(Position position)
+        {
+            return new AstKeyword(position, "NEWID", "NEWID");
+        }
+        
+        /// <summary>
+        /// keyword : NEWSEQUENTIALID
+        /// </summary>
+        public static AstKeyword Newsequentialid(Position position)
+        {
+            return new AstKeyword(position, "NEWSEQUENTIALID", "NEWSEQUENTIALID");
+        }
+        
+        /// <summary>
+        /// keyword : NOFORMAT
+        /// </summary>
+        public static AstKeyword Noformat(Position position)
+        {
+            return new AstKeyword(position, "NOFORMAT", "NOFORMAT");
+        }
+        
+        /// <summary>
+        /// keyword : NOINIT
+        /// </summary>
+        public static AstKeyword Noinit(Position position)
+        {
+            return new AstKeyword(position, "NOINIT", "NOINIT");
+        }
+        
+        /// <summary>
+        /// keyword : NONE
+        /// </summary>
+        public static AstKeyword None(Position position)
+        {
+            return new AstKeyword(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// keyword : NOREWIND
+        /// </summary>
+        public static AstKeyword Norewind(Position position)
+        {
+            return new AstKeyword(position, "NOREWIND", "NOREWIND");
+        }
+        
+        /// <summary>
+        /// keyword : NOSKIP
+        /// </summary>
+        public static AstKeyword Noskip(Position position)
+        {
+            return new AstKeyword(position, "NOSKIP", "NOSKIP");
+        }
+        
+        /// <summary>
+        /// keyword : NOUNLOAD
+        /// </summary>
+        public static AstKeyword Nounload(Position position)
+        {
+            return new AstKeyword(position, "NOUNLOAD", "NOUNLOAD");
+        }
+        
+        /// <summary>
+        /// keyword : NO_CHECKSUM
+        /// </summary>
+        public static AstKeyword NoChecksum(Position position)
+        {
+            return new AstKeyword(position, "NO_CHECKSUM", "NO_CHECKSUM");
+        }
+        
+        /// <summary>
+        /// keyword : NO_COMPRESSION
+        /// </summary>
+        public static AstKeyword NoCompression(Position position)
+        {
+            return new AstKeyword(position, "NO_COMPRESSION", "NO_COMPRESSION");
+        }
+        
+        /// <summary>
+        /// keyword : NO_EVENT_LOSS
+        /// </summary>
+        public static AstKeyword NoEventLoss(Position position)
+        {
+            return new AstKeyword(position, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// keyword : NOTIFICATION
+        /// </summary>
+        public static AstKeyword Notification(Position position)
+        {
+            return new AstKeyword(position, "NOTIFICATION", "NOTIFICATION");
+        }
+        
+        /// <summary>
+        /// keyword : NTLM
+        /// </summary>
+        public static AstKeyword Ntlm(Position position)
+        {
+            return new AstKeyword(position, "NTLM", "NTLM");
+        }
+        
+        /// <summary>
+        /// keyword : OLD_PASSWORD
+        /// </summary>
+        public static AstKeyword OldPassword(Position position)
+        {
+            return new AstKeyword(position, "OLD_PASSWORD", "OLD_PASSWORD");
+        }
+        
+        /// <summary>
+        /// keyword : ON_FAILURE
+        /// </summary>
+        public static AstKeyword OnFailure(Position position)
+        {
+            return new AstKeyword(position, "ON_FAILURE", "ON_FAILURE");
+        }
+        
+        /// <summary>
+        /// keyword : OPERATIONS
+        /// </summary>
+        public static AstKeyword Operations(Position position)
+        {
+            return new AstKeyword(position, "OPERATIONS", "OPERATIONS");
+        }
+        
+        /// <summary>
+        /// keyword : PAGE
+        /// </summary>
+        public static AstKeyword Page(Position position)
+        {
+            return new AstKeyword(position, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// keyword : PARAM_NODE
+        /// </summary>
+        public static AstKeyword ParamNode(Position position)
+        {
+            return new AstKeyword(position, "PARAM_NODE", "PARAM_NODE");
+        }
+        
+        /// <summary>
+        /// keyword : PARTIAL
+        /// </summary>
+        public static AstKeyword Partial(Position position)
+        {
+            return new AstKeyword(position, "PARTIAL", "PARTIAL");
+        }
+        
+        /// <summary>
+        /// keyword : PASSWORD
+        /// </summary>
+        public static AstKeyword Password(Position position)
+        {
+            return new AstKeyword(position, "PASSWORD", "PASSWORD");
+        }
+        
+        /// <summary>
+        /// keyword : PERMISSION_SET
+        /// </summary>
+        public static AstKeyword PermissionSet(Position position)
+        {
+            return new AstKeyword(position, "PERMISSION_SET", "PERMISSION_SET");
+        }
+        
+        /// <summary>
+        /// keyword : PER_CPU
+        /// </summary>
+        public static AstKeyword PerCpu(Position position)
+        {
+            return new AstKeyword(position, "PER_CPU", "PER_CPU");
+        }
+        
+        /// <summary>
+        /// keyword : PER_DB
+        /// </summary>
+        public static AstKeyword PerDb(Position position)
+        {
+            return new AstKeyword(position, "PER_DB", "PER_DB");
+        }
+        
+        /// <summary>
+        /// keyword : PER_NODE
+        /// </summary>
+        public static AstKeyword PerNode(Position position)
+        {
+            return new AstKeyword(position, "PER_NODE", "PER_NODE");
+        }
+        
+        /// <summary>
+        /// keyword : PERSISTED
+        /// </summary>
+        public static AstKeyword Persisted(Position position)
+        {
+            return new AstKeyword(position, "PERSISTED", "PERSISTED");
+        }
+        
+        /// <summary>
+        /// keyword : PLATFORM
+        /// </summary>
+        public static AstKeyword Platform(Position position)
+        {
+            return new AstKeyword(position, "PLATFORM", "PLATFORM");
+        }
+        
+        /// <summary>
+        /// keyword : POLICY
+        /// </summary>
+        public static AstKeyword Policy(Position position)
+        {
+            return new AstKeyword(position, "POLICY", "POLICY");
+        }
+        
+        /// <summary>
+        /// keyword : PREDICATE
+        /// </summary>
+        public static AstKeyword Predicate(Position position)
+        {
+            return new AstKeyword(position, "PREDICATE", "PREDICATE");
+        }
+        
+        /// <summary>
+        /// keyword : PROCESS
+        /// </summary>
+        public static AstKeyword Process(Position position)
+        {
+            return new AstKeyword(position, "PROCESS", "PROCESS");
+        }
+        
+        /// <summary>
+        /// keyword : PROFILE
+        /// </summary>
+        public static AstKeyword Profile(Position position)
+        {
+            return new AstKeyword(position, "PROFILE", "PROFILE");
+        }
+        
+        /// <summary>
+        /// keyword : PYTHON
+        /// </summary>
+        public static AstKeyword Python(Position position)
+        {
+            return new AstKeyword(position, "PYTHON", "PYTHON");
+        }
+        
+        /// <summary>
+        /// keyword : R
+        /// </summary>
+        public static AstKeyword R(Position position)
+        {
+            return new AstKeyword(position, "R", "R");
+        }
+        
+        /// <summary>
+        /// keyword : READ_WRITE_FILEGROUPS
+        /// </summary>
+        public static AstKeyword ReadWriteFilegroups(Position position)
+        {
+            return new AstKeyword(position, "READ_WRITE_FILEGROUPS", "READ_WRITE_FILEGROUPS");
+        }
+        
+        /// <summary>
+        /// keyword : REGENERATE
+        /// </summary>
+        public static AstKeyword Regenerate(Position position)
+        {
+            return new AstKeyword(position, "REGENERATE", "REGENERATE");
+        }
+        
+        /// <summary>
+        /// keyword : RELATED_CONVERSATION
+        /// </summary>
+        public static AstKeyword RelatedConversation(Position position)
+        {
+            return new AstKeyword(position, "RELATED_CONVERSATION", "RELATED_CONVERSATION");
+        }
+        
+        /// <summary>
+        /// keyword : RELATED_CONVERSATION_GROUP
+        /// </summary>
+        public static AstKeyword RelatedConversationGroup(Position position)
+        {
+            return new AstKeyword(position, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
+        }
+        
+        /// <summary>
+        /// keyword : REQUIRED
+        /// </summary>
+        public static AstKeyword Required(Position position)
+        {
+            return new AstKeyword(position, "REQUIRED", "REQUIRED");
+        }
+        
+        /// <summary>
+        /// keyword : RESET
+        /// </summary>
+        public static AstKeyword Reset(Position position)
+        {
+            return new AstKeyword(position, "RESET", "RESET");
+        }
+        
+        /// <summary>
+        /// keyword : RESOURCES
+        /// </summary>
+        public static AstKeyword Resources(Position position)
+        {
+            return new AstKeyword(position, "RESOURCES", "RESOURCES");
+        }
+        
+        /// <summary>
+        /// keyword : RESTART
+        /// </summary>
+        public static AstKeyword Restart(Position position)
+        {
+            return new AstKeyword(position, "RESTART", "RESTART");
+        }
+        
+        /// <summary>
+        /// keyword : RESUME
+        /// </summary>
+        public static AstKeyword Resume(Position position)
+        {
+            return new AstKeyword(position, "RESUME", "RESUME");
+        }
+        
+        /// <summary>
+        /// keyword : RETAINDAYS
+        /// </summary>
+        public static AstKeyword Retaindays(Position position)
+        {
+            return new AstKeyword(position, "RETAINDAYS", "RETAINDAYS");
+        }
+        
+        /// <summary>
+        /// keyword : RETURNS
+        /// </summary>
+        public static AstKeyword Returns(Position position)
+        {
+            return new AstKeyword(position, "RETURNS", "RETURNS");
+        }
+        
+        /// <summary>
+        /// keyword : REWIND
+        /// </summary>
+        public static AstKeyword Rewind(Position position)
+        {
+            return new AstKeyword(position, "REWIND", "REWIND");
+        }
+        
+        /// <summary>
+        /// keyword : ROLE
+        /// </summary>
+        public static AstKeyword Role(Position position)
+        {
+            return new AstKeyword(position, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// keyword : ROUND_ROBIN
+        /// </summary>
+        public static AstKeyword RoundRobin(Position position)
+        {
+            return new AstKeyword(position, "ROUND_ROBIN", "ROUND_ROBIN");
+        }
+        
+        /// <summary>
+        /// keyword : ROWCOUNT_BIG
+        /// </summary>
+        public static AstKeyword RowcountBig(Position position)
+        {
+            return new AstKeyword(position, "ROWCOUNT_BIG", "ROWCOUNT_BIG");
+        }
+        
+        /// <summary>
+        /// keyword : RSA_512
+        /// </summary>
+        public static AstKeyword Rsa512(Position position)
+        {
+            return new AstKeyword(position, "RSA_512", "RSA_512");
+        }
+        
+        /// <summary>
+        /// keyword : RSA_1024
+        /// </summary>
+        public static AstKeyword Rsa1024(Position position)
+        {
+            return new AstKeyword(position, "RSA_1024", "RSA_1024");
+        }
+        
+        /// <summary>
+        /// keyword : RSA_2048
+        /// </summary>
+        public static AstKeyword Rsa2048(Position position)
+        {
+            return new AstKeyword(position, "RSA_2048", "RSA_2048");
+        }
+        
+        /// <summary>
+        /// keyword : RSA_3072
+        /// </summary>
+        public static AstKeyword Rsa3072(Position position)
+        {
+            return new AstKeyword(position, "RSA_3072", "RSA_3072");
+        }
+        
+        /// <summary>
+        /// keyword : RSA_4096
+        /// </summary>
+        public static AstKeyword Rsa4096(Position position)
+        {
+            return new AstKeyword(position, "RSA_4096", "RSA_4096");
+        }
+        
+        /// <summary>
+        /// keyword : SAFETY
+        /// </summary>
+        public static AstKeyword Safety(Position position)
+        {
+            return new AstKeyword(position, "SAFETY", "SAFETY");
+        }
+        
+        /// <summary>
+        /// keyword : SAFE
+        /// </summary>
+        public static AstKeyword Safe(Position position)
+        {
+            return new AstKeyword(position, "SAFE", "SAFE");
+        }
+        
+        /// <summary>
+        /// keyword : SCHEDULER
+        /// </summary>
+        public static AstKeyword Scheduler(Position position)
+        {
+            return new AstKeyword(position, "SCHEDULER", "SCHEDULER");
+        }
+        
+        /// <summary>
+        /// keyword : SCHEME
+        /// </summary>
+        public static AstKeyword Scheme(Position position)
+        {
+            return new AstKeyword(position, "SCHEME", "SCHEME");
+        }
+        
+        /// <summary>
+        /// keyword : SCRIPT
+        /// </summary>
+        public static AstKeyword Script(Position position)
+        {
+            return new AstKeyword(position, "SCRIPT", "SCRIPT");
+        }
+        
+        /// <summary>
+        /// keyword : SERVER
+        /// </summary>
+        public static AstKeyword Server(Position position)
+        {
+            return new AstKeyword(position, "SERVER", "SERVER");
+        }
+        
+        /// <summary>
+        /// keyword : SERVICE
+        /// </summary>
+        public static AstKeyword Service(Position position)
+        {
+            return new AstKeyword(position, "SERVICE", "SERVICE");
+        }
+        
+        /// <summary>
+        /// keyword : SERVICE_BROKER
+        /// </summary>
+        public static AstKeyword ServiceBroker(Position position)
+        {
+            return new AstKeyword(position, "SERVICE_BROKER", "SERVICE_BROKER");
+        }
+        
+        /// <summary>
+        /// keyword : SERVICE_NAME
+        /// </summary>
+        public static AstKeyword ServiceName(Position position)
+        {
+            return new AstKeyword(position, "SERVICE_NAME", "SERVICE_NAME");
+        }
+        
+        /// <summary>
+        /// keyword : SESSION
+        /// </summary>
+        public static AstKeyword Session(Position position)
+        {
+            return new AstKeyword(position, "SESSION", "SESSION");
+        }
+        
+        /// <summary>
+        /// keyword : SESSION_CONTEXT
+        /// </summary>
+        public static AstKeyword SessionContext(Position position)
+        {
+            return new AstKeyword(position, "SESSION_CONTEXT", "SESSION_CONTEXT");
+        }
+        
+        /// <summary>
+        /// keyword : SETTINGS
+        /// </summary>
+        public static AstKeyword Settings(Position position)
+        {
+            return new AstKeyword(position, "SETTINGS", "SETTINGS");
+        }
+        
+        /// <summary>
+        /// keyword : SHRINKLOG
+        /// </summary>
+        public static AstKeyword Shrinklog(Position position)
+        {
+            return new AstKeyword(position, "SHRINKLOG", "SHRINKLOG");
+        }
+        
+        /// <summary>
+        /// keyword : SID
+        /// </summary>
+        public static AstKeyword Sid(Position position)
+        {
+            return new AstKeyword(position, "SID", "SID");
+        }
+        
+        /// <summary>
+        /// keyword : SKIP
+        /// </summary>
+        public static AstKeyword SkipKeyword(Position position)
+        {
+            return new AstKeyword(position, "SKIP_KEYWORD", "SKIP");
+        }
+        
+        /// <summary>
+        /// keyword : SOFTNUMA
+        /// </summary>
+        public static AstKeyword Softnuma(Position position)
+        {
+            return new AstKeyword(position, "SOFTNUMA", "SOFTNUMA");
+        }
+        
+        /// <summary>
+        /// keyword : SOURCE
+        /// </summary>
+        public static AstKeyword Source(Position position)
+        {
+            return new AstKeyword(position, "SOURCE", "SOURCE");
+        }
+        
+        /// <summary>
+        /// keyword : SPECIFICATION
+        /// </summary>
+        public static AstKeyword Specification(Position position)
+        {
+            return new AstKeyword(position, "SPECIFICATION", "SPECIFICATION");
+        }
+        
+        /// <summary>
+        /// keyword : SPLIT
+        /// </summary>
+        public static AstKeyword Split(Position position)
+        {
+            return new AstKeyword(position, "SPLIT", "SPLIT");
+        }
+        
+        /// <summary>
+        /// keyword : SQL
+        /// </summary>
+        public static AstKeyword Sql(Position position)
+        {
+            return new AstKeyword(position, "SQL", "SQL");
+        }
+        
+        /// <summary>
+        /// keyword : SQLDUMPERFLAGS
+        /// </summary>
+        public static AstKeyword Sqldumperflags(Position position)
+        {
+            return new AstKeyword(position, "SQLDUMPERFLAGS", "SQLDUMPERFLAGS");
+        }
+        
+        /// <summary>
+        /// keyword : SQLDUMPERPATH
+        /// </summary>
+        public static AstKeyword Sqldumperpath(Position position)
+        {
+            return new AstKeyword(position, "SQLDUMPERPATH", "SQLDUMPERPATH");
+        }
+        
+        /// <summary>
+        /// keyword : SQLDUMPERTIMEOUT
+        /// </summary>
+        public static AstKeyword Sqldumpertimeout(Position position)
+        {
+            return new AstKeyword(position, "SQLDUMPERTIMEOUT", "SQLDUMPERTIMEOUT");
+        }
+        
+        /// <summary>
+        /// keyword : STATE
+        /// </summary>
+        public static AstKeyword State(Position position)
+        {
+            return new AstKeyword(position, "STATE", "STATE");
+        }
+        
+        /// <summary>
+        /// keyword : STATS
+        /// </summary>
+        public static AstKeyword Stats(Position position)
+        {
+            return new AstKeyword(position, "STATS", "STATS");
+        }
+        
+        /// <summary>
+        /// keyword : START
+        /// </summary>
+        public static AstKeyword Start(Position position)
+        {
+            return new AstKeyword(position, "START", "START");
+        }
+        
+        /// <summary>
+        /// keyword : STARTED
+        /// </summary>
+        public static AstKeyword Started(Position position)
+        {
+            return new AstKeyword(position, "STARTED", "STARTED");
+        }
+        
+        /// <summary>
+        /// keyword : STARTUP_STATE
+        /// </summary>
+        public static AstKeyword StartupState(Position position)
+        {
+            return new AstKeyword(position, "STARTUP_STATE", "STARTUP_STATE");
+        }
+        
+        /// <summary>
+        /// keyword : STOP
+        /// </summary>
+        public static AstKeyword Stop(Position position)
+        {
+            return new AstKeyword(position, "STOP", "STOP");
+        }
+        
+        /// <summary>
+        /// keyword : STOPPED
+        /// </summary>
+        public static AstKeyword Stopped(Position position)
+        {
+            return new AstKeyword(position, "STOPPED", "STOPPED");
+        }
+        
+        /// <summary>
+        /// keyword : STOP_ON_ERROR
+        /// </summary>
+        public static AstKeyword StopOnError(Position position)
+        {
+            return new AstKeyword(position, "STOP_ON_ERROR", "STOP_ON_ERROR");
+        }
+        
+        /// <summary>
+        /// keyword : SUPPORTED
+        /// </summary>
+        public static AstKeyword Supported(Position position)
+        {
+            return new AstKeyword(position, "SUPPORTED", "SUPPORTED");
+        }
+        
+        /// <summary>
+        /// keyword : SWITCH
+        /// </summary>
+        public static AstKeyword Switch(Position position)
+        {
+            return new AstKeyword(position, "SWITCH", "SWITCH");
+        }
+        
+        /// <summary>
+        /// keyword : TAPE
+        /// </summary>
+        public static AstKeyword Tape(Position position)
+        {
+            return new AstKeyword(position, "TAPE", "TAPE");
+        }
+        
+        /// <summary>
+        /// keyword : TARGET
+        /// </summary>
+        public static AstKeyword Target(Position position)
+        {
+            return new AstKeyword(position, "TARGET", "TARGET");
+        }
+        
+        /// <summary>
+        /// keyword : TCP
+        /// </summary>
+        public static AstKeyword Tcp(Position position)
+        {
+            return new AstKeyword(position, "TCP", "TCP");
+        }
+        
+        /// <summary>
+        /// keyword : TOSTRING
+        /// </summary>
+        public static AstKeyword Tostring(Position position)
+        {
+            return new AstKeyword(position, "TOSTRING", "TOSTRING");
+        }
+        
+        /// <summary>
+        /// keyword : TRACE
+        /// </summary>
+        public static AstKeyword Trace(Position position)
+        {
+            return new AstKeyword(position, "TRACE", "TRACE");
+        }
+        
+        /// <summary>
+        /// keyword : TRACK_CAUSALITY
+        /// </summary>
+        public static AstKeyword TrackCausality(Position position)
+        {
+            return new AstKeyword(position, "TRACK_CAUSALITY", "TRACK_CAUSALITY");
+        }
+        
+        /// <summary>
+        /// keyword : TRANSFER
+        /// </summary>
+        public static AstKeyword Transfer(Position position)
+        {
+            return new AstKeyword(position, "TRANSFER", "TRANSFER");
+        }
+        
+        /// <summary>
+        /// keyword : UNCHECKED
+        /// </summary>
+        public static AstKeyword Unchecked(Position position)
+        {
+            return new AstKeyword(position, "UNCHECKED", "UNCHECKED");
+        }
+        
+        /// <summary>
+        /// keyword : UNLOCK
+        /// </summary>
+        public static AstKeyword Unlock(Position position)
+        {
+            return new AstKeyword(position, "UNLOCK", "UNLOCK");
+        }
+        
+        /// <summary>
+        /// keyword : UNSAFE
+        /// </summary>
+        public static AstKeyword Unsafe(Position position)
+        {
+            return new AstKeyword(position, "UNSAFE", "UNSAFE");
+        }
+        
+        /// <summary>
+        /// keyword : URL
+        /// </summary>
+        public static AstKeyword Url(Position position)
+        {
+            return new AstKeyword(position, "URL", "URL");
+        }
+        
+        /// <summary>
+        /// keyword : USED
+        /// </summary>
+        public static AstKeyword Used(Position position)
+        {
+            return new AstKeyword(position, "USED", "USED");
+        }
+        
+        /// <summary>
+        /// keyword : VERBOSELOGGING
+        /// </summary>
+        public static AstKeyword Verboselogging(Position position)
+        {
+            return new AstKeyword(position, "VERBOSELOGGING", "VERBOSELOGGING");
+        }
+        
+        /// <summary>
+        /// keyword : VISIBILITY
+        /// </summary>
+        public static AstKeyword Visibility(Position position)
+        {
+            return new AstKeyword(position, "VISIBILITY", "VISIBILITY");
+        }
+        
+        /// <summary>
+        /// keyword : WAIT_AT_LOW_PRIORITY
+        /// </summary>
+        public static AstKeyword WaitAtLowPriority(Position position)
+        {
+            return new AstKeyword(position, "WAIT_AT_LOW_PRIORITY", "WAIT_AT_LOW_PRIORITY");
+        }
+        
+        /// <summary>
+        /// keyword : WINDOWS
+        /// </summary>
+        public static AstKeyword Windows(Position position)
+        {
+            return new AstKeyword(position, "WINDOWS", "WINDOWS");
+        }
+        
+        /// <summary>
+        /// keyword : WITHOUT
+        /// </summary>
+        public static AstKeyword Without(Position position)
+        {
+            return new AstKeyword(position, "WITHOUT", "WITHOUT");
+        }
+        
+        /// <summary>
+        /// keyword : WITNESS
+        /// </summary>
+        public static AstKeyword Witness(Position position)
+        {
+            return new AstKeyword(position, "WITNESS", "WITNESS");
+        }
+        
+        /// <summary>
+        /// keyword : XACT_ABORT
+        /// </summary>
+        public static AstKeyword XactAbort(Position position)
+        {
+            return new AstKeyword(position, "XACT_ABORT", "XACT_ABORT");
+        }
+        
+        /// <summary>
+        /// keyword : XACT_STATE
+        /// </summary>
+        public static AstKeyword XactState(Position position)
+        {
+            return new AstKeyword(position, "XACT_STATE", "XACT_STATE");
+        }
+        
+        /// <summary>
+        /// keyword : VARCHAR
+        /// </summary>
+        public static AstKeyword Varchar(Position position)
+        {
+            return new AstKeyword(position, "VARCHAR", "VARCHAR");
+        }
+        
+        /// <summary>
+        /// keyword : NVARCHAR
+        /// </summary>
+        public static AstKeyword Nvarchar(Position position)
+        {
+            return new AstKeyword(position, "NVARCHAR", "NVARCHAR");
+        }
+        
+        /// <summary>
+        /// keyword : PRECISION
+        /// </summary>
+        public static AstKeyword Precision(Position position)
+        {
+            return new AstKeyword(position, "PRECISION", "PRECISION");
         }
     }
     
-    public partial class AstFileSizeUnity
+    /// <summary>
+    /// assembly_permission
+    /// 	 : SAFE
+    /// 	 | EXTERNAL_ACCESS
+    /// 	 | UNSAFE
+    /// </summary>
+    public partial class AstAssemblyPermission : AstTerminalKeyword
+    {
+        
+        public AstAssemblyPermission(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAssemblyPermission(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// assembly_permission : SAFE
+        /// </summary>
+        public static AstAssemblyPermission Safe()
+        {
+            return new AstAssemblyPermission(Position.Default, "SAFE", "SAFE");
+        }
+        
+        /// <summary>
+        /// assembly_permission : EXTERNAL_ACCESS
+        /// </summary>
+        public static AstAssemblyPermission ExternalAccess()
+        {
+            return new AstAssemblyPermission(Position.Default, "EXTERNAL_ACCESS", "EXTERNAL_ACCESS");
+        }
+        
+        /// <summary>
+        /// assembly_permission : UNSAFE
+        /// </summary>
+        public static AstAssemblyPermission Unsafe()
+        {
+            return new AstAssemblyPermission(Position.Default, "UNSAFE", "UNSAFE");
+        }
+        
+        /// <summary>
+        /// assembly_permission : SAFE
+        /// </summary>
+        public static AstAssemblyPermission Safe(Position position)
+        {
+            return new AstAssemblyPermission(position, "SAFE", "SAFE");
+        }
+        
+        /// <summary>
+        /// assembly_permission : EXTERNAL_ACCESS
+        /// </summary>
+        public static AstAssemblyPermission ExternalAccess(Position position)
+        {
+            return new AstAssemblyPermission(position, "EXTERNAL_ACCESS", "EXTERNAL_ACCESS");
+        }
+        
+        /// <summary>
+        /// assembly_permission : UNSAFE
+        /// </summary>
+        public static AstAssemblyPermission Unsafe(Position position)
+        {
+            return new AstAssemblyPermission(position, "UNSAFE", "UNSAFE");
+        }
+    }
+    
+    /// <summary>
+    /// object_type_for_grant
+    /// 	 : APPLICATION  ROLE
+    /// 	 | ASSEMBLY
+    /// 	 | ASYMMETRIC  KEY
+    /// 	 | AUDIT
+    /// 	 | AVAILABILITY  GROUP
+    /// 	 | BROKER  PRIORITY
+    /// 	 | CERTIFICATE
+    /// 	 | CONTRACT
+    /// 	 | CREDENTIAL
+    /// 	 | CRYPTOGRAPHIC  PROVIDER
+    /// 	 | DATABASE  (AUDIT  SPECIFICATION | ENCRYPTION  KEY | EVENT  SESSION | SCOPED  (CONFIGURATION | CREDENTIAL | RESOURCE  GOVERNOR))?
+    /// 	 | ENDPOINT
+    /// 	 | EVENT  SESSION
+    /// 	 | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY | RESOURCE  POOL | TABLE | CATALOG | STOPLIST)
+    /// 	 | LOGIN
+    /// 	 | MASTER  KEY
+    /// 	 | MESSAGE  TYPE
+    /// 	 | OBJECT
+    /// 	 | PARTITION  (FUNCTION | SCHEME)
+    /// 	 | REMOTE  SERVICE  BINDING
+    /// 	 | RESOURCE  GOVERNOR
+    /// 	 | ROLE
+    /// 	 | ROUTE
+    /// 	 | SCHEMA
+    /// 	 | SEARCH  PROPERTY  LIST
+    /// 	 | SERVER  ((AUDIT  SPECIFICATION?) | ROLE)?
+    /// 	 | SERVICE
+    /// 	 | SQL  LOGIN
+    /// 	 | SYMMETRIC  KEY
+    /// 	 | TRIGGER  (DATABASE | SERVER)
+    /// 	 | TYPE
+    /// 	 | USER
+    /// 	 | XML  SCHEMA  COLLECTION
+    /// </summary>
+    public partial class AstObjectTypeForGrant : AstTerminalKeyword
+    {
+        
+        public AstObjectTypeForGrant(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstObjectTypeForGrant(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : APPLICATION ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant ApplicationRole()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "APPLICATION ROLE", "APPLICATION ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ASSEMBLY
+        /// </summary>
+        public static AstObjectTypeForGrant Assembly()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "ASSEMBLY", "ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ASYMMETRIC KEY
+        /// </summary>
+        public static AstObjectTypeForGrant AsymmetricKey()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : AUDIT
+        /// </summary>
+        public static AstObjectTypeForGrant Audit()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "AUDIT", "AUDIT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : AVAILABILITY GROUP
+        /// </summary>
+        public static AstObjectTypeForGrant AvailabilityGroup()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "AVAILABILITY GROUP", "AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : BROKER PRIORITY
+        /// </summary>
+        public static AstObjectTypeForGrant BrokerPriority()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "BROKER PRIORITY", "BROKER PRIORITY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CERTIFICATE
+        /// </summary>
+        public static AstObjectTypeForGrant Certificate()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CONTRACT
+        /// </summary>
+        public static AstObjectTypeForGrant Contract()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "CONTRACT", "CONTRACT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CREDENTIAL
+        /// </summary>
+        public static AstObjectTypeForGrant Credential()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "CREDENTIAL", "CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CRYPTOGRAPHIC PROVIDER
+        /// </summary>
+        public static AstObjectTypeForGrant CryptographicProvider()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "CRYPTOGRAPHIC PROVIDER", "CRYPTOGRAPHIC PROVIDER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE AUDIT SPECIFICATION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseAuditSpecification()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE AUDIT SPECIFICATION", "DATABASE AUDIT SPECIFICATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE ENCRYPTION KEY
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseEncryptionKey()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE ENCRYPTION KEY", "DATABASE ENCRYPTION KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE EVENT SESSION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseEventSession()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE EVENT SESSION", "DATABASE EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED CONFIGURATION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedConfiguration()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE SCOPED CONFIGURATION", "DATABASE SCOPED CONFIGURATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED CREDENTIAL
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedCredential()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE SCOPED CREDENTIAL", "DATABASE SCOPED CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED RESOURCE GOVERNOR
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedResourceGovernor()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "DATABASE SCOPED RESOURCE GOVERNOR", "DATABASE SCOPED RESOURCE GOVERNOR");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ENDPOINT
+        /// </summary>
+        public static AstObjectTypeForGrant Endpoint()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "ENDPOINT", "ENDPOINT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EVENT SESSION
+        /// </summary>
+        public static AstObjectTypeForGrant EventSession()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EVENT SESSION", "EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL DATA SOURCE
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalDataSource()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL DATA SOURCE", "EXTERNAL DATA SOURCE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL FILE FORMAT
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalFileFormat()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL FILE FORMAT", "EXTERNAL FILE FORMAT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL LIBRARY
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalLibrary()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL LIBRARY", "EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL RESOURCE POOL
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalResourcePool()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL RESOURCE POOL", "EXTERNAL RESOURCE POOL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL TABLE
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalTable()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL TABLE", "EXTERNAL TABLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL CATALOG
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalCatalog()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL CATALOG", "EXTERNAL CATALOG");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL STOPLIST
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalStoplist()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "EXTERNAL STOPLIST", "EXTERNAL STOPLIST");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : LOGIN
+        /// </summary>
+        public static AstObjectTypeForGrant Login()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "LOGIN", "LOGIN");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : MASTER KEY
+        /// </summary>
+        public static AstObjectTypeForGrant MasterKey()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "MASTER KEY", "MASTER KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : MESSAGE TYPE
+        /// </summary>
+        public static AstObjectTypeForGrant MessageType()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "MESSAGE TYPE", "MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : OBJECT
+        /// </summary>
+        public static AstObjectTypeForGrant Object()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : PARTITION FUNCTION
+        /// </summary>
+        public static AstObjectTypeForGrant PartitionFunction()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "PARTITION FUNCTION", "PARTITION FUNCTION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : PARTITION SCHEME
+        /// </summary>
+        public static AstObjectTypeForGrant PartitionScheme()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "PARTITION SCHEME", "PARTITION SCHEME");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstObjectTypeForGrant RemoteServiceBinding()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "REMOTE SERVICE BINDING", "REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : RESOURCE GOVERNOR
+        /// </summary>
+        public static AstObjectTypeForGrant ResourceGovernor()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "RESOURCE GOVERNOR", "RESOURCE GOVERNOR");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant Role()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ROUTE
+        /// </summary>
+        public static AstObjectTypeForGrant Route()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "ROUTE", "ROUTE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SCHEMA
+        /// </summary>
+        public static AstObjectTypeForGrant Schema()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstObjectTypeForGrant SearchPropertyList()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVER AUDIT SPECIFICATION
+        /// </summary>
+        public static AstObjectTypeForGrant ServerAuditSpecification()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SERVER AUDIT SPECIFICATION", "SERVER AUDIT SPECIFICATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVER ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant ServerRole()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SERVER ROLE", "SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVICE
+        /// </summary>
+        public static AstObjectTypeForGrant Service()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SERVICE", "SERVICE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SQL LOGIN
+        /// </summary>
+        public static AstObjectTypeForGrant SqlLogin()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SQL LOGIN", "SQL LOGIN");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SYMMETRIC KEY
+        /// </summary>
+        public static AstObjectTypeForGrant SymmetricKey()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TRIGGER DATABASE
+        /// </summary>
+        public static AstObjectTypeForGrant TriggerDatabase()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "TRIGGER DATABASE", "TRIGGER DATABASE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TRIGGER SERVER
+        /// </summary>
+        public static AstObjectTypeForGrant TriggerServer()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "TRIGGER SERVER", "TRIGGER SERVER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TYPE
+        /// </summary>
+        public static AstObjectTypeForGrant Type()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : USER
+        /// </summary>
+        public static AstObjectTypeForGrant User()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "USER", "USER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstObjectTypeForGrant XmlSchemaCollection()
+        {
+            return new AstObjectTypeForGrant(Position.Default, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : APPLICATION ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant ApplicationRole(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "APPLICATION ROLE", "APPLICATION ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ASSEMBLY
+        /// </summary>
+        public static AstObjectTypeForGrant Assembly(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "ASSEMBLY", "ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ASYMMETRIC KEY
+        /// </summary>
+        public static AstObjectTypeForGrant AsymmetricKey(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "ASYMMETRIC KEY", "ASYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : AUDIT
+        /// </summary>
+        public static AstObjectTypeForGrant Audit(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "AUDIT", "AUDIT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : AVAILABILITY GROUP
+        /// </summary>
+        public static AstObjectTypeForGrant AvailabilityGroup(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "AVAILABILITY GROUP", "AVAILABILITY GROUP");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : BROKER PRIORITY
+        /// </summary>
+        public static AstObjectTypeForGrant BrokerPriority(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "BROKER PRIORITY", "BROKER PRIORITY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CERTIFICATE
+        /// </summary>
+        public static AstObjectTypeForGrant Certificate(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "CERTIFICATE", "CERTIFICATE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CONTRACT
+        /// </summary>
+        public static AstObjectTypeForGrant Contract(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "CONTRACT", "CONTRACT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CREDENTIAL
+        /// </summary>
+        public static AstObjectTypeForGrant Credential(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "CREDENTIAL", "CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : CRYPTOGRAPHIC PROVIDER
+        /// </summary>
+        public static AstObjectTypeForGrant CryptographicProvider(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "CRYPTOGRAPHIC PROVIDER", "CRYPTOGRAPHIC PROVIDER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE AUDIT SPECIFICATION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseAuditSpecification(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE AUDIT SPECIFICATION", "DATABASE AUDIT SPECIFICATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE ENCRYPTION KEY
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseEncryptionKey(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE ENCRYPTION KEY", "DATABASE ENCRYPTION KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE EVENT SESSION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseEventSession(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE EVENT SESSION", "DATABASE EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED CONFIGURATION
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedConfiguration(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE SCOPED CONFIGURATION", "DATABASE SCOPED CONFIGURATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED CREDENTIAL
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedCredential(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE SCOPED CREDENTIAL", "DATABASE SCOPED CREDENTIAL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : DATABASE SCOPED RESOURCE GOVERNOR
+        /// </summary>
+        public static AstObjectTypeForGrant DatabaseScopedResourceGovernor(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "DATABASE SCOPED RESOURCE GOVERNOR", "DATABASE SCOPED RESOURCE GOVERNOR");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ENDPOINT
+        /// </summary>
+        public static AstObjectTypeForGrant Endpoint(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "ENDPOINT", "ENDPOINT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EVENT SESSION
+        /// </summary>
+        public static AstObjectTypeForGrant EventSession(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EVENT SESSION", "EVENT SESSION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL DATA SOURCE
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalDataSource(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL DATA SOURCE", "EXTERNAL DATA SOURCE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL FILE FORMAT
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalFileFormat(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL FILE FORMAT", "EXTERNAL FILE FORMAT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL LIBRARY
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalLibrary(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL LIBRARY", "EXTERNAL LIBRARY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL RESOURCE POOL
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalResourcePool(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL RESOURCE POOL", "EXTERNAL RESOURCE POOL");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL TABLE
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalTable(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL TABLE", "EXTERNAL TABLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL CATALOG
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalCatalog(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL CATALOG", "EXTERNAL CATALOG");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : EXTERNAL STOPLIST
+        /// </summary>
+        public static AstObjectTypeForGrant ExternalStoplist(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "EXTERNAL STOPLIST", "EXTERNAL STOPLIST");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : LOGIN
+        /// </summary>
+        public static AstObjectTypeForGrant Login(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "LOGIN", "LOGIN");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : MASTER KEY
+        /// </summary>
+        public static AstObjectTypeForGrant MasterKey(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "MASTER KEY", "MASTER KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : MESSAGE TYPE
+        /// </summary>
+        public static AstObjectTypeForGrant MessageType(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "MESSAGE TYPE", "MESSAGE TYPE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : OBJECT
+        /// </summary>
+        public static AstObjectTypeForGrant Object(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : PARTITION FUNCTION
+        /// </summary>
+        public static AstObjectTypeForGrant PartitionFunction(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "PARTITION FUNCTION", "PARTITION FUNCTION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : PARTITION SCHEME
+        /// </summary>
+        public static AstObjectTypeForGrant PartitionScheme(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "PARTITION SCHEME", "PARTITION SCHEME");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : REMOTE SERVICE BINDING
+        /// </summary>
+        public static AstObjectTypeForGrant RemoteServiceBinding(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "REMOTE SERVICE BINDING", "REMOTE SERVICE BINDING");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : RESOURCE GOVERNOR
+        /// </summary>
+        public static AstObjectTypeForGrant ResourceGovernor(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "RESOURCE GOVERNOR", "RESOURCE GOVERNOR");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant Role(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "ROLE", "ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : ROUTE
+        /// </summary>
+        public static AstObjectTypeForGrant Route(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "ROUTE", "ROUTE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SCHEMA
+        /// </summary>
+        public static AstObjectTypeForGrant Schema(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SCHEMA", "SCHEMA");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SEARCH PROPERTY LIST
+        /// </summary>
+        public static AstObjectTypeForGrant SearchPropertyList(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SEARCH PROPERTY LIST", "SEARCH PROPERTY LIST");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVER AUDIT SPECIFICATION
+        /// </summary>
+        public static AstObjectTypeForGrant ServerAuditSpecification(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SERVER AUDIT SPECIFICATION", "SERVER AUDIT SPECIFICATION");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVER ROLE
+        /// </summary>
+        public static AstObjectTypeForGrant ServerRole(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SERVER ROLE", "SERVER ROLE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SERVICE
+        /// </summary>
+        public static AstObjectTypeForGrant Service(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SERVICE", "SERVICE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SQL LOGIN
+        /// </summary>
+        public static AstObjectTypeForGrant SqlLogin(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SQL LOGIN", "SQL LOGIN");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : SYMMETRIC KEY
+        /// </summary>
+        public static AstObjectTypeForGrant SymmetricKey(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "SYMMETRIC KEY", "SYMMETRIC KEY");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TRIGGER DATABASE
+        /// </summary>
+        public static AstObjectTypeForGrant TriggerDatabase(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "TRIGGER DATABASE", "TRIGGER DATABASE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TRIGGER SERVER
+        /// </summary>
+        public static AstObjectTypeForGrant TriggerServer(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "TRIGGER SERVER", "TRIGGER SERVER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : TYPE
+        /// </summary>
+        public static AstObjectTypeForGrant Type(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "TYPE", "TYPE");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : USER
+        /// </summary>
+        public static AstObjectTypeForGrant User(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "USER", "USER");
+        }
+        
+        /// <summary>
+        /// object_type_for_grant : XML SCHEMA COLLECTION
+        /// </summary>
+        public static AstObjectTypeForGrant XmlSchemaCollection(Position position)
+        {
+            return new AstObjectTypeForGrant(position, "XML SCHEMA COLLECTION", "XML SCHEMA COLLECTION");
+        }
+    }
+    
+    /// <summary>
+    /// encryption_master
+    /// 	 : ENCRYPTION
+    /// 	 | MASTER
+    /// </summary>
+    public partial class AstEncryptionMaster : AstTerminalKeyword
+    {
+        
+        public AstEncryptionMaster(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEncryptionMaster(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// encryption_master : ENCRYPTION
+        /// </summary>
+        public static AstEncryptionMaster Encryption()
+        {
+            return new AstEncryptionMaster(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// encryption_master : MASTER
+        /// </summary>
+        public static AstEncryptionMaster Master()
+        {
+            return new AstEncryptionMaster(Position.Default, "MASTER", "MASTER");
+        }
+        
+        /// <summary>
+        /// encryption_master : ENCRYPTION
+        /// </summary>
+        public static AstEncryptionMaster Encryption(Position position)
+        {
+            return new AstEncryptionMaster(position, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// encryption_master : MASTER
+        /// </summary>
+        public static AstEncryptionMaster Master(Position position)
+        {
+            return new AstEncryptionMaster(position, "MASTER", "MASTER");
+        }
+    }
+    
+    /// <summary>
+    /// database_object_server
+    /// 	 : DATABASE
+    /// 	 | OBJECT
+    /// 	 | SERVER
+    /// </summary>
+    public partial class AstDatabaseObjectServer : AstTerminalKeyword
+    {
+        
+        public AstDatabaseObjectServer(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDatabaseObjectServer(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// database_object_server : DATABASE
+        /// </summary>
+        public static AstDatabaseObjectServer Database()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// database_object_server : OBJECT
+        /// </summary>
+        public static AstDatabaseObjectServer Object()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// database_object_server : SERVER
+        /// </summary>
+        public static AstDatabaseObjectServer Server()
+        {
+            return new AstDatabaseObjectServer(Position.Default, "SERVER", "SERVER");
+        }
+        
+        /// <summary>
+        /// database_object_server : DATABASE
+        /// </summary>
+        public static AstDatabaseObjectServer Database(Position position)
+        {
+            return new AstDatabaseObjectServer(position, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// database_object_server : OBJECT
+        /// </summary>
+        public static AstDatabaseObjectServer Object(Position position)
+        {
+            return new AstDatabaseObjectServer(position, "OBJECT", "OBJECT");
+        }
+        
+        /// <summary>
+        /// database_object_server : SERVER
+        /// </summary>
+        public static AstDatabaseObjectServer Server(Position position)
+        {
+            return new AstDatabaseObjectServer(position, "SERVER", "SERVER");
+        }
+    }
+    
+    /// <summary>
+    /// server_database
+    /// 	 : SERVER
+    /// 	 | DATABASE
+    /// </summary>
+    public partial class AstServerDatabase : AstTerminalKeyword
+    {
+        
+        public AstServerDatabase(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstServerDatabase(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// server_database : SERVER
+        /// </summary>
+        public static AstServerDatabase Server()
+        {
+            return new AstServerDatabase(Position.Default, "SERVER", "SERVER");
+        }
+        
+        /// <summary>
+        /// server_database : DATABASE
+        /// </summary>
+        public static AstServerDatabase Database()
+        {
+            return new AstServerDatabase(Position.Default, "DATABASE", "DATABASE");
+        }
+        
+        /// <summary>
+        /// server_database : SERVER
+        /// </summary>
+        public static AstServerDatabase Server(Position position)
+        {
+            return new AstServerDatabase(position, "SERVER", "SERVER");
+        }
+        
+        /// <summary>
+        /// server_database : DATABASE
+        /// </summary>
+        public static AstServerDatabase Database(Position position)
+        {
+            return new AstServerDatabase(position, "DATABASE", "DATABASE");
+        }
+    }
+    
+    /// <summary>
+    /// for_after
+    /// 	 : FOR
+    /// 	 | AFTER
+    /// </summary>
+    public partial class AstForAfter : AstTerminalKeyword
+    {
+        
+        public AstForAfter(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstForAfter(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// for_after : FOR
+        /// </summary>
+        public static AstForAfter For()
+        {
+            return new AstForAfter(Position.Default, "FOR", "FOR");
+        }
+        
+        /// <summary>
+        /// for_after : AFTER
+        /// </summary>
+        public static AstForAfter After()
+        {
+            return new AstForAfter(Position.Default, "AFTER", "AFTER");
+        }
+        
+        /// <summary>
+        /// for_after : FOR
+        /// </summary>
+        public static AstForAfter For(Position position)
+        {
+            return new AstForAfter(position, "FOR", "FOR");
+        }
+        
+        /// <summary>
+        /// for_after : AFTER
+        /// </summary>
+        public static AstForAfter After(Position position)
+        {
+            return new AstForAfter(position, "AFTER", "AFTER");
+        }
+    }
+    
+    /// <summary>
+    /// share_exclusive
+    /// 	 : SHARE
+    /// 	 | EXCLUSIVE
+    /// </summary>
+    public partial class AstShareExclusive : AstTerminalKeyword
+    {
+        
+        public AstShareExclusive(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstShareExclusive(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// share_exclusive : SHARE
+        /// </summary>
+        public static AstShareExclusive Share()
+        {
+            return new AstShareExclusive(Position.Default, "SHARE", "SHARE");
+        }
+        
+        /// <summary>
+        /// share_exclusive : EXCLUSIVE
+        /// </summary>
+        public static AstShareExclusive Exclusive()
+        {
+            return new AstShareExclusive(Position.Default, "EXCLUSIVE", "EXCLUSIVE");
+        }
+        
+        /// <summary>
+        /// share_exclusive : SHARE
+        /// </summary>
+        public static AstShareExclusive Share(Position position)
+        {
+            return new AstShareExclusive(position, "SHARE", "SHARE");
+        }
+        
+        /// <summary>
+        /// share_exclusive : EXCLUSIVE
+        /// </summary>
+        public static AstShareExclusive Exclusive(Position position)
+        {
+            return new AstShareExclusive(position, "EXCLUSIVE", "EXCLUSIVE");
+        }
+    }
+    
+    /// <summary>
+    /// create_alter
+    /// 	 : CREATE
+    /// 	 | ALTER
+    /// </summary>
+    public partial class AstCreateAlter : AstTerminalKeyword
+    {
+        
+        public AstCreateAlter(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCreateAlter(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// create_alter : CREATE
+        /// </summary>
+        public static AstCreateAlter Create()
+        {
+            return new AstCreateAlter(Position.Default, "CREATE", "CREATE");
+        }
+        
+        /// <summary>
+        /// create_alter : ALTER
+        /// </summary>
+        public static AstCreateAlter Alter()
+        {
+            return new AstCreateAlter(Position.Default, "ALTER", "ALTER");
+        }
+        
+        /// <summary>
+        /// create_alter : CREATE
+        /// </summary>
+        public static AstCreateAlter Create(Position position)
+        {
+            return new AstCreateAlter(position, "CREATE", "CREATE");
+        }
+        
+        /// <summary>
+        /// create_alter : ALTER
+        /// </summary>
+        public static AstCreateAlter Alter(Position position)
+        {
+            return new AstCreateAlter(position, "ALTER", "ALTER");
+        }
+    }
+    
+    /// <summary>
+    /// file_size_unity
+    /// 	 : KB
+    /// 	 | MB
+    /// 	 | GB
+    /// 	 | TB
+    /// 	 | MODULE
+    /// </summary>
+    public partial class AstFileSizeUnity : AstTerminalKeyword
     {
         
         public AstFileSizeUnity(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstFileSizeUnity _undefined()
+        public AstFileSizeUnity(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstFileSizeUnity(null);
         }
         
+        /// <summary>
+        /// file_size_unity : KB
+        /// </summary>
         public static AstFileSizeUnity Kb()
         {
-            return new AstFileSizeUnity(Position.Default, "KB");
+            return new AstFileSizeUnity(Position.Default, "KB", "KB");
         }
         
+        /// <summary>
+        /// file_size_unity : MB
+        /// </summary>
         public static AstFileSizeUnity Mb()
         {
-            return new AstFileSizeUnity(Position.Default, "MB");
+            return new AstFileSizeUnity(Position.Default, "MB", "MB");
         }
         
+        /// <summary>
+        /// file_size_unity : GB
+        /// </summary>
         public static AstFileSizeUnity Gb()
         {
-            return new AstFileSizeUnity(Position.Default, "GB");
+            return new AstFileSizeUnity(Position.Default, "GB", "GB");
         }
         
+        /// <summary>
+        /// file_size_unity : TB
+        /// </summary>
         public static AstFileSizeUnity Tb()
         {
-            return new AstFileSizeUnity(Position.Default, "TB");
+            return new AstFileSizeUnity(Position.Default, "TB", "TB");
         }
         
+        /// <summary>
+        /// file_size_unity : '%'
+        /// </summary>
         public static AstFileSizeUnity Module()
         {
-            return new AstFileSizeUnity(Position.Default, "%");
+            return new AstFileSizeUnity(Position.Default, "MODULE", "%");
+        }
+        
+        /// <summary>
+        /// file_size_unity : KB
+        /// </summary>
+        public static AstFileSizeUnity Kb(Position position)
+        {
+            return new AstFileSizeUnity(position, "KB", "KB");
+        }
+        
+        /// <summary>
+        /// file_size_unity : MB
+        /// </summary>
+        public static AstFileSizeUnity Mb(Position position)
+        {
+            return new AstFileSizeUnity(position, "MB", "MB");
+        }
+        
+        /// <summary>
+        /// file_size_unity : GB
+        /// </summary>
+        public static AstFileSizeUnity Gb(Position position)
+        {
+            return new AstFileSizeUnity(position, "GB", "GB");
+        }
+        
+        /// <summary>
+        /// file_size_unity : TB
+        /// </summary>
+        public static AstFileSizeUnity Tb(Position position)
+        {
+            return new AstFileSizeUnity(position, "TB", "TB");
+        }
+        
+        /// <summary>
+        /// file_size_unity : '%'
+        /// </summary>
+        public static AstFileSizeUnity Module(Position position)
+        {
+            return new AstFileSizeUnity(position, "MODULE", "%");
         }
     }
     
-    public partial class AstLogSeterrorNowait
+    /// <summary>
+    /// memory_size_unity
+    /// 	 : KB
+    /// 	 | MB
+    /// </summary>
+    public partial class AstMemorySizeUnity : AstTerminalKeyword
+    {
+        
+        public AstMemorySizeUnity(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMemorySizeUnity(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// memory_size_unity : KB
+        /// </summary>
+        public static AstMemorySizeUnity Kb()
+        {
+            return new AstMemorySizeUnity(Position.Default, "KB", "KB");
+        }
+        
+        /// <summary>
+        /// memory_size_unity : MB
+        /// </summary>
+        public static AstMemorySizeUnity Mb()
+        {
+            return new AstMemorySizeUnity(Position.Default, "MB", "MB");
+        }
+        
+        /// <summary>
+        /// memory_size_unity : KB
+        /// </summary>
+        public static AstMemorySizeUnity Kb(Position position)
+        {
+            return new AstMemorySizeUnity(position, "KB", "KB");
+        }
+        
+        /// <summary>
+        /// memory_size_unity : MB
+        /// </summary>
+        public static AstMemorySizeUnity Mb(Position position)
+        {
+            return new AstMemorySizeUnity(position, "MB", "MB");
+        }
+    }
+    
+    /// <summary>
+    /// partition_mode
+    /// 	 : NONE
+    /// 	 | PER_NODE
+    /// 	 | PER_CPU
+    /// </summary>
+    public partial class AstPartitionMode : AstTerminalKeyword
+    {
+        
+        public AstPartitionMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPartitionMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// partition_mode : NONE
+        /// </summary>
+        public static AstPartitionMode None()
+        {
+            return new AstPartitionMode(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// partition_mode : PER_NODE
+        /// </summary>
+        public static AstPartitionMode PerNode()
+        {
+            return new AstPartitionMode(Position.Default, "PER_NODE", "PER_NODE");
+        }
+        
+        /// <summary>
+        /// partition_mode : PER_CPU
+        /// </summary>
+        public static AstPartitionMode PerCpu()
+        {
+            return new AstPartitionMode(Position.Default, "PER_CPU", "PER_CPU");
+        }
+        
+        /// <summary>
+        /// partition_mode : NONE
+        /// </summary>
+        public static AstPartitionMode None(Position position)
+        {
+            return new AstPartitionMode(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// partition_mode : PER_NODE
+        /// </summary>
+        public static AstPartitionMode PerNode(Position position)
+        {
+            return new AstPartitionMode(position, "PER_NODE", "PER_NODE");
+        }
+        
+        /// <summary>
+        /// partition_mode : PER_CPU
+        /// </summary>
+        public static AstPartitionMode PerCpu(Position position)
+        {
+            return new AstPartitionMode(position, "PER_CPU", "PER_CPU");
+        }
+    }
+    
+    /// <summary>
+    /// session_mode
+    /// 	 : ALLOW_SINGLE_EVENT_LOSS
+    /// 	 | ALLOW_MULTIPLE_EVENT_LOSS
+    /// 	 | NO_EVENT_LOSS
+    /// </summary>
+    public partial class AstSessionMode : AstTerminalKeyword
+    {
+        
+        public AstSessionMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSessionMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// session_mode : ALLOW_SINGLE_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode AllowSingleEventLoss()
+        {
+            return new AstSessionMode(Position.Default, "ALLOW_SINGLE_EVENT_LOSS", "ALLOW_SINGLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// session_mode : ALLOW_MULTIPLE_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode AllowMultipleEventLoss()
+        {
+            return new AstSessionMode(Position.Default, "ALLOW_MULTIPLE_EVENT_LOSS", "ALLOW_MULTIPLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// session_mode : NO_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode NoEventLoss()
+        {
+            return new AstSessionMode(Position.Default, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// session_mode : ALLOW_SINGLE_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode AllowSingleEventLoss(Position position)
+        {
+            return new AstSessionMode(position, "ALLOW_SINGLE_EVENT_LOSS", "ALLOW_SINGLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// session_mode : ALLOW_MULTIPLE_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode AllowMultipleEventLoss(Position position)
+        {
+            return new AstSessionMode(position, "ALLOW_MULTIPLE_EVENT_LOSS", "ALLOW_MULTIPLE_EVENT_LOSS");
+        }
+        
+        /// <summary>
+        /// session_mode : NO_EVENT_LOSS
+        /// </summary>
+        public static AstSessionMode NoEventLoss(Position position)
+        {
+            return new AstSessionMode(position, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// disable_reconfigure
+    /// 	 : DISABLE
+    /// 	 | RECONFIGURE
+    /// </summary>
+    public partial class AstDisableReconfigure : AstTerminalKeyword
+    {
+        
+        public AstDisableReconfigure(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDisableReconfigure(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// disable_reconfigure : DISABLE
+        /// </summary>
+        public static AstDisableReconfigure Disable()
+        {
+            return new AstDisableReconfigure(Position.Default, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// disable_reconfigure : RECONFIGURE
+        /// </summary>
+        public static AstDisableReconfigure Reconfigure()
+        {
+            return new AstDisableReconfigure(Position.Default, "RECONFIGURE", "RECONFIGURE");
+        }
+        
+        /// <summary>
+        /// disable_reconfigure : DISABLE
+        /// </summary>
+        public static AstDisableReconfigure Disable(Position position)
+        {
+            return new AstDisableReconfigure(position, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// disable_reconfigure : RECONFIGURE
+        /// </summary>
+        public static AstDisableReconfigure Reconfigure(Position position)
+        {
+            return new AstDisableReconfigure(position, "RECONFIGURE", "RECONFIGURE");
+        }
+    }
+    
+    /// <summary>
+    /// transfert_target
+    /// 	 : (OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON
+    /// </summary>
+    public partial class AstTransfertTarget : AstTerminalKeyword
+    {
+        
+        public AstTransfertTarget(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTransfertTarget(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// transfert_target : OBJECT '::'
+        /// </summary>
+        public static AstTransfertTarget ObjectDoubleColon()
+        {
+            return new AstTransfertTarget(Position.Default, "OBJECT DOUBLE_COLON", "OBJECT \'::");
+        }
+        
+        /// <summary>
+        /// transfert_target : TYPE '::'
+        /// </summary>
+        public static AstTransfertTarget TypeDoubleColon()
+        {
+            return new AstTransfertTarget(Position.Default, "TYPE DOUBLE_COLON", "TYPE \'::");
+        }
+        
+        /// <summary>
+        /// transfert_target : XML SCHEMA COLLECTION '::'
+        /// </summary>
+        public static AstTransfertTarget XmlSchemaCollectionDoubleColon()
+        {
+            return new AstTransfertTarget(Position.Default, "XML SCHEMA COLLECTION DOUBLE_COLON", "XML SCHEMA COLLECTION \'::");
+        }
+        
+        /// <summary>
+        /// transfert_target : OBJECT '::'
+        /// </summary>
+        public static AstTransfertTarget ObjectDoubleColon(Position position)
+        {
+            return new AstTransfertTarget(position, "OBJECT DOUBLE_COLON", "OBJECT \'::");
+        }
+        
+        /// <summary>
+        /// transfert_target : TYPE '::'
+        /// </summary>
+        public static AstTransfertTarget TypeDoubleColon(Position position)
+        {
+            return new AstTransfertTarget(position, "TYPE DOUBLE_COLON", "TYPE \'::");
+        }
+        
+        /// <summary>
+        /// transfert_target : XML SCHEMA COLLECTION '::'
+        /// </summary>
+        public static AstTransfertTarget XmlSchemaCollectionDoubleColon(Position position)
+        {
+            return new AstTransfertTarget(position, "XML SCHEMA COLLECTION DOUBLE_COLON", "XML SCHEMA COLLECTION \'::");
+        }
+    }
+    
+    /// <summary>
+    /// insert_update
+    /// 	 : INSERT
+    /// 	 | UPDATE
+    /// </summary>
+    public partial class AstInsertUpdate : AstTerminalKeyword
+    {
+        
+        public AstInsertUpdate(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstInsertUpdate(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// insert_update : INSERT
+        /// </summary>
+        public static AstInsertUpdate Insert()
+        {
+            return new AstInsertUpdate(Position.Default, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// insert_update : UPDATE
+        /// </summary>
+        public static AstInsertUpdate Update()
+        {
+            return new AstInsertUpdate(Position.Default, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// insert_update : INSERT
+        /// </summary>
+        public static AstInsertUpdate Insert(Position position)
+        {
+            return new AstInsertUpdate(position, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// insert_update : UPDATE
+        /// </summary>
+        public static AstInsertUpdate Update(Position position)
+        {
+            return new AstInsertUpdate(position, "UPDATE", "UPDATE");
+        }
+    }
+    
+    /// <summary>
+    /// update_delate
+    /// 	 : UPDATE
+    /// 	 | DELETE
+    /// </summary>
+    public partial class AstUpdateDelate : AstTerminalKeyword
+    {
+        
+        public AstUpdateDelate(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUpdateDelate(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// update_delate : UPDATE
+        /// </summary>
+        public static AstUpdateDelate Update()
+        {
+            return new AstUpdateDelate(Position.Default, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// update_delate : DELETE
+        /// </summary>
+        public static AstUpdateDelate Delete()
+        {
+            return new AstUpdateDelate(Position.Default, "DELETE", "DELETE");
+        }
+        
+        /// <summary>
+        /// update_delate : UPDATE
+        /// </summary>
+        public static AstUpdateDelate Update(Position position)
+        {
+            return new AstUpdateDelate(position, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// update_delate : DELETE
+        /// </summary>
+        public static AstUpdateDelate Delete(Position position)
+        {
+            return new AstUpdateDelate(position, "DELETE", "DELETE");
+        }
+    }
+    
+    /// <summary>
+    /// filter_block
+    /// 	 : FILTER
+    /// 	 | BLOCK
+    /// </summary>
+    public partial class AstFilterBlock : AstTerminalKeyword
+    {
+        
+        public AstFilterBlock(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFilterBlock(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// filter_block : FILTER
+        /// </summary>
+        public static AstFilterBlock Filter()
+        {
+            return new AstFilterBlock(Position.Default, "FILTER", "FILTER");
+        }
+        
+        /// <summary>
+        /// filter_block : BLOCK
+        /// </summary>
+        public static AstFilterBlock Block()
+        {
+            return new AstFilterBlock(Position.Default, "BLOCK", "BLOCK");
+        }
+        
+        /// <summary>
+        /// filter_block : FILTER
+        /// </summary>
+        public static AstFilterBlock Filter(Position position)
+        {
+            return new AstFilterBlock(position, "FILTER", "FILTER");
+        }
+        
+        /// <summary>
+        /// filter_block : BLOCK
+        /// </summary>
+        public static AstFilterBlock Block(Position position)
+        {
+            return new AstFilterBlock(position, "BLOCK", "BLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// init_target_any
+    /// 	 : INITIATOR
+    /// 	 | TARGET
+    /// 	 | ANY
+    /// </summary>
+    public partial class AstInitTargetAny : AstTerminalKeyword
+    {
+        
+        public AstInitTargetAny(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstInitTargetAny(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// init_target_any : INITIATOR
+        /// </summary>
+        public static AstInitTargetAny Initiator()
+        {
+            return new AstInitTargetAny(Position.Default, "INITIATOR", "INITIATOR");
+        }
+        
+        /// <summary>
+        /// init_target_any : TARGET
+        /// </summary>
+        public static AstInitTargetAny Target()
+        {
+            return new AstInitTargetAny(Position.Default, "TARGET", "TARGET");
+        }
+        
+        /// <summary>
+        /// init_target_any : ANY
+        /// </summary>
+        public static AstInitTargetAny Any()
+        {
+            return new AstInitTargetAny(Position.Default, "ANY", "ANY");
+        }
+        
+        /// <summary>
+        /// init_target_any : INITIATOR
+        /// </summary>
+        public static AstInitTargetAny Initiator(Position position)
+        {
+            return new AstInitTargetAny(position, "INITIATOR", "INITIATOR");
+        }
+        
+        /// <summary>
+        /// init_target_any : TARGET
+        /// </summary>
+        public static AstInitTargetAny Target(Position position)
+        {
+            return new AstInitTargetAny(position, "TARGET", "TARGET");
+        }
+        
+        /// <summary>
+        /// init_target_any : ANY
+        /// </summary>
+        public static AstInitTargetAny Any(Position position)
+        {
+            return new AstInitTargetAny(position, "ANY", "ANY");
+        }
+    }
+    
+    /// <summary>
+    /// receive_mode_enum
+    /// 	 : ALL
+    /// 	 | DISTINCT
+    /// 	 | STAR
+    /// </summary>
+    public partial class AstReceiveModeEnum : AstTerminalKeyword
+    {
+        
+        public AstReceiveModeEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstReceiveModeEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : ALL
+        /// </summary>
+        public static AstReceiveModeEnum All()
+        {
+            return new AstReceiveModeEnum(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : DISTINCT
+        /// </summary>
+        public static AstReceiveModeEnum Distinct()
+        {
+            return new AstReceiveModeEnum(Position.Default, "DISTINCT", "DISTINCT");
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : '*'
+        /// </summary>
+        public static AstReceiveModeEnum Star()
+        {
+            return new AstReceiveModeEnum(Position.Default, "STAR", "*");
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : ALL
+        /// </summary>
+        public static AstReceiveModeEnum All(Position position)
+        {
+            return new AstReceiveModeEnum(position, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : DISTINCT
+        /// </summary>
+        public static AstReceiveModeEnum Distinct(Position position)
+        {
+            return new AstReceiveModeEnum(position, "DISTINCT", "DISTINCT");
+        }
+        
+        /// <summary>
+        /// receive_mode_enum : '*'
+        /// </summary>
+        public static AstReceiveModeEnum Star(Position position)
+        {
+            return new AstReceiveModeEnum(position, "STAR", "*");
+        }
+    }
+    
+    /// <summary>
+    /// datacompression_mode
+    /// 	 : NONE
+    /// 	 | ROW
+    /// 	 | PAGE
+    /// 	 | COLUMNSTORE
+    /// 	 | COLUMNSTORE_ARCHIVE
+    /// </summary>
+    public partial class AstDatacompressionMode : AstTerminalKeyword
+    {
+        
+        public AstDatacompressionMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDatacompressionMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// datacompression_mode : NONE
+        /// </summary>
+        public static AstDatacompressionMode None()
+        {
+            return new AstDatacompressionMode(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : ROW
+        /// </summary>
+        public static AstDatacompressionMode Row()
+        {
+            return new AstDatacompressionMode(Position.Default, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : PAGE
+        /// </summary>
+        public static AstDatacompressionMode Page()
+        {
+            return new AstDatacompressionMode(Position.Default, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : COLUMNSTORE
+        /// </summary>
+        public static AstDatacompressionMode Columnstore()
+        {
+            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstDatacompressionMode ColumnstoreArchive()
+        {
+            return new AstDatacompressionMode(Position.Default, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : NONE
+        /// </summary>
+        public static AstDatacompressionMode None(Position position)
+        {
+            return new AstDatacompressionMode(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : ROW
+        /// </summary>
+        public static AstDatacompressionMode Row(Position position)
+        {
+            return new AstDatacompressionMode(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : PAGE
+        /// </summary>
+        public static AstDatacompressionMode Page(Position position)
+        {
+            return new AstDatacompressionMode(position, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : COLUMNSTORE
+        /// </summary>
+        public static AstDatacompressionMode Columnstore(Position position)
+        {
+            return new AstDatacompressionMode(position, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// datacompression_mode : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstDatacompressionMode ColumnstoreArchive(Position position)
+        {
+            return new AstDatacompressionMode(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+    }
+    
+    /// <summary>
+    /// datacompression_column_mode
+    /// 	 : COLUMNSTORE
+    /// 	 | COLUMNSTORE_ARCHIVE
+    /// </summary>
+    public partial class AstDatacompressionColumnMode : AstTerminalKeyword
+    {
+        
+        public AstDatacompressionColumnMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDatacompressionColumnMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// datacompression_column_mode : COLUMNSTORE
+        /// </summary>
+        public static AstDatacompressionColumnMode Columnstore()
+        {
+            return new AstDatacompressionColumnMode(Position.Default, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// datacompression_column_mode : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstDatacompressionColumnMode ColumnstoreArchive()
+        {
+            return new AstDatacompressionColumnMode(Position.Default, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+        
+        /// <summary>
+        /// datacompression_column_mode : COLUMNSTORE
+        /// </summary>
+        public static AstDatacompressionColumnMode Columnstore(Position position)
+        {
+            return new AstDatacompressionColumnMode(position, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// datacompression_column_mode : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstDatacompressionColumnMode ColumnstoreArchive(Position position)
+        {
+            return new AstDatacompressionColumnMode(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+    }
+    
+    /// <summary>
+    /// index_using_xml_mode
+    /// 	 : FOR  (VALUE | PATH | PROPERTY)?
+    /// </summary>
+    public partial class AstIndexUsingXmlMode : AstTerminalKeyword
+    {
+        
+        public AstIndexUsingXmlMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIndexUsingXmlMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR VALUE
+        /// </summary>
+        public static AstIndexUsingXmlMode ForValue()
+        {
+            return new AstIndexUsingXmlMode(Position.Default, "FOR VALUE", "FOR VALUE");
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR PATH
+        /// </summary>
+        public static AstIndexUsingXmlMode ForPath()
+        {
+            return new AstIndexUsingXmlMode(Position.Default, "FOR PATH", "FOR PATH");
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR PROPERTY
+        /// </summary>
+        public static AstIndexUsingXmlMode ForProperty()
+        {
+            return new AstIndexUsingXmlMode(Position.Default, "FOR PROPERTY", "FOR PROPERTY");
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR VALUE
+        /// </summary>
+        public static AstIndexUsingXmlMode ForValue(Position position)
+        {
+            return new AstIndexUsingXmlMode(position, "FOR VALUE", "FOR VALUE");
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR PATH
+        /// </summary>
+        public static AstIndexUsingXmlMode ForPath(Position position)
+        {
+            return new AstIndexUsingXmlMode(position, "FOR PATH", "FOR PATH");
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode : FOR PROPERTY
+        /// </summary>
+        public static AstIndexUsingXmlMode ForProperty(Position position)
+        {
+            return new AstIndexUsingXmlMode(position, "FOR PROPERTY", "FOR PROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// proc_keyword
+    /// 	 : PROC
+    /// 	 | PROCEDURE
+    /// </summary>
+    public partial class AstProcKeyword : AstTerminalKeyword
+    {
+        
+        public AstProcKeyword(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstProcKeyword(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// proc_keyword : PROC
+        /// </summary>
+        public static AstProcKeyword Proc()
+        {
+            return new AstProcKeyword(Position.Default, "PROC", "PROC");
+        }
+        
+        /// <summary>
+        /// proc_keyword : PROCEDURE
+        /// </summary>
+        public static AstProcKeyword Procedure()
+        {
+            return new AstProcKeyword(Position.Default, "PROCEDURE", "PROCEDURE");
+        }
+        
+        /// <summary>
+        /// proc_keyword : PROC
+        /// </summary>
+        public static AstProcKeyword Proc(Position position)
+        {
+            return new AstProcKeyword(position, "PROC", "PROC");
+        }
+        
+        /// <summary>
+        /// proc_keyword : PROCEDURE
+        /// </summary>
+        public static AstProcKeyword Procedure(Position position)
+        {
+            return new AstProcKeyword(position, "PROCEDURE", "PROCEDURE");
+        }
+    }
+    
+    /// <summary>
+    /// alter_replace
+    /// 	 : ALTER
+    /// 	 | REPLACE
+    /// </summary>
+    public partial class AstAlterReplace : AstTerminalKeyword
+    {
+        
+        public AstAlterReplace(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlterReplace(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// alter_replace : ALTER
+        /// </summary>
+        public static AstAlterReplace Alter()
+        {
+            return new AstAlterReplace(Position.Default, "ALTER", "ALTER");
+        }
+        
+        /// <summary>
+        /// alter_replace : REPLACE
+        /// </summary>
+        public static AstAlterReplace Replace()
+        {
+            return new AstAlterReplace(Position.Default, "REPLACE", "REPLACE");
+        }
+        
+        /// <summary>
+        /// alter_replace : ALTER
+        /// </summary>
+        public static AstAlterReplace Alter(Position position)
+        {
+            return new AstAlterReplace(position, "ALTER", "ALTER");
+        }
+        
+        /// <summary>
+        /// alter_replace : REPLACE
+        /// </summary>
+        public static AstAlterReplace Replace(Position position)
+        {
+            return new AstAlterReplace(position, "REPLACE", "REPLACE");
+        }
+    }
+    
+    /// <summary>
+    /// param_way
+    /// 	 : OUT
+    /// 	 | OUTPUT
+    /// 	 | READONLY
+    /// </summary>
+    public partial class AstParamWay : AstTerminalKeyword
+    {
+        
+        public AstParamWay(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstParamWay(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// param_way : OUT
+        /// </summary>
+        public static AstParamWay Out()
+        {
+            return new AstParamWay(Position.Default, "OUT", "OUT");
+        }
+        
+        /// <summary>
+        /// param_way : OUTPUT
+        /// </summary>
+        public static AstParamWay Output()
+        {
+            return new AstParamWay(Position.Default, "OUTPUT", "OUTPUT");
+        }
+        
+        /// <summary>
+        /// param_way : READONLY
+        /// </summary>
+        public static AstParamWay Readonly()
+        {
+            return new AstParamWay(Position.Default, "READONLY", "READONLY");
+        }
+        
+        /// <summary>
+        /// param_way : OUT
+        /// </summary>
+        public static AstParamWay Out(Position position)
+        {
+            return new AstParamWay(position, "OUT", "OUT");
+        }
+        
+        /// <summary>
+        /// param_way : OUTPUT
+        /// </summary>
+        public static AstParamWay Output(Position position)
+        {
+            return new AstParamWay(position, "OUTPUT", "OUTPUT");
+        }
+        
+        /// <summary>
+        /// param_way : READONLY
+        /// </summary>
+        public static AstParamWay Readonly(Position position)
+        {
+            return new AstParamWay(position, "READONLY", "READONLY");
+        }
+    }
+    
+    /// <summary>
+    /// percent_row
+    /// 	 : PERCENT
+    /// 	 | ROWS
+    /// </summary>
+    public partial class AstPercentRow : AstTerminalKeyword
+    {
+        
+        public AstPercentRow(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPercentRow(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// percent_row : PERCENT
+        /// </summary>
+        public static AstPercentRow Percent()
+        {
+            return new AstPercentRow(Position.Default, "PERCENT", "PERCENT");
+        }
+        
+        /// <summary>
+        /// percent_row : ROWS
+        /// </summary>
+        public static AstPercentRow Rows()
+        {
+            return new AstPercentRow(Position.Default, "ROWS", "ROWS");
+        }
+        
+        /// <summary>
+        /// percent_row : PERCENT
+        /// </summary>
+        public static AstPercentRow Percent(Position position)
+        {
+            return new AstPercentRow(position, "PERCENT", "PERCENT");
+        }
+        
+        /// <summary>
+        /// percent_row : ROWS
+        /// </summary>
+        public static AstPercentRow Rows(Position position)
+        {
+            return new AstPercentRow(position, "ROWS", "ROWS");
+        }
+    }
+    
+    /// <summary>
+    /// function_option_enum
+    /// 	 : ENCRYPTION
+    /// 	 | SCHEMABINDING
+    /// 	 | RETURNS  NULL_  ON  NULL_  INPUT
+    /// 	 | CALLED  ON  NULL_  INPUT
+    /// </summary>
+    public partial class AstFunctionOptionEnum : AstTerminalKeyword
+    {
+        
+        public AstFunctionOptionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFunctionOptionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// function_option_enum : ENCRYPTION
+        /// </summary>
+        public static AstFunctionOptionEnum Encryption()
+        {
+            return new AstFunctionOptionEnum(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// function_option_enum : SCHEMABINDING
+        /// </summary>
+        public static AstFunctionOptionEnum Schemabinding()
+        {
+            return new AstFunctionOptionEnum(Position.Default, "SCHEMABINDING", "SCHEMABINDING");
+        }
+        
+        /// <summary>
+        /// function_option_enum : RETURNS NULL ON NULL INPUT
+        /// </summary>
+        public static AstFunctionOptionEnum ReturnsNullOnNullInput()
+        {
+            return new AstFunctionOptionEnum(Position.Default, "RETURNS NULL_ ON NULL_ INPUT", "RETURNS NULL ON NULL INPUT");
+        }
+        
+        /// <summary>
+        /// function_option_enum : CALLED ON NULL INPUT
+        /// </summary>
+        public static AstFunctionOptionEnum CalledOnNullInput()
+        {
+            return new AstFunctionOptionEnum(Position.Default, "CALLED ON NULL_ INPUT", "CALLED ON NULL INPUT");
+        }
+        
+        /// <summary>
+        /// function_option_enum : ENCRYPTION
+        /// </summary>
+        public static AstFunctionOptionEnum Encryption(Position position)
+        {
+            return new AstFunctionOptionEnum(position, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// function_option_enum : SCHEMABINDING
+        /// </summary>
+        public static AstFunctionOptionEnum Schemabinding(Position position)
+        {
+            return new AstFunctionOptionEnum(position, "SCHEMABINDING", "SCHEMABINDING");
+        }
+        
+        /// <summary>
+        /// function_option_enum : RETURNS NULL ON NULL INPUT
+        /// </summary>
+        public static AstFunctionOptionEnum ReturnsNullOnNullInput(Position position)
+        {
+            return new AstFunctionOptionEnum(position, "RETURNS NULL_ ON NULL_ INPUT", "RETURNS NULL ON NULL INPUT");
+        }
+        
+        /// <summary>
+        /// function_option_enum : CALLED ON NULL INPUT
+        /// </summary>
+        public static AstFunctionOptionEnum CalledOnNullInput(Position position)
+        {
+            return new AstFunctionOptionEnum(position, "CALLED ON NULL_ INPUT", "CALLED ON NULL INPUT");
+        }
+    }
+    
+    /// <summary>
+    /// procedure_option_enum
+    /// 	 : ENCRYPTION
+    /// 	 | RECOMPILE
+    /// </summary>
+    public partial class AstProcedureOptionEnum : AstTerminalKeyword
+    {
+        
+        public AstProcedureOptionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstProcedureOptionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// procedure_option_enum : ENCRYPTION
+        /// </summary>
+        public static AstProcedureOptionEnum Encryption()
+        {
+            return new AstProcedureOptionEnum(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// procedure_option_enum : RECOMPILE
+        /// </summary>
+        public static AstProcedureOptionEnum Recompile()
+        {
+            return new AstProcedureOptionEnum(Position.Default, "RECOMPILE", "RECOMPILE");
+        }
+        
+        /// <summary>
+        /// procedure_option_enum : ENCRYPTION
+        /// </summary>
+        public static AstProcedureOptionEnum Encryption(Position position)
+        {
+            return new AstProcedureOptionEnum(position, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// procedure_option_enum : RECOMPILE
+        /// </summary>
+        public static AstProcedureOptionEnum Recompile(Position position)
+        {
+            return new AstProcedureOptionEnum(position, "RECOMPILE", "RECOMPILE");
+        }
+    }
+    
+    /// <summary>
+    /// row_rows
+    /// 	 : ROW
+    /// 	 | ROWS
+    /// </summary>
+    public partial class AstRowRows : AstTerminalKeyword
+    {
+        
+        public AstRowRows(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRowRows(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// row_rows : ROW
+        /// </summary>
+        public static AstRowRows Row()
+        {
+            return new AstRowRows(Position.Default, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// row_rows : ROWS
+        /// </summary>
+        public static AstRowRows Rows()
+        {
+            return new AstRowRows(Position.Default, "ROWS", "ROWS");
+        }
+        
+        /// <summary>
+        /// row_rows : ROW
+        /// </summary>
+        public static AstRowRows Row(Position position)
+        {
+            return new AstRowRows(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// row_rows : ROWS
+        /// </summary>
+        public static AstRowRows Rows(Position position)
+        {
+            return new AstRowRows(position, "ROWS", "ROWS");
+        }
+    }
+    
+    /// <summary>
+    /// compression_mode
+    /// 	 : NONE
+    /// 	 | ROW
+    /// 	 | PAGE
+    /// </summary>
+    public partial class AstCompressionMode : AstTerminalKeyword
+    {
+        
+        public AstCompressionMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCompressionMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// compression_mode : NONE
+        /// </summary>
+        public static AstCompressionMode None()
+        {
+            return new AstCompressionMode(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// compression_mode : ROW
+        /// </summary>
+        public static AstCompressionMode Row()
+        {
+            return new AstCompressionMode(Position.Default, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// compression_mode : PAGE
+        /// </summary>
+        public static AstCompressionMode Page()
+        {
+            return new AstCompressionMode(Position.Default, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// compression_mode : NONE
+        /// </summary>
+        public static AstCompressionMode None(Position position)
+        {
+            return new AstCompressionMode(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// compression_mode : ROW
+        /// </summary>
+        public static AstCompressionMode Row(Position position)
+        {
+            return new AstCompressionMode(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// compression_mode : PAGE
+        /// </summary>
+        public static AstCompressionMode Page(Position position)
+        {
+            return new AstCompressionMode(position, "PAGE", "PAGE");
+        }
+    }
+    
+    /// <summary>
+    /// start_end
+    /// 	 : START
+    /// 	 | END
+    /// </summary>
+    public partial class AstStartEnd : AstTerminalKeyword
+    {
+        
+        public AstStartEnd(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStartEnd(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// start_end : START
+        /// </summary>
+        public static AstStartEnd Start()
+        {
+            return new AstStartEnd(Position.Default, "START", "START");
+        }
+        
+        /// <summary>
+        /// start_end : END
+        /// </summary>
+        public static AstStartEnd End()
+        {
+            return new AstStartEnd(Position.Default, "END", "END");
+        }
+        
+        /// <summary>
+        /// start_end : START
+        /// </summary>
+        public static AstStartEnd Start(Position position)
+        {
+            return new AstStartEnd(position, "START", "START");
+        }
+        
+        /// <summary>
+        /// start_end : END
+        /// </summary>
+        public static AstStartEnd End(Position position)
+        {
+            return new AstStartEnd(position, "END", "END");
+        }
+    }
+    
+    /// <summary>
+    /// generation_mode
+    /// 	 : ROW
+    /// 	 | TRANSACTION_ID
+    /// 	 | SEQUENCE_NUMBER
+    /// </summary>
+    public partial class AstGenerationMode : AstTerminalKeyword
+    {
+        
+        public AstGenerationMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGenerationMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// generation_mode : ROW
+        /// </summary>
+        public static AstGenerationMode Row()
+        {
+            return new AstGenerationMode(Position.Default, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// generation_mode : TRANSACTION_ID
+        /// </summary>
+        public static AstGenerationMode TransactionId()
+        {
+            return new AstGenerationMode(Position.Default, "TRANSACTION_ID", "TRANSACTION_ID");
+        }
+        
+        /// <summary>
+        /// generation_mode : SEQUENCE_NUMBER
+        /// </summary>
+        public static AstGenerationMode SequenceNumber()
+        {
+            return new AstGenerationMode(Position.Default, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
+        }
+        
+        /// <summary>
+        /// generation_mode : ROW
+        /// </summary>
+        public static AstGenerationMode Row(Position position)
+        {
+            return new AstGenerationMode(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// generation_mode : TRANSACTION_ID
+        /// </summary>
+        public static AstGenerationMode TransactionId(Position position)
+        {
+            return new AstGenerationMode(position, "TRANSACTION_ID", "TRANSACTION_ID");
+        }
+        
+        /// <summary>
+        /// generation_mode : SEQUENCE_NUMBER
+        /// </summary>
+        public static AstGenerationMode SequenceNumber(Position position)
+        {
+            return new AstGenerationMode(position, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// encryption_mode
+    /// 	 : DETERMINISTIC
+    /// 	 | RANDOMIZED
+    /// </summary>
+    public partial class AstEncryptionMode : AstTerminalKeyword
+    {
+        
+        public AstEncryptionMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEncryptionMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// encryption_mode : DETERMINISTIC
+        /// </summary>
+        public static AstEncryptionMode Deterministic()
+        {
+            return new AstEncryptionMode(Position.Default, "DETERMINISTIC", "DETERMINISTIC");
+        }
+        
+        /// <summary>
+        /// encryption_mode : RANDOMIZED
+        /// </summary>
+        public static AstEncryptionMode Randomized()
+        {
+            return new AstEncryptionMode(Position.Default, "RANDOMIZED", "RANDOMIZED");
+        }
+        
+        /// <summary>
+        /// encryption_mode : DETERMINISTIC
+        /// </summary>
+        public static AstEncryptionMode Deterministic(Position position)
+        {
+            return new AstEncryptionMode(position, "DETERMINISTIC", "DETERMINISTIC");
+        }
+        
+        /// <summary>
+        /// encryption_mode : RANDOMIZED
+        /// </summary>
+        public static AstEncryptionMode Randomized(Position position)
+        {
+            return new AstEncryptionMode(position, "RANDOMIZED", "RANDOMIZED");
+        }
+    }
+    
+    /// <summary>
+    /// tableoption_cluster_mode
+    /// 	 : CLUSTERED  COLUMNSTORE  INDEX
+    /// 	 | HEAP
+    /// </summary>
+    public partial class AstTableoptionClusterMode : AstTerminalKeyword
+    {
+        
+        public AstTableoptionClusterMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTableoptionClusterMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// tableoption_cluster_mode : CLUSTERED COLUMNSTORE INDEX
+        /// </summary>
+        public static AstTableoptionClusterMode ClusteredColumnstoreIndex()
+        {
+            return new AstTableoptionClusterMode(Position.Default, "CLUSTERED COLUMNSTORE INDEX", "CLUSTERED COLUMNSTORE INDEX");
+        }
+        
+        /// <summary>
+        /// tableoption_cluster_mode : HEAP
+        /// </summary>
+        public static AstTableoptionClusterMode Heap()
+        {
+            return new AstTableoptionClusterMode(Position.Default, "HEAP", "HEAP");
+        }
+        
+        /// <summary>
+        /// tableoption_cluster_mode : CLUSTERED COLUMNSTORE INDEX
+        /// </summary>
+        public static AstTableoptionClusterMode ClusteredColumnstoreIndex(Position position)
+        {
+            return new AstTableoptionClusterMode(position, "CLUSTERED COLUMNSTORE INDEX", "CLUSTERED COLUMNSTORE INDEX");
+        }
+        
+        /// <summary>
+        /// tableoption_cluster_mode : HEAP
+        /// </summary>
+        public static AstTableoptionClusterMode Heap(Position position)
+        {
+            return new AstTableoptionClusterMode(position, "HEAP", "HEAP");
+        }
+    }
+    
+    /// <summary>
+    /// lock_mode
+    /// 	 : AUTO
+    /// 	 | TABLE
+    /// 	 | DISABLE
+    /// </summary>
+    public partial class AstLockMode : AstTerminalKeyword
+    {
+        
+        public AstLockMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLockMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// lock_mode : AUTO
+        /// </summary>
+        public static AstLockMode Auto()
+        {
+            return new AstLockMode(Position.Default, "AUTO", "AUTO");
+        }
+        
+        /// <summary>
+        /// lock_mode : TABLE
+        /// </summary>
+        public static AstLockMode Table()
+        {
+            return new AstLockMode(Position.Default, "TABLE", "TABLE");
+        }
+        
+        /// <summary>
+        /// lock_mode : DISABLE
+        /// </summary>
+        public static AstLockMode Disable()
+        {
+            return new AstLockMode(Position.Default, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// lock_mode : AUTO
+        /// </summary>
+        public static AstLockMode Auto(Position position)
+        {
+            return new AstLockMode(position, "AUTO", "AUTO");
+        }
+        
+        /// <summary>
+        /// lock_mode : TABLE
+        /// </summary>
+        public static AstLockMode Table(Position position)
+        {
+            return new AstLockMode(position, "TABLE", "TABLE");
+        }
+        
+        /// <summary>
+        /// lock_mode : DISABLE
+        /// </summary>
+        public static AstLockMode Disable(Position position)
+        {
+            return new AstLockMode(position, "DISABLE", "DISABLE");
+        }
+    }
+    
+    /// <summary>
+    /// check_nocheck
+    /// 	 : CHECK
+    /// 	 | NOCHECK
+    /// </summary>
+    public partial class AstCheckNocheck : AstTerminalKeyword
+    {
+        
+        public AstCheckNocheck(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCheckNocheck(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// check_nocheck : CHECK
+        /// </summary>
+        public static AstCheckNocheck Check()
+        {
+            return new AstCheckNocheck(Position.Default, "CHECK", "CHECK");
+        }
+        
+        /// <summary>
+        /// check_nocheck : NOCHECK
+        /// </summary>
+        public static AstCheckNocheck Nocheck()
+        {
+            return new AstCheckNocheck(Position.Default, "NOCHECK", "NOCHECK");
+        }
+        
+        /// <summary>
+        /// check_nocheck : CHECK
+        /// </summary>
+        public static AstCheckNocheck Check(Position position)
+        {
+            return new AstCheckNocheck(position, "CHECK", "CHECK");
+        }
+        
+        /// <summary>
+        /// check_nocheck : NOCHECK
+        /// </summary>
+        public static AstCheckNocheck Nocheck(Position position)
+        {
+            return new AstCheckNocheck(position, "NOCHECK", "NOCHECK");
+        }
+    }
+    
+    /// <summary>
+    /// data_type_scaled
+    /// 	 : VARCHAR
+    /// 	 | NVARCHAR
+    /// 	 | BINARY_KEYWORD
+    /// 	 | VARBINARY_KEYWORD
+    /// 	 | SQUARE_BRACKET_ID
+    /// </summary>
+    public partial class AstDataTypeScaled : AstTerminalKeyword
+    {
+        
+        public AstDataTypeScaled(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDataTypeScaled(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// data_type_scaled : VARCHAR
+        /// </summary>
+        public static AstDataTypeScaled Varchar()
+        {
+            return new AstDataTypeScaled(Position.Default, "VARCHAR", "VARCHAR");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : NVARCHAR
+        /// </summary>
+        public static AstDataTypeScaled Nvarchar()
+        {
+            return new AstDataTypeScaled(Position.Default, "NVARCHAR", "NVARCHAR");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : BINARY
+        /// </summary>
+        public static AstDataTypeScaled BinaryKeyword()
+        {
+            return new AstDataTypeScaled(Position.Default, "BINARY_KEYWORD", "BINARY");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : VARBINARY
+        /// </summary>
+        public static AstDataTypeScaled VarbinaryKeyword()
+        {
+            return new AstDataTypeScaled(Position.Default, "VARBINARY_KEYWORD", "VARBINARY");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : '['  (~']' | ']'  ']')  ']'
+        /// </summary>
+        public static AstDataTypeScaled SquareBracketId()
+        {
+            return new AstDataTypeScaled(Position.Default, "SQUARE_BRACKET_ID", "[\'  (~\']\' | \']\'  \']\')  \']");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : VARCHAR
+        /// </summary>
+        public static AstDataTypeScaled Varchar(Position position)
+        {
+            return new AstDataTypeScaled(position, "VARCHAR", "VARCHAR");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : NVARCHAR
+        /// </summary>
+        public static AstDataTypeScaled Nvarchar(Position position)
+        {
+            return new AstDataTypeScaled(position, "NVARCHAR", "NVARCHAR");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : BINARY
+        /// </summary>
+        public static AstDataTypeScaled BinaryKeyword(Position position)
+        {
+            return new AstDataTypeScaled(position, "BINARY_KEYWORD", "BINARY");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : VARBINARY
+        /// </summary>
+        public static AstDataTypeScaled VarbinaryKeyword(Position position)
+        {
+            return new AstDataTypeScaled(position, "VARBINARY_KEYWORD", "VARBINARY");
+        }
+        
+        /// <summary>
+        /// data_type_scaled : '['  (~']' | ']'  ']')  ']'
+        /// </summary>
+        public static AstDataTypeScaled SquareBracketId(Position position)
+        {
+            return new AstDataTypeScaled(position, "SQUARE_BRACKET_ID", "[\'  (~\']\' | \']\'  \']\')  \']");
+        }
+    }
+    
+    /// <summary>
+    /// abord_after_mode
+    /// 	 : NONE
+    /// 	 | SELF
+    /// 	 | BLOCKERS
+    /// </summary>
+    public partial class AstAbordAfterMode : AstTerminalKeyword
+    {
+        
+        public AstAbordAfterMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAbordAfterMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// abord_after_mode : NONE
+        /// </summary>
+        public static AstAbordAfterMode None()
+        {
+            return new AstAbordAfterMode(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// abord_after_mode : SELF
+        /// </summary>
+        public static AstAbordAfterMode Self()
+        {
+            return new AstAbordAfterMode(Position.Default, "SELF", "SELF");
+        }
+        
+        /// <summary>
+        /// abord_after_mode : BLOCKERS
+        /// </summary>
+        public static AstAbordAfterMode Blockers()
+        {
+            return new AstAbordAfterMode(Position.Default, "BLOCKERS", "BLOCKERS");
+        }
+        
+        /// <summary>
+        /// abord_after_mode : NONE
+        /// </summary>
+        public static AstAbordAfterMode None(Position position)
+        {
+            return new AstAbordAfterMode(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// abord_after_mode : SELF
+        /// </summary>
+        public static AstAbordAfterMode Self(Position position)
+        {
+            return new AstAbordAfterMode(position, "SELF", "SELF");
+        }
+        
+        /// <summary>
+        /// abord_after_mode : BLOCKERS
+        /// </summary>
+        public static AstAbordAfterMode Blockers(Position position)
+        {
+            return new AstAbordAfterMode(position, "BLOCKERS", "BLOCKERS");
+        }
+    }
+    
+    /// <summary>
+    /// local_global
+    /// 	 : LOCAL
+    /// 	 | GLOBAL
+    /// </summary>
+    public partial class AstLocalGlobal : AstTerminalKeyword
+    {
+        
+        public AstLocalGlobal(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLocalGlobal(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// local_global : LOCAL
+        /// </summary>
+        public static AstLocalGlobal Local()
+        {
+            return new AstLocalGlobal(Position.Default, "LOCAL", "LOCAL");
+        }
+        
+        /// <summary>
+        /// local_global : GLOBAL
+        /// </summary>
+        public static AstLocalGlobal Global()
+        {
+            return new AstLocalGlobal(Position.Default, "GLOBAL", "GLOBAL");
+        }
+        
+        /// <summary>
+        /// local_global : LOCAL
+        /// </summary>
+        public static AstLocalGlobal Local(Position position)
+        {
+            return new AstLocalGlobal(position, "LOCAL", "LOCAL");
+        }
+        
+        /// <summary>
+        /// local_global : GLOBAL
+        /// </summary>
+        public static AstLocalGlobal Global(Position position)
+        {
+            return new AstLocalGlobal(position, "GLOBAL", "GLOBAL");
+        }
+    }
+    
+    /// <summary>
+    /// state_enum
+    /// 	 : STARTED
+    /// 	 | STOPPED
+    /// 	 | DISABLED
+    /// </summary>
+    public partial class AstStateEnum : AstTerminalKeyword
+    {
+        
+        public AstStateEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStateEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// state_enum : STARTED
+        /// </summary>
+        public static AstStateEnum Started()
+        {
+            return new AstStateEnum(Position.Default, "STARTED", "STARTED");
+        }
+        
+        /// <summary>
+        /// state_enum : STOPPED
+        /// </summary>
+        public static AstStateEnum Stopped()
+        {
+            return new AstStateEnum(Position.Default, "STOPPED", "STOPPED");
+        }
+        
+        /// <summary>
+        /// state_enum : DISABLED
+        /// </summary>
+        public static AstStateEnum Disabled()
+        {
+            return new AstStateEnum(Position.Default, "DISABLED", "DISABLED");
+        }
+        
+        /// <summary>
+        /// state_enum : STARTED
+        /// </summary>
+        public static AstStateEnum Started(Position position)
+        {
+            return new AstStateEnum(position, "STARTED", "STARTED");
+        }
+        
+        /// <summary>
+        /// state_enum : STOPPED
+        /// </summary>
+        public static AstStateEnum Stopped(Position position)
+        {
+            return new AstStateEnum(position, "STOPPED", "STOPPED");
+        }
+        
+        /// <summary>
+        /// state_enum : DISABLED
+        /// </summary>
+        public static AstStateEnum Disabled(Position position)
+        {
+            return new AstStateEnum(position, "DISABLED", "DISABLED");
+        }
+    }
+    
+    /// <summary>
+    /// authentication_mode
+    /// 	 : NTLM
+    /// 	 | KERBEROS
+    /// 	 | NEGOTIATE
+    /// </summary>
+    public partial class AstAuthenticationMode : AstTerminalKeyword
+    {
+        
+        public AstAuthenticationMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAuthenticationMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// authentication_mode : NTLM
+        /// </summary>
+        public static AstAuthenticationMode Ntlm()
+        {
+            return new AstAuthenticationMode(Position.Default, "NTLM", "NTLM");
+        }
+        
+        /// <summary>
+        /// authentication_mode : KERBEROS
+        /// </summary>
+        public static AstAuthenticationMode Kerberos()
+        {
+            return new AstAuthenticationMode(Position.Default, "KERBEROS", "KERBEROS");
+        }
+        
+        /// <summary>
+        /// authentication_mode : NEGOTIATE
+        /// </summary>
+        public static AstAuthenticationMode Negotiate()
+        {
+            return new AstAuthenticationMode(Position.Default, "NEGOTIATE", "NEGOTIATE");
+        }
+        
+        /// <summary>
+        /// authentication_mode : NTLM
+        /// </summary>
+        public static AstAuthenticationMode Ntlm(Position position)
+        {
+            return new AstAuthenticationMode(position, "NTLM", "NTLM");
+        }
+        
+        /// <summary>
+        /// authentication_mode : KERBEROS
+        /// </summary>
+        public static AstAuthenticationMode Kerberos(Position position)
+        {
+            return new AstAuthenticationMode(position, "KERBEROS", "KERBEROS");
+        }
+        
+        /// <summary>
+        /// authentication_mode : NEGOTIATE
+        /// </summary>
+        public static AstAuthenticationMode Negotiate(Position position)
+        {
+            return new AstAuthenticationMode(position, "NEGOTIATE", "NEGOTIATE");
+        }
+    }
+    
+    /// <summary>
+    /// encryption_algorithm
+    /// 	 : ALGORITHM  (AES | RC4 | AES  RC4 | RC4  AES)
+    /// </summary>
+    public partial class AstEncryptionAlgorithm : AstTerminalKeyword
+    {
+        
+        public AstEncryptionAlgorithm(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEncryptionAlgorithm(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM AES
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmAes()
+        {
+            return new AstEncryptionAlgorithm(Position.Default, "ALGORITHM AES", "ALGORITHM AES");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM RC4
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmRc4()
+        {
+            return new AstEncryptionAlgorithm(Position.Default, "ALGORITHM RC4", "ALGORITHM RC4");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM AES RC4
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmAesRc4()
+        {
+            return new AstEncryptionAlgorithm(Position.Default, "ALGORITHM AES RC4", "ALGORITHM AES RC4");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM RC4 AES
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmRc4Aes()
+        {
+            return new AstEncryptionAlgorithm(Position.Default, "ALGORITHM RC4 AES", "ALGORITHM RC4 AES");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM AES
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmAes(Position position)
+        {
+            return new AstEncryptionAlgorithm(position, "ALGORITHM AES", "ALGORITHM AES");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM RC4
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmRc4(Position position)
+        {
+            return new AstEncryptionAlgorithm(position, "ALGORITHM RC4", "ALGORITHM RC4");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM AES RC4
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmAesRc4(Position position)
+        {
+            return new AstEncryptionAlgorithm(position, "ALGORITHM AES RC4", "ALGORITHM AES RC4");
+        }
+        
+        /// <summary>
+        /// encryption_algorithm : ALGORITHM RC4 AES
+        /// </summary>
+        public static AstEncryptionAlgorithm AlgorithmRc4Aes(Position position)
+        {
+            return new AstEncryptionAlgorithm(position, "ALGORITHM RC4 AES", "ALGORITHM RC4 AES");
+        }
+    }
+    
+    /// <summary>
+    /// role_mirroring
+    /// 	 : WITNESS
+    /// 	 | PARTNER
+    /// 	 | ALL
+    /// </summary>
+    public partial class AstRoleMirroring : AstTerminalKeyword
+    {
+        
+        public AstRoleMirroring(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRoleMirroring(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// role_mirroring : WITNESS
+        /// </summary>
+        public static AstRoleMirroring Witness()
+        {
+            return new AstRoleMirroring(Position.Default, "WITNESS", "WITNESS");
+        }
+        
+        /// <summary>
+        /// role_mirroring : PARTNER
+        /// </summary>
+        public static AstRoleMirroring Partner()
+        {
+            return new AstRoleMirroring(Position.Default, "PARTNER", "PARTNER");
+        }
+        
+        /// <summary>
+        /// role_mirroring : ALL
+        /// </summary>
+        public static AstRoleMirroring All()
+        {
+            return new AstRoleMirroring(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// role_mirroring : WITNESS
+        /// </summary>
+        public static AstRoleMirroring Witness(Position position)
+        {
+            return new AstRoleMirroring(position, "WITNESS", "WITNESS");
+        }
+        
+        /// <summary>
+        /// role_mirroring : PARTNER
+        /// </summary>
+        public static AstRoleMirroring Partner(Position position)
+        {
+            return new AstRoleMirroring(position, "PARTNER", "PARTNER");
+        }
+        
+        /// <summary>
+        /// role_mirroring : ALL
+        /// </summary>
+        public static AstRoleMirroring All(Position position)
+        {
+            return new AstRoleMirroring(position, "ALL", "ALL");
+        }
+    }
+    
+    /// <summary>
+    /// partner_option_enum
+    /// 	 : FAILOVER
+    /// 	 | FORCE_SERVICE_ALLOW_DATA_LOSS
+    /// 	 | OFF
+    /// 	 | RESUME
+    /// 	 | SAFETY  (FULL | OFF)
+    /// 	 | SUSPEND
+    /// </summary>
+    public partial class AstPartnerOptionEnum : AstTerminalKeyword
+    {
+        
+        public AstPartnerOptionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPartnerOptionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// partner_option_enum : FAILOVER
+        /// </summary>
+        public static AstPartnerOptionEnum Failover()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "FAILOVER", "FAILOVER");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstPartnerOptionEnum ForceServiceAllowDataLoss()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "FORCE_SERVICE_ALLOW_DATA_LOSS", "FORCE_SERVICE_ALLOW_DATA_LOSS");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : OFF
+        /// </summary>
+        public static AstPartnerOptionEnum Off()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : RESUME
+        /// </summary>
+        public static AstPartnerOptionEnum Resume()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "RESUME", "RESUME");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SAFETY FULL
+        /// </summary>
+        public static AstPartnerOptionEnum SafetyFull()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "SAFETY FULL", "SAFETY FULL");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SAFETY OFF
+        /// </summary>
+        public static AstPartnerOptionEnum SafetyOff()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "SAFETY OFF", "SAFETY OFF");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SUSPEND
+        /// </summary>
+        public static AstPartnerOptionEnum Suspend()
+        {
+            return new AstPartnerOptionEnum(Position.Default, "SUSPEND", "SUSPEND");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : FAILOVER
+        /// </summary>
+        public static AstPartnerOptionEnum Failover(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "FAILOVER", "FAILOVER");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstPartnerOptionEnum ForceServiceAllowDataLoss(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "FORCE_SERVICE_ALLOW_DATA_LOSS", "FORCE_SERVICE_ALLOW_DATA_LOSS");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : OFF
+        /// </summary>
+        public static AstPartnerOptionEnum Off(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : RESUME
+        /// </summary>
+        public static AstPartnerOptionEnum Resume(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "RESUME", "RESUME");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SAFETY FULL
+        /// </summary>
+        public static AstPartnerOptionEnum SafetyFull(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "SAFETY FULL", "SAFETY FULL");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SAFETY OFF
+        /// </summary>
+        public static AstPartnerOptionEnum SafetyOff(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "SAFETY OFF", "SAFETY OFF");
+        }
+        
+        /// <summary>
+        /// partner_option_enum : SUSPEND
+        /// </summary>
+        public static AstPartnerOptionEnum Suspend(Position position)
+        {
+            return new AstPartnerOptionEnum(position, "SUSPEND", "SUSPEND");
+        }
+    }
+    
+    /// <summary>
+    /// delayed_durability
+    /// 	 : DISABLED
+    /// 	 | ALLOWED
+    /// 	 | FORCED
+    /// </summary>
+    public partial class AstDelayedDurability : AstTerminalKeyword
+    {
+        
+        public AstDelayedDurability(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDelayedDurability(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// delayed_durability : DISABLED
+        /// </summary>
+        public static AstDelayedDurability Disabled()
+        {
+            return new AstDelayedDurability(Position.Default, "DISABLED", "DISABLED");
+        }
+        
+        /// <summary>
+        /// delayed_durability : ALLOWED
+        /// </summary>
+        public static AstDelayedDurability Allowed()
+        {
+            return new AstDelayedDurability(Position.Default, "ALLOWED", "ALLOWED");
+        }
+        
+        /// <summary>
+        /// delayed_durability : FORCED
+        /// </summary>
+        public static AstDelayedDurability Forced()
+        {
+            return new AstDelayedDurability(Position.Default, "FORCED", "FORCED");
+        }
+        
+        /// <summary>
+        /// delayed_durability : DISABLED
+        /// </summary>
+        public static AstDelayedDurability Disabled(Position position)
+        {
+            return new AstDelayedDurability(position, "DISABLED", "DISABLED");
+        }
+        
+        /// <summary>
+        /// delayed_durability : ALLOWED
+        /// </summary>
+        public static AstDelayedDurability Allowed(Position position)
+        {
+            return new AstDelayedDurability(position, "ALLOWED", "ALLOWED");
+        }
+        
+        /// <summary>
+        /// delayed_durability : FORCED
+        /// </summary>
+        public static AstDelayedDurability Forced(Position position)
+        {
+            return new AstDelayedDurability(position, "FORCED", "FORCED");
+        }
+    }
+    
+    /// <summary>
+    /// suspend_resume
+    /// 	 : SUSPEND
+    /// 	 | RESUME
+    /// </summary>
+    public partial class AstSuspendResume : AstTerminalKeyword
+    {
+        
+        public AstSuspendResume(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSuspendResume(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// suspend_resume : SUSPEND
+        /// </summary>
+        public static AstSuspendResume Suspend()
+        {
+            return new AstSuspendResume(Position.Default, "SUSPEND", "SUSPEND");
+        }
+        
+        /// <summary>
+        /// suspend_resume : RESUME
+        /// </summary>
+        public static AstSuspendResume Resume()
+        {
+            return new AstSuspendResume(Position.Default, "RESUME", "RESUME");
+        }
+        
+        /// <summary>
+        /// suspend_resume : SUSPEND
+        /// </summary>
+        public static AstSuspendResume Suspend(Position position)
+        {
+            return new AstSuspendResume(position, "SUSPEND", "SUSPEND");
+        }
+        
+        /// <summary>
+        /// suspend_resume : RESUME
+        /// </summary>
+        public static AstSuspendResume Resume(Position position)
+        {
+            return new AstSuspendResume(position, "RESUME", "RESUME");
+        }
+    }
+    
+    /// <summary>
+    /// recovery_option_enum
+    /// 	 : RECOVERY  (FULL | BULK_LOGGED | SIMPLE)
+    /// 	 | PAGE_VERIFY  (CHECKSUM | TORN_PAGE_DETECTION | NONE)
+    /// </summary>
+    public partial class AstRecoveryOptionEnum : AstTerminalKeyword
+    {
+        
+        public AstRecoveryOptionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRecoveryOptionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY FULL
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoveryFull()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "RECOVERY FULL", "RECOVERY FULL");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY BULK_LOGGED
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoveryBulkLogged()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "RECOVERY BULK_LOGGED", "RECOVERY BULK_LOGGED");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY SIMPLE
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoverySimple()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "RECOVERY SIMPLE", "RECOVERY SIMPLE");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY CHECKSUM
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyChecksum()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "PAGE_VERIFY CHECKSUM", "PAGE_VERIFY CHECKSUM");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY TORN_PAGE_DETECTION
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyTornPageDetection()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "PAGE_VERIFY TORN_PAGE_DETECTION", "PAGE_VERIFY TORN_PAGE_DETECTION");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY NONE
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyNone()
+        {
+            return new AstRecoveryOptionEnum(Position.Default, "PAGE_VERIFY NONE", "PAGE_VERIFY NONE");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY FULL
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoveryFull(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "RECOVERY FULL", "RECOVERY FULL");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY BULK_LOGGED
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoveryBulkLogged(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "RECOVERY BULK_LOGGED", "RECOVERY BULK_LOGGED");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : RECOVERY SIMPLE
+        /// </summary>
+        public static AstRecoveryOptionEnum RecoverySimple(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "RECOVERY SIMPLE", "RECOVERY SIMPLE");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY CHECKSUM
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyChecksum(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "PAGE_VERIFY CHECKSUM", "PAGE_VERIFY CHECKSUM");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY TORN_PAGE_DETECTION
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyTornPageDetection(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "PAGE_VERIFY TORN_PAGE_DETECTION", "PAGE_VERIFY TORN_PAGE_DETECTION");
+        }
+        
+        /// <summary>
+        /// recovery_option_enum : PAGE_VERIFY NONE
+        /// </summary>
+        public static AstRecoveryOptionEnum PageVerifyNone(Position position)
+        {
+            return new AstRecoveryOptionEnum(position, "PAGE_VERIFY NONE", "PAGE_VERIFY NONE");
+        }
+    }
+    
+    /// <summary>
+    /// seconds_minutes
+    /// 	 : SECONDS
+    /// 	 | MINUTES
+    /// </summary>
+    public partial class AstSecondsMinutes : AstTerminalKeyword
+    {
+        
+        public AstSecondsMinutes(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSecondsMinutes(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// seconds_minutes : SECONDS
+        /// </summary>
+        public static AstSecondsMinutes Seconds()
+        {
+            return new AstSecondsMinutes(Position.Default, "SECONDS", "SECONDS");
+        }
+        
+        /// <summary>
+        /// seconds_minutes : MINUTES
+        /// </summary>
+        public static AstSecondsMinutes Minutes()
+        {
+            return new AstSecondsMinutes(Position.Default, "MINUTES", "MINUTES");
+        }
+        
+        /// <summary>
+        /// seconds_minutes : SECONDS
+        /// </summary>
+        public static AstSecondsMinutes Seconds(Position position)
+        {
+            return new AstSecondsMinutes(position, "SECONDS", "SECONDS");
+        }
+        
+        /// <summary>
+        /// seconds_minutes : MINUTES
+        /// </summary>
+        public static AstSecondsMinutes Minutes(Position position)
+        {
+            return new AstSecondsMinutes(position, "MINUTES", "MINUTES");
+        }
+    }
+    
+    /// <summary>
+    /// compression
+    /// 	 : COMPRESSION
+    /// 	 | NO_COMPRESSION
+    /// </summary>
+    public partial class AstCompression : AstTerminalKeyword
+    {
+        
+        public AstCompression(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCompression(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// compression : COMPRESSION
+        /// </summary>
+        public static AstCompression Compression()
+        {
+            return new AstCompression(Position.Default, "COMPRESSION", "COMPRESSION");
+        }
+        
+        /// <summary>
+        /// compression : NO_COMPRESSION
+        /// </summary>
+        public static AstCompression NoCompression()
+        {
+            return new AstCompression(Position.Default, "NO_COMPRESSION", "NO_COMPRESSION");
+        }
+        
+        /// <summary>
+        /// compression : COMPRESSION
+        /// </summary>
+        public static AstCompression Compression(Position position)
+        {
+            return new AstCompression(position, "COMPRESSION", "COMPRESSION");
+        }
+        
+        /// <summary>
+        /// compression : NO_COMPRESSION
+        /// </summary>
+        public static AstCompression NoCompression(Position position)
+        {
+            return new AstCompression(position, "NO_COMPRESSION", "NO_COMPRESSION");
+        }
+    }
+    
+    /// <summary>
+    /// init_no_init
+    /// 	 : NOINIT
+    /// 	 | INIT
+    /// </summary>
+    public partial class AstInitNoInit : AstTerminalKeyword
+    {
+        
+        public AstInitNoInit(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstInitNoInit(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// init_no_init : NOINIT
+        /// </summary>
+        public static AstInitNoInit Noinit()
+        {
+            return new AstInitNoInit(Position.Default, "NOINIT", "NOINIT");
+        }
+        
+        /// <summary>
+        /// init_no_init : INIT
+        /// </summary>
+        public static AstInitNoInit Init()
+        {
+            return new AstInitNoInit(Position.Default, "INIT", "INIT");
+        }
+        
+        /// <summary>
+        /// init_no_init : NOINIT
+        /// </summary>
+        public static AstInitNoInit Noinit(Position position)
+        {
+            return new AstInitNoInit(position, "NOINIT", "NOINIT");
+        }
+        
+        /// <summary>
+        /// init_no_init : INIT
+        /// </summary>
+        public static AstInitNoInit Init(Position position)
+        {
+            return new AstInitNoInit(position, "INIT", "INIT");
+        }
+    }
+    
+    /// <summary>
+    /// no_skip
+    /// 	 : NOSKIP
+    /// 	 | SKIP_KEYWORD
+    /// </summary>
+    public partial class AstNoSkip : AstTerminalKeyword
+    {
+        
+        public AstNoSkip(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNoSkip(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// no_skip : NOSKIP
+        /// </summary>
+        public static AstNoSkip Noskip()
+        {
+            return new AstNoSkip(Position.Default, "NOSKIP", "NOSKIP");
+        }
+        
+        /// <summary>
+        /// no_skip : SKIP
+        /// </summary>
+        public static AstNoSkip SkipKeyword()
+        {
+            return new AstNoSkip(Position.Default, "SKIP_KEYWORD", "SKIP");
+        }
+        
+        /// <summary>
+        /// no_skip : NOSKIP
+        /// </summary>
+        public static AstNoSkip Noskip(Position position)
+        {
+            return new AstNoSkip(position, "NOSKIP", "NOSKIP");
+        }
+        
+        /// <summary>
+        /// no_skip : SKIP
+        /// </summary>
+        public static AstNoSkip SkipKeyword(Position position)
+        {
+            return new AstNoSkip(position, "SKIP_KEYWORD", "SKIP");
+        }
+    }
+    
+    /// <summary>
+    /// format_noformat
+    /// 	 : NOFORMAT
+    /// 	 | FORMAT
+    /// </summary>
+    public partial class AstFormatNoformat : AstTerminalKeyword
+    {
+        
+        public AstFormatNoformat(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFormatNoformat(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// format_noformat : NOFORMAT
+        /// </summary>
+        public static AstFormatNoformat Noformat()
+        {
+            return new AstFormatNoformat(Position.Default, "NOFORMAT", "NOFORMAT");
+        }
+        
+        /// <summary>
+        /// format_noformat : FORMAT
+        /// </summary>
+        public static AstFormatNoformat Format()
+        {
+            return new AstFormatNoformat(Position.Default, "FORMAT", "FORMAT");
+        }
+        
+        /// <summary>
+        /// format_noformat : NOFORMAT
+        /// </summary>
+        public static AstFormatNoformat Noformat(Position position)
+        {
+            return new AstFormatNoformat(position, "NOFORMAT", "NOFORMAT");
+        }
+        
+        /// <summary>
+        /// format_noformat : FORMAT
+        /// </summary>
+        public static AstFormatNoformat Format(Position position)
+        {
+            return new AstFormatNoformat(position, "FORMAT", "FORMAT");
+        }
+    }
+    
+    /// <summary>
+    /// login_user
+    /// 	 : LOGIN
+    /// 	 | USER
+    /// </summary>
+    public partial class AstLoginUser : AstTerminalKeyword
+    {
+        
+        public AstLoginUser(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLoginUser(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// login_user : LOGIN
+        /// </summary>
+        public static AstLoginUser Login()
+        {
+            return new AstLoginUser(Position.Default, "LOGIN", "LOGIN");
+        }
+        
+        /// <summary>
+        /// login_user : USER
+        /// </summary>
+        public static AstLoginUser User()
+        {
+            return new AstLoginUser(Position.Default, "USER", "USER");
+        }
+        
+        /// <summary>
+        /// login_user : LOGIN
+        /// </summary>
+        public static AstLoginUser Login(Position position)
+        {
+            return new AstLoginUser(position, "LOGIN", "LOGIN");
+        }
+        
+        /// <summary>
+        /// login_user : USER
+        /// </summary>
+        public static AstLoginUser User(Position position)
+        {
+            return new AstLoginUser(position, "USER", "USER");
+        }
+    }
+    
+    /// <summary>
+    /// output_out
+    /// 	 : OUTPUT
+    /// 	 | OUT
+    /// </summary>
+    public partial class AstOutputOut : AstTerminalKeyword
+    {
+        
+        public AstOutputOut(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOutputOut(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// output_out : OUTPUT
+        /// </summary>
+        public static AstOutputOut Output()
+        {
+            return new AstOutputOut(Position.Default, "OUTPUT", "OUTPUT");
+        }
+        
+        /// <summary>
+        /// output_out : OUT
+        /// </summary>
+        public static AstOutputOut Out()
+        {
+            return new AstOutputOut(Position.Default, "OUT", "OUT");
+        }
+        
+        /// <summary>
+        /// output_out : OUTPUT
+        /// </summary>
+        public static AstOutputOut Output(Position position)
+        {
+            return new AstOutputOut(position, "OUTPUT", "OUTPUT");
+        }
+        
+        /// <summary>
+        /// output_out : OUT
+        /// </summary>
+        public static AstOutputOut Out(Position position)
+        {
+            return new AstOutputOut(position, "OUT", "OUT");
+        }
+    }
+    
+    /// <summary>
+    /// start_date_expiry_date
+    /// 	 : START_DATE
+    /// 	 | EXPIRY_DATE
+    /// </summary>
+    public partial class AstStartDateExpiryDate : AstTerminalKeyword
+    {
+        
+        public AstStartDateExpiryDate(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStartDateExpiryDate(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// start_date_expiry_date : START_DATE
+        /// </summary>
+        public static AstStartDateExpiryDate StartDate()
+        {
+            return new AstStartDateExpiryDate(Position.Default, "START_DATE", "START_DATE");
+        }
+        
+        /// <summary>
+        /// start_date_expiry_date : EXPIRY_DATE
+        /// </summary>
+        public static AstStartDateExpiryDate ExpiryDate()
+        {
+            return new AstStartDateExpiryDate(Position.Default, "EXPIRY_DATE", "EXPIRY_DATE");
+        }
+        
+        /// <summary>
+        /// start_date_expiry_date : START_DATE
+        /// </summary>
+        public static AstStartDateExpiryDate StartDate(Position position)
+        {
+            return new AstStartDateExpiryDate(position, "START_DATE", "START_DATE");
+        }
+        
+        /// <summary>
+        /// start_date_expiry_date : EXPIRY_DATE
+        /// </summary>
+        public static AstStartDateExpiryDate ExpiryDate(Position position)
+        {
+            return new AstStartDateExpiryDate(position, "EXPIRY_DATE", "EXPIRY_DATE");
+        }
+    }
+    
+    /// <summary>
+    /// execute_clause_mode_enum
+    /// 	 : CALLER
+    /// 	 | SELF
+    /// 	 | OWNER
+    /// </summary>
+    public partial class AstExecuteClauseModeEnum : AstTerminalKeyword
+    {
+        
+        public AstExecuteClauseModeEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstExecuteClauseModeEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : CALLER
+        /// </summary>
+        public static AstExecuteClauseModeEnum Caller()
+        {
+            return new AstExecuteClauseModeEnum(Position.Default, "CALLER", "CALLER");
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : SELF
+        /// </summary>
+        public static AstExecuteClauseModeEnum Self()
+        {
+            return new AstExecuteClauseModeEnum(Position.Default, "SELF", "SELF");
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : OWNER
+        /// </summary>
+        public static AstExecuteClauseModeEnum Owner()
+        {
+            return new AstExecuteClauseModeEnum(Position.Default, "OWNER", "OWNER");
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : CALLER
+        /// </summary>
+        public static AstExecuteClauseModeEnum Caller(Position position)
+        {
+            return new AstExecuteClauseModeEnum(position, "CALLER", "CALLER");
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : SELF
+        /// </summary>
+        public static AstExecuteClauseModeEnum Self(Position position)
+        {
+            return new AstExecuteClauseModeEnum(position, "SELF", "SELF");
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum : OWNER
+        /// </summary>
+        public static AstExecuteClauseModeEnum Owner(Position position)
+        {
+            return new AstExecuteClauseModeEnum(position, "OWNER", "OWNER");
+        }
+    }
+    
+    /// <summary>
+    /// content_document
+    /// 	 : CONTENT
+    /// 	 | DOCUMENT
+    /// </summary>
+    public partial class AstContentDocument : AstTerminalKeyword
+    {
+        
+        public AstContentDocument(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstContentDocument(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// content_document : CONTENT
+        /// </summary>
+        public static AstContentDocument Content()
+        {
+            return new AstContentDocument(Position.Default, "CONTENT", "CONTENT");
+        }
+        
+        /// <summary>
+        /// content_document : DOCUMENT
+        /// </summary>
+        public static AstContentDocument Document()
+        {
+            return new AstContentDocument(Position.Default, "DOCUMENT", "DOCUMENT");
+        }
+        
+        /// <summary>
+        /// content_document : CONTENT
+        /// </summary>
+        public static AstContentDocument Content(Position position)
+        {
+            return new AstContentDocument(position, "CONTENT", "CONTENT");
+        }
+        
+        /// <summary>
+        /// content_document : DOCUMENT
+        /// </summary>
+        public static AstContentDocument Document(Position position)
+        {
+            return new AstContentDocument(position, "DOCUMENT", "DOCUMENT");
+        }
+    }
+    
+    /// <summary>
+    /// materialized_mode
+    /// 	 : MATERIALIZED
+    /// 	 | NOT  MATERIALIZED
+    /// </summary>
+    public partial class AstMaterializedMode : AstTerminalKeyword
+    {
+        
+        public AstMaterializedMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMaterializedMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// materialized_mode : MATERIALIZED
+        /// </summary>
+        public static AstMaterializedMode Materialized()
+        {
+            return new AstMaterializedMode(Position.Default, "MATERIALIZED", "MATERIALIZED");
+        }
+        
+        /// <summary>
+        /// materialized_mode : NOT MATERIALIZED
+        /// </summary>
+        public static AstMaterializedMode NotMaterialized()
+        {
+            return new AstMaterializedMode(Position.Default, "NOT MATERIALIZED", "NOT MATERIALIZED");
+        }
+        
+        /// <summary>
+        /// materialized_mode : MATERIALIZED
+        /// </summary>
+        public static AstMaterializedMode Materialized(Position position)
+        {
+            return new AstMaterializedMode(position, "MATERIALIZED", "MATERIALIZED");
+        }
+        
+        /// <summary>
+        /// materialized_mode : NOT MATERIALIZED
+        /// </summary>
+        public static AstMaterializedMode NotMaterialized(Position position)
+        {
+            return new AstMaterializedMode(position, "NOT MATERIALIZED", "NOT MATERIALIZED");
+        }
+    }
+    
+    /// <summary>
+    /// column_modifier_enum
+    /// 	 : ROWGUIDCOL
+    /// 	 | PERSISTED
+    /// 	 | NOT  FOR  REPLICATION
+    /// 	 | SPARSE
+    /// 	 | HIDDEN_KEYWORD
+    /// </summary>
+    public partial class AstColumnModifierEnum : AstTerminalKeyword
+    {
+        
+        public AstColumnModifierEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstColumnModifierEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : ROWGUIDCOL
+        /// </summary>
+        public static AstColumnModifierEnum Rowguidcol()
+        {
+            return new AstColumnModifierEnum(Position.Default, "ROWGUIDCOL", "ROWGUIDCOL");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : PERSISTED
+        /// </summary>
+        public static AstColumnModifierEnum Persisted()
+        {
+            return new AstColumnModifierEnum(Position.Default, "PERSISTED", "PERSISTED");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : NOT FOR REPLICATION
+        /// </summary>
+        public static AstColumnModifierEnum NotForReplication()
+        {
+            return new AstColumnModifierEnum(Position.Default, "NOT FOR REPLICATION", "NOT FOR REPLICATION");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : SPARSE
+        /// </summary>
+        public static AstColumnModifierEnum Sparse()
+        {
+            return new AstColumnModifierEnum(Position.Default, "SPARSE", "SPARSE");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : HIDDEN
+        /// </summary>
+        public static AstColumnModifierEnum HiddenKeyword()
+        {
+            return new AstColumnModifierEnum(Position.Default, "HIDDEN_KEYWORD", "HIDDEN");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : ROWGUIDCOL
+        /// </summary>
+        public static AstColumnModifierEnum Rowguidcol(Position position)
+        {
+            return new AstColumnModifierEnum(position, "ROWGUIDCOL", "ROWGUIDCOL");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : PERSISTED
+        /// </summary>
+        public static AstColumnModifierEnum Persisted(Position position)
+        {
+            return new AstColumnModifierEnum(position, "PERSISTED", "PERSISTED");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : NOT FOR REPLICATION
+        /// </summary>
+        public static AstColumnModifierEnum NotForReplication(Position position)
+        {
+            return new AstColumnModifierEnum(position, "NOT FOR REPLICATION", "NOT FOR REPLICATION");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : SPARSE
+        /// </summary>
+        public static AstColumnModifierEnum Sparse(Position position)
+        {
+            return new AstColumnModifierEnum(position, "SPARSE", "SPARSE");
+        }
+        
+        /// <summary>
+        /// column_modifier_enum : HIDDEN
+        /// </summary>
+        public static AstColumnModifierEnum HiddenKeyword(Position position)
+        {
+            return new AstColumnModifierEnum(position, "HIDDEN_KEYWORD", "HIDDEN");
+        }
+    }
+    
+    /// <summary>
+    /// compute_as
+    /// 	 : COMPUTE
+    /// 	 | AS
+    /// </summary>
+    public partial class AstComputeAs : AstTerminalKeyword
+    {
+        
+        public AstComputeAs(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstComputeAs(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// compute_as : COMPUTE
+        /// </summary>
+        public static AstComputeAs Compute()
+        {
+            return new AstComputeAs(Position.Default, "COMPUTE", "COMPUTE");
+        }
+        
+        /// <summary>
+        /// compute_as : AS
+        /// </summary>
+        public static AstComputeAs As()
+        {
+            return new AstComputeAs(Position.Default, "AS", "AS");
+        }
+        
+        /// <summary>
+        /// compute_as : COMPUTE
+        /// </summary>
+        public static AstComputeAs Compute(Position position)
+        {
+            return new AstComputeAs(position, "COMPUTE", "COMPUTE");
+        }
+        
+        /// <summary>
+        /// compute_as : AS
+        /// </summary>
+        public static AstComputeAs As(Position position)
+        {
+            return new AstComputeAs(position, "AS", "AS");
+        }
+    }
+    
+    /// <summary>
+    /// primary_key_unique
+    /// 	 : PRIMARY  KEY
+    /// 	 | UNIQUE
+    /// </summary>
+    public partial class AstPrimaryKeyUnique : AstTerminalKeyword
+    {
+        
+        public AstPrimaryKeyUnique(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPrimaryKeyUnique(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// primary_key_unique : PRIMARY KEY
+        /// </summary>
+        public static AstPrimaryKeyUnique PrimaryKey()
+        {
+            return new AstPrimaryKeyUnique(Position.Default, "PRIMARY KEY", "PRIMARY KEY");
+        }
+        
+        /// <summary>
+        /// primary_key_unique : UNIQUE
+        /// </summary>
+        public static AstPrimaryKeyUnique Unique()
+        {
+            return new AstPrimaryKeyUnique(Position.Default, "UNIQUE", "UNIQUE");
+        }
+        
+        /// <summary>
+        /// primary_key_unique : PRIMARY KEY
+        /// </summary>
+        public static AstPrimaryKeyUnique PrimaryKey(Position position)
+        {
+            return new AstPrimaryKeyUnique(position, "PRIMARY KEY", "PRIMARY KEY");
+        }
+        
+        /// <summary>
+        /// primary_key_unique : UNIQUE
+        /// </summary>
+        public static AstPrimaryKeyUnique Unique(Position position)
+        {
+            return new AstPrimaryKeyUnique(position, "UNIQUE", "UNIQUE");
+        }
+    }
+    
+    /// <summary>
+    /// declare_set_cursor_common_partial_enum
+    /// 	 : (FORWARD_ONLY | SCROLL)
+    /// 	 | (STATIC | KEYSET | DYNAMIC | FAST_FORWARD)
+    /// 	 | (READ_ONLY | SCROLL_LOCKS | OPTIMISTIC)
+    /// 	 | TYPE_WARNING
+    /// </summary>
+    public partial class AstDeclareSetCursorCommonPartialEnum : AstTerminalKeyword
+    {
+        
+        public AstDeclareSetCursorCommonPartialEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDeclareSetCursorCommonPartialEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : FORWARD_ONLY
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ForwardOnly()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "FORWARD_ONLY", "FORWARD_ONLY");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : SCROLL
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Scroll()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "SCROLL", "SCROLL");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : STATIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Static()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "STATIC", "STATIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : KEYSET
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Keyset()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "KEYSET", "KEYSET");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : DYNAMIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Dynamic()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "DYNAMIC", "DYNAMIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : FAST_FORWARD
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum FastForward()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "FAST_FORWARD", "FAST_FORWARD");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : READ_ONLY
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ReadOnly()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : SCROLL_LOCKS
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ScrollLocks()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "SCROLL_LOCKS", "SCROLL_LOCKS");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : OPTIMISTIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Optimistic()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "OPTIMISTIC", "OPTIMISTIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : TYPE_WARNING
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum TypeWarning()
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(Position.Default, "TYPE_WARNING", "TYPE_WARNING");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : FORWARD_ONLY
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ForwardOnly(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "FORWARD_ONLY", "FORWARD_ONLY");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : SCROLL
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Scroll(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "SCROLL", "SCROLL");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : STATIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Static(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "STATIC", "STATIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : KEYSET
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Keyset(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "KEYSET", "KEYSET");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : DYNAMIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Dynamic(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "DYNAMIC", "DYNAMIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : FAST_FORWARD
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum FastForward(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "FAST_FORWARD", "FAST_FORWARD");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : READ_ONLY
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ReadOnly(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : SCROLL_LOCKS
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum ScrollLocks(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "SCROLL_LOCKS", "SCROLL_LOCKS");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : OPTIMISTIC
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum Optimistic(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "OPTIMISTIC", "OPTIMISTIC");
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum : TYPE_WARNING
+        /// </summary>
+        public static AstDeclareSetCursorCommonPartialEnum TypeWarning(Position position)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(position, "TYPE_WARNING", "TYPE_WARNING");
+        }
+    }
+    
+    /// <summary>
+    /// absolute_relative
+    /// 	 : ABSOLUTE
+    /// 	 | RELATIVE
+    /// </summary>
+    public partial class AstAbsoluteRelative : AstTerminalKeyword
+    {
+        
+        public AstAbsoluteRelative(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAbsoluteRelative(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// absolute_relative : ABSOLUTE
+        /// </summary>
+        public static AstAbsoluteRelative Absolute()
+        {
+            return new AstAbsoluteRelative(Position.Default, "ABSOLUTE", "ABSOLUTE");
+        }
+        
+        /// <summary>
+        /// absolute_relative : RELATIVE
+        /// </summary>
+        public static AstAbsoluteRelative Relative()
+        {
+            return new AstAbsoluteRelative(Position.Default, "RELATIVE", "RELATIVE");
+        }
+        
+        /// <summary>
+        /// absolute_relative : ABSOLUTE
+        /// </summary>
+        public static AstAbsoluteRelative Absolute(Position position)
+        {
+            return new AstAbsoluteRelative(position, "ABSOLUTE", "ABSOLUTE");
+        }
+        
+        /// <summary>
+        /// absolute_relative : RELATIVE
+        /// </summary>
+        public static AstAbsoluteRelative Relative(Position position)
+        {
+            return new AstAbsoluteRelative(position, "RELATIVE", "RELATIVE");
+        }
+    }
+    
+    /// <summary>
+    /// fetch_cursor_strategy
+    /// 	 : NEXT
+    /// 	 | PRIOR
+    /// 	 | FIRST
+    /// 	 | LAST
+    /// </summary>
+    public partial class AstFetchCursorStrategy : AstTerminalKeyword
+    {
+        
+        public AstFetchCursorStrategy(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFetchCursorStrategy(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : NEXT
+        /// </summary>
+        public static AstFetchCursorStrategy Next()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "NEXT", "NEXT");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : PRIOR
+        /// </summary>
+        public static AstFetchCursorStrategy Prior()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "PRIOR", "PRIOR");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : FIRST
+        /// </summary>
+        public static AstFetchCursorStrategy First()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "FIRST", "FIRST");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : LAST
+        /// </summary>
+        public static AstFetchCursorStrategy Last()
+        {
+            return new AstFetchCursorStrategy(Position.Default, "LAST", "LAST");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : NEXT
+        /// </summary>
+        public static AstFetchCursorStrategy Next(Position position)
+        {
+            return new AstFetchCursorStrategy(position, "NEXT", "NEXT");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : PRIOR
+        /// </summary>
+        public static AstFetchCursorStrategy Prior(Position position)
+        {
+            return new AstFetchCursorStrategy(position, "PRIOR", "PRIOR");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : FIRST
+        /// </summary>
+        public static AstFetchCursorStrategy First(Position position)
+        {
+            return new AstFetchCursorStrategy(position, "FIRST", "FIRST");
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy : LAST
+        /// </summary>
+        public static AstFetchCursorStrategy Last(Position position)
+        {
+            return new AstFetchCursorStrategy(position, "LAST", "LAST");
+        }
+    }
+    
+    /// <summary>
+    /// statistic_kind
+    /// 	 : IO
+    /// 	 | TIME
+    /// 	 | XML
+    /// 	 | PROFILE
+    /// </summary>
+    public partial class AstStatisticKind : AstTerminalKeyword
+    {
+        
+        public AstStatisticKind(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStatisticKind(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// statistic_kind : IO
+        /// </summary>
+        public static AstStatisticKind Io()
+        {
+            return new AstStatisticKind(Position.Default, "IO", "IO");
+        }
+        
+        /// <summary>
+        /// statistic_kind : TIME
+        /// </summary>
+        public static AstStatisticKind Time()
+        {
+            return new AstStatisticKind(Position.Default, "TIME", "TIME");
+        }
+        
+        /// <summary>
+        /// statistic_kind : XML
+        /// </summary>
+        public static AstStatisticKind Xml()
+        {
+            return new AstStatisticKind(Position.Default, "XML", "XML");
+        }
+        
+        /// <summary>
+        /// statistic_kind : PROFILE
+        /// </summary>
+        public static AstStatisticKind Profile()
+        {
+            return new AstStatisticKind(Position.Default, "PROFILE", "PROFILE");
+        }
+        
+        /// <summary>
+        /// statistic_kind : IO
+        /// </summary>
+        public static AstStatisticKind Io(Position position)
+        {
+            return new AstStatisticKind(position, "IO", "IO");
+        }
+        
+        /// <summary>
+        /// statistic_kind : TIME
+        /// </summary>
+        public static AstStatisticKind Time(Position position)
+        {
+            return new AstStatisticKind(position, "TIME", "TIME");
+        }
+        
+        /// <summary>
+        /// statistic_kind : XML
+        /// </summary>
+        public static AstStatisticKind Xml(Position position)
+        {
+            return new AstStatisticKind(position, "XML", "XML");
+        }
+        
+        /// <summary>
+        /// statistic_kind : PROFILE
+        /// </summary>
+        public static AstStatisticKind Profile(Position position)
+        {
+            return new AstStatisticKind(position, "PROFILE", "PROFILE");
+        }
+    }
+    
+    /// <summary>
+    /// transaction_isolation
+    /// 	 : READ  UNCOMMITTED
+    /// 	 | READ  COMMITTED
+    /// 	 | REPEATABLE  READ
+    /// 	 | SNAPSHOT
+    /// 	 | SERIALIZABLE
+    /// </summary>
+    public partial class AstTransactionIsolation : AstTerminalKeyword
+    {
+        
+        public AstTransactionIsolation(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTransactionIsolation(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// transaction_isolation : READ UNCOMMITTED
+        /// </summary>
+        public static AstTransactionIsolation ReadUncommitted()
+        {
+            return new AstTransactionIsolation(Position.Default, "READ UNCOMMITTED", "READ UNCOMMITTED");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : READ COMMITTED
+        /// </summary>
+        public static AstTransactionIsolation ReadCommitted()
+        {
+            return new AstTransactionIsolation(Position.Default, "READ COMMITTED", "READ COMMITTED");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : REPEATABLE READ
+        /// </summary>
+        public static AstTransactionIsolation RepeatableRead()
+        {
+            return new AstTransactionIsolation(Position.Default, "REPEATABLE READ", "REPEATABLE READ");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : SNAPSHOT
+        /// </summary>
+        public static AstTransactionIsolation Snapshot()
+        {
+            return new AstTransactionIsolation(Position.Default, "SNAPSHOT", "SNAPSHOT");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : SERIALIZABLE
+        /// </summary>
+        public static AstTransactionIsolation Serializable()
+        {
+            return new AstTransactionIsolation(Position.Default, "SERIALIZABLE", "SERIALIZABLE");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : READ UNCOMMITTED
+        /// </summary>
+        public static AstTransactionIsolation ReadUncommitted(Position position)
+        {
+            return new AstTransactionIsolation(position, "READ UNCOMMITTED", "READ UNCOMMITTED");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : READ COMMITTED
+        /// </summary>
+        public static AstTransactionIsolation ReadCommitted(Position position)
+        {
+            return new AstTransactionIsolation(position, "READ COMMITTED", "READ COMMITTED");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : REPEATABLE READ
+        /// </summary>
+        public static AstTransactionIsolation RepeatableRead(Position position)
+        {
+            return new AstTransactionIsolation(position, "REPEATABLE READ", "REPEATABLE READ");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : SNAPSHOT
+        /// </summary>
+        public static AstTransactionIsolation Snapshot(Position position)
+        {
+            return new AstTransactionIsolation(position, "SNAPSHOT", "SNAPSHOT");
+        }
+        
+        /// <summary>
+        /// transaction_isolation : SERIALIZABLE
+        /// </summary>
+        public static AstTransactionIsolation Serializable(Position position)
+        {
+            return new AstTransactionIsolation(position, "SERIALIZABLE", "SERIALIZABLE");
+        }
+    }
+    
+    /// <summary>
+    /// special_list
+    /// 	 : ANSI_NULLS
+    /// 	 | QUOTED_IDENTIFIER
+    /// 	 | ANSI_PADDING
+    /// 	 | ANSI_WARNINGS
+    /// 	 | ANSI_DEFAULTS
+    /// 	 | ANSI_NULL_DFLT_OFF
+    /// 	 | ANSI_NULL_DFLT_ON
+    /// 	 | ARITHABORT
+    /// 	 | ARITHIGNORE
+    /// 	 | CONCAT_NULL_YIELDS_NULL
+    /// 	 | CURSOR_CLOSE_ON_COMMIT
+    /// 	 | FMTONLY
+    /// 	 | FORCEPLAN
+    /// 	 | IMPLICIT_TRANSACTIONS
+    /// 	 | NOCOUNT
+    /// 	 | NOEXEC
+    /// 	 | NUMERIC_ROUNDABORT
+    /// 	 | PARSEONLY
+    /// 	 | REMOTE_PROC_TRANSACTIONS
+    /// 	 | SHOWPLAN_ALL
+    /// 	 | SHOWPLAN_TEXT
+    /// 	 | SHOWPLAN_XML
+    /// 	 | XACT_ABORT
+    /// </summary>
+    public partial class AstSpecialList : AstTerminalKeyword
+    {
+        
+        public AstSpecialList(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSpecialList(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULLS
+        /// </summary>
+        public static AstSpecialList AnsiNulls()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULLS", "ANSI_NULLS");
+        }
+        
+        /// <summary>
+        /// special_list : QUOTED_IDENTIFIER
+        /// </summary>
+        public static AstSpecialList QuotedIdentifier()
+        {
+            return new AstSpecialList(Position.Default, "QUOTED_IDENTIFIER", "QUOTED_IDENTIFIER");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_PADDING
+        /// </summary>
+        public static AstSpecialList AnsiPadding()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_PADDING", "ANSI_PADDING");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_WARNINGS
+        /// </summary>
+        public static AstSpecialList AnsiWarnings()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_WARNINGS", "ANSI_WARNINGS");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_DEFAULTS
+        /// </summary>
+        public static AstSpecialList AnsiDefaults()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_DEFAULTS", "ANSI_DEFAULTS");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULL_DFLT_OFF
+        /// </summary>
+        public static AstSpecialList AnsiNullDfltOff()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_OFF", "ANSI_NULL_DFLT_OFF");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULL_DFLT_ON
+        /// </summary>
+        public static AstSpecialList AnsiNullDfltOn()
+        {
+            return new AstSpecialList(Position.Default, "ANSI_NULL_DFLT_ON", "ANSI_NULL_DFLT_ON");
+        }
+        
+        /// <summary>
+        /// special_list : ARITHABORT
+        /// </summary>
+        public static AstSpecialList Arithabort()
+        {
+            return new AstSpecialList(Position.Default, "ARITHABORT", "ARITHABORT");
+        }
+        
+        /// <summary>
+        /// special_list : ARITHIGNORE
+        /// </summary>
+        public static AstSpecialList Arithignore()
+        {
+            return new AstSpecialList(Position.Default, "ARITHIGNORE", "ARITHIGNORE");
+        }
+        
+        /// <summary>
+        /// special_list : CONCAT_NULL_YIELDS_NULL
+        /// </summary>
+        public static AstSpecialList ConcatNullYieldsNull()
+        {
+            return new AstSpecialList(Position.Default, "CONCAT_NULL_YIELDS_NULL", "CONCAT_NULL_YIELDS_NULL");
+        }
+        
+        /// <summary>
+        /// special_list : CURSOR_CLOSE_ON_COMMIT
+        /// </summary>
+        public static AstSpecialList CursorCloseOnCommit()
+        {
+            return new AstSpecialList(Position.Default, "CURSOR_CLOSE_ON_COMMIT", "CURSOR_CLOSE_ON_COMMIT");
+        }
+        
+        /// <summary>
+        /// special_list : FMTONLY
+        /// </summary>
+        public static AstSpecialList Fmtonly()
+        {
+            return new AstSpecialList(Position.Default, "FMTONLY", "FMTONLY");
+        }
+        
+        /// <summary>
+        /// special_list : FORCEPLAN
+        /// </summary>
+        public static AstSpecialList Forceplan()
+        {
+            return new AstSpecialList(Position.Default, "FORCEPLAN", "FORCEPLAN");
+        }
+        
+        /// <summary>
+        /// special_list : IMPLICIT_TRANSACTIONS
+        /// </summary>
+        public static AstSpecialList ImplicitTransactions()
+        {
+            return new AstSpecialList(Position.Default, "IMPLICIT_TRANSACTIONS", "IMPLICIT_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// special_list : NOCOUNT
+        /// </summary>
+        public static AstSpecialList Nocount()
+        {
+            return new AstSpecialList(Position.Default, "NOCOUNT", "NOCOUNT");
+        }
+        
+        /// <summary>
+        /// special_list : NOEXEC
+        /// </summary>
+        public static AstSpecialList Noexec()
+        {
+            return new AstSpecialList(Position.Default, "NOEXEC", "NOEXEC");
+        }
+        
+        /// <summary>
+        /// special_list : NUMERIC_ROUNDABORT
+        /// </summary>
+        public static AstSpecialList NumericRoundabort()
+        {
+            return new AstSpecialList(Position.Default, "NUMERIC_ROUNDABORT", "NUMERIC_ROUNDABORT");
+        }
+        
+        /// <summary>
+        /// special_list : PARSEONLY
+        /// </summary>
+        public static AstSpecialList Parseonly()
+        {
+            return new AstSpecialList(Position.Default, "PARSEONLY", "PARSEONLY");
+        }
+        
+        /// <summary>
+        /// special_list : REMOTE_PROC_TRANSACTIONS
+        /// </summary>
+        public static AstSpecialList RemoteProcTransactions()
+        {
+            return new AstSpecialList(Position.Default, "REMOTE_PROC_TRANSACTIONS", "REMOTE_PROC_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_ALL
+        /// </summary>
+        public static AstSpecialList ShowplanAll()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_ALL", "SHOWPLAN_ALL");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_TEXT
+        /// </summary>
+        public static AstSpecialList ShowplanText()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_TEXT", "SHOWPLAN_TEXT");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_XML
+        /// </summary>
+        public static AstSpecialList ShowplanXml()
+        {
+            return new AstSpecialList(Position.Default, "SHOWPLAN_XML", "SHOWPLAN_XML");
+        }
+        
+        /// <summary>
+        /// special_list : XACT_ABORT
+        /// </summary>
+        public static AstSpecialList XactAbort()
+        {
+            return new AstSpecialList(Position.Default, "XACT_ABORT", "XACT_ABORT");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULLS
+        /// </summary>
+        public static AstSpecialList AnsiNulls(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_NULLS", "ANSI_NULLS");
+        }
+        
+        /// <summary>
+        /// special_list : QUOTED_IDENTIFIER
+        /// </summary>
+        public static AstSpecialList QuotedIdentifier(Position position)
+        {
+            return new AstSpecialList(position, "QUOTED_IDENTIFIER", "QUOTED_IDENTIFIER");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_PADDING
+        /// </summary>
+        public static AstSpecialList AnsiPadding(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_PADDING", "ANSI_PADDING");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_WARNINGS
+        /// </summary>
+        public static AstSpecialList AnsiWarnings(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_WARNINGS", "ANSI_WARNINGS");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_DEFAULTS
+        /// </summary>
+        public static AstSpecialList AnsiDefaults(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_DEFAULTS", "ANSI_DEFAULTS");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULL_DFLT_OFF
+        /// </summary>
+        public static AstSpecialList AnsiNullDfltOff(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_NULL_DFLT_OFF", "ANSI_NULL_DFLT_OFF");
+        }
+        
+        /// <summary>
+        /// special_list : ANSI_NULL_DFLT_ON
+        /// </summary>
+        public static AstSpecialList AnsiNullDfltOn(Position position)
+        {
+            return new AstSpecialList(position, "ANSI_NULL_DFLT_ON", "ANSI_NULL_DFLT_ON");
+        }
+        
+        /// <summary>
+        /// special_list : ARITHABORT
+        /// </summary>
+        public static AstSpecialList Arithabort(Position position)
+        {
+            return new AstSpecialList(position, "ARITHABORT", "ARITHABORT");
+        }
+        
+        /// <summary>
+        /// special_list : ARITHIGNORE
+        /// </summary>
+        public static AstSpecialList Arithignore(Position position)
+        {
+            return new AstSpecialList(position, "ARITHIGNORE", "ARITHIGNORE");
+        }
+        
+        /// <summary>
+        /// special_list : CONCAT_NULL_YIELDS_NULL
+        /// </summary>
+        public static AstSpecialList ConcatNullYieldsNull(Position position)
+        {
+            return new AstSpecialList(position, "CONCAT_NULL_YIELDS_NULL", "CONCAT_NULL_YIELDS_NULL");
+        }
+        
+        /// <summary>
+        /// special_list : CURSOR_CLOSE_ON_COMMIT
+        /// </summary>
+        public static AstSpecialList CursorCloseOnCommit(Position position)
+        {
+            return new AstSpecialList(position, "CURSOR_CLOSE_ON_COMMIT", "CURSOR_CLOSE_ON_COMMIT");
+        }
+        
+        /// <summary>
+        /// special_list : FMTONLY
+        /// </summary>
+        public static AstSpecialList Fmtonly(Position position)
+        {
+            return new AstSpecialList(position, "FMTONLY", "FMTONLY");
+        }
+        
+        /// <summary>
+        /// special_list : FORCEPLAN
+        /// </summary>
+        public static AstSpecialList Forceplan(Position position)
+        {
+            return new AstSpecialList(position, "FORCEPLAN", "FORCEPLAN");
+        }
+        
+        /// <summary>
+        /// special_list : IMPLICIT_TRANSACTIONS
+        /// </summary>
+        public static AstSpecialList ImplicitTransactions(Position position)
+        {
+            return new AstSpecialList(position, "IMPLICIT_TRANSACTIONS", "IMPLICIT_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// special_list : NOCOUNT
+        /// </summary>
+        public static AstSpecialList Nocount(Position position)
+        {
+            return new AstSpecialList(position, "NOCOUNT", "NOCOUNT");
+        }
+        
+        /// <summary>
+        /// special_list : NOEXEC
+        /// </summary>
+        public static AstSpecialList Noexec(Position position)
+        {
+            return new AstSpecialList(position, "NOEXEC", "NOEXEC");
+        }
+        
+        /// <summary>
+        /// special_list : NUMERIC_ROUNDABORT
+        /// </summary>
+        public static AstSpecialList NumericRoundabort(Position position)
+        {
+            return new AstSpecialList(position, "NUMERIC_ROUNDABORT", "NUMERIC_ROUNDABORT");
+        }
+        
+        /// <summary>
+        /// special_list : PARSEONLY
+        /// </summary>
+        public static AstSpecialList Parseonly(Position position)
+        {
+            return new AstSpecialList(position, "PARSEONLY", "PARSEONLY");
+        }
+        
+        /// <summary>
+        /// special_list : REMOTE_PROC_TRANSACTIONS
+        /// </summary>
+        public static AstSpecialList RemoteProcTransactions(Position position)
+        {
+            return new AstSpecialList(position, "REMOTE_PROC_TRANSACTIONS", "REMOTE_PROC_TRANSACTIONS");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_ALL
+        /// </summary>
+        public static AstSpecialList ShowplanAll(Position position)
+        {
+            return new AstSpecialList(position, "SHOWPLAN_ALL", "SHOWPLAN_ALL");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_TEXT
+        /// </summary>
+        public static AstSpecialList ShowplanText(Position position)
+        {
+            return new AstSpecialList(position, "SHOWPLAN_TEXT", "SHOWPLAN_TEXT");
+        }
+        
+        /// <summary>
+        /// special_list : SHOWPLAN_XML
+        /// </summary>
+        public static AstSpecialList ShowplanXml(Position position)
+        {
+            return new AstSpecialList(position, "SHOWPLAN_XML", "SHOWPLAN_XML");
+        }
+        
+        /// <summary>
+        /// special_list : XACT_ABORT
+        /// </summary>
+        public static AstSpecialList XactAbort(Position position)
+        {
+            return new AstSpecialList(position, "XACT_ABORT", "XACT_ABORT");
+        }
+    }
+    
+    /// <summary>
+    /// expression_operator
+    /// 	 : STAR
+    /// 	 | DIVIDE
+    /// 	 | MODULE
+    /// 	 | PLUS
+    /// 	 | MINUS
+    /// 	 | BIT_AND
+    /// 	 | BIT_XOR
+    /// 	 | BIT_OR
+    /// 	 | DOUBLE_BAR
+    /// </summary>
+    public partial class AstExpressionOperator : AstTerminalKeyword
+    {
+        
+        public AstExpressionOperator(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstExpressionOperator(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// expression_operator : '*'
+        /// </summary>
+        public static AstExpressionOperator Star()
+        {
+            return new AstExpressionOperator(Position.Default, "STAR", "*");
+        }
+        
+        /// <summary>
+        /// expression_operator : '/'
+        /// </summary>
+        public static AstExpressionOperator Divide()
+        {
+            return new AstExpressionOperator(Position.Default, "DIVIDE", "/");
+        }
+        
+        /// <summary>
+        /// expression_operator : '%'
+        /// </summary>
+        public static AstExpressionOperator Module()
+        {
+            return new AstExpressionOperator(Position.Default, "MODULE", "%");
+        }
+        
+        /// <summary>
+        /// expression_operator : '+'
+        /// </summary>
+        public static AstExpressionOperator Plus()
+        {
+            return new AstExpressionOperator(Position.Default, "PLUS", "+");
+        }
+        
+        /// <summary>
+        /// expression_operator : '-'
+        /// </summary>
+        public static AstExpressionOperator Minus()
+        {
+            return new AstExpressionOperator(Position.Default, "MINUS", "-");
+        }
+        
+        /// <summary>
+        /// expression_operator : '&'
+        /// </summary>
+        public static AstExpressionOperator BitAnd()
+        {
+            return new AstExpressionOperator(Position.Default, "BIT_AND", "&");
+        }
+        
+        /// <summary>
+        /// expression_operator : '^'
+        /// </summary>
+        public static AstExpressionOperator BitXor()
+        {
+            return new AstExpressionOperator(Position.Default, "BIT_XOR", "^");
+        }
+        
+        /// <summary>
+        /// expression_operator : '|'
+        /// </summary>
+        public static AstExpressionOperator BitOr()
+        {
+            return new AstExpressionOperator(Position.Default, "BIT_OR", "|");
+        }
+        
+        /// <summary>
+        /// expression_operator : '||'
+        /// </summary>
+        public static AstExpressionOperator DoubleBar()
+        {
+            return new AstExpressionOperator(Position.Default, "DOUBLE_BAR", "||");
+        }
+        
+        /// <summary>
+        /// expression_operator : '*'
+        /// </summary>
+        public static AstExpressionOperator Star(Position position)
+        {
+            return new AstExpressionOperator(position, "STAR", "*");
+        }
+        
+        /// <summary>
+        /// expression_operator : '/'
+        /// </summary>
+        public static AstExpressionOperator Divide(Position position)
+        {
+            return new AstExpressionOperator(position, "DIVIDE", "/");
+        }
+        
+        /// <summary>
+        /// expression_operator : '%'
+        /// </summary>
+        public static AstExpressionOperator Module(Position position)
+        {
+            return new AstExpressionOperator(position, "MODULE", "%");
+        }
+        
+        /// <summary>
+        /// expression_operator : '+'
+        /// </summary>
+        public static AstExpressionOperator Plus(Position position)
+        {
+            return new AstExpressionOperator(position, "PLUS", "+");
+        }
+        
+        /// <summary>
+        /// expression_operator : '-'
+        /// </summary>
+        public static AstExpressionOperator Minus(Position position)
+        {
+            return new AstExpressionOperator(position, "MINUS", "-");
+        }
+        
+        /// <summary>
+        /// expression_operator : '&'
+        /// </summary>
+        public static AstExpressionOperator BitAnd(Position position)
+        {
+            return new AstExpressionOperator(position, "BIT_AND", "&");
+        }
+        
+        /// <summary>
+        /// expression_operator : '^'
+        /// </summary>
+        public static AstExpressionOperator BitXor(Position position)
+        {
+            return new AstExpressionOperator(position, "BIT_XOR", "^");
+        }
+        
+        /// <summary>
+        /// expression_operator : '|'
+        /// </summary>
+        public static AstExpressionOperator BitOr(Position position)
+        {
+            return new AstExpressionOperator(position, "BIT_OR", "|");
+        }
+        
+        /// <summary>
+        /// expression_operator : '||'
+        /// </summary>
+        public static AstExpressionOperator DoubleBar(Position position)
+        {
+            return new AstExpressionOperator(position, "DOUBLE_BAR", "||");
+        }
+    }
+    
+    /// <summary>
+    /// all_some_any
+    /// 	 : ALL
+    /// 	 | SOME
+    /// 	 | ANY
+    /// </summary>
+    public partial class AstAllSomeAny : AstTerminalKeyword
+    {
+        
+        public AstAllSomeAny(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAllSomeAny(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// all_some_any : ALL
+        /// </summary>
+        public static AstAllSomeAny All()
+        {
+            return new AstAllSomeAny(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// all_some_any : SOME
+        /// </summary>
+        public static AstAllSomeAny Some()
+        {
+            return new AstAllSomeAny(Position.Default, "SOME", "SOME");
+        }
+        
+        /// <summary>
+        /// all_some_any : ANY
+        /// </summary>
+        public static AstAllSomeAny Any()
+        {
+            return new AstAllSomeAny(Position.Default, "ANY", "ANY");
+        }
+        
+        /// <summary>
+        /// all_some_any : ALL
+        /// </summary>
+        public static AstAllSomeAny All(Position position)
+        {
+            return new AstAllSomeAny(position, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// all_some_any : SOME
+        /// </summary>
+        public static AstAllSomeAny Some(Position position)
+        {
+            return new AstAllSomeAny(position, "SOME", "SOME");
+        }
+        
+        /// <summary>
+        /// all_some_any : ANY
+        /// </summary>
+        public static AstAllSomeAny Any(Position position)
+        {
+            return new AstAllSomeAny(position, "ANY", "ANY");
+        }
+    }
+    
+    /// <summary>
+    /// join_mode
+    /// 	 : UNION  ALL?
+    /// 	 | EXCEPT
+    /// 	 | INTERSECT
+    /// </summary>
+    public partial class AstJoinMode : AstTerminalKeyword
+    {
+        
+        public AstJoinMode(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJoinMode(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// join_mode : UNION ALL
+        /// </summary>
+        public static AstJoinMode UnionAll()
+        {
+            return new AstJoinMode(Position.Default, "UNION ALL", "UNION ALL");
+        }
+        
+        /// <summary>
+        /// join_mode : UNION
+        /// </summary>
+        public static AstJoinMode Union()
+        {
+            return new AstJoinMode(Position.Default, "UNION", "UNION");
+        }
+        
+        /// <summary>
+        /// join_mode : EXCEPT
+        /// </summary>
+        public static AstJoinMode Except()
+        {
+            return new AstJoinMode(Position.Default, "EXCEPT", "EXCEPT");
+        }
+        
+        /// <summary>
+        /// join_mode : INTERSECT
+        /// </summary>
+        public static AstJoinMode Intersect()
+        {
+            return new AstJoinMode(Position.Default, "INTERSECT", "INTERSECT");
+        }
+        
+        /// <summary>
+        /// join_mode : UNION ALL
+        /// </summary>
+        public static AstJoinMode UnionAll(Position position)
+        {
+            return new AstJoinMode(position, "UNION ALL", "UNION ALL");
+        }
+        
+        /// <summary>
+        /// join_mode : UNION
+        /// </summary>
+        public static AstJoinMode Union(Position position)
+        {
+            return new AstJoinMode(position, "UNION", "UNION");
+        }
+        
+        /// <summary>
+        /// join_mode : EXCEPT
+        /// </summary>
+        public static AstJoinMode Except(Position position)
+        {
+            return new AstJoinMode(position, "EXCEPT", "EXCEPT");
+        }
+        
+        /// <summary>
+        /// join_mode : INTERSECT
+        /// </summary>
+        public static AstJoinMode Intersect(Position position)
+        {
+            return new AstJoinMode(position, "INTERSECT", "INTERSECT");
+        }
+    }
+    
+    /// <summary>
+    /// all_distinct
+    /// 	 : ALL
+    /// 	 | DISTINCT
+    /// </summary>
+    public partial class AstAllDistinct : AstTerminalKeyword
+    {
+        
+        public AstAllDistinct(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAllDistinct(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// all_distinct : ALL
+        /// </summary>
+        public static AstAllDistinct All()
+        {
+            return new AstAllDistinct(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// all_distinct : DISTINCT
+        /// </summary>
+        public static AstAllDistinct Distinct()
+        {
+            return new AstAllDistinct(Position.Default, "DISTINCT", "DISTINCT");
+        }
+        
+        /// <summary>
+        /// all_distinct : ALL
+        /// </summary>
+        public static AstAllDistinct All(Position position)
+        {
+            return new AstAllDistinct(position, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// all_distinct : DISTINCT
+        /// </summary>
+        public static AstAllDistinct Distinct(Position position)
+        {
+            return new AstAllDistinct(position, "DISTINCT", "DISTINCT");
+        }
+    }
+    
+    /// <summary>
+    /// delay_time_timeout
+    /// 	 : DELAY
+    /// 	 | TIME
+    /// 	 | TIMEOUT
+    /// </summary>
+    public partial class AstDelayTimeTimeout : AstTerminalKeyword
+    {
+        
+        public AstDelayTimeTimeout(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDelayTimeTimeout(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : DELAY
+        /// </summary>
+        public static AstDelayTimeTimeout Delay()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "DELAY", "DELAY");
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : TIME
+        /// </summary>
+        public static AstDelayTimeTimeout Time()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "TIME", "TIME");
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : TIMEOUT
+        /// </summary>
+        public static AstDelayTimeTimeout Timeout()
+        {
+            return new AstDelayTimeTimeout(Position.Default, "TIMEOUT", "TIMEOUT");
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : DELAY
+        /// </summary>
+        public static AstDelayTimeTimeout Delay(Position position)
+        {
+            return new AstDelayTimeTimeout(position, "DELAY", "DELAY");
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : TIME
+        /// </summary>
+        public static AstDelayTimeTimeout Time(Position position)
+        {
+            return new AstDelayTimeTimeout(position, "TIME", "TIME");
+        }
+        
+        /// <summary>
+        /// delay_time_timeout : TIMEOUT
+        /// </summary>
+        public static AstDelayTimeTimeout Timeout(Position position)
+        {
+            return new AstDelayTimeTimeout(position, "TIMEOUT", "TIMEOUT");
+        }
+    }
+    
+    /// <summary>
+    /// creation_disposition
+    /// 	 : CREATE_NEW
+    /// 	 | OPEN_EXISTING
+    /// </summary>
+    public partial class AstCreationDisposition : AstTerminalKeyword
+    {
+        
+        public AstCreationDisposition(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCreationDisposition(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// creation_disposition : CREATE_NEW
+        /// </summary>
+        public static AstCreationDisposition CreateNew()
+        {
+            return new AstCreationDisposition(Position.Default, "CREATE_NEW", "CREATE_NEW");
+        }
+        
+        /// <summary>
+        /// creation_disposition : OPEN_EXISTING
+        /// </summary>
+        public static AstCreationDisposition OpenExisting()
+        {
+            return new AstCreationDisposition(Position.Default, "OPEN_EXISTING", "OPEN_EXISTING");
+        }
+        
+        /// <summary>
+        /// creation_disposition : CREATE_NEW
+        /// </summary>
+        public static AstCreationDisposition CreateNew(Position position)
+        {
+            return new AstCreationDisposition(position, "CREATE_NEW", "CREATE_NEW");
+        }
+        
+        /// <summary>
+        /// creation_disposition : OPEN_EXISTING
+        /// </summary>
+        public static AstCreationDisposition OpenExisting(Position position)
+        {
+            return new AstCreationDisposition(position, "OPEN_EXISTING", "OPEN_EXISTING");
+        }
+    }
+    
+    /// <summary>
+    /// asymetric_algorithm
+    /// 	 : RSA_4096
+    /// 	 | RSA_3072
+    /// 	 | RSA_2048
+    /// 	 | RSA_1024
+    /// 	 | RSA_512
+    /// </summary>
+    public partial class AstAsymetricAlgorithm : AstTerminalKeyword
+    {
+        
+        public AstAsymetricAlgorithm(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAsymetricAlgorithm(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_4096
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa4096()
+        {
+            return new AstAsymetricAlgorithm(Position.Default, "RSA_4096", "RSA_4096");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_3072
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa3072()
+        {
+            return new AstAsymetricAlgorithm(Position.Default, "RSA_3072", "RSA_3072");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_2048
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa2048()
+        {
+            return new AstAsymetricAlgorithm(Position.Default, "RSA_2048", "RSA_2048");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_1024
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa1024()
+        {
+            return new AstAsymetricAlgorithm(Position.Default, "RSA_1024", "RSA_1024");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_512
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa512()
+        {
+            return new AstAsymetricAlgorithm(Position.Default, "RSA_512", "RSA_512");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_4096
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa4096(Position position)
+        {
+            return new AstAsymetricAlgorithm(position, "RSA_4096", "RSA_4096");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_3072
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa3072(Position position)
+        {
+            return new AstAsymetricAlgorithm(position, "RSA_3072", "RSA_3072");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_2048
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa2048(Position position)
+        {
+            return new AstAsymetricAlgorithm(position, "RSA_2048", "RSA_2048");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_1024
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa1024(Position position)
+        {
+            return new AstAsymetricAlgorithm(position, "RSA_1024", "RSA_1024");
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm : RSA_512
+        /// </summary>
+        public static AstAsymetricAlgorithm Rsa512(Position position)
+        {
+            return new AstAsymetricAlgorithm(position, "RSA_512", "RSA_512");
+        }
+    }
+    
+    /// <summary>
+    /// add_remove
+    /// 	 : ADD
+    /// 	 | REMOVE
+    /// </summary>
+    public partial class AstAddRemove : AstTerminalKeyword
+    {
+        
+        public AstAddRemove(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAddRemove(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// add_remove : ADD
+        /// </summary>
+        public static AstAddRemove Add()
+        {
+            return new AstAddRemove(Position.Default, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// add_remove : REMOVE
+        /// </summary>
+        public static AstAddRemove Remove()
+        {
+            return new AstAddRemove(Position.Default, "REMOVE", "REMOVE");
+        }
+        
+        /// <summary>
+        /// add_remove : ADD
+        /// </summary>
+        public static AstAddRemove Add(Position position)
+        {
+            return new AstAddRemove(position, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// add_remove : REMOVE
+        /// </summary>
+        public static AstAddRemove Remove(Position position)
+        {
+            return new AstAddRemove(position, "REMOVE", "REMOVE");
+        }
+    }
+    
+    /// <summary>
+    /// restart_remove
+    /// 	 : RESTART
+    /// 	 | REMOVE
+    /// </summary>
+    public partial class AstRestartRemove : AstTerminalKeyword
+    {
+        
+        public AstRestartRemove(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRestartRemove(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// restart_remove : RESTART
+        /// </summary>
+        public static AstRestartRemove Restart()
+        {
+            return new AstRestartRemove(Position.Default, "RESTART", "RESTART");
+        }
+        
+        /// <summary>
+        /// restart_remove : REMOVE
+        /// </summary>
+        public static AstRestartRemove Remove()
+        {
+            return new AstRestartRemove(Position.Default, "REMOVE", "REMOVE");
+        }
+        
+        /// <summary>
+        /// restart_remove : RESTART
+        /// </summary>
+        public static AstRestartRemove Restart(Position position)
+        {
+            return new AstRestartRemove(position, "RESTART", "RESTART");
+        }
+        
+        /// <summary>
+        /// restart_remove : REMOVE
+        /// </summary>
+        public static AstRestartRemove Remove(Position position)
+        {
+            return new AstRestartRemove(position, "REMOVE", "REMOVE");
+        }
+    }
+    
+    /// <summary>
+    /// synch_asynch
+    /// 	 : SYNCHRONOUS_COMMIT
+    /// 	 | ASYNCHRONOUS_COMMIT
+    /// </summary>
+    public partial class AstSynchAsynch : AstTerminalKeyword
+    {
+        
+        public AstSynchAsynch(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSynchAsynch(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// synch_asynch : SYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstSynchAsynch SynchronousCommit()
+        {
+            return new AstSynchAsynch(Position.Default, "SYNCHRONOUS_COMMIT", "SYNCHRONOUS_COMMIT");
+        }
+        
+        /// <summary>
+        /// synch_asynch : ASYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstSynchAsynch AsynchronousCommit()
+        {
+            return new AstSynchAsynch(Position.Default, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
+        }
+        
+        /// <summary>
+        /// synch_asynch : SYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstSynchAsynch SynchronousCommit(Position position)
+        {
+            return new AstSynchAsynch(position, "SYNCHRONOUS_COMMIT", "SYNCHRONOUS_COMMIT");
+        }
+        
+        /// <summary>
+        /// synch_asynch : ASYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstSynchAsynch AsynchronousCommit(Position position)
+        {
+            return new AstSynchAsynch(position, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// auto_manual
+    /// 	 : AUTOMATIC
+    /// 	 | MANUAL
+    /// </summary>
+    public partial class AstAutoManual : AstTerminalKeyword
+    {
+        
+        public AstAutoManual(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAutoManual(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// auto_manual : AUTOMATIC
+        /// </summary>
+        public static AstAutoManual Automatic()
+        {
+            return new AstAutoManual(Position.Default, "AUTOMATIC", "AUTOMATIC");
+        }
+        
+        /// <summary>
+        /// auto_manual : MANUAL
+        /// </summary>
+        public static AstAutoManual Manual()
+        {
+            return new AstAutoManual(Position.Default, "MANUAL", "MANUAL");
+        }
+        
+        /// <summary>
+        /// auto_manual : AUTOMATIC
+        /// </summary>
+        public static AstAutoManual Automatic(Position position)
+        {
+            return new AstAutoManual(position, "AUTOMATIC", "AUTOMATIC");
+        }
+        
+        /// <summary>
+        /// auto_manual : MANUAL
+        /// </summary>
+        public static AstAutoManual Manual(Position position)
+        {
+            return new AstAutoManual(position, "MANUAL", "MANUAL");
+        }
+    }
+    
+    /// <summary>
+    /// real_write_all
+    /// 	 : READ_WRITE
+    /// 	 | ALL
+    /// </summary>
+    public partial class AstRealWriteAll : AstTerminalKeyword
+    {
+        
+        public AstRealWriteAll(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRealWriteAll(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// real_write_all : READ_WRITE
+        /// </summary>
+        public static AstRealWriteAll ReadWrite()
+        {
+            return new AstRealWriteAll(Position.Default, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// real_write_all : ALL
+        /// </summary>
+        public static AstRealWriteAll All()
+        {
+            return new AstRealWriteAll(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// real_write_all : READ_WRITE
+        /// </summary>
+        public static AstRealWriteAll ReadWrite(Position position)
+        {
+            return new AstRealWriteAll(position, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// real_write_all : ALL
+        /// </summary>
+        public static AstRealWriteAll All(Position position)
+        {
+            return new AstRealWriteAll(position, "ALL", "ALL");
+        }
+    }
+    
+    /// <summary>
+    /// no_real_write_all
+    /// 	 : NO
+    /// 	 | READ_WRITE
+    /// 	 | ALL
+    /// </summary>
+    public partial class AstNoRealWriteAll : AstTerminalKeyword
+    {
+        
+        public AstNoRealWriteAll(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNoRealWriteAll(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// no_real_write_all : NO
+        /// </summary>
+        public static AstNoRealWriteAll No()
+        {
+            return new AstNoRealWriteAll(Position.Default, "NO", "NO");
+        }
+        
+        /// <summary>
+        /// no_real_write_all : READ_WRITE
+        /// </summary>
+        public static AstNoRealWriteAll ReadWrite()
+        {
+            return new AstNoRealWriteAll(Position.Default, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// no_real_write_all : ALL
+        /// </summary>
+        public static AstNoRealWriteAll All()
+        {
+            return new AstNoRealWriteAll(Position.Default, "ALL", "ALL");
+        }
+        
+        /// <summary>
+        /// no_real_write_all : NO
+        /// </summary>
+        public static AstNoRealWriteAll No(Position position)
+        {
+            return new AstNoRealWriteAll(position, "NO", "NO");
+        }
+        
+        /// <summary>
+        /// no_real_write_all : READ_WRITE
+        /// </summary>
+        public static AstNoRealWriteAll ReadWrite(Position position)
+        {
+            return new AstNoRealWriteAll(position, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// no_real_write_all : ALL
+        /// </summary>
+        public static AstNoRealWriteAll All(Position position)
+        {
+            return new AstNoRealWriteAll(position, "ALL", "ALL");
+        }
+    }
+    
+    /// <summary>
+    /// primary_secondary_none
+    /// 	 : PRIMARY
+    /// 	 | SECONDARY_ONLY
+    /// 	 | SECONDARY
+    /// 	 | NONE
+    /// </summary>
+    public partial class AstPrimarySecondaryNone : AstTerminalKeyword
+    {
+        
+        public AstPrimarySecondaryNone(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPrimarySecondaryNone(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : PRIMARY
+        /// </summary>
+        public static AstPrimarySecondaryNone Primary()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "PRIMARY", "PRIMARY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : SECONDARY_ONLY
+        /// </summary>
+        public static AstPrimarySecondaryNone SecondaryOnly()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY_ONLY", "SECONDARY_ONLY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : SECONDARY
+        /// </summary>
+        public static AstPrimarySecondaryNone Secondary()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "SECONDARY", "SECONDARY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : NONE
+        /// </summary>
+        public static AstPrimarySecondaryNone None()
+        {
+            return new AstPrimarySecondaryNone(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : PRIMARY
+        /// </summary>
+        public static AstPrimarySecondaryNone Primary(Position position)
+        {
+            return new AstPrimarySecondaryNone(position, "PRIMARY", "PRIMARY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : SECONDARY_ONLY
+        /// </summary>
+        public static AstPrimarySecondaryNone SecondaryOnly(Position position)
+        {
+            return new AstPrimarySecondaryNone(position, "SECONDARY_ONLY", "SECONDARY_ONLY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : SECONDARY
+        /// </summary>
+        public static AstPrimarySecondaryNone Secondary(Position position)
+        {
+            return new AstPrimarySecondaryNone(position, "SECONDARY", "SECONDARY");
+        }
+        
+        /// <summary>
+        /// primary_secondary_none : NONE
+        /// </summary>
+        public static AstPrimarySecondaryNone None(Position position)
+        {
+            return new AstPrimarySecondaryNone(position, "NONE", "NONE");
+        }
+    }
+    
+    /// <summary>
+    /// grant_deny
+    /// 	 : GRANT
+    /// 	 | DENY
+    /// </summary>
+    public partial class AstGrantDeny : AstTerminalKeyword
+    {
+        
+        public AstGrantDeny(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGrantDeny(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// grant_deny : GRANT
+        /// </summary>
+        public static AstGrantDeny Grant()
+        {
+            return new AstGrantDeny(Position.Default, "GRANT", "GRANT");
+        }
+        
+        /// <summary>
+        /// grant_deny : DENY
+        /// </summary>
+        public static AstGrantDeny Deny()
+        {
+            return new AstGrantDeny(Position.Default, "DENY", "DENY");
+        }
+        
+        /// <summary>
+        /// grant_deny : GRANT
+        /// </summary>
+        public static AstGrantDeny Grant(Position position)
+        {
+            return new AstGrantDeny(position, "GRANT", "GRANT");
+        }
+        
+        /// <summary>
+        /// grant_deny : DENY
+        /// </summary>
+        public static AstGrantDeny Deny(Position position)
+        {
+            return new AstGrantDeny(position, "DENY", "DENY");
+        }
+    }
+    
+    /// <summary>
+    /// add_drop
+    /// 	 : ADD
+    /// 	 | DROP
+    /// </summary>
+    public partial class AstAddDrop : AstTerminalKeyword
+    {
+        
+        public AstAddDrop(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAddDrop(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// add_drop : ADD
+        /// </summary>
+        public static AstAddDrop Add()
+        {
+            return new AstAddDrop(Position.Default, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// add_drop : DROP
+        /// </summary>
+        public static AstAddDrop Drop()
+        {
+            return new AstAddDrop(Position.Default, "DROP", "DROP");
+        }
+        
+        /// <summary>
+        /// add_drop : ADD
+        /// </summary>
+        public static AstAddDrop Add(Position position)
+        {
+            return new AstAddDrop(position, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// add_drop : DROP
+        /// </summary>
+        public static AstAddDrop Drop(Position position)
+        {
+            return new AstAddDrop(position, "DROP", "DROP");
+        }
+    }
+    
+    /// <summary>
+    /// set_add
+    /// 	 : SET
+    /// 	 | ADD
+    /// </summary>
+    public partial class AstSetAdd : AstTerminalKeyword
+    {
+        
+        public AstSetAdd(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSetAdd(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// set_add : SET
+        /// </summary>
+        public static AstSetAdd Set()
+        {
+            return new AstSetAdd(Position.Default, "SET", "SET");
+        }
+        
+        /// <summary>
+        /// set_add : ADD
+        /// </summary>
+        public static AstSetAdd Add()
+        {
+            return new AstSetAdd(Position.Default, "ADD", "ADD");
+        }
+        
+        /// <summary>
+        /// set_add : SET
+        /// </summary>
+        public static AstSetAdd Set(Position position)
+        {
+            return new AstSetAdd(position, "SET", "SET");
+        }
+        
+        /// <summary>
+        /// set_add : ADD
+        /// </summary>
+        public static AstSetAdd Add(Position position)
+        {
+            return new AstSetAdd(position, "ADD", "ADD");
+        }
+    }
+    
+    /// <summary>
+    /// platform
+    /// 	 : WINDOWS
+    /// 	 | LINUX
+    /// </summary>
+    public partial class AstPlatform : AstTerminalKeyword
+    {
+        
+        public AstPlatform(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPlatform(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// platform : WINDOWS
+        /// </summary>
+        public static AstPlatform Windows()
+        {
+            return new AstPlatform(Position.Default, "WINDOWS", "WINDOWS");
+        }
+        
+        /// <summary>
+        /// platform : LINUX
+        /// </summary>
+        public static AstPlatform Linux()
+        {
+            return new AstPlatform(Position.Default, "LINUX", "LINUX");
+        }
+        
+        /// <summary>
+        /// platform : WINDOWS
+        /// </summary>
+        public static AstPlatform Windows(Position position)
+        {
+            return new AstPlatform(position, "WINDOWS", "WINDOWS");
+        }
+        
+        /// <summary>
+        /// platform : LINUX
+        /// </summary>
+        public static AstPlatform Linux(Position position)
+        {
+            return new AstPlatform(position, "LINUX", "LINUX");
+        }
+    }
+    
+    /// <summary>
+    /// code_language
+    /// 	 : R
+    /// 	 | PYTHON
+    /// </summary>
+    public partial class AstCodeLanguage : AstTerminalKeyword
+    {
+        
+        public AstCodeLanguage(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCodeLanguage(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// code_language : R
+        /// </summary>
+        public static AstCodeLanguage R()
+        {
+            return new AstCodeLanguage(Position.Default, "R", "R");
+        }
+        
+        /// <summary>
+        /// code_language : PYTHON
+        /// </summary>
+        public static AstCodeLanguage Python()
+        {
+            return new AstCodeLanguage(Position.Default, "PYTHON", "PYTHON");
+        }
+        
+        /// <summary>
+        /// code_language : R
+        /// </summary>
+        public static AstCodeLanguage R(Position position)
+        {
+            return new AstCodeLanguage(position, "R", "R");
+        }
+        
+        /// <summary>
+        /// code_language : PYTHON
+        /// </summary>
+        public static AstCodeLanguage Python(Position position)
+        {
+            return new AstCodeLanguage(position, "PYTHON", "PYTHON");
+        }
+    }
+    
+    /// <summary>
+    /// pwd_strategy
+    /// 	 : MUST_CHANGE
+    /// 	 | UNLOCK
+    /// </summary>
+    public partial class AstPwdStrategy : AstTerminalKeyword
+    {
+        
+        public AstPwdStrategy(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPwdStrategy(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// pwd_strategy : MUST_CHANGE
+        /// </summary>
+        public static AstPwdStrategy MustChange()
+        {
+            return new AstPwdStrategy(Position.Default, "MUST_CHANGE", "MUST_CHANGE");
+        }
+        
+        /// <summary>
+        /// pwd_strategy : UNLOCK
+        /// </summary>
+        public static AstPwdStrategy Unlock()
+        {
+            return new AstPwdStrategy(Position.Default, "UNLOCK", "UNLOCK");
+        }
+        
+        /// <summary>
+        /// pwd_strategy : MUST_CHANGE
+        /// </summary>
+        public static AstPwdStrategy MustChange(Position position)
+        {
+            return new AstPwdStrategy(position, "MUST_CHANGE", "MUST_CHANGE");
+        }
+        
+        /// <summary>
+        /// pwd_strategy : UNLOCK
+        /// </summary>
+        public static AstPwdStrategy Unlock(Position position)
+        {
+            return new AstPwdStrategy(position, "UNLOCK", "UNLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// enable_disable
+    /// 	 : ENABLE
+    /// 	 | DISABLE
+    /// </summary>
+    public partial class AstEnableDisable : AstTerminalKeyword
+    {
+        
+        public AstEnableDisable(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEnableDisable(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// enable_disable : ENABLE
+        /// </summary>
+        public static AstEnableDisable Enable()
+        {
+            return new AstEnableDisable(Position.Default, "ENABLE", "ENABLE");
+        }
+        
+        /// <summary>
+        /// enable_disable : DISABLE
+        /// </summary>
+        public static AstEnableDisable Disable()
+        {
+            return new AstEnableDisable(Position.Default, "DISABLE", "DISABLE");
+        }
+        
+        /// <summary>
+        /// enable_disable : ENABLE
+        /// </summary>
+        public static AstEnableDisable Enable(Position position)
+        {
+            return new AstEnableDisable(position, "ENABLE", "ENABLE");
+        }
+        
+        /// <summary>
+        /// enable_disable : DISABLE
+        /// </summary>
+        public static AstEnableDisable Disable(Position position)
+        {
+            return new AstEnableDisable(position, "DISABLE", "DISABLE");
+        }
+    }
+    
+    /// <summary>
+    /// message_validation_value_enum
+    /// 	 : NONE
+    /// 	 | EMPTY
+    /// 	 | WELL_FORMED_XML
+    /// </summary>
+    public partial class AstMessageValidationValueEnum : AstTerminalKeyword
+    {
+        
+        public AstMessageValidationValueEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMessageValidationValueEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : NONE
+        /// </summary>
+        public static AstMessageValidationValueEnum None()
+        {
+            return new AstMessageValidationValueEnum(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : EMPTY
+        /// </summary>
+        public static AstMessageValidationValueEnum Empty()
+        {
+            return new AstMessageValidationValueEnum(Position.Default, "EMPTY", "EMPTY");
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : WELL_FORMED_XML
+        /// </summary>
+        public static AstMessageValidationValueEnum WellFormedXml()
+        {
+            return new AstMessageValidationValueEnum(Position.Default, "WELL_FORMED_XML", "WELL_FORMED_XML");
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : NONE
+        /// </summary>
+        public static AstMessageValidationValueEnum None(Position position)
+        {
+            return new AstMessageValidationValueEnum(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : EMPTY
+        /// </summary>
+        public static AstMessageValidationValueEnum Empty(Position position)
+        {
+            return new AstMessageValidationValueEnum(position, "EMPTY", "EMPTY");
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum : WELL_FORMED_XML
+        /// </summary>
+        public static AstMessageValidationValueEnum WellFormedXml(Position position)
+        {
+            return new AstMessageValidationValueEnum(position, "WELL_FORMED_XML", "WELL_FORMED_XML");
+        }
+    }
+    
+    /// <summary>
+    /// size_unity
+    /// 	 : MB
+    /// 	 | GB
+    /// 	 | TB
+    /// </summary>
+    public partial class AstSizeUnity : AstTerminalKeyword
+    {
+        
+        public AstSizeUnity(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSizeUnity(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// size_unity : MB
+        /// </summary>
+        public static AstSizeUnity Mb()
+        {
+            return new AstSizeUnity(Position.Default, "MB", "MB");
+        }
+        
+        /// <summary>
+        /// size_unity : GB
+        /// </summary>
+        public static AstSizeUnity Gb()
+        {
+            return new AstSizeUnity(Position.Default, "GB", "GB");
+        }
+        
+        /// <summary>
+        /// size_unity : TB
+        /// </summary>
+        public static AstSizeUnity Tb()
+        {
+            return new AstSizeUnity(Position.Default, "TB", "TB");
+        }
+        
+        /// <summary>
+        /// size_unity : MB
+        /// </summary>
+        public static AstSizeUnity Mb(Position position)
+        {
+            return new AstSizeUnity(position, "MB", "MB");
+        }
+        
+        /// <summary>
+        /// size_unity : GB
+        /// </summary>
+        public static AstSizeUnity Gb(Position position)
+        {
+            return new AstSizeUnity(position, "GB", "GB");
+        }
+        
+        /// <summary>
+        /// size_unity : TB
+        /// </summary>
+        public static AstSizeUnity Tb(Position position)
+        {
+            return new AstSizeUnity(position, "TB", "TB");
+        }
+    }
+    
+    /// <summary>
+    /// continue_shutdown
+    /// 	 : CONTINUE
+    /// 	 | SHUTDOWN
+    /// 	 | FAIL_OPERATION
+    /// </summary>
+    public partial class AstContinueShutdown : AstTerminalKeyword
+    {
+        
+        public AstContinueShutdown(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstContinueShutdown(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// continue_shutdown : CONTINUE
+        /// </summary>
+        public static AstContinueShutdown Continue()
+        {
+            return new AstContinueShutdown(Position.Default, "CONTINUE", "CONTINUE");
+        }
+        
+        /// <summary>
+        /// continue_shutdown : SHUTDOWN
+        /// </summary>
+        public static AstContinueShutdown Shutdown()
+        {
+            return new AstContinueShutdown(Position.Default, "SHUTDOWN", "SHUTDOWN");
+        }
+        
+        /// <summary>
+        /// continue_shutdown : FAIL_OPERATION
+        /// </summary>
+        public static AstContinueShutdown FailOperation()
+        {
+            return new AstContinueShutdown(Position.Default, "FAIL_OPERATION", "FAIL_OPERATION");
+        }
+        
+        /// <summary>
+        /// continue_shutdown : CONTINUE
+        /// </summary>
+        public static AstContinueShutdown Continue(Position position)
+        {
+            return new AstContinueShutdown(position, "CONTINUE", "CONTINUE");
+        }
+        
+        /// <summary>
+        /// continue_shutdown : SHUTDOWN
+        /// </summary>
+        public static AstContinueShutdown Shutdown(Position position)
+        {
+            return new AstContinueShutdown(position, "SHUTDOWN", "SHUTDOWN");
+        }
+        
+        /// <summary>
+        /// continue_shutdown : FAIL_OPERATION
+        /// </summary>
+        public static AstContinueShutdown FailOperation(Position position)
+        {
+            return new AstContinueShutdown(position, "FAIL_OPERATION", "FAIL_OPERATION");
+        }
+    }
+    
+    /// <summary>
+    /// audit_operator
+    /// 	 : EQUAL
+    /// 	 | LESS  GREATER
+    /// 	 | EXCLAMATION  EQUAL
+    /// 	 | GREATER
+    /// 	 | GREATER  EQUAL
+    /// 	 | LESS
+    /// 	 | LESS  EQUAL
+    /// </summary>
+    public partial class AstAuditOperator : AstTerminalKeyword
+    {
+        
+        public AstAuditOperator(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAuditOperator(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// audit_operator : '='
+        /// </summary>
+        public static AstAuditOperator Equal()
+        {
+            return new AstAuditOperator(Position.Default, "EQUAL", "=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<' '>'
+        /// </summary>
+        public static AstAuditOperator LessGreater()
+        {
+            return new AstAuditOperator(Position.Default, "LESS GREATER", "<\' \'>");
+        }
+        
+        /// <summary>
+        /// audit_operator : '!' '='
+        /// </summary>
+        public static AstAuditOperator ExclamationEqual()
+        {
+            return new AstAuditOperator(Position.Default, "EXCLAMATION EQUAL", "!\' \'=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '>'
+        /// </summary>
+        public static AstAuditOperator Greater()
+        {
+            return new AstAuditOperator(Position.Default, "GREATER", ">");
+        }
+        
+        /// <summary>
+        /// audit_operator : '>' '='
+        /// </summary>
+        public static AstAuditOperator GreaterEqual()
+        {
+            return new AstAuditOperator(Position.Default, "GREATER EQUAL", ">\' \'=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<'
+        /// </summary>
+        public static AstAuditOperator Less()
+        {
+            return new AstAuditOperator(Position.Default, "LESS", "<");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<' '='
+        /// </summary>
+        public static AstAuditOperator LessEqual()
+        {
+            return new AstAuditOperator(Position.Default, "LESS EQUAL", "<\' \'=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '='
+        /// </summary>
+        public static AstAuditOperator Equal(Position position)
+        {
+            return new AstAuditOperator(position, "EQUAL", "=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<' '>'
+        /// </summary>
+        public static AstAuditOperator LessGreater(Position position)
+        {
+            return new AstAuditOperator(position, "LESS GREATER", "<\' \'>");
+        }
+        
+        /// <summary>
+        /// audit_operator : '!' '='
+        /// </summary>
+        public static AstAuditOperator ExclamationEqual(Position position)
+        {
+            return new AstAuditOperator(position, "EXCLAMATION EQUAL", "!\' \'=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '>'
+        /// </summary>
+        public static AstAuditOperator Greater(Position position)
+        {
+            return new AstAuditOperator(position, "GREATER", ">");
+        }
+        
+        /// <summary>
+        /// audit_operator : '>' '='
+        /// </summary>
+        public static AstAuditOperator GreaterEqual(Position position)
+        {
+            return new AstAuditOperator(position, "GREATER EQUAL", ">\' \'=");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<'
+        /// </summary>
+        public static AstAuditOperator Less(Position position)
+        {
+            return new AstAuditOperator(position, "LESS", "<");
+        }
+        
+        /// <summary>
+        /// audit_operator : '<' '='
+        /// </summary>
+        public static AstAuditOperator LessEqual(Position position)
+        {
+            return new AstAuditOperator(position, "LESS EQUAL", "<\' \'=");
+        }
+    }
+    
+    /// <summary>
+    /// and_or
+    /// 	 : AND
+    /// 	 | OR
+    /// </summary>
+    public partial class AstAndOr : AstTerminalKeyword
+    {
+        
+        public AstAndOr(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAndOr(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// and_or : AND
+        /// </summary>
+        public static AstAndOr And()
+        {
+            return new AstAndOr(Position.Default, "AND", "AND");
+        }
+        
+        /// <summary>
+        /// and_or : OR
+        /// </summary>
+        public static AstAndOr Or()
+        {
+            return new AstAndOr(Position.Default, "OR", "OR");
+        }
+        
+        /// <summary>
+        /// and_or : AND
+        /// </summary>
+        public static AstAndOr And(Position position)
+        {
+            return new AstAndOr(position, "AND", "AND");
+        }
+        
+        /// <summary>
+        /// and_or : OR
+        /// </summary>
+        public static AstAndOr Or(Position position)
+        {
+            return new AstAndOr(position, "OR", "OR");
+        }
+    }
+    
+    /// <summary>
+    /// for_from
+    /// 	 : FOR
+    /// 	 | FROM
+    /// </summary>
+    public partial class AstForFrom : AstTerminalKeyword
+    {
+        
+        public AstForFrom(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstForFrom(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// for_from : FOR
+        /// </summary>
+        public static AstForFrom For()
+        {
+            return new AstForFrom(Position.Default, "FOR", "FOR");
+        }
+        
+        /// <summary>
+        /// for_from : FROM
+        /// </summary>
+        public static AstForFrom From()
+        {
+            return new AstForFrom(Position.Default, "FROM", "FROM");
+        }
+        
+        /// <summary>
+        /// for_from : FOR
+        /// </summary>
+        public static AstForFrom For(Position position)
+        {
+            return new AstForFrom(position, "FOR", "FOR");
+        }
+        
+        /// <summary>
+        /// for_from : FROM
+        /// </summary>
+        public static AstForFrom From(Position position)
+        {
+            return new AstForFrom(position, "FROM", "FROM");
+        }
+    }
+    
+    /// <summary>
+    /// importance_level
+    /// 	 : LOW
+    /// 	 | MEDIUM
+    /// 	 | HIGH
+    /// </summary>
+    public partial class AstImportanceLevel : AstTerminalKeyword
+    {
+        
+        public AstImportanceLevel(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstImportanceLevel(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// importance_level : LOW
+        /// </summary>
+        public static AstImportanceLevel Low()
+        {
+            return new AstImportanceLevel(Position.Default, "LOW", "LOW");
+        }
+        
+        /// <summary>
+        /// importance_level : MEDIUM
+        /// </summary>
+        public static AstImportanceLevel Medium()
+        {
+            return new AstImportanceLevel(Position.Default, "MEDIUM", "MEDIUM");
+        }
+        
+        /// <summary>
+        /// importance_level : HIGH
+        /// </summary>
+        public static AstImportanceLevel High()
+        {
+            return new AstImportanceLevel(Position.Default, "HIGH", "HIGH");
+        }
+        
+        /// <summary>
+        /// importance_level : LOW
+        /// </summary>
+        public static AstImportanceLevel Low(Position position)
+        {
+            return new AstImportanceLevel(position, "LOW", "LOW");
+        }
+        
+        /// <summary>
+        /// importance_level : MEDIUM
+        /// </summary>
+        public static AstImportanceLevel Medium(Position position)
+        {
+            return new AstImportanceLevel(position, "MEDIUM", "MEDIUM");
+        }
+        
+        /// <summary>
+        /// importance_level : HIGH
+        /// </summary>
+        public static AstImportanceLevel High(Position position)
+        {
+            return new AstImportanceLevel(position, "HIGH", "HIGH");
+        }
+    }
+    
+    /// <summary>
+    /// left_right
+    /// 	 : LEFT
+    /// 	 | RIGHT
+    /// </summary>
+    public partial class AstLeftRight : AstTerminalKeyword
+    {
+        
+        public AstLeftRight(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLeftRight(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// left_right : LEFT
+        /// </summary>
+        public static AstLeftRight Left()
+        {
+            return new AstLeftRight(Position.Default, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// left_right : RIGHT
+        /// </summary>
+        public static AstLeftRight Right()
+        {
+            return new AstLeftRight(Position.Default, "RIGHT", "RIGHT");
+        }
+        
+        /// <summary>
+        /// left_right : LEFT
+        /// </summary>
+        public static AstLeftRight Left(Position position)
+        {
+            return new AstLeftRight(position, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// left_right : RIGHT
+        /// </summary>
+        public static AstLeftRight Right(Position position)
+        {
+            return new AstLeftRight(position, "RIGHT", "RIGHT");
+        }
+    }
+    
+    /// <summary>
+    /// none_partial
+    /// 	 : NONE
+    /// 	 | PARTIAL
+    /// </summary>
+    public partial class AstNonePartial : AstTerminalKeyword
+    {
+        
+        public AstNonePartial(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNonePartial(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// none_partial : NONE
+        /// </summary>
+        public static AstNonePartial None()
+        {
+            return new AstNonePartial(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// none_partial : PARTIAL
+        /// </summary>
+        public static AstNonePartial Partial()
+        {
+            return new AstNonePartial(Position.Default, "PARTIAL", "PARTIAL");
+        }
+        
+        /// <summary>
+        /// none_partial : NONE
+        /// </summary>
+        public static AstNonePartial None(Position position)
+        {
+            return new AstNonePartial(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// none_partial : PARTIAL
+        /// </summary>
+        public static AstNonePartial Partial(Position position)
+        {
+            return new AstNonePartial(position, "PARTIAL", "PARTIAL");
+        }
+    }
+    
+    /// <summary>
+    /// index_strategy
+    /// 	 : NONE
+    /// 	 | ROW
+    /// 	 | PAGE
+    /// 	 | COLUMNSTORE
+    /// 	 | COLUMNSTORE_ARCHIVE
+    /// </summary>
+    public partial class AstIndexStrategy : AstTerminalKeyword
+    {
+        
+        public AstIndexStrategy(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIndexStrategy(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// index_strategy : NONE
+        /// </summary>
+        public static AstIndexStrategy None()
+        {
+            return new AstIndexStrategy(Position.Default, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// index_strategy : ROW
+        /// </summary>
+        public static AstIndexStrategy Row()
+        {
+            return new AstIndexStrategy(Position.Default, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// index_strategy : PAGE
+        /// </summary>
+        public static AstIndexStrategy Page()
+        {
+            return new AstIndexStrategy(Position.Default, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// index_strategy : COLUMNSTORE
+        /// </summary>
+        public static AstIndexStrategy Columnstore()
+        {
+            return new AstIndexStrategy(Position.Default, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// index_strategy : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstIndexStrategy ColumnstoreArchive()
+        {
+            return new AstIndexStrategy(Position.Default, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+        
+        /// <summary>
+        /// index_strategy : NONE
+        /// </summary>
+        public static AstIndexStrategy None(Position position)
+        {
+            return new AstIndexStrategy(position, "NONE", "NONE");
+        }
+        
+        /// <summary>
+        /// index_strategy : ROW
+        /// </summary>
+        public static AstIndexStrategy Row(Position position)
+        {
+            return new AstIndexStrategy(position, "ROW", "ROW");
+        }
+        
+        /// <summary>
+        /// index_strategy : PAGE
+        /// </summary>
+        public static AstIndexStrategy Page(Position position)
+        {
+            return new AstIndexStrategy(position, "PAGE", "PAGE");
+        }
+        
+        /// <summary>
+        /// index_strategy : COLUMNSTORE
+        /// </summary>
+        public static AstIndexStrategy Columnstore(Position position)
+        {
+            return new AstIndexStrategy(position, "COLUMNSTORE", "COLUMNSTORE");
+        }
+        
+        /// <summary>
+        /// index_strategy : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstIndexStrategy ColumnstoreArchive(Position position)
+        {
+            return new AstIndexStrategy(position, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+    }
+    
+    /// <summary>
+    /// view_attribute
+    /// 	 : ENCRYPTION
+    /// 	 | SCHEMABINDING
+    /// 	 | VIEW_METADATA
+    /// </summary>
+    public partial class AstViewAttribute : AstTerminalKeyword
+    {
+        
+        public AstViewAttribute(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstViewAttribute(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// view_attribute : ENCRYPTION
+        /// </summary>
+        public static AstViewAttribute Encryption()
+        {
+            return new AstViewAttribute(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// view_attribute : SCHEMABINDING
+        /// </summary>
+        public static AstViewAttribute Schemabinding()
+        {
+            return new AstViewAttribute(Position.Default, "SCHEMABINDING", "SCHEMABINDING");
+        }
+        
+        /// <summary>
+        /// view_attribute : VIEW_METADATA
+        /// </summary>
+        public static AstViewAttribute ViewMetadata()
+        {
+            return new AstViewAttribute(Position.Default, "VIEW_METADATA", "VIEW_METADATA");
+        }
+        
+        /// <summary>
+        /// view_attribute : ENCRYPTION
+        /// </summary>
+        public static AstViewAttribute Encryption(Position position)
+        {
+            return new AstViewAttribute(position, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// view_attribute : SCHEMABINDING
+        /// </summary>
+        public static AstViewAttribute Schemabinding(Position position)
+        {
+            return new AstViewAttribute(position, "SCHEMABINDING", "SCHEMABINDING");
+        }
+        
+        /// <summary>
+        /// view_attribute : VIEW_METADATA
+        /// </summary>
+        public static AstViewAttribute ViewMetadata(Position position)
+        {
+            return new AstViewAttribute(position, "VIEW_METADATA", "VIEW_METADATA");
+        }
+    }
+    
+    /// <summary>
+    /// filegroup_predicate
+    /// 	 : CONTAINS  FILESTREAM
+    /// 	 | CONTAINS  MEMORY_OPTIMIZED_DATA
+    /// </summary>
+    public partial class AstFilegroupPredicate : AstTerminalKeyword
+    {
+        
+        public AstFilegroupPredicate(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFilegroupPredicate(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// filegroup_predicate : CONTAINS FILESTREAM
+        /// </summary>
+        public static AstFilegroupPredicate ContainsFilestream()
+        {
+            return new AstFilegroupPredicate(Position.Default, "CONTAINS FILESTREAM", "CONTAINS FILESTREAM");
+        }
+        
+        /// <summary>
+        /// filegroup_predicate : CONTAINS MEMORY_OPTIMIZED_DATA
+        /// </summary>
+        public static AstFilegroupPredicate ContainsMemoryOptimizedData()
+        {
+            return new AstFilegroupPredicate(Position.Default, "CONTAINS MEMORY_OPTIMIZED_DATA", "CONTAINS MEMORY_OPTIMIZED_DATA");
+        }
+        
+        /// <summary>
+        /// filegroup_predicate : CONTAINS FILESTREAM
+        /// </summary>
+        public static AstFilegroupPredicate ContainsFilestream(Position position)
+        {
+            return new AstFilegroupPredicate(position, "CONTAINS FILESTREAM", "CONTAINS FILESTREAM");
+        }
+        
+        /// <summary>
+        /// filegroup_predicate : CONTAINS MEMORY_OPTIMIZED_DATA
+        /// </summary>
+        public static AstFilegroupPredicate ContainsMemoryOptimizedData(Position position)
+        {
+            return new AstFilegroupPredicate(position, "CONTAINS MEMORY_OPTIMIZED_DATA", "CONTAINS MEMORY_OPTIMIZED_DATA");
+        }
+    }
+    
+    /// <summary>
+    /// statistic_value
+    /// 	 : OFF
+    /// 	 | ON  (INCREMENTAL  EQUAL  ON | OFF)
+    /// </summary>
+    public partial class AstStatisticValue : AstTerminalKeyword
+    {
+        
+        public AstStatisticValue(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstStatisticValue(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// statistic_value : OFF
+        /// </summary>
+        public static AstStatisticValue Off()
+        {
+            return new AstStatisticValue(Position.Default, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// statistic_value : ON INCREMENTAL '=' ON
+        /// </summary>
+        public static AstStatisticValue OnIncrementalEqualOn()
+        {
+            return new AstStatisticValue(Position.Default, "ON INCREMENTAL EQUAL ON", "ON INCREMENTAL \'=\' ON");
+        }
+        
+        /// <summary>
+        /// statistic_value : ON OFF
+        /// </summary>
+        public static AstStatisticValue OnOff()
+        {
+            return new AstStatisticValue(Position.Default, "ON OFF", "ON OFF");
+        }
+        
+        /// <summary>
+        /// statistic_value : OFF
+        /// </summary>
+        public static AstStatisticValue Off(Position position)
+        {
+            return new AstStatisticValue(position, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// statistic_value : ON INCREMENTAL '=' ON
+        /// </summary>
+        public static AstStatisticValue OnIncrementalEqualOn(Position position)
+        {
+            return new AstStatisticValue(position, "ON INCREMENTAL EQUAL ON", "ON INCREMENTAL \'=\' ON");
+        }
+        
+        /// <summary>
+        /// statistic_value : ON OFF
+        /// </summary>
+        public static AstStatisticValue OnOff(Position position)
+        {
+            return new AstStatisticValue(position, "ON OFF", "ON OFF");
+        }
+    }
+    
+    /// <summary>
+    /// period
+    /// 	 : DAYS
+    /// 	 | HOURS
+    /// 	 | MINUTES
+    /// </summary>
+    public partial class AstPeriod : AstTerminalKeyword
+    {
+        
+        public AstPeriod(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPeriod(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// period : DAYS
+        /// </summary>
+        public static AstPeriod Days()
+        {
+            return new AstPeriod(Position.Default, "DAYS", "DAYS");
+        }
+        
+        /// <summary>
+        /// period : HOURS
+        /// </summary>
+        public static AstPeriod Hours()
+        {
+            return new AstPeriod(Position.Default, "HOURS", "HOURS");
+        }
+        
+        /// <summary>
+        /// period : MINUTES
+        /// </summary>
+        public static AstPeriod Minutes()
+        {
+            return new AstPeriod(Position.Default, "MINUTES", "MINUTES");
+        }
+        
+        /// <summary>
+        /// period : DAYS
+        /// </summary>
+        public static AstPeriod Days(Position position)
+        {
+            return new AstPeriod(position, "DAYS", "DAYS");
+        }
+        
+        /// <summary>
+        /// period : HOURS
+        /// </summary>
+        public static AstPeriod Hours(Position position)
+        {
+            return new AstPeriod(position, "HOURS", "HOURS");
+        }
+        
+        /// <summary>
+        /// period : MINUTES
+        /// </summary>
+        public static AstPeriod Minutes(Position position)
+        {
+            return new AstPeriod(position, "MINUTES", "MINUTES");
+        }
+    }
+    
+    /// <summary>
+    /// db_state_option
+    /// 	 : ONLINE
+    /// 	 | OFFLINE
+    /// 	 | EMERGENCY
+    /// </summary>
+    public partial class AstDbStateOption : AstTerminalKeyword
+    {
+        
+        public AstDbStateOption(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDbStateOption(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// db_state_option : ONLINE
+        /// </summary>
+        public static AstDbStateOption Online()
+        {
+            return new AstDbStateOption(Position.Default, "ONLINE", "ONLINE");
+        }
+        
+        /// <summary>
+        /// db_state_option : OFFLINE
+        /// </summary>
+        public static AstDbStateOption Offline()
+        {
+            return new AstDbStateOption(Position.Default, "OFFLINE", "OFFLINE");
+        }
+        
+        /// <summary>
+        /// db_state_option : EMERGENCY
+        /// </summary>
+        public static AstDbStateOption Emergency()
+        {
+            return new AstDbStateOption(Position.Default, "EMERGENCY", "EMERGENCY");
+        }
+        
+        /// <summary>
+        /// db_state_option : ONLINE
+        /// </summary>
+        public static AstDbStateOption Online(Position position)
+        {
+            return new AstDbStateOption(position, "ONLINE", "ONLINE");
+        }
+        
+        /// <summary>
+        /// db_state_option : OFFLINE
+        /// </summary>
+        public static AstDbStateOption Offline(Position position)
+        {
+            return new AstDbStateOption(position, "OFFLINE", "OFFLINE");
+        }
+        
+        /// <summary>
+        /// db_state_option : EMERGENCY
+        /// </summary>
+        public static AstDbStateOption Emergency(Position position)
+        {
+            return new AstDbStateOption(position, "EMERGENCY", "EMERGENCY");
+        }
+    }
+    
+    /// <summary>
+    /// db_update_option
+    /// 	 : READ_ONLY
+    /// 	 | READ_WRITE
+    /// </summary>
+    public partial class AstDbUpdateOption : AstTerminalKeyword
+    {
+        
+        public AstDbUpdateOption(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDbUpdateOption(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// db_update_option : READ_ONLY
+        /// </summary>
+        public static AstDbUpdateOption ReadOnly()
+        {
+            return new AstDbUpdateOption(Position.Default, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// db_update_option : READ_WRITE
+        /// </summary>
+        public static AstDbUpdateOption ReadWrite()
+        {
+            return new AstDbUpdateOption(Position.Default, "READ_WRITE", "READ_WRITE");
+        }
+        
+        /// <summary>
+        /// db_update_option : READ_ONLY
+        /// </summary>
+        public static AstDbUpdateOption ReadOnly(Position position)
+        {
+            return new AstDbUpdateOption(position, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// db_update_option : READ_WRITE
+        /// </summary>
+        public static AstDbUpdateOption ReadWrite(Position position)
+        {
+            return new AstDbUpdateOption(position, "READ_WRITE", "READ_WRITE");
+        }
+    }
+    
+    /// <summary>
+    /// db_user_access_option
+    /// 	 : SINGLE_USER
+    /// 	 | RESTRICTED_USER
+    /// 	 | MULTI_USER
+    /// </summary>
+    public partial class AstDbUserAccessOption : AstTerminalKeyword
+    {
+        
+        public AstDbUserAccessOption(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDbUserAccessOption(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// db_user_access_option : SINGLE_USER
+        /// </summary>
+        public static AstDbUserAccessOption SingleUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "SINGLE_USER", "SINGLE_USER");
+        }
+        
+        /// <summary>
+        /// db_user_access_option : RESTRICTED_USER
+        /// </summary>
+        public static AstDbUserAccessOption RestrictedUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "RESTRICTED_USER", "RESTRICTED_USER");
+        }
+        
+        /// <summary>
+        /// db_user_access_option : MULTI_USER
+        /// </summary>
+        public static AstDbUserAccessOption MultiUser()
+        {
+            return new AstDbUserAccessOption(Position.Default, "MULTI_USER", "MULTI_USER");
+        }
+        
+        /// <summary>
+        /// db_user_access_option : SINGLE_USER
+        /// </summary>
+        public static AstDbUserAccessOption SingleUser(Position position)
+        {
+            return new AstDbUserAccessOption(position, "SINGLE_USER", "SINGLE_USER");
+        }
+        
+        /// <summary>
+        /// db_user_access_option : RESTRICTED_USER
+        /// </summary>
+        public static AstDbUserAccessOption RestrictedUser(Position position)
+        {
+            return new AstDbUserAccessOption(position, "RESTRICTED_USER", "RESTRICTED_USER");
+        }
+        
+        /// <summary>
+        /// db_user_access_option : MULTI_USER
+        /// </summary>
+        public static AstDbUserAccessOption MultiUser(Position position)
+        {
+            return new AstDbUserAccessOption(position, "MULTI_USER", "MULTI_USER");
+        }
+    }
+    
+    /// <summary>
+    /// disk_tape_url
+    /// 	 : DISK
+    /// 	 | TAPE
+    /// 	 | URL
+    /// </summary>
+    public partial class AstDiskTapeUrl : AstTerminalKeyword
+    {
+        
+        public AstDiskTapeUrl(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDiskTapeUrl(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// disk_tape_url : DISK
+        /// </summary>
+        public static AstDiskTapeUrl Disk()
+        {
+            return new AstDiskTapeUrl(Position.Default, "DISK", "DISK");
+        }
+        
+        /// <summary>
+        /// disk_tape_url : TAPE
+        /// </summary>
+        public static AstDiskTapeUrl Tape()
+        {
+            return new AstDiskTapeUrl(Position.Default, "TAPE", "TAPE");
+        }
+        
+        /// <summary>
+        /// disk_tape_url : URL
+        /// </summary>
+        public static AstDiskTapeUrl Url()
+        {
+            return new AstDiskTapeUrl(Position.Default, "URL", "URL");
+        }
+        
+        /// <summary>
+        /// disk_tape_url : DISK
+        /// </summary>
+        public static AstDiskTapeUrl Disk(Position position)
+        {
+            return new AstDiskTapeUrl(position, "DISK", "DISK");
+        }
+        
+        /// <summary>
+        /// disk_tape_url : TAPE
+        /// </summary>
+        public static AstDiskTapeUrl Tape(Position position)
+        {
+            return new AstDiskTapeUrl(position, "TAPE", "TAPE");
+        }
+        
+        /// <summary>
+        /// disk_tape_url : URL
+        /// </summary>
+        public static AstDiskTapeUrl Url(Position position)
+        {
+            return new AstDiskTapeUrl(position, "URL", "URL");
+        }
+    }
+    
+    /// <summary>
+    /// file_file_group
+    /// 	 : FILE
+    /// 	 | FILEGROUP
+    /// </summary>
+    public partial class AstFileFileGroup : AstTerminalKeyword
+    {
+        
+        public AstFileFileGroup(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFileFileGroup(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// file_file_group : FILE
+        /// </summary>
+        public static AstFileFileGroup File()
+        {
+            return new AstFileFileGroup(Position.Default, "FILE", "FILE");
+        }
+        
+        /// <summary>
+        /// file_file_group : FILEGROUP
+        /// </summary>
+        public static AstFileFileGroup Filegroup()
+        {
+            return new AstFileFileGroup(Position.Default, "FILEGROUP", "FILEGROUP");
+        }
+        
+        /// <summary>
+        /// file_file_group : FILE
+        /// </summary>
+        public static AstFileFileGroup File(Position position)
+        {
+            return new AstFileFileGroup(position, "FILE", "FILE");
+        }
+        
+        /// <summary>
+        /// file_file_group : FILEGROUP
+        /// </summary>
+        public static AstFileFileGroup Filegroup(Position position)
+        {
+            return new AstFileFileGroup(position, "FILEGROUP", "FILEGROUP");
+        }
+    }
+    
+    /// <summary>
+    /// load_moun_load
+    /// 	 : LOAD
+    /// 	 | NOUNLOAD
+    /// </summary>
+    public partial class AstLoadMounLoad : AstTerminalKeyword
+    {
+        
+        public AstLoadMounLoad(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLoadMounLoad(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// load_moun_load : LOAD
+        /// </summary>
+        public static AstLoadMounLoad Load()
+        {
+            return new AstLoadMounLoad(Position.Default, "LOAD", "LOAD");
+        }
+        
+        /// <summary>
+        /// load_moun_load : NOUNLOAD
+        /// </summary>
+        public static AstLoadMounLoad Nounload()
+        {
+            return new AstLoadMounLoad(Position.Default, "NOUNLOAD", "NOUNLOAD");
+        }
+        
+        /// <summary>
+        /// load_moun_load : LOAD
+        /// </summary>
+        public static AstLoadMounLoad Load(Position position)
+        {
+            return new AstLoadMounLoad(position, "LOAD", "LOAD");
+        }
+        
+        /// <summary>
+        /// load_moun_load : NOUNLOAD
+        /// </summary>
+        public static AstLoadMounLoad Nounload(Position position)
+        {
+            return new AstLoadMounLoad(position, "NOUNLOAD", "NOUNLOAD");
+        }
+    }
+    
+    /// <summary>
+    /// rewind
+    /// 	 : REWIND
+    /// 	 | NOREWIND
+    /// </summary>
+    public partial class AstRewind : AstTerminalKeyword
+    {
+        
+        public AstRewind(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRewind(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// rewind : REWIND
+        /// </summary>
+        public static AstRewind Rewind()
+        {
+            return new AstRewind(Position.Default, "REWIND", "REWIND");
+        }
+        
+        /// <summary>
+        /// rewind : NOREWIND
+        /// </summary>
+        public static AstRewind Norewind()
+        {
+            return new AstRewind(Position.Default, "NOREWIND", "NOREWIND");
+        }
+        
+        /// <summary>
+        /// rewind : REWIND
+        /// </summary>
+        public static AstRewind Rewind(Position position)
+        {
+            return new AstRewind(position, "REWIND", "REWIND");
+        }
+        
+        /// <summary>
+        /// rewind : NOREWIND
+        /// </summary>
+        public static AstRewind Norewind(Position position)
+        {
+            return new AstRewind(position, "NOREWIND", "NOREWIND");
+        }
+    }
+    
+    /// <summary>
+    /// algorithm_short
+    /// 	 : AES_128
+    /// 	 | AES_192
+    /// 	 | AES_256
+    /// 	 | TRIPLE_DES_3KEY
+    /// </summary>
+    public partial class AstAlgorithmShort : AstTerminalKeyword
+    {
+        
+        public AstAlgorithmShort(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlgorithmShort(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_128
+        /// </summary>
+        public static AstAlgorithmShort Aes128()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_128", "AES_128");
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_192
+        /// </summary>
+        public static AstAlgorithmShort Aes192()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_192", "AES_192");
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_256
+        /// </summary>
+        public static AstAlgorithmShort Aes256()
+        {
+            return new AstAlgorithmShort(Position.Default, "AES_256", "AES_256");
+        }
+        
+        /// <summary>
+        /// algorithm_short : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstAlgorithmShort TripleDes3key()
+        {
+            return new AstAlgorithmShort(Position.Default, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_128
+        /// </summary>
+        public static AstAlgorithmShort Aes128(Position position)
+        {
+            return new AstAlgorithmShort(position, "AES_128", "AES_128");
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_192
+        /// </summary>
+        public static AstAlgorithmShort Aes192(Position position)
+        {
+            return new AstAlgorithmShort(position, "AES_192", "AES_192");
+        }
+        
+        /// <summary>
+        /// algorithm_short : AES_256
+        /// </summary>
+        public static AstAlgorithmShort Aes256(Position position)
+        {
+            return new AstAlgorithmShort(position, "AES_256", "AES_256");
+        }
+        
+        /// <summary>
+        /// algorithm_short : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstAlgorithmShort TripleDes3key(Position position)
+        {
+            return new AstAlgorithmShort(position, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+    }
+    
+    /// <summary>
+    /// encryption_decryption
+    /// 	 : DECRYPTION
+    /// 	 | ENCRYPTION
+    /// </summary>
+    public partial class AstEncryptionDecryption : AstTerminalKeyword
+    {
+        
+        public AstEncryptionDecryption(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEncryptionDecryption(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// encryption_decryption : DECRYPTION
+        /// </summary>
+        public static AstEncryptionDecryption Decryption()
+        {
+            return new AstEncryptionDecryption(Position.Default, "DECRYPTION", "DECRYPTION");
+        }
+        
+        /// <summary>
+        /// encryption_decryption : ENCRYPTION
+        /// </summary>
+        public static AstEncryptionDecryption Encryption()
+        {
+            return new AstEncryptionDecryption(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+        
+        /// <summary>
+        /// encryption_decryption : DECRYPTION
+        /// </summary>
+        public static AstEncryptionDecryption Decryption(Position position)
+        {
+            return new AstEncryptionDecryption(position, "DECRYPTION", "DECRYPTION");
+        }
+        
+        /// <summary>
+        /// encryption_decryption : ENCRYPTION
+        /// </summary>
+        public static AstEncryptionDecryption Encryption(Position position)
+        {
+            return new AstEncryptionDecryption(position, "ENCRYPTION", "ENCRYPTION");
+        }
+    }
+    
+    /// <summary>
+    /// algorithm
+    /// 	 : DES
+    /// 	 | TRIPLE_DES
+    /// 	 | TRIPLE_DES_3KEY
+    /// 	 | RC2
+    /// 	 | RC4
+    /// 	 | RC4_128
+    /// 	 | DESX
+    /// 	 | AES_128
+    /// 	 | AES_192
+    /// 	 | AES_256
+    /// </summary>
+    public partial class AstAlgorithm : AstTerminalKeyword
+    {
+        
+        public AstAlgorithm(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAlgorithm(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// algorithm : DES
+        /// </summary>
+        public static AstAlgorithm Des()
+        {
+            return new AstAlgorithm(Position.Default, "DES", "DES");
+        }
+        
+        /// <summary>
+        /// algorithm : TRIPLE_DES
+        /// </summary>
+        public static AstAlgorithm TripleDes()
+        {
+            return new AstAlgorithm(Position.Default, "TRIPLE_DES", "TRIPLE_DES");
+        }
+        
+        /// <summary>
+        /// algorithm : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstAlgorithm TripleDes3key()
+        {
+            return new AstAlgorithm(Position.Default, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+        
+        /// <summary>
+        /// algorithm : RC2
+        /// </summary>
+        public static AstAlgorithm Rc2()
+        {
+            return new AstAlgorithm(Position.Default, "RC2", "RC2");
+        }
+        
+        /// <summary>
+        /// algorithm : RC4
+        /// </summary>
+        public static AstAlgorithm Rc4()
+        {
+            return new AstAlgorithm(Position.Default, "RC4", "RC4");
+        }
+        
+        /// <summary>
+        /// algorithm : RC4_128
+        /// </summary>
+        public static AstAlgorithm Rc4128()
+        {
+            return new AstAlgorithm(Position.Default, "RC4_128", "RC4_128");
+        }
+        
+        /// <summary>
+        /// algorithm : DESX
+        /// </summary>
+        public static AstAlgorithm Desx()
+        {
+            return new AstAlgorithm(Position.Default, "DESX", "DESX");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_128
+        /// </summary>
+        public static AstAlgorithm Aes128()
+        {
+            return new AstAlgorithm(Position.Default, "AES_128", "AES_128");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_192
+        /// </summary>
+        public static AstAlgorithm Aes192()
+        {
+            return new AstAlgorithm(Position.Default, "AES_192", "AES_192");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_256
+        /// </summary>
+        public static AstAlgorithm Aes256()
+        {
+            return new AstAlgorithm(Position.Default, "AES_256", "AES_256");
+        }
+        
+        /// <summary>
+        /// algorithm : DES
+        /// </summary>
+        public static AstAlgorithm Des(Position position)
+        {
+            return new AstAlgorithm(position, "DES", "DES");
+        }
+        
+        /// <summary>
+        /// algorithm : TRIPLE_DES
+        /// </summary>
+        public static AstAlgorithm TripleDes(Position position)
+        {
+            return new AstAlgorithm(position, "TRIPLE_DES", "TRIPLE_DES");
+        }
+        
+        /// <summary>
+        /// algorithm : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstAlgorithm TripleDes3key(Position position)
+        {
+            return new AstAlgorithm(position, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+        
+        /// <summary>
+        /// algorithm : RC2
+        /// </summary>
+        public static AstAlgorithm Rc2(Position position)
+        {
+            return new AstAlgorithm(position, "RC2", "RC2");
+        }
+        
+        /// <summary>
+        /// algorithm : RC4
+        /// </summary>
+        public static AstAlgorithm Rc4(Position position)
+        {
+            return new AstAlgorithm(position, "RC4", "RC4");
+        }
+        
+        /// <summary>
+        /// algorithm : RC4_128
+        /// </summary>
+        public static AstAlgorithm Rc4128(Position position)
+        {
+            return new AstAlgorithm(position, "RC4_128", "RC4_128");
+        }
+        
+        /// <summary>
+        /// algorithm : DESX
+        /// </summary>
+        public static AstAlgorithm Desx(Position position)
+        {
+            return new AstAlgorithm(position, "DESX", "DESX");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_128
+        /// </summary>
+        public static AstAlgorithm Aes128(Position position)
+        {
+            return new AstAlgorithm(position, "AES_128", "AES_128");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_192
+        /// </summary>
+        public static AstAlgorithm Aes192(Position position)
+        {
+            return new AstAlgorithm(position, "AES_192", "AES_192");
+        }
+        
+        /// <summary>
+        /// algorithm : AES_256
+        /// </summary>
+        public static AstAlgorithm Aes256(Position position)
+        {
+            return new AstAlgorithm(position, "AES_256", "AES_256");
+        }
+    }
+    
+    /// <summary>
+    /// grant_permission_enum
+    /// 	 : ADMINISTER  (BULK  OPERATIONS | DATABASE  BULK  OPERATIONS)
+    /// 	 | AUTHENTICATE  SERVER?
+    /// 	 | BACKUP  (DATABASE | LOG)
+    /// 	 | CHECKPOINT
+    /// 	 | CONNECT  (ANY  DATABASE | REPLICATION | SQL)?
+    /// 	 | CONTROL  SERVER?
+    /// 	 | DELETE
+    /// 	 | EXECUTE  (ANY  EXTERNAL  SCRIPT)?
+    /// 	 | EXTERNAL  ACCESS  ASSEMBLY
+    /// 	 | IMPERSONATE  (ANY  LOGIN)?
+    /// 	 | INSERT
+    /// 	 | KILL  DATABASE  CONNECTION
+    /// 	 | RECEIVE
+    /// 	 | REFERENCES
+    /// 	 | SELECT  (ALL  USER  SECURABLES)?
+    /// 	 | SEND
+    /// 	 | SHOWPLAN
+    /// 	 | SHUTDOWN
+    /// 	 | SUBSCRIBE  QUERY  NOTIFICATIONS
+    /// 	 | TAKE  OWNERSHIP
+    /// 	 | UNMASK
+    /// 	 | UNSAFE  ASSEMBLY
+    /// 	 | UPDATE
+    /// 	 | VIEW  (ANY  (DATABASE | DEFINITION | COLUMN  (ENCRYPTION | MASTER)  KEY  DEFINITION) | CHANGE  TRACKING | DATABASE  STATE | DEFINITION | SERVER  STATE)
+    /// </summary>
+    public partial class AstGrantPermissionEnum : AstTerminalKeyword
+    {
+        
+        public AstGrantPermissionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGrantPermissionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : ADMINISTER BULK OPERATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum AdministerBulkOperations()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "ADMINISTER BULK OPERATIONS", "ADMINISTER BULK OPERATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : ADMINISTER DATABASE BULK OPERATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum AdministerDatabaseBulkOperations()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "ADMINISTER DATABASE BULK OPERATIONS", "ADMINISTER DATABASE BULK OPERATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : AUTHENTICATE SERVER
+        /// </summary>
+        public static AstGrantPermissionEnum AuthenticateServer()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "AUTHENTICATE SERVER", "AUTHENTICATE SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : AUTHENTICATE
+        /// </summary>
+        public static AstGrantPermissionEnum Authenticate()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "AUTHENTICATE", "AUTHENTICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : BACKUP DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum BackupDatabase()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "BACKUP DATABASE", "BACKUP DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : BACKUP LOG
+        /// </summary>
+        public static AstGrantPermissionEnum BackupLog()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "BACKUP LOG", "BACKUP LOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CHECKPOINT
+        /// </summary>
+        public static AstGrantPermissionEnum Checkpoint()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CHECKPOINT", "CHECKPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectAnyDatabase()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CONNECT ANY DATABASE", "CONNECT ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT REPLICATION
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectReplication()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CONNECT REPLICATION", "CONNECT REPLICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT SQL
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectSql()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CONNECT SQL", "CONNECT SQL");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONTROL SERVER
+        /// </summary>
+        public static AstGrantPermissionEnum ControlServer()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CONTROL SERVER", "CONTROL SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONTROL
+        /// </summary>
+        public static AstGrantPermissionEnum Control()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "CONTROL", "CONTROL");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : DELETE
+        /// </summary>
+        public static AstGrantPermissionEnum Delete()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "DELETE", "DELETE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXEC'  'UTE'? ANY EXTERNAL SCRIPT
+        /// </summary>
+        public static AstGrantPermissionEnum ExecuteAnyExternalScript()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "EXECUTE ANY EXTERNAL SCRIPT", "EXEC\'  \'UTE\'? ANY EXTERNAL SCRIPT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXEC'  'UTE'?
+        /// </summary>
+        public static AstGrantPermissionEnum Execute()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "EXECUTE", "EXEC\'  \'UTE\'?");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXTERNAL ACCESS ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionEnum ExternalAccessAssembly()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "EXTERNAL ACCESS ASSEMBLY", "EXTERNAL ACCESS ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : IMPERSONATE ANY LOGIN
+        /// </summary>
+        public static AstGrantPermissionEnum ImpersonateAnyLogin()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "IMPERSONATE ANY LOGIN", "IMPERSONATE ANY LOGIN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : IMPERSONATE
+        /// </summary>
+        public static AstGrantPermissionEnum Impersonate()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "IMPERSONATE", "IMPERSONATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : INSERT
+        /// </summary>
+        public static AstGrantPermissionEnum Insert()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : KILL DATABASE CONNECTION
+        /// </summary>
+        public static AstGrantPermissionEnum KillDatabaseConnection()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "KILL DATABASE CONNECTION", "KILL DATABASE CONNECTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : RECEIVE
+        /// </summary>
+        public static AstGrantPermissionEnum Receive()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "RECEIVE", "RECEIVE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : REFERENCES
+        /// </summary>
+        public static AstGrantPermissionEnum References()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "REFERENCES", "REFERENCES");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SELECT ALL USER SECURABLES
+        /// </summary>
+        public static AstGrantPermissionEnum SelectAllUserSecurables()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SELECT ALL USER SECURABLES", "SELECT ALL USER SECURABLES");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SELECT
+        /// </summary>
+        public static AstGrantPermissionEnum Select()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SELECT", "SELECT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SEND
+        /// </summary>
+        public static AstGrantPermissionEnum Send()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SEND", "SEND");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SHOWPLAN
+        /// </summary>
+        public static AstGrantPermissionEnum Showplan()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SHOWPLAN", "SHOWPLAN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SHUTDOWN
+        /// </summary>
+        public static AstGrantPermissionEnum Shutdown()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SHUTDOWN", "SHUTDOWN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SUBSCRIBE QUERY NOTIFICATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum SubscribeQueryNotifications()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "SUBSCRIBE QUERY NOTIFICATIONS", "SUBSCRIBE QUERY NOTIFICATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : TAKE OWNERSHIP
+        /// </summary>
+        public static AstGrantPermissionEnum TakeOwnership()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "TAKE OWNERSHIP", "TAKE OWNERSHIP");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UNMASK
+        /// </summary>
+        public static AstGrantPermissionEnum Unmask()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "UNMASK", "UNMASK");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UNSAFE ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionEnum UnsafeAssembly()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "UNSAFE ASSEMBLY", "UNSAFE ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UPDATE
+        /// </summary>
+        public static AstGrantPermissionEnum Update()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyDatabase()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW ANY DATABASE", "VIEW ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyDefinition()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW ANY DEFINITION", "VIEW ANY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY COLUMN ENCRYPTION KEY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyColumnEncryptionKeyDefinition()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION", "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY COLUMN MASTER KEY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyColumnMasterKeyDefinition()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW ANY COLUMN MASTER KEY DEFINITION", "VIEW ANY COLUMN MASTER KEY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW CHANGE TRACKING
+        /// </summary>
+        public static AstGrantPermissionEnum ViewChangeTracking()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW CHANGE TRACKING", "VIEW CHANGE TRACKING");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW DATABASE STATE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewDatabaseState()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW DATABASE STATE", "VIEW DATABASE STATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewDefinition()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW DEFINITION", "VIEW DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW SERVER STATE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewServerState()
+        {
+            return new AstGrantPermissionEnum(Position.Default, "VIEW SERVER STATE", "VIEW SERVER STATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : ADMINISTER BULK OPERATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum AdministerBulkOperations(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "ADMINISTER BULK OPERATIONS", "ADMINISTER BULK OPERATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : ADMINISTER DATABASE BULK OPERATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum AdministerDatabaseBulkOperations(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "ADMINISTER DATABASE BULK OPERATIONS", "ADMINISTER DATABASE BULK OPERATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : AUTHENTICATE SERVER
+        /// </summary>
+        public static AstGrantPermissionEnum AuthenticateServer(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "AUTHENTICATE SERVER", "AUTHENTICATE SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : AUTHENTICATE
+        /// </summary>
+        public static AstGrantPermissionEnum Authenticate(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "AUTHENTICATE", "AUTHENTICATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : BACKUP DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum BackupDatabase(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "BACKUP DATABASE", "BACKUP DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : BACKUP LOG
+        /// </summary>
+        public static AstGrantPermissionEnum BackupLog(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "BACKUP LOG", "BACKUP LOG");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CHECKPOINT
+        /// </summary>
+        public static AstGrantPermissionEnum Checkpoint(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CHECKPOINT", "CHECKPOINT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectAnyDatabase(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CONNECT ANY DATABASE", "CONNECT ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT REPLICATION
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectReplication(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CONNECT REPLICATION", "CONNECT REPLICATION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONNECT SQL
+        /// </summary>
+        public static AstGrantPermissionEnum ConnectSql(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CONNECT SQL", "CONNECT SQL");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONTROL SERVER
+        /// </summary>
+        public static AstGrantPermissionEnum ControlServer(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CONTROL SERVER", "CONTROL SERVER");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : CONTROL
+        /// </summary>
+        public static AstGrantPermissionEnum Control(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "CONTROL", "CONTROL");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : DELETE
+        /// </summary>
+        public static AstGrantPermissionEnum Delete(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "DELETE", "DELETE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXEC'  'UTE'? ANY EXTERNAL SCRIPT
+        /// </summary>
+        public static AstGrantPermissionEnum ExecuteAnyExternalScript(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "EXECUTE ANY EXTERNAL SCRIPT", "EXEC\'  \'UTE\'? ANY EXTERNAL SCRIPT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXEC'  'UTE'?
+        /// </summary>
+        public static AstGrantPermissionEnum Execute(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "EXECUTE", "EXEC\'  \'UTE\'?");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : EXTERNAL ACCESS ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionEnum ExternalAccessAssembly(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "EXTERNAL ACCESS ASSEMBLY", "EXTERNAL ACCESS ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : IMPERSONATE ANY LOGIN
+        /// </summary>
+        public static AstGrantPermissionEnum ImpersonateAnyLogin(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "IMPERSONATE ANY LOGIN", "IMPERSONATE ANY LOGIN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : IMPERSONATE
+        /// </summary>
+        public static AstGrantPermissionEnum Impersonate(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "IMPERSONATE", "IMPERSONATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : INSERT
+        /// </summary>
+        public static AstGrantPermissionEnum Insert(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "INSERT", "INSERT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : KILL DATABASE CONNECTION
+        /// </summary>
+        public static AstGrantPermissionEnum KillDatabaseConnection(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "KILL DATABASE CONNECTION", "KILL DATABASE CONNECTION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : RECEIVE
+        /// </summary>
+        public static AstGrantPermissionEnum Receive(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "RECEIVE", "RECEIVE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : REFERENCES
+        /// </summary>
+        public static AstGrantPermissionEnum References(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "REFERENCES", "REFERENCES");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SELECT ALL USER SECURABLES
+        /// </summary>
+        public static AstGrantPermissionEnum SelectAllUserSecurables(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SELECT ALL USER SECURABLES", "SELECT ALL USER SECURABLES");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SELECT
+        /// </summary>
+        public static AstGrantPermissionEnum Select(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SELECT", "SELECT");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SEND
+        /// </summary>
+        public static AstGrantPermissionEnum Send(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SEND", "SEND");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SHOWPLAN
+        /// </summary>
+        public static AstGrantPermissionEnum Showplan(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SHOWPLAN", "SHOWPLAN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SHUTDOWN
+        /// </summary>
+        public static AstGrantPermissionEnum Shutdown(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SHUTDOWN", "SHUTDOWN");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : SUBSCRIBE QUERY NOTIFICATIONS
+        /// </summary>
+        public static AstGrantPermissionEnum SubscribeQueryNotifications(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "SUBSCRIBE QUERY NOTIFICATIONS", "SUBSCRIBE QUERY NOTIFICATIONS");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : TAKE OWNERSHIP
+        /// </summary>
+        public static AstGrantPermissionEnum TakeOwnership(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "TAKE OWNERSHIP", "TAKE OWNERSHIP");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UNMASK
+        /// </summary>
+        public static AstGrantPermissionEnum Unmask(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "UNMASK", "UNMASK");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UNSAFE ASSEMBLY
+        /// </summary>
+        public static AstGrantPermissionEnum UnsafeAssembly(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "UNSAFE ASSEMBLY", "UNSAFE ASSEMBLY");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : UPDATE
+        /// </summary>
+        public static AstGrantPermissionEnum Update(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "UPDATE", "UPDATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY DATABASE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyDatabase(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW ANY DATABASE", "VIEW ANY DATABASE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyDefinition(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW ANY DEFINITION", "VIEW ANY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY COLUMN ENCRYPTION KEY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyColumnEncryptionKeyDefinition(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION", "VIEW ANY COLUMN ENCRYPTION KEY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW ANY COLUMN MASTER KEY DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewAnyColumnMasterKeyDefinition(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW ANY COLUMN MASTER KEY DEFINITION", "VIEW ANY COLUMN MASTER KEY DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW CHANGE TRACKING
+        /// </summary>
+        public static AstGrantPermissionEnum ViewChangeTracking(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW CHANGE TRACKING", "VIEW CHANGE TRACKING");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW DATABASE STATE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewDatabaseState(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW DATABASE STATE", "VIEW DATABASE STATE");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW DEFINITION
+        /// </summary>
+        public static AstGrantPermissionEnum ViewDefinition(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW DEFINITION", "VIEW DEFINITION");
+        }
+        
+        /// <summary>
+        /// grant_permission_enum : VIEW SERVER STATE
+        /// </summary>
+        public static AstGrantPermissionEnum ViewServerState(Position position)
+        {
+            return new AstGrantPermissionEnum(position, "VIEW SERVER STATE", "VIEW SERVER STATE");
+        }
+    }
+    
+    /// <summary>
+    /// transaction
+    /// 	 : TRAN
+    /// 	 | TRANSACTION
+    /// </summary>
+    public partial class AstTransaction : AstTerminalKeyword
+    {
+        
+        public AstTransaction(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTransaction(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// transaction : TRAN
+        /// </summary>
+        public static AstTransaction Tran()
+        {
+            return new AstTransaction(Position.Default, "TRAN", "TRAN");
+        }
+        
+        /// <summary>
+        /// transaction : TRANSACTION
+        /// </summary>
+        public static AstTransaction Transaction()
+        {
+            return new AstTransaction(Position.Default, "TRANSACTION", "TRANSACTION");
+        }
+        
+        /// <summary>
+        /// transaction : TRAN
+        /// </summary>
+        public static AstTransaction Tran(Position position)
+        {
+            return new AstTransaction(position, "TRAN", "TRAN");
+        }
+        
+        /// <summary>
+        /// transaction : TRANSACTION
+        /// </summary>
+        public static AstTransaction Transaction(Position position)
+        {
+            return new AstTransaction(position, "TRANSACTION", "TRANSACTION");
+        }
+    }
+    
+    /// <summary>
+    /// sensitive
+    /// 	 : SEMI_SENSITIVE
+    /// 	 | INSENSITIVE
+    /// </summary>
+    public partial class AstSensitive : AstTerminalKeyword
+    {
+        
+        public AstSensitive(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSensitive(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// sensitive : SEMI_SENSITIVE
+        /// </summary>
+        public static AstSensitive SemiSensitive()
+        {
+            return new AstSensitive(Position.Default, "SEMI_SENSITIVE", "SEMI_SENSITIVE");
+        }
+        
+        /// <summary>
+        /// sensitive : INSENSITIVE
+        /// </summary>
+        public static AstSensitive Insensitive()
+        {
+            return new AstSensitive(Position.Default, "INSENSITIVE", "INSENSITIVE");
+        }
+        
+        /// <summary>
+        /// sensitive : SEMI_SENSITIVE
+        /// </summary>
+        public static AstSensitive SemiSensitive(Position position)
+        {
+            return new AstSensitive(position, "SEMI_SENSITIVE", "SEMI_SENSITIVE");
+        }
+        
+        /// <summary>
+        /// sensitive : INSENSITIVE
+        /// </summary>
+        public static AstSensitive Insensitive(Position position)
+        {
+            return new AstSensitive(position, "INSENSITIVE", "INSENSITIVE");
+        }
+    }
+    
+    /// <summary>
+    /// plus_minus
+    /// 	 : PLUS
+    /// 	 | MINUS
+    /// </summary>
+    public partial class AstPlusMinus : AstTerminalKeyword
+    {
+        
+        public AstPlusMinus(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPlusMinus(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// plus_minus : '+'
+        /// </summary>
+        public static AstPlusMinus Plus()
+        {
+            return new AstPlusMinus(Position.Default, "PLUS", "+");
+        }
+        
+        /// <summary>
+        /// plus_minus : '-'
+        /// </summary>
+        public static AstPlusMinus Minus()
+        {
+            return new AstPlusMinus(Position.Default, "MINUS", "-");
+        }
+        
+        /// <summary>
+        /// plus_minus : '+'
+        /// </summary>
+        public static AstPlusMinus Plus(Position position)
+        {
+            return new AstPlusMinus(position, "PLUS", "+");
+        }
+        
+        /// <summary>
+        /// plus_minus : '-'
+        /// </summary>
+        public static AstPlusMinus Minus(Position position)
+        {
+            return new AstPlusMinus(position, "MINUS", "-");
+        }
+    }
+    
+    /// <summary>
+    /// first_next
+    /// 	 : FIRST
+    /// 	 | NEXT
+    /// </summary>
+    public partial class AstFirstNext : AstTerminalKeyword
+    {
+        
+        public AstFirstNext(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFirstNext(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// first_next : FIRST
+        /// </summary>
+        public static AstFirstNext First()
+        {
+            return new AstFirstNext(Position.Default, "FIRST", "FIRST");
+        }
+        
+        /// <summary>
+        /// first_next : NEXT
+        /// </summary>
+        public static AstFirstNext Next()
+        {
+            return new AstFirstNext(Position.Default, "NEXT", "NEXT");
+        }
+        
+        /// <summary>
+        /// first_next : FIRST
+        /// </summary>
+        public static AstFirstNext First(Position position)
+        {
+            return new AstFirstNext(position, "FIRST", "FIRST");
+        }
+        
+        /// <summary>
+        /// first_next : NEXT
+        /// </summary>
+        public static AstFirstNext Next(Position position)
+        {
+            return new AstFirstNext(position, "NEXT", "NEXT");
+        }
+    }
+    
+    /// <summary>
+    /// absent_xsinil
+    /// 	 : ABSENT
+    /// 	 | XSINIL
+    /// </summary>
+    public partial class AstAbsentXsinil : AstTerminalKeyword
+    {
+        
+        public AstAbsentXsinil(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAbsentXsinil(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// absent_xsinil : ABSENT
+        /// </summary>
+        public static AstAbsentXsinil Absent()
+        {
+            return new AstAbsentXsinil(Position.Default, "ABSENT", "ABSENT");
+        }
+        
+        /// <summary>
+        /// absent_xsinil : XSINIL
+        /// </summary>
+        public static AstAbsentXsinil Xsinil()
+        {
+            return new AstAbsentXsinil(Position.Default, "XSINIL", "XSINIL");
+        }
+        
+        /// <summary>
+        /// absent_xsinil : ABSENT
+        /// </summary>
+        public static AstAbsentXsinil Absent(Position position)
+        {
+            return new AstAbsentXsinil(position, "ABSENT", "ABSENT");
+        }
+        
+        /// <summary>
+        /// absent_xsinil : XSINIL
+        /// </summary>
+        public static AstAbsentXsinil Xsinil(Position position)
+        {
+            return new AstAbsentXsinil(position, "XSINIL", "XSINIL");
+        }
+    }
+    
+    /// <summary>
+    /// auto_path
+    /// 	 : AUTO
+    /// 	 | PATH
+    /// </summary>
+    public partial class AstAutoPath : AstTerminalKeyword
+    {
+        
+        public AstAutoPath(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAutoPath(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// auto_path : AUTO
+        /// </summary>
+        public static AstAutoPath Auto()
+        {
+            return new AstAutoPath(Position.Default, "AUTO", "AUTO");
+        }
+        
+        /// <summary>
+        /// auto_path : PATH
+        /// </summary>
+        public static AstAutoPath Path()
+        {
+            return new AstAutoPath(Position.Default, "PATH", "PATH");
+        }
+        
+        /// <summary>
+        /// auto_path : AUTO
+        /// </summary>
+        public static AstAutoPath Auto(Position position)
+        {
+            return new AstAutoPath(position, "AUTO", "AUTO");
+        }
+        
+        /// <summary>
+        /// auto_path : PATH
+        /// </summary>
+        public static AstAutoPath Path(Position position)
+        {
+            return new AstAutoPath(position, "PATH", "PATH");
+        }
+    }
+    
+    /// <summary>
+    /// update_option_enum
+    /// 	 : (HASH | ORDER)  GROUP
+    /// 	 | (MERGE | HASH | CONCAT)  UNION
+    /// 	 | (LOOP | MERGE | HASH)  JOIN
+    /// 	 | EXPAND  VIEWS
+    /// 	 | FORCE  ORDER
+    /// 	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+    /// 	 | KEEP  PLAN
+    /// 	 | KEEPFIXED  PLAN
+    /// 	 | OPTIMIZE  FOR  UNKNOWN
+    /// 	 | PARAMETERIZATION  (SIMPLE | FORCED)
+    /// 	 | RECOMPILE
+    /// 	 | ROBUST  PLAN
+    /// </summary>
+    public partial class AstUpdateOptionEnum : AstTerminalKeyword
+    {
+        
+        public AstUpdateOptionEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUpdateOptionEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH GROUP
+        /// </summary>
+        public static AstUpdateOptionEnum HashGroup()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "HASH GROUP", "HASH GROUP");
+        }
+        
+        /// <summary>
+        /// update_option_enum : ORDER GROUP
+        /// </summary>
+        public static AstUpdateOptionEnum OrderGroup()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "ORDER GROUP", "ORDER GROUP");
+        }
+        
+        /// <summary>
+        /// update_option_enum : MERGE UNION
+        /// </summary>
+        public static AstUpdateOptionEnum MergeUnion()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "MERGE UNION", "MERGE UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH UNION
+        /// </summary>
+        public static AstUpdateOptionEnum HashUnion()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "HASH UNION", "HASH UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : CONCAT UNION
+        /// </summary>
+        public static AstUpdateOptionEnum ConcatUnion()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "CONCAT UNION", "CONCAT UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : LOOP JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum LoopJoin()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "LOOP JOIN", "LOOP JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : MERGE JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum MergeJoin()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "MERGE JOIN", "MERGE JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum HashJoin()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "HASH JOIN", "HASH JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : EXPAND VIEWS
+        /// </summary>
+        public static AstUpdateOptionEnum ExpandViews()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "EXPAND VIEWS", "EXPAND VIEWS");
+        }
+        
+        /// <summary>
+        /// update_option_enum : FORCE ORDER
+        /// </summary>
+        public static AstUpdateOptionEnum ForceOrder()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "FORCE ORDER", "FORCE ORDER");
+        }
+        
+        /// <summary>
+        /// update_option_enum : IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// </summary>
+        public static AstUpdateOptionEnum IgnoreNonclusteredColumnstoreIndex()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX", "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+        }
+        
+        /// <summary>
+        /// update_option_enum : KEEP PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum KeepPlan()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "KEEP PLAN", "KEEP PLAN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : KEEPFIXED PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum KeepfixedPlan()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "KEEPFIXED PLAN", "KEEPFIXED PLAN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : OPTIMIZE FOR UNKNOWN
+        /// </summary>
+        public static AstUpdateOptionEnum OptimizeForUnknown()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "OPTIMIZE FOR UNKNOWN", "OPTIMIZE FOR UNKNOWN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : PARAMETERIZATION SIMPLE
+        /// </summary>
+        public static AstUpdateOptionEnum ParameterizationSimple()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "PARAMETERIZATION SIMPLE", "PARAMETERIZATION SIMPLE");
+        }
+        
+        /// <summary>
+        /// update_option_enum : PARAMETERIZATION FORCED
+        /// </summary>
+        public static AstUpdateOptionEnum ParameterizationForced()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "PARAMETERIZATION FORCED", "PARAMETERIZATION FORCED");
+        }
+        
+        /// <summary>
+        /// update_option_enum : RECOMPILE
+        /// </summary>
+        public static AstUpdateOptionEnum Recompile()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "RECOMPILE", "RECOMPILE");
+        }
+        
+        /// <summary>
+        /// update_option_enum : ROBUST PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum RobustPlan()
+        {
+            return new AstUpdateOptionEnum(Position.Default, "ROBUST PLAN", "ROBUST PLAN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH GROUP
+        /// </summary>
+        public static AstUpdateOptionEnum HashGroup(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "HASH GROUP", "HASH GROUP");
+        }
+        
+        /// <summary>
+        /// update_option_enum : ORDER GROUP
+        /// </summary>
+        public static AstUpdateOptionEnum OrderGroup(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "ORDER GROUP", "ORDER GROUP");
+        }
+        
+        /// <summary>
+        /// update_option_enum : MERGE UNION
+        /// </summary>
+        public static AstUpdateOptionEnum MergeUnion(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "MERGE UNION", "MERGE UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH UNION
+        /// </summary>
+        public static AstUpdateOptionEnum HashUnion(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "HASH UNION", "HASH UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : CONCAT UNION
+        /// </summary>
+        public static AstUpdateOptionEnum ConcatUnion(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "CONCAT UNION", "CONCAT UNION");
+        }
+        
+        /// <summary>
+        /// update_option_enum : LOOP JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum LoopJoin(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "LOOP JOIN", "LOOP JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : MERGE JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum MergeJoin(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "MERGE JOIN", "MERGE JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : HASH JOIN
+        /// </summary>
+        public static AstUpdateOptionEnum HashJoin(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "HASH JOIN", "HASH JOIN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : EXPAND VIEWS
+        /// </summary>
+        public static AstUpdateOptionEnum ExpandViews(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "EXPAND VIEWS", "EXPAND VIEWS");
+        }
+        
+        /// <summary>
+        /// update_option_enum : FORCE ORDER
+        /// </summary>
+        public static AstUpdateOptionEnum ForceOrder(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "FORCE ORDER", "FORCE ORDER");
+        }
+        
+        /// <summary>
+        /// update_option_enum : IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// </summary>
+        public static AstUpdateOptionEnum IgnoreNonclusteredColumnstoreIndex(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX", "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+        }
+        
+        /// <summary>
+        /// update_option_enum : KEEP PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum KeepPlan(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "KEEP PLAN", "KEEP PLAN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : KEEPFIXED PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum KeepfixedPlan(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "KEEPFIXED PLAN", "KEEPFIXED PLAN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : OPTIMIZE FOR UNKNOWN
+        /// </summary>
+        public static AstUpdateOptionEnum OptimizeForUnknown(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "OPTIMIZE FOR UNKNOWN", "OPTIMIZE FOR UNKNOWN");
+        }
+        
+        /// <summary>
+        /// update_option_enum : PARAMETERIZATION SIMPLE
+        /// </summary>
+        public static AstUpdateOptionEnum ParameterizationSimple(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "PARAMETERIZATION SIMPLE", "PARAMETERIZATION SIMPLE");
+        }
+        
+        /// <summary>
+        /// update_option_enum : PARAMETERIZATION FORCED
+        /// </summary>
+        public static AstUpdateOptionEnum ParameterizationForced(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "PARAMETERIZATION FORCED", "PARAMETERIZATION FORCED");
+        }
+        
+        /// <summary>
+        /// update_option_enum : RECOMPILE
+        /// </summary>
+        public static AstUpdateOptionEnum Recompile(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "RECOMPILE", "RECOMPILE");
+        }
+        
+        /// <summary>
+        /// update_option_enum : ROBUST PLAN
+        /// </summary>
+        public static AstUpdateOptionEnum RobustPlan(Position position)
+        {
+            return new AstUpdateOptionEnum(position, "ROBUST PLAN", "ROBUST PLAN");
+        }
+    }
+    
+    /// <summary>
+    /// join_type
+    /// 	 : LEFT
+    /// 	 | RIGHT
+    /// 	 | FULL
+    /// </summary>
+    public partial class AstJoinType : AstTerminalKeyword
+    {
+        
+        public AstJoinType(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJoinType(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// join_type : LEFT
+        /// </summary>
+        public static AstJoinType Left()
+        {
+            return new AstJoinType(Position.Default, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// join_type : RIGHT
+        /// </summary>
+        public static AstJoinType Right()
+        {
+            return new AstJoinType(Position.Default, "RIGHT", "RIGHT");
+        }
+        
+        /// <summary>
+        /// join_type : FULL
+        /// </summary>
+        public static AstJoinType Full()
+        {
+            return new AstJoinType(Position.Default, "FULL", "FULL");
+        }
+        
+        /// <summary>
+        /// join_type : LEFT
+        /// </summary>
+        public static AstJoinType Left(Position position)
+        {
+            return new AstJoinType(position, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// join_type : RIGHT
+        /// </summary>
+        public static AstJoinType Right(Position position)
+        {
+            return new AstJoinType(position, "RIGHT", "RIGHT");
+        }
+        
+        /// <summary>
+        /// join_type : FULL
+        /// </summary>
+        public static AstJoinType Full(Position position)
+        {
+            return new AstJoinType(position, "FULL", "FULL");
+        }
+    }
+    
+    /// <summary>
+    /// join_hint
+    /// 	 : LOOP
+    /// 	 | HASH
+    /// 	 | MERGE
+    /// 	 | REMOTE
+    /// </summary>
+    public partial class AstJoinHint : AstTerminalKeyword
+    {
+        
+        public AstJoinHint(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJoinHint(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// join_hint : LOOP
+        /// </summary>
+        public static AstJoinHint Loop()
+        {
+            return new AstJoinHint(Position.Default, "LOOP", "LOOP");
+        }
+        
+        /// <summary>
+        /// join_hint : HASH
+        /// </summary>
+        public static AstJoinHint Hash()
+        {
+            return new AstJoinHint(Position.Default, "HASH", "HASH");
+        }
+        
+        /// <summary>
+        /// join_hint : MERGE
+        /// </summary>
+        public static AstJoinHint Merge()
+        {
+            return new AstJoinHint(Position.Default, "MERGE", "MERGE");
+        }
+        
+        /// <summary>
+        /// join_hint : REMOTE
+        /// </summary>
+        public static AstJoinHint Remote()
+        {
+            return new AstJoinHint(Position.Default, "REMOTE", "REMOTE");
+        }
+        
+        /// <summary>
+        /// join_hint : LOOP
+        /// </summary>
+        public static AstJoinHint Loop(Position position)
+        {
+            return new AstJoinHint(position, "LOOP", "LOOP");
+        }
+        
+        /// <summary>
+        /// join_hint : HASH
+        /// </summary>
+        public static AstJoinHint Hash(Position position)
+        {
+            return new AstJoinHint(position, "HASH", "HASH");
+        }
+        
+        /// <summary>
+        /// join_hint : MERGE
+        /// </summary>
+        public static AstJoinHint Merge(Position position)
+        {
+            return new AstJoinHint(position, "MERGE", "MERGE");
+        }
+        
+        /// <summary>
+        /// join_hint : REMOTE
+        /// </summary>
+        public static AstJoinHint Remote(Position position)
+        {
+            return new AstJoinHint(position, "REMOTE", "REMOTE");
+        }
+    }
+    
+    /// <summary>
+    /// apply_style
+    /// 	 : CROSS
+    /// 	 | OUTER
+    /// </summary>
+    public partial class AstApplyStyle : AstTerminalKeyword
+    {
+        
+        public AstApplyStyle(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstApplyStyle(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// apply_style : CROSS
+        /// </summary>
+        public static AstApplyStyle Cross()
+        {
+            return new AstApplyStyle(Position.Default, "CROSS", "CROSS");
+        }
+        
+        /// <summary>
+        /// apply_style : OUTER
+        /// </summary>
+        public static AstApplyStyle Outer()
+        {
+            return new AstApplyStyle(Position.Default, "OUTER", "OUTER");
+        }
+        
+        /// <summary>
+        /// apply_style : CROSS
+        /// </summary>
+        public static AstApplyStyle Cross(Position position)
+        {
+            return new AstApplyStyle(position, "CROSS", "CROSS");
+        }
+        
+        /// <summary>
+        /// apply_style : OUTER
+        /// </summary>
+        public static AstApplyStyle Outer(Position position)
+        {
+            return new AstApplyStyle(position, "OUTER", "OUTER");
+        }
+    }
+    
+    /// <summary>
+    /// containstable_freetexttable
+    /// 	 : CONTAINSTABLE
+    /// 	 | FREETEXTTABLE
+    /// </summary>
+    public partial class AstContainstableFreetexttable : AstTerminalKeyword
+    {
+        
+        public AstContainstableFreetexttable(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstContainstableFreetexttable(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// containstable_freetexttable : CONTAINSTABLE
+        /// </summary>
+        public static AstContainstableFreetexttable Containstable()
+        {
+            return new AstContainstableFreetexttable(Position.Default, "CONTAINSTABLE", "CONTAINSTABLE");
+        }
+        
+        /// <summary>
+        /// containstable_freetexttable : FREETEXTTABLE
+        /// </summary>
+        public static AstContainstableFreetexttable Freetexttable()
+        {
+            return new AstContainstableFreetexttable(Position.Default, "FREETEXTTABLE", "FREETEXTTABLE");
+        }
+        
+        /// <summary>
+        /// containstable_freetexttable : CONTAINSTABLE
+        /// </summary>
+        public static AstContainstableFreetexttable Containstable(Position position)
+        {
+            return new AstContainstableFreetexttable(position, "CONTAINSTABLE", "CONTAINSTABLE");
+        }
+        
+        /// <summary>
+        /// containstable_freetexttable : FREETEXTTABLE
+        /// </summary>
+        public static AstContainstableFreetexttable Freetexttable(Position position)
+        {
+            return new AstContainstableFreetexttable(position, "FREETEXTTABLE", "FREETEXTTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// semantic_table
+    /// 	 : SEMANTICSIMILARITYTABLE
+    /// 	 | SEMANTICKEYPHRASETABLE
+    /// </summary>
+    public partial class AstSemanticTable : AstTerminalKeyword
+    {
+        
+        public AstSemanticTable(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSemanticTable(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// semantic_table : SEMANTICSIMILARITYTABLE
+        /// </summary>
+        public static AstSemanticTable Semanticsimilaritytable()
+        {
+            return new AstSemanticTable(Position.Default, "SEMANTICSIMILARITYTABLE", "SEMANTICSIMILARITYTABLE");
+        }
+        
+        /// <summary>
+        /// semantic_table : SEMANTICKEYPHRASETABLE
+        /// </summary>
+        public static AstSemanticTable Semantickeyphrasetable()
+        {
+            return new AstSemanticTable(Position.Default, "SEMANTICKEYPHRASETABLE", "SEMANTICKEYPHRASETABLE");
+        }
+        
+        /// <summary>
+        /// semantic_table : SEMANTICSIMILARITYTABLE
+        /// </summary>
+        public static AstSemanticTable Semanticsimilaritytable(Position position)
+        {
+            return new AstSemanticTable(position, "SEMANTICSIMILARITYTABLE", "SEMANTICSIMILARITYTABLE");
+        }
+        
+        /// <summary>
+        /// semantic_table : SEMANTICKEYPHRASETABLE
+        /// </summary>
+        public static AstSemanticTable Semantickeyphrasetable(Position position)
+        {
+            return new AstSemanticTable(position, "SEMANTICKEYPHRASETABLE", "SEMANTICKEYPHRASETABLE");
+        }
+    }
+    
+    /// <summary>
+    /// ranking_windowed
+    /// 	 : RANK
+    /// 	 | DENSE_RANK
+    /// 	 | ROW_NUMBER
+    /// </summary>
+    public partial class AstRankingWindowed : AstTerminalKeyword
+    {
+        
+        public AstRankingWindowed(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRankingWindowed(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ranking_windowed : RANK
+        /// </summary>
+        public static AstRankingWindowed Rank()
+        {
+            return new AstRankingWindowed(Position.Default, "RANK", "RANK");
+        }
+        
+        /// <summary>
+        /// ranking_windowed : DENSE_RANK
+        /// </summary>
+        public static AstRankingWindowed DenseRank()
+        {
+            return new AstRankingWindowed(Position.Default, "DENSE_RANK", "DENSE_RANK");
+        }
+        
+        /// <summary>
+        /// ranking_windowed : ROW_NUMBER
+        /// </summary>
+        public static AstRankingWindowed RowNumber()
+        {
+            return new AstRankingWindowed(Position.Default, "ROW_NUMBER", "ROW_NUMBER");
+        }
+        
+        /// <summary>
+        /// ranking_windowed : RANK
+        /// </summary>
+        public static AstRankingWindowed Rank(Position position)
+        {
+            return new AstRankingWindowed(position, "RANK", "RANK");
+        }
+        
+        /// <summary>
+        /// ranking_windowed : DENSE_RANK
+        /// </summary>
+        public static AstRankingWindowed DenseRank(Position position)
+        {
+            return new AstRankingWindowed(position, "DENSE_RANK", "DENSE_RANK");
+        }
+        
+        /// <summary>
+        /// ranking_windowed : ROW_NUMBER
+        /// </summary>
+        public static AstRankingWindowed RowNumber(Position position)
+        {
+            return new AstRankingWindowed(position, "ROW_NUMBER", "ROW_NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// agg_function
+    /// 	 : AVG
+    /// 	 | MAX
+    /// 	 | MIN
+    /// 	 | SUM
+    /// 	 | STDEV
+    /// 	 | STDEVP
+    /// 	 | VAR
+    /// 	 | VARP
+    /// </summary>
+    public partial class AstAggFunction : AstTerminalKeyword
+    {
+        
+        public AstAggFunction(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAggFunction(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// agg_function : AVG
+        /// </summary>
+        public static AstAggFunction Avg()
+        {
+            return new AstAggFunction(Position.Default, "AVG", "AVG");
+        }
+        
+        /// <summary>
+        /// agg_function : MAX
+        /// </summary>
+        public static AstAggFunction Max()
+        {
+            return new AstAggFunction(Position.Default, "MAX", "MAX");
+        }
+        
+        /// <summary>
+        /// agg_function : MIN
+        /// </summary>
+        public static AstAggFunction Min()
+        {
+            return new AstAggFunction(Position.Default, "MIN", "MIN");
+        }
+        
+        /// <summary>
+        /// agg_function : SUM
+        /// </summary>
+        public static AstAggFunction Sum()
+        {
+            return new AstAggFunction(Position.Default, "SUM", "SUM");
+        }
+        
+        /// <summary>
+        /// agg_function : STDEV
+        /// </summary>
+        public static AstAggFunction Stdev()
+        {
+            return new AstAggFunction(Position.Default, "STDEV", "STDEV");
+        }
+        
+        /// <summary>
+        /// agg_function : STDEVP
+        /// </summary>
+        public static AstAggFunction Stdevp()
+        {
+            return new AstAggFunction(Position.Default, "STDEVP", "STDEVP");
+        }
+        
+        /// <summary>
+        /// agg_function : VAR
+        /// </summary>
+        public static AstAggFunction Var()
+        {
+            return new AstAggFunction(Position.Default, "VAR", "VAR");
+        }
+        
+        /// <summary>
+        /// agg_function : VARP
+        /// </summary>
+        public static AstAggFunction Varp()
+        {
+            return new AstAggFunction(Position.Default, "VARP", "VARP");
+        }
+        
+        /// <summary>
+        /// agg_function : AVG
+        /// </summary>
+        public static AstAggFunction Avg(Position position)
+        {
+            return new AstAggFunction(position, "AVG", "AVG");
+        }
+        
+        /// <summary>
+        /// agg_function : MAX
+        /// </summary>
+        public static AstAggFunction Max(Position position)
+        {
+            return new AstAggFunction(position, "MAX", "MAX");
+        }
+        
+        /// <summary>
+        /// agg_function : MIN
+        /// </summary>
+        public static AstAggFunction Min(Position position)
+        {
+            return new AstAggFunction(position, "MIN", "MIN");
+        }
+        
+        /// <summary>
+        /// agg_function : SUM
+        /// </summary>
+        public static AstAggFunction Sum(Position position)
+        {
+            return new AstAggFunction(position, "SUM", "SUM");
+        }
+        
+        /// <summary>
+        /// agg_function : STDEV
+        /// </summary>
+        public static AstAggFunction Stdev(Position position)
+        {
+            return new AstAggFunction(position, "STDEV", "STDEV");
+        }
+        
+        /// <summary>
+        /// agg_function : STDEVP
+        /// </summary>
+        public static AstAggFunction Stdevp(Position position)
+        {
+            return new AstAggFunction(position, "STDEVP", "STDEVP");
+        }
+        
+        /// <summary>
+        /// agg_function : VAR
+        /// </summary>
+        public static AstAggFunction Var(Position position)
+        {
+            return new AstAggFunction(position, "VAR", "VAR");
+        }
+        
+        /// <summary>
+        /// agg_function : VARP
+        /// </summary>
+        public static AstAggFunction Varp(Position position)
+        {
+            return new AstAggFunction(position, "VARP", "VARP");
+        }
+    }
+    
+    /// <summary>
+    /// count_count_big
+    /// 	 : COUNT
+    /// 	 | COUNT_BIG
+    /// </summary>
+    public partial class AstCountCountBig : AstTerminalKeyword
+    {
+        
+        public AstCountCountBig(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCountCountBig(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// count_count_big : COUNT
+        /// </summary>
+        public static AstCountCountBig Count()
+        {
+            return new AstCountCountBig(Position.Default, "COUNT", "COUNT");
+        }
+        
+        /// <summary>
+        /// count_count_big : COUNT_BIG
+        /// </summary>
+        public static AstCountCountBig CountBig()
+        {
+            return new AstCountCountBig(Position.Default, "COUNT_BIG", "COUNT_BIG");
+        }
+        
+        /// <summary>
+        /// count_count_big : COUNT
+        /// </summary>
+        public static AstCountCountBig Count(Position position)
+        {
+            return new AstCountCountBig(position, "COUNT", "COUNT");
+        }
+        
+        /// <summary>
+        /// count_count_big : COUNT_BIG
+        /// </summary>
+        public static AstCountCountBig CountBig(Position position)
+        {
+            return new AstCountCountBig(position, "COUNT_BIG", "COUNT_BIG");
+        }
+    }
+    
+    /// <summary>
+    /// percentil
+    /// 	 : PERCENTILE_CONT
+    /// 	 | PERCENTILE_DISC
+    /// </summary>
+    public partial class AstPercentil : AstTerminalKeyword
+    {
+        
+        public AstPercentil(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPercentil(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// percentil : PERCENTILE_CONT
+        /// </summary>
+        public static AstPercentil PercentileCont()
+        {
+            return new AstPercentil(Position.Default, "PERCENTILE_CONT", "PERCENTILE_CONT");
+        }
+        
+        /// <summary>
+        /// percentil : PERCENTILE_DISC
+        /// </summary>
+        public static AstPercentil PercentileDisc()
+        {
+            return new AstPercentil(Position.Default, "PERCENTILE_DISC", "PERCENTILE_DISC");
+        }
+        
+        /// <summary>
+        /// percentil : PERCENTILE_CONT
+        /// </summary>
+        public static AstPercentil PercentileCont(Position position)
+        {
+            return new AstPercentil(position, "PERCENTILE_CONT", "PERCENTILE_CONT");
+        }
+        
+        /// <summary>
+        /// percentil : PERCENTILE_DISC
+        /// </summary>
+        public static AstPercentil PercentileDisc(Position position)
+        {
+            return new AstPercentil(position, "PERCENTILE_DISC", "PERCENTILE_DISC");
+        }
+    }
+    
+    /// <summary>
+    /// cume_percent
+    /// 	 : CUME_DIST
+    /// 	 | PERCENT_RANK
+    /// </summary>
+    public partial class AstCumePercent : AstTerminalKeyword
+    {
+        
+        public AstCumePercent(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCumePercent(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// cume_percent : CUME_DIST
+        /// </summary>
+        public static AstCumePercent CumeDist()
+        {
+            return new AstCumePercent(Position.Default, "CUME_DIST", "CUME_DIST");
+        }
+        
+        /// <summary>
+        /// cume_percent : PERCENT_RANK
+        /// </summary>
+        public static AstCumePercent PercentRank()
+        {
+            return new AstCumePercent(Position.Default, "PERCENT_RANK", "PERCENT_RANK");
+        }
+        
+        /// <summary>
+        /// cume_percent : CUME_DIST
+        /// </summary>
+        public static AstCumePercent CumeDist(Position position)
+        {
+            return new AstCumePercent(position, "CUME_DIST", "CUME_DIST");
+        }
+        
+        /// <summary>
+        /// cume_percent : PERCENT_RANK
+        /// </summary>
+        public static AstCumePercent PercentRank(Position position)
+        {
+            return new AstCumePercent(position, "PERCENT_RANK", "PERCENT_RANK");
+        }
+    }
+    
+    /// <summary>
+    /// first_last_value
+    /// 	 : FIRST_VALUE
+    /// 	 | LAST_VALUE
+    /// </summary>
+    public partial class AstFirstLastValue : AstTerminalKeyword
+    {
+        
+        public AstFirstLastValue(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFirstLastValue(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// first_last_value : FIRST_VALUE
+        /// </summary>
+        public static AstFirstLastValue FirstValue()
+        {
+            return new AstFirstLastValue(Position.Default, "FIRST_VALUE", "FIRST_VALUE");
+        }
+        
+        /// <summary>
+        /// first_last_value : LAST_VALUE
+        /// </summary>
+        public static AstFirstLastValue LastValue()
+        {
+            return new AstFirstLastValue(Position.Default, "LAST_VALUE", "LAST_VALUE");
+        }
+        
+        /// <summary>
+        /// first_last_value : FIRST_VALUE
+        /// </summary>
+        public static AstFirstLastValue FirstValue(Position position)
+        {
+            return new AstFirstLastValue(position, "FIRST_VALUE", "FIRST_VALUE");
+        }
+        
+        /// <summary>
+        /// first_last_value : LAST_VALUE
+        /// </summary>
+        public static AstFirstLastValue LastValue(Position position)
+        {
+            return new AstFirstLastValue(position, "LAST_VALUE", "LAST_VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// lag_lead
+    /// 	 : LAG
+    /// 	 | LEAD
+    /// </summary>
+    public partial class AstLagLead : AstTerminalKeyword
+    {
+        
+        public AstLagLead(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLagLead(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// lag_lead : LAG
+        /// </summary>
+        public static AstLagLead Lag()
+        {
+            return new AstLagLead(Position.Default, "LAG", "LAG");
+        }
+        
+        /// <summary>
+        /// lag_lead : LEAD
+        /// </summary>
+        public static AstLagLead Lead()
+        {
+            return new AstLagLead(Position.Default, "LEAD", "LEAD");
+        }
+        
+        /// <summary>
+        /// lag_lead : LAG
+        /// </summary>
+        public static AstLagLead Lag(Position position)
+        {
+            return new AstLagLead(position, "LAG", "LAG");
+        }
+        
+        /// <summary>
+        /// lag_lead : LEAD
+        /// </summary>
+        public static AstLagLead Lead(Position position)
+        {
+            return new AstLagLead(position, "LEAD", "LEAD");
+        }
+    }
+    
+    /// <summary>
+    /// row_range
+    /// 	 : ROWS
+    /// 	 | RANGE
+    /// </summary>
+    public partial class AstRowRange : AstTerminalKeyword
+    {
+        
+        public AstRowRange(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRowRange(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// row_range : ROWS
+        /// </summary>
+        public static AstRowRange Rows()
+        {
+            return new AstRowRange(Position.Default, "ROWS", "ROWS");
+        }
+        
+        /// <summary>
+        /// row_range : RANGE
+        /// </summary>
+        public static AstRowRange Range()
+        {
+            return new AstRowRange(Position.Default, "RANGE", "RANGE");
+        }
+        
+        /// <summary>
+        /// row_range : ROWS
+        /// </summary>
+        public static AstRowRange Rows(Position position)
+        {
+            return new AstRowRange(position, "ROWS", "ROWS");
+        }
+        
+        /// <summary>
+        /// row_range : RANGE
+        /// </summary>
+        public static AstRowRange Range(Position position)
+        {
+            return new AstRowRange(position, "RANGE", "RANGE");
+        }
+    }
+    
+    /// <summary>
+    /// off_read_only_full
+    /// 	 : OFF
+    /// 	 | READ_ONLY
+    /// 	 | FULL
+    /// </summary>
+    public partial class AstOffReadOnlyFull : AstTerminalKeyword
+    {
+        
+        public AstOffReadOnlyFull(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOffReadOnlyFull(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// off_read_only_full : OFF
+        /// </summary>
+        public static AstOffReadOnlyFull Off()
+        {
+            return new AstOffReadOnlyFull(Position.Default, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// off_read_only_full : READ_ONLY
+        /// </summary>
+        public static AstOffReadOnlyFull ReadOnly()
+        {
+            return new AstOffReadOnlyFull(Position.Default, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// off_read_only_full : FULL
+        /// </summary>
+        public static AstOffReadOnlyFull Full()
+        {
+            return new AstOffReadOnlyFull(Position.Default, "FULL", "FULL");
+        }
+        
+        /// <summary>
+        /// off_read_only_full : OFF
+        /// </summary>
+        public static AstOffReadOnlyFull Off(Position position)
+        {
+            return new AstOffReadOnlyFull(position, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// off_read_only_full : READ_ONLY
+        /// </summary>
+        public static AstOffReadOnlyFull ReadOnly(Position position)
+        {
+            return new AstOffReadOnlyFull(position, "READ_ONLY", "READ_ONLY");
+        }
+        
+        /// <summary>
+        /// off_read_only_full : FULL
+        /// </summary>
+        public static AstOffReadOnlyFull Full(Position position)
+        {
+            return new AstOffReadOnlyFull(position, "FULL", "FULL");
+        }
+    }
+    
+    /// <summary>
+    /// asc_desc
+    /// 	 : ASC
+    /// 	 | DESC
+    /// </summary>
+    public partial class AstAscDesc : AstTerminalKeyword
+    {
+        
+        public AstAscDesc(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAscDesc(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// asc_desc : ASC
+        /// </summary>
+        public static AstAscDesc Asc()
+        {
+            return new AstAscDesc(Position.Default, "ASC", "ASC");
+        }
+        
+        /// <summary>
+        /// asc_desc : DESC
+        /// </summary>
+        public static AstAscDesc Desc()
+        {
+            return new AstAscDesc(Position.Default, "DESC", "DESC");
+        }
+        
+        /// <summary>
+        /// asc_desc : ASC
+        /// </summary>
+        public static AstAscDesc Asc(Position position)
+        {
+            return new AstAscDesc(position, "ASC", "ASC");
+        }
+        
+        /// <summary>
+        /// asc_desc : DESC
+        /// </summary>
+        public static AstAscDesc Desc(Position position)
+        {
+            return new AstAscDesc(position, "DESC", "DESC");
+        }
+    }
+    
+    /// <summary>
+    /// on_off
+    /// 	 : ON
+    /// 	 | OFF
+    /// </summary>
+    public partial class AstOnOff : AstTerminalKeyword
+    {
+        
+        public AstOnOff(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOnOff(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// on_off : ON
+        /// </summary>
+        public static AstOnOff On()
+        {
+            return new AstOnOff(Position.Default, "ON", "ON");
+        }
+        
+        /// <summary>
+        /// on_off : OFF
+        /// </summary>
+        public static AstOnOff Off()
+        {
+            return new AstOnOff(Position.Default, "OFF", "OFF");
+        }
+        
+        /// <summary>
+        /// on_off : ON
+        /// </summary>
+        public static AstOnOff On(Position position)
+        {
+            return new AstOnOff(position, "ON", "ON");
+        }
+        
+        /// <summary>
+        /// on_off : OFF
+        /// </summary>
+        public static AstOnOff Off(Position position)
+        {
+            return new AstOnOff(position, "OFF", "OFF");
+        }
+    }
+    
+    /// <summary>
+    /// clustered
+    /// 	 : CLUSTERED
+    /// 	 | NONCLUSTERED
+    /// </summary>
+    public partial class AstClustered : AstTerminalKeyword
+    {
+        
+        public AstClustered(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstClustered(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// clustered : CLUSTERED
+        /// </summary>
+        public static AstClustered Clustered()
+        {
+            return new AstClustered(Position.Default, "CLUSTERED", "CLUSTERED");
+        }
+        
+        /// <summary>
+        /// clustered : NONCLUSTERED
+        /// </summary>
+        public static AstClustered Nonclustered()
+        {
+            return new AstClustered(Position.Default, "NONCLUSTERED", "NONCLUSTERED");
+        }
+        
+        /// <summary>
+        /// clustered : CLUSTERED
+        /// </summary>
+        public static AstClustered Clustered(Position position)
+        {
+            return new AstClustered(position, "CLUSTERED", "CLUSTERED");
+        }
+        
+        /// <summary>
+        /// clustered : NONCLUSTERED
+        /// </summary>
+        public static AstClustered Nonclustered(Position position)
+        {
+            return new AstClustered(position, "NONCLUSTERED", "NONCLUSTERED");
+        }
+    }
+    
+    /// <summary>
+    /// scalar_function_name_enum
+    /// 	 : RIGHT
+    /// 	 | LEFT
+    /// 	 | BINARY_CHECKSUM
+    /// 	 | CHECKSUM
+    /// </summary>
+    public partial class AstScalarFunctionNameEnum : AstTerminalKeyword
+    {
+        
+        public AstScalarFunctionNameEnum(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstScalarFunctionNameEnum(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : RIGHT
+        /// </summary>
+        public static AstScalarFunctionNameEnum Right()
+        {
+            return new AstScalarFunctionNameEnum(Position.Default, "RIGHT", "RIGHT");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : LEFT
+        /// </summary>
+        public static AstScalarFunctionNameEnum Left()
+        {
+            return new AstScalarFunctionNameEnum(Position.Default, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : BINARY_CHECKSUM
+        /// </summary>
+        public static AstScalarFunctionNameEnum BinaryChecksum()
+        {
+            return new AstScalarFunctionNameEnum(Position.Default, "BINARY_CHECKSUM", "BINARY_CHECKSUM");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : CHECKSUM
+        /// </summary>
+        public static AstScalarFunctionNameEnum Checksum()
+        {
+            return new AstScalarFunctionNameEnum(Position.Default, "CHECKSUM", "CHECKSUM");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : RIGHT
+        /// </summary>
+        public static AstScalarFunctionNameEnum Right(Position position)
+        {
+            return new AstScalarFunctionNameEnum(position, "RIGHT", "RIGHT");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : LEFT
+        /// </summary>
+        public static AstScalarFunctionNameEnum Left(Position position)
+        {
+            return new AstScalarFunctionNameEnum(position, "LEFT", "LEFT");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : BINARY_CHECKSUM
+        /// </summary>
+        public static AstScalarFunctionNameEnum BinaryChecksum(Position position)
+        {
+            return new AstScalarFunctionNameEnum(position, "BINARY_CHECKSUM", "BINARY_CHECKSUM");
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum : CHECKSUM
+        /// </summary>
+        public static AstScalarFunctionNameEnum Checksum(Position position)
+        {
+            return new AstScalarFunctionNameEnum(position, "CHECKSUM", "CHECKSUM");
+        }
+    }
+    
+    /// <summary>
+    /// relayed_conversation
+    /// 	 : RELATED_CONVERSATION
+    /// 	 | RELATED_CONVERSATION_GROUP
+    /// </summary>
+    public partial class AstRelayedConversation : AstTerminalKeyword
+    {
+        
+        public AstRelayedConversation(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRelayedConversation(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// relayed_conversation : RELATED_CONVERSATION
+        /// </summary>
+        public static AstRelayedConversation RelatedConversation()
+        {
+            return new AstRelayedConversation(Position.Default, "RELATED_CONVERSATION", "RELATED_CONVERSATION");
+        }
+        
+        /// <summary>
+        /// relayed_conversation : RELATED_CONVERSATION_GROUP
+        /// </summary>
+        public static AstRelayedConversation RelatedConversationGroup()
+        {
+            return new AstRelayedConversation(Position.Default, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
+        }
+        
+        /// <summary>
+        /// relayed_conversation : RELATED_CONVERSATION
+        /// </summary>
+        public static AstRelayedConversation RelatedConversation(Position position)
+        {
+            return new AstRelayedConversation(position, "RELATED_CONVERSATION", "RELATED_CONVERSATION");
+        }
+        
+        /// <summary>
+        /// relayed_conversation : RELATED_CONVERSATION_GROUP
+        /// </summary>
+        public static AstRelayedConversation RelatedConversationGroup(Position position)
+        {
+            return new AstRelayedConversation(position, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
+        }
+    }
+    
+    /// <summary>
+    /// log_seterror_nowait
+    /// 	 : LOG
+    /// 	 | SETERROR
+    /// 	 | NOWAIT
+    /// </summary>
+    public partial class AstLogSeterrorNowait : AstTerminalKeyword
     {
         
         public AstLogSeterrorNowait(ITerminalNode t, string value) : 
-                base(t)
+                base(t, value)
         {
         }
         
-        public static AstLogSeterrorNowait _undefined()
+        public AstLogSeterrorNowait(Position position, string name, string value) : 
+                base(position, name, value)
         {
-            return new AstLogSeterrorNowait(null);
         }
         
+        /// <summary>
+        /// log_seterror_nowait : LOG
+        /// </summary>
         public static AstLogSeterrorNowait Log()
         {
-            return new AstLogSeterrorNowait(Position.Default, "LOG");
+            return new AstLogSeterrorNowait(Position.Default, "LOG", "LOG");
         }
         
+        /// <summary>
+        /// log_seterror_nowait : SETERROR
+        /// </summary>
         public static AstLogSeterrorNowait Seterror()
         {
-            return new AstLogSeterrorNowait(Position.Default, "SETERROR");
+            return new AstLogSeterrorNowait(Position.Default, "SETERROR", "SETERROR");
         }
         
+        /// <summary>
+        /// log_seterror_nowait : NOWAIT
+        /// </summary>
         public static AstLogSeterrorNowait Nowait()
         {
-            return new AstLogSeterrorNowait(Position.Default, "NOWAIT");
+            return new AstLogSeterrorNowait(Position.Default, "NOWAIT", "NOWAIT");
+        }
+        
+        /// <summary>
+        /// log_seterror_nowait : LOG
+        /// </summary>
+        public static AstLogSeterrorNowait Log(Position position)
+        {
+            return new AstLogSeterrorNowait(position, "LOG", "LOG");
+        }
+        
+        /// <summary>
+        /// log_seterror_nowait : SETERROR
+        /// </summary>
+        public static AstLogSeterrorNowait Seterror(Position position)
+        {
+            return new AstLogSeterrorNowait(position, "SETERROR", "SETERROR");
+        }
+        
+        /// <summary>
+        /// log_seterror_nowait : NOWAIT
+        /// </summary>
+        public static AstLogSeterrorNowait Nowait(Position position)
+        {
+            return new AstLogSeterrorNowait(position, "NOWAIT", "NOWAIT");
+        }
+    }
+    
+    /// <summary>
+    /// deleteed_inserted
+    /// 	 : DELETED
+    /// 	 | INSERTED
+    /// </summary>
+    public partial class AstDeleteedInserted : AstTerminalKeyword
+    {
+        
+        public AstDeleteedInserted(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDeleteedInserted(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// deleteed_inserted : DELETED
+        /// </summary>
+        public static AstDeleteedInserted Deleted()
+        {
+            return new AstDeleteedInserted(Position.Default, "DELETED", "DELETED");
+        }
+        
+        /// <summary>
+        /// deleteed_inserted : INSERTED
+        /// </summary>
+        public static AstDeleteedInserted Inserted()
+        {
+            return new AstDeleteedInserted(Position.Default, "INSERTED", "INSERTED");
+        }
+        
+        /// <summary>
+        /// deleteed_inserted : DELETED
+        /// </summary>
+        public static AstDeleteedInserted Deleted(Position position)
+        {
+            return new AstDeleteedInserted(position, "DELETED", "DELETED");
+        }
+        
+        /// <summary>
+        /// deleteed_inserted : INSERTED
+        /// </summary>
+        public static AstDeleteedInserted Inserted(Position position)
+        {
+            return new AstDeleteedInserted(position, "INSERTED", "INSERTED");
         }
     }
 }

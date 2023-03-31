@@ -25,33 +25,53 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
-        /// delay_time_timeout
-        /// 	 : DELAY
-        /// 	 | TIME
-        /// 	 | TIMEOUT
+        /// class_type
+        /// 	 : OBJECT
+        /// 	 | ASSEMBLY
+        /// 	 | ASYMMETRIC  KEY
+        /// 	 | AVAILABILITY  GROUP
+        /// 	 | CERTIFICATE
+        /// 	 | CONTRACT
+        /// 	 | TYPE
+        /// 	 | DATABASE
+        /// 	 | ENDPOINT
+        /// 	 | FULLTEXT  CATALOG
+        /// 	 | FULLTEXT  STOPLIST
+        /// 	 | MESSAGE  TYPE
+        /// 	 | REMOTE  SERVICE  BINDING
+        /// 	 | ROLE
+        /// 	 | ROUTE
+        /// 	 | SCHEMA
+        /// 	 | SEARCH  PROPERTY  LIST
+        /// 	 | SERVER  ROLE
+        /// 	 | SERVICE
+        /// 	 | SYMMETRIC  KEY
+        /// 	 | XML  SCHEMA  COLLECTION
         /// </summary>
-        public override AstRoot VisitDelay_time_timeout(TSqlParser.Delay_time_timeoutContext context)
+        public override AstRoot VisitClass_type(TSqlParser.Class_typeContext context)
         {
-            return new AstDelayTimeTimeout(context, context.GetText());
+            return new AstClassType(context, context.GetText());
         }
         
         /// <summary>
-        /// assembly_permission
-        /// 	 : (SAFE | EXTERNAL_ACCESS | UNSAFE)
+        /// class_type_for_sql_database
+        /// 	 : OBJECT
+        /// 	 | ASSEMBLY
+        /// 	 | ASYMMETRIC  KEY
+        /// 	 | CERTIFICATE
+        /// 	 | TYPE
+        /// 	 | DATABASE
+        /// 	 | FULLTEXT  CATALOG
+        /// 	 | FULLTEXT  STOPLIST
+        /// 	 | ROLE
+        /// 	 | SCHEMA
+        /// 	 | SEARCH  PROPERTY  LIST
+        /// 	 | SYMMETRIC  KEY
+        /// 	 | XML  SCHEMA  COLLECTION
         /// </summary>
-        public override AstRoot VisitAssembly_permission(TSqlParser.Assembly_permissionContext context)
+        public override AstRoot VisitClass_type_for_sql_database(TSqlParser.Class_type_for_sql_databaseContext context)
         {
-            return new AstAssemblyPermission(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// binary_content
-        /// 	 : stringtext
-        /// 	 | binary_
-        /// </summary>
-        public override AstRoot VisitBinary_content(TSqlParser.Binary_contentContext context)
-        {
-            return new AstBinaryContent(context, context.GetText());
+            return new AstClassTypeForSqlDatabase(context, context.GetText());
         }
         
         /// <summary>
@@ -76,130 +96,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// encryption_master
-        /// 	 : ENCRYPTION
-        /// 	 | MASTER
-        /// </summary>
-        public override AstRoot VisitEncryption_master(TSqlParser.Encryption_masterContext context)
-        {
-            return new AstEncryptionMaster(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// database_object_server
-        /// 	 : DATABASE
-        /// 	 | OBJECT
-        /// 	 | SERVER
-        /// </summary>
-        public override AstRoot VisitDatabase_object_server(TSqlParser.Database_object_serverContext context)
-        {
-            return new AstDatabaseObjectServer(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// add_remove
-        /// 	 : ADD
-        /// 	 | REMOVE
-        /// </summary>
-        public override AstRoot VisitAdd_remove(TSqlParser.Add_removeContext context)
-        {
-            return new AstAddRemove(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// restart_remove
-        /// 	 : RESTART
-        /// 	 | REMOVE
-        /// </summary>
-        public override AstRoot VisitRestart_remove(TSqlParser.Restart_removeContext context)
-        {
-            return new AstRestartRemove(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// synch_asynch
-        /// 	 : SYNCHRONOUS_COMMIT
-        /// 	 | ASYNCHRONOUS_COMMIT
-        /// </summary>
-        public override AstRoot VisitSynch_asynch(TSqlParser.Synch_asynchContext context)
-        {
-            return new AstSynchAsynch(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// auto_manual
-        /// 	 : AUTOMATIC
-        /// 	 | MANUAL
-        /// </summary>
-        public override AstRoot VisitAuto_manual(TSqlParser.Auto_manualContext context)
-        {
-            return new AstAutoManual(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// real_write_all
-        /// 	 : READ_WRITE
-        /// 	 | ALL
-        /// </summary>
-        public override AstRoot VisitReal_write_all(TSqlParser.Real_write_allContext context)
-        {
-            return new AstRealWriteAll(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// no_real_write_all
-        /// 	 : NO
-        /// 	 | READ_WRITE
-        /// 	 | ALL
-        /// </summary>
-        public override AstRoot VisitNo_real_write_all(TSqlParser.No_real_write_allContext context)
-        {
-            return new AstNoRealWriteAll(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// primary_secondary_none
-        /// 	 : PRIMARY
-        /// 	 | SECONDARY_ONLY
-        /// 	 | SECONDARY
-        /// 	 | NONE
-        /// </summary>
-        public override AstRoot VisitPrimary_secondary_none(TSqlParser.Primary_secondary_noneContext context)
-        {
-            return new AstPrimarySecondaryNone(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// grant_deny
-        /// 	 : GRANT
-        /// 	 | DENY
-        /// </summary>
-        public override AstRoot VisitGrant_deny(TSqlParser.Grant_denyContext context)
-        {
-            return new AstGrantDeny(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// create_alter
-        /// 	 : CREATE
-        /// 	 | ALTER
-        /// </summary>
-        public override AstRoot VisitCreate_alter(TSqlParser.Create_alterContext context)
-        {
-            return new AstCreateAlter(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// add_drop
-        /// 	 : ADD
-        /// 	 | DROP
-        /// </summary>
-        public override AstRoot VisitAdd_drop(TSqlParser.Add_dropContext context)
-        {
-            return new AstAddDrop(context, context.GetText());
-        }
-        
-        /// <summary>
         /// start_stop
         /// 	 : START
         /// 	 | STOP
@@ -207,67 +103,6 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitStart_stop(TSqlParser.Start_stopContext context)
         {
             return new AstStartStop(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// set_add
-        /// 	 : SET
-        /// 	 | ADD
-        /// </summary>
-        public override AstRoot VisitSet_add(TSqlParser.Set_addContext context)
-        {
-            return new AstSetAdd(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// platform
-        /// 	 : WINDOWS
-        /// 	 | LINUX
-        /// </summary>
-        public override AstRoot VisitPlatform(TSqlParser.PlatformContext context)
-        {
-            return new AstPlatform(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// code_content
-        /// 	 : stringtext
-        /// 	 | binary_
-        /// 	 | NONE
-        /// </summary>
-        public override AstRoot VisitCode_content(TSqlParser.Code_contentContext context)
-        {
-            return new AstCodeContent(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// code_language
-        /// 	 : R
-        /// 	 | PYTHON
-        /// </summary>
-        public override AstRoot VisitCode_language(TSqlParser.Code_languageContext context)
-        {
-            return new AstCodeLanguage(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// pwd_strategy
-        /// 	 : MUST_CHANGE
-        /// 	 | UNLOCK
-        /// </summary>
-        public override AstRoot VisitPwd_strategy(TSqlParser.Pwd_strategyContext context)
-        {
-            return new AstPwdStrategy(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// enable_disable
-        /// 	 : ENABLE
-        /// 	 | DISABLE
-        /// </summary>
-        public override AstRoot VisitEnable_disable(TSqlParser.Enable_disableContext context)
-        {
-            return new AstEnableDisable(context, context.GetText());
         }
         
         /// <summary>
@@ -293,131 +128,14 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// insert_update
-        /// 	 : (INSERT | UPDATE)
+        /// index_status_enum
+        /// 	 : DISABLE
+        /// 	 | PAUSE
+        /// 	 | ABORT
         /// </summary>
-        public override AstRoot VisitInsert_update(TSqlParser.Insert_updateContext context)
+        public override AstRoot VisitIndex_status_enum(TSqlParser.Index_status_enumContext context)
         {
-            return new AstInsertUpdate(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// update_delate
-        /// 	 : (UPDATE | DELETE)
-        /// </summary>
-        public override AstRoot VisitUpdate_delate(TSqlParser.Update_delateContext context)
-        {
-            return new AstUpdateDelate(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// filter_block
-        /// 	 : FILTER
-        /// 	 | BLOCK
-        /// </summary>
-        public override AstRoot VisitFilter_block(TSqlParser.Filter_blockContext context)
-        {
-            return new AstFilterBlock(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// size_unity
-        /// 	 : MB
-        /// 	 | GB
-        /// 	 | TB
-        /// </summary>
-        public override AstRoot VisitSize_unity(TSqlParser.Size_unityContext context)
-        {
-            return new AstSizeUnity(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// continue_shutdown
-        /// 	 : CONTINUE
-        /// 	 | SHUTDOWN
-        /// 	 | FAIL_OPERATION
-        /// </summary>
-        public override AstRoot VisitContinue_shutdown(TSqlParser.Continue_shutdownContext context)
-        {
-            return new AstContinueShutdown(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// audit_operator
-        /// 	 : EQUAL
-        /// 	 | LESS  GREATER
-        /// 	 | EXCLAMATION  EQUAL
-        /// 	 | GREATER
-        /// 	 | GREATER  EQUAL
-        /// 	 | LESS
-        /// 	 | LESS  EQUAL
-        /// </summary>
-        public override AstRoot VisitAudit_operator(TSqlParser.Audit_operatorContext context)
-        {
-            return new AstAuditOperator(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// and_or
-        /// 	 : AND
-        /// 	 | OR
-        /// </summary>
-        public override AstRoot VisitAnd_or(TSqlParser.And_orContext context)
-        {
-            return new AstAndOr(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// create_user_with_login
-        /// 	 : (for_from  LOGIN  login_id)?  (WITH  user_settings_short*)?
-        /// </summary>
-        public override AstRoot VisitCreate_user_with_login(TSqlParser.Create_user_with_loginContext context)
-        {
-            return new AstCreateUserWithLogin(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// for_from
-        /// 	 : FOR
-        /// 	 | FROM
-        /// </summary>
-        public override AstRoot VisitFor_from(TSqlParser.For_fromContext context)
-        {
-            return new AstForFrom(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// importance_level
-        /// 	 : LOW
-        /// 	 | MEDIUM
-        /// 	 | HIGH
-        /// </summary>
-        public override AstRoot VisitImportance_level(TSqlParser.Importance_levelContext context)
-        {
-            return new AstImportanceLevel(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// none_partial
-        /// 	 : NONE
-        /// 	 | PARTIAL
-        /// </summary>
-        public override AstRoot VisitNone_partial(TSqlParser.None_partialContext context)
-        {
-            return new AstNonePartial(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// datacompression_mode
-        /// 	 : NONE
-        /// 	 | ROW
-        /// 	 | PAGE
-        /// 	 | COLUMNSTORE
-        /// 	 | COLUMNSTORE_ARCHIVE
-        /// </summary>
-        public override AstRoot VisitDatacompression_mode(TSqlParser.Datacompression_modeContext context)
-        {
-            return new AstDatacompressionMode(context, context.GetText());
+            return new AstIndexStatusEnum(context, context.GetText());
         }
         
         /// <summary>
@@ -429,40 +147,6 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitDml_trigger_operation(TSqlParser.Dml_trigger_operationContext context)
         {
             return new AstDmlTriggerOperation(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// for_after
-        /// 	 : FOR
-        /// 	 | AFTER
-        /// </summary>
-        public override AstRoot VisitFor_after(TSqlParser.For_afterContext context)
-        {
-            return new AstForAfter(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// index_strategy
-        /// 	 : NONE
-        /// 	 | ROW
-        /// 	 | PAGE
-        /// 	 | COLUMNSTORE
-        /// 	 | COLUMNSTORE_ARCHIVE
-        /// </summary>
-        public override AstRoot VisitIndex_strategy(TSqlParser.Index_strategyContext context)
-        {
-            return new AstIndexStrategy(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// view_attribute
-        /// 	 : ENCRYPTION
-        /// 	 | SCHEMABINDING
-        /// 	 | VIEW_METADATA
-        /// </summary>
-        public override AstRoot VisitView_attribute(TSqlParser.View_attributeContext context)
-        {
-            return new AstViewAttribute(context, context.GetText());
         }
         
         /// <summary>
@@ -478,268 +162,21 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// period
-        /// 	 : DAYS
-        /// 	 | HOURS
-        /// 	 | MINUTES
+        /// grant_permission_alter
+        /// 	 : ALTER  (ANY  (APPLICATION  ROLE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | COLUMN  (ENCRYPTION  KEY | MASTER  KEY) | CONNECTION | CONTRACT | CREDENTIAL | DATABASE  (AUDIT | DDL  TRIGGER | EVENT  (NOTIFICATION | SESSION) | SCOPED  CONFIGURATION)? | DATASPACE | ENDPOINT | EVENT  (NOTIFICATION | SESSION) | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY) | FULLTEXT  CATALOG | LINKED  SERVER | LOGIN | MASK | MESSAGE  TYPE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | SCHEMA | SECURITY  POLICY | SERVER  (AUDIT | ROLE) | SERVICE | SYMMETRIC  KEY | USER) | RESOURCES | SERVER  STATE | SETTINGS | TRACE)?
         /// </summary>
-        public override AstRoot VisitPeriod(TSqlParser.PeriodContext context)
+        public override AstRoot VisitGrant_permission_alter(TSqlParser.Grant_permission_alterContext context)
         {
-            return new AstPeriod(context, context.GetText());
+            return new AstGrantPermissionAlter(context, context.GetText());
         }
         
         /// <summary>
-        /// local_global
-        /// 	 : LOCAL
-        /// 	 | GLOBAL
+        /// grant_permission_create
+        /// 	 : CREATE  (AGGREGATE | ANY  DATABASE | ASSEMBLY | ASYMMETRIC  KEY | AVAILABILITY  GROUP | CERTIFICATE | CONTRACT | DATABASE  (DDL  EVENT  NOTIFICATION)? | DDL  EVENT  NOTIFICATION | DEFAULT | ENDPOINT | EXTERNAL  LIBRARY | FULLTEXT  CATALOG | FUNCTION | MESSAGE  TYPE | PROCEDURE | QUEUE | REMOTE  SERVICE  BINDING | ROLE | ROUTE | RULE | SCHEMA | SEQUENCE | SERVER  ROLE | SERVICE | SYMMETRIC  KEY | SYNONYM | TABLE | TRACE  EVENT  NOTIFICATION | TYPE | VIEW | XML  SCHEMA  COLLECTION)
         /// </summary>
-        public override AstRoot VisitLocal_global(TSqlParser.Local_globalContext context)
+        public override AstRoot VisitGrant_permission_create(TSqlParser.Grant_permission_createContext context)
         {
-            return new AstLocalGlobal(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// state_enum
-        /// 	 : STARTED
-        /// 	 | STOPPED
-        /// 	 | DISABLED
-        /// </summary>
-        public override AstRoot VisitState_enum(TSqlParser.State_enumContext context)
-        {
-            return new AstStateEnum(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// authentication_mode
-        /// 	 : NTLM
-        /// 	 | KERBEROS
-        /// 	 | NEGOTIATE
-        /// </summary>
-        public override AstRoot VisitAuthentication_mode(TSqlParser.Authentication_modeContext context)
-        {
-            return new AstAuthenticationMode(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// db_state_option
-        /// 	 : ONLINE
-        /// 	 | OFFLINE
-        /// 	 | EMERGENCY
-        /// </summary>
-        public override AstRoot VisitDb_state_option(TSqlParser.Db_state_optionContext context)
-        {
-            return new AstDbStateOption(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// db_update_option
-        /// 	 : READ_ONLY
-        /// 	 | READ_WRITE
-        /// </summary>
-        public override AstRoot VisitDb_update_option(TSqlParser.Db_update_optionContext context)
-        {
-            return new AstDbUpdateOption(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// db_user_access_option
-        /// 	 : SINGLE_USER
-        /// 	 | RESTRICTED_USER
-        /// 	 | MULTI_USER
-        /// </summary>
-        public override AstRoot VisitDb_user_access_option(TSqlParser.Db_user_access_optionContext context)
-        {
-            return new AstDbUserAccessOption(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// compression
-        /// 	 : (COMPRESSION | NO_COMPRESSION)
-        /// </summary>
-        public override AstRoot VisitCompression(TSqlParser.CompressionContext context)
-        {
-            return new AstCompression(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// init_no_init
-        /// 	 : (NOINIT | INIT)
-        /// </summary>
-        public override AstRoot VisitInit_no_init(TSqlParser.Init_no_initContext context)
-        {
-            return new AstInitNoInit(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// no_skip
-        /// 	 : (NOSKIP | SKIP_KEYWORD)
-        /// </summary>
-        public override AstRoot VisitNo_skip(TSqlParser.No_skipContext context)
-        {
-            return new AstNoSkip(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// format_noformat
-        /// 	 : (NOFORMAT | FORMAT)
-        /// </summary>
-        public override AstRoot VisitFormat_noformat(TSqlParser.Format_noformatContext context)
-        {
-            return new AstFormatNoformat(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// disk_tape_url
-        /// 	 : DISK
-        /// 	 | TAPE
-        /// 	 | URL
-        /// </summary>
-        public override AstRoot VisitDisk_tape_url(TSqlParser.Disk_tape_urlContext context)
-        {
-            return new AstDiskTapeUrl(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// file_file_group
-        /// 	 : FILE
-        /// 	 | FILEGROUP
-        /// </summary>
-        public override AstRoot VisitFile_file_group(TSqlParser.File_file_groupContext context)
-        {
-            return new AstFileFileGroup(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// load_moun_load
-        /// 	 : LOAD
-        /// 	 | NOUNLOAD
-        /// </summary>
-        public override AstRoot VisitLoad_moun_load(TSqlParser.Load_moun_loadContext context)
-        {
-            return new AstLoadMounLoad(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// rewind
-        /// 	 : REWIND
-        /// 	 | NOREWIND
-        /// </summary>
-        public override AstRoot VisitRewind(TSqlParser.RewindContext context)
-        {
-            return new AstRewind(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// algorithm_short
-        /// 	 : AES_128
-        /// 	 | AES_192
-        /// 	 | AES_256
-        /// 	 | TRIPLE_DES_3KEY
-        /// </summary>
-        public override AstRoot VisitAlgorithm_short(TSqlParser.Algorithm_shortContext context)
-        {
-            return new AstAlgorithmShort(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// encryption_decryption
-        /// 	 : DECRYPTION
-        /// 	 | ENCRYPTION
-        /// </summary>
-        public override AstRoot VisitEncryption_decryption(TSqlParser.Encryption_decryptionContext context)
-        {
-            return new AstEncryptionDecryption(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// algorithm
-        /// 	 : DES
-        /// 	 | TRIPLE_DES
-        /// 	 | TRIPLE_DES_3KEY
-        /// 	 | RC2
-        /// 	 | RC4
-        /// 	 | RC4_128
-        /// 	 | DESX
-        /// 	 | AES_128
-        /// 	 | AES_192
-        /// 	 | AES_256
-        /// </summary>
-        public override AstRoot VisitAlgorithm(TSqlParser.AlgorithmContext context)
-        {
-            return new AstAlgorithm(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// transaction
-        /// 	 : TRAN
-        /// 	 | TRANSACTION
-        /// </summary>
-        public override AstRoot VisitTransaction(TSqlParser.TransactionContext context)
-        {
-            return new AstTransaction(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// sensitive
-        /// 	 : SEMI_SENSITIVE
-        /// 	 | INSENSITIVE
-        /// </summary>
-        public override AstRoot VisitSensitive(TSqlParser.SensitiveContext context)
-        {
-            return new AstSensitive(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// absolute_relative
-        /// 	 : ABSOLUTE
-        /// 	 | RELATIVE
-        /// </summary>
-        public override AstRoot VisitAbsolute_relative(TSqlParser.Absolute_relativeContext context)
-        {
-            return new AstAbsoluteRelative(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// fetch_cursor_strategy
-        /// 	 : NEXT
-        /// 	 | PRIOR
-        /// 	 | FIRST
-        /// 	 | LAST
-        /// </summary>
-        public override AstRoot VisitFetch_cursor_strategy(TSqlParser.Fetch_cursor_strategyContext context)
-        {
-            return new AstFetchCursorStrategy(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// special_list
-        /// 	 : ANSI_NULLS
-        /// 	 | QUOTED_IDENTIFIER
-        /// 	 | ANSI_PADDING
-        /// 	 | ANSI_WARNINGS
-        /// 	 | ANSI_DEFAULTS
-        /// 	 | ANSI_NULL_DFLT_OFF
-        /// 	 | ANSI_NULL_DFLT_ON
-        /// 	 | ARITHABORT
-        /// 	 | ARITHIGNORE
-        /// 	 | CONCAT_NULL_YIELDS_NULL
-        /// 	 | CURSOR_CLOSE_ON_COMMIT
-        /// 	 | FMTONLY
-        /// 	 | FORCEPLAN
-        /// 	 | IMPLICIT_TRANSACTIONS
-        /// 	 | NOCOUNT
-        /// 	 | NOEXEC
-        /// 	 | NUMERIC_ROUNDABORT
-        /// 	 | PARSEONLY
-        /// 	 | REMOTE_PROC_TRANSACTIONS
-        /// 	 | SHOWPLAN_ALL
-        /// 	 | SHOWPLAN_TEXT
-        /// 	 | SHOWPLAN_XML
-        /// 	 | XACT_ABORT
-        /// </summary>
-        public override AstRoot VisitSpecial_list(TSqlParser.Special_listContext context)
-        {
-            return new AstSpecialList(context, context.GetText());
+            return new AstGrantPermissionCreate(context, context.GetText());
         }
         
         /// <summary>
@@ -752,36 +189,6 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitSybase_legacy_hint(TSqlParser.Sybase_legacy_hintContext context)
         {
             return new AstSybaseLegacyHint(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// asc_desc
-        /// 	 : ASC
-        /// 	 | DESC
-        /// </summary>
-        public override AstRoot VisitAsc_desc(TSqlParser.Asc_descContext context)
-        {
-            return new AstAscDesc(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// on_off
-        /// 	 : ON
-        /// 	 | OFF
-        /// </summary>
-        public override AstRoot VisitOn_off(TSqlParser.On_offContext context)
-        {
-            return new AstOnOff(context, context.GetText());
-        }
-        
-        /// <summary>
-        /// clustered
-        /// 	 : CLUSTERED
-        /// 	 | NONCLUSTERED
-        /// </summary>
-        public override AstRoot VisitClustered(TSqlParser.ClusteredContext context)
-        {
-            return new AstClustered(context, context.GetText());
         }
         
         /// <summary>
@@ -1620,6 +1027,119 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// assembly_permission
+        /// 	 : SAFE
+        /// 	 | EXTERNAL_ACCESS
+        /// 	 | UNSAFE
+        /// </summary>
+        public override AstRoot VisitAssembly_permission(TSqlParser.Assembly_permissionContext context)
+        {
+            return new AstAssemblyPermission(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// object_type_for_grant
+        /// 	 : APPLICATION  ROLE
+        /// 	 | ASSEMBLY
+        /// 	 | ASYMMETRIC  KEY
+        /// 	 | AUDIT
+        /// 	 | AVAILABILITY  GROUP
+        /// 	 | BROKER  PRIORITY
+        /// 	 | CERTIFICATE
+        /// 	 | CONTRACT
+        /// 	 | CREDENTIAL
+        /// 	 | CRYPTOGRAPHIC  PROVIDER
+        /// 	 | DATABASE  (AUDIT  SPECIFICATION | ENCRYPTION  KEY | EVENT  SESSION | SCOPED  (CONFIGURATION | CREDENTIAL | RESOURCE  GOVERNOR))?
+        /// 	 | ENDPOINT
+        /// 	 | EVENT  SESSION
+        /// 	 | EXTERNAL  (DATA  SOURCE | FILE  FORMAT | LIBRARY | RESOURCE  POOL | TABLE | CATALOG | STOPLIST)
+        /// 	 | LOGIN
+        /// 	 | MASTER  KEY
+        /// 	 | MESSAGE  TYPE
+        /// 	 | OBJECT
+        /// 	 | PARTITION  (FUNCTION | SCHEME)
+        /// 	 | REMOTE  SERVICE  BINDING
+        /// 	 | RESOURCE  GOVERNOR
+        /// 	 | ROLE
+        /// 	 | ROUTE
+        /// 	 | SCHEMA
+        /// 	 | SEARCH  PROPERTY  LIST
+        /// 	 | SERVER  ((AUDIT  SPECIFICATION?) | ROLE)?
+        /// 	 | SERVICE
+        /// 	 | SQL  LOGIN
+        /// 	 | SYMMETRIC  KEY
+        /// 	 | TRIGGER  (DATABASE | SERVER)
+        /// 	 | TYPE
+        /// 	 | USER
+        /// 	 | XML  SCHEMA  COLLECTION
+        /// </summary>
+        public override AstRoot VisitObject_type_for_grant(TSqlParser.Object_type_for_grantContext context)
+        {
+            return new AstObjectTypeForGrant(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// encryption_master
+        /// 	 : ENCRYPTION
+        /// 	 | MASTER
+        /// </summary>
+        public override AstRoot VisitEncryption_master(TSqlParser.Encryption_masterContext context)
+        {
+            return new AstEncryptionMaster(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// database_object_server
+        /// 	 : DATABASE
+        /// 	 | OBJECT
+        /// 	 | SERVER
+        /// </summary>
+        public override AstRoot VisitDatabase_object_server(TSqlParser.Database_object_serverContext context)
+        {
+            return new AstDatabaseObjectServer(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// server_database
+        /// 	 : SERVER
+        /// 	 | DATABASE
+        /// </summary>
+        public override AstRoot VisitServer_database(TSqlParser.Server_databaseContext context)
+        {
+            return new AstServerDatabase(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// for_after
+        /// 	 : FOR
+        /// 	 | AFTER
+        /// </summary>
+        public override AstRoot VisitFor_after(TSqlParser.For_afterContext context)
+        {
+            return new AstForAfter(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// share_exclusive
+        /// 	 : SHARE
+        /// 	 | EXCLUSIVE
+        /// </summary>
+        public override AstRoot VisitShare_exclusive(TSqlParser.Share_exclusiveContext context)
+        {
+            return new AstShareExclusive(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// create_alter
+        /// 	 : CREATE
+        /// 	 | ALTER
+        /// </summary>
+        public override AstRoot VisitCreate_alter(TSqlParser.Create_alterContext context)
+        {
+            return new AstCreateAlter(context, context.GetText());
+        }
+        
+        /// <summary>
         /// file_size_unity
         /// 	 : KB
         /// 	 | MB
@@ -1633,6 +1153,1450 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// memory_size_unity
+        /// 	 : KB
+        /// 	 | MB
+        /// </summary>
+        public override AstRoot VisitMemory_size_unity(TSqlParser.Memory_size_unityContext context)
+        {
+            return new AstMemorySizeUnity(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// partition_mode
+        /// 	 : NONE
+        /// 	 | PER_NODE
+        /// 	 | PER_CPU
+        /// </summary>
+        public override AstRoot VisitPartition_mode(TSqlParser.Partition_modeContext context)
+        {
+            return new AstPartitionMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// session_mode
+        /// 	 : ALLOW_SINGLE_EVENT_LOSS
+        /// 	 | ALLOW_MULTIPLE_EVENT_LOSS
+        /// 	 | NO_EVENT_LOSS
+        /// </summary>
+        public override AstRoot VisitSession_mode(TSqlParser.Session_modeContext context)
+        {
+            return new AstSessionMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// disable_reconfigure
+        /// 	 : DISABLE
+        /// 	 | RECONFIGURE
+        /// </summary>
+        public override AstRoot VisitDisable_reconfigure(TSqlParser.Disable_reconfigureContext context)
+        {
+            return new AstDisableReconfigure(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// transfert_target
+        /// 	 : (OBJECT | TYPE | XML  SCHEMA  COLLECTION)  DOUBLE_COLON
+        /// </summary>
+        public override AstRoot VisitTransfert_target(TSqlParser.Transfert_targetContext context)
+        {
+            return new AstTransfertTarget(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// insert_update
+        /// 	 : INSERT
+        /// 	 | UPDATE
+        /// </summary>
+        public override AstRoot VisitInsert_update(TSqlParser.Insert_updateContext context)
+        {
+            return new AstInsertUpdate(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// update_delate
+        /// 	 : UPDATE
+        /// 	 | DELETE
+        /// </summary>
+        public override AstRoot VisitUpdate_delate(TSqlParser.Update_delateContext context)
+        {
+            return new AstUpdateDelate(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// filter_block
+        /// 	 : FILTER
+        /// 	 | BLOCK
+        /// </summary>
+        public override AstRoot VisitFilter_block(TSqlParser.Filter_blockContext context)
+        {
+            return new AstFilterBlock(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// init_target_any
+        /// 	 : INITIATOR
+        /// 	 | TARGET
+        /// 	 | ANY
+        /// </summary>
+        public override AstRoot VisitInit_target_any(TSqlParser.Init_target_anyContext context)
+        {
+            return new AstInitTargetAny(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// receive_mode_enum
+        /// 	 : ALL
+        /// 	 | DISTINCT
+        /// 	 | STAR
+        /// </summary>
+        public override AstRoot VisitReceive_mode_enum(TSqlParser.Receive_mode_enumContext context)
+        {
+            return new AstReceiveModeEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// datacompression_mode
+        /// 	 : NONE
+        /// 	 | ROW
+        /// 	 | PAGE
+        /// 	 | COLUMNSTORE
+        /// 	 | COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public override AstRoot VisitDatacompression_mode(TSqlParser.Datacompression_modeContext context)
+        {
+            return new AstDatacompressionMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// datacompression_column_mode
+        /// 	 : COLUMNSTORE
+        /// 	 | COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public override AstRoot VisitDatacompression_column_mode(TSqlParser.Datacompression_column_modeContext context)
+        {
+            return new AstDatacompressionColumnMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// index_using_xml_mode
+        /// 	 : FOR  (VALUE | PATH | PROPERTY)?
+        /// </summary>
+        public override AstRoot VisitIndex_using_xml_mode(TSqlParser.Index_using_xml_modeContext context)
+        {
+            return new AstIndexUsingXmlMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// proc_keyword
+        /// 	 : PROC
+        /// 	 | PROCEDURE
+        /// </summary>
+        public override AstRoot VisitProc_keyword(TSqlParser.Proc_keywordContext context)
+        {
+            return new AstProcKeyword(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// alter_replace
+        /// 	 : ALTER
+        /// 	 | REPLACE
+        /// </summary>
+        public override AstRoot VisitAlter_replace(TSqlParser.Alter_replaceContext context)
+        {
+            return new AstAlterReplace(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// param_way
+        /// 	 : OUT
+        /// 	 | OUTPUT
+        /// 	 | READONLY
+        /// </summary>
+        public override AstRoot VisitParam_way(TSqlParser.Param_wayContext context)
+        {
+            return new AstParamWay(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// percent_row
+        /// 	 : PERCENT
+        /// 	 | ROWS
+        /// </summary>
+        public override AstRoot VisitPercent_row(TSqlParser.Percent_rowContext context)
+        {
+            return new AstPercentRow(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// function_option_enum
+        /// 	 : ENCRYPTION
+        /// 	 | SCHEMABINDING
+        /// 	 | RETURNS  NULL_  ON  NULL_  INPUT
+        /// 	 | CALLED  ON  NULL_  INPUT
+        /// </summary>
+        public override AstRoot VisitFunction_option_enum(TSqlParser.Function_option_enumContext context)
+        {
+            return new AstFunctionOptionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// procedure_option_enum
+        /// 	 : ENCRYPTION
+        /// 	 | RECOMPILE
+        /// </summary>
+        public override AstRoot VisitProcedure_option_enum(TSqlParser.Procedure_option_enumContext context)
+        {
+            return new AstProcedureOptionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// row_rows
+        /// 	 : ROW
+        /// 	 | ROWS
+        /// </summary>
+        public override AstRoot VisitRow_rows(TSqlParser.Row_rowsContext context)
+        {
+            return new AstRowRows(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// compression_mode
+        /// 	 : NONE
+        /// 	 | ROW
+        /// 	 | PAGE
+        /// </summary>
+        public override AstRoot VisitCompression_mode(TSqlParser.Compression_modeContext context)
+        {
+            return new AstCompressionMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// start_end
+        /// 	 : START
+        /// 	 | END
+        /// </summary>
+        public override AstRoot VisitStart_end(TSqlParser.Start_endContext context)
+        {
+            return new AstStartEnd(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// generation_mode
+        /// 	 : ROW
+        /// 	 | TRANSACTION_ID
+        /// 	 | SEQUENCE_NUMBER
+        /// </summary>
+        public override AstRoot VisitGeneration_mode(TSqlParser.Generation_modeContext context)
+        {
+            return new AstGenerationMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// encryption_mode
+        /// 	 : DETERMINISTIC
+        /// 	 | RANDOMIZED
+        /// </summary>
+        public override AstRoot VisitEncryption_mode(TSqlParser.Encryption_modeContext context)
+        {
+            return new AstEncryptionMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// tableoption_cluster_mode
+        /// 	 : CLUSTERED  COLUMNSTORE  INDEX
+        /// 	 | HEAP
+        /// </summary>
+        public override AstRoot VisitTableoption_cluster_mode(TSqlParser.Tableoption_cluster_modeContext context)
+        {
+            return new AstTableoptionClusterMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// lock_mode
+        /// 	 : AUTO
+        /// 	 | TABLE
+        /// 	 | DISABLE
+        /// </summary>
+        public override AstRoot VisitLock_mode(TSqlParser.Lock_modeContext context)
+        {
+            return new AstLockMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// check_nocheck
+        /// 	 : CHECK
+        /// 	 | NOCHECK
+        /// </summary>
+        public override AstRoot VisitCheck_nocheck(TSqlParser.Check_nocheckContext context)
+        {
+            return new AstCheckNocheck(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// data_type_scaled
+        /// 	 : VARCHAR
+        /// 	 | NVARCHAR
+        /// 	 | BINARY_KEYWORD
+        /// 	 | VARBINARY_KEYWORD
+        /// 	 | SQUARE_BRACKET_ID
+        /// </summary>
+        public override AstRoot VisitData_type_scaled(TSqlParser.Data_type_scaledContext context)
+        {
+            return new AstDataTypeScaled(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// abord_after_mode
+        /// 	 : NONE
+        /// 	 | SELF
+        /// 	 | BLOCKERS
+        /// </summary>
+        public override AstRoot VisitAbord_after_mode(TSqlParser.Abord_after_modeContext context)
+        {
+            return new AstAbordAfterMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// local_global
+        /// 	 : LOCAL
+        /// 	 | GLOBAL
+        /// </summary>
+        public override AstRoot VisitLocal_global(TSqlParser.Local_globalContext context)
+        {
+            return new AstLocalGlobal(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// state_enum
+        /// 	 : STARTED
+        /// 	 | STOPPED
+        /// 	 | DISABLED
+        /// </summary>
+        public override AstRoot VisitState_enum(TSqlParser.State_enumContext context)
+        {
+            return new AstStateEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// authentication_mode
+        /// 	 : NTLM
+        /// 	 | KERBEROS
+        /// 	 | NEGOTIATE
+        /// </summary>
+        public override AstRoot VisitAuthentication_mode(TSqlParser.Authentication_modeContext context)
+        {
+            return new AstAuthenticationMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// encryption_algorithm
+        /// 	 : ALGORITHM  (AES | RC4 | AES  RC4 | RC4  AES)
+        /// </summary>
+        public override AstRoot VisitEncryption_algorithm(TSqlParser.Encryption_algorithmContext context)
+        {
+            return new AstEncryptionAlgorithm(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// role_mirroring
+        /// 	 : WITNESS
+        /// 	 | PARTNER
+        /// 	 | ALL
+        /// </summary>
+        public override AstRoot VisitRole_mirroring(TSqlParser.Role_mirroringContext context)
+        {
+            return new AstRoleMirroring(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// partner_option_enum
+        /// 	 : FAILOVER
+        /// 	 | FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// 	 | OFF
+        /// 	 | RESUME
+        /// 	 | SAFETY  (FULL | OFF)
+        /// 	 | SUSPEND
+        /// </summary>
+        public override AstRoot VisitPartner_option_enum(TSqlParser.Partner_option_enumContext context)
+        {
+            return new AstPartnerOptionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// delayed_durability
+        /// 	 : DISABLED
+        /// 	 | ALLOWED
+        /// 	 | FORCED
+        /// </summary>
+        public override AstRoot VisitDelayed_durability(TSqlParser.Delayed_durabilityContext context)
+        {
+            return new AstDelayedDurability(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// suspend_resume
+        /// 	 : SUSPEND
+        /// 	 | RESUME
+        /// </summary>
+        public override AstRoot VisitSuspend_resume(TSqlParser.Suspend_resumeContext context)
+        {
+            return new AstSuspendResume(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// recovery_option_enum
+        /// 	 : RECOVERY  (FULL | BULK_LOGGED | SIMPLE)
+        /// 	 | PAGE_VERIFY  (CHECKSUM | TORN_PAGE_DETECTION | NONE)
+        /// </summary>
+        public override AstRoot VisitRecovery_option_enum(TSqlParser.Recovery_option_enumContext context)
+        {
+            return new AstRecoveryOptionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// seconds_minutes
+        /// 	 : SECONDS
+        /// 	 | MINUTES
+        /// </summary>
+        public override AstRoot VisitSeconds_minutes(TSqlParser.Seconds_minutesContext context)
+        {
+            return new AstSecondsMinutes(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// compression
+        /// 	 : COMPRESSION
+        /// 	 | NO_COMPRESSION
+        /// </summary>
+        public override AstRoot VisitCompression(TSqlParser.CompressionContext context)
+        {
+            return new AstCompression(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// init_no_init
+        /// 	 : NOINIT
+        /// 	 | INIT
+        /// </summary>
+        public override AstRoot VisitInit_no_init(TSqlParser.Init_no_initContext context)
+        {
+            return new AstInitNoInit(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// no_skip
+        /// 	 : NOSKIP
+        /// 	 | SKIP_KEYWORD
+        /// </summary>
+        public override AstRoot VisitNo_skip(TSqlParser.No_skipContext context)
+        {
+            return new AstNoSkip(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// format_noformat
+        /// 	 : NOFORMAT
+        /// 	 | FORMAT
+        /// </summary>
+        public override AstRoot VisitFormat_noformat(TSqlParser.Format_noformatContext context)
+        {
+            return new AstFormatNoformat(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// login_user
+        /// 	 : LOGIN
+        /// 	 | USER
+        /// </summary>
+        public override AstRoot VisitLogin_user(TSqlParser.Login_userContext context)
+        {
+            return new AstLoginUser(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// output_out
+        /// 	 : OUTPUT
+        /// 	 | OUT
+        /// </summary>
+        public override AstRoot VisitOutput_out(TSqlParser.Output_outContext context)
+        {
+            return new AstOutputOut(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// start_date_expiry_date
+        /// 	 : START_DATE
+        /// 	 | EXPIRY_DATE
+        /// </summary>
+        public override AstRoot VisitStart_date_expiry_date(TSqlParser.Start_date_expiry_dateContext context)
+        {
+            return new AstStartDateExpiryDate(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// execute_clause_mode_enum
+        /// 	 : CALLER
+        /// 	 | SELF
+        /// 	 | OWNER
+        /// </summary>
+        public override AstRoot VisitExecute_clause_mode_enum(TSqlParser.Execute_clause_mode_enumContext context)
+        {
+            return new AstExecuteClauseModeEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// content_document
+        /// 	 : CONTENT
+        /// 	 | DOCUMENT
+        /// </summary>
+        public override AstRoot VisitContent_document(TSqlParser.Content_documentContext context)
+        {
+            return new AstContentDocument(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// materialized_mode
+        /// 	 : MATERIALIZED
+        /// 	 | NOT  MATERIALIZED
+        /// </summary>
+        public override AstRoot VisitMaterialized_mode(TSqlParser.Materialized_modeContext context)
+        {
+            return new AstMaterializedMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// column_modifier_enum
+        /// 	 : ROWGUIDCOL
+        /// 	 | PERSISTED
+        /// 	 | NOT  FOR  REPLICATION
+        /// 	 | SPARSE
+        /// 	 | HIDDEN_KEYWORD
+        /// </summary>
+        public override AstRoot VisitColumn_modifier_enum(TSqlParser.Column_modifier_enumContext context)
+        {
+            return new AstColumnModifierEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// compute_as
+        /// 	 : COMPUTE
+        /// 	 | AS
+        /// </summary>
+        public override AstRoot VisitCompute_as(TSqlParser.Compute_asContext context)
+        {
+            return new AstComputeAs(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// primary_key_unique
+        /// 	 : PRIMARY  KEY
+        /// 	 | UNIQUE
+        /// </summary>
+        public override AstRoot VisitPrimary_key_unique(TSqlParser.Primary_key_uniqueContext context)
+        {
+            return new AstPrimaryKeyUnique(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// declare_set_cursor_common_partial_enum
+        /// 	 : (FORWARD_ONLY | SCROLL)
+        /// 	 | (STATIC | KEYSET | DYNAMIC | FAST_FORWARD)
+        /// 	 | (READ_ONLY | SCROLL_LOCKS | OPTIMISTIC)
+        /// 	 | TYPE_WARNING
+        /// </summary>
+        public override AstRoot VisitDeclare_set_cursor_common_partial_enum(TSqlParser.Declare_set_cursor_common_partial_enumContext context)
+        {
+            return new AstDeclareSetCursorCommonPartialEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// absolute_relative
+        /// 	 : ABSOLUTE
+        /// 	 | RELATIVE
+        /// </summary>
+        public override AstRoot VisitAbsolute_relative(TSqlParser.Absolute_relativeContext context)
+        {
+            return new AstAbsoluteRelative(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// fetch_cursor_strategy
+        /// 	 : NEXT
+        /// 	 | PRIOR
+        /// 	 | FIRST
+        /// 	 | LAST
+        /// </summary>
+        public override AstRoot VisitFetch_cursor_strategy(TSqlParser.Fetch_cursor_strategyContext context)
+        {
+            return new AstFetchCursorStrategy(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// statistic_kind
+        /// 	 : IO
+        /// 	 | TIME
+        /// 	 | XML
+        /// 	 | PROFILE
+        /// </summary>
+        public override AstRoot VisitStatistic_kind(TSqlParser.Statistic_kindContext context)
+        {
+            return new AstStatisticKind(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// transaction_isolation
+        /// 	 : READ  UNCOMMITTED
+        /// 	 | READ  COMMITTED
+        /// 	 | REPEATABLE  READ
+        /// 	 | SNAPSHOT
+        /// 	 | SERIALIZABLE
+        /// </summary>
+        public override AstRoot VisitTransaction_isolation(TSqlParser.Transaction_isolationContext context)
+        {
+            return new AstTransactionIsolation(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// special_list
+        /// 	 : ANSI_NULLS
+        /// 	 | QUOTED_IDENTIFIER
+        /// 	 | ANSI_PADDING
+        /// 	 | ANSI_WARNINGS
+        /// 	 | ANSI_DEFAULTS
+        /// 	 | ANSI_NULL_DFLT_OFF
+        /// 	 | ANSI_NULL_DFLT_ON
+        /// 	 | ARITHABORT
+        /// 	 | ARITHIGNORE
+        /// 	 | CONCAT_NULL_YIELDS_NULL
+        /// 	 | CURSOR_CLOSE_ON_COMMIT
+        /// 	 | FMTONLY
+        /// 	 | FORCEPLAN
+        /// 	 | IMPLICIT_TRANSACTIONS
+        /// 	 | NOCOUNT
+        /// 	 | NOEXEC
+        /// 	 | NUMERIC_ROUNDABORT
+        /// 	 | PARSEONLY
+        /// 	 | REMOTE_PROC_TRANSACTIONS
+        /// 	 | SHOWPLAN_ALL
+        /// 	 | SHOWPLAN_TEXT
+        /// 	 | SHOWPLAN_XML
+        /// 	 | XACT_ABORT
+        /// </summary>
+        public override AstRoot VisitSpecial_list(TSqlParser.Special_listContext context)
+        {
+            return new AstSpecialList(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// expression_operator
+        /// 	 : STAR
+        /// 	 | DIVIDE
+        /// 	 | MODULE
+        /// 	 | PLUS
+        /// 	 | MINUS
+        /// 	 | BIT_AND
+        /// 	 | BIT_XOR
+        /// 	 | BIT_OR
+        /// 	 | DOUBLE_BAR
+        /// </summary>
+        public override AstRoot VisitExpression_operator(TSqlParser.Expression_operatorContext context)
+        {
+            return new AstExpressionOperator(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// all_some_any
+        /// 	 : ALL
+        /// 	 | SOME
+        /// 	 | ANY
+        /// </summary>
+        public override AstRoot VisitAll_some_any(TSqlParser.All_some_anyContext context)
+        {
+            return new AstAllSomeAny(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// join_mode
+        /// 	 : UNION  ALL?
+        /// 	 | EXCEPT
+        /// 	 | INTERSECT
+        /// </summary>
+        public override AstRoot VisitJoin_mode(TSqlParser.Join_modeContext context)
+        {
+            return new AstJoinMode(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// all_distinct
+        /// 	 : ALL
+        /// 	 | DISTINCT
+        /// </summary>
+        public override AstRoot VisitAll_distinct(TSqlParser.All_distinctContext context)
+        {
+            return new AstAllDistinct(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// delay_time_timeout
+        /// 	 : DELAY
+        /// 	 | TIME
+        /// 	 | TIMEOUT
+        /// </summary>
+        public override AstRoot VisitDelay_time_timeout(TSqlParser.Delay_time_timeoutContext context)
+        {
+            return new AstDelayTimeTimeout(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// creation_disposition
+        /// 	 : CREATE_NEW
+        /// 	 | OPEN_EXISTING
+        /// </summary>
+        public override AstRoot VisitCreation_disposition(TSqlParser.Creation_dispositionContext context)
+        {
+            return new AstCreationDisposition(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// asymetric_algorithm
+        /// 	 : RSA_4096
+        /// 	 | RSA_3072
+        /// 	 | RSA_2048
+        /// 	 | RSA_1024
+        /// 	 | RSA_512
+        /// </summary>
+        public override AstRoot VisitAsymetric_algorithm(TSqlParser.Asymetric_algorithmContext context)
+        {
+            return new AstAsymetricAlgorithm(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// add_remove
+        /// 	 : ADD
+        /// 	 | REMOVE
+        /// </summary>
+        public override AstRoot VisitAdd_remove(TSqlParser.Add_removeContext context)
+        {
+            return new AstAddRemove(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// restart_remove
+        /// 	 : RESTART
+        /// 	 | REMOVE
+        /// </summary>
+        public override AstRoot VisitRestart_remove(TSqlParser.Restart_removeContext context)
+        {
+            return new AstRestartRemove(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// synch_asynch
+        /// 	 : SYNCHRONOUS_COMMIT
+        /// 	 | ASYNCHRONOUS_COMMIT
+        /// </summary>
+        public override AstRoot VisitSynch_asynch(TSqlParser.Synch_asynchContext context)
+        {
+            return new AstSynchAsynch(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// auto_manual
+        /// 	 : AUTOMATIC
+        /// 	 | MANUAL
+        /// </summary>
+        public override AstRoot VisitAuto_manual(TSqlParser.Auto_manualContext context)
+        {
+            return new AstAutoManual(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// real_write_all
+        /// 	 : READ_WRITE
+        /// 	 | ALL
+        /// </summary>
+        public override AstRoot VisitReal_write_all(TSqlParser.Real_write_allContext context)
+        {
+            return new AstRealWriteAll(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// no_real_write_all
+        /// 	 : NO
+        /// 	 | READ_WRITE
+        /// 	 | ALL
+        /// </summary>
+        public override AstRoot VisitNo_real_write_all(TSqlParser.No_real_write_allContext context)
+        {
+            return new AstNoRealWriteAll(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// primary_secondary_none
+        /// 	 : PRIMARY
+        /// 	 | SECONDARY_ONLY
+        /// 	 | SECONDARY
+        /// 	 | NONE
+        /// </summary>
+        public override AstRoot VisitPrimary_secondary_none(TSqlParser.Primary_secondary_noneContext context)
+        {
+            return new AstPrimarySecondaryNone(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// grant_deny
+        /// 	 : GRANT
+        /// 	 | DENY
+        /// </summary>
+        public override AstRoot VisitGrant_deny(TSqlParser.Grant_denyContext context)
+        {
+            return new AstGrantDeny(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// add_drop
+        /// 	 : ADD
+        /// 	 | DROP
+        /// </summary>
+        public override AstRoot VisitAdd_drop(TSqlParser.Add_dropContext context)
+        {
+            return new AstAddDrop(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// set_add
+        /// 	 : SET
+        /// 	 | ADD
+        /// </summary>
+        public override AstRoot VisitSet_add(TSqlParser.Set_addContext context)
+        {
+            return new AstSetAdd(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// platform
+        /// 	 : WINDOWS
+        /// 	 | LINUX
+        /// </summary>
+        public override AstRoot VisitPlatform(TSqlParser.PlatformContext context)
+        {
+            return new AstPlatform(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// code_language
+        /// 	 : R
+        /// 	 | PYTHON
+        /// </summary>
+        public override AstRoot VisitCode_language(TSqlParser.Code_languageContext context)
+        {
+            return new AstCodeLanguage(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// pwd_strategy
+        /// 	 : MUST_CHANGE
+        /// 	 | UNLOCK
+        /// </summary>
+        public override AstRoot VisitPwd_strategy(TSqlParser.Pwd_strategyContext context)
+        {
+            return new AstPwdStrategy(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// enable_disable
+        /// 	 : ENABLE
+        /// 	 | DISABLE
+        /// </summary>
+        public override AstRoot VisitEnable_disable(TSqlParser.Enable_disableContext context)
+        {
+            return new AstEnableDisable(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// message_validation_value_enum
+        /// 	 : NONE
+        /// 	 | EMPTY
+        /// 	 | WELL_FORMED_XML
+        /// </summary>
+        public override AstRoot VisitMessage_validation_value_enum(TSqlParser.Message_validation_value_enumContext context)
+        {
+            return new AstMessageValidationValueEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// size_unity
+        /// 	 : MB
+        /// 	 | GB
+        /// 	 | TB
+        /// </summary>
+        public override AstRoot VisitSize_unity(TSqlParser.Size_unityContext context)
+        {
+            return new AstSizeUnity(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// continue_shutdown
+        /// 	 : CONTINUE
+        /// 	 | SHUTDOWN
+        /// 	 | FAIL_OPERATION
+        /// </summary>
+        public override AstRoot VisitContinue_shutdown(TSqlParser.Continue_shutdownContext context)
+        {
+            return new AstContinueShutdown(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// audit_operator
+        /// 	 : EQUAL
+        /// 	 | LESS  GREATER
+        /// 	 | EXCLAMATION  EQUAL
+        /// 	 | GREATER
+        /// 	 | GREATER  EQUAL
+        /// 	 | LESS
+        /// 	 | LESS  EQUAL
+        /// </summary>
+        public override AstRoot VisitAudit_operator(TSqlParser.Audit_operatorContext context)
+        {
+            return new AstAuditOperator(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// and_or
+        /// 	 : AND
+        /// 	 | OR
+        /// </summary>
+        public override AstRoot VisitAnd_or(TSqlParser.And_orContext context)
+        {
+            return new AstAndOr(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// for_from
+        /// 	 : FOR
+        /// 	 | FROM
+        /// </summary>
+        public override AstRoot VisitFor_from(TSqlParser.For_fromContext context)
+        {
+            return new AstForFrom(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// importance_level
+        /// 	 : LOW
+        /// 	 | MEDIUM
+        /// 	 | HIGH
+        /// </summary>
+        public override AstRoot VisitImportance_level(TSqlParser.Importance_levelContext context)
+        {
+            return new AstImportanceLevel(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// left_right
+        /// 	 : LEFT
+        /// 	 | RIGHT
+        /// </summary>
+        public override AstRoot VisitLeft_right(TSqlParser.Left_rightContext context)
+        {
+            return new AstLeftRight(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// none_partial
+        /// 	 : NONE
+        /// 	 | PARTIAL
+        /// </summary>
+        public override AstRoot VisitNone_partial(TSqlParser.None_partialContext context)
+        {
+            return new AstNonePartial(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// index_strategy
+        /// 	 : NONE
+        /// 	 | ROW
+        /// 	 | PAGE
+        /// 	 | COLUMNSTORE
+        /// 	 | COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public override AstRoot VisitIndex_strategy(TSqlParser.Index_strategyContext context)
+        {
+            return new AstIndexStrategy(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// view_attribute
+        /// 	 : ENCRYPTION
+        /// 	 | SCHEMABINDING
+        /// 	 | VIEW_METADATA
+        /// </summary>
+        public override AstRoot VisitView_attribute(TSqlParser.View_attributeContext context)
+        {
+            return new AstViewAttribute(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// filegroup_predicate
+        /// 	 : CONTAINS  FILESTREAM
+        /// 	 | CONTAINS  MEMORY_OPTIMIZED_DATA
+        /// </summary>
+        public override AstRoot VisitFilegroup_predicate(TSqlParser.Filegroup_predicateContext context)
+        {
+            return new AstFilegroupPredicate(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// statistic_value
+        /// 	 : OFF
+        /// 	 | ON  (INCREMENTAL  EQUAL  ON | OFF)
+        /// </summary>
+        public override AstRoot VisitStatistic_value(TSqlParser.Statistic_valueContext context)
+        {
+            return new AstStatisticValue(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// period
+        /// 	 : DAYS
+        /// 	 | HOURS
+        /// 	 | MINUTES
+        /// </summary>
+        public override AstRoot VisitPeriod(TSqlParser.PeriodContext context)
+        {
+            return new AstPeriod(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// db_state_option
+        /// 	 : ONLINE
+        /// 	 | OFFLINE
+        /// 	 | EMERGENCY
+        /// </summary>
+        public override AstRoot VisitDb_state_option(TSqlParser.Db_state_optionContext context)
+        {
+            return new AstDbStateOption(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// db_update_option
+        /// 	 : READ_ONLY
+        /// 	 | READ_WRITE
+        /// </summary>
+        public override AstRoot VisitDb_update_option(TSqlParser.Db_update_optionContext context)
+        {
+            return new AstDbUpdateOption(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// db_user_access_option
+        /// 	 : SINGLE_USER
+        /// 	 | RESTRICTED_USER
+        /// 	 | MULTI_USER
+        /// </summary>
+        public override AstRoot VisitDb_user_access_option(TSqlParser.Db_user_access_optionContext context)
+        {
+            return new AstDbUserAccessOption(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// disk_tape_url
+        /// 	 : DISK
+        /// 	 | TAPE
+        /// 	 | URL
+        /// </summary>
+        public override AstRoot VisitDisk_tape_url(TSqlParser.Disk_tape_urlContext context)
+        {
+            return new AstDiskTapeUrl(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// file_file_group
+        /// 	 : FILE
+        /// 	 | FILEGROUP
+        /// </summary>
+        public override AstRoot VisitFile_file_group(TSqlParser.File_file_groupContext context)
+        {
+            return new AstFileFileGroup(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// load_moun_load
+        /// 	 : LOAD
+        /// 	 | NOUNLOAD
+        /// </summary>
+        public override AstRoot VisitLoad_moun_load(TSqlParser.Load_moun_loadContext context)
+        {
+            return new AstLoadMounLoad(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// rewind
+        /// 	 : REWIND
+        /// 	 | NOREWIND
+        /// </summary>
+        public override AstRoot VisitRewind(TSqlParser.RewindContext context)
+        {
+            return new AstRewind(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// algorithm_short
+        /// 	 : AES_128
+        /// 	 | AES_192
+        /// 	 | AES_256
+        /// 	 | TRIPLE_DES_3KEY
+        /// </summary>
+        public override AstRoot VisitAlgorithm_short(TSqlParser.Algorithm_shortContext context)
+        {
+            return new AstAlgorithmShort(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// encryption_decryption
+        /// 	 : DECRYPTION
+        /// 	 | ENCRYPTION
+        /// </summary>
+        public override AstRoot VisitEncryption_decryption(TSqlParser.Encryption_decryptionContext context)
+        {
+            return new AstEncryptionDecryption(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// algorithm
+        /// 	 : DES
+        /// 	 | TRIPLE_DES
+        /// 	 | TRIPLE_DES_3KEY
+        /// 	 | RC2
+        /// 	 | RC4
+        /// 	 | RC4_128
+        /// 	 | DESX
+        /// 	 | AES_128
+        /// 	 | AES_192
+        /// 	 | AES_256
+        /// </summary>
+        public override AstRoot VisitAlgorithm(TSqlParser.AlgorithmContext context)
+        {
+            return new AstAlgorithm(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// grant_permission_enum
+        /// 	 : ADMINISTER  (BULK  OPERATIONS | DATABASE  BULK  OPERATIONS)
+        /// 	 | AUTHENTICATE  SERVER?
+        /// 	 | BACKUP  (DATABASE | LOG)
+        /// 	 | CHECKPOINT
+        /// 	 | CONNECT  (ANY  DATABASE | REPLICATION | SQL)?
+        /// 	 | CONTROL  SERVER?
+        /// 	 | DELETE
+        /// 	 | EXECUTE  (ANY  EXTERNAL  SCRIPT)?
+        /// 	 | EXTERNAL  ACCESS  ASSEMBLY
+        /// 	 | IMPERSONATE  (ANY  LOGIN)?
+        /// 	 | INSERT
+        /// 	 | KILL  DATABASE  CONNECTION
+        /// 	 | RECEIVE
+        /// 	 | REFERENCES
+        /// 	 | SELECT  (ALL  USER  SECURABLES)?
+        /// 	 | SEND
+        /// 	 | SHOWPLAN
+        /// 	 | SHUTDOWN
+        /// 	 | SUBSCRIBE  QUERY  NOTIFICATIONS
+        /// 	 | TAKE  OWNERSHIP
+        /// 	 | UNMASK
+        /// 	 | UNSAFE  ASSEMBLY
+        /// 	 | UPDATE
+        /// 	 | VIEW  (ANY  (DATABASE | DEFINITION | COLUMN  (ENCRYPTION | MASTER)  KEY  DEFINITION) | CHANGE  TRACKING | DATABASE  STATE | DEFINITION | SERVER  STATE)
+        /// </summary>
+        public override AstRoot VisitGrant_permission_enum(TSqlParser.Grant_permission_enumContext context)
+        {
+            return new AstGrantPermissionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// transaction
+        /// 	 : TRAN
+        /// 	 | TRANSACTION
+        /// </summary>
+        public override AstRoot VisitTransaction(TSqlParser.TransactionContext context)
+        {
+            return new AstTransaction(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// sensitive
+        /// 	 : SEMI_SENSITIVE
+        /// 	 | INSENSITIVE
+        /// </summary>
+        public override AstRoot VisitSensitive(TSqlParser.SensitiveContext context)
+        {
+            return new AstSensitive(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// plus_minus
+        /// 	 : PLUS
+        /// 	 | MINUS
+        /// </summary>
+        public override AstRoot VisitPlus_minus(TSqlParser.Plus_minusContext context)
+        {
+            return new AstPlusMinus(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// first_next
+        /// 	 : FIRST
+        /// 	 | NEXT
+        /// </summary>
+        public override AstRoot VisitFirst_next(TSqlParser.First_nextContext context)
+        {
+            return new AstFirstNext(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// absent_xsinil
+        /// 	 : ABSENT
+        /// 	 | XSINIL
+        /// </summary>
+        public override AstRoot VisitAbsent_xsinil(TSqlParser.Absent_xsinilContext context)
+        {
+            return new AstAbsentXsinil(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// auto_path
+        /// 	 : AUTO
+        /// 	 | PATH
+        /// </summary>
+        public override AstRoot VisitAuto_path(TSqlParser.Auto_pathContext context)
+        {
+            return new AstAutoPath(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// update_option_enum
+        /// 	 : (HASH | ORDER)  GROUP
+        /// 	 | (MERGE | HASH | CONCAT)  UNION
+        /// 	 | (LOOP | MERGE | HASH)  JOIN
+        /// 	 | EXPAND  VIEWS
+        /// 	 | FORCE  ORDER
+        /// 	 | IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// 	 | KEEP  PLAN
+        /// 	 | KEEPFIXED  PLAN
+        /// 	 | OPTIMIZE  FOR  UNKNOWN
+        /// 	 | PARAMETERIZATION  (SIMPLE | FORCED)
+        /// 	 | RECOMPILE
+        /// 	 | ROBUST  PLAN
+        /// </summary>
+        public override AstRoot VisitUpdate_option_enum(TSqlParser.Update_option_enumContext context)
+        {
+            return new AstUpdateOptionEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// join_type
+        /// 	 : LEFT
+        /// 	 | RIGHT
+        /// 	 | FULL
+        /// </summary>
+        public override AstRoot VisitJoin_type(TSqlParser.Join_typeContext context)
+        {
+            return new AstJoinType(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// join_hint
+        /// 	 : LOOP
+        /// 	 | HASH
+        /// 	 | MERGE
+        /// 	 | REMOTE
+        /// </summary>
+        public override AstRoot VisitJoin_hint(TSqlParser.Join_hintContext context)
+        {
+            return new AstJoinHint(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// apply_style
+        /// 	 : CROSS
+        /// 	 | OUTER
+        /// </summary>
+        public override AstRoot VisitApply_style(TSqlParser.Apply_styleContext context)
+        {
+            return new AstApplyStyle(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// containstable_freetexttable
+        /// 	 : CONTAINSTABLE
+        /// 	 | FREETEXTTABLE
+        /// </summary>
+        public override AstRoot VisitContainstable_freetexttable(TSqlParser.Containstable_freetexttableContext context)
+        {
+            return new AstContainstableFreetexttable(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// semantic_table
+        /// 	 : SEMANTICSIMILARITYTABLE
+        /// 	 | SEMANTICKEYPHRASETABLE
+        /// </summary>
+        public override AstRoot VisitSemantic_table(TSqlParser.Semantic_tableContext context)
+        {
+            return new AstSemanticTable(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// ranking_windowed
+        /// 	 : RANK
+        /// 	 | DENSE_RANK
+        /// 	 | ROW_NUMBER
+        /// </summary>
+        public override AstRoot VisitRanking_windowed(TSqlParser.Ranking_windowedContext context)
+        {
+            return new AstRankingWindowed(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// agg_function
+        /// 	 : AVG
+        /// 	 | MAX
+        /// 	 | MIN
+        /// 	 | SUM
+        /// 	 | STDEV
+        /// 	 | STDEVP
+        /// 	 | VAR
+        /// 	 | VARP
+        /// </summary>
+        public override AstRoot VisitAgg_function(TSqlParser.Agg_functionContext context)
+        {
+            return new AstAggFunction(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// count_count_big
+        /// 	 : COUNT
+        /// 	 | COUNT_BIG
+        /// </summary>
+        public override AstRoot VisitCount_count_big(TSqlParser.Count_count_bigContext context)
+        {
+            return new AstCountCountBig(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// percentil
+        /// 	 : PERCENTILE_CONT
+        /// 	 | PERCENTILE_DISC
+        /// </summary>
+        public override AstRoot VisitPercentil(TSqlParser.PercentilContext context)
+        {
+            return new AstPercentil(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// cume_percent
+        /// 	 : CUME_DIST
+        /// 	 | PERCENT_RANK
+        /// </summary>
+        public override AstRoot VisitCume_percent(TSqlParser.Cume_percentContext context)
+        {
+            return new AstCumePercent(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// first_last_value
+        /// 	 : FIRST_VALUE
+        /// 	 | LAST_VALUE
+        /// </summary>
+        public override AstRoot VisitFirst_last_value(TSqlParser.First_last_valueContext context)
+        {
+            return new AstFirstLastValue(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// lag_lead
+        /// 	 : LAG
+        /// 	 | LEAD
+        /// </summary>
+        public override AstRoot VisitLag_lead(TSqlParser.Lag_leadContext context)
+        {
+            return new AstLagLead(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// row_range
+        /// 	 : ROWS
+        /// 	 | RANGE
+        /// </summary>
+        public override AstRoot VisitRow_range(TSqlParser.Row_rangeContext context)
+        {
+            return new AstRowRange(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// off_read_only_full
+        /// 	 : OFF
+        /// 	 | READ_ONLY
+        /// 	 | FULL
+        /// </summary>
+        public override AstRoot VisitOff_read_only_full(TSqlParser.Off_read_only_fullContext context)
+        {
+            return new AstOffReadOnlyFull(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// asc_desc
+        /// 	 : ASC
+        /// 	 | DESC
+        /// </summary>
+        public override AstRoot VisitAsc_desc(TSqlParser.Asc_descContext context)
+        {
+            return new AstAscDesc(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// on_off
+        /// 	 : ON
+        /// 	 | OFF
+        /// </summary>
+        public override AstRoot VisitOn_off(TSqlParser.On_offContext context)
+        {
+            return new AstOnOff(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// clustered
+        /// 	 : CLUSTERED
+        /// 	 | NONCLUSTERED
+        /// </summary>
+        public override AstRoot VisitClustered(TSqlParser.ClusteredContext context)
+        {
+            return new AstClustered(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// scalar_function_name_enum
+        /// 	 : RIGHT
+        /// 	 | LEFT
+        /// 	 | BINARY_CHECKSUM
+        /// 	 | CHECKSUM
+        /// </summary>
+        public override AstRoot VisitScalar_function_name_enum(TSqlParser.Scalar_function_name_enumContext context)
+        {
+            return new AstScalarFunctionNameEnum(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// relayed_conversation
+        /// 	 : RELATED_CONVERSATION
+        /// 	 | RELATED_CONVERSATION_GROUP
+        /// </summary>
+        public override AstRoot VisitRelayed_conversation(TSqlParser.Relayed_conversationContext context)
+        {
+            return new AstRelayedConversation(context, context.GetText());
+        }
+        
+        /// <summary>
         /// log_seterror_nowait
         /// 	 : LOG
         /// 	 | SETERROR
@@ -1641,6 +2605,16 @@ namespace Bb.Parsers.TSql
         public override AstRoot VisitLog_seterror_nowait(TSqlParser.Log_seterror_nowaitContext context)
         {
             return new AstLogSeterrorNowait(context, context.GetText());
+        }
+        
+        /// <summary>
+        /// deleteed_inserted
+        /// 	 : DELETED
+        /// 	 | INSERTED
+        /// </summary>
+        public override AstRoot VisitDeleteed_inserted(TSqlParser.Deleteed_insertedContext context)
+        {
+            return new AstDeleteedInserted(context, context.GetText());
         }
     }
 }

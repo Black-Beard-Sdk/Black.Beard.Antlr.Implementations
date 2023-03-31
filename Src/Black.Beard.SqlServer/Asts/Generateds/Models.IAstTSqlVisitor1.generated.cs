@@ -62,8 +62,6 @@ namespace Bb.Asts.TSql
         
         void VisitWaitforStatement(AstWaitforStatement a);
         
-        void VisitDelayTimeTimeout(AstDelayTimeTimeout a);
-        
         void VisitWhileStatement(AstWhileStatement a);
         
         void VisitPrintStatement(AstPrintStatement a);
@@ -115,8 +113,6 @@ namespace Bb.Asts.TSql
         void VisitAlterAssemblyWithClause(AstAlterAssemblyWithClause a);
         
         void VisitClientAssemblySpecifier(AstClientAssemblySpecifier a);
-        
-        void VisitAssemblyPermission(AstAssemblyPermission a);
         
         void VisitAssemblyOption(AstAssemblyOption a);
         
@@ -178,10 +174,6 @@ namespace Bb.Asts.TSql
         
         void VisitClassTypeForGrant(AstClassTypeForGrant a);
         
-        void VisitEncryptionMaster(AstEncryptionMaster a);
-        
-        void VisitDatabaseObjectServer(AstDatabaseObjectServer a);
-        
         void VisitDropAvailabilityGroup(AstDropAvailabilityGroup a);
         
         void VisitAlterAvailabilityGroup(AstAlterAvailabilityGroup a);
@@ -205,22 +197,6 @@ namespace Bb.Asts.TSql
         void VisitAlterAvailabilityGroupOptionsListenerDhcp(AstAlterAvailabilityGroupOptionsListenerDhcp a);
         
         void VisitAlterAvailabilityGroupOptionsListenerIp(AstAlterAvailabilityGroupOptionsListenerIp a);
-        
-        void VisitAddRemove(AstAddRemove a);
-        
-        void VisitRestartRemove(AstRestartRemove a);
-        
-        void VisitSynchAsynch(AstSynchAsynch a);
-        
-        void VisitAutoManual(AstAutoManual a);
-        
-        void VisitRealWriteAll(AstRealWriteAll a);
-        
-        void VisitNoRealWriteAll(AstNoRealWriteAll a);
-        
-        void VisitPrimarySecondaryNone(AstPrimarySecondaryNone a);
-        
-        void VisitGrantDeny(AstGrantDeny a);
         
         void VisitAlterAvailabilityReplicatModify(AstAlterAvailabilityReplicatModify a);
         
@@ -266,15 +242,11 @@ namespace Bb.Asts.TSql
         
         void VisitBrokerPriorityLevel(AstBrokerPriorityLevel a);
         
-        void VisitCreateAlter(AstCreateAlter a);
-        
         void VisitDropBrokerPriority(AstDropBrokerPriority a);
         
         void VisitAlterCertificate(AstAlterCertificate a);
         
         void VisitPrivateKey(AstPrivateKey a);
-        
-        void VisitAddDrop(AstAddDrop a);
         
         void VisitAlterColumnEncryptionKey(AstAlterColumnEncryptionKey a);
         
@@ -315,6 +287,8 @@ namespace Bb.Asts.TSql
         void VisitDropExternalTable(AstDropExternalTable a);
         
         void VisitDropEventNotifications(AstDropEventNotifications a);
+        
+        void VisitEventNotificationOn(AstEventNotificationOn a);
         
         void VisitDropEventSession(AstDropEventSession a);
         
@@ -379,6 +353,12 @@ namespace Bb.Asts.TSql
         void VisitDisableTrigger(AstDisableTrigger a);
         
         void VisitEnableTrigger(AstEnableTrigger a);
+        
+        void VisitTriggerSetting(AstTriggerSetting a);
+        
+        void VisitTriggerName(AstTriggerName a);
+        
+        void VisitTriggerTarget(AstTriggerTarget a);
         
         void VisitLockTable(AstLockTable a);
         
@@ -448,23 +428,15 @@ namespace Bb.Asts.TSql
         
         void VisitEventSessionPredicateLeaf(AstEventSessionPredicateLeaf a);
         
-        void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe a);
-        
         void VisitAlterExternalDataSource(AstAlterExternalDataSource a);
         
         void VisitAlterExternalLibrary(AstAlterExternalLibrary a);
-        
-        void VisitSetAdd(AstSetAdd a);
         
         void VisitCreateExternalLibrary(AstCreateExternalLibrary a);
         
         void VisitFileSpec2(AstFileSpec2 a);
         
-        void VisitPlatform(AstPlatform a);
-        
         void VisitCodeContent(AstCodeContent a);
-        
-        void VisitCodeLanguage(AstCodeLanguage a);
         
         void VisitAlterExternalResourcePool(AstAlterExternalResourcePool a);
         
@@ -516,10 +488,6 @@ namespace Bb.Asts.TSql
         
         void VisitAlterLoginAzureSqlDwAndPdw(AstAlterLoginAzureSqlDwAndPdw a);
         
-        void VisitPwdStrategy(AstPwdStrategy a);
-        
-        void VisitEnableDisable(AstEnableDisable a);
-        
         void VisitCreateLoginPdw(AstCreateLoginPdw a);
         
         void VisitAlterMasterKeySqlServer(AstAlterMasterKeySqlServer a);
@@ -528,9 +496,15 @@ namespace Bb.Asts.TSql
         
         void VisitAlterMasterKeyAzureSql(AstAlterMasterKeyAzureSql a);
         
+        void VisitRegenerateMaterKey(AstRegenerateMaterKey a);
+        
+        void VisitAddMasterKey(AstAddMasterKey a);
+        
         void VisitCreateMasterKeyAzureSql(AstCreateMasterKeyAzureSql a);
         
         void VisitAlterMessageType(AstAlterMessageType a);
+        
+        void VisitMessageValidationValue(AstMessageValidationValue a);
         
         void VisitAlterPartitionFunction(AstAlterPartitionFunction a);
         
@@ -586,12 +560,6 @@ namespace Bb.Asts.TSql
         
         void VisitSchemaTableRefImpact(AstSchemaTableRefImpact a);
         
-        void VisitInsertUpdate(AstInsertUpdate a);
-        
-        void VisitUpdateDelate(AstUpdateDelate a);
-        
-        void VisitFilterBlock(AstFilterBlock a);
-        
         void VisitAlterSequence(AstAlterSequence a);
         
         void VisitAlterSequenceRestart(AstAlterSequenceRestart a);
@@ -618,10 +586,6 @@ namespace Bb.Asts.TSql
         
         void VisitCreateSequenceStart(AstCreateSequenceStart a);
         
-        void VisitCycle(AstCycle a);
-        
-        void VisitSizeUnity(AstSizeUnity a);
-        
         void VisitAlterServerAudit(AstAlterServerAudit a);
         
         void VisitAlterServerAuditInfos(AstAlterServerAuditInfos a);
@@ -639,12 +603,6 @@ namespace Bb.Asts.TSql
         void VisitDecimalSizeUnlimited(AstDecimalSizeUnlimited a);
         
         void VisitAlterServerAuditCondition(AstAlterServerAuditCondition a);
-        
-        void VisitContinueShutdown(AstContinueShutdown a);
-        
-        void VisitAuditOperator(AstAuditOperator a);
-        
-        void VisitAndOr(AstAndOr a);
         
         void VisitCreateServerAudit(AstCreateServerAudit a);
         
@@ -675,10 +633,6 @@ namespace Bb.Asts.TSql
         void VisitServerConfigProcessAffinity(AstServerConfigProcessAffinity a);
         
         void VisitServerConfigDiagnosticLog(AstServerConfigDiagnosticLog a);
-        
-        void VisitSizeValue(AstSizeValue a);
-        
-        void VisitDecimalDefault(AstDecimalDefault a);
         
         void VisitServerConfigFailover(AstServerConfigFailover a);
         
@@ -720,8 +674,6 @@ namespace Bb.Asts.TSql
         
         void VisitCreateUserWindowsPrincipalId(AstCreateUserWindowsPrincipalId a);
         
-        void VisitForFrom(AstForFrom a);
-        
         void VisitUserSettingsShort(AstUserSettingsShort a);
         
         void VisitUserSettings(AstUserSettings a);
@@ -735,8 +687,6 @@ namespace Bb.Asts.TSql
         void VisitAlterUserAzureSqlInfo(AstAlterUserAzureSqlInfo a);
         
         void VisitAlterWorkloadGroup(AstAlterWorkloadGroup a);
-        
-        void VisitImportanceLevel(AstImportanceLevel a);
         
         void VisitAlterWorkloadGroupUsing(AstAlterWorkloadGroupUsing a);
         
@@ -759,6 +709,8 @@ namespace Bb.Asts.TSql
         void VisitQueueRebuildOptions(AstQueueRebuildOptions a);
         
         void VisitCreateContract(AstCreateContract a);
+        
+        void VisitContractItem(AstContractItem a);
         
         void VisitConversationStatement(AstConversationStatement a);
         
@@ -788,8 +740,6 @@ namespace Bb.Asts.TSql
         
         void VisitWhereCondition(AstWhereCondition a);
         
-        void VisitReceiveIds(AstReceiveIds a);
-        
         void VisitReceiveId(AstReceiveId a);
         
         void VisitReceiveMode(AstReceiveMode a);
@@ -818,13 +768,15 @@ namespace Bb.Asts.TSql
         
         void VisitDatabaseCreateWith(AstDatabaseCreateWith a);
         
-        void VisitNonePartial(AstNonePartial a);
-        
         void VisitCreateIndex(AstCreateIndex a);
         
         void VisitRelationalIndexOption(AstRelationalIndexOption a);
         
         void VisitAlterIndex(AstAlterIndex a);
+        
+        void VisitIndexStatus(AstIndexStatus a);
+        
+        void VisitIndexStatusEnum(AstIndexStatusEnum a);
         
         void VisitIndexName(AstIndexName a);
         
@@ -842,8 +794,6 @@ namespace Bb.Asts.TSql
         
         void VisitSinglePartitionRebuildIndexOption(AstSinglePartitionRebuildIndexOption a);
         
-        void VisitDatacompressionMode(AstDatacompressionMode a);
-        
         void VisitOnPartitions(AstOnPartitions a);
         
         void VisitPartitionNums(AstPartitionNums a);
@@ -855,6 +805,8 @@ namespace Bb.Asts.TSql
         void VisitCreateNonclusteredColumnstoreIndex(AstCreateNonclusteredColumnstoreIndex a);
         
         void VisitCreateXmlIndex(AstCreateXmlIndex a);
+        
+        void VisitUsingXmlIndex(AstUsingXmlIndex a);
         
         void VisitXmlIndexOption(AstXmlIndexOption a);
         
@@ -874,10 +826,6 @@ namespace Bb.Asts.TSql
         
         void VisitCreateOrAlterDdlTrigger(AstCreateOrAlterDdlTrigger a);
         
-        void VisitAllServerDatabase(AstAllServerDatabase a);
-        
-        void VisitForAfter(AstForAfter a);
-        
         void VisitCreateOrAlterFunction(AstCreateOrAlterFunction a);
         
         void VisitFuncBodyReturnsSelect(AstFuncBodyReturnsSelect a);
@@ -893,6 +841,8 @@ namespace Bb.Asts.TSql
         void VisitFunctionOption(AstFunctionOption a);
         
         void VisitCreateStatistics(AstCreateStatistics a);
+        
+        void VisitStatisticsWith(AstStatisticsWith a);
         
         void VisitUpdateStatistics(AstUpdateStatistics a);
         
@@ -918,11 +868,7 @@ namespace Bb.Asts.TSql
         
         void VisitCreateTableIndexOption(AstCreateTableIndexOption a);
         
-        void VisitIndexStrategy(AstIndexStrategy a);
-        
         void VisitCreateView(AstCreateView a);
-        
-        void VisitViewAttribute(AstViewAttribute a);
         
         void VisitAlterTable(AstAlterTable a);
         
@@ -958,27 +904,15 @@ namespace Bb.Asts.TSql
         
         void VisitChangeTrackingOptionList(AstChangeTrackingOptionList a);
         
-        void VisitPeriod(AstPeriod a);
-        
         void VisitContainmentOption(AstContainmentOption a);
         
         void VisitCursorOption(AstCursorOption a);
-        
-        void VisitLocalGlobal(AstLocalGlobal a);
-        
-        void VisitStateEnum(AstStateEnum a);
         
         void VisitListenerIp(AstListenerIp a);
         
         void VisitAlterEndpoint(AstAlterEndpoint a);
         
         void VisitAuthenticationConfiguration(AstAuthenticationConfiguration a);
-        
-        void VisitAuthenticationMode(AstAuthenticationMode a);
-        
-        void VisitEncryptionState(AstEncryptionState a);
-        
-        void VisitEncryptionAlgorithm(AstEncryptionAlgorithm a);
         
         void VisitAlterEndpointDatabaseMirroring(AstAlterEndpointDatabaseMirroring a);
         
@@ -1014,12 +948,6 @@ namespace Bb.Asts.TSql
         
         void VisitDbEncryptionOption(AstDbEncryptionOption a);
         
-        void VisitDbStateOption(AstDbStateOption a);
-        
-        void VisitDbUpdateOption(AstDbUpdateOption a);
-        
-        void VisitDbUserAccessOption(AstDbUserAccessOption a);
-        
         void VisitDelayedDurabilityOption(AstDelayedDurabilityOption a);
         
         void VisitExternalAccessOption(AstExternalAccessOption a);
@@ -1029,8 +957,6 @@ namespace Bb.Asts.TSql
         void VisitHadrOptions(AstHadrOptions a);
         
         void VisitMixedPageAllocationOption(AstMixedPageAllocationOption a);
-        
-        void VisitParameterizationOption(AstParameterizationOption a);
         
         void VisitRecoveryOption(AstRecoveryOption a);
         
@@ -1060,6 +986,8 @@ namespace Bb.Asts.TSql
         
         void VisitDropStatistics(AstDropStatistics a);
         
+        void VisitFullTableRefColumn(AstFullTableRefColumn a);
+        
         void VisitDropTable(AstDropTable a);
         
         void VisitDropView(AstDropView a);
@@ -1082,17 +1010,7 @@ namespace Bb.Asts.TSql
         
         void VisitCursorStatement(AstCursorStatement a);
         
-        void VisitCompression(AstCompression a);
-        
-        void VisitInitNoInit(AstInitNoInit a);
-        
-        void VisitNoSkip(AstNoSkip a);
-        
-        void VisitFormatNoformat(AstFormatNoformat a);
-        
         void VisitBackupDatabase(AstBackupDatabase a);
-        
-        void VisitFileGroupList(AstFileGroupList a);
         
         void VisitFileGroupAssign(AstFileGroupAssign a);
         
@@ -1112,19 +1030,9 @@ namespace Bb.Asts.TSql
         
         void VisitBackupCertificatePrivateKey(AstBackupCertificatePrivateKey a);
         
-        void VisitDiskTapeUrl(AstDiskTapeUrl a);
-        
         void VisitBackupSettings(AstBackupSettings a);
         
         void VisitBackupSetting(AstBackupSetting a);
-        
-        void VisitFileFileGroup(AstFileFileGroup a);
-        
-        void VisitLoadMounLoad(AstLoadMounLoad a);
-        
-        void VisitRewind(AstRewind a);
-        
-        void VisitAlgorithmShort(AstAlgorithmShort a);
         
         void VisitBackupMasterKey(AstBackupMasterKey a);
         
@@ -1166,8 +1074,6 @@ namespace Bb.Asts.TSql
         
         void VisitPrivateKeyOptions(AstPrivateKeyOptions a);
         
-        void VisitEncryptionDecryption(AstEncryptionDecryption a);
-        
         void VisitGenerateNewKeys(AstGenerateNewKeys a);
         
         void VisitDateOption(AstDateOption a);
@@ -1179,8 +1085,6 @@ namespace Bb.Asts.TSql
         void VisitCreateKey(AstCreateKey a);
         
         void VisitKeyOptions(AstKeyOptions a);
-        
-        void VisitAlgorithm(AstAlgorithm a);
         
         void VisitEncryptionMechanism(AstEncryptionMechanism a);
         
@@ -1195,8 +1099,6 @@ namespace Bb.Asts.TSql
         void VisitSetStatement(AstSetStatement a);
         
         void VisitTransactionStatement(AstTransactionStatement a);
-        
-        void VisitTransaction(AstTransaction a);
         
         void VisitTransactionRef(AstTransactionRef a);
         
@@ -1225,8 +1127,6 @@ namespace Bb.Asts.TSql
         void VisitDeclareLocal(AstDeclareLocal a);
         
         void VisitTableTypeDefinition(AstTableTypeDefinition a);
-        
-        void VisitTableTypeIndices(AstTableTypeIndices a);
         
         void VisitTableTypeIndice(AstTableTypeIndice a);
         
@@ -1262,15 +1162,9 @@ namespace Bb.Asts.TSql
         
         void VisitCheckConstraint(AstCheckConstraint a);
         
-        void VisitOnDelete(AstOnDelete a);
-        
-        void VisitOnUpdate(AstOnUpdate a);
-        
         void VisitAlterTableIndexOption(AstAlterTableIndexOption a);
         
         void VisitDeclareCursor(AstDeclareCursor a);
-        
-        void VisitSensitive(AstSensitive a);
         
         void VisitDeclareSetCursorCommon(AstDeclareSetCursorCommon a);
         
@@ -1278,23 +1172,15 @@ namespace Bb.Asts.TSql
         
         void VisitFetchCursor(AstFetchCursor a);
         
-        void VisitAbsoluteRelative(AstAbsoluteRelative a);
-        
-        void VisitFetchCursorStrategy(AstFetchCursorStrategy a);
-        
         void VisitSetSpecial(AstSetSpecial a);
         
         void VisitSetSpecialSetValue(AstSetSpecialSetValue a);
-        
-        void VisitSpecialList(AstSpecialList a);
         
         void VisitConstantLocalId(AstConstantLocalId a);
         
         void VisitEmptyValue(AstEmptyValue a);
         
         void VisitExpression(AstExpression a);
-        
-        void VisitParameter(AstParameter a);
         
         void VisitTimeZone(AstTimeZone a);
         
@@ -1364,17 +1250,13 @@ namespace Bb.Asts.TSql
         
         void VisitGroupByItem(AstGroupByItem a);
         
-        void VisitOption(AstOption a);
+        void VisitUpdateOption(AstUpdateOption a);
         
         void VisitOptimizeForArg(AstOptimizeForArg a);
         
         void VisitAsterisk(AstAsterisk a);
         
-        void VisitStarAsterisk(AstStarAsterisk a);
-        
         void VisitTableAsterisk(AstTableAsterisk a);
-        
-        void VisitUpdatedAsterisk(AstUpdatedAsterisk a);
         
         void VisitColumnElem(AstColumnElem a);
         
@@ -1414,7 +1296,7 @@ namespace Bb.Asts.TSql
         
         void VisitCrossJoin(AstCrossJoin a);
         
-        void VisitApply(AstApply a);
+        void VisitApplyEnum(AstApplyEnum a);
         
         void VisitPivot(AstPivot a);
         
@@ -1524,15 +1406,7 @@ namespace Bb.Asts.TSql
         
         void VisitMaxSize(AstMaxSize a);
         
-        void VisitAscDesc(AstAscDesc a);
-        
         void VisitCursorName(AstCursorName a);
-        
-        void VisitOnOff(AstOnOff a);
-        
-        void VisitClustered(AstClustered a);
-        
-        void VisitNullNotnull(AstNullNotnull a);
         
         void VisitNullOrDefault(AstNullOrDefault a);
         
@@ -1556,6 +1430,10 @@ namespace Bb.Asts.TSql
         
         void VisitDataType(AstDataType a);
         
+        void VisitDecimalScalePrec(AstDecimalScalePrec a);
+        
+        void VisitIdentitySeed(AstIdentitySeed a);
+        
         void VisitDefaultValue(AstDefaultValue a);
         
         void VisitConstant(AstConstant a);
@@ -1568,13 +1446,7 @@ namespace Bb.Asts.TSql
         
         void VisitSimpleId(AstSimpleId a);
         
-        void VisitComparisonOperator(AstComparisonOperator a);
-        
-        void VisitAssignmentOperator(AstAssignmentOperator a);
-        
         void VisitFileSize(AstFileSize a);
-        
-        void VisitFileSizeUnity(AstFileSizeUnity a);
         
         void VisitIpv4(AstIpv4 a);
         
@@ -1792,8 +1664,6 @@ namespace Bb.Asts.TSql
         
         void VisitDecimalString(AstDecimalString a);
         
-        void VisitLogSeterrorNowait(AstLogSeterrorNowait a);
-        
         void VisitDecimalStringLocalId(AstDecimalStringLocalId a);
         
         void VisitStringLocalIdDoubleQuoteId(AstStringLocalIdDoubleQuoteId a);
@@ -1894,6 +1764,8 @@ namespace Bb.Asts.TSql
         
         void VisitDmlTriggerOptions(AstDmlTriggerOptions a);
         
+        void VisitTableTypeIndices(AstTableTypeIndices a);
+        
         void VisitDmlTriggerOperations(AstDmlTriggerOperations a);
         
         void VisitProcedureOptions(AstProcedureOptions a);
@@ -1909,6 +1781,8 @@ namespace Bb.Asts.TSql
         void VisitSinglePartitionRebuildIndexOptions(AstSinglePartitionRebuildIndexOptions a);
         
         void VisitRebuildIndexOptions(AstRebuildIndexOptions a);
+        
+        void VisitFullTableRefColumns(AstFullTableRefColumns a);
         
         void VisitSetIndexOptions(AstSetIndexOptions a);
         
@@ -2008,7 +1882,7 @@ namespace Bb.Asts.TSql
         
         void VisitOptimizeForArgs(AstOptimizeForArgs a);
         
-        void VisitOptionClause(AstOptionClause a);
+        void VisitUpdateOptionClause(AstUpdateOptionClause a);
         
         void VisitGroupingSetsList(AstGroupingSetsList a);
         
@@ -2070,14 +1944,334 @@ namespace Bb.Asts.TSql
         
         void VisitClauseJsonInfos(AstClauseJsonInfos a);
         
+        void VisitContractItems(AstContractItems a);
+        
         void VisitDateOptions(AstDateOptions a);
         
         void VisitXmlCommonDirectives(AstXmlCommonDirectives a);
+        
+        void VisitReceiveIds(AstReceiveIds a);
         
         void VisitDeclareSetCursorCommonPartials(AstDeclareSetCursorCommonPartials a);
         
         void VisitColumnDefinitionElements(AstColumnDefinitionElements a);
         
+        void VisitFileGroupList(AstFileGroupList a);
+        
         void VisitSchemaTableRefImpacts(AstSchemaTableRefImpacts a);
+        
+        void VisitNotificationIds(AstNotificationIds a);
+        
+        void VisitAssemblyPermission(AstAssemblyPermission a);
+        
+        void VisitObjectTypeForGrant(AstObjectTypeForGrant a);
+        
+        void VisitEncryptionMaster(AstEncryptionMaster a);
+        
+        void VisitDatabaseObjectServer(AstDatabaseObjectServer a);
+        
+        void VisitAllServerDatabase(AstAllServerDatabase a);
+        
+        void VisitServerDatabase(AstServerDatabase a);
+        
+        void VisitForAfter(AstForAfter a);
+        
+        void VisitShareExclusive(AstShareExclusive a);
+        
+        void VisitCreateAlter(AstCreateAlter a);
+        
+        void VisitFileSizeUnity(AstFileSizeUnity a);
+        
+        void VisitMemorySizeUnity(AstMemorySizeUnity a);
+        
+        void VisitPartitionMode(AstPartitionMode a);
+        
+        void VisitSessionMode(AstSessionMode a);
+        
+        void VisitDisableReconfigure(AstDisableReconfigure a);
+        
+        void VisitTransfertTarget(AstTransfertTarget a);
+        
+        void VisitInsertUpdate(AstInsertUpdate a);
+        
+        void VisitUpdateDelate(AstUpdateDelate a);
+        
+        void VisitFilterBlock(AstFilterBlock a);
+        
+        void VisitInitTargetAny(AstInitTargetAny a);
+        
+        void VisitReceiveModeEnum(AstReceiveModeEnum a);
+        
+        void VisitDatacompressionMode(AstDatacompressionMode a);
+        
+        void VisitDatacompressionColumnMode(AstDatacompressionColumnMode a);
+        
+        void VisitIndexUsingXmlMode(AstIndexUsingXmlMode a);
+        
+        void VisitProcKeyword(AstProcKeyword a);
+        
+        void VisitAlterReplace(AstAlterReplace a);
+        
+        void VisitParamWay(AstParamWay a);
+        
+        void VisitPercentRow(AstPercentRow a);
+        
+        void VisitFunctionOptionEnum(AstFunctionOptionEnum a);
+        
+        void VisitProcedureOptionEnum(AstProcedureOptionEnum a);
+        
+        void VisitRowRows(AstRowRows a);
+        
+        void VisitCompressionMode(AstCompressionMode a);
+        
+        void VisitStartEnd(AstStartEnd a);
+        
+        void VisitGenerationMode(AstGenerationMode a);
+        
+        void VisitEncryptionMode(AstEncryptionMode a);
+        
+        void VisitTableoptionClusterMode(AstTableoptionClusterMode a);
+        
+        void VisitLockMode(AstLockMode a);
+        
+        void VisitCheckNocheck(AstCheckNocheck a);
+        
+        void VisitDataTypeScaled(AstDataTypeScaled a);
+        
+        void VisitAbordAfterMode(AstAbordAfterMode a);
+        
+        void VisitLocalGlobal(AstLocalGlobal a);
+        
+        void VisitStateEnum(AstStateEnum a);
+        
+        void VisitAuthenticationMode(AstAuthenticationMode a);
+        
+        void VisitEncryptionState(AstEncryptionState a);
+        
+        void VisitEncryptionAlgorithm(AstEncryptionAlgorithm a);
+        
+        void VisitRoleMirroring(AstRoleMirroring a);
+        
+        void VisitPartnerOptionEnum(AstPartnerOptionEnum a);
+        
+        void VisitDelayedDurability(AstDelayedDurability a);
+        
+        void VisitSuspendResume(AstSuspendResume a);
+        
+        void VisitParameterizationOption(AstParameterizationOption a);
+        
+        void VisitRecoveryOptionEnum(AstRecoveryOptionEnum a);
+        
+        void VisitSecondsMinutes(AstSecondsMinutes a);
+        
+        void VisitCompression(AstCompression a);
+        
+        void VisitInitNoInit(AstInitNoInit a);
+        
+        void VisitNoSkip(AstNoSkip a);
+        
+        void VisitFormatNoformat(AstFormatNoformat a);
+        
+        void VisitLoginUser(AstLoginUser a);
+        
+        void VisitOutputOut(AstOutputOut a);
+        
+        void VisitStartDateExpiryDate(AstStartDateExpiryDate a);
+        
+        void VisitExecuteClauseModeEnum(AstExecuteClauseModeEnum a);
+        
+        void VisitContentDocument(AstContentDocument a);
+        
+        void VisitMaterializedMode(AstMaterializedMode a);
+        
+        void VisitColumnModifierEnum(AstColumnModifierEnum a);
+        
+        void VisitComputeAs(AstComputeAs a);
+        
+        void VisitPrimaryKeyUnique(AstPrimaryKeyUnique a);
+        
+        void VisitDeclareSetCursorCommonPartialEnum(AstDeclareSetCursorCommonPartialEnum a);
+        
+        void VisitAbsoluteRelative(AstAbsoluteRelative a);
+        
+        void VisitFetchCursorStrategy(AstFetchCursorStrategy a);
+        
+        void VisitStatisticKind(AstStatisticKind a);
+        
+        void VisitTransactionIsolation(AstTransactionIsolation a);
+        
+        void VisitSpecialList(AstSpecialList a);
+        
+        void VisitExpressionOperator(AstExpressionOperator a);
+        
+        void VisitParameter(AstParameter a);
+        
+        void VisitAllSomeAny(AstAllSomeAny a);
+        
+        void VisitJoinMode(AstJoinMode a);
+        
+        void VisitAllDistinct(AstAllDistinct a);
+        
+        void VisitDelayTimeTimeout(AstDelayTimeTimeout a);
+        
+        void VisitCreationDisposition(AstCreationDisposition a);
+        
+        void VisitAsymetricAlgorithm(AstAsymetricAlgorithm a);
+        
+        void VisitAddRemove(AstAddRemove a);
+        
+        void VisitRestartRemove(AstRestartRemove a);
+        
+        void VisitSynchAsynch(AstSynchAsynch a);
+        
+        void VisitAutoManual(AstAutoManual a);
+        
+        void VisitRealWriteAll(AstRealWriteAll a);
+        
+        void VisitNoRealWriteAll(AstNoRealWriteAll a);
+        
+        void VisitPrimarySecondaryNone(AstPrimarySecondaryNone a);
+        
+        void VisitGrantDeny(AstGrantDeny a);
+        
+        void VisitAddDrop(AstAddDrop a);
+        
+        void VisitEventSessionPredicateLeafOpe(AstEventSessionPredicateLeafOpe a);
+        
+        void VisitSetAdd(AstSetAdd a);
+        
+        void VisitPlatform(AstPlatform a);
+        
+        void VisitCodeLanguage(AstCodeLanguage a);
+        
+        void VisitPwdStrategy(AstPwdStrategy a);
+        
+        void VisitEnableDisable(AstEnableDisable a);
+        
+        void VisitMessageValidationValueEnum(AstMessageValidationValueEnum a);
+        
+        void VisitCycle(AstCycle a);
+        
+        void VisitSizeUnity(AstSizeUnity a);
+        
+        void VisitContinueShutdown(AstContinueShutdown a);
+        
+        void VisitAuditOperator(AstAuditOperator a);
+        
+        void VisitAndOr(AstAndOr a);
+        
+        void VisitSizeValue(AstSizeValue a);
+        
+        void VisitDecimalDefault(AstDecimalDefault a);
+        
+        void VisitForFrom(AstForFrom a);
+        
+        void VisitImportanceLevel(AstImportanceLevel a);
+        
+        void VisitLeftRight(AstLeftRight a);
+        
+        void VisitNonePartial(AstNonePartial a);
+        
+        void VisitIndexStrategy(AstIndexStrategy a);
+        
+        void VisitViewAttribute(AstViewAttribute a);
+        
+        void VisitFilegroupPredicate(AstFilegroupPredicate a);
+        
+        void VisitStatisticValue(AstStatisticValue a);
+        
+        void VisitPeriod(AstPeriod a);
+        
+        void VisitDbStateOption(AstDbStateOption a);
+        
+        void VisitDbUpdateOption(AstDbUpdateOption a);
+        
+        void VisitDbUserAccessOption(AstDbUserAccessOption a);
+        
+        void VisitDiskTapeUrl(AstDiskTapeUrl a);
+        
+        void VisitFileFileGroup(AstFileFileGroup a);
+        
+        void VisitLoadMounLoad(AstLoadMounLoad a);
+        
+        void VisitRewind(AstRewind a);
+        
+        void VisitAlgorithmShort(AstAlgorithmShort a);
+        
+        void VisitEncryptionDecryption(AstEncryptionDecryption a);
+        
+        void VisitAlgorithm(AstAlgorithm a);
+        
+        void VisitGrantPermissionEnum(AstGrantPermissionEnum a);
+        
+        void VisitTransaction(AstTransaction a);
+        
+        void VisitOnDelete(AstOnDelete a);
+        
+        void VisitOnUpdate(AstOnUpdate a);
+        
+        void VisitSensitive(AstSensitive a);
+        
+        void VisitPlusMinus(AstPlusMinus a);
+        
+        void VisitFirstNext(AstFirstNext a);
+        
+        void VisitAbsentXsinil(AstAbsentXsinil a);
+        
+        void VisitAutoPath(AstAutoPath a);
+        
+        void VisitUpdateOptionEnum(AstUpdateOptionEnum a);
+        
+        void VisitStarAsterisk(AstStarAsterisk a);
+        
+        void VisitUpdatedAsterisk(AstUpdatedAsterisk a);
+        
+        void VisitJoinType(AstJoinType a);
+        
+        void VisitJoinHint(AstJoinHint a);
+        
+        void VisitApplyStyle(AstApplyStyle a);
+        
+        void VisitContainstableFreetexttable(AstContainstableFreetexttable a);
+        
+        void VisitSemanticTable(AstSemanticTable a);
+        
+        void VisitRankingWindowed(AstRankingWindowed a);
+        
+        void VisitAggFunction(AstAggFunction a);
+        
+        void VisitCountCountBig(AstCountCountBig a);
+        
+        void VisitPercentil(AstPercentil a);
+        
+        void VisitCumePercent(AstCumePercent a);
+        
+        void VisitFirstLastValue(AstFirstLastValue a);
+        
+        void VisitLagLead(AstLagLead a);
+        
+        void VisitRowRange(AstRowRange a);
+        
+        void VisitOffReadOnlyFull(AstOffReadOnlyFull a);
+        
+        void VisitAscDesc(AstAscDesc a);
+        
+        void VisitOnOff(AstOnOff a);
+        
+        void VisitClustered(AstClustered a);
+        
+        void VisitNullNotnull(AstNullNotnull a);
+        
+        void VisitScalarFunctionNameEnum(AstScalarFunctionNameEnum a);
+        
+        void VisitRelayedConversation(AstRelayedConversation a);
+        
+        void VisitComparisonOperator(AstComparisonOperator a);
+        
+        void VisitAssignmentOperator(AstAssignmentOperator a);
+        
+        void VisitLogSeterrorNowait(AstLogSeterrorNowait a);
+        
+        void VisitDeleteedInserted(AstDeleteedInserted a);
     }
 }

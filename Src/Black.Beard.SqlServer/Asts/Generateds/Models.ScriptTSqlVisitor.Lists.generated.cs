@@ -277,27 +277,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// receive_ids
-        /// 	 : receive_id  (COMMA  receive_id)+
-        /// </summary>
-        public override AstRoot VisitReceive_ids(TSqlParser.Receive_idsContext context)
-        {
-            TSqlParser.Receive_idContext[] source = context.receive_id();
-            AstReceiveIds list = new AstReceiveIds(context, source.Length);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                TSqlParser.Receive_idContext item = ((TSqlParser.Receive_idContext)(enumerator.Current));
-                AstReceiveId acceptResult = ((AstReceiveId)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
         /// on_partitions
         /// 	 : ON  PARTITIONS  LR_BRACKET  partition_nums  (COMMA  partition_nums)*  RR_BRACKET
         /// </summary>
@@ -382,27 +361,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// file_group_list
-        /// 	 : file_group_assign  (COMMA  file_group_assign)*
-        /// </summary>
-        public override AstRoot VisitFile_group_list(TSqlParser.File_group_listContext context)
-        {
-            TSqlParser.File_group_assignContext[] source = context.file_group_assign();
-            AstFileGroupList list = new AstFileGroupList(context, source.Length);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                TSqlParser.File_group_assignContext item = ((TSqlParser.File_group_assignContext)(enumerator.Current));
-                AstFileGroupAssign acceptResult = ((AstFileGroupAssign)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
         /// backup_certificate_private_keys
         /// 	 : backup_certificate_private_key  (COMMA  backup_certificate_private_key)*
         /// </summary>
@@ -457,27 +415,6 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Principal_idContext item = ((TSqlParser.Principal_idContext)(enumerator.Current));
                 AstPrincipalId acceptResult = ((AstPrincipalId)(item.Accept(this)));
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return list;
-        }
-        
-        /// <summary>
-        /// table_type_indices
-        /// 	 : table_type_indice  (COMMA  table_type_indice)*
-        /// </summary>
-        public override AstRoot VisitTable_type_indices(TSqlParser.Table_type_indicesContext context)
-        {
-            TSqlParser.Table_type_indiceContext[] source = context.table_type_indice();
-            AstTableTypeIndices list = new AstTableTypeIndices(context, source.Length);
-            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                TSqlParser.Table_type_indiceContext item = ((TSqlParser.Table_type_indiceContext)(enumerator.Current));
-                AstTableTypeIndice acceptResult = ((AstTableTypeIndice)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -781,6 +718,27 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// table_type_indices
+        /// 	 : table_type_indice  (COMMA  table_type_indice)*
+        /// </summary>
+        public override AstRoot VisitTable_type_indices(TSqlParser.Table_type_indicesContext context)
+        {
+            TSqlParser.Table_type_indiceContext[] source = context.table_type_indice();
+            AstTableTypeIndices list = new AstTableTypeIndices(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Table_type_indiceContext item = ((TSqlParser.Table_type_indiceContext)(enumerator.Current));
+                AstTableTypeIndice acceptResult = ((AstTableTypeIndice)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// dml_trigger_operations
         /// 	 : dml_trigger_operation  (COMMA  dml_trigger_operation)*
         /// </summary>
@@ -940,6 +898,27 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Rebuild_index_optionContext item = ((TSqlParser.Rebuild_index_optionContext)(enumerator.Current));
                 AstRebuildIndexOption acceptResult = ((AstRebuildIndexOption)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// full_table_ref_columns
+        /// 	 : full_table_ref_column  (COMMA  full_table_ref_column)*
+        /// </summary>
+        public override AstRoot VisitFull_table_ref_columns(TSqlParser.Full_table_ref_columnsContext context)
+        {
+            TSqlParser.Full_table_ref_columnContext[] source = context.full_table_ref_column();
+            AstFullTableRefColumns list = new AstFullTableRefColumns(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Full_table_ref_columnContext item = ((TSqlParser.Full_table_ref_columnContext)(enumerator.Current));
+                AstFullTableRefColumn acceptResult = ((AstFullTableRefColumn)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -1957,18 +1936,18 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// option_clause
-        /// 	 : OPTION  LR_BRACKET  option  (COMMA  option)*  RR_BRACKET
+        /// update_option_clause
+        /// 	 : OPTION  LR_BRACKET  update_option  (COMMA  update_option)*  RR_BRACKET
         /// </summary>
-        public override AstRoot VisitOption_clause(TSqlParser.Option_clauseContext context)
+        public override AstRoot VisitUpdate_option_clause(TSqlParser.Update_option_clauseContext context)
         {
-            TSqlParser.OptionContext[] source = context.option();
-            AstOptionClause list = new AstOptionClause(context, source.Length);
+            TSqlParser.Update_optionContext[] source = context.update_option();
+            AstUpdateOptionClause list = new AstUpdateOptionClause(context, source.Length);
             for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
             )
             {
-                TSqlParser.OptionContext item = ((TSqlParser.OptionContext)(enumerator.Current));
-                AstOption acceptResult = ((AstOption)(item.Accept(this)));
+                TSqlParser.Update_optionContext item = ((TSqlParser.Update_optionContext)(enumerator.Current));
+                AstUpdateOption acceptResult = ((AstUpdateOption)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -2608,6 +2587,27 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// contract_items
+        /// 	 : contract_item  (COMMA  contract_item+)*
+        /// </summary>
+        public override AstRoot VisitContract_items(TSqlParser.Contract_itemsContext context)
+        {
+            TSqlParser.Contract_itemContext[] source = context.contract_item();
+            AstContractItems list = new AstContractItems(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Contract_itemContext item = ((TSqlParser.Contract_itemContext)(enumerator.Current));
+                AstContractItem acceptResult = ((AstContractItem)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// date_options
         /// 	 : date_option  (COMMA  date_option)+
         /// </summary>
@@ -2641,6 +2641,27 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Xml_common_directiveContext item = ((TSqlParser.Xml_common_directiveContext)(enumerator.Current));
                 AstXmlCommonDirective acceptResult = ((AstXmlCommonDirective)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// receive_ids
+        /// 	 : receive_id  (COMMA  receive_id)+
+        /// </summary>
+        public override AstRoot VisitReceive_ids(TSqlParser.Receive_idsContext context)
+        {
+            TSqlParser.Receive_idContext[] source = context.receive_id();
+            AstReceiveIds list = new AstReceiveIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Receive_idContext item = ((TSqlParser.Receive_idContext)(enumerator.Current));
+                AstReceiveId acceptResult = ((AstReceiveId)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);
@@ -2692,6 +2713,27 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
+        /// file_group_list
+        /// 	 : file_group_assign  (COMMA  file_group_assign)*
+        /// </summary>
+        public override AstRoot VisitFile_group_list(TSqlParser.File_group_listContext context)
+        {
+            TSqlParser.File_group_assignContext[] source = context.file_group_assign();
+            AstFileGroupList list = new AstFileGroupList(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.File_group_assignContext item = ((TSqlParser.File_group_assignContext)(enumerator.Current));
+                AstFileGroupAssign acceptResult = ((AstFileGroupAssign)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// schema_table_ref_impacts
         /// 	 : schema_table_ref_impact  (COMMA  schema_table_ref_impact)*
         /// </summary>
@@ -2704,6 +2746,27 @@ namespace Bb.Parsers.TSql
             {
                 TSqlParser.Schema_table_ref_impactContext item = ((TSqlParser.Schema_table_ref_impactContext)(enumerator.Current));
                 AstSchemaTableRefImpact acceptResult = ((AstSchemaTableRefImpact)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
+        /// notification_ids
+        /// 	 : notification_id  (COMMA  notification_id)*
+        /// </summary>
+        public override AstRoot VisitNotification_ids(TSqlParser.Notification_idsContext context)
+        {
+            TSqlParser.Notification_idContext[] source = context.notification_id();
+            AstNotificationIds list = new AstNotificationIds(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.Notification_idContext item = ((TSqlParser.Notification_idContext)(enumerator.Current));
+                AstNotificationId acceptResult = ((AstNotificationId)(item.Accept(this)));
                 if ((acceptResult != null))
                 {
                     list.Add(acceptResult);

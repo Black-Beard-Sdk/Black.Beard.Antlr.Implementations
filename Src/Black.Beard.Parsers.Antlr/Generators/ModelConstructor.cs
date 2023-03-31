@@ -81,6 +81,12 @@ namespace Bb.Generators
             return this;
         }
 
+        public new ModelConstructor Documentation(Action<Documentation> action)
+        {
+            this._actionDocumentation = action;
+            return this;
+        }
+
         public override void Generate(Context ctx, object model, CodeTypeDeclaration t)
         {
 

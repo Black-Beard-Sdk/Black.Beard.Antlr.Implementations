@@ -178,9 +178,11 @@ namespace Bb.Asts
         {
 
             foreach (AstLabeledAlt item in this)
+            {
+                yield return item.Rule; 
                 foreach (var t in item.GetAlternatives())
                     yield return t;
-
+            }
         }
 
         public IEnumerable<IEnumerable<AstBase>> GetListAlternatives()

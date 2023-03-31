@@ -40,7 +40,7 @@ namespace Generate
 
                 .Add<ScriptClassBases>()
                 .Add<ScriptClassIdentifiers>()
-                .Add<ScriptClassEnum>()
+                //.Add<ScriptClassEnum>()
                 .Add<ScriptClassTerminals>()
                 .Add<ScriptClassLists>()
                 .Add<ScriptClassIdentifiertWithProperties>()
@@ -48,14 +48,10 @@ namespace Generate
                 .Add<ScriptClassDefaults>()
                 .Add<ScriptEnums>("Enums", a =>
                 {
-
-
                     a.Using("Bb.Parsers");
+                    a.Using("Antlr4.Runtime");
                     a.Using("Antlr4.Runtime.Tree");
-                    ;
-
                 })
-
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {
                     a.Namespace = "Bb.Parsers.TSql";
