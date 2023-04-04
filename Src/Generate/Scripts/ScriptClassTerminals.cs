@@ -111,7 +111,8 @@ namespace Generate.Scripts
                                           if (astI.TerminalKind == TokenTypeEnum.Ponctuation)
                                               continue;
 
-                                        }
+                                        
+                                      }
 
 
                                       var n1 = CodeHelper.FormatCsharp(alt.Name);
