@@ -19,7 +19,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// host
-    /// 	 : id_  (DOT  id_)+
+    /// 	 : HOST
     /// </summary>
     public partial class AstHost : AstTerminalIdentifier
     {
@@ -76,8 +76,7 @@ namespace Bb.Asts.TSql
     
     /// <summary>
     /// principal_id
-    /// 	 : 
-    /// 	 | id_
+    /// 	 : id_
     /// 	 | PUBLIC
     /// </summary>
     public partial class AstPrincipalId : AstTerminalIdentifier

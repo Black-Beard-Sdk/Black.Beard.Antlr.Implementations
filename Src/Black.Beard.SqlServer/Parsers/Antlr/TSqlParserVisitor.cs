@@ -33,11 +33,17 @@ using IToken = Antlr4.Runtime.IToken;
 [System.CLSCompliant(false)]
 public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.tsql_file"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.t_root"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitTsql_file([NotNull] TSqlParser.Tsql_fileContext context);
+	Result VisitT_root([NotNull] TSqlParser.T_rootContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.batchs"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBatchs([NotNull] TSqlParser.BatchsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.batch"/>.
 	/// </summary>
@@ -2787,11 +2793,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitPartner_server([NotNull] TSqlParser.Partner_serverContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.mirroring_host_port_seperator"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.host"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMirroring_host_port_seperator([NotNull] TSqlParser.Mirroring_host_port_seperatorContext context);
+	Result VisitHost([NotNull] TSqlParser.HostContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.partner_server_tcp_prefix"/>.
 	/// </summary>
@@ -2804,12 +2810,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPort_number([NotNull] TSqlParser.Port_numberContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.host"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitHost([NotNull] TSqlParser.HostContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.date_correlation_optimization_option"/>.
 	/// </summary>

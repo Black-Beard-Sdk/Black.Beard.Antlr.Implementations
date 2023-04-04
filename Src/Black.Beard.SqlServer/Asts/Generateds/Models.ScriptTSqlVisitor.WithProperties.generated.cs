@@ -4879,7 +4879,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// alter_table
-        /// 	 : ALTER  TABLE  full_table_ref  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  lock_mode  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids | DROP  CONSTRAINT  constraint_id | WITH  check_nocheck  check_nocheck  ADD  alter_table_constraint | check_nocheck  CONSTRAINT  constraint_id | enable_disable  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
+        /// 	 : ALTER  TABLE  full_table_ref  (SET  LR_BRACKET  LOCK_ESCALATION  EQUAL  lock_mode  RR_BRACKET | ADD  column_def_table_constraints | ALTER  COLUMN  (column_definition | column_modifier) | DROP  COLUMN  ids | DROP  CONSTRAINT  constraint_id | WITH  check_nocheck  ADD  alter_table_constraint | check_nocheck  CONSTRAINT  constraint_id | enable_disable  TRIGGER  id_? | REBUILD  table_options | SWITCH  switch_partition)  SEMI?
         /// </summary>
         public override AstRoot VisitAlter_table(TSqlParser.Alter_tableContext context)
         {
@@ -5039,7 +5039,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// partner_server
-        /// 	 : partner_server_tcp_prefix  host  mirroring_host_port_seperator  port_number
+        /// 	 : partner_server_tcp_prefix  host  COLON  port_number
         /// </summary>
         public override AstRoot VisitPartner_server(TSqlParser.Partner_serverContext context)
         {
@@ -5055,6 +5055,26 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstPartnerServer(context, list);
+        }
+        
+        /// <summary>
+        /// port_number
+        /// 	 : decimal
+        /// </summary>
+        public override AstRoot VisitPort_number(TSqlParser.Port_numberContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstPortNumber(context, list);
         }
         
         /// <summary>

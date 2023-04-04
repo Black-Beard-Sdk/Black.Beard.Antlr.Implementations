@@ -27581,4 +27581,25029 @@ namespace Bb.Asts.TSql
             return new AstDeleteedInserted(position, "INSERTED", "INSERTED");
         }
     }
+    
+    /// <summary>
+    /// ADD : 'ADD'
+    /// </summary>
+    public partial class AstADD : AstTerminalKeyword
+    {
+        
+        public AstADD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstADD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ADD : ADD
+        /// </summary>
+        public static AstADD ADD()
+        {
+            return new AstADD(Position.Default, "ADD", "ADD");
+        }
+    }
+    
+    /// <summary>
+    /// ALL : 'ALL'
+    /// </summary>
+    public partial class AstALL : AstTerminalKeyword
+    {
+        
+        public AstALL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALL : ALL
+        /// </summary>
+        public static AstALL ALL()
+        {
+            return new AstALL(Position.Default, "ALL", "ALL");
+        }
+    }
+    
+    /// <summary>
+    /// ALTER : 'ALTER'
+    /// </summary>
+    public partial class AstALTER : AstTerminalKeyword
+    {
+        
+        public AstALTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALTER : ALTER
+        /// </summary>
+        public static AstALTER ALTER()
+        {
+            return new AstALTER(Position.Default, "ALTER", "ALTER");
+        }
+    }
+    
+    /// <summary>
+    /// AND : 'AND'
+    /// </summary>
+    public partial class AstAND : AstTerminalKeyword
+    {
+        
+        public AstAND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AND : AND
+        /// </summary>
+        public static AstAND AND()
+        {
+            return new AstAND(Position.Default, "AND", "AND");
+        }
+    }
+    
+    /// <summary>
+    /// ANY : 'ANY'
+    /// </summary>
+    public partial class AstANY : AstTerminalKeyword
+    {
+        
+        public AstANY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANY : ANY
+        /// </summary>
+        public static AstANY ANY()
+        {
+            return new AstANY(Position.Default, "ANY", "ANY");
+        }
+    }
+    
+    /// <summary>
+    /// AS : 'AS'
+    /// </summary>
+    public partial class AstAS : AstTerminalKeyword
+    {
+        
+        public AstAS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AS : AS
+        /// </summary>
+        public static AstAS AS()
+        {
+            return new AstAS(Position.Default, "AS", "AS");
+        }
+    }
+    
+    /// <summary>
+    /// ASC : 'ASC'
+    /// </summary>
+    public partial class AstASC : AstTerminalKeyword
+    {
+        
+        public AstASC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASC : ASC
+        /// </summary>
+        public static AstASC ASC()
+        {
+            return new AstASC(Position.Default, "ASC", "ASC");
+        }
+    }
+    
+    /// <summary>
+    /// AUTHORIZATION : 'AUTHORIZATION'
+    /// </summary>
+    public partial class AstAUTHORIZATION : AstTerminalKeyword
+    {
+        
+        public AstAUTHORIZATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTHORIZATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTHORIZATION : AUTHORIZATION
+        /// </summary>
+        public static AstAUTHORIZATION AUTHORIZATION()
+        {
+            return new AstAUTHORIZATION(Position.Default, "AUTHORIZATION", "AUTHORIZATION");
+        }
+    }
+    
+    /// <summary>
+    /// ACCELERATED_DATABASE_RECOVERY : 'ACCELERATED_DATABASE_RECOVERY'
+    /// </summary>
+    public partial class AstACCELERATEDDATABASERECOVERY : AstTerminalKeyword
+    {
+        
+        public AstACCELERATEDDATABASERECOVERY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACCELERATEDDATABASERECOVERY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACCELERATED_DATABASE_RECOVERY : ACCELERATED_DATABASE_RECOVERY
+        /// </summary>
+        public static AstACCELERATEDDATABASERECOVERY ACCELERATEDDATABASERECOVERY()
+        {
+            return new AstACCELERATEDDATABASERECOVERY(Position.Default, "ACCELERATED_DATABASE_RECOVERY", "ACCELERATED_DATABASE_RECOVERY");
+        }
+    }
+    
+    /// <summary>
+    /// BACKSLASH : '\\'
+    /// </summary>
+    public partial class AstBACKSLASH : AstTerminalKeyword
+    {
+        
+        public AstBACKSLASH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBACKSLASH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BACKSLASH : \\
+        /// </summary>
+        public static AstBACKSLASH BACKSLASH()
+        {
+            return new AstBACKSLASH(Position.Default, "BACKSLASH", "\\\\");
+        }
+    }
+    
+    /// <summary>
+    /// BACKUP : 'BACKUP'
+    /// </summary>
+    public partial class AstBACKUP : AstTerminalKeyword
+    {
+        
+        public AstBACKUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBACKUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BACKUP : BACKUP
+        /// </summary>
+        public static AstBACKUP BACKUP()
+        {
+            return new AstBACKUP(Position.Default, "BACKUP", "BACKUP");
+        }
+    }
+    
+    /// <summary>
+    /// BEGIN : 'BEGIN'
+    /// </summary>
+    public partial class AstBEGIN : AstTerminalKeyword
+    {
+        
+        public AstBEGIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBEGIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BEGIN : BEGIN
+        /// </summary>
+        public static AstBEGIN BEGIN()
+        {
+            return new AstBEGIN(Position.Default, "BEGIN", "BEGIN");
+        }
+    }
+    
+    /// <summary>
+    /// BETWEEN : 'BETWEEN'
+    /// </summary>
+    public partial class AstBETWEEN : AstTerminalKeyword
+    {
+        
+        public AstBETWEEN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBETWEEN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BETWEEN : BETWEEN
+        /// </summary>
+        public static AstBETWEEN BETWEEN()
+        {
+            return new AstBETWEEN(Position.Default, "BETWEEN", "BETWEEN");
+        }
+    }
+    
+    /// <summary>
+    /// BREAK : 'BREAK'
+    /// </summary>
+    public partial class AstBREAK : AstTerminalKeyword
+    {
+        
+        public AstBREAK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBREAK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BREAK : BREAK
+        /// </summary>
+        public static AstBREAK BREAK()
+        {
+            return new AstBREAK(Position.Default, "BREAK", "BREAK");
+        }
+    }
+    
+    /// <summary>
+    /// BROWSE : 'BROWSE'
+    /// </summary>
+    public partial class AstBROWSE : AstTerminalKeyword
+    {
+        
+        public AstBROWSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBROWSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BROWSE : BROWSE
+        /// </summary>
+        public static AstBROWSE BROWSE()
+        {
+            return new AstBROWSE(Position.Default, "BROWSE", "BROWSE");
+        }
+    }
+    
+    /// <summary>
+    /// BULK : 'BULK'
+    /// </summary>
+    public partial class AstBULK : AstTerminalKeyword
+    {
+        
+        public AstBULK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBULK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BULK : BULK
+        /// </summary>
+        public static AstBULK BULK()
+        {
+            return new AstBULK(Position.Default, "BULK", "BULK");
+        }
+    }
+    
+    /// <summary>
+    /// BY : 'BY'
+    /// </summary>
+    public partial class AstBY : AstTerminalKeyword
+    {
+        
+        public AstBY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BY : BY
+        /// </summary>
+        public static AstBY BY()
+        {
+            return new AstBY(Position.Default, "BY", "BY");
+        }
+    }
+    
+    /// <summary>
+    /// CASCADE : 'CASCADE'
+    /// </summary>
+    public partial class AstCASCADE : AstTerminalKeyword
+    {
+        
+        public AstCASCADE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCASCADE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CASCADE : CASCADE
+        /// </summary>
+        public static AstCASCADE CASCADE()
+        {
+            return new AstCASCADE(Position.Default, "CASCADE", "CASCADE");
+        }
+    }
+    
+    /// <summary>
+    /// CASE : 'CASE'
+    /// </summary>
+    public partial class AstCASE : AstTerminalKeyword
+    {
+        
+        public AstCASE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCASE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CASE : CASE
+        /// </summary>
+        public static AstCASE CASE()
+        {
+            return new AstCASE(Position.Default, "CASE", "CASE");
+        }
+    }
+    
+    /// <summary>
+    /// CHECK : 'CHECK'
+    /// </summary>
+    public partial class AstCHECK : AstTerminalKeyword
+    {
+        
+        public AstCHECK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECK : CHECK
+        /// </summary>
+        public static AstCHECK CHECK()
+        {
+            return new AstCHECK(Position.Default, "CHECK", "CHECK");
+        }
+    }
+    
+    /// <summary>
+    /// CHECKPOINT : 'CHECKPOINT'
+    /// </summary>
+    public partial class AstCHECKPOINT : AstTerminalKeyword
+    {
+        
+        public AstCHECKPOINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECKPOINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECKPOINT : CHECKPOINT
+        /// </summary>
+        public static AstCHECKPOINT CHECKPOINT()
+        {
+            return new AstCHECKPOINT(Position.Default, "CHECKPOINT", "CHECKPOINT");
+        }
+    }
+    
+    /// <summary>
+    /// CLOSE : 'CLOSE'
+    /// </summary>
+    public partial class AstCLOSE : AstTerminalKeyword
+    {
+        
+        public AstCLOSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCLOSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CLOSE : CLOSE
+        /// </summary>
+        public static AstCLOSE CLOSE()
+        {
+            return new AstCLOSE(Position.Default, "CLOSE", "CLOSE");
+        }
+    }
+    
+    /// <summary>
+    /// CLUSTERED : 'CLUSTERED'
+    /// </summary>
+    public partial class AstCLUSTERED : AstTerminalKeyword
+    {
+        
+        public AstCLUSTERED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCLUSTERED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CLUSTERED : CLUSTERED
+        /// </summary>
+        public static AstCLUSTERED CLUSTERED()
+        {
+            return new AstCLUSTERED(Position.Default, "CLUSTERED", "CLUSTERED");
+        }
+    }
+    
+    /// <summary>
+    /// COALESCE : 'COALESCE'
+    /// </summary>
+    public partial class AstCOALESCE : AstTerminalKeyword
+    {
+        
+        public AstCOALESCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOALESCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COALESCE : COALESCE
+        /// </summary>
+        public static AstCOALESCE COALESCE()
+        {
+            return new AstCOALESCE(Position.Default, "COALESCE", "COALESCE");
+        }
+    }
+    
+    /// <summary>
+    /// COLLATE : 'COLLATE'
+    /// </summary>
+    public partial class AstCOLLATE : AstTerminalKeyword
+    {
+        
+        public AstCOLLATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLLATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLLATE : COLLATE
+        /// </summary>
+        public static AstCOLLATE COLLATE()
+        {
+            return new AstCOLLATE(Position.Default, "COLLATE", "COLLATE");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMN : 'COLUMN'
+    /// </summary>
+    public partial class AstCOLUMN : AstTerminalKeyword
+    {
+        
+        public AstCOLUMN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMN : COLUMN
+        /// </summary>
+        public static AstCOLUMN COLUMN()
+        {
+            return new AstCOLUMN(Position.Default, "COLUMN", "COLUMN");
+        }
+    }
+    
+    /// <summary>
+    /// COMMIT : 'COMMIT'
+    /// </summary>
+    public partial class AstCOMMIT : AstTerminalKeyword
+    {
+        
+        public AstCOMMIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMMIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMMIT : COMMIT
+        /// </summary>
+        public static AstCOMMIT COMMIT()
+        {
+            return new AstCOMMIT(Position.Default, "COMMIT", "COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// COMPUTE : 'COMPUTE'
+    /// </summary>
+    public partial class AstCOMPUTE : AstTerminalKeyword
+    {
+        
+        public AstCOMPUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPUTE : COMPUTE
+        /// </summary>
+        public static AstCOMPUTE COMPUTE()
+        {
+            return new AstCOMPUTE(Position.Default, "COMPUTE", "COMPUTE");
+        }
+    }
+    
+    /// <summary>
+    /// CONSTRAINT : 'CONSTRAINT'
+    /// </summary>
+    public partial class AstCONSTRAINT : AstTerminalKeyword
+    {
+        
+        public AstCONSTRAINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONSTRAINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONSTRAINT : CONSTRAINT
+        /// </summary>
+        public static AstCONSTRAINT CONSTRAINT()
+        {
+            return new AstCONSTRAINT(Position.Default, "CONSTRAINT", "CONSTRAINT");
+        }
+    }
+    
+    /// <summary>
+    /// CONTAINS : 'CONTAINS'
+    /// </summary>
+    public partial class AstCONTAINS : AstTerminalKeyword
+    {
+        
+        public AstCONTAINS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTAINS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTAINS : CONTAINS
+        /// </summary>
+        public static AstCONTAINS CONTAINS()
+        {
+            return new AstCONTAINS(Position.Default, "CONTAINS", "CONTAINS");
+        }
+    }
+    
+    /// <summary>
+    /// CONTAINSTABLE : 'CONTAINSTABLE'
+    /// </summary>
+    public partial class AstCONTAINSTABLE : AstTerminalKeyword
+    {
+        
+        public AstCONTAINSTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTAINSTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTAINSTABLE : CONTAINSTABLE
+        /// </summary>
+        public static AstCONTAINSTABLE CONTAINSTABLE()
+        {
+            return new AstCONTAINSTABLE(Position.Default, "CONTAINSTABLE", "CONTAINSTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// CONTINUE : 'CONTINUE'
+    /// </summary>
+    public partial class AstCONTINUE : AstTerminalKeyword
+    {
+        
+        public AstCONTINUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTINUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTINUE : CONTINUE
+        /// </summary>
+        public static AstCONTINUE CONTINUE()
+        {
+            return new AstCONTINUE(Position.Default, "CONTINUE", "CONTINUE");
+        }
+    }
+    
+    /// <summary>
+    /// CREATE : 'CREATE'
+    /// </summary>
+    public partial class AstCREATE : AstTerminalKeyword
+    {
+        
+        public AstCREATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCREATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CREATE : CREATE
+        /// </summary>
+        public static AstCREATE CREATE()
+        {
+            return new AstCREATE(Position.Default, "CREATE", "CREATE");
+        }
+    }
+    
+    /// <summary>
+    /// CROSS : 'CROSS'
+    /// </summary>
+    public partial class AstCROSS : AstTerminalKeyword
+    {
+        
+        public AstCROSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCROSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CROSS : CROSS
+        /// </summary>
+        public static AstCROSS CROSS()
+        {
+            return new AstCROSS(Position.Default, "CROSS", "CROSS");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT : 'CURRENT'
+    /// </summary>
+    public partial class AstCURRENT : AstTerminalKeyword
+    {
+        
+        public AstCURRENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT : CURRENT
+        /// </summary>
+        public static AstCURRENT CURRENT()
+        {
+            return new AstCURRENT(Position.Default, "CURRENT", "CURRENT");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_DATE : 'CURRENT_DATE'
+    /// </summary>
+    public partial class AstCURRENTDATE : AstTerminalKeyword
+    {
+        
+        public AstCURRENTDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_DATE : CURRENT_DATE
+        /// </summary>
+        public static AstCURRENTDATE CURRENTDATE()
+        {
+            return new AstCURRENTDATE(Position.Default, "CURRENT_DATE", "CURRENT_DATE");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_TIME : 'CURRENT_TIME'
+    /// </summary>
+    public partial class AstCURRENTTIME : AstTerminalKeyword
+    {
+        
+        public AstCURRENTTIME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTTIME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_TIME : CURRENT_TIME
+        /// </summary>
+        public static AstCURRENTTIME CURRENTTIME()
+        {
+            return new AstCURRENTTIME(Position.Default, "CURRENT_TIME", "CURRENT_TIME");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_TIMESTAMP : 'CURRENT_TIMESTAMP'
+    /// </summary>
+    public partial class AstCURRENTTIMESTAMP : AstTerminalKeyword
+    {
+        
+        public AstCURRENTTIMESTAMP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTTIMESTAMP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_TIMESTAMP : CURRENT_TIMESTAMP
+        /// </summary>
+        public static AstCURRENTTIMESTAMP CURRENTTIMESTAMP()
+        {
+            return new AstCURRENTTIMESTAMP(Position.Default, "CURRENT_TIMESTAMP", "CURRENT_TIMESTAMP");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_USER : 'CURRENT_USER'
+    /// </summary>
+    public partial class AstCURRENTUSER : AstTerminalKeyword
+    {
+        
+        public AstCURRENTUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_USER : CURRENT_USER
+        /// </summary>
+        public static AstCURRENTUSER CURRENTUSER()
+        {
+            return new AstCURRENTUSER(Position.Default, "CURRENT_USER", "CURRENT_USER");
+        }
+    }
+    
+    /// <summary>
+    /// CURSOR : 'CURSOR'
+    /// </summary>
+    public partial class AstCURSOR : AstTerminalKeyword
+    {
+        
+        public AstCURSOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURSOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURSOR : CURSOR
+        /// </summary>
+        public static AstCURSOR CURSOR()
+        {
+            return new AstCURSOR(Position.Default, "CURSOR", "CURSOR");
+        }
+    }
+    
+    /// <summary>
+    /// DATABASE : 'DATABASE'
+    /// </summary>
+    public partial class AstDATABASE : AstTerminalKeyword
+    {
+        
+        public AstDATABASE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATABASE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATABASE : DATABASE
+        /// </summary>
+        public static AstDATABASE DATABASE()
+        {
+            return new AstDATABASE(Position.Default, "DATABASE", "DATABASE");
+        }
+    }
+    
+    /// <summary>
+    /// DBCC : 'DBCC'
+    /// </summary>
+    public partial class AstDBCC : AstTerminalKeyword
+    {
+        
+        public AstDBCC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDBCC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DBCC : DBCC
+        /// </summary>
+        public static AstDBCC DBCC()
+        {
+            return new AstDBCC(Position.Default, "DBCC", "DBCC");
+        }
+    }
+    
+    /// <summary>
+    /// DEALLOCATE : 'DEALLOCATE'
+    /// </summary>
+    public partial class AstDEALLOCATE : AstTerminalKeyword
+    {
+        
+        public AstDEALLOCATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEALLOCATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEALLOCATE : DEALLOCATE
+        /// </summary>
+        public static AstDEALLOCATE DEALLOCATE()
+        {
+            return new AstDEALLOCATE(Position.Default, "DEALLOCATE", "DEALLOCATE");
+        }
+    }
+    
+    /// <summary>
+    /// DECLARE : 'DECLARE'
+    /// </summary>
+    public partial class AstDECLARE : AstTerminalKeyword
+    {
+        
+        public AstDECLARE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDECLARE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DECLARE : DECLARE
+        /// </summary>
+        public static AstDECLARE DECLARE()
+        {
+            return new AstDECLARE(Position.Default, "DECLARE", "DECLARE");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT : 'DEFAULT'
+    /// </summary>
+    public partial class AstDEFAULT : AstTerminalKeyword
+    {
+        
+        public AstDEFAULT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT : DEFAULT
+        /// </summary>
+        public static AstDEFAULT DEFAULT()
+        {
+            return new AstDEFAULT(Position.Default, "DEFAULT", "DEFAULT");
+        }
+    }
+    
+    /// <summary>
+    /// DELETE : 'DELETE'
+    /// </summary>
+    public partial class AstDELETE : AstTerminalKeyword
+    {
+        
+        public AstDELETE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDELETE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DELETE : DELETE
+        /// </summary>
+        public static AstDELETE DELETE()
+        {
+            return new AstDELETE(Position.Default, "DELETE", "DELETE");
+        }
+    }
+    
+    /// <summary>
+    /// DENY : 'DENY'
+    /// </summary>
+    public partial class AstDENY : AstTerminalKeyword
+    {
+        
+        public AstDENY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDENY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DENY : DENY
+        /// </summary>
+        public static AstDENY DENY()
+        {
+            return new AstDENY(Position.Default, "DENY", "DENY");
+        }
+    }
+    
+    /// <summary>
+    /// DESC : 'DESC'
+    /// </summary>
+    public partial class AstDESC : AstTerminalKeyword
+    {
+        
+        public AstDESC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDESC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DESC : DESC
+        /// </summary>
+        public static AstDESC DESC()
+        {
+            return new AstDESC(Position.Default, "DESC", "DESC");
+        }
+    }
+    
+    /// <summary>
+    /// DISK : 'DISK'
+    /// </summary>
+    public partial class AstDISK : AstTerminalKeyword
+    {
+        
+        public AstDISK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISK : DISK
+        /// </summary>
+        public static AstDISK DISK()
+        {
+            return new AstDISK(Position.Default, "DISK", "DISK");
+        }
+    }
+    
+    /// <summary>
+    /// DISTINCT : 'DISTINCT'
+    /// </summary>
+    public partial class AstDISTINCT : AstTerminalKeyword
+    {
+        
+        public AstDISTINCT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISTINCT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISTINCT : DISTINCT
+        /// </summary>
+        public static AstDISTINCT DISTINCT()
+        {
+            return new AstDISTINCT(Position.Default, "DISTINCT", "DISTINCT");
+        }
+    }
+    
+    /// <summary>
+    /// DISTRIBUTED : 'DISTRIBUTED'
+    /// </summary>
+    public partial class AstDISTRIBUTED : AstTerminalKeyword
+    {
+        
+        public AstDISTRIBUTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISTRIBUTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISTRIBUTED : DISTRIBUTED
+        /// </summary>
+        public static AstDISTRIBUTED DISTRIBUTED()
+        {
+            return new AstDISTRIBUTED(Position.Default, "DISTRIBUTED", "DISTRIBUTED");
+        }
+    }
+    
+    /// <summary>
+    /// DOUBLE : 'DOUBLE'
+    /// </summary>
+    public partial class AstDOUBLE : AstTerminalKeyword
+    {
+        
+        public AstDOUBLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOUBLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOUBLE : DOUBLE
+        /// </summary>
+        public static AstDOUBLE DOUBLE()
+        {
+            return new AstDOUBLE(Position.Default, "DOUBLE", "DOUBLE");
+        }
+    }
+    
+    /// <summary>
+    /// DOUBLE_BACK_SLASH : '\\\\'
+    /// </summary>
+    public partial class AstDOUBLEBACKSLASH : AstTerminalKeyword
+    {
+        
+        public AstDOUBLEBACKSLASH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOUBLEBACKSLASH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOUBLE_BACK_SLASH : \\\\
+        /// </summary>
+        public static AstDOUBLEBACKSLASH DOUBLEBACKSLASH()
+        {
+            return new AstDOUBLEBACKSLASH(Position.Default, "DOUBLE_BACK_SLASH", "\\\\\\\\");
+        }
+    }
+    
+    /// <summary>
+    /// DOUBLE_FORWARD_SLASH : '//'
+    /// </summary>
+    public partial class AstDOUBLEFORWARDSLASH : AstTerminalKeyword
+    {
+        
+        public AstDOUBLEFORWARDSLASH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOUBLEFORWARDSLASH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOUBLE_FORWARD_SLASH : //
+        /// </summary>
+        public static AstDOUBLEFORWARDSLASH DOUBLEFORWARDSLASH()
+        {
+            return new AstDOUBLEFORWARDSLASH(Position.Default, "DOUBLE_FORWARD_SLASH", "//");
+        }
+    }
+    
+    /// <summary>
+    /// DROP : 'DROP'
+    /// </summary>
+    public partial class AstDROP : AstTerminalKeyword
+    {
+        
+        public AstDROP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDROP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DROP : DROP
+        /// </summary>
+        public static AstDROP DROP()
+        {
+            return new AstDROP(Position.Default, "DROP", "DROP");
+        }
+    }
+    
+    /// <summary>
+    /// DUMP : 'DUMP'
+    /// </summary>
+    public partial class AstDUMP : AstTerminalKeyword
+    {
+        
+        public AstDUMP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDUMP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DUMP : DUMP
+        /// </summary>
+        public static AstDUMP DUMP()
+        {
+            return new AstDUMP(Position.Default, "DUMP", "DUMP");
+        }
+    }
+    
+    /// <summary>
+    /// ELSE : 'ELSE'
+    /// </summary>
+    public partial class AstELSE : AstTerminalKeyword
+    {
+        
+        public AstELSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstELSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ELSE : ELSE
+        /// </summary>
+        public static AstELSE ELSE()
+        {
+            return new AstELSE(Position.Default, "ELSE", "ELSE");
+        }
+    }
+    
+    /// <summary>
+    /// END : 'END'
+    /// </summary>
+    public partial class AstEND : AstTerminalKeyword
+    {
+        
+        public AstEND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// END : END
+        /// </summary>
+        public static AstEND END()
+        {
+            return new AstEND(Position.Default, "END", "END");
+        }
+    }
+    
+    /// <summary>
+    /// ERRLVL : 'ERRLVL'
+    /// </summary>
+    public partial class AstERRLVL : AstTerminalKeyword
+    {
+        
+        public AstERRLVL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRLVL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERRLVL : ERRLVL
+        /// </summary>
+        public static AstERRLVL ERRLVL()
+        {
+            return new AstERRLVL(Position.Default, "ERRLVL", "ERRLVL");
+        }
+    }
+    
+    /// <summary>
+    /// ESCAPE : 'ESCAPE'
+    /// </summary>
+    public partial class AstESCAPE : AstTerminalKeyword
+    {
+        
+        public AstESCAPE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstESCAPE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ESCAPE : ESCAPE
+        /// </summary>
+        public static AstESCAPE ESCAPE()
+        {
+            return new AstESCAPE(Position.Default, "ESCAPE", "ESCAPE");
+        }
+    }
+    
+    /// <summary>
+    /// EXCEPT : 'EXCEPT'
+    /// </summary>
+    public partial class AstEXCEPT : AstTerminalKeyword
+    {
+        
+        public AstEXCEPT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXCEPT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXCEPT : EXCEPT
+        /// </summary>
+        public static AstEXCEPT EXCEPT()
+        {
+            return new AstEXCEPT(Position.Default, "EXCEPT", "EXCEPT");
+        }
+    }
+    
+    /// <summary>
+    /// EXECUTE : 'EXEC'  'UTE'?
+    /// </summary>
+    public partial class AstEXECUTE : AstTerminalKeyword
+    {
+        
+        public AstEXECUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXECUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXECUTE : EXEC'  'UTE'
+        /// </summary>
+        public static AstEXECUTE EXECUTE()
+        {
+            return new AstEXECUTE(Position.Default, "EXECUTE", "EXEC\'  \'UTE\'");
+        }
+    }
+    
+    /// <summary>
+    /// EXISTS : 'EXISTS'
+    /// </summary>
+    public partial class AstEXISTS : AstTerminalKeyword
+    {
+        
+        public AstEXISTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXISTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXISTS : EXISTS
+        /// </summary>
+        public static AstEXISTS EXISTS()
+        {
+            return new AstEXISTS(Position.Default, "EXISTS", "EXISTS");
+        }
+    }
+    
+    /// <summary>
+    /// EXIT : 'EXIT'
+    /// </summary>
+    public partial class AstEXIT : AstTerminalKeyword
+    {
+        
+        public AstEXIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXIT : EXIT
+        /// </summary>
+        public static AstEXIT EXIT()
+        {
+            return new AstEXIT(Position.Default, "EXIT", "EXIT");
+        }
+    }
+    
+    /// <summary>
+    /// EXTERNAL : 'EXTERNAL'
+    /// </summary>
+    public partial class AstEXTERNAL : AstTerminalKeyword
+    {
+        
+        public AstEXTERNAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXTERNAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXTERNAL : EXTERNAL
+        /// </summary>
+        public static AstEXTERNAL EXTERNAL()
+        {
+            return new AstEXTERNAL(Position.Default, "EXTERNAL", "EXTERNAL");
+        }
+    }
+    
+    /// <summary>
+    /// FETCH : 'FETCH'
+    /// </summary>
+    public partial class AstFETCH : AstTerminalKeyword
+    {
+        
+        public AstFETCH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFETCH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FETCH : FETCH
+        /// </summary>
+        public static AstFETCH FETCH()
+        {
+            return new AstFETCH(Position.Default, "FETCH", "FETCH");
+        }
+    }
+    
+    /// <summary>
+    /// FILE : 'FILE'
+    /// </summary>
+    public partial class AstFILE : AstTerminalKeyword
+    {
+        
+        public AstFILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILE : FILE
+        /// </summary>
+        public static AstFILE FILE()
+        {
+            return new AstFILE(Position.Default, "FILE", "FILE");
+        }
+    }
+    
+    /// <summary>
+    /// FILLFACTOR : 'FILLFACTOR'
+    /// </summary>
+    public partial class AstFILLFACTOR : AstTerminalKeyword
+    {
+        
+        public AstFILLFACTOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILLFACTOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILLFACTOR : FILLFACTOR
+        /// </summary>
+        public static AstFILLFACTOR FILLFACTOR()
+        {
+            return new AstFILLFACTOR(Position.Default, "FILLFACTOR", "FILLFACTOR");
+        }
+    }
+    
+    /// <summary>
+    /// FOR : 'FOR'
+    /// </summary>
+    public partial class AstFOR : AstTerminalKeyword
+    {
+        
+        public AstFOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FOR : FOR
+        /// </summary>
+        public static AstFOR FOR()
+        {
+            return new AstFOR(Position.Default, "FOR", "FOR");
+        }
+    }
+    
+    /// <summary>
+    /// FOREIGN : 'FOREIGN'
+    /// </summary>
+    public partial class AstFOREIGN : AstTerminalKeyword
+    {
+        
+        public AstFOREIGN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFOREIGN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FOREIGN : FOREIGN
+        /// </summary>
+        public static AstFOREIGN FOREIGN()
+        {
+            return new AstFOREIGN(Position.Default, "FOREIGN", "FOREIGN");
+        }
+    }
+    
+    /// <summary>
+    /// FREETEXT : 'FREETEXT'
+    /// </summary>
+    public partial class AstFREETEXT : AstTerminalKeyword
+    {
+        
+        public AstFREETEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFREETEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FREETEXT : FREETEXT
+        /// </summary>
+        public static AstFREETEXT FREETEXT()
+        {
+            return new AstFREETEXT(Position.Default, "FREETEXT", "FREETEXT");
+        }
+    }
+    
+    /// <summary>
+    /// FREETEXTTABLE : 'FREETEXTTABLE'
+    /// </summary>
+    public partial class AstFREETEXTTABLE : AstTerminalKeyword
+    {
+        
+        public AstFREETEXTTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFREETEXTTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FREETEXTTABLE : FREETEXTTABLE
+        /// </summary>
+        public static AstFREETEXTTABLE FREETEXTTABLE()
+        {
+            return new AstFREETEXTTABLE(Position.Default, "FREETEXTTABLE", "FREETEXTTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// FROM : 'FROM'
+    /// </summary>
+    public partial class AstFROM : AstTerminalKeyword
+    {
+        
+        public AstFROM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFROM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FROM : FROM
+        /// </summary>
+        public static AstFROM FROM()
+        {
+            return new AstFROM(Position.Default, "FROM", "FROM");
+        }
+    }
+    
+    /// <summary>
+    /// FULL : 'FULL'
+    /// </summary>
+    public partial class AstFULL : AstTerminalKeyword
+    {
+        
+        public AstFULL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFULL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FULL : FULL
+        /// </summary>
+        public static AstFULL FULL()
+        {
+            return new AstFULL(Position.Default, "FULL", "FULL");
+        }
+    }
+    
+    /// <summary>
+    /// FUNCTION : 'FUNCTION'
+    /// </summary>
+    public partial class AstFUNCTION : AstTerminalKeyword
+    {
+        
+        public AstFUNCTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFUNCTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FUNCTION : FUNCTION
+        /// </summary>
+        public static AstFUNCTION FUNCTION()
+        {
+            return new AstFUNCTION(Position.Default, "FUNCTION", "FUNCTION");
+        }
+    }
+    
+    /// <summary>
+    /// GOTO : 'GOTO'
+    /// </summary>
+    public partial class AstGOTO : AstTerminalKeyword
+    {
+        
+        public AstGOTO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGOTO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GOTO : GOTO
+        /// </summary>
+        public static AstGOTO GOTO()
+        {
+            return new AstGOTO(Position.Default, "GOTO", "GOTO");
+        }
+    }
+    
+    /// <summary>
+    /// GRANT : 'GRANT'
+    /// </summary>
+    public partial class AstGRANT : AstTerminalKeyword
+    {
+        
+        public AstGRANT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGRANT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GRANT : GRANT
+        /// </summary>
+        public static AstGRANT GRANT()
+        {
+            return new AstGRANT(Position.Default, "GRANT", "GRANT");
+        }
+    }
+    
+    /// <summary>
+    /// GROUP : 'GROUP'
+    /// </summary>
+    public partial class AstGROUP : AstTerminalKeyword
+    {
+        
+        public AstGROUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGROUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GROUP : GROUP
+        /// </summary>
+        public static AstGROUP GROUP()
+        {
+            return new AstGROUP(Position.Default, "GROUP", "GROUP");
+        }
+    }
+    
+    /// <summary>
+    /// HAVING : 'HAVING'
+    /// </summary>
+    public partial class AstHAVING : AstTerminalKeyword
+    {
+        
+        public AstHAVING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHAVING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HAVING : HAVING
+        /// </summary>
+        public static AstHAVING HAVING()
+        {
+            return new AstHAVING(Position.Default, "HAVING", "HAVING");
+        }
+    }
+    
+    /// <summary>
+    /// HOLDLOCK : 'HOLDLOCK'
+    /// </summary>
+    public partial class AstHOLDLOCK : AstTerminalKeyword
+    {
+        
+        public AstHOLDLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHOLDLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HOLDLOCK : HOLDLOCK
+        /// </summary>
+        public static AstHOLDLOCK HOLDLOCK()
+        {
+            return new AstHOLDLOCK(Position.Default, "HOLDLOCK", "HOLDLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// IDENTITY : 'IDENTITY'
+    /// </summary>
+    public partial class AstIDENTITY : AstTerminalKeyword
+    {
+        
+        public AstIDENTITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIDENTITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IDENTITY : IDENTITY
+        /// </summary>
+        public static AstIDENTITY IDENTITY()
+        {
+            return new AstIDENTITY(Position.Default, "IDENTITY", "IDENTITY");
+        }
+    }
+    
+    /// <summary>
+    /// IDENTITY_INSERT : 'IDENTITY_INSERT'
+    /// </summary>
+    public partial class AstIDENTITYINSERT : AstTerminalKeyword
+    {
+        
+        public AstIDENTITYINSERT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIDENTITYINSERT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IDENTITY_INSERT : IDENTITY_INSERT
+        /// </summary>
+        public static AstIDENTITYINSERT IDENTITYINSERT()
+        {
+            return new AstIDENTITYINSERT(Position.Default, "IDENTITY_INSERT", "IDENTITY_INSERT");
+        }
+    }
+    
+    /// <summary>
+    /// IDENTITYCOL : 'IDENTITYCOL'
+    /// </summary>
+    public partial class AstIDENTITYCOL : AstTerminalKeyword
+    {
+        
+        public AstIDENTITYCOL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIDENTITYCOL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IDENTITYCOL : IDENTITYCOL
+        /// </summary>
+        public static AstIDENTITYCOL IDENTITYCOL()
+        {
+            return new AstIDENTITYCOL(Position.Default, "IDENTITYCOL", "IDENTITYCOL");
+        }
+    }
+    
+    /// <summary>
+    /// IF : 'IF'
+    /// </summary>
+    public partial class AstIF : AstTerminalKeyword
+    {
+        
+        public AstIF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IF : IF
+        /// </summary>
+        public static AstIF IF()
+        {
+            return new AstIF(Position.Default, "IF", "IF");
+        }
+    }
+    
+    /// <summary>
+    /// IN : 'IN'
+    /// </summary>
+    public partial class AstIN : AstTerminalKeyword
+    {
+        
+        public AstIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IN : IN
+        /// </summary>
+        public static AstIN IN()
+        {
+            return new AstIN(Position.Default, "IN", "IN");
+        }
+    }
+    
+    /// <summary>
+    /// INDEX : 'INDEX'
+    /// </summary>
+    public partial class AstINDEX : AstTerminalKeyword
+    {
+        
+        public AstINDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INDEX : INDEX
+        /// </summary>
+        public static AstINDEX INDEX()
+        {
+            return new AstINDEX(Position.Default, "INDEX", "INDEX");
+        }
+    }
+    
+    /// <summary>
+    /// INNER : 'INNER'
+    /// </summary>
+    public partial class AstINNER : AstTerminalKeyword
+    {
+        
+        public AstINNER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINNER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INNER : INNER
+        /// </summary>
+        public static AstINNER INNER()
+        {
+            return new AstINNER(Position.Default, "INNER", "INNER");
+        }
+    }
+    
+    /// <summary>
+    /// INSERT : 'INSERT'
+    /// </summary>
+    public partial class AstINSERT : AstTerminalKeyword
+    {
+        
+        public AstINSERT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINSERT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INSERT : INSERT
+        /// </summary>
+        public static AstINSERT INSERT()
+        {
+            return new AstINSERT(Position.Default, "INSERT", "INSERT");
+        }
+    }
+    
+    /// <summary>
+    /// INTERSECT : 'INTERSECT'
+    /// </summary>
+    public partial class AstINTERSECT : AstTerminalKeyword
+    {
+        
+        public AstINTERSECT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINTERSECT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INTERSECT : INTERSECT
+        /// </summary>
+        public static AstINTERSECT INTERSECT()
+        {
+            return new AstINTERSECT(Position.Default, "INTERSECT", "INTERSECT");
+        }
+    }
+    
+    /// <summary>
+    /// INTO : 'INTO'
+    /// </summary>
+    public partial class AstINTO : AstTerminalKeyword
+    {
+        
+        public AstINTO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINTO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INTO : INTO
+        /// </summary>
+        public static AstINTO INTO()
+        {
+            return new AstINTO(Position.Default, "INTO", "INTO");
+        }
+    }
+    
+    /// <summary>
+    /// IS : 'IS'
+    /// </summary>
+    public partial class AstIS : AstTerminalKeyword
+    {
+        
+        public AstIS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IS : IS
+        /// </summary>
+        public static AstIS IS()
+        {
+            return new AstIS(Position.Default, "IS", "IS");
+        }
+    }
+    
+    /// <summary>
+    /// JOIN : 'JOIN'
+    /// </summary>
+    public partial class AstJOIN : AstTerminalKeyword
+    {
+        
+        public AstJOIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJOIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// JOIN : JOIN
+        /// </summary>
+        public static AstJOIN JOIN()
+        {
+            return new AstJOIN(Position.Default, "JOIN", "JOIN");
+        }
+    }
+    
+    /// <summary>
+    /// KEY : 'KEY'
+    /// </summary>
+    public partial class AstKEY : AstTerminalKeyword
+    {
+        
+        public AstKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEY : KEY
+        /// </summary>
+        public static AstKEY KEY()
+        {
+            return new AstKEY(Position.Default, "KEY", "KEY");
+        }
+    }
+    
+    /// <summary>
+    /// KILL : 'KILL'
+    /// </summary>
+    public partial class AstKILL : AstTerminalKeyword
+    {
+        
+        public AstKILL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKILL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KILL : KILL
+        /// </summary>
+        public static AstKILL KILL()
+        {
+            return new AstKILL(Position.Default, "KILL", "KILL");
+        }
+    }
+    
+    /// <summary>
+    /// LEFT : 'LEFT'
+    /// </summary>
+    public partial class AstLEFT : AstTerminalKeyword
+    {
+        
+        public AstLEFT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLEFT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LEFT : LEFT
+        /// </summary>
+        public static AstLEFT LEFT()
+        {
+            return new AstLEFT(Position.Default, "LEFT", "LEFT");
+        }
+    }
+    
+    /// <summary>
+    /// LIKE : 'LIKE'
+    /// </summary>
+    public partial class AstLIKE : AstTerminalKeyword
+    {
+        
+        public AstLIKE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLIKE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LIKE : LIKE
+        /// </summary>
+        public static AstLIKE LIKE()
+        {
+            return new AstLIKE(Position.Default, "LIKE", "LIKE");
+        }
+    }
+    
+    /// <summary>
+    /// LINENO : 'LINENO'
+    /// </summary>
+    public partial class AstLINENO : AstTerminalKeyword
+    {
+        
+        public AstLINENO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLINENO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LINENO : LINENO
+        /// </summary>
+        public static AstLINENO LINENO()
+        {
+            return new AstLINENO(Position.Default, "LINENO", "LINENO");
+        }
+    }
+    
+    /// <summary>
+    /// LOAD : 'LOAD'
+    /// </summary>
+    public partial class AstLOAD : AstTerminalKeyword
+    {
+        
+        public AstLOAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOAD : LOAD
+        /// </summary>
+        public static AstLOAD LOAD()
+        {
+            return new AstLOAD(Position.Default, "LOAD", "LOAD");
+        }
+    }
+    
+    /// <summary>
+    /// MERGE : 'MERGE'
+    /// </summary>
+    public partial class AstMERGE : AstTerminalKeyword
+    {
+        
+        public AstMERGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMERGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MERGE : MERGE
+        /// </summary>
+        public static AstMERGE MERGE()
+        {
+            return new AstMERGE(Position.Default, "MERGE", "MERGE");
+        }
+    }
+    
+    /// <summary>
+    /// NATIONAL : 'NATIONAL'
+    /// </summary>
+    public partial class AstNATIONAL : AstTerminalKeyword
+    {
+        
+        public AstNATIONAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNATIONAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NATIONAL : NATIONAL
+        /// </summary>
+        public static AstNATIONAL NATIONAL()
+        {
+            return new AstNATIONAL(Position.Default, "NATIONAL", "NATIONAL");
+        }
+    }
+    
+    /// <summary>
+    /// NEGOTIATE : 'NEGOTIATE'
+    /// </summary>
+    public partial class AstNEGOTIATE : AstTerminalKeyword
+    {
+        
+        public AstNEGOTIATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEGOTIATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEGOTIATE : NEGOTIATE
+        /// </summary>
+        public static AstNEGOTIATE NEGOTIATE()
+        {
+            return new AstNEGOTIATE(Position.Default, "NEGOTIATE", "NEGOTIATE");
+        }
+    }
+    
+    /// <summary>
+    /// NOCHECK : 'NOCHECK'
+    /// </summary>
+    public partial class AstNOCHECK : AstTerminalKeyword
+    {
+        
+        public AstNOCHECK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOCHECK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOCHECK : NOCHECK
+        /// </summary>
+        public static AstNOCHECK NOCHECK()
+        {
+            return new AstNOCHECK(Position.Default, "NOCHECK", "NOCHECK");
+        }
+    }
+    
+    /// <summary>
+    /// NOHOLDLOCK : 'NOHOLDLOCK'
+    /// </summary>
+    public partial class AstNOHOLDLOCK : AstTerminalKeyword
+    {
+        
+        public AstNOHOLDLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOHOLDLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOHOLDLOCK : NOHOLDLOCK
+        /// </summary>
+        public static AstNOHOLDLOCK NOHOLDLOCK()
+        {
+            return new AstNOHOLDLOCK(Position.Default, "NOHOLDLOCK", "NOHOLDLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// NONCLUSTERED : 'NONCLUSTERED'
+    /// </summary>
+    public partial class AstNONCLUSTERED : AstTerminalKeyword
+    {
+        
+        public AstNONCLUSTERED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNONCLUSTERED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NONCLUSTERED : NONCLUSTERED
+        /// </summary>
+        public static AstNONCLUSTERED NONCLUSTERED()
+        {
+            return new AstNONCLUSTERED(Position.Default, "NONCLUSTERED", "NONCLUSTERED");
+        }
+    }
+    
+    /// <summary>
+    /// NOT : 'NOT'
+    /// </summary>
+    public partial class AstNOT : AstTerminalKeyword
+    {
+        
+        public AstNOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOT : NOT
+        /// </summary>
+        public static AstNOT NOT()
+        {
+            return new AstNOT(Position.Default, "NOT", "NOT");
+        }
+    }
+    
+    /// <summary>
+    /// NULL_ : 'NULL'
+    /// </summary>
+    public partial class AstNULL : AstTerminalKeyword
+    {
+        
+        public AstNULL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNULL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NULL_ : NULL
+        /// </summary>
+        public static AstNULL NULL()
+        {
+            return new AstNULL(Position.Default, "NULL_", "NULL");
+        }
+    }
+    
+    /// <summary>
+    /// NULLIF : 'NULLIF'
+    /// </summary>
+    public partial class AstNULLIF : AstTerminalKeyword
+    {
+        
+        public AstNULLIF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNULLIF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NULLIF : NULLIF
+        /// </summary>
+        public static AstNULLIF NULLIF()
+        {
+            return new AstNULLIF(Position.Default, "NULLIF", "NULLIF");
+        }
+    }
+    
+    /// <summary>
+    /// OF : 'OF'
+    /// </summary>
+    public partial class AstOF : AstTerminalKeyword
+    {
+        
+        public AstOF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OF : OF
+        /// </summary>
+        public static AstOF OF()
+        {
+            return new AstOF(Position.Default, "OF", "OF");
+        }
+    }
+    
+    /// <summary>
+    /// OFF : 'OFF'
+    /// </summary>
+    public partial class AstOFF : AstTerminalKeyword
+    {
+        
+        public AstOFF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOFF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OFF : OFF
+        /// </summary>
+        public static AstOFF OFF()
+        {
+            return new AstOFF(Position.Default, "OFF", "OFF");
+        }
+    }
+    
+    /// <summary>
+    /// OFFSETS : 'OFFSETS'
+    /// </summary>
+    public partial class AstOFFSETS : AstTerminalKeyword
+    {
+        
+        public AstOFFSETS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOFFSETS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OFFSETS : OFFSETS
+        /// </summary>
+        public static AstOFFSETS OFFSETS()
+        {
+            return new AstOFFSETS(Position.Default, "OFFSETS", "OFFSETS");
+        }
+    }
+    
+    /// <summary>
+    /// ON : 'ON'
+    /// </summary>
+    public partial class AstON : AstTerminalKeyword
+    {
+        
+        public AstON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ON : ON
+        /// </summary>
+        public static AstON ON()
+        {
+            return new AstON(Position.Default, "ON", "ON");
+        }
+    }
+    
+    /// <summary>
+    /// OPEN : 'OPEN'
+    /// </summary>
+    public partial class AstOPEN : AstTerminalKeyword
+    {
+        
+        public AstOPEN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPEN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPEN : OPEN
+        /// </summary>
+        public static AstOPEN OPEN()
+        {
+            return new AstOPEN(Position.Default, "OPEN", "OPEN");
+        }
+    }
+    
+    /// <summary>
+    /// OPENDATASOURCE : 'OPENDATASOURCE'
+    /// </summary>
+    public partial class AstOPENDATASOURCE : AstTerminalKeyword
+    {
+        
+        public AstOPENDATASOURCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENDATASOURCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPENDATASOURCE : OPENDATASOURCE
+        /// </summary>
+        public static AstOPENDATASOURCE OPENDATASOURCE()
+        {
+            return new AstOPENDATASOURCE(Position.Default, "OPENDATASOURCE", "OPENDATASOURCE");
+        }
+    }
+    
+    /// <summary>
+    /// OPENQUERY : 'OPENQUERY'
+    /// </summary>
+    public partial class AstOPENQUERY : AstTerminalKeyword
+    {
+        
+        public AstOPENQUERY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENQUERY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPENQUERY : OPENQUERY
+        /// </summary>
+        public static AstOPENQUERY OPENQUERY()
+        {
+            return new AstOPENQUERY(Position.Default, "OPENQUERY", "OPENQUERY");
+        }
+    }
+    
+    /// <summary>
+    /// OPENROWSET : 'OPENROWSET'
+    /// </summary>
+    public partial class AstOPENROWSET : AstTerminalKeyword
+    {
+        
+        public AstOPENROWSET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENROWSET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPENROWSET : OPENROWSET
+        /// </summary>
+        public static AstOPENROWSET OPENROWSET()
+        {
+            return new AstOPENROWSET(Position.Default, "OPENROWSET", "OPENROWSET");
+        }
+    }
+    
+    /// <summary>
+    /// OPENXML : 'OPENXML'
+    /// </summary>
+    public partial class AstOPENXML : AstTerminalKeyword
+    {
+        
+        public AstOPENXML(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENXML(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPENXML : OPENXML
+        /// </summary>
+        public static AstOPENXML OPENXML()
+        {
+            return new AstOPENXML(Position.Default, "OPENXML", "OPENXML");
+        }
+    }
+    
+    /// <summary>
+    /// OPTION : 'OPTION'
+    /// </summary>
+    public partial class AstOPTION : AstTerminalKeyword
+    {
+        
+        public AstOPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPTION : OPTION
+        /// </summary>
+        public static AstOPTION OPTION()
+        {
+            return new AstOPTION(Position.Default, "OPTION", "OPTION");
+        }
+    }
+    
+    /// <summary>
+    /// OR : 'OR'
+    /// </summary>
+    public partial class AstOR : AstTerminalKeyword
+    {
+        
+        public AstOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OR : OR
+        /// </summary>
+        public static AstOR OR()
+        {
+            return new AstOR(Position.Default, "OR", "OR");
+        }
+    }
+    
+    /// <summary>
+    /// ORDER : 'ORDER'
+    /// </summary>
+    public partial class AstORDER : AstTerminalKeyword
+    {
+        
+        public AstORDER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstORDER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ORDER : ORDER
+        /// </summary>
+        public static AstORDER ORDER()
+        {
+            return new AstORDER(Position.Default, "ORDER", "ORDER");
+        }
+    }
+    
+    /// <summary>
+    /// OUTER : 'OUTER'
+    /// </summary>
+    public partial class AstOUTER : AstTerminalKeyword
+    {
+        
+        public AstOUTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOUTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OUTER : OUTER
+        /// </summary>
+        public static AstOUTER OUTER()
+        {
+            return new AstOUTER(Position.Default, "OUTER", "OUTER");
+        }
+    }
+    
+    /// <summary>
+    /// OVER : 'OVER'
+    /// </summary>
+    public partial class AstOVER : AstTerminalKeyword
+    {
+        
+        public AstOVER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOVER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OVER : OVER
+        /// </summary>
+        public static AstOVER OVER()
+        {
+            return new AstOVER(Position.Default, "OVER", "OVER");
+        }
+    }
+    
+    /// <summary>
+    /// PERCENT : 'PERCENT'
+    /// </summary>
+    public partial class AstPERCENT : AstTerminalKeyword
+    {
+        
+        public AstPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERCENT : PERCENT
+        /// </summary>
+        public static AstPERCENT PERCENT()
+        {
+            return new AstPERCENT(Position.Default, "PERCENT", "PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// PIVOT : 'PIVOT'
+    /// </summary>
+    public partial class AstPIVOT : AstTerminalKeyword
+    {
+        
+        public AstPIVOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPIVOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PIVOT : PIVOT
+        /// </summary>
+        public static AstPIVOT PIVOT()
+        {
+            return new AstPIVOT(Position.Default, "PIVOT", "PIVOT");
+        }
+    }
+    
+    /// <summary>
+    /// PLAN : 'PLAN'
+    /// </summary>
+    public partial class AstPLAN : AstTerminalKeyword
+    {
+        
+        public AstPLAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPLAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PLAN : PLAN
+        /// </summary>
+        public static AstPLAN PLAN()
+        {
+            return new AstPLAN(Position.Default, "PLAN", "PLAN");
+        }
+    }
+    
+    /// <summary>
+    /// PRECISION : 'PRECISION'
+    /// </summary>
+    public partial class AstPRECISION : AstTerminalKeyword
+    {
+        
+        public AstPRECISION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRECISION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRECISION : PRECISION
+        /// </summary>
+        public static AstPRECISION PRECISION()
+        {
+            return new AstPRECISION(Position.Default, "PRECISION", "PRECISION");
+        }
+    }
+    
+    /// <summary>
+    /// PRIMARY : 'PRIMARY'
+    /// </summary>
+    public partial class AstPRIMARY : AstTerminalKeyword
+    {
+        
+        public AstPRIMARY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIMARY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIMARY : PRIMARY
+        /// </summary>
+        public static AstPRIMARY PRIMARY()
+        {
+            return new AstPRIMARY(Position.Default, "PRIMARY", "PRIMARY");
+        }
+    }
+    
+    /// <summary>
+    /// PRINT : 'PRINT'
+    /// </summary>
+    public partial class AstPRINT : AstTerminalKeyword
+    {
+        
+        public AstPRINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRINT : PRINT
+        /// </summary>
+        public static AstPRINT PRINT()
+        {
+            return new AstPRINT(Position.Default, "PRINT", "PRINT");
+        }
+    }
+    
+    /// <summary>
+    /// PROC : 'PROC'
+    /// </summary>
+    public partial class AstPROC : AstTerminalKeyword
+    {
+        
+        public AstPROC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROC : PROC
+        /// </summary>
+        public static AstPROC PROC()
+        {
+            return new AstPROC(Position.Default, "PROC", "PROC");
+        }
+    }
+    
+    /// <summary>
+    /// PROCEDURE : 'PROCEDURE'
+    /// </summary>
+    public partial class AstPROCEDURE : AstTerminalKeyword
+    {
+        
+        public AstPROCEDURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROCEDURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROCEDURE : PROCEDURE
+        /// </summary>
+        public static AstPROCEDURE PROCEDURE()
+        {
+            return new AstPROCEDURE(Position.Default, "PROCEDURE", "PROCEDURE");
+        }
+    }
+    
+    /// <summary>
+    /// PUBLIC : 'PUBLIC'
+    /// </summary>
+    public partial class AstPUBLIC : AstTerminalKeyword
+    {
+        
+        public AstPUBLIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPUBLIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PUBLIC : PUBLIC
+        /// </summary>
+        public static AstPUBLIC PUBLIC()
+        {
+            return new AstPUBLIC(Position.Default, "PUBLIC", "PUBLIC");
+        }
+    }
+    
+    /// <summary>
+    /// RAISERROR : 'RAISERROR'
+    /// </summary>
+    public partial class AstRAISERROR : AstTerminalKeyword
+    {
+        
+        public AstRAISERROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRAISERROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RAISERROR : RAISERROR
+        /// </summary>
+        public static AstRAISERROR RAISERROR()
+        {
+            return new AstRAISERROR(Position.Default, "RAISERROR", "RAISERROR");
+        }
+    }
+    
+    /// <summary>
+    /// RAW : 'RAW'
+    /// </summary>
+    public partial class AstRAW : AstTerminalKeyword
+    {
+        
+        public AstRAW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRAW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RAW : RAW
+        /// </summary>
+        public static AstRAW RAW()
+        {
+            return new AstRAW(Position.Default, "RAW", "RAW");
+        }
+    }
+    
+    /// <summary>
+    /// READ : 'READ'
+    /// </summary>
+    public partial class AstREAD : AstTerminalKeyword
+    {
+        
+        public AstREAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ : READ
+        /// </summary>
+        public static AstREAD READ()
+        {
+            return new AstREAD(Position.Default, "READ", "READ");
+        }
+    }
+    
+    /// <summary>
+    /// READTEXT : 'READTEXT'
+    /// </summary>
+    public partial class AstREADTEXT : AstTerminalKeyword
+    {
+        
+        public AstREADTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READTEXT : READTEXT
+        /// </summary>
+        public static AstREADTEXT READTEXT()
+        {
+            return new AstREADTEXT(Position.Default, "READTEXT", "READTEXT");
+        }
+    }
+    
+    /// <summary>
+    /// RECONFIGURE : 'RECONFIGURE'
+    /// </summary>
+    public partial class AstRECONFIGURE : AstTerminalKeyword
+    {
+        
+        public AstRECONFIGURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRECONFIGURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RECONFIGURE : RECONFIGURE
+        /// </summary>
+        public static AstRECONFIGURE RECONFIGURE()
+        {
+            return new AstRECONFIGURE(Position.Default, "RECONFIGURE", "RECONFIGURE");
+        }
+    }
+    
+    /// <summary>
+    /// REFERENCES : 'REFERENCES'
+    /// </summary>
+    public partial class AstREFERENCES : AstTerminalKeyword
+    {
+        
+        public AstREFERENCES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREFERENCES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REFERENCES : REFERENCES
+        /// </summary>
+        public static AstREFERENCES REFERENCES()
+        {
+            return new AstREFERENCES(Position.Default, "REFERENCES", "REFERENCES");
+        }
+    }
+    
+    /// <summary>
+    /// REPLICATION : 'REPLICATION'
+    /// </summary>
+    public partial class AstREPLICATION : AstTerminalKeyword
+    {
+        
+        public AstREPLICATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPLICATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPLICATION : REPLICATION
+        /// </summary>
+        public static AstREPLICATION REPLICATION()
+        {
+            return new AstREPLICATION(Position.Default, "REPLICATION", "REPLICATION");
+        }
+    }
+    
+    /// <summary>
+    /// RESTORE : 'RESTORE'
+    /// </summary>
+    public partial class AstRESTORE : AstTerminalKeyword
+    {
+        
+        public AstRESTORE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESTORE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESTORE : RESTORE
+        /// </summary>
+        public static AstRESTORE RESTORE()
+        {
+            return new AstRESTORE(Position.Default, "RESTORE", "RESTORE");
+        }
+    }
+    
+    /// <summary>
+    /// RESTRICT : 'RESTRICT'
+    /// </summary>
+    public partial class AstRESTRICT : AstTerminalKeyword
+    {
+        
+        public AstRESTRICT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESTRICT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESTRICT : RESTRICT
+        /// </summary>
+        public static AstRESTRICT RESTRICT()
+        {
+            return new AstRESTRICT(Position.Default, "RESTRICT", "RESTRICT");
+        }
+    }
+    
+    /// <summary>
+    /// RETURN : 'RETURN'
+    /// </summary>
+    public partial class AstRETURN : AstTerminalKeyword
+    {
+        
+        public AstRETURN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRETURN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RETURN : RETURN
+        /// </summary>
+        public static AstRETURN RETURN()
+        {
+            return new AstRETURN(Position.Default, "RETURN", "RETURN");
+        }
+    }
+    
+    /// <summary>
+    /// REVERT : 'REVERT'
+    /// </summary>
+    public partial class AstREVERT : AstTerminalKeyword
+    {
+        
+        public AstREVERT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREVERT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REVERT : REVERT
+        /// </summary>
+        public static AstREVERT REVERT()
+        {
+            return new AstREVERT(Position.Default, "REVERT", "REVERT");
+        }
+    }
+    
+    /// <summary>
+    /// REVOKE : 'REVOKE'
+    /// </summary>
+    public partial class AstREVOKE : AstTerminalKeyword
+    {
+        
+        public AstREVOKE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREVOKE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REVOKE : REVOKE
+        /// </summary>
+        public static AstREVOKE REVOKE()
+        {
+            return new AstREVOKE(Position.Default, "REVOKE", "REVOKE");
+        }
+    }
+    
+    /// <summary>
+    /// RIGHT : 'RIGHT'
+    /// </summary>
+    public partial class AstRIGHT : AstTerminalKeyword
+    {
+        
+        public AstRIGHT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRIGHT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RIGHT : RIGHT
+        /// </summary>
+        public static AstRIGHT RIGHT()
+        {
+            return new AstRIGHT(Position.Default, "RIGHT", "RIGHT");
+        }
+    }
+    
+    /// <summary>
+    /// ROLLBACK : 'ROLLBACK'
+    /// </summary>
+    public partial class AstROLLBACK : AstTerminalKeyword
+    {
+        
+        public AstROLLBACK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROLLBACK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROLLBACK : ROLLBACK
+        /// </summary>
+        public static AstROLLBACK ROLLBACK()
+        {
+            return new AstROLLBACK(Position.Default, "ROLLBACK", "ROLLBACK");
+        }
+    }
+    
+    /// <summary>
+    /// ROWCOUNT : 'ROWCOUNT'
+    /// </summary>
+    public partial class AstROWCOUNT : AstTerminalKeyword
+    {
+        
+        public AstROWCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWCOUNT : ROWCOUNT
+        /// </summary>
+        public static AstROWCOUNT ROWCOUNT()
+        {
+            return new AstROWCOUNT(Position.Default, "ROWCOUNT", "ROWCOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// ROWGUIDCOL : 'ROWGUIDCOL'
+    /// </summary>
+    public partial class AstROWGUIDCOL : AstTerminalKeyword
+    {
+        
+        public AstROWGUIDCOL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWGUIDCOL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWGUIDCOL : ROWGUIDCOL
+        /// </summary>
+        public static AstROWGUIDCOL ROWGUIDCOL()
+        {
+            return new AstROWGUIDCOL(Position.Default, "ROWGUIDCOL", "ROWGUIDCOL");
+        }
+    }
+    
+    /// <summary>
+    /// RULE : 'RULE'
+    /// </summary>
+    public partial class AstRULE : AstTerminalKeyword
+    {
+        
+        public AstRULE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRULE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RULE : RULE
+        /// </summary>
+        public static AstRULE RULE()
+        {
+            return new AstRULE(Position.Default, "RULE", "RULE");
+        }
+    }
+    
+    /// <summary>
+    /// SAVE : 'SAVE'
+    /// </summary>
+    public partial class AstSAVE : AstTerminalKeyword
+    {
+        
+        public AstSAVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSAVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SAVE : SAVE
+        /// </summary>
+        public static AstSAVE SAVE()
+        {
+            return new AstSAVE(Position.Default, "SAVE", "SAVE");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEMA : 'SCHEMA'
+    /// </summary>
+    public partial class AstSCHEMA : AstTerminalKeyword
+    {
+        
+        public AstSCHEMA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEMA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEMA : SCHEMA
+        /// </summary>
+        public static AstSCHEMA SCHEMA()
+        {
+            return new AstSCHEMA(Position.Default, "SCHEMA", "SCHEMA");
+        }
+    }
+    
+    /// <summary>
+    /// SECURITYAUDIT : 'SECURITYAUDIT'
+    /// </summary>
+    public partial class AstSECURITYAUDIT : AstTerminalKeyword
+    {
+        
+        public AstSECURITYAUDIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECURITYAUDIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECURITYAUDIT : SECURITYAUDIT
+        /// </summary>
+        public static AstSECURITYAUDIT SECURITYAUDIT()
+        {
+            return new AstSECURITYAUDIT(Position.Default, "SECURITYAUDIT", "SECURITYAUDIT");
+        }
+    }
+    
+    /// <summary>
+    /// SELECT : 'SELECT'
+    /// </summary>
+    public partial class AstSELECT : AstTerminalKeyword
+    {
+        
+        public AstSELECT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSELECT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SELECT : SELECT
+        /// </summary>
+        public static AstSELECT SELECT()
+        {
+            return new AstSELECT(Position.Default, "SELECT", "SELECT");
+        }
+    }
+    
+    /// <summary>
+    /// SEMANTICKEYPHRASETABLE : 'SEMANTICKEYPHRASETABLE'
+    /// </summary>
+    public partial class AstSEMANTICKEYPHRASETABLE : AstTerminalKeyword
+    {
+        
+        public AstSEMANTICKEYPHRASETABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEMANTICKEYPHRASETABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEMANTICKEYPHRASETABLE : SEMANTICKEYPHRASETABLE
+        /// </summary>
+        public static AstSEMANTICKEYPHRASETABLE SEMANTICKEYPHRASETABLE()
+        {
+            return new AstSEMANTICKEYPHRASETABLE(Position.Default, "SEMANTICKEYPHRASETABLE", "SEMANTICKEYPHRASETABLE");
+        }
+    }
+    
+    /// <summary>
+    /// SEMANTICSIMILARITYDETAILSTABLE : 'SEMANTICSIMILARITYDETAILSTABLE'
+    /// </summary>
+    public partial class AstSEMANTICSIMILARITYDETAILSTABLE : AstTerminalKeyword
+    {
+        
+        public AstSEMANTICSIMILARITYDETAILSTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEMANTICSIMILARITYDETAILSTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEMANTICSIMILARITYDETAILSTABLE : SEMANTICSIMILARITYDETAILSTABLE
+        /// </summary>
+        public static AstSEMANTICSIMILARITYDETAILSTABLE SEMANTICSIMILARITYDETAILSTABLE()
+        {
+            return new AstSEMANTICSIMILARITYDETAILSTABLE(Position.Default, "SEMANTICSIMILARITYDETAILSTABLE", "SEMANTICSIMILARITYDETAILSTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// SEMANTICSIMILARITYTABLE : 'SEMANTICSIMILARITYTABLE'
+    /// </summary>
+    public partial class AstSEMANTICSIMILARITYTABLE : AstTerminalKeyword
+    {
+        
+        public AstSEMANTICSIMILARITYTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEMANTICSIMILARITYTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEMANTICSIMILARITYTABLE : SEMANTICSIMILARITYTABLE
+        /// </summary>
+        public static AstSEMANTICSIMILARITYTABLE SEMANTICSIMILARITYTABLE()
+        {
+            return new AstSEMANTICSIMILARITYTABLE(Position.Default, "SEMANTICSIMILARITYTABLE", "SEMANTICSIMILARITYTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// SESSION_USER : 'SESSION_USER'
+    /// </summary>
+    public partial class AstSESSIONUSER : AstTerminalKeyword
+    {
+        
+        public AstSESSIONUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSESSIONUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SESSION_USER : SESSION_USER
+        /// </summary>
+        public static AstSESSIONUSER SESSIONUSER()
+        {
+            return new AstSESSIONUSER(Position.Default, "SESSION_USER", "SESSION_USER");
+        }
+    }
+    
+    /// <summary>
+    /// SET : 'SET'
+    /// </summary>
+    public partial class AstSET : AstTerminalKeyword
+    {
+        
+        public AstSET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SET : SET
+        /// </summary>
+        public static AstSET SET()
+        {
+            return new AstSET(Position.Default, "SET", "SET");
+        }
+    }
+    
+    /// <summary>
+    /// SETS : 'SETS'
+    /// </summary>
+    public partial class AstSETS : AstTerminalKeyword
+    {
+        
+        public AstSETS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSETS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SETS : SETS
+        /// </summary>
+        public static AstSETS SETS()
+        {
+            return new AstSETS(Position.Default, "SETS", "SETS");
+        }
+    }
+    
+    /// <summary>
+    /// SETUSER : 'SETUSER'
+    /// </summary>
+    public partial class AstSETUSER : AstTerminalKeyword
+    {
+        
+        public AstSETUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSETUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SETUSER : SETUSER
+        /// </summary>
+        public static AstSETUSER SETUSER()
+        {
+            return new AstSETUSER(Position.Default, "SETUSER", "SETUSER");
+        }
+    }
+    
+    /// <summary>
+    /// SHUTDOWN : 'SHUTDOWN'
+    /// </summary>
+    public partial class AstSHUTDOWN : AstTerminalKeyword
+    {
+        
+        public AstSHUTDOWN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHUTDOWN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHUTDOWN : SHUTDOWN
+        /// </summary>
+        public static AstSHUTDOWN SHUTDOWN()
+        {
+            return new AstSHUTDOWN(Position.Default, "SHUTDOWN", "SHUTDOWN");
+        }
+    }
+    
+    /// <summary>
+    /// SOME : 'SOME'
+    /// </summary>
+    public partial class AstSOME : AstTerminalKeyword
+    {
+        
+        public AstSOME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSOME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SOME : SOME
+        /// </summary>
+        public static AstSOME SOME()
+        {
+            return new AstSOME(Position.Default, "SOME", "SOME");
+        }
+    }
+    
+    /// <summary>
+    /// STATISTICS : 'STATISTICS'
+    /// </summary>
+    public partial class AstSTATISTICS : AstTerminalKeyword
+    {
+        
+        public AstSTATISTICS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATISTICS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATISTICS : STATISTICS
+        /// </summary>
+        public static AstSTATISTICS STATISTICS()
+        {
+            return new AstSTATISTICS(Position.Default, "STATISTICS", "STATISTICS");
+        }
+    }
+    
+    /// <summary>
+    /// SYSTEM_USER : 'SYSTEM_USER'
+    /// </summary>
+    public partial class AstSYSTEMUSER : AstTerminalKeyword
+    {
+        
+        public AstSYSTEMUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSYSTEMUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SYSTEM_USER : SYSTEM_USER
+        /// </summary>
+        public static AstSYSTEMUSER SYSTEMUSER()
+        {
+            return new AstSYSTEMUSER(Position.Default, "SYSTEM_USER", "SYSTEM_USER");
+        }
+    }
+    
+    /// <summary>
+    /// TABLE : 'TABLE'
+    /// </summary>
+    public partial class AstTABLE : AstTerminalKeyword
+    {
+        
+        public AstTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TABLE : TABLE
+        /// </summary>
+        public static AstTABLE TABLE()
+        {
+            return new AstTABLE(Position.Default, "TABLE", "TABLE");
+        }
+    }
+    
+    /// <summary>
+    /// TABLESAMPLE : 'TABLESAMPLE'
+    /// </summary>
+    public partial class AstTABLESAMPLE : AstTerminalKeyword
+    {
+        
+        public AstTABLESAMPLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTABLESAMPLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TABLESAMPLE : TABLESAMPLE
+        /// </summary>
+        public static AstTABLESAMPLE TABLESAMPLE()
+        {
+            return new AstTABLESAMPLE(Position.Default, "TABLESAMPLE", "TABLESAMPLE");
+        }
+    }
+    
+    /// <summary>
+    /// TEXTSIZE : 'TEXTSIZE'
+    /// </summary>
+    public partial class AstTEXTSIZE : AstTerminalKeyword
+    {
+        
+        public AstTEXTSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTEXTSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TEXTSIZE : TEXTSIZE
+        /// </summary>
+        public static AstTEXTSIZE TEXTSIZE()
+        {
+            return new AstTEXTSIZE(Position.Default, "TEXTSIZE", "TEXTSIZE");
+        }
+    }
+    
+    /// <summary>
+    /// THEN : 'THEN'
+    /// </summary>
+    public partial class AstTHEN : AstTerminalKeyword
+    {
+        
+        public AstTHEN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTHEN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// THEN : THEN
+        /// </summary>
+        public static AstTHEN THEN()
+        {
+            return new AstTHEN(Position.Default, "THEN", "THEN");
+        }
+    }
+    
+    /// <summary>
+    /// TO : 'TO'
+    /// </summary>
+    public partial class AstTO : AstTerminalKeyword
+    {
+        
+        public AstTO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TO : TO
+        /// </summary>
+        public static AstTO TO()
+        {
+            return new AstTO(Position.Default, "TO", "TO");
+        }
+    }
+    
+    /// <summary>
+    /// TOP : 'TOP'
+    /// </summary>
+    public partial class AstTOP : AstTerminalKeyword
+    {
+        
+        public AstTOP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTOP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TOP : TOP
+        /// </summary>
+        public static AstTOP TOP()
+        {
+            return new AstTOP(Position.Default, "TOP", "TOP");
+        }
+    }
+    
+    /// <summary>
+    /// TRAN : 'TRAN'
+    /// </summary>
+    public partial class AstTRAN : AstTerminalKeyword
+    {
+        
+        public AstTRAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRAN : TRAN
+        /// </summary>
+        public static AstTRAN TRAN()
+        {
+            return new AstTRAN(Position.Default, "TRAN", "TRAN");
+        }
+    }
+    
+    /// <summary>
+    /// TRANSACTION : 'TRANSACTION'
+    /// </summary>
+    public partial class AstTRANSACTION : AstTerminalKeyword
+    {
+        
+        public AstTRANSACTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRANSACTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRANSACTION : TRANSACTION
+        /// </summary>
+        public static AstTRANSACTION TRANSACTION()
+        {
+            return new AstTRANSACTION(Position.Default, "TRANSACTION", "TRANSACTION");
+        }
+    }
+    
+    /// <summary>
+    /// TRIGGER : 'TRIGGER'
+    /// </summary>
+    public partial class AstTRIGGER : AstTerminalKeyword
+    {
+        
+        public AstTRIGGER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRIGGER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRIGGER : TRIGGER
+        /// </summary>
+        public static AstTRIGGER TRIGGER()
+        {
+            return new AstTRIGGER(Position.Default, "TRIGGER", "TRIGGER");
+        }
+    }
+    
+    /// <summary>
+    /// TRUNCATE : 'TRUNCATE'
+    /// </summary>
+    public partial class AstTRUNCATE : AstTerminalKeyword
+    {
+        
+        public AstTRUNCATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRUNCATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRUNCATE : TRUNCATE
+        /// </summary>
+        public static AstTRUNCATE TRUNCATE()
+        {
+            return new AstTRUNCATE(Position.Default, "TRUNCATE", "TRUNCATE");
+        }
+    }
+    
+    /// <summary>
+    /// TSEQUAL : 'TSEQUAL'
+    /// </summary>
+    public partial class AstTSEQUAL : AstTerminalKeyword
+    {
+        
+        public AstTSEQUAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTSEQUAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TSEQUAL : TSEQUAL
+        /// </summary>
+        public static AstTSEQUAL TSEQUAL()
+        {
+            return new AstTSEQUAL(Position.Default, "TSEQUAL", "TSEQUAL");
+        }
+    }
+    
+    /// <summary>
+    /// UNION : 'UNION'
+    /// </summary>
+    public partial class AstUNION : AstTerminalKeyword
+    {
+        
+        public AstUNION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNION : UNION
+        /// </summary>
+        public static AstUNION UNION()
+        {
+            return new AstUNION(Position.Default, "UNION", "UNION");
+        }
+    }
+    
+    /// <summary>
+    /// UNIQUE : 'UNIQUE'
+    /// </summary>
+    public partial class AstUNIQUE : AstTerminalKeyword
+    {
+        
+        public AstUNIQUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNIQUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNIQUE : UNIQUE
+        /// </summary>
+        public static AstUNIQUE UNIQUE()
+        {
+            return new AstUNIQUE(Position.Default, "UNIQUE", "UNIQUE");
+        }
+    }
+    
+    /// <summary>
+    /// UNPIVOT : 'UNPIVOT'
+    /// </summary>
+    public partial class AstUNPIVOT : AstTerminalKeyword
+    {
+        
+        public AstUNPIVOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNPIVOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNPIVOT : UNPIVOT
+        /// </summary>
+        public static AstUNPIVOT UNPIVOT()
+        {
+            return new AstUNPIVOT(Position.Default, "UNPIVOT", "UNPIVOT");
+        }
+    }
+    
+    /// <summary>
+    /// UPDATE : 'UPDATE'
+    /// </summary>
+    public partial class AstUPDATE : AstTerminalKeyword
+    {
+        
+        public AstUPDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUPDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UPDATE : UPDATE
+        /// </summary>
+        public static AstUPDATE UPDATE()
+        {
+            return new AstUPDATE(Position.Default, "UPDATE", "UPDATE");
+        }
+    }
+    
+    /// <summary>
+    /// UPDATETEXT : 'UPDATETEXT'
+    /// </summary>
+    public partial class AstUPDATETEXT : AstTerminalKeyword
+    {
+        
+        public AstUPDATETEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUPDATETEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UPDATETEXT : UPDATETEXT
+        /// </summary>
+        public static AstUPDATETEXT UPDATETEXT()
+        {
+            return new AstUPDATETEXT(Position.Default, "UPDATETEXT", "UPDATETEXT");
+        }
+    }
+    
+    /// <summary>
+    /// USE : 'USE'
+    /// </summary>
+    public partial class AstUSE : AstTerminalKeyword
+    {
+        
+        public AstUSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// USE : USE
+        /// </summary>
+        public static AstUSE USE()
+        {
+            return new AstUSE(Position.Default, "USE", "USE");
+        }
+    }
+    
+    /// <summary>
+    /// USER : 'USER'
+    /// </summary>
+    public partial class AstUSER : AstTerminalKeyword
+    {
+        
+        public AstUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// USER : USER
+        /// </summary>
+        public static AstUSER USER()
+        {
+            return new AstUSER(Position.Default, "USER", "USER");
+        }
+    }
+    
+    /// <summary>
+    /// VALUES : 'VALUES'
+    /// </summary>
+    public partial class AstVALUES : AstTerminalKeyword
+    {
+        
+        public AstVALUES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVALUES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VALUES : VALUES
+        /// </summary>
+        public static AstVALUES VALUES()
+        {
+            return new AstVALUES(Position.Default, "VALUES", "VALUES");
+        }
+    }
+    
+    /// <summary>
+    /// VARYING : 'VARYING'
+    /// </summary>
+    public partial class AstVARYING : AstTerminalKeyword
+    {
+        
+        public AstVARYING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVARYING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VARYING : VARYING
+        /// </summary>
+        public static AstVARYING VARYING()
+        {
+            return new AstVARYING(Position.Default, "VARYING", "VARYING");
+        }
+    }
+    
+    /// <summary>
+    /// VIEW : 'VIEW'
+    /// </summary>
+    public partial class AstVIEW : AstTerminalKeyword
+    {
+        
+        public AstVIEW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVIEW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VIEW : VIEW
+        /// </summary>
+        public static AstVIEW VIEW()
+        {
+            return new AstVIEW(Position.Default, "VIEW", "VIEW");
+        }
+    }
+    
+    /// <summary>
+    /// WAITFOR : 'WAITFOR'
+    /// </summary>
+    public partial class AstWAITFOR : AstTerminalKeyword
+    {
+        
+        public AstWAITFOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWAITFOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WAITFOR : WAITFOR
+        /// </summary>
+        public static AstWAITFOR WAITFOR()
+        {
+            return new AstWAITFOR(Position.Default, "WAITFOR", "WAITFOR");
+        }
+    }
+    
+    /// <summary>
+    /// WHEN : 'WHEN'
+    /// </summary>
+    public partial class AstWHEN : AstTerminalKeyword
+    {
+        
+        public AstWHEN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWHEN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WHEN : WHEN
+        /// </summary>
+        public static AstWHEN WHEN()
+        {
+            return new AstWHEN(Position.Default, "WHEN", "WHEN");
+        }
+    }
+    
+    /// <summary>
+    /// WHERE : 'WHERE'
+    /// </summary>
+    public partial class AstWHERE : AstTerminalKeyword
+    {
+        
+        public AstWHERE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWHERE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WHERE : WHERE
+        /// </summary>
+        public static AstWHERE WHERE()
+        {
+            return new AstWHERE(Position.Default, "WHERE", "WHERE");
+        }
+    }
+    
+    /// <summary>
+    /// WHILE : 'WHILE'
+    /// </summary>
+    public partial class AstWHILE : AstTerminalKeyword
+    {
+        
+        public AstWHILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWHILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WHILE : WHILE
+        /// </summary>
+        public static AstWHILE WHILE()
+        {
+            return new AstWHILE(Position.Default, "WHILE", "WHILE");
+        }
+    }
+    
+    /// <summary>
+    /// WITH : 'WITH'
+    /// </summary>
+    public partial class AstWITH : AstTerminalKeyword
+    {
+        
+        public AstWITH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWITH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WITH : WITH
+        /// </summary>
+        public static AstWITH WITH()
+        {
+            return new AstWITH(Position.Default, "WITH", "WITH");
+        }
+    }
+    
+    /// <summary>
+    /// WITHIN : 'WITHIN'
+    /// </summary>
+    public partial class AstWITHIN : AstTerminalKeyword
+    {
+        
+        public AstWITHIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWITHIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WITHIN : WITHIN
+        /// </summary>
+        public static AstWITHIN WITHIN()
+        {
+            return new AstWITHIN(Position.Default, "WITHIN", "WITHIN");
+        }
+    }
+    
+    /// <summary>
+    /// WRITETEXT : 'WRITETEXT'
+    /// </summary>
+    public partial class AstWRITETEXT : AstTerminalKeyword
+    {
+        
+        public AstWRITETEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWRITETEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WRITETEXT : WRITETEXT
+        /// </summary>
+        public static AstWRITETEXT WRITETEXT()
+        {
+            return new AstWRITETEXT(Position.Default, "WRITETEXT", "WRITETEXT");
+        }
+    }
+    
+    /// <summary>
+    /// DOLLAR_PARTITION : '$PARTITION'
+    /// </summary>
+    public partial class AstDOLLARPARTITION : AstTerminalKeyword
+    {
+        
+        public AstDOLLARPARTITION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOLLARPARTITION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOLLAR_PARTITION : $PARTITION
+        /// </summary>
+        public static AstDOLLARPARTITION DOLLARPARTITION()
+        {
+            return new AstDOLLARPARTITION(Position.Default, "DOLLAR_PARTITION", "$PARTITION");
+        }
+    }
+    
+    /// <summary>
+    /// ABORT : 'ABORT'
+    /// </summary>
+    public partial class AstABORT : AstTerminalKeyword
+    {
+        
+        public AstABORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstABORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ABORT : ABORT
+        /// </summary>
+        public static AstABORT ABORT()
+        {
+            return new AstABORT(Position.Default, "ABORT", "ABORT");
+        }
+    }
+    
+    /// <summary>
+    /// ABSOLUTE : 'ABSOLUTE'
+    /// </summary>
+    public partial class AstABSOLUTE : AstTerminalKeyword
+    {
+        
+        public AstABSOLUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstABSOLUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ABSOLUTE : ABSOLUTE
+        /// </summary>
+        public static AstABSOLUTE ABSOLUTE()
+        {
+            return new AstABSOLUTE(Position.Default, "ABSOLUTE", "ABSOLUTE");
+        }
+    }
+    
+    /// <summary>
+    /// ACCENT_SENSITIVITY : 'ACCENT_SENSITIVITY'
+    /// </summary>
+    public partial class AstACCENTSENSITIVITY : AstTerminalKeyword
+    {
+        
+        public AstACCENTSENSITIVITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACCENTSENSITIVITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACCENT_SENSITIVITY : ACCENT_SENSITIVITY
+        /// </summary>
+        public static AstACCENTSENSITIVITY ACCENTSENSITIVITY()
+        {
+            return new AstACCENTSENSITIVITY(Position.Default, "ACCENT_SENSITIVITY", "ACCENT_SENSITIVITY");
+        }
+    }
+    
+    /// <summary>
+    /// ACCESS : 'ACCESS'
+    /// </summary>
+    public partial class AstACCESS : AstTerminalKeyword
+    {
+        
+        public AstACCESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACCESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACCESS : ACCESS
+        /// </summary>
+        public static AstACCESS ACCESS()
+        {
+            return new AstACCESS(Position.Default, "ACCESS", "ACCESS");
+        }
+    }
+    
+    /// <summary>
+    /// ACTION : 'ACTION'
+    /// </summary>
+    public partial class AstACTION : AstTerminalKeyword
+    {
+        
+        public AstACTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACTION : ACTION
+        /// </summary>
+        public static AstACTION ACTION()
+        {
+            return new AstACTION(Position.Default, "ACTION", "ACTION");
+        }
+    }
+    
+    /// <summary>
+    /// ACTIVATION : 'ACTIVATION'
+    /// </summary>
+    public partial class AstACTIVATION : AstTerminalKeyword
+    {
+        
+        public AstACTIVATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACTIVATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACTIVATION : ACTIVATION
+        /// </summary>
+        public static AstACTIVATION ACTIVATION()
+        {
+            return new AstACTIVATION(Position.Default, "ACTIVATION", "ACTIVATION");
+        }
+    }
+    
+    /// <summary>
+    /// ACTIVE : 'ACTIVE'
+    /// </summary>
+    public partial class AstACTIVE : AstTerminalKeyword
+    {
+        
+        public AstACTIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstACTIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ACTIVE : ACTIVE
+        /// </summary>
+        public static AstACTIVE ACTIVE()
+        {
+            return new AstACTIVE(Position.Default, "ACTIVE", "ACTIVE");
+        }
+    }
+    
+    /// <summary>
+    /// ADDRESS : 'ADDRESS'
+    /// </summary>
+    public partial class AstADDRESS : AstTerminalKeyword
+    {
+        
+        public AstADDRESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstADDRESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ADDRESS : ADDRESS
+        /// </summary>
+        public static AstADDRESS ADDRESS()
+        {
+            return new AstADDRESS(Position.Default, "ADDRESS", "ADDRESS");
+        }
+    }
+    
+    /// <summary>
+    /// AES_128 : 'AES_128'
+    /// </summary>
+    public partial class AstAES128 : AstTerminalKeyword
+    {
+        
+        public AstAES128(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAES128(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AES_128 : AES_128
+        /// </summary>
+        public static AstAES128 AES128()
+        {
+            return new AstAES128(Position.Default, "AES_128", "AES_128");
+        }
+    }
+    
+    /// <summary>
+    /// AES_192 : 'AES_192'
+    /// </summary>
+    public partial class AstAES192 : AstTerminalKeyword
+    {
+        
+        public AstAES192(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAES192(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AES_192 : AES_192
+        /// </summary>
+        public static AstAES192 AES192()
+        {
+            return new AstAES192(Position.Default, "AES_192", "AES_192");
+        }
+    }
+    
+    /// <summary>
+    /// AES_256 : 'AES_256'
+    /// </summary>
+    public partial class AstAES256 : AstTerminalKeyword
+    {
+        
+        public AstAES256(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAES256(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AES_256 : AES_256
+        /// </summary>
+        public static AstAES256 AES256()
+        {
+            return new AstAES256(Position.Default, "AES_256", "AES_256");
+        }
+    }
+    
+    /// <summary>
+    /// AFFINITY : 'AFFINITY'
+    /// </summary>
+    public partial class AstAFFINITY : AstTerminalKeyword
+    {
+        
+        public AstAFFINITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAFFINITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AFFINITY : AFFINITY
+        /// </summary>
+        public static AstAFFINITY AFFINITY()
+        {
+            return new AstAFFINITY(Position.Default, "AFFINITY", "AFFINITY");
+        }
+    }
+    
+    /// <summary>
+    /// AFTER : 'AFTER'
+    /// </summary>
+    public partial class AstAFTER : AstTerminalKeyword
+    {
+        
+        public AstAFTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAFTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AFTER : AFTER
+        /// </summary>
+        public static AstAFTER AFTER()
+        {
+            return new AstAFTER(Position.Default, "AFTER", "AFTER");
+        }
+    }
+    
+    /// <summary>
+    /// AGGREGATE : 'AGGREGATE'
+    /// </summary>
+    public partial class AstAGGREGATE : AstTerminalKeyword
+    {
+        
+        public AstAGGREGATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAGGREGATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AGGREGATE : AGGREGATE
+        /// </summary>
+        public static AstAGGREGATE AGGREGATE()
+        {
+            return new AstAGGREGATE(Position.Default, "AGGREGATE", "AGGREGATE");
+        }
+    }
+    
+    /// <summary>
+    /// ALGORITHM : 'ALGORITHM'
+    /// </summary>
+    public partial class AstALGORITHM : AstTerminalKeyword
+    {
+        
+        public AstALGORITHM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALGORITHM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALGORITHM : ALGORITHM
+        /// </summary>
+        public static AstALGORITHM ALGORITHM()
+        {
+            return new AstALGORITHM(Position.Default, "ALGORITHM", "ALGORITHM");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_ENCRYPTED_VALUE_MODIFICATIONS : 'ALLOW_ENCRYPTED_VALUE_MODIFICATIONS'
+    /// </summary>
+    public partial class AstALLOWENCRYPTEDVALUEMODIFICATIONS : AstTerminalKeyword
+    {
+        
+        public AstALLOWENCRYPTEDVALUEMODIFICATIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWENCRYPTEDVALUEMODIFICATIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_ENCRYPTED_VALUE_MODIFICATIONS : ALLOW_ENCRYPTED_VALUE_MODIFICATIONS
+        /// </summary>
+        public static AstALLOWENCRYPTEDVALUEMODIFICATIONS ALLOWENCRYPTEDVALUEMODIFICATIONS()
+        {
+            return new AstALLOWENCRYPTEDVALUEMODIFICATIONS(Position.Default, "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS", "ALLOW_ENCRYPTED_VALUE_MODIFICATIONS");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_PAGE_LOCKS : 'ALLOW_PAGE_LOCKS'
+    /// </summary>
+    public partial class AstALLOWPAGELOCKS : AstTerminalKeyword
+    {
+        
+        public AstALLOWPAGELOCKS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWPAGELOCKS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_PAGE_LOCKS : ALLOW_PAGE_LOCKS
+        /// </summary>
+        public static AstALLOWPAGELOCKS ALLOWPAGELOCKS()
+        {
+            return new AstALLOWPAGELOCKS(Position.Default, "ALLOW_PAGE_LOCKS", "ALLOW_PAGE_LOCKS");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_ROW_LOCKS : 'ALLOW_ROW_LOCKS'
+    /// </summary>
+    public partial class AstALLOWROWLOCKS : AstTerminalKeyword
+    {
+        
+        public AstALLOWROWLOCKS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWROWLOCKS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_ROW_LOCKS : ALLOW_ROW_LOCKS
+        /// </summary>
+        public static AstALLOWROWLOCKS ALLOWROWLOCKS()
+        {
+            return new AstALLOWROWLOCKS(Position.Default, "ALLOW_ROW_LOCKS", "ALLOW_ROW_LOCKS");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_SNAPSHOT_ISOLATION : 'ALLOW_SNAPSHOT_ISOLATION'
+    /// </summary>
+    public partial class AstALLOWSNAPSHOTISOLATION : AstTerminalKeyword
+    {
+        
+        public AstALLOWSNAPSHOTISOLATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWSNAPSHOTISOLATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_SNAPSHOT_ISOLATION : ALLOW_SNAPSHOT_ISOLATION
+        /// </summary>
+        public static AstALLOWSNAPSHOTISOLATION ALLOWSNAPSHOTISOLATION()
+        {
+            return new AstALLOWSNAPSHOTISOLATION(Position.Default, "ALLOW_SNAPSHOT_ISOLATION", "ALLOW_SNAPSHOT_ISOLATION");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOWED : 'ALLOWED'
+    /// </summary>
+    public partial class AstALLOWED : AstTerminalKeyword
+    {
+        
+        public AstALLOWED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOWED : ALLOWED
+        /// </summary>
+        public static AstALLOWED ALLOWED()
+        {
+            return new AstALLOWED(Position.Default, "ALLOWED", "ALLOWED");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_DEFAULTS : 'ANSI_DEFAULTS'
+    /// </summary>
+    public partial class AstANSIDEFAULTS : AstTerminalKeyword
+    {
+        
+        public AstANSIDEFAULTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSIDEFAULTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_DEFAULTS : ANSI_DEFAULTS
+        /// </summary>
+        public static AstANSIDEFAULTS ANSIDEFAULTS()
+        {
+            return new AstANSIDEFAULTS(Position.Default, "ANSI_DEFAULTS", "ANSI_DEFAULTS");
+        }
+    }
+    
+    /// <summary>
+    /// ALWAYS : 'ALWAYS'
+    /// </summary>
+    public partial class AstALWAYS : AstTerminalKeyword
+    {
+        
+        public AstALWAYS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALWAYS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALWAYS : ALWAYS
+        /// </summary>
+        public static AstALWAYS ALWAYS()
+        {
+            return new AstALWAYS(Position.Default, "ALWAYS", "ALWAYS");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_NULL_DEFAULT : 'ANSI_NULL_DEFAULT'
+    /// </summary>
+    public partial class AstANSINULLDEFAULT : AstTerminalKeyword
+    {
+        
+        public AstANSINULLDEFAULT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSINULLDEFAULT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_NULL_DEFAULT : ANSI_NULL_DEFAULT
+        /// </summary>
+        public static AstANSINULLDEFAULT ANSINULLDEFAULT()
+        {
+            return new AstANSINULLDEFAULT(Position.Default, "ANSI_NULL_DEFAULT", "ANSI_NULL_DEFAULT");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_NULL_DFLT_OFF : 'ANSI_NULL_DFLT_OFF'
+    /// </summary>
+    public partial class AstANSINULLDFLTOFF : AstTerminalKeyword
+    {
+        
+        public AstANSINULLDFLTOFF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSINULLDFLTOFF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_NULL_DFLT_OFF : ANSI_NULL_DFLT_OFF
+        /// </summary>
+        public static AstANSINULLDFLTOFF ANSINULLDFLTOFF()
+        {
+            return new AstANSINULLDFLTOFF(Position.Default, "ANSI_NULL_DFLT_OFF", "ANSI_NULL_DFLT_OFF");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_NULL_DFLT_ON : 'ANSI_NULL_DFLT_ON'
+    /// </summary>
+    public partial class AstANSINULLDFLTON : AstTerminalKeyword
+    {
+        
+        public AstANSINULLDFLTON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSINULLDFLTON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_NULL_DFLT_ON : ANSI_NULL_DFLT_ON
+        /// </summary>
+        public static AstANSINULLDFLTON ANSINULLDFLTON()
+        {
+            return new AstANSINULLDFLTON(Position.Default, "ANSI_NULL_DFLT_ON", "ANSI_NULL_DFLT_ON");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_NULLS : 'ANSI_NULLS'
+    /// </summary>
+    public partial class AstANSINULLS : AstTerminalKeyword
+    {
+        
+        public AstANSINULLS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSINULLS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_NULLS : ANSI_NULLS
+        /// </summary>
+        public static AstANSINULLS ANSINULLS()
+        {
+            return new AstANSINULLS(Position.Default, "ANSI_NULLS", "ANSI_NULLS");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_PADDING : 'ANSI_PADDING'
+    /// </summary>
+    public partial class AstANSIPADDING : AstTerminalKeyword
+    {
+        
+        public AstANSIPADDING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSIPADDING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_PADDING : ANSI_PADDING
+        /// </summary>
+        public static AstANSIPADDING ANSIPADDING()
+        {
+            return new AstANSIPADDING(Position.Default, "ANSI_PADDING", "ANSI_PADDING");
+        }
+    }
+    
+    /// <summary>
+    /// ANSI_WARNINGS : 'ANSI_WARNINGS'
+    /// </summary>
+    public partial class AstANSIWARNINGS : AstTerminalKeyword
+    {
+        
+        public AstANSIWARNINGS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANSIWARNINGS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANSI_WARNINGS : ANSI_WARNINGS
+        /// </summary>
+        public static AstANSIWARNINGS ANSIWARNINGS()
+        {
+            return new AstANSIWARNINGS(Position.Default, "ANSI_WARNINGS", "ANSI_WARNINGS");
+        }
+    }
+    
+    /// <summary>
+    /// APP_NAME : 'APP_NAME'
+    /// </summary>
+    public partial class AstAPPNAME : AstTerminalKeyword
+    {
+        
+        public AstAPPNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APP_NAME : APP_NAME
+        /// </summary>
+        public static AstAPPNAME APPNAME()
+        {
+            return new AstAPPNAME(Position.Default, "APP_NAME", "APP_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// APPLICATION_LOG : 'APPLICATION_LOG'
+    /// </summary>
+    public partial class AstAPPLICATIONLOG : AstTerminalKeyword
+    {
+        
+        public AstAPPLICATIONLOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPLICATIONLOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPLICATION_LOG : APPLICATION_LOG
+        /// </summary>
+        public static AstAPPLICATIONLOG APPLICATIONLOG()
+        {
+            return new AstAPPLICATIONLOG(Position.Default, "APPLICATION_LOG", "APPLICATION_LOG");
+        }
+    }
+    
+    /// <summary>
+    /// APPLOCK_MODE : 'APPLOCK_MODE'
+    /// </summary>
+    public partial class AstAPPLOCKMODE : AstTerminalKeyword
+    {
+        
+        public AstAPPLOCKMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPLOCKMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPLOCK_MODE : APPLOCK_MODE
+        /// </summary>
+        public static AstAPPLOCKMODE APPLOCKMODE()
+        {
+            return new AstAPPLOCKMODE(Position.Default, "APPLOCK_MODE", "APPLOCK_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// APPLOCK_TEST : 'APPLOCK_TEST'
+    /// </summary>
+    public partial class AstAPPLOCKTEST : AstTerminalKeyword
+    {
+        
+        public AstAPPLOCKTEST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPLOCKTEST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPLOCK_TEST : APPLOCK_TEST
+        /// </summary>
+        public static AstAPPLOCKTEST APPLOCKTEST()
+        {
+            return new AstAPPLOCKTEST(Position.Default, "APPLOCK_TEST", "APPLOCK_TEST");
+        }
+    }
+    
+    /// <summary>
+    /// APPLY : 'APPLY'
+    /// </summary>
+    public partial class AstAPPLY : AstTerminalKeyword
+    {
+        
+        public AstAPPLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPLY : APPLY
+        /// </summary>
+        public static AstAPPLY APPLY()
+        {
+            return new AstAPPLY(Position.Default, "APPLY", "APPLY");
+        }
+    }
+    
+    /// <summary>
+    /// ARITHABORT : 'ARITHABORT'
+    /// </summary>
+    public partial class AstARITHABORT : AstTerminalKeyword
+    {
+        
+        public AstARITHABORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstARITHABORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ARITHABORT : ARITHABORT
+        /// </summary>
+        public static AstARITHABORT ARITHABORT()
+        {
+            return new AstARITHABORT(Position.Default, "ARITHABORT", "ARITHABORT");
+        }
+    }
+    
+    /// <summary>
+    /// ARITHIGNORE : 'ARITHIGNORE'
+    /// </summary>
+    public partial class AstARITHIGNORE : AstTerminalKeyword
+    {
+        
+        public AstARITHIGNORE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstARITHIGNORE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ARITHIGNORE : ARITHIGNORE
+        /// </summary>
+        public static AstARITHIGNORE ARITHIGNORE()
+        {
+            return new AstARITHIGNORE(Position.Default, "ARITHIGNORE", "ARITHIGNORE");
+        }
+    }
+    
+    /// <summary>
+    /// ASCII : 'ASCII'
+    /// </summary>
+    public partial class AstASCII : AstTerminalKeyword
+    {
+        
+        public AstASCII(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASCII(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASCII : ASCII
+        /// </summary>
+        public static AstASCII ASCII()
+        {
+            return new AstASCII(Position.Default, "ASCII", "ASCII");
+        }
+    }
+    
+    /// <summary>
+    /// ASSEMBLY : 'ASSEMBLY'
+    /// </summary>
+    public partial class AstASSEMBLY : AstTerminalKeyword
+    {
+        
+        public AstASSEMBLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASSEMBLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASSEMBLY : ASSEMBLY
+        /// </summary>
+        public static AstASSEMBLY ASSEMBLY()
+        {
+            return new AstASSEMBLY(Position.Default, "ASSEMBLY", "ASSEMBLY");
+        }
+    }
+    
+    /// <summary>
+    /// ASSEMBLYPROPERTY : 'ASSEMBLYPROPERTY'
+    /// </summary>
+    public partial class AstASSEMBLYPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstASSEMBLYPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASSEMBLYPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASSEMBLYPROPERTY : ASSEMBLYPROPERTY
+        /// </summary>
+        public static AstASSEMBLYPROPERTY ASSEMBLYPROPERTY()
+        {
+            return new AstASSEMBLYPROPERTY(Position.Default, "ASSEMBLYPROPERTY", "ASSEMBLYPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// AT_KEYWORD : 'AT'
+    /// </summary>
+    public partial class AstATKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstATKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstATKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AT_KEYWORD : AT
+        /// </summary>
+        public static AstATKEYWORD ATKEYWORD()
+        {
+            return new AstATKEYWORD(Position.Default, "AT_KEYWORD", "AT");
+        }
+    }
+    
+    /// <summary>
+    /// AUDIT : 'AUDIT'
+    /// </summary>
+    public partial class AstAUDIT : AstTerminalKeyword
+    {
+        
+        public AstAUDIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUDIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUDIT : AUDIT
+        /// </summary>
+        public static AstAUDIT AUDIT()
+        {
+            return new AstAUDIT(Position.Default, "AUDIT", "AUDIT");
+        }
+    }
+    
+    /// <summary>
+    /// AUDIT_GUID : 'AUDIT_GUID'
+    /// </summary>
+    public partial class AstAUDITGUID : AstTerminalKeyword
+    {
+        
+        public AstAUDITGUID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUDITGUID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUDIT_GUID : AUDIT_GUID
+        /// </summary>
+        public static AstAUDITGUID AUDITGUID()
+        {
+            return new AstAUDITGUID(Position.Default, "AUDIT_GUID", "AUDIT_GUID");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO : 'AUTO'
+    /// </summary>
+    public partial class AstAUTO : AstTerminalKeyword
+    {
+        
+        public AstAUTO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO : AUTO
+        /// </summary>
+        public static AstAUTO AUTO()
+        {
+            return new AstAUTO(Position.Default, "AUTO", "AUTO");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_CLEANUP : 'AUTO_CLEANUP'
+    /// </summary>
+    public partial class AstAUTOCLEANUP : AstTerminalKeyword
+    {
+        
+        public AstAUTOCLEANUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOCLEANUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_CLEANUP : AUTO_CLEANUP
+        /// </summary>
+        public static AstAUTOCLEANUP AUTOCLEANUP()
+        {
+            return new AstAUTOCLEANUP(Position.Default, "AUTO_CLEANUP", "AUTO_CLEANUP");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_CLOSE : 'AUTO_CLOSE'
+    /// </summary>
+    public partial class AstAUTOCLOSE : AstTerminalKeyword
+    {
+        
+        public AstAUTOCLOSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOCLOSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_CLOSE : AUTO_CLOSE
+        /// </summary>
+        public static AstAUTOCLOSE AUTOCLOSE()
+        {
+            return new AstAUTOCLOSE(Position.Default, "AUTO_CLOSE", "AUTO_CLOSE");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_CREATE_STATISTICS : 'AUTO_CREATE_STATISTICS'
+    /// </summary>
+    public partial class AstAUTOCREATESTATISTICS : AstTerminalKeyword
+    {
+        
+        public AstAUTOCREATESTATISTICS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOCREATESTATISTICS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_CREATE_STATISTICS : AUTO_CREATE_STATISTICS
+        /// </summary>
+        public static AstAUTOCREATESTATISTICS AUTOCREATESTATISTICS()
+        {
+            return new AstAUTOCREATESTATISTICS(Position.Default, "AUTO_CREATE_STATISTICS", "AUTO_CREATE_STATISTICS");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_DROP : 'AUTO_DROP'
+    /// </summary>
+    public partial class AstAUTODROP : AstTerminalKeyword
+    {
+        
+        public AstAUTODROP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTODROP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_DROP : AUTO_DROP
+        /// </summary>
+        public static AstAUTODROP AUTODROP()
+        {
+            return new AstAUTODROP(Position.Default, "AUTO_DROP", "AUTO_DROP");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_SHRINK : 'AUTO_SHRINK'
+    /// </summary>
+    public partial class AstAUTOSHRINK : AstTerminalKeyword
+    {
+        
+        public AstAUTOSHRINK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOSHRINK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_SHRINK : AUTO_SHRINK
+        /// </summary>
+        public static AstAUTOSHRINK AUTOSHRINK()
+        {
+            return new AstAUTOSHRINK(Position.Default, "AUTO_SHRINK", "AUTO_SHRINK");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_UPDATE_STATISTICS : 'AUTO_UPDATE_STATISTICS'
+    /// </summary>
+    public partial class AstAUTOUPDATESTATISTICS : AstTerminalKeyword
+    {
+        
+        public AstAUTOUPDATESTATISTICS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOUPDATESTATISTICS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_UPDATE_STATISTICS : AUTO_UPDATE_STATISTICS
+        /// </summary>
+        public static AstAUTOUPDATESTATISTICS AUTOUPDATESTATISTICS()
+        {
+            return new AstAUTOUPDATESTATISTICS(Position.Default, "AUTO_UPDATE_STATISTICS", "AUTO_UPDATE_STATISTICS");
+        }
+    }
+    
+    /// <summary>
+    /// AUTO_UPDATE_STATISTICS_ASYNC : 'AUTO_UPDATE_STATISTICS_ASYNC'
+    /// </summary>
+    public partial class AstAUTOUPDATESTATISTICSASYNC : AstTerminalKeyword
+    {
+        
+        public AstAUTOUPDATESTATISTICSASYNC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOUPDATESTATISTICSASYNC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTO_UPDATE_STATISTICS_ASYNC : AUTO_UPDATE_STATISTICS_ASYNC
+        /// </summary>
+        public static AstAUTOUPDATESTATISTICSASYNC AUTOUPDATESTATISTICSASYNC()
+        {
+            return new AstAUTOUPDATESTATISTICSASYNC(Position.Default, "AUTO_UPDATE_STATISTICS_ASYNC", "AUTO_UPDATE_STATISTICS_ASYNC");
+        }
+    }
+    
+    /// <summary>
+    /// AUTOGROW_ALL_FILES : 'AUTOGROW_ALL_FILES'
+    /// </summary>
+    public partial class AstAUTOGROWALLFILES : AstTerminalKeyword
+    {
+        
+        public AstAUTOGROWALLFILES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOGROWALLFILES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTOGROW_ALL_FILES : AUTOGROW_ALL_FILES
+        /// </summary>
+        public static AstAUTOGROWALLFILES AUTOGROWALLFILES()
+        {
+            return new AstAUTOGROWALLFILES(Position.Default, "AUTOGROW_ALL_FILES", "AUTOGROW_ALL_FILES");
+        }
+    }
+    
+    /// <summary>
+    /// AUTOGROW_SINGLE_FILE : 'AUTOGROW_SINGLE_FILE'
+    /// </summary>
+    public partial class AstAUTOGROWSINGLEFILE : AstTerminalKeyword
+    {
+        
+        public AstAUTOGROWSINGLEFILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOGROWSINGLEFILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTOGROW_SINGLE_FILE : AUTOGROW_SINGLE_FILE
+        /// </summary>
+        public static AstAUTOGROWSINGLEFILE AUTOGROWSINGLEFILE()
+        {
+            return new AstAUTOGROWSINGLEFILE(Position.Default, "AUTOGROW_SINGLE_FILE", "AUTOGROW_SINGLE_FILE");
+        }
+    }
+    
+    /// <summary>
+    /// AVAILABILITY : 'AVAILABILITY'
+    /// </summary>
+    public partial class AstAVAILABILITY : AstTerminalKeyword
+    {
+        
+        public AstAVAILABILITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAVAILABILITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AVAILABILITY : AVAILABILITY
+        /// </summary>
+        public static AstAVAILABILITY AVAILABILITY()
+        {
+            return new AstAVAILABILITY(Position.Default, "AVAILABILITY", "AVAILABILITY");
+        }
+    }
+    
+    /// <summary>
+    /// AVG : 'AVG'
+    /// </summary>
+    public partial class AstAVG : AstTerminalKeyword
+    {
+        
+        public AstAVG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAVG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AVG : AVG
+        /// </summary>
+        public static AstAVG AVG()
+        {
+            return new AstAVG(Position.Default, "AVG", "AVG");
+        }
+    }
+    
+    /// <summary>
+    /// BACKUP_PRIORITY : 'BACKUP_PRIORITY'
+    /// </summary>
+    public partial class AstBACKUPPRIORITY : AstTerminalKeyword
+    {
+        
+        public AstBACKUPPRIORITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBACKUPPRIORITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BACKUP_PRIORITY : BACKUP_PRIORITY
+        /// </summary>
+        public static AstBACKUPPRIORITY BACKUPPRIORITY()
+        {
+            return new AstBACKUPPRIORITY(Position.Default, "BACKUP_PRIORITY", "BACKUP_PRIORITY");
+        }
+    }
+    
+    /// <summary>
+    /// BASE64 : 'BASE64'
+    /// </summary>
+    public partial class AstBASE64 : AstTerminalKeyword
+    {
+        
+        public AstBASE64(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBASE64(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BASE64 : BASE64
+        /// </summary>
+        public static AstBASE64 BASE64()
+        {
+            return new AstBASE64(Position.Default, "BASE64", "BASE64");
+        }
+    }
+    
+    /// <summary>
+    /// BEGIN_DIALOG : 'BEGIN_DIALOG'
+    /// </summary>
+    public partial class AstBEGINDIALOG : AstTerminalKeyword
+    {
+        
+        public AstBEGINDIALOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBEGINDIALOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BEGIN_DIALOG : BEGIN_DIALOG
+        /// </summary>
+        public static AstBEGINDIALOG BEGINDIALOG()
+        {
+            return new AstBEGINDIALOG(Position.Default, "BEGIN_DIALOG", "BEGIN_DIALOG");
+        }
+    }
+    
+    /// <summary>
+    /// BIGINT : 'BIGINT'
+    /// </summary>
+    public partial class AstBIGINT : AstTerminalKeyword
+    {
+        
+        public AstBIGINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBIGINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BIGINT : BIGINT
+        /// </summary>
+        public static AstBIGINT BIGINT()
+        {
+            return new AstBIGINT(Position.Default, "BIGINT", "BIGINT");
+        }
+    }
+    
+    /// <summary>
+    /// BINARY_KEYWORD : 'BINARY'
+    /// </summary>
+    public partial class AstBINARYKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstBINARYKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBINARYKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BINARY_KEYWORD : BINARY
+        /// </summary>
+        public static AstBINARYKEYWORD BINARYKEYWORD()
+        {
+            return new AstBINARYKEYWORD(Position.Default, "BINARY_KEYWORD", "BINARY");
+        }
+    }
+    
+    /// <summary>
+    /// BINARY_CHECKSUM : 'BINARY_CHECKSUM'
+    /// </summary>
+    public partial class AstBINARYCHECKSUM : AstTerminalKeyword
+    {
+        
+        public AstBINARYCHECKSUM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBINARYCHECKSUM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BINARY_CHECKSUM : BINARY_CHECKSUM
+        /// </summary>
+        public static AstBINARYCHECKSUM BINARYCHECKSUM()
+        {
+            return new AstBINARYCHECKSUM(Position.Default, "BINARY_CHECKSUM", "BINARY_CHECKSUM");
+        }
+    }
+    
+    /// <summary>
+    /// BINDING : 'BINDING'
+    /// </summary>
+    public partial class AstBINDING : AstTerminalKeyword
+    {
+        
+        public AstBINDING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBINDING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BINDING : BINDING
+        /// </summary>
+        public static AstBINDING BINDING()
+        {
+            return new AstBINDING(Position.Default, "BINDING", "BINDING");
+        }
+    }
+    
+    /// <summary>
+    /// BLOB_STORAGE : 'BLOB_STORAGE'
+    /// </summary>
+    public partial class AstBLOBSTORAGE : AstTerminalKeyword
+    {
+        
+        public AstBLOBSTORAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBLOBSTORAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BLOB_STORAGE : BLOB_STORAGE
+        /// </summary>
+        public static AstBLOBSTORAGE BLOBSTORAGE()
+        {
+            return new AstBLOBSTORAGE(Position.Default, "BLOB_STORAGE", "BLOB_STORAGE");
+        }
+    }
+    
+    /// <summary>
+    /// BROKER : 'BROKER'
+    /// </summary>
+    public partial class AstBROKER : AstTerminalKeyword
+    {
+        
+        public AstBROKER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBROKER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BROKER : BROKER
+        /// </summary>
+        public static AstBROKER BROKER()
+        {
+            return new AstBROKER(Position.Default, "BROKER", "BROKER");
+        }
+    }
+    
+    /// <summary>
+    /// BROKER_INSTANCE : 'BROKER_INSTANCE'
+    /// </summary>
+    public partial class AstBROKERINSTANCE : AstTerminalKeyword
+    {
+        
+        public AstBROKERINSTANCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBROKERINSTANCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BROKER_INSTANCE : BROKER_INSTANCE
+        /// </summary>
+        public static AstBROKERINSTANCE BROKERINSTANCE()
+        {
+            return new AstBROKERINSTANCE(Position.Default, "BROKER_INSTANCE", "BROKER_INSTANCE");
+        }
+    }
+    
+    /// <summary>
+    /// BULK_LOGGED : 'BULK_LOGGED'
+    /// </summary>
+    public partial class AstBULKLOGGED : AstTerminalKeyword
+    {
+        
+        public AstBULKLOGGED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBULKLOGGED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BULK_LOGGED : BULK_LOGGED
+        /// </summary>
+        public static AstBULKLOGGED BULKLOGGED()
+        {
+            return new AstBULKLOGGED(Position.Default, "BULK_LOGGED", "BULK_LOGGED");
+        }
+    }
+    
+    /// <summary>
+    /// CALLER : 'CALLER'
+    /// </summary>
+    public partial class AstCALLER : AstTerminalKeyword
+    {
+        
+        public AstCALLER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCALLER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CALLER : CALLER
+        /// </summary>
+        public static AstCALLER CALLER()
+        {
+            return new AstCALLER(Position.Default, "CALLER", "CALLER");
+        }
+    }
+    
+    /// <summary>
+    /// CAP_CPU_PERCENT : 'CAP_CPU_PERCENT'
+    /// </summary>
+    public partial class AstCAPCPUPERCENT : AstTerminalKeyword
+    {
+        
+        public AstCAPCPUPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCAPCPUPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CAP_CPU_PERCENT : CAP_CPU_PERCENT
+        /// </summary>
+        public static AstCAPCPUPERCENT CAPCPUPERCENT()
+        {
+            return new AstCAPCPUPERCENT(Position.Default, "CAP_CPU_PERCENT", "CAP_CPU_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// CAST : 'CAST'
+    /// </summary>
+    public partial class AstCAST : AstTerminalKeyword
+    {
+        
+        public AstCAST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCAST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CAST : CAST
+        /// </summary>
+        public static AstCAST CAST()
+        {
+            return new AstCAST(Position.Default, "CAST", "CAST");
+        }
+    }
+    
+    /// <summary>
+    /// TRY_CAST : 'TRY_CAST'
+    /// </summary>
+    public partial class AstTRYCAST : AstTerminalKeyword
+    {
+        
+        public AstTRYCAST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRYCAST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRY_CAST : TRY_CAST
+        /// </summary>
+        public static AstTRYCAST TRYCAST()
+        {
+            return new AstTRYCAST(Position.Default, "TRY_CAST", "TRY_CAST");
+        }
+    }
+    
+    /// <summary>
+    /// CATALOG : 'CATALOG'
+    /// </summary>
+    public partial class AstCATALOG : AstTerminalKeyword
+    {
+        
+        public AstCATALOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCATALOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CATALOG : CATALOG
+        /// </summary>
+        public static AstCATALOG CATALOG()
+        {
+            return new AstCATALOG(Position.Default, "CATALOG", "CATALOG");
+        }
+    }
+    
+    /// <summary>
+    /// CATCH : 'CATCH'
+    /// </summary>
+    public partial class AstCATCH : AstTerminalKeyword
+    {
+        
+        public AstCATCH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCATCH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CATCH : CATCH
+        /// </summary>
+        public static AstCATCH CATCH()
+        {
+            return new AstCATCH(Position.Default, "CATCH", "CATCH");
+        }
+    }
+    
+    /// <summary>
+    /// CHANGE : 'CHANGE'
+    /// </summary>
+    public partial class AstCHANGE : AstTerminalKeyword
+    {
+        
+        public AstCHANGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHANGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHANGE : CHANGE
+        /// </summary>
+        public static AstCHANGE CHANGE()
+        {
+            return new AstCHANGE(Position.Default, "CHANGE", "CHANGE");
+        }
+    }
+    
+    /// <summary>
+    /// CHANGE_RETENTION : 'CHANGE_RETENTION'
+    /// </summary>
+    public partial class AstCHANGERETENTION : AstTerminalKeyword
+    {
+        
+        public AstCHANGERETENTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHANGERETENTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHANGE_RETENTION : CHANGE_RETENTION
+        /// </summary>
+        public static AstCHANGERETENTION CHANGERETENTION()
+        {
+            return new AstCHANGERETENTION(Position.Default, "CHANGE_RETENTION", "CHANGE_RETENTION");
+        }
+    }
+    
+    /// <summary>
+    /// CHANGE_TRACKING : 'CHANGE_TRACKING'
+    /// </summary>
+    public partial class AstCHANGETRACKING : AstTerminalKeyword
+    {
+        
+        public AstCHANGETRACKING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHANGETRACKING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHANGE_TRACKING : CHANGE_TRACKING
+        /// </summary>
+        public static AstCHANGETRACKING CHANGETRACKING()
+        {
+            return new AstCHANGETRACKING(Position.Default, "CHANGE_TRACKING", "CHANGE_TRACKING");
+        }
+    }
+    
+    /// <summary>
+    /// CHAR : 'CHAR'
+    /// </summary>
+    public partial class AstCHAR : AstTerminalKeyword
+    {
+        
+        public AstCHAR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHAR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHAR : CHAR
+        /// </summary>
+        public static AstCHAR CHAR()
+        {
+            return new AstCHAR(Position.Default, "CHAR", "CHAR");
+        }
+    }
+    
+    /// <summary>
+    /// CHARINDEX : 'CHARINDEX'
+    /// </summary>
+    public partial class AstCHARINDEX : AstTerminalKeyword
+    {
+        
+        public AstCHARINDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHARINDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHARINDEX : CHARINDEX
+        /// </summary>
+        public static AstCHARINDEX CHARINDEX()
+        {
+            return new AstCHARINDEX(Position.Default, "CHARINDEX", "CHARINDEX");
+        }
+    }
+    
+    /// <summary>
+    /// CHECKSUM : 'CHECKSUM'
+    /// </summary>
+    public partial class AstCHECKSUM : AstTerminalKeyword
+    {
+        
+        public AstCHECKSUM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECKSUM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECKSUM : CHECKSUM
+        /// </summary>
+        public static AstCHECKSUM CHECKSUM()
+        {
+            return new AstCHECKSUM(Position.Default, "CHECKSUM", "CHECKSUM");
+        }
+    }
+    
+    /// <summary>
+    /// CHECKSUM_AGG : 'CHECKSUM_AGG'
+    /// </summary>
+    public partial class AstCHECKSUMAGG : AstTerminalKeyword
+    {
+        
+        public AstCHECKSUMAGG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECKSUMAGG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECKSUM_AGG : CHECKSUM_AGG
+        /// </summary>
+        public static AstCHECKSUMAGG CHECKSUMAGG()
+        {
+            return new AstCHECKSUMAGG(Position.Default, "CHECKSUM_AGG", "CHECKSUM_AGG");
+        }
+    }
+    
+    /// <summary>
+    /// CLEANUP : 'CLEANUP'
+    /// </summary>
+    public partial class AstCLEANUP : AstTerminalKeyword
+    {
+        
+        public AstCLEANUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCLEANUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CLEANUP : CLEANUP
+        /// </summary>
+        public static AstCLEANUP CLEANUP()
+        {
+            return new AstCLEANUP(Position.Default, "CLEANUP", "CLEANUP");
+        }
+    }
+    
+    /// <summary>
+    /// COL_LENGTH : 'COL_LENGTH'
+    /// </summary>
+    public partial class AstCOLLENGTH : AstTerminalKeyword
+    {
+        
+        public AstCOLLENGTH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLLENGTH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COL_LENGTH : COL_LENGTH
+        /// </summary>
+        public static AstCOLLENGTH COLLENGTH()
+        {
+            return new AstCOLLENGTH(Position.Default, "COL_LENGTH", "COL_LENGTH");
+        }
+    }
+    
+    /// <summary>
+    /// COL_NAME : 'COL_NAME'
+    /// </summary>
+    public partial class AstCOLNAME : AstTerminalKeyword
+    {
+        
+        public AstCOLNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COL_NAME : COL_NAME
+        /// </summary>
+        public static AstCOLNAME COLNAME()
+        {
+            return new AstCOLNAME(Position.Default, "COL_NAME", "COL_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// COLLECTION : 'COLLECTION'
+    /// </summary>
+    public partial class AstCOLLECTION : AstTerminalKeyword
+    {
+        
+        public AstCOLLECTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLLECTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLLECTION : COLLECTION
+        /// </summary>
+        public static AstCOLLECTION COLLECTION()
+        {
+            return new AstCOLLECTION(Position.Default, "COLLECTION", "COLLECTION");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMN_ENCRYPTION_KEY : 'COLUMN_ENCRYPTION_KEY'
+    /// </summary>
+    public partial class AstCOLUMNENCRYPTIONKEY : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNENCRYPTIONKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNENCRYPTIONKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMN_ENCRYPTION_KEY : COLUMN_ENCRYPTION_KEY
+        /// </summary>
+        public static AstCOLUMNENCRYPTIONKEY COLUMNENCRYPTIONKEY()
+        {
+            return new AstCOLUMNENCRYPTIONKEY(Position.Default, "COLUMN_ENCRYPTION_KEY", "COLUMN_ENCRYPTION_KEY");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMN_MASTER_KEY : 'COLUMN_MASTER_KEY'
+    /// </summary>
+    public partial class AstCOLUMNMASTERKEY : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNMASTERKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNMASTERKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMN_MASTER_KEY : COLUMN_MASTER_KEY
+        /// </summary>
+        public static AstCOLUMNMASTERKEY COLUMNMASTERKEY()
+        {
+            return new AstCOLUMNMASTERKEY(Position.Default, "COLUMN_MASTER_KEY", "COLUMN_MASTER_KEY");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMNPROPERTY : 'COLUMNPROPERTY'
+    /// </summary>
+    public partial class AstCOLUMNPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMNPROPERTY : COLUMNPROPERTY
+        /// </summary>
+        public static AstCOLUMNPROPERTY COLUMNPROPERTY()
+        {
+            return new AstCOLUMNPROPERTY(Position.Default, "COLUMNPROPERTY", "COLUMNPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMNS : 'COLUMNS'
+    /// </summary>
+    public partial class AstCOLUMNS : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMNS : COLUMNS
+        /// </summary>
+        public static AstCOLUMNS COLUMNS()
+        {
+            return new AstCOLUMNS(Position.Default, "COLUMNS", "COLUMNS");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMNSTORE : 'COLUMNSTORE'
+    /// </summary>
+    public partial class AstCOLUMNSTORE : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNSTORE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNSTORE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMNSTORE : COLUMNSTORE
+        /// </summary>
+        public static AstCOLUMNSTORE COLUMNSTORE()
+        {
+            return new AstCOLUMNSTORE(Position.Default, "COLUMNSTORE", "COLUMNSTORE");
+        }
+    }
+    
+    /// <summary>
+    /// COLUMNSTORE_ARCHIVE : 'COLUMNSTORE_ARCHIVE'
+    /// </summary>
+    public partial class AstCOLUMNSTOREARCHIVE : AstTerminalKeyword
+    {
+        
+        public AstCOLUMNSTOREARCHIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOLUMNSTOREARCHIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COLUMNSTORE_ARCHIVE : COLUMNSTORE_ARCHIVE
+        /// </summary>
+        public static AstCOLUMNSTOREARCHIVE COLUMNSTOREARCHIVE()
+        {
+            return new AstCOLUMNSTOREARCHIVE(Position.Default, "COLUMNSTORE_ARCHIVE", "COLUMNSTORE_ARCHIVE");
+        }
+    }
+    
+    /// <summary>
+    /// COMMITTED : 'COMMITTED'
+    /// </summary>
+    public partial class AstCOMMITTED : AstTerminalKeyword
+    {
+        
+        public AstCOMMITTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMMITTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMMITTED : COMMITTED
+        /// </summary>
+        public static AstCOMMITTED COMMITTED()
+        {
+            return new AstCOMMITTED(Position.Default, "COMMITTED", "COMMITTED");
+        }
+    }
+    
+    /// <summary>
+    /// COMPATIBILITY_LEVEL : 'COMPATIBILITY_LEVEL'
+    /// </summary>
+    public partial class AstCOMPATIBILITYLEVEL : AstTerminalKeyword
+    {
+        
+        public AstCOMPATIBILITYLEVEL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPATIBILITYLEVEL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPATIBILITY_LEVEL : COMPATIBILITY_LEVEL
+        /// </summary>
+        public static AstCOMPATIBILITYLEVEL COMPATIBILITYLEVEL()
+        {
+            return new AstCOMPATIBILITYLEVEL(Position.Default, "COMPATIBILITY_LEVEL", "COMPATIBILITY_LEVEL");
+        }
+    }
+    
+    /// <summary>
+    /// COMPRESS_ALL_ROW_GROUPS : 'COMPRESS_ALL_ROW_GROUPS'
+    /// </summary>
+    public partial class AstCOMPRESSALLROWGROUPS : AstTerminalKeyword
+    {
+        
+        public AstCOMPRESSALLROWGROUPS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPRESSALLROWGROUPS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPRESS_ALL_ROW_GROUPS : COMPRESS_ALL_ROW_GROUPS
+        /// </summary>
+        public static AstCOMPRESSALLROWGROUPS COMPRESSALLROWGROUPS()
+        {
+            return new AstCOMPRESSALLROWGROUPS(Position.Default, "COMPRESS_ALL_ROW_GROUPS", "COMPRESS_ALL_ROW_GROUPS");
+        }
+    }
+    
+    /// <summary>
+    /// COMPRESSION_DELAY : 'COMPRESSION_DELAY'
+    /// </summary>
+    public partial class AstCOMPRESSIONDELAY : AstTerminalKeyword
+    {
+        
+        public AstCOMPRESSIONDELAY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPRESSIONDELAY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPRESSION_DELAY : COMPRESSION_DELAY
+        /// </summary>
+        public static AstCOMPRESSIONDELAY COMPRESSIONDELAY()
+        {
+            return new AstCOMPRESSIONDELAY(Position.Default, "COMPRESSION_DELAY", "COMPRESSION_DELAY");
+        }
+    }
+    
+    /// <summary>
+    /// CONCAT : 'CONCAT'
+    /// </summary>
+    public partial class AstCONCAT : AstTerminalKeyword
+    {
+        
+        public AstCONCAT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONCAT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONCAT : CONCAT
+        /// </summary>
+        public static AstCONCAT CONCAT()
+        {
+            return new AstCONCAT(Position.Default, "CONCAT", "CONCAT");
+        }
+    }
+    
+    /// <summary>
+    /// CONCAT_WS : 'CONCAT_WS'
+    /// </summary>
+    public partial class AstCONCATWS : AstTerminalKeyword
+    {
+        
+        public AstCONCATWS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONCATWS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONCAT_WS : CONCAT_WS
+        /// </summary>
+        public static AstCONCATWS CONCATWS()
+        {
+            return new AstCONCATWS(Position.Default, "CONCAT_WS", "CONCAT_WS");
+        }
+    }
+    
+    /// <summary>
+    /// CONCAT_NULL_YIELDS_NULL : 'CONCAT_NULL_YIELDS_NULL'
+    /// </summary>
+    public partial class AstCONCATNULLYIELDSNULL : AstTerminalKeyword
+    {
+        
+        public AstCONCATNULLYIELDSNULL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONCATNULLYIELDSNULL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONCAT_NULL_YIELDS_NULL : CONCAT_NULL_YIELDS_NULL
+        /// </summary>
+        public static AstCONCATNULLYIELDSNULL CONCATNULLYIELDSNULL()
+        {
+            return new AstCONCATNULLYIELDSNULL(Position.Default, "CONCAT_NULL_YIELDS_NULL", "CONCAT_NULL_YIELDS_NULL");
+        }
+    }
+    
+    /// <summary>
+    /// CONTENT : 'CONTENT'
+    /// </summary>
+    public partial class AstCONTENT : AstTerminalKeyword
+    {
+        
+        public AstCONTENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTENT : CONTENT
+        /// </summary>
+        public static AstCONTENT CONTENT()
+        {
+            return new AstCONTENT(Position.Default, "CONTENT", "CONTENT");
+        }
+    }
+    
+    /// <summary>
+    /// CONTROL : 'CONTROL'
+    /// </summary>
+    public partial class AstCONTROL : AstTerminalKeyword
+    {
+        
+        public AstCONTROL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTROL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTROL : CONTROL
+        /// </summary>
+        public static AstCONTROL CONTROL()
+        {
+            return new AstCONTROL(Position.Default, "CONTROL", "CONTROL");
+        }
+    }
+    
+    /// <summary>
+    /// COOKIE : 'COOKIE'
+    /// </summary>
+    public partial class AstCOOKIE : AstTerminalKeyword
+    {
+        
+        public AstCOOKIE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOOKIE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COOKIE : COOKIE
+        /// </summary>
+        public static AstCOOKIE COOKIE()
+        {
+            return new AstCOOKIE(Position.Default, "COOKIE", "COOKIE");
+        }
+    }
+    
+    /// <summary>
+    /// COUNT : 'COUNT'
+    /// </summary>
+    public partial class AstCOUNT : AstTerminalKeyword
+    {
+        
+        public AstCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COUNT : COUNT
+        /// </summary>
+        public static AstCOUNT COUNT()
+        {
+            return new AstCOUNT(Position.Default, "COUNT", "COUNT");
+        }
+    }
+    
+    /// <summary>
+    /// COUNT_BIG : 'COUNT_BIG'
+    /// </summary>
+    public partial class AstCOUNTBIG : AstTerminalKeyword
+    {
+        
+        public AstCOUNTBIG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOUNTBIG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COUNT_BIG : COUNT_BIG
+        /// </summary>
+        public static AstCOUNTBIG COUNTBIG()
+        {
+            return new AstCOUNTBIG(Position.Default, "COUNT_BIG", "COUNT_BIG");
+        }
+    }
+    
+    /// <summary>
+    /// COUNTER : 'COUNTER'
+    /// </summary>
+    public partial class AstCOUNTER : AstTerminalKeyword
+    {
+        
+        public AstCOUNTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOUNTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COUNTER : COUNTER
+        /// </summary>
+        public static AstCOUNTER COUNTER()
+        {
+            return new AstCOUNTER(Position.Default, "COUNTER", "COUNTER");
+        }
+    }
+    
+    /// <summary>
+    /// CPU : 'CPU'
+    /// </summary>
+    public partial class AstCPU : AstTerminalKeyword
+    {
+        
+        public AstCPU(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCPU(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CPU : CPU
+        /// </summary>
+        public static AstCPU CPU()
+        {
+            return new AstCPU(Position.Default, "CPU", "CPU");
+        }
+    }
+    
+    /// <summary>
+    /// CREATE_NEW : 'CREATE_NEW'
+    /// </summary>
+    public partial class AstCREATENEW : AstTerminalKeyword
+    {
+        
+        public AstCREATENEW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCREATENEW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CREATE_NEW : CREATE_NEW
+        /// </summary>
+        public static AstCREATENEW CREATENEW()
+        {
+            return new AstCREATENEW(Position.Default, "CREATE_NEW", "CREATE_NEW");
+        }
+    }
+    
+    /// <summary>
+    /// CREATION_DISPOSITION : 'CREATION_DISPOSITION'
+    /// </summary>
+    public partial class AstCREATIONDISPOSITION : AstTerminalKeyword
+    {
+        
+        public AstCREATIONDISPOSITION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCREATIONDISPOSITION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CREATION_DISPOSITION : CREATION_DISPOSITION
+        /// </summary>
+        public static AstCREATIONDISPOSITION CREATIONDISPOSITION()
+        {
+            return new AstCREATIONDISPOSITION(Position.Default, "CREATION_DISPOSITION", "CREATION_DISPOSITION");
+        }
+    }
+    
+    /// <summary>
+    /// CREDENTIAL : 'CREDENTIAL'
+    /// </summary>
+    public partial class AstCREDENTIAL : AstTerminalKeyword
+    {
+        
+        public AstCREDENTIAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCREDENTIAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CREDENTIAL : CREDENTIAL
+        /// </summary>
+        public static AstCREDENTIAL CREDENTIAL()
+        {
+            return new AstCREDENTIAL(Position.Default, "CREDENTIAL", "CREDENTIAL");
+        }
+    }
+    
+    /// <summary>
+    /// CRYPTOGRAPHIC : 'CRYPTOGRAPHIC'
+    /// </summary>
+    public partial class AstCRYPTOGRAPHIC : AstTerminalKeyword
+    {
+        
+        public AstCRYPTOGRAPHIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCRYPTOGRAPHIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CRYPTOGRAPHIC : CRYPTOGRAPHIC
+        /// </summary>
+        public static AstCRYPTOGRAPHIC CRYPTOGRAPHIC()
+        {
+            return new AstCRYPTOGRAPHIC(Position.Default, "CRYPTOGRAPHIC", "CRYPTOGRAPHIC");
+        }
+    }
+    
+    /// <summary>
+    /// CUME_DIST : 'CUME_DIST'
+    /// </summary>
+    public partial class AstCUMEDIST : AstTerminalKeyword
+    {
+        
+        public AstCUMEDIST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCUMEDIST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CUME_DIST : CUME_DIST
+        /// </summary>
+        public static AstCUMEDIST CUMEDIST()
+        {
+            return new AstCUMEDIST(Position.Default, "CUME_DIST", "CUME_DIST");
+        }
+    }
+    
+    /// <summary>
+    /// CURSOR_CLOSE_ON_COMMIT : 'CURSOR_CLOSE_ON_COMMIT'
+    /// </summary>
+    public partial class AstCURSORCLOSEONCOMMIT : AstTerminalKeyword
+    {
+        
+        public AstCURSORCLOSEONCOMMIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURSORCLOSEONCOMMIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURSOR_CLOSE_ON_COMMIT : CURSOR_CLOSE_ON_COMMIT
+        /// </summary>
+        public static AstCURSORCLOSEONCOMMIT CURSORCLOSEONCOMMIT()
+        {
+            return new AstCURSORCLOSEONCOMMIT(Position.Default, "CURSOR_CLOSE_ON_COMMIT", "CURSOR_CLOSE_ON_COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// CURSOR_DEFAULT : 'CURSOR_DEFAULT'
+    /// </summary>
+    public partial class AstCURSORDEFAULT : AstTerminalKeyword
+    {
+        
+        public AstCURSORDEFAULT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURSORDEFAULT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURSOR_DEFAULT : CURSOR_DEFAULT
+        /// </summary>
+        public static AstCURSORDEFAULT CURSORDEFAULT()
+        {
+            return new AstCURSORDEFAULT(Position.Default, "CURSOR_DEFAULT", "CURSOR_DEFAULT");
+        }
+    }
+    
+    /// <summary>
+    /// DATA : 'DATA'
+    /// </summary>
+    public partial class AstDATA : AstTerminalKeyword
+    {
+        
+        public AstDATA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATA : DATA
+        /// </summary>
+        public static AstDATA DATA()
+        {
+            return new AstDATA(Position.Default, "DATA", "DATA");
+        }
+    }
+    
+    /// <summary>
+    /// DATABASE_PRINCIPAL_ID : 'DATABASE_PRINCIPAL_ID'
+    /// </summary>
+    public partial class AstDATABASEPRINCIPALID : AstTerminalKeyword
+    {
+        
+        public AstDATABASEPRINCIPALID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATABASEPRINCIPALID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATABASE_PRINCIPAL_ID : DATABASE_PRINCIPAL_ID
+        /// </summary>
+        public static AstDATABASEPRINCIPALID DATABASEPRINCIPALID()
+        {
+            return new AstDATABASEPRINCIPALID(Position.Default, "DATABASE_PRINCIPAL_ID", "DATABASE_PRINCIPAL_ID");
+        }
+    }
+    
+    /// <summary>
+    /// DATABASEPROPERTYEX : 'DATABASEPROPERTYEX'
+    /// </summary>
+    public partial class AstDATABASEPROPERTYEX : AstTerminalKeyword
+    {
+        
+        public AstDATABASEPROPERTYEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATABASEPROPERTYEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATABASEPROPERTYEX : DATABASEPROPERTYEX
+        /// </summary>
+        public static AstDATABASEPROPERTYEX DATABASEPROPERTYEX()
+        {
+            return new AstDATABASEPROPERTYEX(Position.Default, "DATABASEPROPERTYEX", "DATABASEPROPERTYEX");
+        }
+    }
+    
+    /// <summary>
+    /// DATE_CORRELATION_OPTIMIZATION : 'DATE_CORRELATION_OPTIMIZATION'
+    /// </summary>
+    public partial class AstDATECORRELATIONOPTIMIZATION : AstTerminalKeyword
+    {
+        
+        public AstDATECORRELATIONOPTIMIZATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATECORRELATIONOPTIMIZATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATE_CORRELATION_OPTIMIZATION : DATE_CORRELATION_OPTIMIZATION
+        /// </summary>
+        public static AstDATECORRELATIONOPTIMIZATION DATECORRELATIONOPTIMIZATION()
+        {
+            return new AstDATECORRELATIONOPTIMIZATION(Position.Default, "DATE_CORRELATION_OPTIMIZATION", "DATE_CORRELATION_OPTIMIZATION");
+        }
+    }
+    
+    /// <summary>
+    /// DATEADD : 'DATEADD'
+    /// </summary>
+    public partial class AstDATEADD : AstTerminalKeyword
+    {
+        
+        public AstDATEADD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATEADD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATEADD : DATEADD
+        /// </summary>
+        public static AstDATEADD DATEADD()
+        {
+            return new AstDATEADD(Position.Default, "DATEADD", "DATEADD");
+        }
+    }
+    
+    /// <summary>
+    /// DATEDIFF : 'DATEDIFF'
+    /// </summary>
+    public partial class AstDATEDIFF : AstTerminalKeyword
+    {
+        
+        public AstDATEDIFF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATEDIFF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATEDIFF : DATEDIFF
+        /// </summary>
+        public static AstDATEDIFF DATEDIFF()
+        {
+            return new AstDATEDIFF(Position.Default, "DATEDIFF", "DATEDIFF");
+        }
+    }
+    
+    /// <summary>
+    /// DATENAME : 'DATENAME'
+    /// </summary>
+    public partial class AstDATENAME : AstTerminalKeyword
+    {
+        
+        public AstDATENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATENAME : DATENAME
+        /// </summary>
+        public static AstDATENAME DATENAME()
+        {
+            return new AstDATENAME(Position.Default, "DATENAME", "DATENAME");
+        }
+    }
+    
+    /// <summary>
+    /// DATEPART : 'DATEPART'
+    /// </summary>
+    public partial class AstDATEPART : AstTerminalKeyword
+    {
+        
+        public AstDATEPART(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATEPART(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATEPART : DATEPART
+        /// </summary>
+        public static AstDATEPART DATEPART()
+        {
+            return new AstDATEPART(Position.Default, "DATEPART", "DATEPART");
+        }
+    }
+    
+    /// <summary>
+    /// DAYS : 'DAYS'
+    /// </summary>
+    public partial class AstDAYS : AstTerminalKeyword
+    {
+        
+        public AstDAYS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDAYS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DAYS : DAYS
+        /// </summary>
+        public static AstDAYS DAYS()
+        {
+            return new AstDAYS(Position.Default, "DAYS", "DAYS");
+        }
+    }
+    
+    /// <summary>
+    /// DB_CHAINING : 'DB_CHAINING'
+    /// </summary>
+    public partial class AstDBCHAINING : AstTerminalKeyword
+    {
+        
+        public AstDBCHAINING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDBCHAINING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DB_CHAINING : DB_CHAINING
+        /// </summary>
+        public static AstDBCHAINING DBCHAINING()
+        {
+            return new AstDBCHAINING(Position.Default, "DB_CHAINING", "DB_CHAINING");
+        }
+    }
+    
+    /// <summary>
+    /// DB_FAILOVER : 'DB_FAILOVER'
+    /// </summary>
+    public partial class AstDBFAILOVER : AstTerminalKeyword
+    {
+        
+        public AstDBFAILOVER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDBFAILOVER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DB_FAILOVER : DB_FAILOVER
+        /// </summary>
+        public static AstDBFAILOVER DBFAILOVER()
+        {
+            return new AstDBFAILOVER(Position.Default, "DB_FAILOVER", "DB_FAILOVER");
+        }
+    }
+    
+    /// <summary>
+    /// DB_ID : 'DB_ID'
+    /// </summary>
+    public partial class AstDBID : AstTerminalKeyword
+    {
+        
+        public AstDBID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDBID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DB_ID : DB_ID
+        /// </summary>
+        public static AstDBID DBID()
+        {
+            return new AstDBID(Position.Default, "DB_ID", "DB_ID");
+        }
+    }
+    
+    /// <summary>
+    /// DB_NAME : 'DB_NAME'
+    /// </summary>
+    public partial class AstDBNAME : AstTerminalKeyword
+    {
+        
+        public AstDBNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDBNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DB_NAME : DB_NAME
+        /// </summary>
+        public static AstDBNAME DBNAME()
+        {
+            return new AstDBNAME(Position.Default, "DB_NAME", "DB_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// DECRYPTION : 'DECRYPTION'
+    /// </summary>
+    public partial class AstDECRYPTION : AstTerminalKeyword
+    {
+        
+        public AstDECRYPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDECRYPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DECRYPTION : DECRYPTION
+        /// </summary>
+        public static AstDECRYPTION DECRYPTION()
+        {
+            return new AstDECRYPTION(Position.Default, "DECRYPTION", "DECRYPTION");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT_DOUBLE_QUOTE : ["]  'DEFAULT'  ["]
+    /// </summary>
+    public partial class AstDEFAULTDOUBLEQUOTE : AstTerminalKeyword
+    {
+        
+        public AstDEFAULTDOUBLEQUOTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULTDOUBLEQUOTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT_DOUBLE_QUOTE : "]  'DEFAULT'  ["
+        /// </summary>
+        public static AstDEFAULTDOUBLEQUOTE DEFAULTDOUBLEQUOTE()
+        {
+            return new AstDEFAULTDOUBLEQUOTE(Position.Default, "DEFAULT_DOUBLE_QUOTE", "\"]  \'DEFAULT\'  [\"");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT_FULLTEXT_LANGUAGE : 'DEFAULT_FULLTEXT_LANGUAGE'
+    /// </summary>
+    public partial class AstDEFAULTFULLTEXTLANGUAGE : AstTerminalKeyword
+    {
+        
+        public AstDEFAULTFULLTEXTLANGUAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULTFULLTEXTLANGUAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT_FULLTEXT_LANGUAGE : DEFAULT_FULLTEXT_LANGUAGE
+        /// </summary>
+        public static AstDEFAULTFULLTEXTLANGUAGE DEFAULTFULLTEXTLANGUAGE()
+        {
+            return new AstDEFAULTFULLTEXTLANGUAGE(Position.Default, "DEFAULT_FULLTEXT_LANGUAGE", "DEFAULT_FULLTEXT_LANGUAGE");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT_LANGUAGE : 'DEFAULT_LANGUAGE'
+    /// </summary>
+    public partial class AstDEFAULTLANGUAGE : AstTerminalKeyword
+    {
+        
+        public AstDEFAULTLANGUAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULTLANGUAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT_LANGUAGE : DEFAULT_LANGUAGE
+        /// </summary>
+        public static AstDEFAULTLANGUAGE DEFAULTLANGUAGE()
+        {
+            return new AstDEFAULTLANGUAGE(Position.Default, "DEFAULT_LANGUAGE", "DEFAULT_LANGUAGE");
+        }
+    }
+    
+    /// <summary>
+    /// DEFINITION : 'DEFINITION'
+    /// </summary>
+    public partial class AstDEFINITION : AstTerminalKeyword
+    {
+        
+        public AstDEFINITION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFINITION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFINITION : DEFINITION
+        /// </summary>
+        public static AstDEFINITION DEFINITION()
+        {
+            return new AstDEFINITION(Position.Default, "DEFINITION", "DEFINITION");
+        }
+    }
+    
+    /// <summary>
+    /// DELAY : 'DELAY'
+    /// </summary>
+    public partial class AstDELAY : AstTerminalKeyword
+    {
+        
+        public AstDELAY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDELAY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DELAY : DELAY
+        /// </summary>
+        public static AstDELAY DELAY()
+        {
+            return new AstDELAY(Position.Default, "DELAY", "DELAY");
+        }
+    }
+    
+    /// <summary>
+    /// DELAYED_DURABILITY : 'DELAYED_DURABILITY'
+    /// </summary>
+    public partial class AstDELAYEDDURABILITY : AstTerminalKeyword
+    {
+        
+        public AstDELAYEDDURABILITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDELAYEDDURABILITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DELAYED_DURABILITY : DELAYED_DURABILITY
+        /// </summary>
+        public static AstDELAYEDDURABILITY DELAYEDDURABILITY()
+        {
+            return new AstDELAYEDDURABILITY(Position.Default, "DELAYED_DURABILITY", "DELAYED_DURABILITY");
+        }
+    }
+    
+    /// <summary>
+    /// DELETED : 'DELETED'
+    /// </summary>
+    public partial class AstDELETED : AstTerminalKeyword
+    {
+        
+        public AstDELETED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDELETED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DELETED : DELETED
+        /// </summary>
+        public static AstDELETED DELETED()
+        {
+            return new AstDELETED(Position.Default, "DELETED", "DELETED");
+        }
+    }
+    
+    /// <summary>
+    /// DENSE_RANK : 'DENSE_RANK'
+    /// </summary>
+    public partial class AstDENSERANK : AstTerminalKeyword
+    {
+        
+        public AstDENSERANK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDENSERANK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DENSE_RANK : DENSE_RANK
+        /// </summary>
+        public static AstDENSERANK DENSERANK()
+        {
+            return new AstDENSERANK(Position.Default, "DENSE_RANK", "DENSE_RANK");
+        }
+    }
+    
+    /// <summary>
+    /// DEPENDENTS : 'DEPENDENTS'
+    /// </summary>
+    public partial class AstDEPENDENTS : AstTerminalKeyword
+    {
+        
+        public AstDEPENDENTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEPENDENTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEPENDENTS : DEPENDENTS
+        /// </summary>
+        public static AstDEPENDENTS DEPENDENTS()
+        {
+            return new AstDEPENDENTS(Position.Default, "DEPENDENTS", "DEPENDENTS");
+        }
+    }
+    
+    /// <summary>
+    /// DES : 'DES'
+    /// </summary>
+    public partial class AstDES : AstTerminalKeyword
+    {
+        
+        public AstDES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DES : DES
+        /// </summary>
+        public static AstDES DES()
+        {
+            return new AstDES(Position.Default, "DES", "DES");
+        }
+    }
+    
+    /// <summary>
+    /// DESCRIPTION : 'DESCRIPTION'
+    /// </summary>
+    public partial class AstDESCRIPTION : AstTerminalKeyword
+    {
+        
+        public AstDESCRIPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDESCRIPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DESCRIPTION : DESCRIPTION
+        /// </summary>
+        public static AstDESCRIPTION DESCRIPTION()
+        {
+            return new AstDESCRIPTION(Position.Default, "DESCRIPTION", "DESCRIPTION");
+        }
+    }
+    
+    /// <summary>
+    /// DESX : 'DESX'
+    /// </summary>
+    public partial class AstDESX : AstTerminalKeyword
+    {
+        
+        public AstDESX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDESX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DESX : DESX
+        /// </summary>
+        public static AstDESX DESX()
+        {
+            return new AstDESX(Position.Default, "DESX", "DESX");
+        }
+    }
+    
+    /// <summary>
+    /// DETERMINISTIC : 'DETERMINISTIC'
+    /// </summary>
+    public partial class AstDETERMINISTIC : AstTerminalKeyword
+    {
+        
+        public AstDETERMINISTIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDETERMINISTIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DETERMINISTIC : DETERMINISTIC
+        /// </summary>
+        public static AstDETERMINISTIC DETERMINISTIC()
+        {
+            return new AstDETERMINISTIC(Position.Default, "DETERMINISTIC", "DETERMINISTIC");
+        }
+    }
+    
+    /// <summary>
+    /// DHCP : 'DHCP'
+    /// </summary>
+    public partial class AstDHCP : AstTerminalKeyword
+    {
+        
+        public AstDHCP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDHCP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DHCP : DHCP
+        /// </summary>
+        public static AstDHCP DHCP()
+        {
+            return new AstDHCP(Position.Default, "DHCP", "DHCP");
+        }
+    }
+    
+    /// <summary>
+    /// DIALOG : 'DIALOG'
+    /// </summary>
+    public partial class AstDIALOG : AstTerminalKeyword
+    {
+        
+        public AstDIALOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDIALOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DIALOG : DIALOG
+        /// </summary>
+        public static AstDIALOG DIALOG()
+        {
+            return new AstDIALOG(Position.Default, "DIALOG", "DIALOG");
+        }
+    }
+    
+    /// <summary>
+    /// DIFFERENCE : 'DIFFERENCE'
+    /// </summary>
+    public partial class AstDIFFERENCE : AstTerminalKeyword
+    {
+        
+        public AstDIFFERENCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDIFFERENCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DIFFERENCE : DIFFERENCE
+        /// </summary>
+        public static AstDIFFERENCE DIFFERENCE()
+        {
+            return new AstDIFFERENCE(Position.Default, "DIFFERENCE", "DIFFERENCE");
+        }
+    }
+    
+    /// <summary>
+    /// DIRECTORY_NAME : 'DIRECTORY_NAME'
+    /// </summary>
+    public partial class AstDIRECTORYNAME : AstTerminalKeyword
+    {
+        
+        public AstDIRECTORYNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDIRECTORYNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DIRECTORY_NAME : DIRECTORY_NAME
+        /// </summary>
+        public static AstDIRECTORYNAME DIRECTORYNAME()
+        {
+            return new AstDIRECTORYNAME(Position.Default, "DIRECTORY_NAME", "DIRECTORY_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// DISABLE : 'DISABLE'
+    /// </summary>
+    public partial class AstDISABLE : AstTerminalKeyword
+    {
+        
+        public AstDISABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISABLE : DISABLE
+        /// </summary>
+        public static AstDISABLE DISABLE()
+        {
+            return new AstDISABLE(Position.Default, "DISABLE", "DISABLE");
+        }
+    }
+    
+    /// <summary>
+    /// DISABLE_BROKER : 'DISABLE_BROKER'
+    /// </summary>
+    public partial class AstDISABLEBROKER : AstTerminalKeyword
+    {
+        
+        public AstDISABLEBROKER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISABLEBROKER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISABLE_BROKER : DISABLE_BROKER
+        /// </summary>
+        public static AstDISABLEBROKER DISABLEBROKER()
+        {
+            return new AstDISABLEBROKER(Position.Default, "DISABLE_BROKER", "DISABLE_BROKER");
+        }
+    }
+    
+    /// <summary>
+    /// DISABLED : 'DISABLED'
+    /// </summary>
+    public partial class AstDISABLED : AstTerminalKeyword
+    {
+        
+        public AstDISABLED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISABLED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISABLED : DISABLED
+        /// </summary>
+        public static AstDISABLED DISABLED()
+        {
+            return new AstDISABLED(Position.Default, "DISABLED", "DISABLED");
+        }
+    }
+    
+    /// <summary>
+    /// DOCUMENT : 'DOCUMENT'
+    /// </summary>
+    public partial class AstDOCUMENT : AstTerminalKeyword
+    {
+        
+        public AstDOCUMENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOCUMENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOCUMENT : DOCUMENT
+        /// </summary>
+        public static AstDOCUMENT DOCUMENT()
+        {
+            return new AstDOCUMENT(Position.Default, "DOCUMENT", "DOCUMENT");
+        }
+    }
+    
+    /// <summary>
+    /// DROP_EXISTING : 'DROP_EXISTING'
+    /// </summary>
+    public partial class AstDROPEXISTING : AstTerminalKeyword
+    {
+        
+        public AstDROPEXISTING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDROPEXISTING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DROP_EXISTING : DROP_EXISTING
+        /// </summary>
+        public static AstDROPEXISTING DROPEXISTING()
+        {
+            return new AstDROPEXISTING(Position.Default, "DROP_EXISTING", "DROP_EXISTING");
+        }
+    }
+    
+    /// <summary>
+    /// DYNAMIC : 'DYNAMIC'
+    /// </summary>
+    public partial class AstDYNAMIC : AstTerminalKeyword
+    {
+        
+        public AstDYNAMIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDYNAMIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DYNAMIC : DYNAMIC
+        /// </summary>
+        public static AstDYNAMIC DYNAMIC()
+        {
+            return new AstDYNAMIC(Position.Default, "DYNAMIC", "DYNAMIC");
+        }
+    }
+    
+    /// <summary>
+    /// ELEMENTS : 'ELEMENTS'
+    /// </summary>
+    public partial class AstELEMENTS : AstTerminalKeyword
+    {
+        
+        public AstELEMENTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstELEMENTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ELEMENTS : ELEMENTS
+        /// </summary>
+        public static AstELEMENTS ELEMENTS()
+        {
+            return new AstELEMENTS(Position.Default, "ELEMENTS", "ELEMENTS");
+        }
+    }
+    
+    /// <summary>
+    /// EMERGENCY : 'EMERGENCY'
+    /// </summary>
+    public partial class AstEMERGENCY : AstTerminalKeyword
+    {
+        
+        public AstEMERGENCY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEMERGENCY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EMERGENCY : EMERGENCY
+        /// </summary>
+        public static AstEMERGENCY EMERGENCY()
+        {
+            return new AstEMERGENCY(Position.Default, "EMERGENCY", "EMERGENCY");
+        }
+    }
+    
+    /// <summary>
+    /// EMPTY : 'EMPTY'
+    /// </summary>
+    public partial class AstEMPTY : AstTerminalKeyword
+    {
+        
+        public AstEMPTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEMPTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EMPTY : EMPTY
+        /// </summary>
+        public static AstEMPTY EMPTY()
+        {
+            return new AstEMPTY(Position.Default, "EMPTY", "EMPTY");
+        }
+    }
+    
+    /// <summary>
+    /// ENABLE : 'ENABLE'
+    /// </summary>
+    public partial class AstENABLE : AstTerminalKeyword
+    {
+        
+        public AstENABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENABLE : ENABLE
+        /// </summary>
+        public static AstENABLE ENABLE()
+        {
+            return new AstENABLE(Position.Default, "ENABLE", "ENABLE");
+        }
+    }
+    
+    /// <summary>
+    /// ENABLE_BROKER : 'ENABLE_BROKER'
+    /// </summary>
+    public partial class AstENABLEBROKER : AstTerminalKeyword
+    {
+        
+        public AstENABLEBROKER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENABLEBROKER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENABLE_BROKER : ENABLE_BROKER
+        /// </summary>
+        public static AstENABLEBROKER ENABLEBROKER()
+        {
+            return new AstENABLEBROKER(Position.Default, "ENABLE_BROKER", "ENABLE_BROKER");
+        }
+    }
+    
+    /// <summary>
+    /// ENCRYPTED : 'ENCRYPTED'
+    /// </summary>
+    public partial class AstENCRYPTED : AstTerminalKeyword
+    {
+        
+        public AstENCRYPTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENCRYPTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENCRYPTED : ENCRYPTED
+        /// </summary>
+        public static AstENCRYPTED ENCRYPTED()
+        {
+            return new AstENCRYPTED(Position.Default, "ENCRYPTED", "ENCRYPTED");
+        }
+    }
+    
+    /// <summary>
+    /// ENCRYPTED_VALUE : 'ENCRYPTED_VALUE'
+    /// </summary>
+    public partial class AstENCRYPTEDVALUE : AstTerminalKeyword
+    {
+        
+        public AstENCRYPTEDVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENCRYPTEDVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENCRYPTED_VALUE : ENCRYPTED_VALUE
+        /// </summary>
+        public static AstENCRYPTEDVALUE ENCRYPTEDVALUE()
+        {
+            return new AstENCRYPTEDVALUE(Position.Default, "ENCRYPTED_VALUE", "ENCRYPTED_VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// ENCRYPTION : 'ENCRYPTION'
+    /// </summary>
+    public partial class AstENCRYPTION : AstTerminalKeyword
+    {
+        
+        public AstENCRYPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENCRYPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENCRYPTION : ENCRYPTION
+        /// </summary>
+        public static AstENCRYPTION ENCRYPTION()
+        {
+            return new AstENCRYPTION(Position.Default, "ENCRYPTION", "ENCRYPTION");
+        }
+    }
+    
+    /// <summary>
+    /// ENCRYPTION_TYPE : 'ENCRYPTION_TYPE'
+    /// </summary>
+    public partial class AstENCRYPTIONTYPE : AstTerminalKeyword
+    {
+        
+        public AstENCRYPTIONTYPE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENCRYPTIONTYPE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENCRYPTION_TYPE : ENCRYPTION_TYPE
+        /// </summary>
+        public static AstENCRYPTIONTYPE ENCRYPTIONTYPE()
+        {
+            return new AstENCRYPTIONTYPE(Position.Default, "ENCRYPTION_TYPE", "ENCRYPTION_TYPE");
+        }
+    }
+    
+    /// <summary>
+    /// ENDPOINT_URL : 'ENDPOINT_URL'
+    /// </summary>
+    public partial class AstENDPOINTURL : AstTerminalKeyword
+    {
+        
+        public AstENDPOINTURL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENDPOINTURL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENDPOINT_URL : ENDPOINT_URL
+        /// </summary>
+        public static AstENDPOINTURL ENDPOINTURL()
+        {
+            return new AstENDPOINTURL(Position.Default, "ENDPOINT_URL", "ENDPOINT_URL");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_BROKER_CONVERSATIONS : 'ERROR_BROKER_CONVERSATIONS'
+    /// </summary>
+    public partial class AstERRORBROKERCONVERSATIONS : AstTerminalKeyword
+    {
+        
+        public AstERRORBROKERCONVERSATIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORBROKERCONVERSATIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_BROKER_CONVERSATIONS : ERROR_BROKER_CONVERSATIONS
+        /// </summary>
+        public static AstERRORBROKERCONVERSATIONS ERRORBROKERCONVERSATIONS()
+        {
+            return new AstERRORBROKERCONVERSATIONS(Position.Default, "ERROR_BROKER_CONVERSATIONS", "ERROR_BROKER_CONVERSATIONS");
+        }
+    }
+    
+    /// <summary>
+    /// EXCLUSIVE : 'EXCLUSIVE'
+    /// </summary>
+    public partial class AstEXCLUSIVE : AstTerminalKeyword
+    {
+        
+        public AstEXCLUSIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXCLUSIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXCLUSIVE : EXCLUSIVE
+        /// </summary>
+        public static AstEXCLUSIVE EXCLUSIVE()
+        {
+            return new AstEXCLUSIVE(Position.Default, "EXCLUSIVE", "EXCLUSIVE");
+        }
+    }
+    
+    /// <summary>
+    /// EXECUTABLE : 'EXECUTABLE'
+    /// </summary>
+    public partial class AstEXECUTABLE : AstTerminalKeyword
+    {
+        
+        public AstEXECUTABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXECUTABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXECUTABLE : EXECUTABLE
+        /// </summary>
+        public static AstEXECUTABLE EXECUTABLE()
+        {
+            return new AstEXECUTABLE(Position.Default, "EXECUTABLE", "EXECUTABLE");
+        }
+    }
+    
+    /// <summary>
+    /// EXIST : 'EXIST'
+    /// </summary>
+    public partial class AstEXIST : AstTerminalKeyword
+    {
+        
+        public AstEXIST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXIST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXIST : EXIST
+        /// </summary>
+        public static AstEXIST EXIST()
+        {
+            return new AstEXIST(Position.Default, "EXIST", "EXIST");
+        }
+    }
+    
+    /// <summary>
+    /// EXPAND : 'EXPAND'
+    /// </summary>
+    public partial class AstEXPAND : AstTerminalKeyword
+    {
+        
+        public AstEXPAND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXPAND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXPAND : EXPAND
+        /// </summary>
+        public static AstEXPAND EXPAND()
+        {
+            return new AstEXPAND(Position.Default, "EXPAND", "EXPAND");
+        }
+    }
+    
+    /// <summary>
+    /// EXPIRY_DATE : 'EXPIRY_DATE'
+    /// </summary>
+    public partial class AstEXPIRYDATE : AstTerminalKeyword
+    {
+        
+        public AstEXPIRYDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXPIRYDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXPIRY_DATE : EXPIRY_DATE
+        /// </summary>
+        public static AstEXPIRYDATE EXPIRYDATE()
+        {
+            return new AstEXPIRYDATE(Position.Default, "EXPIRY_DATE", "EXPIRY_DATE");
+        }
+    }
+    
+    /// <summary>
+    /// EXPLICIT : 'EXPLICIT'
+    /// </summary>
+    public partial class AstEXPLICIT : AstTerminalKeyword
+    {
+        
+        public AstEXPLICIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXPLICIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXPLICIT : EXPLICIT
+        /// </summary>
+        public static AstEXPLICIT EXPLICIT()
+        {
+            return new AstEXPLICIT(Position.Default, "EXPLICIT", "EXPLICIT");
+        }
+    }
+    
+    /// <summary>
+    /// FAIL_OPERATION : 'FAIL_OPERATION'
+    /// </summary>
+    public partial class AstFAILOPERATION : AstTerminalKeyword
+    {
+        
+        public AstFAILOPERATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAILOPERATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAIL_OPERATION : FAIL_OPERATION
+        /// </summary>
+        public static AstFAILOPERATION FAILOPERATION()
+        {
+            return new AstFAILOPERATION(Position.Default, "FAIL_OPERATION", "FAIL_OPERATION");
+        }
+    }
+    
+    /// <summary>
+    /// FAILOVER_MODE : 'FAILOVER_MODE'
+    /// </summary>
+    public partial class AstFAILOVERMODE : AstTerminalKeyword
+    {
+        
+        public AstFAILOVERMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAILOVERMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAILOVER_MODE : FAILOVER_MODE
+        /// </summary>
+        public static AstFAILOVERMODE FAILOVERMODE()
+        {
+            return new AstFAILOVERMODE(Position.Default, "FAILOVER_MODE", "FAILOVER_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// FAILURE : 'FAILURE'
+    /// </summary>
+    public partial class AstFAILURE : AstTerminalKeyword
+    {
+        
+        public AstFAILURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAILURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAILURE : FAILURE
+        /// </summary>
+        public static AstFAILURE FAILURE()
+        {
+            return new AstFAILURE(Position.Default, "FAILURE", "FAILURE");
+        }
+    }
+    
+    /// <summary>
+    /// FAILURE_CONDITION_LEVEL : 'FAILURE_CONDITION_LEVEL'
+    /// </summary>
+    public partial class AstFAILURECONDITIONLEVEL : AstTerminalKeyword
+    {
+        
+        public AstFAILURECONDITIONLEVEL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAILURECONDITIONLEVEL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAILURE_CONDITION_LEVEL : FAILURE_CONDITION_LEVEL
+        /// </summary>
+        public static AstFAILURECONDITIONLEVEL FAILURECONDITIONLEVEL()
+        {
+            return new AstFAILURECONDITIONLEVEL(Position.Default, "FAILURE_CONDITION_LEVEL", "FAILURE_CONDITION_LEVEL");
+        }
+    }
+    
+    /// <summary>
+    /// FAST : 'FAST'
+    /// </summary>
+    public partial class AstFAST : AstTerminalKeyword
+    {
+        
+        public AstFAST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAST : FAST
+        /// </summary>
+        public static AstFAST FAST()
+        {
+            return new AstFAST(Position.Default, "FAST", "FAST");
+        }
+    }
+    
+    /// <summary>
+    /// FAST_FORWARD : 'FAST_FORWARD'
+    /// </summary>
+    public partial class AstFASTFORWARD : AstTerminalKeyword
+    {
+        
+        public AstFASTFORWARD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFASTFORWARD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAST_FORWARD : FAST_FORWARD
+        /// </summary>
+        public static AstFASTFORWARD FASTFORWARD()
+        {
+            return new AstFASTFORWARD(Position.Default, "FAST_FORWARD", "FAST_FORWARD");
+        }
+    }
+    
+    /// <summary>
+    /// FILE_ID : 'FILE_ID'
+    /// </summary>
+    public partial class AstFILEID : AstTerminalKeyword
+    {
+        
+        public AstFILEID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILE_ID : FILE_ID
+        /// </summary>
+        public static AstFILEID FILEID()
+        {
+            return new AstFILEID(Position.Default, "FILE_ID", "FILE_ID");
+        }
+    }
+    
+    /// <summary>
+    /// FILE_IDEX : 'FILE_IDEX'
+    /// </summary>
+    public partial class AstFILEIDEX : AstTerminalKeyword
+    {
+        
+        public AstFILEIDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEIDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILE_IDEX : FILE_IDEX
+        /// </summary>
+        public static AstFILEIDEX FILEIDEX()
+        {
+            return new AstFILEIDEX(Position.Default, "FILE_IDEX", "FILE_IDEX");
+        }
+    }
+    
+    /// <summary>
+    /// FILE_NAME : 'FILE_NAME'
+    /// </summary>
+    public partial class AstFILENAME : AstTerminalKeyword
+    {
+        
+        public AstFILENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILE_NAME : FILE_NAME
+        /// </summary>
+        public static AstFILENAME FILENAME()
+        {
+            return new AstFILENAME(Position.Default, "FILE_NAME", "FILE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// FILEGROUP : 'FILEGROUP'
+    /// </summary>
+    public partial class AstFILEGROUP : AstTerminalKeyword
+    {
+        
+        public AstFILEGROUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEGROUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEGROUP : FILEGROUP
+        /// </summary>
+        public static AstFILEGROUP FILEGROUP()
+        {
+            return new AstFILEGROUP(Position.Default, "FILEGROUP", "FILEGROUP");
+        }
+    }
+    
+    /// <summary>
+    /// FILEGROUP_ID : 'FILEGROUP_ID'
+    /// </summary>
+    public partial class AstFILEGROUPID : AstTerminalKeyword
+    {
+        
+        public AstFILEGROUPID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEGROUPID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEGROUP_ID : FILEGROUP_ID
+        /// </summary>
+        public static AstFILEGROUPID FILEGROUPID()
+        {
+            return new AstFILEGROUPID(Position.Default, "FILEGROUP_ID", "FILEGROUP_ID");
+        }
+    }
+    
+    /// <summary>
+    /// FILEGROUP_NAME : 'FILEGROUP_NAME'
+    /// </summary>
+    public partial class AstFILEGROUPNAME : AstTerminalKeyword
+    {
+        
+        public AstFILEGROUPNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEGROUPNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEGROUP_NAME : FILEGROUP_NAME
+        /// </summary>
+        public static AstFILEGROUPNAME FILEGROUPNAME()
+        {
+            return new AstFILEGROUPNAME(Position.Default, "FILEGROUP_NAME", "FILEGROUP_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// FILEGROUPPROPERTY : 'FILEGROUPPROPERTY'
+    /// </summary>
+    public partial class AstFILEGROUPPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstFILEGROUPPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEGROUPPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEGROUPPROPERTY : FILEGROUPPROPERTY
+        /// </summary>
+        public static AstFILEGROUPPROPERTY FILEGROUPPROPERTY()
+        {
+            return new AstFILEGROUPPROPERTY(Position.Default, "FILEGROUPPROPERTY", "FILEGROUPPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// FILEGROWTH : 'FILEGROWTH'
+    /// </summary>
+    public partial class AstFILEGROWTH : AstTerminalKeyword
+    {
+        
+        public AstFILEGROWTH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEGROWTH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEGROWTH : FILEGROWTH
+        /// </summary>
+        public static AstFILEGROWTH FILEGROWTH()
+        {
+            return new AstFILEGROWTH(Position.Default, "FILEGROWTH", "FILEGROWTH");
+        }
+    }
+    
+    /// <summary>
+    /// FILEPATH : 'FILEPATH'
+    /// </summary>
+    public partial class AstFILEPATH : AstTerminalKeyword
+    {
+        
+        public AstFILEPATH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEPATH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEPATH : FILEPATH
+        /// </summary>
+        public static AstFILEPATH FILEPATH()
+        {
+            return new AstFILEPATH(Position.Default, "FILEPATH", "FILEPATH");
+        }
+    }
+    
+    /// <summary>
+    /// FILEPROPERTY : 'FILEPROPERTY'
+    /// </summary>
+    public partial class AstFILEPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstFILEPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEPROPERTY : FILEPROPERTY
+        /// </summary>
+        public static AstFILEPROPERTY FILEPROPERTY()
+        {
+            return new AstFILEPROPERTY(Position.Default, "FILEPROPERTY", "FILEPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// FILEPROPERTYEX : 'FILEPROPERTYEX'
+    /// </summary>
+    public partial class AstFILEPROPERTYEX : AstTerminalKeyword
+    {
+        
+        public AstFILEPROPERTYEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILEPROPERTYEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILEPROPERTYEX : FILEPROPERTYEX
+        /// </summary>
+        public static AstFILEPROPERTYEX FILEPROPERTYEX()
+        {
+            return new AstFILEPROPERTYEX(Position.Default, "FILEPROPERTYEX", "FILEPROPERTYEX");
+        }
+    }
+    
+    /// <summary>
+    /// FILESTREAM : 'FILESTREAM'
+    /// </summary>
+    public partial class AstFILESTREAM : AstTerminalKeyword
+    {
+        
+        public AstFILESTREAM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILESTREAM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILESTREAM : FILESTREAM
+        /// </summary>
+        public static AstFILESTREAM FILESTREAM()
+        {
+            return new AstFILESTREAM(Position.Default, "FILESTREAM", "FILESTREAM");
+        }
+    }
+    
+    /// <summary>
+    /// FILTER : 'FILTER'
+    /// </summary>
+    public partial class AstFILTER : AstTerminalKeyword
+    {
+        
+        public AstFILTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILTER : FILTER
+        /// </summary>
+        public static AstFILTER FILTER()
+        {
+            return new AstFILTER(Position.Default, "FILTER", "FILTER");
+        }
+    }
+    
+    /// <summary>
+    /// FIRST : 'FIRST'
+    /// </summary>
+    public partial class AstFIRST : AstTerminalKeyword
+    {
+        
+        public AstFIRST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFIRST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FIRST : FIRST
+        /// </summary>
+        public static AstFIRST FIRST()
+        {
+            return new AstFIRST(Position.Default, "FIRST", "FIRST");
+        }
+    }
+    
+    /// <summary>
+    /// FIRST_VALUE : 'FIRST_VALUE'
+    /// </summary>
+    public partial class AstFIRSTVALUE : AstTerminalKeyword
+    {
+        
+        public AstFIRSTVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFIRSTVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FIRST_VALUE : FIRST_VALUE
+        /// </summary>
+        public static AstFIRSTVALUE FIRSTVALUE()
+        {
+            return new AstFIRSTVALUE(Position.Default, "FIRST_VALUE", "FIRST_VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// FMTONLY : 'FMTONLY'
+    /// </summary>
+    public partial class AstFMTONLY : AstTerminalKeyword
+    {
+        
+        public AstFMTONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFMTONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FMTONLY : FMTONLY
+        /// </summary>
+        public static AstFMTONLY FMTONLY()
+        {
+            return new AstFMTONLY(Position.Default, "FMTONLY", "FMTONLY");
+        }
+    }
+    
+    /// <summary>
+    /// FOLLOWING : 'FOLLOWING'
+    /// </summary>
+    public partial class AstFOLLOWING : AstTerminalKeyword
+    {
+        
+        public AstFOLLOWING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFOLLOWING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FOLLOWING : FOLLOWING
+        /// </summary>
+        public static AstFOLLOWING FOLLOWING()
+        {
+            return new AstFOLLOWING(Position.Default, "FOLLOWING", "FOLLOWING");
+        }
+    }
+    
+    /// <summary>
+    /// FORCE : 'FORCE'
+    /// </summary>
+    public partial class AstFORCE : AstTerminalKeyword
+    {
+        
+        public AstFORCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCE : FORCE
+        /// </summary>
+        public static AstFORCE FORCE()
+        {
+            return new AstFORCE(Position.Default, "FORCE", "FORCE");
+        }
+    }
+    
+    /// <summary>
+    /// FORCE_FAILOVER_ALLOW_DATA_LOSS : 'FORCE_FAILOVER_ALLOW_DATA_LOSS'
+    /// </summary>
+    public partial class AstFORCEFAILOVERALLOWDATALOSS : AstTerminalKeyword
+    {
+        
+        public AstFORCEFAILOVERALLOWDATALOSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCEFAILOVERALLOWDATALOSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCE_FAILOVER_ALLOW_DATA_LOSS : FORCE_FAILOVER_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstFORCEFAILOVERALLOWDATALOSS FORCEFAILOVERALLOWDATALOSS()
+        {
+            return new AstFORCEFAILOVERALLOWDATALOSS(Position.Default, "FORCE_FAILOVER_ALLOW_DATA_LOSS", "FORCE_FAILOVER_ALLOW_DATA_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// FORCED : 'FORCED'
+    /// </summary>
+    public partial class AstFORCED : AstTerminalKeyword
+    {
+        
+        public AstFORCED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCED : FORCED
+        /// </summary>
+        public static AstFORCED FORCED()
+        {
+            return new AstFORCED(Position.Default, "FORCED", "FORCED");
+        }
+    }
+    
+    /// <summary>
+    /// FORCEPLAN : 'FORCEPLAN'
+    /// </summary>
+    public partial class AstFORCEPLAN : AstTerminalKeyword
+    {
+        
+        public AstFORCEPLAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCEPLAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCEPLAN : FORCEPLAN
+        /// </summary>
+        public static AstFORCEPLAN FORCEPLAN()
+        {
+            return new AstFORCEPLAN(Position.Default, "FORCEPLAN", "FORCEPLAN");
+        }
+    }
+    
+    /// <summary>
+    /// FORCESCAN : 'FORCESCAN'
+    /// </summary>
+    public partial class AstFORCESCAN : AstTerminalKeyword
+    {
+        
+        public AstFORCESCAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCESCAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCESCAN : FORCESCAN
+        /// </summary>
+        public static AstFORCESCAN FORCESCAN()
+        {
+            return new AstFORCESCAN(Position.Default, "FORCESCAN", "FORCESCAN");
+        }
+    }
+    
+    /// <summary>
+    /// FORMAT : 'FORMAT'
+    /// </summary>
+    public partial class AstFORMAT : AstTerminalKeyword
+    {
+        
+        public AstFORMAT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORMAT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORMAT : FORMAT
+        /// </summary>
+        public static AstFORMAT FORMAT()
+        {
+            return new AstFORMAT(Position.Default, "FORMAT", "FORMAT");
+        }
+    }
+    
+    /// <summary>
+    /// FORWARD_ONLY : 'FORWARD_ONLY'
+    /// </summary>
+    public partial class AstFORWARDONLY : AstTerminalKeyword
+    {
+        
+        public AstFORWARDONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORWARDONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORWARD_ONLY : FORWARD_ONLY
+        /// </summary>
+        public static AstFORWARDONLY FORWARDONLY()
+        {
+            return new AstFORWARDONLY(Position.Default, "FORWARD_ONLY", "FORWARD_ONLY");
+        }
+    }
+    
+    /// <summary>
+    /// FULLSCAN : 'FULLSCAN'
+    /// </summary>
+    public partial class AstFULLSCAN : AstTerminalKeyword
+    {
+        
+        public AstFULLSCAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFULLSCAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FULLSCAN : FULLSCAN
+        /// </summary>
+        public static AstFULLSCAN FULLSCAN()
+        {
+            return new AstFULLSCAN(Position.Default, "FULLSCAN", "FULLSCAN");
+        }
+    }
+    
+    /// <summary>
+    /// FULLTEXT : 'FULLTEXT'
+    /// </summary>
+    public partial class AstFULLTEXT : AstTerminalKeyword
+    {
+        
+        public AstFULLTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFULLTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FULLTEXT : FULLTEXT
+        /// </summary>
+        public static AstFULLTEXT FULLTEXT()
+        {
+            return new AstFULLTEXT(Position.Default, "FULLTEXT", "FULLTEXT");
+        }
+    }
+    
+    /// <summary>
+    /// FULLTEXTCATALOGPROPERTY : 'FULLTEXTCATALOGPROPERTY'
+    /// </summary>
+    public partial class AstFULLTEXTCATALOGPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstFULLTEXTCATALOGPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFULLTEXTCATALOGPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FULLTEXTCATALOGPROPERTY : FULLTEXTCATALOGPROPERTY
+        /// </summary>
+        public static AstFULLTEXTCATALOGPROPERTY FULLTEXTCATALOGPROPERTY()
+        {
+            return new AstFULLTEXTCATALOGPROPERTY(Position.Default, "FULLTEXTCATALOGPROPERTY", "FULLTEXTCATALOGPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// FULLTEXTSERVICEPROPERTY : 'FULLTEXTSERVICEPROPERTY'
+    /// </summary>
+    public partial class AstFULLTEXTSERVICEPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstFULLTEXTSERVICEPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFULLTEXTSERVICEPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FULLTEXTSERVICEPROPERTY : FULLTEXTSERVICEPROPERTY
+        /// </summary>
+        public static AstFULLTEXTSERVICEPROPERTY FULLTEXTSERVICEPROPERTY()
+        {
+            return new AstFULLTEXTSERVICEPROPERTY(Position.Default, "FULLTEXTSERVICEPROPERTY", "FULLTEXTSERVICEPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// GB : 'GB'
+    /// </summary>
+    public partial class AstGB : AstTerminalKeyword
+    {
+        
+        public AstGB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GB : GB
+        /// </summary>
+        public static AstGB GB()
+        {
+            return new AstGB(Position.Default, "GB", "GB");
+        }
+    }
+    
+    /// <summary>
+    /// GENERATED : 'GENERATED'
+    /// </summary>
+    public partial class AstGENERATED : AstTerminalKeyword
+    {
+        
+        public AstGENERATED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGENERATED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GENERATED : GENERATED
+        /// </summary>
+        public static AstGENERATED GENERATED()
+        {
+            return new AstGENERATED(Position.Default, "GENERATED", "GENERATED");
+        }
+    }
+    
+    /// <summary>
+    /// GETDATE : 'GETDATE'
+    /// </summary>
+    public partial class AstGETDATE : AstTerminalKeyword
+    {
+        
+        public AstGETDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETDATE : GETDATE
+        /// </summary>
+        public static AstGETDATE GETDATE()
+        {
+            return new AstGETDATE(Position.Default, "GETDATE", "GETDATE");
+        }
+    }
+    
+    /// <summary>
+    /// GETUTCDATE : 'GETUTCDATE'
+    /// </summary>
+    public partial class AstGETUTCDATE : AstTerminalKeyword
+    {
+        
+        public AstGETUTCDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETUTCDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETUTCDATE : GETUTCDATE
+        /// </summary>
+        public static AstGETUTCDATE GETUTCDATE()
+        {
+            return new AstGETUTCDATE(Position.Default, "GETUTCDATE", "GETUTCDATE");
+        }
+    }
+    
+    /// <summary>
+    /// GLOBAL : 'GLOBAL'
+    /// </summary>
+    public partial class AstGLOBAL : AstTerminalKeyword
+    {
+        
+        public AstGLOBAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGLOBAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GLOBAL : GLOBAL
+        /// </summary>
+        public static AstGLOBAL GLOBAL()
+        {
+            return new AstGLOBAL(Position.Default, "GLOBAL", "GLOBAL");
+        }
+    }
+    
+    /// <summary>
+    /// GO : 'GO'
+    /// </summary>
+    public partial class AstGO : AstTerminalKeyword
+    {
+        
+        public AstGO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GO : GO
+        /// </summary>
+        public static AstGO GO()
+        {
+            return new AstGO(Position.Default, "GO", "GO");
+        }
+    }
+    
+    /// <summary>
+    /// GROUP_MAX_REQUESTS : 'GROUP_MAX_REQUESTS'
+    /// </summary>
+    public partial class AstGROUPMAXREQUESTS : AstTerminalKeyword
+    {
+        
+        public AstGROUPMAXREQUESTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGROUPMAXREQUESTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GROUP_MAX_REQUESTS : GROUP_MAX_REQUESTS
+        /// </summary>
+        public static AstGROUPMAXREQUESTS GROUPMAXREQUESTS()
+        {
+            return new AstGROUPMAXREQUESTS(Position.Default, "GROUP_MAX_REQUESTS", "GROUP_MAX_REQUESTS");
+        }
+    }
+    
+    /// <summary>
+    /// GROUPING : 'GROUPING'
+    /// </summary>
+    public partial class AstGROUPING : AstTerminalKeyword
+    {
+        
+        public AstGROUPING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGROUPING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GROUPING : GROUPING
+        /// </summary>
+        public static AstGROUPING GROUPING()
+        {
+            return new AstGROUPING(Position.Default, "GROUPING", "GROUPING");
+        }
+    }
+    
+    /// <summary>
+    /// GROUPING_ID : 'GROUPING_ID'
+    /// </summary>
+    public partial class AstGROUPINGID : AstTerminalKeyword
+    {
+        
+        public AstGROUPINGID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGROUPINGID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GROUPING_ID : GROUPING_ID
+        /// </summary>
+        public static AstGROUPINGID GROUPINGID()
+        {
+            return new AstGROUPINGID(Position.Default, "GROUPING_ID", "GROUPING_ID");
+        }
+    }
+    
+    /// <summary>
+    /// HADR : 'HADR'
+    /// </summary>
+    public partial class AstHADR : AstTerminalKeyword
+    {
+        
+        public AstHADR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHADR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HADR : HADR
+        /// </summary>
+        public static AstHADR HADR()
+        {
+            return new AstHADR(Position.Default, "HADR", "HADR");
+        }
+    }
+    
+    /// <summary>
+    /// HASH : 'HASH'
+    /// </summary>
+    public partial class AstHASH : AstTerminalKeyword
+    {
+        
+        public AstHASH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHASH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HASH : HASH
+        /// </summary>
+        public static AstHASH HASH()
+        {
+            return new AstHASH(Position.Default, "HASH", "HASH");
+        }
+    }
+    
+    /// <summary>
+    /// HEALTH_CHECK_TIMEOUT : 'HEALTH_CHECK_TIMEOUT'
+    /// </summary>
+    public partial class AstHEALTHCHECKTIMEOUT : AstTerminalKeyword
+    {
+        
+        public AstHEALTHCHECKTIMEOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHEALTHCHECKTIMEOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HEALTH_CHECK_TIMEOUT : HEALTH_CHECK_TIMEOUT
+        /// </summary>
+        public static AstHEALTHCHECKTIMEOUT HEALTHCHECKTIMEOUT()
+        {
+            return new AstHEALTHCHECKTIMEOUT(Position.Default, "HEALTH_CHECK_TIMEOUT", "HEALTH_CHECK_TIMEOUT");
+        }
+    }
+    
+    /// <summary>
+    /// HIDDEN_KEYWORD : 'HIDDEN'
+    /// </summary>
+    public partial class AstHIDDENKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstHIDDENKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHIDDENKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HIDDEN_KEYWORD : HIDDEN
+        /// </summary>
+        public static AstHIDDENKEYWORD HIDDENKEYWORD()
+        {
+            return new AstHIDDENKEYWORD(Position.Default, "HIDDEN_KEYWORD", "HIDDEN");
+        }
+    }
+    
+    /// <summary>
+    /// HIGH : 'HIGH'
+    /// </summary>
+    public partial class AstHIGH : AstTerminalKeyword
+    {
+        
+        public AstHIGH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHIGH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HIGH : HIGH
+        /// </summary>
+        public static AstHIGH HIGH()
+        {
+            return new AstHIGH(Position.Default, "HIGH", "HIGH");
+        }
+    }
+    
+    /// <summary>
+    /// HONOR_BROKER_PRIORITY : 'HONOR_BROKER_PRIORITY'
+    /// </summary>
+    public partial class AstHONORBROKERPRIORITY : AstTerminalKeyword
+    {
+        
+        public AstHONORBROKERPRIORITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHONORBROKERPRIORITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HONOR_BROKER_PRIORITY : HONOR_BROKER_PRIORITY
+        /// </summary>
+        public static AstHONORBROKERPRIORITY HONORBROKERPRIORITY()
+        {
+            return new AstHONORBROKERPRIORITY(Position.Default, "HONOR_BROKER_PRIORITY", "HONOR_BROKER_PRIORITY");
+        }
+    }
+    
+    /// <summary>
+    /// HOURS : 'HOURS'
+    /// </summary>
+    public partial class AstHOURS : AstTerminalKeyword
+    {
+        
+        public AstHOURS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHOURS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HOURS : HOURS
+        /// </summary>
+        public static AstHOURS HOURS()
+        {
+            return new AstHOURS(Position.Default, "HOURS", "HOURS");
+        }
+    }
+    
+    /// <summary>
+    /// IDENTITY_VALUE : 'IDENTITY_VALUE'
+    /// </summary>
+    public partial class AstIDENTITYVALUE : AstTerminalKeyword
+    {
+        
+        public AstIDENTITYVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIDENTITYVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IDENTITY_VALUE : IDENTITY_VALUE
+        /// </summary>
+        public static AstIDENTITYVALUE IDENTITYVALUE()
+        {
+            return new AstIDENTITYVALUE(Position.Default, "IDENTITY_VALUE", "IDENTITY_VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// IGNORE_CONSTRAINTS : 'IGNORE_CONSTRAINTS'
+    /// </summary>
+    public partial class AstIGNORECONSTRAINTS : AstTerminalKeyword
+    {
+        
+        public AstIGNORECONSTRAINTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIGNORECONSTRAINTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IGNORE_CONSTRAINTS : IGNORE_CONSTRAINTS
+        /// </summary>
+        public static AstIGNORECONSTRAINTS IGNORECONSTRAINTS()
+        {
+            return new AstIGNORECONSTRAINTS(Position.Default, "IGNORE_CONSTRAINTS", "IGNORE_CONSTRAINTS");
+        }
+    }
+    
+    /// <summary>
+    /// IGNORE_DUP_KEY : 'IGNORE_DUP_KEY'
+    /// </summary>
+    public partial class AstIGNOREDUPKEY : AstTerminalKeyword
+    {
+        
+        public AstIGNOREDUPKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIGNOREDUPKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IGNORE_DUP_KEY : IGNORE_DUP_KEY
+        /// </summary>
+        public static AstIGNOREDUPKEY IGNOREDUPKEY()
+        {
+            return new AstIGNOREDUPKEY(Position.Default, "IGNORE_DUP_KEY", "IGNORE_DUP_KEY");
+        }
+    }
+    
+    /// <summary>
+    /// IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX : 'IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX'
+    /// </summary>
+    public partial class AstIGNORENONCLUSTEREDCOLUMNSTOREINDEX : AstTerminalKeyword
+    {
+        
+        public AstIGNORENONCLUSTEREDCOLUMNSTOREINDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIGNORENONCLUSTEREDCOLUMNSTOREINDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX : IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX
+        /// </summary>
+        public static AstIGNORENONCLUSTEREDCOLUMNSTOREINDEX IGNORENONCLUSTEREDCOLUMNSTOREINDEX()
+        {
+            return new AstIGNORENONCLUSTEREDCOLUMNSTOREINDEX(Position.Default, "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX", "IGNORE_NONCLUSTERED_COLUMNSTORE_INDEX");
+        }
+    }
+    
+    /// <summary>
+    /// IGNORE_TRIGGERS : 'IGNORE_TRIGGERS'
+    /// </summary>
+    public partial class AstIGNORETRIGGERS : AstTerminalKeyword
+    {
+        
+        public AstIGNORETRIGGERS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIGNORETRIGGERS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IGNORE_TRIGGERS : IGNORE_TRIGGERS
+        /// </summary>
+        public static AstIGNORETRIGGERS IGNORETRIGGERS()
+        {
+            return new AstIGNORETRIGGERS(Position.Default, "IGNORE_TRIGGERS", "IGNORE_TRIGGERS");
+        }
+    }
+    
+    /// <summary>
+    /// IMMEDIATE : 'IMMEDIATE'
+    /// </summary>
+    public partial class AstIMMEDIATE : AstTerminalKeyword
+    {
+        
+        public AstIMMEDIATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIMMEDIATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IMMEDIATE : IMMEDIATE
+        /// </summary>
+        public static AstIMMEDIATE IMMEDIATE()
+        {
+            return new AstIMMEDIATE(Position.Default, "IMMEDIATE", "IMMEDIATE");
+        }
+    }
+    
+    /// <summary>
+    /// IMPERSONATE : 'IMPERSONATE'
+    /// </summary>
+    public partial class AstIMPERSONATE : AstTerminalKeyword
+    {
+        
+        public AstIMPERSONATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIMPERSONATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IMPERSONATE : IMPERSONATE
+        /// </summary>
+        public static AstIMPERSONATE IMPERSONATE()
+        {
+            return new AstIMPERSONATE(Position.Default, "IMPERSONATE", "IMPERSONATE");
+        }
+    }
+    
+    /// <summary>
+    /// IMPLICIT_TRANSACTIONS : 'IMPLICIT_TRANSACTIONS'
+    /// </summary>
+    public partial class AstIMPLICITTRANSACTIONS : AstTerminalKeyword
+    {
+        
+        public AstIMPLICITTRANSACTIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIMPLICITTRANSACTIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IMPLICIT_TRANSACTIONS : IMPLICIT_TRANSACTIONS
+        /// </summary>
+        public static AstIMPLICITTRANSACTIONS IMPLICITTRANSACTIONS()
+        {
+            return new AstIMPLICITTRANSACTIONS(Position.Default, "IMPLICIT_TRANSACTIONS", "IMPLICIT_TRANSACTIONS");
+        }
+    }
+    
+    /// <summary>
+    /// IMPORTANCE : 'IMPORTANCE'
+    /// </summary>
+    public partial class AstIMPORTANCE : AstTerminalKeyword
+    {
+        
+        public AstIMPORTANCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIMPORTANCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IMPORTANCE : IMPORTANCE
+        /// </summary>
+        public static AstIMPORTANCE IMPORTANCE()
+        {
+            return new AstIMPORTANCE(Position.Default, "IMPORTANCE", "IMPORTANCE");
+        }
+    }
+    
+    /// <summary>
+    /// INCLUDE_NULL_VALUES : 'INCLUDE_NULL_VALUES'
+    /// </summary>
+    public partial class AstINCLUDENULLVALUES : AstTerminalKeyword
+    {
+        
+        public AstINCLUDENULLVALUES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINCLUDENULLVALUES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INCLUDE_NULL_VALUES : INCLUDE_NULL_VALUES
+        /// </summary>
+        public static AstINCLUDENULLVALUES INCLUDENULLVALUES()
+        {
+            return new AstINCLUDENULLVALUES(Position.Default, "INCLUDE_NULL_VALUES", "INCLUDE_NULL_VALUES");
+        }
+    }
+    
+    /// <summary>
+    /// INCREMENTAL : 'INCREMENTAL'
+    /// </summary>
+    public partial class AstINCREMENTAL : AstTerminalKeyword
+    {
+        
+        public AstINCREMENTAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINCREMENTAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INCREMENTAL : INCREMENTAL
+        /// </summary>
+        public static AstINCREMENTAL INCREMENTAL()
+        {
+            return new AstINCREMENTAL(Position.Default, "INCREMENTAL", "INCREMENTAL");
+        }
+    }
+    
+    /// <summary>
+    /// INDEX_COL : 'INDEX_COL'
+    /// </summary>
+    public partial class AstINDEXCOL : AstTerminalKeyword
+    {
+        
+        public AstINDEXCOL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINDEXCOL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INDEX_COL : INDEX_COL
+        /// </summary>
+        public static AstINDEXCOL INDEXCOL()
+        {
+            return new AstINDEXCOL(Position.Default, "INDEX_COL", "INDEX_COL");
+        }
+    }
+    
+    /// <summary>
+    /// INDEXKEY_PROPERTY : 'INDEXKEY_PROPERTY'
+    /// </summary>
+    public partial class AstINDEXKEYPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstINDEXKEYPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINDEXKEYPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INDEXKEY_PROPERTY : INDEXKEY_PROPERTY
+        /// </summary>
+        public static AstINDEXKEYPROPERTY INDEXKEYPROPERTY()
+        {
+            return new AstINDEXKEYPROPERTY(Position.Default, "INDEXKEY_PROPERTY", "INDEXKEY_PROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// INDEXPROPERTY : 'INDEXPROPERTY'
+    /// </summary>
+    public partial class AstINDEXPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstINDEXPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINDEXPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INDEXPROPERTY : INDEXPROPERTY
+        /// </summary>
+        public static AstINDEXPROPERTY INDEXPROPERTY()
+        {
+            return new AstINDEXPROPERTY(Position.Default, "INDEXPROPERTY", "INDEXPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// INITIATOR : 'INITIATOR'
+    /// </summary>
+    public partial class AstINITIATOR : AstTerminalKeyword
+    {
+        
+        public AstINITIATOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINITIATOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INITIATOR : INITIATOR
+        /// </summary>
+        public static AstINITIATOR INITIATOR()
+        {
+            return new AstINITIATOR(Position.Default, "INITIATOR", "INITIATOR");
+        }
+    }
+    
+    /// <summary>
+    /// INPUT : 'INPUT'
+    /// </summary>
+    public partial class AstINPUT : AstTerminalKeyword
+    {
+        
+        public AstINPUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINPUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INPUT : INPUT
+        /// </summary>
+        public static AstINPUT INPUT()
+        {
+            return new AstINPUT(Position.Default, "INPUT", "INPUT");
+        }
+    }
+    
+    /// <summary>
+    /// INSENSITIVE : 'INSENSITIVE'
+    /// </summary>
+    public partial class AstINSENSITIVE : AstTerminalKeyword
+    {
+        
+        public AstINSENSITIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINSENSITIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INSENSITIVE : INSENSITIVE
+        /// </summary>
+        public static AstINSENSITIVE INSENSITIVE()
+        {
+            return new AstINSENSITIVE(Position.Default, "INSENSITIVE", "INSENSITIVE");
+        }
+    }
+    
+    /// <summary>
+    /// INSERTED : 'INSERTED'
+    /// </summary>
+    public partial class AstINSERTED : AstTerminalKeyword
+    {
+        
+        public AstINSERTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINSERTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INSERTED : INSERTED
+        /// </summary>
+        public static AstINSERTED INSERTED()
+        {
+            return new AstINSERTED(Position.Default, "INSERTED", "INSERTED");
+        }
+    }
+    
+    /// <summary>
+    /// INT : 'INT'
+    /// </summary>
+    public partial class AstINT : AstTerminalKeyword
+    {
+        
+        public AstINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INT : INT
+        /// </summary>
+        public static AstINT INT()
+        {
+            return new AstINT(Position.Default, "INT", "INT");
+        }
+    }
+    
+    /// <summary>
+    /// IP : 'IP'
+    /// </summary>
+    public partial class AstIP : AstTerminalKeyword
+    {
+        
+        public AstIP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IP : IP
+        /// </summary>
+        public static AstIP IP()
+        {
+            return new AstIP(Position.Default, "IP", "IP");
+        }
+    }
+    
+    /// <summary>
+    /// ISOLATION : 'ISOLATION'
+    /// </summary>
+    public partial class AstISOLATION : AstTerminalKeyword
+    {
+        
+        public AstISOLATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstISOLATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ISOLATION : ISOLATION
+        /// </summary>
+        public static AstISOLATION ISOLATION()
+        {
+            return new AstISOLATION(Position.Default, "ISOLATION", "ISOLATION");
+        }
+    }
+    
+    /// <summary>
+    /// JOB : 'JOB'
+    /// </summary>
+    public partial class AstJOB : AstTerminalKeyword
+    {
+        
+        public AstJOB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJOB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// JOB : JOB
+        /// </summary>
+        public static AstJOB JOB()
+        {
+            return new AstJOB(Position.Default, "JOB", "JOB");
+        }
+    }
+    
+    /// <summary>
+    /// JSON : 'JSON'
+    /// </summary>
+    public partial class AstJSON : AstTerminalKeyword
+    {
+        
+        public AstJSON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstJSON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// JSON : JSON
+        /// </summary>
+        public static AstJSON JSON()
+        {
+            return new AstJSON(Position.Default, "JSON", "JSON");
+        }
+    }
+    
+    /// <summary>
+    /// KB : 'KB'
+    /// </summary>
+    public partial class AstKB : AstTerminalKeyword
+    {
+        
+        public AstKB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KB : KB
+        /// </summary>
+        public static AstKB KB()
+        {
+            return new AstKB(Position.Default, "KB", "KB");
+        }
+    }
+    
+    /// <summary>
+    /// KEEP : 'KEEP'
+    /// </summary>
+    public partial class AstKEEP : AstTerminalKeyword
+    {
+        
+        public AstKEEP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEEP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEEP : KEEP
+        /// </summary>
+        public static AstKEEP KEEP()
+        {
+            return new AstKEEP(Position.Default, "KEEP", "KEEP");
+        }
+    }
+    
+    /// <summary>
+    /// KEEPDEFAULTS : 'KEEPDEFAULTS'
+    /// </summary>
+    public partial class AstKEEPDEFAULTS : AstTerminalKeyword
+    {
+        
+        public AstKEEPDEFAULTS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEEPDEFAULTS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEEPDEFAULTS : KEEPDEFAULTS
+        /// </summary>
+        public static AstKEEPDEFAULTS KEEPDEFAULTS()
+        {
+            return new AstKEEPDEFAULTS(Position.Default, "KEEPDEFAULTS", "KEEPDEFAULTS");
+        }
+    }
+    
+    /// <summary>
+    /// KEEPFIXED : 'KEEPFIXED'
+    /// </summary>
+    public partial class AstKEEPFIXED : AstTerminalKeyword
+    {
+        
+        public AstKEEPFIXED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEEPFIXED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEEPFIXED : KEEPFIXED
+        /// </summary>
+        public static AstKEEPFIXED KEEPFIXED()
+        {
+            return new AstKEEPFIXED(Position.Default, "KEEPFIXED", "KEEPFIXED");
+        }
+    }
+    
+    /// <summary>
+    /// KEEPIDENTITY : 'KEEPIDENTITY'
+    /// </summary>
+    public partial class AstKEEPIDENTITY : AstTerminalKeyword
+    {
+        
+        public AstKEEPIDENTITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEEPIDENTITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEEPIDENTITY : KEEPIDENTITY
+        /// </summary>
+        public static AstKEEPIDENTITY KEEPIDENTITY()
+        {
+            return new AstKEEPIDENTITY(Position.Default, "KEEPIDENTITY", "KEEPIDENTITY");
+        }
+    }
+    
+    /// <summary>
+    /// KEY_SOURCE : 'KEY_SOURCE'
+    /// </summary>
+    public partial class AstKEYSOURCE : AstTerminalKeyword
+    {
+        
+        public AstKEYSOURCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEYSOURCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEY_SOURCE : KEY_SOURCE
+        /// </summary>
+        public static AstKEYSOURCE KEYSOURCE()
+        {
+            return new AstKEYSOURCE(Position.Default, "KEY_SOURCE", "KEY_SOURCE");
+        }
+    }
+    
+    /// <summary>
+    /// KEYS : 'KEYS'
+    /// </summary>
+    public partial class AstKEYS : AstTerminalKeyword
+    {
+        
+        public AstKEYS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEYS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEYS : KEYS
+        /// </summary>
+        public static AstKEYS KEYS()
+        {
+            return new AstKEYS(Position.Default, "KEYS", "KEYS");
+        }
+    }
+    
+    /// <summary>
+    /// KEYSET : 'KEYSET'
+    /// </summary>
+    public partial class AstKEYSET : AstTerminalKeyword
+    {
+        
+        public AstKEYSET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEYSET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEYSET : KEYSET
+        /// </summary>
+        public static AstKEYSET KEYSET()
+        {
+            return new AstKEYSET(Position.Default, "KEYSET", "KEYSET");
+        }
+    }
+    
+    /// <summary>
+    /// LAG : 'LAG'
+    /// </summary>
+    public partial class AstLAG : AstTerminalKeyword
+    {
+        
+        public AstLAG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLAG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LAG : LAG
+        /// </summary>
+        public static AstLAG LAG()
+        {
+            return new AstLAG(Position.Default, "LAG", "LAG");
+        }
+    }
+    
+    /// <summary>
+    /// LAST : 'LAST'
+    /// </summary>
+    public partial class AstLAST : AstTerminalKeyword
+    {
+        
+        public AstLAST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLAST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LAST : LAST
+        /// </summary>
+        public static AstLAST LAST()
+        {
+            return new AstLAST(Position.Default, "LAST", "LAST");
+        }
+    }
+    
+    /// <summary>
+    /// LAST_VALUE : 'LAST_VALUE'
+    /// </summary>
+    public partial class AstLASTVALUE : AstTerminalKeyword
+    {
+        
+        public AstLASTVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLASTVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LAST_VALUE : LAST_VALUE
+        /// </summary>
+        public static AstLASTVALUE LASTVALUE()
+        {
+            return new AstLASTVALUE(Position.Default, "LAST_VALUE", "LAST_VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// LEAD : 'LEAD'
+    /// </summary>
+    public partial class AstLEAD : AstTerminalKeyword
+    {
+        
+        public AstLEAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLEAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LEAD : LEAD
+        /// </summary>
+        public static AstLEAD LEAD()
+        {
+            return new AstLEAD(Position.Default, "LEAD", "LEAD");
+        }
+    }
+    
+    /// <summary>
+    /// LEN : 'LEN'
+    /// </summary>
+    public partial class AstLEN : AstTerminalKeyword
+    {
+        
+        public AstLEN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLEN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LEN : LEN
+        /// </summary>
+        public static AstLEN LEN()
+        {
+            return new AstLEN(Position.Default, "LEN", "LEN");
+        }
+    }
+    
+    /// <summary>
+    /// LEVEL : 'LEVEL'
+    /// </summary>
+    public partial class AstLEVEL : AstTerminalKeyword
+    {
+        
+        public AstLEVEL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLEVEL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LEVEL : LEVEL
+        /// </summary>
+        public static AstLEVEL LEVEL()
+        {
+            return new AstLEVEL(Position.Default, "LEVEL", "LEVEL");
+        }
+    }
+    
+    /// <summary>
+    /// LIST : 'LIST'
+    /// </summary>
+    public partial class AstLIST : AstTerminalKeyword
+    {
+        
+        public AstLIST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLIST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LIST : LIST
+        /// </summary>
+        public static AstLIST LIST()
+        {
+            return new AstLIST(Position.Default, "LIST", "LIST");
+        }
+    }
+    
+    /// <summary>
+    /// LISTENER : 'LISTENER'
+    /// </summary>
+    public partial class AstLISTENER : AstTerminalKeyword
+    {
+        
+        public AstLISTENER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLISTENER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LISTENER : LISTENER
+        /// </summary>
+        public static AstLISTENER LISTENER()
+        {
+            return new AstLISTENER(Position.Default, "LISTENER", "LISTENER");
+        }
+    }
+    
+    /// <summary>
+    /// LISTENER_URL : 'LISTENER_URL'
+    /// </summary>
+    public partial class AstLISTENERURL : AstTerminalKeyword
+    {
+        
+        public AstLISTENERURL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLISTENERURL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LISTENER_URL : LISTENER_URL
+        /// </summary>
+        public static AstLISTENERURL LISTENERURL()
+        {
+            return new AstLISTENERURL(Position.Default, "LISTENER_URL", "LISTENER_URL");
+        }
+    }
+    
+    /// <summary>
+    /// LOB_COMPACTION : 'LOB_COMPACTION'
+    /// </summary>
+    public partial class AstLOBCOMPACTION : AstTerminalKeyword
+    {
+        
+        public AstLOBCOMPACTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOBCOMPACTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOB_COMPACTION : LOB_COMPACTION
+        /// </summary>
+        public static AstLOBCOMPACTION LOBCOMPACTION()
+        {
+            return new AstLOBCOMPACTION(Position.Default, "LOB_COMPACTION", "LOB_COMPACTION");
+        }
+    }
+    
+    /// <summary>
+    /// LOCAL : 'LOCAL'
+    /// </summary>
+    public partial class AstLOCAL : AstTerminalKeyword
+    {
+        
+        public AstLOCAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOCAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOCAL : LOCAL
+        /// </summary>
+        public static AstLOCAL LOCAL()
+        {
+            return new AstLOCAL(Position.Default, "LOCAL", "LOCAL");
+        }
+    }
+    
+    /// <summary>
+    /// LOCATION : 'LOCATION'
+    /// </summary>
+    public partial class AstLOCATION : AstTerminalKeyword
+    {
+        
+        public AstLOCATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOCATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOCATION : LOCATION
+        /// </summary>
+        public static AstLOCATION LOCATION()
+        {
+            return new AstLOCATION(Position.Default, "LOCATION", "LOCATION");
+        }
+    }
+    
+    /// <summary>
+    /// LOCK : 'LOCK'
+    /// </summary>
+    public partial class AstLOCK : AstTerminalKeyword
+    {
+        
+        public AstLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOCK : LOCK
+        /// </summary>
+        public static AstLOCK LOCK()
+        {
+            return new AstLOCK(Position.Default, "LOCK", "LOCK");
+        }
+    }
+    
+    /// <summary>
+    /// LOCK_ESCALATION : 'LOCK_ESCALATION'
+    /// </summary>
+    public partial class AstLOCKESCALATION : AstTerminalKeyword
+    {
+        
+        public AstLOCKESCALATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOCKESCALATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOCK_ESCALATION : LOCK_ESCALATION
+        /// </summary>
+        public static AstLOCKESCALATION LOCKESCALATION()
+        {
+            return new AstLOCKESCALATION(Position.Default, "LOCK_ESCALATION", "LOCK_ESCALATION");
+        }
+    }
+    
+    /// <summary>
+    /// LOGIN : 'LOGIN'
+    /// </summary>
+    public partial class AstLOGIN : AstTerminalKeyword
+    {
+        
+        public AstLOGIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOGIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOGIN : LOGIN
+        /// </summary>
+        public static AstLOGIN LOGIN()
+        {
+            return new AstLOGIN(Position.Default, "LOGIN", "LOGIN");
+        }
+    }
+    
+    /// <summary>
+    /// LOOP : 'LOOP'
+    /// </summary>
+    public partial class AstLOOP : AstTerminalKeyword
+    {
+        
+        public AstLOOP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOOP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOOP : LOOP
+        /// </summary>
+        public static AstLOOP LOOP()
+        {
+            return new AstLOOP(Position.Default, "LOOP", "LOOP");
+        }
+    }
+    
+    /// <summary>
+    /// LOW : 'LOW'
+    /// </summary>
+    public partial class AstLOW : AstTerminalKeyword
+    {
+        
+        public AstLOW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOW : LOW
+        /// </summary>
+        public static AstLOW LOW()
+        {
+            return new AstLOW(Position.Default, "LOW", "LOW");
+        }
+    }
+    
+    /// <summary>
+    /// LOWER : 'LOWER'
+    /// </summary>
+    public partial class AstLOWER : AstTerminalKeyword
+    {
+        
+        public AstLOWER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOWER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOWER : LOWER
+        /// </summary>
+        public static AstLOWER LOWER()
+        {
+            return new AstLOWER(Position.Default, "LOWER", "LOWER");
+        }
+    }
+    
+    /// <summary>
+    /// LTRIM : 'LTRIM'
+    /// </summary>
+    public partial class AstLTRIM : AstTerminalKeyword
+    {
+        
+        public AstLTRIM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLTRIM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LTRIM : LTRIM
+        /// </summary>
+        public static AstLTRIM LTRIM()
+        {
+            return new AstLTRIM(Position.Default, "LTRIM", "LTRIM");
+        }
+    }
+    
+    /// <summary>
+    /// MANUAL : 'MANUAL'
+    /// </summary>
+    public partial class AstMANUAL : AstTerminalKeyword
+    {
+        
+        public AstMANUAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMANUAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MANUAL : MANUAL
+        /// </summary>
+        public static AstMANUAL MANUAL()
+        {
+            return new AstMANUAL(Position.Default, "MANUAL", "MANUAL");
+        }
+    }
+    
+    /// <summary>
+    /// MARK : 'MARK'
+    /// </summary>
+    public partial class AstMARK : AstTerminalKeyword
+    {
+        
+        public AstMARK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMARK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MARK : MARK
+        /// </summary>
+        public static AstMARK MARK()
+        {
+            return new AstMARK(Position.Default, "MARK", "MARK");
+        }
+    }
+    
+    /// <summary>
+    /// MASKED : 'MASKED'
+    /// </summary>
+    public partial class AstMASKED : AstTerminalKeyword
+    {
+        
+        public AstMASKED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMASKED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MASKED : MASKED
+        /// </summary>
+        public static AstMASKED MASKED()
+        {
+            return new AstMASKED(Position.Default, "MASKED", "MASKED");
+        }
+    }
+    
+    /// <summary>
+    /// MATERIALIZED : 'MATERIALIZED'
+    /// </summary>
+    public partial class AstMATERIALIZED : AstTerminalKeyword
+    {
+        
+        public AstMATERIALIZED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMATERIALIZED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MATERIALIZED : MATERIALIZED
+        /// </summary>
+        public static AstMATERIALIZED MATERIALIZED()
+        {
+            return new AstMATERIALIZED(Position.Default, "MATERIALIZED", "MATERIALIZED");
+        }
+    }
+    
+    /// <summary>
+    /// MAX : 'MAX'
+    /// </summary>
+    public partial class AstMAX : AstTerminalKeyword
+    {
+        
+        public AstMAX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX : MAX
+        /// </summary>
+        public static AstMAX MAX()
+        {
+            return new AstMAX(Position.Default, "MAX", "MAX");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_CPU_PERCENT : 'MAX_CPU_PERCENT'
+    /// </summary>
+    public partial class AstMAXCPUPERCENT : AstTerminalKeyword
+    {
+        
+        public AstMAXCPUPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXCPUPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_CPU_PERCENT : MAX_CPU_PERCENT
+        /// </summary>
+        public static AstMAXCPUPERCENT MAXCPUPERCENT()
+        {
+            return new AstMAXCPUPERCENT(Position.Default, "MAX_CPU_PERCENT", "MAX_CPU_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_DOP : 'MAX_DOP'
+    /// </summary>
+    public partial class AstMAXDOP : AstTerminalKeyword
+    {
+        
+        public AstMAXDOP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXDOP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_DOP : MAX_DOP
+        /// </summary>
+        public static AstMAXDOP MAXDOP()
+        {
+            return new AstMAXDOP(Position.Default, "MAX_DOP", "MAX_DOP");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_FILES : 'MAX_FILES'
+    /// </summary>
+    public partial class AstMAXFILES : AstTerminalKeyword
+    {
+        
+        public AstMAXFILES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXFILES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_FILES : MAX_FILES
+        /// </summary>
+        public static AstMAXFILES MAXFILES()
+        {
+            return new AstMAXFILES(Position.Default, "MAX_FILES", "MAX_FILES");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_IOPS_PER_VOLUME : 'MAX_IOPS_PER_VOLUME'
+    /// </summary>
+    public partial class AstMAXIOPSPERVOLUME : AstTerminalKeyword
+    {
+        
+        public AstMAXIOPSPERVOLUME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXIOPSPERVOLUME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_IOPS_PER_VOLUME : MAX_IOPS_PER_VOLUME
+        /// </summary>
+        public static AstMAXIOPSPERVOLUME MAXIOPSPERVOLUME()
+        {
+            return new AstMAXIOPSPERVOLUME(Position.Default, "MAX_IOPS_PER_VOLUME", "MAX_IOPS_PER_VOLUME");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_MEMORY_PERCENT : 'MAX_MEMORY_PERCENT'
+    /// </summary>
+    public partial class AstMAXMEMORYPERCENT : AstTerminalKeyword
+    {
+        
+        public AstMAXMEMORYPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXMEMORYPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_MEMORY_PERCENT : MAX_MEMORY_PERCENT
+        /// </summary>
+        public static AstMAXMEMORYPERCENT MAXMEMORYPERCENT()
+        {
+            return new AstMAXMEMORYPERCENT(Position.Default, "MAX_MEMORY_PERCENT", "MAX_MEMORY_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_PROCESSES : 'MAX_PROCESSES'
+    /// </summary>
+    public partial class AstMAXPROCESSES : AstTerminalKeyword
+    {
+        
+        public AstMAXPROCESSES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXPROCESSES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_PROCESSES : MAX_PROCESSES
+        /// </summary>
+        public static AstMAXPROCESSES MAXPROCESSES()
+        {
+            return new AstMAXPROCESSES(Position.Default, "MAX_PROCESSES", "MAX_PROCESSES");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_QUEUE_READERS : 'MAX_QUEUE_READERS'
+    /// </summary>
+    public partial class AstMAXQUEUEREADERS : AstTerminalKeyword
+    {
+        
+        public AstMAXQUEUEREADERS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXQUEUEREADERS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_QUEUE_READERS : MAX_QUEUE_READERS
+        /// </summary>
+        public static AstMAXQUEUEREADERS MAXQUEUEREADERS()
+        {
+            return new AstMAXQUEUEREADERS(Position.Default, "MAX_QUEUE_READERS", "MAX_QUEUE_READERS");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_ROLLOVER_FILES : 'MAX_ROLLOVER_FILES'
+    /// </summary>
+    public partial class AstMAXROLLOVERFILES : AstTerminalKeyword
+    {
+        
+        public AstMAXROLLOVERFILES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXROLLOVERFILES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_ROLLOVER_FILES : MAX_ROLLOVER_FILES
+        /// </summary>
+        public static AstMAXROLLOVERFILES MAXROLLOVERFILES()
+        {
+            return new AstMAXROLLOVERFILES(Position.Default, "MAX_ROLLOVER_FILES", "MAX_ROLLOVER_FILES");
+        }
+    }
+    
+    /// <summary>
+    /// MAXRECURSION : 'MAXRECURSION'
+    /// </summary>
+    public partial class AstMAXRECURSION : AstTerminalKeyword
+    {
+        
+        public AstMAXRECURSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXRECURSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAXRECURSION : MAXRECURSION
+        /// </summary>
+        public static AstMAXRECURSION MAXRECURSION()
+        {
+            return new AstMAXRECURSION(Position.Default, "MAXRECURSION", "MAXRECURSION");
+        }
+    }
+    
+    /// <summary>
+    /// MAXSIZE : 'MAXSIZE'
+    /// </summary>
+    public partial class AstMAXSIZE : AstTerminalKeyword
+    {
+        
+        public AstMAXSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAXSIZE : MAXSIZE
+        /// </summary>
+        public static AstMAXSIZE MAXSIZE()
+        {
+            return new AstMAXSIZE(Position.Default, "MAXSIZE", "MAXSIZE");
+        }
+    }
+    
+    /// <summary>
+    /// MB : 'MB'
+    /// </summary>
+    public partial class AstMB : AstTerminalKeyword
+    {
+        
+        public AstMB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MB : MB
+        /// </summary>
+        public static AstMB MB()
+        {
+            return new AstMB(Position.Default, "MB", "MB");
+        }
+    }
+    
+    /// <summary>
+    /// MEDIUM : 'MEDIUM'
+    /// </summary>
+    public partial class AstMEDIUM : AstTerminalKeyword
+    {
+        
+        public AstMEDIUM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEDIUM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEDIUM : MEDIUM
+        /// </summary>
+        public static AstMEDIUM MEDIUM()
+        {
+            return new AstMEDIUM(Position.Default, "MEDIUM", "MEDIUM");
+        }
+    }
+    
+    /// <summary>
+    /// MEMORY_OPTIMIZED_DATA : 'MEMORY_OPTIMIZED_DATA'
+    /// </summary>
+    public partial class AstMEMORYOPTIMIZEDDATA : AstTerminalKeyword
+    {
+        
+        public AstMEMORYOPTIMIZEDDATA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEMORYOPTIMIZEDDATA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEMORY_OPTIMIZED_DATA : MEMORY_OPTIMIZED_DATA
+        /// </summary>
+        public static AstMEMORYOPTIMIZEDDATA MEMORYOPTIMIZEDDATA()
+        {
+            return new AstMEMORYOPTIMIZEDDATA(Position.Default, "MEMORY_OPTIMIZED_DATA", "MEMORY_OPTIMIZED_DATA");
+        }
+    }
+    
+    /// <summary>
+    /// MESSAGE : 'MESSAGE'
+    /// </summary>
+    public partial class AstMESSAGE : AstTerminalKeyword
+    {
+        
+        public AstMESSAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMESSAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MESSAGE : MESSAGE
+        /// </summary>
+        public static AstMESSAGE MESSAGE()
+        {
+            return new AstMESSAGE(Position.Default, "MESSAGE", "MESSAGE");
+        }
+    }
+    
+    /// <summary>
+    /// MIN : 'MIN'
+    /// </summary>
+    public partial class AstMIN : AstTerminalKeyword
+    {
+        
+        public AstMIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIN : MIN
+        /// </summary>
+        public static AstMIN MIN()
+        {
+            return new AstMIN(Position.Default, "MIN", "MIN");
+        }
+    }
+    
+    /// <summary>
+    /// MIN_ACTIVE_ROWVERSION : 'MIN_ACTIVE_ROWVERSION'
+    /// </summary>
+    public partial class AstMINACTIVEROWVERSION : AstTerminalKeyword
+    {
+        
+        public AstMINACTIVEROWVERSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINACTIVEROWVERSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIN_ACTIVE_ROWVERSION : MIN_ACTIVE_ROWVERSION
+        /// </summary>
+        public static AstMINACTIVEROWVERSION MINACTIVEROWVERSION()
+        {
+            return new AstMINACTIVEROWVERSION(Position.Default, "MIN_ACTIVE_ROWVERSION", "MIN_ACTIVE_ROWVERSION");
+        }
+    }
+    
+    /// <summary>
+    /// MIN_CPU_PERCENT : 'MIN_CPU_PERCENT'
+    /// </summary>
+    public partial class AstMINCPUPERCENT : AstTerminalKeyword
+    {
+        
+        public AstMINCPUPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINCPUPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIN_CPU_PERCENT : MIN_CPU_PERCENT
+        /// </summary>
+        public static AstMINCPUPERCENT MINCPUPERCENT()
+        {
+            return new AstMINCPUPERCENT(Position.Default, "MIN_CPU_PERCENT", "MIN_CPU_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// MIN_IOPS_PER_VOLUME : 'MIN_IOPS_PER_VOLUME'
+    /// </summary>
+    public partial class AstMINIOPSPERVOLUME : AstTerminalKeyword
+    {
+        
+        public AstMINIOPSPERVOLUME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINIOPSPERVOLUME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIN_IOPS_PER_VOLUME : MIN_IOPS_PER_VOLUME
+        /// </summary>
+        public static AstMINIOPSPERVOLUME MINIOPSPERVOLUME()
+        {
+            return new AstMINIOPSPERVOLUME(Position.Default, "MIN_IOPS_PER_VOLUME", "MIN_IOPS_PER_VOLUME");
+        }
+    }
+    
+    /// <summary>
+    /// MIN_MEMORY_PERCENT : 'MIN_MEMORY_PERCENT'
+    /// </summary>
+    public partial class AstMINMEMORYPERCENT : AstTerminalKeyword
+    {
+        
+        public AstMINMEMORYPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINMEMORYPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIN_MEMORY_PERCENT : MIN_MEMORY_PERCENT
+        /// </summary>
+        public static AstMINMEMORYPERCENT MINMEMORYPERCENT()
+        {
+            return new AstMINMEMORYPERCENT(Position.Default, "MIN_MEMORY_PERCENT", "MIN_MEMORY_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// MINUTES : 'MINUTES'
+    /// </summary>
+    public partial class AstMINUTES : AstTerminalKeyword
+    {
+        
+        public AstMINUTES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINUTES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MINUTES : MINUTES
+        /// </summary>
+        public static AstMINUTES MINUTES()
+        {
+            return new AstMINUTES(Position.Default, "MINUTES", "MINUTES");
+        }
+    }
+    
+    /// <summary>
+    /// MIRROR_ADDRESS : 'MIRROR_ADDRESS'
+    /// </summary>
+    public partial class AstMIRRORADDRESS : AstTerminalKeyword
+    {
+        
+        public AstMIRRORADDRESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMIRRORADDRESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIRROR_ADDRESS : MIRROR_ADDRESS
+        /// </summary>
+        public static AstMIRRORADDRESS MIRRORADDRESS()
+        {
+            return new AstMIRRORADDRESS(Position.Default, "MIRROR_ADDRESS", "MIRROR_ADDRESS");
+        }
+    }
+    
+    /// <summary>
+    /// MIXED_PAGE_ALLOCATION : 'MIXED_PAGE_ALLOCATION'
+    /// </summary>
+    public partial class AstMIXEDPAGEALLOCATION : AstTerminalKeyword
+    {
+        
+        public AstMIXEDPAGEALLOCATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMIXEDPAGEALLOCATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIXED_PAGE_ALLOCATION : MIXED_PAGE_ALLOCATION
+        /// </summary>
+        public static AstMIXEDPAGEALLOCATION MIXEDPAGEALLOCATION()
+        {
+            return new AstMIXEDPAGEALLOCATION(Position.Default, "MIXED_PAGE_ALLOCATION", "MIXED_PAGE_ALLOCATION");
+        }
+    }
+    
+    /// <summary>
+    /// MODE : 'MODE'
+    /// </summary>
+    public partial class AstMODE : AstTerminalKeyword
+    {
+        
+        public AstMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MODE : MODE
+        /// </summary>
+        public static AstMODE MODE()
+        {
+            return new AstMODE(Position.Default, "MODE", "MODE");
+        }
+    }
+    
+    /// <summary>
+    /// MODIFY : 'MODIFY'
+    /// </summary>
+    public partial class AstMODIFY : AstTerminalKeyword
+    {
+        
+        public AstMODIFY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMODIFY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MODIFY : MODIFY
+        /// </summary>
+        public static AstMODIFY MODIFY()
+        {
+            return new AstMODIFY(Position.Default, "MODIFY", "MODIFY");
+        }
+    }
+    
+    /// <summary>
+    /// MOVE : 'MOVE'
+    /// </summary>
+    public partial class AstMOVE : AstTerminalKeyword
+    {
+        
+        public AstMOVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMOVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MOVE : MOVE
+        /// </summary>
+        public static AstMOVE MOVE()
+        {
+            return new AstMOVE(Position.Default, "MOVE", "MOVE");
+        }
+    }
+    
+    /// <summary>
+    /// MULTI_USER : 'MULTI_USER'
+    /// </summary>
+    public partial class AstMULTIUSER : AstTerminalKeyword
+    {
+        
+        public AstMULTIUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMULTIUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MULTI_USER : MULTI_USER
+        /// </summary>
+        public static AstMULTIUSER MULTIUSER()
+        {
+            return new AstMULTIUSER(Position.Default, "MULTI_USER", "MULTI_USER");
+        }
+    }
+    
+    /// <summary>
+    /// NAME : 'NAME'
+    /// </summary>
+    public partial class AstNAME : AstTerminalKeyword
+    {
+        
+        public AstNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NAME : NAME
+        /// </summary>
+        public static AstNAME NAME()
+        {
+            return new AstNAME(Position.Default, "NAME", "NAME");
+        }
+    }
+    
+    /// <summary>
+    /// NCHAR : 'NCHAR'
+    /// </summary>
+    public partial class AstNCHAR : AstTerminalKeyword
+    {
+        
+        public AstNCHAR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNCHAR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NCHAR : NCHAR
+        /// </summary>
+        public static AstNCHAR NCHAR()
+        {
+            return new AstNCHAR(Position.Default, "NCHAR", "NCHAR");
+        }
+    }
+    
+    /// <summary>
+    /// NESTED_TRIGGERS : 'NESTED_TRIGGERS'
+    /// </summary>
+    public partial class AstNESTEDTRIGGERS : AstTerminalKeyword
+    {
+        
+        public AstNESTEDTRIGGERS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNESTEDTRIGGERS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NESTED_TRIGGERS : NESTED_TRIGGERS
+        /// </summary>
+        public static AstNESTEDTRIGGERS NESTEDTRIGGERS()
+        {
+            return new AstNESTEDTRIGGERS(Position.Default, "NESTED_TRIGGERS", "NESTED_TRIGGERS");
+        }
+    }
+    
+    /// <summary>
+    /// NEW_ACCOUNT : 'NEW_ACCOUNT'
+    /// </summary>
+    public partial class AstNEWACCOUNT : AstTerminalKeyword
+    {
+        
+        public AstNEWACCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWACCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEW_ACCOUNT : NEW_ACCOUNT
+        /// </summary>
+        public static AstNEWACCOUNT NEWACCOUNT()
+        {
+            return new AstNEWACCOUNT(Position.Default, "NEW_ACCOUNT", "NEW_ACCOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// NEW_BROKER : 'NEW_BROKER'
+    /// </summary>
+    public partial class AstNEWBROKER : AstTerminalKeyword
+    {
+        
+        public AstNEWBROKER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWBROKER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEW_BROKER : NEW_BROKER
+        /// </summary>
+        public static AstNEWBROKER NEWBROKER()
+        {
+            return new AstNEWBROKER(Position.Default, "NEW_BROKER", "NEW_BROKER");
+        }
+    }
+    
+    /// <summary>
+    /// NEW_PASSWORD : 'NEW_PASSWORD'
+    /// </summary>
+    public partial class AstNEWPASSWORD : AstTerminalKeyword
+    {
+        
+        public AstNEWPASSWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWPASSWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEW_PASSWORD : NEW_PASSWORD
+        /// </summary>
+        public static AstNEWPASSWORD NEWPASSWORD()
+        {
+            return new AstNEWPASSWORD(Position.Default, "NEW_PASSWORD", "NEW_PASSWORD");
+        }
+    }
+    
+    /// <summary>
+    /// NEWNAME : 'NEWNAME'
+    /// </summary>
+    public partial class AstNEWNAME : AstTerminalKeyword
+    {
+        
+        public AstNEWNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEWNAME : NEWNAME
+        /// </summary>
+        public static AstNEWNAME NEWNAME()
+        {
+            return new AstNEWNAME(Position.Default, "NEWNAME", "NEWNAME");
+        }
+    }
+    
+    /// <summary>
+    /// NEXT : 'NEXT'
+    /// </summary>
+    public partial class AstNEXT : AstTerminalKeyword
+    {
+        
+        public AstNEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEXT : NEXT
+        /// </summary>
+        public static AstNEXT NEXT()
+        {
+            return new AstNEXT(Position.Default, "NEXT", "NEXT");
+        }
+    }
+    
+    /// <summary>
+    /// NO : 'NO'
+    /// </summary>
+    public partial class AstNO : AstTerminalKeyword
+    {
+        
+        public AstNO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO : NO
+        /// </summary>
+        public static AstNO NO()
+        {
+            return new AstNO(Position.Default, "NO", "NO");
+        }
+    }
+    
+    /// <summary>
+    /// NO_TRUNCATE : 'NO_TRUNCATE'
+    /// </summary>
+    public partial class AstNOTRUNCATE : AstTerminalKeyword
+    {
+        
+        public AstNOTRUNCATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOTRUNCATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO_TRUNCATE : NO_TRUNCATE
+        /// </summary>
+        public static AstNOTRUNCATE NOTRUNCATE()
+        {
+            return new AstNOTRUNCATE(Position.Default, "NO_TRUNCATE", "NO_TRUNCATE");
+        }
+    }
+    
+    /// <summary>
+    /// NO_WAIT : 'NO_WAIT'
+    /// </summary>
+    public partial class AstNOWAIT : AstTerminalKeyword
+    {
+        
+        public AstNOWAIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOWAIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO_WAIT : NO_WAIT
+        /// </summary>
+        public static AstNOWAIT NOWAIT()
+        {
+            return new AstNOWAIT(Position.Default, "NO_WAIT", "NO_WAIT");
+        }
+    }
+    
+    /// <summary>
+    /// NOCOUNT : 'NOCOUNT'
+    /// </summary>
+    public partial class AstNOCOUNT : AstTerminalKeyword
+    {
+        
+        public AstNOCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOCOUNT : NOCOUNT
+        /// </summary>
+        public static AstNOCOUNT NOCOUNT()
+        {
+            return new AstNOCOUNT(Position.Default, "NOCOUNT", "NOCOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// NODES : 'NODES'
+    /// </summary>
+    public partial class AstNODES : AstTerminalKeyword
+    {
+        
+        public AstNODES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNODES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NODES : NODES
+        /// </summary>
+        public static AstNODES NODES()
+        {
+            return new AstNODES(Position.Default, "NODES", "NODES");
+        }
+    }
+    
+    /// <summary>
+    /// NOEXEC : 'NOEXEC'
+    /// </summary>
+    public partial class AstNOEXEC : AstTerminalKeyword
+    {
+        
+        public AstNOEXEC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOEXEC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOEXEC : NOEXEC
+        /// </summary>
+        public static AstNOEXEC NOEXEC()
+        {
+            return new AstNOEXEC(Position.Default, "NOEXEC", "NOEXEC");
+        }
+    }
+    
+    /// <summary>
+    /// NOEXPAND : 'NOEXPAND'
+    /// </summary>
+    public partial class AstNOEXPAND : AstTerminalKeyword
+    {
+        
+        public AstNOEXPAND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOEXPAND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOEXPAND : NOEXPAND
+        /// </summary>
+        public static AstNOEXPAND NOEXPAND()
+        {
+            return new AstNOEXPAND(Position.Default, "NOEXPAND", "NOEXPAND");
+        }
+    }
+    
+    /// <summary>
+    /// NOLOCK : 'NOLOCK'
+    /// </summary>
+    public partial class AstNOLOCK : AstTerminalKeyword
+    {
+        
+        public AstNOLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOLOCK : NOLOCK
+        /// </summary>
+        public static AstNOLOCK NOLOCK()
+        {
+            return new AstNOLOCK(Position.Default, "NOLOCK", "NOLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// NON_TRANSACTED_ACCESS : 'NON_TRANSACTED_ACCESS'
+    /// </summary>
+    public partial class AstNONTRANSACTEDACCESS : AstTerminalKeyword
+    {
+        
+        public AstNONTRANSACTEDACCESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNONTRANSACTEDACCESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NON_TRANSACTED_ACCESS : NON_TRANSACTED_ACCESS
+        /// </summary>
+        public static AstNONTRANSACTEDACCESS NONTRANSACTEDACCESS()
+        {
+            return new AstNONTRANSACTEDACCESS(Position.Default, "NON_TRANSACTED_ACCESS", "NON_TRANSACTED_ACCESS");
+        }
+    }
+    
+    /// <summary>
+    /// NORECOMPUTE : 'NORECOMPUTE'
+    /// </summary>
+    public partial class AstNORECOMPUTE : AstTerminalKeyword
+    {
+        
+        public AstNORECOMPUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNORECOMPUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NORECOMPUTE : NORECOMPUTE
+        /// </summary>
+        public static AstNORECOMPUTE NORECOMPUTE()
+        {
+            return new AstNORECOMPUTE(Position.Default, "NORECOMPUTE", "NORECOMPUTE");
+        }
+    }
+    
+    /// <summary>
+    /// NORECOVERY : 'NORECOVERY'
+    /// </summary>
+    public partial class AstNORECOVERY : AstTerminalKeyword
+    {
+        
+        public AstNORECOVERY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNORECOVERY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NORECOVERY : NORECOVERY
+        /// </summary>
+        public static AstNORECOVERY NORECOVERY()
+        {
+            return new AstNORECOVERY(Position.Default, "NORECOVERY", "NORECOVERY");
+        }
+    }
+    
+    /// <summary>
+    /// NOTIFICATIONS : 'NOTIFICATIONS'
+    /// </summary>
+    public partial class AstNOTIFICATIONS : AstTerminalKeyword
+    {
+        
+        public AstNOTIFICATIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOTIFICATIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOTIFICATIONS : NOTIFICATIONS
+        /// </summary>
+        public static AstNOTIFICATIONS NOTIFICATIONS()
+        {
+            return new AstNOTIFICATIONS(Position.Default, "NOTIFICATIONS", "NOTIFICATIONS");
+        }
+    }
+    
+    /// <summary>
+    /// NTILE : 'NTILE'
+    /// </summary>
+    public partial class AstNTILE : AstTerminalKeyword
+    {
+        
+        public AstNTILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNTILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NTILE : NTILE
+        /// </summary>
+        public static AstNTILE NTILE()
+        {
+            return new AstNTILE(Position.Default, "NTILE", "NTILE");
+        }
+    }
+    
+    /// <summary>
+    /// NULL_DOUBLE_QUOTE : ["]  'NULL'  ["]
+    /// </summary>
+    public partial class AstNULLDOUBLEQUOTE : AstTerminalKeyword
+    {
+        
+        public AstNULLDOUBLEQUOTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNULLDOUBLEQUOTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NULL_DOUBLE_QUOTE : "]  'NULL'  ["
+        /// </summary>
+        public static AstNULLDOUBLEQUOTE NULLDOUBLEQUOTE()
+        {
+            return new AstNULLDOUBLEQUOTE(Position.Default, "NULL_DOUBLE_QUOTE", "\"]  \'NULL\'  [\"");
+        }
+    }
+    
+    /// <summary>
+    /// NUMANODE : 'NUMANODE'
+    /// </summary>
+    public partial class AstNUMANODE : AstTerminalKeyword
+    {
+        
+        public AstNUMANODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNUMANODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NUMANODE : NUMANODE
+        /// </summary>
+        public static AstNUMANODE NUMANODE()
+        {
+            return new AstNUMANODE(Position.Default, "NUMANODE", "NUMANODE");
+        }
+    }
+    
+    /// <summary>
+    /// NUMBER : 'NUMBER'
+    /// </summary>
+    public partial class AstNUMBER : AstTerminalKeyword
+    {
+        
+        public AstNUMBER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNUMBER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NUMBER : NUMBER
+        /// </summary>
+        public static AstNUMBER NUMBER()
+        {
+            return new AstNUMBER(Position.Default, "NUMBER", "NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// NUMERIC_ROUNDABORT : 'NUMERIC_ROUNDABORT'
+    /// </summary>
+    public partial class AstNUMERICROUNDABORT : AstTerminalKeyword
+    {
+        
+        public AstNUMERICROUNDABORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNUMERICROUNDABORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NUMERIC_ROUNDABORT : NUMERIC_ROUNDABORT
+        /// </summary>
+        public static AstNUMERICROUNDABORT NUMERICROUNDABORT()
+        {
+            return new AstNUMERICROUNDABORT(Position.Default, "NUMERIC_ROUNDABORT", "NUMERIC_ROUNDABORT");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECT : 'OBJECT'
+    /// </summary>
+    public partial class AstOBJECT : AstTerminalKeyword
+    {
+        
+        public AstOBJECT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECT : OBJECT
+        /// </summary>
+        public static AstOBJECT OBJECT()
+        {
+            return new AstOBJECT(Position.Default, "OBJECT", "OBJECT");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECT_DEFINITION : 'OBJECT_DEFINITION'
+    /// </summary>
+    public partial class AstOBJECTDEFINITION : AstTerminalKeyword
+    {
+        
+        public AstOBJECTDEFINITION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTDEFINITION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECT_DEFINITION : OBJECT_DEFINITION
+        /// </summary>
+        public static AstOBJECTDEFINITION OBJECTDEFINITION()
+        {
+            return new AstOBJECTDEFINITION(Position.Default, "OBJECT_DEFINITION", "OBJECT_DEFINITION");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECT_ID : 'OBJECT_ID'
+    /// </summary>
+    public partial class AstOBJECTID : AstTerminalKeyword
+    {
+        
+        public AstOBJECTID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECT_ID : OBJECT_ID
+        /// </summary>
+        public static AstOBJECTID OBJECTID()
+        {
+            return new AstOBJECTID(Position.Default, "OBJECT_ID", "OBJECT_ID");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECT_NAME : 'OBJECT_NAME'
+    /// </summary>
+    public partial class AstOBJECTNAME : AstTerminalKeyword
+    {
+        
+        public AstOBJECTNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECT_NAME : OBJECT_NAME
+        /// </summary>
+        public static AstOBJECTNAME OBJECTNAME()
+        {
+            return new AstOBJECTNAME(Position.Default, "OBJECT_NAME", "OBJECT_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECT_SCHEMA_NAME : 'OBJECT_SCHEMA_NAME'
+    /// </summary>
+    public partial class AstOBJECTSCHEMANAME : AstTerminalKeyword
+    {
+        
+        public AstOBJECTSCHEMANAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTSCHEMANAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECT_SCHEMA_NAME : OBJECT_SCHEMA_NAME
+        /// </summary>
+        public static AstOBJECTSCHEMANAME OBJECTSCHEMANAME()
+        {
+            return new AstOBJECTSCHEMANAME(Position.Default, "OBJECT_SCHEMA_NAME", "OBJECT_SCHEMA_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECTPROPERTY : 'OBJECTPROPERTY'
+    /// </summary>
+    public partial class AstOBJECTPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstOBJECTPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECTPROPERTY : OBJECTPROPERTY
+        /// </summary>
+        public static AstOBJECTPROPERTY OBJECTPROPERTY()
+        {
+            return new AstOBJECTPROPERTY(Position.Default, "OBJECTPROPERTY", "OBJECTPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// OBJECTPROPERTYEX : 'OBJECTPROPERTYEX'
+    /// </summary>
+    public partial class AstOBJECTPROPERTYEX : AstTerminalKeyword
+    {
+        
+        public AstOBJECTPROPERTYEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOBJECTPROPERTYEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OBJECTPROPERTYEX : OBJECTPROPERTYEX
+        /// </summary>
+        public static AstOBJECTPROPERTYEX OBJECTPROPERTYEX()
+        {
+            return new AstOBJECTPROPERTYEX(Position.Default, "OBJECTPROPERTYEX", "OBJECTPROPERTYEX");
+        }
+    }
+    
+    /// <summary>
+    /// OFFLINE : 'OFFLINE'
+    /// </summary>
+    public partial class AstOFFLINE : AstTerminalKeyword
+    {
+        
+        public AstOFFLINE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOFFLINE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OFFLINE : OFFLINE
+        /// </summary>
+        public static AstOFFLINE OFFLINE()
+        {
+            return new AstOFFLINE(Position.Default, "OFFLINE", "OFFLINE");
+        }
+    }
+    
+    /// <summary>
+    /// OFFSET : 'OFFSET'
+    /// </summary>
+    public partial class AstOFFSET : AstTerminalKeyword
+    {
+        
+        public AstOFFSET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOFFSET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OFFSET : OFFSET
+        /// </summary>
+        public static AstOFFSET OFFSET()
+        {
+            return new AstOFFSET(Position.Default, "OFFSET", "OFFSET");
+        }
+    }
+    
+    /// <summary>
+    /// OLD_ACCOUNT : 'OLD_ACCOUNT'
+    /// </summary>
+    public partial class AstOLDACCOUNT : AstTerminalKeyword
+    {
+        
+        public AstOLDACCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOLDACCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OLD_ACCOUNT : OLD_ACCOUNT
+        /// </summary>
+        public static AstOLDACCOUNT OLDACCOUNT()
+        {
+            return new AstOLDACCOUNT(Position.Default, "OLD_ACCOUNT", "OLD_ACCOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// ONLINE : 'ONLINE'
+    /// </summary>
+    public partial class AstONLINE : AstTerminalKeyword
+    {
+        
+        public AstONLINE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstONLINE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ONLINE : ONLINE
+        /// </summary>
+        public static AstONLINE ONLINE()
+        {
+            return new AstONLINE(Position.Default, "ONLINE", "ONLINE");
+        }
+    }
+    
+    /// <summary>
+    /// ONLY : 'ONLY'
+    /// </summary>
+    public partial class AstONLY : AstTerminalKeyword
+    {
+        
+        public AstONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ONLY : ONLY
+        /// </summary>
+        public static AstONLY ONLY()
+        {
+            return new AstONLY(Position.Default, "ONLY", "ONLY");
+        }
+    }
+    
+    /// <summary>
+    /// OPEN_EXISTING : 'OPEN_EXISTING'
+    /// </summary>
+    public partial class AstOPENEXISTING : AstTerminalKeyword
+    {
+        
+        public AstOPENEXISTING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENEXISTING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPEN_EXISTING : OPEN_EXISTING
+        /// </summary>
+        public static AstOPENEXISTING OPENEXISTING()
+        {
+            return new AstOPENEXISTING(Position.Default, "OPEN_EXISTING", "OPEN_EXISTING");
+        }
+    }
+    
+    /// <summary>
+    /// OPENJSON : 'OPENJSON'
+    /// </summary>
+    public partial class AstOPENJSON : AstTerminalKeyword
+    {
+        
+        public AstOPENJSON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPENJSON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPENJSON : OPENJSON
+        /// </summary>
+        public static AstOPENJSON OPENJSON()
+        {
+            return new AstOPENJSON(Position.Default, "OPENJSON", "OPENJSON");
+        }
+    }
+    
+    /// <summary>
+    /// OPTIMISTIC : 'OPTIMISTIC'
+    /// </summary>
+    public partial class AstOPTIMISTIC : AstTerminalKeyword
+    {
+        
+        public AstOPTIMISTIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPTIMISTIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPTIMISTIC : OPTIMISTIC
+        /// </summary>
+        public static AstOPTIMISTIC OPTIMISTIC()
+        {
+            return new AstOPTIMISTIC(Position.Default, "OPTIMISTIC", "OPTIMISTIC");
+        }
+    }
+    
+    /// <summary>
+    /// OPTIMIZE : 'OPTIMIZE'
+    /// </summary>
+    public partial class AstOPTIMIZE : AstTerminalKeyword
+    {
+        
+        public AstOPTIMIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPTIMIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPTIMIZE : OPTIMIZE
+        /// </summary>
+        public static AstOPTIMIZE OPTIMIZE()
+        {
+            return new AstOPTIMIZE(Position.Default, "OPTIMIZE", "OPTIMIZE");
+        }
+    }
+    
+    /// <summary>
+    /// OPTIMIZE_FOR_SEQUENTIAL_KEY : 'OPTIMIZE_FOR_SEQUENTIAL_KEY'
+    /// </summary>
+    public partial class AstOPTIMIZEFORSEQUENTIALKEY : AstTerminalKeyword
+    {
+        
+        public AstOPTIMIZEFORSEQUENTIALKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPTIMIZEFORSEQUENTIALKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPTIMIZE_FOR_SEQUENTIAL_KEY : OPTIMIZE_FOR_SEQUENTIAL_KEY
+        /// </summary>
+        public static AstOPTIMIZEFORSEQUENTIALKEY OPTIMIZEFORSEQUENTIALKEY()
+        {
+            return new AstOPTIMIZEFORSEQUENTIALKEY(Position.Default, "OPTIMIZE_FOR_SEQUENTIAL_KEY", "OPTIMIZE_FOR_SEQUENTIAL_KEY");
+        }
+    }
+    
+    /// <summary>
+    /// ORIGINAL_DB_NAME : 'ORIGINAL_DB_NAME'
+    /// </summary>
+    public partial class AstORIGINALDBNAME : AstTerminalKeyword
+    {
+        
+        public AstORIGINALDBNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstORIGINALDBNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ORIGINAL_DB_NAME : ORIGINAL_DB_NAME
+        /// </summary>
+        public static AstORIGINALDBNAME ORIGINALDBNAME()
+        {
+            return new AstORIGINALDBNAME(Position.Default, "ORIGINAL_DB_NAME", "ORIGINAL_DB_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// OUT : 'OUT'
+    /// </summary>
+    public partial class AstOUT : AstTerminalKeyword
+    {
+        
+        public AstOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OUT : OUT
+        /// </summary>
+        public static AstOUT OUT()
+        {
+            return new AstOUT(Position.Default, "OUT", "OUT");
+        }
+    }
+    
+    /// <summary>
+    /// OUTPUT : 'OUTPUT'
+    /// </summary>
+    public partial class AstOUTPUT : AstTerminalKeyword
+    {
+        
+        public AstOUTPUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOUTPUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OUTPUT : OUTPUT
+        /// </summary>
+        public static AstOUTPUT OUTPUT()
+        {
+            return new AstOUTPUT(Position.Default, "OUTPUT", "OUTPUT");
+        }
+    }
+    
+    /// <summary>
+    /// OVERRIDE : 'OVERRIDE'
+    /// </summary>
+    public partial class AstOVERRIDE : AstTerminalKeyword
+    {
+        
+        public AstOVERRIDE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOVERRIDE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OVERRIDE : OVERRIDE
+        /// </summary>
+        public static AstOVERRIDE OVERRIDE()
+        {
+            return new AstOVERRIDE(Position.Default, "OVERRIDE", "OVERRIDE");
+        }
+    }
+    
+    /// <summary>
+    /// OWNER : 'OWNER'
+    /// </summary>
+    public partial class AstOWNER : AstTerminalKeyword
+    {
+        
+        public AstOWNER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOWNER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OWNER : OWNER
+        /// </summary>
+        public static AstOWNER OWNER()
+        {
+            return new AstOWNER(Position.Default, "OWNER", "OWNER");
+        }
+    }
+    
+    /// <summary>
+    /// OWNERSHIP : 'OWNERSHIP'
+    /// </summary>
+    public partial class AstOWNERSHIP : AstTerminalKeyword
+    {
+        
+        public AstOWNERSHIP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOWNERSHIP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OWNERSHIP : OWNERSHIP
+        /// </summary>
+        public static AstOWNERSHIP OWNERSHIP()
+        {
+            return new AstOWNERSHIP(Position.Default, "OWNERSHIP", "OWNERSHIP");
+        }
+    }
+    
+    /// <summary>
+    /// PAD_INDEX : 'PAD_INDEX'
+    /// </summary>
+    public partial class AstPADINDEX : AstTerminalKeyword
+    {
+        
+        public AstPADINDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPADINDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAD_INDEX : PAD_INDEX
+        /// </summary>
+        public static AstPADINDEX PADINDEX()
+        {
+            return new AstPADINDEX(Position.Default, "PAD_INDEX", "PAD_INDEX");
+        }
+    }
+    
+    /// <summary>
+    /// PAGE_VERIFY : 'PAGE_VERIFY'
+    /// </summary>
+    public partial class AstPAGEVERIFY : AstTerminalKeyword
+    {
+        
+        public AstPAGEVERIFY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPAGEVERIFY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAGE_VERIFY : PAGE_VERIFY
+        /// </summary>
+        public static AstPAGEVERIFY PAGEVERIFY()
+        {
+            return new AstPAGEVERIFY(Position.Default, "PAGE_VERIFY", "PAGE_VERIFY");
+        }
+    }
+    
+    /// <summary>
+    /// PAGECOUNT : 'PAGECOUNT'
+    /// </summary>
+    public partial class AstPAGECOUNT : AstTerminalKeyword
+    {
+        
+        public AstPAGECOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPAGECOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAGECOUNT : PAGECOUNT
+        /// </summary>
+        public static AstPAGECOUNT PAGECOUNT()
+        {
+            return new AstPAGECOUNT(Position.Default, "PAGECOUNT", "PAGECOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// PAGLOCK : 'PAGLOCK'
+    /// </summary>
+    public partial class AstPAGLOCK : AstTerminalKeyword
+    {
+        
+        public AstPAGLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPAGLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAGLOCK : PAGLOCK
+        /// </summary>
+        public static AstPAGLOCK PAGLOCK()
+        {
+            return new AstPAGLOCK(Position.Default, "PAGLOCK", "PAGLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// PARAMETERIZATION : 'PARAMETERIZATION'
+    /// </summary>
+    public partial class AstPARAMETERIZATION : AstTerminalKeyword
+    {
+        
+        public AstPARAMETERIZATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARAMETERIZATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARAMETERIZATION : PARAMETERIZATION
+        /// </summary>
+        public static AstPARAMETERIZATION PARAMETERIZATION()
+        {
+            return new AstPARAMETERIZATION(Position.Default, "PARAMETERIZATION", "PARAMETERIZATION");
+        }
+    }
+    
+    /// <summary>
+    /// PARSENAME : 'PARSENAME'
+    /// </summary>
+    public partial class AstPARSENAME : AstTerminalKeyword
+    {
+        
+        public AstPARSENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARSENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARSENAME : PARSENAME
+        /// </summary>
+        public static AstPARSENAME PARSENAME()
+        {
+            return new AstPARSENAME(Position.Default, "PARSENAME", "PARSENAME");
+        }
+    }
+    
+    /// <summary>
+    /// PARSEONLY : 'PARSEONLY'
+    /// </summary>
+    public partial class AstPARSEONLY : AstTerminalKeyword
+    {
+        
+        public AstPARSEONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARSEONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARSEONLY : PARSEONLY
+        /// </summary>
+        public static AstPARSEONLY PARSEONLY()
+        {
+            return new AstPARSEONLY(Position.Default, "PARSEONLY", "PARSEONLY");
+        }
+    }
+    
+    /// <summary>
+    /// PARTITION : 'PARTITION'
+    /// </summary>
+    public partial class AstPARTITION : AstTerminalKeyword
+    {
+        
+        public AstPARTITION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARTITION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARTITION : PARTITION
+        /// </summary>
+        public static AstPARTITION PARTITION()
+        {
+            return new AstPARTITION(Position.Default, "PARTITION", "PARTITION");
+        }
+    }
+    
+    /// <summary>
+    /// PARTITIONS : 'PARTITIONS'
+    /// </summary>
+    public partial class AstPARTITIONS : AstTerminalKeyword
+    {
+        
+        public AstPARTITIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARTITIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARTITIONS : PARTITIONS
+        /// </summary>
+        public static AstPARTITIONS PARTITIONS()
+        {
+            return new AstPARTITIONS(Position.Default, "PARTITIONS", "PARTITIONS");
+        }
+    }
+    
+    /// <summary>
+    /// PARTNER : 'PARTNER'
+    /// </summary>
+    public partial class AstPARTNER : AstTerminalKeyword
+    {
+        
+        public AstPARTNER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARTNER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARTNER : PARTNER
+        /// </summary>
+        public static AstPARTNER PARTNER()
+        {
+            return new AstPARTNER(Position.Default, "PARTNER", "PARTNER");
+        }
+    }
+    
+    /// <summary>
+    /// PATH : 'PATH'
+    /// </summary>
+    public partial class AstPATH : AstTerminalKeyword
+    {
+        
+        public AstPATH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPATH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PATH : PATH
+        /// </summary>
+        public static AstPATH PATH()
+        {
+            return new AstPATH(Position.Default, "PATH", "PATH");
+        }
+    }
+    
+    /// <summary>
+    /// PATINDEX : 'PATINDEX'
+    /// </summary>
+    public partial class AstPATINDEX : AstTerminalKeyword
+    {
+        
+        public AstPATINDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPATINDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PATINDEX : PATINDEX
+        /// </summary>
+        public static AstPATINDEX PATINDEX()
+        {
+            return new AstPATINDEX(Position.Default, "PATINDEX", "PATINDEX");
+        }
+    }
+    
+    /// <summary>
+    /// PAUSE : 'PAUSE'
+    /// </summary>
+    public partial class AstPAUSE : AstTerminalKeyword
+    {
+        
+        public AstPAUSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPAUSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAUSE : PAUSE
+        /// </summary>
+        public static AstPAUSE PAUSE()
+        {
+            return new AstPAUSE(Position.Default, "PAUSE", "PAUSE");
+        }
+    }
+    
+    /// <summary>
+    /// PERCENT_RANK : 'PERCENT_RANK'
+    /// </summary>
+    public partial class AstPERCENTRANK : AstTerminalKeyword
+    {
+        
+        public AstPERCENTRANK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERCENTRANK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERCENT_RANK : PERCENT_RANK
+        /// </summary>
+        public static AstPERCENTRANK PERCENTRANK()
+        {
+            return new AstPERCENTRANK(Position.Default, "PERCENT_RANK", "PERCENT_RANK");
+        }
+    }
+    
+    /// <summary>
+    /// PERCENTILE_CONT : 'PERCENTILE_CONT'
+    /// </summary>
+    public partial class AstPERCENTILECONT : AstTerminalKeyword
+    {
+        
+        public AstPERCENTILECONT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERCENTILECONT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERCENTILE_CONT : PERCENTILE_CONT
+        /// </summary>
+        public static AstPERCENTILECONT PERCENTILECONT()
+        {
+            return new AstPERCENTILECONT(Position.Default, "PERCENTILE_CONT", "PERCENTILE_CONT");
+        }
+    }
+    
+    /// <summary>
+    /// PERCENTILE_DISC : 'PERCENTILE_DISC'
+    /// </summary>
+    public partial class AstPERCENTILEDISC : AstTerminalKeyword
+    {
+        
+        public AstPERCENTILEDISC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERCENTILEDISC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERCENTILE_DISC : PERCENTILE_DISC
+        /// </summary>
+        public static AstPERCENTILEDISC PERCENTILEDISC()
+        {
+            return new AstPERCENTILEDISC(Position.Default, "PERCENTILE_DISC", "PERCENTILE_DISC");
+        }
+    }
+    
+    /// <summary>
+    /// PERSIST_SAMPLE_PERCENT : 'PERSIST_SAMPLE_PERCENT'
+    /// </summary>
+    public partial class AstPERSISTSAMPLEPERCENT : AstTerminalKeyword
+    {
+        
+        public AstPERSISTSAMPLEPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERSISTSAMPLEPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERSIST_SAMPLE_PERCENT : PERSIST_SAMPLE_PERCENT
+        /// </summary>
+        public static AstPERSISTSAMPLEPERCENT PERSISTSAMPLEPERCENT()
+        {
+            return new AstPERSISTSAMPLEPERCENT(Position.Default, "PERSIST_SAMPLE_PERCENT", "PERSIST_SAMPLE_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// POISON_MESSAGE_HANDLING : 'POISON_MESSAGE_HANDLING'
+    /// </summary>
+    public partial class AstPOISONMESSAGEHANDLING : AstTerminalKeyword
+    {
+        
+        public AstPOISONMESSAGEHANDLING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPOISONMESSAGEHANDLING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// POISON_MESSAGE_HANDLING : POISON_MESSAGE_HANDLING
+        /// </summary>
+        public static AstPOISONMESSAGEHANDLING POISONMESSAGEHANDLING()
+        {
+            return new AstPOISONMESSAGEHANDLING(Position.Default, "POISON_MESSAGE_HANDLING", "POISON_MESSAGE_HANDLING");
+        }
+    }
+    
+    /// <summary>
+    /// POOL : 'POOL'
+    /// </summary>
+    public partial class AstPOOL : AstTerminalKeyword
+    {
+        
+        public AstPOOL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPOOL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// POOL : POOL
+        /// </summary>
+        public static AstPOOL POOL()
+        {
+            return new AstPOOL(Position.Default, "POOL", "POOL");
+        }
+    }
+    
+    /// <summary>
+    /// PORT : 'PORT'
+    /// </summary>
+    public partial class AstPORT : AstTerminalKeyword
+    {
+        
+        public AstPORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PORT : PORT
+        /// </summary>
+        public static AstPORT PORT()
+        {
+            return new AstPORT(Position.Default, "PORT", "PORT");
+        }
+    }
+    
+    /// <summary>
+    /// PRECEDING : 'PRECEDING'
+    /// </summary>
+    public partial class AstPRECEDING : AstTerminalKeyword
+    {
+        
+        public AstPRECEDING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRECEDING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRECEDING : PRECEDING
+        /// </summary>
+        public static AstPRECEDING PRECEDING()
+        {
+            return new AstPRECEDING(Position.Default, "PRECEDING", "PRECEDING");
+        }
+    }
+    
+    /// <summary>
+    /// PRIMARY_ROLE : 'PRIMARY_ROLE'
+    /// </summary>
+    public partial class AstPRIMARYROLE : AstTerminalKeyword
+    {
+        
+        public AstPRIMARYROLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIMARYROLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIMARY_ROLE : PRIMARY_ROLE
+        /// </summary>
+        public static AstPRIMARYROLE PRIMARYROLE()
+        {
+            return new AstPRIMARYROLE(Position.Default, "PRIMARY_ROLE", "PRIMARY_ROLE");
+        }
+    }
+    
+    /// <summary>
+    /// PRIOR : 'PRIOR'
+    /// </summary>
+    public partial class AstPRIOR : AstTerminalKeyword
+    {
+        
+        public AstPRIOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIOR : PRIOR
+        /// </summary>
+        public static AstPRIOR PRIOR()
+        {
+            return new AstPRIOR(Position.Default, "PRIOR", "PRIOR");
+        }
+    }
+    
+    /// <summary>
+    /// PRIORITY : 'PRIORITY'
+    /// </summary>
+    public partial class AstPRIORITY : AstTerminalKeyword
+    {
+        
+        public AstPRIORITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIORITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIORITY : PRIORITY
+        /// </summary>
+        public static AstPRIORITY PRIORITY()
+        {
+            return new AstPRIORITY(Position.Default, "PRIORITY", "PRIORITY");
+        }
+    }
+    
+    /// <summary>
+    /// PRIORITY_LEVEL : 'PRIORITY_LEVEL'
+    /// </summary>
+    public partial class AstPRIORITYLEVEL : AstTerminalKeyword
+    {
+        
+        public AstPRIORITYLEVEL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIORITYLEVEL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIORITY_LEVEL : PRIORITY_LEVEL
+        /// </summary>
+        public static AstPRIORITYLEVEL PRIORITYLEVEL()
+        {
+            return new AstPRIORITYLEVEL(Position.Default, "PRIORITY_LEVEL", "PRIORITY_LEVEL");
+        }
+    }
+    
+    /// <summary>
+    /// PRIVATE : 'PRIVATE'
+    /// </summary>
+    public partial class AstPRIVATE : AstTerminalKeyword
+    {
+        
+        public AstPRIVATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIVATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIVATE : PRIVATE
+        /// </summary>
+        public static AstPRIVATE PRIVATE()
+        {
+            return new AstPRIVATE(Position.Default, "PRIVATE", "PRIVATE");
+        }
+    }
+    
+    /// <summary>
+    /// PRIVATE_KEY : 'PRIVATE_KEY'
+    /// </summary>
+    public partial class AstPRIVATEKEY : AstTerminalKeyword
+    {
+        
+        public AstPRIVATEKEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIVATEKEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIVATE_KEY : PRIVATE_KEY
+        /// </summary>
+        public static AstPRIVATEKEY PRIVATEKEY()
+        {
+            return new AstPRIVATEKEY(Position.Default, "PRIVATE_KEY", "PRIVATE_KEY");
+        }
+    }
+    
+    /// <summary>
+    /// PRIVILEGES : 'PRIVILEGES'
+    /// </summary>
+    public partial class AstPRIVILEGES : AstTerminalKeyword
+    {
+        
+        public AstPRIVILEGES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPRIVILEGES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PRIVILEGES : PRIVILEGES
+        /// </summary>
+        public static AstPRIVILEGES PRIVILEGES()
+        {
+            return new AstPRIVILEGES(Position.Default, "PRIVILEGES", "PRIVILEGES");
+        }
+    }
+    
+    /// <summary>
+    /// PROCEDURE_NAME : 'PROCEDURE_NAME'
+    /// </summary>
+    public partial class AstPROCEDURENAME : AstTerminalKeyword
+    {
+        
+        public AstPROCEDURENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROCEDURENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROCEDURE_NAME : PROCEDURE_NAME
+        /// </summary>
+        public static AstPROCEDURENAME PROCEDURENAME()
+        {
+            return new AstPROCEDURENAME(Position.Default, "PROCEDURE_NAME", "PROCEDURE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// PROPERTY : 'PROPERTY'
+    /// </summary>
+    public partial class AstPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROPERTY : PROPERTY
+        /// </summary>
+        public static AstPROPERTY PROPERTY()
+        {
+            return new AstPROPERTY(Position.Default, "PROPERTY", "PROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// PROVIDER : 'PROVIDER'
+    /// </summary>
+    public partial class AstPROVIDER : AstTerminalKeyword
+    {
+        
+        public AstPROVIDER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROVIDER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROVIDER : PROVIDER
+        /// </summary>
+        public static AstPROVIDER PROVIDER()
+        {
+            return new AstPROVIDER(Position.Default, "PROVIDER", "PROVIDER");
+        }
+    }
+    
+    /// <summary>
+    /// PROVIDER_KEY_NAME : 'PROVIDER_KEY_NAME'
+    /// </summary>
+    public partial class AstPROVIDERKEYNAME : AstTerminalKeyword
+    {
+        
+        public AstPROVIDERKEYNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROVIDERKEYNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROVIDER_KEY_NAME : PROVIDER_KEY_NAME
+        /// </summary>
+        public static AstPROVIDERKEYNAME PROVIDERKEYNAME()
+        {
+            return new AstPROVIDERKEYNAME(Position.Default, "PROVIDER_KEY_NAME", "PROVIDER_KEY_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// QUERY : 'QUERY'
+    /// </summary>
+    public partial class AstQUERY : AstTerminalKeyword
+    {
+        
+        public AstQUERY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstQUERY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// QUERY : QUERY
+        /// </summary>
+        public static AstQUERY QUERY()
+        {
+            return new AstQUERY(Position.Default, "QUERY", "QUERY");
+        }
+    }
+    
+    /// <summary>
+    /// QUEUE : 'QUEUE'
+    /// </summary>
+    public partial class AstQUEUE : AstTerminalKeyword
+    {
+        
+        public AstQUEUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstQUEUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// QUEUE : QUEUE
+        /// </summary>
+        public static AstQUEUE QUEUE()
+        {
+            return new AstQUEUE(Position.Default, "QUEUE", "QUEUE");
+        }
+    }
+    
+    /// <summary>
+    /// QUEUE_DELAY : 'QUEUE_DELAY'
+    /// </summary>
+    public partial class AstQUEUEDELAY : AstTerminalKeyword
+    {
+        
+        public AstQUEUEDELAY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstQUEUEDELAY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// QUEUE_DELAY : QUEUE_DELAY
+        /// </summary>
+        public static AstQUEUEDELAY QUEUEDELAY()
+        {
+            return new AstQUEUEDELAY(Position.Default, "QUEUE_DELAY", "QUEUE_DELAY");
+        }
+    }
+    
+    /// <summary>
+    /// QUOTED_IDENTIFIER : 'QUOTED_IDENTIFIER'
+    /// </summary>
+    public partial class AstQUOTEDIDENTIFIER : AstTerminalKeyword
+    {
+        
+        public AstQUOTEDIDENTIFIER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstQUOTEDIDENTIFIER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// QUOTED_IDENTIFIER : QUOTED_IDENTIFIER
+        /// </summary>
+        public static AstQUOTEDIDENTIFIER QUOTEDIDENTIFIER()
+        {
+            return new AstQUOTEDIDENTIFIER(Position.Default, "QUOTED_IDENTIFIER", "QUOTED_IDENTIFIER");
+        }
+    }
+    
+    /// <summary>
+    /// QUOTENAME : 'QUOTENAME'
+    /// </summary>
+    public partial class AstQUOTENAME : AstTerminalKeyword
+    {
+        
+        public AstQUOTENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstQUOTENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// QUOTENAME : QUOTENAME
+        /// </summary>
+        public static AstQUOTENAME QUOTENAME()
+        {
+            return new AstQUOTENAME(Position.Default, "QUOTENAME", "QUOTENAME");
+        }
+    }
+    
+    /// <summary>
+    /// RANDOMIZED : 'RANDOMIZED'
+    /// </summary>
+    public partial class AstRANDOMIZED : AstTerminalKeyword
+    {
+        
+        public AstRANDOMIZED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRANDOMIZED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RANDOMIZED : RANDOMIZED
+        /// </summary>
+        public static AstRANDOMIZED RANDOMIZED()
+        {
+            return new AstRANDOMIZED(Position.Default, "RANDOMIZED", "RANDOMIZED");
+        }
+    }
+    
+    /// <summary>
+    /// RANGE : 'RANGE'
+    /// </summary>
+    public partial class AstRANGE : AstTerminalKeyword
+    {
+        
+        public AstRANGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRANGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RANGE : RANGE
+        /// </summary>
+        public static AstRANGE RANGE()
+        {
+            return new AstRANGE(Position.Default, "RANGE", "RANGE");
+        }
+    }
+    
+    /// <summary>
+    /// RANK : 'RANK'
+    /// </summary>
+    public partial class AstRANK : AstTerminalKeyword
+    {
+        
+        public AstRANK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRANK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RANK : RANK
+        /// </summary>
+        public static AstRANK RANK()
+        {
+            return new AstRANK(Position.Default, "RANK", "RANK");
+        }
+    }
+    
+    /// <summary>
+    /// RC2 : 'RC2'
+    /// </summary>
+    public partial class AstRC2 : AstTerminalKeyword
+    {
+        
+        public AstRC2(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRC2(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RC2 : RC2
+        /// </summary>
+        public static AstRC2 RC2()
+        {
+            return new AstRC2(Position.Default, "RC2", "RC2");
+        }
+    }
+    
+    /// <summary>
+    /// RC4 : 'RC4'
+    /// </summary>
+    public partial class AstRC4 : AstTerminalKeyword
+    {
+        
+        public AstRC4(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRC4(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RC4 : RC4
+        /// </summary>
+        public static AstRC4 RC4()
+        {
+            return new AstRC4(Position.Default, "RC4", "RC4");
+        }
+    }
+    
+    /// <summary>
+    /// RC4_128 : 'RC4_128'
+    /// </summary>
+    public partial class AstRC4128 : AstTerminalKeyword
+    {
+        
+        public AstRC4128(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRC4128(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RC4_128 : RC4_128
+        /// </summary>
+        public static AstRC4128 RC4128()
+        {
+            return new AstRC4128(Position.Default, "RC4_128", "RC4_128");
+        }
+    }
+    
+    /// <summary>
+    /// READ_COMMITTED_SNAPSHOT : 'READ_COMMITTED_SNAPSHOT'
+    /// </summary>
+    public partial class AstREADCOMMITTEDSNAPSHOT : AstTerminalKeyword
+    {
+        
+        public AstREADCOMMITTEDSNAPSHOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADCOMMITTEDSNAPSHOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ_COMMITTED_SNAPSHOT : READ_COMMITTED_SNAPSHOT
+        /// </summary>
+        public static AstREADCOMMITTEDSNAPSHOT READCOMMITTEDSNAPSHOT()
+        {
+            return new AstREADCOMMITTEDSNAPSHOT(Position.Default, "READ_COMMITTED_SNAPSHOT", "READ_COMMITTED_SNAPSHOT");
+        }
+    }
+    
+    /// <summary>
+    /// READ_ONLY : 'READ_ONLY'
+    /// </summary>
+    public partial class AstREADONLY : AstTerminalKeyword
+    {
+        
+        public AstREADONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ_ONLY : READ_ONLY
+        /// </summary>
+        public static AstREADONLY READONLY()
+        {
+            return new AstREADONLY(Position.Default, "READ_ONLY", "READ_ONLY");
+        }
+    }
+    
+    /// <summary>
+    /// READ_ONLY_ROUTING_LIST : 'READ_ONLY_ROUTING_LIST'
+    /// </summary>
+    public partial class AstREADONLYROUTINGLIST : AstTerminalKeyword
+    {
+        
+        public AstREADONLYROUTINGLIST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADONLYROUTINGLIST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ_ONLY_ROUTING_LIST : READ_ONLY_ROUTING_LIST
+        /// </summary>
+        public static AstREADONLYROUTINGLIST READONLYROUTINGLIST()
+        {
+            return new AstREADONLYROUTINGLIST(Position.Default, "READ_ONLY_ROUTING_LIST", "READ_ONLY_ROUTING_LIST");
+        }
+    }
+    
+    /// <summary>
+    /// READ_WRITE : 'READ_WRITE'
+    /// </summary>
+    public partial class AstREADWRITE : AstTerminalKeyword
+    {
+        
+        public AstREADWRITE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADWRITE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ_WRITE : READ_WRITE
+        /// </summary>
+        public static AstREADWRITE READWRITE()
+        {
+            return new AstREADWRITE(Position.Default, "READ_WRITE", "READ_WRITE");
+        }
+    }
+    
+    /// <summary>
+    /// READCOMMITTED : 'READCOMMITTED'
+    /// </summary>
+    public partial class AstREADCOMMITTED : AstTerminalKeyword
+    {
+        
+        public AstREADCOMMITTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADCOMMITTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READCOMMITTED : READCOMMITTED
+        /// </summary>
+        public static AstREADCOMMITTED READCOMMITTED()
+        {
+            return new AstREADCOMMITTED(Position.Default, "READCOMMITTED", "READCOMMITTED");
+        }
+    }
+    
+    /// <summary>
+    /// READCOMMITTEDLOCK : 'READCOMMITTEDLOCK'
+    /// </summary>
+    public partial class AstREADCOMMITTEDLOCK : AstTerminalKeyword
+    {
+        
+        public AstREADCOMMITTEDLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADCOMMITTEDLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READCOMMITTEDLOCK : READCOMMITTEDLOCK
+        /// </summary>
+        public static AstREADCOMMITTEDLOCK READCOMMITTEDLOCK()
+        {
+            return new AstREADCOMMITTEDLOCK(Position.Default, "READCOMMITTEDLOCK", "READCOMMITTEDLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// READPAST : 'READPAST'
+    /// </summary>
+    public partial class AstREADPAST : AstTerminalKeyword
+    {
+        
+        public AstREADPAST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADPAST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READPAST : READPAST
+        /// </summary>
+        public static AstREADPAST READPAST()
+        {
+            return new AstREADPAST(Position.Default, "READPAST", "READPAST");
+        }
+    }
+    
+    /// <summary>
+    /// READUNCOMMITTED : 'READUNCOMMITTED'
+    /// </summary>
+    public partial class AstREADUNCOMMITTED : AstTerminalKeyword
+    {
+        
+        public AstREADUNCOMMITTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADUNCOMMITTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READUNCOMMITTED : READUNCOMMITTED
+        /// </summary>
+        public static AstREADUNCOMMITTED READUNCOMMITTED()
+        {
+            return new AstREADUNCOMMITTED(Position.Default, "READUNCOMMITTED", "READUNCOMMITTED");
+        }
+    }
+    
+    /// <summary>
+    /// REBUILD : 'REBUILD'
+    /// </summary>
+    public partial class AstREBUILD : AstTerminalKeyword
+    {
+        
+        public AstREBUILD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREBUILD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REBUILD : REBUILD
+        /// </summary>
+        public static AstREBUILD REBUILD()
+        {
+            return new AstREBUILD(Position.Default, "REBUILD", "REBUILD");
+        }
+    }
+    
+    /// <summary>
+    /// RECEIVE : 'RECEIVE'
+    /// </summary>
+    public partial class AstRECEIVE : AstTerminalKeyword
+    {
+        
+        public AstRECEIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRECEIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RECEIVE : RECEIVE
+        /// </summary>
+        public static AstRECEIVE RECEIVE()
+        {
+            return new AstRECEIVE(Position.Default, "RECEIVE", "RECEIVE");
+        }
+    }
+    
+    /// <summary>
+    /// RECOMPILE : 'RECOMPILE'
+    /// </summary>
+    public partial class AstRECOMPILE : AstTerminalKeyword
+    {
+        
+        public AstRECOMPILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRECOMPILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RECOMPILE : RECOMPILE
+        /// </summary>
+        public static AstRECOMPILE RECOMPILE()
+        {
+            return new AstRECOMPILE(Position.Default, "RECOMPILE", "RECOMPILE");
+        }
+    }
+    
+    /// <summary>
+    /// RECOVERY : 'RECOVERY'
+    /// </summary>
+    public partial class AstRECOVERY : AstTerminalKeyword
+    {
+        
+        public AstRECOVERY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRECOVERY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RECOVERY : RECOVERY
+        /// </summary>
+        public static AstRECOVERY RECOVERY()
+        {
+            return new AstRECOVERY(Position.Default, "RECOVERY", "RECOVERY");
+        }
+    }
+    
+    /// <summary>
+    /// RECURSIVE_TRIGGERS : 'RECURSIVE_TRIGGERS'
+    /// </summary>
+    public partial class AstRECURSIVETRIGGERS : AstTerminalKeyword
+    {
+        
+        public AstRECURSIVETRIGGERS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRECURSIVETRIGGERS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RECURSIVE_TRIGGERS : RECURSIVE_TRIGGERS
+        /// </summary>
+        public static AstRECURSIVETRIGGERS RECURSIVETRIGGERS()
+        {
+            return new AstRECURSIVETRIGGERS(Position.Default, "RECURSIVE_TRIGGERS", "RECURSIVE_TRIGGERS");
+        }
+    }
+    
+    /// <summary>
+    /// RELATIVE : 'RELATIVE'
+    /// </summary>
+    public partial class AstRELATIVE : AstTerminalKeyword
+    {
+        
+        public AstRELATIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRELATIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RELATIVE : RELATIVE
+        /// </summary>
+        public static AstRELATIVE RELATIVE()
+        {
+            return new AstRELATIVE(Position.Default, "RELATIVE", "RELATIVE");
+        }
+    }
+    
+    /// <summary>
+    /// REMOTE : 'REMOTE'
+    /// </summary>
+    public partial class AstREMOTE : AstTerminalKeyword
+    {
+        
+        public AstREMOTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREMOTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REMOTE : REMOTE
+        /// </summary>
+        public static AstREMOTE REMOTE()
+        {
+            return new AstREMOTE(Position.Default, "REMOTE", "REMOTE");
+        }
+    }
+    
+    /// <summary>
+    /// REMOTE_PROC_TRANSACTIONS : 'REMOTE_PROC_TRANSACTIONS'
+    /// </summary>
+    public partial class AstREMOTEPROCTRANSACTIONS : AstTerminalKeyword
+    {
+        
+        public AstREMOTEPROCTRANSACTIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREMOTEPROCTRANSACTIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REMOTE_PROC_TRANSACTIONS : REMOTE_PROC_TRANSACTIONS
+        /// </summary>
+        public static AstREMOTEPROCTRANSACTIONS REMOTEPROCTRANSACTIONS()
+        {
+            return new AstREMOTEPROCTRANSACTIONS(Position.Default, "REMOTE_PROC_TRANSACTIONS", "REMOTE_PROC_TRANSACTIONS");
+        }
+    }
+    
+    /// <summary>
+    /// REMOTE_SERVICE_NAME : 'REMOTE_SERVICE_NAME'
+    /// </summary>
+    public partial class AstREMOTESERVICENAME : AstTerminalKeyword
+    {
+        
+        public AstREMOTESERVICENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREMOTESERVICENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REMOTE_SERVICE_NAME : REMOTE_SERVICE_NAME
+        /// </summary>
+        public static AstREMOTESERVICENAME REMOTESERVICENAME()
+        {
+            return new AstREMOTESERVICENAME(Position.Default, "REMOTE_SERVICE_NAME", "REMOTE_SERVICE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// REMOVE : 'REMOVE'
+    /// </summary>
+    public partial class AstREMOVE : AstTerminalKeyword
+    {
+        
+        public AstREMOVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREMOVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REMOVE : REMOVE
+        /// </summary>
+        public static AstREMOVE REMOVE()
+        {
+            return new AstREMOVE(Position.Default, "REMOVE", "REMOVE");
+        }
+    }
+    
+    /// <summary>
+    /// REORGANIZE : 'REORGANIZE'
+    /// </summary>
+    public partial class AstREORGANIZE : AstTerminalKeyword
+    {
+        
+        public AstREORGANIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREORGANIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REORGANIZE : REORGANIZE
+        /// </summary>
+        public static AstREORGANIZE REORGANIZE()
+        {
+            return new AstREORGANIZE(Position.Default, "REORGANIZE", "REORGANIZE");
+        }
+    }
+    
+    /// <summary>
+    /// REPEATABLE : 'REPEATABLE'
+    /// </summary>
+    public partial class AstREPEATABLE : AstTerminalKeyword
+    {
+        
+        public AstREPEATABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPEATABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPEATABLE : REPEATABLE
+        /// </summary>
+        public static AstREPEATABLE REPEATABLE()
+        {
+            return new AstREPEATABLE(Position.Default, "REPEATABLE", "REPEATABLE");
+        }
+    }
+    
+    /// <summary>
+    /// REPEATABLEREAD : 'REPEATABLEREAD'
+    /// </summary>
+    public partial class AstREPEATABLEREAD : AstTerminalKeyword
+    {
+        
+        public AstREPEATABLEREAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPEATABLEREAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPEATABLEREAD : REPEATABLEREAD
+        /// </summary>
+        public static AstREPEATABLEREAD REPEATABLEREAD()
+        {
+            return new AstREPEATABLEREAD(Position.Default, "REPEATABLEREAD", "REPEATABLEREAD");
+        }
+    }
+    
+    /// <summary>
+    /// REPLACE : 'REPLACE'
+    /// </summary>
+    public partial class AstREPLACE : AstTerminalKeyword
+    {
+        
+        public AstREPLACE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPLACE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPLACE : REPLACE
+        /// </summary>
+        public static AstREPLACE REPLACE()
+        {
+            return new AstREPLACE(Position.Default, "REPLACE", "REPLACE");
+        }
+    }
+    
+    /// <summary>
+    /// REPLICA : 'REPLICA'
+    /// </summary>
+    public partial class AstREPLICA : AstTerminalKeyword
+    {
+        
+        public AstREPLICA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPLICA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPLICA : REPLICA
+        /// </summary>
+        public static AstREPLICA REPLICA()
+        {
+            return new AstREPLICA(Position.Default, "REPLICA", "REPLICA");
+        }
+    }
+    
+    /// <summary>
+    /// REPLICATE : 'REPLICATE'
+    /// </summary>
+    public partial class AstREPLICATE : AstTerminalKeyword
+    {
+        
+        public AstREPLICATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREPLICATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REPLICATE : REPLICATE
+        /// </summary>
+        public static AstREPLICATE REPLICATE()
+        {
+            return new AstREPLICATE(Position.Default, "REPLICATE", "REPLICATE");
+        }
+    }
+    
+    /// <summary>
+    /// REQUEST_MAX_CPU_TIME_SEC : 'REQUEST_MAX_CPU_TIME_SEC'
+    /// </summary>
+    public partial class AstREQUESTMAXCPUTIMESEC : AstTerminalKeyword
+    {
+        
+        public AstREQUESTMAXCPUTIMESEC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREQUESTMAXCPUTIMESEC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REQUEST_MAX_CPU_TIME_SEC : REQUEST_MAX_CPU_TIME_SEC
+        /// </summary>
+        public static AstREQUESTMAXCPUTIMESEC REQUESTMAXCPUTIMESEC()
+        {
+            return new AstREQUESTMAXCPUTIMESEC(Position.Default, "REQUEST_MAX_CPU_TIME_SEC", "REQUEST_MAX_CPU_TIME_SEC");
+        }
+    }
+    
+    /// <summary>
+    /// REQUEST_MAX_MEMORY_GRANT_PERCENT : 'REQUEST_MAX_MEMORY_GRANT_PERCENT'
+    /// </summary>
+    public partial class AstREQUESTMAXMEMORYGRANTPERCENT : AstTerminalKeyword
+    {
+        
+        public AstREQUESTMAXMEMORYGRANTPERCENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREQUESTMAXMEMORYGRANTPERCENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REQUEST_MAX_MEMORY_GRANT_PERCENT : REQUEST_MAX_MEMORY_GRANT_PERCENT
+        /// </summary>
+        public static AstREQUESTMAXMEMORYGRANTPERCENT REQUESTMAXMEMORYGRANTPERCENT()
+        {
+            return new AstREQUESTMAXMEMORYGRANTPERCENT(Position.Default, "REQUEST_MAX_MEMORY_GRANT_PERCENT", "REQUEST_MAX_MEMORY_GRANT_PERCENT");
+        }
+    }
+    
+    /// <summary>
+    /// REQUEST_MEMORY_GRANT_TIMEOUT_SEC : 'REQUEST_MEMORY_GRANT_TIMEOUT_SEC'
+    /// </summary>
+    public partial class AstREQUESTMEMORYGRANTTIMEOUTSEC : AstTerminalKeyword
+    {
+        
+        public AstREQUESTMEMORYGRANTTIMEOUTSEC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREQUESTMEMORYGRANTTIMEOUTSEC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REQUEST_MEMORY_GRANT_TIMEOUT_SEC : REQUEST_MEMORY_GRANT_TIMEOUT_SEC
+        /// </summary>
+        public static AstREQUESTMEMORYGRANTTIMEOUTSEC REQUESTMEMORYGRANTTIMEOUTSEC()
+        {
+            return new AstREQUESTMEMORYGRANTTIMEOUTSEC(Position.Default, "REQUEST_MEMORY_GRANT_TIMEOUT_SEC", "REQUEST_MEMORY_GRANT_TIMEOUT_SEC");
+        }
+    }
+    
+    /// <summary>
+    /// REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT : 'REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT'
+    /// </summary>
+    public partial class AstREQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT : AstTerminalKeyword
+    {
+        
+        public AstREQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT : REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT
+        /// </summary>
+        public static AstREQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT REQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT()
+        {
+            return new AstREQUIREDSYNCHRONIZEDSECONDARIESTOCOMMIT(Position.Default, "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT", "REQUIRED_SYNCHRONIZED_SECONDARIES_TO_COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// RESAMPLE : 'RESAMPLE'
+    /// </summary>
+    public partial class AstRESAMPLE : AstTerminalKeyword
+    {
+        
+        public AstRESAMPLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESAMPLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESAMPLE : RESAMPLE
+        /// </summary>
+        public static AstRESAMPLE RESAMPLE()
+        {
+            return new AstRESAMPLE(Position.Default, "RESAMPLE", "RESAMPLE");
+        }
+    }
+    
+    /// <summary>
+    /// RESERVE_DISK_SPACE : 'RESERVE_DISK_SPACE'
+    /// </summary>
+    public partial class AstRESERVEDISKSPACE : AstTerminalKeyword
+    {
+        
+        public AstRESERVEDISKSPACE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESERVEDISKSPACE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESERVE_DISK_SPACE : RESERVE_DISK_SPACE
+        /// </summary>
+        public static AstRESERVEDISKSPACE RESERVEDISKSPACE()
+        {
+            return new AstRESERVEDISKSPACE(Position.Default, "RESERVE_DISK_SPACE", "RESERVE_DISK_SPACE");
+        }
+    }
+    
+    /// <summary>
+    /// RESOURCE : 'RESOURCE'
+    /// </summary>
+    public partial class AstRESOURCE : AstTerminalKeyword
+    {
+        
+        public AstRESOURCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESOURCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESOURCE : RESOURCE
+        /// </summary>
+        public static AstRESOURCE RESOURCE()
+        {
+            return new AstRESOURCE(Position.Default, "RESOURCE", "RESOURCE");
+        }
+    }
+    
+    /// <summary>
+    /// RESOURCE_MANAGER_LOCATION : 'RESOURCE_MANAGER_LOCATION'
+    /// </summary>
+    public partial class AstRESOURCEMANAGERLOCATION : AstTerminalKeyword
+    {
+        
+        public AstRESOURCEMANAGERLOCATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESOURCEMANAGERLOCATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESOURCE_MANAGER_LOCATION : RESOURCE_MANAGER_LOCATION
+        /// </summary>
+        public static AstRESOURCEMANAGERLOCATION RESOURCEMANAGERLOCATION()
+        {
+            return new AstRESOURCEMANAGERLOCATION(Position.Default, "RESOURCE_MANAGER_LOCATION", "RESOURCE_MANAGER_LOCATION");
+        }
+    }
+    
+    /// <summary>
+    /// RESTRICTED_USER : 'RESTRICTED_USER'
+    /// </summary>
+    public partial class AstRESTRICTEDUSER : AstTerminalKeyword
+    {
+        
+        public AstRESTRICTEDUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESTRICTEDUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESTRICTED_USER : RESTRICTED_USER
+        /// </summary>
+        public static AstRESTRICTEDUSER RESTRICTEDUSER()
+        {
+            return new AstRESTRICTEDUSER(Position.Default, "RESTRICTED_USER", "RESTRICTED_USER");
+        }
+    }
+    
+    /// <summary>
+    /// RESUMABLE : 'RESUMABLE'
+    /// </summary>
+    public partial class AstRESUMABLE : AstTerminalKeyword
+    {
+        
+        public AstRESUMABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESUMABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESUMABLE : RESUMABLE
+        /// </summary>
+        public static AstRESUMABLE RESUMABLE()
+        {
+            return new AstRESUMABLE(Position.Default, "RESUMABLE", "RESUMABLE");
+        }
+    }
+    
+    /// <summary>
+    /// RETENTION : 'RETENTION'
+    /// </summary>
+    public partial class AstRETENTION : AstTerminalKeyword
+    {
+        
+        public AstRETENTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRETENTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RETENTION : RETENTION
+        /// </summary>
+        public static AstRETENTION RETENTION()
+        {
+            return new AstRETENTION(Position.Default, "RETENTION", "RETENTION");
+        }
+    }
+    
+    /// <summary>
+    /// REVERSE : 'REVERSE'
+    /// </summary>
+    public partial class AstREVERSE : AstTerminalKeyword
+    {
+        
+        public AstREVERSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREVERSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REVERSE : REVERSE
+        /// </summary>
+        public static AstREVERSE REVERSE()
+        {
+            return new AstREVERSE(Position.Default, "REVERSE", "REVERSE");
+        }
+    }
+    
+    /// <summary>
+    /// ROBUST : 'ROBUST'
+    /// </summary>
+    public partial class AstROBUST : AstTerminalKeyword
+    {
+        
+        public AstROBUST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROBUST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROBUST : ROBUST
+        /// </summary>
+        public static AstROBUST ROBUST()
+        {
+            return new AstROBUST(Position.Default, "ROBUST", "ROBUST");
+        }
+    }
+    
+    /// <summary>
+    /// ROOT : 'ROOT'
+    /// </summary>
+    public partial class AstROOT : AstTerminalKeyword
+    {
+        
+        public AstROOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROOT : ROOT
+        /// </summary>
+        public static AstROOT ROOT()
+        {
+            return new AstROOT(Position.Default, "ROOT", "ROOT");
+        }
+    }
+    
+    /// <summary>
+    /// ROUTE : 'ROUTE'
+    /// </summary>
+    public partial class AstROUTE : AstTerminalKeyword
+    {
+        
+        public AstROUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROUTE : ROUTE
+        /// </summary>
+        public static AstROUTE ROUTE()
+        {
+            return new AstROUTE(Position.Default, "ROUTE", "ROUTE");
+        }
+    }
+    
+    /// <summary>
+    /// ROW : 'ROW'
+    /// </summary>
+    public partial class AstROW : AstTerminalKeyword
+    {
+        
+        public AstROW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROW : ROW
+        /// </summary>
+        public static AstROW ROW()
+        {
+            return new AstROW(Position.Default, "ROW", "ROW");
+        }
+    }
+    
+    /// <summary>
+    /// ROW_NUMBER : 'ROW_NUMBER'
+    /// </summary>
+    public partial class AstROWNUMBER : AstTerminalKeyword
+    {
+        
+        public AstROWNUMBER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWNUMBER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROW_NUMBER : ROW_NUMBER
+        /// </summary>
+        public static AstROWNUMBER ROWNUMBER()
+        {
+            return new AstROWNUMBER(Position.Default, "ROW_NUMBER", "ROW_NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// ROWGUID : 'ROWGUID'
+    /// </summary>
+    public partial class AstROWGUID : AstTerminalKeyword
+    {
+        
+        public AstROWGUID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWGUID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWGUID : ROWGUID
+        /// </summary>
+        public static AstROWGUID ROWGUID()
+        {
+            return new AstROWGUID(Position.Default, "ROWGUID", "ROWGUID");
+        }
+    }
+    
+    /// <summary>
+    /// ROWLOCK : 'ROWLOCK'
+    /// </summary>
+    public partial class AstROWLOCK : AstTerminalKeyword
+    {
+        
+        public AstROWLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWLOCK : ROWLOCK
+        /// </summary>
+        public static AstROWLOCK ROWLOCK()
+        {
+            return new AstROWLOCK(Position.Default, "ROWLOCK", "ROWLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// ROWS : 'ROWS'
+    /// </summary>
+    public partial class AstROWS : AstTerminalKeyword
+    {
+        
+        public AstROWS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWS : ROWS
+        /// </summary>
+        public static AstROWS ROWS()
+        {
+            return new AstROWS(Position.Default, "ROWS", "ROWS");
+        }
+    }
+    
+    /// <summary>
+    /// RTRIM : 'RTRIM'
+    /// </summary>
+    public partial class AstRTRIM : AstTerminalKeyword
+    {
+        
+        public AstRTRIM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRTRIM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RTRIM : RTRIM
+        /// </summary>
+        public static AstRTRIM RTRIM()
+        {
+            return new AstRTRIM(Position.Default, "RTRIM", "RTRIM");
+        }
+    }
+    
+    /// <summary>
+    /// SAMPLE : 'SAMPLE'
+    /// </summary>
+    public partial class AstSAMPLE : AstTerminalKeyword
+    {
+        
+        public AstSAMPLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSAMPLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SAMPLE : SAMPLE
+        /// </summary>
+        public static AstSAMPLE SAMPLE()
+        {
+            return new AstSAMPLE(Position.Default, "SAMPLE", "SAMPLE");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEMA_ID : 'SCHEMA_ID'
+    /// </summary>
+    public partial class AstSCHEMAID : AstTerminalKeyword
+    {
+        
+        public AstSCHEMAID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEMAID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEMA_ID : SCHEMA_ID
+        /// </summary>
+        public static AstSCHEMAID SCHEMAID()
+        {
+            return new AstSCHEMAID(Position.Default, "SCHEMA_ID", "SCHEMA_ID");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEMA_NAME : 'SCHEMA_NAME'
+    /// </summary>
+    public partial class AstSCHEMANAME : AstTerminalKeyword
+    {
+        
+        public AstSCHEMANAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEMANAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEMA_NAME : SCHEMA_NAME
+        /// </summary>
+        public static AstSCHEMANAME SCHEMANAME()
+        {
+            return new AstSCHEMANAME(Position.Default, "SCHEMA_NAME", "SCHEMA_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEMABINDING : 'SCHEMABINDING'
+    /// </summary>
+    public partial class AstSCHEMABINDING : AstTerminalKeyword
+    {
+        
+        public AstSCHEMABINDING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEMABINDING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEMABINDING : SCHEMABINDING
+        /// </summary>
+        public static AstSCHEMABINDING SCHEMABINDING()
+        {
+            return new AstSCHEMABINDING(Position.Default, "SCHEMABINDING", "SCHEMABINDING");
+        }
+    }
+    
+    /// <summary>
+    /// SCOPE_IDENTITY : 'SCOPE_IDENTITY'
+    /// </summary>
+    public partial class AstSCOPEIDENTITY : AstTerminalKeyword
+    {
+        
+        public AstSCOPEIDENTITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCOPEIDENTITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCOPE_IDENTITY : SCOPE_IDENTITY
+        /// </summary>
+        public static AstSCOPEIDENTITY SCOPEIDENTITY()
+        {
+            return new AstSCOPEIDENTITY(Position.Default, "SCOPE_IDENTITY", "SCOPE_IDENTITY");
+        }
+    }
+    
+    /// <summary>
+    /// SCOPED : 'SCOPED'
+    /// </summary>
+    public partial class AstSCOPED : AstTerminalKeyword
+    {
+        
+        public AstSCOPED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCOPED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCOPED : SCOPED
+        /// </summary>
+        public static AstSCOPED SCOPED()
+        {
+            return new AstSCOPED(Position.Default, "SCOPED", "SCOPED");
+        }
+    }
+    
+    /// <summary>
+    /// SCROLL : 'SCROLL'
+    /// </summary>
+    public partial class AstSCROLL : AstTerminalKeyword
+    {
+        
+        public AstSCROLL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCROLL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCROLL : SCROLL
+        /// </summary>
+        public static AstSCROLL SCROLL()
+        {
+            return new AstSCROLL(Position.Default, "SCROLL", "SCROLL");
+        }
+    }
+    
+    /// <summary>
+    /// SCROLL_LOCKS : 'SCROLL_LOCKS'
+    /// </summary>
+    public partial class AstSCROLLLOCKS : AstTerminalKeyword
+    {
+        
+        public AstSCROLLLOCKS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCROLLLOCKS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCROLL_LOCKS : SCROLL_LOCKS
+        /// </summary>
+        public static AstSCROLLLOCKS SCROLLLOCKS()
+        {
+            return new AstSCROLLLOCKS(Position.Default, "SCROLL_LOCKS", "SCROLL_LOCKS");
+        }
+    }
+    
+    /// <summary>
+    /// SEARCH : 'SEARCH'
+    /// </summary>
+    public partial class AstSEARCH : AstTerminalKeyword
+    {
+        
+        public AstSEARCH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEARCH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEARCH : SEARCH
+        /// </summary>
+        public static AstSEARCH SEARCH()
+        {
+            return new AstSEARCH(Position.Default, "SEARCH", "SEARCH");
+        }
+    }
+    
+    /// <summary>
+    /// SECONDARY : 'SECONDARY'
+    /// </summary>
+    public partial class AstSECONDARY : AstTerminalKeyword
+    {
+        
+        public AstSECONDARY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECONDARY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECONDARY : SECONDARY
+        /// </summary>
+        public static AstSECONDARY SECONDARY()
+        {
+            return new AstSECONDARY(Position.Default, "SECONDARY", "SECONDARY");
+        }
+    }
+    
+    /// <summary>
+    /// SECONDARY_ONLY : 'SECONDARY_ONLY'
+    /// </summary>
+    public partial class AstSECONDARYONLY : AstTerminalKeyword
+    {
+        
+        public AstSECONDARYONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECONDARYONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECONDARY_ONLY : SECONDARY_ONLY
+        /// </summary>
+        public static AstSECONDARYONLY SECONDARYONLY()
+        {
+            return new AstSECONDARYONLY(Position.Default, "SECONDARY_ONLY", "SECONDARY_ONLY");
+        }
+    }
+    
+    /// <summary>
+    /// SECONDARY_ROLE : 'SECONDARY_ROLE'
+    /// </summary>
+    public partial class AstSECONDARYROLE : AstTerminalKeyword
+    {
+        
+        public AstSECONDARYROLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECONDARYROLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECONDARY_ROLE : SECONDARY_ROLE
+        /// </summary>
+        public static AstSECONDARYROLE SECONDARYROLE()
+        {
+            return new AstSECONDARYROLE(Position.Default, "SECONDARY_ROLE", "SECONDARY_ROLE");
+        }
+    }
+    
+    /// <summary>
+    /// SECONDS : 'SECONDS'
+    /// </summary>
+    public partial class AstSECONDS : AstTerminalKeyword
+    {
+        
+        public AstSECONDS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECONDS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECONDS : SECONDS
+        /// </summary>
+        public static AstSECONDS SECONDS()
+        {
+            return new AstSECONDS(Position.Default, "SECONDS", "SECONDS");
+        }
+    }
+    
+    /// <summary>
+    /// SECRET : 'SECRET'
+    /// </summary>
+    public partial class AstSECRET : AstTerminalKeyword
+    {
+        
+        public AstSECRET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECRET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECRET : SECRET
+        /// </summary>
+        public static AstSECRET SECRET()
+        {
+            return new AstSECRET(Position.Default, "SECRET", "SECRET");
+        }
+    }
+    
+    /// <summary>
+    /// SECURABLES : 'SECURABLES'
+    /// </summary>
+    public partial class AstSECURABLES : AstTerminalKeyword
+    {
+        
+        public AstSECURABLES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECURABLES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECURABLES : SECURABLES
+        /// </summary>
+        public static AstSECURABLES SECURABLES()
+        {
+            return new AstSECURABLES(Position.Default, "SECURABLES", "SECURABLES");
+        }
+    }
+    
+    /// <summary>
+    /// SECURITY : 'SECURITY'
+    /// </summary>
+    public partial class AstSECURITY : AstTerminalKeyword
+    {
+        
+        public AstSECURITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECURITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECURITY : SECURITY
+        /// </summary>
+        public static AstSECURITY SECURITY()
+        {
+            return new AstSECURITY(Position.Default, "SECURITY", "SECURITY");
+        }
+    }
+    
+    /// <summary>
+    /// SECURITY_LOG : 'SECURITY_LOG'
+    /// </summary>
+    public partial class AstSECURITYLOG : AstTerminalKeyword
+    {
+        
+        public AstSECURITYLOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSECURITYLOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SECURITY_LOG : SECURITY_LOG
+        /// </summary>
+        public static AstSECURITYLOG SECURITYLOG()
+        {
+            return new AstSECURITYLOG(Position.Default, "SECURITY_LOG", "SECURITY_LOG");
+        }
+    }
+    
+    /// <summary>
+    /// SEEDING_MODE : 'SEEDING_MODE'
+    /// </summary>
+    public partial class AstSEEDINGMODE : AstTerminalKeyword
+    {
+        
+        public AstSEEDINGMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEEDINGMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEEDING_MODE : SEEDING_MODE
+        /// </summary>
+        public static AstSEEDINGMODE SEEDINGMODE()
+        {
+            return new AstSEEDINGMODE(Position.Default, "SEEDING_MODE", "SEEDING_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// SELF : 'SELF'
+    /// </summary>
+    public partial class AstSELF : AstTerminalKeyword
+    {
+        
+        public AstSELF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSELF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SELF : SELF
+        /// </summary>
+        public static AstSELF SELF()
+        {
+            return new AstSELF(Position.Default, "SELF", "SELF");
+        }
+    }
+    
+    /// <summary>
+    /// SEMI_SENSITIVE : 'SEMI_SENSITIVE'
+    /// </summary>
+    public partial class AstSEMISENSITIVE : AstTerminalKeyword
+    {
+        
+        public AstSEMISENSITIVE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEMISENSITIVE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEMI_SENSITIVE : SEMI_SENSITIVE
+        /// </summary>
+        public static AstSEMISENSITIVE SEMISENSITIVE()
+        {
+            return new AstSEMISENSITIVE(Position.Default, "SEMI_SENSITIVE", "SEMI_SENSITIVE");
+        }
+    }
+    
+    /// <summary>
+    /// SEND : 'SEND'
+    /// </summary>
+    public partial class AstSEND : AstTerminalKeyword
+    {
+        
+        public AstSEND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEND : SEND
+        /// </summary>
+        public static AstSEND SEND()
+        {
+            return new AstSEND(Position.Default, "SEND", "SEND");
+        }
+    }
+    
+    /// <summary>
+    /// SENT : 'SENT'
+    /// </summary>
+    public partial class AstSENT : AstTerminalKeyword
+    {
+        
+        public AstSENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SENT : SENT
+        /// </summary>
+        public static AstSENT SENT()
+        {
+            return new AstSENT(Position.Default, "SENT", "SENT");
+        }
+    }
+    
+    /// <summary>
+    /// SEQUENCE : 'SEQUENCE'
+    /// </summary>
+    public partial class AstSEQUENCE : AstTerminalKeyword
+    {
+        
+        public AstSEQUENCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEQUENCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEQUENCE : SEQUENCE
+        /// </summary>
+        public static AstSEQUENCE SEQUENCE()
+        {
+            return new AstSEQUENCE(Position.Default, "SEQUENCE", "SEQUENCE");
+        }
+    }
+    
+    /// <summary>
+    /// SEQUENCE_NUMBER : 'SEQUENCE_NUMBER'
+    /// </summary>
+    public partial class AstSEQUENCENUMBER : AstTerminalKeyword
+    {
+        
+        public AstSEQUENCENUMBER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSEQUENCENUMBER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SEQUENCE_NUMBER : SEQUENCE_NUMBER
+        /// </summary>
+        public static AstSEQUENCENUMBER SEQUENCENUMBER()
+        {
+            return new AstSEQUENCENUMBER(Position.Default, "SEQUENCE_NUMBER", "SEQUENCE_NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// SERIALIZABLE : 'SERIALIZABLE'
+    /// </summary>
+    public partial class AstSERIALIZABLE : AstTerminalKeyword
+    {
+        
+        public AstSERIALIZABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERIALIZABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERIALIZABLE : SERIALIZABLE
+        /// </summary>
+        public static AstSERIALIZABLE SERIALIZABLE()
+        {
+            return new AstSERIALIZABLE(Position.Default, "SERIALIZABLE", "SERIALIZABLE");
+        }
+    }
+    
+    /// <summary>
+    /// SERVERPROPERTY : 'SERVERPROPERTY'
+    /// </summary>
+    public partial class AstSERVERPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstSERVERPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERVERPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERVERPROPERTY : SERVERPROPERTY
+        /// </summary>
+        public static AstSERVERPROPERTY SERVERPROPERTY()
+        {
+            return new AstSERVERPROPERTY(Position.Default, "SERVERPROPERTY", "SERVERPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// SESSION_TIMEOUT : 'SESSION_TIMEOUT'
+    /// </summary>
+    public partial class AstSESSIONTIMEOUT : AstTerminalKeyword
+    {
+        
+        public AstSESSIONTIMEOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSESSIONTIMEOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SESSION_TIMEOUT : SESSION_TIMEOUT
+        /// </summary>
+        public static AstSESSIONTIMEOUT SESSIONTIMEOUT()
+        {
+            return new AstSESSIONTIMEOUT(Position.Default, "SESSION_TIMEOUT", "SESSION_TIMEOUT");
+        }
+    }
+    
+    /// <summary>
+    /// SETERROR : 'SETERROR'
+    /// </summary>
+    public partial class AstSETERROR : AstTerminalKeyword
+    {
+        
+        public AstSETERROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSETERROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SETERROR : SETERROR
+        /// </summary>
+        public static AstSETERROR SETERROR()
+        {
+            return new AstSETERROR(Position.Default, "SETERROR", "SETERROR");
+        }
+    }
+    
+    /// <summary>
+    /// SHARE : 'SHARE'
+    /// </summary>
+    public partial class AstSHARE : AstTerminalKeyword
+    {
+        
+        public AstSHARE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHARE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHARE : SHARE
+        /// </summary>
+        public static AstSHARE SHARE()
+        {
+            return new AstSHARE(Position.Default, "SHARE", "SHARE");
+        }
+    }
+    
+    /// <summary>
+    /// SHARED : 'SHARED'
+    /// </summary>
+    public partial class AstSHARED : AstTerminalKeyword
+    {
+        
+        public AstSHARED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHARED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHARED : SHARED
+        /// </summary>
+        public static AstSHARED SHARED()
+        {
+            return new AstSHARED(Position.Default, "SHARED", "SHARED");
+        }
+    }
+    
+    /// <summary>
+    /// SHOWPLAN : 'SHOWPLAN'
+    /// </summary>
+    public partial class AstSHOWPLAN : AstTerminalKeyword
+    {
+        
+        public AstSHOWPLAN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHOWPLAN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHOWPLAN : SHOWPLAN
+        /// </summary>
+        public static AstSHOWPLAN SHOWPLAN()
+        {
+            return new AstSHOWPLAN(Position.Default, "SHOWPLAN", "SHOWPLAN");
+        }
+    }
+    
+    /// <summary>
+    /// SHOWPLAN_ALL : 'SHOWPLAN_ALL'
+    /// </summary>
+    public partial class AstSHOWPLANALL : AstTerminalKeyword
+    {
+        
+        public AstSHOWPLANALL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHOWPLANALL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHOWPLAN_ALL : SHOWPLAN_ALL
+        /// </summary>
+        public static AstSHOWPLANALL SHOWPLANALL()
+        {
+            return new AstSHOWPLANALL(Position.Default, "SHOWPLAN_ALL", "SHOWPLAN_ALL");
+        }
+    }
+    
+    /// <summary>
+    /// SHOWPLAN_TEXT : 'SHOWPLAN_TEXT'
+    /// </summary>
+    public partial class AstSHOWPLANTEXT : AstTerminalKeyword
+    {
+        
+        public AstSHOWPLANTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHOWPLANTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHOWPLAN_TEXT : SHOWPLAN_TEXT
+        /// </summary>
+        public static AstSHOWPLANTEXT SHOWPLANTEXT()
+        {
+            return new AstSHOWPLANTEXT(Position.Default, "SHOWPLAN_TEXT", "SHOWPLAN_TEXT");
+        }
+    }
+    
+    /// <summary>
+    /// SHOWPLAN_XML : 'SHOWPLAN_XML'
+    /// </summary>
+    public partial class AstSHOWPLANXML : AstTerminalKeyword
+    {
+        
+        public AstSHOWPLANXML(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHOWPLANXML(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHOWPLAN_XML : SHOWPLAN_XML
+        /// </summary>
+        public static AstSHOWPLANXML SHOWPLANXML()
+        {
+            return new AstSHOWPLANXML(Position.Default, "SHOWPLAN_XML", "SHOWPLAN_XML");
+        }
+    }
+    
+    /// <summary>
+    /// SIGNATURE : 'SIGNATURE'
+    /// </summary>
+    public partial class AstSIGNATURE : AstTerminalKeyword
+    {
+        
+        public AstSIGNATURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSIGNATURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SIGNATURE : SIGNATURE
+        /// </summary>
+        public static AstSIGNATURE SIGNATURE()
+        {
+            return new AstSIGNATURE(Position.Default, "SIGNATURE", "SIGNATURE");
+        }
+    }
+    
+    /// <summary>
+    /// SIMPLE : 'SIMPLE'
+    /// </summary>
+    public partial class AstSIMPLE : AstTerminalKeyword
+    {
+        
+        public AstSIMPLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSIMPLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SIMPLE : SIMPLE
+        /// </summary>
+        public static AstSIMPLE SIMPLE()
+        {
+            return new AstSIMPLE(Position.Default, "SIMPLE", "SIMPLE");
+        }
+    }
+    
+    /// <summary>
+    /// SINGLE_USER : 'SINGLE_USER'
+    /// </summary>
+    public partial class AstSINGLEUSER : AstTerminalKeyword
+    {
+        
+        public AstSINGLEUSER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSINGLEUSER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SINGLE_USER : SINGLE_USER
+        /// </summary>
+        public static AstSINGLEUSER SINGLEUSER()
+        {
+            return new AstSINGLEUSER(Position.Default, "SINGLE_USER", "SINGLE_USER");
+        }
+    }
+    
+    /// <summary>
+    /// SIZE : 'SIZE'
+    /// </summary>
+    public partial class AstSIZE : AstTerminalKeyword
+    {
+        
+        public AstSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SIZE : SIZE
+        /// </summary>
+        public static AstSIZE SIZE()
+        {
+            return new AstSIZE(Position.Default, "SIZE", "SIZE");
+        }
+    }
+    
+    /// <summary>
+    /// SMALLINT : 'SMALLINT'
+    /// </summary>
+    public partial class AstSMALLINT : AstTerminalKeyword
+    {
+        
+        public AstSMALLINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSMALLINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SMALLINT : SMALLINT
+        /// </summary>
+        public static AstSMALLINT SMALLINT()
+        {
+            return new AstSMALLINT(Position.Default, "SMALLINT", "SMALLINT");
+        }
+    }
+    
+    /// <summary>
+    /// SNAPSHOT : 'SNAPSHOT'
+    /// </summary>
+    public partial class AstSNAPSHOT : AstTerminalKeyword
+    {
+        
+        public AstSNAPSHOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSNAPSHOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SNAPSHOT : SNAPSHOT
+        /// </summary>
+        public static AstSNAPSHOT SNAPSHOT()
+        {
+            return new AstSNAPSHOT(Position.Default, "SNAPSHOT", "SNAPSHOT");
+        }
+    }
+    
+    /// <summary>
+    /// SORT_IN_TEMPDB : 'SORT_IN_TEMPDB'
+    /// </summary>
+    public partial class AstSORTINTEMPDB : AstTerminalKeyword
+    {
+        
+        public AstSORTINTEMPDB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSORTINTEMPDB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SORT_IN_TEMPDB : SORT_IN_TEMPDB
+        /// </summary>
+        public static AstSORTINTEMPDB SORTINTEMPDB()
+        {
+            return new AstSORTINTEMPDB(Position.Default, "SORT_IN_TEMPDB", "SORT_IN_TEMPDB");
+        }
+    }
+    
+    /// <summary>
+    /// SOUNDEX : 'SOUNDEX'
+    /// </summary>
+    public partial class AstSOUNDEX : AstTerminalKeyword
+    {
+        
+        public AstSOUNDEX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSOUNDEX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SOUNDEX : SOUNDEX
+        /// </summary>
+        public static AstSOUNDEX SOUNDEX()
+        {
+            return new AstSOUNDEX(Position.Default, "SOUNDEX", "SOUNDEX");
+        }
+    }
+    
+    /// <summary>
+    /// SPACE_KEYWORD : 'SPACE'
+    /// </summary>
+    public partial class AstSPACEKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstSPACEKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPACEKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPACE_KEYWORD : SPACE
+        /// </summary>
+        public static AstSPACEKEYWORD SPACEKEYWORD()
+        {
+            return new AstSPACEKEYWORD(Position.Default, "SPACE_KEYWORD", "SPACE");
+        }
+    }
+    
+    /// <summary>
+    /// SPARSE : 'SPARSE'
+    /// </summary>
+    public partial class AstSPARSE : AstTerminalKeyword
+    {
+        
+        public AstSPARSE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPARSE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPARSE : SPARSE
+        /// </summary>
+        public static AstSPARSE SPARSE()
+        {
+            return new AstSPARSE(Position.Default, "SPARSE", "SPARSE");
+        }
+    }
+    
+    /// <summary>
+    /// SPATIAL_WINDOW_MAX_CELLS : 'SPATIAL_WINDOW_MAX_CELLS'
+    /// </summary>
+    public partial class AstSPATIALWINDOWMAXCELLS : AstTerminalKeyword
+    {
+        
+        public AstSPATIALWINDOWMAXCELLS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPATIALWINDOWMAXCELLS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPATIAL_WINDOW_MAX_CELLS : SPATIAL_WINDOW_MAX_CELLS
+        /// </summary>
+        public static AstSPATIALWINDOWMAXCELLS SPATIALWINDOWMAXCELLS()
+        {
+            return new AstSPATIALWINDOWMAXCELLS(Position.Default, "SPATIAL_WINDOW_MAX_CELLS", "SPATIAL_WINDOW_MAX_CELLS");
+        }
+    }
+    
+    /// <summary>
+    /// STANDBY : 'STANDBY'
+    /// </summary>
+    public partial class AstSTANDBY : AstTerminalKeyword
+    {
+        
+        public AstSTANDBY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTANDBY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STANDBY : STANDBY
+        /// </summary>
+        public static AstSTANDBY STANDBY()
+        {
+            return new AstSTANDBY(Position.Default, "STANDBY", "STANDBY");
+        }
+    }
+    
+    /// <summary>
+    /// START_DATE : 'START_DATE'
+    /// </summary>
+    public partial class AstSTARTDATE : AstTerminalKeyword
+    {
+        
+        public AstSTARTDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTARTDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// START_DATE : START_DATE
+        /// </summary>
+        public static AstSTARTDATE STARTDATE()
+        {
+            return new AstSTARTDATE(Position.Default, "START_DATE", "START_DATE");
+        }
+    }
+    
+    /// <summary>
+    /// STATIC : 'STATIC'
+    /// </summary>
+    public partial class AstSTATIC : AstTerminalKeyword
+    {
+        
+        public AstSTATIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATIC : STATIC
+        /// </summary>
+        public static AstSTATIC STATIC()
+        {
+            return new AstSTATIC(Position.Default, "STATIC", "STATIC");
+        }
+    }
+    
+    /// <summary>
+    /// STATISTICS_INCREMENTAL : 'STATISTICS_INCREMENTAL'
+    /// </summary>
+    public partial class AstSTATISTICSINCREMENTAL : AstTerminalKeyword
+    {
+        
+        public AstSTATISTICSINCREMENTAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATISTICSINCREMENTAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATISTICS_INCREMENTAL : STATISTICS_INCREMENTAL
+        /// </summary>
+        public static AstSTATISTICSINCREMENTAL STATISTICSINCREMENTAL()
+        {
+            return new AstSTATISTICSINCREMENTAL(Position.Default, "STATISTICS_INCREMENTAL", "STATISTICS_INCREMENTAL");
+        }
+    }
+    
+    /// <summary>
+    /// STATISTICS_NORECOMPUTE : 'STATISTICS_NORECOMPUTE'
+    /// </summary>
+    public partial class AstSTATISTICSNORECOMPUTE : AstTerminalKeyword
+    {
+        
+        public AstSTATISTICSNORECOMPUTE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATISTICSNORECOMPUTE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATISTICS_NORECOMPUTE : STATISTICS_NORECOMPUTE
+        /// </summary>
+        public static AstSTATISTICSNORECOMPUTE STATISTICSNORECOMPUTE()
+        {
+            return new AstSTATISTICSNORECOMPUTE(Position.Default, "STATISTICS_NORECOMPUTE", "STATISTICS_NORECOMPUTE");
+        }
+    }
+    
+    /// <summary>
+    /// STATS_DATE : 'STATS_DATE'
+    /// </summary>
+    public partial class AstSTATSDATE : AstTerminalKeyword
+    {
+        
+        public AstSTATSDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATSDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATS_DATE : STATS_DATE
+        /// </summary>
+        public static AstSTATSDATE STATSDATE()
+        {
+            return new AstSTATSDATE(Position.Default, "STATS_DATE", "STATS_DATE");
+        }
+    }
+    
+    /// <summary>
+    /// STATS_STREAM : 'STATS_STREAM'
+    /// </summary>
+    public partial class AstSTATSSTREAM : AstTerminalKeyword
+    {
+        
+        public AstSTATSSTREAM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATSSTREAM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATS_STREAM : STATS_STREAM
+        /// </summary>
+        public static AstSTATSSTREAM STATSSTREAM()
+        {
+            return new AstSTATSSTREAM(Position.Default, "STATS_STREAM", "STATS_STREAM");
+        }
+    }
+    
+    /// <summary>
+    /// STATUS : 'STATUS'
+    /// </summary>
+    public partial class AstSTATUS : AstTerminalKeyword
+    {
+        
+        public AstSTATUS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATUS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATUS : STATUS
+        /// </summary>
+        public static AstSTATUS STATUS()
+        {
+            return new AstSTATUS(Position.Default, "STATUS", "STATUS");
+        }
+    }
+    
+    /// <summary>
+    /// STATUSONLY : 'STATUSONLY'
+    /// </summary>
+    public partial class AstSTATUSONLY : AstTerminalKeyword
+    {
+        
+        public AstSTATUSONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATUSONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATUSONLY : STATUSONLY
+        /// </summary>
+        public static AstSTATUSONLY STATUSONLY()
+        {
+            return new AstSTATUSONLY(Position.Default, "STATUSONLY", "STATUSONLY");
+        }
+    }
+    
+    /// <summary>
+    /// STDEV : 'STDEV'
+    /// </summary>
+    public partial class AstSTDEV : AstTerminalKeyword
+    {
+        
+        public AstSTDEV(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTDEV(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STDEV : STDEV
+        /// </summary>
+        public static AstSTDEV STDEV()
+        {
+            return new AstSTDEV(Position.Default, "STDEV", "STDEV");
+        }
+    }
+    
+    /// <summary>
+    /// STDEVP : 'STDEVP'
+    /// </summary>
+    public partial class AstSTDEVP : AstTerminalKeyword
+    {
+        
+        public AstSTDEVP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTDEVP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STDEVP : STDEVP
+        /// </summary>
+        public static AstSTDEVP STDEVP()
+        {
+            return new AstSTDEVP(Position.Default, "STDEVP", "STDEVP");
+        }
+    }
+    
+    /// <summary>
+    /// STOPLIST : 'STOPLIST'
+    /// </summary>
+    public partial class AstSTOPLIST : AstTerminalKeyword
+    {
+        
+        public AstSTOPLIST(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTOPLIST(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STOPLIST : STOPLIST
+        /// </summary>
+        public static AstSTOPLIST STOPLIST()
+        {
+            return new AstSTOPLIST(Position.Default, "STOPLIST", "STOPLIST");
+        }
+    }
+    
+    /// <summary>
+    /// STR : 'STR'
+    /// </summary>
+    public partial class AstSTR : AstTerminalKeyword
+    {
+        
+        public AstSTR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STR : STR
+        /// </summary>
+        public static AstSTR STR()
+        {
+            return new AstSTR(Position.Default, "STR", "STR");
+        }
+    }
+    
+    /// <summary>
+    /// STRING_AGG : 'STRING_AGG'
+    /// </summary>
+    public partial class AstSTRINGAGG : AstTerminalKeyword
+    {
+        
+        public AstSTRINGAGG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTRINGAGG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STRING_AGG : STRING_AGG
+        /// </summary>
+        public static AstSTRINGAGG STRINGAGG()
+        {
+            return new AstSTRINGAGG(Position.Default, "STRING_AGG", "STRING_AGG");
+        }
+    }
+    
+    /// <summary>
+    /// STRING_ESCAPE : 'STRING_ESCAPE'
+    /// </summary>
+    public partial class AstSTRINGESCAPE : AstTerminalKeyword
+    {
+        
+        public AstSTRINGESCAPE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTRINGESCAPE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STRING_ESCAPE : STRING_ESCAPE
+        /// </summary>
+        public static AstSTRINGESCAPE STRINGESCAPE()
+        {
+            return new AstSTRINGESCAPE(Position.Default, "STRING_ESCAPE", "STRING_ESCAPE");
+        }
+    }
+    
+    /// <summary>
+    /// STUFF : 'STUFF'
+    /// </summary>
+    public partial class AstSTUFF : AstTerminalKeyword
+    {
+        
+        public AstSTUFF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTUFF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STUFF : STUFF
+        /// </summary>
+        public static AstSTUFF STUFF()
+        {
+            return new AstSTUFF(Position.Default, "STUFF", "STUFF");
+        }
+    }
+    
+    /// <summary>
+    /// SUBJECT : 'SUBJECT'
+    /// </summary>
+    public partial class AstSUBJECT : AstTerminalKeyword
+    {
+        
+        public AstSUBJECT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUBJECT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUBJECT : SUBJECT
+        /// </summary>
+        public static AstSUBJECT SUBJECT()
+        {
+            return new AstSUBJECT(Position.Default, "SUBJECT", "SUBJECT");
+        }
+    }
+    
+    /// <summary>
+    /// SUBSCRIBE : 'SUBSCRIBE'
+    /// </summary>
+    public partial class AstSUBSCRIBE : AstTerminalKeyword
+    {
+        
+        public AstSUBSCRIBE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUBSCRIBE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUBSCRIBE : SUBSCRIBE
+        /// </summary>
+        public static AstSUBSCRIBE SUBSCRIBE()
+        {
+            return new AstSUBSCRIBE(Position.Default, "SUBSCRIBE", "SUBSCRIBE");
+        }
+    }
+    
+    /// <summary>
+    /// SUBSCRIPTION : 'SUBSCRIPTION'
+    /// </summary>
+    public partial class AstSUBSCRIPTION : AstTerminalKeyword
+    {
+        
+        public AstSUBSCRIPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUBSCRIPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUBSCRIPTION : SUBSCRIPTION
+        /// </summary>
+        public static AstSUBSCRIPTION SUBSCRIPTION()
+        {
+            return new AstSUBSCRIPTION(Position.Default, "SUBSCRIPTION", "SUBSCRIPTION");
+        }
+    }
+    
+    /// <summary>
+    /// SUBSTRING : 'SUBSTRING'
+    /// </summary>
+    public partial class AstSUBSTRING : AstTerminalKeyword
+    {
+        
+        public AstSUBSTRING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUBSTRING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUBSTRING : SUBSTRING
+        /// </summary>
+        public static AstSUBSTRING SUBSTRING()
+        {
+            return new AstSUBSTRING(Position.Default, "SUBSTRING", "SUBSTRING");
+        }
+    }
+    
+    /// <summary>
+    /// SUM : 'SUM'
+    /// </summary>
+    public partial class AstSUM : AstTerminalKeyword
+    {
+        
+        public AstSUM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUM : SUM
+        /// </summary>
+        public static AstSUM SUM()
+        {
+            return new AstSUM(Position.Default, "SUM", "SUM");
+        }
+    }
+    
+    /// <summary>
+    /// SUSPEND : 'SUSPEND'
+    /// </summary>
+    public partial class AstSUSPEND : AstTerminalKeyword
+    {
+        
+        public AstSUSPEND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUSPEND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUSPEND : SUSPEND
+        /// </summary>
+        public static AstSUSPEND SUSPEND()
+        {
+            return new AstSUSPEND(Position.Default, "SUSPEND", "SUSPEND");
+        }
+    }
+    
+    /// <summary>
+    /// SYMMETRIC : 'SYMMETRIC'
+    /// </summary>
+    public partial class AstSYMMETRIC : AstTerminalKeyword
+    {
+        
+        public AstSYMMETRIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSYMMETRIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SYMMETRIC : SYMMETRIC
+        /// </summary>
+        public static AstSYMMETRIC SYMMETRIC()
+        {
+            return new AstSYMMETRIC(Position.Default, "SYMMETRIC", "SYMMETRIC");
+        }
+    }
+    
+    /// <summary>
+    /// SYNCHRONOUS_COMMIT : 'SYNCHRONOUS_COMMIT'
+    /// </summary>
+    public partial class AstSYNCHRONOUSCOMMIT : AstTerminalKeyword
+    {
+        
+        public AstSYNCHRONOUSCOMMIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSYNCHRONOUSCOMMIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SYNCHRONOUS_COMMIT : SYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstSYNCHRONOUSCOMMIT SYNCHRONOUSCOMMIT()
+        {
+            return new AstSYNCHRONOUSCOMMIT(Position.Default, "SYNCHRONOUS_COMMIT", "SYNCHRONOUS_COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// SYNONYM : 'SYNONYM'
+    /// </summary>
+    public partial class AstSYNONYM : AstTerminalKeyword
+    {
+        
+        public AstSYNONYM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSYNONYM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SYNONYM : SYNONYM
+        /// </summary>
+        public static AstSYNONYM SYNONYM()
+        {
+            return new AstSYNONYM(Position.Default, "SYNONYM", "SYNONYM");
+        }
+    }
+    
+    /// <summary>
+    /// SYSTEM : 'SYSTEM'
+    /// </summary>
+    public partial class AstSYSTEM : AstTerminalKeyword
+    {
+        
+        public AstSYSTEM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSYSTEM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SYSTEM : SYSTEM
+        /// </summary>
+        public static AstSYSTEM SYSTEM()
+        {
+            return new AstSYSTEM(Position.Default, "SYSTEM", "SYSTEM");
+        }
+    }
+    
+    /// <summary>
+    /// TABLOCK : 'TABLOCK'
+    /// </summary>
+    public partial class AstTABLOCK : AstTerminalKeyword
+    {
+        
+        public AstTABLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTABLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TABLOCK : TABLOCK
+        /// </summary>
+        public static AstTABLOCK TABLOCK()
+        {
+            return new AstTABLOCK(Position.Default, "TABLOCK", "TABLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// TABLOCKX : 'TABLOCKX'
+    /// </summary>
+    public partial class AstTABLOCKX : AstTerminalKeyword
+    {
+        
+        public AstTABLOCKX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTABLOCKX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TABLOCKX : TABLOCKX
+        /// </summary>
+        public static AstTABLOCKX TABLOCKX()
+        {
+            return new AstTABLOCKX(Position.Default, "TABLOCKX", "TABLOCKX");
+        }
+    }
+    
+    /// <summary>
+    /// TAKE : 'TAKE'
+    /// </summary>
+    public partial class AstTAKE : AstTerminalKeyword
+    {
+        
+        public AstTAKE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTAKE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TAKE : TAKE
+        /// </summary>
+        public static AstTAKE TAKE()
+        {
+            return new AstTAKE(Position.Default, "TAKE", "TAKE");
+        }
+    }
+    
+    /// <summary>
+    /// TARGET_RECOVERY_TIME : 'TARGET_RECOVERY_TIME'
+    /// </summary>
+    public partial class AstTARGETRECOVERYTIME : AstTerminalKeyword
+    {
+        
+        public AstTARGETRECOVERYTIME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTARGETRECOVERYTIME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TARGET_RECOVERY_TIME : TARGET_RECOVERY_TIME
+        /// </summary>
+        public static AstTARGETRECOVERYTIME TARGETRECOVERYTIME()
+        {
+            return new AstTARGETRECOVERYTIME(Position.Default, "TARGET_RECOVERY_TIME", "TARGET_RECOVERY_TIME");
+        }
+    }
+    
+    /// <summary>
+    /// TB : 'TB'
+    /// </summary>
+    public partial class AstTB : AstTerminalKeyword
+    {
+        
+        public AstTB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TB : TB
+        /// </summary>
+        public static AstTB TB()
+        {
+            return new AstTB(Position.Default, "TB", "TB");
+        }
+    }
+    
+    /// <summary>
+    /// TEXTIMAGE_ON : 'TEXTIMAGE_ON'
+    /// </summary>
+    public partial class AstTEXTIMAGEON : AstTerminalKeyword
+    {
+        
+        public AstTEXTIMAGEON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTEXTIMAGEON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TEXTIMAGE_ON : TEXTIMAGE_ON
+        /// </summary>
+        public static AstTEXTIMAGEON TEXTIMAGEON()
+        {
+            return new AstTEXTIMAGEON(Position.Default, "TEXTIMAGE_ON", "TEXTIMAGE_ON");
+        }
+    }
+    
+    /// <summary>
+    /// THROW : 'THROW'
+    /// </summary>
+    public partial class AstTHROW : AstTerminalKeyword
+    {
+        
+        public AstTHROW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTHROW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// THROW : THROW
+        /// </summary>
+        public static AstTHROW THROW()
+        {
+            return new AstTHROW(Position.Default, "THROW", "THROW");
+        }
+    }
+    
+    /// <summary>
+    /// TIES : 'TIES'
+    /// </summary>
+    public partial class AstTIES : AstTerminalKeyword
+    {
+        
+        public AstTIES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTIES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TIES : TIES
+        /// </summary>
+        public static AstTIES TIES()
+        {
+            return new AstTIES(Position.Default, "TIES", "TIES");
+        }
+    }
+    
+    /// <summary>
+    /// TIME : 'TIME'
+    /// </summary>
+    public partial class AstTIME : AstTerminalKeyword
+    {
+        
+        public AstTIME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTIME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TIME : TIME
+        /// </summary>
+        public static AstTIME TIME()
+        {
+            return new AstTIME(Position.Default, "TIME", "TIME");
+        }
+    }
+    
+    /// <summary>
+    /// TIMEOUT : 'TIMEOUT'
+    /// </summary>
+    public partial class AstTIMEOUT : AstTerminalKeyword
+    {
+        
+        public AstTIMEOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTIMEOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TIMEOUT : TIMEOUT
+        /// </summary>
+        public static AstTIMEOUT TIMEOUT()
+        {
+            return new AstTIMEOUT(Position.Default, "TIMEOUT", "TIMEOUT");
+        }
+    }
+    
+    /// <summary>
+    /// TIMER : 'TIMER'
+    /// </summary>
+    public partial class AstTIMER : AstTerminalKeyword
+    {
+        
+        public AstTIMER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTIMER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TIMER : TIMER
+        /// </summary>
+        public static AstTIMER TIMER()
+        {
+            return new AstTIMER(Position.Default, "TIMER", "TIMER");
+        }
+    }
+    
+    /// <summary>
+    /// TINYINT : 'TINYINT'
+    /// </summary>
+    public partial class AstTINYINT : AstTerminalKeyword
+    {
+        
+        public AstTINYINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTINYINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TINYINT : TINYINT
+        /// </summary>
+        public static AstTINYINT TINYINT()
+        {
+            return new AstTINYINT(Position.Default, "TINYINT", "TINYINT");
+        }
+    }
+    
+    /// <summary>
+    /// TORN_PAGE_DETECTION : 'TORN_PAGE_DETECTION'
+    /// </summary>
+    public partial class AstTORNPAGEDETECTION : AstTerminalKeyword
+    {
+        
+        public AstTORNPAGEDETECTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTORNPAGEDETECTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TORN_PAGE_DETECTION : TORN_PAGE_DETECTION
+        /// </summary>
+        public static AstTORNPAGEDETECTION TORNPAGEDETECTION()
+        {
+            return new AstTORNPAGEDETECTION(Position.Default, "TORN_PAGE_DETECTION", "TORN_PAGE_DETECTION");
+        }
+    }
+    
+    /// <summary>
+    /// TRACKING : 'TRACKING'
+    /// </summary>
+    public partial class AstTRACKING : AstTerminalKeyword
+    {
+        
+        public AstTRACKING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRACKING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRACKING : TRACKING
+        /// </summary>
+        public static AstTRACKING TRACKING()
+        {
+            return new AstTRACKING(Position.Default, "TRACKING", "TRACKING");
+        }
+    }
+    
+    /// <summary>
+    /// TRANSACTION_ID : 'TRANSACTION_ID'
+    /// </summary>
+    public partial class AstTRANSACTIONID : AstTerminalKeyword
+    {
+        
+        public AstTRANSACTIONID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRANSACTIONID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRANSACTION_ID : TRANSACTION_ID
+        /// </summary>
+        public static AstTRANSACTIONID TRANSACTIONID()
+        {
+            return new AstTRANSACTIONID(Position.Default, "TRANSACTION_ID", "TRANSACTION_ID");
+        }
+    }
+    
+    /// <summary>
+    /// TRANSFORM_NOISE_WORDS : 'TRANSFORM_NOISE_WORDS'
+    /// </summary>
+    public partial class AstTRANSFORMNOISEWORDS : AstTerminalKeyword
+    {
+        
+        public AstTRANSFORMNOISEWORDS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRANSFORMNOISEWORDS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRANSFORM_NOISE_WORDS : TRANSFORM_NOISE_WORDS
+        /// </summary>
+        public static AstTRANSFORMNOISEWORDS TRANSFORMNOISEWORDS()
+        {
+            return new AstTRANSFORMNOISEWORDS(Position.Default, "TRANSFORM_NOISE_WORDS", "TRANSFORM_NOISE_WORDS");
+        }
+    }
+    
+    /// <summary>
+    /// TRANSLATE : 'TRANSLATE'
+    /// </summary>
+    public partial class AstTRANSLATE : AstTerminalKeyword
+    {
+        
+        public AstTRANSLATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRANSLATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRANSLATE : TRANSLATE
+        /// </summary>
+        public static AstTRANSLATE TRANSLATE()
+        {
+            return new AstTRANSLATE(Position.Default, "TRANSLATE", "TRANSLATE");
+        }
+    }
+    
+    /// <summary>
+    /// TRIM : 'TRIM'
+    /// </summary>
+    public partial class AstTRIM : AstTerminalKeyword
+    {
+        
+        public AstTRIM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRIM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRIM : TRIM
+        /// </summary>
+        public static AstTRIM TRIM()
+        {
+            return new AstTRIM(Position.Default, "TRIM", "TRIM");
+        }
+    }
+    
+    /// <summary>
+    /// TRIPLE_DES : 'TRIPLE_DES'
+    /// </summary>
+    public partial class AstTRIPLEDES : AstTerminalKeyword
+    {
+        
+        public AstTRIPLEDES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRIPLEDES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRIPLE_DES : TRIPLE_DES
+        /// </summary>
+        public static AstTRIPLEDES TRIPLEDES()
+        {
+            return new AstTRIPLEDES(Position.Default, "TRIPLE_DES", "TRIPLE_DES");
+        }
+    }
+    
+    /// <summary>
+    /// TRIPLE_DES_3KEY : 'TRIPLE_DES_3KEY'
+    /// </summary>
+    public partial class AstTRIPLEDES3KEY : AstTerminalKeyword
+    {
+        
+        public AstTRIPLEDES3KEY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRIPLEDES3KEY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRIPLE_DES_3KEY : TRIPLE_DES_3KEY
+        /// </summary>
+        public static AstTRIPLEDES3KEY TRIPLEDES3KEY()
+        {
+            return new AstTRIPLEDES3KEY(Position.Default, "TRIPLE_DES_3KEY", "TRIPLE_DES_3KEY");
+        }
+    }
+    
+    /// <summary>
+    /// TRUSTWORTHY : 'TRUSTWORTHY'
+    /// </summary>
+    public partial class AstTRUSTWORTHY : AstTerminalKeyword
+    {
+        
+        public AstTRUSTWORTHY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRUSTWORTHY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRUSTWORTHY : TRUSTWORTHY
+        /// </summary>
+        public static AstTRUSTWORTHY TRUSTWORTHY()
+        {
+            return new AstTRUSTWORTHY(Position.Default, "TRUSTWORTHY", "TRUSTWORTHY");
+        }
+    }
+    
+    /// <summary>
+    /// TRY : 'TRY'
+    /// </summary>
+    public partial class AstTRY : AstTerminalKeyword
+    {
+        
+        public AstTRY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRY : TRY
+        /// </summary>
+        public static AstTRY TRY()
+        {
+            return new AstTRY(Position.Default, "TRY", "TRY");
+        }
+    }
+    
+    /// <summary>
+    /// TSQL : 'TSQL'
+    /// </summary>
+    public partial class AstTSQL : AstTerminalKeyword
+    {
+        
+        public AstTSQL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTSQL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TSQL : TSQL
+        /// </summary>
+        public static AstTSQL TSQL()
+        {
+            return new AstTSQL(Position.Default, "TSQL", "TSQL");
+        }
+    }
+    
+    /// <summary>
+    /// TWO_DIGIT_YEAR_CUTOFF : 'TWO_DIGIT_YEAR_CUTOFF'
+    /// </summary>
+    public partial class AstTWODIGITYEARCUTOFF : AstTerminalKeyword
+    {
+        
+        public AstTWODIGITYEARCUTOFF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTWODIGITYEARCUTOFF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TWO_DIGIT_YEAR_CUTOFF : TWO_DIGIT_YEAR_CUTOFF
+        /// </summary>
+        public static AstTWODIGITYEARCUTOFF TWODIGITYEARCUTOFF()
+        {
+            return new AstTWODIGITYEARCUTOFF(Position.Default, "TWO_DIGIT_YEAR_CUTOFF", "TWO_DIGIT_YEAR_CUTOFF");
+        }
+    }
+    
+    /// <summary>
+    /// TYPE : 'TYPE'
+    /// </summary>
+    public partial class AstTYPE : AstTerminalKeyword
+    {
+        
+        public AstTYPE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTYPE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TYPE : TYPE
+        /// </summary>
+        public static AstTYPE TYPE()
+        {
+            return new AstTYPE(Position.Default, "TYPE", "TYPE");
+        }
+    }
+    
+    /// <summary>
+    /// TYPE_ID : 'TYPE_ID'
+    /// </summary>
+    public partial class AstTYPEID : AstTerminalKeyword
+    {
+        
+        public AstTYPEID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTYPEID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TYPE_ID : TYPE_ID
+        /// </summary>
+        public static AstTYPEID TYPEID()
+        {
+            return new AstTYPEID(Position.Default, "TYPE_ID", "TYPE_ID");
+        }
+    }
+    
+    /// <summary>
+    /// TYPE_NAME : 'TYPE_NAME'
+    /// </summary>
+    public partial class AstTYPENAME : AstTerminalKeyword
+    {
+        
+        public AstTYPENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTYPENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TYPE_NAME : TYPE_NAME
+        /// </summary>
+        public static AstTYPENAME TYPENAME()
+        {
+            return new AstTYPENAME(Position.Default, "TYPE_NAME", "TYPE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// TYPE_WARNING : 'TYPE_WARNING'
+    /// </summary>
+    public partial class AstTYPEWARNING : AstTerminalKeyword
+    {
+        
+        public AstTYPEWARNING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTYPEWARNING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TYPE_WARNING : TYPE_WARNING
+        /// </summary>
+        public static AstTYPEWARNING TYPEWARNING()
+        {
+            return new AstTYPEWARNING(Position.Default, "TYPE_WARNING", "TYPE_WARNING");
+        }
+    }
+    
+    /// <summary>
+    /// TYPEPROPERTY : 'TYPEPROPERTY'
+    /// </summary>
+    public partial class AstTYPEPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstTYPEPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTYPEPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TYPEPROPERTY : TYPEPROPERTY
+        /// </summary>
+        public static AstTYPEPROPERTY TYPEPROPERTY()
+        {
+            return new AstTYPEPROPERTY(Position.Default, "TYPEPROPERTY", "TYPEPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// UNBOUNDED : 'UNBOUNDED'
+    /// </summary>
+    public partial class AstUNBOUNDED : AstTerminalKeyword
+    {
+        
+        public AstUNBOUNDED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNBOUNDED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNBOUNDED : UNBOUNDED
+        /// </summary>
+        public static AstUNBOUNDED UNBOUNDED()
+        {
+            return new AstUNBOUNDED(Position.Default, "UNBOUNDED", "UNBOUNDED");
+        }
+    }
+    
+    /// <summary>
+    /// UNCOMMITTED : 'UNCOMMITTED'
+    /// </summary>
+    public partial class AstUNCOMMITTED : AstTerminalKeyword
+    {
+        
+        public AstUNCOMMITTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNCOMMITTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNCOMMITTED : UNCOMMITTED
+        /// </summary>
+        public static AstUNCOMMITTED UNCOMMITTED()
+        {
+            return new AstUNCOMMITTED(Position.Default, "UNCOMMITTED", "UNCOMMITTED");
+        }
+    }
+    
+    /// <summary>
+    /// UNICODE : 'UNICODE'
+    /// </summary>
+    public partial class AstUNICODE : AstTerminalKeyword
+    {
+        
+        public AstUNICODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNICODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNICODE : UNICODE
+        /// </summary>
+        public static AstUNICODE UNICODE()
+        {
+            return new AstUNICODE(Position.Default, "UNICODE", "UNICODE");
+        }
+    }
+    
+    /// <summary>
+    /// UNKNOWN : 'UNKNOWN'
+    /// </summary>
+    public partial class AstUNKNOWN : AstTerminalKeyword
+    {
+        
+        public AstUNKNOWN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNKNOWN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNKNOWN : UNKNOWN
+        /// </summary>
+        public static AstUNKNOWN UNKNOWN()
+        {
+            return new AstUNKNOWN(Position.Default, "UNKNOWN", "UNKNOWN");
+        }
+    }
+    
+    /// <summary>
+    /// UNLIMITED : 'UNLIMITED'
+    /// </summary>
+    public partial class AstUNLIMITED : AstTerminalKeyword
+    {
+        
+        public AstUNLIMITED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNLIMITED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNLIMITED : UNLIMITED
+        /// </summary>
+        public static AstUNLIMITED UNLIMITED()
+        {
+            return new AstUNLIMITED(Position.Default, "UNLIMITED", "UNLIMITED");
+        }
+    }
+    
+    /// <summary>
+    /// UNMASK : 'UNMASK'
+    /// </summary>
+    public partial class AstUNMASK : AstTerminalKeyword
+    {
+        
+        public AstUNMASK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNMASK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNMASK : UNMASK
+        /// </summary>
+        public static AstUNMASK UNMASK()
+        {
+            return new AstUNMASK(Position.Default, "UNMASK", "UNMASK");
+        }
+    }
+    
+    /// <summary>
+    /// UOW : 'UOW'
+    /// </summary>
+    public partial class AstUOW : AstTerminalKeyword
+    {
+        
+        public AstUOW(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUOW(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UOW : UOW
+        /// </summary>
+        public static AstUOW UOW()
+        {
+            return new AstUOW(Position.Default, "UOW", "UOW");
+        }
+    }
+    
+    /// <summary>
+    /// UPDLOCK : 'UPDLOCK'
+    /// </summary>
+    public partial class AstUPDLOCK : AstTerminalKeyword
+    {
+        
+        public AstUPDLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUPDLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UPDLOCK : UPDLOCK
+        /// </summary>
+        public static AstUPDLOCK UPDLOCK()
+        {
+            return new AstUPDLOCK(Position.Default, "UPDLOCK", "UPDLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// UPPER : 'UPPER'
+    /// </summary>
+    public partial class AstUPPER : AstTerminalKeyword
+    {
+        
+        public AstUPPER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUPPER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UPPER : UPPER
+        /// </summary>
+        public static AstUPPER UPPER()
+        {
+            return new AstUPPER(Position.Default, "UPPER", "UPPER");
+        }
+    }
+    
+    /// <summary>
+    /// USING : 'USING'
+    /// </summary>
+    public partial class AstUSING : AstTerminalKeyword
+    {
+        
+        public AstUSING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUSING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// USING : USING
+        /// </summary>
+        public static AstUSING USING()
+        {
+            return new AstUSING(Position.Default, "USING", "USING");
+        }
+    }
+    
+    /// <summary>
+    /// VALID_XML : 'VALID_XML'
+    /// </summary>
+    public partial class AstVALIDXML : AstTerminalKeyword
+    {
+        
+        public AstVALIDXML(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVALIDXML(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VALID_XML : VALID_XML
+        /// </summary>
+        public static AstVALIDXML VALIDXML()
+        {
+            return new AstVALIDXML(Position.Default, "VALID_XML", "VALID_XML");
+        }
+    }
+    
+    /// <summary>
+    /// VALIDATION : 'VALIDATION'
+    /// </summary>
+    public partial class AstVALIDATION : AstTerminalKeyword
+    {
+        
+        public AstVALIDATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVALIDATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VALIDATION : VALIDATION
+        /// </summary>
+        public static AstVALIDATION VALIDATION()
+        {
+            return new AstVALIDATION(Position.Default, "VALIDATION", "VALIDATION");
+        }
+    }
+    
+    /// <summary>
+    /// VALUE : 'VALUE'
+    /// </summary>
+    public partial class AstVALUE : AstTerminalKeyword
+    {
+        
+        public AstVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VALUE : VALUE
+        /// </summary>
+        public static AstVALUE VALUE()
+        {
+            return new AstVALUE(Position.Default, "VALUE", "VALUE");
+        }
+    }
+    
+    /// <summary>
+    /// VAR : 'VAR'
+    /// </summary>
+    public partial class AstVAR : AstTerminalKeyword
+    {
+        
+        public AstVAR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVAR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VAR : VAR
+        /// </summary>
+        public static AstVAR VAR()
+        {
+            return new AstVAR(Position.Default, "VAR", "VAR");
+        }
+    }
+    
+    /// <summary>
+    /// VARBINARY_KEYWORD : 'VARBINARY'
+    /// </summary>
+    public partial class AstVARBINARYKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstVARBINARYKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVARBINARYKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VARBINARY_KEYWORD : VARBINARY
+        /// </summary>
+        public static AstVARBINARYKEYWORD VARBINARYKEYWORD()
+        {
+            return new AstVARBINARYKEYWORD(Position.Default, "VARBINARY_KEYWORD", "VARBINARY");
+        }
+    }
+    
+    /// <summary>
+    /// VARP : 'VARP'
+    /// </summary>
+    public partial class AstVARP : AstTerminalKeyword
+    {
+        
+        public AstVARP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVARP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VARP : VARP
+        /// </summary>
+        public static AstVARP VARP()
+        {
+            return new AstVARP(Position.Default, "VARP", "VARP");
+        }
+    }
+    
+    /// <summary>
+    /// VERSION : 'VERSION'
+    /// </summary>
+    public partial class AstVERSION : AstTerminalKeyword
+    {
+        
+        public AstVERSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVERSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VERSION : VERSION
+        /// </summary>
+        public static AstVERSION VERSION()
+        {
+            return new AstVERSION(Position.Default, "VERSION", "VERSION");
+        }
+    }
+    
+    /// <summary>
+    /// VIEW_METADATA : 'VIEW_METADATA'
+    /// </summary>
+    public partial class AstVIEWMETADATA : AstTerminalKeyword
+    {
+        
+        public AstVIEWMETADATA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVIEWMETADATA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VIEW_METADATA : VIEW_METADATA
+        /// </summary>
+        public static AstVIEWMETADATA VIEWMETADATA()
+        {
+            return new AstVIEWMETADATA(Position.Default, "VIEW_METADATA", "VIEW_METADATA");
+        }
+    }
+    
+    /// <summary>
+    /// VIEWS : 'VIEWS'
+    /// </summary>
+    public partial class AstVIEWS : AstTerminalKeyword
+    {
+        
+        public AstVIEWS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVIEWS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VIEWS : VIEWS
+        /// </summary>
+        public static AstVIEWS VIEWS()
+        {
+            return new AstVIEWS(Position.Default, "VIEWS", "VIEWS");
+        }
+    }
+    
+    /// <summary>
+    /// WAIT : 'WAIT'
+    /// </summary>
+    public partial class AstWAIT : AstTerminalKeyword
+    {
+        
+        public AstWAIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWAIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WAIT : WAIT
+        /// </summary>
+        public static AstWAIT WAIT()
+        {
+            return new AstWAIT(Position.Default, "WAIT", "WAIT");
+        }
+    }
+    
+    /// <summary>
+    /// WELL_FORMED_XML : 'WELL_FORMED_XML'
+    /// </summary>
+    public partial class AstWELLFORMEDXML : AstTerminalKeyword
+    {
+        
+        public AstWELLFORMEDXML(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWELLFORMEDXML(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WELL_FORMED_XML : WELL_FORMED_XML
+        /// </summary>
+        public static AstWELLFORMEDXML WELLFORMEDXML()
+        {
+            return new AstWELLFORMEDXML(Position.Default, "WELL_FORMED_XML", "WELL_FORMED_XML");
+        }
+    }
+    
+    /// <summary>
+    /// WITHOUT_ARRAY_WRAPPER : 'WITHOUT_ARRAY_WRAPPER'
+    /// </summary>
+    public partial class AstWITHOUTARRAYWRAPPER : AstTerminalKeyword
+    {
+        
+        public AstWITHOUTARRAYWRAPPER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWITHOUTARRAYWRAPPER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WITHOUT_ARRAY_WRAPPER : WITHOUT_ARRAY_WRAPPER
+        /// </summary>
+        public static AstWITHOUTARRAYWRAPPER WITHOUTARRAYWRAPPER()
+        {
+            return new AstWITHOUTARRAYWRAPPER(Position.Default, "WITHOUT_ARRAY_WRAPPER", "WITHOUT_ARRAY_WRAPPER");
+        }
+    }
+    
+    /// <summary>
+    /// WORK : 'WORK'
+    /// </summary>
+    public partial class AstWORK : AstTerminalKeyword
+    {
+        
+        public AstWORK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWORK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WORK : WORK
+        /// </summary>
+        public static AstWORK WORK()
+        {
+            return new AstWORK(Position.Default, "WORK", "WORK");
+        }
+    }
+    
+    /// <summary>
+    /// WORKLOAD : 'WORKLOAD'
+    /// </summary>
+    public partial class AstWORKLOAD : AstTerminalKeyword
+    {
+        
+        public AstWORKLOAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWORKLOAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WORKLOAD : WORKLOAD
+        /// </summary>
+        public static AstWORKLOAD WORKLOAD()
+        {
+            return new AstWORKLOAD(Position.Default, "WORKLOAD", "WORKLOAD");
+        }
+    }
+    
+    /// <summary>
+    /// XLOCK : 'XLOCK'
+    /// </summary>
+    public partial class AstXLOCK : AstTerminalKeyword
+    {
+        
+        public AstXLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XLOCK : XLOCK
+        /// </summary>
+        public static AstXLOCK XLOCK()
+        {
+            return new AstXLOCK(Position.Default, "XLOCK", "XLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// XML : 'XML'
+    /// </summary>
+    public partial class AstXML : AstTerminalKeyword
+    {
+        
+        public AstXML(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXML(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XML : XML
+        /// </summary>
+        public static AstXML XML()
+        {
+            return new AstXML(Position.Default, "XML", "XML");
+        }
+    }
+    
+    /// <summary>
+    /// XML_COMPRESSION : 'XML_COMPRESSION'
+    /// </summary>
+    public partial class AstXMLCOMPRESSION : AstTerminalKeyword
+    {
+        
+        public AstXMLCOMPRESSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXMLCOMPRESSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XML_COMPRESSION : XML_COMPRESSION
+        /// </summary>
+        public static AstXMLCOMPRESSION XMLCOMPRESSION()
+        {
+            return new AstXMLCOMPRESSION(Position.Default, "XML_COMPRESSION", "XML_COMPRESSION");
+        }
+    }
+    
+    /// <summary>
+    /// XMLDATA : 'XMLDATA'
+    /// </summary>
+    public partial class AstXMLDATA : AstTerminalKeyword
+    {
+        
+        public AstXMLDATA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXMLDATA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XMLDATA : XMLDATA
+        /// </summary>
+        public static AstXMLDATA XMLDATA()
+        {
+            return new AstXMLDATA(Position.Default, "XMLDATA", "XMLDATA");
+        }
+    }
+    
+    /// <summary>
+    /// XMLNAMESPACES : 'XMLNAMESPACES'
+    /// </summary>
+    public partial class AstXMLNAMESPACES : AstTerminalKeyword
+    {
+        
+        public AstXMLNAMESPACES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXMLNAMESPACES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XMLNAMESPACES : XMLNAMESPACES
+        /// </summary>
+        public static AstXMLNAMESPACES XMLNAMESPACES()
+        {
+            return new AstXMLNAMESPACES(Position.Default, "XMLNAMESPACES", "XMLNAMESPACES");
+        }
+    }
+    
+    /// <summary>
+    /// XMLSCHEMA : 'XMLSCHEMA'
+    /// </summary>
+    public partial class AstXMLSCHEMA : AstTerminalKeyword
+    {
+        
+        public AstXMLSCHEMA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXMLSCHEMA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XMLSCHEMA : XMLSCHEMA
+        /// </summary>
+        public static AstXMLSCHEMA XMLSCHEMA()
+        {
+            return new AstXMLSCHEMA(Position.Default, "XMLSCHEMA", "XMLSCHEMA");
+        }
+    }
+    
+    /// <summary>
+    /// XSINIL : 'XSINIL'
+    /// </summary>
+    public partial class AstXSINIL : AstTerminalKeyword
+    {
+        
+        public AstXSINIL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXSINIL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XSINIL : XSINIL
+        /// </summary>
+        public static AstXSINIL XSINIL()
+        {
+            return new AstXSINIL(Position.Default, "XSINIL", "XSINIL");
+        }
+    }
+    
+    /// <summary>
+    /// ZONE : 'ZONE'
+    /// </summary>
+    public partial class AstZONE : AstTerminalKeyword
+    {
+        
+        public AstZONE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstZONE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ZONE : ZONE
+        /// </summary>
+        public static AstZONE ZONE()
+        {
+            return new AstZONE(Position.Default, "ZONE", "ZONE");
+        }
+    }
+    
+    /// <summary>
+    /// ABORT_AFTER_WAIT : 'ABORT_AFTER_WAIT'
+    /// </summary>
+    public partial class AstABORTAFTERWAIT : AstTerminalKeyword
+    {
+        
+        public AstABORTAFTERWAIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstABORTAFTERWAIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ABORT_AFTER_WAIT : ABORT_AFTER_WAIT
+        /// </summary>
+        public static AstABORTAFTERWAIT ABORTAFTERWAIT()
+        {
+            return new AstABORTAFTERWAIT(Position.Default, "ABORT_AFTER_WAIT", "ABORT_AFTER_WAIT");
+        }
+    }
+    
+    /// <summary>
+    /// ABSENT : 'ABSENT'
+    /// </summary>
+    public partial class AstABSENT : AstTerminalKeyword
+    {
+        
+        public AstABSENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstABSENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ABSENT : ABSENT
+        /// </summary>
+        public static AstABSENT ABSENT()
+        {
+            return new AstABSENT(Position.Default, "ABSENT", "ABSENT");
+        }
+    }
+    
+    /// <summary>
+    /// ADMINISTER : 'ADMINISTER'
+    /// </summary>
+    public partial class AstADMINISTER : AstTerminalKeyword
+    {
+        
+        public AstADMINISTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstADMINISTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ADMINISTER : ADMINISTER
+        /// </summary>
+        public static AstADMINISTER ADMINISTER()
+        {
+            return new AstADMINISTER(Position.Default, "ADMINISTER", "ADMINISTER");
+        }
+    }
+    
+    /// <summary>
+    /// AES : 'AES'
+    /// </summary>
+    public partial class AstAES : AstTerminalKeyword
+    {
+        
+        public AstAES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AES : AES
+        /// </summary>
+        public static AstAES AES()
+        {
+            return new AstAES(Position.Default, "AES", "AES");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_CONNECTIONS : 'ALLOW_CONNECTIONS'
+    /// </summary>
+    public partial class AstALLOWCONNECTIONS : AstTerminalKeyword
+    {
+        
+        public AstALLOWCONNECTIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWCONNECTIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_CONNECTIONS : ALLOW_CONNECTIONS
+        /// </summary>
+        public static AstALLOWCONNECTIONS ALLOWCONNECTIONS()
+        {
+            return new AstALLOWCONNECTIONS(Position.Default, "ALLOW_CONNECTIONS", "ALLOW_CONNECTIONS");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_MULTIPLE_EVENT_LOSS : 'ALLOW_MULTIPLE_EVENT_LOSS'
+    /// </summary>
+    public partial class AstALLOWMULTIPLEEVENTLOSS : AstTerminalKeyword
+    {
+        
+        public AstALLOWMULTIPLEEVENTLOSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWMULTIPLEEVENTLOSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_MULTIPLE_EVENT_LOSS : ALLOW_MULTIPLE_EVENT_LOSS
+        /// </summary>
+        public static AstALLOWMULTIPLEEVENTLOSS ALLOWMULTIPLEEVENTLOSS()
+        {
+            return new AstALLOWMULTIPLEEVENTLOSS(Position.Default, "ALLOW_MULTIPLE_EVENT_LOSS", "ALLOW_MULTIPLE_EVENT_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// ALLOW_SINGLE_EVENT_LOSS : 'ALLOW_SINGLE_EVENT_LOSS'
+    /// </summary>
+    public partial class AstALLOWSINGLEEVENTLOSS : AstTerminalKeyword
+    {
+        
+        public AstALLOWSINGLEEVENTLOSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstALLOWSINGLEEVENTLOSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ALLOW_SINGLE_EVENT_LOSS : ALLOW_SINGLE_EVENT_LOSS
+        /// </summary>
+        public static AstALLOWSINGLEEVENTLOSS ALLOWSINGLEEVENTLOSS()
+        {
+            return new AstALLOWSINGLEEVENTLOSS(Position.Default, "ALLOW_SINGLE_EVENT_LOSS", "ALLOW_SINGLE_EVENT_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// ANONYMOUS : 'ANONYMOUS'
+    /// </summary>
+    public partial class AstANONYMOUS : AstTerminalKeyword
+    {
+        
+        public AstANONYMOUS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstANONYMOUS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ANONYMOUS : ANONYMOUS
+        /// </summary>
+        public static AstANONYMOUS ANONYMOUS()
+        {
+            return new AstANONYMOUS(Position.Default, "ANONYMOUS", "ANONYMOUS");
+        }
+    }
+    
+    /// <summary>
+    /// APPEND : 'APPEND'
+    /// </summary>
+    public partial class AstAPPEND : AstTerminalKeyword
+    {
+        
+        public AstAPPEND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPEND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPEND : APPEND
+        /// </summary>
+        public static AstAPPEND APPEND()
+        {
+            return new AstAPPEND(Position.Default, "APPEND", "APPEND");
+        }
+    }
+    
+    /// <summary>
+    /// APPLICATION : 'APPLICATION'
+    /// </summary>
+    public partial class AstAPPLICATION : AstTerminalKeyword
+    {
+        
+        public AstAPPLICATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAPPLICATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// APPLICATION : APPLICATION
+        /// </summary>
+        public static AstAPPLICATION APPLICATION()
+        {
+            return new AstAPPLICATION(Position.Default, "APPLICATION", "APPLICATION");
+        }
+    }
+    
+    /// <summary>
+    /// ASYMMETRIC : 'ASYMMETRIC'
+    /// </summary>
+    public partial class AstASYMMETRIC : AstTerminalKeyword
+    {
+        
+        public AstASYMMETRIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASYMMETRIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASYMMETRIC : ASYMMETRIC
+        /// </summary>
+        public static AstASYMMETRIC ASYMMETRIC()
+        {
+            return new AstASYMMETRIC(Position.Default, "ASYMMETRIC", "ASYMMETRIC");
+        }
+    }
+    
+    /// <summary>
+    /// ASYNCHRONOUS_COMMIT : 'ASYNCHRONOUS_COMMIT'
+    /// </summary>
+    public partial class AstASYNCHRONOUSCOMMIT : AstTerminalKeyword
+    {
+        
+        public AstASYNCHRONOUSCOMMIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstASYNCHRONOUSCOMMIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ASYNCHRONOUS_COMMIT : ASYNCHRONOUS_COMMIT
+        /// </summary>
+        public static AstASYNCHRONOUSCOMMIT ASYNCHRONOUSCOMMIT()
+        {
+            return new AstASYNCHRONOUSCOMMIT(Position.Default, "ASYNCHRONOUS_COMMIT", "ASYNCHRONOUS_COMMIT");
+        }
+    }
+    
+    /// <summary>
+    /// AUTHENTICATE : 'AUTHENTICATE'
+    /// </summary>
+    public partial class AstAUTHENTICATE : AstTerminalKeyword
+    {
+        
+        public AstAUTHENTICATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTHENTICATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTHENTICATE : AUTHENTICATE
+        /// </summary>
+        public static AstAUTHENTICATE AUTHENTICATE()
+        {
+            return new AstAUTHENTICATE(Position.Default, "AUTHENTICATE", "AUTHENTICATE");
+        }
+    }
+    
+    /// <summary>
+    /// AUTHENTICATION : 'AUTHENTICATION'
+    /// </summary>
+    public partial class AstAUTHENTICATION : AstTerminalKeyword
+    {
+        
+        public AstAUTHENTICATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTHENTICATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTHENTICATION : AUTHENTICATION
+        /// </summary>
+        public static AstAUTHENTICATION AUTHENTICATION()
+        {
+            return new AstAUTHENTICATION(Position.Default, "AUTHENTICATION", "AUTHENTICATION");
+        }
+    }
+    
+    /// <summary>
+    /// AUTOMATED_BACKUP_PREFERENCE : 'AUTOMATED_BACKUP_PREFERENCE'
+    /// </summary>
+    public partial class AstAUTOMATEDBACKUPPREFERENCE : AstTerminalKeyword
+    {
+        
+        public AstAUTOMATEDBACKUPPREFERENCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOMATEDBACKUPPREFERENCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTOMATED_BACKUP_PREFERENCE : AUTOMATED_BACKUP_PREFERENCE
+        /// </summary>
+        public static AstAUTOMATEDBACKUPPREFERENCE AUTOMATEDBACKUPPREFERENCE()
+        {
+            return new AstAUTOMATEDBACKUPPREFERENCE(Position.Default, "AUTOMATED_BACKUP_PREFERENCE", "AUTOMATED_BACKUP_PREFERENCE");
+        }
+    }
+    
+    /// <summary>
+    /// AUTOMATIC : 'AUTOMATIC'
+    /// </summary>
+    public partial class AstAUTOMATIC : AstTerminalKeyword
+    {
+        
+        public AstAUTOMATIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAUTOMATIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AUTOMATIC : AUTOMATIC
+        /// </summary>
+        public static AstAUTOMATIC AUTOMATIC()
+        {
+            return new AstAUTOMATIC(Position.Default, "AUTOMATIC", "AUTOMATIC");
+        }
+    }
+    
+    /// <summary>
+    /// AVAILABILITY_MODE : 'AVAILABILITY_MODE'
+    /// </summary>
+    public partial class AstAVAILABILITYMODE : AstTerminalKeyword
+    {
+        
+        public AstAVAILABILITYMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstAVAILABILITYMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// AVAILABILITY_MODE : AVAILABILITY_MODE
+        /// </summary>
+        public static AstAVAILABILITYMODE AVAILABILITYMODE()
+        {
+            return new AstAVAILABILITYMODE(Position.Default, "AVAILABILITY_MODE", "AVAILABILITY_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// BEFORE : 'BEFORE'
+    /// </summary>
+    public partial class AstBEFORE : AstTerminalKeyword
+    {
+        
+        public AstBEFORE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBEFORE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BEFORE : BEFORE
+        /// </summary>
+        public static AstBEFORE BEFORE()
+        {
+            return new AstBEFORE(Position.Default, "BEFORE", "BEFORE");
+        }
+    }
+    
+    /// <summary>
+    /// BLOCK : 'BLOCK'
+    /// </summary>
+    public partial class AstBLOCK : AstTerminalKeyword
+    {
+        
+        public AstBLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BLOCK : BLOCK
+        /// </summary>
+        public static AstBLOCK BLOCK()
+        {
+            return new AstBLOCK(Position.Default, "BLOCK", "BLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// BLOCKERS : 'BLOCKERS'
+    /// </summary>
+    public partial class AstBLOCKERS : AstTerminalKeyword
+    {
+        
+        public AstBLOCKERS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBLOCKERS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BLOCKERS : BLOCKERS
+        /// </summary>
+        public static AstBLOCKERS BLOCKERS()
+        {
+            return new AstBLOCKERS(Position.Default, "BLOCKERS", "BLOCKERS");
+        }
+    }
+    
+    /// <summary>
+    /// BLOCKSIZE : 'BLOCKSIZE'
+    /// </summary>
+    public partial class AstBLOCKSIZE : AstTerminalKeyword
+    {
+        
+        public AstBLOCKSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBLOCKSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BLOCKSIZE : BLOCKSIZE
+        /// </summary>
+        public static AstBLOCKSIZE BLOCKSIZE()
+        {
+            return new AstBLOCKSIZE(Position.Default, "BLOCKSIZE", "BLOCKSIZE");
+        }
+    }
+    
+    /// <summary>
+    /// BLOCKING_HIERARCHY : 'BLOCKING_HIERARCHY'
+    /// </summary>
+    public partial class AstBLOCKINGHIERARCHY : AstTerminalKeyword
+    {
+        
+        public AstBLOCKINGHIERARCHY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBLOCKINGHIERARCHY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BLOCKING_HIERARCHY : BLOCKING_HIERARCHY
+        /// </summary>
+        public static AstBLOCKINGHIERARCHY BLOCKINGHIERARCHY()
+        {
+            return new AstBLOCKINGHIERARCHY(Position.Default, "BLOCKING_HIERARCHY", "BLOCKING_HIERARCHY");
+        }
+    }
+    
+    /// <summary>
+    /// BUFFER : 'BUFFER'
+    /// </summary>
+    public partial class AstBUFFER : AstTerminalKeyword
+    {
+        
+        public AstBUFFER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBUFFER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BUFFER : BUFFER
+        /// </summary>
+        public static AstBUFFER BUFFER()
+        {
+            return new AstBUFFER(Position.Default, "BUFFER", "BUFFER");
+        }
+    }
+    
+    /// <summary>
+    /// BUFFERCOUNT : 'BUFFERCOUNT'
+    /// </summary>
+    public partial class AstBUFFERCOUNT : AstTerminalKeyword
+    {
+        
+        public AstBUFFERCOUNT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstBUFFERCOUNT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// BUFFERCOUNT : BUFFERCOUNT
+        /// </summary>
+        public static AstBUFFERCOUNT BUFFERCOUNT()
+        {
+            return new AstBUFFERCOUNT(Position.Default, "BUFFERCOUNT", "BUFFERCOUNT");
+        }
+    }
+    
+    /// <summary>
+    /// CACHE : 'CACHE'
+    /// </summary>
+    public partial class AstCACHE : AstTerminalKeyword
+    {
+        
+        public AstCACHE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCACHE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CACHE : CACHE
+        /// </summary>
+        public static AstCACHE CACHE()
+        {
+            return new AstCACHE(Position.Default, "CACHE", "CACHE");
+        }
+    }
+    
+    /// <summary>
+    /// CALLED : 'CALLED'
+    /// </summary>
+    public partial class AstCALLED : AstTerminalKeyword
+    {
+        
+        public AstCALLED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCALLED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CALLED : CALLED
+        /// </summary>
+        public static AstCALLED CALLED()
+        {
+            return new AstCALLED(Position.Default, "CALLED", "CALLED");
+        }
+    }
+    
+    /// <summary>
+    /// CERTIFICATE : 'CERTIFICATE'
+    /// </summary>
+    public partial class AstCERTIFICATE : AstTerminalKeyword
+    {
+        
+        public AstCERTIFICATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCERTIFICATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CERTIFICATE : CERTIFICATE
+        /// </summary>
+        public static AstCERTIFICATE CERTIFICATE()
+        {
+            return new AstCERTIFICATE(Position.Default, "CERTIFICATE", "CERTIFICATE");
+        }
+    }
+    
+    /// <summary>
+    /// CHANGETABLE : 'CHANGETABLE'
+    /// </summary>
+    public partial class AstCHANGETABLE : AstTerminalKeyword
+    {
+        
+        public AstCHANGETABLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHANGETABLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHANGETABLE : CHANGETABLE
+        /// </summary>
+        public static AstCHANGETABLE CHANGETABLE()
+        {
+            return new AstCHANGETABLE(Position.Default, "CHANGETABLE", "CHANGETABLE");
+        }
+    }
+    
+    /// <summary>
+    /// CHANGES : 'CHANGES'
+    /// </summary>
+    public partial class AstCHANGES : AstTerminalKeyword
+    {
+        
+        public AstCHANGES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHANGES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHANGES : CHANGES
+        /// </summary>
+        public static AstCHANGES CHANGES()
+        {
+            return new AstCHANGES(Position.Default, "CHANGES", "CHANGES");
+        }
+    }
+    
+    /// <summary>
+    /// CHECK_POLICY : 'CHECK_POLICY'
+    /// </summary>
+    public partial class AstCHECKPOLICY : AstTerminalKeyword
+    {
+        
+        public AstCHECKPOLICY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECKPOLICY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECK_POLICY : CHECK_POLICY
+        /// </summary>
+        public static AstCHECKPOLICY CHECKPOLICY()
+        {
+            return new AstCHECKPOLICY(Position.Default, "CHECK_POLICY", "CHECK_POLICY");
+        }
+    }
+    
+    /// <summary>
+    /// CHECK_EXPIRATION : 'CHECK_EXPIRATION'
+    /// </summary>
+    public partial class AstCHECKEXPIRATION : AstTerminalKeyword
+    {
+        
+        public AstCHECKEXPIRATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCHECKEXPIRATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CHECK_EXPIRATION : CHECK_EXPIRATION
+        /// </summary>
+        public static AstCHECKEXPIRATION CHECKEXPIRATION()
+        {
+            return new AstCHECKEXPIRATION(Position.Default, "CHECK_EXPIRATION", "CHECK_EXPIRATION");
+        }
+    }
+    
+    /// <summary>
+    /// CLASSIFIER_FUNCTION : 'CLASSIFIER_FUNCTION'
+    /// </summary>
+    public partial class AstCLASSIFIERFUNCTION : AstTerminalKeyword
+    {
+        
+        public AstCLASSIFIERFUNCTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCLASSIFIERFUNCTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CLASSIFIER_FUNCTION : CLASSIFIER_FUNCTION
+        /// </summary>
+        public static AstCLASSIFIERFUNCTION CLASSIFIERFUNCTION()
+        {
+            return new AstCLASSIFIERFUNCTION(Position.Default, "CLASSIFIER_FUNCTION", "CLASSIFIER_FUNCTION");
+        }
+    }
+    
+    /// <summary>
+    /// CLUSTER : 'CLUSTER'
+    /// </summary>
+    public partial class AstCLUSTER : AstTerminalKeyword
+    {
+        
+        public AstCLUSTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCLUSTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CLUSTER : CLUSTER
+        /// </summary>
+        public static AstCLUSTER CLUSTER()
+        {
+            return new AstCLUSTER(Position.Default, "CLUSTER", "CLUSTER");
+        }
+    }
+    
+    /// <summary>
+    /// COMPRESS : 'COMPRESS'
+    /// </summary>
+    public partial class AstCOMPRESS : AstTerminalKeyword
+    {
+        
+        public AstCOMPRESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPRESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPRESS : COMPRESS
+        /// </summary>
+        public static AstCOMPRESS COMPRESS()
+        {
+            return new AstCOMPRESS(Position.Default, "COMPRESS", "COMPRESS");
+        }
+    }
+    
+    /// <summary>
+    /// COMPRESSION : 'COMPRESSION'
+    /// </summary>
+    public partial class AstCOMPRESSION : AstTerminalKeyword
+    {
+        
+        public AstCOMPRESSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOMPRESSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COMPRESSION : COMPRESSION
+        /// </summary>
+        public static AstCOMPRESSION COMPRESSION()
+        {
+            return new AstCOMPRESSION(Position.Default, "COMPRESSION", "COMPRESSION");
+        }
+    }
+    
+    /// <summary>
+    /// CONNECT : 'CONNECT'
+    /// </summary>
+    public partial class AstCONNECT : AstTerminalKeyword
+    {
+        
+        public AstCONNECT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONNECT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONNECT : CONNECT
+        /// </summary>
+        public static AstCONNECT CONNECT()
+        {
+            return new AstCONNECT(Position.Default, "CONNECT", "CONNECT");
+        }
+    }
+    
+    /// <summary>
+    /// CONNECTION : 'CONNECTION'
+    /// </summary>
+    public partial class AstCONNECTION : AstTerminalKeyword
+    {
+        
+        public AstCONNECTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONNECTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONNECTION : CONNECTION
+        /// </summary>
+        public static AstCONNECTION CONNECTION()
+        {
+            return new AstCONNECTION(Position.Default, "CONNECTION", "CONNECTION");
+        }
+    }
+    
+    /// <summary>
+    /// CONFIGURATION : 'CONFIGURATION'
+    /// </summary>
+    public partial class AstCONFIGURATION : AstTerminalKeyword
+    {
+        
+        public AstCONFIGURATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONFIGURATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONFIGURATION : CONFIGURATION
+        /// </summary>
+        public static AstCONFIGURATION CONFIGURATION()
+        {
+            return new AstCONFIGURATION(Position.Default, "CONFIGURATION", "CONFIGURATION");
+        }
+    }
+    
+    /// <summary>
+    /// CONNECTIONPROPERTY : 'CONNECTIONPROPERTY'
+    /// </summary>
+    public partial class AstCONNECTIONPROPERTY : AstTerminalKeyword
+    {
+        
+        public AstCONNECTIONPROPERTY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONNECTIONPROPERTY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONNECTIONPROPERTY : CONNECTIONPROPERTY
+        /// </summary>
+        public static AstCONNECTIONPROPERTY CONNECTIONPROPERTY()
+        {
+            return new AstCONNECTIONPROPERTY(Position.Default, "CONNECTIONPROPERTY", "CONNECTIONPROPERTY");
+        }
+    }
+    
+    /// <summary>
+    /// CONTAINMENT : 'CONTAINMENT'
+    /// </summary>
+    public partial class AstCONTAINMENT : AstTerminalKeyword
+    {
+        
+        public AstCONTAINMENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTAINMENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTAINMENT : CONTAINMENT
+        /// </summary>
+        public static AstCONTAINMENT CONTAINMENT()
+        {
+            return new AstCONTAINMENT(Position.Default, "CONTAINMENT", "CONTAINMENT");
+        }
+    }
+    
+    /// <summary>
+    /// CONTEXT : 'CONTEXT'
+    /// </summary>
+    public partial class AstCONTEXT : AstTerminalKeyword
+    {
+        
+        public AstCONTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTEXT : CONTEXT
+        /// </summary>
+        public static AstCONTEXT CONTEXT()
+        {
+            return new AstCONTEXT(Position.Default, "CONTEXT", "CONTEXT");
+        }
+    }
+    
+    /// <summary>
+    /// CONTEXT_INFO : 'CONTEXT_INFO'
+    /// </summary>
+    public partial class AstCONTEXTINFO : AstTerminalKeyword
+    {
+        
+        public AstCONTEXTINFO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTEXTINFO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTEXT_INFO : CONTEXT_INFO
+        /// </summary>
+        public static AstCONTEXTINFO CONTEXTINFO()
+        {
+            return new AstCONTEXTINFO(Position.Default, "CONTEXT_INFO", "CONTEXT_INFO");
+        }
+    }
+    
+    /// <summary>
+    /// CONTINUE_AFTER_ERROR : 'CONTINUE_AFTER_ERROR'
+    /// </summary>
+    public partial class AstCONTINUEAFTERERROR : AstTerminalKeyword
+    {
+        
+        public AstCONTINUEAFTERERROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTINUEAFTERERROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTINUE_AFTER_ERROR : CONTINUE_AFTER_ERROR
+        /// </summary>
+        public static AstCONTINUEAFTERERROR CONTINUEAFTERERROR()
+        {
+            return new AstCONTINUEAFTERERROR(Position.Default, "CONTINUE_AFTER_ERROR", "CONTINUE_AFTER_ERROR");
+        }
+    }
+    
+    /// <summary>
+    /// CONTRACT : 'CONTRACT'
+    /// </summary>
+    public partial class AstCONTRACT : AstTerminalKeyword
+    {
+        
+        public AstCONTRACT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTRACT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTRACT : CONTRACT
+        /// </summary>
+        public static AstCONTRACT CONTRACT()
+        {
+            return new AstCONTRACT(Position.Default, "CONTRACT", "CONTRACT");
+        }
+    }
+    
+    /// <summary>
+    /// CONTRACT_NAME : 'CONTRACT_NAME'
+    /// </summary>
+    public partial class AstCONTRACTNAME : AstTerminalKeyword
+    {
+        
+        public AstCONTRACTNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONTRACTNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONTRACT_NAME : CONTRACT_NAME
+        /// </summary>
+        public static AstCONTRACTNAME CONTRACTNAME()
+        {
+            return new AstCONTRACTNAME(Position.Default, "CONTRACT_NAME", "CONTRACT_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// CONVERSATION : 'CONVERSATION'
+    /// </summary>
+    public partial class AstCONVERSATION : AstTerminalKeyword
+    {
+        
+        public AstCONVERSATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCONVERSATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CONVERSATION : CONVERSATION
+        /// </summary>
+        public static AstCONVERSATION CONVERSATION()
+        {
+            return new AstCONVERSATION(Position.Default, "CONVERSATION", "CONVERSATION");
+        }
+    }
+    
+    /// <summary>
+    /// COPY_ONLY : 'COPY_ONLY'
+    /// </summary>
+    public partial class AstCOPYONLY : AstTerminalKeyword
+    {
+        
+        public AstCOPYONLY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCOPYONLY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// COPY_ONLY : COPY_ONLY
+        /// </summary>
+        public static AstCOPYONLY COPYONLY()
+        {
+            return new AstCOPYONLY(Position.Default, "COPY_ONLY", "COPY_ONLY");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_REQUEST_ID : 'CURRENT_REQUEST_ID'
+    /// </summary>
+    public partial class AstCURRENTREQUESTID : AstTerminalKeyword
+    {
+        
+        public AstCURRENTREQUESTID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTREQUESTID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_REQUEST_ID : CURRENT_REQUEST_ID
+        /// </summary>
+        public static AstCURRENTREQUESTID CURRENTREQUESTID()
+        {
+            return new AstCURRENTREQUESTID(Position.Default, "CURRENT_REQUEST_ID", "CURRENT_REQUEST_ID");
+        }
+    }
+    
+    /// <summary>
+    /// CURRENT_TRANSACTION_ID : 'CURRENT_TRANSACTION_ID'
+    /// </summary>
+    public partial class AstCURRENTTRANSACTIONID : AstTerminalKeyword
+    {
+        
+        public AstCURRENTTRANSACTIONID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCURRENTTRANSACTIONID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CURRENT_TRANSACTION_ID : CURRENT_TRANSACTION_ID
+        /// </summary>
+        public static AstCURRENTTRANSACTIONID CURRENTTRANSACTIONID()
+        {
+            return new AstCURRENTTRANSACTIONID(Position.Default, "CURRENT_TRANSACTION_ID", "CURRENT_TRANSACTION_ID");
+        }
+    }
+    
+    /// <summary>
+    /// CYCLE : 'CYCLE'
+    /// </summary>
+    public partial class AstCYCLE : AstTerminalKeyword
+    {
+        
+        public AstCYCLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstCYCLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// CYCLE : CYCLE
+        /// </summary>
+        public static AstCYCLE CYCLE()
+        {
+            return new AstCYCLE(Position.Default, "CYCLE", "CYCLE");
+        }
+    }
+    
+    /// <summary>
+    /// DATA_COMPRESSION : 'DATA_COMPRESSION'
+    /// </summary>
+    public partial class AstDATACOMPRESSION : AstTerminalKeyword
+    {
+        
+        public AstDATACOMPRESSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATACOMPRESSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATA_COMPRESSION : DATA_COMPRESSION
+        /// </summary>
+        public static AstDATACOMPRESSION DATACOMPRESSION()
+        {
+            return new AstDATACOMPRESSION(Position.Default, "DATA_COMPRESSION", "DATA_COMPRESSION");
+        }
+    }
+    
+    /// <summary>
+    /// DATA_SOURCE : 'DATA_SOURCE'
+    /// </summary>
+    public partial class AstDATASOURCE : AstTerminalKeyword
+    {
+        
+        public AstDATASOURCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATASOURCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATA_SOURCE : DATA_SOURCE
+        /// </summary>
+        public static AstDATASOURCE DATASOURCE()
+        {
+            return new AstDATASOURCE(Position.Default, "DATA_SOURCE", "DATA_SOURCE");
+        }
+    }
+    
+    /// <summary>
+    /// DATABASE_MIRRORING : 'DATABASE_MIRRORING'
+    /// </summary>
+    public partial class AstDATABASEMIRRORING : AstTerminalKeyword
+    {
+        
+        public AstDATABASEMIRRORING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATABASEMIRRORING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATABASE_MIRRORING : DATABASE_MIRRORING
+        /// </summary>
+        public static AstDATABASEMIRRORING DATABASEMIRRORING()
+        {
+            return new AstDATABASEMIRRORING(Position.Default, "DATABASE_MIRRORING", "DATABASE_MIRRORING");
+        }
+    }
+    
+    /// <summary>
+    /// DATASPACE : 'DATASPACE'
+    /// </summary>
+    public partial class AstDATASPACE : AstTerminalKeyword
+    {
+        
+        public AstDATASPACE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDATASPACE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DATASPACE : DATASPACE
+        /// </summary>
+        public static AstDATASPACE DATASPACE()
+        {
+            return new AstDATASPACE(Position.Default, "DATASPACE", "DATASPACE");
+        }
+    }
+    
+    /// <summary>
+    /// DDL : 'DDL'
+    /// </summary>
+    public partial class AstDDL : AstTerminalKeyword
+    {
+        
+        public AstDDL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDDL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DDL : DDL
+        /// </summary>
+        public static AstDDL DDL()
+        {
+            return new AstDDL(Position.Default, "DDL", "DDL");
+        }
+    }
+    
+    /// <summary>
+    /// DECOMPRESS : 'DECOMPRESS'
+    /// </summary>
+    public partial class AstDECOMPRESS : AstTerminalKeyword
+    {
+        
+        public AstDECOMPRESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDECOMPRESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DECOMPRESS : DECOMPRESS
+        /// </summary>
+        public static AstDECOMPRESS DECOMPRESS()
+        {
+            return new AstDECOMPRESS(Position.Default, "DECOMPRESS", "DECOMPRESS");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT_DATABASE : 'DEFAULT_DATABASE'
+    /// </summary>
+    public partial class AstDEFAULTDATABASE : AstTerminalKeyword
+    {
+        
+        public AstDEFAULTDATABASE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULTDATABASE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT_DATABASE : DEFAULT_DATABASE
+        /// </summary>
+        public static AstDEFAULTDATABASE DEFAULTDATABASE()
+        {
+            return new AstDEFAULTDATABASE(Position.Default, "DEFAULT_DATABASE", "DEFAULT_DATABASE");
+        }
+    }
+    
+    /// <summary>
+    /// DEFAULT_SCHEMA : 'DEFAULT_SCHEMA'
+    /// </summary>
+    public partial class AstDEFAULTSCHEMA : AstTerminalKeyword
+    {
+        
+        public AstDEFAULTSCHEMA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDEFAULTSCHEMA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DEFAULT_SCHEMA : DEFAULT_SCHEMA
+        /// </summary>
+        public static AstDEFAULTSCHEMA DEFAULTSCHEMA()
+        {
+            return new AstDEFAULTSCHEMA(Position.Default, "DEFAULT_SCHEMA", "DEFAULT_SCHEMA");
+        }
+    }
+    
+    /// <summary>
+    /// DIAGNOSTICS : 'DIAGNOSTICS'
+    /// </summary>
+    public partial class AstDIAGNOSTICS : AstTerminalKeyword
+    {
+        
+        public AstDIAGNOSTICS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDIAGNOSTICS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DIAGNOSTICS : DIAGNOSTICS
+        /// </summary>
+        public static AstDIAGNOSTICS DIAGNOSTICS()
+        {
+            return new AstDIAGNOSTICS(Position.Default, "DIAGNOSTICS", "DIAGNOSTICS");
+        }
+    }
+    
+    /// <summary>
+    /// DIFFERENTIAL : 'DIFFERENTIAL'
+    /// </summary>
+    public partial class AstDIFFERENTIAL : AstTerminalKeyword
+    {
+        
+        public AstDIFFERENTIAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDIFFERENTIAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DIFFERENTIAL : DIFFERENTIAL
+        /// </summary>
+        public static AstDIFFERENTIAL DIFFERENTIAL()
+        {
+            return new AstDIFFERENTIAL(Position.Default, "DIFFERENTIAL", "DIFFERENTIAL");
+        }
+    }
+    
+    /// <summary>
+    /// DISTRIBUTION : 'DISTRIBUTION'
+    /// </summary>
+    public partial class AstDISTRIBUTION : AstTerminalKeyword
+    {
+        
+        public AstDISTRIBUTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDISTRIBUTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DISTRIBUTION : DISTRIBUTION
+        /// </summary>
+        public static AstDISTRIBUTION DISTRIBUTION()
+        {
+            return new AstDISTRIBUTION(Position.Default, "DISTRIBUTION", "DISTRIBUTION");
+        }
+    }
+    
+    /// <summary>
+    /// DTC_SUPPORT : 'DTC_SUPPORT'
+    /// </summary>
+    public partial class AstDTCSUPPORT : AstTerminalKeyword
+    {
+        
+        public AstDTCSUPPORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDTCSUPPORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DTC_SUPPORT : DTC_SUPPORT
+        /// </summary>
+        public static AstDTCSUPPORT DTCSUPPORT()
+        {
+            return new AstDTCSUPPORT(Position.Default, "DTC_SUPPORT", "DTC_SUPPORT");
+        }
+    }
+    
+    /// <summary>
+    /// ENABLED : 'ENABLED'
+    /// </summary>
+    public partial class AstENABLED : AstTerminalKeyword
+    {
+        
+        public AstENABLED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENABLED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENABLED : ENABLED
+        /// </summary>
+        public static AstENABLED ENABLED()
+        {
+            return new AstENABLED(Position.Default, "ENABLED", "ENABLED");
+        }
+    }
+    
+    /// <summary>
+    /// ENDPOINT : 'ENDPOINT'
+    /// </summary>
+    public partial class AstENDPOINT : AstTerminalKeyword
+    {
+        
+        public AstENDPOINT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstENDPOINT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ENDPOINT : ENDPOINT
+        /// </summary>
+        public static AstENDPOINT ENDPOINT()
+        {
+            return new AstENDPOINT(Position.Default, "ENDPOINT", "ENDPOINT");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR : 'ERROR'
+    /// </summary>
+    public partial class AstERROR : AstTerminalKeyword
+    {
+        
+        public AstERROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR : ERROR
+        /// </summary>
+        public static AstERROR ERROR()
+        {
+            return new AstERROR(Position.Default, "ERROR", "ERROR");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_LINE : 'ERROR_LINE'
+    /// </summary>
+    public partial class AstERRORLINE : AstTerminalKeyword
+    {
+        
+        public AstERRORLINE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORLINE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_LINE : ERROR_LINE
+        /// </summary>
+        public static AstERRORLINE ERRORLINE()
+        {
+            return new AstERRORLINE(Position.Default, "ERROR_LINE", "ERROR_LINE");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_MESSAGE : 'ERROR_MESSAGE'
+    /// </summary>
+    public partial class AstERRORMESSAGE : AstTerminalKeyword
+    {
+        
+        public AstERRORMESSAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORMESSAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_MESSAGE : ERROR_MESSAGE
+        /// </summary>
+        public static AstERRORMESSAGE ERRORMESSAGE()
+        {
+            return new AstERRORMESSAGE(Position.Default, "ERROR_MESSAGE", "ERROR_MESSAGE");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_NUMBER : 'ERROR_NUMBER'
+    /// </summary>
+    public partial class AstERRORNUMBER : AstTerminalKeyword
+    {
+        
+        public AstERRORNUMBER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORNUMBER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_NUMBER : ERROR_NUMBER
+        /// </summary>
+        public static AstERRORNUMBER ERRORNUMBER()
+        {
+            return new AstERRORNUMBER(Position.Default, "ERROR_NUMBER", "ERROR_NUMBER");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_PROCEDURE : 'ERROR_PROCEDURE'
+    /// </summary>
+    public partial class AstERRORPROCEDURE : AstTerminalKeyword
+    {
+        
+        public AstERRORPROCEDURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORPROCEDURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_PROCEDURE : ERROR_PROCEDURE
+        /// </summary>
+        public static AstERRORPROCEDURE ERRORPROCEDURE()
+        {
+            return new AstERRORPROCEDURE(Position.Default, "ERROR_PROCEDURE", "ERROR_PROCEDURE");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_SEVERITY : 'ERROR_SEVERITY'
+    /// </summary>
+    public partial class AstERRORSEVERITY : AstTerminalKeyword
+    {
+        
+        public AstERRORSEVERITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORSEVERITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_SEVERITY : ERROR_SEVERITY
+        /// </summary>
+        public static AstERRORSEVERITY ERRORSEVERITY()
+        {
+            return new AstERRORSEVERITY(Position.Default, "ERROR_SEVERITY", "ERROR_SEVERITY");
+        }
+    }
+    
+    /// <summary>
+    /// ERROR_STATE : 'ERROR_STATE'
+    /// </summary>
+    public partial class AstERRORSTATE : AstTerminalKeyword
+    {
+        
+        public AstERRORSTATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstERRORSTATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ERROR_STATE : ERROR_STATE
+        /// </summary>
+        public static AstERRORSTATE ERRORSTATE()
+        {
+            return new AstERRORSTATE(Position.Default, "ERROR_STATE", "ERROR_STATE");
+        }
+    }
+    
+    /// <summary>
+    /// EVENT : 'EVENT'
+    /// </summary>
+    public partial class AstEVENT : AstTerminalKeyword
+    {
+        
+        public AstEVENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEVENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EVENT : EVENT
+        /// </summary>
+        public static AstEVENT EVENT()
+        {
+            return new AstEVENT(Position.Default, "EVENT", "EVENT");
+        }
+    }
+    
+    /// <summary>
+    /// EVENTDATA : 'EVENTDATA'
+    /// </summary>
+    public partial class AstEVENTDATA : AstTerminalKeyword
+    {
+        
+        public AstEVENTDATA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEVENTDATA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EVENTDATA : EVENTDATA
+        /// </summary>
+        public static AstEVENTDATA EVENTDATA()
+        {
+            return new AstEVENTDATA(Position.Default, "EVENTDATA", "EVENTDATA");
+        }
+    }
+    
+    /// <summary>
+    /// EVENT_RETENTION_MODE : 'EVENT_RETENTION_MODE'
+    /// </summary>
+    public partial class AstEVENTRETENTIONMODE : AstTerminalKeyword
+    {
+        
+        public AstEVENTRETENTIONMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEVENTRETENTIONMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EVENT_RETENTION_MODE : EVENT_RETENTION_MODE
+        /// </summary>
+        public static AstEVENTRETENTIONMODE EVENTRETENTIONMODE()
+        {
+            return new AstEVENTRETENTIONMODE(Position.Default, "EVENT_RETENTION_MODE", "EVENT_RETENTION_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// EXECUTABLE_FILE : 'EXECUTABLE_FILE'
+    /// </summary>
+    public partial class AstEXECUTABLEFILE : AstTerminalKeyword
+    {
+        
+        public AstEXECUTABLEFILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXECUTABLEFILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXECUTABLE_FILE : EXECUTABLE_FILE
+        /// </summary>
+        public static AstEXECUTABLEFILE EXECUTABLEFILE()
+        {
+            return new AstEXECUTABLEFILE(Position.Default, "EXECUTABLE_FILE", "EXECUTABLE_FILE");
+        }
+    }
+    
+    /// <summary>
+    /// EXPIREDATE : 'EXPIREDATE'
+    /// </summary>
+    public partial class AstEXPIREDATE : AstTerminalKeyword
+    {
+        
+        public AstEXPIREDATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXPIREDATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXPIREDATE : EXPIREDATE
+        /// </summary>
+        public static AstEXPIREDATE EXPIREDATE()
+        {
+            return new AstEXPIREDATE(Position.Default, "EXPIREDATE", "EXPIREDATE");
+        }
+    }
+    
+    /// <summary>
+    /// EXTENSION : 'EXTENSION'
+    /// </summary>
+    public partial class AstEXTENSION : AstTerminalKeyword
+    {
+        
+        public AstEXTENSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXTENSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXTENSION : EXTENSION
+        /// </summary>
+        public static AstEXTENSION EXTENSION()
+        {
+            return new AstEXTENSION(Position.Default, "EXTENSION", "EXTENSION");
+        }
+    }
+    
+    /// <summary>
+    /// EXTERNAL_ACCESS : 'EXTERNAL_ACCESS'
+    /// </summary>
+    public partial class AstEXTERNALACCESS : AstTerminalKeyword
+    {
+        
+        public AstEXTERNALACCESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstEXTERNALACCESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// EXTERNAL_ACCESS : EXTERNAL_ACCESS
+        /// </summary>
+        public static AstEXTERNALACCESS EXTERNALACCESS()
+        {
+            return new AstEXTERNALACCESS(Position.Default, "EXTERNAL_ACCESS", "EXTERNAL_ACCESS");
+        }
+    }
+    
+    /// <summary>
+    /// FAILOVER : 'FAILOVER'
+    /// </summary>
+    public partial class AstFAILOVER : AstTerminalKeyword
+    {
+        
+        public AstFAILOVER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFAILOVER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAILOVER : FAILOVER
+        /// </summary>
+        public static AstFAILOVER FAILOVER()
+        {
+            return new AstFAILOVER(Position.Default, "FAILOVER", "FAILOVER");
+        }
+    }
+    
+    /// <summary>
+    /// FAN_IN : 'FAN_IN'
+    /// </summary>
+    public partial class AstFANIN : AstTerminalKeyword
+    {
+        
+        public AstFANIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFANIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FAN_IN : FAN_IN
+        /// </summary>
+        public static AstFANIN FANIN()
+        {
+            return new AstFANIN(Position.Default, "FAN_IN", "FAN_IN");
+        }
+    }
+    
+    /// <summary>
+    /// FILE_SNAPSHOT : 'FILE_SNAPSHOT'
+    /// </summary>
+    public partial class AstFILESNAPSHOT : AstTerminalKeyword
+    {
+        
+        public AstFILESNAPSHOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILESNAPSHOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILE_SNAPSHOT : FILE_SNAPSHOT
+        /// </summary>
+        public static AstFILESNAPSHOT FILESNAPSHOT()
+        {
+            return new AstFILESNAPSHOT(Position.Default, "FILE_SNAPSHOT", "FILE_SNAPSHOT");
+        }
+    }
+    
+    /// <summary>
+    /// FORCESEEK : 'FORCESEEK'
+    /// </summary>
+    public partial class AstFORCESEEK : AstTerminalKeyword
+    {
+        
+        public AstFORCESEEK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCESEEK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCESEEK : FORCESEEK
+        /// </summary>
+        public static AstFORCESEEK FORCESEEK()
+        {
+            return new AstFORCESEEK(Position.Default, "FORCESEEK", "FORCESEEK");
+        }
+    }
+    
+    /// <summary>
+    /// FORCE_SERVICE_ALLOW_DATA_LOSS : 'FORCE_SERVICE_ALLOW_DATA_LOSS'
+    /// </summary>
+    public partial class AstFORCESERVICEALLOWDATALOSS : AstTerminalKeyword
+    {
+        
+        public AstFORCESERVICEALLOWDATALOSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORCESERVICEALLOWDATALOSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORCE_SERVICE_ALLOW_DATA_LOSS : FORCE_SERVICE_ALLOW_DATA_LOSS
+        /// </summary>
+        public static AstFORCESERVICEALLOWDATALOSS FORCESERVICEALLOWDATALOSS()
+        {
+            return new AstFORCESERVICEALLOWDATALOSS(Position.Default, "FORCE_SERVICE_ALLOW_DATA_LOSS", "FORCE_SERVICE_ALLOW_DATA_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// FORMATMESSAGE : 'FORMATMESSAGE'
+    /// </summary>
+    public partial class AstFORMATMESSAGE : AstTerminalKeyword
+    {
+        
+        public AstFORMATMESSAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFORMATMESSAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FORMATMESSAGE : FORMATMESSAGE
+        /// </summary>
+        public static AstFORMATMESSAGE FORMATMESSAGE()
+        {
+            return new AstFORMATMESSAGE(Position.Default, "FORMATMESSAGE", "FORMATMESSAGE");
+        }
+    }
+    
+    /// <summary>
+    /// GET : 'GET'
+    /// </summary>
+    public partial class AstGET : AstTerminalKeyword
+    {
+        
+        public AstGET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GET : GET
+        /// </summary>
+        public static AstGET GET()
+        {
+            return new AstGET(Position.Default, "GET", "GET");
+        }
+    }
+    
+    /// <summary>
+    /// GET_FILESTREAM_TRANSACTION_CONTEXT : 'GET_FILESTREAM_TRANSACTION_CONTEXT'
+    /// </summary>
+    public partial class AstGETFILESTREAMTRANSACTIONCONTEXT : AstTerminalKeyword
+    {
+        
+        public AstGETFILESTREAMTRANSACTIONCONTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETFILESTREAMTRANSACTIONCONTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GET_FILESTREAM_TRANSACTION_CONTEXT : GET_FILESTREAM_TRANSACTION_CONTEXT
+        /// </summary>
+        public static AstGETFILESTREAMTRANSACTIONCONTEXT GETFILESTREAMTRANSACTIONCONTEXT()
+        {
+            return new AstGETFILESTREAMTRANSACTIONCONTEXT(Position.Default, "GET_FILESTREAM_TRANSACTION_CONTEXT", "GET_FILESTREAM_TRANSACTION_CONTEXT");
+        }
+    }
+    
+    /// <summary>
+    /// GETANCESTOR : 'GETANCESTOR'
+    /// </summary>
+    public partial class AstGETANCESTOR : AstTerminalKeyword
+    {
+        
+        public AstGETANCESTOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETANCESTOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETANCESTOR : GETANCESTOR
+        /// </summary>
+        public static AstGETANCESTOR GETANCESTOR()
+        {
+            return new AstGETANCESTOR(Position.Default, "GETANCESTOR", "GETANCESTOR");
+        }
+    }
+    
+    /// <summary>
+    /// GETANSINULL : 'GETANSINULL'
+    /// </summary>
+    public partial class AstGETANSINULL : AstTerminalKeyword
+    {
+        
+        public AstGETANSINULL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETANSINULL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETANSINULL : GETANSINULL
+        /// </summary>
+        public static AstGETANSINULL GETANSINULL()
+        {
+            return new AstGETANSINULL(Position.Default, "GETANSINULL", "GETANSINULL");
+        }
+    }
+    
+    /// <summary>
+    /// GETDESCENDANT : 'GETDESCENDANT'
+    /// </summary>
+    public partial class AstGETDESCENDANT : AstTerminalKeyword
+    {
+        
+        public AstGETDESCENDANT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETDESCENDANT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETDESCENDANT : GETDESCENDANT
+        /// </summary>
+        public static AstGETDESCENDANT GETDESCENDANT()
+        {
+            return new AstGETDESCENDANT(Position.Default, "GETDESCENDANT", "GETDESCENDANT");
+        }
+    }
+    
+    /// <summary>
+    /// GETLEVEL : 'GETLEVEL'
+    /// </summary>
+    public partial class AstGETLEVEL : AstTerminalKeyword
+    {
+        
+        public AstGETLEVEL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETLEVEL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETLEVEL : GETLEVEL
+        /// </summary>
+        public static AstGETLEVEL GETLEVEL()
+        {
+            return new AstGETLEVEL(Position.Default, "GETLEVEL", "GETLEVEL");
+        }
+    }
+    
+    /// <summary>
+    /// GETREPARENTEDVALUE : 'GETREPARENTEDVALUE'
+    /// </summary>
+    public partial class AstGETREPARENTEDVALUE : AstTerminalKeyword
+    {
+        
+        public AstGETREPARENTEDVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETREPARENTEDVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETREPARENTEDVALUE : GETREPARENTEDVALUE
+        /// </summary>
+        public static AstGETREPARENTEDVALUE GETREPARENTEDVALUE()
+        {
+            return new AstGETREPARENTEDVALUE(Position.Default, "GETREPARENTEDVALUE", "GETREPARENTEDVALUE");
+        }
+    }
+    
+    /// <summary>
+    /// GETROOT : 'GETROOT'
+    /// </summary>
+    public partial class AstGETROOT : AstTerminalKeyword
+    {
+        
+        public AstGETROOT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGETROOT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GETROOT : GETROOT
+        /// </summary>
+        public static AstGETROOT GETROOT()
+        {
+            return new AstGETROOT(Position.Default, "GETROOT", "GETROOT");
+        }
+    }
+    
+    /// <summary>
+    /// GOVERNOR : 'GOVERNOR'
+    /// </summary>
+    public partial class AstGOVERNOR : AstTerminalKeyword
+    {
+        
+        public AstGOVERNOR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstGOVERNOR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// GOVERNOR : GOVERNOR
+        /// </summary>
+        public static AstGOVERNOR GOVERNOR()
+        {
+            return new AstGOVERNOR(Position.Default, "GOVERNOR", "GOVERNOR");
+        }
+    }
+    
+    /// <summary>
+    /// HASHED : 'HASHED'
+    /// </summary>
+    public partial class AstHASHED : AstTerminalKeyword
+    {
+        
+        public AstHASHED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHASHED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HASHED : HASHED
+        /// </summary>
+        public static AstHASHED HASHED()
+        {
+            return new AstHASHED(Position.Default, "HASHED", "HASHED");
+        }
+    }
+    
+    /// <summary>
+    /// HEAP : 'HEAP'
+    /// </summary>
+    public partial class AstHEAP : AstTerminalKeyword
+    {
+        
+        public AstHEAP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHEAP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HEAP : HEAP
+        /// </summary>
+        public static AstHEAP HEAP()
+        {
+            return new AstHEAP(Position.Default, "HEAP", "HEAP");
+        }
+    }
+    
+    /// <summary>
+    /// HIERARCHYID : 'HIERARCHYID'
+    /// </summary>
+    public partial class AstHIERARCHYID : AstTerminalKeyword
+    {
+        
+        public AstHIERARCHYID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHIERARCHYID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HIERARCHYID : HIERARCHYID
+        /// </summary>
+        public static AstHIERARCHYID HIERARCHYID()
+        {
+            return new AstHIERARCHYID(Position.Default, "HIERARCHYID", "HIERARCHYID");
+        }
+    }
+    
+    /// <summary>
+    /// HOST_ID : 'HOST_ID'
+    /// </summary>
+    public partial class AstHOSTID : AstTerminalKeyword
+    {
+        
+        public AstHOSTID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHOSTID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HOST_ID : HOST_ID
+        /// </summary>
+        public static AstHOSTID HOSTID()
+        {
+            return new AstHOSTID(Position.Default, "HOST_ID", "HOST_ID");
+        }
+    }
+    
+    /// <summary>
+    /// HOST_NAME : 'HOST_NAME'
+    /// </summary>
+    public partial class AstHOSTNAME : AstTerminalKeyword
+    {
+        
+        public AstHOSTNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstHOSTNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// HOST_NAME : HOST_NAME
+        /// </summary>
+        public static AstHOSTNAME HOSTNAME()
+        {
+            return new AstHOSTNAME(Position.Default, "HOST_NAME", "HOST_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// IIF : 'IIF'
+    /// </summary>
+    public partial class AstIIF : AstTerminalKeyword
+    {
+        
+        public AstIIF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIIF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IIF : IIF
+        /// </summary>
+        public static AstIIF IIF()
+        {
+            return new AstIIF(Position.Default, "IIF", "IIF");
+        }
+    }
+    
+    /// <summary>
+    /// IO : 'IO'
+    /// </summary>
+    public partial class AstIO : AstTerminalKeyword
+    {
+        
+        public AstIO(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstIO(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// IO : IO
+        /// </summary>
+        public static AstIO IO()
+        {
+            return new AstIO(Position.Default, "IO", "IO");
+        }
+    }
+    
+    /// <summary>
+    /// INCLUDE : 'INCLUDE'
+    /// </summary>
+    public partial class AstINCLUDE : AstTerminalKeyword
+    {
+        
+        public AstINCLUDE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINCLUDE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INCLUDE : INCLUDE
+        /// </summary>
+        public static AstINCLUDE INCLUDE()
+        {
+            return new AstINCLUDE(Position.Default, "INCLUDE", "INCLUDE");
+        }
+    }
+    
+    /// <summary>
+    /// INCREMENT : 'INCREMENT'
+    /// </summary>
+    public partial class AstINCREMENT : AstTerminalKeyword
+    {
+        
+        public AstINCREMENT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINCREMENT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INCREMENT : INCREMENT
+        /// </summary>
+        public static AstINCREMENT INCREMENT()
+        {
+            return new AstINCREMENT(Position.Default, "INCREMENT", "INCREMENT");
+        }
+    }
+    
+    /// <summary>
+    /// INFINITE : 'INFINITE'
+    /// </summary>
+    public partial class AstINFINITE : AstTerminalKeyword
+    {
+        
+        public AstINFINITE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINFINITE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INFINITE : INFINITE
+        /// </summary>
+        public static AstINFINITE INFINITE()
+        {
+            return new AstINFINITE(Position.Default, "INFINITE", "INFINITE");
+        }
+    }
+    
+    /// <summary>
+    /// INIT : 'INIT'
+    /// </summary>
+    public partial class AstINIT : AstTerminalKeyword
+    {
+        
+        public AstINIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INIT : INIT
+        /// </summary>
+        public static AstINIT INIT()
+        {
+            return new AstINIT(Position.Default, "INIT", "INIT");
+        }
+    }
+    
+    /// <summary>
+    /// INSTEAD : 'INSTEAD'
+    /// </summary>
+    public partial class AstINSTEAD : AstTerminalKeyword
+    {
+        
+        public AstINSTEAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstINSTEAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// INSTEAD : INSTEAD
+        /// </summary>
+        public static AstINSTEAD INSTEAD()
+        {
+            return new AstINSTEAD(Position.Default, "INSTEAD", "INSTEAD");
+        }
+    }
+    
+    /// <summary>
+    /// ISDESCENDANTOF : 'ISDESCENDANTOF'
+    /// </summary>
+    public partial class AstISDESCENDANTOF : AstTerminalKeyword
+    {
+        
+        public AstISDESCENDANTOF(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstISDESCENDANTOF(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ISDESCENDANTOF : ISDESCENDANTOF
+        /// </summary>
+        public static AstISDESCENDANTOF ISDESCENDANTOF()
+        {
+            return new AstISDESCENDANTOF(Position.Default, "ISDESCENDANTOF", "ISDESCENDANTOF");
+        }
+    }
+    
+    /// <summary>
+    /// ISNULL : 'ISNULL'
+    /// </summary>
+    public partial class AstISNULL : AstTerminalKeyword
+    {
+        
+        public AstISNULL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstISNULL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ISNULL : ISNULL
+        /// </summary>
+        public static AstISNULL ISNULL()
+        {
+            return new AstISNULL(Position.Default, "ISNULL", "ISNULL");
+        }
+    }
+    
+    /// <summary>
+    /// ISNUMERIC : 'ISNUMERIC'
+    /// </summary>
+    public partial class AstISNUMERIC : AstTerminalKeyword
+    {
+        
+        public AstISNUMERIC(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstISNUMERIC(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ISNUMERIC : ISNUMERIC
+        /// </summary>
+        public static AstISNUMERIC ISNUMERIC()
+        {
+            return new AstISNUMERIC(Position.Default, "ISNUMERIC", "ISNUMERIC");
+        }
+    }
+    
+    /// <summary>
+    /// KERBEROS : 'KERBEROS'
+    /// </summary>
+    public partial class AstKERBEROS : AstTerminalKeyword
+    {
+        
+        public AstKERBEROS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKERBEROS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KERBEROS : KERBEROS
+        /// </summary>
+        public static AstKERBEROS KERBEROS()
+        {
+            return new AstKERBEROS(Position.Default, "KERBEROS", "KERBEROS");
+        }
+    }
+    
+    /// <summary>
+    /// KEY_PATH : 'KEY_PATH'
+    /// </summary>
+    public partial class AstKEYPATH : AstTerminalKeyword
+    {
+        
+        public AstKEYPATH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEYPATH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEY_PATH : KEY_PATH
+        /// </summary>
+        public static AstKEYPATH KEYPATH()
+        {
+            return new AstKEYPATH(Position.Default, "KEY_PATH", "KEY_PATH");
+        }
+    }
+    
+    /// <summary>
+    /// KEY_STORE_PROVIDER_NAME : 'KEY_STORE_PROVIDER_NAME'
+    /// </summary>
+    public partial class AstKEYSTOREPROVIDERNAME : AstTerminalKeyword
+    {
+        
+        public AstKEYSTOREPROVIDERNAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstKEYSTOREPROVIDERNAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// KEY_STORE_PROVIDER_NAME : KEY_STORE_PROVIDER_NAME
+        /// </summary>
+        public static AstKEYSTOREPROVIDERNAME KEYSTOREPROVIDERNAME()
+        {
+            return new AstKEYSTOREPROVIDERNAME(Position.Default, "KEY_STORE_PROVIDER_NAME", "KEY_STORE_PROVIDER_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// LANGUAGE : 'LANGUAGE'
+    /// </summary>
+    public partial class AstLANGUAGE : AstTerminalKeyword
+    {
+        
+        public AstLANGUAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLANGUAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LANGUAGE : LANGUAGE
+        /// </summary>
+        public static AstLANGUAGE LANGUAGE()
+        {
+            return new AstLANGUAGE(Position.Default, "LANGUAGE", "LANGUAGE");
+        }
+    }
+    
+    /// <summary>
+    /// LIBRARY : 'LIBRARY'
+    /// </summary>
+    public partial class AstLIBRARY : AstTerminalKeyword
+    {
+        
+        public AstLIBRARY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLIBRARY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LIBRARY : LIBRARY
+        /// </summary>
+        public static AstLIBRARY LIBRARY()
+        {
+            return new AstLIBRARY(Position.Default, "LIBRARY", "LIBRARY");
+        }
+    }
+    
+    /// <summary>
+    /// LIFETIME : 'LIFETIME'
+    /// </summary>
+    public partial class AstLIFETIME : AstTerminalKeyword
+    {
+        
+        public AstLIFETIME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLIFETIME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LIFETIME : LIFETIME
+        /// </summary>
+        public static AstLIFETIME LIFETIME()
+        {
+            return new AstLIFETIME(Position.Default, "LIFETIME", "LIFETIME");
+        }
+    }
+    
+    /// <summary>
+    /// LINKED : 'LINKED'
+    /// </summary>
+    public partial class AstLINKED : AstTerminalKeyword
+    {
+        
+        public AstLINKED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLINKED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LINKED : LINKED
+        /// </summary>
+        public static AstLINKED LINKED()
+        {
+            return new AstLINKED(Position.Default, "LINKED", "LINKED");
+        }
+    }
+    
+    /// <summary>
+    /// LINUX : 'LINUX'
+    /// </summary>
+    public partial class AstLINUX : AstTerminalKeyword
+    {
+        
+        public AstLINUX(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLINUX(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LINUX : LINUX
+        /// </summary>
+        public static AstLINUX LINUX()
+        {
+            return new AstLINUX(Position.Default, "LINUX", "LINUX");
+        }
+    }
+    
+    /// <summary>
+    /// LISTENER_IP : 'LISTENER_IP'
+    /// </summary>
+    public partial class AstLISTENERIP : AstTerminalKeyword
+    {
+        
+        public AstLISTENERIP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLISTENERIP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LISTENER_IP : LISTENER_IP
+        /// </summary>
+        public static AstLISTENERIP LISTENERIP()
+        {
+            return new AstLISTENERIP(Position.Default, "LISTENER_IP", "LISTENER_IP");
+        }
+    }
+    
+    /// <summary>
+    /// LISTENER_PORT : 'LISTENER_PORT'
+    /// </summary>
+    public partial class AstLISTENERPORT : AstTerminalKeyword
+    {
+        
+        public AstLISTENERPORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLISTENERPORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LISTENER_PORT : LISTENER_PORT
+        /// </summary>
+        public static AstLISTENERPORT LISTENERPORT()
+        {
+            return new AstLISTENERPORT(Position.Default, "LISTENER_PORT", "LISTENER_PORT");
+        }
+    }
+    
+    /// <summary>
+    /// LOCAL_SERVICE_NAME : 'LOCAL_SERVICE_NAME'
+    /// </summary>
+    public partial class AstLOCALSERVICENAME : AstTerminalKeyword
+    {
+        
+        public AstLOCALSERVICENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOCALSERVICENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOCAL_SERVICE_NAME : LOCAL_SERVICE_NAME
+        /// </summary>
+        public static AstLOCALSERVICENAME LOCALSERVICENAME()
+        {
+            return new AstLOCALSERVICENAME(Position.Default, "LOCAL_SERVICE_NAME", "LOCAL_SERVICE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// LOG : 'LOG'
+    /// </summary>
+    public partial class AstLOG : AstTerminalKeyword
+    {
+        
+        public AstLOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstLOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// LOG : LOG
+        /// </summary>
+        public static AstLOG LOG()
+        {
+            return new AstLOG(Position.Default, "LOG", "LOG");
+        }
+    }
+    
+    /// <summary>
+    /// MASK : 'MASK'
+    /// </summary>
+    public partial class AstMASK : AstTerminalKeyword
+    {
+        
+        public AstMASK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMASK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MASK : MASK
+        /// </summary>
+        public static AstMASK MASK()
+        {
+            return new AstMASK(Position.Default, "MASK", "MASK");
+        }
+    }
+    
+    /// <summary>
+    /// MATCHED : 'MATCHED'
+    /// </summary>
+    public partial class AstMATCHED : AstTerminalKeyword
+    {
+        
+        public AstMATCHED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMATCHED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MATCHED : MATCHED
+        /// </summary>
+        public static AstMATCHED MATCHED()
+        {
+            return new AstMATCHED(Position.Default, "MATCHED", "MATCHED");
+        }
+    }
+    
+    /// <summary>
+    /// MASTER : 'MASTER'
+    /// </summary>
+    public partial class AstMASTER : AstTerminalKeyword
+    {
+        
+        public AstMASTER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMASTER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MASTER : MASTER
+        /// </summary>
+        public static AstMASTER MASTER()
+        {
+            return new AstMASTER(Position.Default, "MASTER", "MASTER");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_MEMORY : 'MAX_MEMORY'
+    /// </summary>
+    public partial class AstMAXMEMORY : AstTerminalKeyword
+    {
+        
+        public AstMAXMEMORY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXMEMORY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_MEMORY : MAX_MEMORY
+        /// </summary>
+        public static AstMAXMEMORY MAXMEMORY()
+        {
+            return new AstMAXMEMORY(Position.Default, "MAX_MEMORY", "MAX_MEMORY");
+        }
+    }
+    
+    /// <summary>
+    /// MAXTRANSFER : 'MAXTRANSFER'
+    /// </summary>
+    public partial class AstMAXTRANSFER : AstTerminalKeyword
+    {
+        
+        public AstMAXTRANSFER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXTRANSFER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAXTRANSFER : MAXTRANSFER
+        /// </summary>
+        public static AstMAXTRANSFER MAXTRANSFER()
+        {
+            return new AstMAXTRANSFER(Position.Default, "MAXTRANSFER", "MAXTRANSFER");
+        }
+    }
+    
+    /// <summary>
+    /// MAXVALUE : 'MAXVALUE'
+    /// </summary>
+    public partial class AstMAXVALUE : AstTerminalKeyword
+    {
+        
+        public AstMAXVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAXVALUE : MAXVALUE
+        /// </summary>
+        public static AstMAXVALUE MAXVALUE()
+        {
+            return new AstMAXVALUE(Position.Default, "MAXVALUE", "MAXVALUE");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_DISPATCH_LATENCY : 'MAX_DISPATCH_LATENCY'
+    /// </summary>
+    public partial class AstMAXDISPATCHLATENCY : AstTerminalKeyword
+    {
+        
+        public AstMAXDISPATCHLATENCY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXDISPATCHLATENCY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_DISPATCH_LATENCY : MAX_DISPATCH_LATENCY
+        /// </summary>
+        public static AstMAXDISPATCHLATENCY MAXDISPATCHLATENCY()
+        {
+            return new AstMAXDISPATCHLATENCY(Position.Default, "MAX_DISPATCH_LATENCY", "MAX_DISPATCH_LATENCY");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_DURATION : 'MAX_DURATION'
+    /// </summary>
+    public partial class AstMAXDURATION : AstTerminalKeyword
+    {
+        
+        public AstMAXDURATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXDURATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_DURATION : MAX_DURATION
+        /// </summary>
+        public static AstMAXDURATION MAXDURATION()
+        {
+            return new AstMAXDURATION(Position.Default, "MAX_DURATION", "MAX_DURATION");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_EVENT_SIZE : 'MAX_EVENT_SIZE'
+    /// </summary>
+    public partial class AstMAXEVENTSIZE : AstTerminalKeyword
+    {
+        
+        public AstMAXEVENTSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXEVENTSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_EVENT_SIZE : MAX_EVENT_SIZE
+        /// </summary>
+        public static AstMAXEVENTSIZE MAXEVENTSIZE()
+        {
+            return new AstMAXEVENTSIZE(Position.Default, "MAX_EVENT_SIZE", "MAX_EVENT_SIZE");
+        }
+    }
+    
+    /// <summary>
+    /// MAX_OUTSTANDING_IO_PER_VOLUME : 'MAX_OUTSTANDING_IO_PER_VOLUME'
+    /// </summary>
+    public partial class AstMAXOUTSTANDINGIOPERVOLUME : AstTerminalKeyword
+    {
+        
+        public AstMAXOUTSTANDINGIOPERVOLUME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMAXOUTSTANDINGIOPERVOLUME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MAX_OUTSTANDING_IO_PER_VOLUME : MAX_OUTSTANDING_IO_PER_VOLUME
+        /// </summary>
+        public static AstMAXOUTSTANDINGIOPERVOLUME MAXOUTSTANDINGIOPERVOLUME()
+        {
+            return new AstMAXOUTSTANDINGIOPERVOLUME(Position.Default, "MAX_OUTSTANDING_IO_PER_VOLUME", "MAX_OUTSTANDING_IO_PER_VOLUME");
+        }
+    }
+    
+    /// <summary>
+    /// MEDIADESCRIPTION : 'MEDIADESCRIPTION'
+    /// </summary>
+    public partial class AstMEDIADESCRIPTION : AstTerminalKeyword
+    {
+        
+        public AstMEDIADESCRIPTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEDIADESCRIPTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEDIADESCRIPTION : MEDIADESCRIPTION
+        /// </summary>
+        public static AstMEDIADESCRIPTION MEDIADESCRIPTION()
+        {
+            return new AstMEDIADESCRIPTION(Position.Default, "MEDIADESCRIPTION", "MEDIADESCRIPTION");
+        }
+    }
+    
+    /// <summary>
+    /// MEDIANAME : 'MEDIANAME'
+    /// </summary>
+    public partial class AstMEDIANAME : AstTerminalKeyword
+    {
+        
+        public AstMEDIANAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEDIANAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEDIANAME : MEDIANAME
+        /// </summary>
+        public static AstMEDIANAME MEDIANAME()
+        {
+            return new AstMEDIANAME(Position.Default, "MEDIANAME", "MEDIANAME");
+        }
+    }
+    
+    /// <summary>
+    /// MEMBER : 'MEMBER'
+    /// </summary>
+    public partial class AstMEMBER : AstTerminalKeyword
+    {
+        
+        public AstMEMBER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEMBER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEMBER : MEMBER
+        /// </summary>
+        public static AstMEMBER MEMBER()
+        {
+            return new AstMEMBER(Position.Default, "MEMBER", "MEMBER");
+        }
+    }
+    
+    /// <summary>
+    /// MEMORY_PARTITION_MODE : 'MEMORY_PARTITION_MODE'
+    /// </summary>
+    public partial class AstMEMORYPARTITIONMODE : AstTerminalKeyword
+    {
+        
+        public AstMEMORYPARTITIONMODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMEMORYPARTITIONMODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MEMORY_PARTITION_MODE : MEMORY_PARTITION_MODE
+        /// </summary>
+        public static AstMEMORYPARTITIONMODE MEMORYPARTITIONMODE()
+        {
+            return new AstMEMORYPARTITIONMODE(Position.Default, "MEMORY_PARTITION_MODE", "MEMORY_PARTITION_MODE");
+        }
+    }
+    
+    /// <summary>
+    /// MESSAGE_FORWARDING : 'MESSAGE_FORWARDING'
+    /// </summary>
+    public partial class AstMESSAGEFORWARDING : AstTerminalKeyword
+    {
+        
+        public AstMESSAGEFORWARDING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMESSAGEFORWARDING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MESSAGE_FORWARDING : MESSAGE_FORWARDING
+        /// </summary>
+        public static AstMESSAGEFORWARDING MESSAGEFORWARDING()
+        {
+            return new AstMESSAGEFORWARDING(Position.Default, "MESSAGE_FORWARDING", "MESSAGE_FORWARDING");
+        }
+    }
+    
+    /// <summary>
+    /// MESSAGE_FORWARD_SIZE : 'MESSAGE_FORWARD_SIZE'
+    /// </summary>
+    public partial class AstMESSAGEFORWARDSIZE : AstTerminalKeyword
+    {
+        
+        public AstMESSAGEFORWARDSIZE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMESSAGEFORWARDSIZE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MESSAGE_FORWARD_SIZE : MESSAGE_FORWARD_SIZE
+        /// </summary>
+        public static AstMESSAGEFORWARDSIZE MESSAGEFORWARDSIZE()
+        {
+            return new AstMESSAGEFORWARDSIZE(Position.Default, "MESSAGE_FORWARD_SIZE", "MESSAGE_FORWARD_SIZE");
+        }
+    }
+    
+    /// <summary>
+    /// MINVALUE : 'MINVALUE'
+    /// </summary>
+    public partial class AstMINVALUE : AstTerminalKeyword
+    {
+        
+        public AstMINVALUE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMINVALUE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MINVALUE : MINVALUE
+        /// </summary>
+        public static AstMINVALUE MINVALUE()
+        {
+            return new AstMINVALUE(Position.Default, "MINVALUE", "MINVALUE");
+        }
+    }
+    
+    /// <summary>
+    /// MIRROR : 'MIRROR'
+    /// </summary>
+    public partial class AstMIRROR : AstTerminalKeyword
+    {
+        
+        public AstMIRROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMIRROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MIRROR : MIRROR
+        /// </summary>
+        public static AstMIRROR MIRROR()
+        {
+            return new AstMIRROR(Position.Default, "MIRROR", "MIRROR");
+        }
+    }
+    
+    /// <summary>
+    /// MUST_CHANGE : 'MUST_CHANGE'
+    /// </summary>
+    public partial class AstMUSTCHANGE : AstTerminalKeyword
+    {
+        
+        public AstMUSTCHANGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstMUSTCHANGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// MUST_CHANGE : MUST_CHANGE
+        /// </summary>
+        public static AstMUSTCHANGE MUSTCHANGE()
+        {
+            return new AstMUSTCHANGE(Position.Default, "MUST_CHANGE", "MUST_CHANGE");
+        }
+    }
+    
+    /// <summary>
+    /// NEWID : 'NEWID'
+    /// </summary>
+    public partial class AstNEWID : AstTerminalKeyword
+    {
+        
+        public AstNEWID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEWID : NEWID
+        /// </summary>
+        public static AstNEWID NEWID()
+        {
+            return new AstNEWID(Position.Default, "NEWID", "NEWID");
+        }
+    }
+    
+    /// <summary>
+    /// NEWSEQUENTIALID : 'NEWSEQUENTIALID'
+    /// </summary>
+    public partial class AstNEWSEQUENTIALID : AstTerminalKeyword
+    {
+        
+        public AstNEWSEQUENTIALID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNEWSEQUENTIALID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NEWSEQUENTIALID : NEWSEQUENTIALID
+        /// </summary>
+        public static AstNEWSEQUENTIALID NEWSEQUENTIALID()
+        {
+            return new AstNEWSEQUENTIALID(Position.Default, "NEWSEQUENTIALID", "NEWSEQUENTIALID");
+        }
+    }
+    
+    /// <summary>
+    /// NOFORMAT : 'NOFORMAT'
+    /// </summary>
+    public partial class AstNOFORMAT : AstTerminalKeyword
+    {
+        
+        public AstNOFORMAT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOFORMAT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOFORMAT : NOFORMAT
+        /// </summary>
+        public static AstNOFORMAT NOFORMAT()
+        {
+            return new AstNOFORMAT(Position.Default, "NOFORMAT", "NOFORMAT");
+        }
+    }
+    
+    /// <summary>
+    /// NOINIT : 'NOINIT'
+    /// </summary>
+    public partial class AstNOINIT : AstTerminalKeyword
+    {
+        
+        public AstNOINIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOINIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOINIT : NOINIT
+        /// </summary>
+        public static AstNOINIT NOINIT()
+        {
+            return new AstNOINIT(Position.Default, "NOINIT", "NOINIT");
+        }
+    }
+    
+    /// <summary>
+    /// NONE : 'NONE'
+    /// </summary>
+    public partial class AstNONE : AstTerminalKeyword
+    {
+        
+        public AstNONE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNONE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NONE : NONE
+        /// </summary>
+        public static AstNONE NONE()
+        {
+            return new AstNONE(Position.Default, "NONE", "NONE");
+        }
+    }
+    
+    /// <summary>
+    /// NOREWIND : 'NOREWIND'
+    /// </summary>
+    public partial class AstNOREWIND : AstTerminalKeyword
+    {
+        
+        public AstNOREWIND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOREWIND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOREWIND : NOREWIND
+        /// </summary>
+        public static AstNOREWIND NOREWIND()
+        {
+            return new AstNOREWIND(Position.Default, "NOREWIND", "NOREWIND");
+        }
+    }
+    
+    /// <summary>
+    /// NOSKIP : 'NOSKIP'
+    /// </summary>
+    public partial class AstNOSKIP : AstTerminalKeyword
+    {
+        
+        public AstNOSKIP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOSKIP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOSKIP : NOSKIP
+        /// </summary>
+        public static AstNOSKIP NOSKIP()
+        {
+            return new AstNOSKIP(Position.Default, "NOSKIP", "NOSKIP");
+        }
+    }
+    
+    /// <summary>
+    /// NOUNLOAD : 'NOUNLOAD'
+    /// </summary>
+    public partial class AstNOUNLOAD : AstTerminalKeyword
+    {
+        
+        public AstNOUNLOAD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOUNLOAD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOUNLOAD : NOUNLOAD
+        /// </summary>
+        public static AstNOUNLOAD NOUNLOAD()
+        {
+            return new AstNOUNLOAD(Position.Default, "NOUNLOAD", "NOUNLOAD");
+        }
+    }
+    
+    /// <summary>
+    /// NO_CHECKSUM : 'NO_CHECKSUM'
+    /// </summary>
+    public partial class AstNOCHECKSUM : AstTerminalKeyword
+    {
+        
+        public AstNOCHECKSUM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOCHECKSUM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO_CHECKSUM : NO_CHECKSUM
+        /// </summary>
+        public static AstNOCHECKSUM NOCHECKSUM()
+        {
+            return new AstNOCHECKSUM(Position.Default, "NO_CHECKSUM", "NO_CHECKSUM");
+        }
+    }
+    
+    /// <summary>
+    /// NO_COMPRESSION : 'NO_COMPRESSION'
+    /// </summary>
+    public partial class AstNOCOMPRESSION : AstTerminalKeyword
+    {
+        
+        public AstNOCOMPRESSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOCOMPRESSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO_COMPRESSION : NO_COMPRESSION
+        /// </summary>
+        public static AstNOCOMPRESSION NOCOMPRESSION()
+        {
+            return new AstNOCOMPRESSION(Position.Default, "NO_COMPRESSION", "NO_COMPRESSION");
+        }
+    }
+    
+    /// <summary>
+    /// NO_EVENT_LOSS : 'NO_EVENT_LOSS'
+    /// </summary>
+    public partial class AstNOEVENTLOSS : AstTerminalKeyword
+    {
+        
+        public AstNOEVENTLOSS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOEVENTLOSS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NO_EVENT_LOSS : NO_EVENT_LOSS
+        /// </summary>
+        public static AstNOEVENTLOSS NOEVENTLOSS()
+        {
+            return new AstNOEVENTLOSS(Position.Default, "NO_EVENT_LOSS", "NO_EVENT_LOSS");
+        }
+    }
+    
+    /// <summary>
+    /// NOTIFICATION : 'NOTIFICATION'
+    /// </summary>
+    public partial class AstNOTIFICATION : AstTerminalKeyword
+    {
+        
+        public AstNOTIFICATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNOTIFICATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NOTIFICATION : NOTIFICATION
+        /// </summary>
+        public static AstNOTIFICATION NOTIFICATION()
+        {
+            return new AstNOTIFICATION(Position.Default, "NOTIFICATION", "NOTIFICATION");
+        }
+    }
+    
+    /// <summary>
+    /// NTLM : 'NTLM'
+    /// </summary>
+    public partial class AstNTLM : AstTerminalKeyword
+    {
+        
+        public AstNTLM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNTLM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NTLM : NTLM
+        /// </summary>
+        public static AstNTLM NTLM()
+        {
+            return new AstNTLM(Position.Default, "NTLM", "NTLM");
+        }
+    }
+    
+    /// <summary>
+    /// OLD_PASSWORD : 'OLD_PASSWORD'
+    /// </summary>
+    public partial class AstOLDPASSWORD : AstTerminalKeyword
+    {
+        
+        public AstOLDPASSWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOLDPASSWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OLD_PASSWORD : OLD_PASSWORD
+        /// </summary>
+        public static AstOLDPASSWORD OLDPASSWORD()
+        {
+            return new AstOLDPASSWORD(Position.Default, "OLD_PASSWORD", "OLD_PASSWORD");
+        }
+    }
+    
+    /// <summary>
+    /// ON_FAILURE : 'ON_FAILURE'
+    /// </summary>
+    public partial class AstONFAILURE : AstTerminalKeyword
+    {
+        
+        public AstONFAILURE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstONFAILURE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ON_FAILURE : ON_FAILURE
+        /// </summary>
+        public static AstONFAILURE ONFAILURE()
+        {
+            return new AstONFAILURE(Position.Default, "ON_FAILURE", "ON_FAILURE");
+        }
+    }
+    
+    /// <summary>
+    /// OPERATIONS : 'OPERATIONS'
+    /// </summary>
+    public partial class AstOPERATIONS : AstTerminalKeyword
+    {
+        
+        public AstOPERATIONS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstOPERATIONS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// OPERATIONS : OPERATIONS
+        /// </summary>
+        public static AstOPERATIONS OPERATIONS()
+        {
+            return new AstOPERATIONS(Position.Default, "OPERATIONS", "OPERATIONS");
+        }
+    }
+    
+    /// <summary>
+    /// PAGE : 'PAGE'
+    /// </summary>
+    public partial class AstPAGE : AstTerminalKeyword
+    {
+        
+        public AstPAGE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPAGE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PAGE : PAGE
+        /// </summary>
+        public static AstPAGE PAGE()
+        {
+            return new AstPAGE(Position.Default, "PAGE", "PAGE");
+        }
+    }
+    
+    /// <summary>
+    /// PARAM_NODE : 'PARAM_NODE'
+    /// </summary>
+    public partial class AstPARAMNODE : AstTerminalKeyword
+    {
+        
+        public AstPARAMNODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARAMNODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARAM_NODE : PARAM_NODE
+        /// </summary>
+        public static AstPARAMNODE PARAMNODE()
+        {
+            return new AstPARAMNODE(Position.Default, "PARAM_NODE", "PARAM_NODE");
+        }
+    }
+    
+    /// <summary>
+    /// PARTIAL : 'PARTIAL'
+    /// </summary>
+    public partial class AstPARTIAL : AstTerminalKeyword
+    {
+        
+        public AstPARTIAL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPARTIAL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PARTIAL : PARTIAL
+        /// </summary>
+        public static AstPARTIAL PARTIAL()
+        {
+            return new AstPARTIAL(Position.Default, "PARTIAL", "PARTIAL");
+        }
+    }
+    
+    /// <summary>
+    /// PASSWORD : 'PASSWORD'
+    /// </summary>
+    public partial class AstPASSWORD : AstTerminalKeyword
+    {
+        
+        public AstPASSWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPASSWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PASSWORD : PASSWORD
+        /// </summary>
+        public static AstPASSWORD PASSWORD()
+        {
+            return new AstPASSWORD(Position.Default, "PASSWORD", "PASSWORD");
+        }
+    }
+    
+    /// <summary>
+    /// PERMISSION_SET : 'PERMISSION_SET'
+    /// </summary>
+    public partial class AstPERMISSIONSET : AstTerminalKeyword
+    {
+        
+        public AstPERMISSIONSET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERMISSIONSET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERMISSION_SET : PERMISSION_SET
+        /// </summary>
+        public static AstPERMISSIONSET PERMISSIONSET()
+        {
+            return new AstPERMISSIONSET(Position.Default, "PERMISSION_SET", "PERMISSION_SET");
+        }
+    }
+    
+    /// <summary>
+    /// PER_CPU : 'PER_CPU'
+    /// </summary>
+    public partial class AstPERCPU : AstTerminalKeyword
+    {
+        
+        public AstPERCPU(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERCPU(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PER_CPU : PER_CPU
+        /// </summary>
+        public static AstPERCPU PERCPU()
+        {
+            return new AstPERCPU(Position.Default, "PER_CPU", "PER_CPU");
+        }
+    }
+    
+    /// <summary>
+    /// PER_DB : 'PER_DB'
+    /// </summary>
+    public partial class AstPERDB : AstTerminalKeyword
+    {
+        
+        public AstPERDB(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERDB(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PER_DB : PER_DB
+        /// </summary>
+        public static AstPERDB PERDB()
+        {
+            return new AstPERDB(Position.Default, "PER_DB", "PER_DB");
+        }
+    }
+    
+    /// <summary>
+    /// PER_NODE : 'PER_NODE'
+    /// </summary>
+    public partial class AstPERNODE : AstTerminalKeyword
+    {
+        
+        public AstPERNODE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERNODE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PER_NODE : PER_NODE
+        /// </summary>
+        public static AstPERNODE PERNODE()
+        {
+            return new AstPERNODE(Position.Default, "PER_NODE", "PER_NODE");
+        }
+    }
+    
+    /// <summary>
+    /// PERSISTED : 'PERSISTED'
+    /// </summary>
+    public partial class AstPERSISTED : AstTerminalKeyword
+    {
+        
+        public AstPERSISTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPERSISTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PERSISTED : PERSISTED
+        /// </summary>
+        public static AstPERSISTED PERSISTED()
+        {
+            return new AstPERSISTED(Position.Default, "PERSISTED", "PERSISTED");
+        }
+    }
+    
+    /// <summary>
+    /// PLATFORM : 'PLATFORM'
+    /// </summary>
+    public partial class AstPLATFORM : AstTerminalKeyword
+    {
+        
+        public AstPLATFORM(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPLATFORM(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PLATFORM : PLATFORM
+        /// </summary>
+        public static AstPLATFORM PLATFORM()
+        {
+            return new AstPLATFORM(Position.Default, "PLATFORM", "PLATFORM");
+        }
+    }
+    
+    /// <summary>
+    /// POLICY : 'POLICY'
+    /// </summary>
+    public partial class AstPOLICY : AstTerminalKeyword
+    {
+        
+        public AstPOLICY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPOLICY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// POLICY : POLICY
+        /// </summary>
+        public static AstPOLICY POLICY()
+        {
+            return new AstPOLICY(Position.Default, "POLICY", "POLICY");
+        }
+    }
+    
+    /// <summary>
+    /// PREDICATE : 'PREDICATE'
+    /// </summary>
+    public partial class AstPREDICATE : AstTerminalKeyword
+    {
+        
+        public AstPREDICATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPREDICATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PREDICATE : PREDICATE
+        /// </summary>
+        public static AstPREDICATE PREDICATE()
+        {
+            return new AstPREDICATE(Position.Default, "PREDICATE", "PREDICATE");
+        }
+    }
+    
+    /// <summary>
+    /// PROCESS : 'PROCESS'
+    /// </summary>
+    public partial class AstPROCESS : AstTerminalKeyword
+    {
+        
+        public AstPROCESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROCESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROCESS : PROCESS
+        /// </summary>
+        public static AstPROCESS PROCESS()
+        {
+            return new AstPROCESS(Position.Default, "PROCESS", "PROCESS");
+        }
+    }
+    
+    /// <summary>
+    /// PROFILE : 'PROFILE'
+    /// </summary>
+    public partial class AstPROFILE : AstTerminalKeyword
+    {
+        
+        public AstPROFILE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPROFILE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PROFILE : PROFILE
+        /// </summary>
+        public static AstPROFILE PROFILE()
+        {
+            return new AstPROFILE(Position.Default, "PROFILE", "PROFILE");
+        }
+    }
+    
+    /// <summary>
+    /// PYTHON : 'PYTHON'
+    /// </summary>
+    public partial class AstPYTHON : AstTerminalKeyword
+    {
+        
+        public AstPYTHON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstPYTHON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// PYTHON : PYTHON
+        /// </summary>
+        public static AstPYTHON PYTHON()
+        {
+            return new AstPYTHON(Position.Default, "PYTHON", "PYTHON");
+        }
+    }
+    
+    /// <summary>
+    /// R : 'R'
+    /// </summary>
+    public partial class AstR : AstTerminalKeyword
+    {
+        
+        public AstR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// R : R
+        /// </summary>
+        public static AstR R()
+        {
+            return new AstR(Position.Default, "R", "R");
+        }
+    }
+    
+    /// <summary>
+    /// READ_WRITE_FILEGROUPS : 'READ_WRITE_FILEGROUPS'
+    /// </summary>
+    public partial class AstREADWRITEFILEGROUPS : AstTerminalKeyword
+    {
+        
+        public AstREADWRITEFILEGROUPS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREADWRITEFILEGROUPS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// READ_WRITE_FILEGROUPS : READ_WRITE_FILEGROUPS
+        /// </summary>
+        public static AstREADWRITEFILEGROUPS READWRITEFILEGROUPS()
+        {
+            return new AstREADWRITEFILEGROUPS(Position.Default, "READ_WRITE_FILEGROUPS", "READ_WRITE_FILEGROUPS");
+        }
+    }
+    
+    /// <summary>
+    /// REGENERATE : 'REGENERATE'
+    /// </summary>
+    public partial class AstREGENERATE : AstTerminalKeyword
+    {
+        
+        public AstREGENERATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREGENERATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REGENERATE : REGENERATE
+        /// </summary>
+        public static AstREGENERATE REGENERATE()
+        {
+            return new AstREGENERATE(Position.Default, "REGENERATE", "REGENERATE");
+        }
+    }
+    
+    /// <summary>
+    /// RELATED_CONVERSATION : 'RELATED_CONVERSATION'
+    /// </summary>
+    public partial class AstRELATEDCONVERSATION : AstTerminalKeyword
+    {
+        
+        public AstRELATEDCONVERSATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRELATEDCONVERSATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RELATED_CONVERSATION : RELATED_CONVERSATION
+        /// </summary>
+        public static AstRELATEDCONVERSATION RELATEDCONVERSATION()
+        {
+            return new AstRELATEDCONVERSATION(Position.Default, "RELATED_CONVERSATION", "RELATED_CONVERSATION");
+        }
+    }
+    
+    /// <summary>
+    /// RELATED_CONVERSATION_GROUP : 'RELATED_CONVERSATION_GROUP'
+    /// </summary>
+    public partial class AstRELATEDCONVERSATIONGROUP : AstTerminalKeyword
+    {
+        
+        public AstRELATEDCONVERSATIONGROUP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRELATEDCONVERSATIONGROUP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RELATED_CONVERSATION_GROUP : RELATED_CONVERSATION_GROUP
+        /// </summary>
+        public static AstRELATEDCONVERSATIONGROUP RELATEDCONVERSATIONGROUP()
+        {
+            return new AstRELATEDCONVERSATIONGROUP(Position.Default, "RELATED_CONVERSATION_GROUP", "RELATED_CONVERSATION_GROUP");
+        }
+    }
+    
+    /// <summary>
+    /// REQUIRED : 'REQUIRED'
+    /// </summary>
+    public partial class AstREQUIRED : AstTerminalKeyword
+    {
+        
+        public AstREQUIRED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREQUIRED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REQUIRED : REQUIRED
+        /// </summary>
+        public static AstREQUIRED REQUIRED()
+        {
+            return new AstREQUIRED(Position.Default, "REQUIRED", "REQUIRED");
+        }
+    }
+    
+    /// <summary>
+    /// RESET : 'RESET'
+    /// </summary>
+    public partial class AstRESET : AstTerminalKeyword
+    {
+        
+        public AstRESET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESET : RESET
+        /// </summary>
+        public static AstRESET RESET()
+        {
+            return new AstRESET(Position.Default, "RESET", "RESET");
+        }
+    }
+    
+    /// <summary>
+    /// RESOURCES : 'RESOURCES'
+    /// </summary>
+    public partial class AstRESOURCES : AstTerminalKeyword
+    {
+        
+        public AstRESOURCES(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESOURCES(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESOURCES : RESOURCES
+        /// </summary>
+        public static AstRESOURCES RESOURCES()
+        {
+            return new AstRESOURCES(Position.Default, "RESOURCES", "RESOURCES");
+        }
+    }
+    
+    /// <summary>
+    /// RESTART : 'RESTART'
+    /// </summary>
+    public partial class AstRESTART : AstTerminalKeyword
+    {
+        
+        public AstRESTART(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESTART(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESTART : RESTART
+        /// </summary>
+        public static AstRESTART RESTART()
+        {
+            return new AstRESTART(Position.Default, "RESTART", "RESTART");
+        }
+    }
+    
+    /// <summary>
+    /// RESUME : 'RESUME'
+    /// </summary>
+    public partial class AstRESUME : AstTerminalKeyword
+    {
+        
+        public AstRESUME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRESUME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RESUME : RESUME
+        /// </summary>
+        public static AstRESUME RESUME()
+        {
+            return new AstRESUME(Position.Default, "RESUME", "RESUME");
+        }
+    }
+    
+    /// <summary>
+    /// RETAINDAYS : 'RETAINDAYS'
+    /// </summary>
+    public partial class AstRETAINDAYS : AstTerminalKeyword
+    {
+        
+        public AstRETAINDAYS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRETAINDAYS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RETAINDAYS : RETAINDAYS
+        /// </summary>
+        public static AstRETAINDAYS RETAINDAYS()
+        {
+            return new AstRETAINDAYS(Position.Default, "RETAINDAYS", "RETAINDAYS");
+        }
+    }
+    
+    /// <summary>
+    /// RETURNS : 'RETURNS'
+    /// </summary>
+    public partial class AstRETURNS : AstTerminalKeyword
+    {
+        
+        public AstRETURNS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRETURNS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RETURNS : RETURNS
+        /// </summary>
+        public static AstRETURNS RETURNS()
+        {
+            return new AstRETURNS(Position.Default, "RETURNS", "RETURNS");
+        }
+    }
+    
+    /// <summary>
+    /// REWIND : 'REWIND'
+    /// </summary>
+    public partial class AstREWIND : AstTerminalKeyword
+    {
+        
+        public AstREWIND(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstREWIND(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// REWIND : REWIND
+        /// </summary>
+        public static AstREWIND REWIND()
+        {
+            return new AstREWIND(Position.Default, "REWIND", "REWIND");
+        }
+    }
+    
+    /// <summary>
+    /// ROLE : 'ROLE'
+    /// </summary>
+    public partial class AstROLE : AstTerminalKeyword
+    {
+        
+        public AstROLE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROLE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROLE : ROLE
+        /// </summary>
+        public static AstROLE ROLE()
+        {
+            return new AstROLE(Position.Default, "ROLE", "ROLE");
+        }
+    }
+    
+    /// <summary>
+    /// ROUND_ROBIN : 'ROUND_ROBIN'
+    /// </summary>
+    public partial class AstROUNDROBIN : AstTerminalKeyword
+    {
+        
+        public AstROUNDROBIN(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROUNDROBIN(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROUND_ROBIN : ROUND_ROBIN
+        /// </summary>
+        public static AstROUNDROBIN ROUNDROBIN()
+        {
+            return new AstROUNDROBIN(Position.Default, "ROUND_ROBIN", "ROUND_ROBIN");
+        }
+    }
+    
+    /// <summary>
+    /// ROWCOUNT_BIG : 'ROWCOUNT_BIG'
+    /// </summary>
+    public partial class AstROWCOUNTBIG : AstTerminalKeyword
+    {
+        
+        public AstROWCOUNTBIG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstROWCOUNTBIG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// ROWCOUNT_BIG : ROWCOUNT_BIG
+        /// </summary>
+        public static AstROWCOUNTBIG ROWCOUNTBIG()
+        {
+            return new AstROWCOUNTBIG(Position.Default, "ROWCOUNT_BIG", "ROWCOUNT_BIG");
+        }
+    }
+    
+    /// <summary>
+    /// RSA_512 : 'RSA_512'
+    /// </summary>
+    public partial class AstRSA512 : AstTerminalKeyword
+    {
+        
+        public AstRSA512(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRSA512(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RSA_512 : RSA_512
+        /// </summary>
+        public static AstRSA512 RSA512()
+        {
+            return new AstRSA512(Position.Default, "RSA_512", "RSA_512");
+        }
+    }
+    
+    /// <summary>
+    /// RSA_1024 : 'RSA_1024'
+    /// </summary>
+    public partial class AstRSA1024 : AstTerminalKeyword
+    {
+        
+        public AstRSA1024(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRSA1024(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RSA_1024 : RSA_1024
+        /// </summary>
+        public static AstRSA1024 RSA1024()
+        {
+            return new AstRSA1024(Position.Default, "RSA_1024", "RSA_1024");
+        }
+    }
+    
+    /// <summary>
+    /// RSA_2048 : 'RSA_2048'
+    /// </summary>
+    public partial class AstRSA2048 : AstTerminalKeyword
+    {
+        
+        public AstRSA2048(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRSA2048(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RSA_2048 : RSA_2048
+        /// </summary>
+        public static AstRSA2048 RSA2048()
+        {
+            return new AstRSA2048(Position.Default, "RSA_2048", "RSA_2048");
+        }
+    }
+    
+    /// <summary>
+    /// RSA_3072 : 'RSA_3072'
+    /// </summary>
+    public partial class AstRSA3072 : AstTerminalKeyword
+    {
+        
+        public AstRSA3072(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRSA3072(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RSA_3072 : RSA_3072
+        /// </summary>
+        public static AstRSA3072 RSA3072()
+        {
+            return new AstRSA3072(Position.Default, "RSA_3072", "RSA_3072");
+        }
+    }
+    
+    /// <summary>
+    /// RSA_4096 : 'RSA_4096'
+    /// </summary>
+    public partial class AstRSA4096 : AstTerminalKeyword
+    {
+        
+        public AstRSA4096(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstRSA4096(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// RSA_4096 : RSA_4096
+        /// </summary>
+        public static AstRSA4096 RSA4096()
+        {
+            return new AstRSA4096(Position.Default, "RSA_4096", "RSA_4096");
+        }
+    }
+    
+    /// <summary>
+    /// SAFETY : 'SAFETY'
+    /// </summary>
+    public partial class AstSAFETY : AstTerminalKeyword
+    {
+        
+        public AstSAFETY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSAFETY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SAFETY : SAFETY
+        /// </summary>
+        public static AstSAFETY SAFETY()
+        {
+            return new AstSAFETY(Position.Default, "SAFETY", "SAFETY");
+        }
+    }
+    
+    /// <summary>
+    /// SAFE : 'SAFE'
+    /// </summary>
+    public partial class AstSAFE : AstTerminalKeyword
+    {
+        
+        public AstSAFE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSAFE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SAFE : SAFE
+        /// </summary>
+        public static AstSAFE SAFE()
+        {
+            return new AstSAFE(Position.Default, "SAFE", "SAFE");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEDULER : 'SCHEDULER'
+    /// </summary>
+    public partial class AstSCHEDULER : AstTerminalKeyword
+    {
+        
+        public AstSCHEDULER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEDULER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEDULER : SCHEDULER
+        /// </summary>
+        public static AstSCHEDULER SCHEDULER()
+        {
+            return new AstSCHEDULER(Position.Default, "SCHEDULER", "SCHEDULER");
+        }
+    }
+    
+    /// <summary>
+    /// SCHEME : 'SCHEME'
+    /// </summary>
+    public partial class AstSCHEME : AstTerminalKeyword
+    {
+        
+        public AstSCHEME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCHEME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCHEME : SCHEME
+        /// </summary>
+        public static AstSCHEME SCHEME()
+        {
+            return new AstSCHEME(Position.Default, "SCHEME", "SCHEME");
+        }
+    }
+    
+    /// <summary>
+    /// SCRIPT : 'SCRIPT'
+    /// </summary>
+    public partial class AstSCRIPT : AstTerminalKeyword
+    {
+        
+        public AstSCRIPT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSCRIPT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SCRIPT : SCRIPT
+        /// </summary>
+        public static AstSCRIPT SCRIPT()
+        {
+            return new AstSCRIPT(Position.Default, "SCRIPT", "SCRIPT");
+        }
+    }
+    
+    /// <summary>
+    /// SERVER : 'SERVER'
+    /// </summary>
+    public partial class AstSERVER : AstTerminalKeyword
+    {
+        
+        public AstSERVER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERVER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERVER : SERVER
+        /// </summary>
+        public static AstSERVER SERVER()
+        {
+            return new AstSERVER(Position.Default, "SERVER", "SERVER");
+        }
+    }
+    
+    /// <summary>
+    /// SERVICE : 'SERVICE'
+    /// </summary>
+    public partial class AstSERVICE : AstTerminalKeyword
+    {
+        
+        public AstSERVICE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERVICE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERVICE : SERVICE
+        /// </summary>
+        public static AstSERVICE SERVICE()
+        {
+            return new AstSERVICE(Position.Default, "SERVICE", "SERVICE");
+        }
+    }
+    
+    /// <summary>
+    /// SERVICE_BROKER : 'SERVICE_BROKER'
+    /// </summary>
+    public partial class AstSERVICEBROKER : AstTerminalKeyword
+    {
+        
+        public AstSERVICEBROKER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERVICEBROKER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERVICE_BROKER : SERVICE_BROKER
+        /// </summary>
+        public static AstSERVICEBROKER SERVICEBROKER()
+        {
+            return new AstSERVICEBROKER(Position.Default, "SERVICE_BROKER", "SERVICE_BROKER");
+        }
+    }
+    
+    /// <summary>
+    /// SERVICE_NAME : 'SERVICE_NAME'
+    /// </summary>
+    public partial class AstSERVICENAME : AstTerminalKeyword
+    {
+        
+        public AstSERVICENAME(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSERVICENAME(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SERVICE_NAME : SERVICE_NAME
+        /// </summary>
+        public static AstSERVICENAME SERVICENAME()
+        {
+            return new AstSERVICENAME(Position.Default, "SERVICE_NAME", "SERVICE_NAME");
+        }
+    }
+    
+    /// <summary>
+    /// SESSION : 'SESSION'
+    /// </summary>
+    public partial class AstSESSION : AstTerminalKeyword
+    {
+        
+        public AstSESSION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSESSION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SESSION : SESSION
+        /// </summary>
+        public static AstSESSION SESSION()
+        {
+            return new AstSESSION(Position.Default, "SESSION", "SESSION");
+        }
+    }
+    
+    /// <summary>
+    /// SESSION_CONTEXT : 'SESSION_CONTEXT'
+    /// </summary>
+    public partial class AstSESSIONCONTEXT : AstTerminalKeyword
+    {
+        
+        public AstSESSIONCONTEXT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSESSIONCONTEXT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SESSION_CONTEXT : SESSION_CONTEXT
+        /// </summary>
+        public static AstSESSIONCONTEXT SESSIONCONTEXT()
+        {
+            return new AstSESSIONCONTEXT(Position.Default, "SESSION_CONTEXT", "SESSION_CONTEXT");
+        }
+    }
+    
+    /// <summary>
+    /// SETTINGS : 'SETTINGS'
+    /// </summary>
+    public partial class AstSETTINGS : AstTerminalKeyword
+    {
+        
+        public AstSETTINGS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSETTINGS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SETTINGS : SETTINGS
+        /// </summary>
+        public static AstSETTINGS SETTINGS()
+        {
+            return new AstSETTINGS(Position.Default, "SETTINGS", "SETTINGS");
+        }
+    }
+    
+    /// <summary>
+    /// SHRINKLOG : 'SHRINKLOG'
+    /// </summary>
+    public partial class AstSHRINKLOG : AstTerminalKeyword
+    {
+        
+        public AstSHRINKLOG(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSHRINKLOG(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SHRINKLOG : SHRINKLOG
+        /// </summary>
+        public static AstSHRINKLOG SHRINKLOG()
+        {
+            return new AstSHRINKLOG(Position.Default, "SHRINKLOG", "SHRINKLOG");
+        }
+    }
+    
+    /// <summary>
+    /// SID : 'SID'
+    /// </summary>
+    public partial class AstSID : AstTerminalKeyword
+    {
+        
+        public AstSID(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSID(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SID : SID
+        /// </summary>
+        public static AstSID SID()
+        {
+            return new AstSID(Position.Default, "SID", "SID");
+        }
+    }
+    
+    /// <summary>
+    /// SKIP_KEYWORD : 'SKIP'
+    /// </summary>
+    public partial class AstSKIPKEYWORD : AstTerminalKeyword
+    {
+        
+        public AstSKIPKEYWORD(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSKIPKEYWORD(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SKIP_KEYWORD : SKIP
+        /// </summary>
+        public static AstSKIPKEYWORD SKIPKEYWORD()
+        {
+            return new AstSKIPKEYWORD(Position.Default, "SKIP_KEYWORD", "SKIP");
+        }
+    }
+    
+    /// <summary>
+    /// SOFTNUMA : 'SOFTNUMA'
+    /// </summary>
+    public partial class AstSOFTNUMA : AstTerminalKeyword
+    {
+        
+        public AstSOFTNUMA(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSOFTNUMA(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SOFTNUMA : SOFTNUMA
+        /// </summary>
+        public static AstSOFTNUMA SOFTNUMA()
+        {
+            return new AstSOFTNUMA(Position.Default, "SOFTNUMA", "SOFTNUMA");
+        }
+    }
+    
+    /// <summary>
+    /// SOURCE : 'SOURCE'
+    /// </summary>
+    public partial class AstSOURCE : AstTerminalKeyword
+    {
+        
+        public AstSOURCE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSOURCE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SOURCE : SOURCE
+        /// </summary>
+        public static AstSOURCE SOURCE()
+        {
+            return new AstSOURCE(Position.Default, "SOURCE", "SOURCE");
+        }
+    }
+    
+    /// <summary>
+    /// SPECIFICATION : 'SPECIFICATION'
+    /// </summary>
+    public partial class AstSPECIFICATION : AstTerminalKeyword
+    {
+        
+        public AstSPECIFICATION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPECIFICATION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPECIFICATION : SPECIFICATION
+        /// </summary>
+        public static AstSPECIFICATION SPECIFICATION()
+        {
+            return new AstSPECIFICATION(Position.Default, "SPECIFICATION", "SPECIFICATION");
+        }
+    }
+    
+    /// <summary>
+    /// SPLIT : 'SPLIT'
+    /// </summary>
+    public partial class AstSPLIT : AstTerminalKeyword
+    {
+        
+        public AstSPLIT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPLIT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPLIT : SPLIT
+        /// </summary>
+        public static AstSPLIT SPLIT()
+        {
+            return new AstSPLIT(Position.Default, "SPLIT", "SPLIT");
+        }
+    }
+    
+    /// <summary>
+    /// SQL : 'SQL'
+    /// </summary>
+    public partial class AstSQL : AstTerminalKeyword
+    {
+        
+        public AstSQL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSQL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SQL : SQL
+        /// </summary>
+        public static AstSQL SQL()
+        {
+            return new AstSQL(Position.Default, "SQL", "SQL");
+        }
+    }
+    
+    /// <summary>
+    /// SQLDUMPERFLAGS : 'SQLDUMPERFLAGS'
+    /// </summary>
+    public partial class AstSQLDUMPERFLAGS : AstTerminalKeyword
+    {
+        
+        public AstSQLDUMPERFLAGS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSQLDUMPERFLAGS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SQLDUMPERFLAGS : SQLDUMPERFLAGS
+        /// </summary>
+        public static AstSQLDUMPERFLAGS SQLDUMPERFLAGS()
+        {
+            return new AstSQLDUMPERFLAGS(Position.Default, "SQLDUMPERFLAGS", "SQLDUMPERFLAGS");
+        }
+    }
+    
+    /// <summary>
+    /// SQLDUMPERPATH : 'SQLDUMPERPATH'
+    /// </summary>
+    public partial class AstSQLDUMPERPATH : AstTerminalKeyword
+    {
+        
+        public AstSQLDUMPERPATH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSQLDUMPERPATH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SQLDUMPERPATH : SQLDUMPERPATH
+        /// </summary>
+        public static AstSQLDUMPERPATH SQLDUMPERPATH()
+        {
+            return new AstSQLDUMPERPATH(Position.Default, "SQLDUMPERPATH", "SQLDUMPERPATH");
+        }
+    }
+    
+    /// <summary>
+    /// SQLDUMPERTIMEOUT : 'SQLDUMPERTIMEOUT'
+    /// </summary>
+    public partial class AstSQLDUMPERTIMEOUT : AstTerminalKeyword
+    {
+        
+        public AstSQLDUMPERTIMEOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSQLDUMPERTIMEOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SQLDUMPERTIMEOUT : SQLDUMPERTIMEOUT
+        /// </summary>
+        public static AstSQLDUMPERTIMEOUT SQLDUMPERTIMEOUT()
+        {
+            return new AstSQLDUMPERTIMEOUT(Position.Default, "SQLDUMPERTIMEOUT", "SQLDUMPERTIMEOUT");
+        }
+    }
+    
+    /// <summary>
+    /// STATE : 'STATE'
+    /// </summary>
+    public partial class AstSTATE : AstTerminalKeyword
+    {
+        
+        public AstSTATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATE : STATE
+        /// </summary>
+        public static AstSTATE STATE()
+        {
+            return new AstSTATE(Position.Default, "STATE", "STATE");
+        }
+    }
+    
+    /// <summary>
+    /// STATS : 'STATS'
+    /// </summary>
+    public partial class AstSTATS : AstTerminalKeyword
+    {
+        
+        public AstSTATS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTATS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STATS : STATS
+        /// </summary>
+        public static AstSTATS STATS()
+        {
+            return new AstSTATS(Position.Default, "STATS", "STATS");
+        }
+    }
+    
+    /// <summary>
+    /// START : 'START'
+    /// </summary>
+    public partial class AstSTART : AstTerminalKeyword
+    {
+        
+        public AstSTART(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTART(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// START : START
+        /// </summary>
+        public static AstSTART START()
+        {
+            return new AstSTART(Position.Default, "START", "START");
+        }
+    }
+    
+    /// <summary>
+    /// STARTED : 'STARTED'
+    /// </summary>
+    public partial class AstSTARTED : AstTerminalKeyword
+    {
+        
+        public AstSTARTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTARTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STARTED : STARTED
+        /// </summary>
+        public static AstSTARTED STARTED()
+        {
+            return new AstSTARTED(Position.Default, "STARTED", "STARTED");
+        }
+    }
+    
+    /// <summary>
+    /// STARTUP_STATE : 'STARTUP_STATE'
+    /// </summary>
+    public partial class AstSTARTUPSTATE : AstTerminalKeyword
+    {
+        
+        public AstSTARTUPSTATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTARTUPSTATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STARTUP_STATE : STARTUP_STATE
+        /// </summary>
+        public static AstSTARTUPSTATE STARTUPSTATE()
+        {
+            return new AstSTARTUPSTATE(Position.Default, "STARTUP_STATE", "STARTUP_STATE");
+        }
+    }
+    
+    /// <summary>
+    /// STOP : 'STOP'
+    /// </summary>
+    public partial class AstSTOP : AstTerminalKeyword
+    {
+        
+        public AstSTOP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTOP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STOP : STOP
+        /// </summary>
+        public static AstSTOP STOP()
+        {
+            return new AstSTOP(Position.Default, "STOP", "STOP");
+        }
+    }
+    
+    /// <summary>
+    /// STOPPED : 'STOPPED'
+    /// </summary>
+    public partial class AstSTOPPED : AstTerminalKeyword
+    {
+        
+        public AstSTOPPED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTOPPED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STOPPED : STOPPED
+        /// </summary>
+        public static AstSTOPPED STOPPED()
+        {
+            return new AstSTOPPED(Position.Default, "STOPPED", "STOPPED");
+        }
+    }
+    
+    /// <summary>
+    /// STOP_ON_ERROR : 'STOP_ON_ERROR'
+    /// </summary>
+    public partial class AstSTOPONERROR : AstTerminalKeyword
+    {
+        
+        public AstSTOPONERROR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSTOPONERROR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// STOP_ON_ERROR : STOP_ON_ERROR
+        /// </summary>
+        public static AstSTOPONERROR STOPONERROR()
+        {
+            return new AstSTOPONERROR(Position.Default, "STOP_ON_ERROR", "STOP_ON_ERROR");
+        }
+    }
+    
+    /// <summary>
+    /// SUPPORTED : 'SUPPORTED'
+    /// </summary>
+    public partial class AstSUPPORTED : AstTerminalKeyword
+    {
+        
+        public AstSUPPORTED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSUPPORTED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SUPPORTED : SUPPORTED
+        /// </summary>
+        public static AstSUPPORTED SUPPORTED()
+        {
+            return new AstSUPPORTED(Position.Default, "SUPPORTED", "SUPPORTED");
+        }
+    }
+    
+    /// <summary>
+    /// SWITCH : 'SWITCH'
+    /// </summary>
+    public partial class AstSWITCH : AstTerminalKeyword
+    {
+        
+        public AstSWITCH(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSWITCH(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SWITCH : SWITCH
+        /// </summary>
+        public static AstSWITCH SWITCH()
+        {
+            return new AstSWITCH(Position.Default, "SWITCH", "SWITCH");
+        }
+    }
+    
+    /// <summary>
+    /// TAPE : 'TAPE'
+    /// </summary>
+    public partial class AstTAPE : AstTerminalKeyword
+    {
+        
+        public AstTAPE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTAPE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TAPE : TAPE
+        /// </summary>
+        public static AstTAPE TAPE()
+        {
+            return new AstTAPE(Position.Default, "TAPE", "TAPE");
+        }
+    }
+    
+    /// <summary>
+    /// TARGET : 'TARGET'
+    /// </summary>
+    public partial class AstTARGET : AstTerminalKeyword
+    {
+        
+        public AstTARGET(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTARGET(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TARGET : TARGET
+        /// </summary>
+        public static AstTARGET TARGET()
+        {
+            return new AstTARGET(Position.Default, "TARGET", "TARGET");
+        }
+    }
+    
+    /// <summary>
+    /// TCP : 'TCP'
+    /// </summary>
+    public partial class AstTCP : AstTerminalKeyword
+    {
+        
+        public AstTCP(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTCP(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TCP : TCP
+        /// </summary>
+        public static AstTCP TCP()
+        {
+            return new AstTCP(Position.Default, "TCP", "TCP");
+        }
+    }
+    
+    /// <summary>
+    /// TOSTRING : 'TOSTRING'
+    /// </summary>
+    public partial class AstTOSTRING : AstTerminalKeyword
+    {
+        
+        public AstTOSTRING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTOSTRING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TOSTRING : TOSTRING
+        /// </summary>
+        public static AstTOSTRING TOSTRING()
+        {
+            return new AstTOSTRING(Position.Default, "TOSTRING", "TOSTRING");
+        }
+    }
+    
+    /// <summary>
+    /// TRACE : 'TRACE'
+    /// </summary>
+    public partial class AstTRACE : AstTerminalKeyword
+    {
+        
+        public AstTRACE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRACE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRACE : TRACE
+        /// </summary>
+        public static AstTRACE TRACE()
+        {
+            return new AstTRACE(Position.Default, "TRACE", "TRACE");
+        }
+    }
+    
+    /// <summary>
+    /// TRACK_CAUSALITY : 'TRACK_CAUSALITY'
+    /// </summary>
+    public partial class AstTRACKCAUSALITY : AstTerminalKeyword
+    {
+        
+        public AstTRACKCAUSALITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRACKCAUSALITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRACK_CAUSALITY : TRACK_CAUSALITY
+        /// </summary>
+        public static AstTRACKCAUSALITY TRACKCAUSALITY()
+        {
+            return new AstTRACKCAUSALITY(Position.Default, "TRACK_CAUSALITY", "TRACK_CAUSALITY");
+        }
+    }
+    
+    /// <summary>
+    /// TRANSFER : 'TRANSFER'
+    /// </summary>
+    public partial class AstTRANSFER : AstTerminalKeyword
+    {
+        
+        public AstTRANSFER(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstTRANSFER(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// TRANSFER : TRANSFER
+        /// </summary>
+        public static AstTRANSFER TRANSFER()
+        {
+            return new AstTRANSFER(Position.Default, "TRANSFER", "TRANSFER");
+        }
+    }
+    
+    /// <summary>
+    /// UNCHECKED : 'UNCHECKED'
+    /// </summary>
+    public partial class AstUNCHECKED : AstTerminalKeyword
+    {
+        
+        public AstUNCHECKED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNCHECKED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNCHECKED : UNCHECKED
+        /// </summary>
+        public static AstUNCHECKED UNCHECKED()
+        {
+            return new AstUNCHECKED(Position.Default, "UNCHECKED", "UNCHECKED");
+        }
+    }
+    
+    /// <summary>
+    /// UNLOCK : 'UNLOCK'
+    /// </summary>
+    public partial class AstUNLOCK : AstTerminalKeyword
+    {
+        
+        public AstUNLOCK(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNLOCK(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNLOCK : UNLOCK
+        /// </summary>
+        public static AstUNLOCK UNLOCK()
+        {
+            return new AstUNLOCK(Position.Default, "UNLOCK", "UNLOCK");
+        }
+    }
+    
+    /// <summary>
+    /// UNSAFE : 'UNSAFE'
+    /// </summary>
+    public partial class AstUNSAFE : AstTerminalKeyword
+    {
+        
+        public AstUNSAFE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUNSAFE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// UNSAFE : UNSAFE
+        /// </summary>
+        public static AstUNSAFE UNSAFE()
+        {
+            return new AstUNSAFE(Position.Default, "UNSAFE", "UNSAFE");
+        }
+    }
+    
+    /// <summary>
+    /// URL : 'URL'
+    /// </summary>
+    public partial class AstURL : AstTerminalKeyword
+    {
+        
+        public AstURL(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstURL(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// URL : URL
+        /// </summary>
+        public static AstURL URL()
+        {
+            return new AstURL(Position.Default, "URL", "URL");
+        }
+    }
+    
+    /// <summary>
+    /// USED : 'USED'
+    /// </summary>
+    public partial class AstUSED : AstTerminalKeyword
+    {
+        
+        public AstUSED(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstUSED(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// USED : USED
+        /// </summary>
+        public static AstUSED USED()
+        {
+            return new AstUSED(Position.Default, "USED", "USED");
+        }
+    }
+    
+    /// <summary>
+    /// VERBOSELOGGING : 'VERBOSELOGGING'
+    /// </summary>
+    public partial class AstVERBOSELOGGING : AstTerminalKeyword
+    {
+        
+        public AstVERBOSELOGGING(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVERBOSELOGGING(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VERBOSELOGGING : VERBOSELOGGING
+        /// </summary>
+        public static AstVERBOSELOGGING VERBOSELOGGING()
+        {
+            return new AstVERBOSELOGGING(Position.Default, "VERBOSELOGGING", "VERBOSELOGGING");
+        }
+    }
+    
+    /// <summary>
+    /// VISIBILITY : 'VISIBILITY'
+    /// </summary>
+    public partial class AstVISIBILITY : AstTerminalKeyword
+    {
+        
+        public AstVISIBILITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVISIBILITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VISIBILITY : VISIBILITY
+        /// </summary>
+        public static AstVISIBILITY VISIBILITY()
+        {
+            return new AstVISIBILITY(Position.Default, "VISIBILITY", "VISIBILITY");
+        }
+    }
+    
+    /// <summary>
+    /// WAIT_AT_LOW_PRIORITY : 'WAIT_AT_LOW_PRIORITY'
+    /// </summary>
+    public partial class AstWAITATLOWPRIORITY : AstTerminalKeyword
+    {
+        
+        public AstWAITATLOWPRIORITY(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWAITATLOWPRIORITY(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WAIT_AT_LOW_PRIORITY : WAIT_AT_LOW_PRIORITY
+        /// </summary>
+        public static AstWAITATLOWPRIORITY WAITATLOWPRIORITY()
+        {
+            return new AstWAITATLOWPRIORITY(Position.Default, "WAIT_AT_LOW_PRIORITY", "WAIT_AT_LOW_PRIORITY");
+        }
+    }
+    
+    /// <summary>
+    /// WINDOWS : 'WINDOWS'
+    /// </summary>
+    public partial class AstWINDOWS : AstTerminalKeyword
+    {
+        
+        public AstWINDOWS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWINDOWS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WINDOWS : WINDOWS
+        /// </summary>
+        public static AstWINDOWS WINDOWS()
+        {
+            return new AstWINDOWS(Position.Default, "WINDOWS", "WINDOWS");
+        }
+    }
+    
+    /// <summary>
+    /// WITHOUT : 'WITHOUT'
+    /// </summary>
+    public partial class AstWITHOUT : AstTerminalKeyword
+    {
+        
+        public AstWITHOUT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWITHOUT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WITHOUT : WITHOUT
+        /// </summary>
+        public static AstWITHOUT WITHOUT()
+        {
+            return new AstWITHOUT(Position.Default, "WITHOUT", "WITHOUT");
+        }
+    }
+    
+    /// <summary>
+    /// WITNESS : 'WITNESS'
+    /// </summary>
+    public partial class AstWITNESS : AstTerminalKeyword
+    {
+        
+        public AstWITNESS(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstWITNESS(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// WITNESS : WITNESS
+        /// </summary>
+        public static AstWITNESS WITNESS()
+        {
+            return new AstWITNESS(Position.Default, "WITNESS", "WITNESS");
+        }
+    }
+    
+    /// <summary>
+    /// XACT_ABORT : 'XACT_ABORT'
+    /// </summary>
+    public partial class AstXACTABORT : AstTerminalKeyword
+    {
+        
+        public AstXACTABORT(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXACTABORT(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XACT_ABORT : XACT_ABORT
+        /// </summary>
+        public static AstXACTABORT XACTABORT()
+        {
+            return new AstXACTABORT(Position.Default, "XACT_ABORT", "XACT_ABORT");
+        }
+    }
+    
+    /// <summary>
+    /// XACT_STATE : 'XACT_STATE'
+    /// </summary>
+    public partial class AstXACTSTATE : AstTerminalKeyword
+    {
+        
+        public AstXACTSTATE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstXACTSTATE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// XACT_STATE : XACT_STATE
+        /// </summary>
+        public static AstXACTSTATE XACTSTATE()
+        {
+            return new AstXACTSTATE(Position.Default, "XACT_STATE", "XACT_STATE");
+        }
+    }
+    
+    /// <summary>
+    /// VARCHAR : 'VARCHAR'
+    /// </summary>
+    public partial class AstVARCHAR : AstTerminalKeyword
+    {
+        
+        public AstVARCHAR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstVARCHAR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// VARCHAR : VARCHAR
+        /// </summary>
+        public static AstVARCHAR VARCHAR()
+        {
+            return new AstVARCHAR(Position.Default, "VARCHAR", "VARCHAR");
+        }
+    }
+    
+    /// <summary>
+    /// NVARCHAR : 'NVARCHAR'
+    /// </summary>
+    public partial class AstNVARCHAR : AstTerminalKeyword
+    {
+        
+        public AstNVARCHAR(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstNVARCHAR(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// NVARCHAR : NVARCHAR
+        /// </summary>
+        public static AstNVARCHAR NVARCHAR()
+        {
+            return new AstNVARCHAR(Position.Default, "NVARCHAR", "NVARCHAR");
+        }
+    }
+    
+    /// <summary>
+    /// DOLLAR_ACTION : '$ACTION'
+    /// </summary>
+    public partial class AstDOLLARACTION : AstTerminalKeyword
+    {
+        
+        public AstDOLLARACTION(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstDOLLARACTION(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// DOLLAR_ACTION : $ACTION
+        /// </summary>
+        public static AstDOLLARACTION DOLLARACTION()
+        {
+            return new AstDOLLARACTION(Position.Default, "DOLLAR_ACTION", "$ACTION");
+        }
+    }
+    
+    /// <summary>
+    /// SPACE : [ \t\r\n]+
+    /// </summary>
+    public partial class AstSPACE : AstTerminalKeyword
+    {
+        
+        public AstSPACE(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstSPACE(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// SPACE :  \t\r\n]
+        /// </summary>
+        public static AstSPACE SPACE()
+        {
+            return new AstSPACE(Position.Default, "SPACE", " \\t\\r\\n]");
+        }
+    }
+    
+    /// <summary>
+    /// FILESTREAM_ON : 'FILESTREAM ON'
+    /// </summary>
+    public partial class AstFILESTREAMON : AstTerminalKeyword
+    {
+        
+        public AstFILESTREAMON(ITerminalNode t, string value) : 
+                base(t, value)
+        {
+        }
+        
+        public AstFILESTREAMON(Position position, string name, string value) : 
+                base(position, name, value)
+        {
+        }
+        
+        /// <summary>
+        /// FILESTREAM_ON : FILESTREAM ON
+        /// </summary>
+        public static AstFILESTREAMON FILESTREAMON()
+        {
+            return new AstFILESTREAMON(Position.Default, "FILESTREAM_ON", "FILESTREAM ON");
+        }
+    }
 }

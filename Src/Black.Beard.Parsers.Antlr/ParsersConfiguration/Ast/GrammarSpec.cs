@@ -45,6 +45,9 @@ namespace Bb.ParsersConfiguration.Ast
         private void Append(AstLexerRule rule)
         {
 
+            if (rule.IsFragment)
+                return;
+
             GrammarConfigTermDeclaration g = null;
             var name = rule.Name;
             if (!this._list.TryGetValue(name.Text, out GrammarConfigBaseDeclaration grammar))

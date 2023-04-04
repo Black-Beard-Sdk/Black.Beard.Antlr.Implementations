@@ -25,6 +25,27 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
+        /// batchs
+        /// 	 : batch  (go_statements  batch)*
+        /// </summary>
+        public override AstRoot VisitBatchs(TSqlParser.BatchsContext context)
+        {
+            TSqlParser.BatchContext[] source = context.batch();
+            AstBatchs list = new AstBatchs(context, source.Length);
+            for (IEnumerator enumerator = source.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                TSqlParser.BatchContext item = ((TSqlParser.BatchContext)(enumerator.Current));
+                AstBatch acceptResult = ((AstBatch)(item.Accept(this)));
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return list;
+        }
+        
+        /// <summary>
         /// go_statements
         /// 	 : go_statement*
         /// </summary>

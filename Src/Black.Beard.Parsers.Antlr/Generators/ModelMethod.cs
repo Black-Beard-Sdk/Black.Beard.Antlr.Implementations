@@ -85,7 +85,6 @@ namespace Bb.Generators
 
             var _n = this._nameOfMethod(model);
 
-
             CodeTypeReference type = null;
             if (_actionType != null)
             {
@@ -138,6 +137,10 @@ namespace Bb.Generators
                         var m2 = item as CodeMemberMethod;
 
                         var countParameter = m1.Parameters.Count;
+
+                        if (m2.Parameters.Count == countParameter && m2.Parameters.Count == 0)
+                            return true;
+
                         if (m2.Parameters.Count != countParameter)
                             continue;
 

@@ -1,6 +1,8 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using System.CodeDom;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -175,7 +177,8 @@ namespace Generate.Scripts
 
         }
 
-        public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
+
+        public static IEnumerable<TreeRuleItem> GetAlternativesWithOnlyRules(this AstRule ast, Context ctx)
         {
 
             List<TreeRuleItem> _results = new List<TreeRuleItem>();
@@ -200,7 +203,7 @@ namespace Generate.Scripts
                         }
                         else
                         {
-                            var res = GetAlternatives(ru1, ctx);
+                            var res = GetAlternativesWithOnlyRules(ru1, ctx);
                             _results.AddRange(res);
                         }
                     }
@@ -208,6 +211,18 @@ namespace Generate.Scripts
                 }
 
             }
+
+            return _results;
+
+        }
+
+        public static IEnumerable<TreeRuleItem> GetAlternativesForTerminalsClass(this AstRule ast, Context ctx)
+        {
+
+            List<TreeRuleItem> _results = new List<TreeRuleItem>();
+
+            foreach (var alternative in ast.Alternatives)
+                _results.AddRange( alternative.ResolveAllCombinations());
 
             return _results;
 
@@ -235,7 +250,7 @@ namespace Generate.Scripts
                     }
                     else
                     {
-                        var res = GetAlternatives(ru1, ctx);
+                        var res = GetAlternativesWithOnlyRules(ru1, ctx);
                         _results.AddRange(res);
                     }
                 }
@@ -316,6 +331,119 @@ namespace Generate.Scripts
 
         }
 
+        public static CodeMemberMethod AsMethod(this string name, CodeTypeReference type, MemberAttributes attributes)
+        {
+            var method = new CodeMemberMethod()
+            {
+                Name = name,
+                ReturnType = type,
+                Attributes = attributes,
+            };
+
+            return method;
+
+        }
+
+        public static CodeMemberMethod BuildDocumentation(this CodeMemberMethod method, TreeRuleItem item, Context ctx)
+        {
+
+            method.Comments.Add(new CodeCommentStatement("<summary>", true));
+            method.Comments.Add(new CodeCommentStatement($"{item.Name} : ", true));
+            method.Comments.Add(new CodeCommentStatement(item.GenerateDoc(ctx), true));
+            method.Comments.Add(new CodeCommentStatement("</summary>", true));
+
+            return method;
+
+        }
+
+        public static void BuildStaticMethod(this TreeRuleItem itemAst, AstRule ast, CodeMemberMethod method, List<string> arguments)
+        {
+
+            StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+
+            Action<TreeRuleItem> act = itemAst =>
+            {
+
+                string name = null;
+                CodeTypeReference argumentTypeName = null;
+                string varName = null;
+
+                var itemResult = ast.ResolveByName(itemAst.ResolveKey());
+                if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
+                {
+                    name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
+                    if (string.IsNullOrEmpty(itemAst.Label))
+                        varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
+                    else
+                        varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
+
+                }
+                else if (itemResult != null && itemResult is AstLexerRule r2 && r2?.Configuration != null)
+                {
+
+                    switch (r2.Configuration.Config.Kind)
+                    {
+                        case TokenTypeEnum.Pattern:
+                        case TokenTypeEnum.String:
+                        case TokenTypeEnum.Identifier:
+                            name = nameof(String);
+                            varName = "txt";
+                            break;
+                        case TokenTypeEnum.Boolean:
+                            name = nameof(Boolean);
+                            varName = "boolean";
+                            break;
+                        case TokenTypeEnum.Decimal:
+                            name = nameof(Decimal);
+                            varName = "_decimal";
+                            break;
+                        case TokenTypeEnum.Int:
+                            name = nameof(Int64);
+                            varName = "integer";
+                            break;
+                        case TokenTypeEnum.Real:
+                            name = nameof(Double);
+                            varName = "real";
+                            break;
+                        case TokenTypeEnum.Hexa:
+                            name = "";
+                            varName = "";
+                            break;
+                        case TokenTypeEnum.Binary:
+                            name = "Object";
+                            varName = "_binary";
+                            break;
+
+                        case TokenTypeEnum.Operator:
+                        case TokenTypeEnum.Ponctuation:
+                        case TokenTypeEnum.Other:
+                        case TokenTypeEnum.Comment:
+                        case TokenTypeEnum.Constant:
+                        default:
+                            break;
+                    }
+
+                    if (!string.IsNullOrEmpty(itemAst.Label))
+                        varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
+
+                }
+
+                if (name != null)
+                {
+                    argumentTypeName = new CodeTypeReference(name);
+                    if (itemAst.Occurence.Value == OccurenceEnum.Any)
+                        argumentTypeName = new CodeTypeReference(typeof(IEnumerable<>).Name, argumentTypeName);
+
+                    method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
+                    uniqeConstraintKeyMethod.Append(name);
+                    arguments.Add(varName);
+                }
+
+            };
+
+        }
+
+
     }
 
     public class TreeRuleGetITems : TreeRuleItemVisitor
@@ -336,7 +464,7 @@ namespace Generate.Scripts
 
             _stack.Push(i);
 
-            if (i.Count  == 0)
+            if (i.Count == 0)
                 i.Accept(this);
             else
                 foreach (var j in i)
@@ -414,7 +542,7 @@ namespace Generate.Scripts
             if (i.Count > 0)
                 foreach (var item in i)
                     item.Accept(this);
-            
+
             else
                 i.Accept(this);
 

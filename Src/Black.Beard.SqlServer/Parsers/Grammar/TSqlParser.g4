@@ -27,15 +27,20 @@ parser grammar TSqlParser;
 
 options { tokenVocab=TSqlLexer; }
 
-tsql_file
-    : batch* EOF
+t_root
+    : batchs EOF
     | execute_body_batch go_statements EOF
+    ;
+
+batchs
+    : batch (go_statements batch)*
     ;
 
 batch
     : go_statement
-    | execute_body_batch? (go_statement | sql_clauses) go_statements
-    | batch_level_statement go_statements
+    | execute_body_batch
+    | sql_clauses
+    | batch_level_statement
     ;
 
 go_statements : go_statement*;
@@ -2671,7 +2676,7 @@ alter_table
         | ALTER COLUMN (column_definition | column_modifier)
         | DROP COLUMN ids
         | DROP CONSTRAINT constraint_id
-        | WITH check_nocheck check_nocheck ADD alter_table_constraint
+        | WITH check_nocheck ADD alter_table_constraint
         | check_nocheck CONSTRAINT constraint_id
         | enable_disable TRIGGER id_?
         | REBUILD table_options
@@ -2899,22 +2904,19 @@ witness_server
     ;
 
 partner_server
-    : partner_server_tcp_prefix host mirroring_host_port_seperator port_number
+    : partner_server_tcp_prefix host COLON port_number
     ;
 
-mirroring_host_port_seperator
-    : COLON
+host
+    : HOST
     ;
 
 partner_server_tcp_prefix
     : TCP COLON DOUBLE_FORWARD_SLASH
     ;
-port_number
-    : port=decimal
-    ;
 
-host
-    : id_ (DOT id_)+
+port_number
+    : decimal
     ;
 
 date_correlation_optimization_option
@@ -3258,7 +3260,12 @@ security_statement
     // https://msdn.microsoft.com/en-us/library/ms188354.aspx
     : execute_clause SEMI?
     // https://msdn.microsoft.com/en-us/library/ms187965.aspx
-    | GRANT (ALL PRIVILEGES? | grant_permission (LR_BRACKET column_name_list RR_BRACKET)?) (ON (class_type_for_grant DOUBLE_COLON)? table=full_table_ref)? TO to_principal_rincipal_ids (WITH GRANT OPTION)? (AS as_principal=principal_id)? SEMI?
+    | GRANT (ALL PRIVILEGES? 
+    | grant_permission (LR_BRACKET column_name_list RR_BRACKET)?) 
+            (ON (class_type_for_grant DOUBLE_COLON)? table=full_table_ref)? 
+            TO to_principal_rincipal_ids 
+            (WITH GRANT OPTION)? 
+            (AS as_principal=principal_id)? SEMI?
     // https://msdn.microsoft.com/en-us/library/ms178632.aspx
     | REVERT (LR_BRACKET WITH COOKIE EQUAL local_id RR_BRACKET)? SEMI?
     | open_key
@@ -3269,8 +3276,8 @@ security_statement
 
 to_principal_rincipal_ids : principal_id (COMMA principal_id)*;
 
-principal_id:
-    | id_
+principal_id
+    : id_
     | PUBLIC
     ;
 

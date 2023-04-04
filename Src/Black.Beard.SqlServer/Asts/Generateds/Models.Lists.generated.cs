@@ -19,6 +19,29 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
+    /// batchs
+    /// 	 : batch  (go_statements  batch)*
+    /// </summary>
+    public partial class AstBatchs : AstRuleList<AstBatch>
+    {
+        
+        public AstBatchs(ParserRuleContext ctx) : 
+                base(ctx)
+        {
+        }
+        
+        public AstBatchs(ParserRuleContext ctx, int capacity) : 
+                base(ctx, capacity)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitBatchs(this);
+        }
+    }
+    
+    /// <summary>
     /// go_statements
     /// 	 : go_statement*
     /// </summary>

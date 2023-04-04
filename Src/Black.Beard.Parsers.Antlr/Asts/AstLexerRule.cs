@@ -38,6 +38,11 @@ namespace Bb.Asts
 
         }
 
+        public override bool IsTerm => true;
+
+
+        public new GrammarConfigTermDeclaration Configuration { get; internal set; }
+
         private bool IsLetters(string txt)
         {
 
@@ -181,10 +186,6 @@ namespace Bb.Asts
         public bool ContainsJustOneAlternative { get => Alternatives?.ContainsJustOneAlternative ?? false; }
 
 
-
-        public string Strategy { get; set; }
-
-        public GrammarConfigTermDeclaration Configuration { get; internal set; }
 
         public int Index { get; internal set; }
         public AstOptionList? Options { get; internal set; }

@@ -8,7 +8,7 @@ namespace Bb.Parsers
 
         public static List<TreeRuleItem> ResolveAllCombinations(this AstLabeledAlt self)
         {
-                        
+
             var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
             var spliterVisitor = new SpliterBuilderVisitor();
             var cleanDuplicated = new RemoveDuplicatedRulesBuilderVisitor();
@@ -33,11 +33,6 @@ namespace Bb.Parsers
 
         public static List<TreeRuleItem> ResolveAllCombinations(this AstRule self)
         {
-
-            //if (self.Name.Text == "alter_credential")
-            //{
-
-            //}
 
             var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
             var spliterVisitor = new SpliterBuilderVisitor();
@@ -64,6 +59,38 @@ namespace Bb.Parsers
 
         }
 
+        public static List<TreeRuleItem> GetAllCombinations(this AstRule self)
+        {
+
+            var possibilites = new List<TreeRuleItem>();
+
+            //var removeOptionalsVisitor = new RemoveOptionalsBuilderVisitor();
+            var visitor1 = new RuleIdVisitor();
+            var spliterVisitor = new SpliterBuilderVisitor();
+
+            foreach (var alternative in self.Alternatives)
+            {
+                var p1 = alternative.Accept(visitor1);
+                var p2 = p1.Accept(spliterVisitor);
+                possibilites.AddRange(p2);
+            }
+
+            var possibilites2 = new List<TreeRuleItem>();
+
+            HashSet<string> names = new HashSet<string>();
+            foreach (var p1 in possibilites)
+            {
+                var txt = p1.ToString();
+                if (!string.IsNullOrEmpty(txt) && names.Add(txt))
+                {
+                    p1.Name = self.Name.Text;
+                    possibilites2.Add(p1);
+                }
+            }
+
+            return possibilites2;
+
+        }
 
     }
 

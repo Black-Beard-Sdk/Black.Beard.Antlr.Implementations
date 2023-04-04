@@ -71,28 +71,12 @@ namespace Generate.Scripts
                                  .CallBase("position".Var(), "name".Var(), "value".Var());
                             })
 
-                            //.Method(m =>
-                            //{
-                            //    m.Name(o => "ToString")
-                            //    .Attribute(MemberAttributes.Public | MemberAttributes.Override)
-                            //    .Return(() => typeof(void))
-                            //    .Argument("Writer", "w")
-                            //    .Body(b =>
-                            //    {
-                            //    })
-                            //    ;
-                            //})
-
                             .Methods(() => ast.ResolveAllCombinations(), (method, ast2) =>
                             {
 
                                 method.Name(n =>
                                 {
-                                    if (ast.Name.Text == "sign")
-                                    {
-
-                                    }
-
+                                    
                                     try
                                     {
                                         var tree = n as TreeRuleItem;
@@ -157,15 +141,80 @@ namespace Generate.Scripts
                                     m.Comments.Add(new CodeCommentStatement("<summary>", true));
                                     m.Comments.Add(new CodeCommentStatement($"{ast.Name} : {value}", true));
                                     m.Comments.Add(new CodeCommentStatement("</summary>", true));
-                                
+
                                 })
                                 ;
 
                             })
                             ;
 
-                    });
+                    })
+                    ;
 
+                    ns.CreateTypeFrom<AstLexerRule>((ast, type) =>
+                    {
+
+                        type.AddTemplateSelector(() => "_")
+                            .GenerateIf(() => !ast.IsFragment && ast.Configuration.Config.Kind == TokenTypeEnum.Constant)
+                            .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                            .Attribute(TypeAttributes.Public)
+                            .Inherit(() => "AstTerminalKeyword")
+                            .Documentation(e =>
+                            {
+                                e.Summary(() => ast.ToString());
+                            })
+
+                            .Ctor((f) =>
+                            {
+                                f.Attribute(MemberAttributes.Family)
+                                 .Argument(() => "ITerminalNode", "t")
+                                 .Argument(() => typeof(string), "value")
+                                 .Attribute(MemberAttributes.Public)
+                                 .CallBase("t".Var(), "value".Var())
+                                 ;
+                            })
+
+                            .Ctor((f) =>
+                            {
+                                f.Attribute(MemberAttributes.Family)
+                                 .Argument(() => "Position", "position")
+                                 .Argument(() => typeof(string), "name")
+                                 .Argument(() => typeof(string), "value")
+                                 .Attribute(MemberAttributes.Public)
+                                 .CallBase("position".Var(), "name".Var(), "value".Var());
+                            })
+
+                            .Method((method) =>
+                            {
+
+                                method.Name(n =>
+                                {
+                                    return CodeHelper.FormatCsharp(ast.Name.Text);
+                                })
+                                .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                                .Body(m =>
+                                {
+
+                                    var value = ast.Value.ToString();
+                                    value = value.Substring(1, value.Length - 2);
+
+                                    var typeName = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                    m.Statements.Return(CodeHelper.Create(typeName.AsType(), "Position.Default".Var(), ast.Name.Text.AsConstant(), value.AsConstant()));
+
+                                    m.Comments.Add(new CodeCommentStatement("<summary>", true));
+                                    m.Comments.Add(new CodeCommentStatement($"{ast.Name} : {value}", true));
+                                    m.Comments.Add(new CodeCommentStatement("</summary>", true));
+
+                                })
+                                ;
+
+                            })
+
+                            ;
+
+                    })
+                    ;
 
                 });
             });

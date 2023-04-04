@@ -53,9 +53,6 @@ namespace Bb.Parsers
         public string AntlrParserRootName { get; set; }
         
         public GrammarSpec Configuration { get; set; }
-        
-        public GrammarConfigDeclaration CurrentConfiguration { get; internal set; }
-
 
         public void AddStrategyKey(string strategyKey)
         {

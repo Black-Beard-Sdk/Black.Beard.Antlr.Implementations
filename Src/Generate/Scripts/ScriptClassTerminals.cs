@@ -3,6 +3,8 @@ using Bb.Generators;
 using Bb.Parsers;
 using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
+using System.Text;
+using System.Xml.Linq;
 
 namespace Generate.Scripts
 {
@@ -84,10 +86,72 @@ namespace Generate.Scripts
                                        );
                                    });
                               })
+
+                              .Make(t =>
+                              {
+
+                                  if (ast.Name.Text == "local_drive" /* "empty_statement"*/ /*"star_asterisk"*/)
+                                  {
+
+                                  }
+
+                                  HashSet<string> _h = new HashSet<string>();
+                                  List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
+
+                                  var alternatives = ast.GetAlternativesForTerminalsClass(ctx);
+
+                                  foreach (var alt in alternatives)
+                                  {
+
+
+                                        var o = alt.Origin;
+                                        if (o != null && o.Link is AstLexerRule astI)
+                                        {
+
+                                          if (astI.TerminalKind == TokenTypeEnum.Ponctuation)
+                                              continue;
+
+                                        }
+
+
+                                      var n1 = CodeHelper.FormatCsharp(alt.Name);
+                                      var n2 = "Ast" + n1;
+                                      var t1 = n2.AsType();
+
+                                      StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                      List<string> arguments = new List<string>();
+
+                                      var method = n1.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                        .BuildDocumentation(alt, ctx);
+
+                                      if (alt.Count > 0)
+                                          foreach (var itemAlt in alt)
+                                              itemAlt.BuildStaticMethod(ast, method, arguments);
+
+                                      var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                      if (_h.Add(noDuplicateKey))
+                                      {
+                                          List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
+                                          foreach (var itemArg in arguments)
+                                              args.Add(itemArg.Var());
+
+                                          methods.Add(method);
+                                          var ret = CodeHelper.Call(t1, n1, args.ToArray());
+                                          method.Statements.Return(ret);
+
+                                      }
+
+                                  }
+
+                                  foreach (var item in methods)
+                                      t.Members.Add(item);
+
+                              })
                               ;
 
                       });
-                      
+
                 });
 
             });

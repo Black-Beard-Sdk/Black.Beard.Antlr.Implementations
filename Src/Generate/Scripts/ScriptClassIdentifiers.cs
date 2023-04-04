@@ -6,6 +6,7 @@ using System.CodeDom;
 
 namespace Generate.Scripts
 {
+
     public class ScriptClassIdentifiers : ScriptBase
     {
 
@@ -47,6 +48,44 @@ namespace Generate.Scripts
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "ITerminalNode", "t")
+                                   .Arguments(
+                                      () =>
+                                       {
+
+                                           if (ast.Name.Text == "host")
+                                           {
+
+                                               var combinaisons = ast.GetAllCombinations();
+
+                                               // id_ DOT id_ 
+
+                                               foreach (var item in combinaisons)
+                                               {
+
+                                                   var rules = item.Where(c => c.IsRuleRef).ToList();
+                                                   if (rules.Count == 2)
+                                                   {
+                                                       var u = rules[0].Name == rules[1].Name;
+
+                                                       var r = rules[0].Clone();
+                                                       r.Occurence = new Occurence(OccurenceEnum.Any, rules[0].Occurence.Optional && rules[1].Occurence.Optional);
+
+
+
+                                                   }
+                                               }
+                                           }
+
+                                           return null;
+
+                                       }, 
+                                      (a) =>
+                                       {
+
+                                           return ("", "");
+
+                                       })
+
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var());
                               })

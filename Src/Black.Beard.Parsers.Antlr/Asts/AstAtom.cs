@@ -108,6 +108,8 @@ namespace Bb.Asts
 
         public override bool IsTerminal { get => Value.IsTerminal; }
 
+        public override TokenTypeEnum TerminalKind { get => Value.TerminalKind; internal set => Value.TerminalKind = value; }
+
         public bool IsConstant => (Value as AstTerminal)?.IsConstant ?? false;
 
         public override bool IsRule { get => Value.IsRule; }

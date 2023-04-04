@@ -54,7 +54,7 @@ namespace Bb.Parsers
 
         public bool IsAlternative { get; internal set; }
 
-        public Occurence Occurence { get; internal set; }
+        public Occurence Occurence { get; set; }
 
         public bool IsBlock { get; internal set; }
 

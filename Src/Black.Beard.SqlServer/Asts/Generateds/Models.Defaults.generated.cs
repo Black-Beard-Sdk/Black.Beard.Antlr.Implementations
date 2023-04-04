@@ -18,59 +18,49 @@ namespace Bb.Asts.TSql
     
     
     /// <summary>
-    /// tsql_file
-    /// 	 : batch*  EOF
+    /// t_root
+    /// 	 : batchs  EOF
     /// 	 | execute_body_batch  go_statements  EOF
     /// </summary>
-    public partial class AstTsqlFile : AstRule
+    public partial class AstTRoot : AstRule
     {
         
-        protected static string _rule = "tsql_file\r\n\t : batch*  EOF\r\n\t | execute_body_batch  go_statements  EOF";
+        protected static string _rule = "t_root\r\n\t : batchs  EOF\r\n\t | execute_body_batch  go_statements  EOF";
         
-        internal AstTsqlFile(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstTRoot(ITerminalNode t, List<AstRoot> list) : 
+                base(t)
         {
         }
         
-        internal AstTsqlFile(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTsqlFile(Position p, List<AstRoot> list) : 
-                base(p, list)
-        {
-        }
-        
-        internal AstTsqlFile(List<AstRoot> list) : 
-                base(Position.Default, list)
+        internal AstTRoot(List<AstRoot> list) : 
+                base(Position.Default)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
-            visitor.VisitTsqlFile(this);
+            visitor.VisitTRoot(this);
         }
         
         /// <summary>
-        /// tsql_file : 
-        ///    batch* 
+        /// batchs : 
+        ///    batchs 
         /// </summary>
-        public static AstTsqlFile TsqlFile(IEnumerable<AstBatch> batch)
+        public static AstTRoot TRoot(AstBatchs batchs)
         {
             List<AstRoot> arguments = new List<AstRoot>();
-            AstTsqlFile result = new AstTsqlFile(arguments);
+            AstTRoot result = new AstTRoot(arguments);
             return result;
         }
         
         /// <summary>
-        /// tsql_file : 
+        ///  : 
         ///    execute_body_batch go_statements 
         /// </summary>
-        public static AstTsqlFile TsqlFile(AstExecuteBodyBatch executeBodyBatch, AstGoStatements goStatements)
+        public static AstTRoot TRoot(AstExecuteBodyBatch executeBodyBatch, AstGoStatements goStatements)
         {
             List<AstRoot> arguments = new List<AstRoot>();
-            AstTsqlFile result = new AstTsqlFile(arguments);
+            AstTRoot result = new AstTRoot(arguments);
             return result;
         }
     }
@@ -78,32 +68,23 @@ namespace Bb.Asts.TSql
     /// <summary>
     /// batch
     /// 	 : go_statement
-    /// 	 | execute_body_batch?  (go_statement | sql_clauses)  go_statements
-    /// 	 | batch_level_statement  go_statements
+    /// 	 | execute_body_batch
+    /// 	 | sql_clauses
+    /// 	 | batch_level_statement
     /// </summary>
     public partial class AstBatch : AstRule
     {
         
-        protected static string _rule = "batch\r\n\t : go_statement\r\n\t | execute_body_batch?  (go_statement | sql_clauses)  g" +
-            "o_statements\r\n\t | batch_level_statement  go_statements";
+        protected static string _rule = "batch\r\n\t : go_statement\r\n\t | execute_body_batch\r\n\t | sql_clauses\r\n\t | batch_level" +
+            "_statement";
         
         internal AstBatch(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBatch(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBatch(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBatch(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -113,7 +94,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// batch : 
+        /// go_statement : 
         ///    go_statement 
         /// </summary>
         public static AstBatch Batch(AstGoStatement goStatement)
@@ -124,10 +105,10 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// batch : 
-        ///    execute_body_batch? go_statement go_statements 
+        /// execute_body_batch : 
+        ///    execute_body_batch 
         /// </summary>
-        public static AstBatch Batch(AstExecuteBodyBatch executeBodyBatch, AstGoStatement goStatement, AstGoStatements goStatements)
+        public static AstBatch Batch(AstExecuteBodyBatch executeBodyBatch)
         {
             List<AstRoot> arguments = new List<AstRoot>();
             AstBatch result = new AstBatch(arguments);
@@ -135,10 +116,10 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// batch : 
-        ///    execute_body_batch? sql_clauses go_statements 
+        /// sql_clauses : 
+        ///    sql_clauses 
         /// </summary>
-        public static AstBatch Batch(AstExecuteBodyBatch executeBodyBatch, AstSqlClauses sqlClauses, AstGoStatements goStatements)
+        public static AstBatch Batch(AstSqlClauses sqlClauses)
         {
             List<AstRoot> arguments = new List<AstRoot>();
             AstBatch result = new AstBatch(arguments);
@@ -146,10 +127,10 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// batch : 
-        ///    batch_level_statement go_statements 
+        /// batch_level_statement : 
+        ///    batch_level_statement 
         /// </summary>
-        public static AstBatch Batch(AstBatchLevelStatement batchLevelStatement, AstGoStatements goStatements)
+        public static AstBatch Batch(AstBatchLevelStatement batchLevelStatement)
         {
             List<AstRoot> arguments = new List<AstRoot>();
             AstBatch result = new AstBatch(arguments);
@@ -174,22 +155,12 @@ namespace Bb.Asts.TSql
             "use\r\n\t | dbcc_special\r\n\t | dbcc_clause\r\n\t | backup_statement";
         
         internal AstSqlClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSqlClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSqlClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSqlClause(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -199,7 +170,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// dml_clause : 
         ///    dml_clause 
         /// </summary>
         public static AstSqlClause SqlClause(AstDmlClause dmlClause)
@@ -210,7 +181,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// cfl_statement : 
         ///    cfl_statement 
         /// </summary>
         public static AstSqlClause SqlClause(AstCflStatement cflStatement)
@@ -221,7 +192,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// another_statement : 
         ///    another_statement 
         /// </summary>
         public static AstSqlClause SqlClause(AstAnotherStatement anotherStatement)
@@ -232,7 +203,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// ddl_clause : 
         ///    ddl_clause 
         /// </summary>
         public static AstSqlClause SqlClause(AstDdlClause ddlClause)
@@ -243,7 +214,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// dbcc_special : 
         ///    dbcc_special 
         /// </summary>
         public static AstSqlClause SqlClause(AstDbccSpecial dbccSpecial)
@@ -254,7 +225,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// dbcc_clause : 
         ///    dbcc_clause 
         /// </summary>
         public static AstSqlClause SqlClause(AstDbccClause dbccClause)
@@ -265,7 +236,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_clause : 
+        /// backup_statement : 
         ///    backup_statement 
         /// </summary>
         public static AstSqlClause SqlClause(AstBackupStatement backupStatement)
@@ -286,22 +257,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "break_statement\r\n\t : BREAK  SEMI?";
         
         internal AstBreakStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBreakStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBreakStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBreakStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -321,22 +282,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "continue_statement\r\n\t : CONTINUE  SEMI?";
         
         internal AstContinueStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstContinueStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstContinueStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstContinueStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -358,22 +309,12 @@ namespace Bb.Asts.TSql
             "EMI?";
         
         internal AstGotoStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstGotoStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstGotoStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstGotoStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -383,7 +324,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// goto_statement : 
+        ///  : 
         ///    GOTO code_location_id SEMI? 
         /// </summary>
         public static AstGotoStatement GotoStatement(AstCodeLocationId codeLocationId)
@@ -405,22 +346,12 @@ namespace Bb.Asts.TSql
             "ow_state)?  SEMI?";
         
         internal AstThrowStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstThrowStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstThrowStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstThrowStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -430,7 +361,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// throw_statement : 
+        ///  : 
         ///    THROW throw_error_number , throw_message , throw_state SEMI? 
         /// </summary>
         public static AstThrowStatement ThrowStatement(AstThrowErrorNumber throwErrorNumber, AstThrowMessage throwMessage, AstThrowState throwState)
@@ -452,22 +383,12 @@ namespace Bb.Asts.TSql
             "SEMI?  BEGIN  CATCH  SEMI?  catch_clauses = sql_clauses  END  CATCH  SEMI?";
         
         internal AstTryCatchStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTryCatchStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTryCatchStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTryCatchStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -477,7 +398,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// try_catch_statement : 
+        ///  : 
         ///    BEGIN TRY SEMI? try_clauses=sql_clauses END TRY SEMI? BEGIN CATCH SEMI? catch_clauses=sql_clauses END CATCH SEMI? 
         /// </summary>
         public static AstTryCatchStatement TryCatchStatement(AstSqlClauses tryClauses, AstSqlClauses catchClauses)
@@ -501,22 +422,12 @@ namespace Bb.Asts.TSql
 	 | RAISERROR  decimal  formatstring = string_local_id_double_quote_id  decimal_string_locals?";
         
         internal AstRaiseerrorStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRaiseerrorStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRaiseerrorStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRaiseerrorStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -526,7 +437,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// raiseerror_statement : 
+        ///  : 
         ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id constant_local_ids? ) WITH log_seterror_nowait SEMI? 
         /// </summary>
         public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstConstantLocalIds constantLocalIds, AstLogSeterrorNowait logSeterrorNowait)
@@ -537,7 +448,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// raiseerror_statement : 
+        ///  : 
         ///    RAISERROR decimal formatstring=string_local_id_double_quote_id decimal_string_locals? 
         /// </summary>
         public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimal @decimal, AstStringLocalIdDoubleQuoteId formatstring, AstDecimalStringLocals decimalStringLocals)
@@ -558,22 +469,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_assembly_start\r\n\t : ALTER  ASSEMBLY";
         
         internal AstAlterAssemblyStart(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAssemblyStart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAssemblyStart(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAssemblyStart(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -594,22 +495,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_assembly_drop_multiple_files\r\n\t : ALL\r\n\t | multiple_local_files";
         
         internal AstAlterAssemblyDropMultipleFiles(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAssemblyDropMultipleFiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAssemblyDropMultipleFiles(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAssemblyDropMultipleFiles(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -619,7 +510,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_assembly_drop_multiple_files : 
+        /// multiple_local_files : 
         ///    multiple_local_files 
         /// </summary>
         public static AstAlterAssemblyDropMultipleFiles AlterAssemblyDropMultipleFiles(AstMultipleLocalFiles multipleLocalFiles)
@@ -643,22 +534,12 @@ namespace Bb.Asts.TSql
             "";
         
         internal AstClientAssemblySpecifier(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstClientAssemblySpecifier(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstClientAssemblySpecifier(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstClientAssemblySpecifier(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -668,7 +549,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// client_assembly_specifier : 
+        /// network_file_share : 
         ///    network_file_share 
         /// </summary>
         public static AstClientAssemblySpecifier ClientAssemblySpecifier(AstNetworkFileShare networkFileShare)
@@ -679,7 +560,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// client_assembly_specifier : 
+        /// local_file : 
         ///    local_file 
         /// </summary>
         public static AstClientAssemblySpecifier ClientAssemblySpecifier(AstLocalFile localFile)
@@ -690,7 +571,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// client_assembly_specifier : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstClientAssemblySpecifier ClientAssemblySpecifier(AstStringtext stringtext)
@@ -715,22 +596,12 @@ namespace Bb.Asts.TSql
             "EQUAL  on_off\r\n\t | UNCHECKED  DATA\r\n\t | assembly_option  COMMA";
         
         internal AstAssemblyOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAssemblyOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAssemblyOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAssemblyOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -740,7 +611,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// assembly_option : 
+        ///  : 
         ///    PERMISSION_SET EQUAL assembly_permission 
         /// </summary>
         public static AstAssemblyOption AssemblyOption(AstAssemblyPermission assemblyPermission)
@@ -751,7 +622,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// assembly_option : 
+        ///  : 
         ///    VISIBILITY EQUAL on_off 
         /// </summary>
         public static AstAssemblyOption AssemblyOption(AstOnOff onOff)
@@ -762,7 +633,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// assembly_option : 
+        ///  : 
         ///    assembly_option , 
         /// </summary>
         public static AstAssemblyOption AssemblyOption(AstAssemblyOption assemblyOption)
@@ -784,22 +655,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "file_path\r\n\t : file_directory_path_separator  file_path\r\n\t | id_";
         
         internal AstFilePath(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFilePath(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFilePath(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFilePath(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -809,7 +670,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// file_path : 
+        ///  : 
         ///    file_directory_path_separator file_path 
         /// </summary>
         public static AstFilePath FilePath(AstFileDirectoryPathSeparator fileDirectoryPathSeparator, AstFilePath filePath)
@@ -820,7 +681,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// file_path : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstFilePath FilePath(AstId id)
@@ -843,22 +704,12 @@ namespace Bb.Asts.TSql
             "MMA\r\n\t | local_file";
         
         internal AstMultipleLocalFiles(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMultipleLocalFiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMultipleLocalFiles(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMultipleLocalFiles(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -868,7 +719,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// multiple_local_files : 
+        ///  : 
         ///    multiple_local_file_start local_file \ , 
         /// </summary>
         public static AstMultipleLocalFiles MultipleLocalFiles(AstMultipleLocalFileStart multipleLocalFileStart, AstLocalFile localFile)
@@ -879,7 +730,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// multiple_local_files : 
+        /// local_file : 
         ///    local_file 
         /// </summary>
         public static AstMultipleLocalFiles MultipleLocalFiles(AstLocalFile localFile)
@@ -901,22 +752,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "binary_content\r\n\t : stringtext\r\n\t | binary_";
         
         internal AstBinaryContent(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBinaryContent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBinaryContent(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBinaryContent(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -926,7 +767,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// binary_content : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstBinaryContent BinaryContent(AstStringtext stringtext)
@@ -937,7 +778,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// binary_content : 
+        /// binary_ : 
         ///    binary_ 
         /// </summary>
         public static AstBinaryContent BinaryContent(AstBinary binary)
@@ -959,22 +800,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "by_password_crypt\r\n\t : decryption_by_pwd\r\n\t | encryption_by_pwd";
         
         internal AstByPasswordCrypt(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstByPasswordCrypt(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstByPasswordCrypt(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstByPasswordCrypt(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -984,7 +815,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// by_password_crypt : 
+        /// decryption_by_pwd : 
         ///    decryption_by_pwd 
         /// </summary>
         public static AstByPasswordCrypt ByPasswordCrypt(AstDecryptionByPwd decryptionByPwd)
@@ -995,7 +826,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// by_password_crypt : 
+        /// encryption_by_pwd : 
         ///    encryption_by_pwd 
         /// </summary>
         public static AstByPasswordCrypt ByPasswordCrypt(AstEncryptionByPwd encryptionByPwd)
@@ -1017,22 +848,12 @@ namespace Bb.Asts.TSql
             "xt";
         
         internal AstEncryptionByPwd(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEncryptionByPwd(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEncryptionByPwd(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEncryptionByPwd(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1042,7 +863,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// encryption_by_pwd : 
+        ///  : 
         ///    ENCRYPTION BY PASSWORD EQUAL encryption_pwd=stringtext 
         /// </summary>
         public static AstEncryptionByPwd EncryptionByPwd(AstStringtext encryptionPwd)
@@ -1064,22 +885,12 @@ namespace Bb.Asts.TSql
             "xt";
         
         internal AstDecryptionByPwd(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDecryptionByPwd(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDecryptionByPwd(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDecryptionByPwd(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1089,7 +900,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decryption_by_pwd : 
+        ///  : 
         ///    DECRYPTION BY PASSWORD EQUAL encryption_pwd=stringtext 
         /// </summary>
         public static AstDecryptionByPwd DecryptionByPwd(AstStringtext encryptionPwd)
@@ -1111,22 +922,12 @@ namespace Bb.Asts.TSql
             "  KEY)?";
         
         internal AstDropAsymmetricKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropAsymmetricKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropAsymmetricKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropAsymmetricKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1136,7 +937,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_asymmetric_key : 
+        ///  : 
         ///    DROP ASYMMETRIC KEY key_name=id_ REMOVE PROVIDER KEY 
         /// </summary>
         public static AstDropAsymmetricKey DropAsymmetricKey(AstId keyName)
@@ -1158,22 +959,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "authorization_grantee\r\n\t : principal_name = id_\r\n\t | SCHEMA  OWNER";
         
         internal AstAuthorizationGrantee(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAuthorizationGrantee(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAuthorizationGrantee(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAuthorizationGrantee(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1183,7 +974,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// authorization_grantee : 
+        /// id_ : 
         ///    principal_name=id_ 
         /// </summary>
         public static AstAuthorizationGrantee AuthorizationGrantee(AstId principalName)
@@ -1207,22 +998,12 @@ namespace Bb.Asts.TSql
             "ase_object_server\r\n\t | object_type_for_grant";
         
         internal AstClassTypeForGrant(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstClassTypeForGrant(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstClassTypeForGrant(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstClassTypeForGrant(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1232,7 +1013,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// class_type_for_grant : 
+        ///  : 
         ///    COLUMN encryption_master KEY 
         /// </summary>
         public static AstClassTypeForGrant ClassTypeForGrant(AstEncryptionMaster encryptionMaster)
@@ -1243,7 +1024,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// class_type_for_grant : 
+        ///  : 
         ///    NOTIFICATION database_object_server 
         /// </summary>
         public static AstClassTypeForGrant ClassTypeForGrant(AstDatabaseObjectServer databaseObjectServer)
@@ -1254,7 +1035,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// class_type_for_grant : 
+        /// object_type_for_grant : 
         ///    object_type_for_grant 
         /// </summary>
         public static AstClassTypeForGrant ClassTypeForGrant(AstObjectTypeForGrant objectTypeForGrant)
@@ -1279,22 +1060,12 @@ namespace Bb.Asts.TSql
             "ilability_group_options_listener_restart";
         
         internal AstAlterAvailabilityGroupOptionsListener(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListener(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListener(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsListener(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1304,7 +1075,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener : 
+        /// alter_availability_group_options_listener_add : 
         ///    alter_availability_group_options_listener_add 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListener AlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListenerAdd alterAvailabilityGroupOptionsListenerAdd)
@@ -1315,7 +1086,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener : 
+        /// alter_availability_group_options_listener_modify : 
         ///    alter_availability_group_options_listener_modify 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListener AlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListenerModify alterAvailabilityGroupOptionsListenerModify)
@@ -1326,7 +1097,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener : 
+        /// alter_availability_group_options_listener_restart : 
         ///    alter_availability_group_options_listener_restart 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListener AlterAvailabilityGroupOptionsListener(AstAlterAvailabilityGroupOptionsListenerRestart alterAvailabilityGroupOptionsListenerRestart)
@@ -1348,22 +1119,12 @@ namespace Bb.Asts.TSql
             " LR_BRACKET  (range_ip_v4 | ipv6)  RR_BRACKET | PORT  EQUAL  decimal)";
         
         internal AstAlterAvailabilityGroupOptionsListenerModify(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerModify(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerModify(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsListenerModify(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1373,7 +1134,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_modify : 
+        ///  : 
         ///    MODIFY LISTENER ADD IP ( range_ip_v4 ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerModify AlterAvailabilityGroupOptionsListenerModify(AstRangeIpV4 rangeIpV4)
@@ -1384,7 +1145,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_modify : 
+        ///  : 
         ///    MODIFY LISTENER ADD IP ( ipv6 ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerModify AlterAvailabilityGroupOptionsListenerModify(AstIpv6 ipv6)
@@ -1395,7 +1156,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_modify : 
+        ///  : 
         ///    MODIFY LISTENER PORT EQUAL decimal 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerModify AlterAvailabilityGroupOptionsListenerModify(AstDecimal @decimal)
@@ -1418,22 +1179,12 @@ namespace Bb.Asts.TSql
             " IP  LR_BRACKET  alter_availability_group_options_listener_ip)  RR_BRACKET";
         
         internal AstAlterAvailabilityGroupOptionsListenerAdd(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerAdd(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerAdd(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsListenerAdd(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1443,7 +1194,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_add : 
+        ///  : 
         ///    ADD LISTENER listener_name=stringtext ( alter_availability_group_options_listener_dhcp ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerAdd AlterAvailabilityGroupOptionsListenerAdd(AstStringtext listenerName, AstAlterAvailabilityGroupOptionsListenerDhcp alterAvailabilityGroupOptionsListenerDhcp)
@@ -1454,7 +1205,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_add : 
+        ///  : 
         ///    ADD LISTENER listener_name=stringtext ( WITH IP ( alter_availability_group_options_listener_ip ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerAdd AlterAvailabilityGroupOptionsListenerAdd(AstStringtext listenerName, AstAlterAvailabilityGroupOptionsListenerIp alterAvailabilityGroupOptionsListenerIp)
@@ -1476,22 +1227,12 @@ namespace Bb.Asts.TSql
             "comma_v4 | IPV6_ADDR)  RR_BRACKET)+  (COMMA  port = PORT  EQUAL  decimal)?";
         
         internal AstAlterAvailabilityGroupOptionsListenerIp(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerIp(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsListenerIp(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsListenerIp(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1501,7 +1242,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_ip : 
+        ///  : 
         ///    ,? ( range_ip_comma_v4 ) , port=PORT EQUAL decimal 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerIp AlterAvailabilityGroupOptionsListenerIp(AstRangeIpCommaV4 rangeIpCommaV4, AstDecimal @decimal)
@@ -1512,7 +1253,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_listener_ip : 
+        ///  : 
         ///    ,? ( IPV6_ADDR ) , port=PORT EQUAL decimal 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsListenerIp AlterAvailabilityGroupOptionsListenerIp(String txt, AstDecimal @decimal)
@@ -1539,22 +1280,12 @@ namespace Bb.Asts.TSql
             "\n\t | seeding_mode\r\n\t | backup_priority";
         
         internal AstAlterAvailabilityReplicatPrimary(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityReplicatPrimary(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityReplicatPrimary(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityReplicatPrimary(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1564,7 +1295,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_replicat_primary : 
+        ///  : 
         ///    ENDPOINT_URL EQUAL endpoint_url=stringtext 
         /// </summary>
         public static AstAlterAvailabilityReplicatPrimary AlterAvailabilityReplicatPrimary(AstStringtext endpointUrl)
@@ -1575,7 +1306,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_replicat_primary : 
+        /// availability_mode : 
         ///    availability_mode 
         /// </summary>
         public static AstAlterAvailabilityReplicatPrimary AlterAvailabilityReplicatPrimary(AstAvailabilityMode availabilityMode)
@@ -1586,7 +1317,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_replicat_primary : 
+        ///  : 
         ///    FAILOVER_MODE EQUAL failover=auto_manual 
         /// </summary>
         public static AstAlterAvailabilityReplicatPrimary AlterAvailabilityReplicatPrimary(AstAutoManual failover)
@@ -1597,7 +1328,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_replicat_primary : 
+        /// seeding_mode : 
         ///    seeding_mode 
         /// </summary>
         public static AstAlterAvailabilityReplicatPrimary AlterAvailabilityReplicatPrimary(AstSeedingMode seedingMode)
@@ -1608,7 +1339,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_replicat_primary : 
+        /// backup_priority : 
         ///    backup_priority 
         /// </summary>
         public static AstAlterAvailabilityReplicatPrimary AlterAvailabilityReplicatPrimary(AstBackupPriority backupPriority)
@@ -1633,22 +1364,12 @@ namespace Bb.Asts.TSql
             "ion_timeout = decimal";
         
         internal AstAlterAvailabilityPrimaryRole(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityPrimaryRole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityPrimaryRole(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityPrimaryRole(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1658,7 +1379,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_primary_role : 
+        /// allow_connections : 
         ///    allow_connections 
         /// </summary>
         public static AstAlterAvailabilityPrimaryRole AlterAvailabilityPrimaryRole(AstAllowConnections allowConnections)
@@ -1669,7 +1390,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_primary_role : 
+        ///  : 
         ///    READ_ONLY_ROUTING_LIST EQUAL ( routing_list ) 
         /// </summary>
         public static AstAlterAvailabilityPrimaryRole AlterAvailabilityPrimaryRole(AstRoutingList routingList)
@@ -1680,7 +1401,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_primary_role : 
+        ///  : 
         ///    SESSION_TIMEOUT EQUAL session_timeout=decimal 
         /// </summary>
         public static AstAlterAvailabilityPrimaryRole AlterAvailabilityPrimaryRole(AstDecimal sessionTimeout)
@@ -1705,22 +1426,12 @@ namespace Bb.Asts.TSql
             "ify";
         
         internal AstAlterAvailabilityGroupOptionsReplicat(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsReplicat(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsReplicat(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsReplicat(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1730,7 +1441,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_replicat : 
+        /// alter_availability_replicat_add : 
         ///    alter_availability_replicat_add 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsReplicat AlterAvailabilityGroupOptionsReplicat(AstAlterAvailabilityReplicatAdd alterAvailabilityReplicatAdd)
@@ -1741,7 +1452,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_replicat : 
+        ///  : 
         ///    REMOVE REPLICA ON server_instance_txt 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsReplicat AlterAvailabilityGroupOptionsReplicat(AstServerInstanceTxt serverInstanceTxt)
@@ -1752,7 +1463,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_replicat : 
+        /// alter_availability_replicat_modify : 
         ///    alter_availability_replicat_modify 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsReplicat AlterAvailabilityGroupOptionsReplicat(AstAlterAvailabilityReplicatModify alterAvailabilityReplicatModify)
@@ -1778,22 +1489,12 @@ namespace Bb.Asts.TSql
 	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url  (COMMA?  availability_mode)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode)?)  RR_BRACKET)+";
         
         internal AstAlterAvailabilityGroupOptionsGroup(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsGroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsGroup(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsGroup(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1803,7 +1504,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_group : 
+        ///  : 
         ///    JOIN AVAILABILITY GROUP ON ,? ag_name=stringtext WITH ( listener_url , availability_mode , failover_mode_manuel , seeding_mode ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsGroup AlterAvailabilityGroupOptionsGroup(AstStringtext agName, AstListenerUrl listenerUrl, AstAvailabilityMode availabilityMode, AstFailoverModeManuel failoverModeManuel, AstSeedingMode seedingMode)
@@ -1824,22 +1525,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "failover_mode_manuel\r\n\t : FAILOVER_MODE  EQUAL  MANUAL";
         
         internal AstFailoverModeManuel(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFailoverModeManuel(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFailoverModeManuel(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFailoverModeManuel(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1862,22 +1553,12 @@ namespace Bb.Asts.TSql
 	 | PRIMARY_ROLE  LR_BRACKET  (allow_connections | READ_ONLY_ROUTING_LIST  EQUAL  (LR_BRACKET  (string_list | NONE)  RR_BRACKET) | SESSION_TIMEOUT  EQUAL  session_timeout = decimal)";
         
         internal AstAlterAvailabilityGroupOptionsRole(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsRole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptionsRole(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptionsRole(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1887,7 +1568,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_role : 
+        ///  : 
         ///    SECONDARY_ROLE ( allow_connections 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsRole AlterAvailabilityGroupOptionsRole(AstAllowConnections allowConnections)
@@ -1898,7 +1579,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_role : 
+        ///  : 
         ///    SECONDARY_ROLE ( READ_ONLY_ROUTING_LIST EQUAL ( stringtext ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsRole AlterAvailabilityGroupOptionsRole(AstStringtext stringtext)
@@ -1909,7 +1590,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_role : 
+        ///  : 
         ///    PRIMARY_ROLE ( READ_ONLY_ROUTING_LIST EQUAL ( string_list ) 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsRole AlterAvailabilityGroupOptionsRole(AstStringList stringList)
@@ -1920,7 +1601,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options_role : 
+        ///  : 
         ///    PRIMARY_ROLE ( SESSION_TIMEOUT EQUAL session_timeout=decimal 
         /// </summary>
         public static AstAlterAvailabilityGroupOptionsRole AlterAvailabilityGroupOptionsRole(AstDecimal sessionTimeout)
@@ -1962,22 +1643,12 @@ namespace Bb.Asts.TSql
 	 | WITH  LR_BRACKET  DTC_SUPPORT  EQUAL  PER_DB  RR_BRACKET";
         
         internal AstAlterAvailabilityGroupOptions(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterAvailabilityGroupOptions(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterAvailabilityGroupOptions(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -1987,7 +1658,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        ///  : 
         ///    SET ( AUTOMATED_BACKUP_PREFERENCE EQUAL primary_secondary_none 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstPrimarySecondaryNone primarySecondaryNone)
@@ -1998,7 +1669,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        ///  : 
         ///    SET ( FAILURE_CONDITION_LEVEL EQUAL decimal 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstDecimal @decimal)
@@ -2009,7 +1680,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        ///  : 
         ///    SET ( DB_FAILOVER EQUAL on_off 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstOnOff onOff)
@@ -2020,7 +1691,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        /// alter_availability_group_options_database : 
         ///    alter_availability_group_options_database 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptionsDatabase alterAvailabilityGroupOptionsDatabase)
@@ -2031,7 +1702,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        /// alter_availability_group_options_replicat : 
         ///    alter_availability_group_options_replicat 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptionsReplicat alterAvailabilityGroupOptionsReplicat)
@@ -2042,7 +1713,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        /// alter_availability_group_options_listener : 
         ///    alter_availability_group_options_listener 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptionsListener alterAvailabilityGroupOptionsListener)
@@ -2053,7 +1724,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        /// alter_availability_group_options_role : 
         ///    alter_availability_group_options_role 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptionsRole alterAvailabilityGroupOptionsRole)
@@ -2064,7 +1735,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        /// alter_availability_group_options_group : 
         ///    alter_availability_group_options_group 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstAlterAvailabilityGroupOptionsGroup alterAvailabilityGroupOptionsGroup)
@@ -2075,7 +1746,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_availability_group_options : 
+        ///  : 
         ///    grant_deny CREATE ANY DATABASE 
         /// </summary>
         public static AstAlterAvailabilityGroupOptions AlterAvailabilityGroupOptions(AstGrantDeny grantDeny)
@@ -2096,22 +1767,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "broker_contract_name\r\n\t : (CONTRACT_NAME  EQUAL  (id_ | ANY)  COMMA?)";
         
         internal AstBrokerContractName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBrokerContractName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBrokerContractName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBrokerContractName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2121,7 +1782,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// broker_contract_name : 
+        ///  : 
         ///    CONTRACT_NAME EQUAL id_ COMMA? 
         /// </summary>
         public static AstBrokerContractName BrokerContractName(AstId id)
@@ -2143,22 +1804,12 @@ namespace Bb.Asts.TSql
             "  id_ | ANY)  COMMA?)";
         
         internal AstBrokerLocalServiceName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBrokerLocalServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBrokerLocalServiceName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBrokerLocalServiceName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2168,7 +1819,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// broker_local_service_name : 
+        ///  : 
         ///    LOCAL_SERVICE_NAME EQUAL DOUBLE_FORWARD_SLASH? id_ COMMA? 
         /// </summary>
         public static AstBrokerLocalServiceName BrokerLocalServiceName(AstId id)
@@ -2190,22 +1841,12 @@ namespace Bb.Asts.TSql
             "COMMA?)";
         
         internal AstBrokerRemoteServiceName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBrokerRemoteServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBrokerRemoteServiceName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBrokerRemoteServiceName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2215,7 +1856,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// broker_remote_service_name : 
+        ///  : 
         ///    REMOTE_SERVICE_NAME EQUAL stringtext COMMA? 
         /// </summary>
         public static AstBrokerRemoteServiceName BrokerRemoteServiceName(AstStringtext stringtext)
@@ -2236,22 +1877,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "broker_priority_level\r\n\t : (PRIORITY_LEVEL  EQUAL  (decimal | DEFAULT))";
         
         internal AstBrokerPriorityLevel(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBrokerPriorityLevel(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBrokerPriorityLevel(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBrokerPriorityLevel(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2261,7 +1892,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// broker_priority_level : 
+        ///  : 
         ///    PRIORITY_LEVEL EQUAL decimal 
         /// </summary>
         public static AstBrokerPriorityLevel BrokerPriorityLevel(AstDecimal @decimal)
@@ -2282,22 +1913,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_broker_priority\r\n\t : DROP  BROKER  PRIORITY  ConversationPriorityName = id_";
         
         internal AstDropBrokerPriority(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropBrokerPriority(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropBrokerPriority(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropBrokerPriority(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2307,7 +1928,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_broker_priority : 
+        ///  : 
         ///    DROP BROKER PRIORITY ConversationPriorityName=id_ 
         /// </summary>
         public static AstDropBrokerPriority DropBrokerPriority(AstId conversationPriorityName)
@@ -2329,22 +1950,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "private_key\r\n\t : FILE  EQUAL  stringtext  COMMA?\r\n\t | by_password_crypt  COMMA?";
         
         internal AstPrivateKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPrivateKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPrivateKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPrivateKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2354,7 +1965,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// private_key : 
+        ///  : 
         ///    FILE EQUAL stringtext COMMA? 
         /// </summary>
         public static AstPrivateKey PrivateKey(AstStringtext stringtext)
@@ -2365,7 +1976,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// private_key : 
+        ///  : 
         ///    by_password_crypt COMMA? 
         /// </summary>
         public static AstPrivateKey PrivateKey(AstByPasswordCrypt byPasswordCrypt)
@@ -2386,22 +1997,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_contract\r\n\t : DROP  CONTRACT  dropped_contract_name = id_";
         
         internal AstDropContract(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropContract(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropContract(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropContract(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2411,7 +2012,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_contract : 
+        ///  : 
         ///    DROP CONTRACT dropped_contract_name=id_ 
         /// </summary>
         public static AstDropContract DropContract(AstId droppedContractName)
@@ -2432,22 +2033,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_database\r\n\t : DROP  DATABASE  (IF  EXISTS)?  (COMMA?  database_id)+";
         
         internal AstDropDatabase(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropDatabase(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropDatabase(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2457,7 +2048,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_database : 
+        ///  : 
         ///    DROP DATABASE IF EXISTS COMMA? database_id 
         /// </summary>
         public static AstDropDatabase DropDatabase(AstDatabaseId databaseId)
@@ -2478,22 +2069,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_database_encryption_key\r\n\t : DROP  DATABASE  ENCRYPTION  KEY";
         
         internal AstDropDatabaseEncryptionKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropDatabaseEncryptionKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropDatabaseEncryptionKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropDatabaseEncryptionKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2513,22 +2094,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_default\r\n\t : DROP  DEFAULT  (IF  EXISTS)?  (COMMA?  default_ref)";
         
         internal AstDropDefault(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropDefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropDefault(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropDefault(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2538,7 +2109,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_default : 
+        ///  : 
         ///    DROP DEFAULT IF EXISTS COMMA? default_ref 
         /// </summary>
         public static AstDropDefault DropDefault(AstDefaultRef defaultRef)
@@ -2560,22 +2131,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "event_notification_on\r\n\t : server_database\r\n\t | QUEUE  queue_id";
         
         internal AstEventNotificationOn(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEventNotificationOn(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEventNotificationOn(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEventNotificationOn(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2585,7 +2146,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_notification_on : 
+        /// server_database : 
         ///    server_database 
         /// </summary>
         public static AstEventNotificationOn EventNotificationOn(AstServerDatabase serverDatabase)
@@ -2596,7 +2157,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_notification_on : 
+        ///  : 
         ///    QUEUE queue_id 
         /// </summary>
         public static AstEventNotificationOn EventNotificationOn(AstQueueId queueId)
@@ -2617,22 +2178,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_master_key\r\n\t : DROP  MASTER  KEY";
         
         internal AstDropMasterKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropMasterKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropMasterKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2652,22 +2203,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_rule\r\n\t : DROP  RULE  (IF  EXISTS)?  (COMMA?  schema_rule_ref)?";
         
         internal AstDropRule(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropRule(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropRule(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropRule(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2677,7 +2218,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_rule : 
+        ///  : 
         ///    DROP RULE IF EXISTS COMMA? schema_rule_ref 
         /// </summary>
         public static AstDropRule DropRule(AstSchemaRuleRef schemaRuleRef)
@@ -2699,22 +2240,12 @@ namespace Bb.Asts.TSql
             "ce_ref)?";
         
         internal AstDropSequence(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropSequence(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropSequence(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropSequence(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2724,7 +2255,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_sequence : 
+        ///  : 
         ///    DROP SEQUENCE IF EXISTS COMMA? database_schema_sequence_ref 
         /// </summary>
         public static AstDropSequence DropSequence(AstDatabaseSchemaSequenceRef databaseSchemaSequenceRef)
@@ -2746,22 +2277,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "trigger_name\r\n\t : schema_trigger_refs\r\n\t | ALL";
         
         internal AstTriggerName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTriggerName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTriggerName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTriggerName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2771,7 +2292,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// trigger_name : 
+        /// schema_trigger_refs : 
         ///    schema_trigger_refs 
         /// </summary>
         public static AstTriggerName TriggerName(AstSchemaTriggerRefs schemaTriggerRefs)
@@ -2793,22 +2314,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "trigger_target\r\n\t : schema_object_ref\r\n\t | all_server_database";
         
         internal AstTriggerTarget(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTriggerTarget(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTriggerTarget(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTriggerTarget(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2818,7 +2329,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// trigger_target : 
+        /// schema_object_ref : 
         ///    schema_object_ref 
         /// </summary>
         public static AstTriggerTarget TriggerTarget(AstSchemaObjectRef schemaObjectRef)
@@ -2829,7 +2340,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// trigger_target : 
+        /// all_server_database : 
         ///    all_server_database 
         /// </summary>
         public static AstTriggerTarget TriggerTarget(AstAllServerDatabase allServerDatabase)
@@ -2852,22 +2363,12 @@ namespace Bb.Asts.TSql
             "  COMMA  KEY_PATH  EQUAL  key_path = stringtext  RR_BRACKET";
         
         internal AstCreateColumnMasterKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateColumnMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateColumnMasterKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateColumnMasterKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2877,7 +2378,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_column_master_key : 
+        ///  : 
         ///    CREATE COLUMN MASTER KEY key_name=id_ WITH ( KEY_STORE_PROVIDER_NAME EQUAL key_store_provider_name=stringtext , KEY_PATH EQUAL key_path=stringtext ) 
         /// </summary>
         public static AstCreateColumnMasterKey CreateColumnMasterKey(AstId keyName, AstStringtext keyStoreProviderName, AstStringtext keyPath)
@@ -2899,22 +2400,12 @@ namespace Bb.Asts.TSql
 	 : WITH  LR_BRACKET  (COMMA?  session_arg_max_memory)?  (COMMA?  session_arg_event_retention_mode)?  (COMMA?  session_arg_max_dispatch)?  (COMMA?  session_arg_max_event_size)?  (COMMA?  session_arg_memory_partition)?  (COMMA?  session_arg_track_causality)?  (COMMA?  session_arg_startup_state)?  RR_BRACKET";
         
         internal AstCreateOrAlterEventSessionWith(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateOrAlterEventSessionWith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateOrAlterEventSessionWith(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateOrAlterEventSessionWith(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2924,7 +2415,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_event_session_with : 
+        ///  : 
         ///    WITH ( COMMA? session_arg_max_memory COMMA? session_arg_event_retention_mode COMMA? session_arg_max_dispatch COMMA? session_arg_max_event_size COMMA? session_arg_memory_partition COMMA? session_arg_track_causality COMMA? session_arg_startup_state ) 
         /// </summary>
         public static AstCreateOrAlterEventSessionWith CreateOrAlterEventSessionWith(AstSessionArgMaxMemory sessionArgMaxMemory, AstSessionArgEventRetentionMode sessionArgEventRetentionMode, AstSessionArgMaxDispatch sessionArgMaxDispatch, AstSessionArgMaxEventSize sessionArgMaxEventSize, AstSessionArgMemoryPartition sessionArgMemoryPartition, AstSessionArgTrackCausality sessionArgTrackCausality, AstSessionArgStartupState sessionArgStartupState)
@@ -2946,22 +2437,12 @@ namespace Bb.Asts.TSql
             "FINITE)";
         
         internal AstSessionArgMaxDispatch(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSessionArgMaxDispatch(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSessionArgMaxDispatch(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSessionArgMaxDispatch(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -2971,7 +2452,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// session_arg_max_dispatch : 
+        ///  : 
         ///    MAX_DISPATCH_LATENCY EQUAL decimal SECONDS 
         /// </summary>
         public static AstSessionArgMaxDispatch SessionArgMaxDispatch(AstDecimal @decimal)
@@ -2992,22 +2473,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "target_parameter_value\r\n\t : (LR_BRACKET?  decimal  RR_BRACKET? | stringtext)";
         
         internal AstTargetParameterValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTargetParameterValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTargetParameterValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTargetParameterValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3017,7 +2488,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// target_parameter_value : 
+        ///  : 
         ///    LR_BRACKET? decimal RR_BRACKET? 
         /// </summary>
         public static AstTargetParameterValue TargetParameterValue(AstDecimal @decimal)
@@ -3028,7 +2499,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// target_parameter_value : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstTargetParameterValue TargetParameterValue(AstStringtext stringtext)
@@ -3050,22 +2521,12 @@ namespace Bb.Asts.TSql
             "edicate_factor | LR_BRACKET  event_session_predicate_expression  RR_BRACKET))+";
         
         internal AstEventSessionPredicateExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEventSessionPredicateExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3075,7 +2536,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_expression : 
+        ///  : 
         ///    COMMA? and_or? NOT? event_session_predicate_factor+ 
         /// </summary>
         public static AstEventSessionPredicateExpression EventSessionPredicateExpression(AstAndOr andOr, AstEventSessionPredicateFactor eventSessionPredicateFactor)
@@ -3086,7 +2547,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_expression : 
+        ///  : 
         ///    COMMA? and_or? NOT? ( event_session_predicate_expression RR_BRACKET+ 
         /// </summary>
         public static AstEventSessionPredicateExpression EventSessionPredicateExpression(AstAndOr andOr, AstEventSessionPredicateExpression eventSessionPredicateExpression)
@@ -3109,22 +2570,12 @@ namespace Bb.Asts.TSql
             " event_session_predicate_expression  RR_BRACKET";
         
         internal AstEventSessionPredicateFactor(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateFactor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateFactor(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEventSessionPredicateFactor(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3134,7 +2585,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_factor : 
+        /// event_session_predicate_leaf : 
         ///    event_session_predicate_leaf 
         /// </summary>
         public static AstEventSessionPredicateFactor EventSessionPredicateFactor(AstEventSessionPredicateLeaf eventSessionPredicateLeaf)
@@ -3145,7 +2596,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_factor : 
+        ///  : 
         ///    ( event_session_predicate_expression ) 
         /// </summary>
         public static AstEventSessionPredicateFactor EventSessionPredicateFactor(AstEventSessionPredicateExpression eventSessionPredicateExpression)
@@ -3169,22 +2620,12 @@ namespace Bb.Asts.TSql
 	 | source1 = full_predicate_source_ref  LR_BRACKET  (event_field_id | source2 = full_predicate_source_ref  COMMA  decimal_string)  RR_BRACKET";
         
         internal AstEventSessionPredicateLeaf(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateLeaf(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateLeaf(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEventSessionPredicateLeaf(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3194,7 +2635,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_leaf : 
+        /// event_field_id : 
         ///    event_field_id 
         /// </summary>
         public static AstEventSessionPredicateLeaf EventSessionPredicateLeaf(AstEventFieldId eventFieldId)
@@ -3205,7 +2646,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_leaf : 
+        ///  : 
         ///    event_field_id event_session_predicate_leaf_ope decimal_string 
         /// </summary>
         public static AstEventSessionPredicateLeaf EventSessionPredicateLeaf(AstEventFieldId eventFieldId, AstEventSessionPredicateLeafOpe eventSessionPredicateLeafOpe, AstDecimalString decimalString)
@@ -3216,7 +2657,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_leaf : 
+        ///  : 
         ///    full_predicate_source_ref event_session_predicate_leaf_ope decimal_string 
         /// </summary>
         public static AstEventSessionPredicateLeaf EventSessionPredicateLeaf(AstFullPredicateSourceRef fullPredicateSourceRef, AstEventSessionPredicateLeafOpe eventSessionPredicateLeafOpe, AstDecimalString decimalString)
@@ -3227,7 +2668,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_leaf : 
+        ///  : 
         ///    source1=full_predicate_source_ref ( event_field_id ) 
         /// </summary>
         public static AstEventSessionPredicateLeaf EventSessionPredicateLeaf(AstFullPredicateSourceRef source1, AstEventFieldId eventFieldId)
@@ -3238,7 +2679,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// event_session_predicate_leaf : 
+        ///  : 
         ///    source1=full_predicate_source_ref ( source2=full_predicate_source_ref , decimal_string ) 
         /// </summary>
         public static AstEventSessionPredicateLeaf EventSessionPredicateLeaf(AstFullPredicateSourceRef source1, AstFullPredicateSourceRef source2, AstDecimalString decimalString)
@@ -3262,22 +2703,12 @@ namespace Bb.Asts.TSql
 	 | ALTER  EXTERNAL  DATA  SOURCE  data_source_id  WITH  LR_BRACKET  TYPE  EQUAL  BLOB_STORAGE  COMMA  LOCATION  EQUAL  location = stringtext  (COMMA  CREDENTIAL  EQUAL  credential_id)?  RR_BRACKET";
         
         internal AstAlterExternalDataSource(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterExternalDataSource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterExternalDataSource(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterExternalDataSource(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3287,7 +2718,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_external_data_source : 
+        ///  : 
         ///    ALTER EXTERNAL DATA SOURCE data_source_id SET LOCATION EQUAL location=stringtext COMMA? 
         /// </summary>
         public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstStringtext location)
@@ -3298,7 +2729,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_external_data_source : 
+        ///  : 
         ///    ALTER EXTERNAL DATA SOURCE data_source_id SET CREDENTIAL EQUAL credential_id 
         /// </summary>
         public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstCredentialId credentialId)
@@ -3309,7 +2740,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_external_data_source : 
+        ///  : 
         ///    ALTER EXTERNAL DATA SOURCE data_source_id WITH ( TYPE EQUAL BLOB_STORAGE , LOCATION EQUAL location=stringtext , CREDENTIAL EQUAL credential_id ) 
         /// </summary>
         public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstStringtext location, AstCredentialId credentialId)
@@ -3332,22 +2763,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "code_content\r\n\t : stringtext\r\n\t | binary_\r\n\t | NONE";
         
         internal AstCodeContent(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCodeContent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCodeContent(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCodeContent(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3357,7 +2778,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// code_content : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstCodeContent CodeContent(AstStringtext stringtext)
@@ -3368,7 +2789,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// code_content : 
+        /// binary_ : 
         ///    binary_ 
         /// </summary>
         public static AstCodeContent CodeContent(AstBinary binary)
@@ -3390,22 +2811,12 @@ namespace Bb.Asts.TSql
             "H  external_resource_with";
         
         internal AstCreateExternalResourcePool(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateExternalResourcePool(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateExternalResourcePool(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateExternalResourcePool(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3415,7 +2826,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_external_resource_pool : 
+        ///  : 
         ///    CREATE EXTERNAL RESOURCE POOL pool_id WITH external_resource_with 
         /// </summary>
         public static AstCreateExternalResourcePool CreateExternalResourcePool(AstPoolId poolId, AstExternalResourceWith externalResourceWith)
@@ -3438,22 +2849,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "fulltext_languageList\r\n\t : stringtext\r\n\t | decimal\r\n\t | binary_";
         
         internal AstFulltextLanguageList(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFulltextLanguageList(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFulltextLanguageList(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFulltextLanguageList(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3463,7 +2864,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// fulltext_languageList : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstFulltextLanguageList FulltextLanguageList(AstStringtext stringtext)
@@ -3474,7 +2875,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// fulltext_languageList : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstFulltextLanguageList FulltextLanguageList(AstDecimal @decimal)
@@ -3485,7 +2886,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// fulltext_languageList : 
+        /// binary_ : 
         ///    binary_ 
         /// </summary>
         public static AstFulltextLanguageList FulltextLanguageList(AstBinary binary)
@@ -3509,22 +2910,12 @@ namespace Bb.Asts.TSql
             "er_settings\r\n\t | add_drop  CREDENTIAL  credential_id";
         
         internal AstAlterLoginSqlServerInfos(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterLoginSqlServerInfos(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterLoginSqlServerInfos(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterLoginSqlServerInfos(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3534,7 +2925,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_sql_server_infos : 
+        /// enable_disable : 
         ///    enable_disable? 
         /// </summary>
         public static AstAlterLoginSqlServerInfos AlterLoginSqlServerInfos(AstEnableDisable enableDisable)
@@ -3545,7 +2936,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_sql_server_infos : 
+        ///  : 
         ///    WITH alter_login_sql_server_settings 
         /// </summary>
         public static AstAlterLoginSqlServerInfos AlterLoginSqlServerInfos(AstAlterLoginSqlServerSettings alterLoginSqlServerSettings)
@@ -3556,7 +2947,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_sql_server_infos : 
+        ///  : 
         ///    add_drop CREDENTIAL credential_id 
         /// </summary>
         public static AstAlterLoginSqlServerInfos AlterLoginSqlServerInfos(AstAddDrop addDrop, AstCredentialId credentialId)
@@ -3578,22 +2969,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "pwd_value\r\n\t : stringtext\r\n\t | binary_  HASHED";
         
         internal AstPwdValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPwdValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPwdValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPwdValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3603,7 +2984,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// pwd_value : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstPwdValue PwdValue(AstStringtext stringtext)
@@ -3614,7 +2995,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// pwd_value : 
+        ///  : 
         ///    binary_ HASHED 
         /// </summary>
         public static AstPwdValue PwdValue(AstBinary binary)
@@ -3636,22 +3017,12 @@ namespace Bb.Asts.TSql
 	 : ((PASSWORD  EQUAL  (password = stringtext | password_hash = binary_  HASHED))  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?";
         
         internal AstCreateLoginSqlServerSettings(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateLoginSqlServerSettings(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateLoginSqlServerSettings(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateLoginSqlServerSettings(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3661,7 +3032,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_login_sql_server_settings : 
+        ///  : 
         ///    PASSWORD EQUAL password=stringtext pwd_strategies? COMMA? SID EQUAL sid=binary_ COMMA? DEFAULT_DATABASE EQUAL database_id COMMA? DEFAULT_LANGUAGE EQUAL language COMMA? CHECK_EXPIRATION EQUAL check_expiration=on_off COMMA? CHECK_POLICY EQUAL check_policy=on_off COMMA? CREDENTIAL EQUAL credential_id 
         /// </summary>
         public static AstCreateLoginSqlServerSettings CreateLoginSqlServerSettings(AstStringtext password, AstPwdStrategies pwdStrategies, AstBinary sid, AstDatabaseId databaseId, AstLanguage language, AstOnOff checkExpiration, AstOnOff checkPolicy, AstCredentialId credentialId)
@@ -3672,7 +3043,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_login_sql_server_settings : 
+        ///  : 
         ///    PASSWORD EQUAL password_hash=binary_ HASHED pwd_strategies? COMMA? SID EQUAL sid=binary_ COMMA? DEFAULT_DATABASE EQUAL database_id COMMA? DEFAULT_LANGUAGE EQUAL language COMMA? CHECK_EXPIRATION EQUAL check_expiration=on_off COMMA? CHECK_POLICY EQUAL check_policy=on_off COMMA? CREDENTIAL EQUAL credential_id 
         /// </summary>
         public static AstCreateLoginSqlServerSettings CreateLoginSqlServerSettings(AstBinary passwordHash, AstPwdStrategies pwdStrategies, AstBinary sid, AstDatabaseId databaseId, AstLanguage language, AstOnOff checkExpiration, AstOnOff checkPolicy, AstCredentialId credentialId)
@@ -3697,22 +3068,12 @@ namespace Bb.Asts.TSql
             "t)?)\r\n\t | CERTIFICATE  certificate_id\r\n\t | ASYMMETRIC  KEY  asym_key_id";
         
         internal AstCreateLoginSqlServerFrom(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateLoginSqlServerFrom(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateLoginSqlServerFrom(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateLoginSqlServerFrom(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3722,7 +3083,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_login_sql_server_from : 
+        ///  : 
         ///    WINDOWS WITH COMMA? DEFAULT_DATABASE EQUAL database_id COMMA? DEFAULT_LANGUAGE EQUAL default_language=stringtext 
         /// </summary>
         public static AstCreateLoginSqlServerFrom CreateLoginSqlServerFrom(AstDatabaseId databaseId, AstStringtext defaultLanguage)
@@ -3733,7 +3094,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_login_sql_server_from : 
+        ///  : 
         ///    CERTIFICATE certificate_id 
         /// </summary>
         public static AstCreateLoginSqlServerFrom CreateLoginSqlServerFrom(AstCertificateId certificateId)
@@ -3744,7 +3105,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_login_sql_server_from : 
+        ///  : 
         ///    ASYMMETRIC KEY asym_key_id 
         /// </summary>
         public static AstCreateLoginSqlServerFrom CreateLoginSqlServerFrom(AstAsymKeyId asymKeyId)
@@ -3767,22 +3128,12 @@ namespace Bb.Asts.TSql
             "_with";
         
         internal AstAlterLoginAzureSqlInfos(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterLoginAzureSqlInfos(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterLoginAzureSqlInfos(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterLoginAzureSqlInfos(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3792,7 +3143,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_azure_sql_infos : 
+        /// enable_disable : 
         ///    enable_disable? 
         /// </summary>
         public static AstAlterLoginAzureSqlInfos AlterLoginAzureSqlInfos(AstEnableDisable enableDisable)
@@ -3803,7 +3154,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_azure_sql_infos : 
+        ///  : 
         ///    WITH alter_login_azure_sql_with 
         /// </summary>
         public static AstAlterLoginAzureSqlInfos AlterLoginAzureSqlInfos(AstAlterLoginAzureSqlWith alterLoginAzureSqlWith)
@@ -3826,22 +3177,12 @@ namespace Bb.Asts.TSql
             "WORD  EQUAL  old_password = stringtext)?\r\n\t | NAME  EQUAL  login_id";
         
         internal AstAlterLoginAzureSqlWith(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterLoginAzureSqlWith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterLoginAzureSqlWith(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterLoginAzureSqlWith(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3851,7 +3192,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_azure_sql_with : 
+        ///  : 
         ///    PASSWORD EQUAL password=stringtext OLD_PASSWORD EQUAL old_password=stringtext 
         /// </summary>
         public static AstAlterLoginAzureSqlWith AlterLoginAzureSqlWith(AstStringtext password, AstStringtext oldPassword)
@@ -3862,7 +3203,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_login_azure_sql_with : 
+        ///  : 
         ///    NAME EQUAL login_id 
         /// </summary>
         public static AstAlterLoginAzureSqlWith AlterLoginAzureSqlWith(AstLoginId loginId)
@@ -3884,22 +3225,12 @@ namespace Bb.Asts.TSql
             "drop  add_master_key)";
         
         internal AstAlterMasterKeySqlServer(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterMasterKeySqlServer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterMasterKeySqlServer(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterMasterKeySqlServer(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3909,7 +3240,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_sql_server : 
+        ///  : 
         ///    ALTER MASTER KEY regenerate_mater_key 
         /// </summary>
         public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstRegenerateMaterKey regenerateMaterKey)
@@ -3920,7 +3251,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_sql_server : 
+        ///  : 
         ///    ALTER MASTER KEY add_drop add_master_key 
         /// </summary>
         public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstAddDrop addDrop, AstAddMasterKey addMasterKey)
@@ -3942,22 +3273,12 @@ namespace Bb.Asts.TSql
             "add_master_key | DROP  encryption_by_pwd)";
         
         internal AstAlterMasterKeyAzureSql(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterMasterKeyAzureSql(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterMasterKeyAzureSql(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterMasterKeyAzureSql(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -3967,7 +3288,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_azure_sql : 
+        ///  : 
         ///    ALTER MASTER KEY regenerate_mater_key 
         /// </summary>
         public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstRegenerateMaterKey regenerateMaterKey)
@@ -3978,7 +3299,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_azure_sql : 
+        ///  : 
         ///    ALTER MASTER KEY ADD add_master_key 
         /// </summary>
         public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstAddMasterKey addMasterKey)
@@ -3989,7 +3310,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_master_key_azure_sql : 
+        ///  : 
         ///    ALTER MASTER KEY DROP encryption_by_pwd 
         /// </summary>
         public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstEncryptionByPwd encryptionByPwd)
@@ -4011,22 +3332,12 @@ namespace Bb.Asts.TSql
             "yption_password = stringtext)";
         
         internal AstAddMasterKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAddMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAddMasterKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAddMasterKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4036,7 +3347,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_master_key : 
+        ///  : 
         ///    ENCRYPTION BY PASSWORD EQUAL encryption_password=stringtext 
         /// </summary>
         public static AstAddMasterKey AddMasterKey(AstStringtext encryptionPassword)
@@ -4059,22 +3370,12 @@ namespace Bb.Asts.TSql
             " SCHEMA  COLLECTION  schema_collection_id";
         
         internal AstMessageValidationValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMessageValidationValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMessageValidationValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMessageValidationValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4084,7 +3385,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// message_validation_value : 
+        /// message_validation_value_enum : 
         ///    message_validation_value_enum 
         /// </summary>
         public static AstMessageValidationValue MessageValidationValue(AstMessageValidationValueEnum messageValidationValueEnum)
@@ -4095,7 +3396,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// message_validation_value : 
+        ///  : 
         ///    VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
         /// </summary>
         public static AstMessageValidationValue MessageValidationValue(AstSchemaCollectionId schemaCollectionId)
@@ -4117,22 +3418,12 @@ namespace Bb.Asts.TSql
 	 : ALTER  RESOURCE  GOVERNOR  (disable_reconfigure | WITH  LR_BRACKET  CLASSIFIER_FUNCTION  EQUAL  (schema_func_proc_ref | NULL_)  RR_BRACKET | RESET  STATISTICS | WITH  LR_BRACKET  MAX_OUTSTANDING_IO_PER_VOLUME  EQUAL  max_outstanding_io_per_volume = decimal  RR_BRACKET)";
         
         internal AstAlterResourceGovernor(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterResourceGovernor(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterResourceGovernor(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterResourceGovernor(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4142,7 +3433,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_resource_governor : 
+        ///  : 
         ///    ALTER RESOURCE GOVERNOR disable_reconfigure 
         /// </summary>
         public static AstAlterResourceGovernor AlterResourceGovernor(AstDisableReconfigure disableReconfigure)
@@ -4153,7 +3444,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_resource_governor : 
+        ///  : 
         ///    ALTER RESOURCE GOVERNOR WITH ( CLASSIFIER_FUNCTION EQUAL schema_func_proc_ref ) 
         /// </summary>
         public static AstAlterResourceGovernor AlterResourceGovernor(AstSchemaFuncProcRef schemaFuncProcRef)
@@ -4164,7 +3455,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_resource_governor : 
+        ///  : 
         ///    ALTER RESOURCE GOVERNOR WITH ( MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal ) 
         /// </summary>
         public static AstAlterResourceGovernor AlterResourceGovernor(AstDecimal maxOutstandingIoPerVolume)
@@ -4186,22 +3477,12 @@ namespace Bb.Asts.TSql
             "ase_id | WITH  NAME  EQUAL  new_role_name = role_id)";
         
         internal AstAlterDbRole(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterDbRole(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterDbRole(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterDbRole(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4211,7 +3492,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_db_role : 
+        ///  : 
         ///    ALTER ROLE old_role_name=role_id add_drop MEMBER database_id 
         /// </summary>
         public static AstAlterDbRole AlterDbRole(AstRoleId oldRoleName, AstAddDrop addDrop, AstDatabaseId databaseId)
@@ -4222,7 +3503,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_db_role : 
+        ///  : 
         ///    ALTER ROLE old_role_name=role_id WITH NAME EQUAL new_role_name=role_id 
         /// </summary>
         public static AstAlterDbRole AlterDbRole(AstRoleId oldRoleName, AstRoleId newRoleName)
@@ -4245,22 +3526,12 @@ namespace Bb.Asts.TSql
             "authorization";
         
         internal AstCreateSchemaName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateSchemaName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateSchemaName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateSchemaName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4270,7 +3541,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_schema_name : 
+        ///  : 
         ///    schema_id schema_authorization? 
         /// </summary>
         public static AstCreateSchemaName CreateSchemaName(AstSchemaId schemaId, AstSchemaAuthorization schemaAuthorization)
@@ -4296,22 +3567,12 @@ namespace Bb.Asts.TSql
             "  (SCHEMA  DOUBLE_COLON)?  object_id  FROM  owner_id";
         
         internal AstCreateSchemaTarget(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateSchemaTarget(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateSchemaTarget(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateSchemaTarget(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4321,7 +3582,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_schema_target : 
+        /// create_table : 
         ///    create_table 
         /// </summary>
         public static AstCreateSchemaTarget CreateSchemaTarget(AstCreateTable createTable)
@@ -4332,7 +3593,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_schema_target : 
+        /// create_view : 
         ///    create_view 
         /// </summary>
         public static AstCreateSchemaTarget CreateSchemaTarget(AstCreateView createView)
@@ -4343,7 +3604,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_schema_target : 
+        ///  : 
         ///    grant_deny enum_dml ON SCHEMA :: object_id TO owner_id 
         /// </summary>
         public static AstCreateSchemaTarget CreateSchemaTarget(AstGrantDeny grantDeny, AstEnumDml enumDml, AstObjectId objectId, AstOwnerId ownerId)
@@ -4354,7 +3615,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_schema_target : 
+        ///  : 
         ///    REVOKE enum_dml ON SCHEMA :: object_id FROM owner_id 
         /// </summary>
         public static AstCreateSchemaTarget CreateSchemaTarget(AstEnumDml enumDml, AstObjectId objectId, AstOwnerId ownerId)
@@ -4376,22 +3637,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "schema_table_ref_impact\r\n\t : AFTER  insert_update\r\n\t | BEFORE  update_delate";
         
         internal AstSchemaTableRefImpact(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSchemaTableRefImpact(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSchemaTableRefImpact(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSchemaTableRefImpact(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4401,7 +3652,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// schema_table_ref_impact : 
+        ///  : 
         ///    AFTER insert_update 
         /// </summary>
         public static AstSchemaTableRefImpact SchemaTableRefImpact(AstInsertUpdate insertUpdate)
@@ -4412,7 +3663,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// schema_table_ref_impact : 
+        ///  : 
         ///    BEFORE update_delate 
         /// </summary>
         public static AstSchemaTableRefImpact SchemaTableRefImpact(AstUpdateDelate updateDelate)
@@ -4433,22 +3684,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_sequence_restart\r\n\t : RESTART  (WITH  decimal)?";
         
         internal AstAlterSequenceRestart(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterSequenceRestart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterSequenceRestart(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterSequenceRestart(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4458,7 +3699,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_sequence_restart : 
+        ///  : 
         ///    RESTART WITH decimal 
         /// </summary>
         public static AstAlterSequenceRestart AlterSequenceRestart(AstDecimal @decimal)
@@ -4479,22 +3720,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_sequence_increment\r\n\t : INCREMENT  BY  sequnce_increment = decimal";
         
         internal AstAlterSequenceIncrement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterSequenceIncrement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterSequenceIncrement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterSequenceIncrement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4504,7 +3735,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_sequence_increment : 
+        ///  : 
         ///    INCREMENT BY sequnce_increment=decimal 
         /// </summary>
         public static AstAlterSequenceIncrement AlterSequenceIncrement(AstDecimal sequnceIncrement)
@@ -4525,22 +3756,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "sequence_cache\r\n\t : (CACHE  decimal | NO  CACHE)";
         
         internal AstSequenceCache(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSequenceCache(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSequenceCache(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSequenceCache(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4550,7 +3771,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sequence_cache : 
+        ///  : 
         ///    CACHE decimal 
         /// </summary>
         public static AstSequenceCache SequenceCache(AstDecimal @decimal)
@@ -4571,22 +3792,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_sequence_max_value\r\n\t : (MAXVALUE  decimal | NO  MAXVALUE)?";
         
         internal AstAlterSequenceMaxValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterSequenceMaxValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterSequenceMaxValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterSequenceMaxValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4596,7 +3807,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_sequence_max_value : 
+        ///  : 
         ///    MAXVALUE decimal 
         /// </summary>
         public static AstAlterSequenceMaxValue AlterSequenceMaxValue(AstDecimal @decimal)
@@ -4618,22 +3829,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "alter_sequence_min_value\r\n\t : MINVALUE  decimal\r\n\t | NO  MINVALUE";
         
         internal AstAlterSequenceMinValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterSequenceMinValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterSequenceMinValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterSequenceMinValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4643,7 +3844,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_sequence_min_value : 
+        ///  : 
         ///    MINVALUE decimal 
         /// </summary>
         public static AstAlterSequenceMinValue AlterSequenceMinValue(AstDecimal @decimal)
@@ -4665,22 +3866,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "create_sequence_min_value\r\n\t : MINVALUE  real?\r\n\t | NO  MINVALUE";
         
         internal AstCreateSequenceMinValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateSequenceMinValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateSequenceMinValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateSequenceMinValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4690,7 +3881,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_sequence_min_value : 
+        ///  : 
         ///    MINVALUE real? 
         /// </summary>
         public static AstCreateSequenceMinValue CreateSequenceMinValue(AstReal real)
@@ -4712,22 +3903,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "create_sequence_max_value\r\n\t : MAXVALUE  real?\r\n\t | NO  MAXVALUE";
         
         internal AstCreateSequenceMaxValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateSequenceMaxValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateSequenceMaxValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateSequenceMaxValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4737,7 +3918,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_sequence_max_value : 
+        ///  : 
         ///    MAXVALUE real? 
         /// </summary>
         public static AstCreateSequenceMaxValue CreateSequenceMaxValue(AstReal real)
@@ -4762,22 +3943,12 @@ namespace Bb.Asts.TSql
             "_id";
         
         internal AstAlterServerAuditInfos(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterServerAuditInfos(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterServerAuditInfos(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterServerAuditInfos(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4787,7 +3958,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_audit_infos : 
+        ///  : 
         ///    TO server_audit_file with_server_audit_file? where_server_audit_condition? 
         /// </summary>
         public static AstAlterServerAuditInfos AlterServerAuditInfos(AstServerAuditFile serverAuditFile, AstWithServerAuditFile withServerAuditFile, AstWhereServerAuditCondition whereServerAuditCondition)
@@ -4798,7 +3969,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_audit_infos : 
+        ///  : 
         ///    MODIFY NAME EQUAL audit_id 
         /// </summary>
         public static AstAlterServerAuditInfos AlterServerAuditInfos(AstAuditId auditId)
@@ -4822,22 +3993,12 @@ namespace Bb.Asts.TSql
             "LURE  EQUAL  continue_shutdown\r\n\t | STATE  EQUAL  on_off";
         
         internal AstServerAuditFileInfo(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerAuditFileInfo(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerAuditFileInfo(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerAuditFileInfo(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4847,7 +4008,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_info : 
+        ///  : 
         ///    QUEUE_DELAY EQUAL queue_delay=decimal 
         /// </summary>
         public static AstServerAuditFileInfo ServerAuditFileInfo(AstDecimal queueDelay)
@@ -4858,7 +4019,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_info : 
+        ///  : 
         ///    ON_FAILURE EQUAL continue_shutdown 
         /// </summary>
         public static AstServerAuditFileInfo ServerAuditFileInfo(AstContinueShutdown continueShutdown)
@@ -4869,7 +4030,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_info : 
+        ///  : 
         ///    STATE EQUAL on_off 
         /// </summary>
         public static AstServerAuditFileInfo ServerAuditFileInfo(AstOnOff onOff)
@@ -4893,22 +4054,12 @@ namespace Bb.Asts.TSql
             "| APPLICATION_LOG\r\n\t | SECURITY_LOG";
         
         internal AstServerAuditFile(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerAuditFile(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerAuditFile(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerAuditFile(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4918,7 +4069,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file : 
+        ///  : 
         ///    FILE ( server_audit_file_specs? ) 
         /// </summary>
         public static AstServerAuditFile ServerAuditFile(AstServerAuditFileSpecs serverAuditFileSpecs)
@@ -4948,22 +4099,12 @@ namespace Bb.Asts.TSql
 	 | RESERVE_DISK_SPACE  EQUAL  on_off";
         
         internal AstServerAuditFileSpec(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerAuditFileSpec(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerAuditFileSpec(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerAuditFileSpec(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -4973,7 +4114,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_spec : 
+        ///  : 
         ///    FILEPATH EQUAL filepath=stringtext 
         /// </summary>
         public static AstServerAuditFileSpec ServerAuditFileSpec(AstStringtext filepath)
@@ -4984,7 +4125,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_spec : 
+        ///  : 
         ///    MAXSIZE EQUAL decimal_size_unlimited 
         /// </summary>
         public static AstServerAuditFileSpec ServerAuditFileSpec(AstDecimalSizeUnlimited decimalSizeUnlimited)
@@ -4995,7 +4136,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_spec : 
+        ///  : 
         ///    MAX_ROLLOVER_FILES EQUAL max_rollover_files=decimal_unlimited 
         /// </summary>
         public static AstServerAuditFileSpec ServerAuditFileSpec(AstDecimalUnlimited maxRolloverFiles)
@@ -5006,7 +4147,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_spec : 
+        ///  : 
         ///    MAX_FILES EQUAL max_files=decimal 
         /// </summary>
         public static AstServerAuditFileSpec ServerAuditFileSpec(AstDecimal maxFiles)
@@ -5017,7 +4158,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_audit_file_spec : 
+        ///  : 
         ///    RESERVE_DISK_SPACE EQUAL on_off 
         /// </summary>
         public static AstServerAuditFileSpec ServerAuditFileSpec(AstOnOff onOff)
@@ -5039,22 +4180,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "decimal_unlimited\r\n\t : decimal\r\n\t | UNLIMITED";
         
         internal AstDecimalUnlimited(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDecimalUnlimited(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDecimalUnlimited(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDecimalUnlimited(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5064,7 +4195,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decimal_unlimited : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstDecimalUnlimited DecimalUnlimited(AstDecimal @decimal)
@@ -5085,22 +4216,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "decimal_size_unlimited\r\n\t : (decimal  size_unity | UNLIMITED)";
         
         internal AstDecimalSizeUnlimited(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDecimalSizeUnlimited(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDecimalSizeUnlimited(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDecimalSizeUnlimited(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5110,7 +4231,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decimal_size_unlimited : 
+        ///  : 
         ///    decimal size_unity 
         /// </summary>
         public static AstDecimalSizeUnlimited DecimalSizeUnlimited(AstDecimal @decimal, AstSizeUnity sizeUnity)
@@ -5133,22 +4254,12 @@ namespace Bb.Asts.TSql
             " decimal_string\r\n\t | COMMA?  and_or  NOT?  audit_operator  decimal_string";
         
         internal AstAlterServerAuditCondition(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterServerAuditCondition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterServerAuditCondition(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterServerAuditCondition(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5158,7 +4269,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_audit_condition : 
+        ///  : 
         ///    COMMA? NOT() event_field_id audit_operator decimal_string 
         /// </summary>
         public static AstAlterServerAuditCondition AlterServerAuditCondition(AstEventFieldId eventFieldId, AstAuditOperator auditOperator, AstDecimalString decimalString)
@@ -5169,7 +4280,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_audit_condition : 
+        ///  : 
         ///    COMMA? and_or NOT? audit_operator decimal_string 
         /// </summary>
         public static AstAlterServerAuditCondition AlterServerAuditCondition(AstAndOr andOr, AstAuditOperator auditOperator, AstDecimalString decimalString)
@@ -5194,22 +4305,12 @@ namespace Bb.Asts.TSql
             "E  WHERE\r\n\t | MODIFY  NAME  EQUAL  audit_id";
         
         internal AstCreateServerAuditToInfos(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateServerAuditToInfos(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateServerAuditToInfos(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateServerAuditToInfos(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5219,7 +4320,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_to_infos : 
+        ///  : 
         ///    TO server_audit_file WITH ( create_server_audit_withs? ) where_server_audit_condition? 
         /// </summary>
         public static AstCreateServerAuditToInfos CreateServerAuditToInfos(AstServerAuditFile serverAuditFile, AstCreateServerAuditWiths createServerAuditWiths, AstWhereServerAuditCondition whereServerAuditCondition)
@@ -5230,7 +4331,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_to_infos : 
+        ///  : 
         ///    MODIFY NAME EQUAL audit_id 
         /// </summary>
         public static AstCreateServerAuditToInfos CreateServerAuditToInfos(AstAuditId auditId)
@@ -5256,22 +4357,12 @@ namespace Bb.Asts.TSql
             " audit_guid_id  EQUAL  audit2 = audit_guid_id";
         
         internal AstCreateServerAuditWith(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateServerAuditWith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateServerAuditWith(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateServerAuditWith(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5281,7 +4372,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_with : 
+        ///  : 
         ///    QUEUE_DELAY EQUAL queue_delay=decimal 
         /// </summary>
         public static AstCreateServerAuditWith CreateServerAuditWith(AstDecimal queueDelay)
@@ -5292,7 +4383,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_with : 
+        ///  : 
         ///    ON_FAILURE EQUAL continue_shutdown 
         /// </summary>
         public static AstCreateServerAuditWith CreateServerAuditWith(AstContinueShutdown continueShutdown)
@@ -5303,7 +4394,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_with : 
+        ///  : 
         ///    STATE EQUAL state=on_off 
         /// </summary>
         public static AstCreateServerAuditWith CreateServerAuditWith(AstOnOff state)
@@ -5314,7 +4405,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_server_audit_with : 
+        ///  : 
         ///    audit1=audit_guid_id EQUAL audit2=audit_guid_id 
         /// </summary>
         public static AstCreateServerAuditWith CreateServerAuditWith(AstAuditGuidId audit1, AstAuditGuidId audit2)
@@ -5336,22 +4427,12 @@ namespace Bb.Asts.TSql
 	 : ALTER  SERVER  CONFIGURATION  SET  (server_config_process_affinity | server_config_diagnostic_log | server_config_failover | HADR  CLUSTER  CONTEXT  EQUAL  (stringtext | LOCAL) | server_config_buffer_pool_ext | SET  SOFTNUMA  on_off)";
         
         internal AstAlterServerConfiguration(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterServerConfiguration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterServerConfiguration(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterServerConfiguration(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5361,7 +4442,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET server_config_process_affinity 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigProcessAffinity serverConfigProcessAffinity)
@@ -5372,7 +4453,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET server_config_diagnostic_log 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigDiagnosticLog serverConfigDiagnosticLog)
@@ -5383,7 +4464,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET server_config_failover 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigFailover serverConfigFailover)
@@ -5394,7 +4475,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL stringtext 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstStringtext stringtext)
@@ -5405,7 +4486,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET server_config_buffer_pool_ext 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigBufferPoolExt serverConfigBufferPoolExt)
@@ -5416,7 +4497,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_server_configuration : 
+        ///  : 
         ///    ALTER SERVER CONFIGURATION SET SET SOFTNUMA on_off 
         /// </summary>
         public static AstAlterServerConfiguration AlterServerConfiguration(AstOnOff onOff)
@@ -5438,22 +4519,12 @@ namespace Bb.Asts.TSql
             "al_range  decimal_ranges) | NUMANODE  EQUAL  decimal_range  decimal_ranges)";
         
         internal AstServerConfigProcessAffinity(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerConfigProcessAffinity(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerConfigProcessAffinity(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerConfigProcessAffinity(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5463,7 +4534,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_process_affinity : 
+        ///  : 
         ///    PROCESS AFFINITY CPU EQUAL decimal_range decimal_ranges 
         /// </summary>
         public static AstServerConfigProcessAffinity ServerConfigProcessAffinity(AstDecimalRange decimalRange, AstDecimalRanges decimalRanges)
@@ -5485,22 +4556,12 @@ namespace Bb.Asts.TSql
             "_or_default | MAX_SIZE  EQUAL  size_value | MAX_FILES  EQUAL  decimal_default)";
         
         internal AstServerConfigDiagnosticLog(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerConfigDiagnosticLog(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerConfigDiagnosticLog(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerConfigDiagnosticLog(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5510,7 +4571,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_diagnostic_log : 
+        ///  : 
         ///    DIAGNOSTICS LOG on_off 
         /// </summary>
         public static AstServerConfigDiagnosticLog ServerConfigDiagnosticLog(AstOnOff onOff)
@@ -5521,7 +4582,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_diagnostic_log : 
+        ///  : 
         ///    DIAGNOSTICS LOG PATH EQUAL string_or_default 
         /// </summary>
         public static AstServerConfigDiagnosticLog ServerConfigDiagnosticLog(AstStringOrDefault stringOrDefault)
@@ -5532,7 +4593,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_diagnostic_log : 
+        ///  : 
         ///    DIAGNOSTICS LOG MAX_SIZE EQUAL size_value 
         /// </summary>
         public static AstServerConfigDiagnosticLog ServerConfigDiagnosticLog(AstSizeValue sizeValue)
@@ -5543,7 +4604,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_diagnostic_log : 
+        ///  : 
         ///    DIAGNOSTICS LOG MAX_FILES EQUAL decimal_default 
         /// </summary>
         public static AstServerConfigDiagnosticLog ServerConfigDiagnosticLog(AstDecimalDefault decimalDefault)
@@ -5565,22 +4626,12 @@ namespace Bb.Asts.TSql
 	 : FAILOVER  CLUSTER  PROPERTY  (VERBOSELOGGING  EQUAL  verboselogging = string_or_default | SQLDUMPERFLAGS  EQUAL  sqldumperflags = string_or_default | SQLDUMPERPATH  EQUAL  sqldumperpath = string_or_default | SQLDUMPERTIMEOUT  sqldumpertimeout = string_or_default | FAILURECONDITIONLEVEL  EQUAL  failure = string_or_default | HEALTHCHECKTIMEOUT  EQUAL  health = decimal_default)";
         
         internal AstServerConfigFailover(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerConfigFailover(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerConfigFailover(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerConfigFailover(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5590,7 +4641,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_failover : 
+        ///  : 
         ///    FAILOVER CLUSTER PROPERTY VERBOSELOGGING EQUAL verboselogging=string_or_default 
         /// </summary>
         public static AstServerConfigFailover ServerConfigFailover(AstStringOrDefault verboselogging)
@@ -5601,7 +4652,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_failover : 
+        ///  : 
         ///    FAILOVER CLUSTER PROPERTY HEALTHCHECKTIMEOUT EQUAL health=decimal_default 
         /// </summary>
         public static AstServerConfigFailover ServerConfigFailover(AstDecimalDefault health)
@@ -5624,22 +4675,12 @@ namespace Bb.Asts.TSql
             "ty  RR_BRACKET | OFF)";
         
         internal AstServerConfigBufferPoolExt(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServerConfigBufferPoolExt(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServerConfigBufferPoolExt(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServerConfigBufferPoolExt(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5649,7 +4690,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// server_config_buffer_pool_ext : 
+        ///  : 
         ///    BUFFER POOL EXTENSION ON ( FILENAME EQUAL filename=stringtext , SIZE EQUAL size=decimal size_unity ) 
         /// </summary>
         public static AstServerConfigBufferPoolExt ServerConfigBufferPoolExt(AstStringtext filename, AstDecimal size, AstSizeUnity sizeUnity)
@@ -5671,22 +4712,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "string_or_default\r\n\t : stringtext\r\n\t | DEFAULT";
         
         internal AstStringOrDefault(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstStringOrDefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstStringOrDefault(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstStringOrDefault(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5696,7 +4727,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// string_or_default : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstStringOrDefault StringOrDefault(AstStringtext stringtext)
@@ -5718,22 +4749,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "contract\r\n\t : modified_contract_id\r\n\t | DEFAULT";
         
         internal AstContract(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstContract(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstContract(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstContract(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5743,7 +4764,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// contract : 
+        /// modified_contract_id : 
         ///    modified_contract_id 
         /// </summary>
         public static AstContract Contract(AstModifiedContractId modifiedContractId)
@@ -5765,22 +4786,12 @@ namespace Bb.Asts.TSql
 	 : ALTER  SERVICE  MASTER  KEY  (FORCE?  REGENERATE | (WITH  (OLD_ACCOUNT  EQUAL  acold_account_name = stringtext  COMMA  OLD_PASSWORD  EQUAL  old_password = stringtext | NEW_ACCOUNT  EQUAL  new_account_name = stringtext  COMMA  NEW_PASSWORD  EQUAL  new_password = stringtext)?))";
         
         internal AstAlterServiceMasterKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterServiceMasterKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterServiceMasterKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterServiceMasterKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5790,7 +4801,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_service_master_key : 
+        ///  : 
         ///    ALTER SERVICE MASTER KEY WITH OLD_ACCOUNT EQUAL acold_account_name=stringtext , OLD_PASSWORD EQUAL old_password=stringtext 
         /// </summary>
         public static AstAlterServiceMasterKey AlterServiceMasterKey(AstStringtext acoldAccountName, AstStringtext oldPassword)
@@ -5822,22 +4833,12 @@ namespace Bb.Asts.TSql
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off";
         
         internal AstAlterUserItem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterUserItem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterUserItem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterUserItem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5847,7 +4848,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    NAME EQUAL user_id 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstUserId userId)
@@ -5858,7 +4859,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstSchemaId schemaId)
@@ -5869,7 +4870,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    LOGIN EQUAL login_id 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstLoginId loginId)
@@ -5880,7 +4881,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    PASSWORD EQUAL newpwd=stringtext OLD_PASSWORD EQUAL oldpwd=stringtext 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstStringtext newpwd, AstStringtext oldpwd)
@@ -5891,7 +4892,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    DEFAULT_LANGUAGE EQUAL lcid=decimal 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstDecimal lcid)
@@ -5902,7 +4903,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    DEFAULT_LANGUAGE EQUAL language 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstLanguage language)
@@ -5913,7 +4914,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_item : 
+        ///  : 
         ///    ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         public static AstAlterUserItem AlterUserItem(AstOnOff onOff)
@@ -5938,22 +4939,12 @@ namespace Bb.Asts.TSql
             "t_login?";
         
         internal AstCreateUser(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateUser(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateUser(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateUser(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -5963,7 +4954,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user : 
+        ///  : 
         ///    CREATE USER user_id create_user_with_login 
         /// </summary>
         public static AstCreateUser CreateUser(AstUserId userId, AstCreateUserWithLogin createUserWithLogin)
@@ -5974,7 +4965,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user : 
+        ///  : 
         ///    CREATE USER create_user_windows_principal_id 
         /// </summary>
         public static AstCreateUser CreateUser(AstCreateUserWindowsPrincipalId createUserWindowsPrincipalId)
@@ -5985,7 +4976,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user : 
+        ///  : 
         ///    CREATE USER user_id create_user_without_login? 
         /// </summary>
         public static AstCreateUser CreateUser(AstUserId userId, AstCreateUserWithoutLogin createUserWithoutLogin)
@@ -6007,22 +4998,12 @@ namespace Bb.Asts.TSql
             "ort*)?";
         
         internal AstCreateUserWithLogin(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateUserWithLogin(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateUserWithLogin(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateUserWithLogin(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6032,7 +5013,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_with_login : 
+        ///  : 
         ///    for_from LOGIN login_id WITH user_settings_short* 
         /// </summary>
         public static AstCreateUserWithLogin CreateUserWithLogin(AstForFrom forFrom, AstLoginId loginId, IEnumerable<AstUserSettingsShort> userSettingsShort)
@@ -6056,22 +5037,12 @@ namespace Bb.Asts.TSql
             "  CERTIFICATE  certificate_id\r\n\t | for_from  ASYMMETRIC  KEY  asym_key_id";
         
         internal AstCreateUserWithoutLogin(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateUserWithoutLogin(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateUserWithoutLogin(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateUserWithoutLogin(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6081,7 +5052,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_without_login : 
+        ///  : 
         ///    WITHOUT LOGIN user_settings_short* 
         /// </summary>
         public static AstCreateUserWithoutLogin CreateUserWithoutLogin(IEnumerable<AstUserSettingsShort> userSettingsShort)
@@ -6092,7 +5063,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_without_login : 
+        ///  : 
         ///    for_from CERTIFICATE certificate_id 
         /// </summary>
         public static AstCreateUserWithoutLogin CreateUserWithoutLogin(AstForFrom forFrom, AstCertificateId certificateId)
@@ -6103,7 +5074,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_without_login : 
+        ///  : 
         ///    for_from ASYMMETRIC KEY asym_key_id 
         /// </summary>
         public static AstCreateUserWithoutLogin CreateUserWithoutLogin(AstForFrom forFrom, AstAsymKeyId asymKeyId)
@@ -6128,22 +5099,12 @@ namespace Bb.Asts.TSql
             " | user_id  FROM  EXTERNAL  PROVIDER";
         
         internal AstCreateUserWindowsPrincipalId(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateUserWindowsPrincipalId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateUserWindowsPrincipalId(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateUserWindowsPrincipalId(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6153,7 +5114,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_windows_principal_id : 
+        ///  : 
         ///    windows_principal_id WITH user_settings* 
         /// </summary>
         public static AstCreateUserWindowsPrincipalId CreateUserWindowsPrincipalId(AstWindowsPrincipalId windowsPrincipalId, IEnumerable<AstUserSettings> userSettings)
@@ -6164,7 +5125,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_windows_principal_id : 
+        ///  : 
         ///    user_id WITH PASSWORD EQUAL password=stringtext user_settings* 
         /// </summary>
         public static AstCreateUserWindowsPrincipalId CreateUserWindowsPrincipalId(AstUserId userId, AstStringtext password, IEnumerable<AstUserSettings> userSettings)
@@ -6175,7 +5136,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_windows_principal_id : 
+        ///  : 
         ///    user_id FROM EXTERNAL PROVIDER 
         /// </summary>
         public static AstCreateUserWindowsPrincipalId CreateUserWindowsPrincipalId(AstUserId userId)
@@ -6198,22 +5159,12 @@ namespace Bb.Asts.TSql
             "LOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off";
         
         internal AstUserSettingsShort(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUserSettingsShort(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUserSettingsShort(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUserSettingsShort(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6223,7 +5174,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings_short : 
+        ///  : 
         ///    COMMA? DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstUserSettingsShort UserSettingsShort(AstSchemaId schemaId)
@@ -6234,7 +5185,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings_short : 
+        ///  : 
         ///    COMMA? ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         public static AstUserSettingsShort UserSettingsShort(AstOnOff onOff)
@@ -6260,22 +5211,12 @@ namespace Bb.Asts.TSql
             " | COMMA?  ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off";
         
         internal AstUserSettings(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUserSettings(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUserSettings(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUserSettings(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6285,7 +5226,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings : 
+        ///  : 
         ///    COMMA? DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstUserSettings UserSettings(AstSchemaId schemaId)
@@ -6296,7 +5237,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings : 
+        ///  : 
         ///    COMMA? DEFAULT_LANGUAGE EQUAL decimal 
         /// </summary>
         public static AstUserSettings UserSettings(AstDecimal @decimal)
@@ -6307,7 +5248,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings : 
+        ///  : 
         ///    COMMA? DEFAULT_LANGUAGE EQUAL language 
         /// </summary>
         public static AstUserSettings UserSettings(AstLanguage language)
@@ -6318,7 +5259,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings : 
+        ///  : 
         ///    COMMA? SID EQUAL binary_ 
         /// </summary>
         public static AstUserSettings UserSettings(AstBinary binary)
@@ -6329,7 +5270,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// user_settings : 
+        ///  : 
         ///    COMMA? ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         public static AstUserSettings UserSettings(AstOnOff onOff)
@@ -6353,22 +5294,12 @@ namespace Bb.Asts.TSql
             "user_id  FROM  EXTERNAL  PROVIDER  (WITH  DEFAULT_SCHEMA  EQUAL  schema_id)?";
         
         internal AstCreateUserAzureSqlDw(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateUserAzureSqlDw(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateUserAzureSqlDw(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateUserAzureSqlDw(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6378,7 +5309,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_azure_sql_dw : 
+        ///  : 
         ///    CREATE USER user_id for_from LOGIN login_id WITH DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId, AstForFrom forFrom, AstLoginId loginId, AstSchemaId schemaId)
@@ -6389,7 +5320,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_user_azure_sql_dw : 
+        ///  : 
         ///    CREATE USER user_id WITHOUT LOGIN WITH DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId, AstSchemaId schemaId)
@@ -6412,22 +5343,12 @@ namespace Bb.Asts.TSql
             "_off)+";
         
         internal AstAlterUserAzureSqlInfo(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterUserAzureSqlInfo(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterUserAzureSqlInfo(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterUserAzureSqlInfo(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6437,7 +5358,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_azure_sql_info : 
+        ///  : 
         ///    NAME EQUAL user_id 
         /// </summary>
         public static AstAlterUserAzureSqlInfo AlterUserAzureSqlInfo(AstUserId userId)
@@ -6448,7 +5369,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_azure_sql_info : 
+        ///  : 
         ///    DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
         public static AstAlterUserAzureSqlInfo AlterUserAzureSqlInfo(AstSchemaId schemaId)
@@ -6459,7 +5380,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_azure_sql_info : 
+        ///  : 
         ///    LOGIN EQUAL login_id 
         /// </summary>
         public static AstAlterUserAzureSqlInfo AlterUserAzureSqlInfo(AstLoginId loginId)
@@ -6470,7 +5391,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_user_azure_sql_info : 
+        ///  : 
         ///    ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
         /// </summary>
         public static AstAlterUserAzureSqlInfo AlterUserAzureSqlInfo(AstOnOff onOff)
@@ -6492,22 +5413,12 @@ namespace Bb.Asts.TSql
             "UOTE)";
         
         internal AstAlterWorkloadGroupUsing(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterWorkloadGroupUsing(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterWorkloadGroupUsing(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterWorkloadGroupUsing(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6517,7 +5428,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_workload_group_using : 
+        ///  : 
         ///    USING workload_group_pool_id 
         /// </summary>
         public static AstAlterWorkloadGroupUsing AlterWorkloadGroupUsing(AstWorkloadGroupPoolId workloadGroupPoolId)
@@ -6539,22 +5450,12 @@ namespace Bb.Asts.TSql
 	 : WITH  (STATUS  EQUAL  status = on_off  COMMA?)?  (RETENTION  EQUAL  retention = on_off  COMMA?)?  (ACTIVATION  LR_BRACKET  (((STATUS  EQUAL  activation_status = on_off  COMMA?)?  (PROCEDURE_NAME  EQUAL  func_proc_name_database_schema_ref  COMMA?)?  (MAX_QUEUE_READERS  EQUAL  max_readers = decimal  COMMA?)?  (EXECUTE  AS  (SELF | username = stringtext | OWNER)  COMMA?)?) | DROP)  RR_BRACKET  COMMA?)?  (POISON_MESSAGE_HANDLING  LR_BRACKET  (STATUS  EQUAL  on_off)  RR_BRACKET)?";
         
         internal AstQueueSettings(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstQueueSettings(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstQueueSettings(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstQueueSettings(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6564,7 +5465,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_settings : 
+        ///  : 
         ///    WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION ( STATUS EQUAL activation_status=on_off COMMA? PROCEDURE_NAME EQUAL func_proc_name_database_schema_ref COMMA? MAX_QUEUE_READERS EQUAL max_readers=decimal COMMA? EXECUTE AS SELF COMMA? ) COMMA? POISON_MESSAGE_HANDLING ( STATUS EQUAL on_off ) 
         /// </summary>
         public static AstQueueSettings QueueSettings(AstOnOff status, AstOnOff retention, AstOnOff activationStatus, AstFuncProcNameDatabaseSchemaRef funcProcNameDatabaseSchemaRef, AstDecimal maxReaders, AstOnOff onOff)
@@ -6575,7 +5476,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_settings : 
+        ///  : 
         ///    WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION ( STATUS EQUAL activation_status=on_off COMMA? PROCEDURE_NAME EQUAL func_proc_name_database_schema_ref COMMA? MAX_QUEUE_READERS EQUAL max_readers=decimal COMMA? EXECUTE AS username=stringtext COMMA? ) COMMA? POISON_MESSAGE_HANDLING ( STATUS EQUAL on_off ) 
         /// </summary>
         public static AstQueueSettings QueueSettings(AstOnOff status, AstOnOff retention, AstOnOff activationStatus, AstFuncProcNameDatabaseSchemaRef funcProcNameDatabaseSchemaRef, AstDecimal maxReaders, AstStringtext username, AstOnOff onOff)
@@ -6586,7 +5487,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_settings : 
+        ///  : 
         ///    WITH STATUS EQUAL status=on_off COMMA? RETENTION EQUAL retention=on_off COMMA? ACTIVATION ( DROP ) COMMA? POISON_MESSAGE_HANDLING ( STATUS EQUAL on_off ) 
         /// </summary>
         public static AstQueueSettings QueueSettings(AstOnOff status, AstOnOff retention, AstOnOff onOff)
@@ -6608,22 +5509,12 @@ namespace Bb.Asts.TSql
             " queue_action)";
         
         internal AstAlterQueue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterQueue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterQueue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterQueue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6633,7 +5524,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_queue : 
+        ///  : 
         ///    ALTER QUEUE complete_table_ref queue_settings 
         /// </summary>
         public static AstAlterQueue AlterQueue(AstCompleteTableRef completeTableRef, AstQueueSettings queueSettings)
@@ -6644,7 +5535,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_queue : 
+        ///  : 
         ///    ALTER QUEUE queue_id queue_settings 
         /// </summary>
         public static AstAlterQueue AlterQueue(AstQueueId queueId, AstQueueSettings queueSettings)
@@ -6655,7 +5546,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_queue : 
+        ///  : 
         ///    ALTER QUEUE complete_table_ref queue_action 
         /// </summary>
         public static AstAlterQueue AlterQueue(AstCompleteTableRef completeTableRef, AstQueueAction queueAction)
@@ -6666,7 +5557,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_queue : 
+        ///  : 
         ///    ALTER QUEUE queue_id queue_action 
         /// </summary>
         public static AstAlterQueue AlterQueue(AstQueueId queueId, AstQueueAction queueAction)
@@ -6691,22 +5582,12 @@ namespace Bb.Asts.TSql
             "EFAULT)";
         
         internal AstQueueAction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstQueueAction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstQueueAction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstQueueAction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6716,7 +5597,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_action : 
+        ///  : 
         ///    REBUILD WITH ( queue_rebuild_options ) 
         /// </summary>
         public static AstQueueAction QueueAction(AstQueueRebuildOptions queueRebuildOptions)
@@ -6727,7 +5608,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_action : 
+        ///  : 
         ///    REORGANIZE WITH LOB_COMPACTION EQUAL on_off 
         /// </summary>
         public static AstQueueAction QueueAction(AstOnOff onOff)
@@ -6738,7 +5619,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// queue_action : 
+        ///  : 
         ///    MOVE TO id_ 
         /// </summary>
         public static AstQueueAction QueueAction(AstId id)
@@ -6764,22 +5645,12 @@ namespace Bb.Asts.TSql
 	 | (WHEN  NOT  MATCHED  BY  SOURCE  (AND  search_condition)?  THEN  merge_matched)+";
         
         internal AstWhenMatche(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstWhenMatche(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstWhenMatche(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstWhenMatche(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6789,7 +5660,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// when_matche : 
+        ///  : 
         ///    WHEN MATCHED AND search_condition THEN merge_matched+ 
         /// </summary>
         public static AstWhenMatche WhenMatche(AstSearchCondition searchCondition, AstMergeMatched mergeMatched)
@@ -6800,7 +5671,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// when_matche : 
+        ///  : 
         ///    WHEN NOT MATCHED BY TARGET AND search_condition THEN merge_not_matched 
         /// </summary>
         public static AstWhenMatche WhenMatche(AstSearchCondition searchCondition, AstMergeNotMatched mergeNotMatched)
@@ -6822,22 +5693,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "merge_matched\r\n\t : UPDATE  SET  update_elem_merges\r\n\t | DELETE";
         
         internal AstMergeMatched(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMergeMatched(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMergeMatched(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMergeMatched(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6847,7 +5708,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// merge_matched : 
+        ///  : 
         ///    UPDATE SET update_elem_merges 
         /// </summary>
         public static AstMergeMatched MergeMatched(AstUpdateElemMerges updateElemMerges)
@@ -6869,22 +5730,12 @@ namespace Bb.Asts.TSql
             "e_value_constructor | DEFAULT  VALUES)";
         
         internal AstMergeNotMatched(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMergeNotMatched(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMergeNotMatched(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMergeNotMatched(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6894,7 +5745,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// merge_not_matched : 
+        ///  : 
         ///    INSERT ( column_name_list ) table_value_constructor 
         /// </summary>
         public static AstMergeNotMatched MergeNotMatched(AstColumnNameList columnNameList, AstTableValueConstructor tableValueConstructor)
@@ -6905,7 +5756,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// merge_not_matched : 
+        ///  : 
         ///    INSERT ( column_name_list ) DEFAULT VALUES 
         /// </summary>
         public static AstMergeNotMatched MergeNotMatched(AstColumnNameList columnNameList)
@@ -6929,22 +5780,12 @@ namespace Bb.Asts.TSql
             " = local_id";
         
         internal AstDeleteStatementFrom(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDeleteStatementFrom(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDeleteStatementFrom(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDeleteStatementFrom(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -6954,7 +5795,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// delete_statement_from : 
+        /// ddl_object : 
         ///    ddl_object 
         /// </summary>
         public static AstDeleteStatementFrom DeleteStatementFrom(AstDdlObject ddlObject)
@@ -6965,7 +5806,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// delete_statement_from : 
+        /// rowset_function_limited : 
         ///    rowset_function_limited 
         /// </summary>
         public static AstDeleteStatementFrom DeleteStatementFrom(AstRowsetFunctionLimited rowsetFunctionLimited)
@@ -6976,7 +5817,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// delete_statement_from : 
+        /// local_id : 
         ///    table_var=local_id 
         /// </summary>
         public static AstDeleteStatementFrom DeleteStatementFrom(AstLocalId tableVar)
@@ -7001,22 +5842,12 @@ namespace Bb.Asts.TSql
             "te_statement\r\n\t | DEFAULT  VALUES";
         
         internal AstInsertStatementValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstInsertStatementValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstInsertStatementValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstInsertStatementValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7026,7 +5857,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// insert_statement_value : 
+        /// table_value_constructor : 
         ///    table_value_constructor 
         /// </summary>
         public static AstInsertStatementValue InsertStatementValue(AstTableValueConstructor tableValueConstructor)
@@ -7037,7 +5868,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// insert_statement_value : 
+        /// derived_table : 
         ///    derived_table 
         /// </summary>
         public static AstInsertStatementValue InsertStatementValue(AstDerivedTable derivedTable)
@@ -7048,7 +5879,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// insert_statement_value : 
+        /// execute_statement : 
         ///    execute_statement 
         /// </summary>
         public static AstInsertStatementValue InsertStatementValue(AstExecuteStatement executeStatement)
@@ -7070,22 +5901,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "receive_mode\r\n\t : receive_mode_enum\r\n\t | top_clause";
         
         internal AstReceiveMode(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstReceiveMode(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstReceiveMode(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstReceiveMode(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7095,7 +5916,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// receive_mode : 
+        /// receive_mode_enum : 
         ///    receive_mode_enum 
         /// </summary>
         public static AstReceiveMode ReceiveMode(AstReceiveModeEnum receiveModeEnum)
@@ -7106,7 +5927,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// receive_mode : 
+        /// top_clause : 
         ///    top_clause 
         /// </summary>
         public static AstReceiveMode ReceiveMode(AstTopClause topClause)
@@ -7127,22 +5948,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "time\r\n\t : (local_id | constant)";
         
         internal AstTime(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTime(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTime(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTime(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7152,7 +5963,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// time : 
+        /// local_id : 
         ///    local_id 
         /// </summary>
         public static AstTime Time(AstLocalId localId)
@@ -7163,7 +5974,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// time : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstTime Time(AstConstant constant)
@@ -7187,22 +5998,12 @@ namespace Bb.Asts.TSql
             "ff\r\n\t | OPTIMIZE_FOR_SEQUENTIAL_KEY  EQUAL  on_off";
         
         internal AstRelationalIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRelationalIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRelationalIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRelationalIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7212,7 +6013,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// relational_index_option : 
+        /// rebuild_index_option : 
         ///    rebuild_index_option 
         /// </summary>
         public static AstRelationalIndexOption RelationalIndexOption(AstRebuildIndexOption rebuildIndexOption)
@@ -7223,7 +6024,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// relational_index_option : 
+        ///  : 
         ///    DROP_EXISTING EQUAL on_off 
         /// </summary>
         public static AstRelationalIndexOption RelationalIndexOption(AstOnOff onOff)
@@ -7249,22 +6050,12 @@ namespace Bb.Asts.TSql
             "organize_partition\r\n\t | set_index_options\r\n\t | rebuild_partition";
         
         internal AstIndexStatus(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstIndexStatus(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstIndexStatus(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstIndexStatus(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7274,7 +6065,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_status : 
+        /// index_status_enum : 
         ///    index_status_enum 
         /// </summary>
         public static AstIndexStatus IndexStatus(AstIndexStatusEnum indexStatusEnum)
@@ -7285,7 +6076,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_status : 
+        ///  : 
         ///    RESUME resumable_index_options? 
         /// </summary>
         public static AstIndexStatus IndexStatus(AstResumableIndexOptions resumableIndexOptions)
@@ -7296,7 +6087,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_status : 
+        /// reorganize_partition : 
         ///    reorganize_partition 
         /// </summary>
         public static AstIndexStatus IndexStatus(AstReorganizePartition reorganizePartition)
@@ -7307,7 +6098,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_status : 
+        /// set_index_options : 
         ///    set_index_options 
         /// </summary>
         public static AstIndexStatus IndexStatus(AstSetIndexOptions setIndexOptions)
@@ -7318,7 +6109,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_status : 
+        /// rebuild_partition : 
         ///    rebuild_partition 
         /// </summary>
         public static AstIndexStatus IndexStatus(AstRebuildPartition rebuildPartition)
@@ -7339,22 +6130,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "index_name\r\n\t : (id_ | ALL)";
         
         internal AstIndexName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstIndexName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstIndexName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstIndexName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7364,7 +6145,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_name : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstIndexName IndexName(AstId id)
@@ -7389,22 +6170,12 @@ namespace Bb.Asts.TSql
             "wait";
         
         internal AstResumableIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstResumableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstResumableIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstResumableIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7414,7 +6185,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// resumable_index_option : 
+        ///  : 
         ///    MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         public static AstResumableIndexOption ResumableIndexOption(AstDecimal maxDegreeOfParallelism)
@@ -7425,7 +6196,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// resumable_index_option : 
+        /// low_priority_lock_wait : 
         ///    low_priority_lock_wait 
         /// </summary>
         public static AstResumableIndexOption ResumableIndexOption(AstLowPriorityLockWait lowPriorityLockWait)
@@ -7448,22 +6219,12 @@ namespace Bb.Asts.TSql
             "  EQUAL  on_off";
         
         internal AstReorganizeOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstReorganizeOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstReorganizeOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstReorganizeOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7473,7 +6234,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// reorganize_option : 
+        ///  : 
         ///    LOB_COMPACTION EQUAL on_off 
         /// </summary>
         public static AstReorganizeOption ReorganizeOption(AstOnOff onOff)
@@ -7505,22 +6266,12 @@ namespace Bb.Asts.TSql
 	 | COMPRESSION_DELAY  EQUAL  delay = decimal  MINUTES?";
         
         internal AstSetIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSetIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSetIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSetIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7530,7 +6281,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_index_option : 
+        ///  : 
         ///    ALLOW_ROW_LOCKS EQUAL on_off 
         /// </summary>
         public static AstSetIndexOption SetIndexOption(AstOnOff onOff)
@@ -7541,7 +6292,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_index_option : 
+        ///  : 
         ///    COMPRESSION_DELAY EQUAL delay=decimal MINUTES? 
         /// </summary>
         public static AstSetIndexOption SetIndexOption(AstDecimal delay)
@@ -7565,22 +6316,12 @@ namespace Bb.Asts.TSql
             "";
         
         internal AstRebuildPartition(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRebuildPartition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRebuildPartition(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRebuildPartition(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7590,7 +6331,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_partition : 
+        ///  : 
         ///    REBUILD PARTITION EQUAL ALL rebuild_index_options? 
         /// </summary>
         public static AstRebuildPartition RebuildPartition(AstRebuildIndexOptions rebuildIndexOptions)
@@ -7601,7 +6342,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_partition : 
+        ///  : 
         ///    REBUILD PARTITION EQUAL decimal single_partition_rebuild_index_options? 
         /// </summary>
         public static AstRebuildPartition RebuildPartition(AstDecimal @decimal, AstSinglePartitionRebuildIndexOptions singlePartitionRebuildIndexOptions)
@@ -7649,22 +6390,12 @@ namespace Bb.Asts.TSql
 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?";
         
         internal AstRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRebuildIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRebuildIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRebuildIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7674,7 +6405,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_index_option : 
+        ///  : 
         ///    PAD_INDEX EQUAL on_off 
         /// </summary>
         public static AstRebuildIndexOption RebuildIndexOption(AstOnOff onOff)
@@ -7685,7 +6416,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_index_option : 
+        ///  : 
         ///    FILLFACTOR EQUAL decimal 
         /// </summary>
         public static AstRebuildIndexOption RebuildIndexOption(AstDecimal @decimal)
@@ -7696,7 +6427,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_index_option : 
+        ///  : 
         ///    ONLINE EQUAL ON ( low_priority_lock_wait ) 
         /// </summary>
         public static AstRebuildIndexOption RebuildIndexOption(AstLowPriorityLockWait lowPriorityLockWait)
@@ -7707,7 +6438,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_index_option : 
+        ///  : 
         ///    DATA_COMPRESSION EQUAL datacompression_mode on_partitions? 
         /// </summary>
         public static AstRebuildIndexOption RebuildIndexOption(AstDatacompressionMode datacompressionMode, AstOnPartitions onPartitions)
@@ -7718,7 +6449,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rebuild_index_option : 
+        ///  : 
         ///    XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         public static AstRebuildIndexOption RebuildIndexOption(AstOnOff onOff, AstOnPartitions onPartitions)
@@ -7750,22 +6481,12 @@ namespace Bb.Asts.TSql
 	 | ONLINE  EQUAL  (ON  (LR_BRACKET  low_priority_lock_wait  RR_BRACKET)? | OFF)";
         
         internal AstSinglePartitionRebuildIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSinglePartitionRebuildIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSinglePartitionRebuildIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSinglePartitionRebuildIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7775,7 +6496,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// single_partition_rebuild_index_option : 
+        ///  : 
         ///    SORT_IN_TEMPDB EQUAL on_off 
         /// </summary>
         public static AstSinglePartitionRebuildIndexOption SinglePartitionRebuildIndexOption(AstOnOff onOff)
@@ -7786,7 +6507,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// single_partition_rebuild_index_option : 
+        ///  : 
         ///    MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         public static AstSinglePartitionRebuildIndexOption SinglePartitionRebuildIndexOption(AstDecimal maxDegreeOfParallelism)
@@ -7797,7 +6518,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// single_partition_rebuild_index_option : 
+        ///  : 
         ///    DATA_COMPRESSION EQUAL datacompression_mode on_partitions? 
         /// </summary>
         public static AstSinglePartitionRebuildIndexOption SinglePartitionRebuildIndexOption(AstDatacompressionMode datacompressionMode, AstOnPartitions onPartitions)
@@ -7808,7 +6529,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// single_partition_rebuild_index_option : 
+        ///  : 
         ///    XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         public static AstSinglePartitionRebuildIndexOption SinglePartitionRebuildIndexOption(AstOnOff onOff, AstOnPartitions onPartitions)
@@ -7819,7 +6540,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// single_partition_rebuild_index_option : 
+        ///  : 
         ///    ONLINE EQUAL ON ( low_priority_lock_wait ) 
         /// </summary>
         public static AstSinglePartitionRebuildIndexOption SinglePartitionRebuildIndexOption(AstLowPriorityLockWait lowPriorityLockWait)
@@ -7841,22 +6562,12 @@ namespace Bb.Asts.TSql
             "l)?";
         
         internal AstPartitionNums(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPartitionNums(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPartitionNums(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPartitionNums(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7866,7 +6577,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// partition_nums : 
+        ///  : 
         ///    partition_number=decimal TO to_partition_number=decimal 
         /// </summary>
         public static AstPartitionNums PartitionNums(AstDecimal partitionNumber, AstDecimal toPartitionNumber)
@@ -7896,22 +6607,12 @@ namespace Bb.Asts.TSql
 	 | DATA_COMPRESSION  EQUAL  datacompression_column_mode  on_partitions?";
         
         internal AstColumnstoreIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstColumnstoreIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstColumnstoreIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstColumnstoreIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -7921,7 +6622,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// columnstore_index_option : 
+        ///  : 
         ///    DROP_EXISTING EQUAL drop_existing=on_off 
         /// </summary>
         public static AstColumnstoreIndexOption ColumnstoreIndexOption(AstOnOff dropExisting)
@@ -7932,7 +6633,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// columnstore_index_option : 
+        ///  : 
         ///    MAXDOP EQUAL max_degree_of_parallelism=decimal 
         /// </summary>
         public static AstColumnstoreIndexOption ColumnstoreIndexOption(AstDecimal maxDegreeOfParallelism)
@@ -7943,7 +6644,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// columnstore_index_option : 
+        ///  : 
         ///    DATA_COMPRESSION EQUAL datacompression_column_mode on_partitions? 
         /// </summary>
         public static AstColumnstoreIndexOption ColumnstoreIndexOption(AstDatacompressionColumnMode datacompressionColumnMode, AstOnPartitions onPartitions)
@@ -7983,22 +6684,12 @@ namespace Bb.Asts.TSql
 	 | XML_COMPRESSION  EQUAL  xml_compression = on_off";
         
         internal AstXmlIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstXmlIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstXmlIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstXmlIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8008,7 +6699,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_index_option : 
+        ///  : 
         ///    PAD_INDEX EQUAL pad_index=on_off 
         /// </summary>
         public static AstXmlIndexOption XmlIndexOption(AstOnOff padIndex)
@@ -8019,7 +6710,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_index_option : 
+        ///  : 
         ///    FILLFACTOR EQUAL fillfactor=decimal 
         /// </summary>
         public static AstXmlIndexOption XmlIndexOption(AstDecimal fillfactor)
@@ -8030,7 +6721,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_index_option : 
+        ///  : 
         ///    ONLINE EQUAL ON ( low_priority_lock_wait ) 
         /// </summary>
         public static AstXmlIndexOption XmlIndexOption(AstLowPriorityLockWait lowPriorityLockWait)
@@ -8053,22 +6744,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "for_after_instead\r\n\t : FOR\r\n\t | AFTER\r\n\t | INSTEAD  OF";
         
         internal AstForAfterInstead(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstForAfterInstead(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstForAfterInstead(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstForAfterInstead(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8089,22 +6770,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "dml_trigger_option\r\n\t : ENCRYPTION\r\n\t | execute_clause";
         
         internal AstDmlTriggerOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDmlTriggerOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDmlTriggerOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDmlTriggerOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8114,7 +6785,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dml_trigger_option : 
+        /// execute_clause : 
         ///    execute_clause 
         /// </summary>
         public static AstDmlTriggerOption DmlTriggerOption(AstExecuteClause executeClause)
@@ -8136,22 +6807,12 @@ namespace Bb.Asts.TSql
 	 : ((CREATE  (OR  ALTER)?) | ALTER)  FUNCTION  funcName = schema_func_proc_ref  ((LR_BRACKET  procedure_params  RR_BRACKET) | LR_BRACKET  RR_BRACKET)  (func_body_returns_select | func_body_returns_table | func_body_returns_scalar)  SEMI?";
         
         internal AstCreateOrAlterFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateOrAlterFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateOrAlterFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateOrAlterFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8161,7 +6822,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_select SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsSelect funcBodyReturnsSelect)
@@ -8172,7 +6833,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_select SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsSelect funcBodyReturnsSelect)
@@ -8183,7 +6844,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_table SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsTable funcBodyReturnsTable)
@@ -8194,7 +6855,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_table SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsTable funcBodyReturnsTable)
@@ -8205,7 +6866,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_scalar SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsScalar funcBodyReturnsScalar)
@@ -8216,7 +6877,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_or_alter_function : 
+        ///  : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_scalar SEMI? 
         /// </summary>
         public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsScalar funcBodyReturnsScalar)
@@ -8238,22 +6899,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "procedure_option\r\n\t : procedure_option_enum\r\n\t | execute_clause";
         
         internal AstProcedureOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstProcedureOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstProcedureOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstProcedureOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8263,7 +6914,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// procedure_option : 
+        /// procedure_option_enum : 
         ///    procedure_option_enum 
         /// </summary>
         public static AstProcedureOption ProcedureOption(AstProcedureOptionEnum procedureOptionEnum)
@@ -8274,7 +6925,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// procedure_option : 
+        /// execute_clause : 
         ///    execute_clause 
         /// </summary>
         public static AstProcedureOption ProcedureOption(AstExecuteClause executeClause)
@@ -8296,22 +6947,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "function_option\r\n\t : function_option_enum\r\n\t | execute_clause";
         
         internal AstFunctionOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFunctionOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFunctionOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFunctionOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8321,7 +6962,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_option : 
+        /// function_option_enum : 
         ///    function_option_enum 
         /// </summary>
         public static AstFunctionOption FunctionOption(AstFunctionOptionEnum functionOptionEnum)
@@ -8332,7 +6973,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_option : 
+        /// execute_clause : 
         ///    execute_clause 
         /// </summary>
         public static AstFunctionOption FunctionOption(AstExecuteClause executeClause)
@@ -8356,22 +6997,12 @@ namespace Bb.Asts.TSql
             "";
         
         internal AstStatisticsWith(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstStatisticsWith(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstStatisticsWith(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstStatisticsWith(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8381,7 +7012,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// statistics_with : 
+        ///  : 
         ///    SAMPLE decimal percent_row 
         /// </summary>
         public static AstStatisticsWith StatisticsWith(AstDecimal @decimal, AstPercentRow percentRow)
@@ -8427,22 +7058,12 @@ namespace Bb.Asts.TSql
 	 | AUTO_DROP  EQUAL  on_off";
         
         internal AstUpdateStatisticsOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUpdateStatisticsOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUpdateStatisticsOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUpdateStatisticsOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8452,7 +7073,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_statistics_option : 
+        ///  : 
         ///    FULLSCAN COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off 
         /// </summary>
         public static AstUpdateStatisticsOption UpdateStatisticsOption(AstOnOff onOff)
@@ -8463,7 +7084,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_statistics_option : 
+        ///  : 
         ///    SAMPLE number=decimal percent_row COMMA? PERSIST_SAMPLE_PERCENT EQUAL on_off 
         /// </summary>
         public static AstUpdateStatisticsOption UpdateStatisticsOption(AstDecimal number, AstPercentRow percentRow, AstOnOff onOff)
@@ -8474,7 +7095,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_statistics_option : 
+        ///  : 
         ///    RESAMPLE on_partitions? 
         /// </summary>
         public static AstUpdateStatisticsOption UpdateStatisticsOption(AstOnPartitions onPartitions)
@@ -8485,7 +7106,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_statistics_option : 
+        ///  : 
         ///    STATS_STREAM EQUAL stats_stream_=expression 
         /// </summary>
         public static AstUpdateStatisticsOption UpdateStatisticsOption(AstExpression statsStream)
@@ -8496,7 +7117,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_statistics_option : 
+        ///  : 
         ///    ROWCOUNT EQUAL decimal 
         /// </summary>
         public static AstUpdateStatisticsOption UpdateStatisticsOption(AstDecimal @decimal)
@@ -8522,22 +7143,12 @@ namespace Bb.Asts.TSql
 	 | INDEX  id_  NONCLUSTERED?  COLUMNSTORE  LR_BRACKET  column_name_list  RR_BRACKET  create_table_index_options?  (ON  group_id)?";
         
         internal AstTableIndices(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableIndices(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableIndices(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableIndices(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8547,7 +7158,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_indices : 
+        ///  : 
         ///    INDEX id_ UNIQUE? clustered? ( column_name_list_with_order ) 
         /// </summary>
         public static AstTableIndices TableIndices(AstId id, AstClustered clustered, AstColumnNameListWithOrder columnNameListWithOrder)
@@ -8558,7 +7169,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_indices : 
+        ///  : 
         ///    INDEX id_ CLUSTERED COLUMNSTORE 
         /// </summary>
         public static AstTableIndices TableIndices(AstId id)
@@ -8569,7 +7180,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_indices : 
+        ///  : 
         ///    INDEX id_ NONCLUSTERED? COLUMNSTORE ( column_name_list ) create_table_index_options? ON group_id 
         /// </summary>
         public static AstTableIndices TableIndices(AstId id, AstColumnNameList columnNameList, AstCreateTableIndexOptions createTableIndexOptions, AstGroupId groupId)
@@ -8591,22 +7202,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "tbl_option\r\n\t : WITH  LR_BRACKET  tableoptions  RR_BRACKET\r\n\t | tableoptions";
         
         internal AstTblOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTblOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTblOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTblOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8616,7 +7217,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tbl_option : 
+        ///  : 
         ///    WITH ( tableoptions ) 
         /// </summary>
         public static AstTblOption TblOption(AstTableoptions tableoptions)
@@ -8648,22 +7249,12 @@ namespace Bb.Asts.TSql
 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?";
         
         internal AstTableoption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableoption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableoption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableoption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8673,7 +7264,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        ///  : 
         ///    table_opt_varname EQUAL table_opt_var_value 
         /// </summary>
         public static AstTableoption Tableoption(AstTableOptVarname tableOptVarname, AstTableOptVarValue tableOptVarValue)
@@ -8684,7 +7275,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        /// tableoption_cluster_mode : 
         ///    tableoption_cluster_mode 
         /// </summary>
         public static AstTableoption Tableoption(AstTableoptionClusterMode tableoptionClusterMode)
@@ -8695,7 +7286,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        ///  : 
         ///    FILLFACTOR EQUAL decimal 
         /// </summary>
         public static AstTableoption Tableoption(AstDecimal @decimal)
@@ -8706,7 +7297,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        /// distribution : 
         ///    distribution 
         /// </summary>
         public static AstTableoption Tableoption(AstDistribution distribution)
@@ -8717,7 +7308,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        ///  : 
         ///    DATA_COMPRESSION EQUAL compression_mode on_partitions? 
         /// </summary>
         public static AstTableoption Tableoption(AstCompressionMode compressionMode, AstOnPartitions onPartitions)
@@ -8728,7 +7319,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// tableoption : 
+        ///  : 
         ///    XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         public static AstTableoption Tableoption(AstOnOff onOff, AstOnPartitions onPartitions)
@@ -8749,22 +7340,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "table_opt_varname\r\n\t : (simple_id | keyword)";
         
         internal AstTableOptVarname(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableOptVarname(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableOptVarname(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableOptVarname(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8774,7 +7355,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_varname : 
+        /// simple_id : 
         ///    simple_id 
         /// </summary>
         public static AstTableOptVarname TableOptVarname(AstSimpleId simpleId)
@@ -8785,7 +7366,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_varname : 
+        /// keyword : 
         ///    keyword 
         /// </summary>
         public static AstTableOptVarname TableOptVarname(AstKeyword keyword)
@@ -8806,22 +7387,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "table_opt_var_value\r\n\t : (simple_id | keyword | on_off | decimal)";
         
         internal AstTableOptVarValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableOptVarValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableOptVarValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableOptVarValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8831,7 +7402,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_var_value : 
+        /// simple_id : 
         ///    simple_id 
         /// </summary>
         public static AstTableOptVarValue TableOptVarValue(AstSimpleId simpleId)
@@ -8842,7 +7413,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_var_value : 
+        /// keyword : 
         ///    keyword 
         /// </summary>
         public static AstTableOptVarValue TableOptVarValue(AstKeyword keyword)
@@ -8853,7 +7424,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_var_value : 
+        /// on_off : 
         ///    on_off 
         /// </summary>
         public static AstTableOptVarValue TableOptVarValue(AstOnOff onOff)
@@ -8864,7 +7435,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_opt_var_value : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstTableOptVarValue TableOptVarValue(AstDecimal @decimal)
@@ -8887,22 +7458,12 @@ namespace Bb.Asts.TSql
             "STERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET";
         
         internal AstDistribution(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDistribution(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDistribution(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDistribution(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8912,7 +7473,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// distribution : 
+        ///  : 
         ///    DISTRIBUTION EQUAL HASH ( id_ ) 
         /// </summary>
         public static AstDistribution Distribution(AstId id)
@@ -8923,7 +7484,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// distribution : 
+        ///  : 
         ///    CLUSTERED INDEX ( column_name_list_with_order ) 
         /// </summary>
         public static AstDistribution Distribution(AstColumnNameListWithOrder columnNameListWithOrder)
@@ -8946,22 +7507,12 @@ namespace Bb.Asts.TSql
             "foreign\r\n\t | CHECK  LR_BRACKET  search_condition  RR_BRACKET";
         
         internal AstAlterTableConstraint(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterTableConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterTableConstraint(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterTableConstraint(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -8971,7 +7522,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id alter_table_constraint_foreign 
         /// </summary>
         public static AstAlterTableConstraint AlterTableConstraint(AstConstraintId constraintId, AstAlterTableConstraintForeign alterTableConstraintForeign)
@@ -8982,7 +7533,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_constraint : 
+        ///  : 
         ///    CHECK ( search_condition ) 
         /// </summary>
         public static AstAlterTableConstraint AlterTableConstraint(AstSearchCondition searchCondition)
@@ -9005,22 +7556,12 @@ namespace Bb.Asts.TSql
             "ession = expression)?  (WITH  low_priority_lock_wait)?";
         
         internal AstSwitchPartition(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSwitchPartition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSwitchPartition(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSwitchPartition(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9030,7 +7571,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// switch_partition : 
+        ///  : 
         ///    PARTITION? source_partition_number_expression=expression TO target_table=full_table_ref PARTITION target_partition_number_expression=expression WITH low_priority_lock_wait 
         /// </summary>
         public static AstSwitchPartition SwitchPartition(AstExpression sourcePartitionNumberExpression, AstFullTableRef targetTable, AstExpression targetPartitionNumberExpression, AstLowPriorityLockWait lowPriorityLockWait)
@@ -9053,22 +7594,12 @@ namespace Bb.Asts.TSql
             "t = abord_after_mode  RR_BRACKET";
         
         internal AstLowPriorityLockWait(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstLowPriorityLockWait(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstLowPriorityLockWait(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstLowPriorityLockWait(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9078,7 +7609,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// low_priority_lock_wait : 
+        ///  : 
         ///    WAIT_AT_LOW_PRIORITY ( MAX_DURATION EQUAL max_duration=time MINUTES? , ABORT_AFTER_WAIT EQUAL abort_after_wait=abord_after_mode ) 
         /// </summary>
         public static AstLowPriorityLockWait LowPriorityLockWait(AstTime maxDuration, AstAbordAfterMode abortAfterWait)
@@ -9105,22 +7636,12 @@ namespace Bb.Asts.TSql
             "files\r\n\t | add_or_modify_filegroups";
         
         internal AstAlterDatabaseNewInfos(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterDatabaseNewInfos(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterDatabaseNewInfos(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterDatabaseNewInfos(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9130,7 +7651,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_database_new_infos : 
+        ///  : 
         ///    MODIFY NAME EQUAL database_id 
         /// </summary>
         public static AstAlterDatabaseNewInfos AlterDatabaseNewInfos(AstDatabaseId databaseId)
@@ -9141,7 +7662,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_database_new_infos : 
+        ///  : 
         ///    COLLATE collation_id 
         /// </summary>
         public static AstAlterDatabaseNewInfos AlterDatabaseNewInfos(AstCollationId collationId)
@@ -9152,7 +7673,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_database_new_infos : 
+        ///  : 
         ///    SET database_optionspec WITH termination 
         /// </summary>
         public static AstAlterDatabaseNewInfos AlterDatabaseNewInfos(AstDatabaseOptionspec databaseOptionspec, AstTermination termination)
@@ -9163,7 +7684,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_database_new_infos : 
+        /// add_or_modify_files : 
         ///    add_or_modify_files 
         /// </summary>
         public static AstAlterDatabaseNewInfos AlterDatabaseNewInfos(AstAddOrModifyFiles addOrModifyFiles)
@@ -9174,7 +7695,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_database_new_infos : 
+        /// add_or_modify_filegroups : 
         ///    add_or_modify_filegroups 
         /// </summary>
         public static AstAlterDatabaseNewInfos AlterDatabaseNewInfos(AstAddOrModifyFilegroups addOrModifyFilegroups)
@@ -9200,22 +7721,12 @@ namespace Bb.Asts.TSql
             " filespec";
         
         internal AstAddOrModifyFiles(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAddOrModifyFiles(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAddOrModifyFiles(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAddOrModifyFiles(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9225,7 +7736,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_files : 
+        ///  : 
         ///    ADD FILE filespecs TO FILEGROUP file_group_id 
         /// </summary>
         public static AstAddOrModifyFiles AddOrModifyFiles(AstFilespecs filespecs, AstFileGroupId fileGroupId)
@@ -9236,7 +7747,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_files : 
+        ///  : 
         ///    ADD LOG FILE filespecs 
         /// </summary>
         public static AstAddOrModifyFiles AddOrModifyFiles(AstFilespecs filespecs)
@@ -9247,7 +7758,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_files : 
+        ///  : 
         ///    REMOVE FILE file_group_id 
         /// </summary>
         public static AstAddOrModifyFiles AddOrModifyFiles(AstFileGroupId fileGroupId)
@@ -9258,7 +7769,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_files : 
+        ///  : 
         ///    MODIFY FILE filespec 
         /// </summary>
         public static AstAddOrModifyFiles AddOrModifyFiles(AstFilespec filespec)
@@ -9284,22 +7795,12 @@ namespace Bb.Asts.TSql
 	 | MODIFY  FILEGROUP  file_group_id  (filegroup_updatability_option | DEFAULT | NAME  EQUAL  new_name = file_group_id | AUTOGROW_SINGLE_FILE | AUTOGROW_ALL_FILES)";
         
         internal AstAddOrModifyFilegroups(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAddOrModifyFilegroups(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAddOrModifyFilegroups(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAddOrModifyFilegroups(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9309,7 +7810,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_filegroups : 
+        ///  : 
         ///    ADD FILEGROUP file_group_id filegroup_predicate? 
         /// </summary>
         public static AstAddOrModifyFilegroups AddOrModifyFilegroups(AstFileGroupId fileGroupId, AstFilegroupPredicate filegroupPredicate)
@@ -9320,7 +7821,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_filegroups : 
+        ///  : 
         ///    REMOVE FILEGROUP file_group_id 
         /// </summary>
         public static AstAddOrModifyFilegroups AddOrModifyFilegroups(AstFileGroupId fileGroupId)
@@ -9331,7 +7832,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_filegroups : 
+        ///  : 
         ///    MODIFY FILEGROUP file_group_id filegroup_updatability_option 
         /// </summary>
         public static AstAddOrModifyFilegroups AddOrModifyFilegroups(AstFileGroupId fileGroupId, AstFilegroupUpdatabilityOption filegroupUpdatabilityOption)
@@ -9342,7 +7843,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// add_or_modify_filegroups : 
+        ///  : 
         ///    MODIFY FILEGROUP file_group_id NAME EQUAL new_name=file_group_id 
         /// </summary>
         public static AstAddOrModifyFilegroups AddOrModifyFilegroups(AstFileGroupId fileGroupId, AstFileGroupId newName)
@@ -9406,22 +7907,12 @@ namespace Bb.Asts.TSql
 	 | termination";
         
         internal AstDatabaseOptionspec(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDatabaseOptionspec(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDatabaseOptionspec(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDatabaseOptionspec(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9431,7 +7922,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// auto_option : 
         ///    auto_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstAutoOption autoOption)
@@ -9442,7 +7933,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// change_tracking : 
         ///    change_tracking 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstChangeTracking changeTracking)
@@ -9453,7 +7944,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// containment_option : 
         ///    containment_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstContainmentOption containmentOption)
@@ -9464,7 +7955,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// cursor_option : 
         ///    cursor_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstCursorOption cursorOption)
@@ -9475,7 +7966,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// database_mirroring_option : 
         ///    database_mirroring_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDatabaseMirroringOption databaseMirroringOption)
@@ -9486,7 +7977,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// date_correlation_optimization_option : 
         ///    date_correlation_optimization_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDateCorrelationOptimizationOption dateCorrelationOptimizationOption)
@@ -9497,7 +7988,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// db_encryption_option : 
         ///    db_encryption_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDbEncryptionOption dbEncryptionOption)
@@ -9508,7 +7999,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// db_state_option : 
         ///    db_state_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDbStateOption dbStateOption)
@@ -9519,7 +8010,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// db_update_option : 
         ///    db_update_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDbUpdateOption dbUpdateOption)
@@ -9530,7 +8021,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// db_user_access_option : 
         ///    db_user_access_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDbUserAccessOption dbUserAccessOption)
@@ -9541,7 +8032,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// delayed_durability_option : 
         ///    delayed_durability_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDelayedDurabilityOption delayedDurabilityOption)
@@ -9552,7 +8043,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// external_access_option : 
         ///    external_access_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstExternalAccessOption externalAccessOption)
@@ -9563,7 +8054,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        ///  : 
         ///    FILESTREAM database_filestream_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstDatabaseFilestreamOption databaseFilestreamOption)
@@ -9574,7 +8065,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// hadr_options : 
         ///    hadr_options 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstHadrOptions hadrOptions)
@@ -9585,7 +8076,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// mixed_page_allocation_option : 
         ///    mixed_page_allocation_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstMixedPageAllocationOption mixedPageAllocationOption)
@@ -9596,7 +8087,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// parameterization_option : 
         ///    parameterization_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstParameterizationOption parameterizationOption)
@@ -9607,7 +8098,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// recovery_option : 
         ///    recovery_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstRecoveryOption recoveryOption)
@@ -9618,7 +8109,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// service_broker_option : 
         ///    service_broker_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstServiceBrokerOption serviceBrokerOption)
@@ -9629,7 +8120,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// snapshot_option : 
         ///    snapshot_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstSnapshotOption snapshotOption)
@@ -9640,7 +8131,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// sql_option : 
         ///    sql_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstSqlOption sqlOption)
@@ -9651,7 +8142,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// target_recovery_time_option : 
         ///    target_recovery_time_option 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstTargetRecoveryTimeOption targetRecoveryTimeOption)
@@ -9662,7 +8153,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_optionspec : 
+        /// termination : 
         ///    termination 
         /// </summary>
         public static AstDatabaseOptionspec DatabaseOptionspec(AstTermination termination)
@@ -9689,22 +8180,12 @@ namespace Bb.Asts.TSql
             "ATISTICS_ASYNC  on_off";
         
         internal AstAutoOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAutoOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAutoOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAutoOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9714,7 +8195,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// auto_option : 
+        ///  : 
         ///    AUTO_CLOSE on_off 
         /// </summary>
         public static AstAutoOption AutoOption(AstOnOff onOff)
@@ -9725,7 +8206,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// auto_option : 
+        ///  : 
         ///    AUTO_CREATE_STATISTICS statistic_value 
         /// </summary>
         public static AstAutoOption AutoOption(AstStatisticValue statisticValue)
@@ -9747,22 +8228,12 @@ namespace Bb.Asts.TSql
             "st)";
         
         internal AstChangeTracking(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstChangeTracking(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstChangeTracking(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstChangeTracking(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9772,7 +8243,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_tracking : 
+        ///  : 
         ///    CHANGE_TRACKING EQUAL ON change_tracking_option_list 
         /// </summary>
         public static AstChangeTracking ChangeTracking(AstChangeTrackingOptionList changeTrackingOptionList)
@@ -9795,22 +8266,12 @@ namespace Bb.Asts.TSql
             "N  EQUAL  period";
         
         internal AstChangeTrackingOptionList(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstChangeTrackingOptionList(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstChangeTrackingOptionList(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstChangeTrackingOptionList(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9820,7 +8281,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_tracking_option_list : 
+        ///  : 
         ///    AUTO_CLEANUP EQUAL on_off 
         /// </summary>
         public static AstChangeTrackingOptionList ChangeTrackingOptionList(AstOnOff onOff)
@@ -9831,7 +8292,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_tracking_option_list : 
+        ///  : 
         ///    CHANGE_RETENTION EQUAL period 
         /// </summary>
         public static AstChangeTrackingOptionList ChangeTrackingOptionList(AstPeriod period)
@@ -9854,22 +8315,12 @@ namespace Bb.Asts.TSql
             "al";
         
         internal AstCursorOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCursorOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCursorOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCursorOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9879,7 +8330,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// cursor_option : 
+        ///  : 
         ///    CURSOR_CLOSE_ON_COMMIT on_off 
         /// </summary>
         public static AstCursorOption CursorOption(AstOnOff onOff)
@@ -9890,7 +8341,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// cursor_option : 
+        ///  : 
         ///    CURSOR_DEFAULT local_global 
         /// </summary>
         public static AstCursorOption CursorOption(AstLocalGlobal localGlobal)
@@ -9911,22 +8362,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "listener_ip\r\n\t : LISTENER_IP  EQUAL  (ALL | ipv4 | ipv6 | stringtext)";
         
         internal AstListenerIp(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstListenerIp(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstListenerIp(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstListenerIp(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -9936,7 +8377,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// listener_ip : 
+        ///  : 
         ///    LISTENER_IP EQUAL ipv4 
         /// </summary>
         public static AstListenerIp ListenerIp(AstIpv4 ipv4)
@@ -9947,7 +8388,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// listener_ip : 
+        ///  : 
         ///    LISTENER_IP EQUAL ipv6 
         /// </summary>
         public static AstListenerIp ListenerIp(AstIpv6 ipv6)
@@ -9958,7 +8399,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// listener_ip : 
+        ///  : 
         ///    LISTENER_IP EQUAL stringtext 
         /// </summary>
         public static AstListenerIp ListenerIp(AstStringtext stringtext)
@@ -9981,22 +8422,12 @@ namespace Bb.Asts.TSql
             "authentication_mode?)";
         
         internal AstAuthenticationConfiguration(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAuthenticationConfiguration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAuthenticationConfiguration(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAuthenticationConfiguration(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10006,7 +8437,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// authentication_configuration : 
+        ///  : 
         ///    AUTHENTICATION EQUAL WINDOWS authentication_mode? CERTIFICATE certificate_id 
         /// </summary>
         public static AstAuthenticationConfiguration AuthenticationConfiguration(AstAuthenticationMode authenticationMode, AstCertificateId certificateId)
@@ -10017,7 +8448,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// authentication_configuration : 
+        ///  : 
         ///    AUTHENTICATION EQUAL CERTIFICATE certificate_id WINDOWS? authentication_mode? 
         /// </summary>
         public static AstAuthenticationConfiguration AuthenticationConfiguration(AstCertificateId certificateId, AstAuthenticationMode authenticationMode)
@@ -10040,22 +8471,12 @@ namespace Bb.Asts.TSql
             "s  witness_option";
         
         internal AstMirroringSetOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMirroringSetOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMirroringSetOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMirroringSetOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10065,7 +8486,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// mirroring_set_option : 
+        ///  : 
         ///    mirroring_partner partner_option 
         /// </summary>
         public static AstMirroringSetOption MirroringSetOption(AstMirroringPartner mirroringPartner, AstPartnerOption partnerOption)
@@ -10076,7 +8497,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// mirroring_set_option : 
+        ///  : 
         ///    mirroring_witness witness_option 
         /// </summary>
         public static AstMirroringSetOption MirroringSetOption(AstMirroringWitness mirroringWitness, AstWitnessOption witnessOption)
@@ -10100,22 +8521,12 @@ namespace Bb.Asts.TSql
             "\t | partner_option_enum";
         
         internal AstPartnerOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPartnerOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPartnerOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPartnerOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10125,7 +8536,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// partner_option : 
+        ///  : 
         ///    witness_partner_equal partner_server 
         /// </summary>
         public static AstPartnerOption PartnerOption(AstWitnessPartnerEqual witnessPartnerEqual, AstPartnerServer partnerServer)
@@ -10136,7 +8547,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// partner_option : 
+        ///  : 
         ///    TIMEOUT decimal 
         /// </summary>
         public static AstPartnerOption PartnerOption(AstDecimal @decimal)
@@ -10147,7 +8558,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// partner_option : 
+        /// partner_option_enum : 
         ///    partner_option_enum 
         /// </summary>
         public static AstPartnerOption PartnerOption(AstPartnerOptionEnum partnerOptionEnum)
@@ -10169,22 +8580,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "witness_option\r\n\t : witness_partner_equal  witness_server\r\n\t | OFF";
         
         internal AstWitnessOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstWitnessOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstWitnessOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstWitnessOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10194,7 +8595,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// witness_option : 
+        ///  : 
         ///    witness_partner_equal witness_server 
         /// </summary>
         public static AstWitnessOption WitnessOption(AstWitnessPartnerEqual witnessPartnerEqual, AstWitnessServer witnessServer)
@@ -10215,74 +8616,18 @@ namespace Bb.Asts.TSql
         protected static string _rule = "partner_server_tcp_prefix\r\n\t : TCP  COLON  DOUBLE_FORWARD_SLASH";
         
         internal AstPartnerServerTcpPrefix(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPartnerServerTcpPrefix(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPartnerServerTcpPrefix(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPartnerServerTcpPrefix(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitPartnerServerTcpPrefix(this);
-        }
-    }
-    
-    /// <summary>
-    /// port_number
-    /// 	 : port = decimal
-    /// </summary>
-    public partial class AstPortNumber : AstRule
-    {
-        
-        protected static string _rule = "port_number\r\n\t : port = decimal";
-        
-        internal AstPortNumber(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPortNumber(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPortNumber(Position p, List<AstRoot> list) : 
-                base(p, list)
-        {
-        }
-        
-        internal AstPortNumber(List<AstRoot> list) : 
-                base(Position.Default, list)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitPortNumber(this);
-        }
-        
-        /// <summary>
-        /// port_number : 
-        ///    port=decimal 
-        /// </summary>
-        public static AstPortNumber PortNumber(AstDecimal port)
-        {
-            List<AstRoot> arguments = new List<AstRoot>();
-            AstPortNumber result = new AstPortNumber(arguments);
-            return result;
         }
     }
     
@@ -10309,22 +8654,12 @@ namespace Bb.Asts.TSql
 	 | TWO_DIGIT_YEAR_CUTOFF  EQUAL  decimal";
         
         internal AstExternalAccessOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExternalAccessOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExternalAccessOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExternalAccessOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10334,7 +8669,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// external_access_option : 
+        ///  : 
         ///    DB_CHAINING on_off 
         /// </summary>
         public static AstExternalAccessOption ExternalAccessOption(AstOnOff onOff)
@@ -10345,7 +8680,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// external_access_option : 
+        ///  : 
         ///    DEFAULT_LANGUAGE EQUAL id_or_string 
         /// </summary>
         public static AstExternalAccessOption ExternalAccessOption(AstIdOrString idOrString)
@@ -10356,7 +8691,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// external_access_option : 
+        ///  : 
         ///    TWO_DIGIT_YEAR_CUTOFF EQUAL decimal 
         /// </summary>
         public static AstExternalAccessOption ExternalAccessOption(AstDecimal @decimal)
@@ -10378,22 +8713,12 @@ namespace Bb.Asts.TSql
             "esume)";
         
         internal AstHadrOptions(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstHadrOptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstHadrOptions(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstHadrOptions(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10403,7 +8728,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// hadr_options : 
+        ///  : 
         ///    HADR AVAILABILITY GROUP EQUAL group_id 
         /// </summary>
         public static AstHadrOptions HadrOptions(AstGroupId groupId)
@@ -10414,7 +8739,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// hadr_options : 
+        ///  : 
         ///    HADR suspend_resume 
         /// </summary>
         public static AstHadrOptions HadrOptions(AstSuspendResume suspendResume)
@@ -10438,22 +8763,12 @@ namespace Bb.Asts.TSql
             "CCELERATED_DATABASE_RECOVERY  EQUAL  on_off";
         
         internal AstRecoveryOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRecoveryOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRecoveryOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRecoveryOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10463,7 +8778,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// recovery_option : 
+        /// recovery_option_enum : 
         ///    recovery_option_enum 
         /// </summary>
         public static AstRecoveryOption RecoveryOption(AstRecoveryOptionEnum recoveryOptionEnum)
@@ -10474,7 +8789,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// recovery_option : 
+        ///  : 
         ///    TORN_PAGE_DETECTION on_off 
         /// </summary>
         public static AstRecoveryOption RecoveryOption(AstOnOff onOff)
@@ -10500,22 +8815,12 @@ namespace Bb.Asts.TSql
             " ERROR_BROKER_CONVERSATIONS\r\n\t | HONOR_BROKER_PRIORITY  on_off";
         
         internal AstServiceBrokerOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServiceBrokerOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServiceBrokerOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServiceBrokerOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10525,7 +8830,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// service_broker_option : 
+        ///  : 
         ///    HONOR_BROKER_PRIORITY on_off 
         /// </summary>
         public static AstServiceBrokerOption ServiceBrokerOption(AstOnOff onOff)
@@ -10549,22 +8854,12 @@ namespace Bb.Asts.TSql
             "T  on_off\r\n\t | MEMORY_OPTIMIZED_ELEVATE_TO_SNAPSHOT = on_off";
         
         internal AstSnapshotOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSnapshotOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSnapshotOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSnapshotOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10574,7 +8869,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// snapshot_option : 
+        ///  : 
         ///    ALLOW_SNAPSHOT_ISOLATION on_off 
         /// </summary>
         public static AstSnapshotOption SnapshotOption(AstOnOff onOff)
@@ -10614,22 +8909,12 @@ namespace Bb.Asts.TSql
 	 | RECURSIVE_TRIGGERS  on_off";
         
         internal AstSqlOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSqlOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSqlOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSqlOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10639,7 +8924,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_option : 
+        ///  : 
         ///    ANSI_NULL_DEFAULT on_off 
         /// </summary>
         public static AstSqlOption SqlOption(AstOnOff onOff)
@@ -10650,7 +8935,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// sql_option : 
+        ///  : 
         ///    COMPATIBILITY_LEVEL EQUAL decimal 
         /// </summary>
         public static AstSqlOption SqlOption(AstDecimal @decimal)
@@ -10674,22 +8959,12 @@ namespace Bb.Asts.TSql
             " NO_WAIT";
         
         internal AstTermination(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTermination(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTermination(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTermination(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10699,7 +8974,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// termination : 
+        ///  : 
         ///    ROLLBACK AFTER seconds=decimal 
         /// </summary>
         public static AstTermination Termination(AstDecimal seconds)
@@ -10720,22 +8995,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "if_exists\r\n\t : IF  EXISTS";
         
         internal AstIfExists(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstIfExists(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstIfExists(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstIfExists(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10756,22 +9021,12 @@ namespace Bb.Asts.TSql
             "value)?  (AS  TABLE  LR_BRACKET  column_def_table_constraints  RR_BRACKET)?";
         
         internal AstCreateType(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateType(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateType(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateType(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10781,7 +9036,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_type : 
+        ///  : 
         ///    CREATE TYPE name=schema_type_ref FROM data_type default_value AS TABLE ( column_def_table_constraints ) 
         /// </summary>
         public static AstCreateType CreateType(AstSchemaTypeRef name, AstDataType dataType, AstDefaultValue defaultValue, AstColumnDefTableConstraints columnDefTableConstraints)
@@ -10802,22 +9057,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "drop_type\r\n\t : DROP  TYPE  (IF  EXISTS)?  name = schema_type_ref";
         
         internal AstDropType(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDropType(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDropType(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDropType(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10827,7 +9072,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// drop_type : 
+        ///  : 
         ///    DROP TYPE IF EXISTS name=schema_type_ref 
         /// </summary>
         public static AstDropType DropType(AstSchemaTypeRef name)
@@ -10855,22 +9100,12 @@ namespace Bb.Asts.TSql
 	 | WITH  XMLNAMESPACES  LR_BRACKET  xml_dec += xml_declarations  RR_BRACKET  SEMI?";
         
         internal AstDeclareStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDeclareStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDeclareStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDeclareStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10880,7 +9115,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_statement : 
+        ///  : 
         ///    DECLARE local_id AS? table_type_definition SEMI? 
         /// </summary>
         public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstTableTypeDefinition tableTypeDefinition)
@@ -10891,7 +9126,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_statement : 
+        ///  : 
         ///    DECLARE local_id AS? full_table_ref SEMI? 
         /// </summary>
         public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstFullTableRef fullTableRef)
@@ -10902,7 +9137,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_statement : 
+        ///  : 
         ///    DECLARE loc=declare_locals SEMI? 
         /// </summary>
         public static AstDeclareStatement DeclareStatement(AstDeclareLocals loc)
@@ -10913,7 +9148,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_statement : 
+        ///  : 
         ///    DECLARE local_id AS? xml_type_definition SEMI? 
         /// </summary>
         public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstXmlTypeDefinition xmlTypeDefinition)
@@ -10924,7 +9159,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_statement : 
+        ///  : 
         ///    WITH XMLNAMESPACES ( xml_dec=xml_declarations ) SEMI? 
         /// </summary>
         public static AstDeclareStatement DeclareStatement(AstXmlDeclarations xmlDec)
@@ -10947,22 +9182,12 @@ namespace Bb.Asts.TSql
             "text";
         
         internal AstXmlDeclaration(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstXmlDeclaration(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstXmlDeclaration(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstXmlDeclaration(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -10972,7 +9197,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_declaration : 
+        ///  : 
         ///    xml_namespace_uri=stringtext AS id_ 
         /// </summary>
         public static AstXmlDeclaration XmlDeclaration(AstStringtext xmlNamespaceUri, AstId id)
@@ -10983,7 +9208,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_declaration : 
+        ///  : 
         ///    DEFAULT stringtext 
         /// </summary>
         public static AstXmlDeclaration XmlDeclaration(AstStringtext stringtext)
@@ -11010,22 +9235,12 @@ namespace Bb.Asts.TSql
             "LOBAL?  cursor_name  SEMI?";
         
         internal AstCursorStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCursorStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCursorStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCursorStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11035,7 +9250,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// cursor_statement : 
+        ///  : 
         ///    CLOSE GLOBAL? cursor_name SEMI? 
         /// </summary>
         public static AstCursorStatement CursorStatement(AstCursorName cursorName)
@@ -11046,7 +9261,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// cursor_statement : 
+        /// declare_cursor : 
         ///    declare_cursor 
         /// </summary>
         public static AstCursorStatement CursorStatement(AstDeclareCursor declareCursor)
@@ -11057,7 +9272,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// cursor_statement : 
+        /// fetch_cursor : 
         ///    fetch_cursor 
         /// </summary>
         public static AstCursorStatement CursorStatement(AstFetchCursor fetchCursor)
@@ -11078,22 +9293,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "backup_to\r\n\t : TO  (logical_device_ids  TO  disk_tape_url_values)";
         
         internal AstBackupTo(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBackupTo(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBackupTo(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBackupTo(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11103,7 +9308,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_to : 
+        ///  : 
         ///    TO logical_device_ids TO disk_tape_url_values 
         /// </summary>
         public static AstBackupTo BackupTo(AstLogicalDeviceIds logicalDeviceIds, AstDiskTapeUrlValues diskTapeUrlValues)
@@ -11124,22 +9329,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "backup_to_mirror\r\n\t : MIRROR  TO  (logical_device_ids | disk_tape_url_values)";
         
         internal AstBackupToMirror(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBackupToMirror(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBackupToMirror(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBackupToMirror(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11149,7 +9344,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_to_mirror : 
+        ///  : 
         ///    MIRROR TO logical_device_ids 
         /// </summary>
         public static AstBackupToMirror BackupToMirror(AstLogicalDeviceIds logicalDeviceIds)
@@ -11160,7 +9355,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_to_mirror : 
+        ///  : 
         ///    MIRROR TO disk_tape_url_values 
         /// </summary>
         public static AstBackupToMirror BackupToMirror(AstDiskTapeUrlValues diskTapeUrlValues)
@@ -11183,22 +9378,12 @@ namespace Bb.Asts.TSql
             " | by_password_crypt";
         
         internal AstBackupCertificatePrivateKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBackupCertificatePrivateKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBackupCertificatePrivateKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBackupCertificatePrivateKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11208,7 +9393,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_certificate_private_key : 
+        ///  : 
         ///    FILE EQUAL private_key_file=stringtext 
         /// </summary>
         public static AstBackupCertificatePrivateKey BackupCertificatePrivateKey(AstStringtext privateKeyFile)
@@ -11219,7 +9404,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_certificate_private_key : 
+        /// by_password_crypt : 
         ///    by_password_crypt 
         /// </summary>
         public static AstBackupCertificatePrivateKey BackupCertificatePrivateKey(AstByPasswordCrypt byPasswordCrypt)
@@ -11291,22 +9476,12 @@ namespace Bb.Asts.TSql
 	 | format_noformat";
         
         internal AstBackupSetting(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBackupSetting(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBackupSetting(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBackupSetting(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11316,7 +9491,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    DESCRIPTION EQUAL string_id 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstStringId stringId)
@@ -11327,7 +9502,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    NAME EQUAL backup_id 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstBackupId backupId)
@@ -11338,7 +9513,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    RETAINDAYS EQUAL decimal_id 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstDecimalId decimalId)
@@ -11349,7 +9524,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    MEDIANAME EQUAL stringtext 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstStringtext stringtext)
@@ -11360,7 +9535,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    STATS EQUAL decimal 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstDecimal @decimal)
@@ -11371,7 +9546,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        ///  : 
         ///    ENCRYPTION ( ALGORITHM EQUAL algorithm_short , SERVER CERTIFICATE EQUAL encryptor_id ) 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstAlgorithmShort algorithmShort, AstEncryptorId encryptorId)
@@ -11382,7 +9557,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// compression : 
         ///    compression 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstCompression compression)
@@ -11393,7 +9568,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// rewind : 
         ///    rewind 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstRewind rewind)
@@ -11404,7 +9579,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// load_moun_load : 
         ///    load_moun_load 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstLoadMounLoad loadMounLoad)
@@ -11415,7 +9590,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// init_no_init : 
         ///    init_no_init 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstInitNoInit initNoInit)
@@ -11426,7 +9601,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// no_skip : 
         ///    no_skip 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstNoSkip noSkip)
@@ -11437,7 +9612,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// backup_setting : 
+        /// format_noformat : 
         ///    format_noformat 
         /// </summary>
         public static AstBackupSetting BackupSetting(AstFormatNoformat formatNoformat)
@@ -11459,22 +9634,12 @@ namespace Bb.Asts.TSql
             "b)";
         
         internal AstKillStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstKillStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstKillStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstKillStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11484,7 +9649,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_statement : 
+        ///  : 
         ///    KILL kill_process 
         /// </summary>
         public static AstKillStatement KillStatement(AstKillProcess killProcess)
@@ -11495,7 +9660,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_statement : 
+        ///  : 
         ///    KILL kill_query_notification 
         /// </summary>
         public static AstKillStatement KillStatement(AstKillQueryNotification killQueryNotification)
@@ -11506,7 +9671,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_statement : 
+        ///  : 
         ///    KILL kill_stats_job 
         /// </summary>
         public static AstKillStatement KillStatement(AstKillStatsJob killStatsJob)
@@ -11527,22 +9692,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "kill_process\r\n\t : (session = decimal_string | UOW)  (WITH  STATUSONLY)?";
         
         internal AstKillProcess(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstKillProcess(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstKillProcess(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstKillProcess(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11552,7 +9707,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_process : 
+        ///  : 
         ///    session=decimal_string WITH STATUSONLY 
         /// </summary>
         public static AstKillProcess KillProcess(AstDecimalString session)
@@ -11574,22 +9729,12 @@ namespace Bb.Asts.TSql
             "on = decimal)";
         
         internal AstKillQueryNotification(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstKillQueryNotification(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstKillQueryNotification(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstKillQueryNotification(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11599,7 +9744,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_query_notification : 
+        ///  : 
         ///    QUERY NOTIFICATION SUBSCRIPTION subscription=decimal 
         /// </summary>
         public static AstKillQueryNotification KillQueryNotification(AstDecimal subscription)
@@ -11620,22 +9765,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "kill_stats_job\r\n\t : STATS  JOB  job = decimal";
         
         internal AstKillStatsJob(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstKillStatsJob(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstKillStatsJob(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstKillStatsJob(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11645,7 +9780,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// kill_stats_job : 
+        ///  : 
         ///    STATS JOB job=decimal 
         /// </summary>
         public static AstKillStatsJob KillStatsJob(AstDecimal job)
@@ -11670,22 +9805,12 @@ namespace Bb.Asts.TSql
             "server_id)?";
         
         internal AstExecuteBody(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteBody(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteBody(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteBody(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11695,7 +9820,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_body : 
+        ///  : 
         ///    return_status=local_id EQUAL func_proc_name_server_database_schema execute_statement_arg? 
         /// </summary>
         public static AstExecuteBody ExecuteBody(AstLocalId returnStatus, AstFuncProcNameServerDatabaseSchema funcProcNameServerDatabaseSchema, AstExecuteStatementArg executeStatementArg)
@@ -11706,7 +9831,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_body : 
+        ///  : 
         ///    return_status=local_id EQUAL execute_var_string execute_statement_arg? 
         /// </summary>
         public static AstExecuteBody ExecuteBody(AstLocalId returnStatus, AstExecuteVarString executeVarString, AstExecuteStatementArg executeStatementArg)
@@ -11717,7 +9842,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_body : 
+        ///  : 
         ///    ( execute_var_strings ) AS? login_user EQUAL stringtext AT_KEYWORD server_id 
         /// </summary>
         public static AstExecuteBody ExecuteBody(AstExecuteVarStrings executeVarStrings, AstLoginUser loginUser, AstStringtext stringtext, AstServerId serverId)
@@ -11740,22 +9865,12 @@ namespace Bb.Asts.TSql
             "\r\n\t | execute_statement_arg_nameds";
         
         internal AstExecuteStatementArg(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteStatementArg(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteStatementArg(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteStatementArg(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11765,7 +9880,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_statement_arg : 
+        ///  : 
         ///    execute_statement_arg_unnamed execute_statement_args? 
         /// </summary>
         public static AstExecuteStatementArg ExecuteStatementArg(AstExecuteStatementArgUnnamed executeStatementArgUnnamed, AstExecuteStatementArgs executeStatementArgs)
@@ -11776,7 +9891,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_statement_arg : 
+        /// execute_statement_arg_nameds : 
         ///    execute_statement_arg_nameds 
         /// </summary>
         public static AstExecuteStatementArg ExecuteStatementArg(AstExecuteStatementArgNameds executeStatementArgNameds)
@@ -11798,22 +9913,12 @@ namespace Bb.Asts.TSql
             "r";
         
         internal AstExecuteStatementArgNamed(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteStatementArgNamed(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteStatementArgNamed(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteStatementArgNamed(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11823,7 +9928,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_statement_arg_named : 
+        ///  : 
         ///    name=local_id EQUAL value=execute_parameter 
         /// </summary>
         public static AstExecuteStatementArgNamed ExecuteStatementArgNamed(AstLocalId name, AstExecuteParameter value)
@@ -11844,22 +9949,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "execute_statement_arg_unnamed\r\n\t : value = execute_parameter";
         
         internal AstExecuteStatementArgUnnamed(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteStatementArgUnnamed(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteStatementArgUnnamed(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteStatementArgUnnamed(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11869,7 +9964,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_statement_arg_unnamed : 
+        /// execute_parameter : 
         ///    value=execute_parameter 
         /// </summary>
         public static AstExecuteStatementArgUnnamed ExecuteStatementArgUnnamed(AstExecuteParameter value)
@@ -11891,22 +9986,12 @@ namespace Bb.Asts.TSql
             "";
         
         internal AstExecuteParameter(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteParameter(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteParameter(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteParameter(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11916,7 +10001,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_parameter : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstExecuteParameter ExecuteParameter(AstConstant constant)
@@ -11927,7 +10012,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_parameter : 
+        ///  : 
         ///    local_id output_out? 
         /// </summary>
         public static AstExecuteParameter ExecuteParameter(AstLocalId localId, AstOutputOut outputOut)
@@ -11938,7 +10023,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_parameter : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstExecuteParameter ExecuteParameter(AstId id)
@@ -11962,22 +10047,12 @@ namespace Bb.Asts.TSql
             "r_string)?)?";
         
         internal AstExecuteVarString(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteVarString(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteVarString(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteVarString(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -11987,7 +10062,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_var_string : 
+        ///  : 
         ///    source=local_id output_out? PLUS more=local_id PLUS execute_var_string 
         /// </summary>
         public static AstExecuteVarString ExecuteVarString(AstLocalId source, AstOutputOut outputOut, AstLocalId more, AstExecuteVarString executeVarString)
@@ -11998,7 +10073,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_var_string : 
+        ///  : 
         ///    stringtext PLUS local_id PLUS execute_var_string 
         /// </summary>
         public static AstExecuteVarString ExecuteVarString(AstStringtext stringtext, AstLocalId localId, AstExecuteVarString executeVarString)
@@ -12032,22 +10107,12 @@ namespace Bb.Asts.TSql
 	 | create_certificate";
         
         internal AstSecurityStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSecurityStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSecurityStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSecurityStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12057,7 +10122,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        ///  : 
         ///    execute_clause SEMI? 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstExecuteClause executeClause)
@@ -12068,7 +10133,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        ///  : 
         ///    GRANT ALL PRIVILEGES? ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id SEMI? 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
@@ -12079,7 +10144,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        ///  : 
         ///    GRANT grant_permission ( column_name_list ) ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id SEMI? 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstColumnNameList columnNameList, AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
@@ -12090,7 +10155,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        ///  : 
         ///    REVERT ( WITH COOKIE EQUAL local_id ) SEMI? 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstLocalId localId)
@@ -12101,7 +10166,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        /// open_key : 
         ///    open_key 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstOpenKey openKey)
@@ -12112,7 +10177,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        /// close_key : 
         ///    close_key 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstCloseKey closeKey)
@@ -12123,7 +10188,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        /// create_key : 
         ///    create_key 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstCreateKey createKey)
@@ -12134,7 +10199,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// security_statement : 
+        /// create_certificate : 
         ///    create_certificate 
         /// </summary>
         public static AstSecurityStatement SecurityStatement(AstCreateCertificate createCertificate)
@@ -12158,22 +10223,12 @@ namespace Bb.Asts.TSql
             "ET)?";
         
         internal AstExistingKeys(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExistingKeys(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExistingKeys(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExistingKeys(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12183,7 +10238,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// existing_keys : 
+        ///  : 
         ///    ASSEMBLY assembly_id 
         /// </summary>
         public static AstExistingKeys ExistingKeys(AstAssemblyId assemblyId)
@@ -12194,7 +10249,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// existing_keys : 
+        ///  : 
         ///    EXECUTABLE? FILE EQUAL path_to_file=stringtext WITH PRIVATE KEY ( private_key_options ) 
         /// </summary>
         public static AstExistingKeys ExistingKeys(AstStringtext pathToFile, AstPrivateKeyOptions privateKeyOptions)
@@ -12216,22 +10271,12 @@ namespace Bb.Asts.TSql
             "yption_decryption  BY  PASSWORD  EQUAL  password = stringtext)?";
         
         internal AstPrivateKeyOptions(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPrivateKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPrivateKeyOptions(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPrivateKeyOptions(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12241,7 +10286,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// private_key_options : 
+        ///  : 
         ///    FILE EQUAL path=stringtext , encryption_decryption BY PASSWORD EQUAL password=stringtext 
         /// </summary>
         public static AstPrivateKeyOptions PrivateKeyOptions(AstStringtext path, AstEncryptionDecryption encryptionDecryption, AstStringtext password)
@@ -12252,7 +10297,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// private_key_options : 
+        ///  : 
         ///    binary_ EQUAL path=stringtext , encryption_decryption BY PASSWORD EQUAL password=stringtext 
         /// </summary>
         public static AstPrivateKeyOptions PrivateKeyOptions(AstBinary binary, AstStringtext path, AstEncryptionDecryption encryptionDecryption, AstStringtext password)
@@ -12275,22 +10320,12 @@ namespace Bb.Asts.TSql
             "mechanism\r\n\t | OPEN  MASTER  KEY  decryption_by_pwd";
         
         internal AstOpenKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstOpenKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstOpenKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstOpenKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12300,7 +10335,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// open_key : 
+        ///  : 
         ///    OPEN SYMMETRIC KEY symmetric_key_id DECRYPTION BY decryption_mechanism 
         /// </summary>
         public static AstOpenKey OpenKey(AstSymmetricKeyId symmetricKeyId, AstDecryptionMechanism decryptionMechanism)
@@ -12311,7 +10346,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// open_key : 
+        ///  : 
         ///    OPEN MASTER KEY decryption_by_pwd 
         /// </summary>
         public static AstOpenKey OpenKey(AstDecryptionByPwd decryptionByPwd)
@@ -12335,22 +10370,12 @@ namespace Bb.Asts.TSql
             "  KEYS\r\n\t | CLOSE  MASTER  KEY";
         
         internal AstCloseKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCloseKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCloseKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCloseKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12360,7 +10385,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// close_key : 
+        ///  : 
         ///    CLOSE SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         public static AstCloseKey CloseKey(AstSymmetricKeyId symmetricKeyId)
@@ -12384,22 +10409,12 @@ namespace Bb.Asts.TSql
             "WITH  ((key_options | ENCRYPTION  BY  encryption_mechanism)  COMMA?)+";
         
         internal AstCreateKey(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateKey(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateKey(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateKey(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12409,7 +10424,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_key : 
+        ///  : 
         ///    CREATE MASTER KEY encryption_by_pwd 
         /// </summary>
         public static AstCreateKey CreateKey(AstEncryptionByPwd encryptionByPwd)
@@ -12420,7 +10435,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_key : 
+        ///  : 
         ///    CREATE SYMMETRIC KEY symmetric_key_id AUTHORIZATION user_id FROM PROVIDER provider_id WITH key_options COMMA? 
         /// </summary>
         public static AstCreateKey CreateKey(AstSymmetricKeyId symmetricKeyId, AstUserId userId, AstProviderId providerId, AstKeyOptions keyOptions)
@@ -12431,7 +10446,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_key : 
+        ///  : 
         ///    CREATE SYMMETRIC KEY symmetric_key_id AUTHORIZATION user_id FROM PROVIDER provider_id WITH ENCRYPTION BY encryption_mechanism COMMA? 
         /// </summary>
         public static AstCreateKey CreateKey(AstSymmetricKeyId symmetricKeyId, AstUserId userId, AstProviderId providerId, AstEncryptionMechanism encryptionMechanism)
@@ -12461,22 +10476,12 @@ namespace Bb.Asts.TSql
 	 | CREATION_DISPOSITION  EQUAL  (CREATE_NEW | OPEN_EXISTING)";
         
         internal AstKeyOptions(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstKeyOptions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstKeyOptions(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstKeyOptions(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12486,7 +10491,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// key_options : 
+        ///  : 
         ///    KEY_SOURCE EQUAL pass_phrase=stringtext 
         /// </summary>
         public static AstKeyOptions KeyOptions(AstStringtext passPhrase)
@@ -12497,7 +10502,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// key_options : 
+        ///  : 
         ///    ALGORITHM EQUAL algorithm 
         /// </summary>
         public static AstKeyOptions KeyOptions(AstAlgorithm algorithm)
@@ -12522,22 +10527,12 @@ namespace Bb.Asts.TSql
             "key_id\r\n\t | SYMMETRIC  KEY  symmetric_key_id\r\n\t | PASSWORD  EQUAL  stringtext";
         
         internal AstEncryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEncryptionMechanism(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEncryptionMechanism(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEncryptionMechanism(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12547,7 +10542,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// encryption_mechanism : 
+        ///  : 
         ///    CERTIFICATE certificate_id 
         /// </summary>
         public static AstEncryptionMechanism EncryptionMechanism(AstCertificateId certificateId)
@@ -12558,7 +10553,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// encryption_mechanism : 
+        ///  : 
         ///    ASYMMETRIC KEY asym_key_id 
         /// </summary>
         public static AstEncryptionMechanism EncryptionMechanism(AstAsymKeyId asymKeyId)
@@ -12569,7 +10564,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// encryption_mechanism : 
+        ///  : 
         ///    SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         public static AstEncryptionMechanism EncryptionMechanism(AstSymmetricKeyId symmetricKeyId)
@@ -12580,7 +10575,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// encryption_mechanism : 
+        ///  : 
         ///    PASSWORD EQUAL stringtext 
         /// </summary>
         public static AstEncryptionMechanism EncryptionMechanism(AstStringtext stringtext)
@@ -12606,22 +10601,12 @@ namespace Bb.Asts.TSql
             ")?\r\n\t | SYMMETRIC  KEY  symmetric_key_id\r\n\t | PASSWORD  EQUAL  stringtext";
         
         internal AstDecryptionMechanism(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDecryptionMechanism(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDecryptionMechanism(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDecryptionMechanism(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12631,7 +10616,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decryption_mechanism : 
+        ///  : 
         ///    CERTIFICATE certificate_id WITH PASSWORD EQUAL stringtext 
         /// </summary>
         public static AstDecryptionMechanism DecryptionMechanism(AstCertificateId certificateId, AstStringtext stringtext)
@@ -12642,7 +10627,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decryption_mechanism : 
+        ///  : 
         ///    ASYMMETRIC KEY asym_key_id WITH PASSWORD EQUAL stringtext 
         /// </summary>
         public static AstDecryptionMechanism DecryptionMechanism(AstAsymKeyId asymKeyId, AstStringtext stringtext)
@@ -12653,7 +10638,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decryption_mechanism : 
+        ///  : 
         ///    SYMMETRIC KEY symmetric_key_id 
         /// </summary>
         public static AstDecryptionMechanism DecryptionMechanism(AstSymmetricKeyId symmetricKeyId)
@@ -12664,7 +10649,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decryption_mechanism : 
+        ///  : 
         ///    PASSWORD EQUAL stringtext 
         /// </summary>
         public static AstDecryptionMechanism DecryptionMechanism(AstStringtext stringtext)
@@ -12688,22 +10673,12 @@ namespace Bb.Asts.TSql
             "t_permission_create";
         
         internal AstGrantPermission(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstGrantPermission(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstGrantPermission(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstGrantPermission(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12713,7 +10688,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// grant_permission : 
+        /// grant_permission_enum : 
         ///    grant_permission_enum 
         /// </summary>
         public static AstGrantPermission GrantPermission(AstGrantPermissionEnum grantPermissionEnum)
@@ -12724,7 +10699,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// grant_permission : 
+        /// grant_permission_alter : 
         ///    grant_permission_alter 
         /// </summary>
         public static AstGrantPermission GrantPermission(AstGrantPermissionAlter grantPermissionAlter)
@@ -12735,7 +10710,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// grant_permission : 
+        /// grant_permission_create : 
         ///    grant_permission_create 
         /// </summary>
         public static AstGrantPermission GrantPermission(AstGrantPermissionCreate grantPermissionCreate)
@@ -12763,22 +10738,12 @@ namespace Bb.Asts.TSql
 	 | set_special";
         
         internal AstSetStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSetStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSetStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSetStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12788,7 +10753,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_statement : 
+        ///  : 
         ///    SET local_id . member_name=id_ EQUAL expression SEMI? 
         /// </summary>
         public static AstSetStatement SetStatement(AstLocalId localId, AstId memberName, AstExpression expression)
@@ -12799,7 +10764,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_statement : 
+        ///  : 
         ///    SET local_id assignment_operator expression SEMI? 
         /// </summary>
         public static AstSetStatement SetStatement(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -12810,7 +10775,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_statement : 
+        ///  : 
         ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR READ ONLY SEMI? 
         /// </summary>
         public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon)
@@ -12821,7 +10786,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_statement : 
+        ///  : 
         ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR UPDATE OF column_name_list SEMI? 
         /// </summary>
         public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon, AstColumnNameList columnNameList)
@@ -12832,7 +10797,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_statement : 
+        /// set_special : 
         ///    set_special 
         /// </summary>
         public static AstSetStatement SetStatement(AstSetSpecial setSpecial)
@@ -12870,22 +10835,12 @@ namespace Bb.Asts.TSql
 	 | SAVE  transaction  transaction_ref?";
         
         internal AstTransactionStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTransactionStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTransactionStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTransactionStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12895,7 +10850,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// transaction_statement : 
+        ///  : 
         ///    BEGIN DISTRIBUTED transaction transaction_ref? 
         /// </summary>
         public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef)
@@ -12906,7 +10861,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// transaction_statement : 
+        ///  : 
         ///    BEGIN transaction transaction_ref WITH MARK mark=stringtext 
         /// </summary>
         public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef, AstStringtext mark)
@@ -12917,7 +10872,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// transaction_statement : 
+        ///  : 
         ///    COMMIT transaction transaction_ref WITH ( DELAYED_DURABILITY EQUAL on_off ) 
         /// </summary>
         public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef, AstOnOff onOff)
@@ -12928,7 +10883,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// transaction_statement : 
+        ///  : 
         ///    COMMIT transaction_id 
         /// </summary>
         public static AstTransactionStatement TransactionStatement(AstTransactionId transactionId)
@@ -12949,22 +10904,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "go_statement\r\n\t : GO  (count = decimal)?";
         
         internal AstGoStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstGoStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstGoStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstGoStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -12974,7 +10919,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// go_statement : 
+        ///  : 
         ///    GO count=decimal()? 
         /// </summary>
         public static AstGoStatement GoStatement(AstDecimal count)
@@ -12995,22 +10940,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "setuser_statement\r\n\t : SETUSER  user = stringtext";
         
         internal AstSetuserStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSetuserStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSetuserStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSetuserStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13020,7 +10955,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// setuser_statement : 
+        ///  : 
         ///    SETUSER user=stringtext 
         /// </summary>
         public static AstSetuserStatement SetuserStatement(AstStringtext user)
@@ -13041,22 +10976,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "reconfigure_statement\r\n\t : RECONFIGURE  (WITH  OVERRIDE)?";
         
         internal AstReconfigureStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstReconfigureStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstReconfigureStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstReconfigureStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13076,22 +11001,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "shutdown_statement\r\n\t : SHUTDOWN  (WITH  NOWAIT)?";
         
         internal AstShutdownStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstShutdownStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstShutdownStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstShutdownStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13111,22 +11026,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "checkpoint_statement\r\n\t : CHECKPOINT  (checkPointDuration = decimal)?";
         
         internal AstCheckpointStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCheckpointStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCheckpointStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCheckpointStatement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13136,7 +11041,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// checkpoint_statement : 
+        ///  : 
         ///    CHECKPOINT checkPointDuration=decimal()? 
         /// </summary>
         public static AstCheckpointStatement CheckpointStatement(AstDecimal checkPointDuration)
@@ -13158,22 +11063,12 @@ namespace Bb.Asts.TSql
             " | id_ | DEFAULT)  RR_BRACKET)?  SEMI?";
         
         internal AstDbccSpecial(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDbccSpecial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDbccSpecial(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDbccSpecial(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13183,7 +11078,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dbcc_special : 
+        ///  : 
         ///    DBCC SHRINKLOG ( SIZE EQUAL constant_expression ) SEMI? 
         /// </summary>
         public static AstDbccSpecial DbccSpecial(AstConstantExpression constantExpression)
@@ -13194,7 +11089,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dbcc_special : 
+        ///  : 
         ///    DBCC SHRINKLOG ( SIZE EQUAL id_ ) SEMI? 
         /// </summary>
         public static AstDbccSpecial DbccSpecial(AstId id)
@@ -13216,22 +11111,12 @@ namespace Bb.Asts.TSql
             "KET)?  (WITH  dbcc_options)?  SEMI?";
         
         internal AstDbccClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDbccClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDbccClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDbccClause(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13241,7 +11126,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dbcc_clause : 
+        ///  : 
         ///    DBCC name=dbcc_command ( expression_list ) WITH dbcc_options SEMI? 
         /// </summary>
         public static AstDbccClause DbccClause(AstDbccCommand name, AstExpressionList expressionList, AstDbccOptions dbccOptions)
@@ -13263,22 +11148,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "dbcc_command\r\n\t : simple_id\r\n\t | keyword";
         
         internal AstDbccCommand(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDbccCommand(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDbccCommand(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDbccCommand(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13288,7 +11163,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dbcc_command : 
+        /// simple_id : 
         ///    simple_id 
         /// </summary>
         public static AstDbccCommand DbccCommand(AstSimpleId simpleId)
@@ -13299,7 +11174,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// dbcc_command : 
+        /// keyword : 
         ///    keyword 
         /// </summary>
         public static AstDbccCommand DbccCommand(AstKeyword keyword)
@@ -13321,22 +11196,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "execute_clause_mode\r\n\t : execute_clause_mode_enum\r\n\t | stringtext";
         
         internal AstExecuteClauseMode(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExecuteClauseMode(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExecuteClauseMode(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExecuteClauseMode(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13346,7 +11211,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_clause_mode : 
+        /// execute_clause_mode_enum : 
         ///    execute_clause_mode_enum 
         /// </summary>
         public static AstExecuteClauseMode ExecuteClauseMode(AstExecuteClauseModeEnum executeClauseModeEnum)
@@ -13357,7 +11222,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// execute_clause_mode : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstExecuteClauseMode ExecuteClauseMode(AstStringtext stringtext)
@@ -13381,22 +11246,12 @@ namespace Bb.Asts.TSql
             "ondition  RR_BRACKET";
         
         internal AstTableTypeIndice(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableTypeIndice(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableTypeIndice(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableTypeIndice(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13406,7 +11261,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_type_indice : 
+        ///  : 
         ///    PRIMARY KEY clustered? ( column_name_list_with_order ) 
         /// </summary>
         public static AstTableTypeIndice TableTypeIndice(AstClustered clustered, AstColumnNameListWithOrder columnNameListWithOrder)
@@ -13417,7 +11272,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_type_indice : 
+        ///  : 
         ///    INDEX id_ clustered? ( column_name_list_with_order ) 
         /// </summary>
         public static AstTableTypeIndice TableTypeIndice(AstId id, AstClustered clustered, AstColumnNameListWithOrder columnNameListWithOrder)
@@ -13428,7 +11283,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_type_indice : 
+        ///  : 
         ///    UNIQUE ( column_name_list_with_order ) 
         /// </summary>
         public static AstTableTypeIndice TableTypeIndice(AstColumnNameListWithOrder columnNameListWithOrder)
@@ -13439,7 +11294,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_type_indice : 
+        ///  : 
         ///    CHECK ( search_condition ) 
         /// </summary>
         public static AstTableTypeIndice TableTypeIndice(AstSearchCondition searchCondition)
@@ -13460,22 +11315,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "xml_schema_collection\r\n\t : left = ID  DOT  right = ID";
         
         internal AstXmlSchemaCollection(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstXmlSchemaCollection(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstXmlSchemaCollection(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstXmlSchemaCollection(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13485,7 +11330,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_schema_collection : 
+        ///  : 
         ///    left=ID . right=ID 
         /// </summary>
         public static AstXmlSchemaCollection XmlSchemaCollection(String left, String right)
@@ -13509,22 +11354,12 @@ namespace Bb.Asts.TSql
             "ition\r\n\t | table_constraint";
         
         internal AstColumnDefTableConstraint(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstColumnDefTableConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstColumnDefTableConstraint(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstColumnDefTableConstraint(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13534,7 +11369,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_def_table_constraint : 
+        /// column_definition : 
         ///    column_definition 
         /// </summary>
         public static AstColumnDefTableConstraint ColumnDefTableConstraint(AstColumnDefinition columnDefinition)
@@ -13545,7 +11380,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_def_table_constraint : 
+        /// materialized_column_definition : 
         ///    materialized_column_definition 
         /// </summary>
         public static AstColumnDefTableConstraint ColumnDefTableConstraint(AstMaterializedColumnDefinition materializedColumnDefinition)
@@ -13556,7 +11391,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_def_table_constraint : 
+        /// table_constraint : 
         ///    table_constraint 
         /// </summary>
         public static AstColumnDefTableConstraint ColumnDefTableConstraint(AstTableConstraint tableConstraint)
@@ -13598,22 +11433,12 @@ namespace Bb.Asts.TSql
 	 | column_constraint";
         
         internal AstColumnDefinitionElement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstColumnDefinitionElement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstColumnDefinitionElement(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstColumnDefinitionElement(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13623,7 +11448,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    COLLATE collation_id 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstCollationId collationId)
@@ -13634,7 +11459,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    MASKED WITH ( FUNCTION EQUAL mask_function=stringtext ) 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstStringtext maskFunction)
@@ -13645,7 +11470,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT constant_expr=expression 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstConstraintId constraintId, AstExpression constantExpr)
@@ -13656,7 +11481,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    IDENTITY ( seed=decimal , increment=decimal ) 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstDecimal seed, AstDecimal increment)
@@ -13667,7 +11492,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    GENERATED ALWAYS AS generation_mode start_end HIDDEN_KEYWORD? 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstGenerationMode generationMode, AstStartEnd startEnd)
@@ -13678,7 +11503,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        ///  : 
         ///    ENCRYPTED WITH ( column_encryption_key_id EQUAL key_name=stringtext , ENCRYPTION_TYPE EQUAL encryption_mode , ALGORITHM EQUAL algo=stringtext ) 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstColumnEncryptionKeyId columnEncryptionKeyId, AstStringtext keyName, AstEncryptionMode encryptionMode, AstStringtext algo)
@@ -13689,7 +11514,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_definition_element : 
+        /// column_constraint : 
         ///    column_constraint 
         /// </summary>
         public static AstColumnDefinitionElement ColumnDefinitionElement(AstColumnConstraint columnConstraint)
@@ -13712,22 +11537,12 @@ namespace Bb.Asts.TSql
             "s) | check_constraint)";
         
         internal AstColumnConstraint(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstColumnConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstColumnConstraint(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstColumnConstraint(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13737,7 +11552,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id null_notnull 
         /// </summary>
         public static AstColumnConstraint ColumnConstraint(AstConstraintId constraintId, AstNullNotnull nullNotnull)
@@ -13748,7 +11563,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id primary_key_unique clustered? primary_key_options 
         /// </summary>
         public static AstColumnConstraint ColumnConstraint(AstConstraintId constraintId, AstPrimaryKeyUnique primaryKeyUnique, AstClustered clustered, AstPrimaryKeyOptions primaryKeyOptions)
@@ -13759,7 +11574,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id FOREIGN KEY foreign_key_options 
         /// </summary>
         public static AstColumnConstraint ColumnConstraint(AstConstraintId constraintId, AstForeignKeyOptions foreignKeyOptions)
@@ -13770,7 +11585,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id check_constraint 
         /// </summary>
         public static AstColumnConstraint ColumnConstraint(AstConstraintId constraintId, AstCheckConstraint checkConstraint)
@@ -13792,22 +11607,12 @@ namespace Bb.Asts.TSql
             "olumn_id  RR_BRACKET) | file_group_id | DEFAULT_DOUBLE_QUOTE)";
         
         internal AstOnPartitionOrFilegroup(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstOnPartitionOrFilegroup(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstOnPartitionOrFilegroup(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstOnPartitionOrFilegroup(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13817,7 +11622,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// on_partition_or_filegroup : 
+        ///  : 
         ///    ON partition_scheme_id ( partition_column_id ) 
         /// </summary>
         public static AstOnPartitionOrFilegroup OnPartitionOrFilegroup(AstPartitionSchemeId partitionSchemeId, AstPartitionColumnId partitionColumnId)
@@ -13828,7 +11633,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// on_partition_or_filegroup : 
+        ///  : 
         ///    ON file_group_id 
         /// </summary>
         public static AstOnPartitionOrFilegroup OnPartitionOrFilegroup(AstFileGroupId fileGroupId)
@@ -13850,22 +11655,12 @@ namespace Bb.Asts.TSql
 	 : (CONSTRAINT  constraint_id)?  ((primary_key_unique  clustered?  LR_BRACKET  column_name_list_with_order  RR_BRACKET  primary_key_options) | (FOREIGN  KEY  LR_BRACKET  fk = column_name_list  RR_BRACKET  foreign_key_options) | (CONNECTION  LR_BRACKET  connection_nodes  RR_BRACKET) | (DEFAULT  LR_BRACKET?  ((stringtext | PLUS | function_call | decimal)+ | NEXT  VALUE  FOR  full_table_ref)  RR_BRACKET?  FOR  id_) | check_constraint)";
         
         internal AstTableConstraint(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableConstraint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableConstraint(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableConstraint(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -13875,7 +11670,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id primary_key_unique clustered? ( column_name_list_with_order ) primary_key_options 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstPrimaryKeyUnique primaryKeyUnique, AstClustered clustered, AstColumnNameListWithOrder columnNameListWithOrder, AstPrimaryKeyOptions primaryKeyOptions)
@@ -13886,7 +11681,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id FOREIGN KEY ( fk=column_name_list ) foreign_key_options 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstColumnNameList fk, AstForeignKeyOptions foreignKeyOptions)
@@ -13897,7 +11692,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id CONNECTION ( connection_nodes ) 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstConnectionNodes connectionNodes)
@@ -13908,7 +11703,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT LR_BRACKET? stringtext RR_BRACKET? FOR id_ 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstStringtext stringtext, AstId id)
@@ -13919,7 +11714,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT LR_BRACKET? PLUS RR_BRACKET? FOR id_ 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstId id)
@@ -13930,7 +11725,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT LR_BRACKET? function_call RR_BRACKET? FOR id_ 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstFunctionCall functionCall, AstId id)
@@ -13941,7 +11736,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT LR_BRACKET? decimal RR_BRACKET? FOR id_ 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstDecimal @decimal, AstId id)
@@ -13952,7 +11747,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id DEFAULT LR_BRACKET? NEXT VALUE FOR full_table_ref RR_BRACKET? FOR id_ 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstFullTableRef fullTableRef, AstId id)
@@ -13963,7 +11758,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_constraint : 
+        ///  : 
         ///    CONSTRAINT constraint_id check_constraint 
         /// </summary>
         public static AstTableConstraint TableConstraint(AstConstraintId constraintId, AstCheckConstraint checkConstraint)
@@ -13984,22 +11779,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "connection_node\r\n\t : from_node_table = id_  TO  to_node_table = id_";
         
         internal AstConnectionNode(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstConnectionNode(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstConnectionNode(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstConnectionNode(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14009,7 +11794,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// connection_node : 
+        ///  : 
         ///    from_node_table=id_ TO to_node_table=id_ 
         /// </summary>
         public static AstConnectionNode ConnectionNode(AstId fromNodeTable, AstId toNodeTable)
@@ -14059,22 +11844,12 @@ namespace Bb.Asts.TSql
 	 | MAX_DURATION  EQUAL  times = decimal  MINUTES?";
         
         internal AstAlterTableIndexOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAlterTableIndexOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAlterTableIndexOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAlterTableIndexOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14084,7 +11859,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        ///  : 
         ///    PAD_INDEX EQUAL on_off 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstOnOff onOff)
@@ -14095,7 +11870,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        ///  : 
         ///    FILLFACTOR EQUAL decimal 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstDecimal @decimal)
@@ -14106,7 +11881,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        ///  : 
         ///    DATA_COMPRESSION EQUAL index_strategy on_partitions? 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstIndexStrategy indexStrategy, AstOnPartitions onPartitions)
@@ -14117,7 +11892,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        ///  : 
         ///    XML_COMPRESSION EQUAL on_off on_partitions? 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstOnOff onOff, AstOnPartitions onPartitions)
@@ -14128,7 +11903,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        /// distribution : 
         ///    distribution 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstDistribution distribution)
@@ -14139,7 +11914,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// alter_table_index_option : 
+        ///  : 
         ///    ONLINE EQUAL ON ( low_priority_lock_wait ) 
         /// </summary>
         public static AstAlterTableIndexOption AlterTableIndexOption(AstLowPriorityLockWait lowPriorityLockWait)
@@ -14162,22 +11937,12 @@ namespace Bb.Asts.TSql
             "n_partial_enum";
         
         internal AstDeclareSetCursorCommonPartial(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDeclareSetCursorCommonPartial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDeclareSetCursorCommonPartial(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDeclareSetCursorCommonPartial(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14187,7 +11952,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_set_cursor_common_partial : 
+        /// local_global : 
         ///    local_global 
         /// </summary>
         public static AstDeclareSetCursorCommonPartial DeclareSetCursorCommonPartial(AstLocalGlobal localGlobal)
@@ -14198,7 +11963,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// declare_set_cursor_common_partial : 
+        /// declare_set_cursor_common_partial_enum : 
         ///    declare_set_cursor_common_partial_enum 
         /// </summary>
         public static AstDeclareSetCursorCommonPartial DeclareSetCursorCommonPartial(AstDeclareSetCursorCommonPartialEnum declareSetCursorCommonPartialEnum)
@@ -14234,22 +11999,12 @@ namespace Bb.Asts.TSql
 	 | SET  modify_method";
         
         internal AstSetSpecial(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSetSpecial(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSetSpecial(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSetSpecial(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14259,7 +12014,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET left=id_ set_special_set_value SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstId left, AstSetSpecialSetValue setSpecialSetValue)
@@ -14270,7 +12025,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET STATISTICS statistic_kind statistics=on_off SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstStatisticKind statisticKind, AstOnOff statistics)
@@ -14281,7 +12036,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET ROWCOUNT local_id SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstLocalId localId)
@@ -14292,7 +12047,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET ROWCOUNT decimal SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstDecimal @decimal)
@@ -14303,7 +12058,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET TRANSACTION ISOLATION LEVEL transaction_isolation SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstTransactionIsolation transactionIsolation)
@@ -14314,7 +12069,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET IDENTITY_INSERT full_table_ref identity_insert=on_off SEMI? 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstFullTableRef fullTableRef, AstOnOff identityInsert)
@@ -14325,7 +12080,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET special_lists list=on_off 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstSpecialLists specialLists, AstOnOff list)
@@ -14336,7 +12091,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special : 
+        ///  : 
         ///    SET modify_method 
         /// </summary>
         public static AstSetSpecial SetSpecial(AstModifyMethod modifyMethod)
@@ -14357,22 +12112,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "set_special_set_value\r\n\t : (id_ | constant_local_id | on_off)";
         
         internal AstSetSpecialSetValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSetSpecialSetValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSetSpecialSetValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSetSpecialSetValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14382,7 +12127,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special_set_value : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstSetSpecialSetValue SetSpecialSetValue(AstId id)
@@ -14393,7 +12138,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special_set_value : 
+        /// constant_local_id : 
         ///    constant_local_id 
         /// </summary>
         public static AstSetSpecialSetValue SetSpecialSetValue(AstConstantLocalId constantLocalId)
@@ -14404,7 +12149,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// set_special_set_value : 
+        /// on_off : 
         ///    on_off 
         /// </summary>
         public static AstSetSpecialSetValue SetSpecialSetValue(AstOnOff onOff)
@@ -14426,22 +12171,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "constant_local_id\r\n\t : constant\r\n\t | local_id";
         
         internal AstConstantLocalId(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstConstantLocalId(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstConstantLocalId(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstConstantLocalId(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14451,7 +12186,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_local_id : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstConstantLocalId ConstantLocalId(AstConstant constant)
@@ -14462,7 +12197,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_local_id : 
+        /// local_id : 
         ///    local_id 
         /// </summary>
         public static AstConstantLocalId ConstantLocalId(AstLocalId localId)
@@ -14508,22 +12243,12 @@ namespace Bb.Asts.TSql
 	 | DOLLAR_ACTION";
         
         internal AstExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14533,7 +12258,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// primitive_expression : 
         ///    primitive_expression 
         /// </summary>
         public static AstExpression Expression(AstPrimitiveExpression primitiveExpression)
@@ -14544,7 +12269,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// function_call : 
         ///    function_call 
         /// </summary>
         public static AstExpression Expression(AstFunctionCall functionCall)
@@ -14555,7 +12280,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression . value_call 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstValueCall valueCall)
@@ -14566,7 +12291,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression . query_call 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstQueryCall queryCall)
@@ -14577,7 +12302,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression . exist_call 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstExistCall existCall)
@@ -14588,7 +12313,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression . modify_call 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstModifyCall modifyCall)
@@ -14599,7 +12324,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression . hierarchyid_call 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstHierarchyidCall hierarchyidCall)
@@ -14610,7 +12335,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression COLLATE id_ 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstId id)
@@ -14621,7 +12346,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// case_expression : 
         ///    case_expression 
         /// </summary>
         public static AstExpression Expression(AstCaseExpression caseExpression)
@@ -14632,7 +12357,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// full_column_name : 
         ///    full_column_name 
         /// </summary>
         public static AstExpression Expression(AstFullColumnName fullColumnName)
@@ -14643,7 +12368,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// bracket_expression : 
         ///    bracket_expression 
         /// </summary>
         public static AstExpression Expression(AstBracketExpression bracketExpression)
@@ -14654,7 +12379,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// unary_operator_expression : 
         ///    unary_operator_expression 
         /// </summary>
         public static AstExpression Expression(AstUnaryOperatorExpression unaryOperatorExpression)
@@ -14665,7 +12390,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    left=expression op=expression_operator right=expression 
         /// </summary>
         public static AstExpression Expression(AstExpression left, AstExpressionOperator op, AstExpression right)
@@ -14676,7 +12401,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        ///  : 
         ///    expression time_zone 
         /// </summary>
         public static AstExpression Expression(AstExpression expression, AstTimeZone timeZone)
@@ -14687,7 +12412,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression : 
+        /// over_clause : 
         ///    over_clause 
         /// </summary>
         public static AstExpression Expression(AstOverClause overClause)
@@ -14711,22 +12436,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "primitive_expression\r\n\t : DEFAULT\r\n\t | NULL_\r\n\t | local_id\r\n\t | constant";
         
         internal AstPrimitiveExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPrimitiveExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPrimitiveExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPrimitiveExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14736,7 +12451,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// primitive_expression : 
+        /// local_id : 
         ///    local_id 
         /// </summary>
         public static AstPrimitiveExpression PrimitiveExpression(AstLocalId localId)
@@ -14747,7 +12462,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// primitive_expression : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstPrimitiveExpression PrimitiveExpression(AstConstant constant)
@@ -14771,22 +12486,12 @@ namespace Bb.Asts.TSql
             "pr = expression)?  END";
         
         internal AstCaseExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCaseExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCaseExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCaseExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14796,7 +12501,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// case_expression : 
+        ///  : 
         ///    CASE caseExpr=expression switch_section+ ELSE elseExpr=expression END 
         /// </summary>
         public static AstCaseExpression CaseExpression(AstExpression caseExpr, IEnumerable<AstSwitchSection> switchSection, AstExpression elseExpr)
@@ -14807,7 +12512,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// case_expression : 
+        ///  : 
         ///    CASE switch_search_condition_section+ ELSE elseExpr=expression END 
         /// </summary>
         public static AstCaseExpression CaseExpression(IEnumerable<AstSwitchSearchConditionSection> switchSearchConditionSection, AstExpression elseExpr)
@@ -14829,22 +12534,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "unary_operator_expression\r\n\t : BIT_NOT  expression\r\n\t | plus_minus  expression";
         
         internal AstUnaryOperatorExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUnaryOperatorExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUnaryOperatorExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUnaryOperatorExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14854,7 +12549,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// unary_operator_expression : 
+        ///  : 
         ///    BIT_NOT expression 
         /// </summary>
         public static AstUnaryOperatorExpression UnaryOperatorExpression(AstExpression expression)
@@ -14865,7 +12560,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// unary_operator_expression : 
+        ///  : 
         ///    plus_minus expression 
         /// </summary>
         public static AstUnaryOperatorExpression UnaryOperatorExpression(AstPlusMinus plusMinus, AstExpression expression)
@@ -14888,22 +12583,12 @@ namespace Bb.Asts.TSql
             "ery  RR_BRACKET";
         
         internal AstBracketExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBracketExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBracketExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBracketExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14913,7 +12598,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// bracket_expression : 
+        ///  : 
         ///    ( expression ) 
         /// </summary>
         public static AstBracketExpression BracketExpression(AstExpression expression)
@@ -14924,7 +12609,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// bracket_expression : 
+        ///  : 
         ///    ( subquery ) 
         /// </summary>
         public static AstBracketExpression BracketExpression(AstSubquery subquery)
@@ -14950,22 +12635,12 @@ namespace Bb.Asts.TSql
             "| LR_BRACKET  constant_expression  RR_BRACKET";
         
         internal AstConstantExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstConstantExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstConstantExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstConstantExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -14975,7 +12650,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_expression : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstConstantExpression ConstantExpression(AstConstant constant)
@@ -14986,7 +12661,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_expression : 
+        /// function_call : 
         ///    function_call 
         /// </summary>
         public static AstConstantExpression ConstantExpression(AstFunctionCall functionCall)
@@ -14997,7 +12672,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_expression : 
+        /// local_id : 
         ///    local_id 
         /// </summary>
         public static AstConstantExpression ConstantExpression(AstLocalId localId)
@@ -15008,7 +12683,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// constant_expression : 
+        ///  : 
         ///    ( constant_expression ) 
         /// </summary>
         public static AstConstantExpression ConstantExpression(AstConstantExpression constantExpression)
@@ -15031,22 +12706,12 @@ namespace Bb.Asts.TSql
             "ET";
         
         internal AstCommonTableExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCommonTableExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCommonTableExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCommonTableExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15056,7 +12721,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// common_table_expression : 
+        ///  : 
         ///    expression_name=id_ ( columns=column_name_list ) AS ( cte_query=select_statement ) 
         /// </summary>
         public static AstCommonTableExpression CommonTableExpression(AstId expressionName, AstColumnNameList columns, AstSelectStatement cteQuery)
@@ -15082,22 +12747,12 @@ namespace Bb.Asts.TSql
             "RACKET";
         
         internal AstUpdateElem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUpdateElem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUpdateElem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUpdateElem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15107,7 +12762,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    local_id EQUAL full_column_name EQUAL expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstLocalId localId, AstFullColumnName fullColumnName, AstExpression expression)
@@ -15118,7 +12773,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    local_id EQUAL full_column_name assignment_operator expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstLocalId localId, AstFullColumnName fullColumnName, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -15129,7 +12784,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    full_column_name EQUAL expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstFullColumnName fullColumnName, AstExpression expression)
@@ -15140,7 +12795,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    local_id EQUAL expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstLocalId localId, AstExpression expression)
@@ -15151,7 +12806,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    full_column_name assignment_operator expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstFullColumnName fullColumnName, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -15162,7 +12817,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    local_id assignment_operator expression 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -15173,7 +12828,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem : 
+        ///  : 
         ///    udt_column_id . method_id ( expression_list ) 
         /// </summary>
         public static AstUpdateElem UpdateElem(AstUdtColumnId udtColumnId, AstMethodId methodId, AstExpressionList expressionList)
@@ -15197,22 +12852,12 @@ namespace Bb.Asts.TSql
             "RR_BRACKET";
         
         internal AstUpdateElemMerge(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUpdateElemMerge(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUpdateElemMerge(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUpdateElemMerge(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15222,7 +12867,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem_merge : 
+        ///  : 
         ///    full_column_name EQUAL expression 
         /// </summary>
         public static AstUpdateElemMerge UpdateElemMerge(AstFullColumnName fullColumnName, AstExpression expression)
@@ -15233,7 +12878,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem_merge : 
+        ///  : 
         ///    local_id EQUAL expression 
         /// </summary>
         public static AstUpdateElemMerge UpdateElemMerge(AstLocalId localId, AstExpression expression)
@@ -15244,7 +12889,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem_merge : 
+        ///  : 
         ///    full_column_name assignment_operator expression 
         /// </summary>
         public static AstUpdateElemMerge UpdateElemMerge(AstFullColumnName fullColumnName, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -15255,7 +12900,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem_merge : 
+        ///  : 
         ///    local_id assignment_operator expression 
         /// </summary>
         public static AstUpdateElemMerge UpdateElemMerge(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
@@ -15266,7 +12911,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_elem_merge : 
+        ///  : 
         ///    udt_column_id . method_id ( expression_list ) 
         /// </summary>
         public static AstUpdateElemMerge UpdateElemMerge(AstUdtColumnId udtColumnId, AstMethodId methodId, AstExpressionList expressionList)
@@ -15291,22 +12936,12 @@ namespace Bb.Asts.TSql
             "_condition  OR  right = search_condition";
         
         internal AstSearchCondition(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSearchCondition(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSearchCondition(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSearchCondition(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15316,7 +12951,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// search_condition : 
+        ///  : 
         ///    NOT* predicate 
         /// </summary>
         public static AstSearchCondition SearchCondition(AstPredicate predicate)
@@ -15327,7 +12962,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// search_condition : 
+        ///  : 
         ///    NOT* ( search_condition ) 
         /// </summary>
         public static AstSearchCondition SearchCondition(AstSearchCondition searchCondition)
@@ -15338,7 +12973,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// search_condition : 
+        ///  : 
         ///    left=search_condition AND right=search_condition 
         /// </summary>
         public static AstSearchCondition SearchCondition(AstSearchCondition left, AstSearchCondition right)
@@ -15376,22 +13011,12 @@ namespace Bb.Asts.TSql
 	 | expression  IS  null_notnull";
         
         internal AstPredicate(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPredicate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPredicate(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPredicate(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15401,7 +13026,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        ///  : 
         ///    EXISTS ( subquery ) 
         /// </summary>
         public static AstPredicate Predicate(AstSubquery subquery)
@@ -15412,7 +13037,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// freetext_predicate : 
         ///    freetext_predicate 
         /// </summary>
         public static AstPredicate Predicate(AstFreetextPredicate freetextPredicate)
@@ -15423,7 +13048,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// predicate_binary : 
         ///    predicate_binary 
         /// </summary>
         public static AstPredicate Predicate(AstPredicateBinary predicateBinary)
@@ -15434,7 +13059,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// predicate_multi_assign : 
         ///    predicate_multi_assign 
         /// </summary>
         public static AstPredicate Predicate(AstPredicateMultiAssign predicateMultiAssign)
@@ -15445,7 +13070,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        ///  : 
         ///    expression comparison_operator all_some_any ( subquery ) 
         /// </summary>
         public static AstPredicate Predicate(AstExpression expression, AstComparisonOperator comparisonOperator, AstAllSomeAny allSomeAny, AstSubquery subquery)
@@ -15456,7 +13081,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// predicate_tier : 
         ///    predicate_tier 
         /// </summary>
         public static AstPredicate Predicate(AstPredicateTier predicateTier)
@@ -15467,7 +13092,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// predicate_not_in : 
         ///    predicate_not_in 
         /// </summary>
         public static AstPredicate Predicate(AstPredicateNotIn predicateNotIn)
@@ -15478,7 +13103,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        /// predicate_not_like : 
         ///    predicate_not_like 
         /// </summary>
         public static AstPredicate Predicate(AstPredicateNotLike predicateNotLike)
@@ -15489,7 +13114,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// predicate : 
+        ///  : 
         ///    expression IS null_notnull 
         /// </summary>
         public static AstPredicate Predicate(AstExpression expression, AstNullNotnull nullNotnull)
@@ -15513,22 +13138,12 @@ namespace Bb.Asts.TSql
             " select_order_by_clause?  unions += sql_union";
         
         internal AstQueryExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstQueryExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstQueryExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstQueryExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15538,7 +13153,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_expression : 
+        /// query_specification : 
         ///    query_specification 
         /// </summary>
         public static AstQueryExpression QueryExpression(AstQuerySpecification querySpecification)
@@ -15549,7 +13164,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_expression : 
+        ///  : 
         ///    ( left=query_expression ) UNION ALL? right=query_expression 
         /// </summary>
         public static AstQueryExpression QueryExpression(AstQueryExpression left, AstQueryExpression right)
@@ -15560,7 +13175,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_expression : 
+        ///  : 
         ///    query_specification select_order_by_clause? unions=sql_union 
         /// </summary>
         public static AstQueryExpression QueryExpression(AstQuerySpecification querySpecification, AstSelectOrderByClause selectOrderByClause, AstSqlUnion unions)
@@ -15581,22 +13196,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "top_clause\r\n\t : TOP  (top_percent | top_count)  (WITH  TIES)?";
         
         internal AstTopClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTopClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTopClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTopClause(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15606,7 +13211,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_clause : 
+        ///  : 
         ///    TOP top_percent WITH TIES 
         /// </summary>
         public static AstTopClause TopClause(AstTopPercent topPercent)
@@ -15617,7 +13222,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_clause : 
+        ///  : 
         ///    TOP top_count WITH TIES 
         /// </summary>
         public static AstTopClause TopClause(AstTopCount topCount)
@@ -15640,22 +13245,12 @@ namespace Bb.Asts.TSql
             "xpression  RR_BRACKET  PERCENT";
         
         internal AstTopPercent(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTopPercent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTopPercent(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTopPercent(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15665,7 +13260,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_percent : 
+        ///  : 
         ///    percent_constant PERCENT 
         /// </summary>
         public static AstTopPercent TopPercent(AstPercentConstant percentConstant)
@@ -15676,7 +13271,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_percent : 
+        ///  : 
         ///    ( topper_expression=expression ) PERCENT 
         /// </summary>
         public static AstTopPercent TopPercent(AstExpression topperExpression)
@@ -15699,22 +13294,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "percent_constant\r\n\t : real\r\n\t | float\r\n\t | decimal";
         
         internal AstPercentConstant(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstPercentConstant(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstPercentConstant(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstPercentConstant(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15724,7 +13309,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// percent_constant : 
+        /// real : 
         ///    real 
         /// </summary>
         public static AstPercentConstant PercentConstant(AstReal real)
@@ -15735,7 +13320,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// percent_constant : 
+        /// float : 
         ///    float 
         /// </summary>
         public static AstPercentConstant PercentConstant(AstFloat @float)
@@ -15746,7 +13331,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// percent_constant : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstPercentConstant PercentConstant(AstDecimal @decimal)
@@ -15769,22 +13354,12 @@ namespace Bb.Asts.TSql
             "pression  RR_BRACKET";
         
         internal AstTopCount(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTopCount(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTopCount(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTopCount(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15794,7 +13369,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_count : 
+        /// decimal : 
         ///    count_constant=decimal 
         /// </summary>
         public static AstTopCount TopCount(AstDecimal countConstant)
@@ -15805,7 +13380,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// top_count : 
+        ///  : 
         ///    ( topcount_expression=expression ) 
         /// </summary>
         public static AstTopCount TopCount(AstExpression topcountExpression)
@@ -15835,22 +13410,12 @@ namespace Bb.Asts.TSql
 	 | for_clause_json";
         
         internal AstForClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstForClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstForClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstForClause(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15860,7 +13425,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// for_clause : 
+        /// for_clause_xml_raw : 
         ///    for_clause_xml_raw 
         /// </summary>
         public static AstForClause ForClause(AstForClauseXmlRaw forClauseXmlRaw)
@@ -15871,7 +13436,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// for_clause : 
+        ///  : 
         ///    FOR XML EXPLICIT xml_common_directives? , XMLDATA 
         /// </summary>
         public static AstForClause ForClause(AstXmlCommonDirectives xmlCommonDirectives)
@@ -15882,7 +13447,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// for_clause : 
+        ///  : 
         ///    FOR XML PATH ( stringtext ) xml_common_directives? , ELEMENTS absent_xsinil? 
         /// </summary>
         public static AstForClause ForClause(AstStringtext stringtext, AstXmlCommonDirectives xmlCommonDirectives, AstAbsentXsinil absentXsinil)
@@ -15893,7 +13458,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// for_clause : 
+        /// for_clause_json : 
         ///    for_clause_json 
         /// </summary>
         public static AstForClause ForClause(AstForClauseJson forClauseJson)
@@ -15917,22 +13482,12 @@ namespace Bb.Asts.TSql
             "  stringtext  RR_BRACKET)?";
         
         internal AstXmlCommonDirective(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstXmlCommonDirective(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstXmlCommonDirective(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstXmlCommonDirective(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15942,7 +13497,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// xml_common_directive : 
+        ///  : 
         ///    ROOT ( stringtext ) 
         /// </summary>
         public static AstXmlCommonDirective XmlCommonDirective(AstStringtext stringtext)
@@ -15966,22 +13521,12 @@ namespace Bb.Asts.TSql
             "L_VALUES\r\n\t | WITHOUT_ARRAY_WRAPPER";
         
         internal AstClauseJsonInfo(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstClauseJsonInfo(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstClauseJsonInfo(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstClauseJsonInfo(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -15991,7 +13536,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// clause_json_info : 
+        ///  : 
         ///    ROOT ( stringtext ) 
         /// </summary>
         public static AstClauseJsonInfo ClauseJsonInfo(AstStringtext stringtext)
@@ -16013,22 +13558,12 @@ namespace Bb.Asts.TSql
             "ESC)?";
         
         internal AstOrderByExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstOrderByExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstOrderByExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstOrderByExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16038,7 +13573,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// order_by_expression : 
+        ///  : 
         ///    order_by=expression ascending=ASC 
         /// </summary>
         public static AstOrderByExpression OrderByExpression(AstExpression orderBy)
@@ -16061,22 +13596,12 @@ namespace Bb.Asts.TSql
             "RR_BRACKET";
         
         internal AstGroupingSetsItem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstGroupingSetsItem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstGroupingSetsItem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstGroupingSetsItem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16086,7 +13611,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// grouping_sets_item : 
+        /// grouping_sets_list : 
         ///    grouping_sets_list 
         /// </summary>
         public static AstGroupingSetsItem GroupingSetsItem(AstGroupingSetsList groupingSetsList)
@@ -16115,22 +13640,12 @@ namespace Bb.Asts.TSql
             "ion_enum";
         
         internal AstUpdateOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUpdateOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUpdateOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUpdateOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16140,7 +13655,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_option : 
+        ///  : 
         ///    FAST number_rows=decimal 
         /// </summary>
         public static AstUpdateOption UpdateOption(AstDecimal numberRows)
@@ -16151,7 +13666,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_option : 
+        ///  : 
         ///    USE PLAN stringtext 
         /// </summary>
         public static AstUpdateOption UpdateOption(AstStringtext stringtext)
@@ -16162,7 +13677,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_option : 
+        ///  : 
         ///    OPTIMIZE FOR ( optimize_for_args ) 
         /// </summary>
         public static AstUpdateOption UpdateOption(AstOptimizeForArgs optimizeForArgs)
@@ -16173,7 +13688,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// update_option : 
+        /// update_option_enum : 
         ///    update_option_enum 
         /// </summary>
         public static AstUpdateOption UpdateOption(AstUpdateOptionEnum updateOptionEnum)
@@ -16198,22 +13713,12 @@ namespace Bb.Asts.TSql
             "ID\r\n\t | NULL_";
         
         internal AstColumnElemTarget(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstColumnElemTarget(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstColumnElemTarget(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstColumnElemTarget(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16223,7 +13728,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// column_elem_target : 
+        /// full_column_name : 
         ///    full_column_name 
         /// </summary>
         public static AstColumnElemTarget ColumnElemTarget(AstFullColumnName fullColumnName)
@@ -16247,22 +13752,12 @@ namespace Bb.Asts.TSql
             "ts?  as_column_alias?";
         
         internal AstUdtElem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUdtElem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUdtElem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUdtElem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16272,7 +13767,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// udt_elem : 
+        ///  : 
         ///    udt_column_id . non_static_attr_id udt_method_arguments as_column_alias? 
         /// </summary>
         public static AstUdtElem UdtElem(AstUdtColumnId udtColumnId, AstNonStaticAttrId nonStaticAttrId, AstUdtMethodArguments udtMethodArguments, AstAsColumnAlias asColumnAlias)
@@ -16283,7 +13778,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// udt_elem : 
+        ///  : 
         ///    udt_column_id :: static_attr_id udt_method_arguments? as_column_alias? 
         /// </summary>
         public static AstUdtElem UdtElem(AstUdtColumnId udtColumnId, AstStaticAttrId staticAttrId, AstUdtMethodArguments udtMethodArguments, AstAsColumnAlias asColumnAlias)
@@ -16306,22 +13801,12 @@ namespace Bb.Asts.TSql
             "ssion\r\n\t | expressionAs = expression  as_column_alias?";
         
         internal AstExpressionElem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExpressionElem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExpressionElem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExpressionElem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16331,7 +13816,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression_elem : 
+        ///  : 
         ///    leftAlias=column_alias eq=EQUAL leftAssignment=expression 
         /// </summary>
         public static AstExpressionElem ExpressionElem(AstColumnAlias leftAlias, AstExpression leftAssignment)
@@ -16342,7 +13827,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// expression_elem : 
+        ///  : 
         ///    expressionAs=expression as_column_alias? 
         /// </summary>
         public static AstExpressionElem ExpressionElem(AstExpression expressionAs, AstAsColumnAlias asColumnAlias)
@@ -16365,22 +13850,12 @@ namespace Bb.Asts.TSql
             "KET";
         
         internal AstTableSource(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableSource(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableSource(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableSource(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16390,7 +13865,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source : 
+        /// table_source_item_joined : 
         ///    table_source_item_joined 
         /// </summary>
         public static AstTableSource TableSource(AstTableSourceItemJoined tableSourceItemJoined)
@@ -16401,7 +13876,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source : 
+        ///  : 
         ///    ( table_source ) 
         /// </summary>
         public static AstTableSource TableSource(AstTableSource tableSource)
@@ -16424,22 +13899,12 @@ namespace Bb.Asts.TSql
             "ET  table_source_item_joined  RR_BRACKET  joins += join_part";
         
         internal AstTableSourceItemJoined(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableSourceItemJoined(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableSourceItemJoined(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableSourceItemJoined(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16449,7 +13914,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item_joined : 
+        ///  : 
         ///    table_source_item joins=join_part 
         /// </summary>
         public static AstTableSourceItemJoined TableSourceItemJoined(AstTableSourceItem tableSourceItem, AstJoinPart joins)
@@ -16460,7 +13925,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item_joined : 
+        ///  : 
         ///    ( table_source_item_joined ) joins=join_part 
         /// </summary>
         public static AstTableSourceItemJoined TableSourceItemJoined(AstTableSourceItemJoined tableSourceItemJoined, AstJoinPart joins)
@@ -16504,22 +13969,12 @@ namespace Bb.Asts.TSql
 	 | DOUBLE_COLON  oldstyle_fcall = function_call  as_table_alias?";
         
         internal AstTableSourceItem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableSourceItem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableSourceItem(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableSourceItem(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16529,7 +13984,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    complete_table_ref deprecated_table_hint as_table_alias 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstCompleteTableRef completeTableRef, AstDeprecatedTableHint deprecatedTableHint, AstAsTableAlias asTableAlias)
@@ -16540,7 +13995,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    complete_table_ref as_table_alias? with_table_hints 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstCompleteTableRef completeTableRef, AstAsTableAlias asTableAlias, AstWithTableHints withTableHints)
@@ -16551,7 +14006,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    complete_table_ref as_table_alias? deprecated_table_hint 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstCompleteTableRef completeTableRef, AstAsTableAlias asTableAlias, AstDeprecatedTableHint deprecatedTableHint)
@@ -16562,7 +14017,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    complete_table_ref as_table_alias? sybase_legacy_hints 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstCompleteTableRef completeTableRef, AstAsTableAlias asTableAlias, AstSybaseLegacyHints sybaseLegacyHints)
@@ -16573,7 +14028,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    rowset_function as_table_alias? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstRowsetFunction rowsetFunction, AstAsTableAlias asTableAlias)
@@ -16584,7 +14039,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    ( derived_table ) as_table_alias column_alias_list? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstDerivedTable derivedTable, AstAsTableAlias asTableAlias, AstColumnAliasList columnAliasList)
@@ -16595,7 +14050,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    change_table as_table_alias? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstChangeTable changeTable, AstAsTableAlias asTableAlias)
@@ -16606,7 +14061,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    nodes_method as_table_alias column_alias_list? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstNodesMethod nodesMethod, AstAsTableAlias asTableAlias, AstColumnAliasList columnAliasList)
@@ -16617,7 +14072,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    function_call as_table_alias column_alias_list? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstFunctionCall functionCall, AstAsTableAlias asTableAlias, AstColumnAliasList columnAliasList)
@@ -16628,7 +14083,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    loc_id=local_id as_table_alias? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstLocalId locId, AstAsTableAlias asTableAlias)
@@ -16639,7 +14094,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    loc_id_call=local_id . loc_fcall=function_call as_table_alias column_alias_list? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstLocalId locIdCall, AstFunctionCall locFcall, AstAsTableAlias asTableAlias, AstColumnAliasList columnAliasList)
@@ -16650,7 +14105,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        /// open_xml : 
         ///    open_xml 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstOpenXml openXml)
@@ -16661,7 +14116,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        /// open_json : 
         ///    open_json 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstOpenJson openJson)
@@ -16672,7 +14127,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_source_item : 
+        ///  : 
         ///    :: oldstyle_fcall=function_call as_table_alias? 
         /// </summary>
         public static AstTableSourceItem TableSourceItem(AstFunctionCall oldstyleFcall, AstAsTableAlias asTableAlias)
@@ -16694,22 +14149,12 @@ namespace Bb.Asts.TSql
             "ble_ref  COMMA  (NULL_ | decimal_local_id)  RR_BRACKET";
         
         internal AstChangeTableChanges(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstChangeTableChanges(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstChangeTableChanges(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstChangeTableChanges(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16719,7 +14164,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_table_changes : 
+        ///  : 
         ///    CHANGETABLE ( CHANGES changetable=full_table_ref , NULL_ ) 
         /// </summary>
         public static AstChangeTableChanges ChangeTableChanges(AstFullTableRef changetable)
@@ -16730,7 +14175,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_table_changes : 
+        ///  : 
         ///    CHANGETABLE ( CHANGES changetable=full_table_ref , decimal_local_id ) 
         /// </summary>
         public static AstChangeTableChanges ChangeTableChanges(AstFullTableRef changetable, AstDecimalLocalId decimalLocalId)
@@ -16753,22 +14198,12 @@ namespace Bb.Asts.TSql
             "ist  RR_BRACKET";
         
         internal AstChangeTableVersion(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstChangeTableVersion(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstChangeTableVersion(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstChangeTableVersion(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16778,7 +14213,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// change_table_version : 
+        ///  : 
         ///    CHANGETABLE ( VERSION versiontable=full_table_ref , pk_columns=full_column_name_list , pk_values=select_list ) 
         /// </summary>
         public static AstChangeTableVersion ChangeTableVersion(AstFullTableRef versiontable, AstFullColumnNameList pkColumns, AstSelectList pkValues)
@@ -16803,22 +14238,12 @@ namespace Bb.Asts.TSql
             "RACKET)";
         
         internal AstRowsetFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRowsetFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRowsetFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRowsetFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16828,7 +14253,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rowset_function : 
+        ///  : 
         ///    OPENROWSET ( providerName=stringtext , connectionString=stringtext , sql=stringtext ) 
         /// </summary>
         public static AstRowsetFunction RowsetFunction(AstStringtext providerName, AstStringtext connectionString, AstStringtext sql)
@@ -16839,7 +14264,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rowset_function : 
+        ///  : 
         ///    OPENROWSET ( BULK data_file=stringtext , bulk_options ) 
         /// </summary>
         public static AstRowsetFunction RowsetFunction(AstStringtext dataFile, AstBulkOptions bulkOptions)
@@ -16850,7 +14275,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// rowset_function : 
+        ///  : 
         ///    OPENROWSET ( BULK data_file=stringtext , id_ ) 
         /// </summary>
         public static AstRowsetFunction RowsetFunction(AstStringtext dataFile, AstId id)
@@ -16875,22 +14300,12 @@ namespace Bb.Asts.TSql
             "lue_constructor\r\n\t | LR_BRACKET  table_value_constructor  RR_BRACKET";
         
         internal AstDerivedTable(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDerivedTable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDerivedTable(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDerivedTable(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16900,7 +14315,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// derived_table : 
+        /// subquery : 
         ///    subquery 
         /// </summary>
         public static AstDerivedTable DerivedTable(AstSubquery subquery)
@@ -16911,7 +14326,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// derived_table : 
+        ///  : 
         ///    ( subqueries ) 
         /// </summary>
         public static AstDerivedTable DerivedTable(AstSubqueries subqueries)
@@ -16922,7 +14337,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// derived_table : 
+        /// table_value_constructor : 
         ///    table_value_constructor 
         /// </summary>
         public static AstDerivedTable DerivedTable(AstTableValueConstructor tableValueConstructor)
@@ -16958,22 +14373,12 @@ namespace Bb.Asts.TSql
 	 | hierarchyid_static_method";
         
         internal AstFunctionCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFunctionCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFunctionCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFunctionCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -16983,7 +14388,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// ranking_windowed_function : 
         ///    ranking_windowed_function 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstRankingWindowedFunction rankingWindowedFunction)
@@ -16994,7 +14399,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// aggregate_windowed_function : 
         ///    aggregate_windowed_function 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstAggregateWindowedFunction aggregateWindowedFunction)
@@ -17005,7 +14410,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// analytic_windowed_function : 
         ///    analytic_windowed_function 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstAnalyticWindowedFunction analyticWindowedFunction)
@@ -17016,7 +14421,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// built_in_functions : 
         ///    built_in_functions 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstBuiltInFunctions builtInFunctions)
@@ -17027,7 +14432,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        ///  : 
         ///    scalar_function_name ( expression_list? ) 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstScalarFunctionName scalarFunctionName, AstExpressionList expressionList)
@@ -17038,7 +14443,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// freetext_function : 
         ///    freetext_function 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstFreetextFunction freetextFunction)
@@ -17049,7 +14454,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// partition_function : 
         ///    partition_function 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstPartitionFunction partitionFunction)
@@ -17060,7 +14465,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// function_call : 
+        /// hierarchyid_static_method : 
         ///    hierarchyid_static_method 
         /// </summary>
         public static AstFunctionCall FunctionCall(AstHierarchyidStaticMethod hierarchyidStaticMethod)
@@ -17086,22 +14491,12 @@ namespace Bb.Asts.TSql
 	 | SEMANTICSIMILARITYDETAILSTABLE  LR_BRACKET  full_table_ref  COMMA  name1 = full_column_name  COMMA  expr1 = expression  COMMA  name2 = full_column_name  COMMA  expr2 = expression  RR_BRACKET";
         
         internal AstFreetextFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFreetextFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFreetextFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFreetextFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17111,7 +14506,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_function : 
+        ///  : 
         ///    containstable_freetexttable ( freetext_table_andcolumn_names , expression_language , expression ) 
         /// </summary>
         public static AstFreetextFunction FreetextFunction(AstContainstableFreetexttable containstableFreetexttable, AstFreetextTableAndcolumnNames freetextTableAndcolumnNames, AstExpressionLanguage expressionLanguage, AstExpression expression)
@@ -17122,7 +14517,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_function : 
+        ///  : 
         ///    semantic_table ( freetext_table_andcolumn_names , expression ) 
         /// </summary>
         public static AstFreetextFunction FreetextFunction(AstSemanticTable semanticTable, AstFreetextTableAndcolumnNames freetextTableAndcolumnNames, AstExpression expression)
@@ -17133,7 +14528,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_function : 
+        ///  : 
         ///    SEMANTICSIMILARITYDETAILSTABLE ( full_table_ref , name1=full_column_name , expr1=expression , name2=full_column_name , expr2=expression ) 
         /// </summary>
         public static AstFreetextFunction FreetextFunction(AstFullTableRef fullTableRef, AstFullColumnName name1, AstExpression expr1, AstFullColumnName name2, AstExpression expr2)
@@ -17157,22 +14552,12 @@ namespace Bb.Asts.TSql
 	 | FREETEXT  LR_BRACKET  freetext_table_andcolumn_names  COMMA  expression_language  RR_BRACKET";
         
         internal AstFreetextPredicate(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstFreetextPredicate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstFreetextPredicate(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstFreetextPredicate(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17182,7 +14567,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_predicate : 
+        ///  : 
         ///    CONTAINS ( full_column_name , rule=expression ) 
         /// </summary>
         public static AstFreetextPredicate FreetextPredicate(AstFullColumnName fullColumnName, AstExpression rule)
@@ -17193,7 +14578,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_predicate : 
+        ///  : 
         ///    CONTAINS ( full_column_names , rule=expression ) 
         /// </summary>
         public static AstFreetextPredicate FreetextPredicate(AstFullColumnNames fullColumnNames, AstExpression rule)
@@ -17204,7 +14589,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_predicate : 
+        ///  : 
         ///    CONTAINS ( STAR , rule=expression ) 
         /// </summary>
         public static AstFreetextPredicate FreetextPredicate(AstExpression rule)
@@ -17215,7 +14600,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_predicate : 
+        ///  : 
         ///    CONTAINS ( PROPERTY ( full_column_name , property=expression ) , rule=expression ) 
         /// </summary>
         public static AstFreetextPredicate FreetextPredicate(AstFullColumnName fullColumnName, AstExpression property, AstExpression rule)
@@ -17226,7 +14611,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// freetext_predicate : 
+        ///  : 
         ///    FREETEXT ( freetext_table_andcolumn_names , expression_language ) 
         /// </summary>
         public static AstFreetextPredicate FreetextPredicate(AstFreetextTableAndcolumnNames freetextTableAndcolumnNames, AstExpressionLanguage expressionLanguage)
@@ -17479,22 +14864,12 @@ namespace Bb.Asts.TSql
             " RR_BRACKET";
         
         internal AstBuiltInFunctions(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstBuiltInFunctions(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstBuiltInFunctions(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstBuiltInFunctions(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17504,7 +14879,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    APPLOCK_MODE ( database_principal=expression , resource_name=expression , lock_owner=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression databasePrincipal, AstExpression resourceName, AstExpression lockOwner)
@@ -17515,7 +14890,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    APPLOCK_TEST ( database_principal=expression , resource_name=expression , lockmode=expression , lock_owner=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression databasePrincipal, AstExpression resourceName, AstExpression lockmode, AstExpression lockOwner)
@@ -17526,7 +14901,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    ASSEMBLYPROPERTY ( assemblyName=expression , propertyName=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression assemblyName, AstExpression propertyName)
@@ -17537,7 +14912,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    DB_ID ( databaseName=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression databaseName)
@@ -17548,7 +14923,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    NEXT VALUE FOR sequenceName=full_table_ref OVER ( order_by_clause ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstFullTableRef sequenceName, AstOrderByClause orderByClause)
@@ -17559,7 +14934,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    CONCAT ( expressions ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpressions expressions)
@@ -17570,7 +14945,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    STRING_AGG ( expr=expression , separator=expression ) WITHIN GROUP ( order_by_clause ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression expr, AstExpression separator, AstOrderByClause orderByClause)
@@ -17581,7 +14956,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    STUFF ( str=expression , from=decimal , to=decimal , str_with=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression str, AstDecimal from, AstDecimal to, AstExpression strWith)
@@ -17592,7 +14967,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    CONNECTIONPROPERTY ( cnx_property=stringtext ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstStringtext cnxProperty)
@@ -17603,7 +14978,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    FORMATMESSAGE ( msg_number=decimal , expressions ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstDecimal msgNumber, AstExpressions expressions)
@@ -17614,7 +14989,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    FORMATMESSAGE ( msg_string=stringtext , expressions ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstStringtext msgString, AstExpressions expressions)
@@ -17625,7 +15000,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    FORMATMESSAGE ( msg_variable=local_id , expressions ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstLocalId msgVariable, AstExpressions expressions)
@@ -17636,7 +15011,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    CAST ( expression AS data_type ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression expression, AstDataType dataType)
@@ -17647,7 +15022,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    CONVERT ( convert_data_type=data_type , expression2 ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstDataType convertDataType, AstExpression2 expression2)
@@ -17658,7 +15033,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    COALESCE ( expression_list ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpressionList expressionList)
@@ -17669,7 +15044,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    DATEADD ( datepart=ID , number=expression , date=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(String datepart, AstExpression number, AstExpression date)
@@ -17680,7 +15055,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    DATENAME ( datepart=ID , date=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(String datepart, AstExpression date)
@@ -17691,7 +15066,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    IDENTITY ( data_type , seed=decimal , increment=decimal ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstDataType dataType, AstDecimal seed, AstDecimal increment)
@@ -17702,7 +15077,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    PARSE ( str=expression AS data_type USING culture=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstExpression str, AstDataType dataType, AstExpression culture)
@@ -17713,7 +15088,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        /// xml_data_type_methods : 
         ///    xml_data_type_methods 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstXmlDataTypeMethods xmlDataTypeMethods)
@@ -17724,7 +15099,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// built_in_functions : 
+        ///  : 
         ///    IIF ( cond=search_condition , left=expression , right=expression ) 
         /// </summary>
         public static AstBuiltInFunctions BuiltInFunctions(AstSearchCondition cond, AstExpression left, AstExpression right)
@@ -17747,22 +15122,12 @@ namespace Bb.Asts.TSql
             "ACKET)  DOT  call = value_call";
         
         internal AstValueMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstValueMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstValueMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstValueMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17772,7 +15137,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_method : 
+        ///  : 
         ///    loc=local_id . call=value_call 
         /// </summary>
         public static AstValueMethod ValueMethod(AstLocalId loc, AstValueCall call)
@@ -17783,7 +15148,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_method : 
+        ///  : 
         ///    value=full_column_name . call=value_call 
         /// </summary>
         public static AstValueMethod ValueMethod(AstFullColumnName value, AstValueCall call)
@@ -17794,7 +15159,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_method : 
+        ///  : 
         ///    eventdata=EVENTDATA ( ) . call=value_call 
         /// </summary>
         public static AstValueMethod ValueMethod(AstValueCall call)
@@ -17805,7 +15170,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_method : 
+        ///  : 
         ///    query=query_method . call=value_call 
         /// </summary>
         public static AstValueMethod ValueMethod(AstQueryMethod query, AstValueCall call)
@@ -17816,7 +15181,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_method : 
+        ///  : 
         ///    ( subquery ) . call=value_call 
         /// </summary>
         public static AstValueMethod ValueMethod(AstSubquery subquery, AstValueCall call)
@@ -17838,22 +15203,12 @@ namespace Bb.Asts.TSql
             "xt  RR_BRACKET";
         
         internal AstValueCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstValueCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstValueCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstValueCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17863,7 +15218,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// value_call : 
+        ///  : 
         ///    VALUE ( xquery=stringtext , sqltype=stringtext ) 
         /// </summary>
         public static AstValueCall ValueCall(AstStringtext xquery, AstStringtext sqltype)
@@ -17885,22 +15240,12 @@ namespace Bb.Asts.TSql
             "ry  RR_BRACKET)  DOT  call = query_call";
         
         internal AstQueryMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstQueryMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstQueryMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstQueryMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17910,7 +15255,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_method : 
+        ///  : 
         ///    loc=local_id . call=query_call 
         /// </summary>
         public static AstQueryMethod QueryMethod(AstLocalId loc, AstQueryCall call)
@@ -17921,7 +15266,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_method : 
+        ///  : 
         ///    value=full_column_name . call=query_call 
         /// </summary>
         public static AstQueryMethod QueryMethod(AstFullColumnName value, AstQueryCall call)
@@ -17932,7 +15277,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_method : 
+        ///  : 
         ///    ( subquery ) . call=query_call 
         /// </summary>
         public static AstQueryMethod QueryMethod(AstSubquery subquery, AstQueryCall call)
@@ -17953,22 +15298,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "query_call\r\n\t : QUERY  LR_BRACKET  xquery = stringtext  RR_BRACKET";
         
         internal AstQueryCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstQueryCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstQueryCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstQueryCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -17978,7 +15313,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// query_call : 
+        ///  : 
         ///    QUERY ( xquery=stringtext ) 
         /// </summary>
         public static AstQueryCall QueryCall(AstStringtext xquery)
@@ -18000,22 +15335,12 @@ namespace Bb.Asts.TSql
             "ry  RR_BRACKET)  DOT  call = exist_call";
         
         internal AstExistMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExistMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExistMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExistMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18025,7 +15350,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// exist_method : 
+        ///  : 
         ///    loc=local_id . call=exist_call 
         /// </summary>
         public static AstExistMethod ExistMethod(AstLocalId loc, AstExistCall call)
@@ -18036,7 +15361,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// exist_method : 
+        ///  : 
         ///    value=full_column_name . call=exist_call 
         /// </summary>
         public static AstExistMethod ExistMethod(AstFullColumnName value, AstExistCall call)
@@ -18047,7 +15372,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// exist_method : 
+        ///  : 
         ///    ( subquery ) . call=exist_call 
         /// </summary>
         public static AstExistMethod ExistMethod(AstSubquery subquery, AstExistCall call)
@@ -18068,22 +15393,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "exist_call\r\n\t : EXIST  LR_BRACKET  xquery = stringtext  RR_BRACKET";
         
         internal AstExistCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstExistCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstExistCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstExistCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18093,7 +15408,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// exist_call : 
+        ///  : 
         ///    EXIST ( xquery=stringtext ) 
         /// </summary>
         public static AstExistCall ExistCall(AstStringtext xquery)
@@ -18115,22 +15430,12 @@ namespace Bb.Asts.TSql
             "ery  RR_BRACKET)  DOT  call = modify_call";
         
         internal AstModifyMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstModifyMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstModifyMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstModifyMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18140,7 +15445,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// modify_method : 
+        ///  : 
         ///    loc=local_id . call=modify_call 
         /// </summary>
         public static AstModifyMethod ModifyMethod(AstLocalId loc, AstModifyCall call)
@@ -18151,7 +15456,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// modify_method : 
+        ///  : 
         ///    value=full_column_name . call=modify_call 
         /// </summary>
         public static AstModifyMethod ModifyMethod(AstFullColumnName value, AstModifyCall call)
@@ -18162,7 +15467,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// modify_method : 
+        ///  : 
         ///    ( subquery ) . call=modify_call 
         /// </summary>
         public static AstModifyMethod ModifyMethod(AstSubquery subquery, AstModifyCall call)
@@ -18183,22 +15488,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "modify_call\r\n\t : MODIFY  LR_BRACKET  xml_dml = stringtext  RR_BRACKET";
         
         internal AstModifyCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstModifyCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstModifyCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstModifyCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18208,7 +15503,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// modify_call : 
+        ///  : 
         ///    MODIFY ( xml_dml=stringtext ) 
         /// </summary>
         public static AstModifyCall ModifyCall(AstStringtext xmlDml)
@@ -18240,22 +15535,12 @@ namespace Bb.Asts.TSql
 	 | TOSTRING  LR_BRACKET  RR_BRACKET";
         
         internal AstHierarchyidCall(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstHierarchyidCall(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstHierarchyidCall(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstHierarchyidCall(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18265,7 +15550,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// hierarchyid_call : 
+        ///  : 
         ///    GETANCESTOR ( n=expression ) 
         /// </summary>
         public static AstHierarchyidCall HierarchyidCall(AstExpression n)
@@ -18276,7 +15561,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// hierarchyid_call : 
+        ///  : 
         ///    GETDESCENDANT ( child1=expression , child2=expression ) 
         /// </summary>
         public static AstHierarchyidCall HierarchyidCall(AstExpression child1, AstExpression child2)
@@ -18298,22 +15583,12 @@ namespace Bb.Asts.TSql
             "R_BRACKET | PARSE  LR_BRACKET  input = expression  RR_BRACKET)";
         
         internal AstHierarchyidStaticMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstHierarchyidStaticMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstHierarchyidStaticMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstHierarchyidStaticMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18323,7 +15598,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// hierarchyid_static_method : 
+        ///  : 
         ///    HIERARCHYID :: PARSE ( input=expression ) 
         /// </summary>
         public static AstHierarchyidStaticMethod HierarchyidStaticMethod(AstExpression input)
@@ -18345,22 +15620,12 @@ namespace Bb.Asts.TSql
             "ry  RR_BRACKET)  DOT  NODES  LR_BRACKET  xquery = stringtext  RR_BRACKET";
         
         internal AstNodesMethod(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstNodesMethod(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstNodesMethod(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstNodesMethod(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18370,7 +15635,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// nodes_method : 
+        ///  : 
         ///    loc=local_id . NODES ( xquery=stringtext ) 
         /// </summary>
         public static AstNodesMethod NodesMethod(AstLocalId loc, AstStringtext xquery)
@@ -18381,7 +15646,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// nodes_method : 
+        ///  : 
         ///    value=full_column_name . NODES ( xquery=stringtext ) 
         /// </summary>
         public static AstNodesMethod NodesMethod(AstFullColumnName value, AstStringtext xquery)
@@ -18392,7 +15657,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// nodes_method : 
+        ///  : 
         ///    ( subquery ) . NODES ( xquery=stringtext ) 
         /// </summary>
         public static AstNodesMethod NodesMethod(AstSubquery subquery, AstStringtext xquery)
@@ -18462,22 +15727,12 @@ namespace Bb.Asts.TSql
 	 | IGNORE_TRIGGERS";
         
         internal AstTableHint(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstTableHint(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstTableHint(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstTableHint(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18487,7 +15742,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_hint : 
+        ///  : 
         ///    INDEX ( index_values ) 
         /// </summary>
         public static AstTableHint TableHint(AstIndexValues indexValues)
@@ -18498,7 +15753,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_hint : 
+        ///  : 
         ///    INDEX EQUAL ( index_value ) 
         /// </summary>
         public static AstTableHint TableHint(AstIndexValue indexValue)
@@ -18509,7 +15764,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_hint : 
+        ///  : 
         ///    FORCESEEK ( index_value ( column_name_list ) ) 
         /// </summary>
         public static AstTableHint TableHint(AstIndexValue indexValue, AstColumnNameList columnNameList)
@@ -18520,7 +15775,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// table_hint : 
+        ///  : 
         ///    SPATIAL_WINDOW_MAX_CELLS EQUAL decimal 
         /// </summary>
         public static AstTableHint TableHint(AstDecimal @decimal)
@@ -18542,22 +15797,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "index_value\r\n\t : id_\r\n\t | decimal";
         
         internal AstIndexValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstIndexValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstIndexValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstIndexValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18567,7 +15812,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_value : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstIndexValue IndexValue(AstId id)
@@ -18578,7 +15823,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// index_value : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstIndexValue IndexValue(AstDecimal @decimal)
@@ -18601,22 +15846,12 @@ namespace Bb.Asts.TSql
             "use\r\n\t | NTILE  LR_BRACKET  expression  RR_BRACKET  over_clause";
         
         internal AstRankingWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstRankingWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstRankingWindowedFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstRankingWindowedFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18626,7 +15861,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// ranking_windowed_function : 
+        ///  : 
         ///    ranking_windowed ( ) over_clause 
         /// </summary>
         public static AstRankingWindowedFunction RankingWindowedFunction(AstRankingWindowed rankingWindowed, AstOverClause overClause)
@@ -18637,7 +15872,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// ranking_windowed_function : 
+        ///  : 
         ///    NTILE ( expression ) over_clause 
         /// </summary>
         public static AstRankingWindowedFunction RankingWindowedFunction(AstExpression expression, AstOverClause overClause)
@@ -18667,22 +15902,12 @@ namespace Bb.Asts.TSql
 	 | GROUPING_ID  LR_BRACKET  expression_list  RR_BRACKET";
         
         internal AstAggregateWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAggregateWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAggregateWindowedFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAggregateWindowedFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18692,7 +15917,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    agg_function ( all_distinct_expression ) over_clause? 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstAggFunction aggFunction, AstAllDistinctExpression allDistinctExpression, AstOverClause overClause)
@@ -18703,7 +15928,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    count_count_big ( STAR ) over_clause? 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstCountCountBig countCountBig, AstOverClause overClause)
@@ -18714,7 +15939,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    count_count_big ( all_distinct_expression ) over_clause? 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstCountCountBig countCountBig, AstAllDistinctExpression allDistinctExpression, AstOverClause overClause)
@@ -18725,7 +15950,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    CHECKSUM_AGG ( all_distinct_expression ) 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstAllDistinctExpression allDistinctExpression)
@@ -18736,7 +15961,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    GROUPING ( expression ) 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstExpression expression)
@@ -18747,7 +15972,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// aggregate_windowed_function : 
+        ///  : 
         ///    GROUPING_ID ( expression_list ) 
         /// </summary>
         public static AstAggregateWindowedFunction AggregateWindowedFunction(AstExpressionList expressionList)
@@ -18775,22 +16000,12 @@ namespace Bb.Asts.TSql
 	 | percentil  LR_BRACKET  expression  RR_BRACKET  WITHIN  GROUP  LR_BRACKET  order_by_clause  RR_BRACKET  OVER  LR_BRACKET  (PARTITION  BY  expression_list)?  RR_BRACKET";
         
         internal AstAnalyticWindowedFunction(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAnalyticWindowedFunction(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAnalyticWindowedFunction(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAnalyticWindowedFunction(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18800,7 +16015,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// analytic_windowed_function : 
+        ///  : 
         ///    first_last_value ( expression ) over_clause 
         /// </summary>
         public static AstAnalyticWindowedFunction AnalyticWindowedFunction(AstFirstLastValue firstLastValue, AstExpression expression, AstOverClause overClause)
@@ -18811,7 +16026,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// analytic_windowed_function : 
+        ///  : 
         ///    lag_lead ( expression , expression2 ) over_clause 
         /// </summary>
         public static AstAnalyticWindowedFunction AnalyticWindowedFunction(AstLagLead lagLead, AstExpression expression, AstExpression2 expression2, AstOverClause overClause)
@@ -18822,7 +16037,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// analytic_windowed_function : 
+        ///  : 
         ///    cume_percent ( ) OVER ( PARTITION BY expression_list order_by_clause ) 
         /// </summary>
         public static AstAnalyticWindowedFunction AnalyticWindowedFunction(AstCumePercent cumePercent, AstExpressionList expressionList, AstOrderByClause orderByClause)
@@ -18833,7 +16048,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// analytic_windowed_function : 
+        ///  : 
         ///    percentil ( expression ) WITHIN GROUP ( order_by_clause ) OVER ( PARTITION BY expression_list ) 
         /// </summary>
         public static AstAnalyticWindowedFunction AnalyticWindowedFunction(AstPercentil percentil, AstExpression expression, AstOrderByClause orderByClause, AstExpressionList expressionList)
@@ -18856,22 +16071,12 @@ namespace Bb.Asts.TSql
             "_bound  AND  right = window_frame_bound";
         
         internal AstWindowFrameExtent(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstWindowFrameExtent(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstWindowFrameExtent(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstWindowFrameExtent(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18881,7 +16086,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// window_frame_extent : 
+        /// window_frame_preceding : 
         ///    window_frame_preceding 
         /// </summary>
         public static AstWindowFrameExtent WindowFrameExtent(AstWindowFramePreceding windowFramePreceding)
@@ -18892,7 +16097,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// window_frame_extent : 
+        ///  : 
         ///    BETWEEN left=window_frame_bound AND right=window_frame_bound 
         /// </summary>
         public static AstWindowFrameExtent WindowFrameExtent(AstWindowFrameBound left, AstWindowFrameBound right)
@@ -18916,22 +16121,12 @@ namespace Bb.Asts.TSql
             "RENT  ROW";
         
         internal AstWindowFramePreceding(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstWindowFramePreceding(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstWindowFramePreceding(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstWindowFramePreceding(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18941,7 +16136,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// window_frame_preceding : 
+        ///  : 
         ///    decimal PRECEDING 
         /// </summary>
         public static AstWindowFramePreceding WindowFramePreceding(AstDecimal @decimal)
@@ -18963,22 +16158,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "window_frame_following\r\n\t : UNBOUNDED  FOLLOWING\r\n\t | decimal  FOLLOWING";
         
         internal AstWindowFrameFollowing(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstWindowFrameFollowing(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstWindowFrameFollowing(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstWindowFrameFollowing(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -18988,7 +16173,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// window_frame_following : 
+        ///  : 
         ///    decimal FOLLOWING 
         /// </summary>
         public static AstWindowFrameFollowing WindowFrameFollowing(AstDecimal @decimal)
@@ -19024,22 +16209,12 @@ namespace Bb.Asts.TSql
 	 | TRUSTWORTHY  on_off";
         
         internal AstCreateDatabaseOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCreateDatabaseOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCreateDatabaseOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCreateDatabaseOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19049,7 +16224,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_database_option : 
+        ///  : 
         ///    FILESTREAM database_filestream_options 
         /// </summary>
         public static AstCreateDatabaseOption CreateDatabaseOption(AstDatabaseFilestreamOptions databaseFilestreamOptions)
@@ -19060,7 +16235,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_database_option : 
+        ///  : 
         ///    DEFAULT_LANGUAGE EQUAL id_or_string 
         /// </summary>
         public static AstCreateDatabaseOption CreateDatabaseOption(AstIdOrString idOrString)
@@ -19071,7 +16246,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_database_option : 
+        ///  : 
         ///    NESTED_TRIGGERS EQUAL on_off 
         /// </summary>
         public static AstCreateDatabaseOption CreateDatabaseOption(AstOnOff onOff)
@@ -19082,7 +16257,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// create_database_option : 
+        ///  : 
         ///    TWO_DIGIT_YEAR_CUTOFF EQUAL decimal 
         /// </summary>
         public static AstCreateDatabaseOption CreateDatabaseOption(AstDecimal @decimal)
@@ -19104,22 +16279,12 @@ namespace Bb.Asts.TSql
             "ead_only_full) | (DIRECTORY_NAME  EQUAL  stringtext))  RR_BRACKET";
         
         internal AstDatabaseFilestreamOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDatabaseFilestreamOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDatabaseFilestreamOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDatabaseFilestreamOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19129,7 +16294,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_filestream_option : 
+        ///  : 
         ///    ( NON_TRANSACTED_ACCESS EQUAL off_read_only_full ) 
         /// </summary>
         public static AstDatabaseFilestreamOption DatabaseFilestreamOption(AstOffReadOnlyFull offReadOnlyFull)
@@ -19140,7 +16305,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// database_filestream_option : 
+        ///  : 
         ///    ( DIRECTORY_NAME EQUAL stringtext ) 
         /// </summary>
         public static AstDatabaseFilestreamOption DatabaseFilestreamOption(AstStringtext stringtext)
@@ -19162,22 +16327,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "max_size\r\n\t : file_size\r\n\t | UNLIMITED";
         
         internal AstMaxSize(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstMaxSize(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstMaxSize(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstMaxSize(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19187,7 +16342,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// max_size : 
+        /// file_size : 
         ///    file_size 
         /// </summary>
         public static AstMaxSize MaxSize(AstFileSize fileSize)
@@ -19209,22 +16364,12 @@ namespace Bb.Asts.TSql
             "?  (WITH  VALUES)?)";
         
         internal AstNullOrDefault(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstNullOrDefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstNullOrDefault(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstNullOrDefault(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19234,7 +16379,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// null_or_default : 
+        /// null_notnull : 
         ///    null_notnull 
         /// </summary>
         public static AstNullOrDefault NullOrDefault(AstNullNotnull nullNotnull)
@@ -19245,7 +16390,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// null_or_default : 
+        ///  : 
         ///    DEFAULT constant_expression COLLATE id_ WITH VALUES 
         /// </summary>
         public static AstNullOrDefault NullOrDefault(AstConstantExpression constantExpression, AstId id)
@@ -19268,22 +16413,12 @@ namespace Bb.Asts.TSql
             "ion_name_enum";
         
         internal AstScalarFunctionName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstScalarFunctionName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstScalarFunctionName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstScalarFunctionName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19293,7 +16428,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// scalar_function_name : 
+        /// func_proc_name_server_database_schema : 
         ///    func_proc_name_server_database_schema 
         /// </summary>
         public static AstScalarFunctionName ScalarFunctionName(AstFuncProcNameServerDatabaseSchema funcProcNameServerDatabaseSchema)
@@ -19304,7 +16439,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// scalar_function_name : 
+        /// scalar_function_name_enum : 
         ///    scalar_function_name_enum 
         /// </summary>
         public static AstScalarFunctionName ScalarFunctionName(AstScalarFunctionNameEnum scalarFunctionNameEnum)
@@ -19325,22 +16460,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "contract_name_expression\r\n\t : (id_ | expression)";
         
         internal AstContractNameExpression(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstContractNameExpression(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstContractNameExpression(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstContractNameExpression(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19350,7 +16475,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// contract_name_expression : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstContractNameExpression ContractNameExpression(AstId id)
@@ -19361,7 +16486,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// contract_name_expression : 
+        /// expression : 
         ///    expression 
         /// </summary>
         public static AstContractNameExpression ContractNameExpression(AstExpression expression)
@@ -19382,22 +16507,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "service_name\r\n\t : (id_ | expression)";
         
         internal AstServiceName(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstServiceName(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstServiceName(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstServiceName(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19407,7 +16522,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// service_name : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstServiceName ServiceName(AstId id)
@@ -19418,7 +16533,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// service_name : 
+        /// expression : 
         ///    expression 
         /// </summary>
         public static AstServiceName ServiceName(AstExpression expression)
@@ -19441,22 +16556,12 @@ namespace Bb.Asts.TSql
             "_text = string_local_id)?  CLEANUP?)?";
         
         internal AstEndConversation(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEndConversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEndConversation(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEndConversation(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19466,7 +16571,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// end_conversation : 
+        ///  : 
         ///    END CONVERSATION conversation_handle=local_id SEMI? WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
         /// </summary>
         public static AstEndConversation EndConversation(AstLocalId conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
@@ -19488,22 +16593,12 @@ namespace Bb.Asts.TSql
             "_id  FROM  queue = database_schema_queue_ref  SEMI?";
         
         internal AstGetConversation(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstGetConversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstGetConversation(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstGetConversation(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19513,7 +16608,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// get_conversation : 
+        ///  : 
         ///    GET CONVERSATION GROUP conversation_group=string_local_id FROM queue=database_schema_queue_ref SEMI? 
         /// </summary>
         public static AstGetConversation GetConversation(AstStringLocalId conversationGroup, AstDatabaseSchemaQueueRef queue)
@@ -19536,22 +16631,12 @@ namespace Bb.Asts.TSql
             "ssion = string_local_id  RR_BRACKET)?  SEMI?";
         
         internal AstSendConversation(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSendConversation(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSendConversation(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSendConversation(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19561,7 +16646,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// send_conversation : 
+        ///  : 
         ///    SEND ON CONVERSATION conversation_handle=string_local_id MESSAGE TYPE messageTypeName=expression ( messageBodyEexpression=string_local_id ) SEMI? 
         /// </summary>
         public static AstSendConversation SendConversation(AstStringLocalId conversationHandle, AstExpression messageTypeName, AstStringLocalId messageBodyEexpression)
@@ -19593,22 +16678,12 @@ namespace Bb.Asts.TSql
 	 | unscaled_type_id";
         
         internal AstDataType(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDataType(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDataType(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDataType(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19618,7 +16693,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// data_type : 
+        ///  : 
         ///    scaled=data_type_scaled ( MAX ) 
         /// </summary>
         public static AstDataType DataType(AstDataTypeScaled scaled)
@@ -19629,7 +16704,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// data_type : 
+        ///  : 
         ///    ext_type_id ( decimal_scale_prec ) 
         /// </summary>
         public static AstDataType DataType(AstExtTypeId extTypeId, AstDecimalScalePrec decimalScalePrec)
@@ -19640,7 +16715,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// data_type : 
+        ///  : 
         ///    ext_type_id ( scale=decimal ) 
         /// </summary>
         public static AstDataType DataType(AstExtTypeId extTypeId, AstDecimal scale)
@@ -19651,7 +16726,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// data_type : 
+        ///  : 
         ///    ext_type_id IDENTITY ( identity_seed ) 
         /// </summary>
         public static AstDataType DataType(AstExtTypeId extTypeId, AstIdentitySeed identitySeed)
@@ -19662,7 +16737,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// data_type : 
+        /// unscaled_type_id : 
         ///    unscaled_type_id 
         /// </summary>
         public static AstDataType DataType(AstUnscaledTypeId unscaledTypeId)
@@ -19685,22 +16760,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "default_value\r\n\t : NULL_\r\n\t | DEFAULT\r\n\t | constant";
         
         internal AstDefaultValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDefaultValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDefaultValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDefaultValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19710,13 +16775,110 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// default_value : 
+        /// constant : 
         ///    constant 
         /// </summary>
         public static AstDefaultValue DefaultValue(AstConstant constant)
         {
             List<AstRoot> arguments = new List<AstRoot>();
             AstDefaultValue result = new AstDefaultValue(arguments);
+            return result;
+        }
+    }
+    
+    /// <summary>
+    /// constant
+    /// 	 : stringtext
+    /// 	 | binary_
+    /// 	 | sign?  decimal
+    /// 	 | sign?  (real | float)
+    /// 	 | sign?  dollar = DOLLAR  (decimal | float)
+    /// 	 | parameter
+    /// </summary>
+    public partial class AstConstant : AstRule
+    {
+        
+        protected static string _rule = "constant\r\n\t : stringtext\r\n\t | binary_\r\n\t | sign?  decimal\r\n\t | sign?  (real | flo" +
+            "at)\r\n\t | sign?  dollar = DOLLAR  (decimal | float)\r\n\t | parameter";
+        
+        internal AstConstant(ITerminalNode t, List<AstRoot> list) : 
+                base(t)
+        {
+        }
+        
+        internal AstConstant(List<AstRoot> list) : 
+                base(Position.Default)
+        {
+        }
+        
+        public override void Accept(IAstTSqlVisitor visitor)
+        {
+            visitor.VisitConstant(this);
+        }
+        
+        /// <summary>
+        /// stringtext : 
+        ///    stringtext 
+        /// </summary>
+        public static AstConstant Constant(AstStringtext stringtext)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
+            return result;
+        }
+        
+        /// <summary>
+        /// binary_ : 
+        ///    binary_ 
+        /// </summary>
+        public static AstConstant Constant(AstBinary binary)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
+            return result;
+        }
+        
+        /// <summary>
+        ///  : 
+        ///    sign? decimal 
+        /// </summary>
+        public static AstConstant Constant(AstSign sign, AstDecimal @decimal)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
+            return result;
+        }
+        
+        /// <summary>
+        ///  : 
+        ///    sign? real 
+        /// </summary>
+        public static AstConstant Constant(AstSign sign, AstReal real)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
+            return result;
+        }
+        
+        /// <summary>
+        ///  : 
+        ///    sign? float 
+        /// </summary>
+        public static AstConstant Constant(AstSign sign, AstFloat @float)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
+            return result;
+        }
+        
+        /// <summary>
+        /// parameter : 
+        ///    parameter 
+        /// </summary>
+        public static AstConstant Constant(AstParameter parameter)
+        {
+            List<AstRoot> arguments = new List<AstRoot>();
+            AstConstant result = new AstConstant(arguments);
             return result;
         }
     }
@@ -19733,22 +16895,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "string_id2\r\n\t : stringtext\r\n\t | id_\r\n\t | local_id";
         
         internal AstStringId2(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstStringId2(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstStringId2(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstStringId2(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19758,7 +16910,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// string_id2 : 
+        /// stringtext : 
         ///    stringtext 
         /// </summary>
         public static AstStringId2 StringId2(AstStringtext stringtext)
@@ -19769,7 +16921,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// string_id2 : 
+        /// id_ : 
         ///    id_ 
         /// </summary>
         public static AstStringId2 StringId2(AstId id)
@@ -19780,7 +16932,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// string_id2 : 
+        /// local_id : 
         ///    local_id 
         /// </summary>
         public static AstStringId2 StringId2(AstLocalId localId)
@@ -19802,22 +16954,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "all_server_database\r\n\t : ALL  SERVER\r\n\t | DATABASE";
         
         internal AstAllServerDatabase(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAllServerDatabase(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAllServerDatabase(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAllServerDatabase(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19837,22 +16979,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "encryption_state\r\n\t : ENCRYPTION  EQUAL  (DISABLED | SUPPORTED | REQUIRED)";
         
         internal AstEncryptionState(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEncryptionState(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEncryptionState(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEncryptionState(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19872,22 +17004,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "parameterization_option\r\n\t : PARAMETERIZATION  (SIMPLE | FORCED)";
         
         internal AstParameterizationOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstParameterizationOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstParameterizationOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstParameterizationOption(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19914,22 +17036,12 @@ namespace Bb.Asts.TSql
             "N  EQUAL)\r\n\t | GREATER\r\n\t | (GREATER  EQUAL)\r\n\t | LESS\r\n\t | LESS  EQUAL";
         
         internal AstEventSessionPredicateLeafOpe(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateLeafOpe(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstEventSessionPredicateLeafOpe(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstEventSessionPredicateLeafOpe(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19950,22 +17062,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "cycle\r\n\t : CYCLE\r\n\t | NO  CYCLE";
         
         internal AstCycle(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstCycle(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstCycle(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstCycle(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -19986,22 +17088,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "size_value\r\n\t : decimal  MB\r\n\t | DEFAULT";
         
         internal AstSizeValue(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstSizeValue(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstSizeValue(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstSizeValue(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20011,7 +17103,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// size_value : 
+        ///  : 
         ///    decimal MB 
         /// </summary>
         public static AstSizeValue SizeValue(AstDecimal @decimal)
@@ -20033,22 +17125,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "decimal_default\r\n\t : decimal\r\n\t | DEFAULT";
         
         internal AstDecimalDefault(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstDecimalDefault(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstDecimalDefault(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstDecimalDefault(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20058,7 +17140,7 @@ namespace Bb.Asts.TSql
         }
         
         /// <summary>
-        /// decimal_default : 
+        /// decimal : 
         ///    decimal 
         /// </summary>
         public static AstDecimalDefault DecimalDefault(AstDecimal @decimal)
@@ -20079,22 +17161,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "on_delete\r\n\t : ON  DELETE  (NO  ACTION | CASCADE | SET  NULL_ | SET  DEFAULT)";
         
         internal AstOnDelete(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstOnDelete(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstOnDelete(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstOnDelete(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20114,22 +17186,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "on_update\r\n\t : ON  UPDATE  (NO  ACTION | CASCADE | SET  NULL_ | SET  DEFAULT)";
         
         internal AstOnUpdate(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstOnUpdate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstOnUpdate(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstOnUpdate(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20149,22 +17211,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "updated_asterisk\r\n\t : (INSERTED | DELETED)  DOT  STAR";
         
         internal AstUpdatedAsterisk(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstUpdatedAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstUpdatedAsterisk(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstUpdatedAsterisk(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20184,22 +17236,12 @@ namespace Bb.Asts.TSql
         protected static string _rule = "null_notnull\r\n\t : NOT?  NULL_";
         
         internal AstNullNotnull(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstNullNotnull(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstNullNotnull(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstNullNotnull(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20229,22 +17271,12 @@ namespace Bb.Asts.TSql
             "\t | EXCLAMATION  LESS";
         
         internal AstComparisonOperator(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstComparisonOperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstComparisonOperator(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstComparisonOperator(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         
@@ -20272,22 +17304,12 @@ namespace Bb.Asts.TSql
             "ASSIGN\r\n\t | MOD_ASSIGN\r\n\t | AND_ASSIGN\r\n\t | XOR_ASSIGN\r\n\t | OR_ASSIGN";
         
         internal AstAssignmentOperator(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
-        {
-        }
-        
-        internal AstAssignmentOperator(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
-        {
-        }
-        
-        internal AstAssignmentOperator(Position p, List<AstRoot> list) : 
-                base(p, list)
+                base(t)
         {
         }
         
         internal AstAssignmentOperator(List<AstRoot> list) : 
-                base(Position.Default, list)
+                base(Position.Default)
         {
         }
         

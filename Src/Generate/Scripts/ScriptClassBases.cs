@@ -60,37 +60,28 @@ namespace Generate.Scripts
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ITerminalNode", "t")
-                                    .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("t", "list");
+                                    .CallBase("t");
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ParserRuleContext", "ctx")
-                                    .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("ctx", "list");
+                                    .CallBase("ctx");
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "Position", "p")
-                                    .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("p", "list");
+                                    .CallBase("p");
                                })
 
                         .Make(t =>
                         {
-                            //if (ast.Name.Text == "asterisk")
-                            //{
-
-                            //}
-
-                            var r = ast.Root();
 
                             HashSet<string> _h = new HashSet<string>();
                             List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
-                            var alternatives = ast.GetAlternatives(ctx);
+                            var alternatives = ast.GetAlternativesWithOnlyRules(ctx);
 
                             foreach (var alt in alternatives)
                             {
@@ -102,136 +93,35 @@ namespace Generate.Scripts
                                 StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
                                 List<string> arguments = new List<string>();
 
-                                var method = new CodeMemberMethod()
-                                {
-                                    Name = n1,
-                                    ReturnType = t1,
-                                    Attributes = MemberAttributes.Public | MemberAttributes.Static,
-                                };
-
-                                method.Comments.Add(new CodeCommentStatement("<summary>", true));
-                                method.Comments.Add(new CodeCommentStatement($"{alt.Name} : ", true));
-                                method.Comments.Add(new CodeCommentStatement(alt.GenerateDoc(ctx), true));
-                                method.Comments.Add(new CodeCommentStatement("</summary>", true));
-
-                                Action<TreeRuleItem> act = itemAst =>
-                                {
-
-                                    string name = null;
-                                    CodeTypeReference argumentTypeName = null;
-                                    string varName = null;
-
-                                    var itemResult = ast.ResolveByName(itemAst.ResolveKey());
-                                    if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
-                                    {
-                                        name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
-                                        if (string.IsNullOrEmpty(itemAst.Label))
-                                            varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
-                                        else
-                                            varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
-
-                                    }
-                                    else if (itemResult != null && itemResult is AstLexerRule r2 && r2?.Configuration != null)
-                                    {
-
-                                        switch (r2.Configuration.Config.Kind)
-                                        {
-                                            case TokenTypeEnum.Pattern:
-                                            case TokenTypeEnum.String:
-                                            case TokenTypeEnum.Identifier:
-                                                name = nameof(String);
-                                                varName = "txt";
-                                                break;
-                                            case TokenTypeEnum.Boolean:
-                                                name = nameof(Boolean);
-                                                varName = "boolean";
-                                                break;
-                                            case TokenTypeEnum.Decimal:
-                                                name = nameof(Decimal);
-                                                varName = "_decimal";
-                                                break;
-                                            case TokenTypeEnum.Int:
-                                                name = nameof(Int64);
-                                                varName = "integer";
-                                                break;
-                                            case TokenTypeEnum.Real:
-                                                name = nameof(Double);
-                                                varName = "real";
-                                                break;
-                                            case TokenTypeEnum.Hexa:
-                                                name = "";
-                                                varName = "";
-                                                break;
-                                            case TokenTypeEnum.Binary:
-                                                name = "Object";
-                                                varName = "_binary";
-                                                break;
-
-                                            case TokenTypeEnum.Operator:
-                                            case TokenTypeEnum.Ponctuation:
-                                            case TokenTypeEnum.Other:
-                                            case TokenTypeEnum.Comment:
-                                            case TokenTypeEnum.Constant:
-                                            default:
-                                                break;
-                                        }
-
-                                        if (!string.IsNullOrEmpty(itemAst.Label))
-                                            varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
-
-                                    }
-
-                                    if (name != null)
-                                    {
-                                        argumentTypeName = new CodeTypeReference(name);
-                                        if (itemAst.Occurence.Value == OccurenceEnum.Any)
-                                            argumentTypeName = new CodeTypeReference(typeof(IEnumerable<>).Name, argumentTypeName);
-
-                                        method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
-                                        uniqeConstraintKeyMethod.Append(name);
-                                        arguments.Add(varName);
-                                    }
-
-                                };
+                                var method = n1.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                    .BuildDocumentation(alt, ctx);
 
                                 if (alt.Count > 0)
                                     foreach (var itemAlt in alt)
-                                        act(itemAlt);
-                                else
-                                    act(alt);
+                                        itemAlt.BuildStaticMethod(ast, method, arguments);
 
-                                if (method.Parameters.Count > 0)
+                                var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                if (_h.Add(noDuplicateKey))
                                 {
+                                    List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
+                                    foreach (var itemArg in arguments)
+                                        args.Add(itemArg.Var());
 
-                                    var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
-
-                                    if (_h.Add(noDuplicateKey))
-                                    {
-                                        List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
-                                        foreach (var itemArg in arguments)
-                                            args.Add(itemArg.Var());
-
-                                        methods.Add(method);
-                                        var ret = CodeHelper.Call(t1, n1, args.ToArray());
-                                        method.Statements.Return(ret);
-
-                                    }
+                                    methods.Add(method);
+                                    var ret = CodeHelper.Call(t1, n1, args.ToArray());
+                                    method.Statements.Return(ret);
 
                                 }
 
                             }
 
                             foreach (var item in methods)
-                            {
                                 t.Members.Add(item);
-                            }
 
                         })
 
                         ;
-
-
-
 
                 })
 
@@ -271,6 +161,7 @@ namespace Generate.Scripts
             });
 
         }
+
 
     }
 

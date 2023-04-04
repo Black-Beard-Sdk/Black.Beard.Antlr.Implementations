@@ -204,8 +204,6 @@ namespace Bb.Generators
             if (ast is T a)
             {
 
-                ctx.CurrentConfiguration = (ast as AstRule).Configuration;
-
                 var b = new ModelTypeFrom<T>(_modelNamespace, _action);
                 var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
                 if (t)

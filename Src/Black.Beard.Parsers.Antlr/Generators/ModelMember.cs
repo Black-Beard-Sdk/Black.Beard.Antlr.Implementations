@@ -20,7 +20,7 @@ namespace Bb.Generators
 
         protected void GenerateDocumentation(CodeTypeMember member, Context context)
         {
-            
+
             if (_actionDocumentation != null)
             {
                 var doc = new Documentation();
@@ -50,6 +50,15 @@ namespace Bb.Generators
         {
 
         }
+
+        protected static IEnumerable<T> Select<T>(CodeTypeMemberCollection items)
+            where T : CodeTypeMember
+        {
+            foreach (var item in items)
+                if (item is T t)
+                    yield return t;
+        }
+
 
         protected Action<Documentation> _actionDocumentation;
 

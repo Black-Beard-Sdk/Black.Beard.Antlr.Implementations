@@ -61,7 +61,7 @@ namespace Bb.Parsers.TSql
 
         public static bool Trace { get; set; }
 
-        public TSqlParser.Tsql_fileContext Tree { get { return _context; } }
+        public TSqlParser.T_rootContext Tree { get { return _context; } }
 
         public IEnumerable<string> Includes { get => _includes; }
 
@@ -105,14 +105,14 @@ namespace Bb.Parsers.TSql
                 //Trace = ScriptParser.Trace, // Ca plante sur un null, pourquoi ?
             };
 
-            _context = _parser.tsql_file();
+            _context = _parser.t_root();
 
         }
 
         public TSqlParser Parser { get => _parser; }
 
         private TSqlParser _parser;
-        private TSqlParser.Tsql_fileContext _context;
+        private TSqlParser.T_rootContext _context;
 
         public bool IsFragment { get; private set; }
     }

@@ -78,7 +78,7 @@ namespace Bb.Generators
 
             return result;
 
-        }
+        }              
 
         private string _templateSelector(AstRule ast, Context context)
         {
@@ -119,7 +119,6 @@ namespace Bb.Generators
             return ast.Strategy;
 
         }
-
 
         private static string TemplateSelectorCompute(AstRule ast, Context context)
         {

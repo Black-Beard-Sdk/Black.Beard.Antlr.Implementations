@@ -124,35 +124,12 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// mirroring_host_port_seperator
-        /// 	 : COLON
-        /// </summary>
-        public override AstRoot VisitMirroring_host_port_seperator(TSqlParser.Mirroring_host_port_seperatorContext context)
-        {
-            return new AstMirroringHostPortSeperator(context);
-        }
-        
-        /// <summary>
         /// empty_value
         /// 	 : DOUBLE_QUOTE_ID
         /// </summary>
         public override AstRoot VisitEmpty_value(TSqlParser.Empty_valueContext context)
         {
             return new AstEmptyValue(context);
-        }
-        
-        /// <summary>
-        /// constant
-        /// 	 : stringtext
-        /// 	 | binary_
-        /// 	 | sign?  decimal
-        /// 	 | sign?  (real | float)
-        /// 	 | sign?  dollar = DOLLAR  (decimal | float)
-        /// 	 | parameter
-        /// </summary>
-        public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
-        {
-            return new AstConstant(context);
         }
         
         /// <summary>

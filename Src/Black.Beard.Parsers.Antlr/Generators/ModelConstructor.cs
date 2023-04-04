@@ -1,5 +1,6 @@
 ﻿using Bb.Parsers;
 using System.CodeDom;
+using System.Linq;
 
 namespace Bb.Generators
 {
@@ -36,14 +37,18 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelConstructor Arguments(Func<List<object>> list,  Func<object, (string, string)> func)
+        public ModelConstructor Arguments(Func<List<object>> list, Func<object, (string, string)> func)
         {
-            foreach (var item in list())
+            if (list != null)
             {
-                var i = func(item);
-                base.Argument(i.Item1, i.Item2);
+                var l = list();
+                if (l != null)
+                    foreach (var item in l)
+                    {
+                        var i = func(item);
+                        base.Argument(i.Item1, i.Item2);
+                    }
             }
-
             return this;
         }
 
@@ -64,7 +69,7 @@ namespace Bb.Generators
         {
 
             foreach (var value in values)
-                    this._callBase.Add(c => value);
+                this._callBase.Add(c => value);
 
             return this;
         }
@@ -108,13 +113,12 @@ namespace Bb.Generators
             if (this._body != null)
                 this._body(method);
 
-            t.Members.Add(method);
+            if (!MemberExists(t.Members, method))
+                t.Members.Add(method);
 
         }
 
-
         private readonly List<Func<object, CodeExpression>> _callBase;
-
 
     }
 

@@ -43,6 +43,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitNull(this);
         }
+        
+        /// <summary>
+        /// NULL_ : 
+        ///    NULL_ 
+        /// </summary>
+        public static AstNULL NULL()
+        {
+            return AstNULL.NULL();
+        }
     }
     
     /// <summary>
@@ -99,6 +108,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitAlterAssemblyFromClauseStart(this);
         }
+        
+        /// <summary>
+        /// FROM : 
+        ///    FROM 
+        /// </summary>
+        public static AstFROM FROM()
+        {
+            return AstFROM.FROM();
+        }
     }
     
     /// <summary>
@@ -126,6 +144,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitAlterAssemblyDrop(this);
+        }
+        
+        /// <summary>
+        /// DROP : 
+        ///    DROP 
+        /// </summary>
+        public static AstDROP DROP()
+        {
+            return AstDROP.DROP();
         }
     }
     
@@ -155,6 +182,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitNetworkFileStart(this);
         }
+        
+        /// <summary>
+        /// DOUBLE_BACK_SLASH : 
+        ///    DOUBLE_BACK_SLASH 
+        /// </summary>
+        public static AstDOUBLEBACKSLASH DOUBLEBACKSLASH()
+        {
+            return AstDOUBLEBACKSLASH.DOUBLEBACKSLASH();
+        }
     }
     
     /// <summary>
@@ -183,6 +219,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitFileDirectoryPathSeparator(this);
         }
+        
+        /// <summary>
+        /// BACKSLASH : 
+        ///    BACKSLASH 
+        /// </summary>
+        public static AstBACKSLASH BACKSLASH()
+        {
+            return AstBACKSLASH.BACKSLASH();
+        }
     }
     
     /// <summary>
@@ -210,6 +255,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitLocalDrive(this);
+        }
+        
+        /// <summary>
+        /// DISK_DRIVE : 
+        ///    DISK_DRIVE 
+        /// </summary>
+        public static AstDISKDRIVE DISKDRIVE()
+        {
+            return AstDISKDRIVE.DISKDRIVE();
         }
     }
     
@@ -267,6 +321,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitMirroringPartner(this);
         }
+        
+        /// <summary>
+        /// PARTNER : 
+        ///    PARTNER 
+        /// </summary>
+        public static AstPARTNER PARTNER()
+        {
+            return AstPARTNER.PARTNER();
+        }
     }
     
     /// <summary>
@@ -294,6 +357,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitMirroringWitness(this);
+        }
+        
+        /// <summary>
+        /// WITNESS : 
+        ///    WITNESS 
+        /// </summary>
+        public static AstWITNESS WITNESS()
+        {
+            return AstWITNESS.WITNESS();
         }
     }
     
@@ -323,33 +395,14 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitWitnessPartnerEqual(this);
         }
-    }
-    
-    /// <summary>
-    /// mirroring_host_port_seperator
-    /// 	 : COLON
-    /// </summary>
-    public partial class AstMirroringHostPortSeperator : AstTerminal<string>
-    {
         
-        public AstMirroringHostPortSeperator(ITerminalNode t) : 
-                base(t, t.GetText())
+        /// <summary>
+        /// EQUAL : 
+        ///    EQUAL 
+        /// </summary>
+        public static AstEQUAL EQUAL()
         {
-        }
-        
-        public AstMirroringHostPortSeperator(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstMirroringHostPortSeperator(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitMirroringHostPortSeperator(this);
+            return AstEQUAL.EQUAL();
         }
     }
     
@@ -379,38 +432,14 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitEmptyValue(this);
         }
-    }
-    
-    /// <summary>
-    /// constant
-    /// 	 : stringtext
-    /// 	 | binary_
-    /// 	 | sign?  decimal
-    /// 	 | sign?  (real | float)
-    /// 	 | sign?  dollar = DOLLAR  (decimal | float)
-    /// 	 | parameter
-    /// </summary>
-    public partial class AstConstant : AstTerminal<string>
-    {
         
-        public AstConstant(ITerminalNode t) : 
-                base(t, t.GetText())
+        /// <summary>
+        /// DOUBLE_QUOTE_ID : 
+        ///    DOUBLE_QUOTE_ID 
+        /// </summary>
+        public static AstDOUBLEQUOTEID DOUBLEQUOTEID()
         {
-        }
-        
-        public AstConstant(ParserRuleContext ctx) : 
-                base(ctx, ctx.GetText())
-        {
-        }
-        
-        public AstConstant(Position t, string value) : 
-                base(t, value)
-        {
-        }
-        
-        public override void Accept(IAstTSqlVisitor visitor)
-        {
-            visitor.VisitConstant(this);
+            return AstDOUBLEQUOTEID.DOUBLEQUOTEID();
         }
     }
     
@@ -440,6 +469,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitIpv4(this);
         }
+        
+        /// <summary>
+        /// IPV4_ADDR : 
+        ///    IPV4_ADDR 
+        /// </summary>
+        public static AstIPV4ADDR IPV4ADDR()
+        {
+            return AstIPV4ADDR.IPV4ADDR();
+        }
     }
     
     /// <summary>
@@ -467,6 +505,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitIpv6(this);
+        }
+        
+        /// <summary>
+        /// IPV6_ADDR : 
+        ///    IPV6_ADDR 
+        /// </summary>
+        public static AstIPV6ADDR IPV6ADDR()
+        {
+            return AstIPV6ADDR.IPV6ADDR();
         }
     }
     
@@ -496,6 +543,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitFloat(this);
         }
+        
+        /// <summary>
+        /// FLOAT : 
+        ///    FLOAT 
+        /// </summary>
+        public static AstFLOAT FLOAT()
+        {
+            return AstFLOAT.FLOAT();
+        }
     }
     
     /// <summary>
@@ -523,6 +579,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitDecimal(this);
+        }
+        
+        /// <summary>
+        /// DECIMAL : 
+        ///    DECIMAL 
+        /// </summary>
+        public static AstDECIMAL DECIMAL()
+        {
+            return AstDECIMAL.DECIMAL();
         }
     }
     
@@ -552,6 +617,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitBinary(this);
         }
+        
+        /// <summary>
+        /// BINARY : 
+        ///    BINARY 
+        /// </summary>
+        public static AstBINARY BINARY()
+        {
+            return AstBINARY.BINARY();
+        }
     }
     
     /// <summary>
@@ -580,6 +654,15 @@ namespace Bb.Asts.TSql
         {
             visitor.VisitLocalId(this);
         }
+        
+        /// <summary>
+        /// LOCAL_ID : 
+        ///    LOCAL_ID 
+        /// </summary>
+        public static AstLOCALID LOCALID()
+        {
+            return AstLOCALID.LOCALID();
+        }
     }
     
     /// <summary>
@@ -607,6 +690,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitStringtext(this);
+        }
+        
+        /// <summary>
+        /// STRING : 
+        ///    STRING 
+        /// </summary>
+        public static AstSTRING STRING()
+        {
+            return AstSTRING.STRING();
         }
     }
     
@@ -663,6 +755,15 @@ namespace Bb.Asts.TSql
         public override void Accept(IAstTSqlVisitor visitor)
         {
             visitor.VisitStarAsterisk(this);
+        }
+        
+        /// <summary>
+        /// STAR : 
+        ///    STAR 
+        /// </summary>
+        public static AstSTAR STAR()
+        {
+            return AstSTAR.STAR();
         }
     }
 }

@@ -4,6 +4,7 @@ using Bb.Parsers;
 using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Generate.Scripts
 {
@@ -55,7 +56,7 @@ namespace Generate.Scripts
                                   f.Argument(() => "Position", "p")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("p", "list")
+                                   .CallBase("p")
                                    .Body(b =>
                                    {
 
@@ -93,7 +94,7 @@ namespace Generate.Scripts
                                        return (a.Type(), a.GetParameterdName());
                                    })
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("p", "null")
+                                   .CallBase("p")
                                    .Body(b =>
                                    {
                                        var items = ast.GetProperties();
@@ -107,13 +108,12 @@ namespace Generate.Scripts
                                    ;
                               })
 
-
                               .Ctor((f) =>
                               {
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx", "list")
+                                   .CallBase("ctx")
                                    .Body(b =>
                                    {
 
@@ -143,7 +143,6 @@ namespace Generate.Scripts
                                    ;
                               })
 
-
                               .Method(method =>
                               {
                                   method
@@ -166,7 +165,10 @@ namespace Generate.Scripts
                                   (property, model) =>
                                   {
                                       property.Name(m => (model as AstBase).GetPropertyName())
-                                      .Type(() => (model as AstBase).GetType())
+                                      .Type(() =>
+                                      {
+                                          return (model as AstBase).Type();
+                                      })
                                       .Attribute(MemberAttributes.Public)
                                       .Get((stm) =>
                                       {
@@ -192,13 +194,6 @@ namespace Generate.Scripts
                               .Make(t =>
                               {
 
-                                  if (ast.ResolveName() == "create_resource_pool")
-                                  {
-
-                                  }
-
-                                  var r = ast.Root();
-
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
@@ -211,20 +206,12 @@ namespace Generate.Scripts
                                       {
 
                                           StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                          var name = CodeHelper.FormatCsharp(ast.Name.Text);
                                           var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
                                           List<string> arguments = new List<string>();
 
-                                          var method = new CodeMemberMethod()
-                                          {
-                                              Name = CodeHelper.FormatCsharp(ast.Name.Text),
-                                              ReturnType = t1,
-                                              Attributes = MemberAttributes.Public | MemberAttributes.Static,
-                                          };
-
-                                          method.Comments.Add(new CodeCommentStatement("<summary>", true));
-                                          method.Comments.Add(new CodeCommentStatement($"{ast.Name} : ", true));
-                                          method.Comments.Add(new CodeCommentStatement(alt.GenerateDoc(ctx), true));
-                                          method.Comments.Add(new CodeCommentStatement("</summary>", true));
+                                          var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                            .BuildDocumentation(alt, ctx);
 
                                           Action<TreeRuleItem> act = itemAst =>
                                           {
@@ -377,7 +364,7 @@ namespace Generate.Scripts
 
         }
 
-  
+
     }
 
 

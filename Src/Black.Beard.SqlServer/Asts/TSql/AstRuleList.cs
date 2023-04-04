@@ -11,37 +11,37 @@ namespace Bb.Asts.TSql
 
 
         public AstRuleList(ITerminalNode n)
-            : base(n, null)
+            : base(n)
         {
             _list = new List<T>();
         }
 
         public AstRuleList(ITerminalNode n, int capacity)
-            : base(n, null)
+            : base(n)
         {
             _list = new List<T>(capacity);
         }
 
         public AstRuleList(ParserRuleContext ctx)
-            : base(ctx, null)
+            : base(ctx)
         {
             _list = new List<T>();
         }
 
         public AstRuleList(ParserRuleContext ctx, int capacity)
-            : base(ctx, null)
+            : base(ctx)
         {
             _list = new List<T>(capacity);
         }
 
         public AstRuleList(Position n)
-            : base(n, null)
+            : base(n)
         {
             _list = new List<T>();
         }
 
         public AstRuleList(Position n, int capacity)
-            : base(n, null)
+            : base(n)
         {
             _list = new List<T>(capacity);
         }

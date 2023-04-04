@@ -48,6 +48,30 @@ namespace Bb.Parsers
             return _items.Generate(_ctx);
         }
 
+        public void VisitRules(AstRules a)
+        {
+
+            foreach (var item in a.Rules)
+                item.Accept(this);
+
+            foreach (var item in a.Terminals)
+                item.Accept(this);
+
+        }
+
+        public void VisitLexerRule(AstLexerRule a)
+        {                       
+
+            if (a.Alternatives != null)
+                a.CanBeRemoved = a.Alternatives.CanBeRemoved;
+
+            //var config = _ctx.Configuration.GetConfiguration(a.RuleName.Text);
+            //config.ProposalGenerate = !a.CanBeRemoved;
+
+            _items.Add(a);
+
+        }
+
         public void VisitRule(AstRule a)
         {
 
@@ -123,7 +147,6 @@ namespace Bb.Parsers
             a.Rules?.Accept(this);
 
         }
-
 
         public void VisitAlternative(AstAlternative a)
         {
@@ -393,19 +416,6 @@ namespace Bb.Parsers
         }
 
         public void VisitLexerRulesList(AstLexerRulesList a)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void VisitRules(AstRules a)
-        {
-
-            foreach (var item in a.Rules)
-                item.Accept(this);
-
-        }
-
-        public void VisitLexerRule(AstLexerRule a)
         {
             throw new NotImplementedException();
         }

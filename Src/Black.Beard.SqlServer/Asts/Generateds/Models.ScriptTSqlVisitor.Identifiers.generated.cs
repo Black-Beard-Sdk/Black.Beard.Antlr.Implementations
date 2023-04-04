@@ -26,7 +26,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// host
-        /// 	 : id_  (DOT  id_)+
+        /// 	 : HOST
         /// </summary>
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
@@ -69,8 +69,7 @@ namespace Bb.Parsers.TSql
         
         /// <summary>
         /// principal_id
-        /// 	 : 
-        /// 	 | id_
+        /// 	 : id_
         /// 	 | PUBLIC
         /// </summary>
         public override AstRoot VisitPrincipal_id(TSqlParser.Principal_idContext context)

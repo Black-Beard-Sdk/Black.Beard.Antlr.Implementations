@@ -924,18 +924,20 @@ namespace Bb.Parsers
             if (context != null)
             {
 
+                var optional = context.QUESTION();
+
                 var c = new AstEbnfSuffix(context);
 
                 var o = context.QUESTION().Length;
 
                 if (context.STAR() != null)
-                        c.Occurence = new Occurence(OccurenceEnum.Any, o > 0) { Optional = true };
-                
+                    c.Occurence = new Occurence(OccurenceEnum.Any, o > 0) { Optional = true };
+
                 else if (context.PLUS() != null)
-                    c.Occurence = new Occurence(OccurenceEnum.Any, o > 0);
-                
+                    c.Occurence = new Occurence(OccurenceEnum.Any, o > 0) { Optional = optional.Length > 0 };
+
                 else
-                    c.Occurence = new Occurence(  OccurenceEnum.One, o > 0);
+                    c.Occurence = new Occurence(OccurenceEnum.One, o > 0) { Optional = optional.Length > 0 };
 
                 return c;
 

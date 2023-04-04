@@ -22,6 +22,18 @@ namespace Bb.Asts
 
         public IdentifierConfig Name { get; }
 
+
+        public override string ResolveName()
+        {
+            return Name.Text;
+        }
+
+        public abstract bool IsTerm { get; }
+
+        public string Strategy { get; set; }
+
+        public GrammarConfigBaseDeclaration Configuration { get; internal set; }
+
     }
 
 
@@ -49,6 +61,11 @@ namespace Bb.Asts
             this.Alternatives = ruleBlock;
             this.ExceptionGroup = exceptionGroup;
         }
+
+
+        public new GrammarConfigDeclaration Configuration { get; internal set; }
+
+        public override bool IsTerm => false;
 
         public AstRuleModifierList Modifiers { get; }
 
@@ -195,11 +212,6 @@ namespace Bb.Asts
 
         public bool ContainsJustOneAlternative { get => Alternatives?.ContainsJustOneAlternative ?? false; }
 
-
-
-        public string Strategy { get; set; }
-
-        public GrammarConfigDeclaration Configuration { get; internal set; }
 
         public int Index { get; internal set; }
 

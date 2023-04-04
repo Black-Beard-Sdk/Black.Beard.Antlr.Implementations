@@ -27,18 +27,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstBatchLevelStatement : AstRule
     {
         
-        internal AstBatchLevelStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstBatchLevelStatement(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstBatchLevelStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstBatchLevelStatement(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstBatchLevelStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstBatchLevelStatement(Position p) : 
+                base(p)
         {
         }
         
@@ -46,234 +46,9 @@ namespace Bb.Asts.TSql
         /// create_or_alter_function : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_select ; 
         /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsSelect funcBodyReturnsSelect)
+        public static AstCreateOrAlterFunction CreateOrAlterFunction()
         {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, procedureParams, funcBodyReturnsSelect);
-        }
-        
-        /// <summary>
-        /// create_or_alter_function : 
-        ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_select ; 
-        /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsSelect funcBodyReturnsSelect)
-        {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, funcBodyReturnsSelect);
-        }
-        
-        /// <summary>
-        /// create_or_alter_function : 
-        ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_table ; 
-        /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsTable funcBodyReturnsTable)
-        {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, procedureParams, funcBodyReturnsTable);
-        }
-        
-        /// <summary>
-        /// create_or_alter_function : 
-        ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_table ; 
-        /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsTable funcBodyReturnsTable)
-        {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, funcBodyReturnsTable);
-        }
-        
-        /// <summary>
-        /// create_or_alter_function : 
-        ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_scalar ; 
-        /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsScalar funcBodyReturnsScalar)
-        {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, procedureParams, funcBodyReturnsScalar);
-        }
-        
-        /// <summary>
-        /// create_or_alter_function : 
-        ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( ) func_body_returns_scalar ; 
-        /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstFuncBodyReturnsScalar funcBodyReturnsScalar)
-        {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, funcBodyReturnsScalar);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureParams, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureParams, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureParams, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureParams, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS as_external_name 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstAsExternalName asExternalName)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureOptions, asExternalName);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureParams, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureParams, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureParams, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref LR_BRACKET? procedure_params RR_BRACKET? procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureParams procedureParams, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureParams, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, @decimal, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref ; decimal procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstDecimal @decimal, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, @decimal, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    CREATE OR alter_replace proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstAlterReplace alterReplace, AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(alterReplace, procKeyword, procName, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_procedure : 
-        ///    ALTER proc_keyword procName=schema_func_proc_ref procedure_options? FOR REPLICATION AS sql_clause 
-        /// </summary>
-        public static AstCreateOrAlterProcedure CreateOrAlterProcedure(AstProcKeyword procKeyword, AstSchemaFuncProcRef procName, AstProcedureOptions procedureOptions, AstSqlClause sqlClause)
-        {
-            return AstCreateOrAlterProcedure.CreateOrAlterProcedure(procKeyword, procName, procedureOptions, sqlClause);
-        }
-        
-        /// <summary>
-        /// create_or_alter_dml_trigger : 
-        ///    CREATE OR ALTER TRIGGER schema_trigger_ref ON full_table_ref dml_trigger_options? for_after_instead dml_trigger_operations WITH APPEND NOT FOR REPLICATION AS sql_clauses 
-        /// </summary>
-        public static AstCreateOrAlterDmlTrigger CreateOrAlterDmlTrigger(AstSchemaTriggerRef schemaTriggerRef, AstFullTableRef fullTableRef, AstDmlTriggerOptions dmlTriggerOptions, AstForAfterInstead forAfterInstead, AstDmlTriggerOperations dmlTriggerOperations, AstSqlClauses sqlClauses)
-        {
-            return AstCreateOrAlterDmlTrigger.CreateOrAlterDmlTrigger(schemaTriggerRef, fullTableRef, dmlTriggerOptions, forAfterInstead, dmlTriggerOperations, sqlClauses);
-        }
-        
-        /// <summary>
-        /// create_or_alter_ddl_trigger : 
-        ///    CREATE OR ALTER TRIGGER schema_trigger_ref ON all_server_database dml_trigger_options? for_after dml_trigger_operations AS sql_clauses 
-        /// </summary>
-        public static AstCreateOrAlterDdlTrigger CreateOrAlterDdlTrigger(AstSchemaTriggerRef schemaTriggerRef, AstAllServerDatabase allServerDatabase, AstDmlTriggerOptions dmlTriggerOptions, AstForAfter forAfter, AstDmlTriggerOperations dmlTriggerOperations, AstSqlClauses sqlClauses)
-        {
-            return AstCreateOrAlterDdlTrigger.CreateOrAlterDdlTrigger(schemaTriggerRef, allServerDatabase, dmlTriggerOptions, forAfter, dmlTriggerOperations, sqlClauses);
-        }
-        
-        /// <summary>
-        /// create_view : 
-        ///    CREATE VIEW schema_view_ref ( column_name_list ) view_attributes? AS select_statement_standalone WITH CHECK OPTION ; 
-        /// </summary>
-        public static AstCreateView CreateView(AstSchemaViewRef schemaViewRef, AstColumnNameList columnNameList, AstViewAttributes viewAttributes, AstSelectStatementStandalone selectStatementStandalone)
-        {
-            return AstCreateView.CreateView(schemaViewRef, columnNameList, viewAttributes, selectStatementStandalone);
-        }
-        
-        /// <summary>
-        /// create_view : 
-        ///    CREATE VIEW schema_view_ref view_attributes? AS select_statement_standalone WITH CHECK OPTION ; 
-        /// </summary>
-        public static AstCreateView CreateView(AstSchemaViewRef schemaViewRef, AstViewAttributes viewAttributes, AstSelectStatementStandalone selectStatementStandalone)
-        {
-            return AstCreateView.CreateView(schemaViewRef, viewAttributes, selectStatementStandalone);
+            return AstCreateOrAlterFunction.CreateOrAlterFunction();
         }
     }
     
@@ -288,18 +63,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstDmlClause : AstRule
     {
         
-        internal AstDmlClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstDmlClause(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstDmlClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstDmlClause(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstDmlClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstDmlClause(Position p) : 
+                base(p)
         {
         }
         
@@ -307,531 +82,9 @@ namespace Bb.Asts.TSql
         /// merge_statement : 
         ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause)
+        public static AstMergeStatement MergeStatement()
         {
-            return AstMergeStatement.MergeStatement(withExpression, expression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// merge_statement : 
-        ///    with_expression? MERGE INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstMergeStatement.MergeStatement(withExpression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP ( expression ) PERCENT FROM delete_statement_from with_table_hints? output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstExpression expression, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, expression, deleteStatementFrom, withTableHints, outputClause, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// delete_statement : 
-        ///    with_expression? DELETE TOP decimal FROM delete_statement_from with_table_hints? output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstDeleteStatement DeleteStatement(AstWithExpression withExpression, AstDecimal @decimal, AstDeleteStatementFrom deleteStatementFrom, AstWithTableHints withTableHints, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstDeleteStatement.DeleteStatement(withExpression, @decimal, deleteStatementFrom, withTableHints, outputClause, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT INTO ddl_object with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? ( insert_column_name_list ) output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstInsertColumnNameList insertColumnNameList, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, insertColumnNameList, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, expression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT INTO ddl_object with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, ddlObject, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT TOP ( expression ) PERCENT? INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// insert_statement : 
-        ///    with_expression? INSERT INTO rowset_function_limited with_table_hints? output_clause? insert_statement_value for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstInsertStatement InsertStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstOutputClause outputClause, AstInsertStatementValue insertStatementValue, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstInsertStatement.InsertStatement(withExpression, rowsetFunctionLimited, withTableHints, outputClause, insertStatementValue, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// select_statement_standalone : 
-        ///    with_expression? select_statement 
-        /// </summary>
-        public static AstSelectStatementStandalone SelectStatementStandalone(AstWithExpression withExpression, AstSelectStatement selectStatement)
-        {
-            return AstSelectStatementStandalone.SelectStatementStandalone(withExpression, selectStatement);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE search_condition for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstSearchCondition searchCondition, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, searchCondition, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF GLOBAL? cursor_name for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstCursorName cursorName, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorName, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? WHERE CURRENT OF cursor_var=local_id for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstLocalId cursorVar, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, cursorVar, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? FROM table_sources for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstTableSources tableSources, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, tableSources, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? ddl_object with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, ddlObject, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE ddl_object with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, ddlObject, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE TOP ( expression ) PERCENT? rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstExpression expression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, expression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
-        }
-        
-        /// <summary>
-        /// update_statement : 
-        ///    with_expression? UPDATE rowset_function_limited with_table_hints? SET update_elems output_clause? for_clause? update_option_clause? ; 
-        /// </summary>
-        public static AstUpdateStatement UpdateStatement(AstWithExpression withExpression, AstRowsetFunctionLimited rowsetFunctionLimited, AstWithTableHints withTableHints, AstUpdateElems updateElems, AstOutputClause outputClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
-        {
-            return AstUpdateStatement.UpdateStatement(withExpression, rowsetFunctionLimited, withTableHints, updateElems, outputClause, forClause, updateOptionClause);
+            return AstMergeStatement.MergeStatement();
         }
     }
     
@@ -1002,18 +255,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstDdlClause : AstRule
     {
         
-        internal AstDdlClause(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstDdlClause(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstDdlClause(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstDdlClause(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstDdlClause(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstDdlClause(Position p) : 
+                base(p)
         {
         }
         
@@ -1021,3141 +274,9 @@ namespace Bb.Asts.TSql
         /// alter_application_role : 
         ///    ALTER APPLICATION ROLE role_id WITH COMMA? NAME EQUAL new_role=role_id COMMA? PASSWORD EQUAL application_role_password=stringtext COMMA? DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstRoleId newRole, AstStringtext applicationRolePassword, AstSchemaId schemaId)
+        public static AstAlterApplicationRole AlterApplicationRole()
         {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, newRole, applicationRolePassword, schemaId);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? PASSWORD EQUAL application_role_password=stringtext COMMA? DEFAULT_SCHEMA EQUAL schema_id 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstStringtext applicationRolePassword, AstSchemaId schemaId)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, applicationRolePassword, schemaId);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? NAME EQUAL new_role=role_id COMMA? DEFAULT_SCHEMA EQUAL schema_id 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstRoleId newRole, AstSchemaId schemaId)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, newRole, schemaId);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? DEFAULT_SCHEMA EQUAL schema_id 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstSchemaId schemaId)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, schemaId);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? NAME EQUAL new_role=role_id COMMA? PASSWORD EQUAL application_role_password=stringtext 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstRoleId newRole, AstStringtext applicationRolePassword)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, newRole, applicationRolePassword);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? PASSWORD EQUAL application_role_password=stringtext 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstStringtext applicationRolePassword)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, applicationRolePassword);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH COMMA? NAME EQUAL new_role=role_id 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstRoleId newRole)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId, newRole);
-        }
-        
-        /// <summary>
-        /// alter_application_role : 
-        ///    ALTER APPLICATION ROLE role_id WITH 
-        /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId)
-        {
-            return AstAlterApplicationRole.AlterApplicationRole(roleId);
-        }
-        
-        /// <summary>
-        /// alter_assembly : 
-        ///    alter_assembly_start assembly_id alter_assembly_clause 
-        /// </summary>
-        public static AstAlterAssembly AlterAssembly(AstAlterAssemblyStart alterAssemblyStart, AstAssemblyId assemblyId, AstAlterAssemblyClause alterAssemblyClause)
-        {
-            return AstAlterAssembly.AlterAssembly(alterAssemblyStart, assemblyId, alterAssemblyClause);
-        }
-        
-        /// <summary>
-        /// alter_asymmetric_key : 
-        ///    ALTER ASYMMETRIC KEY asym_key_id asymmetric_key_option 
-        /// </summary>
-        public static AstAlterAsymmetricKey AlterAsymmetricKey(AstAsymKeyId asymKeyId, AstAsymmetricKeyOption asymmetricKeyOption)
-        {
-            return AstAlterAsymmetricKey.AlterAsymmetricKey(asymKeyId, asymmetricKeyOption);
-        }
-        
-        /// <summary>
-        /// alter_asymmetric_key : 
-        ///    ALTER ASYMMETRIC KEY asym_key_id REMOVE PRIVATE KEY 
-        /// </summary>
-        public static AstAlterAsymmetricKey AlterAsymmetricKey(AstAsymKeyId asymKeyId)
-        {
-            return AstAlterAsymmetricKey.AlterAsymmetricKey(asymKeyId);
-        }
-        
-        /// <summary>
-        /// alter_authorization : 
-        ///    ALTER AUTHORIZATION ON class_type :: entity=entity_name TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorization AlterAuthorization(AstClassType classType, AstEntityName entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorization.AlterAuthorization(classType, entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization : 
-        ///    ALTER AUTHORIZATION ON entity=entity_name TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorization AlterAuthorization(AstEntityName entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorization.AlterAuthorization(entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization_for_azure_dw : 
-        ///    ALTER AUTHORIZATION ON class_type_for_azure_dw :: entity=entity_name_for_azure_dw_ref TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorizationForAzureDw AlterAuthorizationForAzureDw(AstClassTypeForAzureDw classTypeForAzureDw, AstEntityNameForAzureDwRef entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorizationForAzureDw.AlterAuthorizationForAzureDw(classTypeForAzureDw, entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization_for_azure_dw : 
-        ///    ALTER AUTHORIZATION ON entity=entity_name_for_azure_dw_ref TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorizationForAzureDw AlterAuthorizationForAzureDw(AstEntityNameForAzureDwRef entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorizationForAzureDw.AlterAuthorizationForAzureDw(entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization_for_parallel_dw : 
-        ///    ALTER AUTHORIZATION ON class_type_for_parallel_dw :: entity=entity_name_for_parallel_dw_ref TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorizationForParallelDw AlterAuthorizationForParallelDw(AstClassTypeForParallelDw classTypeForParallelDw, AstEntityNameForParallelDwRef entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorizationForParallelDw.AlterAuthorizationForParallelDw(classTypeForParallelDw, entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization_for_parallel_dw : 
-        ///    ALTER AUTHORIZATION ON entity=entity_name_for_parallel_dw_ref TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorizationForParallelDw AlterAuthorizationForParallelDw(AstEntityNameForParallelDwRef entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorizationForParallelDw.AlterAuthorizationForParallelDw(entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_authorization_for_sql_database : 
-        ///    ALTER AUTHORIZATION ON class_type_for_sql_database :: entity=entity_name TO authorization_grantee 
-        /// </summary>
-        public static AstAlterAuthorizationForSqlDatabase AlterAuthorizationForSqlDatabase(AstClassTypeForSqlDatabase classTypeForSqlDatabase, AstEntityName entity, AstAuthorizationGrantee authorizationGrantee)
-        {
-            return AstAlterAuthorizationForSqlDatabase.AlterAuthorizationForSqlDatabase(classTypeForSqlDatabase, entity, authorizationGrantee);
-        }
-        
-        /// <summary>
-        /// alter_availability_group : 
-        ///    alter_availability_group_start alter_availability_group_options 
-        /// </summary>
-        public static AstAlterAvailabilityGroup AlterAvailabilityGroup(AstAlterAvailabilityGroupStart alterAvailabilityGroupStart, AstAlterAvailabilityGroupOptions alterAvailabilityGroupOptions)
-        {
-            return AstAlterAvailabilityGroup.AlterAvailabilityGroup(alterAvailabilityGroupStart, alterAvailabilityGroupOptions);
-        }
-        
-        /// <summary>
-        /// alter_certificate : 
-        ///    ALTER CERTIFICATE certificate_id REMOVE PRIVATE_KEY 
-        /// </summary>
-        public static AstAlterCertificate AlterCertificate(AstCertificateId certificateId)
-        {
-            return AstAlterCertificate.AlterCertificate(certificateId);
-        }
-        
-        /// <summary>
-        /// alter_certificate : 
-        ///    ALTER CERTIFICATE certificate_id WITH PRIVATE KEY ( private_keys ) 
-        /// </summary>
-        public static AstAlterCertificate AlterCertificate(AstCertificateId certificateId, AstPrivateKeys privateKeys)
-        {
-            return AstAlterCertificate.AlterCertificate(certificateId, privateKeys);
-        }
-        
-        /// <summary>
-        /// alter_certificate : 
-        ///    ALTER CERTIFICATE certificate_id WITH ACTIVE FOR BEGIN_DIALOG EQUAL on_off 
-        /// </summary>
-        public static AstAlterCertificate AlterCertificate(AstCertificateId certificateId, AstOnOff onOff)
-        {
-            return AstAlterCertificate.AlterCertificate(certificateId, onOff);
-        }
-        
-        /// <summary>
-        /// alter_column_encryption_key : 
-        ///    ALTER COLUMN ENCRYPTION KEY column_encryption_key_id add_drop VALUE ( COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL binary_ ) 
-        /// </summary>
-        public static AstAlterColumnEncryptionKey AlterColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstAddDrop addDrop, AstId columnMasterKeyName, AstStringtext algorithmName, AstBinary binary)
-        {
-            return AstAlterColumnEncryptionKey.AlterColumnEncryptionKey(columnEncryptionKeyId, addDrop, columnMasterKeyName, algorithmName, binary);
-        }
-        
-        /// <summary>
-        /// alter_column_encryption_key : 
-        ///    ALTER COLUMN ENCRYPTION KEY column_encryption_key_id add_drop VALUE ( COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ ) 
-        /// </summary>
-        public static AstAlterColumnEncryptionKey AlterColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstAddDrop addDrop, AstId columnMasterKeyName)
-        {
-            return AstAlterColumnEncryptionKey.AlterColumnEncryptionKey(columnEncryptionKeyId, addDrop, columnMasterKeyName);
-        }
-        
-        /// <summary>
-        /// alter_credential : 
-        ///    ALTER CREDENTIAL credential_id WITH IDENTITY EQUAL identity_name=stringtext , SECRET EQUAL secret=stringtext 
-        /// </summary>
-        public static AstAlterCredential AlterCredential(AstCredentialId credentialId, AstStringtext identityName, AstStringtext secret)
-        {
-            return AstAlterCredential.AlterCredential(credentialId, identityName, secret);
-        }
-        
-        /// <summary>
-        /// alter_credential : 
-        ///    ALTER CREDENTIAL credential_id WITH IDENTITY EQUAL identity_name=stringtext 
-        /// </summary>
-        public static AstAlterCredential AlterCredential(AstCredentialId credentialId, AstStringtext identityName)
-        {
-            return AstAlterCredential.AlterCredential(credentialId, identityName);
-        }
-        
-        /// <summary>
-        /// alter_cryptographic_provider : 
-        ///    ALTER CRYPTOGRAPHIC PROVIDER provider_id FROM FILE EQUAL crypto_provider_ddl_file=stringtext enable_disable? 
-        /// </summary>
-        public static AstAlterCryptographicProvider AlterCryptographicProvider(AstProviderId providerId, AstStringtext cryptoProviderDdlFile, AstEnableDisable enableDisable)
-        {
-            return AstAlterCryptographicProvider.AlterCryptographicProvider(providerId, cryptoProviderDdlFile, enableDisable);
-        }
-        
-        /// <summary>
-        /// alter_cryptographic_provider : 
-        ///    ALTER CRYPTOGRAPHIC PROVIDER provider_id enable_disable? 
-        /// </summary>
-        public static AstAlterCryptographicProvider AlterCryptographicProvider(AstProviderId providerId, AstEnableDisable enableDisable)
-        {
-            return AstAlterCryptographicProvider.AlterCryptographicProvider(providerId, enableDisable);
-        }
-        
-        /// <summary>
-        /// alter_database : 
-        ///    ALTER DATABASE database_id alter_database_new_infos ; 
-        /// </summary>
-        public static AstAlterDatabase AlterDatabase(AstDatabaseId databaseId, AstAlterDatabaseNewInfos alterDatabaseNewInfos)
-        {
-            return AstAlterDatabase.AlterDatabase(databaseId, alterDatabaseNewInfos);
-        }
-        
-        /// <summary>
-        /// alter_database : 
-        ///    ALTER DATABASE CURRENT alter_database_new_infos ; 
-        /// </summary>
-        public static AstAlterDatabase AlterDatabase(AstAlterDatabaseNewInfos alterDatabaseNewInfos)
-        {
-            return AstAlterDatabase.AlterDatabase(alterDatabaseNewInfos);
-        }
-        
-        /// <summary>
-        /// alter_db_role : 
-        ///    ALTER ROLE old_role_name=role_id add_drop MEMBER database_id 
-        /// </summary>
-        public static AstAlterDbRole AlterDbRole(AstRoleId oldRoleName, AstAddDrop addDrop, AstDatabaseId databaseId)
-        {
-            return AstAlterDbRole.AlterDbRole(oldRoleName, addDrop, databaseId);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) TSQL 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_service_broker 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstAlterEndpointServiceBroker alterEndpointServiceBroker)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, alterEndpointServiceBroker);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, listenerIp, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, listenerIp, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, listenerIp, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal , listener_ip ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstListenerIp listenerIp, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, listenerIp, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, stateEnum, @decimal, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id STATE EQUAL state_enum AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstStateEnum stateEnum, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, stateEnum, @decimal, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AUTHORIZATION login_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstLoginId loginId, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, loginId, @decimal, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// alter_endpoint : 
-        ///    ALTER ENDPOINT endpoint_id AS TCP ( LISTENER_PORT EQUAL decimal ) alter_endpoint_database_mirroring 
-        /// </summary>
-        public static AstAlterEndpoint AlterEndpoint(AstEndpointId endpointId, AstDecimal @decimal, AstAlterEndpointDatabaseMirroring alterEndpointDatabaseMirroring)
-        {
-            return AstAlterEndpoint.AlterEndpoint(endpointId, @decimal, alterEndpointDatabaseMirroring);
-        }
-        
-        /// <summary>
-        /// create_or_alter_event_session : 
-        ///    create_alter EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? STATE EQUAL start_stop 
-        /// </summary>
-        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith, AstStartStop startStop)
-        {
-            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(createAlter, eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith, startStop);
-        }
-        
-        /// <summary>
-        /// create_or_alter_event_session : 
-        ///    create_alter EVENT SESSION event_session_id ON SERVER create_or_alter_event_session_add_events? create_or_alter_event_session_del_events? create_or_alter_event_session_add_targets? create_or_alter_event_session_del_targets? create_or_alter_event_session_with? 
-        /// </summary>
-        public static AstCreateOrAlterEventSession CreateOrAlterEventSession(AstCreateAlter createAlter, AstEventSessionId eventSessionId, AstCreateOrAlterEventSessionAddEvents createOrAlterEventSessionAddEvents, AstCreateOrAlterEventSessionDelEvents createOrAlterEventSessionDelEvents, AstCreateOrAlterEventSessionAddTargets createOrAlterEventSessionAddTargets, AstCreateOrAlterEventSessionDelTargets createOrAlterEventSessionDelTargets, AstCreateOrAlterEventSessionWith createOrAlterEventSessionWith)
-        {
-            return AstCreateOrAlterEventSession.CreateOrAlterEventSession(createAlter, eventSessionId, createOrAlterEventSessionAddEvents, createOrAlterEventSessionDelEvents, createOrAlterEventSessionAddTargets, createOrAlterEventSessionDelTargets, createOrAlterEventSessionWith);
-        }
-        
-        /// <summary>
-        /// alter_external_data_source : 
-        ///    ALTER EXTERNAL DATA SOURCE data_source_id SET LOCATION EQUAL location=stringtext , 
-        /// </summary>
-        public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstStringtext location)
-        {
-            return AstAlterExternalDataSource.AlterExternalDataSource(dataSourceId, location);
-        }
-        
-        /// <summary>
-        /// alter_external_data_source : 
-        ///    ALTER EXTERNAL DATA SOURCE data_source_id SET CREDENTIAL EQUAL credential_id 
-        /// </summary>
-        public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstCredentialId credentialId)
-        {
-            return AstAlterExternalDataSource.AlterExternalDataSource(dataSourceId, credentialId);
-        }
-        
-        /// <summary>
-        /// alter_external_data_source : 
-        ///    ALTER EXTERNAL DATA SOURCE data_source_id WITH ( TYPE EQUAL BLOB_STORAGE , LOCATION EQUAL location=stringtext , CREDENTIAL EQUAL credential_id ) 
-        /// </summary>
-        public static AstAlterExternalDataSource AlterExternalDataSource(AstDataSourceId dataSourceId, AstStringtext location, AstCredentialId credentialId)
-        {
-            return AstAlterExternalDataSource.AlterExternalDataSource(dataSourceId, location, credentialId);
-        }
-        
-        /// <summary>
-        /// alter_external_library : 
-        ///    ALTER EXTERNAL LIBRARY library_id AUTHORIZATION owner_id set_add file_spec2 WITH ( , LANGUAGE EQUAL code_language ) 
-        /// </summary>
-        public static AstAlterExternalLibrary AlterExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId, AstSetAdd setAdd, AstFileSpec2 fileSpec2, AstCodeLanguage codeLanguage)
-        {
-            return AstAlterExternalLibrary.AlterExternalLibrary(libraryId, ownerId, setAdd, fileSpec2, codeLanguage);
-        }
-        
-        /// <summary>
-        /// alter_external_library : 
-        ///    ALTER EXTERNAL LIBRARY library_id set_add file_spec2 WITH ( , LANGUAGE EQUAL code_language ) 
-        /// </summary>
-        public static AstAlterExternalLibrary AlterExternalLibrary(AstLibraryId libraryId, AstSetAdd setAdd, AstFileSpec2 fileSpec2, AstCodeLanguage codeLanguage)
-        {
-            return AstAlterExternalLibrary.AlterExternalLibrary(libraryId, setAdd, fileSpec2, codeLanguage);
-        }
-        
-        /// <summary>
-        /// alter_external_library : 
-        ///    ALTER EXTERNAL LIBRARY library_id AUTHORIZATION owner_id set_add file_spec2 WITH ( DATA_SOURCE EQUAL external_data_source_id ) 
-        /// </summary>
-        public static AstAlterExternalLibrary AlterExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId, AstSetAdd setAdd, AstFileSpec2 fileSpec2, AstExternalDataSourceId externalDataSourceId)
-        {
-            return AstAlterExternalLibrary.AlterExternalLibrary(libraryId, ownerId, setAdd, fileSpec2, externalDataSourceId);
-        }
-        
-        /// <summary>
-        /// alter_external_library : 
-        ///    ALTER EXTERNAL LIBRARY library_id set_add file_spec2 WITH ( DATA_SOURCE EQUAL external_data_source_id ) 
-        /// </summary>
-        public static AstAlterExternalLibrary AlterExternalLibrary(AstLibraryId libraryId, AstSetAdd setAdd, AstFileSpec2 fileSpec2, AstExternalDataSourceId externalDataSourceId)
-        {
-            return AstAlterExternalLibrary.AlterExternalLibrary(libraryId, setAdd, fileSpec2, externalDataSourceId);
-        }
-        
-        /// <summary>
-        /// alter_external_resource_pool : 
-        ///    ALTER EXTERNAL RESOURCE POOL pool_id WITH external_resource_with 
-        /// </summary>
-        public static AstAlterExternalResourcePool AlterExternalResourcePool(AstPoolId poolId, AstExternalResourceWith externalResourceWith)
-        {
-            return AstAlterExternalResourcePool.AlterExternalResourcePool(poolId, externalResourceWith);
-        }
-        
-        /// <summary>
-        /// alter_external_resource_pool : 
-        ///    ALTER EXTERNAL RESOURCE POOL DEFAULT_DOUBLE_QUOTE WITH external_resource_with 
-        /// </summary>
-        public static AstAlterExternalResourcePool AlterExternalResourcePool(AstExternalResourceWith externalResourceWith)
-        {
-            return AstAlterExternalResourcePool.AlterExternalResourcePool(externalResourceWith);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_catalog : 
-        ///    ALTER FULLTEXT CATALOG catalog_id REBUILD WITH ACCENT_SENSITIVITY EQUAL on_off 
-        /// </summary>
-        public static AstAlterFulltextCatalog AlterFulltextCatalog(AstCatalogId catalogId, AstOnOff onOff)
-        {
-            return AstAlterFulltextCatalog.AlterFulltextCatalog(catalogId, onOff);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_catalog : 
-        ///    ALTER FULLTEXT CATALOG catalog_id REBUILD 
-        /// </summary>
-        public static AstAlterFulltextCatalog AlterFulltextCatalog(AstCatalogId catalogId)
-        {
-            return AstAlterFulltextCatalog.AlterFulltextCatalog(catalogId);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id ADD stopword=stringtext LANGUAGE fulltext_languageList 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstStringtext stopword, AstFulltextLanguageList fulltextLanguageList)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, stopword, fulltextLanguageList);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL fulltext_languageList 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId, AstFulltextLanguageList fulltextLanguageList)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId, fulltextLanguageList);
-        }
-        
-        /// <summary>
-        /// alter_fulltext_stoplist : 
-        ///    ALTER FULLTEXT STOPLIST stoplist_id DROP ALL 
-        /// </summary>
-        public static AstAlterFulltextStoplist AlterFulltextStoplist(AstStoplistId stoplistId)
-        {
-            return AstAlterFulltextStoplist.AlterFulltextStoplist(stoplistId);
-        }
-        
-        /// <summary>
-        /// alter_index : 
-        ///    ALTER INDEX index_name ON full_table_ref index_status 
-        /// </summary>
-        public static AstAlterIndex AlterIndex(AstIndexName indexName, AstFullTableRef fullTableRef, AstIndexStatus indexStatus)
-        {
-            return AstAlterIndex.AlterIndex(indexName, fullTableRef, indexStatus);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql : 
-        ///    ALTER LOGIN login_id alter_login_azure_sql_infos 
-        /// </summary>
-        public static AstAlterLoginAzureSql AlterLoginAzureSql(AstLoginId loginId, AstAlterLoginAzureSqlInfos alterLoginAzureSqlInfos)
-        {
-            return AstAlterLoginAzureSql.AlterLoginAzureSql(loginId, alterLoginAzureSqlInfos);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id enable_disable 
-        /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstEnableDisable enableDisable)
-        {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, enableDisable);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id 
-        /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId)
-        {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id WITH PASSWORD EQUAL password=stringtext OLD_PASSWORD EQUAL old_password=stringtext pwd_strategies? 
-        /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstStringtext password, AstStringtext oldPassword, AstPwdStrategies pwdStrategies)
-        {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, password, oldPassword, pwdStrategies);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id WITH PASSWORD EQUAL password=stringtext 
-        /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstStringtext password)
-        {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, password);
-        }
-        
-        /// <summary>
-        /// alter_login_azure_sql_dw_and_pdw : 
-        ///    ALTER LOGIN login_id WITH NAME EQUAL new_name=login_id 
-        /// </summary>
-        public static AstAlterLoginAzureSqlDwAndPdw AlterLoginAzureSqlDwAndPdw(AstLoginId loginId, AstLoginId newName)
-        {
-            return AstAlterLoginAzureSqlDwAndPdw.AlterLoginAzureSqlDwAndPdw(loginId, newName);
-        }
-        
-        /// <summary>
-        /// alter_login_sql_server : 
-        ///    ALTER LOGIN login_id alter_login_sql_server_infos 
-        /// </summary>
-        public static AstAlterLoginSqlServer AlterLoginSqlServer(AstLoginId loginId, AstAlterLoginSqlServerInfos alterLoginSqlServerInfos)
-        {
-            return AstAlterLoginSqlServer.AlterLoginSqlServer(loginId, alterLoginSqlServerInfos);
-        }
-        
-        /// <summary>
-        /// alter_master_key_azure_sql : 
-        ///    ALTER MASTER KEY regenerate_mater_key 
-        /// </summary>
-        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstRegenerateMaterKey regenerateMaterKey)
-        {
-            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(regenerateMaterKey);
-        }
-        
-        /// <summary>
-        /// alter_master_key_azure_sql : 
-        ///    ALTER MASTER KEY ADD add_master_key 
-        /// </summary>
-        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstAddMasterKey addMasterKey)
-        {
-            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(addMasterKey);
-        }
-        
-        /// <summary>
-        /// alter_master_key_azure_sql : 
-        ///    ALTER MASTER KEY DROP encryption_by_pwd 
-        /// </summary>
-        public static AstAlterMasterKeyAzureSql AlterMasterKeyAzureSql(AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstAlterMasterKeyAzureSql.AlterMasterKeyAzureSql(encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// alter_master_key_sql_server : 
-        ///    ALTER MASTER KEY add_drop add_master_key 
-        /// </summary>
-        public static AstAlterMasterKeySqlServer AlterMasterKeySqlServer(AstAddDrop addDrop, AstAddMasterKey addMasterKey)
-        {
-            return AstAlterMasterKeySqlServer.AlterMasterKeySqlServer(addDrop, addMasterKey);
-        }
-        
-        /// <summary>
-        /// alter_message_type : 
-        ///    ALTER MESSAGE TYPE message_type_id VALIDATION EQUAL message_validation_value 
-        /// </summary>
-        public static AstAlterMessageType AlterMessageType(AstMessageTypeId messageTypeId, AstMessageValidationValue messageValidationValue)
-        {
-            return AstAlterMessageType.AlterMessageType(messageTypeId, messageValidationValue);
-        }
-        
-        /// <summary>
-        /// alter_partition_function : 
-        ///    ALTER PARTITION FUNCTION partition_function_id ( ) split_or_merge RANGE ( decimal ) 
-        /// </summary>
-        public static AstAlterPartitionFunction AlterPartitionFunction(AstPartitionFunctionId partitionFunctionId, AstSplitOrMerge splitOrMerge, AstDecimal @decimal)
-        {
-            return AstAlterPartitionFunction.AlterPartitionFunction(partitionFunctionId, splitOrMerge, @decimal);
-        }
-        
-        /// <summary>
-        /// alter_partition_scheme : 
-        ///    ALTER PARTITION SCHEME partition_scheme_id NEXT USED file_group_id()? 
-        /// </summary>
-        public static AstAlterPartitionScheme AlterPartitionScheme(AstPartitionSchemeId partitionSchemeId, AstFileGroupId fileGroupId)
-        {
-            return AstAlterPartitionScheme.AlterPartitionScheme(partitionSchemeId, fileGroupId);
-        }
-        
-        /// <summary>
-        /// alter_remote_service_binding : 
-        ///    ALTER REMOTE SERVICE BINDING binding_id WITH USER EQUAL user_id , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstAlterRemoteServiceBinding AlterRemoteServiceBinding(AstBindingId bindingId, AstUserId userId, AstOnOff onOff)
-        {
-            return AstAlterRemoteServiceBinding.AlterRemoteServiceBinding(bindingId, userId, onOff);
-        }
-        
-        /// <summary>
-        /// alter_remote_service_binding : 
-        ///    ALTER REMOTE SERVICE BINDING binding_id WITH , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstAlterRemoteServiceBinding AlterRemoteServiceBinding(AstBindingId bindingId, AstOnOff onOff)
-        {
-            return AstAlterRemoteServiceBinding.AlterRemoteServiceBinding(bindingId, onOff);
-        }
-        
-        /// <summary>
-        /// alter_remote_service_binding : 
-        ///    ALTER REMOTE SERVICE BINDING binding_id WITH USER EQUAL user_id 
-        /// </summary>
-        public static AstAlterRemoteServiceBinding AlterRemoteServiceBinding(AstBindingId bindingId, AstUserId userId)
-        {
-            return AstAlterRemoteServiceBinding.AlterRemoteServiceBinding(bindingId, userId);
-        }
-        
-        /// <summary>
-        /// alter_remote_service_binding : 
-        ///    ALTER REMOTE SERVICE BINDING binding_id WITH 
-        /// </summary>
-        public static AstAlterRemoteServiceBinding AlterRemoteServiceBinding(AstBindingId bindingId)
-        {
-            return AstAlterRemoteServiceBinding.AlterRemoteServiceBinding(bindingId);
-        }
-        
-        /// <summary>
-        /// alter_resource_governor : 
-        ///    ALTER RESOURCE GOVERNOR disable_reconfigure 
-        /// </summary>
-        public static AstAlterResourceGovernor AlterResourceGovernor(AstDisableReconfigure disableReconfigure)
-        {
-            return AstAlterResourceGovernor.AlterResourceGovernor(disableReconfigure);
-        }
-        
-        /// <summary>
-        /// alter_resource_governor : 
-        ///    ALTER RESOURCE GOVERNOR WITH ( CLASSIFIER_FUNCTION EQUAL schema_func_proc_ref ) 
-        /// </summary>
-        public static AstAlterResourceGovernor AlterResourceGovernor(AstSchemaFuncProcRef schemaFuncProcRef)
-        {
-            return AstAlterResourceGovernor.AlterResourceGovernor(schemaFuncProcRef);
-        }
-        
-        /// <summary>
-        /// alter_resource_governor : 
-        ///    ALTER RESOURCE GOVERNOR WITH ( MAX_OUTSTANDING_IO_PER_VOLUME EQUAL max_outstanding_io_per_volume=decimal ) 
-        /// </summary>
-        public static AstAlterResourceGovernor AlterResourceGovernor(AstDecimal maxOutstandingIoPerVolume)
-        {
-            return AstAlterResourceGovernor.AlterResourceGovernor(maxOutstandingIoPerVolume);
-        }
-        
-        /// <summary>
-        /// alter_schema_azure_sql_dw_and_pdw : 
-        ///    ALTER SCHEMA schema_id TRANSFER OBJECT :: id_dot_id 
-        /// </summary>
-        public static AstAlterSchemaAzureSqlDwAndPdw AlterSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstIdDotId idDotId)
-        {
-            return AstAlterSchemaAzureSqlDwAndPdw.AlterSchemaAzureSqlDwAndPdw(schemaId, idDotId);
-        }
-        
-        /// <summary>
-        /// alter_schema_sql : 
-        ///    ALTER SCHEMA schema_id TRANSFER transfert_target? id_dot_id 
-        /// </summary>
-        public static AstAlterSchemaSql AlterSchemaSql(AstSchemaId schemaId, AstTransfertTarget transfertTarget, AstIdDotId idDotId)
-        {
-            return AstAlterSchemaSql.AlterSchemaSql(schemaId, transfertTarget, idDotId);
-        }
-        
-        /// <summary>
-        /// alter_sequence : 
-        ///    ALTER SEQUENCE schema_sequence_ref alter_sequence_restart? alter_sequence_increment? alter_sequence_min_value? alter_sequence_max_value cycle? sequence_cache? 
-        /// </summary>
-        public static AstAlterSequence AlterSequence(AstSchemaSequenceRef schemaSequenceRef, AstAlterSequenceRestart alterSequenceRestart, AstAlterSequenceIncrement alterSequenceIncrement, AstAlterSequenceMinValue alterSequenceMinValue, AstAlterSequenceMaxValue alterSequenceMaxValue, AstCycle cycle, AstSequenceCache sequenceCache)
-        {
-            return AstAlterSequence.AlterSequence(schemaSequenceRef, alterSequenceRestart, alterSequenceIncrement, alterSequenceMinValue, alterSequenceMaxValue, cycle, sequenceCache);
-        }
-        
-        /// <summary>
-        /// alter_server_audit : 
-        ///    ALTER SERVER AUDIT audit_id alter_server_audit_infos 
-        /// </summary>
-        public static AstAlterServerAudit AlterServerAudit(AstAuditId auditId, AstAlterServerAuditInfos alterServerAuditInfos)
-        {
-            return AstAlterServerAudit.AlterServerAudit(auditId, alterServerAuditInfos);
-        }
-        
-        /// <summary>
-        /// alter_server_audit_specification : 
-        ///    ALTER SERVER AUDIT SPECIFICATION audit_id alter_server_audit_specification_server? add_drop_audit_action_groups? server_audit_state? 
-        /// </summary>
-        public static AstAlterServerAuditSpecification AlterServerAuditSpecification(AstAuditId auditId, AstAlterServerAuditSpecificationServer alterServerAuditSpecificationServer, AstAddDropAuditActionGroups addDropAuditActionGroups, AstServerAuditState serverAuditState)
-        {
-            return AstAlterServerAuditSpecification.AlterServerAuditSpecification(auditId, alterServerAuditSpecificationServer, addDropAuditActionGroups, serverAuditState);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET server_config_process_affinity 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigProcessAffinity serverConfigProcessAffinity)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigProcessAffinity);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET server_config_diagnostic_log 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigDiagnosticLog serverConfigDiagnosticLog)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigDiagnosticLog);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET server_config_failover 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigFailover serverConfigFailover)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigFailover);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET HADR CLUSTER CONTEXT EQUAL stringtext 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstStringtext stringtext)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(stringtext);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET server_config_buffer_pool_ext 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstServerConfigBufferPoolExt serverConfigBufferPoolExt)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(serverConfigBufferPoolExt);
-        }
-        
-        /// <summary>
-        /// alter_server_configuration : 
-        ///    ALTER SERVER CONFIGURATION SET SET SOFTNUMA on_off 
-        /// </summary>
-        public static AstAlterServerConfiguration AlterServerConfiguration(AstOnOff onOff)
-        {
-            return AstAlterServerConfiguration.AlterServerConfiguration(onOff);
-        }
-        
-        /// <summary>
-        /// alter_server_role : 
-        ///    ALTER SERVER ROLE server_role_id add_drop MEMBER server_id 
-        /// </summary>
-        public static AstAlterServerRole AlterServerRole(AstServerRoleId serverRoleId, AstAddDrop addDrop, AstServerId serverId)
-        {
-            return AstAlterServerRole.AlterServerRole(serverRoleId, addDrop, serverId);
-        }
-        
-        /// <summary>
-        /// alter_server_role : 
-        ///    ALTER SERVER ROLE server_role_id alter_server_role_new_name 
-        /// </summary>
-        public static AstAlterServerRole AlterServerRole(AstServerRoleId serverRoleId, AstAlterServerRoleNewName alterServerRoleNewName)
-        {
-            return AstAlterServerRole.AlterServerRole(serverRoleId, alterServerRoleNewName);
-        }
-        
-        /// <summary>
-        /// alter_server_role_pdw : 
-        ///    ALTER SERVER ROLE server_role_id add_drop MEMBER login_id 
-        /// </summary>
-        public static AstAlterServerRolePdw AlterServerRolePdw(AstServerRoleId serverRoleId, AstAddDrop addDrop, AstLoginId loginId)
-        {
-            return AstAlterServerRolePdw.AlterServerRolePdw(serverRoleId, addDrop, loginId);
-        }
-        
-        /// <summary>
-        /// alter_service : 
-        ///    ALTER SERVICE service_id ON QUEUE schema_queue_ref alter_service_contracts? 
-        /// </summary>
-        public static AstAlterService AlterService(AstServiceId serviceId, AstSchemaQueueRef schemaQueueRef, AstAlterServiceContracts alterServiceContracts)
-        {
-            return AstAlterService.AlterService(serviceId, schemaQueueRef, alterServiceContracts);
-        }
-        
-        /// <summary>
-        /// alter_service : 
-        ///    ALTER SERVICE service_id alter_service_contracts? 
-        /// </summary>
-        public static AstAlterService AlterService(AstServiceId serviceId, AstAlterServiceContracts alterServiceContracts)
-        {
-            return AstAlterService.AlterService(serviceId, alterServiceContracts);
-        }
-        
-        /// <summary>
-        /// alter_service_master_key : 
-        ///    ALTER SERVICE MASTER KEY WITH OLD_ACCOUNT EQUAL acold_account_name=stringtext , OLD_PASSWORD EQUAL old_password=stringtext 
-        /// </summary>
-        public static AstAlterServiceMasterKey AlterServiceMasterKey(AstStringtext acoldAccountName, AstStringtext oldPassword)
-        {
-            return AstAlterServiceMasterKey.AlterServiceMasterKey(acoldAccountName, oldPassword);
-        }
-        
-        /// <summary>
-        /// alter_symmetric_key : 
-        ///    ALTER SYMMETRIC KEY symmetric_key_id add_drop ENCRYPTION BY CERTIFICATE certificate_id 
-        /// </summary>
-        public static AstAlterSymmetricKey AlterSymmetricKey(AstSymmetricKeyId symmetricKeyId, AstAddDrop addDrop, AstCertificateId certificateId)
-        {
-            return AstAlterSymmetricKey.AlterSymmetricKey(symmetricKeyId, addDrop, certificateId);
-        }
-        
-        /// <summary>
-        /// alter_symmetric_key : 
-        ///    ALTER SYMMETRIC KEY symmetric_key_id add_drop ENCRYPTION BY PASSWORD EQUAL password=stringtext 
-        /// </summary>
-        public static AstAlterSymmetricKey AlterSymmetricKey(AstSymmetricKeyId symmetricKeyId, AstAddDrop addDrop, AstStringtext password)
-        {
-            return AstAlterSymmetricKey.AlterSymmetricKey(symmetricKeyId, addDrop, password);
-        }
-        
-        /// <summary>
-        /// alter_symmetric_key : 
-        ///    ALTER SYMMETRIC KEY symmetric_key_id add_drop ENCRYPTION BY SYMMETRIC KEY newkey=symmetric_key_id 
-        /// </summary>
-        public static AstAlterSymmetricKey AlterSymmetricKey(AstSymmetricKeyId symmetricKeyId, AstAddDrop addDrop, AstSymmetricKeyId newkey)
-        {
-            return AstAlterSymmetricKey.AlterSymmetricKey(symmetricKeyId, addDrop, newkey);
-        }
-        
-        /// <summary>
-        /// alter_symmetric_key : 
-        ///    ALTER SYMMETRIC KEY symmetric_key_id add_drop ENCRYPTION BY ASYMMETRIC KEY asym_key_id 
-        /// </summary>
-        public static AstAlterSymmetricKey AlterSymmetricKey(AstSymmetricKeyId symmetricKeyId, AstAddDrop addDrop, AstAsymKeyId asymKeyId)
-        {
-            return AstAlterSymmetricKey.AlterSymmetricKey(symmetricKeyId, addDrop, asymKeyId);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref SET ( LOCK_ESCALATION EQUAL lock_mode ) ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstLockMode lockMode)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, lockMode);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref ADD column_def_table_constraints ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, columnDefTableConstraints);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref ALTER COLUMN column_definition ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstColumnDefinition columnDefinition)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, columnDefinition);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref ALTER COLUMN column_modifier ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstColumnModifier columnModifier)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, columnModifier);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref DROP COLUMN ids ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstIds ids)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, ids);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref DROP CONSTRAINT constraint_id ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstConstraintId constraintId)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, constraintId);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref WITH check_nocheck check_nocheck ADD alter_table_constraint ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstCheckNocheck checkNocheck, AstAlterTableConstraint alterTableConstraint)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, checkNocheck, checkNocheck, alterTableConstraint);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref check_nocheck CONSTRAINT constraint_id ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstCheckNocheck checkNocheck, AstConstraintId constraintId)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, checkNocheck, constraintId);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref enable_disable TRIGGER id_? ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstEnableDisable enableDisable, AstId id)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, enableDisable, id);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref REBUILD table_options ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstTableOptions tableOptions)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, tableOptions);
-        }
-        
-        /// <summary>
-        /// alter_table : 
-        ///    ALTER TABLE full_table_ref SWITCH switch_partition ; 
-        /// </summary>
-        public static AstAlterTable AlterTable(AstFullTableRef fullTableRef, AstSwitchPartition switchPartition)
-        {
-            return AstAlterTable.AlterTable(fullTableRef, switchPartition);
-        }
-        
-        /// <summary>
-        /// alter_user : 
-        ///    ALTER USER user_id WITH alter_user_items 
-        /// </summary>
-        public static AstAlterUser AlterUser(AstUserId userId, AstAlterUserItems alterUserItems)
-        {
-            return AstAlterUser.AlterUser(userId, alterUserItems);
-        }
-        
-        /// <summary>
-        /// alter_user_azure_sql : 
-        ///    ALTER USER user_id WITH alter_user_azure_sql_infos 
-        /// </summary>
-        public static AstAlterUserAzureSql AlterUserAzureSql(AstUserId userId, AstAlterUserAzureSqlInfos alterUserAzureSqlInfos)
-        {
-            return AstAlterUserAzureSql.AlterUserAzureSql(userId, alterUserAzureSqlInfos);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(workloadGroupGroupId, importanceLevel, alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP DEFAULT_DOUBLE_QUOTE WITH ( IMPORTANCE EQUAL importance_level ) alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstImportanceLevel importanceLevel, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(importanceLevel, alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP DEFAULT_DOUBLE_QUOTE WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstDecimal requestMaxMemoryGrant, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(requestMaxMemoryGrant, alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP workload_group_group_id alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(workloadGroupGroupId, alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// alter_workload_group : 
-        ///    ALTER WORKLOAD GROUP DEFAULT_DOUBLE_QUOTE alter_workload_group_using? 
-        /// </summary>
-        public static AstAlterWorkloadGroup AlterWorkloadGroup(AstAlterWorkloadGroupUsing alterWorkloadGroupUsing)
-        {
-            return AstAlterWorkloadGroup.AlterWorkloadGroup(alterWorkloadGroupUsing);
-        }
-        
-        /// <summary>
-        /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id AUTHORIZATION owner_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL assembly_permission 
-        /// </summary>
-        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstOwnerId ownerId, AstBinaryContentNexts binaryContentNexts, AstAssemblyPermission assemblyPermission)
-        {
-            return AstCreateAssembly.CreateAssembly(assemblyId, ownerId, binaryContentNexts, assemblyPermission);
-        }
-        
-        /// <summary>
-        /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id FROM binary_content_nexts WITH PERMISSION_SET EQUAL assembly_permission 
-        /// </summary>
-        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstBinaryContentNexts binaryContentNexts, AstAssemblyPermission assemblyPermission)
-        {
-            return AstCreateAssembly.CreateAssembly(assemblyId, binaryContentNexts, assemblyPermission);
-        }
-        
-        /// <summary>
-        /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id AUTHORIZATION owner_id FROM binary_content_nexts 
-        /// </summary>
-        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstOwnerId ownerId, AstBinaryContentNexts binaryContentNexts)
-        {
-            return AstCreateAssembly.CreateAssembly(assemblyId, ownerId, binaryContentNexts);
-        }
-        
-        /// <summary>
-        /// create_assembly : 
-        ///    CREATE ASSEMBLY assembly_id FROM binary_content_nexts 
-        /// </summary>
-        public static AstCreateAssembly CreateAssembly(AstAssemblyId assemblyId, AstBinaryContentNexts binaryContentNexts)
-        {
-            return AstCreateAssembly.CreateAssembly(assemblyId, binaryContentNexts);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id WITH ALGORITHM EQUAL asymetric_algorithm encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAsymetricAlgorithm asymetricAlgorithm, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, asymetricAlgorithm, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id WITH PROVIDER_KEY_NAME EQUAL provider_key_name=stringtext encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext providerKeyName, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerKeyName, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM FILE EQUAL stringtext WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstStringtext stringtext, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, stringtext, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM FILE EQUAL stringtext WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstStringtext stringtext, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, stringtext, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id WITH CREATION_DISPOSITION EQUAL creation_disposition encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstCreationDisposition creationDisposition, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, creationDisposition, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM ASSEMBLY assembly_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, assemblyId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM ASSEMBLY assembly_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstAssemblyId assemblyId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, assemblyId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id FROM PROVIDER provider_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, providerId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id FROM PROVIDER provider_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstProviderId providerId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, providerId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id AUTHORIZATION database_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstDatabaseId databaseId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, databaseId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_asymmetric_key : 
-        ///    CREATE ASYMMETRIC KEY asym_key_id encryption_by_pwd? 
-        /// </summary>
-        public static AstCreateAsymmetricKey CreateAsymmetricKey(AstAsymKeyId asymKeyId, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstCreateAsymmetricKey.CreateAsymmetricKey(asymKeyId, encryptionByPwd);
-        }
-        
-        /// <summary>
-        /// create_column_encryption_key : 
-        ///    CREATE COLUMN ENCRYPTION KEY column_encryption_key_id WITH VALUES ( ,? COLUMN_MASTER_KEY EQUAL column_master_key_name=id_ , ALGORITHM EQUAL algorithm_name=stringtext , ENCRYPTED_VALUE EQUAL encrypted_value=binary_ ) ,? 
-        /// </summary>
-        public static AstCreateColumnEncryptionKey CreateColumnEncryptionKey(AstColumnEncryptionKeyId columnEncryptionKeyId, AstId columnMasterKeyName, AstStringtext algorithmName, AstBinary encryptedValue)
-        {
-            return AstCreateColumnEncryptionKey.CreateColumnEncryptionKey(columnEncryptionKeyId, columnMasterKeyName, algorithmName, encryptedValue);
-        }
-        
-        /// <summary>
-        /// create_column_master_key : 
-        ///    CREATE COLUMN MASTER KEY key_name=id_ WITH ( KEY_STORE_PROVIDER_NAME EQUAL key_store_provider_name=stringtext , KEY_PATH EQUAL key_path=stringtext ) 
-        /// </summary>
-        public static AstCreateColumnMasterKey CreateColumnMasterKey(AstId keyName, AstStringtext keyStoreProviderName, AstStringtext keyPath)
-        {
-            return AstCreateColumnMasterKey.CreateColumnMasterKey(keyName, keyStoreProviderName, keyPath);
-        }
-        
-        /// <summary>
-        /// create_credential : 
-        ///    CREATE CREDENTIAL credential_id WITH IDENTITY EQUAL identity_name=stringtext , SECRET EQUAL secret=stringtext FOR CRYPTOGRAPHIC PROVIDER cryptographic_provider_id 
-        /// </summary>
-        public static AstCreateCredential CreateCredential(AstCredentialId credentialId, AstStringtext identityName, AstStringtext secret, AstCryptographicProviderId cryptographicProviderId)
-        {
-            return AstCreateCredential.CreateCredential(credentialId, identityName, secret, cryptographicProviderId);
-        }
-        
-        /// <summary>
-        /// create_credential : 
-        ///    CREATE CREDENTIAL credential_id WITH IDENTITY EQUAL identity_name=stringtext FOR CRYPTOGRAPHIC PROVIDER cryptographic_provider_id 
-        /// </summary>
-        public static AstCreateCredential CreateCredential(AstCredentialId credentialId, AstStringtext identityName, AstCryptographicProviderId cryptographicProviderId)
-        {
-            return AstCreateCredential.CreateCredential(credentialId, identityName, cryptographicProviderId);
-        }
-        
-        /// <summary>
-        /// create_cryptographic_provider : 
-        ///    CREATE CRYPTOGRAPHIC PROVIDER provider_id FROM FILE EQUAL path_of_DLL=stringtext 
-        /// </summary>
-        public static AstCreateCryptographicProvider CreateCryptographicProvider(AstProviderId providerId, AstStringtext pathOfDLL)
-        {
-            return AstCreateCryptographicProvider.CreateCryptographicProvider(providerId, pathOfDLL);
-        }
-        
-        /// <summary>
-        /// create_database : 
-        ///    CREATE DATABASE database_id database_containment? database_on_primary? database_on_log? database_collate? database_create_with? 
-        /// </summary>
-        public static AstCreateDatabase CreateDatabase(AstDatabaseId databaseId, AstDatabaseContainment databaseContainment, AstDatabaseOnPrimary databaseOnPrimary, AstDatabaseOnLog databaseOnLog, AstDatabaseCollate databaseCollate, AstDatabaseCreateWith databaseCreateWith)
-        {
-            return AstCreateDatabase.CreateDatabase(databaseId, databaseContainment, databaseOnPrimary, databaseOnLog, databaseCollate, databaseCreateWith);
-        }
-        
-        /// <summary>
-        /// create_db_role : 
-        ///    CREATE ROLE role_id AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateDbRole CreateDbRole(AstRoleId roleId, AstOwnerId ownerId)
-        {
-            return AstCreateDbRole.CreateDbRole(roleId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_event_notification : 
-        ///    CREATE EVENT NOTIFICATION event_notification_id ON event_notification_on WITH FAN_IN FOR ,? event_type_or_group_id TO SERVICE broker_service=stringtext , broker_service_specifier_or_current_database=stringtext 
-        /// </summary>
-        public static AstCreateEventNotification CreateEventNotification(AstEventNotificationId eventNotificationId, AstEventNotificationOn eventNotificationOn, AstEventTypeOrGroupId eventTypeOrGroupId, AstStringtext brokerService, AstStringtext brokerServiceSpecifierOrCurrentDatabase)
-        {
-            return AstCreateEventNotification.CreateEventNotification(eventNotificationId, eventNotificationOn, eventTypeOrGroupId, brokerService, brokerServiceSpecifierOrCurrentDatabase);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id AUTHORIZATION owner_id FROM file_spec2 WITH ( COMMA? LANGUAGE EQUAL code_language ) 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId, AstFileSpec2 fileSpec2, AstCodeLanguage codeLanguage)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, ownerId, fileSpec2, codeLanguage);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id FROM file_spec2 WITH ( COMMA? LANGUAGE EQUAL code_language ) 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstFileSpec2 fileSpec2, AstCodeLanguage codeLanguage)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, fileSpec2, codeLanguage);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id AUTHORIZATION owner_id FROM file_spec2 WITH ( DATA_SOURCE EQUAL external_data_source_id ) 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId, AstFileSpec2 fileSpec2, AstExternalDataSourceId externalDataSourceId)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, ownerId, fileSpec2, externalDataSourceId);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id FROM file_spec2 WITH ( DATA_SOURCE EQUAL external_data_source_id ) 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstFileSpec2 fileSpec2, AstExternalDataSourceId externalDataSourceId)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, fileSpec2, externalDataSourceId);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id AUTHORIZATION owner_id FROM file_spec2 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId, AstFileSpec2 fileSpec2)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, ownerId, fileSpec2);
-        }
-        
-        /// <summary>
-        /// create_external_library : 
-        ///    CREATE EXTERNAL LIBRARY library_id FROM file_spec2 
-        /// </summary>
-        public static AstCreateExternalLibrary CreateExternalLibrary(AstLibraryId libraryId, AstFileSpec2 fileSpec2)
-        {
-            return AstCreateExternalLibrary.CreateExternalLibrary(libraryId, fileSpec2);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id IN PATH rootpath=stringtext WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstStringtext rootpath, AstOnOff onOff, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, rootpath, onOff, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id IN PATH rootpath=stringtext WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstStringtext rootpath, AstOnOff onOff, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, rootpath, onOff, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstOnOff onOff, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, onOff, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstOnOff onOff, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, onOff, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id IN PATH rootpath=stringtext AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstStringtext rootpath, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, rootpath, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id IN PATH rootpath=stringtext AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstStringtext rootpath, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, rootpath, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id AS DEFAULT AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id IN PATH rootpath=stringtext WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstStringtext rootpath, AstOnOff onOff)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, rootpath, onOff);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id IN PATH rootpath=stringtext WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstStringtext rootpath, AstOnOff onOff)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, rootpath, onOff);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id WITH ACCENT_SENSITIVITY EQUAL on_off AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstOnOff onOff)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, onOff);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id IN PATH rootpath=stringtext AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId, AstStringtext rootpath)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId, rootpath);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id IN PATH rootpath=stringtext AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstStringtext rootpath)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, rootpath);
-        }
-        
-        /// <summary>
-        /// create_fulltext_catalog : 
-        ///    CREATE FULLTEXT CATALOG catalog_id ON FILEGROUP file_group_id AS DEFAULT 
-        /// </summary>
-        public static AstCreateFulltextCatalog CreateFulltextCatalog(AstCatalogId catalogId, AstFileGroupId fileGroupId)
-        {
-            return AstCreateFulltextCatalog.CreateFulltextCatalog(catalogId, fileGroupId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_stoplist : 
-        ///    CREATE FULLTEXT STOPLIST stoplist_id FROM database_stoplist_ref AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextStoplist CreateFulltextStoplist(AstStoplistId stoplistId, AstDatabaseStoplistRef databaseStoplistRef, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextStoplist.CreateFulltextStoplist(stoplistId, databaseStoplistRef, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_stoplist : 
-        ///    CREATE FULLTEXT STOPLIST stoplist_id FROM SYSTEM STOPLIST AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateFulltextStoplist CreateFulltextStoplist(AstStoplistId stoplistId, AstOwnerId ownerId)
-        {
-            return AstCreateFulltextStoplist.CreateFulltextStoplist(stoplistId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_fulltext_stoplist : 
-        ///    CREATE FULLTEXT STOPLIST stoplist_id FROM database_stoplist_ref 
-        /// </summary>
-        public static AstCreateFulltextStoplist CreateFulltextStoplist(AstStoplistId stoplistId, AstDatabaseStoplistRef databaseStoplistRef)
-        {
-            return AstCreateFulltextStoplist.CreateFulltextStoplist(stoplistId, databaseStoplistRef);
-        }
-        
-        /// <summary>
-        /// create_index : 
-        ///    CREATE UNIQUE clustered? INDEX index_id ON full_table_ref ( column_name_list_with_order ) INCLUDE ( column_name_list ) where_condition? create_index_options()? ON file_group_id ; 
-        /// </summary>
-        public static AstCreateIndex CreateIndex(AstClustered clustered, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstColumnNameList columnNameList, AstWhereCondition whereCondition, AstCreateIndexOptions createIndexOptions, AstFileGroupId fileGroupId)
-        {
-            return AstCreateIndex.CreateIndex(clustered, indexId, fullTableRef, columnNameListWithOrder, columnNameList, whereCondition, createIndexOptions, fileGroupId);
-        }
-        
-        /// <summary>
-        /// create_index : 
-        ///    CREATE UNIQUE clustered? INDEX index_id ON full_table_ref ( column_name_list_with_order ) where_condition? create_index_options()? ON file_group_id ; 
-        /// </summary>
-        public static AstCreateIndex CreateIndex(AstClustered clustered, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstWhereCondition whereCondition, AstCreateIndexOptions createIndexOptions, AstFileGroupId fileGroupId)
-        {
-            return AstCreateIndex.CreateIndex(clustered, indexId, fullTableRef, columnNameListWithOrder, whereCondition, createIndexOptions, fileGroupId);
-        }
-        
-        /// <summary>
-        /// create_index : 
-        ///    CREATE UNIQUE clustered? INDEX index_id ON full_table_ref ( column_name_list_with_order ) INCLUDE ( column_name_list ) where_condition? create_index_options()? ; 
-        /// </summary>
-        public static AstCreateIndex CreateIndex(AstClustered clustered, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstColumnNameList columnNameList, AstWhereCondition whereCondition, AstCreateIndexOptions createIndexOptions)
-        {
-            return AstCreateIndex.CreateIndex(clustered, indexId, fullTableRef, columnNameListWithOrder, columnNameList, whereCondition, createIndexOptions);
-        }
-        
-        /// <summary>
-        /// create_index : 
-        ///    CREATE UNIQUE clustered? INDEX index_id ON full_table_ref ( column_name_list_with_order ) where_condition? create_index_options()? ; 
-        /// </summary>
-        public static AstCreateIndex CreateIndex(AstClustered clustered, AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstWhereCondition whereCondition, AstCreateIndexOptions createIndexOptions)
-        {
-            return AstCreateIndex.CreateIndex(clustered, indexId, fullTableRef, columnNameListWithOrder, whereCondition, createIndexOptions);
-        }
-        
-        /// <summary>
-        /// create_columnstore_index : 
-        ///    CREATE CLUSTERED COLUMNSTORE INDEX id_ ON full_table_ref create_columnstore_index_options? ON table_id ; 
-        /// </summary>
-        public static AstCreateColumnstoreIndex CreateColumnstoreIndex(AstId id, AstFullTableRef fullTableRef, AstCreateColumnstoreIndexOptions createColumnstoreIndexOptions, AstTableId tableId)
-        {
-            return AstCreateColumnstoreIndex.CreateColumnstoreIndex(id, fullTableRef, createColumnstoreIndexOptions, tableId);
-        }
-        
-        /// <summary>
-        /// create_columnstore_index : 
-        ///    CREATE CLUSTERED COLUMNSTORE INDEX id_ ON full_table_ref create_columnstore_index_options? ; 
-        /// </summary>
-        public static AstCreateColumnstoreIndex CreateColumnstoreIndex(AstId id, AstFullTableRef fullTableRef, AstCreateColumnstoreIndexOptions createColumnstoreIndexOptions)
-        {
-            return AstCreateColumnstoreIndex.CreateColumnstoreIndex(id, fullTableRef, createColumnstoreIndexOptions);
-        }
-        
-        /// <summary>
-        /// create_nonclustered_columnstore_index : 
-        ///    CREATE NONCLUSTERED COLUMNSTORE INDEX id_ ON full_table_ref ( column_name_list_with_order ) where_condition? create_columnstore_index_options? ON group_id ; 
-        /// </summary>
-        public static AstCreateNonclusteredColumnstoreIndex CreateNonclusteredColumnstoreIndex(AstId id, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstWhereCondition whereCondition, AstCreateColumnstoreIndexOptions createColumnstoreIndexOptions, AstGroupId groupId)
-        {
-            return AstCreateNonclusteredColumnstoreIndex.CreateNonclusteredColumnstoreIndex(id, fullTableRef, columnNameListWithOrder, whereCondition, createColumnstoreIndexOptions, groupId);
-        }
-        
-        /// <summary>
-        /// create_nonclustered_columnstore_index : 
-        ///    CREATE NONCLUSTERED COLUMNSTORE INDEX id_ ON full_table_ref ( column_name_list_with_order ) where_condition? create_columnstore_index_options? ; 
-        /// </summary>
-        public static AstCreateNonclusteredColumnstoreIndex CreateNonclusteredColumnstoreIndex(AstId id, AstFullTableRef fullTableRef, AstColumnNameListWithOrder columnNameListWithOrder, AstWhereCondition whereCondition, AstCreateColumnstoreIndexOptions createColumnstoreIndexOptions)
-        {
-            return AstCreateNonclusteredColumnstoreIndex.CreateNonclusteredColumnstoreIndex(id, fullTableRef, columnNameListWithOrder, whereCondition, createColumnstoreIndexOptions);
-        }
-        
-        /// <summary>
-        /// create_login_azure_sql : 
-        ///    CREATE LOGIN login_id WITH PASSWORD EQUAL stringtext SID EQUAL sid=binary_ 
-        /// </summary>
-        public static AstCreateLoginAzureSql CreateLoginAzureSql(AstLoginId loginId, AstStringtext stringtext, AstBinary sid)
-        {
-            return AstCreateLoginAzureSql.CreateLoginAzureSql(loginId, stringtext, sid);
-        }
-        
-        /// <summary>
-        /// create_login_pdw : 
-        ///    CREATE LOGIN login_id WITH PASSWORD EQUAL password=stringtext MUST_CHANGE? CHECK_POLICY EQUAL on_off? 
-        /// </summary>
-        public static AstCreateLoginPdw CreateLoginPdw(AstLoginId loginId, AstStringtext password, AstOnOff onOff)
-        {
-            return AstCreateLoginPdw.CreateLoginPdw(loginId, password, onOff);
-        }
-        
-        /// <summary>
-        /// create_login_sql_server : 
-        ///    CREATE LOGIN login_id WITH create_login_sql_server_settings 
-        /// </summary>
-        public static AstCreateLoginSqlServer CreateLoginSqlServer(AstLoginId loginId, AstCreateLoginSqlServerSettings createLoginSqlServerSettings)
-        {
-            return AstCreateLoginSqlServer.CreateLoginSqlServer(loginId, createLoginSqlServerSettings);
-        }
-        
-        /// <summary>
-        /// create_login_sql_server : 
-        ///    CREATE LOGIN login_id FROM create_login_sql_server_from 
-        /// </summary>
-        public static AstCreateLoginSqlServer CreateLoginSqlServer(AstLoginId loginId, AstCreateLoginSqlServerFrom createLoginSqlServerFrom)
-        {
-            return AstCreateLoginSqlServer.CreateLoginSqlServer(loginId, createLoginSqlServerFrom);
-        }
-        
-        /// <summary>
-        /// create_or_alter_broker_priority : 
-        ///    create_alter BROKER PRIORITY ConversationPriorityName=id_ FOR CONVERSATION SET ( broker_contract_name? broker_local_service_name? broker_remote_service_name? broker_priority_level? ) 
-        /// </summary>
-        public static AstCreateOrAlterBrokerPriority CreateOrAlterBrokerPriority(AstCreateAlter createAlter, AstId conversationPriorityName, AstBrokerContractName brokerContractName, AstBrokerLocalServiceName brokerLocalServiceName, AstBrokerRemoteServiceName brokerRemoteServiceName, AstBrokerPriorityLevel brokerPriorityLevel)
-        {
-            return AstCreateOrAlterBrokerPriority.CreateOrAlterBrokerPriority(createAlter, conversationPriorityName, brokerContractName, brokerLocalServiceName, brokerRemoteServiceName, brokerPriorityLevel);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id AUTHORIZATION owner_id TO SERVICE remote_service_name=stringtext WITH USER EQUAL user_id , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstOwnerId ownerId, AstStringtext remoteServiceName, AstUserId userId, AstOnOff onOff)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, ownerId, remoteServiceName, userId, onOff);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id TO SERVICE remote_service_name=stringtext WITH USER EQUAL user_id , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstStringtext remoteServiceName, AstUserId userId, AstOnOff onOff)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, remoteServiceName, userId, onOff);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id AUTHORIZATION owner_id TO SERVICE remote_service_name=stringtext WITH , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstOwnerId ownerId, AstStringtext remoteServiceName, AstOnOff onOff)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, ownerId, remoteServiceName, onOff);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id TO SERVICE remote_service_name=stringtext WITH , ANONYMOUS EQUAL on_off 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstStringtext remoteServiceName, AstOnOff onOff)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, remoteServiceName, onOff);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id AUTHORIZATION owner_id TO SERVICE remote_service_name=stringtext WITH USER EQUAL user_id 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstOwnerId ownerId, AstStringtext remoteServiceName, AstUserId userId)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, ownerId, remoteServiceName, userId);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id TO SERVICE remote_service_name=stringtext WITH USER EQUAL user_id 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstStringtext remoteServiceName, AstUserId userId)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, remoteServiceName, userId);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id AUTHORIZATION owner_id TO SERVICE remote_service_name=stringtext WITH 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstOwnerId ownerId, AstStringtext remoteServiceName)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, ownerId, remoteServiceName);
-        }
-        
-        /// <summary>
-        /// create_remote_service_binding : 
-        ///    CREATE REMOTE SERVICE BINDING binding_id TO SERVICE remote_service_name=stringtext WITH 
-        /// </summary>
-        public static AstCreateRemoteServiceBinding CreateRemoteServiceBinding(AstBindingId bindingId, AstStringtext remoteServiceName)
-        {
-            return AstCreateRemoteServiceBinding.CreateRemoteServiceBinding(bindingId, remoteServiceName);
-        }
-        
-        /// <summary>
-        /// create_resource_pool : 
-        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=decimal COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=decimal COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=decimal COMMA? AFFINITY SCHEDULER EQUAL AUTO COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=decimal COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=decimal COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=decimal COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=decimal ) 
-        /// </summary>
-        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, AstDecimal minCpuPercent, AstDecimal maxCpuPercent, AstDecimal capCpuPercent, AstDecimal minMemoryPercent, AstDecimal maxMemoryPercent, AstDecimal minTopsPercent, AstDecimal maxTopsPercent)
-        {
-            return AstCreateResourcePool.CreateResourcePool(poolId, minCpuPercent, maxCpuPercent, capCpuPercent, minMemoryPercent, maxMemoryPercent, minTopsPercent, maxTopsPercent);
-        }
-        
-        /// <summary>
-        /// create_resource_pool : 
-        ///    CREATE RESOURCE POOL pool_id WITH ( COMMA? MIN_CPU_PERCENT EQUAL min_cpu_percent=decimal COMMA? MAX_CPU_PERCENT EQUAL max_cpu_percent=decimal COMMA? CAP_CPU_PERCENT EQUAL cap_cpu_percent=decimal COMMA? AFFINITY SCHEDULER EQUAL ( decimal_ranges ) COMMA? MIN_MEMORY_PERCENT EQUAL min_memory_percent=decimal COMMA? MAX_MEMORY_PERCENT EQUAL max_memory_percent=decimal COMMA? MIN_IOPS_PER_VOLUME EQUAL min_tops_percent=decimal COMMA? MAX_IOPS_PER_VOLUME EQUAL max_tops_percent=decimal ) 
-        /// </summary>
-        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId, AstDecimal minCpuPercent, AstDecimal maxCpuPercent, AstDecimal capCpuPercent, AstDecimalRanges decimalRanges, AstDecimal minMemoryPercent, AstDecimal maxMemoryPercent, AstDecimal minTopsPercent, AstDecimal maxTopsPercent)
-        {
-            return AstCreateResourcePool.CreateResourcePool(poolId, minCpuPercent, maxCpuPercent, capCpuPercent, decimalRanges, minMemoryPercent, maxMemoryPercent, minTopsPercent, maxTopsPercent);
-        }
-        
-        /// <summary>
-        /// create_resource_pool : 
-        ///    CREATE RESOURCE POOL pool_id 
-        /// </summary>
-        public static AstCreateResourcePool CreateResourcePool(AstPoolId poolId)
-        {
-            return AstCreateResourcePool.CreateResourcePool(poolId);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, routeServiceName, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, routeServiceName, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, brokerInstanceIdentifier, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstDecimal lifetime, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, lifetime, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, routeServiceName, brokerInstanceIdentifier, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, routeServiceName, brokerInstanceIdentifier, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, brokerInstanceIdentifier, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, brokerInstanceIdentifier, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH , ADDRESS EQUAL address=stringtext , MIRROR_ADDRESS EQUAL mirror_address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext address, AstStringtext mirrorAddress)
-        {
-            return AstCreateRoute.CreateRoute(routeId, address, mirrorAddress);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, routeServiceName, brokerInstanceIdentifier, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? SERVICE_NAME EQUAL route_service_name=stringtext ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext routeServiceName, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, routeServiceName, brokerInstanceIdentifier, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, brokerInstanceIdentifier, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? BROKER_INSTANCE EQUAL broker_instance_identifier=stringtext ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext brokerInstanceIdentifier, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, brokerInstanceIdentifier, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH ,? LIFETIME EQUAL lifetime=decimal , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstDecimal lifetime, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, lifetime, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id AUTHORIZATION owner_id WITH , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstOwnerId ownerId, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, ownerId, address);
-        }
-        
-        /// <summary>
-        /// create_route : 
-        ///    CREATE ROUTE route_id WITH , ADDRESS EQUAL address=stringtext 
-        /// </summary>
-        public static AstCreateRoute CreateRoute(AstRouteId routeId, AstStringtext address)
-        {
-            return AstCreateRoute.CreateRoute(routeId, address);
-        }
-        
-        /// <summary>
-        /// create_rule : 
-        ///    CREATE RULE schema_rule_ref AS search_condition 
-        /// </summary>
-        public static AstCreateRule CreateRule(AstSchemaRuleRef schemaRuleRef, AstSearchCondition searchCondition)
-        {
-            return AstCreateRule.CreateRule(schemaRuleRef, searchCondition);
-        }
-        
-        /// <summary>
-        /// create_schema : 
-        ///    CREATE SCHEMA create_schema_name create_schema_targets? 
-        /// </summary>
-        public static AstCreateSchema CreateSchema(AstCreateSchemaName createSchemaName, AstCreateSchemaTargets createSchemaTargets)
-        {
-            return AstCreateSchema.CreateSchema(createSchemaName, createSchemaTargets);
-        }
-        
-        /// <summary>
-        /// create_schema_azure_sql_dw_and_pdw : 
-        ///    CREATE SCHEMA schema_id AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateSchemaAzureSqlDwAndPdw CreateSchemaAzureSqlDwAndPdw(AstSchemaId schemaId, AstOwnerId ownerId)
-        {
-            return AstCreateSchemaAzureSqlDwAndPdw.CreateSchemaAzureSqlDwAndPdw(schemaId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_schema_azure_sql_dw_and_pdw : 
-        ///    CREATE SCHEMA schema_id 
-        /// </summary>
-        public static AstCreateSchemaAzureSqlDwAndPdw CreateSchemaAzureSqlDwAndPdw(AstSchemaId schemaId)
-        {
-            return AstCreateSchemaAzureSqlDwAndPdw.CreateSchemaAzureSqlDwAndPdw(schemaId);
-        }
-        
-        /// <summary>
-        /// create_search_property_list : 
-        ///    CREATE SEARCH PROPERTY LIST source_list_id FROM database_source_list_ref AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateSearchPropertyList CreateSearchPropertyList(AstSourceListId sourceListId, AstDatabaseSourceListRef databaseSourceListRef, AstOwnerId ownerId)
-        {
-            return AstCreateSearchPropertyList.CreateSearchPropertyList(sourceListId, databaseSourceListRef, ownerId);
-        }
-        
-        /// <summary>
-        /// create_search_property_list : 
-        ///    CREATE SEARCH PROPERTY LIST source_list_id AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstCreateSearchPropertyList CreateSearchPropertyList(AstSourceListId sourceListId, AstOwnerId ownerId)
-        {
-            return AstCreateSearchPropertyList.CreateSearchPropertyList(sourceListId, ownerId);
-        }
-        
-        /// <summary>
-        /// create_search_property_list : 
-        ///    CREATE SEARCH PROPERTY LIST source_list_id FROM database_source_list_ref 
-        /// </summary>
-        public static AstCreateSearchPropertyList CreateSearchPropertyList(AstSourceListId sourceListId, AstDatabaseSourceListRef databaseSourceListRef)
-        {
-            return AstCreateSearchPropertyList.CreateSearchPropertyList(sourceListId, databaseSourceListRef);
-        }
-        
-        /// <summary>
-        /// create_search_property_list : 
-        ///    CREATE SEARCH PROPERTY LIST source_list_id 
-        /// </summary>
-        public static AstCreateSearchPropertyList CreateSearchPropertyList(AstSourceListId sourceListId)
-        {
-            return AstCreateSearchPropertyList.CreateSearchPropertyList(sourceListId);
-        }
-        
-        /// <summary>
-        /// create_security_policy : 
-        ///    CREATE SECURITY POLICY schema_security_policy_ref create_security_policy_adds WITH ( STATE EQUAL on_off schema_binding? ) NOT FOR REPLICATION 
-        /// </summary>
-        public static AstCreateSecurityPolicy CreateSecurityPolicy(AstSchemaSecurityPolicyRef schemaSecurityPolicyRef, AstCreateSecurityPolicyAdds createSecurityPolicyAdds, AstOnOff onOff, AstSchemaBinding schemaBinding)
-        {
-            return AstCreateSecurityPolicy.CreateSecurityPolicy(schemaSecurityPolicyRef, createSecurityPolicyAdds, onOff, schemaBinding);
-        }
-        
-        /// <summary>
-        /// create_security_policy : 
-        ///    CREATE SECURITY POLICY schema_security_policy_ref create_security_policy_adds NOT FOR REPLICATION 
-        /// </summary>
-        public static AstCreateSecurityPolicy CreateSecurityPolicy(AstSchemaSecurityPolicyRef schemaSecurityPolicyRef, AstCreateSecurityPolicyAdds createSecurityPolicyAdds)
-        {
-            return AstCreateSecurityPolicy.CreateSecurityPolicy(schemaSecurityPolicyRef, createSecurityPolicyAdds);
-        }
-        
-        /// <summary>
-        /// create_sequence : 
-        ///    CREATE SEQUENCE schema_sequence_ref AS data_type create_sequence_start? create_sequence_increment? create_sequence_min_value? create_sequence_max_value? cycle? sequence_cache? 
-        /// </summary>
-        public static AstCreateSequence CreateSequence(AstSchemaSequenceRef schemaSequenceRef, AstDataType dataType, AstCreateSequenceStart createSequenceStart, AstCreateSequenceIncrement createSequenceIncrement, AstCreateSequenceMinValue createSequenceMinValue, AstCreateSequenceMaxValue createSequenceMaxValue, AstCycle cycle, AstSequenceCache sequenceCache)
-        {
-            return AstCreateSequence.CreateSequence(schemaSequenceRef, dataType, createSequenceStart, createSequenceIncrement, createSequenceMinValue, createSequenceMaxValue, cycle, sequenceCache);
-        }
-        
-        /// <summary>
-        /// create_sequence : 
-        ///    CREATE SEQUENCE schema_sequence_ref create_sequence_start? create_sequence_increment? create_sequence_min_value? create_sequence_max_value? cycle? sequence_cache? 
-        /// </summary>
-        public static AstCreateSequence CreateSequence(AstSchemaSequenceRef schemaSequenceRef, AstCreateSequenceStart createSequenceStart, AstCreateSequenceIncrement createSequenceIncrement, AstCreateSequenceMinValue createSequenceMinValue, AstCreateSequenceMaxValue createSequenceMaxValue, AstCycle cycle, AstSequenceCache sequenceCache)
-        {
-            return AstCreateSequence.CreateSequence(schemaSequenceRef, createSequenceStart, createSequenceIncrement, createSequenceMinValue, createSequenceMaxValue, cycle, sequenceCache);
-        }
-        
-        /// <summary>
-        /// create_server_audit : 
-        ///    CREATE SERVER AUDIT audit_id create_server_audit_to_infos 
-        /// </summary>
-        public static AstCreateServerAudit CreateServerAudit(AstAuditId auditId, AstCreateServerAuditToInfos createServerAuditToInfos)
-        {
-            return AstCreateServerAudit.CreateServerAudit(auditId, createServerAuditToInfos);
-        }
-        
-        /// <summary>
-        /// create_server_audit_specification : 
-        ///    CREATE SERVER AUDIT SPECIFICATION audit_id alter_server_audit_specification_server? server_audit_specification_add_groups? server_audit_state? 
-        /// </summary>
-        public static AstCreateServerAuditSpecification CreateServerAuditSpecification(AstAuditId auditId, AstAlterServerAuditSpecificationServer alterServerAuditSpecificationServer, AstServerAuditSpecificationAddGroups serverAuditSpecificationAddGroups, AstServerAuditState serverAuditState)
-        {
-            return AstCreateServerAuditSpecification.CreateServerAuditSpecification(auditId, alterServerAuditSpecificationServer, serverAuditSpecificationAddGroups, serverAuditState);
-        }
-        
-        /// <summary>
-        /// create_server_role : 
-        ///    CREATE SERVER ROLE server_role_id AUTHORIZATION server_id 
-        /// </summary>
-        public static AstCreateServerRole CreateServerRole(AstServerRoleId serverRoleId, AstServerId serverId)
-        {
-            return AstCreateServerRole.CreateServerRole(serverRoleId, serverId);
-        }
-        
-        /// <summary>
-        /// create_server_role : 
-        ///    CREATE SERVER ROLE server_role_id 
-        /// </summary>
-        public static AstCreateServerRole CreateServerRole(AstServerRoleId serverRoleId)
-        {
-            return AstCreateServerRole.CreateServerRole(serverRoleId);
-        }
-        
-        /// <summary>
-        /// create_service : 
-        ///    CREATE SERVICE service_id AUTHORIZATION owner_id ON QUEUE schema_queue_ref ( contracts ) 
-        /// </summary>
-        public static AstCreateService CreateService(AstServiceId serviceId, AstOwnerId ownerId, AstSchemaQueueRef schemaQueueRef, AstContracts contracts)
-        {
-            return AstCreateService.CreateService(serviceId, ownerId, schemaQueueRef, contracts);
-        }
-        
-        /// <summary>
-        /// create_service : 
-        ///    CREATE SERVICE service_id ON QUEUE schema_queue_ref ( contracts ) 
-        /// </summary>
-        public static AstCreateService CreateService(AstServiceId serviceId, AstSchemaQueueRef schemaQueueRef, AstContracts contracts)
-        {
-            return AstCreateService.CreateService(serviceId, schemaQueueRef, contracts);
-        }
-        
-        /// <summary>
-        /// create_service : 
-        ///    CREATE SERVICE service_id AUTHORIZATION owner_id ON QUEUE schema_queue_ref 
-        /// </summary>
-        public static AstCreateService CreateService(AstServiceId serviceId, AstOwnerId ownerId, AstSchemaQueueRef schemaQueueRef)
-        {
-            return AstCreateService.CreateService(serviceId, ownerId, schemaQueueRef);
-        }
-        
-        /// <summary>
-        /// create_service : 
-        ///    CREATE SERVICE service_id ON QUEUE schema_queue_ref 
-        /// </summary>
-        public static AstCreateService CreateService(AstServiceId serviceId, AstSchemaQueueRef schemaQueueRef)
-        {
-            return AstCreateService.CreateService(serviceId, schemaQueueRef);
-        }
-        
-        /// <summary>
-        /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) WITH statistics_with , NORECOMPUTE , INCREMENTAL EQUAL on_off ; 
-        /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList, AstStatisticsWith statisticsWith, AstOnOff onOff)
-        {
-            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList, statisticsWith, onOff);
-        }
-        
-        /// <summary>
-        /// create_statistics : 
-        ///    CREATE STATISTICS id_ ON full_table_ref ( column_name_list ) ; 
-        /// </summary>
-        public static AstCreateStatistics CreateStatistics(AstId id, AstFullTableRef fullTableRef, AstColumnNameList columnNameList)
-        {
-            return AstCreateStatistics.CreateStatistics(id, fullTableRef, columnNameList);
-        }
-        
-        /// <summary>
-        /// create_synonym : 
-        ///    CREATE SYNONYM schema_synonym_ref FOR server_database_schema_object_ref 
-        /// </summary>
-        public static AstCreateSynonym CreateSynonym(AstSchemaSynonymRef schemaSynonymRef, AstServerDatabaseSchemaObjectRef serverDatabaseSchemaObjectRef)
-        {
-            return AstCreateSynonym.CreateSynonym(schemaSynonymRef, serverDatabaseSchemaObjectRef);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions, AstGroupId on, AstGroupId textImage)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions, on, textImage);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? ON on=group_id TEXTIMAGE_ON text_image=group_id ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions, AstGroupId on, AstGroupId textImage)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions, on, textImage);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? DEFAULT TEXTIMAGE_ON text_image=group_id ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions, AstGroupId textImage)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions, textImage);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? DEFAULT TEXTIMAGE_ON text_image=group_id ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions, AstGroupId textImage)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions, textImage);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) LOCK simple_id table_options? DEFAULT DEFAULT ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstSimpleId simpleId, AstTableOptions tableOptions)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, simpleId, tableOptions);
-        }
-        
-        /// <summary>
-        /// create_table : 
-        ///    CREATE TABLE full_table_ref ( column_def_table_constraints table_indices_list? ) table_options? DEFAULT DEFAULT ; 
-        /// </summary>
-        public static AstCreateTable CreateTable(AstFullTableRef fullTableRef, AstColumnDefTableConstraints columnDefTableConstraints, AstTableIndicesList tableIndicesList, AstTableOptions tableOptions)
-        {
-            return AstCreateTable.CreateTable(fullTableRef, columnDefTableConstraints, tableIndicesList, tableOptions);
-        }
-        
-        /// <summary>
-        /// create_type : 
-        ///    CREATE TYPE name=schema_type_ref FROM data_type default_value AS TABLE ( column_def_table_constraints ) 
-        /// </summary>
-        public static AstCreateType CreateType(AstSchemaTypeRef name, AstDataType dataType, AstDefaultValue defaultValue, AstColumnDefTableConstraints columnDefTableConstraints)
-        {
-            return AstCreateType.CreateType(name, dataType, defaultValue, columnDefTableConstraints);
-        }
-        
-        /// <summary>
-        /// create_type : 
-        ///    CREATE TYPE name=schema_type_ref AS TABLE ( column_def_table_constraints ) 
-        /// </summary>
-        public static AstCreateType CreateType(AstSchemaTypeRef name, AstColumnDefTableConstraints columnDefTableConstraints)
-        {
-            return AstCreateType.CreateType(name, columnDefTableConstraints);
-        }
-        
-        /// <summary>
-        /// create_type : 
-        ///    CREATE TYPE name=schema_type_ref FROM data_type default_value 
-        /// </summary>
-        public static AstCreateType CreateType(AstSchemaTypeRef name, AstDataType dataType, AstDefaultValue defaultValue)
-        {
-            return AstCreateType.CreateType(name, dataType, defaultValue);
-        }
-        
-        /// <summary>
-        /// create_type : 
-        ///    CREATE TYPE name=schema_type_ref 
-        /// </summary>
-        public static AstCreateType CreateType(AstSchemaTypeRef name)
-        {
-            return AstCreateType.CreateType(name);
-        }
-        
-        /// <summary>
-        /// create_user : 
-        ///    CREATE USER user_id create_user_with_login 
-        /// </summary>
-        public static AstCreateUser CreateUser(AstUserId userId, AstCreateUserWithLogin createUserWithLogin)
-        {
-            return AstCreateUser.CreateUser(userId, createUserWithLogin);
-        }
-        
-        /// <summary>
-        /// create_user : 
-        ///    CREATE USER create_user_windows_principal_id 
-        /// </summary>
-        public static AstCreateUser CreateUser(AstCreateUserWindowsPrincipalId createUserWindowsPrincipalId)
-        {
-            return AstCreateUser.CreateUser(createUserWindowsPrincipalId);
-        }
-        
-        /// <summary>
-        /// create_user : 
-        ///    CREATE USER user_id create_user_without_login? 
-        /// </summary>
-        public static AstCreateUser CreateUser(AstUserId userId, AstCreateUserWithoutLogin createUserWithoutLogin)
-        {
-            return AstCreateUser.CreateUser(userId, createUserWithoutLogin);
-        }
-        
-        /// <summary>
-        /// create_user_azure_sql_dw : 
-        ///    CREATE USER user_id for_from LOGIN login_id WITH DEFAULT_SCHEMA EQUAL schema_id 
-        /// </summary>
-        public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId, AstForFrom forFrom, AstLoginId loginId, AstSchemaId schemaId)
-        {
-            return AstCreateUserAzureSqlDw.CreateUserAzureSqlDw(userId, forFrom, loginId, schemaId);
-        }
-        
-        /// <summary>
-        /// create_user_azure_sql_dw : 
-        ///    CREATE USER user_id WITHOUT LOGIN WITH DEFAULT_SCHEMA EQUAL schema_id 
-        /// </summary>
-        public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId, AstSchemaId schemaId)
-        {
-            return AstCreateUserAzureSqlDw.CreateUserAzureSqlDw(userId, schemaId);
-        }
-        
-        /// <summary>
-        /// create_user_azure_sql_dw : 
-        ///    CREATE USER user_id for_from LOGIN login_id 
-        /// </summary>
-        public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId, AstForFrom forFrom, AstLoginId loginId)
-        {
-            return AstCreateUserAzureSqlDw.CreateUserAzureSqlDw(userId, forFrom, loginId);
-        }
-        
-        /// <summary>
-        /// create_user_azure_sql_dw : 
-        ///    CREATE USER user_id WITHOUT LOGIN 
-        /// </summary>
-        public static AstCreateUserAzureSqlDw CreateUserAzureSqlDw(AstUserId userId)
-        {
-            return AstCreateUserAzureSqlDw.CreateUserAzureSqlDw(userId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, workloadGroupPoolId, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, workloadGroupPoolId, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id USING workload_group_pool_id COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id USING DEFAULT_DOUBLE_QUOTE COMMA? EXTERNAL external_pool_id 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstExternalPoolId externalPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, externalPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel, AstWorkloadGroupPoolId workloadGroupPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel, workloadGroupPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant, AstWorkloadGroupPoolId workloadGroupPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant, workloadGroupPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id USING workload_group_pool_id DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstWorkloadGroupPoolId workloadGroupPoolId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, workloadGroupPoolId);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( IMPORTANCE EQUAL importance_level ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstImportanceLevel importanceLevel)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, importanceLevel);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id WITH ( COMMA? REQUEST_MAX_MEMORY_GRANT_PERCENT EQUAL request_max_memory_grant=decimal ) USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId, AstDecimal requestMaxMemoryGrant)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId, requestMaxMemoryGrant);
-        }
-        
-        /// <summary>
-        /// create_workload_group : 
-        ///    CREATE WORKLOAD GROUP workload_group_group_id USING DEFAULT_DOUBLE_QUOTE DEFAULT_DOUBLE_QUOTE 
-        /// </summary>
-        public static AstCreateWorkloadGroup CreateWorkloadGroup(AstWorkloadGroupGroupId workloadGroupGroupId)
-        {
-            return AstCreateWorkloadGroup.CreateWorkloadGroup(workloadGroupGroupId);
-        }
-        
-        /// <summary>
-        /// create_xml_index : 
-        ///    CREATE PRIMARY XML INDEX index_id ON full_table_ref ( column_id ) using_xml_index? xml_index_options? ; 
-        /// </summary>
-        public static AstCreateXmlIndex CreateXmlIndex(AstIndexId indexId, AstFullTableRef fullTableRef, AstColumnId columnId, AstUsingXmlIndex usingXmlIndex, AstXmlIndexOptions xmlIndexOptions)
-        {
-            return AstCreateXmlIndex.CreateXmlIndex(indexId, fullTableRef, columnId, usingXmlIndex, xmlIndexOptions);
-        }
-        
-        /// <summary>
-        /// create_xml_schema_collection : 
-        ///    CREATE XML SCHEMA COLLECTION schema_sql_identifier_id AS string_id2 
-        /// </summary>
-        public static AstCreateXmlSchemaCollection CreateXmlSchemaCollection(AstSchemaSqlIdentifierId schemaSqlIdentifierId, AstStringId2 stringId2)
-        {
-            return AstCreateXmlSchemaCollection.CreateXmlSchemaCollection(schemaSqlIdentifierId, stringId2);
-        }
-        
-        /// <summary>
-        /// create_partition_function : 
-        ///    CREATE PARTITION FUNCTION partition_function_id ( input_parameter_type=data_type ) AS RANGE left_right? FOR VALUES ( boundary_values=expression_list ) 
-        /// </summary>
-        public static AstCreatePartitionFunction CreatePartitionFunction(AstPartitionFunctionId partitionFunctionId, AstDataType inputParameterType, AstLeftRight leftRight, AstExpressionList boundaryValues)
-        {
-            return AstCreatePartitionFunction.CreatePartitionFunction(partitionFunctionId, inputParameterType, leftRight, boundaryValues);
-        }
-        
-        /// <summary>
-        /// create_partition_scheme : 
-        ///    CREATE PARTITION SCHEME partition_scheme_id AS PARTITION partition_function_id ALL TO ( file_group_ids ) 
-        /// </summary>
-        public static AstCreatePartitionScheme CreatePartitionScheme(AstPartitionSchemeId partitionSchemeId, AstPartitionFunctionId partitionFunctionId, AstFileGroupIds fileGroupIds)
-        {
-            return AstCreatePartitionScheme.CreatePartitionScheme(partitionSchemeId, partitionFunctionId, fileGroupIds);
-        }
-        
-        /// <summary>
-        /// drop_aggregate : 
-        ///    DROP AGGREGATE IF EXISTS schema_aggregate_ref 
-        /// </summary>
-        public static AstDropAggregate DropAggregate(AstSchemaAggregateRef schemaAggregateRef)
-        {
-            return AstDropAggregate.DropAggregate(schemaAggregateRef);
-        }
-        
-        /// <summary>
-        /// drop_assembly : 
-        ///    DROP ASSEMBLY IF EXISTS assemblies WITH NO DEPENDENTS 
-        /// </summary>
-        public static AstDropAssembly DropAssembly(AstAssemblies assemblies)
-        {
-            return AstDropAssembly.DropAssembly(assemblies);
-        }
-        
-        /// <summary>
-        /// drop_asymmetric_key : 
-        ///    DROP ASYMMETRIC KEY key_name=id_ REMOVE PROVIDER KEY 
-        /// </summary>
-        public static AstDropAsymmetricKey DropAsymmetricKey(AstId keyName)
-        {
-            return AstDropAsymmetricKey.DropAsymmetricKey(keyName);
-        }
-        
-        /// <summary>
-        /// drop_availability_group : 
-        ///    DROP AVAILABILITY GROUP group_id 
-        /// </summary>
-        public static AstDropAvailabilityGroup DropAvailabilityGroup(AstGroupId groupId)
-        {
-            return AstDropAvailabilityGroup.DropAvailabilityGroup(groupId);
-        }
-        
-        /// <summary>
-        /// drop_column_encryption_key : 
-        ///    DROP COLUMN ENCRYPTION KEY encryptor_id 
-        /// </summary>
-        public static AstDropColumnEncryptionKey DropColumnEncryptionKey(AstEncryptorId encryptorId)
-        {
-            return AstDropColumnEncryptionKey.DropColumnEncryptionKey(encryptorId);
-        }
-        
-        /// <summary>
-        /// drop_column_master_key : 
-        ///    DROP COLUMN MASTER KEY master_key 
-        /// </summary>
-        public static AstDropColumnMasterKey DropColumnMasterKey(AstMasterKey masterKey)
-        {
-            return AstDropColumnMasterKey.DropColumnMasterKey(masterKey);
-        }
-        
-        /// <summary>
-        /// drop_credential : 
-        ///    DROP CREDENTIAL credential_id 
-        /// </summary>
-        public static AstDropCredential DropCredential(AstCredentialId credentialId)
-        {
-            return AstDropCredential.DropCredential(credentialId);
-        }
-        
-        /// <summary>
-        /// drop_cryptograhic_provider : 
-        ///    DROP CRYPTOGRAPHIC PROVIDER provider_id 
-        /// </summary>
-        public static AstDropCryptograhicProvider DropCryptograhicProvider(AstProviderId providerId)
-        {
-            return AstDropCryptograhicProvider.DropCryptograhicProvider(providerId);
-        }
-        
-        /// <summary>
-        /// drop_database : 
-        ///    DROP DATABASE IF EXISTS COMMA? database_id 
-        /// </summary>
-        public static AstDropDatabase DropDatabase(AstDatabaseId databaseId)
-        {
-            return AstDropDatabase.DropDatabase(databaseId);
-        }
-        
-        /// <summary>
-        /// drop_database_audit_specification : 
-        ///    DROP DATABASE AUDIT SPECIFICATION audit_id 
-        /// </summary>
-        public static AstDropDatabaseAuditSpecification DropDatabaseAuditSpecification(AstAuditId auditId)
-        {
-            return AstDropDatabaseAuditSpecification.DropDatabaseAuditSpecification(auditId);
-        }
-        
-        /// <summary>
-        /// drop_default : 
-        ///    DROP DEFAULT IF EXISTS COMMA? default_ref 
-        /// </summary>
-        public static AstDropDefault DropDefault(AstDefaultRef defaultRef)
-        {
-            return AstDropDefault.DropDefault(defaultRef);
-        }
-        
-        /// <summary>
-        /// drop_endpoint : 
-        ///    DROP ENDPOINT endpoint_id 
-        /// </summary>
-        public static AstDropEndpoint DropEndpoint(AstEndpointId endpointId)
-        {
-            return AstDropEndpoint.DropEndpoint(endpointId);
-        }
-        
-        /// <summary>
-        /// drop_event_notifications : 
-        ///    DROP EVENT NOTIFICATION notification_ids ON event_notification_on 
-        /// </summary>
-        public static AstDropEventNotifications DropEventNotifications(AstNotificationIds notificationIds, AstEventNotificationOn eventNotificationOn)
-        {
-            return AstDropEventNotifications.DropEventNotifications(notificationIds, eventNotificationOn);
-        }
-        
-        /// <summary>
-        /// drop_event_session : 
-        ///    DROP EVENT SESSION event_session_id ON SERVER 
-        /// </summary>
-        public static AstDropEventSession DropEventSession(AstEventSessionId eventSessionId)
-        {
-            return AstDropEventSession.DropEventSession(eventSessionId);
-        }
-        
-        /// <summary>
-        /// drop_external_data_source : 
-        ///    DROP EXTERNAL DATA SOURCE external_data_source_id 
-        /// </summary>
-        public static AstDropExternalDataSource DropExternalDataSource(AstExternalDataSourceId externalDataSourceId)
-        {
-            return AstDropExternalDataSource.DropExternalDataSource(externalDataSourceId);
-        }
-        
-        /// <summary>
-        /// drop_external_file_format : 
-        ///    DROP EXTERNAL FILE FORMAT external_file_format_id 
-        /// </summary>
-        public static AstDropExternalFileFormat DropExternalFileFormat(AstExternalFileFormatId externalFileFormatId)
-        {
-            return AstDropExternalFileFormat.DropExternalFileFormat(externalFileFormatId);
-        }
-        
-        /// <summary>
-        /// drop_external_library : 
-        ///    DROP EXTERNAL LIBRARY library_id AUTHORIZATION owner_id 
-        /// </summary>
-        public static AstDropExternalLibrary DropExternalLibrary(AstLibraryId libraryId, AstOwnerId ownerId)
-        {
-            return AstDropExternalLibrary.DropExternalLibrary(libraryId, ownerId);
-        }
-        
-        /// <summary>
-        /// drop_external_library : 
-        ///    DROP EXTERNAL LIBRARY library_id 
-        /// </summary>
-        public static AstDropExternalLibrary DropExternalLibrary(AstLibraryId libraryId)
-        {
-            return AstDropExternalLibrary.DropExternalLibrary(libraryId);
-        }
-        
-        /// <summary>
-        /// drop_external_table : 
-        ///    DROP EXTERNAL TABLE database_schema_table_ref 
-        /// </summary>
-        public static AstDropExternalTable DropExternalTable(AstDatabaseSchemaTableRef databaseSchemaTableRef)
-        {
-            return AstDropExternalTable.DropExternalTable(databaseSchemaTableRef);
-        }
-        
-        /// <summary>
-        /// drop_function : 
-        ///    DROP FUNCTION if_exists? func_proc_name_schemas ; 
-        /// </summary>
-        public static AstDropFunction DropFunction(AstIfExists ifExists, AstFuncProcNameSchemas funcProcNameSchemas)
-        {
-            return AstDropFunction.DropFunction(ifExists, funcProcNameSchemas);
-        }
-        
-        /// <summary>
-        /// drop_index : 
-        ///    DROP INDEX if_exists? drop_relational_or_xml_or_spatial_indexs ; 
-        /// </summary>
-        public static AstDropIndex DropIndex(AstIfExists ifExists, AstDropRelationalOrXmlOrSpatialIndexs dropRelationalOrXmlOrSpatialIndexs)
-        {
-            return AstDropIndex.DropIndex(ifExists, dropRelationalOrXmlOrSpatialIndexs);
-        }
-        
-        /// <summary>
-        /// drop_index : 
-        ///    DROP INDEX if_exists? drop_backward_compatible_indexs ; 
-        /// </summary>
-        public static AstDropIndex DropIndex(AstIfExists ifExists, AstDropBackwardCompatibleIndexs dropBackwardCompatibleIndexs)
-        {
-            return AstDropIndex.DropIndex(ifExists, dropBackwardCompatibleIndexs);
-        }
-        
-        /// <summary>
-        /// drop_message_type : 
-        ///    DROP MESSAGE TYPE message_type_id 
-        /// </summary>
-        public static AstDropMessageType DropMessageType(AstMessageTypeId messageTypeId)
-        {
-            return AstDropMessageType.DropMessageType(messageTypeId);
-        }
-        
-        /// <summary>
-        /// drop_partition_function : 
-        ///    DROP PARTITION FUNCTION partition_function_id 
-        /// </summary>
-        public static AstDropPartitionFunction DropPartitionFunction(AstPartitionFunctionId partitionFunctionId)
-        {
-            return AstDropPartitionFunction.DropPartitionFunction(partitionFunctionId);
-        }
-        
-        /// <summary>
-        /// drop_partition_scheme : 
-        ///    DROP PARTITION SCHEME partition_scheme_id 
-        /// </summary>
-        public static AstDropPartitionScheme DropPartitionScheme(AstPartitionSchemeId partitionSchemeId)
-        {
-            return AstDropPartitionScheme.DropPartitionScheme(partitionSchemeId);
-        }
-        
-        /// <summary>
-        /// drop_procedure : 
-        ///    DROP proc_keyword if_exists? func_proc_name_schemas ; 
-        /// </summary>
-        public static AstDropProcedure DropProcedure(AstProcKeyword procKeyword, AstIfExists ifExists, AstFuncProcNameSchemas funcProcNameSchemas)
-        {
-            return AstDropProcedure.DropProcedure(procKeyword, ifExists, funcProcNameSchemas);
-        }
-        
-        /// <summary>
-        /// drop_queue : 
-        ///    DROP QUEUE database_schema_queue_ref 
-        /// </summary>
-        public static AstDropQueue DropQueue(AstDatabaseSchemaQueueRef databaseSchemaQueueRef)
-        {
-            return AstDropQueue.DropQueue(databaseSchemaQueueRef);
-        }
-        
-        /// <summary>
-        /// drop_route : 
-        ///    DROP ROUTE route_id 
-        /// </summary>
-        public static AstDropRoute DropRoute(AstRouteId routeId)
-        {
-            return AstDropRoute.DropRoute(routeId);
-        }
-        
-        /// <summary>
-        /// drop_rule : 
-        ///    DROP RULE IF EXISTS COMMA? schema_rule_ref 
-        /// </summary>
-        public static AstDropRule DropRule(AstSchemaRuleRef schemaRuleRef)
-        {
-            return AstDropRule.DropRule(schemaRuleRef);
-        }
-        
-        /// <summary>
-        /// drop_search_property_list : 
-        ///    DROP SEARCH PROPERTY LIST property_list_id 
-        /// </summary>
-        public static AstDropSearchPropertyList DropSearchPropertyList(AstPropertyListId propertyListId)
-        {
-            return AstDropSearchPropertyList.DropSearchPropertyList(propertyListId);
-        }
-        
-        /// <summary>
-        /// drop_security_policy : 
-        ///    DROP SECURITY POLICY IF EXISTS schema_security_policy_ref 
-        /// </summary>
-        public static AstDropSecurityPolicy DropSecurityPolicy(AstSchemaSecurityPolicyRef schemaSecurityPolicyRef)
-        {
-            return AstDropSecurityPolicy.DropSecurityPolicy(schemaSecurityPolicyRef);
-        }
-        
-        /// <summary>
-        /// drop_sequence : 
-        ///    DROP SEQUENCE IF EXISTS COMMA? database_schema_sequence_ref 
-        /// </summary>
-        public static AstDropSequence DropSequence(AstDatabaseSchemaSequenceRef databaseSchemaSequenceRef)
-        {
-            return AstDropSequence.DropSequence(databaseSchemaSequenceRef);
-        }
-        
-        /// <summary>
-        /// drop_service : 
-        ///    DROP SERVICE service_id 
-        /// </summary>
-        public static AstDropService DropService(AstServiceId serviceId)
-        {
-            return AstDropService.DropService(serviceId);
-        }
-        
-        /// <summary>
-        /// drop_signature : 
-        ///    DROP COUNTER() SIGNATURE FROM schema_module_ref BY , CERTIFICATE certificate_id 
-        /// </summary>
-        public static AstDropSignature DropSignature(AstSchemaModuleRef schemaModuleRef, AstCertificateId certificateId)
-        {
-            return AstDropSignature.DropSignature(schemaModuleRef, certificateId);
-        }
-        
-        /// <summary>
-        /// drop_signature : 
-        ///    DROP COUNTER() SIGNATURE FROM schema_module_ref BY , ASYMMETRIC KEY asym_key_id 
-        /// </summary>
-        public static AstDropSignature DropSignature(AstSchemaModuleRef schemaModuleRef, AstAsymKeyId asymKeyId)
-        {
-            return AstDropSignature.DropSignature(schemaModuleRef, asymKeyId);
-        }
-        
-        /// <summary>
-        /// drop_statistics : 
-        ///    DROP STATISTICS full_table_ref_columns ; 
-        /// </summary>
-        public static AstDropStatistics DropStatistics(AstFullTableRefColumns fullTableRefColumns)
-        {
-            return AstDropStatistics.DropStatistics(fullTableRefColumns);
-        }
-        
-        /// <summary>
-        /// drop_statistics_id_azure_dw_and_pdw : 
-        ///    DROP STATISTICS schema_object_statistics_ref 
-        /// </summary>
-        public static AstDropStatisticsIdAzureDwAndPdw DropStatisticsIdAzureDwAndPdw(AstSchemaObjectStatisticsRef schemaObjectStatisticsRef)
-        {
-            return AstDropStatisticsIdAzureDwAndPdw.DropStatisticsIdAzureDwAndPdw(schemaObjectStatisticsRef);
-        }
-        
-        /// <summary>
-        /// drop_symmetric_key : 
-        ///    DROP SYMMETRIC KEY symmetric_key_id REMOVE PROVIDER KEY 
-        /// </summary>
-        public static AstDropSymmetricKey DropSymmetricKey(AstSymmetricKeyId symmetricKeyId)
-        {
-            return AstDropSymmetricKey.DropSymmetricKey(symmetricKeyId);
-        }
-        
-        /// <summary>
-        /// drop_synonym : 
-        ///    DROP SYNONYM IF EXISTS schema_synonym_ref 
-        /// </summary>
-        public static AstDropSynonym DropSynonym(AstSchemaSynonymRef schemaSynonymRef)
-        {
-            return AstDropSynonym.DropSynonym(schemaSynonymRef);
-        }
-        
-        /// <summary>
-        /// drop_table : 
-        ///    DROP TABLE if_exists? table_names ; 
-        /// </summary>
-        public static AstDropTable DropTable(AstIfExists ifExists, AstTableNames tableNames)
-        {
-            return AstDropTable.DropTable(ifExists, tableNames);
-        }
-        
-        /// <summary>
-        /// drop_dml_trigger : 
-        ///    DROP TRIGGER if_exists? schema_trigger_refs ; 
-        /// </summary>
-        public static AstDropDmlTrigger DropDmlTrigger(AstIfExists ifExists, AstSchemaTriggerRefs schemaTriggerRefs)
-        {
-            return AstDropDmlTrigger.DropDmlTrigger(ifExists, schemaTriggerRefs);
-        }
-        
-        /// <summary>
-        /// drop_ddl_trigger : 
-        ///    DROP TRIGGER if_exists? schema_view_refs ON all_server_database ; 
-        /// </summary>
-        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase)
-        {
-            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs, allServerDatabase);
-        }
-        
-        /// <summary>
-        /// drop_view : 
-        ///    DROP VIEW if_exists? schema_view_refs ; 
-        /// </summary>
-        public static AstDropView DropView(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs)
-        {
-            return AstDropView.DropView(ifExists, schemaViewRefs);
-        }
-        
-        /// <summary>
-        /// drop_xml_schema_collection : 
-        ///    DROP XML SCHEMA COLLECTION schema_sql_identifier_id 
-        /// </summary>
-        public static AstDropXmlSchemaCollection DropXmlSchemaCollection(AstSchemaSqlIdentifierId schemaSqlIdentifierId)
-        {
-            return AstDropXmlSchemaCollection.DropXmlSchemaCollection(schemaSqlIdentifierId);
-        }
-        
-        /// <summary>
-        /// disable_trigger : 
-        ///    DISABLE trigger_setting 
-        /// </summary>
-        public static AstDisableTrigger DisableTrigger(AstTriggerSetting triggerSetting)
-        {
-            return AstDisableTrigger.DisableTrigger(triggerSetting);
-        }
-        
-        /// <summary>
-        /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN share_exclusive MODE WAIT seconds=decimal ; 
-        /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive, AstDecimal seconds)
-        {
-            return AstLockTable.LockTable(fullTableRef, shareExclusive, seconds);
-        }
-        
-        /// <summary>
-        /// lock_table : 
-        ///    LOCK TABLE full_table_ref IN share_exclusive MODE NOWAIT ; 
-        /// </summary>
-        public static AstLockTable LockTable(AstFullTableRef fullTableRef, AstShareExclusive shareExclusive)
-        {
-            return AstLockTable.LockTable(fullTableRef, shareExclusive);
-        }
-        
-        /// <summary>
-        /// truncate_table : 
-        ///    TRUNCATE TABLE full_table_ref WITH ( PARTITIONS ( decimal_range ) decimals? 
-        /// </summary>
-        public static AstTruncateTable TruncateTable(AstFullTableRef fullTableRef, AstDecimalRange decimalRange, AstDecimals decimals)
-        {
-            return AstTruncateTable.TruncateTable(fullTableRef, decimalRange, decimals);
-        }
-        
-        /// <summary>
-        /// truncate_table : 
-        ///    TRUNCATE TABLE full_table_ref 
-        /// </summary>
-        public static AstTruncateTable TruncateTable(AstFullTableRef fullTableRef)
-        {
-            return AstTruncateTable.TruncateTable(fullTableRef);
-        }
-        
-        /// <summary>
-        /// update_statistics : 
-        ///    UPDATE STATISTICS complete_table_ref id_ update_statistics_options? 
-        /// </summary>
-        public static AstUpdateStatistics UpdateStatistics(AstCompleteTableRef completeTableRef, AstId id, AstUpdateStatisticsOptions updateStatisticsOptions)
-        {
-            return AstUpdateStatistics.UpdateStatistics(completeTableRef, id, updateStatisticsOptions);
-        }
-        
-        /// <summary>
-        /// update_statistics : 
-        ///    UPDATE STATISTICS complete_table_ref ( ids ) update_statistics_options? 
-        /// </summary>
-        public static AstUpdateStatistics UpdateStatistics(AstCompleteTableRef completeTableRef, AstIds ids, AstUpdateStatisticsOptions updateStatisticsOptions)
-        {
-            return AstUpdateStatistics.UpdateStatistics(completeTableRef, ids, updateStatisticsOptions);
+            return AstAlterApplicationRole.AlterApplicationRole();
         }
     }
     
@@ -4170,18 +291,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstBackupStatement : AstRule
     {
         
-        internal AstBackupStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstBackupStatement(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstBackupStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstBackupStatement(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstBackupStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstBackupStatement(Position p) : 
+                base(p)
         {
         }
         
@@ -4189,54 +310,9 @@ namespace Bb.Asts.TSql
         /// backup_database : 
         ///    BACKUP DATABASE database_id() READ_WRITE_FILEGROUPS group1=file_group_list group2=file_group_list backup_target? backup_settings? 
         /// </summary>
-        public static AstBackupDatabase BackupDatabase(AstDatabaseId databaseId, AstFileGroupList group1, AstFileGroupList group2, AstBackupTarget backupTarget, AstBackupSettings backupSettings)
+        public static AstBackupDatabase BackupDatabase()
         {
-            return AstBackupDatabase.BackupDatabase(databaseId, group1, group2, backupTarget, backupSettings);
-        }
-        
-        /// <summary>
-        /// backup_database : 
-        ///    BACKUP DATABASE database_id() group2=file_group_list backup_target? backup_settings? 
-        /// </summary>
-        public static AstBackupDatabase BackupDatabase(AstDatabaseId databaseId, AstFileGroupList group2, AstBackupTarget backupTarget, AstBackupSettings backupSettings)
-        {
-            return AstBackupDatabase.BackupDatabase(databaseId, group2, backupTarget, backupSettings);
-        }
-        
-        /// <summary>
-        /// backup_log : 
-        ///    BACKUP LOG database_id backup_target? backup_settings? 
-        /// </summary>
-        public static AstBackupLog BackupLog(AstDatabaseId databaseId, AstBackupTarget backupTarget, AstBackupSettings backupSettings)
-        {
-            return AstBackupLog.BackupLog(databaseId, backupTarget, backupSettings);
-        }
-        
-        /// <summary>
-        /// backup_certificate : 
-        ///    BACKUP CERTIFICATE certificate_id TO FILE EQUAL cert_file=stringtext WITH PRIVATE KEY ( backup_certificate_private_keys ) 
-        /// </summary>
-        public static AstBackupCertificate BackupCertificate(AstCertificateId certificateId, AstStringtext certFile, AstBackupCertificatePrivateKeys backupCertificatePrivateKeys)
-        {
-            return AstBackupCertificate.BackupCertificate(certificateId, certFile, backupCertificatePrivateKeys);
-        }
-        
-        /// <summary>
-        /// backup_certificate : 
-        ///    BACKUP CERTIFICATE certificate_id TO FILE EQUAL cert_file=stringtext 
-        /// </summary>
-        public static AstBackupCertificate BackupCertificate(AstCertificateId certificateId, AstStringtext certFile)
-        {
-            return AstBackupCertificate.BackupCertificate(certificateId, certFile);
-        }
-        
-        /// <summary>
-        /// backup_master_key : 
-        ///    BACKUP MASTER KEY TO FILE EQUAL master_key_backup_file=stringtext encryption_by_pwd 
-        /// </summary>
-        public static AstBackupMasterKey BackupMasterKey(AstStringtext masterKeyBackupFile, AstEncryptionByPwd encryptionByPwd)
-        {
-            return AstBackupMasterKey.BackupMasterKey(masterKeyBackupFile, encryptionByPwd);
+            return AstBackupDatabase.BackupDatabase();
         }
     }
     
@@ -4258,18 +334,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstCflStatement : AstRule
     {
         
-        internal AstCflStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstCflStatement(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstCflStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstCflStatement(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstCflStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstCflStatement(Position p) : 
+                base(p)
         {
         }
         
@@ -4277,153 +353,9 @@ namespace Bb.Asts.TSql
         /// block_statement : 
         ///    BEGIN ; sql_clauses? END ; 
         /// </summary>
-        public static AstBlockStatement BlockStatement(AstSqlClauses sqlClauses)
+        public static AstBlockStatement BlockStatement()
         {
-            return AstBlockStatement.BlockStatement(sqlClauses);
-        }
-        
-        /// <summary>
-        /// goto_statement : 
-        ///    GOTO code_location_id ; 
-        /// </summary>
-        public static AstGotoStatement GotoStatement(AstCodeLocationId codeLocationId)
-        {
-            return AstGotoStatement.GotoStatement(codeLocationId);
-        }
-        
-        /// <summary>
-        /// if_statement : 
-        ///    IF search_condition sql_clause_true=sql_clause ELSE sql_clause_false=sql_clause ; 
-        /// </summary>
-        public static AstIfStatement IfStatement(AstSearchCondition searchCondition, AstSqlClause sqlClauseTrue, AstSqlClause sqlClauseFalse)
-        {
-            return AstIfStatement.IfStatement(searchCondition, sqlClauseTrue, sqlClauseFalse);
-        }
-        
-        /// <summary>
-        /// if_statement : 
-        ///    IF search_condition sql_clause_true=sql_clause ; 
-        /// </summary>
-        public static AstIfStatement IfStatement(AstSearchCondition searchCondition, AstSqlClause sqlClauseTrue)
-        {
-            return AstIfStatement.IfStatement(searchCondition, sqlClauseTrue);
-        }
-        
-        /// <summary>
-        /// return_statement : 
-        ///    RETURN expression? ; 
-        /// </summary>
-        public static AstReturnStatement ReturnStatement(AstExpression expression)
-        {
-            return AstReturnStatement.ReturnStatement(expression);
-        }
-        
-        /// <summary>
-        /// throw_statement : 
-        ///    THROW throw_error_number , throw_message , throw_state ; 
-        /// </summary>
-        public static AstThrowStatement ThrowStatement(AstThrowErrorNumber throwErrorNumber, AstThrowMessage throwMessage, AstThrowState throwState)
-        {
-            return AstThrowStatement.ThrowStatement(throwErrorNumber, throwMessage, throwState);
-        }
-        
-        /// <summary>
-        /// try_catch_statement : 
-        ///    BEGIN TRY ; try_clauses=sql_clauses END TRY ; BEGIN CATCH ; catch_clauses=sql_clauses END CATCH ; 
-        /// </summary>
-        public static AstTryCatchStatement TryCatchStatement(AstSqlClauses tryClauses, AstSqlClauses catchClauses)
-        {
-            return AstTryCatchStatement.TryCatchStatement(tryClauses, catchClauses);
-        }
-        
-        /// <summary>
-        /// waitfor_statement : 
-        ///    WAITFOR receive_statement? , delay_time_timeout time expression? ; 
-        /// </summary>
-        public static AstWaitforStatement WaitforStatement(AstReceiveStatement receiveStatement, AstDelayTimeTimeout delayTimeTimeout, AstTime time, AstExpression expression)
-        {
-            return AstWaitforStatement.WaitforStatement(receiveStatement, delayTimeTimeout, time, expression);
-        }
-        
-        /// <summary>
-        /// waitfor_statement : 
-        ///    WAITFOR receive_statement? , expression? ; 
-        /// </summary>
-        public static AstWaitforStatement WaitforStatement(AstReceiveStatement receiveStatement, AstExpression expression)
-        {
-            return AstWaitforStatement.WaitforStatement(receiveStatement, expression);
-        }
-        
-        /// <summary>
-        /// while_statement : 
-        ///    WHILE search_condition BREAK ; 
-        /// </summary>
-        public static AstWhileStatement WhileStatement(AstSearchCondition searchCondition)
-        {
-            return AstWhileStatement.WhileStatement(searchCondition);
-        }
-        
-        /// <summary>
-        /// print_statement : 
-        ///    PRINT expression local_ids? ; 
-        /// </summary>
-        public static AstPrintStatement PrintStatement(AstExpression expression, AstLocalIds localIds)
-        {
-            return AstPrintStatement.PrintStatement(expression, localIds);
-        }
-        
-        /// <summary>
-        /// print_statement : 
-        ///    PRINT empty_value local_ids? ; 
-        /// </summary>
-        public static AstPrintStatement PrintStatement(AstEmptyValue emptyValue, AstLocalIds localIds)
-        {
-            return AstPrintStatement.PrintStatement(emptyValue, localIds);
-        }
-        
-        /// <summary>
-        /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id constant_local_ids ) WITH log_seterror_nowait ; 
-        /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstConstantLocalIds constantLocalIds, AstLogSeterrorNowait logSeterrorNowait)
-        {
-            return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, constantLocalIds, logSeterrorNowait);
-        }
-        
-        /// <summary>
-        /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id ) WITH log_seterror_nowait ; 
-        /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstLogSeterrorNowait logSeterrorNowait)
-        {
-            return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, logSeterrorNowait);
-        }
-        
-        /// <summary>
-        /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id constant_local_ids ) ; 
-        /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state, AstConstantLocalIds constantLocalIds)
-        {
-            return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state, constantLocalIds);
-        }
-        
-        /// <summary>
-        /// raiseerror_statement : 
-        ///    RAISERROR ( msg=decimal_string_local_id , severity=constant_local_id , state=constant_local_id ) ; 
-        /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimalStringLocalId msg, AstConstantLocalId severity, AstConstantLocalId state)
-        {
-            return AstRaiseerrorStatement.RaiseerrorStatement(msg, severity, state);
-        }
-        
-        /// <summary>
-        /// raiseerror_statement : 
-        ///    RAISERROR decimal formatstring=string_local_id_double_quote_id decimal_string_locals? 
-        /// </summary>
-        public static AstRaiseerrorStatement RaiseerrorStatement(AstDecimal @decimal, AstStringLocalIdDoubleQuoteId formatstring, AstDecimalStringLocals decimalStringLocals)
-        {
-            return AstRaiseerrorStatement.RaiseerrorStatement(@decimal, formatstring, decimalStringLocals);
+            return AstBlockStatement.BlockStatement();
         }
     }
     
@@ -4450,18 +382,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstAnotherStatement : AstRule
     {
         
-        internal AstAnotherStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstAnotherStatement(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstAnotherStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstAnotherStatement(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstAnotherStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstAnotherStatement(Position p) : 
+                base(p)
         {
         }
         
@@ -4469,567 +401,9 @@ namespace Bb.Asts.TSql
         /// declare_statement : 
         ///    DECLARE local_id AS table_type_definition ; 
         /// </summary>
-        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstTableTypeDefinition tableTypeDefinition)
+        public static AstDeclareStatement DeclareStatement()
         {
-            return AstDeclareStatement.DeclareStatement(localId, tableTypeDefinition);
-        }
-        
-        /// <summary>
-        /// declare_statement : 
-        ///    DECLARE local_id AS full_table_ref ; 
-        /// </summary>
-        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstFullTableRef fullTableRef)
-        {
-            return AstDeclareStatement.DeclareStatement(localId, fullTableRef);
-        }
-        
-        /// <summary>
-        /// declare_statement : 
-        ///    DECLARE loc=declare_locals ; 
-        /// </summary>
-        public static AstDeclareStatement DeclareStatement(AstDeclareLocals loc)
-        {
-            return AstDeclareStatement.DeclareStatement(loc);
-        }
-        
-        /// <summary>
-        /// declare_statement : 
-        ///    DECLARE local_id AS xml_type_definition ; 
-        /// </summary>
-        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstXmlTypeDefinition xmlTypeDefinition)
-        {
-            return AstDeclareStatement.DeclareStatement(localId, xmlTypeDefinition);
-        }
-        
-        /// <summary>
-        /// declare_statement : 
-        ///    WITH XMLNAMESPACES ( xml_dec=xml_declarations ) ; 
-        /// </summary>
-        public static AstDeclareStatement DeclareStatement(AstXmlDeclarations xmlDec)
-        {
-            return AstDeclareStatement.DeclareStatement(xmlDec);
-        }
-        
-        /// <summary>
-        /// execute_statement : 
-        ///    EXECUTE execute_body ; 
-        /// </summary>
-        public static AstExecuteStatement ExecuteStatement(AstExecuteBody executeBody)
-        {
-            return AstExecuteStatement.ExecuteStatement(executeBody);
-        }
-        
-        /// <summary>
-        /// cursor_statement : 
-        ///    CLOSE GLOBAL cursor_name ; 
-        /// </summary>
-        public static AstCursorStatement CursorStatement(AstCursorName cursorName)
-        {
-            return AstCursorStatement.CursorStatement(cursorName);
-        }
-        
-        /// <summary>
-        /// cursor_statement : 
-        ///    declare_cursor 
-        /// </summary>
-        public static AstCursorStatement CursorStatement(AstCursorStatement cursorStatement)
-        {
-            return AstCursorStatement.CursorStatement(cursorStatement);
-        }
-        
-        /// <summary>
-        /// begin_conversation_timer : 
-        ///    BEGIN CONVERSATION TIMER ( conversation=local_id ) TIMEOUT EQUAL time ; 
-        /// </summary>
-        public static AstBeginConversationTimer BeginConversationTimer(AstLocalId conversation, AstTime time)
-        {
-            return AstBeginConversationTimer.BeginConversationTimer(conversation, time);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression);
-        }
-        
-        /// <summary>
-        /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=local_id ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
-        /// </summary>
-        public static AstEndConversation EndConversation(AstLocalId conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
-        {
-            return AstEndConversation.EndConversation(conversationHandle, faliureCode, failureText);
-        }
-        
-        /// <summary>
-        /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=local_id ; 
-        /// </summary>
-        public static AstEndConversation EndConversation(AstLocalId conversationHandle)
-        {
-            return AstEndConversation.EndConversation(conversationHandle);
-        }
-        
-        /// <summary>
-        /// get_conversation : 
-        ///    GET CONVERSATION GROUP conversation_group=string_local_id FROM queue=database_schema_queue_ref ; 
-        /// </summary>
-        public static AstGetConversation GetConversation(AstStringLocalId conversationGroup, AstDatabaseSchemaQueueRef queue)
-        {
-            return AstGetConversation.GetConversation(conversationGroup, queue);
-        }
-        
-        /// <summary>
-        /// send_conversation : 
-        ///    SEND ON CONVERSATION conversation_handle=string_local_id MESSAGE TYPE messageTypeName=expression ( messageBodyEexpression=string_local_id ) ; 
-        /// </summary>
-        public static AstSendConversation SendConversation(AstStringLocalId conversationHandle, AstExpression messageTypeName, AstStringLocalId messageBodyEexpression)
-        {
-            return AstSendConversation.SendConversation(conversationHandle, messageTypeName, messageBodyEexpression);
-        }
-        
-        /// <summary>
-        /// send_conversation : 
-        ///    SEND ON CONVERSATION conversation_handle=string_local_id MESSAGE TYPE messageTypeName=expression ; 
-        /// </summary>
-        public static AstSendConversation SendConversation(AstStringLocalId conversationHandle, AstExpression messageTypeName)
-        {
-            return AstSendConversation.SendConversation(conversationHandle, messageTypeName);
-        }
-        
-        /// <summary>
-        /// waitfor_conversation : 
-        ///    WAITFOR ( get_conversation ) COMMA? TIMEOUT timeout=time ; 
-        /// </summary>
-        public static AstWaitforConversation WaitforConversation(AstGetConversation getConversation, AstTime timeout)
-        {
-            return AstWaitforConversation.WaitforConversation(getConversation, timeout);
-        }
-        
-        /// <summary>
-        /// waitfor_conversation : 
-        ///    WAITFOR ( get_conversation ) ; 
-        /// </summary>
-        public static AstWaitforConversation WaitforConversation(AstGetConversation getConversation)
-        {
-            return AstWaitforConversation.WaitforConversation(getConversation);
-        }
-        
-        /// <summary>
-        /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression AUTHORIZATION owner_id ( contract_items ) 
-        /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstOwnerId ownerId, AstContractItems contractItems)
-        {
-            return AstCreateContract.CreateContract(contractNameExpression, ownerId, contractItems);
-        }
-        
-        /// <summary>
-        /// create_contract : 
-        ///    CREATE CONTRACT contract_name_expression ( contract_items ) 
-        /// </summary>
-        public static AstCreateContract CreateContract(AstContractNameExpression contractNameExpression, AstContractItems contractItems)
-        {
-            return AstCreateContract.CreateContract(contractNameExpression, contractItems);
-        }
-        
-        /// <summary>
-        /// create_queue : 
-        ///    CREATE QUEUE complete_table_ref queue_settings? ON file_group_id 
-        /// </summary>
-        public static AstCreateQueue CreateQueue(AstCompleteTableRef completeTableRef, AstQueueSettings queueSettings, AstFileGroupId fileGroupId)
-        {
-            return AstCreateQueue.CreateQueue(completeTableRef, queueSettings, fileGroupId);
-        }
-        
-        /// <summary>
-        /// create_queue : 
-        ///    CREATE QUEUE queue_id queue_settings? ON file_group_id 
-        /// </summary>
-        public static AstCreateQueue CreateQueue(AstQueueId queueId, AstQueueSettings queueSettings, AstFileGroupId fileGroupId)
-        {
-            return AstCreateQueue.CreateQueue(queueId, queueSettings, fileGroupId);
-        }
-        
-        /// <summary>
-        /// create_queue : 
-        ///    CREATE QUEUE complete_table_ref queue_settings? DEFAULT 
-        /// </summary>
-        public static AstCreateQueue CreateQueue(AstCompleteTableRef completeTableRef, AstQueueSettings queueSettings)
-        {
-            return AstCreateQueue.CreateQueue(completeTableRef, queueSettings);
-        }
-        
-        /// <summary>
-        /// create_queue : 
-        ///    CREATE QUEUE queue_id queue_settings? DEFAULT 
-        /// </summary>
-        public static AstCreateQueue CreateQueue(AstQueueId queueId, AstQueueSettings queueSettings)
-        {
-            return AstCreateQueue.CreateQueue(queueId, queueSettings);
-        }
-        
-        /// <summary>
-        /// alter_queue : 
-        ///    ALTER QUEUE complete_table_ref queue_action 
-        /// </summary>
-        public static AstAlterQueue AlterQueue(AstCompleteTableRef completeTableRef, AstQueueAction queueAction)
-        {
-            return AstAlterQueue.AlterQueue(completeTableRef, queueAction);
-        }
-        
-        /// <summary>
-        /// alter_queue : 
-        ///    ALTER QUEUE queue_id queue_action 
-        /// </summary>
-        public static AstAlterQueue AlterQueue(AstQueueId queueId, AstQueueAction queueAction)
-        {
-            return AstAlterQueue.AlterQueue(queueId, queueAction);
-        }
-        
-        /// <summary>
-        /// kill_statement : 
-        ///    KILL kill_process 
-        /// </summary>
-        public static AstKillStatement KillStatement(AstKillProcess killProcess)
-        {
-            return AstKillStatement.KillStatement(killProcess);
-        }
-        
-        /// <summary>
-        /// kill_statement : 
-        ///    KILL kill_query_notification 
-        /// </summary>
-        public static AstKillStatement KillStatement(AstKillQueryNotification killQueryNotification)
-        {
-            return AstKillStatement.KillStatement(killQueryNotification);
-        }
-        
-        /// <summary>
-        /// kill_statement : 
-        ///    KILL kill_stats_job 
-        /// </summary>
-        public static AstKillStatement KillStatement(AstKillStatsJob killStatsJob)
-        {
-            return AstKillStatement.KillStatement(killStatsJob);
-        }
-        
-        /// <summary>
-        /// message_statement : 
-        ///    CREATE MESSAGE TYPE message_type_id AUTHORIZATION owner_id VALIDATION EQUAL NONE 
-        /// </summary>
-        public static AstMessageStatement MessageStatement(AstMessageTypeId messageTypeId, AstOwnerId ownerId)
-        {
-            return AstMessageStatement.MessageStatement(messageTypeId, ownerId);
-        }
-        
-        /// <summary>
-        /// message_statement : 
-        ///    CREATE MESSAGE TYPE message_type_id VALIDATION EQUAL NONE 
-        /// </summary>
-        public static AstMessageStatement MessageStatement(AstMessageTypeId messageTypeId)
-        {
-            return AstMessageStatement.MessageStatement(messageTypeId);
-        }
-        
-        /// <summary>
-        /// message_statement : 
-        ///    CREATE MESSAGE TYPE message_type_id AUTHORIZATION owner_id VALIDATION EQUAL VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
-        /// </summary>
-        public static AstMessageStatement MessageStatement(AstMessageTypeId messageTypeId, AstOwnerId ownerId, AstSchemaCollectionId schemaCollectionId)
-        {
-            return AstMessageStatement.MessageStatement(messageTypeId, ownerId, schemaCollectionId);
-        }
-        
-        /// <summary>
-        /// message_statement : 
-        ///    CREATE MESSAGE TYPE message_type_id VALIDATION EQUAL VALID_XML WITH SCHEMA COLLECTION schema_collection_id 
-        /// </summary>
-        public static AstMessageStatement MessageStatement(AstMessageTypeId messageTypeId, AstSchemaCollectionId schemaCollectionId)
-        {
-            return AstMessageStatement.MessageStatement(messageTypeId, schemaCollectionId);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    execute_clause ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstExecuteClause executeClause)
-        {
-            return AstSecurityStatement.SecurityStatement(executeClause);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT ALL PRIVILEGES ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(classTypeForGrant, table, toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ( column_name_list ) ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstColumnNameList columnNameList, AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, columnNameList, classTypeForGrant, table, toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, classTypeForGrant, table, toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT ALL PRIVILEGES TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ( column_name_list ) TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstColumnNameList columnNameList, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, columnNameList, toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission TO to_principal_rincipal_ids WITH GRANT OPTION AS as_principal=principal_id ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstToPrincipalRincipalIds toPrincipalRincipalIds, AstPrincipalId asPrincipal)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, toPrincipalRincipalIds, asPrincipal);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT ALL PRIVILEGES ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(classTypeForGrant, table, toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ( column_name_list ) ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstColumnNameList columnNameList, AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, columnNameList, classTypeForGrant, table, toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ON class_type_for_grant :: table=full_table_ref TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstClassTypeForGrant classTypeForGrant, AstFullTableRef table, AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, classTypeForGrant, table, toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT ALL PRIVILEGES TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission ( column_name_list ) TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstColumnNameList columnNameList, AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, columnNameList, toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    GRANT grant_permission TO to_principal_rincipal_ids WITH GRANT OPTION ; 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstGrantPermission grantPermission, AstToPrincipalRincipalIds toPrincipalRincipalIds)
-        {
-            return AstSecurityStatement.SecurityStatement(grantPermission, toPrincipalRincipalIds);
-        }
-        
-        /// <summary>
-        /// security_statement : 
-        ///    open_key 
-        /// </summary>
-        public static AstSecurityStatement SecurityStatement(AstSecurityStatement securityStatement)
-        {
-            return AstSecurityStatement.SecurityStatement(securityStatement);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    SET local_id . member_name=id_ EQUAL expression ; 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstLocalId localId, AstId memberName, AstExpression expression)
-        {
-            return AstSetStatement.SetStatement(localId, memberName, expression);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    SET local_id EQUAL expression ; 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstLocalId localId, AstExpression expression)
-        {
-            return AstSetStatement.SetStatement(localId, expression);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    SET local_id assignment_operator expression ; 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
-        {
-            return AstSetStatement.SetStatement(localId, assignmentOperator, expression);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR READ ONLY ; 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon)
-        {
-            return AstSetStatement.SetStatement(localId, declareSetCursorCommon);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    SET local_id EQUAL CURSOR declare_set_cursor_common FOR UPDATE OF column_name_list ; 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstLocalId localId, AstDeclareSetCursorCommon declareSetCursorCommon, AstColumnNameList columnNameList)
-        {
-            return AstSetStatement.SetStatement(localId, declareSetCursorCommon, columnNameList);
-        }
-        
-        /// <summary>
-        /// set_statement : 
-        ///    set_special 
-        /// </summary>
-        public static AstSetStatement SetStatement(AstSetStatement setStatement)
-        {
-            return AstSetStatement.SetStatement(setStatement);
-        }
-        
-        /// <summary>
-        /// transaction_statement : 
-        ///    BEGIN DISTRIBUTED transaction transaction_ref? 
-        /// </summary>
-        public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef)
-        {
-            return AstTransactionStatement.TransactionStatement(transaction, transactionRef);
-        }
-        
-        /// <summary>
-        /// transaction_statement : 
-        ///    BEGIN transaction transaction_ref WITH MARK mark=stringtext 
-        /// </summary>
-        public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef, AstStringtext mark)
-        {
-            return AstTransactionStatement.TransactionStatement(transaction, transactionRef, mark);
-        }
-        
-        /// <summary>
-        /// transaction_statement : 
-        ///    BEGIN transaction 
-        /// </summary>
-        public static AstTransactionStatement TransactionStatement(AstTransaction transaction)
-        {
-            return AstTransactionStatement.TransactionStatement(transaction);
-        }
-        
-        /// <summary>
-        /// transaction_statement : 
-        ///    COMMIT transaction transaction_ref WITH ( DELAYED_DURABILITY EQUAL on_off ) 
-        /// </summary>
-        public static AstTransactionStatement TransactionStatement(AstTransaction transaction, AstTransactionRef transactionRef, AstOnOff onOff)
-        {
-            return AstTransactionStatement.TransactionStatement(transaction, transactionRef, onOff);
-        }
-        
-        /// <summary>
-        /// transaction_statement : 
-        ///    COMMIT transaction_id 
-        /// </summary>
-        public static AstTransactionStatement TransactionStatement(AstTransactionId transactionId)
-        {
-            return AstTransactionStatement.TransactionStatement(transactionId);
-        }
-        
-        /// <summary>
-        /// use_statement : 
-        ///    USE database_id ; 
-        /// </summary>
-        public static AstUseStatement UseStatement(AstDatabaseId databaseId)
-        {
-            return AstUseStatement.UseStatement(databaseId);
-        }
-        
-        /// <summary>
-        /// setuser_statement : 
-        ///    SETUSER user=stringtext 
-        /// </summary>
-        public static AstSetuserStatement SetuserStatement(AstStringtext user)
-        {
-            return AstSetuserStatement.SetuserStatement(user);
-        }
-        
-        /// <summary>
-        /// checkpoint_statement : 
-        ///    CHECKPOINT checkPointDuration=decimal()? 
-        /// </summary>
-        public static AstCheckpointStatement CheckpointStatement(AstDecimal checkPointDuration)
-        {
-            return AstCheckpointStatement.CheckpointStatement(checkPointDuration);
+            return AstDeclareStatement.DeclareStatement();
         }
     }
     
@@ -5045,18 +419,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstConversationStatement : AstRule
     {
         
-        internal AstConversationStatement(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstConversationStatement(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstConversationStatement(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstConversationStatement(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstConversationStatement(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstConversationStatement(Position p) : 
+                base(p)
         {
         }
         
@@ -5064,108 +438,9 @@ namespace Bb.Asts.TSql
         /// begin_conversation_timer : 
         ///    BEGIN CONVERSATION TIMER ( conversation=local_id ) TIMEOUT EQUAL time ; 
         /// </summary>
-        public static AstBeginConversationTimer BeginConversationTimer(AstLocalId conversation, AstTime time)
+        public static AstBeginConversationTimer BeginConversationTimer()
         {
-            return AstBeginConversationTimer.BeginConversationTimer(conversation, time);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id ,? LIFETIME EQUAL decimal_local_id ,? ENCRYPTION EQUAL on_off ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression WITH relayed_conversation EQUAL group=local_id COMMA? LIFETIME EQUAL decimal_local_id COMMA? ENCRYPTION EQUAL on_off ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression, AstRelayedConversation relayedConversation, AstLocalId group, AstDecimalLocalId decimalLocalId, AstOnOff onOff)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression, relayedConversation, group, decimalLocalId, onOff);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name , service_broker_guid=stringtext ON CONTRACT contract_name_expression ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstStringtext serviceBrokerGuid, AstContractNameExpression contractNameExpression)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, serviceBrokerGuid, contractNameExpression);
-        }
-        
-        /// <summary>
-        /// begin_conversation_dialog : 
-        ///    BEGIN DIALOG CONVERSATION() dialog_handle=local_id FROM SERVICE initiator_service_name=service_name TO SERVICE target_service_name=service_name ON CONTRACT contract_name_expression ; 
-        /// </summary>
-        public static AstBeginConversationDialog BeginConversationDialog(AstLocalId dialogHandle, AstServiceName initiatorServiceName, AstServiceName targetServiceName, AstContractNameExpression contractNameExpression)
-        {
-            return AstBeginConversationDialog.BeginConversationDialog(dialogHandle, initiatorServiceName, targetServiceName, contractNameExpression);
-        }
-        
-        /// <summary>
-        /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=local_id ; WITH ERROR EQUAL faliure_code=string_local_id DESCRIPTION EQUAL failure_text=string_local_id CLEANUP? 
-        /// </summary>
-        public static AstEndConversation EndConversation(AstLocalId conversationHandle, AstStringLocalId faliureCode, AstStringLocalId failureText)
-        {
-            return AstEndConversation.EndConversation(conversationHandle, faliureCode, failureText);
-        }
-        
-        /// <summary>
-        /// end_conversation : 
-        ///    END CONVERSATION conversation_handle=local_id ; 
-        /// </summary>
-        public static AstEndConversation EndConversation(AstLocalId conversationHandle)
-        {
-            return AstEndConversation.EndConversation(conversationHandle);
-        }
-        
-        /// <summary>
-        /// get_conversation : 
-        ///    GET CONVERSATION GROUP conversation_group=string_local_id FROM queue=database_schema_queue_ref ; 
-        /// </summary>
-        public static AstGetConversation GetConversation(AstStringLocalId conversationGroup, AstDatabaseSchemaQueueRef queue)
-        {
-            return AstGetConversation.GetConversation(conversationGroup, queue);
-        }
-        
-        /// <summary>
-        /// send_conversation : 
-        ///    SEND ON CONVERSATION conversation_handle=string_local_id MESSAGE TYPE messageTypeName=expression ( messageBodyEexpression=string_local_id ) ; 
-        /// </summary>
-        public static AstSendConversation SendConversation(AstStringLocalId conversationHandle, AstExpression messageTypeName, AstStringLocalId messageBodyEexpression)
-        {
-            return AstSendConversation.SendConversation(conversationHandle, messageTypeName, messageBodyEexpression);
-        }
-        
-        /// <summary>
-        /// send_conversation : 
-        ///    SEND ON CONVERSATION conversation_handle=string_local_id MESSAGE TYPE messageTypeName=expression ; 
-        /// </summary>
-        public static AstSendConversation SendConversation(AstStringLocalId conversationHandle, AstExpression messageTypeName)
-        {
-            return AstSendConversation.SendConversation(conversationHandle, messageTypeName);
-        }
-        
-        /// <summary>
-        /// waitfor_conversation : 
-        ///    WAITFOR ( get_conversation ) COMMA? TIMEOUT timeout=time ; 
-        /// </summary>
-        public static AstWaitforConversation WaitforConversation(AstGetConversation getConversation, AstTime timeout)
-        {
-            return AstWaitforConversation.WaitforConversation(getConversation, timeout);
-        }
-        
-        /// <summary>
-        /// waitfor_conversation : 
-        ///    WAITFOR ( get_conversation ) ; 
-        /// </summary>
-        public static AstWaitforConversation WaitforConversation(AstGetConversation getConversation)
-        {
-            return AstWaitforConversation.WaitforConversation(getConversation);
+            return AstBeginConversationTimer.BeginConversationTimer();
         }
     }
     
@@ -5177,18 +452,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstCreateOrAlterTrigger : AstBatchLevelStatement
     {
         
-        internal AstCreateOrAlterTrigger(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstCreateOrAlterTrigger(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstCreateOrAlterTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstCreateOrAlterTrigger(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstCreateOrAlterTrigger(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstCreateOrAlterTrigger(Position p) : 
+                base(p)
         {
         }
         
@@ -5196,18 +471,9 @@ namespace Bb.Asts.TSql
         /// create_or_alter_dml_trigger : 
         ///    CREATE OR ALTER TRIGGER schema_trigger_ref ON full_table_ref dml_trigger_options? for_after_instead dml_trigger_operations WITH APPEND NOT FOR REPLICATION AS sql_clauses 
         /// </summary>
-        public static AstCreateOrAlterDmlTrigger CreateOrAlterDmlTrigger(AstSchemaTriggerRef schemaTriggerRef, AstFullTableRef fullTableRef, AstDmlTriggerOptions dmlTriggerOptions, AstForAfterInstead forAfterInstead, AstDmlTriggerOperations dmlTriggerOperations, AstSqlClauses sqlClauses)
+        public static AstCreateOrAlterDmlTrigger CreateOrAlterDmlTrigger()
         {
-            return AstCreateOrAlterDmlTrigger.CreateOrAlterDmlTrigger(schemaTriggerRef, fullTableRef, dmlTriggerOptions, forAfterInstead, dmlTriggerOperations, sqlClauses);
-        }
-        
-        /// <summary>
-        /// create_or_alter_ddl_trigger : 
-        ///    CREATE OR ALTER TRIGGER schema_trigger_ref ON all_server_database dml_trigger_options? for_after dml_trigger_operations AS sql_clauses 
-        /// </summary>
-        public static AstCreateOrAlterDdlTrigger CreateOrAlterDdlTrigger(AstSchemaTriggerRef schemaTriggerRef, AstAllServerDatabase allServerDatabase, AstDmlTriggerOptions dmlTriggerOptions, AstForAfter forAfter, AstDmlTriggerOperations dmlTriggerOperations, AstSqlClauses sqlClauses)
-        {
-            return AstCreateOrAlterDdlTrigger.CreateOrAlterDdlTrigger(schemaTriggerRef, allServerDatabase, dmlTriggerOptions, forAfter, dmlTriggerOperations, sqlClauses);
+            return AstCreateOrAlterDmlTrigger.CreateOrAlterDmlTrigger();
         }
     }
     
@@ -5219,19 +485,28 @@ namespace Bb.Asts.TSql
     public abstract partial class AstConstraintDeleteOrUpdate : AstRule
     {
         
-        internal AstConstraintDeleteOrUpdate(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstConstraintDeleteOrUpdate(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstConstraintDeleteOrUpdate(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstConstraintDeleteOrUpdate(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstConstraintDeleteOrUpdate(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstConstraintDeleteOrUpdate(Position p) : 
+                base(p)
         {
+        }
+        
+        /// <summary>
+        /// on_delete : 
+        ///    ON DELETE NO ACTION 
+        /// </summary>
+        public static AstOnDelete OnDelete()
+        {
+            return AstOnDelete.OnDelete();
         }
     }
     
@@ -5242,18 +517,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstDatabaseMirroringOption : AstRule
     {
         
-        internal AstDatabaseMirroringOption(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstDatabaseMirroringOption(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstDatabaseMirroringOption(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstDatabaseMirroringOption(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstDatabaseMirroringOption(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstDatabaseMirroringOption(Position p) : 
+                base(p)
         {
         }
         
@@ -5261,18 +536,9 @@ namespace Bb.Asts.TSql
         /// mirroring_set_option : 
         ///    mirroring_partner partner_option 
         /// </summary>
-        public static AstMirroringSetOption MirroringSetOption(AstMirroringPartner mirroringPartner, AstPartnerOption partnerOption)
+        public static AstMirroringSetOption MirroringSetOption()
         {
-            return AstMirroringSetOption.MirroringSetOption(mirroringPartner, partnerOption);
-        }
-        
-        /// <summary>
-        /// mirroring_set_option : 
-        ///    mirroring_witness witness_option 
-        /// </summary>
-        public static AstMirroringSetOption MirroringSetOption(AstMirroringWitness mirroringWitness, AstWitnessOption witnessOption)
-        {
-            return AstMirroringSetOption.MirroringSetOption(mirroringWitness, witnessOption);
+            return AstMirroringSetOption.MirroringSetOption();
         }
     }
     
@@ -5283,28 +549,28 @@ namespace Bb.Asts.TSql
     public abstract partial class AstWitnessServer : AstRule
     {
         
-        internal AstWitnessServer(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstWitnessServer(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstWitnessServer(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstWitnessServer(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstWitnessServer(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstWitnessServer(Position p) : 
+                base(p)
         {
         }
         
         /// <summary>
         /// partner_server : 
-        ///    partner_server_tcp_prefix host mirroring_host_port_seperator port_number 
+        ///    partner_server_tcp_prefix host : port_number 
         /// </summary>
-        public static AstPartnerServer PartnerServer(AstPartnerServerTcpPrefix partnerServerTcpPrefix, AstHost host, AstMirroringHostPortSeperator mirroringHostPortSeperator, AstPortNumber portNumber)
+        public static AstPartnerServer PartnerServer()
         {
-            return AstPartnerServer.PartnerServer(partnerServerTcpPrefix, host, mirroringHostPortSeperator, portNumber);
+            return AstPartnerServer.PartnerServer();
         }
     }
     
@@ -5316,18 +582,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstDropTrigger : AstRule
     {
         
-        internal AstDropTrigger(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstDropTrigger(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstDropTrigger(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstDropTrigger(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstDropTrigger(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstDropTrigger(Position p) : 
+                base(p)
         {
         }
         
@@ -5335,18 +601,9 @@ namespace Bb.Asts.TSql
         /// drop_dml_trigger : 
         ///    DROP TRIGGER if_exists? schema_trigger_refs ; 
         /// </summary>
-        public static AstDropDmlTrigger DropDmlTrigger(AstIfExists ifExists, AstSchemaTriggerRefs schemaTriggerRefs)
+        public static AstDropDmlTrigger DropDmlTrigger()
         {
-            return AstDropDmlTrigger.DropDmlTrigger(ifExists, schemaTriggerRefs);
-        }
-        
-        /// <summary>
-        /// drop_ddl_trigger : 
-        ///    DROP TRIGGER if_exists? schema_view_refs ON all_server_database ; 
-        /// </summary>
-        public static AstDropDdlTrigger DropDdlTrigger(AstIfExists ifExists, AstSchemaViewRefs schemaViewRefs, AstAllServerDatabase allServerDatabase)
-        {
-            return AstDropDdlTrigger.DropDdlTrigger(ifExists, schemaViewRefs, allServerDatabase);
+            return AstDropDmlTrigger.DropDmlTrigger();
         }
     }
     
@@ -5358,18 +615,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstRowsetFunctionLimited : AstRule
     {
         
-        internal AstRowsetFunctionLimited(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstRowsetFunctionLimited(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstRowsetFunctionLimited(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstRowsetFunctionLimited(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstRowsetFunctionLimited(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstRowsetFunctionLimited(Position p) : 
+                base(p)
         {
         }
         
@@ -5377,18 +634,9 @@ namespace Bb.Asts.TSql
         /// openquery : 
         ///    OPENQUERY ( server_id , query=stringtext ) 
         /// </summary>
-        public static AstOpenquery Openquery(AstServerId serverId, AstStringtext query)
+        public static AstOpenquery Openquery()
         {
-            return AstOpenquery.Openquery(serverId, query);
-        }
-        
-        /// <summary>
-        /// opendatasource : 
-        ///    OPENDATASOURCE ( provider=stringtext , init=stringtext ) . database_schema_table_ref 
-        /// </summary>
-        public static AstOpendatasource Opendatasource(AstStringtext provider, AstStringtext init, AstDatabaseSchemaTableRef databaseSchemaTableRef)
-        {
-            return AstOpendatasource.Opendatasource(provider, init, databaseSchemaTableRef);
+            return AstOpenquery.Openquery();
         }
     }
     
@@ -5399,18 +647,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstSubquery : AstRule
     {
         
-        internal AstSubquery(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstSubquery(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstSubquery(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstSubquery(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstSubquery(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstSubquery(Position p) : 
+                base(p)
         {
         }
         
@@ -5418,9 +666,9 @@ namespace Bb.Asts.TSql
         /// select_statement : 
         ///    query_expression select_order_by_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
+        public static AstSelectStatement SelectStatement()
         {
-            return AstSelectStatement.SelectStatement(queryExpression, selectOrderByClause, forClause, updateOptionClause);
+            return AstSelectStatement.SelectStatement();
         }
     }
     
@@ -5433,18 +681,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstAsterisk : AstRule
     {
         
-        internal AstAsterisk(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstAsterisk(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstAsterisk(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstAsterisk(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstAsterisk(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstAsterisk(Position p) : 
+                base(p)
         {
         }
         
@@ -5452,18 +700,9 @@ namespace Bb.Asts.TSql
         /// star_asterisk : 
         ///    STAR 
         /// </summary>
-        public static AstStarAsterisk StarAsterisk(AstStarAsterisk starAsterisk)
+        public static AstStarAsterisk StarAsterisk()
         {
-            return AstStarAsterisk.StarAsterisk(starAsterisk);
-        }
-        
-        /// <summary>
-        /// table_asterisk : 
-        ///    full_table_ref . STAR 
-        /// </summary>
-        public static AstTableAsterisk TableAsterisk(AstFullTableRef fullTableRef)
-        {
-            return AstTableAsterisk.TableAsterisk(fullTableRef);
+            return AstStarAsterisk.StarAsterisk();
         }
     }
     
@@ -5478,18 +717,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstSelectListElem : AstRule
     {
         
-        internal AstSelectListElem(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstSelectListElem(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstSelectListElem(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstSelectListElem(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstSelectListElem(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstSelectListElem(Position p) : 
+                base(p)
         {
         }
         
@@ -5497,90 +736,9 @@ namespace Bb.Asts.TSql
         /// star_asterisk : 
         ///    STAR 
         /// </summary>
-        public static AstStarAsterisk StarAsterisk(AstStarAsterisk starAsterisk)
+        public static AstStarAsterisk StarAsterisk()
         {
-            return AstStarAsterisk.StarAsterisk(starAsterisk);
-        }
-        
-        /// <summary>
-        /// table_asterisk : 
-        ///    full_table_ref . STAR 
-        /// </summary>
-        public static AstTableAsterisk TableAsterisk(AstFullTableRef fullTableRef)
-        {
-            return AstTableAsterisk.TableAsterisk(fullTableRef);
-        }
-        
-        /// <summary>
-        /// column_elem : 
-        ///    column_elem_target as_column_alias? 
-        /// </summary>
-        public static AstColumnElem ColumnElem(AstColumnElemTarget columnElemTarget, AstAsColumnAlias asColumnAlias)
-        {
-            return AstColumnElem.ColumnElem(columnElemTarget, asColumnAlias);
-        }
-        
-        /// <summary>
-        /// udt_elem : 
-        ///    udt_column_id . non_static_attr_id udt_method_arguments as_column_alias? 
-        /// </summary>
-        public static AstUdtElem UdtElem(AstUdtColumnId udtColumnId, AstNonStaticAttrId nonStaticAttrId, AstUdtMethodArguments udtMethodArguments, AstAsColumnAlias asColumnAlias)
-        {
-            return AstUdtElem.UdtElem(udtColumnId, nonStaticAttrId, udtMethodArguments, asColumnAlias);
-        }
-        
-        /// <summary>
-        /// udt_elem : 
-        ///    udt_column_id :: static_attr_id udt_method_arguments as_column_alias? 
-        /// </summary>
-        public static AstUdtElem UdtElem(AstUdtColumnId udtColumnId, AstStaticAttrId staticAttrId, AstUdtMethodArguments udtMethodArguments, AstAsColumnAlias asColumnAlias)
-        {
-            return AstUdtElem.UdtElem(udtColumnId, staticAttrId, udtMethodArguments, asColumnAlias);
-        }
-        
-        /// <summary>
-        /// udt_elem : 
-        ///    udt_column_id :: static_attr_id as_column_alias? 
-        /// </summary>
-        public static AstUdtElem UdtElem(AstUdtColumnId udtColumnId, AstStaticAttrId staticAttrId, AstAsColumnAlias asColumnAlias)
-        {
-            return AstUdtElem.UdtElem(udtColumnId, staticAttrId, asColumnAlias);
-        }
-        
-        /// <summary>
-        /// expression_assign_elem : 
-        ///    local_id assignment_operator expression 
-        /// </summary>
-        public static AstExpressionAssignElem ExpressionAssignElem(AstLocalId localId, AstAssignmentOperator assignmentOperator, AstExpression expression)
-        {
-            return AstExpressionAssignElem.ExpressionAssignElem(localId, assignmentOperator, expression);
-        }
-        
-        /// <summary>
-        /// expression_assign_elem : 
-        ///    local_id EQUAL expression 
-        /// </summary>
-        public static AstExpressionAssignElem ExpressionAssignElem(AstLocalId localId, AstExpression expression)
-        {
-            return AstExpressionAssignElem.ExpressionAssignElem(localId, expression);
-        }
-        
-        /// <summary>
-        /// expression_elem : 
-        ///    leftAlias=column_alias eq=EQUAL leftAssignment=expression 
-        /// </summary>
-        public static AstExpressionElem ExpressionElem(AstColumnAlias leftAlias, AstExpression leftAssignment)
-        {
-            return AstExpressionElem.ExpressionElem(leftAlias, leftAssignment);
-        }
-        
-        /// <summary>
-        /// expression_elem : 
-        ///    expressionAs=expression as_column_alias? 
-        /// </summary>
-        public static AstExpressionElem ExpressionElem(AstExpression expressionAs, AstAsColumnAlias asColumnAlias)
-        {
-            return AstExpressionElem.ExpressionElem(expressionAs, asColumnAlias);
+            return AstStarAsterisk.StarAsterisk();
         }
     }
     
@@ -5592,18 +750,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstChangeTable : AstRule
     {
         
-        internal AstChangeTable(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstChangeTable(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstChangeTable(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstChangeTable(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstChangeTable(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstChangeTable(Position p) : 
+                base(p)
         {
         }
         
@@ -5611,27 +769,9 @@ namespace Bb.Asts.TSql
         /// change_table_changes : 
         ///    CHANGETABLE ( CHANGES changetable=full_table_ref , NULL_ ) 
         /// </summary>
-        public static AstChangeTableChanges ChangeTableChanges(AstFullTableRef changetable)
+        public static AstChangeTableChanges ChangeTableChanges()
         {
-            return AstChangeTableChanges.ChangeTableChanges(changetable);
-        }
-        
-        /// <summary>
-        /// change_table_changes : 
-        ///    CHANGETABLE ( CHANGES changetable=full_table_ref , decimal_local_id ) 
-        /// </summary>
-        public static AstChangeTableChanges ChangeTableChanges(AstFullTableRef changetable, AstDecimalLocalId decimalLocalId)
-        {
-            return AstChangeTableChanges.ChangeTableChanges(changetable, decimalLocalId);
-        }
-        
-        /// <summary>
-        /// change_table_version : 
-        ///    CHANGETABLE ( VERSION versiontable=full_table_ref , pk_columns=full_column_name_list , pk_values=select_list ) 
-        /// </summary>
-        public static AstChangeTableVersion ChangeTableVersion(AstFullTableRef versiontable, AstFullColumnNameList pkColumns, AstSelectList pkValues)
-        {
-            return AstChangeTableVersion.ChangeTableVersion(versiontable, pkColumns, pkValues);
+            return AstChangeTableChanges.ChangeTableChanges();
         }
     }
     
@@ -5646,18 +786,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstJoinPart : AstRule
     {
         
-        internal AstJoinPart(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstJoinPart(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstJoinPart(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstJoinPart(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstJoinPart(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstJoinPart(Position p) : 
+                base(p)
         {
         }
         
@@ -5665,54 +805,9 @@ namespace Bb.Asts.TSql
         /// join_on : 
         ///    inner=INNER join_hint? JOIN source=table_source ON cond=search_condition 
         /// </summary>
-        public static AstJoinOn JoinOn(AstJoinHint joinHint, AstTableSource source, AstSearchCondition cond)
+        public static AstJoinOn JoinOn()
         {
-            return AstJoinOn.JoinOn(joinHint, source, cond);
-        }
-        
-        /// <summary>
-        /// join_on : 
-        ///    join_type outer=OUTER join_hint? JOIN source=table_source ON cond=search_condition 
-        /// </summary>
-        public static AstJoinOn JoinOn(AstJoinType joinType, AstJoinHint joinHint, AstTableSource source, AstSearchCondition cond)
-        {
-            return AstJoinOn.JoinOn(joinType, joinHint, source, cond);
-        }
-        
-        /// <summary>
-        /// cross_join : 
-        ///    CROSS JOIN table_source 
-        /// </summary>
-        public static AstCrossJoin CrossJoin(AstTableSource tableSource)
-        {
-            return AstCrossJoin.CrossJoin(tableSource);
-        }
-        
-        /// <summary>
-        /// apply_enum : 
-        ///    apply_style APPLY source=table_source 
-        /// </summary>
-        public static AstApplyEnum ApplyEnum(AstApplyStyle applyStyle, AstTableSource source)
-        {
-            return AstApplyEnum.ApplyEnum(applyStyle, source);
-        }
-        
-        /// <summary>
-        /// pivot : 
-        ///    PIVOT pivot_clause as_table_alias 
-        /// </summary>
-        public static AstPivot Pivot(AstPivotClause pivotClause, AstAsTableAlias asTableAlias)
-        {
-            return AstPivot.Pivot(pivotClause, asTableAlias);
-        }
-        
-        /// <summary>
-        /// unpivot : 
-        ///    UNPIVOT unpivot_clause as_table_alias 
-        /// </summary>
-        public static AstUnpivot Unpivot(AstUnpivotClause unpivotClause, AstAsTableAlias asTableAlias)
-        {
-            return AstUnpivot.Unpivot(unpivotClause, asTableAlias);
+            return AstJoinOn.JoinOn();
         }
     }
     
@@ -5726,18 +821,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstXmlDataTypeMethods : AstRule
     {
         
-        internal AstXmlDataTypeMethods(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstXmlDataTypeMethods(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstXmlDataTypeMethods(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstXmlDataTypeMethods(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstXmlDataTypeMethods(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstXmlDataTypeMethods(Position p) : 
+                base(p)
         {
         }
         
@@ -5745,126 +840,9 @@ namespace Bb.Asts.TSql
         /// value_method : 
         ///    loc=local_id . call=value_call 
         /// </summary>
-        public static AstValueMethod ValueMethod(AstLocalId loc, AstValueCall call)
+        public static AstValueMethod ValueMethod()
         {
-            return AstValueMethod.ValueMethod(loc, call);
-        }
-        
-        /// <summary>
-        /// value_method : 
-        ///    value=full_column_name . call=value_call 
-        /// </summary>
-        public static AstValueMethod ValueMethod(AstFullColumnName value, AstValueCall call)
-        {
-            return AstValueMethod.ValueMethod(value, call);
-        }
-        
-        /// <summary>
-        /// value_method : 
-        ///    eventdata=EVENTDATA ( ) . call=value_call 
-        /// </summary>
-        public static AstValueMethod ValueMethod(AstValueCall call)
-        {
-            return AstValueMethod.ValueMethod(call);
-        }
-        
-        /// <summary>
-        /// value_method : 
-        ///    query=query_method . call=value_call 
-        /// </summary>
-        public static AstValueMethod ValueMethod(AstQueryMethod query, AstValueCall call)
-        {
-            return AstValueMethod.ValueMethod(query, call);
-        }
-        
-        /// <summary>
-        /// value_method : 
-        ///    ( subquery ) . call=value_call 
-        /// </summary>
-        public static AstValueMethod ValueMethod(AstSubquery subquery, AstValueCall call)
-        {
-            return AstValueMethod.ValueMethod(subquery, call);
-        }
-        
-        /// <summary>
-        /// query_method : 
-        ///    loc=local_id . call=query_call 
-        /// </summary>
-        public static AstQueryMethod QueryMethod(AstLocalId loc, AstQueryCall call)
-        {
-            return AstQueryMethod.QueryMethod(loc, call);
-        }
-        
-        /// <summary>
-        /// query_method : 
-        ///    value=full_column_name . call=query_call 
-        /// </summary>
-        public static AstQueryMethod QueryMethod(AstFullColumnName value, AstQueryCall call)
-        {
-            return AstQueryMethod.QueryMethod(value, call);
-        }
-        
-        /// <summary>
-        /// query_method : 
-        ///    ( subquery ) . call=query_call 
-        /// </summary>
-        public static AstQueryMethod QueryMethod(AstSubquery subquery, AstQueryCall call)
-        {
-            return AstQueryMethod.QueryMethod(subquery, call);
-        }
-        
-        /// <summary>
-        /// exist_method : 
-        ///    loc=local_id . call=exist_call 
-        /// </summary>
-        public static AstExistMethod ExistMethod(AstLocalId loc, AstExistCall call)
-        {
-            return AstExistMethod.ExistMethod(loc, call);
-        }
-        
-        /// <summary>
-        /// exist_method : 
-        ///    value=full_column_name . call=exist_call 
-        /// </summary>
-        public static AstExistMethod ExistMethod(AstFullColumnName value, AstExistCall call)
-        {
-            return AstExistMethod.ExistMethod(value, call);
-        }
-        
-        /// <summary>
-        /// exist_method : 
-        ///    ( subquery ) . call=exist_call 
-        /// </summary>
-        public static AstExistMethod ExistMethod(AstSubquery subquery, AstExistCall call)
-        {
-            return AstExistMethod.ExistMethod(subquery, call);
-        }
-        
-        /// <summary>
-        /// modify_method : 
-        ///    loc=local_id . call=modify_call 
-        /// </summary>
-        public static AstModifyMethod ModifyMethod(AstLocalId loc, AstModifyCall call)
-        {
-            return AstModifyMethod.ModifyMethod(loc, call);
-        }
-        
-        /// <summary>
-        /// modify_method : 
-        ///    value=full_column_name . call=modify_call 
-        /// </summary>
-        public static AstModifyMethod ModifyMethod(AstFullColumnName value, AstModifyCall call)
-        {
-            return AstModifyMethod.ModifyMethod(value, call);
-        }
-        
-        /// <summary>
-        /// modify_method : 
-        ///    ( subquery ) . call=modify_call 
-        /// </summary>
-        public static AstModifyMethod ModifyMethod(AstSubquery subquery, AstModifyCall call)
-        {
-            return AstModifyMethod.ModifyMethod(subquery, call);
+            return AstValueMethod.ValueMethod();
         }
     }
     
@@ -5876,28 +854,28 @@ namespace Bb.Asts.TSql
     public abstract partial class AstWindowFrameBound : AstRule
     {
         
-        internal AstWindowFrameBound(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstWindowFrameBound(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstWindowFrameBound(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstWindowFrameBound(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstWindowFrameBound(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstWindowFrameBound(Position p) : 
+                base(p)
         {
         }
         
         /// <summary>
         /// window_frame_preceding : 
-        ///    decimal PRECEDING 
+        ///    UNBOUNDED PRECEDING 
         /// </summary>
-        public static AstWindowFramePreceding WindowFramePreceding(AstDecimal @decimal)
+        public static AstWindowFramePreceding WindowFramePreceding()
         {
-            return AstWindowFramePreceding.WindowFramePreceding(@decimal);
+            return AstWindowFramePreceding.WindowFramePreceding();
         }
     }
     
@@ -5909,18 +887,18 @@ namespace Bb.Asts.TSql
     public abstract partial class AstDatabaseFileSpec : AstRule
     {
         
-        internal AstDatabaseFileSpec(ITerminalNode t, List<AstRoot> list) : 
-                base(t, list)
+        internal AstDatabaseFileSpec(ITerminalNode t) : 
+                base(t)
         {
         }
         
-        internal AstDatabaseFileSpec(ParserRuleContext ctx, List<AstRoot> list) : 
-                base(ctx, list)
+        internal AstDatabaseFileSpec(ParserRuleContext ctx) : 
+                base(ctx)
         {
         }
         
-        internal AstDatabaseFileSpec(Position p, List<AstRoot> list) : 
-                base(p, list)
+        internal AstDatabaseFileSpec(Position p) : 
+                base(p)
         {
         }
         
@@ -5928,72 +906,9 @@ namespace Bb.Asts.TSql
         /// file_group : 
         ///    FILEGROUP file_group_id CONTAINS FILESTREAM DEFAULT() CONTAINS MEMORY_OPTIMIZED_DATA file_specs 
         /// </summary>
-        public static AstFileGroup FileGroup(AstFileGroupId fileGroupId, AstFileSpecs fileSpecs)
+        public static AstFileGroup FileGroup()
         {
-            return AstFileGroup.FileGroup(fileGroupId, fileSpecs);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstMaxSize maxSize, AstFileSize filegrowth)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, size, maxSize, filegrowth);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , MAXSIZE EQUAL max_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstMaxSize maxSize, AstFileSize filegrowth)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, maxSize, filegrowth);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? FILEGROWTH EQUAL filegrowth=file_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstFileSize filegrowth)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, size, filegrowth);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , FILEGROWTH EQUAL filegrowth=file_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize filegrowth)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, filegrowth);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , SIZE EQUAL size=file_size ,? MAXSIZE EQUAL max_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstFileSize size, AstMaxSize maxSize)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, size, maxSize);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , MAXSIZE EQUAL max_size ,? ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file, AstMaxSize maxSize)
-        {
-            return AstFileSpec.FileSpec(idOrString, file, maxSize);
-        }
-        
-        /// <summary>
-        /// file_spec : 
-        ///    ( NAME EQUAL id_or_string , FILENAME EQUAL file=stringtext , ) 
-        /// </summary>
-        public static AstFileSpec FileSpec(AstIdOrString idOrString, AstStringtext file)
-        {
-            return AstFileSpec.FileSpec(idOrString, file);
+            return AstFileGroup.FileGroup();
         }
     }
 }

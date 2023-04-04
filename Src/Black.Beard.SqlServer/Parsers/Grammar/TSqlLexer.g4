@@ -1066,8 +1066,9 @@ BINARY:              '0' 'X' HEX_DIGIT*;
 FLOAT:               DEC_DOT_DEC;
 REAL:                (DECIMAL | DEC_DOT_DEC) ('E' [+-]? DEC_DIGIT+);
 
-IPV4_ADDR : '"' '^(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?)$' '"';
-IPV6_ADDR : '"' '^((([0–9A-Fa-f]{1,4}:){7}[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){6}:[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){5}:([0–9A-Fa-f]{1,4}:)?[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){4}:([0–9A-Fa-f]{1,4}:){0,2}[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){3}:([0–9A-Fa-f]{1,4}:){0,3}[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){2}:([0–9A-Fa-f]{1,4}:){0,4}[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){6}((b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b).){3}(b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b))|(([0–9A-Fa-f]{1,4}:){0,5}:((b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b).){3}(b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b))|(::([0–9A-Fa-f]{1,4}:){0,5}((b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b).){3}(b((25[0–5])|(1d{2})|(2[0–4]d)|(d{1,2}))b))|([0–9A-Fa-f]{1,4}::([0–9A-Fa-f]{1,4}:){0,5}[0–9A-Fa-f]{1,4})|(::([0–9A-Fa-f]{1,4}:){0,6}[0–9A-Fa-f]{1,4})|(([0–9A-Fa-f]{1,4}:){1,7}:))$' '"';
+IPV4_ADDR : '"' DEC_DIGIT DOT DEC_DIGIT DOT DEC_DIGIT DOT DEC_DIGIT '"';
+IPV6_ADDR : '"' DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX COLON DOUBLE_HEX '"';
+HOST : WORD+ DOT LETTER3;
 
 FILESTREAM_ON : 'FILESTREAM ON';
 
@@ -1110,11 +1111,13 @@ BIT_XOR:             '^';
 
 PLACEHOLDER:         '?';
 
-fragment LETTER:       [A-Z_];
-fragment DEC_DOT_DEC:  (DEC_DIGIT+ '.' DEC_DIGIT+ |  DEC_DIGIT+ '.' | '.' DEC_DIGIT+);
-fragment HEX_DIGIT:    [0-9A-F];
-fragment DEC_DIGIT:    [0-9];
-
+fragment LETTER:        [A-Z_];
+fragment LETTER3:       LETTER LETTER+;
+fragment DEC_DOT_DEC:   (DEC_DIGIT+ DOT DEC_DIGIT+ |  DEC_DIGIT+ DOT | DOT DEC_DIGIT+);
+fragment HEX_DIGIT:     [0-9A-F];
+fragment DOUBLE_HEX:    HEX_DIGIT HEX_DIGIT;
+fragment DEC_DIGIT:     [0-9];
+fragment WORD :         (LETTER | DEC_DIGIT);
 
 fragment FullWidthLetter options { caseInsensitive=false; }
     : '\u00c0'..'\u00d6'

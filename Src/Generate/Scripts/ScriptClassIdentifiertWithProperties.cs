@@ -53,7 +53,7 @@ namespace Generate.Scripts
                                   f.Argument(() => "Position", "p")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("p", "list")
+                                   .CallBase("p")
                                    .Body(b =>
                                    {
 
@@ -87,7 +87,7 @@ namespace Generate.Scripts
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Argument(() => "List<AstRoot>", "list")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx", "list")
+                                   .CallBase("ctx")
                                    .Body(b =>
                                    {
 

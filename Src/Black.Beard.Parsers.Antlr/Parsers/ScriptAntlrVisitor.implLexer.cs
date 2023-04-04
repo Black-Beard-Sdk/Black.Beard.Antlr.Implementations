@@ -113,9 +113,8 @@ namespace Bb.Parsers
 
             var g = (AstLexerBlock)VisitLexerBlock(context.lexerBlock());
             if (g != null)
-            {
                 return g;
-            }
+
             var e = (AstArgActionBlock)VisitActionBlock(context.actionBlock());
             e.Occurence = new Occurence(OccurenceEnum.One, context.QUESTION() != null);
 
@@ -150,7 +149,10 @@ namespace Bb.Parsers
 
                 var t2 = context.LEXER_CHAR_SET();
                 if (t2 != null)
-                    value = VisitTerminal(t2);
+                {
+                    var v = VisitTerminal(t2);
+                    value = v;
+                }
 
                 else
                 {
@@ -168,7 +170,7 @@ namespace Bb.Parsers
                         {
                             value = (AstTerminal)VisitTerminal(t1);
 
-                           
+
 
                         }
                         else
@@ -305,12 +307,17 @@ namespace Bb.Parsers
         public override AstBase VisitLexerBlock([NotNull] ANTLRv4Parser.LexerBlockContext context)
         {
 
-            AstLexerAlternativeList _c = null;
-            var c = context.lexerAltList();
-            if (c != null)
-                _c = (AstLexerAlternativeList)VisitLexerAltList(c);
+            if (context != null)
+            {
+                AstLexerAlternativeList _c = null;
+                var c = context.lexerAltList();
+                if (c != null)
+                    _c = (AstLexerAlternativeList)VisitLexerAltList(c);
 
-            return new AstLexerBlock(context, _c);
+                return new AstLexerBlock(context, _c);
+            }
+
+            return null;
 
         }
 

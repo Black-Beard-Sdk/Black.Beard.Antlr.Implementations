@@ -54,27 +54,27 @@ namespace Generate.Scripts
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ITerminalNode", "t")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("t", "list");
+                                    .CallBase("t");
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ParserRuleContext", "ctx")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("ctx", "list");
+                                    .CallBase("ctx");
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "Position", "p")
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("p", "list");
+                                    .CallBase("p");
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "List<AstRoot>", "list")
-                                    .CallBase("Position.Default", "list");
+                                    .CallBase("Position.Default");
                                })
 
                         .Method(method =>
@@ -109,8 +109,6 @@ namespace Generate.Scripts
                         .Make(t =>
                         {
 
-                            var r = ast.Root();
-
                             HashSet<string> _h = new HashSet<string>();
                             List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
@@ -123,20 +121,12 @@ namespace Generate.Scripts
                                 {
 
                                     StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+                                    var name = CodeHelper.FormatCsharp(ast.Name.Text);
                                     var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
                                     List<string> arguments = new List<string>();
 
-                                    var method = new CodeMemberMethod()
-                                    {
-                                        Name = CodeHelper.FormatCsharp(ast.Name.Text),
-                                        ReturnType = t1,
-                                        Attributes = MemberAttributes.Public | MemberAttributes.Static,
-                                    };
-
-                                    method.Comments.Add(new CodeCommentStatement("<summary>", true));
-                                    method.Comments.Add(new CodeCommentStatement($"{ast.Name} : ", true));
-                                    method.Comments.Add(new CodeCommentStatement(alt.GenerateDoc(ctx), true));
-                                    method.Comments.Add(new CodeCommentStatement("</summary>", true));
+                                    var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                        .BuildDocumentation(alt, ctx);
 
                                     var t2 = "List<AstRoot>".AsType();
                                     method.Statements.Add(CodeHelper.DeclareAndCreate("arguments", t2));

@@ -96,31 +96,31 @@
 
             var result = i.Clone();
 
-            if (!i.IsLast && this._alternatives > 0)
-            {
-                if (i.Occurence.Optional)
-                {
+            //if (!i.IsLast && this._alternatives > 0)
+            //{
+            //    if (i.Occurence.Optional)
+            //    {
 
-                    var p = new TreeRuleItem()
-                    {
-                        IsAlternative = true,
-                        Origin = i.Origin,
-                        Label = i.Label,
-                    };
+            //        var p = new TreeRuleItem()
+            //        {
+            //            IsAlternative = true,
+            //            Origin = i.Origin,
+            //            Label = i.Label,
+            //        };
 
-                    result.Occurence = result.Occurence.CloneNoOptional();
-                    p.Add(result);
-                    p.Add(TreeRuleItem.Default());
+            //        result.Occurence = result.Occurence.CloneNoOptional();
+            //        p.Add(result);
+            //        p.Add(TreeRuleItem.Default());
 
-                    result = new TreeRuleItem() 
-                    {
-                        IsBlock = true 
-                    };
+            //        result = new TreeRuleItem() 
+            //        {
+            //            IsBlock = true 
+            //        };
 
-                    result.Add(p);
+            //        result.Add(p);
 
-                }
-            }
+            //    }
+            //}
             return result;
 
         }

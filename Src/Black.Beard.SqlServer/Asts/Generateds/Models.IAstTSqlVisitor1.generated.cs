@@ -18,7 +18,9 @@ namespace Bb.Asts.TSql
     public partial interface IAstTSqlVisitor
     {
         
-        void VisitTsqlFile(AstTsqlFile a);
+        void VisitTRoot(AstTRoot a);
+        
+        void VisitBatchs(AstBatchs a);
         
         void VisitBatch(AstBatch a);
         
@@ -936,13 +938,11 @@ namespace Bb.Asts.TSql
         
         void VisitPartnerServer(AstPartnerServer a);
         
-        void VisitMirroringHostPortSeperator(AstMirroringHostPortSeperator a);
+        void VisitHost(AstHost a);
         
         void VisitPartnerServerTcpPrefix(AstPartnerServerTcpPrefix a);
         
         void VisitPortNumber(AstPortNumber a);
-        
-        void VisitHost(AstHost a);
         
         void VisitDateCorrelationOptimizationOption(AstDateCorrelationOptimizationOption a);
         

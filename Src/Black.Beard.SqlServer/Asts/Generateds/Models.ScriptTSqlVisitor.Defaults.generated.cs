@@ -25,11 +25,11 @@ namespace Bb.Parsers.TSql
     {
         
         /// <summary>
-        /// tsql_file
-        /// 	 : batch*  EOF
+        /// t_root
+        /// 	 : batchs  EOF
         /// 	 | execute_body_batch  go_statements  EOF
         /// </summary>
-        public override AstRoot VisitTsql_file(TSqlParser.Tsql_fileContext context)
+        public override AstRoot VisitT_root(TSqlParser.T_rootContext context)
         {
             List<AstRoot> list = new List<AstRoot>();
             for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
@@ -42,14 +42,15 @@ namespace Bb.Parsers.TSql
                     list.Add(acceptResult);
                 }
             }
-            return new AstTsqlFile(context, list);
+            return new AstTRoot(context, list);
         }
         
         /// <summary>
         /// batch
         /// 	 : go_statement
-        /// 	 | execute_body_batch?  (go_statement | sql_clauses)  go_statements
-        /// 	 | batch_level_statement  go_statements
+        /// 	 | execute_body_batch
+        /// 	 | sql_clauses
+        /// 	 | batch_level_statement
         /// </summary>
         public override AstRoot VisitBatch(TSqlParser.BatchContext context)
         {
@@ -3480,26 +3481,6 @@ namespace Bb.Parsers.TSql
         }
         
         /// <summary>
-        /// port_number
-        /// 	 : port = decimal
-        /// </summary>
-        public override AstRoot VisitPort_number(TSqlParser.Port_numberContext context)
-        {
-            List<AstRoot> list = new List<AstRoot>();
-            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
-            )
-            {
-                IParseTree item = ((IParseTree)(enumerator.Current));
-                AstRoot acceptResult = item.Accept(this);
-                if ((acceptResult != null))
-                {
-                    list.Add(acceptResult);
-                }
-            }
-            return new AstPortNumber(context, list);
-        }
-        
-        /// <summary>
         /// external_access_option
         /// 	 : DB_CHAINING  on_off
         /// 	 | TRUSTWORTHY  on_off
@@ -6453,6 +6434,31 @@ namespace Bb.Parsers.TSql
                 }
             }
             return new AstDefaultValue(context, list);
+        }
+        
+        /// <summary>
+        /// constant
+        /// 	 : stringtext
+        /// 	 | binary_
+        /// 	 | sign?  decimal
+        /// 	 | sign?  (real | float)
+        /// 	 | sign?  dollar = DOLLAR  (decimal | float)
+        /// 	 | parameter
+        /// </summary>
+        public override AstRoot VisitConstant(TSqlParser.ConstantContext context)
+        {
+            List<AstRoot> list = new List<AstRoot>();
+            for (IEnumerator enumerator = context.children.GetEnumerator(); enumerator.MoveNext(); 
+            )
+            {
+                IParseTree item = ((IParseTree)(enumerator.Current));
+                AstRoot acceptResult = item.Accept(this);
+                if ((acceptResult != null))
+                {
+                    list.Add(acceptResult);
+                }
+            }
+            return new AstConstant(context, list);
         }
         
         /// <summary>

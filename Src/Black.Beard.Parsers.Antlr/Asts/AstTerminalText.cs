@@ -4,6 +4,7 @@ using Bb.Generators;
 using Bb.Parsers;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Bb.Asts
@@ -109,12 +110,32 @@ namespace Bb.Asts
         }
 
 
+        private static bool EvaluateIsDynamic(string text)
+        {
+            string pattern = @"\w-|-\w";
+            string input = @"";
+            RegexOptions options = RegexOptions.IgnoreCase;
+
+            return Regex.IsMatch(text, pattern, options);
+
+        }
+
         private void Evaluate()
         {
             if (!string.IsNullOrEmpty(Text))
             {
 
-                if (Text.StartsWith("'") && Text.EndsWith("'") && Text.Length > 1)
+                if (Text.StartsWith("[") && Text.EndsWith("]") && Text.Length > 1)
+                {
+
+                    var txt = this.Text.Substring(1, this.Text.Length - 2).ToLower();
+                    
+                    if (EvaluateIsDynamic(txt))
+                        this.TerminalKind = TokenTypeEnum.Identifier;
+
+                }
+
+                else if (Text.StartsWith("'") && Text.EndsWith("'") && Text.Length > 1)
                 {
                     this.Text = this.Text.Substring(1, this.Text.Length - 2);
                     this.Enquoted = true;

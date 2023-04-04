@@ -9,20 +9,20 @@ namespace Bb.Asts.TSql
     public class AstTerminalIdentifier : AstRuleList<AstTerminal<string>>
     {
 
-        public AstTerminalIdentifier(ITerminalNode n)
+        public AstTerminalIdentifier(ITerminalNode n, params AstRoot[] items)
             : base(n)
         {
 
         }
 
-        public AstTerminalIdentifier(ParserRuleContext ctx)
+        public AstTerminalIdentifier(ParserRuleContext ctx, params AstRoot[] items)
             : base(ctx)
         {
 
         }
 
-        public AstTerminalIdentifier(Position t) :
-                base(t)
+        public AstTerminalIdentifier(Position t, params AstRoot[] items) 
+            :base(t)
         {
 
         }
