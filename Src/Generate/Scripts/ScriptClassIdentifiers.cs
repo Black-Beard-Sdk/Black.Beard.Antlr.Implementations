@@ -35,73 +35,214 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
 
-                      .CreateTypeFrom<AstRule>((ast, type) =>
+                      .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), (ast) =>
+                      {
+
+                          ctx.Variables["combinaisons"] = ast.GetAllCombinations();
+
+                      }, (ast, type) =>
                       {
 
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
                               .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                               .Inherit(() => GetInherit(ast, ctx))
 
-
-                              .Ctor((f) =>
+                              .Properties(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (property, model) =>
                               {
-                                  f.Argument(() => "ITerminalNode", "t")
-                                   .Arguments(
-                                      () =>
-                                       {
 
-                                           if (ast.Name.Text == "host")
-                                           {
+                                  property.Name(a => "Value")
+                                    .Attribute(MemberAttributes.Public)
+                                    .HasSet(false)
+                                    .Type(GetType(ctx, model))
+                                    .Get(stm =>
+                                    {
+                                        stm.Return("_value".Var());
+                                    });
 
-                                               var combinaisons = ast.GetAllCombinations();
+                                  property.Type(GetType(ctx, model));
 
-                                               // id_ DOT id_ 
-
-                                               foreach (var item in combinaisons)
-                                               {
-
-                                                   var rules = item.Where(c => c.IsRuleRef).ToList();
-                                                   if (rules.Count == 2)
-                                                   {
-                                                       var u = rules[0].Name == rules[1].Name;
-
-                                                       var r = rules[0].Clone();
-                                                       r.Occurence = new Occurence(OccurenceEnum.Any, rules[0].Occurence.Optional && rules[1].Occurence.Optional);
-
-
-
-                                                   }
-                                               }
-                                           }
-
-                                           return null;
-
-                                       }, 
-                                      (a) =>
-                                       {
-
-                                           return ("", "");
-
-                                       })
-
-                                   .Attribute(MemberAttributes.Public)
-                                   .CallBase("t".Var());
                               })
-                              .Ctor((f) =>
+
+                              .Fields(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (field, model) =>
                               {
-                                  f.Argument(() => "ParserRuleContext", "ctx")
-                                   .Attribute(MemberAttributes.Public)
-                                   .CallBase("ctx".Var());
+
+                                  if (ast.Name.Text == "transaction_ref")
+                                  {
+
+                                  }
+
+                                  field.Name(a => "_value")
+                                      .Attribute(MemberAttributes.Private)
+                                      .Type(GetType(ctx, model))
+                                      ;
+
+                                  //var p = model as TreeRuleItem;
+                                  //string template = p?.Origin?.Link.GetTemplate() ?? string.Empty;
+
+                                  //if (template == "ClassIdentifiers")
+                                  //{
+                                  //    field.Type(() => "AstTerminalIdentifier");
+                                  //}
+                                  //else
+                                  //{
+                                  //    field.Type(GetType(ctx, model));
+                                  //}
+
                               })
-                              
-                              .Ctor((f) =>
+
+                              .Ctors(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (ctor, model) =>
                               {
-                                  f.Argument(() => "Position", "position")
-                                   .Attribute(MemberAttributes.Public)
-                                   .CallBase("position".Var());
+
+                                  ctor.Argument(() => "ITerminalNode", "t")
+                                      .Argument(() =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+
+                                          if (p.Origin.IsTerminal)
+                                              return nameof(String);
+
+                                          return p.Origin.Type();
+
+
+                                      }, (model) => "value")
+                                      .Attribute(MemberAttributes.Public)
+                                      .CallBase("t".Var())
+                                      .Body(ctor =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+                                          string template = p?.Origin?.Link.GetTemplate() ?? string.Empty;
+                                          CodeExpression result = null;
+
+                                          if (template == "ClassIdentifiers")
+                                          {
+                                              result = "value.Value".Var();
+                                          }
+                                          else
+                                          {
+
+                                              string type = string.Empty;
+                                              if (p.Origin.IsTerminal)
+                                                  type = nameof(String);
+                                              else
+                                                  type = p.Origin.Type();
+
+                                              result = "value".Var();
+                                              if (type == nameof(String))
+                                                  result = result.Cast("AstTerminalString".AsType());
+
+                                          }
+
+                                          ctor.Statements.Assign("_value".Var(), result);
+
+                                      })
+                                      ;
                               })
+
+                              .Ctors(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (ctor, model) =>
+                              {
+
+                                  ctor.Argument(() => "ParserRuleContext", "ctx")
+                                      .Argument(() =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+
+                                          if (p.Origin.IsTerminal)
+                                              return nameof(String);
+
+                                          return p.Origin.Type();
+
+
+                                      }, (model) => "value")
+                                      .Attribute(MemberAttributes.Public)
+                                      .CallBase("ctx".Var())
+                                      .Body(ctor =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+                                          string template = p?.Origin?.Link.GetTemplate() ?? string.Empty;
+                                          CodeExpression result = null;
+
+                                          if (template == "ClassIdentifiers")
+                                          {
+                                              result = "value.Value".Var();
+                                          }
+                                          else
+                                          {
+
+                                              string type = string.Empty;
+                                              if (p.Origin.IsTerminal)
+                                                  type = nameof(String);
+                                              else
+                                                  type = p.Origin.Type();
+
+                                              result = "value".Var();
+                                              if (type == nameof(String))
+                                                  result = result.Cast("AstTerminalString".AsType());
+
+                                          }
+
+                                          ctor.Statements.Assign("_value".Var(), result);
+
+                                      })
+                                      ;
+                              })
+
+                              .Ctors(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (ctor, model) =>
+                              {
+
+                                  ctor.Argument(() => "Position", "position")
+                                      .Argument(() =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+
+                                          if (p.Origin.IsTerminal)
+                                              return nameof(String);
+
+                                          return p.Origin.Type();
+
+
+                                      }, (model) => "value")
+                                      .Attribute(MemberAttributes.Public)
+                                      .CallBase("position".Var())
+                                      .Body(ctor =>
+                                      {
+
+                                          var p = model as TreeRuleItem;
+                                          string template = p?.Origin?.Link.GetTemplate() ?? string.Empty;
+                                          CodeExpression result = null;
+
+                                          if (template == "ClassIdentifiers")
+                                          {
+                                              result = "value.Value".Var();
+                                          }
+                                          else
+                                          {
+
+                                              string type = string.Empty;
+                                              if (p.Origin.IsTerminal)
+                                                  type = nameof(String);
+                                              else
+                                                  type = p.Origin.Type();
+
+                                              result = "value".Var();
+                                              if (type == nameof(String))
+                                                  result = result.Cast("AstTerminalString".AsType());
+
+                                          }
+
+                                          ctor.Statements.Assign("_value".Var(), result);
+
+                                      })
+                                      ;
+                              })
+
+
+
                               .Method(method =>
                               {
                                   method
@@ -127,6 +268,39 @@ namespace Generate.Scripts
             });
 
         }
+
+        private static Func<string> GetType(Context ctx, object model)
+        {
+
+            Func<string> result = () => "AstRoot";
+
+            var p1 = model as TreeRuleItem;
+            string template = p1?.Origin?.Link.GetTemplate() ?? string.Empty;
+            if (template == "ClassIdentifiers")
+            {
+
+            }
+            else
+            {
+                var combinaisons = ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons");
+
+                if (combinaisons.Count() == 1)
+                {
+
+                    var p = model as TreeRuleItem;
+
+                    if (p.Origin.IsTerminal)
+                        result = () => "AstTerminalString";
+
+                    else
+                        result = () => p.Origin.Type();
+                }
+
+            }
+            return result;
+
+        }
+
 
     }
 

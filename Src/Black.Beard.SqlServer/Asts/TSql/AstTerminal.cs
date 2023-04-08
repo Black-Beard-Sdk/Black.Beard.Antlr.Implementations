@@ -39,5 +39,4 @@ namespace Bb.Asts.TSql
 
     }
 
-
 }

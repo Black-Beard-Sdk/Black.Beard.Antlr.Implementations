@@ -9,6 +9,7 @@ namespace Bb.Parsers
         public Context()
         {
             this._strategyKeyAvailables = new  HashSet<string>();
+            _variables = new Variables();
         }
 
 
@@ -64,7 +65,37 @@ namespace Bb.Parsers
             return _strategyKeyAvailables.Contains(result);
         }
 
+        public Variables Variables => _variables;
+
         private readonly HashSet<string> _strategyKeyAvailables;
+        private readonly Variables _variables;
 
     }
+
+    public class Variables
+    {
+
+        public Variables()
+        {
+            
+            _dic = new Dictionary<string, object>();
+
+        }
+
+
+        public object this[string key]
+        {
+            get { return _dic[key]; }
+            set { _dic[key] = value;}
+        }
+
+        public T Get<T>(string key)
+        {
+            return (T)_dic[key]; 
+        }
+
+        private readonly Dictionary<string, object> _dic;
+
+    }
+
 }

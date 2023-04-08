@@ -3224,7 +3224,7 @@ execute_statement
     ;
 
 execute_body_batch
-    : func_proc_name_server_database_schema (execute_statement_args)? SEMI?
+    : func_proc_name_server_database_schema execute_statement_args? SEMI?
     ;
 
 //https://docs.microsoft.com/it-it/sql/t-sql/language-elements/execute-transact-sql?view=sql-server-ver15
@@ -5777,17 +5777,20 @@ entity_name_for_parallel_dw_ref
     | schema_id DOT object_id
     ;
 
+
+func_proc_name_server_database_schema
+    : server_database_schema_function_ref
+    | func_proc_name_database_schema_ref
+    ;
+
 func_proc_name_database_schema_ref
     : database_schema_function_ref
     | schema_func_proc_ref
     ;
 
+server_database_schema_function_ref : server_id? DOT database_id? DOT schema_id? DOT function_id;
 database_schema_function_ref : database_id? DOT schema_id? DOT function_id;
-
-func_proc_name_server_database_schema
-    : server_id? DOT database_id? DOT schema_id? DOT function_id
-    | func_proc_name_database_schema_ref
-    ;
+schema_func_proc_ref : (schema_id DOT )? function_id;
 
 ddl_object
     : complete_table_ref
@@ -5795,9 +5798,11 @@ ddl_object
     ;
 
 full_column_name
-    : deleteed_inserted DOT column_id
+    : deleteed_inserted_column_id
     | full_column_ref
     ;
+
+deleteed_inserted_column_id : deleteed_inserted DOT column_id;
 
 full_column_ref
     : server_id? DOT schema_id? DOT table_id? DOT column_id
@@ -5827,8 +5832,6 @@ schema_view_ref : (schema_id DOT )? view_id;
 decimals : decimal (COMMA decimal)+;
 
 schema_type_ref : (schema_id DOT )? id_;
-
-schema_func_proc_ref : (schema_id DOT )? function_id;
 
 database_source_list_ref : (database_id DOT)? source_list_id;
 

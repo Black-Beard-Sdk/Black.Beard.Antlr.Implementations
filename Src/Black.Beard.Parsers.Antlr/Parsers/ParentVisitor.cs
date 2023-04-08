@@ -166,38 +166,38 @@ namespace Bb.Parsers
         }
 
 
-        private void ResolveInheritedClass(AstRule a, AstRule b)
-        {
+        //private void ResolveInheritedClass(AstRule a, AstRule b)
+        //{
 
-            var rules = b.GetRules().ToList();
+        //    var rules = b.GetRules().ToList();
 
-            foreach (var rule in rules)
-            {
+        //    foreach (var rule in rules)
+        //    {
 
-                if (_rules.TryGetValue(rule.Identifier.Text, out var v1))
-                {
-                    if (v1 is AstRule r1)
-                    {
+        //        if (_rules.TryGetValue(rule.Identifier.Text, out var v1))
+        //        {
+        //            if (v1 is AstRule r1)
+        //            {
                     
-                        var c2 = r1.Configuration.Config;
-                        if (c2.Generate)
-                        {
-                            if (c2.Inherit == null)
-                                c2.Inherit = new IdentifierConfig(@"""" + "Ast" + CodeHelper.FormatCsharp(a.Name.Text) + @"""");
-                        }
-                        else
-                        {
-                            ResolveInheritedClass(a, r1);
-                        }
-                    }
-                    else
-                    {
+        //                var c2 = r1.Configuration.Config;
+        //                if (c2.Generate)
+        //                {
+        //                    if (c2.Inherit == null)
+        //                        c2.Inherit = new IdentifierConfig(@"""" + "Ast" + CodeHelper.FormatCsharp(a.Name.Text) + @"""");
+        //                }
+        //                else
+        //                {
+        //                    ResolveInheritedClass(a, r1);
+        //                }
+        //            }
+        //            else
+        //            {
 
-                    }
-                }
-            }
+        //            }
+        //        }
+        //    }
 
-        }
+        //}
 
         public override void VisitRule(AstRule a)
         {
@@ -211,8 +211,10 @@ namespace Bb.Parsers
 
                 List<AstRule> references = a.Root.GetReferences(a);
                 if (references.Count == 1)
-                    ResolveInheritedClass(a, a);
-                
+                {
+                    // ResolveInheritedClass(a, a);
+                }
+
             }
 
             if (a.Alternatives.Count == 1 && a.ContainsOneTerminal)

@@ -11,10 +11,10 @@ namespace Bb.Asts
         public AstPrequel(ParserRuleContext ctx, AstBase item)
             : base(ctx)
         {
-            this.Child = item;
+            this.Rule = item;
         }
 
-        public AstBase Child { get; }
+        public AstBase Rule { get; }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]
@@ -33,24 +33,24 @@ namespace Bb.Asts
 
 
 
-        public override bool ContainsTerminals { get => this.Child?.ContainsTerminals ?? false; }
-        public override bool ContainsRules { get => this.Child?.ContainsRules ?? false; }
-        public override bool ContainsBlocks { get => this.Child?.ContainsBlocks ?? false; }
-        public override bool ContainsAlternatives { get => this.Child?.ContainsAlternatives ?? false; }
+        public override bool ContainsTerminals { get => this.Rule?.ContainsTerminals ?? false; }
+        public override bool ContainsRules { get => this.Rule?.ContainsRules ?? false; }
+        public override bool ContainsBlocks { get => this.Rule?.ContainsBlocks ?? false; }
+        public override bool ContainsAlternatives { get => this.Rule?.ContainsAlternatives ?? false; }
 
 
 
-        public override bool ContainsOneTerminal { get => Child?.ContainsOneTerminal ?? false; }
-        public override bool ContainsOneRule { get => this.Child?.ContainsOneRule ?? false; }
-        public override bool ContainsOneBlock { get => Child?.ContainsOneBlock ?? false; }
-        public override bool ContainsOneAlternative { get => this.Child?.ContainsOneAlternative ?? false; }
+        public override bool ContainsOneTerminal { get => Rule?.ContainsOneTerminal ?? false; }
+        public override bool ContainsOneRule { get => this.Rule?.ContainsOneRule ?? false; }
+        public override bool ContainsOneBlock { get => Rule?.ContainsOneBlock ?? false; }
+        public override bool ContainsOneAlternative { get => this.Rule?.ContainsOneAlternative ?? false; }
 
 
 
-        public override bool ContainsOnlyTerminals { get => this.Child?.ContainsOnlyTerminals ?? false; }
-        public override bool ContainsOnlyRules { get => this.Child?.ContainsOnlyRules ?? false; }
-        public override bool ContainsOnlyBlocks { get => this.Child?.ContainsOnlyBlocks ?? false; }
-        public override bool ContainsOnlyAlternatives { get => this.Child?.ContainsOnlyAlternatives ?? false; }
+        public override bool ContainsOnlyTerminals { get => this.Rule?.ContainsOnlyTerminals ?? false; }
+        public override bool ContainsOnlyRules { get => this.Rule?.ContainsOnlyRules ?? false; }
+        public override bool ContainsOnlyBlocks { get => this.Rule?.ContainsOnlyBlocks ?? false; }
+        public override bool ContainsOnlyAlternatives { get => this.Rule?.ContainsOnlyAlternatives ?? false; }
 
 
 
@@ -58,19 +58,19 @@ namespace Bb.Asts
 
         public override IEnumerable<AstRuleRef> GetRules()
         {
-            return Child.GetRules();
+            return Rule.GetRules();
         }
         public override IEnumerable<AstBlock> GetBlocks()
         {
-            return Child.GetBlocks();
+            return Rule.GetBlocks();
         }
         public override IEnumerable<AstTerminalText> GetTerminals()
         {
-            return Child.GetTerminals();
+            return Rule.GetTerminals();
         }
         public override IEnumerable<AstAlternative> GetAlternatives()
         {
-            return Child.GetAlternatives();
+            return Rule.GetAlternatives();
         }
 
 

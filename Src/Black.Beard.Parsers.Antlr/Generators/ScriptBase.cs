@@ -71,6 +71,7 @@ namespace Bb.Generators
 
         protected string TemplateSelector(AstRule ast, Context context)
         {
+
             var result = _templateSelector(ast, context);
 
             if (!context.StrategyKeyExists(result))

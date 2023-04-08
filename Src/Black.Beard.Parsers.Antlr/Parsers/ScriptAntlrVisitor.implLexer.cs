@@ -264,7 +264,10 @@ namespace Bb.Parsers
             var lexerCommands = context.lexerCommands();
             if (lexerCommands != null)
                 result.Commands =(AstLexerCommandList) VisitLexerCommands(lexerCommands);
-            
+
+            if (result.Rule.TerminalKind == TokenTypeEnum.Identifier)
+                result.TerminalKind = TokenTypeEnum.Identifier;
+
             return result;
 
         }
@@ -288,8 +291,13 @@ namespace Bb.Parsers
             var items = new AstLexerAlternativeList(context, lexerAltList.Length);
 
             foreach (var lexerAlt in lexerAltList)
-                items.Add((AstLexerAlternative)VisitLexerAlt(lexerAlt));
+            {
+                var v = (AstLexerAlternative)VisitLexerAlt(lexerAlt);
+                items.Add(v);
+                if (v.TerminalKind == TokenTypeEnum.Identifier)
+                    items.TerminalKind = TokenTypeEnum.Identifier;
 
+            }
             return items;
         }
 
@@ -458,7 +466,16 @@ namespace Bb.Parsers
             var lexerElements = context.lexerElement();
             var result = new AstLexerElementList(context, lexerElements.Length);
             foreach (var lexerElement in lexerElements)
-                result.Add(VisitLexerElement(lexerElement));
+            {
+                
+                var v = VisitLexerElement(lexerElement);
+                
+                if (v.TerminalKind == TokenTypeEnum.Identifier)
+                    result.TerminalKind = TokenTypeEnum.Identifier;
+
+                result.Add(v);
+
+            }
 
             return result;
 

@@ -22,7 +22,7 @@ namespace Bb.Asts
         public override void VisitRuleRef(AstRuleRef a)
         {
 
-            if (a.Identifier.Text == this._tofindText)
+            if (a.Name.Text == this._tofindText)
                 _list.Add(this._ToAdd);
 
             else

@@ -38,11 +38,10 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree");
 
-                    ns.CreateTypeFrom<AstRule>((ast, type) =>
+                    ns.CreateTypeFrom<AstRule>(ast => Generate(ast, context), null, (ast, type) =>
                     {
 
                         type.AddTemplateSelector(() => TemplateSelector(ast, context))
-                            .GenerateIf(() => Generate(ast, context))
                             .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                             .Attribute(TypeAttributes.Public)
                             .Inherit(() => GetInherit(ast, context))
@@ -151,11 +150,10 @@ namespace Generate.Scripts
                     })
                     ;
 
-                    ns.CreateTypeFrom<AstLexerRule>((ast, type) =>
+                    ns.CreateTypeFrom<AstLexerRule>(ast => !ast.IsFragment && ast.Configuration.Config.Kind == TokenTypeEnum.Constant, null, (ast, type) =>
                     {
 
                         type.AddTemplateSelector(() => "_")
-                            .GenerateIf(() => !ast.IsFragment && ast.Configuration.Config.Kind == TokenTypeEnum.Constant)
                             .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                             .Attribute(TypeAttributes.Public)
                             .Inherit(() => "AstTerminalKeyword")

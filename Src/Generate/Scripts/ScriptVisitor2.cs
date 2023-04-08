@@ -30,14 +30,14 @@ namespace Generate.Scripts
                 template.Namespace(Namespace, ns =>
                 {
                     ns.Using(Usings)
-                      .CreateOneType<AstLabeledAlt>((ast, type) =>
+                      .CreateOneType<AstLabeledAlt>(null, null, (ast, type) =>
                       {
                           type.Name(() => "IAstTSqlVisitor")
                           .IsInterface()
                           .Method(m =>
                           {
-                              m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Identifier.Text))
-                               .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text), "a")
+                              m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text))
+                               .Argument(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text), "a")
                               ;
                           });
                       });

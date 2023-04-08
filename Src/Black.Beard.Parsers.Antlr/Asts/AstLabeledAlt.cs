@@ -6,7 +6,7 @@ using System.Text;
 namespace Bb.Asts
 {
 
-    [DebuggerDisplay("{Rule} = {Identifier}")]
+    [DebuggerDisplay("{Rule} = {Name}")]
     public class AstLabeledAlt : AstBase
     {
 
@@ -14,11 +14,11 @@ namespace Bb.Asts
             : base(ctx)
         {
             this.Rule = rule;
-            this.Identifier = identifier;
+            this.Name = identifier;
         }
 
 
-        public AstIdentifier Identifier { get; }
+        public AstIdentifier Name { get; }
 
         public AstAlternative Rule { get; }
 
@@ -121,10 +121,10 @@ namespace Bb.Asts
 
             Rule.ToString(wrt);
 
-            if (Identifier != null)
+            if (Name != null)
             {
                 wrt.Append("        #");
-                Identifier.ToString(wrt);
+                Name.ToString(wrt);
             }
         }
     }

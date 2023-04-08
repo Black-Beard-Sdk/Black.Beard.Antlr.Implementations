@@ -79,7 +79,7 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLabeledAlt(AstLabeledAlt a)
         {
 
-            if (a.Identifier != null)
+            if (a.Name != null)
             {
 
 
@@ -201,8 +201,8 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLabeledElement(AstLabeledElement a)
         {
             var u = a.Occurence;
-            var result = a.Right.Accept(this);
-            result.Label = a.Left.Text;
+            var result = a.Rule.Accept(this);
+            result.Label = a.Name.Text;
             return result;
 
         }
@@ -465,7 +465,7 @@ namespace Bb.Parsers
                 Origin = a,
             };
 
-            var r = a.Value.Accept(this);
+            var r = a.Rule.Accept(this);
             if (r != null)
                 result.Add(r);
 

@@ -14,7 +14,7 @@ namespace Bb.Generators
         where T : AstBase
     {
 
-        public ModelTypeFrom(ModelNamespace modelNamespace, Action<T, ModelTypeFrom<T>> action)
+        public ModelTypeFrom(ModelNamespace modelNamespace, Func<T, bool> testGenerateIf, Action<T> prepareAction, Action<T, ModelTypeFrom<T>> action)
             : base(modelNamespace)
         {
             _parents = new List<Func<string>>();
@@ -22,6 +22,8 @@ namespace Bb.Generators
             _fields = new List<ModelField>();
             _properties = new List<ModelProperty>();
             this._attributes = TypeAttributes.Class | TypeAttributes.Public;
+            this.testGenerateIf = testGenerateIf;
+            this._prepareAction = prepareAction;
             this._action = action;
         }
 
@@ -99,6 +101,13 @@ namespace Bb.Generators
             var m = new ModelConstructor(this) { Test = test };
             this._methods.Add(m);
             action(m);
+            return this;
+        }
+        public ModelTypeFrom<T> Ctors(Func<IEnumerable<object>> items, Action<ModelConstructor, object> action)
+        {
+            Action<ModelMethod, object> a = (c, d) => action((ModelConstructor)c, d);
+            var m = new ModelConstructor(this) { Items = items, Action = a };
+            this._methods.Add(m);
             return this;
         }
 
@@ -204,7 +213,7 @@ namespace Bb.Generators
             if (ast is T a)
             {
 
-                var b = new ModelTypeFrom<T>(_modelNamespace, _action);
+                var b = new ModelTypeFrom<T>(_modelNamespace, testGenerateIf, _prepareAction, _action);
                 var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
                 if (t)
                 {
@@ -219,13 +228,17 @@ namespace Bb.Generators
         private bool RunGeneration(Context ctx, T ast, CodeNamespace @namespace, CodeTypeDeclaration type, out CodeTypeDeclaration typeResult)
         {
 
+            var result = testGenerateIf != null ? testGenerateIf(ast) : true;
+
+            if (_prepareAction != null)
+                _prepareAction(ast);
+
             typeResult = null;
             _action(ast, this);
 
             if (this._templateSelectoraction != null)
                 ctx.Strategy = this._templateSelectoraction();
 
-            var result = _generateIf != null ? _generateIf() : true;
 
             if (result)
             {
@@ -369,12 +382,6 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelTypeFrom<T> GenerateIf(Func<bool> action)
-        {
-            this._generateIf = action;
-            return this;
-        }
-
         protected internal List<Func<string>> _parents { get; }
 
         private readonly List<ModelMethod> _methods;
@@ -388,7 +395,8 @@ namespace Bb.Generators
         internal bool _justOne;
         private CodeTypeDeclaration _type;
         private Func<string> _templateSelectoraction;
-        private Func<bool> _generateIf;
+        private Func<T, bool> testGenerateIf;
+        private readonly Action<T> _prepareAction;
         private TypeAttributes _attributes;
 
         protected internal Func<string> _nameOfClass { get; set; }

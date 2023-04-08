@@ -37,7 +37,6 @@ namespace Bb.ParsersConfiguration.Ast
             foreach (AstRule rule in ast.Rules.Rules)
                 this.Append(rule);
 
-
             return this;
 
         }

@@ -19,7 +19,7 @@ namespace Generate.Scripts
             var config = ast.Configuration.Config;
 
             if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstTerminal<string>\"");
+                config.Inherit = new IdentifierConfig("\"AstTerminalString\"");
 
             return config.Inherit.Text;
 
@@ -40,11 +40,10 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
 
-                      .CreateTypeFrom<AstRule>((ast, type) =>
+                      .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {
 
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
                               .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                               .Inherit(() => GetInherit(ast, ctx))
@@ -90,11 +89,6 @@ namespace Generate.Scripts
                               .Make(t =>
                               {
 
-                                  if (ast.Name.Text == "local_drive" /* "empty_statement"*/ /*"star_asterisk"*/)
-                                  {
-
-                                  }
-
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
@@ -104,15 +98,26 @@ namespace Generate.Scripts
                                   {
 
 
-                                        var o = alt.Origin;
-                                        if (o != null && o.Link is AstLexerRule astI)
-                                        {
+                                        //var o = alt.Origin;
+                                        //if (o != null && o.Link is AstLexerRule astI)
+                                        //{
 
-                                          if (astI.TerminalKind == TokenTypeEnum.Ponctuation)
-                                              continue;
+                                        //  //if (astI.TerminalKind == TokenTypeEnum.Real)
+                                        //  //    continue;
 
-                                        
-                                      }
+                                        //  //if (astI.TerminalKind == TokenTypeEnum.Ponctuation)
+                                        //  //    continue;
+
+                                        //  //if (astI.TerminalKind == TokenTypeEnum.Operator)
+                                        //  //    continue;
+
+                                        //  //if (astI.TerminalKind == TokenTypeEnum.Pattern)
+                                        //  //    continue;
+
+                                        //  //if (astI.TerminalKind == TokenTypeEnum.Identifier)
+                                        //  //    continue;
+
+                                        //}
 
 
                                       var n1 = CodeHelper.FormatCsharp(alt.Name);
@@ -126,20 +131,23 @@ namespace Generate.Scripts
                                         .BuildDocumentation(alt, ctx);
 
                                       if (alt.Count > 0)
+                                      {
                                           foreach (var itemAlt in alt)
                                               itemAlt.BuildStaticMethod(ast, method, arguments);
 
-                                      var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+                                          var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
 
-                                      if (_h.Add(noDuplicateKey))
-                                      {
-                                          List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
-                                          foreach (var itemArg in arguments)
-                                              args.Add(itemArg.Var());
+                                          if (_h.Add(noDuplicateKey))
+                                          {
+                                              List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
+                                              foreach (var itemArg in arguments)
+                                                  args.Add(itemArg.Var());
 
-                                          methods.Add(method);
-                                          var ret = CodeHelper.Call(t1, n1, args.ToArray());
-                                          method.Statements.Return(ret);
+                                              methods.Add(method);
+                                              var ret = CodeHelper.Call(t1, n1, args.ToArray());
+                                              method.Statements.Return(ret);
+
+                                          }
 
                                       }
 

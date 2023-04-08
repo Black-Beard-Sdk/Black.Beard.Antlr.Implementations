@@ -5133,11 +5133,23 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitEntity_name_for_parallel_dw_ref([NotNull] TSqlParser.Entity_name_for_parallel_dw_refContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.func_proc_name_server_database_schema"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFunc_proc_name_server_database_schema([NotNull] TSqlParser.Func_proc_name_server_database_schemaContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.func_proc_name_database_schema_ref"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFunc_proc_name_database_schema_ref([NotNull] TSqlParser.Func_proc_name_database_schema_refContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.server_database_schema_function_ref"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitServer_database_schema_function_ref([NotNull] TSqlParser.Server_database_schema_function_refContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.database_schema_function_ref"/>.
 	/// </summary>
@@ -5145,11 +5157,11 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDatabase_schema_function_ref([NotNull] TSqlParser.Database_schema_function_refContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.func_proc_name_server_database_schema"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.schema_func_proc_ref"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFunc_proc_name_server_database_schema([NotNull] TSqlParser.Func_proc_name_server_database_schemaContext context);
+	Result VisitSchema_func_proc_ref([NotNull] TSqlParser.Schema_func_proc_refContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.ddl_object"/>.
 	/// </summary>
@@ -5162,6 +5174,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitFull_column_name([NotNull] TSqlParser.Full_column_nameContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.deleteed_inserted_column_id"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeleteed_inserted_column_id([NotNull] TSqlParser.Deleteed_inserted_column_idContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.full_column_ref"/>.
 	/// </summary>
@@ -5210,12 +5228,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitSchema_type_ref([NotNull] TSqlParser.Schema_type_refContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.schema_func_proc_ref"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitSchema_func_proc_ref([NotNull] TSqlParser.Schema_func_proc_refContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.database_source_list_ref"/>.
 	/// </summary>

@@ -37,11 +37,10 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime.Tree")
                       .Using("Bb.Parsers")
 
-                      .CreateTypeFrom<AstRule>((ast, type) =>
+                      .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {
 
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
                               .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                               .Inherit(() => GetInherit(ast, ctx))

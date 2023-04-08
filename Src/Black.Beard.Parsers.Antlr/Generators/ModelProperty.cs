@@ -80,42 +80,50 @@ namespace Bb.Generators
             if (Test != null && !Test())
                 return;
 
-            var _n = this._nameOfProperty(model);
-
-            CodeTypeReference type = null;
-            if (_actionType != null)
+            if (this._nameOfProperty != null)
             {
-                var t1 = _actionType();
 
-                if (t1 is string s)
-                    type = new CodeTypeReference(s);
+                var _n = this._nameOfProperty(model);
 
-                else if (t1 is Type i)
-                    type = new CodeTypeReference(i);
+                CodeTypeReference type = null;
+                if (_actionType != null)
+                {
+                    var t1 = _actionType();
+
+                    if (t1 is string s)
+                        type = new CodeTypeReference(s);
+
+                    else if (t1 is Type i)
+                        type = new CodeTypeReference(i);
+                }
+                else
+                    type = new CodeTypeReference(typeof(object));
+
+                CodeMemberProperty property = new CodeMemberProperty()
+                {
+                    Name = _n,
+                    Attributes = _attributes,
+                    Type = type,
+                    HasGet = _hasGet,
+                    HasSet = _hasSet,
+                };
+
+                GenerateDocumentation(property, ctx);
+
+                if (_getAction != null)
+                    _getAction(property.GetStatements);
+
+                if (_setAction != null)
+                    _setAction(property.SetStatements);
+
+                if (!MemberExists(t.Members, property))
+                    t.Members.Add(property);
+
             }
             else
-                type = new CodeTypeReference(typeof(object));
-
-            CodeMemberProperty property = new CodeMemberProperty()
             {
-                Name = _n,
-                Attributes = _attributes,
-                Type = type,
-                HasGet = _hasGet,
-                HasSet = _hasSet,
-            };
-
-            GenerateDocumentation(property, ctx);
-
-            if (_getAction != null)
-                _getAction(property.GetStatements);
-
-            if (_setAction != null)
-                _setAction(property.SetStatements);
-
-            if (!MemberExists(t.Members, property))
-                t.Members.Add(property);
-
+                Console.WriteLine("the property has no name");
+            }
         }
 
 
@@ -129,7 +137,9 @@ namespace Bb.Generators
         private Action<CodeStatementCollection> _setAction;
 
         public Func<IEnumerable<object>> Items { get; internal set; }
+
         public Action<ModelProperty, object> Action { get; internal set; }
+        
         public Action<ModelProperty> Action2 { get; internal set; }
 
         protected Action<Documentation> _actionDocumentation;

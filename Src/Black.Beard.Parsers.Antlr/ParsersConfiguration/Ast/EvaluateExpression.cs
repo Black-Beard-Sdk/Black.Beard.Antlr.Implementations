@@ -243,7 +243,7 @@ namespace Bb.ParsersConfiguration.Ast
             foreach (var item in _rule.GetRules().ToList())
             {
 
-                var result = a.List.Find(item.Identifier.Text);
+                var result = a.List.Find(item.Name.Text);
 
                 if (result && a.IsNot)
                     return false;

@@ -50,7 +50,6 @@ namespace Bb.ParsersConfiguration.Ast
 
             }
 
-
         }
 
         internal void Merge(TemplateSetting setting)

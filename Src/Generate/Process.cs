@@ -25,6 +25,9 @@ namespace Generate
             if (antlrParser.Exists)
             {
 
+                string namespaceParser = "Bb.Parsers.TSql";
+                string namespaceModels = "Bb.Asts.TSql";
+
 
                 ctx.RootAst = LoadGrammar(ctx, antlrParser);
                 ctx.Configuration = LoadConfiguration(ctx);
@@ -34,7 +37,7 @@ namespace Generate
 
                 new ScriptList("Models")
                 {
-                    Namespace = "Bb.Asts.TSql",
+                    Namespace = namespaceModels,
                 }
                 .Using("System", "Bb.Parsers")
 
@@ -54,36 +57,36 @@ namespace Generate
                 })
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
                 .Add<ScriptClassVisitorDefaults>("ScriptTSqlVisitor.Defaults", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
                 .Add<ScriptClassVisitorIdentifier>("ScriptTSqlVisitor.Identifiers", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
                 .Add<ScriptClassVisitorList>("ScriptTSqlVisitor.Lists", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
                 .Add<ScriptClassVisitorTerminalAlias>("ScriptTSqlVisitor.Terminals", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
                 .Add<ScriptClassVisitorWithProperties>("ScriptTSqlVisitor.WithProperties", a =>
                 {
-                    a.Namespace = "Bb.Parsers.TSql";
+                    a.Namespace = namespaceParser;
                     a.Using("Bb.Asts.TSql");
                 })
 
-                .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = "Bb.Parsers.TSql")
+                .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = namespaceParser)
                 //.Add<ScriptClassToString>()
 
                 .Add<ScriptVisitor1>("IAstTSqlVisitor1")

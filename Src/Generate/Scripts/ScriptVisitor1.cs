@@ -28,10 +28,9 @@ namespace Generate.Scripts
                 template.Namespace(Namespace, ns =>
                 {
                     ns.Using(Usings)
-                    .CreateOneType<AstRule>((ast, type) =>
+                    .CreateOneType<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                     {
                         type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                            .GenerateIf(() => Generate(ast, ctx))
                             .Name(() => "IAstTSqlVisitor")
                             .IsInterface()
                             .Method(m =>

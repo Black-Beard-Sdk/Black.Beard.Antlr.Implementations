@@ -57,7 +57,7 @@ namespace Bb.Parsers
 
 
                 foreach (var prequel in result.Prequels)
-                    if (prequel.Child is AstOptionList l)
+                    if (prequel.Value is AstOptionList l)
                         foreach (var option in l)
                             if (option.Key.ResolveName() == "tokenVocab")
                                 _lexerList.Add(option.Value.ResolveName());

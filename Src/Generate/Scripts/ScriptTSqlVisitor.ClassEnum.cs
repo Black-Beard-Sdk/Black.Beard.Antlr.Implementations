@@ -39,10 +39,9 @@ namespace Generate.Scripts
                         "Antlr4.Runtime.Tree",
                         "System.Collections"
                       )
-                      .CreateOneType<AstRule>((ast, type) =>
+                      .CreateOneType<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Name(() => "ScriptTSqlVisitor")
 
                               .Method(m =>

@@ -58,6 +58,10 @@ namespace Bb.Asts
             visitor.VisitElementList(this);
         }
 
+        public override string ResolveName()
+        {
+            return base.ResolveName();
+        }
 
         [System.Diagnostics.DebuggerStepThrough]
         [System.Diagnostics.DebuggerNonUserCode]

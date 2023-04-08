@@ -1,5 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Bb.ParsersConfiguration.Ast;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Bb.Asts
 {
@@ -14,6 +16,9 @@ namespace Bb.Asts
         {
 
             this.Value = value;
+
+            if (value.TerminalKind == TokenTypeEnum.Identifier) 
+                this.TerminalKind = TokenTypeEnum.Identifier;
 
             if (value.Count == 1)
             {
@@ -31,10 +36,29 @@ namespace Bb.Asts
                         if (IsLetters(v1))
                             this.TerminalKind = TokenTypeEnum.Constant;                        
                     }
+                    else if (txt.StartsWith("[") && txt.EndsWith("]") && txt.Length > 1)
+                    {
+
+                        txt = txt.Substring(1, txt.Length - 2).ToLower();
+
+                        if (EvaluateIsDynamic(txt))
+                            this.TerminalKind = TokenTypeEnum.Identifier;
+
+                    }
 
                 }
 
             }
+
+        }
+
+        private static bool EvaluateIsDynamic(string text)
+        {
+            string pattern = @"\w-|-\w";
+            string input = @"";
+            RegexOptions options = RegexOptions.IgnoreCase;
+
+            return Regex.IsMatch(text, pattern, options);
 
         }
 

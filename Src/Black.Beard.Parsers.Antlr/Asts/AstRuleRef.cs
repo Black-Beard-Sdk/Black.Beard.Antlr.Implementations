@@ -6,17 +6,17 @@ using System.Text;
 namespace Bb.Asts
 {
 
-    [DebuggerDisplay("{Identifier}")]
+    [DebuggerDisplay("{Name}")]
     public class AstRuleRef : AstBase
     {
 
         public AstRuleRef(ParserRuleContext ctx, AstIdentifier identifier)
             : base(ctx)
         {
-            this.Identifier = identifier;
+            this.Name = identifier;
         }
 
-        public AstIdentifier Identifier { get; }
+        public AstIdentifier Name { get; }
 
         public AstBase Action { get; internal set; }
 
@@ -26,7 +26,7 @@ namespace Bb.Asts
 
         public override string ResolveName()
         {
-            return Identifier.Text;
+            return Name.Text;
         }
 
         public override Occurence ResolveOccurence()
@@ -80,12 +80,12 @@ namespace Bb.Asts
         {
 
             if (Action != null)
-                Identifier.ToString(wrt);
+                Name.ToString(wrt);
 
             if (Option != null)
                 Option.ToString(wrt);
 
-            Identifier.ToString(wrt);
+            Name.ToString(wrt);
 
         }
 

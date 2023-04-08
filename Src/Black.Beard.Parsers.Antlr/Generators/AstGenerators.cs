@@ -61,7 +61,7 @@ namespace Bb.Generators
                 IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
                 tw.Write("#nullable disable");
                 tw.WriteLine();
-                tw.Write("// Generate by " + g.Name);
+                tw.Write("// Generate by " + g.Name + " : " + DateTime.Now.ToString("D"));
                 tw.WriteLine();
                 _provider.GenerateCodeFromCompileUnit(g.CompileUnit, tw, _options);
                 tw.Close();

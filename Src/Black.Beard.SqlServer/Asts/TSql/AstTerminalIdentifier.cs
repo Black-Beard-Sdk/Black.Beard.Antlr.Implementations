@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Bb.Asts.TSql
 {
 
-    public class AstTerminalIdentifier : AstRuleList<AstTerminal<string>>
+    public class AstTerminalIdentifier : AstRule
     {
 
         public AstTerminalIdentifier(ITerminalNode n, params AstRoot[] items)
@@ -29,18 +29,18 @@ namespace Bb.Asts.TSql
 
         public void Add(AstRoot item)
         {
-            if (item is AstTerminal<string> a)
-                base.Add(a);
+            //if (item is AstTerminal<string> a)
+            //    base.Add(a);
 
-            else if (item is AstRuleList<AstTerminal<string>> b)
-            {
-                foreach (var item2 in b)
-                    base.Add(item2);
-            }
-            else
-            {
+            //else if (item is AstRuleList<AstTerminal<string>> b)
+            //{
+            //    foreach (var item2 in b)
+            //        base.Add(item2);
+            //}
+            //else
+            //{
 
-            }
+            //}
 
         }
 

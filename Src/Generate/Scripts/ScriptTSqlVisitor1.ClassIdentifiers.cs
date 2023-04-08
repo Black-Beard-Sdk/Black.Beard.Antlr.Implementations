@@ -1,8 +1,10 @@
-﻿using Bb.Asts;
+﻿using Antlr4.Runtime.Dfa;
+using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
 using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
+using System.Xml.Linq;
 
 namespace Generate.Scripts
 {
@@ -17,7 +19,7 @@ namespace Generate.Scripts
                 config.Inherit = new IdentifierConfig("\"AstRoot\"");
 
             return config.Inherit.Text;
-            
+
         }
 
         public override string StrategyTemplateKey => "ClassIdentifiers";
@@ -37,10 +39,9 @@ namespace Generate.Scripts
                         "Antlr4.Runtime.Tree",
                         "System.Collections"
                       )
-                      .CreateOneType<AstRule>((ast, type) =>
+                      .CreateOneType<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Name(() => "ScriptTSqlVisitor")
 
                               .Method(m =>
@@ -52,28 +53,7 @@ namespace Generate.Scripts
                                    .Documentation(c => c.Summary(() => ast.ToString()))
                                    .Body(b =>
                                    {
-
-
-                                       var astChild = ast.GetRules().FirstOrDefault();
-                                       var t1 = "IList<IParseTree>".AsType();
-                                       b.Statements.DeclareAndInitialize("source", t1, "context".Var().Property("children"));
-
-                                       var type = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
-                                       b.Statements.DeclareAndInitialize("list", type, type.Create("context".Var()));
-                                       b.Statements.ForEach("IParseTree".AsType(), "item", "source", stm =>
-                                       {
-                                           var v1 = "AstRoot".AsType();
-                                           stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
-                                           stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
-                                           {
-                                               s.Call("list".Var(), "Add", "acceptResult".Var());
-                                           }
-                                           );
-                                       });
-                                       b.Statements.Return("list".Var());
-
-
-
+                                       GenerateCodeForIdentifierVisitor.GetExpression(ast, b.Statements);
                                    });
                               })
 
@@ -84,7 +64,7 @@ namespace Generate.Scripts
 ;
 
         }
-              
+
     }
 
 

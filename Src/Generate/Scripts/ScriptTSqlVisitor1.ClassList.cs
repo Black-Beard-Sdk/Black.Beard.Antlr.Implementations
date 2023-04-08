@@ -24,7 +24,7 @@ namespace Generate.Scripts
 
                     //var pp = astChilds.Where(c => c.ResolveName() == ast.Name.Text).Count();
 
-                    cls = astChild.Identifier.Text;
+                    cls = astChild.Name.Text;
                 }
                 else
                 {
@@ -56,10 +56,9 @@ namespace Generate.Scripts
                         "Antlr4.Runtime.Tree",
                         "System.Collections"
                       )
-                      .CreateOneType<AstRule>((ast, type) =>
+                      .CreateOneType<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                              .GenerateIf(() => Generate(ast, ctx))
                               .Name(() => "ScriptTSqlVisitor")
 
                               .Method(m =>
@@ -74,9 +73,9 @@ namespace Generate.Scripts
 
                                        var astChild = ast.GetRules().FirstOrDefault();
                                        string cls;
-                                       if (astChild?.Identifier != null)
+                                       if (astChild?.Name != null)
                                        {
-                                           cls = astChild.Identifier.Text;
+                                           cls = astChild.Name.Text;
 
                                            var t = "TSqlParser." + CodeHelper.FormatCamelUpercase(cls) + "Context";
                                            var t1 = t.AsType();
@@ -87,7 +86,7 @@ namespace Generate.Scripts
                                            b.Statements.DeclareAndInitialize("list", type, type.Create("context".Var(), "source".Var().Field("Length")));
                                            b.Statements.ForEach(t.AsType(), "item", "source", stm =>
                                            {
-                                               var v1 = ("Ast" + CodeHelper.FormatCsharp(astChild.Identifier.Text)).AsType();
+                                               var v1 = ("Ast" + CodeHelper.FormatCsharp(astChild.Name.Text)).AsType();
                                                stm.DeclareAndInitialize("acceptResult", v1, "item".Var().Call("Accept", CodeHelper.This()).Cast(v1));
                                                stm.If("acceptResult".Var().IsNotEqual(CodeHelper.Null()), s =>
                                                {

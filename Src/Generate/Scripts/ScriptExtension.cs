@@ -2,14 +2,38 @@
 using Bb.Generators;
 using Bb.Parsers;
 using System.CodeDom;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Generate.Scripts
 {
     public static class ScriptExtension
     {
+
+
+        public static string GetTemplate(this AstBase ast)
+        {
+
+            if (ast != null)
+            {
+                if (ast is AstRule r)
+                {
+                    var c = r?.Configuration?.Config;
+                    if (c != null)
+                    {
+                        if (c.TemplateSetting != null)
+                            return c.TemplateSetting.TemplateName;
+                        else if (c.CalculatedTemplateSetting != null)
+                            return c.CalculatedTemplateSetting.Setting.TemplateName;
+                    }
+                }
+
+            }
+
+
+
+            return string.Empty;
+
+        }
 
         public static string Type(this AstBase ast)
         {
@@ -62,10 +86,10 @@ namespace Generate.Scripts
         {
             string _name;
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
+                _name = l.Name.ResolveName();
 
             if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
+                _name = l2.Name.ResolveName();
 
             else
                 _name = (ast as AstBase).ResolveName();
@@ -79,10 +103,10 @@ namespace Generate.Scripts
         {
             string _name;
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
+                _name = l.Name.ResolveName();
 
             if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
+                _name = l2.Name.ResolveName();
 
             else
                 _name = (ast as AstBase).ResolveName();
@@ -96,10 +120,10 @@ namespace Generate.Scripts
         {
             string _name;
             if (ast is AstRuleRef r && r.Parent is AstAtom a && a.Parent is AstLabeledElement l)
-                _name = l.Left.ResolveName();
+                _name = l.Name.ResolveName();
 
             if (ast is AstTerminal t && t.Parent is AstAtom a2 && a2.Parent is AstLabeledElement l2)
-                _name = l2.Left.ResolveName();
+                _name = l2.Name.ResolveName();
 
             else
                 _name = (ast as AstBase).ResolveName();
@@ -190,7 +214,7 @@ namespace Generate.Scripts
                 if (rule != null)
                 {
 
-                    var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Identifier.Text) as AstRule;
+                    var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
 
                     if (ru1 != null)
                     {
@@ -222,7 +246,7 @@ namespace Generate.Scripts
             List<TreeRuleItem> _results = new List<TreeRuleItem>();
 
             foreach (var alternative in ast.Alternatives)
-                _results.AddRange( alternative.ResolveAllCombinations());
+                _results.AddRange(alternative.ResolveAllCombinations());
 
             return _results;
 
@@ -237,7 +261,7 @@ namespace Generate.Scripts
             if (rule != null)
             {
 
-                var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Identifier.Text) as AstRule;
+                var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
 
                 if (ru1 != null)
                 {
@@ -330,6 +354,26 @@ namespace Generate.Scripts
             return sb.ToString();
 
         }
+
+        public static bool ContainsTerminalIdentifier(this AstBase ast)
+        {
+
+            if (ast.TerminalKind == TokenTypeEnum.Identifier)
+                return true;
+
+            if (ast != ast.Link
+                && ast.Link != null
+                && ContainsTerminalIdentifier(ast.Link))
+                return true;
+
+            foreach (var item in ast.GetAllItems())
+                if (ContainsTerminalIdentifier(item))
+                    return true;
+
+            return false;
+
+        }
+
 
         public static CodeMemberMethod AsMethod(this string name, CodeTypeReference type, MemberAttributes attributes)
         {

@@ -132,9 +132,9 @@ namespace Bb.Parsers
 
         public void VisitLabeledAlt(AstLabeledAlt a)
         {
-            a.Identifier?.Accept(this);
+            a.Name?.Accept(this);
             a.Rule?.Accept(this);
-            if (a.Identifier != null)
+            if (a.Name != null)
                 _items.Add(a);
 
         }
@@ -187,7 +187,7 @@ namespace Bb.Parsers
             e = a.ContainsOnlyRules;
             e = a.ContainsOnlyTerminals;
 
-            a.Identifier?.Accept(this);
+            a.Name?.Accept(this);
             a.Action?.Accept(this);
             a.Option?.Accept(this);
         }
@@ -259,8 +259,8 @@ namespace Bb.Parsers
         public void VisitLabeledElement(AstLabeledElement a)
         {
 
-            a.Left.Accept(this);
-            a.Right.Accept(this);
+            a.Name.Accept(this);
+            a.Rule.Accept(this);
 
 
         }
@@ -283,9 +283,6 @@ namespace Bb.Parsers
 
             a.Key?.Accept(this);
             a.Value?.Accept(this);
-
-
-
         }
 
         public void VisitOptionList(AstOptionList a)
@@ -309,7 +306,7 @@ namespace Bb.Parsers
         public void VisitPrequel(AstPrequel a)
         {
 
-            a.Child?.Accept(this);
+            a.Rule?.Accept(this);
 
 
 
@@ -318,7 +315,7 @@ namespace Bb.Parsers
         public void VisitPrequelConstruct(AstPrequelConstruct a)
         {
 
-            a.Child?.Accept(this);
+            a.Value?.Accept(this);
 
 
 
@@ -340,8 +337,6 @@ namespace Bb.Parsers
             foreach (var item in a)
                 item.Accept(this);
 
-
-
         }
 
         public void VisitRuleAction(AstRuleAction a)
@@ -349,8 +344,6 @@ namespace Bb.Parsers
 
             a.Action?.Accept(this);
             a.Name?.Accept(this);
-
-
 
         }
 
@@ -363,12 +356,8 @@ namespace Bb.Parsers
 
         public void VisitRuleModifierList(AstRuleModifierList a)
         {
-
             foreach (var item in a)
                 item.Accept(this);
-
-
-
         }
 
         public void VisitRulesList(AstRulesList a)
@@ -381,9 +370,6 @@ namespace Bb.Parsers
         {
             a.Options?.Accept(this);
             a.Value?.Accept(this);
-
-
-
         }
 
         public void VisitTerminalText(AstTerminalText a)

@@ -10,22 +10,22 @@ namespace Bb.Asts
         public AstNot(ParserRuleContext ctx, AstBase value)
             : base(ctx)
         {
-            this.Value = value;
+            this.Rule = value;
         }
 
-        public AstBase Value { get; }
+        public AstBase Rule { get; }
 
-        public override bool IsTerminal { get => Value.IsTerminal; }
-        public override bool IsRule { get => Value.IsRule; }
+        public override bool IsTerminal { get => Rule.IsTerminal; }
+        public override bool IsRule { get => Rule.IsRule; }
 
-        public override bool ContainsOneRule => Value.ContainsOneRule;
-        public override bool ContainsOneTerminal => Value.ContainsOneTerminal;
+        public override bool ContainsOneRule => Rule.ContainsOneRule;
+        public override bool ContainsOneTerminal => Rule.ContainsOneTerminal;
 
         public override bool ContainsOnlyRules
         {
             get
             {
-                return Value.ContainsOnlyRules;
+                return Rule.ContainsOnlyRules;
             }
         }
 
@@ -33,7 +33,7 @@ namespace Bb.Asts
         {
             get
             {
-                return Value.ContainsOnlyTerminals;
+                return Rule.ContainsOnlyTerminals;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Bb.Asts
         {
             get
             {
-                return Value.ContainsTerminals;
+                return Rule.ContainsTerminals;
             }
         }
 
@@ -49,7 +49,7 @@ namespace Bb.Asts
 
         public override string ResolveName()
         {
-            return Value.ResolveName();
+            return Rule.ResolveName();
         }
 
         [System.Diagnostics.DebuggerStepThrough]
@@ -70,12 +70,12 @@ namespace Bb.Asts
 
         public override AstTerminalText GetTerminal()
         {
-            return Value?.GetTerminal();
+            return Rule?.GetTerminal();
         }
 
         public override IEnumerable<AstTerminalText> GetTerminals()
         {
-            foreach (var item in Value.GetTerminals())
+            foreach (var item in Rule.GetTerminals())
                 if (item != null)
                     yield return item;
 
@@ -83,7 +83,7 @@ namespace Bb.Asts
 
         public override IEnumerable<AstRuleRef> GetRules()
         {
-            foreach (var item in Value.GetRules())
+            foreach (var item in Rule.GetRules())
                 if (item != null)
                     yield return item;
         }
@@ -92,7 +92,7 @@ namespace Bb.Asts
         public override void ToString(Writer wrt)
         {
             wrt.Append("~");
-            Value.ToString(wrt);
+            Rule.ToString(wrt);
         }
 
     }

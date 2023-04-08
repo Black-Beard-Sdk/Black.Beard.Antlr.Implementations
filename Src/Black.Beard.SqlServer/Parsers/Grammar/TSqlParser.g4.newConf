@@ -442,7 +442,7 @@ RULE empty_statement
 	 : SEMI
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -558,7 +558,7 @@ RULE alter_assembly_from_clause_start
 	 : FROM
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -589,7 +589,7 @@ RULE alter_assembly_drop
 	 : DROP
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -674,7 +674,7 @@ RULE network_file_start
 	 : DOUBLE_BACK_SLASH
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -695,7 +695,7 @@ RULE file_directory_path_separator
 	 : BACKSLASH
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -715,7 +715,7 @@ RULE local_drive
 	 : DISK_DRIVE
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -736,7 +736,7 @@ RULE multiple_local_file_start
 	 : SINGLE_QUOTE
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -3513,7 +3513,7 @@ RULE mirroring_partner
 	 : PARTNER
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -3523,7 +3523,7 @@ RULE mirroring_witness
 	 : WITNESS
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -3533,7 +3533,7 @@ RULE witness_partner_equal
 	 : EQUAL
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -4174,7 +4174,7 @@ RULE execute_statement
 
 RULE execute_body_batch 
 //** execute_body_batch
-	 : func_proc_name_server_database_schema  (execute_statement_args)?  SEMI?
+	 : func_proc_name_server_database_schema  execute_statement_args?  SEMI?
   **// 
 	GENERATE
 	INHERIT "AstRule"
@@ -5028,7 +5028,7 @@ RULE parameter
 	 : PLACEHOLDER
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -5411,7 +5411,7 @@ RULE star_asterisk
 	 : STAR
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -6525,7 +6525,7 @@ RULE entity_name
 
 RULE func_proc_name_server_database_schema 
 //** func_proc_name_server_database_schema
-	 : server_id?  DOT  database_id?  DOT  schema_id?  DOT  function_id
+	 : server_database_schema_function_ref
 	 | func_proc_name_database_schema_ref
   **// 
 	GENERATE
@@ -6547,7 +6547,7 @@ RULE ddl_object
 
 RULE full_column_name 
 //** full_column_name
-	 : deleteed_inserted  DOT  column_id
+	 : deleteed_inserted_column_id
 	 | full_column_ref
   **// 
 	GENERATE
@@ -17704,7 +17704,7 @@ RULE stringtext
 	 : STRING
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -18481,7 +18481,7 @@ RULE local_id
 	 : LOCAL_ID
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -18703,7 +18703,7 @@ RULE decimal
 	 : DECIMAL
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19282,7 +19282,7 @@ RULE empty_value
 	 : DOUBLE_QUOTE_ID
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19323,7 +19323,7 @@ RULE null
 	 : NULL_
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19416,7 +19416,7 @@ RULE float
 	 : FLOAT
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19510,7 +19510,7 @@ RULE binary_
 	 : BINARY
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19522,7 +19522,7 @@ RULE assembly_permission
 	 | UNSAFE
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstAssemblyPermissionEnum>"
+	INHERIT 
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
 ;
@@ -19533,7 +19533,7 @@ RULE encryption_master
 	 | MASTER
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstEncryptionMasterEnum>"
+	INHERIT 
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
 ;
@@ -19565,7 +19565,7 @@ RULE ipv4
 	 : IPV4_ADDR
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19575,7 +19575,7 @@ RULE ipv6
 	 : IPV6_ADDR
   **// 
 	GENERATE
-	INHERIT "AstTerminal<string>"
+	INHERIT "AstTerminalString"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19761,7 +19761,7 @@ RULE update_option_clause
 	 : OPTION  LR_BRACKET  update_option  (COMMA  update_option)*  RR_BRACKET
   **// 
 	GENERATE
-	INHERIT "AstRule"
+	INHERIT "AstRuleList<AstUpdateOption>"
 	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -20843,5 +20843,25 @@ TERM HOST
   **// 
 	KIND #OTHER
 	
+;
+
+RULE server_database_schema_function_ref 
+//** server_database_schema_function_ref
+	 : server_id?  DOT  database_id?  DOT  schema_id?  DOT  function_id
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE deleteed_inserted_column_id 
+//** deleteed_inserted_column_id
+	 : deleteed_inserted  DOT  column_id
+  **// 
+	GENERATE
+	INHERIT "AstRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
 ;
 

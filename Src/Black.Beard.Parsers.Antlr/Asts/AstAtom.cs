@@ -89,7 +89,6 @@ namespace Bb.Asts
     }
 
 
-
     [DebuggerDisplay("{Value}")]
     public class AstAtom : AstBase
     {

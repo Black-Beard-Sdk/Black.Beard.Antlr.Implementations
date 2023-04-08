@@ -38,12 +38,11 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
 
-                .CreateTypeFrom<AstRule>((ast, type) =>
+                .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                 {
 
                     var item =
                     type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
-                        .GenerateIf(() => Generate(ast, ctx))
                         .Documentation(c => c.Summary(() => ast.ToString()))
                         .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                         .Inherit(() => GetInherit(ast, ctx))
@@ -255,9 +254,9 @@ namespace Generate.Scripts
 
                 })
 
-                .CreateTypeFrom<AstLabeledAlt>((ast, type) =>
+                .CreateTypeFrom<AstLabeledAlt>(null, null, (ast, type) =>
                        {
-                           type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text))
+                           type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
                                .Inherit(() => "AstRule")
                                .Documentation(c => c.Summary(() => ast.ToString()))
 
@@ -279,7 +278,7 @@ namespace Generate.Scripts
                                         b.Statements.Call
                                         (
                                             CodeHelper.Var("visitor"),
-                                            "Visit" + CodeHelper.FormatCamelUpercase(ast.Identifier.Text),
+                                            "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text),
                                             CodeHelper.This()
                                         );
                                     });

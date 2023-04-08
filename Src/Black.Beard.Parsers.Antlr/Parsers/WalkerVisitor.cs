@@ -141,7 +141,7 @@ namespace Bb.Parsers
         public virtual void VisitLabeledAlt(AstLabeledAlt a)
         {
             _stack.Push(a);
-            a.Identifier?.Accept(this);
+            a.Name?.Accept(this);
             a.Rule?.Accept(this);
             _stack.Pop();
         }
@@ -149,8 +149,8 @@ namespace Bb.Parsers
         public virtual void VisitLabeledElement(AstLabeledElement a)
         {
             _stack.Push(a);
-            a.Left.Accept(this);
-            a.Right.Accept(this);
+            a.Name.Accept(this);
+            a.Rule.Accept(this);
             _stack.Pop();
         }
 
@@ -188,14 +188,14 @@ namespace Bb.Parsers
         public virtual void VisitPrequel(AstPrequel a)
         {
             _stack.Push(a);
-            a.Child?.Accept(this);
+            a.Rule?.Accept(this);
             _stack.Pop();
         }
 
         public virtual void VisitPrequelConstruct(AstPrequelConstruct a)
         {
             _stack.Push(a);
-            a.Child?.Accept(this);
+            a.Value?.Accept(this);
             _stack.Pop();
         }
 
@@ -258,7 +258,7 @@ namespace Bb.Parsers
         public virtual void VisitRuleRef(AstRuleRef a)
         {
             _stack.Push(a);
-            a.Identifier?.Accept(this);
+            a.Name?.Accept(this);
             a.Action?.Accept(this);
             a.Option?.Accept(this);
             _stack.Pop();
@@ -347,8 +347,8 @@ namespace Bb.Parsers
         public virtual void VisitLexerLabeledElement(AstLexerLabeledElement a)
         {
             _stack.Push(a);
-            a.Left?.Accept(this);
-            a.Right?.Accept(this);
+            a.Name?.Accept(this);
+            a.Rule?.Accept(this);
             _stack.Pop();
         }
 
@@ -399,7 +399,7 @@ namespace Bb.Parsers
         public virtual void VisitNot(AstNot a)
         {
             _stack.Push(a);
-            a.Value.Accept(this);
+            a.Rule.Accept(this);
             _stack.Pop();
         }
 

@@ -118,6 +118,12 @@ namespace Bb.Generators
 
         }
 
+        public override void Clean()
+        {
+            _callBase.Clear();
+            base.Clean();
+        }
+
         private readonly List<Func<object, CodeExpression>> _callBase;
 
     }

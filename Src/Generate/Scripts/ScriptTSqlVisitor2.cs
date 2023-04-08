@@ -38,14 +38,14 @@ namespace Generate.Scripts
                         "Bb.Parsers.TSql.Antlr"
                       )
 
-                      .CreateOneType<AstLabeledAlt>((ast, type) =>
+                      .CreateOneType<AstLabeledAlt>(null, null, (ast, type) =>
                       {
                           type.Name(() => "ScriptTSqlVisitor")
                           .Method(m =>
                           {
 
-                              m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Identifier.Text))
-                               .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Identifier.Text) + "Context", "context")
+                              m.Name(g => "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text))
+                               .Argument(() => "TSqlParser." + CodeHelper.FormatCamelUpercase(ast.Name.Text) + "Context", "context")
                                .Attribute(MemberAttributes.Public | MemberAttributes.Override)
                                .Return(() => "AstRoot")
                                .Body(b =>
@@ -56,7 +56,7 @@ namespace Generate.Scripts
                                        stm.Call("list".Var(), "Add", CodeHelper.Var("enumerator.Current").Call("Accept", CodeHelper.This()));
                                    });
 
-                                   b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Identifier.Text)).AsType().Create("context".Var(), "list".Var()));
+                                   b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
 
                                })
 

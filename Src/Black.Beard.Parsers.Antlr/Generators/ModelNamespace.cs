@@ -30,18 +30,18 @@ namespace Bb.Generators
             return this;
         }
 
-        public ModelNamespace CreateTypeFrom<T>(Action<T, ModelTypeFrom<T>> action)
+        public ModelNamespace CreateTypeFrom<T>(Func<T, bool> testGenerateIf, Action<T> prepare, Action<T, ModelTypeFrom<T>> action)
             where T : AstBase
         {
-            var t = new ModelTypeFrom<T>(this, action);
+            var t = new ModelTypeFrom<T>(this, testGenerateIf, prepare, action);
             this._typeBuilder.Add(t);
             return this;
         }
 
-        public ModelNamespace CreateOneType<T>(Action<T, ModelTypeFrom<T>> action)
+        public ModelNamespace CreateOneType<T>(Func<T, bool> testGenerateIf, Action<T> prepare, Action<T, ModelTypeFrom<T>> action)
             where T : AstBase
         {
-            var t = new ModelTypeFrom<T>(this, action)
+            var t = new ModelTypeFrom<T>(this, testGenerateIf, prepare, action)
             {
                 _justOne = true,
             };

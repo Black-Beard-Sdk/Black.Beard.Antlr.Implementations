@@ -107,6 +107,10 @@ namespace Bb.Asts
             return new Occurence();
         }
 
+        public List<AstBase> Select(params Func<AstBase, bool>[] predicates)
+        {
+            return SelectorVisitor.Select(this, predicates).ToList(); 
+        }
 
         public abstract T Accept<T>(IAstVisitor<T> visitor);
 
@@ -139,6 +143,7 @@ namespace Bb.Asts
 
 
         }
+
 
     }
 
