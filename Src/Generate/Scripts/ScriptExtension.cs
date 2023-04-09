@@ -485,6 +485,9 @@ namespace Generate.Scripts
 
             };
 
+
+            act(itemAst);
+
         }
 
 

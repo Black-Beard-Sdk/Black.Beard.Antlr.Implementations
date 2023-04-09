@@ -1,6 +1,9 @@
-﻿using Bb.Asts;
+﻿using Antlr4.Runtime.Misc;
+using Bb.Asts;
 using Bb.Generators;
+using Bb.Parsers;
 using System.CodeDom;
+using System.Linq;
 
 namespace Generate.Scripts
 {
@@ -65,10 +68,11 @@ namespace Generate.Scripts
 
             var type = "Ast" + CodeHelper.FormatCsharp(a.Name.Text);
 
+            int i = 0;
             foreach (var item in a.Alternatives)
             {
 
-                var varName = "arg" + (_stm.Count + 1).ToString();
+                var varName = "arg" + (i++).ToString();
 
                 _stm.DeclareAndInitialize(varName, "var".AsType(), item.Accept(this));
 
@@ -82,10 +86,9 @@ namespace Generate.Scripts
                         if (o.Count > 0)
                         {
 
-                            var n = ("Ast" + CodeHelper.FormatCsharp(o[0].ToString())).AsType();
-                            var c = n.Create(varName.Var(), b);
-                            // return new AstIdOrString(context, new AstId(arg1, arg1.GetText()));
-                            s.Return(type.AsType().Create("context".Var(), c));
+                            var type1 = ("Ast" + CodeHelper.FormatCsharp(o[0].ToString()));
+                            var visitMethod = "Visit" + CodeHelper.FormatCamelUpercase(o[0].ToString());
+                            s.Return(type.AsType().Create("context".Var(), visitMethod.Call(varName.Var()).Cast(type1.AsType())));
                         }
                         else
                         {

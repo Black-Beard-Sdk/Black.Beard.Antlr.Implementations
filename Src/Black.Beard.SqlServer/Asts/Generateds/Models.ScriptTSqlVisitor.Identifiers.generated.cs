@@ -30,10 +30,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitHost(TSqlParser.HostContext context)
         {
-            var arg1 = context.HOST();
-            if ((arg1 != null))
+            var arg0 = context.HOST();
+            if ((arg0 != null))
             {
-                return new AstHost(context, arg1.GetText());
+                return new AstHost(context, arg0.GetText());
             }
             return null;
         }
@@ -45,15 +45,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitId_or_string(TSqlParser.Id_or_stringContext context)
         {
-            var arg1 = context.id_();
+            var arg0 = context.id_();
+            if ((arg0 != null))
+            {
+                return new AstIdOrString(context, ((AstId)(this.VisitId_(arg0))));
+            }
+            var arg1 = context.stringtext();
             if ((arg1 != null))
             {
-                return new AstIdOrString(context, new AstId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.stringtext();
-            if ((arg3 != null))
-            {
-                return new AstIdOrString(context, new AstStringtext(arg3, arg3.GetText()));
+                return new AstIdOrString(context, ((AstStringtext)(this.VisitStringtext(arg1))));
             }
             return null;
         }
@@ -65,15 +65,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPrincipal_id(TSqlParser.Principal_idContext context)
         {
-            var arg1 = context.id_();
+            var arg0 = context.id_();
+            if ((arg0 != null))
+            {
+                return new AstPrincipalId(context, ((AstId)(this.VisitId_(arg0))));
+            }
+            var arg1 = context.PUBLIC();
             if ((arg1 != null))
             {
-                return new AstPrincipalId(context, new AstId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.PUBLIC();
-            if ((arg3 != null))
-            {
-                return new AstPrincipalId(context, arg3.GetText());
+                return new AstPrincipalId(context, arg1.GetText());
             }
             return null;
         }
@@ -85,15 +85,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTransaction_ref(TSqlParser.Transaction_refContext context)
         {
-            var arg1 = context.id_();
+            var arg0 = context.id_();
+            if ((arg0 != null))
+            {
+                return new AstTransactionRef(context, ((AstId)(this.VisitId_(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstTransactionRef(context, new AstId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
-            {
-                return new AstTransactionRef(context, new AstLocalId(arg3, arg3.GetText()));
+                return new AstTransactionRef(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
             return null;
         }
@@ -104,10 +104,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTable_alias(TSqlParser.Table_aliasContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTableAlias(context, new AstId(arg1, arg1.GetText()));
+                return new AstTableAlias(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -119,15 +119,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitColumn_alias(TSqlParser.Column_aliasContext context)
         {
-            var arg1 = context.id_();
+            var arg0 = context.id_();
+            if ((arg0 != null))
+            {
+                return new AstColumnAlias(context, ((AstId)(this.VisitId_(arg0))));
+            }
+            var arg1 = context.stringtext();
             if ((arg1 != null))
             {
-                return new AstColumnAlias(context, new AstId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.stringtext();
-            if ((arg3 != null))
-            {
-                return new AstColumnAlias(context, new AstStringtext(arg3, arg3.GetText()));
+                return new AstColumnAlias(context, ((AstStringtext)(this.VisitStringtext(arg1))));
             }
             return null;
         }
@@ -139,15 +139,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCursor_name(TSqlParser.Cursor_nameContext context)
         {
-            var arg1 = context.id_();
+            var arg0 = context.id_();
+            if ((arg0 != null))
+            {
+                return new AstCursorName(context, ((AstId)(this.VisitId_(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstCursorName(context, new AstId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
-            {
-                return new AstCursorName(context, new AstLocalId(arg3, arg3.GetText()));
+                return new AstCursorName(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
             return null;
         }
@@ -162,30 +162,30 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitId_(TSqlParser.Id_Context context)
         {
-            var arg1 = context.ID();
+            var arg0 = context.ID();
+            if ((arg0 != null))
+            {
+                return new AstId(context, arg0.GetText());
+            }
+            var arg1 = context.empty_value();
             if ((arg1 != null))
             {
-                return new AstId(context, arg1.GetText());
+                return new AstId(context, ((AstEmptyValue)(this.VisitEmpty_value(arg1))));
             }
-            var arg3 = context.empty_value();
+            var arg2 = context.DOUBLE_QUOTE_BLANK();
+            if ((arg2 != null))
+            {
+                return new AstId(context, arg2.GetText());
+            }
+            var arg3 = context.SQUARE_BRACKET_ID();
             if ((arg3 != null))
             {
-                return new AstId(context, new AstEmptyValue(arg3, arg3.GetText()));
+                return new AstId(context, arg3.GetText());
             }
-            var arg5 = context.DOUBLE_QUOTE_BLANK();
-            if ((arg5 != null))
+            var arg4 = context.keyword();
+            if ((arg4 != null))
             {
-                return new AstId(context, arg5.GetText());
-            }
-            var arg7 = context.SQUARE_BRACKET_ID();
-            if ((arg7 != null))
-            {
-                return new AstId(context, arg7.GetText());
-            }
-            var arg9 = context.keyword();
-            if ((arg9 != null))
-            {
-                return new AstId(context, new AstKeyword(arg9, arg9.GetText()));
+                return new AstId(context, ((AstKeyword)(this.VisitKeyword(arg4))));
             }
             return null;
         }
@@ -196,10 +196,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSimple_id(TSqlParser.Simple_idContext context)
         {
-            var arg1 = context.ID();
-            if ((arg1 != null))
+            var arg0 = context.ID();
+            if ((arg0 != null))
             {
-                return new AstSimpleId(context, arg1.GetText());
+                return new AstSimpleId(context, arg0.GetText());
             }
             return null;
         }
@@ -210,10 +210,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitFilestream_filegroup_or_partition_schema_id(TSqlParser.Filestream_filegroup_or_partition_schema_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstFilestreamFilegroupOrPartitionSchemaId(context, new AstId(arg1, arg1.GetText()));
+                return new AstFilestreamFilegroupOrPartitionSchemaId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -224,10 +224,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAction_id(TSqlParser.Action_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstActionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstActionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -238,10 +238,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAggregate_id(TSqlParser.Aggregate_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAggregateId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAggregateId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -252,10 +252,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSchema_id(TSqlParser.Schema_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSchemaId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSchemaId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -266,10 +266,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAssembly_id(TSqlParser.Assembly_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAssemblyId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAssemblyId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -280,10 +280,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAsym_key_id(TSqlParser.Asym_key_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAsymKeyId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAsymKeyId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -294,10 +294,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAudit_action_group_id(TSqlParser.Audit_action_group_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAuditActionGroupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAuditActionGroupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -308,10 +308,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAudit_guid_id(TSqlParser.Audit_guid_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAuditGuidId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAuditGuidId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -322,10 +322,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitAudit_id(TSqlParser.Audit_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstAuditId(context, new AstId(arg1, arg1.GetText()));
+                return new AstAuditId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -336,10 +336,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitUser_id(TSqlParser.User_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstUserId(context, new AstId(arg1, arg1.GetText()));
+                return new AstUserId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -350,10 +350,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitBackup_id(TSqlParser.Backup_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstBackupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstBackupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -364,10 +364,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitBinding_id(TSqlParser.Binding_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstBindingId(context, new AstId(arg1, arg1.GetText()));
+                return new AstBindingId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -378,10 +378,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCatalog_id(TSqlParser.Catalog_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCatalogId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCatalogId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -392,10 +392,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCertificate_id(TSqlParser.Certificate_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCertificateId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCertificateId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -406,10 +406,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitClass_id(TSqlParser.Class_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstClassId(context, new AstId(arg1, arg1.GetText()));
+                return new AstClassId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -420,10 +420,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCollation_id(TSqlParser.Collation_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCollationId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCollationId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -434,10 +434,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitColumn_encryption_key_id(TSqlParser.Column_encryption_key_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstColumnEncryptionKeyId(context, new AstId(arg1, arg1.GetText()));
+                return new AstColumnEncryptionKeyId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -448,10 +448,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitColumn_or_argument_id(TSqlParser.Column_or_argument_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstColumnOrArgumentId(context, new AstId(arg1, arg1.GetText()));
+                return new AstColumnOrArgumentId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -462,10 +462,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitConstraint_id(TSqlParser.Constraint_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstConstraintId(context, new AstId(arg1, arg1.GetText()));
+                return new AstConstraintId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -476,10 +476,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCredential_id(TSqlParser.Credential_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCredentialId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCredentialId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -490,10 +490,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCryptographic_provider_id(TSqlParser.Cryptographic_provider_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCryptographicProviderId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCryptographicProviderId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -504,10 +504,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitData_source_id(TSqlParser.Data_source_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstDataSourceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstDataSourceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -518,10 +518,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitService_id(TSqlParser.Service_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstServiceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstServiceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -532,10 +532,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEncryptor_id(TSqlParser.Encryptor_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEncryptorId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEncryptorId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -546,10 +546,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEndpoint_id(TSqlParser.Endpoint_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEndpointId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEndpointId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -560,10 +560,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_customizable_attribute_id(TSqlParser.Event_customizable_attribute_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventCustomizableAttributeId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventCustomizableAttributeId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -574,10 +574,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_field_id(TSqlParser.Event_field_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventFieldId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventFieldId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -588,10 +588,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_module_guid_id(TSqlParser.Event_module_guid_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventModuleGuidId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventModuleGuidId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -602,10 +602,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_notification_id(TSqlParser.Event_notification_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventNotificationId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventNotificationId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -616,10 +616,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_package_id(TSqlParser.Event_package_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventPackageId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventPackageId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -630,10 +630,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_session_id(TSqlParser.Event_session_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventSessionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventSessionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -644,10 +644,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitEvent_type_or_group_id(TSqlParser.Event_type_or_group_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstEventTypeOrGroupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstEventTypeOrGroupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -658,10 +658,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitExt_type_id(TSqlParser.Ext_type_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstExtTypeId(context, new AstId(arg1, arg1.GetText()));
+                return new AstExtTypeId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -672,10 +672,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitExternal_data_source_id(TSqlParser.External_data_source_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstExternalDataSourceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstExternalDataSourceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -686,10 +686,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitExternal_file_format_id(TSqlParser.External_file_format_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstExternalFileFormatId(context, new AstId(arg1, arg1.GetText()));
+                return new AstExternalFileFormatId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -700,10 +700,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitExternal_pool_id(TSqlParser.External_pool_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstExternalPoolId(context, new AstId(arg1, arg1.GetText()));
+                return new AstExternalPoolId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -714,10 +714,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitFunction_id(TSqlParser.Function_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstFunctionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstFunctionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -728,10 +728,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitGroup_id(TSqlParser.Group_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstGroupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstGroupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -742,10 +742,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitIndex_id(TSqlParser.Index_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstIndexId(context, new AstId(arg1, arg1.GetText()));
+                return new AstIndexId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -756,10 +756,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitLanguage(TSqlParser.LanguageContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstLanguage(context, new AstId(arg1, arg1.GetText()));
+                return new AstLanguage(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -770,10 +770,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitLibrary_id(TSqlParser.Library_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstLibraryId(context, new AstId(arg1, arg1.GetText()));
+                return new AstLibraryId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -784,10 +784,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitServer_id(TSqlParser.Server_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstServerId(context, new AstId(arg1, arg1.GetText()));
+                return new AstServerId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -798,10 +798,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitLogical_device_id(TSqlParser.Logical_device_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstLogicalDeviceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstLogicalDeviceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -812,10 +812,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitLogin_id(TSqlParser.Login_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstLoginId(context, new AstId(arg1, arg1.GetText()));
+                return new AstLoginId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -826,10 +826,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitMaster_key(TSqlParser.Master_keyContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstMasterKey(context, new AstId(arg1, arg1.GetText()));
+                return new AstMasterKey(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -840,10 +840,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitMethod_id(TSqlParser.Method_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstMethodId(context, new AstId(arg1, arg1.GetText()));
+                return new AstMethodId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -854,10 +854,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitModified_contract_id(TSqlParser.Modified_contract_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstModifiedContractId(context, new AstId(arg1, arg1.GetText()));
+                return new AstModifiedContractId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -868,10 +868,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitModule_id(TSqlParser.Module_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstModuleId(context, new AstId(arg1, arg1.GetText()));
+                return new AstModuleId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -882,10 +882,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitNetwork_computer(TSqlParser.Network_computerContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstNetworkComputer(context, new AstId(arg1, arg1.GetText()));
+                return new AstNetworkComputer(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -896,10 +896,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitRole_id(TSqlParser.Role_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstRoleId(context, new AstId(arg1, arg1.GetText()));
+                return new AstRoleId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -910,10 +910,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitFile_group_id(TSqlParser.File_group_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstFileGroupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstFileGroupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -924,10 +924,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitNon_static_attr_id(TSqlParser.Non_static_attr_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstNonStaticAttrId(context, new AstId(arg1, arg1.GetText()));
+                return new AstNonStaticAttrId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -938,10 +938,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitNotification_id(TSqlParser.Notification_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstNotificationId(context, new AstId(arg1, arg1.GetText()));
+                return new AstNotificationId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -952,10 +952,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitObject_id(TSqlParser.Object_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstObjectId(context, new AstId(arg1, arg1.GetText()));
+                return new AstObjectId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -966,10 +966,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitOwner_id(TSqlParser.Owner_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstOwnerId(context, new AstId(arg1, arg1.GetText()));
+                return new AstOwnerId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -980,10 +980,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPartition_column_id(TSqlParser.Partition_column_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPartitionColumnId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPartitionColumnId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -994,10 +994,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPool_id(TSqlParser.Pool_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPoolId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPoolId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1008,10 +1008,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPredicate_source_id(TSqlParser.Predicate_source_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPredicateSourceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPredicateSourceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1022,10 +1022,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitProperty_list_id(TSqlParser.Property_list_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPropertyListId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPropertyListId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1036,10 +1036,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitProvider_id(TSqlParser.Provider_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstProviderId(context, new AstId(arg1, arg1.GetText()));
+                return new AstProviderId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1050,10 +1050,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDatabase_id(TSqlParser.Database_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstDatabaseId(context, new AstId(arg1, arg1.GetText()));
+                return new AstDatabaseId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1064,10 +1064,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitRoute_id(TSqlParser.Route_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstRouteId(context, new AstId(arg1, arg1.GetText()));
+                return new AstRouteId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1078,10 +1078,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitRule_id(TSqlParser.Rule_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstRuleId(context, new AstId(arg1, arg1.GetText()));
+                return new AstRuleId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1092,10 +1092,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitColumn_id(TSqlParser.Column_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstColumnId(context, new AstId(arg1, arg1.GetText()));
+                return new AstColumnId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1106,10 +1106,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSchema_collection_id(TSqlParser.Schema_collection_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSchemaCollectionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSchemaCollectionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1120,10 +1120,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSecurity_policy_id(TSqlParser.Security_policy_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSecurityPolicyId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSecurityPolicyId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1134,10 +1134,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSecurity_predicate_function_id(TSqlParser.Security_predicate_function_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSecurityPredicateFunctionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSecurityPredicateFunctionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1148,10 +1148,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSequence_id(TSqlParser.Sequence_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSequenceId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSequenceId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1162,10 +1162,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitServer_role_id(TSqlParser.Server_role_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstServerRoleId(context, new AstId(arg1, arg1.GetText()));
+                return new AstServerRoleId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1176,10 +1176,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSource_list_id(TSqlParser.Source_list_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSourceListId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSourceListId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1190,10 +1190,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSql_identifier_id(TSqlParser.Sql_identifier_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSqlIdentifierId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSqlIdentifierId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1204,10 +1204,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitStatic_attr_id(TSqlParser.Static_attr_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstStaticAttrId(context, new AstId(arg1, arg1.GetText()));
+                return new AstStaticAttrId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1218,10 +1218,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitStatistics_id(TSqlParser.Statistics_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstStatisticsId(context, new AstId(arg1, arg1.GetText()));
+                return new AstStatisticsId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1232,10 +1232,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitStoplist_id(TSqlParser.Stoplist_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstStoplistId(context, new AstId(arg1, arg1.GetText()));
+                return new AstStoplistId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1246,10 +1246,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSymmetric_key_id(TSqlParser.Symmetric_key_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSymmetricKeyId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSymmetricKeyId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1260,10 +1260,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitSynonym_id(TSqlParser.Synonym_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstSynonymId(context, new AstId(arg1, arg1.GetText()));
+                return new AstSynonymId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1274,10 +1274,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTable_or_view_id(TSqlParser.Table_or_view_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTableOrViewId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTableOrViewId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1288,10 +1288,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitView_id(TSqlParser.View_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstViewId(context, new AstId(arg1, arg1.GetText()));
+                return new AstViewId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1302,10 +1302,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTable_id(TSqlParser.Table_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTableId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTableId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1316,10 +1316,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTarget_id(TSqlParser.Target_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTargetId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTargetId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1330,10 +1330,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTarget_parameter_id(TSqlParser.Target_parameter_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTargetParameterId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTargetParameterId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1344,10 +1344,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTrigger_id(TSqlParser.Trigger_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTriggerId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTriggerId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1358,10 +1358,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTvf_schema_id(TSqlParser.Tvf_schema_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTvfSchemaId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTvfSchemaId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1372,10 +1372,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitUdt_column_id(TSqlParser.Udt_column_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstUdtColumnId(context, new AstId(arg1, arg1.GetText()));
+                return new AstUdtColumnId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1386,10 +1386,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitUnscaled_type_id(TSqlParser.Unscaled_type_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstUnscaledTypeId(context, new AstId(arg1, arg1.GetText()));
+                return new AstUnscaledTypeId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1400,10 +1400,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitWindows_principal_id(TSqlParser.Windows_principal_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstWindowsPrincipalId(context, new AstId(arg1, arg1.GetText()));
+                return new AstWindowsPrincipalId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1414,10 +1414,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitWorkload_group_group_id(TSqlParser.Workload_group_group_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstWorkloadGroupGroupId(context, new AstId(arg1, arg1.GetText()));
+                return new AstWorkloadGroupGroupId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1428,10 +1428,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitWorkload_group_pool_id(TSqlParser.Workload_group_pool_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstWorkloadGroupPoolId(context, new AstId(arg1, arg1.GetText()));
+                return new AstWorkloadGroupPoolId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1442,10 +1442,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPartition_scheme_id(TSqlParser.Partition_scheme_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPartitionSchemeId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPartitionSchemeId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1456,10 +1456,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitQueue_id(TSqlParser.Queue_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstQueueId(context, new AstId(arg1, arg1.GetText()));
+                return new AstQueueId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1470,10 +1470,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitPartition_function_id(TSqlParser.Partition_function_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstPartitionFunctionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstPartitionFunctionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1484,10 +1484,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitMessage_type_id(TSqlParser.Message_type_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstMessageTypeId(context, new AstId(arg1, arg1.GetText()));
+                return new AstMessageTypeId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1498,10 +1498,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitCode_location_id(TSqlParser.Code_location_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstCodeLocationId(context, new AstId(arg1, arg1.GetText()));
+                return new AstCodeLocationId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1512,10 +1512,10 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitTransaction_id(TSqlParser.Transaction_idContext context)
         {
-            var arg1 = context.id_();
-            if ((arg1 != null))
+            var arg0 = context.id_();
+            if ((arg0 != null))
             {
-                return new AstTransactionId(context, new AstId(arg1, arg1.GetText()));
+                return new AstTransactionId(context, ((AstId)(this.VisitId_(arg0))));
             }
             return null;
         }
@@ -1527,15 +1527,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDecimal_id(TSqlParser.Decimal_idContext context)
         {
-            var arg1 = context.@decimal();
+            var arg0 = context.@decimal();
+            if ((arg0 != null))
+            {
+                return new AstDecimalId(context, ((AstDecimal)(this.VisitDecimal(arg0))));
+            }
+            var arg1 = context.id_();
             if ((arg1 != null))
             {
-                return new AstDecimalId(context, new AstDecimal(arg1, arg1.GetText()));
-            }
-            var arg3 = context.id_();
-            if ((arg3 != null))
-            {
-                return new AstDecimalId(context, new AstId(arg3, arg3.GetText()));
+                return new AstDecimalId(context, ((AstId)(this.VisitId_(arg1))));
             }
             return null;
         }
@@ -1547,15 +1547,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitString_id(TSqlParser.String_idContext context)
         {
-            var arg1 = context.stringtext();
+            var arg0 = context.stringtext();
+            if ((arg0 != null))
+            {
+                return new AstStringId(context, ((AstStringtext)(this.VisitStringtext(arg0))));
+            }
+            var arg1 = context.id_();
             if ((arg1 != null))
             {
-                return new AstStringId(context, new AstStringtext(arg1, arg1.GetText()));
-            }
-            var arg3 = context.id_();
-            if ((arg3 != null))
-            {
-                return new AstStringId(context, new AstId(arg3, arg3.GetText()));
+                return new AstStringId(context, ((AstId)(this.VisitId_(arg1))));
             }
             return null;
         }
@@ -1567,15 +1567,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitString_local_id(TSqlParser.String_local_idContext context)
         {
-            var arg1 = context.stringtext();
+            var arg0 = context.stringtext();
+            if ((arg0 != null))
+            {
+                return new AstStringLocalId(context, ((AstStringtext)(this.VisitStringtext(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstStringLocalId(context, new AstStringtext(arg1, arg1.GetText()));
-            }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
-            {
-                return new AstStringLocalId(context, new AstLocalId(arg3, arg3.GetText()));
+                return new AstStringLocalId(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
             return null;
         }
@@ -1587,15 +1587,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDecimal_local_id(TSqlParser.Decimal_local_idContext context)
         {
-            var arg1 = context.@decimal();
+            var arg0 = context.@decimal();
+            if ((arg0 != null))
+            {
+                return new AstDecimalLocalId(context, ((AstDecimal)(this.VisitDecimal(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstDecimalLocalId(context, new AstDecimal(arg1, arg1.GetText()));
-            }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
-            {
-                return new AstDecimalLocalId(context, new AstLocalId(arg3, arg3.GetText()));
+                return new AstDecimalLocalId(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
             return null;
         }
@@ -1607,15 +1607,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDecimal_string(TSqlParser.Decimal_stringContext context)
         {
-            var arg1 = context.@decimal();
+            var arg0 = context.@decimal();
+            if ((arg0 != null))
+            {
+                return new AstDecimalString(context, ((AstDecimal)(this.VisitDecimal(arg0))));
+            }
+            var arg1 = context.stringtext();
             if ((arg1 != null))
             {
-                return new AstDecimalString(context, new AstDecimal(arg1, arg1.GetText()));
-            }
-            var arg3 = context.stringtext();
-            if ((arg3 != null))
-            {
-                return new AstDecimalString(context, new AstStringtext(arg3, arg3.GetText()));
+                return new AstDecimalString(context, ((AstStringtext)(this.VisitStringtext(arg1))));
             }
             return null;
         }
@@ -1628,20 +1628,20 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDecimal_string_local_id(TSqlParser.Decimal_string_local_idContext context)
         {
-            var arg1 = context.@decimal();
+            var arg0 = context.@decimal();
+            if ((arg0 != null))
+            {
+                return new AstDecimalStringLocalId(context, ((AstDecimal)(this.VisitDecimal(arg0))));
+            }
+            var arg1 = context.stringtext();
             if ((arg1 != null))
             {
-                return new AstDecimalStringLocalId(context, new AstDecimal(arg1, arg1.GetText()));
+                return new AstDecimalStringLocalId(context, ((AstStringtext)(this.VisitStringtext(arg1))));
             }
-            var arg3 = context.stringtext();
-            if ((arg3 != null))
+            var arg2 = context.local_id();
+            if ((arg2 != null))
             {
-                return new AstDecimalStringLocalId(context, new AstStringtext(arg3, arg3.GetText()));
-            }
-            var arg5 = context.local_id();
-            if ((arg5 != null))
-            {
-                return new AstDecimalStringLocalId(context, new AstLocalId(arg5, arg5.GetText()));
+                return new AstDecimalStringLocalId(context, ((AstLocalId)(this.VisitLocal_id(arg2))));
             }
             return null;
         }
@@ -1654,20 +1654,20 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitString_local_id_double_quote_id(TSqlParser.String_local_id_double_quote_idContext context)
         {
-            var arg1 = context.stringtext();
+            var arg0 = context.stringtext();
+            if ((arg0 != null))
+            {
+                return new AstStringLocalIdDoubleQuoteId(context, ((AstStringtext)(this.VisitStringtext(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstStringLocalIdDoubleQuoteId(context, new AstStringtext(arg1, arg1.GetText()));
+                return new AstStringLocalIdDoubleQuoteId(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
+            var arg2 = context.empty_value();
+            if ((arg2 != null))
             {
-                return new AstStringLocalIdDoubleQuoteId(context, new AstLocalId(arg3, arg3.GetText()));
-            }
-            var arg5 = context.empty_value();
-            if ((arg5 != null))
-            {
-                return new AstStringLocalIdDoubleQuoteId(context, new AstEmptyValue(arg5, arg5.GetText()));
+                return new AstStringLocalIdDoubleQuoteId(context, ((AstEmptyValue)(this.VisitEmpty_value(arg2))));
             }
             return null;
         }
@@ -1679,15 +1679,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitFunc_proc_name_server_database_schema(TSqlParser.Func_proc_name_server_database_schemaContext context)
         {
-            var arg1 = context.server_database_schema_function_ref();
+            var arg0 = context.server_database_schema_function_ref();
+            if ((arg0 != null))
+            {
+                return new AstFuncProcNameServerDatabaseSchema(context, ((AstServerDatabaseSchemaFunctionRef)(this.VisitServer_database_schema_function_ref(arg0))));
+            }
+            var arg1 = context.func_proc_name_database_schema_ref();
             if ((arg1 != null))
             {
-                return new AstFuncProcNameServerDatabaseSchema(context, new AstServerDatabaseSchemaFunctionRef(arg1, arg1.GetText()));
-            }
-            var arg3 = context.func_proc_name_database_schema_ref();
-            if ((arg3 != null))
-            {
-                return new AstFuncProcNameServerDatabaseSchema(context, new AstFuncProcNameDatabaseSchemaRef(arg3, arg3.GetText()));
+                return new AstFuncProcNameServerDatabaseSchema(context, ((AstFuncProcNameDatabaseSchemaRef)(this.VisitFunc_proc_name_database_schema_ref(arg1))));
             }
             return null;
         }
@@ -1699,15 +1699,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitDdl_object(TSqlParser.Ddl_objectContext context)
         {
-            var arg1 = context.complete_table_ref();
+            var arg0 = context.complete_table_ref();
+            if ((arg0 != null))
+            {
+                return new AstDdlObject(context, ((AstCompleteTableRef)(this.VisitComplete_table_ref(arg0))));
+            }
+            var arg1 = context.local_id();
             if ((arg1 != null))
             {
-                return new AstDdlObject(context, new AstCompleteTableRef(arg1, arg1.GetText()));
-            }
-            var arg3 = context.local_id();
-            if ((arg3 != null))
-            {
-                return new AstDdlObject(context, new AstLocalId(arg3, arg3.GetText()));
+                return new AstDdlObject(context, ((AstLocalId)(this.VisitLocal_id(arg1))));
             }
             return null;
         }
@@ -1719,15 +1719,15 @@ namespace Bb.Parsers.TSql
         /// </summary>
         public override AstRoot VisitFull_column_name(TSqlParser.Full_column_nameContext context)
         {
-            var arg1 = context.deleteed_inserted_column_id();
+            var arg0 = context.deleteed_inserted_column_id();
+            if ((arg0 != null))
+            {
+                return new AstFullColumnName(context, ((AstDeleteedInsertedColumnId)(this.VisitDeleteed_inserted_column_id(arg0))));
+            }
+            var arg1 = context.full_column_ref();
             if ((arg1 != null))
             {
-                return new AstFullColumnName(context, new AstDeleteedInsertedColumnId(arg1, arg1.GetText()));
-            }
-            var arg3 = context.full_column_ref();
-            if ((arg3 != null))
-            {
-                return new AstFullColumnName(context, new AstFullColumnRef(arg3, arg3.GetText()));
+                return new AstFullColumnName(context, ((AstFullColumnRef)(this.VisitFull_column_ref(arg1))));
             }
             return null;
         }

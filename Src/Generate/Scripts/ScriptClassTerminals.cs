@@ -63,12 +63,18 @@ namespace Generate.Scripts
                               })
                               .Ctor((f) =>
                               {
+                                  f.Argument(() => "ParserRuleContext", "ctx")
+                                   .Argument(() => typeof(string), "value")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("ctx".Var(), "value".Var());
+                              })
+                              .Ctor((f) =>
+                              {
                                   f.Argument(() => "Position", "t")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "value".Var());
                               })
-
                               .Method(method =>
                               {
                                   method
@@ -89,6 +95,11 @@ namespace Generate.Scripts
                               .Make(t =>
                               {
 
+                                  if (ast.Name.Text == "star_asterisk")
+                                  {
+
+                                  }
+
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
@@ -96,29 +107,6 @@ namespace Generate.Scripts
 
                                   foreach (var alt in alternatives)
                                   {
-
-
-                                        //var o = alt.Origin;
-                                        //if (o != null && o.Link is AstLexerRule astI)
-                                        //{
-
-                                        //  //if (astI.TerminalKind == TokenTypeEnum.Real)
-                                        //  //    continue;
-
-                                        //  //if (astI.TerminalKind == TokenTypeEnum.Ponctuation)
-                                        //  //    continue;
-
-                                        //  //if (astI.TerminalKind == TokenTypeEnum.Operator)
-                                        //  //    continue;
-
-                                        //  //if (astI.TerminalKind == TokenTypeEnum.Pattern)
-                                        //  //    continue;
-
-                                        //  //if (astI.TerminalKind == TokenTypeEnum.Identifier)
-                                        //  //    continue;
-
-                                        //}
-
 
                                       var n1 = CodeHelper.FormatCsharp(alt.Name);
                                       var n2 = "Ast" + n1;
@@ -149,6 +137,23 @@ namespace Generate.Scripts
 
                                           }
 
+                                      }
+                                      else
+                                      {
+
+                                          //var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
+
+                                          //if (_h.Add(noDuplicateKey))
+                                          //{
+                                          //    List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
+                                          //    foreach (var itemArg in arguments)
+                                          //        args.Add(itemArg.Var());
+
+                                          //    methods.Add(method);
+                                          //    var ret = CodeHelper.Call(t1, n1, args.ToArray());
+                                          //    method.Statements.Return(ret);
+
+                                          //}
                                       }
 
                                   }

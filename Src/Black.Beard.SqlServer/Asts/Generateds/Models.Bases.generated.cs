@@ -46,9 +46,9 @@ namespace Bb.Asts.TSql
         /// create_or_alter_function : 
         ///    CREATE OR ALTER FUNCTION funcName=schema_func_proc_ref ( procedure_params ) func_body_returns_select ; 
         /// </summary>
-        public static AstCreateOrAlterFunction CreateOrAlterFunction()
+        public static AstCreateOrAlterFunction CreateOrAlterFunction(AstSchemaFuncProcRef funcName, AstProcedureParams procedureParams, AstFuncBodyReturnsSelect funcBodyReturnsSelect)
         {
-            return AstCreateOrAlterFunction.CreateOrAlterFunction();
+            return AstCreateOrAlterFunction.CreateOrAlterFunction(funcName, procedureParams, funcBodyReturnsSelect);
         }
     }
     
@@ -82,9 +82,9 @@ namespace Bb.Asts.TSql
         /// merge_statement : 
         ///    with_expression? MERGE TOP ( expression ) PERCENT? INTO ddl_object with_table_hints? as_table_alias? USING table_sources ON search_condition when_matches output_clause? update_option_clause? ; 
         /// </summary>
-        public static AstMergeStatement MergeStatement()
+        public static AstMergeStatement MergeStatement(AstWithExpression withExpression, AstExpression expression, AstDdlObject ddlObject, AstWithTableHints withTableHints, AstAsTableAlias asTableAlias, AstTableSources tableSources, AstSearchCondition searchCondition, AstWhenMatches whenMatches, AstOutputClause outputClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstMergeStatement.MergeStatement();
+            return AstMergeStatement.MergeStatement(withExpression, expression, ddlObject, withTableHints, asTableAlias, tableSources, searchCondition, whenMatches, outputClause, updateOptionClause);
         }
     }
     
@@ -274,9 +274,9 @@ namespace Bb.Asts.TSql
         /// alter_application_role : 
         ///    ALTER APPLICATION ROLE role_id WITH COMMA? NAME EQUAL new_role=role_id COMMA? PASSWORD EQUAL application_role_password=stringtext COMMA? DEFAULT_SCHEMA EQUAL schema_id 
         /// </summary>
-        public static AstAlterApplicationRole AlterApplicationRole()
+        public static AstAlterApplicationRole AlterApplicationRole(AstRoleId roleId, AstRoleId newRole, AstStringtext applicationRolePassword, AstSchemaId schemaId)
         {
-            return AstAlterApplicationRole.AlterApplicationRole();
+            return AstAlterApplicationRole.AlterApplicationRole(roleId, newRole, applicationRolePassword, schemaId);
         }
     }
     
@@ -310,9 +310,9 @@ namespace Bb.Asts.TSql
         /// backup_database : 
         ///    BACKUP DATABASE database_id() READ_WRITE_FILEGROUPS group1=file_group_list group2=file_group_list backup_target? backup_settings? 
         /// </summary>
-        public static AstBackupDatabase BackupDatabase()
+        public static AstBackupDatabase BackupDatabase(AstDatabaseId databaseId, AstFileGroupList group1, AstFileGroupList group2, AstBackupTarget backupTarget, AstBackupSettings backupSettings)
         {
-            return AstBackupDatabase.BackupDatabase();
+            return AstBackupDatabase.BackupDatabase(databaseId, group1, group2, backupTarget, backupSettings);
         }
     }
     
@@ -353,9 +353,9 @@ namespace Bb.Asts.TSql
         /// block_statement : 
         ///    BEGIN ; sql_clauses? END ; 
         /// </summary>
-        public static AstBlockStatement BlockStatement()
+        public static AstBlockStatement BlockStatement(AstSqlClauses sqlClauses)
         {
-            return AstBlockStatement.BlockStatement();
+            return AstBlockStatement.BlockStatement(sqlClauses);
         }
     }
     
@@ -401,9 +401,9 @@ namespace Bb.Asts.TSql
         /// declare_statement : 
         ///    DECLARE local_id AS table_type_definition ; 
         /// </summary>
-        public static AstDeclareStatement DeclareStatement()
+        public static AstDeclareStatement DeclareStatement(AstLocalId localId, AstTableTypeDefinition tableTypeDefinition)
         {
-            return AstDeclareStatement.DeclareStatement();
+            return AstDeclareStatement.DeclareStatement(localId, tableTypeDefinition);
         }
     }
     
@@ -438,9 +438,9 @@ namespace Bb.Asts.TSql
         /// begin_conversation_timer : 
         ///    BEGIN CONVERSATION TIMER ( conversation=local_id ) TIMEOUT EQUAL time ; 
         /// </summary>
-        public static AstBeginConversationTimer BeginConversationTimer()
+        public static AstBeginConversationTimer BeginConversationTimer(AstLocalId conversation, AstTime time)
         {
-            return AstBeginConversationTimer.BeginConversationTimer();
+            return AstBeginConversationTimer.BeginConversationTimer(conversation, time);
         }
     }
     
@@ -471,9 +471,9 @@ namespace Bb.Asts.TSql
         /// create_or_alter_dml_trigger : 
         ///    CREATE OR ALTER TRIGGER schema_trigger_ref ON full_table_ref dml_trigger_options? for_after_instead dml_trigger_operations WITH APPEND NOT FOR REPLICATION AS sql_clauses 
         /// </summary>
-        public static AstCreateOrAlterDmlTrigger CreateOrAlterDmlTrigger()
+        public static AstCreateOrAlterDmlTrigger CreateOrAlterDmlTrigger(AstSchemaTriggerRef schemaTriggerRef, AstFullTableRef fullTableRef, AstDmlTriggerOptions dmlTriggerOptions, AstForAfterInstead forAfterInstead, AstDmlTriggerOperations dmlTriggerOperations, AstSqlClauses sqlClauses)
         {
-            return AstCreateOrAlterDmlTrigger.CreateOrAlterDmlTrigger();
+            return AstCreateOrAlterDmlTrigger.CreateOrAlterDmlTrigger(schemaTriggerRef, fullTableRef, dmlTriggerOptions, forAfterInstead, dmlTriggerOperations, sqlClauses);
         }
     }
     
@@ -536,9 +536,9 @@ namespace Bb.Asts.TSql
         /// mirroring_set_option : 
         ///    mirroring_partner partner_option 
         /// </summary>
-        public static AstMirroringSetOption MirroringSetOption()
+        public static AstMirroringSetOption MirroringSetOption(AstMirroringPartner mirroringPartner, AstPartnerOption partnerOption)
         {
-            return AstMirroringSetOption.MirroringSetOption();
+            return AstMirroringSetOption.MirroringSetOption(mirroringPartner, partnerOption);
         }
     }
     
@@ -568,9 +568,9 @@ namespace Bb.Asts.TSql
         /// partner_server : 
         ///    partner_server_tcp_prefix host : port_number 
         /// </summary>
-        public static AstPartnerServer PartnerServer()
+        public static AstPartnerServer PartnerServer(AstPartnerServerTcpPrefix partnerServerTcpPrefix, AstHost host, AstPortNumber portNumber)
         {
-            return AstPartnerServer.PartnerServer();
+            return AstPartnerServer.PartnerServer(partnerServerTcpPrefix, host, portNumber);
         }
     }
     
@@ -601,9 +601,9 @@ namespace Bb.Asts.TSql
         /// drop_dml_trigger : 
         ///    DROP TRIGGER if_exists? schema_trigger_refs ; 
         /// </summary>
-        public static AstDropDmlTrigger DropDmlTrigger()
+        public static AstDropDmlTrigger DropDmlTrigger(AstIfExists ifExists, AstSchemaTriggerRefs schemaTriggerRefs)
         {
-            return AstDropDmlTrigger.DropDmlTrigger();
+            return AstDropDmlTrigger.DropDmlTrigger(ifExists, schemaTriggerRefs);
         }
     }
     
@@ -634,9 +634,9 @@ namespace Bb.Asts.TSql
         /// openquery : 
         ///    OPENQUERY ( server_id , query=stringtext ) 
         /// </summary>
-        public static AstOpenquery Openquery()
+        public static AstOpenquery Openquery(AstServerId serverId, AstStringtext query)
         {
-            return AstOpenquery.Openquery();
+            return AstOpenquery.Openquery(serverId, query);
         }
     }
     
@@ -666,9 +666,9 @@ namespace Bb.Asts.TSql
         /// select_statement : 
         ///    query_expression select_order_by_clause? for_clause? update_option_clause? ; 
         /// </summary>
-        public static AstSelectStatement SelectStatement()
+        public static AstSelectStatement SelectStatement(AstQueryExpression queryExpression, AstSelectOrderByClause selectOrderByClause, AstForClause forClause, AstUpdateOptionClause updateOptionClause)
         {
-            return AstSelectStatement.SelectStatement();
+            return AstSelectStatement.SelectStatement(queryExpression, selectOrderByClause, forClause, updateOptionClause);
         }
     }
     
@@ -769,9 +769,9 @@ namespace Bb.Asts.TSql
         /// change_table_changes : 
         ///    CHANGETABLE ( CHANGES changetable=full_table_ref , NULL_ ) 
         /// </summary>
-        public static AstChangeTableChanges ChangeTableChanges()
+        public static AstChangeTableChanges ChangeTableChanges(AstFullTableRef changetable)
         {
-            return AstChangeTableChanges.ChangeTableChanges();
+            return AstChangeTableChanges.ChangeTableChanges(changetable);
         }
     }
     
@@ -805,9 +805,9 @@ namespace Bb.Asts.TSql
         /// join_on : 
         ///    inner=INNER join_hint? JOIN source=table_source ON cond=search_condition 
         /// </summary>
-        public static AstJoinOn JoinOn()
+        public static AstJoinOn JoinOn(AstJoinHint joinHint, AstTableSource source, AstSearchCondition cond)
         {
-            return AstJoinOn.JoinOn();
+            return AstJoinOn.JoinOn(joinHint, source, cond);
         }
     }
     
@@ -840,9 +840,9 @@ namespace Bb.Asts.TSql
         /// value_method : 
         ///    loc=local_id . call=value_call 
         /// </summary>
-        public static AstValueMethod ValueMethod()
+        public static AstValueMethod ValueMethod(AstLocalId loc, AstValueCall call)
         {
-            return AstValueMethod.ValueMethod();
+            return AstValueMethod.ValueMethod(loc, call);
         }
     }
     
@@ -906,9 +906,9 @@ namespace Bb.Asts.TSql
         /// file_group : 
         ///    FILEGROUP file_group_id CONTAINS FILESTREAM DEFAULT() CONTAINS MEMORY_OPTIMIZED_DATA file_specs 
         /// </summary>
-        public static AstFileGroup FileGroup()
+        public static AstFileGroup FileGroup(AstFileGroupId fileGroupId, AstFileSpecs fileSpecs)
         {
-            return AstFileGroup.FileGroup();
+            return AstFileGroup.FileGroup(fileGroupId, fileSpecs);
         }
     }
 }

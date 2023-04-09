@@ -50,20 +50,27 @@ namespace Generate.Scripts
                                 e.Summary(() => ast.ToString());
                             })
 
-                            .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
+                            .Ctor((f) =>
                             {
-                                f.Attribute(MemberAttributes.Family)
-                                 .Argument(() => "ITerminalNode", "t")
+                                f.Argument(() => "ITerminalNode", "t")
                                  .Argument(() => typeof(string), "value")
                                  .Attribute(MemberAttributes.Public)
                                  .CallBase("t".Var(), "value".Var())
                                  ;
                             })
 
-                            .CtorWhen(() => context.Strategy == "ClassEnum", (f) =>
+                            .Ctor((f) =>
                             {
-                                f.Attribute(MemberAttributes.Family)
-                                 .Argument(() => "Position", "position")
+                                f.Attribute(MemberAttributes.Public)
+                                 .Argument(() => "ParserRuleContext", "ctx")
+                                 .Argument(() => typeof(string), "value")
+                                 .CallBase("ctx".Var(), "value".Var())
+                                 ;
+                            })
+
+                            .Ctor((f) =>
+                            {
+                                f.Argument(() => "Position", "position")
                                  .Argument(() => typeof(string), "name")
                                  .Argument(() => typeof(string), "value")
                                  .Attribute(MemberAttributes.Public)

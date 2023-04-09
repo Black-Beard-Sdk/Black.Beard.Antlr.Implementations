@@ -34,6 +34,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstNull(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstNull(Position t, string value) : 
                 base(t, value)
         {
@@ -59,6 +64,11 @@ namespace Bb.Asts.TSql
         
         public AstEmptyStatement(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstEmptyStatement(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -90,6 +100,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAlterAssemblyFromClauseStart(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAlterAssemblyFromClauseStart(Position t, string value) : 
                 base(t, value)
         {
@@ -115,6 +130,11 @@ namespace Bb.Asts.TSql
         
         public AstAlterAssemblyDrop(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstAlterAssemblyDrop(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -146,6 +166,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstNetworkFileStart(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstNetworkFileStart(Position t, string value) : 
                 base(t, value)
         {
@@ -171,6 +196,11 @@ namespace Bb.Asts.TSql
         
         public AstFileDirectoryPathSeparator(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstFileDirectoryPathSeparator(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -202,6 +232,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstLocalDrive(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstLocalDrive(Position t, string value) : 
                 base(t, value)
         {
@@ -227,6 +262,11 @@ namespace Bb.Asts.TSql
         
         public AstMultipleLocalFileStart(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMultipleLocalFileStart(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -258,6 +298,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstMirroringPartner(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstMirroringPartner(Position t, string value) : 
                 base(t, value)
         {
@@ -283,6 +328,11 @@ namespace Bb.Asts.TSql
         
         public AstMirroringWitness(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstMirroringWitness(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -314,6 +364,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstWitnessPartnerEqual(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstWitnessPartnerEqual(Position t, string value) : 
                 base(t, value)
         {
@@ -339,6 +394,11 @@ namespace Bb.Asts.TSql
         
         public AstEmptyValue(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstEmptyValue(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -370,6 +430,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstIpv4(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstIpv4(Position t, string value) : 
                 base(t, value)
         {
@@ -395,6 +460,11 @@ namespace Bb.Asts.TSql
         
         public AstIpv6(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstIpv6(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -426,6 +496,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstFloat(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstFloat(Position t, string value) : 
                 base(t, value)
         {
@@ -451,6 +526,11 @@ namespace Bb.Asts.TSql
         
         public AstDecimal(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstDecimal(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -482,6 +562,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstBinary(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstBinary(Position t, string value) : 
                 base(t, value)
         {
@@ -507,6 +592,11 @@ namespace Bb.Asts.TSql
         
         public AstLocalId(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstLocalId(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -538,6 +628,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstStringtext(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstStringtext(Position t, string value) : 
                 base(t, value)
         {
@@ -566,6 +661,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstParameter(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstParameter(Position t, string value) : 
                 base(t, value)
         {
@@ -591,6 +691,11 @@ namespace Bb.Asts.TSql
         
         public AstStarAsterisk(ParserRuleContext ctx) : 
                 base(ctx, ctx.GetText())
+        {
+        }
+        
+        public AstStarAsterisk(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         

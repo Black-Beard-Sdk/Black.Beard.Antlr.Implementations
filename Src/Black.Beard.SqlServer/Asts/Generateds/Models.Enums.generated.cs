@@ -49,6 +49,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstClassType(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstClassType(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -415,6 +420,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstClassTypeForSqlDatabase(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstClassTypeForSqlDatabase(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -642,6 +652,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstClassTypeForAzureDw(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstClassTypeForAzureDw(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -691,6 +706,11 @@ namespace Bb.Asts.TSql
         
         public AstClassTypeForParallelDw(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstClassTypeForParallelDw(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -761,6 +781,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstStartStop(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstStartStop(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -809,6 +834,11 @@ namespace Bb.Asts.TSql
         
         public AstSplitOrMerge(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstSplitOrMerge(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -862,6 +892,11 @@ namespace Bb.Asts.TSql
         
         public AstEnumDml(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstEnumDml(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -949,6 +984,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstIndexStatusEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstIndexStatusEnum(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -1014,6 +1054,11 @@ namespace Bb.Asts.TSql
         
         public AstDmlTriggerOperation(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDmlTriggerOperation(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -1083,6 +1128,11 @@ namespace Bb.Asts.TSql
         
         public AstFilegroupUpdatabilityOption(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFilegroupUpdatabilityOption(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -1165,6 +1215,11 @@ namespace Bb.Asts.TSql
         
         public AstGrantPermissionAlter(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstGrantPermissionAlter(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -1842,6 +1897,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstGrantPermissionCreate(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstGrantPermissionCreate(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -2391,6 +2451,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSybaseLegacyHint(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSybaseLegacyHint(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -2471,6 +2536,11 @@ namespace Bb.Asts.TSql
         
         public AstSign(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstSign(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -3337,6 +3407,11 @@ namespace Bb.Asts.TSql
         
         public AstKeyword(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstKeyword(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -16432,6 +16507,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAssemblyPermission(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAssemblyPermission(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -16527,6 +16607,11 @@ namespace Bb.Asts.TSql
         
         public AstObjectTypeForGrant(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstObjectTypeForGrant(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17301,6 +17386,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstEncryptionMaster(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstEncryptionMaster(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17350,6 +17440,11 @@ namespace Bb.Asts.TSql
         
         public AstDatabaseObjectServer(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDatabaseObjectServer(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17420,6 +17515,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstServerDatabase(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstServerDatabase(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17468,6 +17568,11 @@ namespace Bb.Asts.TSql
         
         public AstForAfter(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstForAfter(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17522,6 +17627,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstShareExclusive(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstShareExclusive(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17570,6 +17680,11 @@ namespace Bb.Asts.TSql
         
         public AstCreateAlter(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstCreateAlter(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17624,6 +17739,11 @@ namespace Bb.Asts.TSql
         
         public AstFileSizeUnity(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFileSizeUnity(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17726,6 +17846,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstMemorySizeUnity(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstMemorySizeUnity(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17775,6 +17900,11 @@ namespace Bb.Asts.TSql
         
         public AstPartitionMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPartitionMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -17846,6 +17976,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSessionMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSessionMode(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17913,6 +18048,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstDisableReconfigure(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstDisableReconfigure(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -17960,6 +18100,11 @@ namespace Bb.Asts.TSql
         
         public AstTransfertTarget(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstTransfertTarget(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18030,6 +18175,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstInsertUpdate(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstInsertUpdate(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18078,6 +18228,11 @@ namespace Bb.Asts.TSql
         
         public AstUpdateDelate(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstUpdateDelate(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18132,6 +18287,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstFilterBlock(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstFilterBlock(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18181,6 +18341,11 @@ namespace Bb.Asts.TSql
         
         public AstInitTargetAny(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstInitTargetAny(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18252,6 +18417,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstReceiveModeEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstReceiveModeEnum(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18319,6 +18489,11 @@ namespace Bb.Asts.TSql
         
         public AstDatacompressionMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDatacompressionMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18421,6 +18596,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstDatacompressionColumnMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstDatacompressionColumnMode(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18468,6 +18648,11 @@ namespace Bb.Asts.TSql
         
         public AstIndexUsingXmlMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstIndexUsingXmlMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18538,6 +18723,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstProcKeyword(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstProcKeyword(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18586,6 +18776,11 @@ namespace Bb.Asts.TSql
         
         public AstAlterReplace(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAlterReplace(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18638,6 +18833,11 @@ namespace Bb.Asts.TSql
         
         public AstParamWay(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstParamWay(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18708,6 +18908,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstPercentRow(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstPercentRow(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18758,6 +18963,11 @@ namespace Bb.Asts.TSql
         
         public AstFunctionOptionEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFunctionOptionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18844,6 +19054,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstProcedureOptionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstProcedureOptionEnum(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -18892,6 +19107,11 @@ namespace Bb.Asts.TSql
         
         public AstRowRows(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstRowRows(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -18944,6 +19164,11 @@ namespace Bb.Asts.TSql
         
         public AstCompressionMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstCompressionMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19014,6 +19239,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstStartEnd(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstStartEnd(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19063,6 +19293,11 @@ namespace Bb.Asts.TSql
         
         public AstGenerationMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstGenerationMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19133,6 +19368,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstEncryptionMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstEncryptionMode(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19181,6 +19421,11 @@ namespace Bb.Asts.TSql
         
         public AstTableoptionClusterMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstTableoptionClusterMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19233,6 +19478,11 @@ namespace Bb.Asts.TSql
         
         public AstLockMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstLockMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19303,6 +19553,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstCheckNocheck(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstCheckNocheck(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19354,6 +19609,11 @@ namespace Bb.Asts.TSql
         
         public AstDataTypeScaled(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDataTypeScaled(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19457,6 +19717,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAbordAfterMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAbordAfterMode(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19524,6 +19789,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstLocalGlobal(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstLocalGlobal(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19573,6 +19843,11 @@ namespace Bb.Asts.TSql
         
         public AstStateEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstStateEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19644,6 +19919,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAuthenticationMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAuthenticationMode(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19707,6 +19987,11 @@ namespace Bb.Asts.TSql
         
         public AstEncryptionAlgorithm(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstEncryptionAlgorithm(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19794,6 +20079,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstRoleMirroring(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstRoleMirroring(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -19862,6 +20152,11 @@ namespace Bb.Asts.TSql
         
         public AstPartnerOptionEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPartnerOptionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -19997,6 +20292,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstDelayedDurability(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstDelayedDurability(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20064,6 +20364,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSuspendResume(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSuspendResume(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20112,6 +20417,11 @@ namespace Bb.Asts.TSql
         
         public AstRecoveryOptionEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstRecoveryOptionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20230,6 +20540,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSecondsMinutes(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSecondsMinutes(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20278,6 +20593,11 @@ namespace Bb.Asts.TSql
         
         public AstCompression(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstCompression(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20332,6 +20652,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstInitNoInit(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstInitNoInit(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20380,6 +20705,11 @@ namespace Bb.Asts.TSql
         
         public AstNoSkip(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstNoSkip(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20434,6 +20764,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstFormatNoformat(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstFormatNoformat(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20482,6 +20817,11 @@ namespace Bb.Asts.TSql
         
         public AstLoginUser(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstLoginUser(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20536,6 +20876,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstOutputOut(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstOutputOut(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20584,6 +20929,11 @@ namespace Bb.Asts.TSql
         
         public AstStartDateExpiryDate(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstStartDateExpiryDate(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20636,6 +20986,11 @@ namespace Bb.Asts.TSql
         
         public AstExecuteClauseModeEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstExecuteClauseModeEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20706,6 +21061,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstContentDocument(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstContentDocument(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20754,6 +21114,11 @@ namespace Bb.Asts.TSql
         
         public AstMaterializedMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstMaterializedMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20808,6 +21173,11 @@ namespace Bb.Asts.TSql
         
         public AstColumnModifierEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstColumnModifierEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -20910,6 +21280,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstComputeAs(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstComputeAs(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -20958,6 +21333,11 @@ namespace Bb.Asts.TSql
         
         public AstPrimaryKeyUnique(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPrimaryKeyUnique(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -21011,6 +21391,11 @@ namespace Bb.Asts.TSql
         
         public AstDeclareSetCursorCommonPartialEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDeclareSetCursorCommonPartialEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -21193,6 +21578,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAbsoluteRelative(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAbsoluteRelative(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -21243,6 +21633,11 @@ namespace Bb.Asts.TSql
         
         public AstFetchCursorStrategy(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFetchCursorStrategy(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -21331,6 +21726,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstStatisticKind(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstStatisticKind(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -21414,6 +21814,11 @@ namespace Bb.Asts.TSql
         
         public AstTransactionIsolation(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstTransactionIsolation(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -21534,6 +21939,11 @@ namespace Bb.Asts.TSql
         
         public AstSpecialList(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstSpecialList(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -21931,6 +22341,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstExpressionOperator(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstExpressionOperator(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22095,6 +22510,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAllSomeAny(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAllSomeAny(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22160,6 +22580,11 @@ namespace Bb.Asts.TSql
         
         public AstJoinMode(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstJoinMode(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22246,6 +22671,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAllDistinct(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAllDistinct(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22295,6 +22725,11 @@ namespace Bb.Asts.TSql
         
         public AstDelayTimeTimeout(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDelayTimeTimeout(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22365,6 +22800,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstCreationDisposition(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstCreationDisposition(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22416,6 +22856,11 @@ namespace Bb.Asts.TSql
         
         public AstAsymetricAlgorithm(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAsymetricAlgorithm(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22518,6 +22963,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAddRemove(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAddRemove(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22566,6 +23016,11 @@ namespace Bb.Asts.TSql
         
         public AstRestartRemove(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstRestartRemove(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22620,6 +23075,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSynchAsynch(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSynchAsynch(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22668,6 +23128,11 @@ namespace Bb.Asts.TSql
         
         public AstAutoManual(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAutoManual(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22722,6 +23187,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstRealWriteAll(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstRealWriteAll(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22771,6 +23241,11 @@ namespace Bb.Asts.TSql
         
         public AstNoRealWriteAll(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstNoRealWriteAll(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22840,6 +23315,11 @@ namespace Bb.Asts.TSql
         
         public AstPrimarySecondaryNone(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPrimarySecondaryNone(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -22926,6 +23406,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstGrantDeny(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstGrantDeny(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -22974,6 +23459,11 @@ namespace Bb.Asts.TSql
         
         public AstAddDrop(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAddDrop(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23028,6 +23518,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSetAdd(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSetAdd(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23076,6 +23571,11 @@ namespace Bb.Asts.TSql
         
         public AstPlatform(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPlatform(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23130,6 +23630,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstCodeLanguage(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstCodeLanguage(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23178,6 +23683,11 @@ namespace Bb.Asts.TSql
         
         public AstPwdStrategy(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPwdStrategy(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23232,6 +23742,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstEnableDisable(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstEnableDisable(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23281,6 +23796,11 @@ namespace Bb.Asts.TSql
         
         public AstMessageValidationValueEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstMessageValidationValueEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23352,6 +23872,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSizeUnity(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSizeUnity(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23417,6 +23942,11 @@ namespace Bb.Asts.TSql
         
         public AstContinueShutdown(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstContinueShutdown(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23489,6 +24019,11 @@ namespace Bb.Asts.TSql
         
         public AstAuditOperator(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAuditOperator(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23623,6 +24158,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAndOr(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAndOr(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23671,6 +24211,11 @@ namespace Bb.Asts.TSql
         
         public AstForFrom(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstForFrom(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23723,6 +24268,11 @@ namespace Bb.Asts.TSql
         
         public AstImportanceLevel(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstImportanceLevel(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23793,6 +24343,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstLeftRight(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstLeftRight(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -23841,6 +24396,11 @@ namespace Bb.Asts.TSql
         
         public AstNonePartial(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstNonePartial(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23895,6 +24455,11 @@ namespace Bb.Asts.TSql
         
         public AstIndexStrategy(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstIndexStrategy(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -23998,6 +24563,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstViewAttribute(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstViewAttribute(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24065,6 +24635,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstFilegroupPredicate(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstFilegroupPredicate(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24113,6 +24688,11 @@ namespace Bb.Asts.TSql
         
         public AstStatisticValue(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstStatisticValue(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -24184,6 +24764,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstPeriod(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstPeriod(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24249,6 +24834,11 @@ namespace Bb.Asts.TSql
         
         public AstDbStateOption(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDbStateOption(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -24319,6 +24909,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstDbUpdateOption(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstDbUpdateOption(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24368,6 +24963,11 @@ namespace Bb.Asts.TSql
         
         public AstDbUserAccessOption(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDbUserAccessOption(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -24439,6 +25039,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstDiskTapeUrl(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstDiskTapeUrl(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24506,6 +25111,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstFileFileGroup(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstFileFileGroup(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24554,6 +25164,11 @@ namespace Bb.Asts.TSql
         
         public AstLoadMounLoad(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstLoadMounLoad(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -24608,6 +25223,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstRewind(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstRewind(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24658,6 +25278,11 @@ namespace Bb.Asts.TSql
         
         public AstAlgorithmShort(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAlgorithmShort(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -24744,6 +25369,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstEncryptionDecryption(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstEncryptionDecryption(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -24800,6 +25430,11 @@ namespace Bb.Asts.TSql
         
         public AstAlgorithm(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAlgorithm(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -25001,6 +25636,11 @@ namespace Bb.Asts.TSql
         
         public AstGrantPermissionEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstGrantPermissionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -25663,6 +26303,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstTransaction(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstTransaction(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -25711,6 +26356,11 @@ namespace Bb.Asts.TSql
         
         public AstSensitive(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstSensitive(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -25765,6 +26415,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstPlusMinus(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstPlusMinus(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -25813,6 +26468,11 @@ namespace Bb.Asts.TSql
         
         public AstFirstNext(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFirstNext(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -25867,6 +26527,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAbsentXsinil(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAbsentXsinil(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -25915,6 +26580,11 @@ namespace Bb.Asts.TSql
         
         public AstAutoPath(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAutoPath(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -25976,6 +26646,11 @@ namespace Bb.Asts.TSql
         
         public AstUpdateOptionEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstUpdateOptionEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26287,6 +26962,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstJoinType(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstJoinType(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -26353,6 +27033,11 @@ namespace Bb.Asts.TSql
         
         public AstJoinHint(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstJoinHint(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26439,6 +27124,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstApplyStyle(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstApplyStyle(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -26487,6 +27177,11 @@ namespace Bb.Asts.TSql
         
         public AstContainstableFreetexttable(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstContainstableFreetexttable(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26541,6 +27236,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstSemanticTable(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstSemanticTable(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -26590,6 +27290,11 @@ namespace Bb.Asts.TSql
         
         public AstRankingWindowed(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstRankingWindowed(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26663,6 +27368,11 @@ namespace Bb.Asts.TSql
         
         public AstAggFunction(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstAggFunction(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26813,6 +27523,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstCountCountBig(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstCountCountBig(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -26861,6 +27576,11 @@ namespace Bb.Asts.TSql
         
         public AstPercentil(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstPercentil(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -26915,6 +27635,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstCumePercent(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstCumePercent(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -26963,6 +27688,11 @@ namespace Bb.Asts.TSql
         
         public AstFirstLastValue(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstFirstLastValue(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27017,6 +27747,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstLagLead(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstLagLead(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -27065,6 +27800,11 @@ namespace Bb.Asts.TSql
         
         public AstRowRange(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstRowRange(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27117,6 +27857,11 @@ namespace Bb.Asts.TSql
         
         public AstOffReadOnlyFull(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstOffReadOnlyFull(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27187,6 +27932,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstAscDesc(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstAscDesc(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -27235,6 +27985,11 @@ namespace Bb.Asts.TSql
         
         public AstOnOff(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstOnOff(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27289,6 +28044,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstClustered(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstClustered(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -27339,6 +28099,11 @@ namespace Bb.Asts.TSql
         
         public AstScalarFunctionNameEnum(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstScalarFunctionNameEnum(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27425,6 +28190,11 @@ namespace Bb.Asts.TSql
         {
         }
         
+        public AstRelayedConversation(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
+        {
+        }
+        
         public AstRelayedConversation(Position position, string name, string value) : 
                 base(position, name, value)
         {
@@ -27474,6 +28244,11 @@ namespace Bb.Asts.TSql
         
         public AstLogSeterrorNowait(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstLogSeterrorNowait(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         
@@ -27541,6 +28316,11 @@ namespace Bb.Asts.TSql
         
         public AstDeleteedInserted(ITerminalNode t, string value) : 
                 base(t, value)
+        {
+        }
+        
+        public AstDeleteedInserted(ParserRuleContext ctx, string value) : 
+                base(ctx, value)
         {
         }
         

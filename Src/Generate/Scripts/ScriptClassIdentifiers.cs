@@ -66,12 +66,7 @@ namespace Generate.Scripts
 
                               .Fields(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (field, model) =>
                               {
-
-                                  if (ast.Name.Text == "transaction_ref")
-                                  {
-
-                                  }
-
+                                 
                                   field.Name(a => "_value")
                                       .Attribute(MemberAttributes.Private)
                                       .Type(GetType(ctx, model))

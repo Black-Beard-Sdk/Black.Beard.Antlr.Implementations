@@ -19,8 +19,13 @@ namespace Bb.Asts.TSql
         {
         }
 
+        public AstTerminalKeyword(ParserRuleContext ctx, string value) :
+                base(ctx, value)
+        {
+        }
+
         public AstTerminalKeyword(ParserRuleContext ctx) :
-                base(ctx, ctx.GetText())
+                this(ctx, ctx.GetText())
         {
         }
 

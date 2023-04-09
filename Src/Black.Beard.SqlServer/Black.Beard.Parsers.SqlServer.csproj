@@ -47,8 +47,4 @@
     <ProjectReference Include="..\Black.Beard.Parsers\Black.Beard.Parsers.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Asts\Generateds\" />
-  </ItemGroup>
-
 </Project>
