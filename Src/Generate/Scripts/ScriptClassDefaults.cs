@@ -5,6 +5,7 @@ using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
 using System.Diagnostics;
 using System.Text;
+using System.Linq;
 
 namespace Generate.Scripts
 {
@@ -32,6 +33,8 @@ namespace Generate.Scripts
             generator.Add(this.Name, template =>
             {
 
+
+
                 template.Namespace(Namespace, ns =>
                 {
                     ns.Using(Usings)
@@ -45,6 +48,7 @@ namespace Generate.Scripts
                     type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                         .Documentation(c => c.Summary(() => ast.ToString()))
                         .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                        .Attribute(ast.Alternatives.Count == 1 ? System.Reflection.TypeAttributes.Public : System.Reflection.TypeAttributes.Public | System.Reflection.TypeAttributes.Abstract)
                         .Inherit(() => GetInherit(ast, ctx))
 
 
@@ -52,22 +56,38 @@ namespace Generate.Scripts
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ITerminalNode", "t")
-                                    .Argument(() => "List<AstRoot>", "list")
                                     .CallBase("t");
+
+                                   if (ast.Alternatives.Count == 1)
+                                   {
+                                       f.Argument(() => "List<AstRoot>", "list");
+                                   }
+
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ParserRuleContext", "ctx")
-                                    .Argument(() => "List<AstRoot>", "list")
                                     .CallBase("ctx");
+
+                                   if (ast.Alternatives.Count == 1)
+                                   {
+                                       f.Argument(() => "List<AstRoot>", "list");
+                                   }
+
                                })
                         .Ctor((f) =>
                                {
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "Position", "p")
-                                    .Argument(() => "List<AstRoot>", "list")
                                     .CallBase("p");
+
+                                   if (ast.Alternatives.Count == 1)
+                                   {
+                                       f.Argument(() => "List<AstRoot>", "list");
+                                   }
+
+
                                })
                         .Ctor((f) =>
                                {
@@ -76,7 +96,7 @@ namespace Generate.Scripts
                                     .CallBase("Position.Default");
                                })
 
-                        .Method(method =>
+                        .MethodWhen(() => ast.Alternatives.Count == 1, method =>
                         {
                             method
                              .Name(g => "Accept")
@@ -93,6 +113,59 @@ namespace Generate.Scripts
                              });
                         })
 
+                        .MethodWhen(() => ast.Alternatives.Count > 1, method =>
+                        {
+                            method
+                             .Name(g => "Create")
+                             .Argument("ParserRuleContext", "ctx")
+                             .Argument("List<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                             .Return(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                             .Body(b =>
+                             {
+
+                                 b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), CodeHelper.Call(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
+                                     , "Resolve", "list".Var()));
+                                 b.Statements.Return(CodeHelper.Null());
+
+                             });
+                        })
+
+                        .MethodWhen(() => ast.Alternatives.Count > 1, method =>
+                        {
+                            method
+                             .Name(g => "Resolve")
+                             .Argument("List<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public | MemberAttributes.Static)
+                             .Return(() => typeof(int))
+                             .Body(b =>
+                             {
+
+                                 List<List<string>> alternatives = new List<List<string>>(ast.Alternatives.Count);
+                                 foreach (var item in ast.Alternatives)
+                                 {
+                                     var r = item.GetRules().ToList();
+                                     var l = new List<string>(r.Count);
+                                     foreach (var item2 in r)
+                                     {
+                                         var type = "Ast" + CodeHelper.FormatCsharp(item2.ToString());
+                                         l.Add(type);
+                                     }
+                                     alternatives.Add(l);
+                                 }
+
+                                 b.Statements.If("_alternatives".Var().IsEqual(CodeHelper.Null()), _t =>
+                                 {
+                                     _t.Assign("_alternatives".Var(), CodeHelper.Create("List<List<AstRoot>>".AsType(), alternatives.Count.AsConstant()));
+                                 });
+                                 
+
+                                 b.Statements.Return(CodeHelper.AsConstant(1));
+
+
+                             });
+                        })
+
                         .Field(field =>
                         {
                             field.Name("_rule")
@@ -105,15 +178,25 @@ namespace Generate.Scripts
                             ;
                         })
 
+                        .FieldWhen(() => ast.Alternatives.Count > 1, field =>
+                        {
+                            field.Name("_alternatives")
+                            .Type(() => "List<List<Type>>")
+                            .Attribute(MemberAttributes.Private | MemberAttributes.Static)
+                            ;
+                        })
+
                         .Make(t =>
                         {
 
                             HashSet<string> _h = new HashSet<string>();
                             List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
+                            int i = 0;
                             foreach (AstLabeledAlt alternative in ast.Alternatives)
                             {
 
+                                i++;
                                 var allCombinations = alternative.ResolveAllCombinations();
 
                                 foreach (TreeRuleItem alt in allCombinations)
@@ -121,11 +204,18 @@ namespace Generate.Scripts
 
                                     StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
                                     var name = CodeHelper.FormatCsharp(ast.Name.Text);
-                                    var t1 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType();
+                                    var tname = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                    var tname2 = ("Ast" + CodeHelper.FormatCsharp(ast.Name.Text));
+                                    if (ast.Alternatives.Count > 1)
+                                    {
+                                        tname2 = tname + "." + tname + (i).ToString();
+                                    }
+                                    var t1 = tname.AsType();
+                                    var t3 = tname2.AsType();
                                     List<string> arguments = new List<string>();
 
                                     var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                        .BuildDocumentation(alt, ctx);
+                                        .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                     var t2 = "List<AstRoot>".AsType();
                                     method.Statements.Add(CodeHelper.DeclareAndCreate("arguments", t2));
@@ -139,10 +229,10 @@ namespace Generate.Scripts
 
                                         var itemResult = ast.ResolveByName(itemAst.ResolveKey());
                                         if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
-                                        {                                            
+                                        {
                                             name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
                                             argumentTypeName = new CodeTypeReference(name);
-                                            
+
                                             if (string.IsNullOrEmpty(itemAst.Label))
                                                 varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
                                             else
@@ -212,7 +302,7 @@ namespace Generate.Scripts
                                             uniqeConstraintKeyMethod.Append(name);
                                             arguments.Add(varName);
                                         }
-                                        
+
 
                                     };
 
@@ -230,13 +320,13 @@ namespace Generate.Scripts
                                         if (_h.Add(noDuplicateKey))
                                         {
                                             methods.Add(method);
-                                            method.Statements.Add(CodeHelper.DeclareAndCreate("result", t1, "arguments".Var()));
+                                            method.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, "arguments".Var()));
                                             method.Statements.Return("result".Var());
                                         }
 
                                     }
 
-                                }                       
+                                }
 
                             }
 
@@ -246,44 +336,131 @@ namespace Generate.Scripts
                             }
 
                         })
-
                         ;
 
+                    if (ast.Alternatives.Count > 1)
+                    {
+                        int i = 0;
+                        foreach (var ast2 in ast.Alternatives)
+                        {
 
+                            type.CreateTypeFrom<AstBase>(ast => true, null, (ast3, type2) =>
+                            {
 
+                                type2.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + (++i).ToString())
+                                .Documentation(c => c.Summary(() => ast.Name.Text + " : " + ast2.ToString()))
+                                .Inherit(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                                .Ctor((f) =>
+                                {
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                     .Argument(() => "ITerminalNode", "t")
+                                     .Argument(() => "List<AstRoot>", "list")
+                                     .CallBase("t");
+                                })
+                                .Ctor((f) =>
+                                {
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                     .Argument(() => "ParserRuleContext", "ctx")
+                                     .Argument(() => "List<AstRoot>", "list")
+                                     .CallBase("ctx")
+                                     .Body(b =>
+                                     {
+
+                                     })
+                                     ;
+                                })
+                                .Ctor((f) =>
+                                {
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                     .Argument(() => "Position", "p")
+                                     .Argument(() => "List<AstRoot>", "list")
+                                     .CallBase("p");
+                                })
+                                .Ctor((f) =>
+                                {
+                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
+                                     .Argument(() => "List<AstRoot>", "list")
+                                     .CallBase("Position.Default");
+                                })
+                                .Method(method =>
+                                {
+                                    method
+                                     .Name(g => "Accept")
+                                     .Argument("IAstTSqlVisitor", "visitor")
+                                     .Attribute(MemberAttributes.Override | MemberAttributes.Public)
+                                     .Body(b =>
+                                     {
+                                         b.Statements.Call
+                                         (
+                                             CodeHelper.Var("visitor"),
+                                             "Visit" + CodeHelper.FormatCsharp(ast.Name.Text),
+                                             CodeHelper.This()
+                                         );
+                                     });
+                                })
+
+                                //.Fields(() =>
+                                //      {
+                                //          List<object> _properties = new List<object>();
+                                //          var p = ast2.Select(c => c.Type == nameof(AstAlternativeList));
+                                //          if (p.Count == 0)
+                                //          {
+                                //              var p2 = ast2.Select(
+                                //                  c => c.Type == nameof(AstRuleRef)
+                                //                  , c => c.Type == nameof(AstTerminalText)
+                                //                  );
+                                //              foreach (AstBase item2 in p2)
+                                //                  _properties.Add(item2);
+                                //          }
+                                //          return _properties;
+                                //      },
+                                //      (field, model) =>
+                                //      {
+                                //          field.Name(m => CodeHelper.FormatCsharpField((model as AstBase).ResolveName()))
+                                //          .Type(() => "Ast" + CodeHelper.FormatCsharp((model as AstBase).ResolveName()))
+                                //          .Attribute(MemberAttributes.Private)
+                                //          ;
+                                //      }
+                                //    )
+
+                                ;
+
+                            });
+                        }
+                    }
 
                 })
 
                 .CreateTypeFrom<AstLabeledAlt>(null, null, (ast, type) =>
-                       {
-                           type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
-                               .Inherit(() => "AstRule")
-                               .Documentation(c => c.Summary(() => ast.ToString()))
+                {
+                    type.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                        .Inherit(() => "AstRule")
+                        .Documentation(c => c.Summary(() => ast.ToString()))
 
-                               .Ctor((f) =>
-                               {
-                                   f.Argument(() => "ParserRuleContext", "ctx")
-                                    .Argument(() => "List<AstRoot>", "list")
-                                    .Attribute(MemberAttributes.Public)
-                                    .CallBase("ctx", "list");
-                               })
-                               .Method(method =>
-                               {
-                                   method
-                                    .Name(g => "Accept")
-                                    .Argument("IAstTSqlVisitor", "visitor")
-                                    .Attribute(MemberAttributes.Override | MemberAttributes.Public)
-                                    .Body(b =>
-                                    {
-                                        b.Statements.Call
-                                        (
-                                            CodeHelper.Var("visitor"),
-                                            "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text),
-                                            CodeHelper.This()
-                                        );
-                                    });
-                               });
-                       });
+                        .Ctor((f) =>
+                        {
+                            f.Argument(() => "ParserRuleContext", "ctx")
+                             .Argument(() => "List<AstRoot>", "list")
+                             .Attribute(MemberAttributes.Public)
+                             .CallBase("ctx", "list");
+                        })
+                        .Method(method =>
+                        {
+                            method
+                             .Name(g => "Accept")
+                             .Argument("IAstTSqlVisitor", "visitor")
+                             .Attribute(MemberAttributes.Override | MemberAttributes.Public)
+                             .Body(b =>
+                             {
+                                 b.Statements.Call
+                                 (
+                                     CodeHelper.Var("visitor"),
+                                     "Visit" + CodeHelper.FormatCamelUpercase(ast.Name.Text),
+                                     CodeHelper.This()
+                                 );
+                             });
+                        });
+                });
 
                 });
 
@@ -291,7 +468,7 @@ namespace Generate.Scripts
 
         }
 
-       
+
     }
 
 

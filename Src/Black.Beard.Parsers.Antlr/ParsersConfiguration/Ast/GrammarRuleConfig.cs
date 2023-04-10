@@ -28,7 +28,7 @@ namespace Bb.ParsersConfiguration.Ast
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
         }
 
-        public bool Generate { get; set; }
+        public bool Generate { get; private set; }
 
         public IdentifierConfig Inherit
         {

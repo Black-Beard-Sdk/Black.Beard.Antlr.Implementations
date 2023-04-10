@@ -89,8 +89,8 @@ namespace Generate
                 .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = namespaceParser)
                 //.Add<ScriptClassToString>()
 
-                .Add<ScriptVisitor1>("IAstTSqlVisitor1")
-                .Add<ScriptVisitor2>("IAstTSqlVisitor2")
+                .Add<ScriptInterfaceVisitor1>("IAstTSqlVisitor1")
+                //.Add<ScriptInterfaceVisitor2>("IAstTSqlVisitor2")
 
                 .Generate(ctx);
 

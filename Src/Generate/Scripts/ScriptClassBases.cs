@@ -93,7 +93,7 @@ namespace Generate.Scripts
                                 List<string> arguments = new List<string>();
 
                                 var method = n1.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                    .BuildDocumentation(alt, ctx);
+                                    .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                 if (alt.Count > 0)
                                     foreach (var itemAlt in alt)

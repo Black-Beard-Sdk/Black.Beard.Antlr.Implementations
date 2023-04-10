@@ -3,6 +3,7 @@ using Bb.Parsers;
 using System;
 using System.CodeDom;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -14,9 +15,24 @@ namespace Bb.Generators
         where T : AstBase
     {
 
+        public ModelTypeFrom(ModelTypeFrom parent, Func<T, bool> testGenerateIf, Action<T> prepareAction, Action<T, ModelTypeFrom<T>> action)
+            : base(parent)
+        {
+            _typeBuilder = new List<ModelTypeFrom>();
+            _parents = new List<Func<string>>();
+            _methods = new List<ModelMethod>();
+            _fields = new List<ModelField>();
+            _properties = new List<ModelProperty>();
+            this._attributes = TypeAttributes.Class | TypeAttributes.Public;
+            this.testGenerateIf = testGenerateIf;
+            this._prepareAction = prepareAction;
+            this._action = action;
+        }
+
         public ModelTypeFrom(ModelNamespace modelNamespace, Func<T, bool> testGenerateIf, Action<T> prepareAction, Action<T, ModelTypeFrom<T>> action)
             : base(modelNamespace)
         {
+            _typeBuilder = new List<ModelTypeFrom>();
             _parents = new List<Func<string>>();
             _methods = new List<ModelMethod>();
             _fields = new List<ModelField>();
@@ -28,6 +44,13 @@ namespace Bb.Generators
         }
 
         public override Type Type => typeof(T);
+
+        public new ModelTypeFrom<T> CreateTypeFrom(Func<T, bool> testGenerateIf, Action<T> prepare, Action<T, ModelTypeFrom<T>> action)
+        {
+            var t = new ModelTypeFrom<T>(this, testGenerateIf, prepare, action);
+            this._typeBuilder.Add(t);
+            return this;
+        }
 
         public ModelTypeFrom<T> Attribute(TypeAttributes attributes)
         {
@@ -200,7 +223,6 @@ namespace Bb.Generators
             return this;
         }
 
-
         /// <summary>
         /// Generates the specified CTX.
         /// </summary>
@@ -208,13 +230,13 @@ namespace Bb.Generators
         /// <param name="ast">The ast.</param>
         /// <param name="namespace">The namespace.</param>
         /// <exception cref="System.Exception"></exception>
-        internal override void Generate(Context ctx, AstBase ast, CodeNamespace @namespace)
+        internal override void Generate(Context ctx, AstBase ast, CodeTypeDeclarationCollection types)
         {
             if (ast is T a)
             {
 
                 var b = new ModelTypeFrom<T>(_modelNamespace, testGenerateIf, _prepareAction, _action);
-                var t = b.RunGeneration(ctx, a, @namespace, _type, out CodeTypeDeclaration typeResult);
+                var t = b.RunGeneration(ctx, a, types, _type, out CodeTypeDeclaration typeResult);
                 if (t)
                 {
                     if (_justOne)
@@ -225,20 +247,12 @@ namespace Bb.Generators
 
         }
 
-        private bool RunGeneration(Context ctx, T ast, CodeNamespace @namespace, CodeTypeDeclaration type, out CodeTypeDeclaration typeResult)
+        private bool RunGeneration(Context ctx, T ast, CodeTypeDeclarationCollection types, CodeTypeDeclaration type, out CodeTypeDeclaration typeResult)
         {
 
-            var result = testGenerateIf != null ? testGenerateIf(ast) : true;
-
-            if (_prepareAction != null)
-                _prepareAction(ast);
-
             typeResult = null;
-            _action(ast, this);
 
-            if (this._templateSelectoraction != null)
-                ctx.Strategy = this._templateSelectoraction();
-
+            var result = BuildCode(ctx, ast);
 
             if (result)
             {
@@ -248,36 +262,11 @@ namespace Bb.Generators
 
                     var _n = this._nameOfClass();
 
-                    if (!Exists(@namespace.Types, _n, out CodeTypeDeclaration typeResultDeclaration))
+                    if (!Exists(types, _n, out CodeTypeDeclaration typeResultDeclaration))
                     {
-
-                        type = new CodeTypeDeclaration(_n)
-                        {
-                            IsPartial = true,                            
-                            TypeAttributes = _attributes,
-                        };
-
-                        if (_isInterface)
-                            type.IsInterface = true;
-
-                        else if (_isEnum)
-                            type.IsEnum = true;
-
-                        else if (_isStruct)
-                            type.IsStruct = true
-
-                        ;
-
-
-                        GenerateDocumentation(type, ctx);
-
-                        foreach (var parent in _parents)
-                            type.BaseTypes.Add(new CodeTypeReference(parent()));
-
-                        @namespace.Types.Add(type);
-
+                        type = GenerateType(ctx, _n);
+                        types.Add(type);
                         typeResult = type;
-
                     }
                     else
                         type = typeResult = typeResultDeclaration;
@@ -285,78 +274,137 @@ namespace Bb.Generators
                 }
 
                 if (type != null)
-                {
-
-                    foreach (var p in _properties)
-                    {
-                        if (p.Items != null)
-                        {
-                            var items = p.Items();
-                            foreach (var item in items)
-                            {
-                                p.Clean();
-                                p.Action(p, item);
-                                p.Generate(ctx, item, type);
-                            }
-                        }
-                        else
-                        {
-                            p.Action2(p);
-                            p.Generate(ctx, ast, type);
-                        }
-                    }
-
-
-                    foreach (var m in _methods)
-                    {
-
-                        if (m.Items != null)
-                        {
-                            var items = m.Items();
-                            foreach (var item in items)
-                            {
-                                m.Clean();
-                                m.Action(m, item);
-                                m.Generate(ctx, item, type);
-                            }
-                        }
-                        else
-                        {
-                            if (m.Action2 != null)
-                                m.Action2(m);
-                            m.Generate(ctx, ast, type);
-                        }
-
-                    }
-
-                    foreach (var f in _fields)
-                    {
-                        if (f.Items != null)
-                        {
-                            var items = f.Items();
-                            foreach (var item in items)
-                            {
-                                f.Clean();
-                                f.Action(f, item);
-                                f.Generate(ctx, item, type);
-                            }
-                        }
-                        else
-                        {
-                            f.Action2(f);
-                            f.Generate(ctx, ast, type);
-                        }
-                    }
-
-                    foreach (var a in _actions)
-                        a(type);
-
-                }
+                    GenerateMembers(ctx, ast, type);
 
             }
 
             return result;
 
+        }
+
+        private bool BuildCode(Context ctx, T ast)
+        {
+
+            var result = testGenerateIf != null ? testGenerateIf(ast) : true;
+
+            if (_prepareAction != null)
+                _prepareAction(ast);
+
+            _action(ast, this);
+
+            if (this._nameOfClass == null)
+                throw new InvalidOperationException("missing class name");
+
+            if (this._templateSelectoraction != null)
+                ctx.Strategy = this._templateSelectoraction();
+
+            return result;
+
+        }
+
+        private CodeTypeDeclaration GenerateType(Context ctx, string name)
+        {
+
+            CodeTypeDeclaration type = new CodeTypeDeclaration(name)
+            {
+                IsPartial = true,
+                TypeAttributes = _attributes,
+            };
+
+            if (_isInterface)
+                type.IsInterface = true;
+
+            else if (_isEnum)
+                type.IsEnum = true;
+
+            else if (_isStruct)
+                type.IsStruct = true
+
+            ;
+
+            GenerateDocumentation(type, ctx);
+
+            foreach (var parent in _parents)
+                type.BaseTypes.Add(new CodeTypeReference(parent()));
+
+            return type;
+
+        }
+
+        private void GenerateMembers(Context ctx, T ast, CodeTypeDeclaration type)
+        {
+
+            foreach (var p in _properties)
+            {
+                if (p.Items != null)
+                {
+                    var items = p.Items();
+                    foreach (var item in items)
+                    {
+                        p.Clean();
+                        p.Action(p, item);
+                        p.Generate(ctx, item, type);
+                    }
+                }
+                else
+                {
+                    p.Action2(p);
+                    p.Generate(ctx, ast, type);
+                }
+            }
+
+            foreach (var m in _methods)
+            {
+
+                if (m.Items != null)
+                {
+                    var items = m.Items();
+                    foreach (var item in items)
+                    {
+                        m.Clean();
+                        m.Action(m, item);
+                        m.Generate(ctx, item, type);
+                    }
+                }
+                else
+                {
+                    if (m.Action2 != null)
+                        m.Action2(m);
+                    m.Generate(ctx, ast, type);
+                }
+
+            }
+
+            foreach (var f in _fields)
+            {
+                if (f.Items != null)
+                {
+                    var items = f.Items();
+                    foreach (var item in items)
+                    {
+                        f.Clean();
+                        f.Action(f, item);
+                        f.Generate(ctx, item, type);
+                    }
+                }
+                else
+                {
+                    f.Action2(f);
+                    f.Generate(ctx, ast, type);
+                }
+            }
+
+            foreach (var a in _actions)
+                a(type);
+
+            if (_typeBuilder.Count > 0)
+            {
+                var Ns = new CodeTypeDeclarationCollection();
+                foreach (var t in _typeBuilder)
+                    t.Generate(ctx, ast, Ns);
+                var member = new CodeClassNested(Ns);
+                type.Members.Add(member);
+            }
         }
 
         private bool Exists(CodeTypeDeclarationCollection types, string n, out CodeTypeDeclaration resultModel)
@@ -381,6 +429,7 @@ namespace Bb.Generators
             this._templateSelectoraction = action;
             return this;
         }
+
 
         protected internal List<Func<string>> _parents { get; }
 
@@ -411,6 +460,12 @@ namespace Bb.Generators
     public abstract class ModelTypeFrom : ModelMember
     {
 
+        public ModelTypeFrom(ModelTypeFrom parent)
+        {
+            this._parent = parent;
+            _actions = new List<Action<CodeTypeDeclaration>>();
+        }
+
         public ModelTypeFrom(ModelNamespace modelNamespace)
         {
             this._modelNamespace = modelNamespace;
@@ -419,7 +474,6 @@ namespace Bb.Generators
 
         public abstract Type Type { get; }
 
-        protected ModelNamespace _modelNamespace;
 
         protected void GenerateDocumentation(CodeTypeMember member, Context context)
         {
@@ -433,17 +487,28 @@ namespace Bb.Generators
 
         }
 
+        public ModelTypeFrom CreateTypeFrom<T>(Func<T, bool> testGenerateIf, Action<T> prepare, Action<T, ModelTypeFrom<T>> action)
+           where T : AstBase
+        {
+            var t = new ModelTypeFrom<T>(this, testGenerateIf, prepare, action);
+            this._typeBuilder.Add(t);
+            return this;
+        }
+
         public ModelTypeFrom Make(Action<CodeTypeDeclaration> action)
         {
             this._actions.Add(action);
             return this;
         }
 
-        internal abstract void Generate(Context ctx, AstBase ast, CodeNamespace @namespace);
+        internal abstract void Generate(Context ctx, AstBase ast, CodeTypeDeclarationCollection types);
 
 
         protected Action<Documentation> _actionDocumentation;
         protected readonly List<Action<CodeTypeDeclaration>> _actions;
+        protected ModelNamespace _modelNamespace;
+        private ModelTypeFrom _parent;
+        protected List<ModelTypeFrom> _typeBuilder;
 
     }
 

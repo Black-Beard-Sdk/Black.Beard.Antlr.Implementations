@@ -2,6 +2,7 @@
 
 namespace Bb.Generators
 {
+
     public class ScriptList : List<ScriptBase>
     {
 
@@ -52,8 +53,8 @@ namespace Bb.Generators
 
             context.RemoveFiles(names);
 
-
             return this;
+
         }
 
         public ScriptList Using(params string[] items)

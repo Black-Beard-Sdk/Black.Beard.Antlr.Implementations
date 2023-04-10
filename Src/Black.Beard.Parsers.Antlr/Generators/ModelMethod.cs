@@ -79,7 +79,13 @@ namespace Bb.Generators
             if (Test != null && !Test())
                 return;
 
-            var _n = this._nameOfMethod(model);
+            string _n = null;
+
+            if (_nameOfMethod != null)
+                _n = this._nameOfMethod(model);
+
+            if (_n == null)
+                return;
 
             CodeTypeReference type = null;
             if (_actionType != null)
@@ -110,6 +116,7 @@ namespace Bb.Generators
             if (this._body != null)
                 this._body(method);
 
+            
             if (!MemberExists(t.Members, method))
                 t.Members.Add(method);
 

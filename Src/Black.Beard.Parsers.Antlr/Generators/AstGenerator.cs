@@ -17,9 +17,7 @@ namespace Bb.Generators
 
         public string Name { get; internal set; }
 
-
         public CodeCompileUnit CompileUnit { get; private set; }
-
 
         public void Generate(Context ctx, AstBase ast)
         {
@@ -37,6 +35,7 @@ namespace Bb.Generators
 
 
         private List<ModelNamespace> Namespaces;
+        internal ScriptBase _root;
 
     }
 

@@ -66,7 +66,7 @@ namespace Bb.Generators
                         compileUnit.Namespaces.Add(this._namespace);
                     }
 
-                    type.Generate(ctx, ast, _namespace);
+                    type.Generate(ctx, ast, _namespace.Types);
 
                 }
 

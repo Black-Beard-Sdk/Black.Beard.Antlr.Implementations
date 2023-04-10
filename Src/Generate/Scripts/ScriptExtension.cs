@@ -388,11 +388,11 @@ namespace Generate.Scripts
 
         }
 
-        public static CodeMemberMethod BuildDocumentation(this CodeMemberMethod method, TreeRuleItem item, Context ctx)
+        public static CodeMemberMethod BuildDocumentation(this CodeMemberMethod method, string name, TreeRuleItem item, Context ctx)
         {
 
             method.Comments.Add(new CodeCommentStatement("<summary>", true));
-            method.Comments.Add(new CodeCommentStatement($"{item.Name} : ", true));
+            method.Comments.Add(new CodeCommentStatement($"{name} : ", true));
             method.Comments.Add(new CodeCommentStatement(item.GenerateDoc(ctx), true));
             method.Comments.Add(new CodeCommentStatement("</summary>", true));
 

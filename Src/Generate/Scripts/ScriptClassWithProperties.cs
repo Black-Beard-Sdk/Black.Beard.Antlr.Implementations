@@ -210,7 +210,7 @@ namespace Generate.Scripts
                                           List<string> arguments = new List<string>();
 
                                           var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                            .BuildDocumentation(alt, ctx);
+                                            .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                           Action<TreeRuleItem> act = itemAst =>
                                           {

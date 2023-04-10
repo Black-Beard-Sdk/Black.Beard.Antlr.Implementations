@@ -95,11 +95,6 @@ namespace Generate.Scripts
                               .Make(t =>
                               {
 
-                                  if (ast.Name.Text == "star_asterisk")
-                                  {
-
-                                  }
-
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
@@ -116,7 +111,7 @@ namespace Generate.Scripts
                                       List<string> arguments = new List<string>();
 
                                       var method = n1.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                        .BuildDocumentation(alt, ctx);
+                                        .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                       if (alt.Count > 0)
                                       {

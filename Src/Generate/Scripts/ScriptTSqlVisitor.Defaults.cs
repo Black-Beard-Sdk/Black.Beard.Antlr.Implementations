@@ -65,11 +65,15 @@ namespace Generate.Scripts
                                            );
 
                                        });
-                                       b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
+
+                                       if (ast.Alternatives.Count > 1)
+                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Call("Create", "context".Var(), "list".Var()));
+                                       else
+                                           b.Statements.Return(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType().Create("context".Var(), "list".Var()));
 
                                    });
                               })
-                                                          
+
                               ;
                       });
                 });

@@ -34,7 +34,7 @@ RULE batch_level_statement
 	 | create_or_alter_trigger
 	 | create_view
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -74,7 +74,7 @@ RULE dml_clause
 	 | select_statement_standalone
 	 | update_statement
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -244,7 +244,7 @@ RULE ddl_clause
 	 | truncate_table
 	 | update_statistics
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -258,7 +258,7 @@ RULE backup_statement
 	 | backup_master_key
 	 | backup_service_master_key
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -279,7 +279,7 @@ RULE cfl_statement
 	 | print_statement
 	 | raiseerror_statement
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -467,7 +467,7 @@ RULE another_statement
 	 | shutdown_statement
 	 | checkpoint_statement
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -2425,7 +2425,7 @@ RULE conversation_statement
 	 | send_conversation
 	 | waitfor_conversation
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -2964,7 +2964,7 @@ RULE create_or_alter_trigger
 	 : create_or_alter_dml_trigger
 	 | create_or_alter_ddl_trigger
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstBatchLevelStatement"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -3491,7 +3491,7 @@ RULE database_mirroring_option
 //** database_mirroring_option
 	 : mirroring_set_option
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
@@ -3503,7 +3503,7 @@ RULE mirroring_set_option
 	 | mirroring_witness  witness_option
   **// 
 	GENERATE
-	INHERIT "AstDatabaseMirroringOption"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
 ;
@@ -3565,7 +3565,7 @@ RULE witness_server
 //** witness_server
 	 : partner_server
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
@@ -3576,7 +3576,7 @@ RULE partner_server
 	 : partner_server_tcp_prefix  host  COLON  port_number
   **// 
 	GENERATE
-	INHERIT "AstWitnessServer"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -3887,7 +3887,7 @@ RULE drop_trigger
 	 : drop_dml_trigger
 	 | drop_ddl_trigger
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -3988,7 +3988,7 @@ RULE rowset_function_limited
 	 : openquery
 	 | opendatasource
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -5107,7 +5107,7 @@ RULE subquery
 //** subquery
 	 : select_statement
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
@@ -5400,7 +5400,7 @@ RULE asterisk
 	 | table_asterisk
 	 | updated_asterisk
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -5421,7 +5421,7 @@ RULE table_asterisk
 	 : full_table_ref  DOT  STAR
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -5431,7 +5431,7 @@ RULE updated_asterisk
 	 : (INSERTED | DELETED)  DOT  STAR
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
 ;
@@ -5441,7 +5441,7 @@ RULE column_elem
 	 : column_elem_target  as_column_alias?
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -5465,7 +5465,7 @@ RULE udt_elem
 	 | udt_column_id  DOUBLE_COLON  static_attr_id  udt_method_arguments?  as_column_alias?
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
 ;
@@ -5476,7 +5476,7 @@ RULE expression_elem
 	 | expressionAs = expression  as_column_alias?
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
 ;
@@ -5489,7 +5489,7 @@ RULE select_list_elem
 	 | expression_assign_elem
 	 | expression_elem
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -5500,7 +5500,7 @@ RULE expression_assign_elem
 	 : local_id  (assignment_operator | EQUAL)  expression
   **// 
 	GENERATE
-	INHERIT "AstSelectListElem"
+	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -5633,7 +5633,7 @@ RULE change_table
 	 : change_table_changes
 	 | change_table_version
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -5667,7 +5667,7 @@ RULE join_part
 	 | pivot
 	 | unpivot
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -6022,7 +6022,7 @@ RULE xml_data_type_methods
 	 | exist_method
 	 | modify_method
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -6416,7 +6416,7 @@ RULE window_frame_bound
 	 : window_frame_preceding
 	 | window_frame_following
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -6487,7 +6487,7 @@ RULE database_file_spec
 	 : file_group
 	 | file_spec
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
@@ -18259,7 +18259,7 @@ RULE constraint_delete_or_update
 	 : on_delete
 	 | on_update
   **// 
-	NO GENERATE
+	GENERATE
 	INHERIT "AstRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _

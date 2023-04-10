@@ -21,6 +21,7 @@ namespace Bb.Asts
 
         public T this[int item] { get => _list[item]; }
 
+        public int IndexOf(T item) => _list.IndexOf(item);
 
         public AstListBase(ParserRuleContext ctx)
             : base(ctx)

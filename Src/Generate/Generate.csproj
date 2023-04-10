@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Remove="Scripts\ScriptClassEnum.cs" />
     <Compile Remove="Scripts\ScriptClassToString.cs" />
+    <Compile Remove="Scripts\ScriptInterfaceVisitor2.cs" />
   </ItemGroup>
 
   <ItemGroup>

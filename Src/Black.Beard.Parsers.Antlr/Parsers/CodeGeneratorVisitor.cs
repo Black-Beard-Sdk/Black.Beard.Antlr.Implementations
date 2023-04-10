@@ -14,10 +14,11 @@ namespace Bb.Parsers
 
 
 
-        public CodeGeneratorVisitor(Context ctx)
+        public CodeGeneratorVisitor(Context ctx, ScriptBase root)
         {
             this._ctx = ctx;
             this._items = new AstGenerators();
+            this._root = root;
         }
 
         public CodeGeneratorVisitor Add(string name, Action<AstGenerator> action)
@@ -25,7 +26,8 @@ namespace Bb.Parsers
 
             var g = new AstGenerator()
             {
-                Name = name
+                Name = name,
+                _root = this._root,
             };
 
             this._items.Add(g);
@@ -61,15 +63,9 @@ namespace Bb.Parsers
 
         public void VisitLexerRule(AstLexerRule a)
         {                       
-
             if (a.Alternatives != null)
                 a.CanBeRemoved = a.Alternatives.CanBeRemoved;
-
-            //var config = _ctx.Configuration.GetConfiguration(a.RuleName.Text);
-            //config.ProposalGenerate = !a.CanBeRemoved;
-
             _items.Add(a);
-
         }
 
         public void VisitRule(AstRule a)
@@ -453,6 +449,7 @@ namespace Bb.Parsers
 
         private readonly Context _ctx;
         private readonly AstGenerators _items;
+        private readonly ScriptBase _root;
         private AstRule _currentRule;
     }
 

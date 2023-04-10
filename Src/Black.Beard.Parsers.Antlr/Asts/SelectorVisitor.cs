@@ -63,7 +63,6 @@ namespace Bb.Asts
         public IEnumerable<AstBase> VisitAlternativeList(AstAlternativeList a)
         {
 
-            Stop();
             foreach (var item in _predicates)
                 if (item(a))
                     yield return a;
@@ -101,7 +100,7 @@ namespace Bb.Asts
 
         public IEnumerable<AstBase> VisitBlock(AstBlock a)
         {
-            Stop();
+
             foreach (var item in _predicates)
                 if (item(a))
                     yield return a;
@@ -298,7 +297,7 @@ namespace Bb.Asts
 
         public IEnumerable<AstBase> VisitLabeledElement(AstLabeledElement a)
         {
-            Stop();
+
             foreach (var item in _predicates)
                 if (item(a))
                     yield return a;

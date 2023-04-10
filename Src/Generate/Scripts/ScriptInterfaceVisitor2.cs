@@ -5,7 +5,8 @@ using Bb.ParsersConfiguration.Ast;
 
 namespace Generate.Scripts
 {
-    public class ScriptVisitor2 : ScriptBase
+
+    public class ScriptInterfaceVisitor2 : ScriptBase
     {
 
         public override string GetInherit(AstRule ast, Context context)

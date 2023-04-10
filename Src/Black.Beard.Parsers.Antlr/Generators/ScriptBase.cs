@@ -21,6 +21,7 @@ namespace Bb.Generators
             this.Usings = new HashSet<string>();
         }
 
+        public bool SplitObjectOnDisk { get; set; }
 
         public string Namespace { get; set; }
 
@@ -62,7 +63,7 @@ namespace Bb.Generators
 
         public IEnumerable<string> Generate(Context context)
         {
-            var visitor = new CodeGeneratorVisitor(context);
+            var visitor = new CodeGeneratorVisitor(context, this);
             ConfigureTemplate(context, visitor);
             return visitor.Visit(context.RootAst);
         }
