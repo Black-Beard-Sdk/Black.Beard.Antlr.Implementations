@@ -26,6 +26,17 @@ namespace Bb.Asts.TSql
 
         }
 
+
+        protected static bool Eval(AstRoot item, Type type, bool optional, bool any)
+        {
+
+            if (item == null)
+                return optional;
+
+            return item.GetType() == type;
+
+        }
+
     }
 
 

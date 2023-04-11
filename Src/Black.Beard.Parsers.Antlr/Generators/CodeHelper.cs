@@ -148,6 +148,12 @@ namespace Bb.Generators
 
         public static CodeVariableReferenceExpression Var(this string name) => new CodeVariableReferenceExpression(name);
 
+        public static CodeIndexerExpression Indexer(this string name, params CodeExpression[] indexes)
+        {
+             return new CodeIndexerExpression(new CodeVariableReferenceExpression(name), indexes);
+        }
+
+
         public static CodeFieldReferenceExpression Field(this CodeTypeReference type, string name)
         {
             return new CodeFieldReferenceExpression(new CodeTypeReferenceExpression(type), name);

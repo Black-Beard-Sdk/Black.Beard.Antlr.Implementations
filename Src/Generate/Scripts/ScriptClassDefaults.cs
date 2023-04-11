@@ -33,8 +33,6 @@ namespace Generate.Scripts
             generator.Add(this.Name, template =>
             {
 
-
-
                 template.Namespace(Namespace, ns =>
                 {
                     ns.Using(Usings)
@@ -141,26 +139,62 @@ namespace Generate.Scripts
                              .Body(b =>
                              {
 
-                                 List<List<string>> alternatives = new List<List<string>>(ast.Alternatives.Count);
+                                 List<List<(string, bool, bool)>> alternatives = new List<List<(string, bool, bool)>>(ast.Alternatives.Count);
                                  foreach (var item in ast.Alternatives)
                                  {
                                      var r = item.GetRules().ToList();
-                                     var l = new List<string>(r.Count);
+                                     var l = new List<(string, bool, bool)>(r.Count);
                                      foreach (var item2 in r)
                                      {
                                          var type = "Ast" + CodeHelper.FormatCsharp(item2.ToString());
-                                         l.Add(type);
+                                         var occurence = item2.ResolveOccurence();
+                                         l.Add((type, occurence.Optional, occurence.Value == OccurenceEnum.Any));
                                      }
                                      alternatives.Add(l);
                                  }
 
-                                 b.Statements.If("_alternatives".Var().IsEqual(CodeHelper.Null()), _t =>
+                                 foreach (var alternative in alternatives.OrderByDescending(c => c.Count).GroupBy(c => c.Count))
                                  {
-                                     _t.Assign("_alternatives".Var(), CodeHelper.Create("List<List<Type>>".AsType(), alternatives.Count.AsConstant()));
-                                 });
-                                 
 
-                                 b.Statements.Return(CodeHelper.AsConstant(1));
+                                     var listCount = "list".Var().Property("Count");
+                                     var constant = alternative.Key.AsConstant();
+
+                                     b.Statements.If(CodeHelper.IsEqual(listCount, constant), _t =>
+                                     {
+
+                                         foreach (var rule in alternative)
+                                         {
+
+                                             var nt = _t;
+
+                                             int i = 0;
+                                             foreach (var item2 in rule)
+                                             {
+
+                                                 nt.If("AstRoot".AsType().Call("Eval", 
+                                                     "list".Indexer(i.AsConstant()),
+                                                     item2.Item1.AsType().Typeof(),
+                                                     item2.Item2.AsConstant(),
+                                                     item2.Item3.AsConstant()), _t2 =>
+                                                 {
+                                                     nt = _t2;
+                                                 });
+
+                                                 i++;
+
+                                             }
+
+                                             nt.Return((alternatives.IndexOf(rule) + 1).AsConstant());
+
+                                         }
+
+                                     });
+
+
+
+                                 }
+
+                                 b.Statements.Return(CodeHelper.AsConstant(0));
 
 
                              });
@@ -175,14 +209,6 @@ namespace Generate.Scripts
                             {
                                 return ast.ToString();
                             })
-                            ;
-                        })
-
-                        .FieldWhen(() => ast.Alternatives.Count > 1, field =>
-                        {
-                            field.Name("_alternatives")
-                            .Type(() => "List<List<Type>>")
-                            .Attribute(MemberAttributes.Private | MemberAttributes.Static)
                             ;
                         })
 
