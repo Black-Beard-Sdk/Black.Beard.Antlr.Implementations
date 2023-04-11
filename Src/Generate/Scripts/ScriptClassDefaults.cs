@@ -124,6 +124,17 @@ namespace Generate.Scripts
 
                                  b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), CodeHelper.Call(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
                                      , "Resolve", "list".Var()));
+
+                                 for (int i = 0; i < ast.Alternatives.Count; i++)
+                                 {
+                                     b.Statements.If("index".Var().IsEqual(i.AsConstant()), _t =>
+                                     {
+                                         string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
+                                         var t = (typename + "." + typename + (i + 1));
+                                         _t.Return(CodeHelper.Create(t.AsType(), "list".Var()));
+                                     });
+                                 }
+
                                  b.Statements.Return(CodeHelper.Null());
 
                              });

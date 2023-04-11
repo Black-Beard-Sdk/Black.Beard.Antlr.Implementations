@@ -115,6 +115,14 @@ namespace Bb.Asts.TSql
         public static AstTRoot Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTRoot.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTRoot.AstTRoot1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTRoot.AstTRoot2(list);
+            }
             return null;
         }
         
@@ -326,6 +334,22 @@ namespace Bb.Asts.TSql
         public static AstBatch Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBatch.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBatch.AstBatch1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBatch.AstBatch2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstBatch.AstBatch3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstBatch.AstBatch4(list);
+            }
             return null;
         }
         
@@ -561,6 +585,22 @@ namespace Bb.Asts.TSql
         public static AstBatchLevelStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBatchLevelStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBatchLevelStatement.AstBatchLevelStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBatchLevelStatement.AstBatchLevelStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstBatchLevelStatement.AstBatchLevelStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstBatchLevelStatement.AstBatchLevelStatement4(list);
+            }
             return null;
         }
         
@@ -892,6 +932,34 @@ namespace Bb.Asts.TSql
         public static AstSqlClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSqlClause.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSqlClause.AstSqlClause1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSqlClause.AstSqlClause2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSqlClause.AstSqlClause3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSqlClause.AstSqlClause4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSqlClause.AstSqlClause5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSqlClause.AstSqlClause6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstSqlClause.AstSqlClause7(list);
+            }
             return null;
         }
         
@@ -1204,6 +1272,26 @@ namespace Bb.Asts.TSql
         public static AstDmlClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDmlClause.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDmlClause.AstDmlClause1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDmlClause.AstDmlClause2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDmlClause.AstDmlClause3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDmlClause.AstDmlClause4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstDmlClause.AstDmlClause5(list);
+            }
             return null;
         }
         
@@ -6529,6 +6617,650 @@ namespace Bb.Asts.TSql
         public static AstDdlClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDdlClause.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDdlClause.AstDdlClause1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDdlClause.AstDdlClause2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDdlClause.AstDdlClause3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDdlClause.AstDdlClause4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstDdlClause.AstDdlClause5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstDdlClause.AstDdlClause6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstDdlClause.AstDdlClause7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstDdlClause.AstDdlClause8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstDdlClause.AstDdlClause9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstDdlClause.AstDdlClause10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstDdlClause.AstDdlClause11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstDdlClause.AstDdlClause12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstDdlClause.AstDdlClause13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstDdlClause.AstDdlClause14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstDdlClause.AstDdlClause15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstDdlClause.AstDdlClause16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstDdlClause.AstDdlClause17(list);
+            }
+            if ((index == 17))
+            {
+                return new AstDdlClause.AstDdlClause18(list);
+            }
+            if ((index == 18))
+            {
+                return new AstDdlClause.AstDdlClause19(list);
+            }
+            if ((index == 19))
+            {
+                return new AstDdlClause.AstDdlClause20(list);
+            }
+            if ((index == 20))
+            {
+                return new AstDdlClause.AstDdlClause21(list);
+            }
+            if ((index == 21))
+            {
+                return new AstDdlClause.AstDdlClause22(list);
+            }
+            if ((index == 22))
+            {
+                return new AstDdlClause.AstDdlClause23(list);
+            }
+            if ((index == 23))
+            {
+                return new AstDdlClause.AstDdlClause24(list);
+            }
+            if ((index == 24))
+            {
+                return new AstDdlClause.AstDdlClause25(list);
+            }
+            if ((index == 25))
+            {
+                return new AstDdlClause.AstDdlClause26(list);
+            }
+            if ((index == 26))
+            {
+                return new AstDdlClause.AstDdlClause27(list);
+            }
+            if ((index == 27))
+            {
+                return new AstDdlClause.AstDdlClause28(list);
+            }
+            if ((index == 28))
+            {
+                return new AstDdlClause.AstDdlClause29(list);
+            }
+            if ((index == 29))
+            {
+                return new AstDdlClause.AstDdlClause30(list);
+            }
+            if ((index == 30))
+            {
+                return new AstDdlClause.AstDdlClause31(list);
+            }
+            if ((index == 31))
+            {
+                return new AstDdlClause.AstDdlClause32(list);
+            }
+            if ((index == 32))
+            {
+                return new AstDdlClause.AstDdlClause33(list);
+            }
+            if ((index == 33))
+            {
+                return new AstDdlClause.AstDdlClause34(list);
+            }
+            if ((index == 34))
+            {
+                return new AstDdlClause.AstDdlClause35(list);
+            }
+            if ((index == 35))
+            {
+                return new AstDdlClause.AstDdlClause36(list);
+            }
+            if ((index == 36))
+            {
+                return new AstDdlClause.AstDdlClause37(list);
+            }
+            if ((index == 37))
+            {
+                return new AstDdlClause.AstDdlClause38(list);
+            }
+            if ((index == 38))
+            {
+                return new AstDdlClause.AstDdlClause39(list);
+            }
+            if ((index == 39))
+            {
+                return new AstDdlClause.AstDdlClause40(list);
+            }
+            if ((index == 40))
+            {
+                return new AstDdlClause.AstDdlClause41(list);
+            }
+            if ((index == 41))
+            {
+                return new AstDdlClause.AstDdlClause42(list);
+            }
+            if ((index == 42))
+            {
+                return new AstDdlClause.AstDdlClause43(list);
+            }
+            if ((index == 43))
+            {
+                return new AstDdlClause.AstDdlClause44(list);
+            }
+            if ((index == 44))
+            {
+                return new AstDdlClause.AstDdlClause45(list);
+            }
+            if ((index == 45))
+            {
+                return new AstDdlClause.AstDdlClause46(list);
+            }
+            if ((index == 46))
+            {
+                return new AstDdlClause.AstDdlClause47(list);
+            }
+            if ((index == 47))
+            {
+                return new AstDdlClause.AstDdlClause48(list);
+            }
+            if ((index == 48))
+            {
+                return new AstDdlClause.AstDdlClause49(list);
+            }
+            if ((index == 49))
+            {
+                return new AstDdlClause.AstDdlClause50(list);
+            }
+            if ((index == 50))
+            {
+                return new AstDdlClause.AstDdlClause51(list);
+            }
+            if ((index == 51))
+            {
+                return new AstDdlClause.AstDdlClause52(list);
+            }
+            if ((index == 52))
+            {
+                return new AstDdlClause.AstDdlClause53(list);
+            }
+            if ((index == 53))
+            {
+                return new AstDdlClause.AstDdlClause54(list);
+            }
+            if ((index == 54))
+            {
+                return new AstDdlClause.AstDdlClause55(list);
+            }
+            if ((index == 55))
+            {
+                return new AstDdlClause.AstDdlClause56(list);
+            }
+            if ((index == 56))
+            {
+                return new AstDdlClause.AstDdlClause57(list);
+            }
+            if ((index == 57))
+            {
+                return new AstDdlClause.AstDdlClause58(list);
+            }
+            if ((index == 58))
+            {
+                return new AstDdlClause.AstDdlClause59(list);
+            }
+            if ((index == 59))
+            {
+                return new AstDdlClause.AstDdlClause60(list);
+            }
+            if ((index == 60))
+            {
+                return new AstDdlClause.AstDdlClause61(list);
+            }
+            if ((index == 61))
+            {
+                return new AstDdlClause.AstDdlClause62(list);
+            }
+            if ((index == 62))
+            {
+                return new AstDdlClause.AstDdlClause63(list);
+            }
+            if ((index == 63))
+            {
+                return new AstDdlClause.AstDdlClause64(list);
+            }
+            if ((index == 64))
+            {
+                return new AstDdlClause.AstDdlClause65(list);
+            }
+            if ((index == 65))
+            {
+                return new AstDdlClause.AstDdlClause66(list);
+            }
+            if ((index == 66))
+            {
+                return new AstDdlClause.AstDdlClause67(list);
+            }
+            if ((index == 67))
+            {
+                return new AstDdlClause.AstDdlClause68(list);
+            }
+            if ((index == 68))
+            {
+                return new AstDdlClause.AstDdlClause69(list);
+            }
+            if ((index == 69))
+            {
+                return new AstDdlClause.AstDdlClause70(list);
+            }
+            if ((index == 70))
+            {
+                return new AstDdlClause.AstDdlClause71(list);
+            }
+            if ((index == 71))
+            {
+                return new AstDdlClause.AstDdlClause72(list);
+            }
+            if ((index == 72))
+            {
+                return new AstDdlClause.AstDdlClause73(list);
+            }
+            if ((index == 73))
+            {
+                return new AstDdlClause.AstDdlClause74(list);
+            }
+            if ((index == 74))
+            {
+                return new AstDdlClause.AstDdlClause75(list);
+            }
+            if ((index == 75))
+            {
+                return new AstDdlClause.AstDdlClause76(list);
+            }
+            if ((index == 76))
+            {
+                return new AstDdlClause.AstDdlClause77(list);
+            }
+            if ((index == 77))
+            {
+                return new AstDdlClause.AstDdlClause78(list);
+            }
+            if ((index == 78))
+            {
+                return new AstDdlClause.AstDdlClause79(list);
+            }
+            if ((index == 79))
+            {
+                return new AstDdlClause.AstDdlClause80(list);
+            }
+            if ((index == 80))
+            {
+                return new AstDdlClause.AstDdlClause81(list);
+            }
+            if ((index == 81))
+            {
+                return new AstDdlClause.AstDdlClause82(list);
+            }
+            if ((index == 82))
+            {
+                return new AstDdlClause.AstDdlClause83(list);
+            }
+            if ((index == 83))
+            {
+                return new AstDdlClause.AstDdlClause84(list);
+            }
+            if ((index == 84))
+            {
+                return new AstDdlClause.AstDdlClause85(list);
+            }
+            if ((index == 85))
+            {
+                return new AstDdlClause.AstDdlClause86(list);
+            }
+            if ((index == 86))
+            {
+                return new AstDdlClause.AstDdlClause87(list);
+            }
+            if ((index == 87))
+            {
+                return new AstDdlClause.AstDdlClause88(list);
+            }
+            if ((index == 88))
+            {
+                return new AstDdlClause.AstDdlClause89(list);
+            }
+            if ((index == 89))
+            {
+                return new AstDdlClause.AstDdlClause90(list);
+            }
+            if ((index == 90))
+            {
+                return new AstDdlClause.AstDdlClause91(list);
+            }
+            if ((index == 91))
+            {
+                return new AstDdlClause.AstDdlClause92(list);
+            }
+            if ((index == 92))
+            {
+                return new AstDdlClause.AstDdlClause93(list);
+            }
+            if ((index == 93))
+            {
+                return new AstDdlClause.AstDdlClause94(list);
+            }
+            if ((index == 94))
+            {
+                return new AstDdlClause.AstDdlClause95(list);
+            }
+            if ((index == 95))
+            {
+                return new AstDdlClause.AstDdlClause96(list);
+            }
+            if ((index == 96))
+            {
+                return new AstDdlClause.AstDdlClause97(list);
+            }
+            if ((index == 97))
+            {
+                return new AstDdlClause.AstDdlClause98(list);
+            }
+            if ((index == 98))
+            {
+                return new AstDdlClause.AstDdlClause99(list);
+            }
+            if ((index == 99))
+            {
+                return new AstDdlClause.AstDdlClause100(list);
+            }
+            if ((index == 100))
+            {
+                return new AstDdlClause.AstDdlClause101(list);
+            }
+            if ((index == 101))
+            {
+                return new AstDdlClause.AstDdlClause102(list);
+            }
+            if ((index == 102))
+            {
+                return new AstDdlClause.AstDdlClause103(list);
+            }
+            if ((index == 103))
+            {
+                return new AstDdlClause.AstDdlClause104(list);
+            }
+            if ((index == 104))
+            {
+                return new AstDdlClause.AstDdlClause105(list);
+            }
+            if ((index == 105))
+            {
+                return new AstDdlClause.AstDdlClause106(list);
+            }
+            if ((index == 106))
+            {
+                return new AstDdlClause.AstDdlClause107(list);
+            }
+            if ((index == 107))
+            {
+                return new AstDdlClause.AstDdlClause108(list);
+            }
+            if ((index == 108))
+            {
+                return new AstDdlClause.AstDdlClause109(list);
+            }
+            if ((index == 109))
+            {
+                return new AstDdlClause.AstDdlClause110(list);
+            }
+            if ((index == 110))
+            {
+                return new AstDdlClause.AstDdlClause111(list);
+            }
+            if ((index == 111))
+            {
+                return new AstDdlClause.AstDdlClause112(list);
+            }
+            if ((index == 112))
+            {
+                return new AstDdlClause.AstDdlClause113(list);
+            }
+            if ((index == 113))
+            {
+                return new AstDdlClause.AstDdlClause114(list);
+            }
+            if ((index == 114))
+            {
+                return new AstDdlClause.AstDdlClause115(list);
+            }
+            if ((index == 115))
+            {
+                return new AstDdlClause.AstDdlClause116(list);
+            }
+            if ((index == 116))
+            {
+                return new AstDdlClause.AstDdlClause117(list);
+            }
+            if ((index == 117))
+            {
+                return new AstDdlClause.AstDdlClause118(list);
+            }
+            if ((index == 118))
+            {
+                return new AstDdlClause.AstDdlClause119(list);
+            }
+            if ((index == 119))
+            {
+                return new AstDdlClause.AstDdlClause120(list);
+            }
+            if ((index == 120))
+            {
+                return new AstDdlClause.AstDdlClause121(list);
+            }
+            if ((index == 121))
+            {
+                return new AstDdlClause.AstDdlClause122(list);
+            }
+            if ((index == 122))
+            {
+                return new AstDdlClause.AstDdlClause123(list);
+            }
+            if ((index == 123))
+            {
+                return new AstDdlClause.AstDdlClause124(list);
+            }
+            if ((index == 124))
+            {
+                return new AstDdlClause.AstDdlClause125(list);
+            }
+            if ((index == 125))
+            {
+                return new AstDdlClause.AstDdlClause126(list);
+            }
+            if ((index == 126))
+            {
+                return new AstDdlClause.AstDdlClause127(list);
+            }
+            if ((index == 127))
+            {
+                return new AstDdlClause.AstDdlClause128(list);
+            }
+            if ((index == 128))
+            {
+                return new AstDdlClause.AstDdlClause129(list);
+            }
+            if ((index == 129))
+            {
+                return new AstDdlClause.AstDdlClause130(list);
+            }
+            if ((index == 130))
+            {
+                return new AstDdlClause.AstDdlClause131(list);
+            }
+            if ((index == 131))
+            {
+                return new AstDdlClause.AstDdlClause132(list);
+            }
+            if ((index == 132))
+            {
+                return new AstDdlClause.AstDdlClause133(list);
+            }
+            if ((index == 133))
+            {
+                return new AstDdlClause.AstDdlClause134(list);
+            }
+            if ((index == 134))
+            {
+                return new AstDdlClause.AstDdlClause135(list);
+            }
+            if ((index == 135))
+            {
+                return new AstDdlClause.AstDdlClause136(list);
+            }
+            if ((index == 136))
+            {
+                return new AstDdlClause.AstDdlClause137(list);
+            }
+            if ((index == 137))
+            {
+                return new AstDdlClause.AstDdlClause138(list);
+            }
+            if ((index == 138))
+            {
+                return new AstDdlClause.AstDdlClause139(list);
+            }
+            if ((index == 139))
+            {
+                return new AstDdlClause.AstDdlClause140(list);
+            }
+            if ((index == 140))
+            {
+                return new AstDdlClause.AstDdlClause141(list);
+            }
+            if ((index == 141))
+            {
+                return new AstDdlClause.AstDdlClause142(list);
+            }
+            if ((index == 142))
+            {
+                return new AstDdlClause.AstDdlClause143(list);
+            }
+            if ((index == 143))
+            {
+                return new AstDdlClause.AstDdlClause144(list);
+            }
+            if ((index == 144))
+            {
+                return new AstDdlClause.AstDdlClause145(list);
+            }
+            if ((index == 145))
+            {
+                return new AstDdlClause.AstDdlClause146(list);
+            }
+            if ((index == 146))
+            {
+                return new AstDdlClause.AstDdlClause147(list);
+            }
+            if ((index == 147))
+            {
+                return new AstDdlClause.AstDdlClause148(list);
+            }
+            if ((index == 148))
+            {
+                return new AstDdlClause.AstDdlClause149(list);
+            }
+            if ((index == 149))
+            {
+                return new AstDdlClause.AstDdlClause150(list);
+            }
+            if ((index == 150))
+            {
+                return new AstDdlClause.AstDdlClause151(list);
+            }
+            if ((index == 151))
+            {
+                return new AstDdlClause.AstDdlClause152(list);
+            }
+            if ((index == 152))
+            {
+                return new AstDdlClause.AstDdlClause153(list);
+            }
+            if ((index == 153))
+            {
+                return new AstDdlClause.AstDdlClause154(list);
+            }
+            if ((index == 154))
+            {
+                return new AstDdlClause.AstDdlClause155(list);
+            }
+            if ((index == 155))
+            {
+                return new AstDdlClause.AstDdlClause156(list);
+            }
+            if ((index == 156))
+            {
+                return new AstDdlClause.AstDdlClause157(list);
+            }
+            if ((index == 157))
+            {
+                return new AstDdlClause.AstDdlClause158(list);
+            }
+            if ((index == 158))
+            {
+                return new AstDdlClause.AstDdlClause159(list);
+            }
+            if ((index == 159))
+            {
+                return new AstDdlClause.AstDdlClause160(list);
+            }
+            if ((index == 160))
+            {
+                return new AstDdlClause.AstDdlClause161(list);
+            }
             return null;
         }
         
@@ -9151,6 +9883,26 @@ namespace Bb.Asts.TSql
         public static AstBackupStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBackupStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBackupStatement.AstBackupStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBackupStatement.AstBackupStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstBackupStatement.AstBackupStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstBackupStatement.AstBackupStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstBackupStatement.AstBackupStatement5(list);
+            }
             return null;
         }
         
@@ -9668,6 +10420,54 @@ namespace Bb.Asts.TSql
         public static AstCflStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCflStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCflStatement.AstCflStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCflStatement.AstCflStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCflStatement.AstCflStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstCflStatement.AstCflStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstCflStatement.AstCflStatement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstCflStatement.AstCflStatement6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstCflStatement.AstCflStatement7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstCflStatement.AstCflStatement8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstCflStatement.AstCflStatement9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstCflStatement.AstCflStatement10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstCflStatement.AstCflStatement11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstCflStatement.AstCflStatement12(list);
+            }
             return null;
         }
         
@@ -10029,6 +10829,14 @@ namespace Bb.Asts.TSql
         public static AstGotoStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGotoStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstGotoStatement.AstGotoStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstGotoStatement.AstGotoStatement2(list);
+            }
             return null;
         }
         
@@ -10254,6 +11062,14 @@ namespace Bb.Asts.TSql
         public static AstRaiseerrorStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRaiseerrorStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRaiseerrorStatement.AstRaiseerrorStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRaiseerrorStatement.AstRaiseerrorStatement2(list);
+            }
             return null;
         }
         
@@ -10912,6 +11728,74 @@ namespace Bb.Asts.TSql
         public static AstAnotherStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAnotherStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAnotherStatement.AstAnotherStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAnotherStatement.AstAnotherStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAnotherStatement.AstAnotherStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAnotherStatement.AstAnotherStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAnotherStatement.AstAnotherStatement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstAnotherStatement.AstAnotherStatement6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstAnotherStatement.AstAnotherStatement7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstAnotherStatement.AstAnotherStatement8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstAnotherStatement.AstAnotherStatement9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstAnotherStatement.AstAnotherStatement10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstAnotherStatement.AstAnotherStatement11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstAnotherStatement.AstAnotherStatement12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstAnotherStatement.AstAnotherStatement13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstAnotherStatement.AstAnotherStatement14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstAnotherStatement.AstAnotherStatement15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstAnotherStatement.AstAnotherStatement16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstAnotherStatement.AstAnotherStatement17(list);
+            }
             return null;
         }
         
@@ -11312,6 +12196,14 @@ namespace Bb.Asts.TSql
         public static AstAlterAssemblyDropMultipleFiles Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAssemblyDropMultipleFiles.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAssemblyDropMultipleFiles.AstAlterAssemblyDropMultipleFiles2(list);
+            }
             return null;
         }
         
@@ -11474,6 +12366,18 @@ namespace Bb.Asts.TSql
         public static AstClientAssemblySpecifier Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClientAssemblySpecifier.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstClientAssemblySpecifier.AstClientAssemblySpecifier3(list);
+            }
             return null;
         }
         
@@ -11694,6 +12598,22 @@ namespace Bb.Asts.TSql
         public static AstAssemblyOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAssemblyOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAssemblyOption.AstAssemblyOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAssemblyOption.AstAssemblyOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAssemblyOption.AstAssemblyOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAssemblyOption.AstAssemblyOption4(list);
+            }
             return null;
         }
         
@@ -11853,6 +12773,14 @@ namespace Bb.Asts.TSql
         public static AstFilePath Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFilePath.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFilePath.AstFilePath1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFilePath.AstFilePath2(list);
+            }
             return null;
         }
         
@@ -12000,6 +12928,14 @@ namespace Bb.Asts.TSql
         public static AstMultipleLocalFiles Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMultipleLocalFiles.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstMultipleLocalFiles.AstMultipleLocalFiles1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstMultipleLocalFiles.AstMultipleLocalFiles2(list);
+            }
             return null;
         }
         
@@ -12146,6 +13082,14 @@ namespace Bb.Asts.TSql
         public static AstBinaryContent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBinaryContent.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBinaryContent.AstBinaryContent1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBinaryContent.AstBinaryContent2(list);
+            }
             return null;
         }
         
@@ -12286,6 +13230,14 @@ namespace Bb.Asts.TSql
         public static AstByPasswordCrypt Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstByPasswordCrypt.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstByPasswordCrypt.AstByPasswordCrypt1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstByPasswordCrypt.AstByPasswordCrypt2(list);
+            }
             return null;
         }
         
@@ -12567,6 +13519,14 @@ namespace Bb.Asts.TSql
         public static AstAuthorizationGrantee Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAuthorizationGrantee.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAuthorizationGrantee.AstAuthorizationGrantee1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAuthorizationGrantee.AstAuthorizationGrantee2(list);
+            }
             return null;
         }
         
@@ -12729,6 +13689,18 @@ namespace Bb.Asts.TSql
         public static AstClassTypeForGrant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClassTypeForGrant.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstClassTypeForGrant.AstClassTypeForGrant1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstClassTypeForGrant.AstClassTypeForGrant2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstClassTypeForGrant.AstClassTypeForGrant3(list);
+            }
             return null;
         }
         
@@ -12918,6 +13890,18 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityGroupOptionsListener Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptionsListener.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityGroupOptionsListener.AstAlterAvailabilityGroupOptionsListener1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptionsListener.AstAlterAvailabilityGroupOptionsListener2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityGroupOptionsListener.AstAlterAvailabilityGroupOptionsListener3(list);
+            }
             return null;
         }
         
@@ -13357,6 +14341,26 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityReplicatPrimary Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityReplicatPrimary.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAlterAvailabilityReplicatPrimary.AstAlterAvailabilityReplicatPrimary5(list);
+            }
             return null;
         }
         
@@ -13576,6 +14580,18 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityPrimaryRole Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityPrimaryRole.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityPrimaryRole.AstAlterAvailabilityPrimaryRole3(list);
+            }
             return null;
         }
         
@@ -13765,6 +14781,18 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityGroupOptionsReplicat Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptionsReplicat.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityGroupOptionsReplicat.AstAlterAvailabilityGroupOptionsReplicat1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptionsReplicat.AstAlterAvailabilityGroupOptionsReplicat2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityGroupOptionsReplicat.AstAlterAvailabilityGroupOptionsReplicat3(list);
+            }
             return null;
         }
         
@@ -13955,6 +14983,18 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityGroupOptionsGroup Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptionsGroup.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityGroupOptionsGroup.AstAlterAvailabilityGroupOptionsGroup1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptionsGroup.AstAlterAvailabilityGroupOptionsGroup2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityGroupOptionsGroup.AstAlterAvailabilityGroupOptionsGroup3(list);
+            }
             return null;
         }
         
@@ -14149,6 +15189,14 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityGroupOptionsRole Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptionsRole.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityGroupOptionsRole.AstAlterAvailabilityGroupOptionsRole1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptionsRole.AstAlterAvailabilityGroupOptionsRole2(list);
+            }
             return null;
         }
         
@@ -14622,6 +15670,50 @@ namespace Bb.Asts.TSql
         public static AstAlterAvailabilityGroupOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterAvailabilityGroupOptions.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstAlterAvailabilityGroupOptions.AstAlterAvailabilityGroupOptions11(list);
+            }
             return null;
         }
         
@@ -15113,6 +16205,14 @@ namespace Bb.Asts.TSql
         public static AstPrivateKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPrivateKey.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPrivateKey.AstPrivateKey1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPrivateKey.AstPrivateKey2(list);
+            }
             return null;
         }
         
@@ -15426,6 +16526,14 @@ namespace Bb.Asts.TSql
         public static AstEventNotificationOn Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventNotificationOn.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstEventNotificationOn.AstEventNotificationOn1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstEventNotificationOn.AstEventNotificationOn2(list);
+            }
             return null;
         }
         
@@ -15694,6 +16802,14 @@ namespace Bb.Asts.TSql
         public static AstTriggerName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTriggerName.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTriggerName.AstTriggerName1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTriggerName.AstTriggerName2(list);
+            }
             return null;
         }
         
@@ -15823,6 +16939,14 @@ namespace Bb.Asts.TSql
         public static AstTriggerTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTriggerTarget.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTriggerTarget.AstTriggerTarget1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTriggerTarget.AstTriggerTarget2(list);
+            }
             return null;
         }
         
@@ -16221,6 +17345,14 @@ namespace Bb.Asts.TSql
         public static AstEventSessionPredicateFactor Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateFactor.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstEventSessionPredicateFactor.AstEventSessionPredicateFactor2(list);
+            }
             return null;
         }
         
@@ -16363,6 +17495,14 @@ namespace Bb.Asts.TSql
         public static AstEventSessionPredicateLeaf Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateLeaf.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstEventSessionPredicateLeaf.AstEventSessionPredicateLeaf2(list);
+            }
             return null;
         }
         
@@ -16562,6 +17702,14 @@ namespace Bb.Asts.TSql
         public static AstAlterExternalDataSource Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterExternalDataSource.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterExternalDataSource.AstAlterExternalDataSource1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterExternalDataSource.AstAlterExternalDataSource2(list);
+            }
             return null;
         }
         
@@ -16763,6 +17911,18 @@ namespace Bb.Asts.TSql
         public static AstCodeContent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCodeContent.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCodeContent.AstCodeContent1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCodeContent.AstCodeContent2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCodeContent.AstCodeContent3(list);
+            }
             return null;
         }
         
@@ -16986,6 +18146,18 @@ namespace Bb.Asts.TSql
         public static AstFulltextLanguageList Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFulltextLanguageList.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFulltextLanguageList.AstFulltextLanguageList1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFulltextLanguageList.AstFulltextLanguageList2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstFulltextLanguageList.AstFulltextLanguageList3(list);
+            }
             return null;
         }
         
@@ -17174,6 +18346,18 @@ namespace Bb.Asts.TSql
         public static AstAlterLoginSqlServerInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginSqlServerInfos.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterLoginSqlServerInfos.AstAlterLoginSqlServerInfos3(list);
+            }
             return null;
         }
         
@@ -17335,6 +18519,14 @@ namespace Bb.Asts.TSql
         public static AstPwdValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPwdValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPwdValue.AstPwdValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPwdValue.AstPwdValue2(list);
+            }
             return null;
         }
         
@@ -17567,6 +18759,18 @@ namespace Bb.Asts.TSql
         public static AstCreateLoginSqlServerFrom Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateLoginSqlServerFrom.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateLoginSqlServerFrom.AstCreateLoginSqlServerFrom3(list);
+            }
             return null;
         }
         
@@ -17729,6 +18933,14 @@ namespace Bb.Asts.TSql
         public static AstAlterLoginAzureSqlInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginAzureSqlInfos.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterLoginAzureSqlInfos.AstAlterLoginAzureSqlInfos2(list);
+            }
             return null;
         }
         
@@ -17870,6 +19082,14 @@ namespace Bb.Asts.TSql
         public static AstAlterLoginAzureSqlWith Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterLoginAzureSqlWith.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterLoginAzureSqlWith.AstAlterLoginAzureSqlWith2(list);
+            }
             return null;
         }
         
@@ -18191,6 +19411,14 @@ namespace Bb.Asts.TSql
         public static AstMessageValidationValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMessageValidationValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstMessageValidationValue.AstMessageValidationValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstMessageValidationValue.AstMessageValidationValue2(list);
+            }
             return null;
         }
         
@@ -18459,6 +19687,14 @@ namespace Bb.Asts.TSql
         public static AstCreateSchemaName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSchemaName.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateSchemaName.AstCreateSchemaName1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateSchemaName.AstCreateSchemaName2(list);
+            }
             return null;
         }
         
@@ -18660,6 +19896,22 @@ namespace Bb.Asts.TSql
         public static AstCreateSchemaTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSchemaTarget.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstCreateSchemaTarget.AstCreateSchemaTarget4(list);
+            }
             return null;
         }
         
@@ -18851,6 +20103,14 @@ namespace Bb.Asts.TSql
         public static AstSchemaTableRefImpact Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSchemaTableRefImpact.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSchemaTableRefImpact.AstSchemaTableRefImpact2(list);
+            }
             return null;
         }
         
@@ -19175,6 +20435,14 @@ namespace Bb.Asts.TSql
         public static AstAlterSequenceMinValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterSequenceMinValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterSequenceMinValue.AstAlterSequenceMinValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterSequenceMinValue.AstAlterSequenceMinValue2(list);
+            }
             return null;
         }
         
@@ -19304,6 +20572,14 @@ namespace Bb.Asts.TSql
         public static AstCreateSequenceMinValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSequenceMinValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateSequenceMinValue.AstCreateSequenceMinValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateSequenceMinValue.AstCreateSequenceMinValue2(list);
+            }
             return null;
         }
         
@@ -19433,6 +20709,14 @@ namespace Bb.Asts.TSql
         public static AstCreateSequenceMaxValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateSequenceMaxValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateSequenceMaxValue.AstCreateSequenceMaxValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateSequenceMaxValue.AstCreateSequenceMaxValue2(list);
+            }
             return null;
         }
         
@@ -19596,6 +20880,18 @@ namespace Bb.Asts.TSql
         public static AstAlterServerAuditInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterServerAuditInfos.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterServerAuditInfos.AstAlterServerAuditInfos3(list);
+            }
             return null;
         }
         
@@ -19782,6 +21078,18 @@ namespace Bb.Asts.TSql
         public static AstServerAuditFileInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFileInfo.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstServerAuditFileInfo.AstServerAuditFileInfo3(list);
+            }
             return null;
         }
         
@@ -19970,6 +21278,18 @@ namespace Bb.Asts.TSql
         public static AstServerAuditFile Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFile.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstServerAuditFile.AstServerAuditFile1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstServerAuditFile.AstServerAuditFile2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstServerAuditFile.AstServerAuditFile3(list);
+            }
             return null;
         }
         
@@ -20201,6 +21521,26 @@ namespace Bb.Asts.TSql
         public static AstServerAuditFileSpec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServerAuditFileSpec.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstServerAuditFileSpec.AstServerAuditFileSpec5(list);
+            }
             return null;
         }
         
@@ -20386,6 +21726,14 @@ namespace Bb.Asts.TSql
         public static AstDecimalUnlimited Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalUnlimited.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDecimalUnlimited.AstDecimalUnlimited1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDecimalUnlimited.AstDecimalUnlimited2(list);
+            }
             return null;
         }
         
@@ -20562,6 +21910,14 @@ namespace Bb.Asts.TSql
         public static AstAlterServerAuditCondition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterServerAuditCondition.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterServerAuditCondition.AstAlterServerAuditCondition2(list);
+            }
             return null;
         }
         
@@ -20748,6 +22104,18 @@ namespace Bb.Asts.TSql
         public static AstCreateServerAuditToInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateServerAuditToInfos.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateServerAuditToInfos.AstCreateServerAuditToInfos3(list);
+            }
             return null;
         }
         
@@ -20967,6 +22335,22 @@ namespace Bb.Asts.TSql
         public static AstCreateServerAuditWith Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateServerAuditWith.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstCreateServerAuditWith.AstCreateServerAuditWith4(list);
+            }
             return null;
         }
         
@@ -21478,6 +22862,14 @@ namespace Bb.Asts.TSql
         public static AstStringOrDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringOrDefault.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstStringOrDefault.AstStringOrDefault1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstStringOrDefault.AstStringOrDefault2(list);
+            }
             return null;
         }
         
@@ -21607,6 +22999,14 @@ namespace Bb.Asts.TSql
         public static AstContract Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstContract.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstContract.AstContract1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstContract.AstContract2(list);
+            }
             return null;
         }
         
@@ -21917,6 +23317,30 @@ namespace Bb.Asts.TSql
         public static AstAlterUserItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterUserItem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterUserItem.AstAlterUserItem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterUserItem.AstAlterUserItem2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterUserItem.AstAlterUserItem3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterUserItem.AstAlterUserItem4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAlterUserItem.AstAlterUserItem5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstAlterUserItem.AstAlterUserItem6(list);
+            }
             return null;
         }
         
@@ -22171,6 +23595,18 @@ namespace Bb.Asts.TSql
         public static AstCreateUser Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUser.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateUser.AstCreateUser1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateUser.AstCreateUser2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateUser.AstCreateUser3(list);
+            }
             return null;
         }
         
@@ -22415,6 +23851,18 @@ namespace Bb.Asts.TSql
         public static AstCreateUserWithoutLogin Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserWithoutLogin.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateUserWithoutLogin.AstCreateUserWithoutLogin3(list);
+            }
             return null;
         }
         
@@ -22613,6 +24061,18 @@ namespace Bb.Asts.TSql
         public static AstCreateUserWindowsPrincipalId Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserWindowsPrincipalId.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateUserWindowsPrincipalId.AstCreateUserWindowsPrincipalId3(list);
+            }
             return null;
         }
         
@@ -22784,6 +24244,14 @@ namespace Bb.Asts.TSql
         public static AstUserSettingsShort Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUserSettingsShort.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUserSettingsShort.AstUserSettingsShort1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUserSettingsShort.AstUserSettingsShort2(list);
+            }
             return null;
         }
         
@@ -22990,6 +24458,22 @@ namespace Bb.Asts.TSql
         public static AstUserSettings Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUserSettings.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUserSettings.AstUserSettings1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUserSettings.AstUserSettings2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstUserSettings.AstUserSettings3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstUserSettings.AstUserSettings4(list);
+            }
             return null;
         }
         
@@ -23179,6 +24663,14 @@ namespace Bb.Asts.TSql
         public static AstCreateUserAzureSqlDw Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateUserAzureSqlDw.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateUserAzureSqlDw.AstCreateUserAzureSqlDw2(list);
+            }
             return null;
         }
         
@@ -23645,6 +25137,18 @@ namespace Bb.Asts.TSql
         public static AstQueueAction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueueAction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstQueueAction.AstQueueAction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstQueueAction.AstQueueAction2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstQueueAction.AstQueueAction3(list);
+            }
             return null;
         }
         
@@ -23930,6 +25434,30 @@ namespace Bb.Asts.TSql
         public static AstConversationStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConversationStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstConversationStatement.AstConversationStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstConversationStatement.AstConversationStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstConversationStatement.AstConversationStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstConversationStatement.AstConversationStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstConversationStatement.AstConversationStatement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstConversationStatement.AstConversationStatement6(list);
+            }
             return null;
         }
         
@@ -24165,6 +25693,18 @@ namespace Bb.Asts.TSql
         public static AstWhenMatche Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWhenMatche.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWhenMatche.AstWhenMatche1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWhenMatche.AstWhenMatche2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstWhenMatche.AstWhenMatche3(list);
+            }
             return null;
         }
         
@@ -24318,6 +25858,14 @@ namespace Bb.Asts.TSql
         public static AstMergeMatched Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMergeMatched.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstMergeMatched.AstMergeMatched1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstMergeMatched.AstMergeMatched2(list);
+            }
             return null;
         }
         
@@ -24538,6 +26086,18 @@ namespace Bb.Asts.TSql
         public static AstDeleteStatementFrom Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeleteStatementFrom.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDeleteStatementFrom.AstDeleteStatementFrom3(list);
+            }
             return null;
         }
         
@@ -24758,6 +26318,22 @@ namespace Bb.Asts.TSql
         public static AstInsertStatementValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstInsertStatementValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstInsertStatementValue.AstInsertStatementValue4(list);
+            }
             return null;
         }
         
@@ -24917,6 +26493,14 @@ namespace Bb.Asts.TSql
         public static AstReceiveMode Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstReceiveMode.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstReceiveMode.AstReceiveMode1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstReceiveMode.AstReceiveMode2(list);
+            }
             return null;
         }
         
@@ -25147,6 +26731,18 @@ namespace Bb.Asts.TSql
         public static AstRelationalIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRelationalIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRelationalIndexOption.AstRelationalIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRelationalIndexOption.AstRelationalIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstRelationalIndexOption.AstRelationalIndexOption3(list);
+            }
             return null;
         }
         
@@ -25388,6 +26984,26 @@ namespace Bb.Asts.TSql
         public static AstIndexStatus Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIndexStatus.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstIndexStatus.AstIndexStatus1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstIndexStatus.AstIndexStatus2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstIndexStatus.AstIndexStatus3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstIndexStatus.AstIndexStatus4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstIndexStatus.AstIndexStatus5(list);
+            }
             return null;
         }
         
@@ -25653,6 +27269,18 @@ namespace Bb.Asts.TSql
         public static AstResumableIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstResumableIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstResumableIndexOption.AstResumableIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstResumableIndexOption.AstResumableIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstResumableIndexOption.AstResumableIndexOption3(list);
+            }
             return null;
         }
         
@@ -25798,6 +27426,14 @@ namespace Bb.Asts.TSql
         public static AstReorganizeOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstReorganizeOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstReorganizeOption.AstReorganizeOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstReorganizeOption.AstReorganizeOption2(list);
+            }
             return null;
         }
         
@@ -26061,6 +27697,30 @@ namespace Bb.Asts.TSql
         public static AstSetIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSetIndexOption.AstSetIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSetIndexOption.AstSetIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSetIndexOption.AstSetIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSetIndexOption.AstSetIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSetIndexOption.AstSetIndexOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSetIndexOption.AstSetIndexOption6(list);
+            }
             return null;
         }
         
@@ -26219,6 +27879,14 @@ namespace Bb.Asts.TSql
         public static AstRebuildPartition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRebuildPartition.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRebuildPartition.AstRebuildPartition1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRebuildPartition.AstRebuildPartition2(list);
+            }
             return null;
         }
         
@@ -26763,6 +28431,62 @@ namespace Bb.Asts.TSql
         public static AstRebuildIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRebuildIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstRebuildIndexOption.AstRebuildIndexOption14(list);
+            }
             return null;
         }
         
@@ -27127,6 +28851,30 @@ namespace Bb.Asts.TSql
         public static AstSinglePartitionRebuildIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSinglePartitionRebuildIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSinglePartitionRebuildIndexOption.AstSinglePartitionRebuildIndexOption6(list);
+            }
             return null;
         }
         
@@ -27473,6 +29221,26 @@ namespace Bb.Asts.TSql
         public static AstColumnstoreIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnstoreIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstColumnstoreIndexOption.AstColumnstoreIndexOption5(list);
+            }
             return null;
         }
         
@@ -27908,6 +29676,46 @@ namespace Bb.Asts.TSql
         public static AstXmlIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstXmlIndexOption.AstXmlIndexOption10(list);
+            }
             return null;
         }
         
@@ -28092,6 +29900,14 @@ namespace Bb.Asts.TSql
         public static AstCreateOrAlterTrigger Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateOrAlterTrigger.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateOrAlterTrigger.AstCreateOrAlterTrigger2(list);
+            }
             return null;
         }
         
@@ -28264,6 +30080,18 @@ namespace Bb.Asts.TSql
         public static AstForAfterInstead Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstForAfterInstead.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstForAfterInstead.AstForAfterInstead1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstForAfterInstead.AstForAfterInstead2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstForAfterInstead.AstForAfterInstead3(list);
+            }
             return null;
         }
         
@@ -28377,6 +30205,14 @@ namespace Bb.Asts.TSql
         public static AstDmlTriggerOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDmlTriggerOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDmlTriggerOption.AstDmlTriggerOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDmlTriggerOption.AstDmlTriggerOption2(list);
+            }
             return null;
         }
         
@@ -28608,6 +30444,14 @@ namespace Bb.Asts.TSql
         public static AstProcedureOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstProcedureOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstProcedureOption.AstProcedureOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstProcedureOption.AstProcedureOption2(list);
+            }
             return null;
         }
         
@@ -28748,6 +30592,14 @@ namespace Bb.Asts.TSql
         public static AstFunctionOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFunctionOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFunctionOption.AstFunctionOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFunctionOption.AstFunctionOption2(list);
+            }
             return null;
         }
         
@@ -28921,6 +30773,18 @@ namespace Bb.Asts.TSql
         public static AstStatisticsWith Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStatisticsWith.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstStatisticsWith.AstStatisticsWith1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstStatisticsWith.AstStatisticsWith2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstStatisticsWith.AstStatisticsWith3(list);
+            }
             return null;
         }
         
@@ -29419,6 +31283,58 @@ namespace Bb.Asts.TSql
         public static AstUpdateStatisticsOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateStatisticsOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstUpdateStatisticsOption.AstUpdateStatisticsOption13(list);
+            }
             return null;
         }
         
@@ -29671,6 +31587,18 @@ namespace Bb.Asts.TSql
         public static AstTableIndices Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableIndices.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableIndices.AstTableIndices1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableIndices.AstTableIndices2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTableIndices.AstTableIndices3(list);
+            }
             return null;
         }
         
@@ -29847,6 +31775,14 @@ namespace Bb.Asts.TSql
         public static AstTblOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTblOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTblOption.AstTblOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTblOption.AstTblOption2(list);
+            }
             return null;
         }
         
@@ -30110,6 +32046,30 @@ namespace Bb.Asts.TSql
         public static AstTableoption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableoption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableoption.AstTableoption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableoption.AstTableoption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTableoption.AstTableoption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstTableoption.AstTableoption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstTableoption.AstTableoption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstTableoption.AstTableoption6(list);
+            }
             return null;
         }
         
@@ -30459,6 +32419,14 @@ namespace Bb.Asts.TSql
         public static AstDistribution Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDistribution.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDistribution.AstDistribution1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDistribution.AstDistribution2(list);
+            }
             return null;
         }
         
@@ -30600,6 +32568,14 @@ namespace Bb.Asts.TSql
         public static AstAlterTableConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterTableConstraint.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterTableConstraint.AstAlterTableConstraint1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterTableConstraint.AstAlterTableConstraint2(list);
+            }
             return null;
         }
         
@@ -30746,6 +32722,14 @@ namespace Bb.Asts.TSql
         public static AstConstraintDeleteOrUpdate Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstraintDeleteOrUpdate.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstConstraintDeleteOrUpdate.AstConstraintDeleteOrUpdate2(list);
+            }
             return null;
         }
         
@@ -31080,6 +33064,26 @@ namespace Bb.Asts.TSql
         public static AstAlterDatabaseNewInfos Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterDatabaseNewInfos.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAlterDatabaseNewInfos.AstAlterDatabaseNewInfos5(list);
+            }
             return null;
         }
         
@@ -31337,6 +33341,22 @@ namespace Bb.Asts.TSql
         public static AstAddOrModifyFiles Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAddOrModifyFiles.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAddOrModifyFiles.AstAddOrModifyFiles4(list);
+            }
             return null;
         }
         
@@ -31548,6 +33568,18 @@ namespace Bb.Asts.TSql
         public static AstAddOrModifyFilegroups Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAddOrModifyFilegroups.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAddOrModifyFilegroups.AstAddOrModifyFilegroups3(list);
+            }
             return null;
         }
         
@@ -32391,6 +34423,94 @@ namespace Bb.Asts.TSql
         public static AstDatabaseOptionspec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDatabaseOptionspec.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec17(list);
+            }
+            if ((index == 17))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec18(list);
+            }
+            if ((index == 18))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec19(list);
+            }
+            if ((index == 19))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec20(list);
+            }
+            if ((index == 20))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec21(list);
+            }
+            if ((index == 21))
+            {
+                return new AstDatabaseOptionspec.AstDatabaseOptionspec22(list);
+            }
             return null;
         }
         
@@ -32929,6 +35049,26 @@ namespace Bb.Asts.TSql
         public static AstAutoOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAutoOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAutoOption.AstAutoOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAutoOption.AstAutoOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAutoOption.AstAutoOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAutoOption.AstAutoOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAutoOption.AstAutoOption5(list);
+            }
             return null;
         }
         
@@ -33129,6 +35269,14 @@ namespace Bb.Asts.TSql
         public static AstChangeTrackingOptionList Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangeTrackingOptionList.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstChangeTrackingOptionList.AstChangeTrackingOptionList2(list);
+            }
             return null;
         }
         
@@ -33270,6 +35418,14 @@ namespace Bb.Asts.TSql
         public static AstCursorOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCursorOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCursorOption.AstCursorOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCursorOption.AstCursorOption2(list);
+            }
             return null;
         }
         
@@ -33538,6 +35694,14 @@ namespace Bb.Asts.TSql
         public static AstMirroringSetOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMirroringSetOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstMirroringSetOption.AstMirroringSetOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstMirroringSetOption.AstMirroringSetOption2(list);
+            }
             return null;
         }
         
@@ -33717,6 +35881,18 @@ namespace Bb.Asts.TSql
         public static AstPartnerOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPartnerOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPartnerOption.AstPartnerOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPartnerOption.AstPartnerOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstPartnerOption.AstPartnerOption3(list);
+            }
             return null;
         }
         
@@ -33878,6 +36054,14 @@ namespace Bb.Asts.TSql
         public static AstWitnessOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWitnessOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWitnessOption.AstWitnessOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWitnessOption.AstWitnessOption2(list);
+            }
             return null;
         }
         
@@ -34212,6 +36396,34 @@ namespace Bb.Asts.TSql
         public static AstExternalAccessOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExternalAccessOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstExternalAccessOption.AstExternalAccessOption7(list);
+            }
             return null;
         }
         
@@ -34474,6 +36686,18 @@ namespace Bb.Asts.TSql
         public static AstRecoveryOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRecoveryOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRecoveryOption.AstRecoveryOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRecoveryOption.AstRecoveryOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstRecoveryOption.AstRecoveryOption3(list);
+            }
             return null;
         }
         
@@ -34715,6 +36939,26 @@ namespace Bb.Asts.TSql
         public static AstServiceBrokerOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstServiceBrokerOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstServiceBrokerOption.AstServiceBrokerOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstServiceBrokerOption.AstServiceBrokerOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstServiceBrokerOption.AstServiceBrokerOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstServiceBrokerOption.AstServiceBrokerOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstServiceBrokerOption.AstServiceBrokerOption5(list);
+            }
             return null;
         }
         
@@ -34880,6 +37124,18 @@ namespace Bb.Asts.TSql
         public static AstSnapshotOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSnapshotOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSnapshotOption.AstSnapshotOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSnapshotOption.AstSnapshotOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSnapshotOption.AstSnapshotOption3(list);
+            }
             return null;
         }
         
@@ -35279,6 +37535,46 @@ namespace Bb.Asts.TSql
         public static AstSqlOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSqlOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSqlOption.AstSqlOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSqlOption.AstSqlOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSqlOption.AstSqlOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSqlOption.AstSqlOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSqlOption.AstSqlOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSqlOption.AstSqlOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstSqlOption.AstSqlOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstSqlOption.AstSqlOption8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstSqlOption.AstSqlOption9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstSqlOption.AstSqlOption10(list);
+            }
             return null;
         }
         
@@ -35484,6 +37780,18 @@ namespace Bb.Asts.TSql
         public static AstTermination Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTermination.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTermination.AstTermination1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTermination.AstTermination2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTermination.AstTermination3(list);
+            }
             return null;
         }
         
@@ -35614,6 +37922,14 @@ namespace Bb.Asts.TSql
         public static AstDropTrigger Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDropTrigger.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDropTrigger.AstDropTrigger1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDropTrigger.AstDropTrigger2(list);
+            }
             return null;
         }
         
@@ -35882,6 +38198,14 @@ namespace Bb.Asts.TSql
         public static AstRowsetFunctionLimited Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRowsetFunctionLimited.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRowsetFunctionLimited.AstRowsetFunctionLimited2(list);
+            }
             return null;
         }
         
@@ -36090,6 +38414,22 @@ namespace Bb.Asts.TSql
         public static AstDeclareStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeclareStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDeclareStatement.AstDeclareStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDeclareStatement.AstDeclareStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDeclareStatement.AstDeclareStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDeclareStatement.AstDeclareStatement4(list);
+            }
             return null;
         }
         
@@ -36287,6 +38627,14 @@ namespace Bb.Asts.TSql
         public static AstXmlDeclaration Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlDeclaration.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstXmlDeclaration.AstXmlDeclaration1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstXmlDeclaration.AstXmlDeclaration2(list);
+            }
             return null;
         }
         
@@ -36531,6 +38879,26 @@ namespace Bb.Asts.TSql
         public static AstCursorStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCursorStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCursorStatement.AstCursorStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCursorStatement.AstCursorStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCursorStatement.AstCursorStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstCursorStatement.AstCursorStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstCursorStatement.AstCursorStatement5(list);
+            }
             return null;
         }
         
@@ -36798,6 +39166,14 @@ namespace Bb.Asts.TSql
         public static AstBackupCertificatePrivateKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBackupCertificatePrivateKey.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBackupCertificatePrivateKey.AstBackupCertificatePrivateKey2(list);
+            }
             return null;
         }
         
@@ -37732,6 +40108,110 @@ namespace Bb.Asts.TSql
         public static AstBackupSetting Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBackupSetting.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBackupSetting.AstBackupSetting1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBackupSetting.AstBackupSetting2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstBackupSetting.AstBackupSetting3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstBackupSetting.AstBackupSetting4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstBackupSetting.AstBackupSetting5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstBackupSetting.AstBackupSetting6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstBackupSetting.AstBackupSetting7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstBackupSetting.AstBackupSetting8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstBackupSetting.AstBackupSetting9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstBackupSetting.AstBackupSetting10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstBackupSetting.AstBackupSetting11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstBackupSetting.AstBackupSetting12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstBackupSetting.AstBackupSetting13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstBackupSetting.AstBackupSetting14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstBackupSetting.AstBackupSetting15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstBackupSetting.AstBackupSetting16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstBackupSetting.AstBackupSetting17(list);
+            }
+            if ((index == 17))
+            {
+                return new AstBackupSetting.AstBackupSetting18(list);
+            }
+            if ((index == 18))
+            {
+                return new AstBackupSetting.AstBackupSetting19(list);
+            }
+            if ((index == 19))
+            {
+                return new AstBackupSetting.AstBackupSetting20(list);
+            }
+            if ((index == 20))
+            {
+                return new AstBackupSetting.AstBackupSetting21(list);
+            }
+            if ((index == 21))
+            {
+                return new AstBackupSetting.AstBackupSetting22(list);
+            }
+            if ((index == 22))
+            {
+                return new AstBackupSetting.AstBackupSetting23(list);
+            }
+            if ((index == 23))
+            {
+                return new AstBackupSetting.AstBackupSetting24(list);
+            }
+            if ((index == 24))
+            {
+                return new AstBackupSetting.AstBackupSetting25(list);
+            }
+            if ((index == 25))
+            {
+                return new AstBackupSetting.AstBackupSetting26(list);
+            }
             return null;
         }
         
@@ -38274,6 +40754,14 @@ namespace Bb.Asts.TSql
         public static AstExecuteBody Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteBody.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExecuteBody.AstExecuteBody1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExecuteBody.AstExecuteBody2(list);
+            }
             return null;
         }
         
@@ -38444,6 +40932,14 @@ namespace Bb.Asts.TSql
         public static AstExecuteStatementArg Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteStatementArg.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExecuteStatementArg.AstExecuteStatementArg1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExecuteStatementArg.AstExecuteStatementArg2(list);
+            }
             return null;
         }
         
@@ -38754,6 +41250,14 @@ namespace Bb.Asts.TSql
         public static AstExecuteVarString Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteVarString.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExecuteVarString.AstExecuteVarString1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExecuteVarString.AstExecuteVarString2(list);
+            }
             return null;
         }
         
@@ -39079,6 +41583,34 @@ namespace Bb.Asts.TSql
         public static AstSecurityStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSecurityStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSecurityStatement.AstSecurityStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSecurityStatement.AstSecurityStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSecurityStatement.AstSecurityStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSecurityStatement.AstSecurityStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSecurityStatement.AstSecurityStatement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSecurityStatement.AstSecurityStatement6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstSecurityStatement.AstSecurityStatement7(list);
+            }
             return null;
         }
         
@@ -39325,6 +41857,14 @@ namespace Bb.Asts.TSql
         public static AstExistingKeys Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExistingKeys.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExistingKeys.AstExistingKeys1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExistingKeys.AstExistingKeys2(list);
+            }
             return null;
         }
         
@@ -39530,6 +42070,14 @@ namespace Bb.Asts.TSql
         public static AstOpenKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstOpenKey.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstOpenKey.AstOpenKey1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstOpenKey.AstOpenKey2(list);
+            }
             return null;
         }
         
@@ -39709,6 +42257,18 @@ namespace Bb.Asts.TSql
         public static AstCloseKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCloseKey.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCloseKey.AstCloseKey1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCloseKey.AstCloseKey2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCloseKey.AstCloseKey3(list);
+            }
             return null;
         }
         
@@ -39841,6 +42401,14 @@ namespace Bb.Asts.TSql
         public static AstCreateKey Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateKey.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateKey.AstCreateKey1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateKey.AstCreateKey2(list);
+            }
             return null;
         }
         
@@ -40108,6 +42676,26 @@ namespace Bb.Asts.TSql
         public static AstKeyOptions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstKeyOptions.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstKeyOptions.AstKeyOptions1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstKeyOptions.AstKeyOptions2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstKeyOptions.AstKeyOptions3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstKeyOptions.AstKeyOptions4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstKeyOptions.AstKeyOptions5(list);
+            }
             return null;
         }
         
@@ -40325,6 +42913,22 @@ namespace Bb.Asts.TSql
         public static AstEncryptionMechanism Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEncryptionMechanism.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstEncryptionMechanism.AstEncryptionMechanism1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstEncryptionMechanism.AstEncryptionMechanism2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstEncryptionMechanism.AstEncryptionMechanism3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstEncryptionMechanism.AstEncryptionMechanism4(list);
+            }
             return null;
         }
         
@@ -40561,6 +43165,22 @@ namespace Bb.Asts.TSql
         public static AstDecryptionMechanism Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecryptionMechanism.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDecryptionMechanism.AstDecryptionMechanism1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDecryptionMechanism.AstDecryptionMechanism2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDecryptionMechanism.AstDecryptionMechanism3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDecryptionMechanism.AstDecryptionMechanism4(list);
+            }
             return null;
         }
         
@@ -40773,6 +43393,18 @@ namespace Bb.Asts.TSql
         public static AstGrantPermission Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGrantPermission.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstGrantPermission.AstGrantPermission1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstGrantPermission.AstGrantPermission2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstGrantPermission.AstGrantPermission3(list);
+            }
             return null;
         }
         
@@ -40996,6 +43628,22 @@ namespace Bb.Asts.TSql
         public static AstSetStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSetStatement.AstSetStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSetStatement.AstSetStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSetStatement.AstSetStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSetStatement.AstSetStatement4(list);
+            }
             return null;
         }
         
@@ -41431,6 +44079,42 @@ namespace Bb.Asts.TSql
         public static AstTransactionStatement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTransactionStatement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTransactionStatement.AstTransactionStatement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTransactionStatement.AstTransactionStatement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTransactionStatement.AstTransactionStatement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstTransactionStatement.AstTransactionStatement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstTransactionStatement.AstTransactionStatement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstTransactionStatement.AstTransactionStatement6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstTransactionStatement.AstTransactionStatement7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstTransactionStatement.AstTransactionStatement8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstTransactionStatement.AstTransactionStatement9(list);
+            }
             return null;
         }
         
@@ -41958,6 +44642,14 @@ namespace Bb.Asts.TSql
         public static AstDbccCommand Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDbccCommand.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDbccCommand.AstDbccCommand1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDbccCommand.AstDbccCommand2(list);
+            }
             return null;
         }
         
@@ -42098,6 +44790,14 @@ namespace Bb.Asts.TSql
         public static AstExecuteClauseMode Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExecuteClauseMode.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExecuteClauseMode.AstExecuteClauseMode1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExecuteClauseMode.AstExecuteClauseMode2(list);
+            }
             return null;
         }
         
@@ -42240,6 +44940,14 @@ namespace Bb.Asts.TSql
         public static AstTableTypeIndice Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableTypeIndice.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableTypeIndice.AstTableTypeIndice1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableTypeIndice.AstTableTypeIndice2(list);
+            }
             return null;
         }
         
@@ -42490,6 +45198,18 @@ namespace Bb.Asts.TSql
         public static AstColumnDefTableConstraint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnDefTableConstraint.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstColumnDefTableConstraint.AstColumnDefTableConstraint3(list);
+            }
             return null;
         }
         
@@ -42944,6 +45664,50 @@ namespace Bb.Asts.TSql
         public static AstColumnDefinitionElement Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnDefinitionElement.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstColumnDefinitionElement.AstColumnDefinitionElement11(list);
+            }
             return null;
         }
         
@@ -43941,6 +46705,66 @@ namespace Bb.Asts.TSql
         public static AstAlterTableIndexOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAlterTableIndexOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstAlterTableIndexOption.AstAlterTableIndexOption15(list);
+            }
             return null;
         }
         
@@ -44187,6 +47011,14 @@ namespace Bb.Asts.TSql
         public static AstDeclareSetCursorCommonPartial Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDeclareSetCursorCommonPartial.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDeclareSetCursorCommonPartial.AstDeclareSetCursorCommonPartial2(list);
+            }
             return null;
         }
         
@@ -44527,6 +47359,38 @@ namespace Bb.Asts.TSql
         public static AstSetSpecial Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSetSpecial.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSetSpecial.AstSetSpecial1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSetSpecial.AstSetSpecial2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSetSpecial.AstSetSpecial3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSetSpecial.AstSetSpecial4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSetSpecial.AstSetSpecial5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstSetSpecial.AstSetSpecial6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstSetSpecial.AstSetSpecial7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstSetSpecial.AstSetSpecial8(list);
+            }
             return null;
         }
         
@@ -44846,6 +47710,14 @@ namespace Bb.Asts.TSql
         public static AstConstantLocalId Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstantLocalId.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstConstantLocalId.AstConstantLocalId1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstConstantLocalId.AstConstantLocalId2(list);
+            }
             return null;
         }
         
@@ -45351,6 +48223,58 @@ namespace Bb.Asts.TSql
         public static AstExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExpression.AstExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExpression.AstExpression2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstExpression.AstExpression3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstExpression.AstExpression4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstExpression.AstExpression5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstExpression.AstExpression6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstExpression.AstExpression7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstExpression.AstExpression8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstExpression.AstExpression9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstExpression.AstExpression10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstExpression.AstExpression11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstExpression.AstExpression12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstExpression.AstExpression13(list);
+            }
             return null;
         }
         
@@ -45778,6 +48702,22 @@ namespace Bb.Asts.TSql
         public static AstPrimitiveExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPrimitiveExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPrimitiveExpression.AstPrimitiveExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPrimitiveExpression.AstPrimitiveExpression2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstPrimitiveExpression.AstPrimitiveExpression3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstPrimitiveExpression.AstPrimitiveExpression4(list);
+            }
             return null;
         }
         
@@ -45925,6 +48865,14 @@ namespace Bb.Asts.TSql
         public static AstCaseExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCaseExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCaseExpression.AstCaseExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCaseExpression.AstCaseExpression2(list);
+            }
             return null;
         }
         
@@ -46077,6 +49025,14 @@ namespace Bb.Asts.TSql
         public static AstUnaryOperatorExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUnaryOperatorExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUnaryOperatorExpression.AstUnaryOperatorExpression2(list);
+            }
             return null;
         }
         
@@ -46224,6 +49180,14 @@ namespace Bb.Asts.TSql
         public static AstBracketExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBracketExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBracketExpression.AstBracketExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBracketExpression.AstBracketExpression2(list);
+            }
             return null;
         }
         
@@ -46461,6 +49425,26 @@ namespace Bb.Asts.TSql
         public static AstConstantExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstantExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstConstantExpression.AstConstantExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstConstantExpression.AstConstantExpression2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstConstantExpression.AstConstantExpression3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstConstantExpression.AstConstantExpression4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstConstantExpression.AstConstantExpression5(list);
+            }
             return null;
         }
         
@@ -46718,6 +49702,18 @@ namespace Bb.Asts.TSql
         public static AstUpdateElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateElem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUpdateElem.AstUpdateElem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUpdateElem.AstUpdateElem2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstUpdateElem.AstUpdateElem3(list);
+            }
             return null;
         }
         
@@ -46946,6 +49942,14 @@ namespace Bb.Asts.TSql
         public static AstUpdateElemMerge Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateElemMerge.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUpdateElemMerge.AstUpdateElemMerge1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUpdateElemMerge.AstUpdateElemMerge2(list);
+            }
             return null;
         }
         
@@ -47171,6 +50175,18 @@ namespace Bb.Asts.TSql
         public static AstSearchCondition Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSearchCondition.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSearchCondition.AstSearchCondition1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSearchCondition.AstSearchCondition2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSearchCondition.AstSearchCondition3(list);
+            }
             return null;
         }
         
@@ -47568,6 +50584,42 @@ namespace Bb.Asts.TSql
         public static AstPredicate Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPredicate.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPredicate.AstPredicate1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPredicate.AstPredicate2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstPredicate.AstPredicate3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstPredicate.AstPredicate4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstPredicate.AstPredicate5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstPredicate.AstPredicate6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstPredicate.AstPredicate7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstPredicate.AstPredicate8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstPredicate.AstPredicate9(list);
+            }
             return null;
         }
         
@@ -47833,6 +50885,14 @@ namespace Bb.Asts.TSql
         public static AstQueryExpression Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstQueryExpression.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstQueryExpression.AstQueryExpression1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstQueryExpression.AstQueryExpression2(list);
+            }
             return null;
         }
         
@@ -48054,6 +51114,14 @@ namespace Bb.Asts.TSql
         public static AstTopPercent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTopPercent.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTopPercent.AstTopPercent1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTopPercent.AstTopPercent2(list);
+            }
             return null;
         }
         
@@ -48226,6 +51294,18 @@ namespace Bb.Asts.TSql
         public static AstPercentConstant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstPercentConstant.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstPercentConstant.AstPercentConstant1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstPercentConstant.AstPercentConstant2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstPercentConstant.AstPercentConstant3(list);
+            }
             return null;
         }
         
@@ -48382,6 +51462,14 @@ namespace Bb.Asts.TSql
         public static AstTopCount Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTopCount.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTopCount.AstTopCount1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTopCount.AstTopCount2(list);
+            }
             return null;
         }
         
@@ -48623,6 +51711,26 @@ namespace Bb.Asts.TSql
         public static AstForClause Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstForClause.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstForClause.AstForClause1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstForClause.AstForClause2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstForClause.AstForClause3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstForClause.AstForClause4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstForClause.AstForClause5(list);
+            }
             return null;
         }
         
@@ -48839,6 +51947,18 @@ namespace Bb.Asts.TSql
         public static AstXmlCommonDirective Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlCommonDirective.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstXmlCommonDirective.AstXmlCommonDirective1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstXmlCommonDirective.AstXmlCommonDirective2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstXmlCommonDirective.AstXmlCommonDirective3(list);
+            }
             return null;
         }
         
@@ -49002,6 +52122,18 @@ namespace Bb.Asts.TSql
         public static AstClauseJsonInfo Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstClauseJsonInfo.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstClauseJsonInfo.AstClauseJsonInfo1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstClauseJsonInfo.AstClauseJsonInfo2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstClauseJsonInfo.AstClauseJsonInfo3(list);
+            }
             return null;
         }
         
@@ -49180,6 +52312,14 @@ namespace Bb.Asts.TSql
         public static AstGroupingSetsItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstGroupingSetsItem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstGroupingSetsItem.AstGroupingSetsItem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstGroupingSetsItem.AstGroupingSetsItem2(list);
+            }
             return null;
         }
         
@@ -49440,6 +52580,30 @@ namespace Bb.Asts.TSql
         public static AstUpdateOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUpdateOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUpdateOption.AstUpdateOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUpdateOption.AstUpdateOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstUpdateOption.AstUpdateOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstUpdateOption.AstUpdateOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstUpdateOption.AstUpdateOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstUpdateOption.AstUpdateOption6(list);
+            }
             return null;
         }
         
@@ -49650,6 +52814,18 @@ namespace Bb.Asts.TSql
         public static AstAsterisk Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAsterisk.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAsterisk.AstAsterisk1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAsterisk.AstAsterisk2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAsterisk.AstAsterisk3(list);
+            }
             return null;
         }
         
@@ -49870,6 +53046,22 @@ namespace Bb.Asts.TSql
         public static AstColumnElemTarget Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstColumnElemTarget.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstColumnElemTarget.AstColumnElemTarget1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstColumnElemTarget.AstColumnElemTarget2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstColumnElemTarget.AstColumnElemTarget3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstColumnElemTarget.AstColumnElemTarget4(list);
+            }
             return null;
         }
         
@@ -50003,6 +53195,14 @@ namespace Bb.Asts.TSql
         public static AstUdtElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstUdtElem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstUdtElem.AstUdtElem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstUdtElem.AstUdtElem2(list);
+            }
             return null;
         }
         
@@ -50162,6 +53362,14 @@ namespace Bb.Asts.TSql
         public static AstExpressionElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstExpressionElem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstExpressionElem.AstExpressionElem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstExpressionElem.AstExpressionElem2(list);
+            }
             return null;
         }
         
@@ -50405,6 +53613,26 @@ namespace Bb.Asts.TSql
         public static AstSelectListElem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSelectListElem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSelectListElem.AstSelectListElem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSelectListElem.AstSelectListElem2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstSelectListElem.AstSelectListElem3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstSelectListElem.AstSelectListElem4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstSelectListElem.AstSelectListElem5(list);
+            }
             return null;
         }
         
@@ -50591,6 +53819,14 @@ namespace Bb.Asts.TSql
         public static AstTableSource Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSource.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableSource.AstTableSource1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableSource.AstTableSource2(list);
+            }
             return null;
         }
         
@@ -50732,6 +53968,14 @@ namespace Bb.Asts.TSql
         public static AstTableSourceItemJoined Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSourceItemJoined.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableSourceItemJoined.AstTableSourceItemJoined1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableSourceItemJoined.AstTableSourceItemJoined2(list);
+            }
             return null;
         }
         
@@ -51210,6 +54454,54 @@ namespace Bb.Asts.TSql
         public static AstTableSourceItem Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableSourceItem.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableSourceItem.AstTableSourceItem1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableSourceItem.AstTableSourceItem2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTableSourceItem.AstTableSourceItem3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstTableSourceItem.AstTableSourceItem4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstTableSourceItem.AstTableSourceItem5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstTableSourceItem.AstTableSourceItem6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstTableSourceItem.AstTableSourceItem7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstTableSourceItem.AstTableSourceItem8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstTableSourceItem.AstTableSourceItem9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstTableSourceItem.AstTableSourceItem10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstTableSourceItem.AstTableSourceItem11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstTableSourceItem.AstTableSourceItem12(list);
+            }
             return null;
         }
         
@@ -51591,6 +54883,14 @@ namespace Bb.Asts.TSql
         public static AstChangeTable Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstChangeTable.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstChangeTable.AstChangeTable1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstChangeTable.AstChangeTable2(list);
+            }
             return null;
         }
         
@@ -51933,6 +55233,26 @@ namespace Bb.Asts.TSql
         public static AstJoinPart Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstJoinPart.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstJoinPart.AstJoinPart1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstJoinPart.AstJoinPart2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstJoinPart.AstJoinPart3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstJoinPart.AstJoinPart4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstJoinPart.AstJoinPart5(list);
+            }
             return null;
         }
         
@@ -52121,6 +55441,14 @@ namespace Bb.Asts.TSql
         public static AstRowsetFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRowsetFunction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRowsetFunction.AstRowsetFunction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRowsetFunction.AstRowsetFunction2(list);
+            }
             return null;
         }
         
@@ -52349,6 +55677,22 @@ namespace Bb.Asts.TSql
         public static AstDerivedTable Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDerivedTable.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDerivedTable.AstDerivedTable1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDerivedTable.AstDerivedTable2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDerivedTable.AstDerivedTable3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDerivedTable.AstDerivedTable4(list);
+            }
             return null;
         }
         
@@ -52708,6 +56052,38 @@ namespace Bb.Asts.TSql
         public static AstFunctionCall Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFunctionCall.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFunctionCall.AstFunctionCall1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFunctionCall.AstFunctionCall2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstFunctionCall.AstFunctionCall3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstFunctionCall.AstFunctionCall4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstFunctionCall.AstFunctionCall5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstFunctionCall.AstFunctionCall6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstFunctionCall.AstFunctionCall7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstFunctionCall.AstFunctionCall8(list);
+            }
             return null;
         }
         
@@ -52979,6 +56355,18 @@ namespace Bb.Asts.TSql
         public static AstFreetextFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFreetextFunction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFreetextFunction.AstFreetextFunction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFreetextFunction.AstFreetextFunction2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstFreetextFunction.AstFreetextFunction3(list);
+            }
             return null;
         }
         
@@ -53169,6 +56557,14 @@ namespace Bb.Asts.TSql
         public static AstFreetextPredicate Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstFreetextPredicate.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstFreetextPredicate.AstFreetextPredicate1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstFreetextPredicate.AstFreetextPredicate2(list);
+            }
             return null;
         }
         
@@ -57218,6 +60614,482 @@ namespace Bb.Asts.TSql
         public static AstBuiltInFunctions Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstBuiltInFunctions.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions17(list);
+            }
+            if ((index == 17))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions18(list);
+            }
+            if ((index == 18))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions19(list);
+            }
+            if ((index == 19))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions20(list);
+            }
+            if ((index == 20))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions21(list);
+            }
+            if ((index == 21))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions22(list);
+            }
+            if ((index == 22))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions23(list);
+            }
+            if ((index == 23))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions24(list);
+            }
+            if ((index == 24))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions25(list);
+            }
+            if ((index == 25))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions26(list);
+            }
+            if ((index == 26))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions27(list);
+            }
+            if ((index == 27))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions28(list);
+            }
+            if ((index == 28))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions29(list);
+            }
+            if ((index == 29))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions30(list);
+            }
+            if ((index == 30))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions31(list);
+            }
+            if ((index == 31))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions32(list);
+            }
+            if ((index == 32))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions33(list);
+            }
+            if ((index == 33))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions34(list);
+            }
+            if ((index == 34))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions35(list);
+            }
+            if ((index == 35))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions36(list);
+            }
+            if ((index == 36))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions37(list);
+            }
+            if ((index == 37))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions38(list);
+            }
+            if ((index == 38))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions39(list);
+            }
+            if ((index == 39))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions40(list);
+            }
+            if ((index == 40))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions41(list);
+            }
+            if ((index == 41))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions42(list);
+            }
+            if ((index == 42))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions43(list);
+            }
+            if ((index == 43))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions44(list);
+            }
+            if ((index == 44))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions45(list);
+            }
+            if ((index == 45))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions46(list);
+            }
+            if ((index == 46))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions47(list);
+            }
+            if ((index == 47))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions48(list);
+            }
+            if ((index == 48))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions49(list);
+            }
+            if ((index == 49))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions50(list);
+            }
+            if ((index == 50))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions51(list);
+            }
+            if ((index == 51))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions52(list);
+            }
+            if ((index == 52))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions53(list);
+            }
+            if ((index == 53))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions54(list);
+            }
+            if ((index == 54))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions55(list);
+            }
+            if ((index == 55))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions56(list);
+            }
+            if ((index == 56))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions57(list);
+            }
+            if ((index == 57))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions58(list);
+            }
+            if ((index == 58))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions59(list);
+            }
+            if ((index == 59))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions60(list);
+            }
+            if ((index == 60))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions61(list);
+            }
+            if ((index == 61))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions62(list);
+            }
+            if ((index == 62))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions63(list);
+            }
+            if ((index == 63))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions64(list);
+            }
+            if ((index == 64))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions65(list);
+            }
+            if ((index == 65))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions66(list);
+            }
+            if ((index == 66))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions67(list);
+            }
+            if ((index == 67))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions68(list);
+            }
+            if ((index == 68))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions69(list);
+            }
+            if ((index == 69))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions70(list);
+            }
+            if ((index == 70))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions71(list);
+            }
+            if ((index == 71))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions72(list);
+            }
+            if ((index == 72))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions73(list);
+            }
+            if ((index == 73))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions74(list);
+            }
+            if ((index == 74))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions75(list);
+            }
+            if ((index == 75))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions76(list);
+            }
+            if ((index == 76))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions77(list);
+            }
+            if ((index == 77))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions78(list);
+            }
+            if ((index == 78))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions79(list);
+            }
+            if ((index == 79))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions80(list);
+            }
+            if ((index == 80))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions81(list);
+            }
+            if ((index == 81))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions82(list);
+            }
+            if ((index == 82))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions83(list);
+            }
+            if ((index == 83))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions84(list);
+            }
+            if ((index == 84))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions85(list);
+            }
+            if ((index == 85))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions86(list);
+            }
+            if ((index == 86))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions87(list);
+            }
+            if ((index == 87))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions88(list);
+            }
+            if ((index == 88))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions89(list);
+            }
+            if ((index == 89))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions90(list);
+            }
+            if ((index == 90))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions91(list);
+            }
+            if ((index == 91))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions92(list);
+            }
+            if ((index == 92))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions93(list);
+            }
+            if ((index == 93))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions94(list);
+            }
+            if ((index == 94))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions95(list);
+            }
+            if ((index == 95))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions96(list);
+            }
+            if ((index == 96))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions97(list);
+            }
+            if ((index == 97))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions98(list);
+            }
+            if ((index == 98))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions99(list);
+            }
+            if ((index == 99))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions100(list);
+            }
+            if ((index == 100))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions101(list);
+            }
+            if ((index == 101))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions102(list);
+            }
+            if ((index == 102))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions103(list);
+            }
+            if ((index == 103))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions104(list);
+            }
+            if ((index == 104))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions105(list);
+            }
+            if ((index == 105))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions106(list);
+            }
+            if ((index == 106))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions107(list);
+            }
+            if ((index == 107))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions108(list);
+            }
+            if ((index == 108))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions109(list);
+            }
+            if ((index == 109))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions110(list);
+            }
+            if ((index == 110))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions111(list);
+            }
+            if ((index == 111))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions112(list);
+            }
+            if ((index == 112))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions113(list);
+            }
+            if ((index == 113))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions114(list);
+            }
+            if ((index == 114))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions115(list);
+            }
+            if ((index == 115))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions116(list);
+            }
+            if ((index == 116))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions117(list);
+            }
+            if ((index == 117))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions118(list);
+            }
+            if ((index == 118))
+            {
+                return new AstBuiltInFunctions.AstBuiltInFunctions119(list);
+            }
             return null;
         }
         
@@ -58235,6 +62107,22 @@ namespace Bb.Asts.TSql
         public static AstXmlDataTypeMethods Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstXmlDataTypeMethods.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstXmlDataTypeMethods.AstXmlDataTypeMethods4(list);
+            }
             return null;
         }
         
@@ -59023,6 +62911,30 @@ namespace Bb.Asts.TSql
         public static AstHierarchyidCall Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstHierarchyidCall.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstHierarchyidCall.AstHierarchyidCall6(list);
+            }
             return null;
         }
         
@@ -60062,6 +63974,106 @@ namespace Bb.Asts.TSql
         public static AstTableHint Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstTableHint.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstTableHint.AstTableHint1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstTableHint.AstTableHint2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstTableHint.AstTableHint3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstTableHint.AstTableHint4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstTableHint.AstTableHint5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstTableHint.AstTableHint6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstTableHint.AstTableHint7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstTableHint.AstTableHint8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstTableHint.AstTableHint9(list);
+            }
+            if ((index == 9))
+            {
+                return new AstTableHint.AstTableHint10(list);
+            }
+            if ((index == 10))
+            {
+                return new AstTableHint.AstTableHint11(list);
+            }
+            if ((index == 11))
+            {
+                return new AstTableHint.AstTableHint12(list);
+            }
+            if ((index == 12))
+            {
+                return new AstTableHint.AstTableHint13(list);
+            }
+            if ((index == 13))
+            {
+                return new AstTableHint.AstTableHint14(list);
+            }
+            if ((index == 14))
+            {
+                return new AstTableHint.AstTableHint15(list);
+            }
+            if ((index == 15))
+            {
+                return new AstTableHint.AstTableHint16(list);
+            }
+            if ((index == 16))
+            {
+                return new AstTableHint.AstTableHint17(list);
+            }
+            if ((index == 17))
+            {
+                return new AstTableHint.AstTableHint18(list);
+            }
+            if ((index == 18))
+            {
+                return new AstTableHint.AstTableHint19(list);
+            }
+            if ((index == 19))
+            {
+                return new AstTableHint.AstTableHint20(list);
+            }
+            if ((index == 20))
+            {
+                return new AstTableHint.AstTableHint21(list);
+            }
+            if ((index == 21))
+            {
+                return new AstTableHint.AstTableHint22(list);
+            }
+            if ((index == 22))
+            {
+                return new AstTableHint.AstTableHint23(list);
+            }
+            if ((index == 23))
+            {
+                return new AstTableHint.AstTableHint24(list);
+            }
+            if ((index == 24))
+            {
+                return new AstTableHint.AstTableHint25(list);
+            }
             return null;
         }
         
@@ -60268,6 +64280,14 @@ namespace Bb.Asts.TSql
         public static AstIndexValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstIndexValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstIndexValue.AstIndexValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstIndexValue.AstIndexValue2(list);
+            }
             return null;
         }
         
@@ -60409,6 +64429,14 @@ namespace Bb.Asts.TSql
         public static AstRankingWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstRankingWindowedFunction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstRankingWindowedFunction.AstRankingWindowedFunction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstRankingWindowedFunction.AstRankingWindowedFunction2(list);
+            }
             return null;
         }
         
@@ -60656,6 +64684,26 @@ namespace Bb.Asts.TSql
         public static AstAggregateWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAggregateWindowedFunction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAggregateWindowedFunction.AstAggregateWindowedFunction5(list);
+            }
             return null;
         }
         
@@ -60935,6 +64983,22 @@ namespace Bb.Asts.TSql
         public static AstAnalyticWindowedFunction Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAnalyticWindowedFunction.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAnalyticWindowedFunction.AstAnalyticWindowedFunction4(list);
+            }
             return null;
         }
         
@@ -61139,6 +65203,14 @@ namespace Bb.Asts.TSql
         public static AstWindowFrameExtent Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFrameExtent.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWindowFrameExtent.AstWindowFrameExtent1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWindowFrameExtent.AstWindowFrameExtent2(list);
+            }
             return null;
         }
         
@@ -61285,6 +65357,14 @@ namespace Bb.Asts.TSql
         public static AstWindowFrameBound Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFrameBound.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWindowFrameBound.AstWindowFrameBound1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWindowFrameBound.AstWindowFrameBound2(list);
+            }
             return null;
         }
         
@@ -61458,6 +65538,18 @@ namespace Bb.Asts.TSql
         public static AstWindowFramePreceding Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFramePreceding.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWindowFramePreceding.AstWindowFramePreceding1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWindowFramePreceding.AstWindowFramePreceding2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstWindowFramePreceding.AstWindowFramePreceding3(list);
+            }
             return null;
         }
         
@@ -61588,6 +65680,14 @@ namespace Bb.Asts.TSql
         public static AstWindowFrameFollowing Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstWindowFrameFollowing.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstWindowFrameFollowing.AstWindowFrameFollowing1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstWindowFrameFollowing.AstWindowFrameFollowing2(list);
+            }
             return null;
         }
         
@@ -61917,6 +66017,38 @@ namespace Bb.Asts.TSql
         public static AstCreateDatabaseOption Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCreateDatabaseOption.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstCreateDatabaseOption.AstCreateDatabaseOption8(list);
+            }
             return null;
         }
         
@@ -62161,6 +66293,14 @@ namespace Bb.Asts.TSql
         public static AstDatabaseFileSpec Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDatabaseFileSpec.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDatabaseFileSpec.AstDatabaseFileSpec1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDatabaseFileSpec.AstDatabaseFileSpec2(list);
+            }
             return null;
         }
         
@@ -62301,6 +66441,14 @@ namespace Bb.Asts.TSql
         public static AstMaxSize Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstMaxSize.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstMaxSize.AstMaxSize1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstMaxSize.AstMaxSize2(list);
+            }
             return null;
         }
         
@@ -62489,6 +66637,14 @@ namespace Bb.Asts.TSql
         public static AstScalarFunctionName Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstScalarFunctionName.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstScalarFunctionName.AstScalarFunctionName1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstScalarFunctionName.AstScalarFunctionName2(list);
+            }
             return null;
         }
         
@@ -63020,6 +67176,30 @@ namespace Bb.Asts.TSql
         public static AstDataType Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDataType.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDataType.AstDataType1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDataType.AstDataType2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDataType.AstDataType3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstDataType.AstDataType4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstDataType.AstDataType5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstDataType.AstDataType6(list);
+            }
             return null;
         }
         
@@ -63253,6 +67433,18 @@ namespace Bb.Asts.TSql
         public static AstDefaultValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDefaultValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDefaultValue.AstDefaultValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDefaultValue.AstDefaultValue2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstDefaultValue.AstDefaultValue3(list);
+            }
             return null;
         }
         
@@ -63512,6 +67704,30 @@ namespace Bb.Asts.TSql
         public static AstConstant Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstConstant.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstConstant.AstConstant1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstConstant.AstConstant2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstConstant.AstConstant3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstConstant.AstConstant4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstConstant.AstConstant5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstConstant.AstConstant6(list);
+            }
             return null;
         }
         
@@ -63765,6 +67981,18 @@ namespace Bb.Asts.TSql
         public static AstStringId2 Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstStringId2.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstStringId2.AstStringId21(list);
+            }
+            if ((index == 1))
+            {
+                return new AstStringId2.AstStringId22(list);
+            }
+            if ((index == 2))
+            {
+                return new AstStringId2.AstStringId23(list);
+            }
             return null;
         }
         
@@ -63920,6 +68148,14 @@ namespace Bb.Asts.TSql
         public static AstAllServerDatabase Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAllServerDatabase.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAllServerDatabase.AstAllServerDatabase1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAllServerDatabase.AstAllServerDatabase2(list);
+            }
             return null;
         }
         
@@ -64263,6 +68499,34 @@ namespace Bb.Asts.TSql
         public static AstEventSessionPredicateLeafOpe Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstEventSessionPredicateLeafOpe.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstEventSessionPredicateLeafOpe.AstEventSessionPredicateLeafOpe7(list);
+            }
             return null;
         }
         
@@ -64380,6 +68644,14 @@ namespace Bb.Asts.TSql
         public static AstCycle Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstCycle.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstCycle.AstCycle1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstCycle.AstCycle2(list);
+            }
             return null;
         }
         
@@ -64492,6 +68764,14 @@ namespace Bb.Asts.TSql
         public static AstSizeValue Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstSizeValue.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstSizeValue.AstSizeValue1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstSizeValue.AstSizeValue2(list);
+            }
             return null;
         }
         
@@ -64621,6 +68901,14 @@ namespace Bb.Asts.TSql
         public static AstDecimalDefault Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstDecimalDefault.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstDecimalDefault.AstDecimalDefault1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstDecimalDefault.AstDecimalDefault2(list);
+            }
             return null;
         }
         
@@ -65116,6 +69404,42 @@ namespace Bb.Asts.TSql
         public static AstComparisonOperator Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstComparisonOperator.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstComparisonOperator.AstComparisonOperator1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstComparisonOperator.AstComparisonOperator2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstComparisonOperator.AstComparisonOperator3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstComparisonOperator.AstComparisonOperator4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstComparisonOperator.AstComparisonOperator5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstComparisonOperator.AstComparisonOperator6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstComparisonOperator.AstComparisonOperator7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstComparisonOperator.AstComparisonOperator8(list);
+            }
+            if ((index == 8))
+            {
+                return new AstComparisonOperator.AstComparisonOperator9(list);
+            }
             return null;
         }
         
@@ -65428,6 +69752,38 @@ namespace Bb.Asts.TSql
         public static AstAssignmentOperator Create(ParserRuleContext ctx, List<AstRoot> list)
         {
             int index = AstAssignmentOperator.Resolve(list);
+            if ((index == 0))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator1(list);
+            }
+            if ((index == 1))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator2(list);
+            }
+            if ((index == 2))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator3(list);
+            }
+            if ((index == 3))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator4(list);
+            }
+            if ((index == 4))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator5(list);
+            }
+            if ((index == 5))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator6(list);
+            }
+            if ((index == 6))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator7(list);
+            }
+            if ((index == 7))
+            {
+                return new AstAssignmentOperator.AstAssignmentOperator8(list);
+            }
             return null;
         }
         
