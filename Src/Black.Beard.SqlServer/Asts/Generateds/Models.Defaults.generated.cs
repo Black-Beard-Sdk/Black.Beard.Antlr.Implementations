@@ -124,7 +124,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -324,7 +324,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -546,7 +546,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -864,7 +864,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(7);
+                _alternatives = new List<List<Type>>(7);
             }
             return 1;
         }
@@ -1151,7 +1151,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -6459,7 +6459,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(161);
+                _alternatives = new List<List<Type>>(161);
             }
             return 1;
         }
@@ -8440,7 +8440,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -8940,7 +8940,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(12);
+                _alternatives = new List<List<Type>>(12);
             }
             return 1;
         }
@@ -9256,7 +9256,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -9476,7 +9476,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -10108,7 +10108,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(17);
+                _alternatives = new List<List<Type>>(17);
             }
             return 1;
         }
@@ -10443,7 +10443,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -10600,7 +10600,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -10811,7 +10811,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -10957,7 +10957,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -11093,7 +11093,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -11228,7 +11228,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -11363,7 +11363,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -11639,7 +11639,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -11796,7 +11796,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -11976,7 +11976,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -12406,7 +12406,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -12608,7 +12608,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -12788,7 +12788,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -12969,7 +12969,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -13130,7 +13130,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -13586,7 +13586,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(11);
+                _alternatives = new List<List<Type>>(11);
             }
             return 1;
         }
@@ -14030,7 +14030,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -14338,7 +14338,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -14601,7 +14601,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -14725,7 +14725,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -15118,7 +15118,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -15255,7 +15255,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -15425,7 +15425,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -15603,7 +15603,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -15817,7 +15817,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -15996,7 +15996,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -16142,7 +16142,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -16369,7 +16369,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -16516,7 +16516,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -16652,7 +16652,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -16962,7 +16962,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -17225,7 +17225,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -17415,7 +17415,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -17572,7 +17572,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -17891,7 +17891,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -18015,7 +18015,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -18139,7 +18139,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -18297,7 +18297,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -18465,7 +18465,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -18644,7 +18644,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -18869,7 +18869,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -19037,7 +19037,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -19208,7 +19208,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -19377,7 +19377,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -19578,7 +19578,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -20070,7 +20070,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -20194,7 +20194,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -20499,7 +20499,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -20723,7 +20723,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -20949,7 +20949,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -21129,7 +21129,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -21276,7 +21276,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -21477,7 +21477,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -21647,7 +21647,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -22093,7 +22093,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -22369,7 +22369,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -22583,7 +22583,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -22718,7 +22718,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -22933,7 +22933,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -23144,7 +23144,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -23290,7 +23290,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -23515,7 +23515,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -23747,7 +23747,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -23995,7 +23995,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -24131,7 +24131,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -24389,7 +24389,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -24526,7 +24526,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -25059,7 +25059,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(14);
+                _alternatives = new List<List<Type>>(14);
             }
             return 1;
         }
@@ -25361,7 +25361,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -25677,7 +25677,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -26089,7 +26089,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(10);
+                _alternatives = new List<List<Type>>(10);
             }
             return 1;
         }
@@ -26236,7 +26236,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -26403,7 +26403,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -26516,7 +26516,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -26742,7 +26742,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -26877,7 +26877,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -27045,7 +27045,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -27534,7 +27534,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(13);
+                _alternatives = new List<List<Type>>(13);
             }
             return 1;
         }
@@ -27737,7 +27737,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -27883,7 +27883,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -28141,7 +28141,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -28457,7 +28457,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -28593,7 +28593,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -28728,7 +28728,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -29057,7 +29057,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -29291,7 +29291,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -29483,7 +29483,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -30302,7 +30302,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(22);
+                _alternatives = new List<List<Type>>(22);
             }
             return 1;
         }
@@ -30755,7 +30755,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -30938,7 +30938,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -31074,7 +31074,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -31337,7 +31337,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -31505,7 +31505,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -31651,7 +31651,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -31977,7 +31977,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(7);
+                _alternatives = new List<List<Type>>(7);
             }
             return 1;
         }
@@ -32214,7 +32214,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -32446,7 +32446,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -32603,7 +32603,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -32993,7 +32993,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(10);
+                _alternatives = new List<List<Type>>(10);
             }
             return 1;
         }
@@ -33161,7 +33161,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -33285,7 +33285,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -33548,7 +33548,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -33751,7 +33751,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -33920,7 +33920,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -34153,7 +34153,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -34403,7 +34403,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -35332,7 +35332,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(26);
+                _alternatives = new List<List<Type>>(26);
             }
             return 1;
         }
@@ -35788,7 +35788,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -35935,7 +35935,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -36234,7 +36234,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -36536,7 +36536,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(7);
+                _alternatives = new List<List<Type>>(7);
             }
             return 1;
         }
@@ -36739,7 +36739,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -36933,7 +36933,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -37101,7 +37101,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -37227,7 +37227,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -37474,7 +37474,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -37674,7 +37674,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -37897,7 +37897,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -38087,7 +38087,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -38301,7 +38301,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -38702,7 +38702,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(9);
+                _alternatives = new List<List<Type>>(9);
             }
             return 1;
         }
@@ -39172,7 +39172,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -39307,7 +39307,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -39444,7 +39444,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -39680,7 +39680,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -40125,7 +40125,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(11);
+                _alternatives = new List<List<Type>>(11);
             }
             return 1;
         }
@@ -41066,7 +41066,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(15);
+                _alternatives = new List<List<Type>>(15);
             }
             return 1;
         }
@@ -41246,7 +41246,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -41581,7 +41581,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(8);
+                _alternatives = new List<List<Type>>(8);
             }
             return 1;
         }
@@ -41850,7 +41850,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -42350,7 +42350,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(13);
+                _alternatives = new List<List<Type>>(13);
             }
             return 1;
         }
@@ -42692,7 +42692,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -42829,7 +42829,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -42964,7 +42964,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -43100,7 +43100,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -43332,7 +43332,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -43572,7 +43572,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -43764,7 +43764,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -43966,7 +43966,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -44345,7 +44345,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(9);
+                _alternatives = new List<List<Type>>(9);
             }
             return 1;
         }
@@ -44559,7 +44559,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -44763,7 +44763,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -44930,7 +44930,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -45077,7 +45077,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -45313,7 +45313,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -45503,7 +45503,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -45660,7 +45660,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -45832,7 +45832,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -46087,7 +46087,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -46276,7 +46276,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -46487,7 +46487,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -46613,7 +46613,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -46749,7 +46749,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -46981,7 +46981,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -47150,7 +47150,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -47286,7 +47286,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -47753,7 +47753,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(12);
+                _alternatives = new List<List<Type>>(12);
             }
             return 1;
         }
@@ -48020,7 +48020,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -48357,7 +48357,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -48528,7 +48528,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -48739,7 +48739,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -49085,7 +49085,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(8);
+                _alternatives = new List<List<Type>>(8);
             }
             return 1;
         }
@@ -49321,7 +49321,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -49469,7 +49469,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -53495,7 +53495,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(119);
+                _alternatives = new List<List<Type>>(119);
             }
             return 1;
         }
@@ -53904,7 +53904,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -54679,7 +54679,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -55691,7 +55691,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(25);
+                _alternatives = new List<List<Type>>(25);
             }
             return 1;
         }
@@ -55848,7 +55848,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -55984,7 +55984,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -56220,7 +56220,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(5);
+                _alternatives = new List<List<Type>>(5);
             }
             return 1;
         }
@@ -56467,7 +56467,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(4);
+                _alternatives = new List<List<Type>>(4);
             }
             return 1;
         }
@@ -56625,7 +56625,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -56760,7 +56760,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -56928,7 +56928,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -57052,7 +57052,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -57376,7 +57376,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(8);
+                _alternatives = new List<List<Type>>(8);
             }
             return 1;
         }
@@ -57591,7 +57591,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -57726,7 +57726,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -57909,7 +57909,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -58435,7 +58435,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -58635,7 +58635,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -58888,7 +58888,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(6);
+                _alternatives = new List<List<Type>>(6);
             }
             return 1;
         }
@@ -59099,7 +59099,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(3);
+                _alternatives = new List<List<Type>>(3);
             }
             return 1;
         }
@@ -59245,7 +59245,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -59589,7 +59589,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(7);
+                _alternatives = new List<List<Type>>(7);
             }
             return 1;
         }
@@ -59702,7 +59702,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -59815,7 +59815,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -59939,7 +59939,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(2);
+                _alternatives = new List<List<Type>>(2);
             }
             return 1;
         }
@@ -60429,7 +60429,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(9);
+                _alternatives = new List<List<Type>>(9);
             }
             return 1;
         }
@@ -60735,7 +60735,7 @@ namespace Bb.Asts.TSql
         {
             if ((_alternatives == null))
             {
-                _alternatives = new List<List<AstRoot>>(8);
+                _alternatives = new List<List<Type>>(8);
             }
             return 1;
         }

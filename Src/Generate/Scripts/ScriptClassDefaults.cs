@@ -156,7 +156,7 @@ namespace Generate.Scripts
 
                                  b.Statements.If("_alternatives".Var().IsEqual(CodeHelper.Null()), _t =>
                                  {
-                                     _t.Assign("_alternatives".Var(), CodeHelper.Create("List<List<AstRoot>>".AsType(), alternatives.Count.AsConstant()));
+                                     _t.Assign("_alternatives".Var(), CodeHelper.Create("List<List<Type>>".AsType(), alternatives.Count.AsConstant()));
                                  });
                                  
 

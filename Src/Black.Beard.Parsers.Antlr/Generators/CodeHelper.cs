@@ -313,6 +313,16 @@ namespace Bb.Generators
             return sb.ToString();
         }
 
+        public static CodeTypeOfExpression Typeof(this string typeName)
+        {
+            return new CodeTypeOfExpression(typeName.AsType());
+        }
+
+        public static CodeTypeOfExpression Typeof(this CodeTypeReference codeTypeReference)
+        {
+            return new CodeTypeOfExpression(codeTypeReference);
+        }
+
     }
 
 }
