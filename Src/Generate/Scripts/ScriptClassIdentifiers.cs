@@ -38,7 +38,7 @@ namespace Generate.Scripts
                       .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), (ast) =>
                       {
 
-                          ctx.Variables["combinaisons"] = ast.GetAllCombinations();
+                          ctx.Variables["combinaisons"] = ast.ResolveAllCombinations();
 
                       }, (ast, type) =>
                       {

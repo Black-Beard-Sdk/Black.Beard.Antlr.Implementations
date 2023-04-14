@@ -73,14 +73,61 @@ namespace Generate.Scripts
 
             string _name = (ast as AstBase).ResolveName();
 
-            if (_name == "STRING")
+            var result = "Ast" + CodeHelper.FormatCsharp(_name);
+            return result;
+
+        }
+
+        public static string Type(this TreeRuleItem ast)
+        {
+
+            if (ast.IsTerminal)
             {
+
+                var link = ast.Origin.Link;
+
+                switch (link.TerminalKind)
+                {
+
+                    case TokenTypeEnum.Hexa:
+                        break;
+
+                    case TokenTypeEnum.Boolean:
+                        return nameof(Boolean);
+
+                    case TokenTypeEnum.Decimal:
+                        return nameof(Decimal);
+
+                    case TokenTypeEnum.Int:
+                        return nameof(Int64);
+
+                    case TokenTypeEnum.Real:
+                        return nameof(Double);
+
+                    case TokenTypeEnum.Binary:
+                    case TokenTypeEnum.Identifier:
+                    case TokenTypeEnum.String:
+                    case TokenTypeEnum.Pattern:
+                        return nameof(String);
+
+                    case TokenTypeEnum.Comment:
+                    case TokenTypeEnum.Other:
+                    case TokenTypeEnum.Operator:
+                    case TokenTypeEnum.Constant:
+                    case TokenTypeEnum.Ponctuation:
+                    default:
+                        break;
+                }
 
             }
 
+            string _name = ast.Name;
+
             var result = "Ast" + CodeHelper.FormatCsharp(_name);
             return result;
+
         }
+
 
         public static string GetPropertyName(this AstBase ast)
         {
@@ -97,6 +144,11 @@ namespace Generate.Scripts
             var result = CodeHelper.FormatCsharp(_name);
 
             return result;
+        }
+
+        public static string GetPropertyName(this TreeRuleItem ast)
+        {
+            return CodeHelper.FormatCsharp(ast.Label ?? ast.Name);
         }
 
         public static string GetFieldName(this AstBase ast)
@@ -116,6 +168,11 @@ namespace Generate.Scripts
             return result;
         }
 
+        public static string GetFieldName(this TreeRuleItem ast)
+        {
+            return CodeHelper.FormatCsharpField(ast.Label ?? ast.Name);
+        }
+
         public static string GetParameterdName(this AstBase ast)
         {
             string _name;
@@ -131,6 +188,11 @@ namespace Generate.Scripts
             var result = CodeHelper.FormatCsharpArgument(_name);
 
             return result;
+        }
+
+        public static string GetParameterdName(this TreeRuleItem ast)
+        {
+            return CodeHelper.FormatCsharpArgument(ast.Label ?? ast.Name);
         }
 
         public static List<object> GetProperties(this AstBase ast)
@@ -201,7 +263,6 @@ namespace Generate.Scripts
 
         }
 
-
         public static IEnumerable<TreeRuleItem> GetAlternativesWithOnlyRules(this AstRule ast, Context ctx)
         {
 
@@ -240,7 +301,7 @@ namespace Generate.Scripts
 
         }
 
-        public static IEnumerable<TreeRuleItem> GetAlternativesForTerminalsClass(this AstRule ast, Context ctx)
+        public static IEnumerable<TreeRuleItem> GetAlternatives(this AstRule ast, Context ctx)
         {
 
             List<TreeRuleItem> _results = new List<TreeRuleItem>();
@@ -251,39 +312,7 @@ namespace Generate.Scripts
             return _results;
 
         }
-
-        public static IEnumerable<TreeRuleItem> GetAlternatives(this AstLabeledAlt ast, Context ctx)
-        {
-
-            List<TreeRuleItem> _results = new List<TreeRuleItem>();
-
-            var rule = ast.GetRules().FirstOrDefault();
-            if (rule != null)
-            {
-
-                var ru1 = ctx.RootAst.Rules.ResolveByName(rule.Name.Text) as AstRule;
-
-                if (ru1 != null)
-                {
-                    if (ru1.Configuration.Config.Generate)
-                    {
-
-                        List<TreeRuleItem> allCombinations = ru1.ResolveAllCombinations();
-                        foreach (var item in allCombinations)
-                            _results.Add(item);
-                    }
-                    else
-                    {
-                        var res = GetAlternativesWithOnlyRules(ru1, ctx);
-                        _results.AddRange(res);
-                    }
-                }
-
-            }
-
-            return _results;
-
-        }
+                
 
         public static string ResolveKey(this TreeRuleItem item)
         {
@@ -490,6 +519,43 @@ namespace Generate.Scripts
 
         }
 
+        public static bool WhereRuleOrIdentifiers(this TreeRuleItem item)
+        {
+
+            if (item.IsTerminal)
+            {
+                var link = item.Origin.Link;
+                switch (link.TerminalKind)
+                {
+                    case TokenTypeEnum.Identifier:
+                    case TokenTypeEnum.Boolean:
+                    case TokenTypeEnum.String:
+                    case TokenTypeEnum.Decimal:
+                    case TokenTypeEnum.Int:
+                    case TokenTypeEnum.Real:
+                    case TokenTypeEnum.Hexa:
+                    case TokenTypeEnum.Binary:
+                    case TokenTypeEnum.Pattern:
+                        return true;
+
+                    case TokenTypeEnum.Constant:
+                    case TokenTypeEnum.Ponctuation:
+                    case TokenTypeEnum.Operator:
+                    case TokenTypeEnum.Comment:
+                    case TokenTypeEnum.Other:
+                    default:
+                        return false;
+                }
+
+            }
+            else if (item.IsRuleRef)
+                return true;
+
+            return true;
+
+        }
+
+        
 
     }
 

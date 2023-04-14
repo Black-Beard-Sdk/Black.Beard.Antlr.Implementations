@@ -98,7 +98,7 @@ namespace Generate.Scripts
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
-                                  var alternatives = ast.GetAlternativesForTerminalsClass(ctx);
+                                  var alternatives = ast.GetAlternatives(ctx);
 
                                   foreach (var alt in alternatives)
                                   {
