@@ -84,8 +84,11 @@ template_selector_expression_item_is
 
 ruleConfig
    : NO? GENERATE
+
      rule_tune_inherit?
-     optional_template_setting
+     calculated_rule_tune_inherit?
+     
+     optional_template_setting?
      calculated_template_setting?
    ;
 
@@ -108,6 +111,10 @@ termKindEnum
    | PATTERN_
    | OPERATOR_
    | PONCTUATION_
+   ;
+
+calculated_rule_tune_inherit
+   : CALCULATED rule_tune_inherit
    ;
 
 rule_tune_inherit

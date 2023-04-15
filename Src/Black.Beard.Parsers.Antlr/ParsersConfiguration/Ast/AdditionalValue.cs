@@ -8,14 +8,14 @@ namespace Bb.ParsersConfiguration.Ast
     public class AdditionalValue : AntlrConfigAstBase
     {
 
-        public AdditionalValue(ParserRuleContext ctx, IdentifierConfig key, IdentifierConfig value)
+        public AdditionalValue(ParserRuleContext ctx, RuleTuneInherit key, RuleTuneInherit value)
             : base(ctx)
         {
             this.Key = key.Text;
             this._value = value;
         }
 
-        public AdditionalValue(ParserRuleContext ctx, string key, IdentifierConfig value)
+        public AdditionalValue(ParserRuleContext ctx, string key, RuleTuneInherit value)
             : base(ctx)
         {
 
@@ -54,7 +54,7 @@ namespace Bb.ParsersConfiguration.Ast
             
         }
 
-        private readonly IdentifierConfig _value;
+        private readonly RuleTuneInherit _value;
 
     }
 

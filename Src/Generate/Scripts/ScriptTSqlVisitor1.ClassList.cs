@@ -12,31 +12,14 @@ namespace Generate.Scripts
         public override string GetInherit(AstRule ast, Context context)
         {
 
-            var config = ast.Configuration.Config;
+            string cls = null;
+            var astChilds = ast.GetRules();
+            var astChild = astChilds.FirstOrDefault();
+            if (astChild != null)
+                cls = astChild.Name.Text;
 
-            if (config.Inherit == null)
-            {
-                string cls = null;
-                var astChilds = ast.GetRules();
-                var astChild = astChilds.FirstOrDefault();
-                if (astChild != null)
-                {
+            return GetInherit_Impl("AstRuleList<" + cls + ">", ast, context);
 
-                    //var pp = astChilds.Where(c => c.ResolveName() == ast.Name.Text).Count();
-
-                    cls = astChild.Name.Text;
-                }
-                else
-                {
-                   
-
-
-                }
-
-                config.Inherit = new IdentifierConfig("\"AstRuleList<" + cls + "\"");
-            }
-            return config.Inherit.Text;
-            
         }
 
         public override string StrategyTemplateKey => "ClassList";
@@ -102,7 +85,7 @@ namespace Generate.Scripts
                                            Console.WriteLine($"{ast.Name.Text} haven't rule. if the item is a terminal, create a new rule for.");
                                        }
 
-                                       
+
 
                                    });
                               });

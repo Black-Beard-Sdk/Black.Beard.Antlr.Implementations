@@ -10,33 +10,50 @@ namespace Bb.ParsersConfiguration.Ast
     public class GrammarRuleConfig : AntlrConfigAstBase
     {
 
-        public GrammarRuleConfig(ParserRuleContext ctx, bool generate, IdentifierConfig inheritClass, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
+        public GrammarRuleConfig(ParserRuleContext ctx, bool generate, RuleTuneInherit inheritClass, TemplateSetting templateSetting, CalculatedTemplateSetting calculatedTemplateSetting, CalculatedRuleTuneInherit calculatedRuleTuneInherit)
             : base(ctx)
         {
             this.Generate = generate;
+
             this._inherit = inheritClass;
+            this._calculatedInherit = calculatedRuleTuneInherit;
+
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
+
         }
 
-        public GrammarRuleConfig(Position position, bool generate, IdentifierConfig inheritClass, TemplateSetting? templateSetting, CalculatedTemplateSetting calculatedTemplateSetting)
+        public GrammarRuleConfig(Position position, bool generate, RuleTuneInherit inheritClass, TemplateSetting? templateSetting, CalculatedTemplateSetting calculatedTemplateSetting, CalculatedRuleTuneInherit calculatedRuleTuneInherit)
             : base(position)
         {
             this.Generate = generate;
+
             this._inherit = inheritClass;
+            this._calculatedInherit = calculatedRuleTuneInherit;
+
             this.TemplateSetting = templateSetting;
             this.CalculatedTemplateSetting = calculatedTemplateSetting;
+
         }
 
         public bool Generate { get; private set; }
 
-        public IdentifierConfig Inherit
+        public RuleTuneInherit Inherit
         {
             get => _inherit; 
             set 
             {
                 _inherit = value; 
             }  
+        }
+
+        public CalculatedRuleTuneInherit CalculatedInherit
+        {
+            get => _calculatedInherit;
+            set
+            {
+                _calculatedInherit = value;
+            }
         }
 
         public TemplateSetting? TemplateSetting { get; }
@@ -64,9 +81,13 @@ namespace Bb.ParsersConfiguration.Ast
 
             writer.Append("INHERIT ");
             if (Inherit != null)
-            {
                 Inherit.ToString(writer);
-            }
+
+            writer.AppendEndLine();
+            writer.Append("CALCULATED INHERIT ");
+            if (CalculatedInherit != null)
+                CalculatedInherit.ToString(writer);
+            
 
             writer.AppendEndLine();
             TemplateSetting.ToString(writer);
@@ -78,7 +99,8 @@ namespace Bb.ParsersConfiguration.Ast
 
         }
 
-        private IdentifierConfig _inherit;
+        private RuleTuneInherit _inherit;
+        private CalculatedRuleTuneInherit _calculatedInherit;
 
     }
 

@@ -111,6 +111,12 @@ public interface IAntlrConfigParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitTermKindEnum([NotNull] AntlrConfigParser.TermKindEnumContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AntlrConfigParser.calculated_rule_tune_inherit"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCalculated_rule_tune_inherit([NotNull] AntlrConfigParser.Calculated_rule_tune_inheritContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AntlrConfigParser.rule_tune_inherit"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

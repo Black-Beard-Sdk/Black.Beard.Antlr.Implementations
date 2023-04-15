@@ -19,7 +19,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return "AstTerminalKeyword"; // "AstTerminal<Ast" + CodeHelper.FormatCsharp(ast.Name) + "Enum>";
+            return GetInherit_Impl("AstTerminalKeyword", ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassEnum";

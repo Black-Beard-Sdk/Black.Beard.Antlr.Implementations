@@ -10,7 +10,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            return null; // "AstRule";
+            return GetInherit_Impl("", ast, context);
         }
 
         public override string StrategyTemplateKey => "ScriptVisitor1";

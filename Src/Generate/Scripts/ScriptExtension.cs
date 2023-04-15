@@ -1,7 +1,9 @@
 ﻿using Bb.Asts;
 using Bb.Generators;
 using Bb.Parsers;
+using Bb.ParsersConfiguration.Ast;
 using System.CodeDom;
+using System.Security.Principal;
 using System.Text;
 
 namespace Generate.Scripts
@@ -35,8 +37,15 @@ namespace Generate.Scripts
 
         }
 
-        public static string Type(this AstBase ast)
+        public static string Type(this AstBase item)
         {
+
+            var ast = item;
+            if (item is AstElementList a)
+            {
+                if (a.Count == 1)
+                    ast = a[0];
+            }
 
             switch (ast.TerminalKind)
             {
@@ -429,10 +438,13 @@ namespace Generate.Scripts
 
         }
 
-        public static void BuildStaticMethod(this TreeRuleItem itemAst, AstRule ast, CodeMemberMethod method, List<string> arguments)
+        public static void BuildStaticMethod(this TreeRuleItem itemAst, AstRule ast, CodeMemberMethod method, List<string> arguments, StringBuilder uniqeConstraintKeyMethod)
         {
 
-            StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
+
+            var dic = new HashSet<string>();
+            foreach (CodeParameterDeclarationExpression parameter in method.Parameters)
+                dic.Add(parameter.Name);
 
             Action<TreeRuleItem> act = itemAst =>
             {
@@ -454,51 +466,13 @@ namespace Generate.Scripts
                 else if (itemResult != null && itemResult is AstLexerRule r2 && r2?.Configuration != null)
                 {
 
-                    switch (r2.Configuration.Config.Kind)
-                    {
-                        case TokenTypeEnum.Pattern:
-                        case TokenTypeEnum.String:
-                        case TokenTypeEnum.Identifier:
-                            name = nameof(String);
-                            varName = "txt";
-                            break;
-                        case TokenTypeEnum.Boolean:
-                            name = nameof(Boolean);
-                            varName = "boolean";
-                            break;
-                        case TokenTypeEnum.Decimal:
-                            name = nameof(Decimal);
-                            varName = "_decimal";
-                            break;
-                        case TokenTypeEnum.Int:
-                            name = nameof(Int64);
-                            varName = "integer";
-                            break;
-                        case TokenTypeEnum.Real:
-                            name = nameof(Double);
-                            varName = "real";
-                            break;
-                        case TokenTypeEnum.Hexa:
-                            name = "";
-                            varName = "";
-                            break;
-                        case TokenTypeEnum.Binary:
-                            name = "Object";
-                            varName = "_binary";
-                            break;
+                    
 
-                        case TokenTypeEnum.Operator:
-                        case TokenTypeEnum.Ponctuation:
-                        case TokenTypeEnum.Other:
-                        case TokenTypeEnum.Comment:
-                        case TokenTypeEnum.Constant:
-                        default:
-                            break;
-                    }
-
+                    name = itemAst.Type();
                     if (!string.IsNullOrEmpty(itemAst.Label))
                         varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
-
+                    else
+                        varName = r2.Configuration.Config.GetvariableName(dic);
                 }
 
                 if (name != null)
@@ -514,8 +488,8 @@ namespace Generate.Scripts
 
             };
 
-
-            act(itemAst);
+            if (itemAst.WhereRuleOrIdentifiers())
+                act(itemAst);
 
         }
 
@@ -555,7 +529,66 @@ namespace Generate.Scripts
 
         }
 
-        
+        public static string GetvariableName(this GrammarRuleTermConfig item, HashSet<string> dic)
+        {
+
+            string result = "var";
+
+            switch (item.Kind)
+            {
+                case TokenTypeEnum.Pattern:
+                    result = item.ExtendedPattern.Text;
+                    break;
+
+                case TokenTypeEnum.String:
+                case TokenTypeEnum.Identifier:
+                    result = "txt";
+                    break;
+
+                case TokenTypeEnum.Boolean:
+                    result = "boolean";
+                    break;
+                
+                case TokenTypeEnum.Decimal:
+                    result = "_decimal";
+                    break;
+                
+                case TokenTypeEnum.Int:
+                    result = "integer";
+                    break;
+
+                case TokenTypeEnum.Real:
+                    result = "real";
+                    break;
+
+                case TokenTypeEnum.Hexa:
+                    result = "data";
+                    break;
+
+                case TokenTypeEnum.Binary:
+                    result = "_binary";
+                    break;
+
+                case TokenTypeEnum.Operator:
+                case TokenTypeEnum.Ponctuation:
+                case TokenTypeEnum.Other:
+                case TokenTypeEnum.Comment:
+                case TokenTypeEnum.Constant:
+                default:
+                    break;
+            }
+
+            int count = 0;
+            var p = result;
+            while (dic.Contains(p))
+            {
+                p = result + count++;
+            }
+
+            return p;
+
+        }
+
 
     }
 

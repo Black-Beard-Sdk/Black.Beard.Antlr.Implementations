@@ -10,7 +10,8 @@
         T VisitGammarDeclaration(GrammarConfigDeclaration a);
         T VisitGammarDeclaration(GrammarConfigTermDeclaration a);
         T VisitGrammarSpec(GrammarSpec a);
-        T VisitIdentifier(IdentifierConfig a);
+        T VisitTuneInherit(RuleTuneInherit a);
+        T VisitCalculatedTuneInherit(CalculatedRuleTuneInherit a);
         T VisitListDeclaration(ListDeclaration a);
         T VisitRule(GrammarRuleConfig a);
         T VisitRuleTerm(GrammarRuleTermConfig a);

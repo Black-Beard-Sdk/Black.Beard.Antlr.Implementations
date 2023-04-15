@@ -483,12 +483,8 @@ local_drive
     : DISK_DRIVE
     ;
 multiple_local_files
-    : multiple_local_file_start local_file SINGLE_QUOTE COMMA
+    : SINGLE_QUOTE local_file SINGLE_QUOTE COMMA
     | local_file
-    ;
-
-multiple_local_file_start
-    : SINGLE_QUOTE
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-assembly-transact-sql
@@ -663,38 +659,46 @@ alter_availability_group_options_database
     : add_remove DATABASE database_id
     ;
 
+alter_availability_group_options_listener
+    : add_listener
+    | MODIFY LISTENER alter_listener
+    | restart_listener
+    ;
+
+restart_listener
+    : restart_remove LISTENER listener_name
+    ;
+
+alter_listener
+    : ADD IP LR_BRACKET ip_listener RR_BRACKET 
+    | PORT EQUAL decimal 
+    ;
+
 range_ip_v4 : left=ipv4 right=ipv4;
 range_ip_comma_v4 : left=ipv4 COMMA right=ipv4;
+ip_listener : range_ip_v4 | ipv6;
+ip_listener_comma : range_ip_comma_v4 | ipv6;
 
-alter_availability_group_options_listener
-    : alter_availability_group_options_listener_add
-    | alter_availability_group_options_listener_modify
-    | alter_availability_group_options_listener_restart
+add_listener
+    : ADD LISTENER listener_name LR_BRACKET address_listener RR_BRACKET
     ;
 
-alter_availability_group_options_listener_restart
-    : restart_remove LISTENER stringtext
+address_listener 
+    : listener_dhcp
+    | WITH IP LR_BRACKET listener_ip_address 
     ;
 
-alter_availability_group_options_listener_modify
-    : MODIFY LISTENER (ADD IP LR_BRACKET (range_ip_v4 | ipv6) RR_BRACKET | PORT EQUAL decimal )
-    ;
+listener_name : stringtext;
 
-alter_availability_group_options_listener_add
-    : ADD LISTENER listener_name=stringtext  LR_BRACKET 
-    ( 
-          alter_availability_group_options_listener_dhcp
-        | WITH IP LR_BRACKET alter_availability_group_options_listener_ip 
-    ) RR_BRACKET
-    ;
-
-alter_availability_group_options_listener_dhcp 
+listener_dhcp 
     : WITH DHCP ON LR_BRACKET range_ip_v4 RR_BRACKET
     ;
 
-alter_availability_group_options_listener_ip 
-    : (COMMA? LR_BRACKET ( range_ip_comma_v4 | IPV6_ADDR ) RR_BRACKET)+ (COMMA port=PORT EQUAL decimal)?
+listener_ip_address 
+    : ips (COMMA port=PORT EQUAL port_number)?
     ;
+
+ips : LR_BRACKET ip_listener_comma RR_BRACKET (COMMA LR_BRACKET ip_listener_comma RR_BRACKET)*;
 
 alter_availability_replicat_modify
     : MODIFY REPLICA ON server_instance_txt 
@@ -706,12 +710,14 @@ alter_availability_replicat_modify
     ;
 
 alter_availability_replicat_primary
-    : ENDPOINT_URL EQUAL endpoint_url=stringtext
+    : ENDPOINT_URL EQUAL url
     | availability_mode
     | FAILOVER_MODE EQUAL failover=auto_manual 
     | seeding_mode
     | backup_priority
     ;
+
+url : stringtext;
 
 alter_availability_primary_role
     : allow_connections
@@ -771,7 +777,7 @@ alter_availability_group_options_group
         )+
     ;
 
-listener_url : LISTENER_URL EQUAL stringtext;
+listener_url : LISTENER_URL EQUAL url;
 availability_mode : AVAILABILITY_MODE EQUAL synch_asynch;
 failover_mode_manuel :  FAILOVER_MODE EQUAL MANUAL;
 seeding_mode : SEEDING_MODE EQUAL auto_manual;
@@ -863,8 +869,6 @@ alter_certificate
         | WITH ACTIVE FOR BEGIN_DIALOG EQUAL on_off 
     )
     ;
-
-private_key : FILE EQUAL stringtext COMMA? | by_password_crypt COMMA?;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-column-encryption-key-transact-sql
 alter_column_encryption_key
@@ -3352,15 +3356,15 @@ execute_var_string
 // https://msdn.microsoft.com/en-us/library/ff848791.aspx
 security_statement
     // https://msdn.microsoft.com/en-us/library/ms188354.aspx
-    : execute_clause SEMI?
+    : execute_clause
     // https://msdn.microsoft.com/en-us/library/ms187965.aspx
     | GRANT grant_mode
             (ON (class_type_for_grant DOUBLE_COLON)? table=full_table_ref)? 
             TO to_principal_rincipal_ids 
             (WITH GRANT OPTION)? 
-            (AS as_principal=principal_id)? SEMI?
+            (AS as_principal=principal_id)?
     // https://msdn.microsoft.com/en-us/library/ms178632.aspx
-    | REVERT (LR_BRACKET WITH COOKIE EQUAL local_id RR_BRACKET)? SEMI?
+    | REVERT (LR_BRACKET WITH COOKIE EQUAL local_id RR_BRACKET)?
     | open_key
     | close_key
     | create_key
@@ -3587,7 +3591,7 @@ go_statement
 
 // https://msdn.microsoft.com/en-us/library/ms188366.aspx
 use_statement
-    : USE database_id SEMI?
+    : USE database_id
     ;
 
 setuser_statement
@@ -3610,11 +3614,17 @@ checkpoint_statement
 
 //These are dbcc commands with strange syntax that doesn't fit the regular dbcc syntax
 dbcc_special
-    : DBCC SHRINKLOG (LR_BRACKET SIZE EQUAL  (constant_expression| id_ | DEFAULT) RR_BRACKET)? SEMI?
+    : DBCC SHRINKLOG (LR_BRACKET SIZE EQUAL dbcc_special_size RR_BRACKET)?
+    ;
+
+dbcc_special_size 
+    : constant_expression 
+    id_ 
+    | DEFAULT
     ;
 
 dbcc_clause
-    : DBCC name=dbcc_command (LR_BRACKET expression_list RR_BRACKET)? (WITH dbcc_options)? SEMI?
+    : DBCC name=dbcc_command (LR_BRACKET expression_list RR_BRACKET)? (WITH dbcc_options)?
     ;
 
 dbcc_command
@@ -4057,7 +4067,7 @@ for_clause
 xml_common_directive
     : BINARY_KEYWORD BASE64 
     | TYPE 
-    | ROOT (LR_BRACKET stringtext RR_BRACKET)?
+    | ROOTWORD (LR_BRACKET stringtext RR_BRACKET)?
     ;
 
 for_clause_xml_raw
@@ -4071,7 +4081,7 @@ for_clause_json
     ;
 
 clause_json_info
-    : ROOT (LR_BRACKET stringtext RR_BRACKET)
+    : ROOTWORD (LR_BRACKET stringtext RR_BRACKET)
     | INCLUDE_NULL_VALUES
     | WITHOUT_ARRAY_WRAPPER
     ;
@@ -4873,18 +4883,17 @@ end_conversation
     ;
 
 waitfor_conversation
-    : WAITFOR? LR_BRACKET get_conversation RR_BRACKET (COMMA? TIMEOUT timeout=time)? SEMI?
+    : WAITFOR? LR_BRACKET get_conversation RR_BRACKET (COMMA? TIMEOUT timeout=time)?
     ;
 
 get_conversation
-    :GET CONVERSATION GROUP conversation_group=string_local_id FROM queue=database_schema_queue_ref SEMI?
+    :GET CONVERSATION GROUP conversation_group=string_local_id FROM queue=database_schema_queue_ref
     ;
 
 send_conversation
     : SEND ON CONVERSATION conversation_handle=string_local_id
       MESSAGE TYPE messageTypeName=expression
       (LR_BRACKET messageBodyEexpression=string_local_id RR_BRACKET )?
-      SEMI?
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms187752.aspx
@@ -5353,7 +5362,7 @@ keyword
     | RETENTION
     | REVERSE
     | ROBUST
-    | ROOT
+    | ROOTWORD
     | ROUTE
     | ROW
     | ROW_NUMBER
@@ -6049,7 +6058,12 @@ set_index_options : SET LR_BRACKET set_index_option (COMMA set_index_option)* RR
 
 reorganize_options : WITH LR_BRACKET (reorganize_option (COMMA reorganize_option)*) RR_BRACKET;
 
-private_keys : private_key (COMMA private_key)*;
+private_keys : privatekey (COMMA privatekey)*;
+
+
+privatekey 
+    : FILE EQUAL stringtext 
+    | by_password_crypt;
 
 server_audit_file_specs : server_audit_file_spec (COMMA server_audit_file_spec)*;
 create_or_alter_event_session_del_events : create_or_alter_event_session_del_event (COMMA create_or_alter_event_session_del_event)*;

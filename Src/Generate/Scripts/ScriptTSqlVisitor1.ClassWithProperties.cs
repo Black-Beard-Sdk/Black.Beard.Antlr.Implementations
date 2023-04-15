@@ -11,12 +11,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstRoot\"");
-
-            return config.Inherit.Text;
+            return GetInherit_Impl("AstRoot", ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassWithProperties";

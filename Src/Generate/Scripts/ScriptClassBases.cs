@@ -15,14 +15,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstRule\"");
-
-            return config.Inherit.Text;
-
+            return GetInherit_Impl("AstBnfRule", ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassBase";
@@ -97,7 +90,7 @@ namespace Generate.Scripts
 
                                 if (alt.Count > 0)
                                     foreach (var itemAlt in alt)
-                                        itemAlt.BuildStaticMethod(ast, method, arguments);
+                                        itemAlt.BuildStaticMethod(ast, method, arguments, uniqeConstraintKeyMethod);
 
                                 var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
 

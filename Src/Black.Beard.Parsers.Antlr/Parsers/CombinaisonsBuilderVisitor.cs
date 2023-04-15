@@ -89,9 +89,7 @@ namespace Bb.Parsers
             List<TreeRuleItem> result2 = new List<TreeRuleItem>(i.Count);
             foreach (var item in result)
             {
-
                 result2.AddRange(item.Accept(this));
-
             }
 
             return result2;

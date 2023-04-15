@@ -17,14 +17,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstRule\"");
-
-            return config.Inherit.Text;
-
+            return GetInherit_Impl("AstBnfRule", ast, context);
         }
 
         public override string StrategyTemplateKey => "_";
@@ -41,26 +34,30 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
 
-                .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
+                .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), ast =>
+                {
+                    ctx.Variables["combinaisons"] = ast.ResolveAllCombinations();
+
+                }, (ast, type) =>
                 {
 
                     var item =
                     type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                         .Documentation(c => c.Summary(() => ast.ToString()))
                         .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
-                        .Attribute(ast.Alternatives.Count == 1 ? System.Reflection.TypeAttributes.Public : System.Reflection.TypeAttributes.Public | System.Reflection.TypeAttributes.Abstract)
+                        .Attribute(ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count == 1 ? System.Reflection.TypeAttributes.Public : System.Reflection.TypeAttributes.Public | System.Reflection.TypeAttributes.Abstract)
                         .Inherit(() => GetInherit(ast, ctx))
 
                         .Ctor((f) =>
                                {
+
                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
                                     .Argument(() => "ParserRuleContext", "ctx")
                                     .CallBase("ctx");
 
-                                   if (ast.Alternatives.Count == 1)
-                                   {
+                                   var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                                   if (alternatives.Count == 1)
                                        f.Argument(() => "List<AstRoot>", "list");
-                                   }
 
                                })
                         .Ctor((f) =>
@@ -69,10 +66,9 @@ namespace Generate.Scripts
                                     .Argument(() => "Position", "p")
                                     .CallBase("p");
 
-                                   if (ast.Alternatives.Count == 1)
-                                   {
+                                   var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
+                                   if (alternatives.Count == 1)
                                        f.Argument(() => "List<AstRoot>", "list");
-                                   }
 
 
                                })
@@ -85,7 +81,7 @@ namespace Generate.Scripts
 
 
 
-                        .MethodWhen(() => ast.Alternatives.Count == 1, method =>
+                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count == 1, method =>
                         {
                             method
                              .Name(g => "Accept")
@@ -102,7 +98,7 @@ namespace Generate.Scripts
                              });
                         })
 
-                        .MethodWhen(() => ast.Alternatives.Count > 1, method =>
+                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count > 1, method =>
                         {
                             method
                              .Name(g => "Create")
@@ -116,7 +112,7 @@ namespace Generate.Scripts
                                  b.Statements.DeclareAndInitialize("index", typeof(int).AsType(), CodeHelper.Call(("Ast" + CodeHelper.FormatCsharp(ast.Name.Text)).AsType()
                                      , "Resolve", "list".Var()));
 
-                                 List<TreeRuleItem> items = ast.ResolveAllCombinations();
+                                 List<TreeRuleItem> items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
                                  int j = 1;
                                  foreach (var alternative in items)
                                  {
@@ -144,20 +140,18 @@ namespace Generate.Scripts
                                      b.Statements.If("index".Var().IsEqual((i + 1).AsConstant()), _t =>
                                      {
                                          string typename = "Ast" + CodeHelper.FormatCsharp(ast.Name.Text);
-                                         var t = typename + "." + typename + (j + 1);
+                                         var t = typename + "." + typename + (j).ToString();
                                          _t.Return(CodeHelper.Create(t.AsType(), args.ToArray()));
                                      });
-                                     i++;
-
+                                     j++;
 
                                  }
-                                 j++;
                                  b.Statements.Return(CodeHelper.Null());
 
                              });
                         })
 
-                        .MethodWhen(() => ast.Alternatives.Count > 1, method =>
+                        .MethodWhen(() => ctx.Variables.Get<List<TreeRuleItem>>("combinaisons").Count > 1, method =>
                         {
                             method
                              .Name(g => "Resolve")
@@ -168,7 +162,7 @@ namespace Generate.Scripts
                              {
 
                                  List<List<(string, bool, bool)>> alternatives = new List<List<(string, bool, bool)>>(ast.Alternatives.Count);
-                                 List<TreeRuleItem> items = ast.ResolveAllCombinations();
+                                 List<TreeRuleItem> items = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
 
                                  foreach (var alternative in items)
                                  {
@@ -295,114 +289,35 @@ namespace Generate.Scripts
                                     var t3 = tname2.AsType();
                                     List<string> arguments = new List<string>();
 
-                                    var method = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
-                                        .BuildDocumentation(ast.Name.Text, alt, ctx);
-
-                                    var t2 = "List<AstRoot>".AsType();
-                                    method.Statements.Add(CodeHelper.DeclareAndCreate("arguments", t2));
-
-                                    Action<TreeRuleItem> act = itemAst =>
-                                    {
-
-                                        string name = null;
-                                        CodeTypeReference argumentTypeName = null;
-                                        string varName = null;
-
-                                        var itemResult = ast.ResolveByName(itemAst.ResolveKey());
-                                        if (itemResult != null && itemResult is AstRule r1 && r1?.Configuration != null)
-                                        {
-                                            name = "Ast" + CodeHelper.FormatCsharp(itemAst.Name);
-                                            argumentTypeName = new CodeTypeReference(name);
-
-                                            if (string.IsNullOrEmpty(itemAst.Label))
-                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Name);
-                                            else
-                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
-
-
-                                        }
-                                        else if (itemResult != null && itemResult is AstLexerRule r2)
-                                        {
-
-                                            switch (r2.Configuration.Config.Kind)
-                                            {
-                                                case TokenTypeEnum.Pattern:
-                                                case TokenTypeEnum.String:
-                                                case TokenTypeEnum.Identifier:
-                                                    name = nameof(String);
-                                                    varName = "txt";
-                                                    break;
-                                                case TokenTypeEnum.Boolean:
-                                                    name = nameof(Boolean);
-                                                    varName = "boolean";
-                                                    break;
-                                                case TokenTypeEnum.Decimal:
-                                                    name = nameof(Decimal);
-                                                    varName = "_decimal";
-                                                    break;
-                                                case TokenTypeEnum.Int:
-                                                    name = nameof(Int64);
-                                                    varName = "integer";
-                                                    break;
-                                                case TokenTypeEnum.Real:
-                                                    name = nameof(Double);
-                                                    varName = "real";
-                                                    break;
-                                                case TokenTypeEnum.Hexa:
-                                                    name = "";
-                                                    varName = "";
-                                                    break;
-                                                case TokenTypeEnum.Binary:
-                                                    name = "Object";
-                                                    varName = "_binary";
-                                                    break;
-
-                                                case TokenTypeEnum.Operator:
-                                                case TokenTypeEnum.Ponctuation:
-                                                case TokenTypeEnum.Other:
-                                                case TokenTypeEnum.Comment:
-                                                case TokenTypeEnum.Constant:
-                                                default:
-                                                    break;
-                                            }
-
-                                            argumentTypeName = new CodeTypeReference(name);
-
-                                            if (!string.IsNullOrEmpty(itemAst.Label))
-                                                varName = CodeHelper.FormatCsharpArgument(itemAst.Label);
-
-                                        }
-
-                                        if (name != null)
-                                        {
-
-                                            if (itemAst.Occurence.Value == OccurenceEnum.Any)
-                                                argumentTypeName = new CodeTypeReference(typeof(IEnumerable<>).Name, argumentTypeName);
-
-                                            method.Parameters.Add(new CodeParameterDeclarationExpression(argumentTypeName, varName));
-                                            uniqeConstraintKeyMethod.Append(name);
-                                            arguments.Add(varName);
-                                        }
-
-
-                                    };
+                                    var method1 = name.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                        .BuildDocumentation(ast.Name.Text, alt, ctx)                                        
+                                        ;
+                                    method1.Parameters.Add(new CodeParameterDeclarationExpression("ParserRuleContext".AsType(), "ctx"));
 
                                     if (alt.Count > 0)
                                         foreach (var itemAlt in alt)
-                                            act(itemAlt);
+                                            itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
                                     else
-                                        act(alt);
+                                        alt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
 
-                                    if (method.Parameters.Count > 0)
+                                    if (method1.Parameters.Count > 0)
                                     {
 
                                         var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
 
                                         if (_h.Add(noDuplicateKey))
                                         {
-                                            methods.Add(method);
-                                            method.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, "arguments".Var()));
-                                            method.Statements.Return("result".Var());
+                                            methods.Add(method1);
+                                            List<CodeExpression> _argu = new List<CodeExpression>()
+                                            {
+                                                "ctx".Var()
+                                            };
+
+                                            foreach (var item in arguments)
+                                                _argu.Add(item.Var());
+
+                                            method1.Statements.Add(CodeHelper.DeclareAndCreate("result", t3, _argu.ToArray()));
+                                            method1.Statements.Return("result".Var());
                                         }
 
                                     }
@@ -420,7 +335,7 @@ namespace Generate.Scripts
                         ;
 
 
-                    List<TreeRuleItem> alternatives = ast.ResolveAllCombinations();
+                    List<TreeRuleItem> alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
 
                     if (alternatives.Count == 0)
                     {
@@ -437,20 +352,6 @@ namespace Generate.Scripts
                                 type2.Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text) + (++i).ToString())
                                 .Documentation(c => c.Summary(() => ast.Name.Text + " : " + ast2.ToString()))
                                 .Inherit(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
-
-                                .Ctor((f) =>
-                                {
-                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
-                                     .Argument(() => "Position", "p")
-                                     .Argument(() => "List<AstRoot>", "list")
-                                     .CallBase("p");
-                                })
-                                .Ctor((f) =>
-                                {
-                                    f.Attribute(MemberAttributes.FamilyAndAssembly)
-                                     .Argument(() => "List<AstRoot>", "list")
-                                     .CallBase("Position.Default");
-                                })
 
                                 .Ctor((f) =>
                                 {

@@ -114,7 +114,7 @@ namespace Bb.Parsers
         /// <return>The visitor result.</return>
         public override AntlrConfigAstBase VisitTemplate_setting([NotNull] AntlrConfigParser.Template_settingContext context)
         {
-            var result = new TemplateSetting(context, (context.identifier().Accept(this) as IdentifierConfig).Text);
+            var result = new TemplateSetting(context, (context.identifier().Accept(this) as RuleTuneInherit).Text);
             result.AddtionnalSettings = (AdditionalValues)context.additional_settings()?.Accept(this);
             return result;
         }
@@ -132,7 +132,7 @@ namespace Bb.Parsers
         /// <return>The visitor result.</return>
         public override AntlrConfigAstBase VisitOptional_template_setting([NotNull] AntlrConfigParser.Optional_template_settingContext context)
         {
-            var v = (context.identifier()?.Accept(this) as IdentifierConfig);
+            var v = (context.identifier()?.Accept(this) as RuleTuneInherit);
             var result = new TemplateSetting(context, v?.Text);
             result.AddtionnalSettings = (AdditionalValues)context.additional_settings()?.Accept(this);
             return result;
@@ -384,9 +384,9 @@ namespace Bb.Parsers
         public override AntlrConfigAstBase VisitValue_item([NotNull] AntlrConfigParser.Value_itemContext context)
         {
             var i = context.identifier();
-            var key = (IdentifierConfig)i[0].Accept(this);
-            var value = (IdentifierConfig)i[1].Accept(this);
-            if (value is IdentifierConfig c)
+            var key = (RuleTuneInherit)i[0].Accept(this);
+            var value = (RuleTuneInherit)i[1].Accept(this);
+            if (value is RuleTuneInherit c)
                 return new AdditionalValue(context, key, c);
 
             return new AdditionalValue(context, key, value);
@@ -412,7 +412,7 @@ namespace Bb.Parsers
         public override AntlrConfigAstBase VisitGrammar_declaration([NotNull] AntlrConfigParser.Grammar_declarationContext context)
         {
 
-            var name = (IdentifierConfig)context.identifier().Accept(this);
+            var name = (RuleTuneInherit)context.identifier().Accept(this);
 
             if (context.RULE() != null)
             {
@@ -441,7 +441,7 @@ namespace Bb.Parsers
         public override AntlrConfigAstBase VisitRuleTermConfig([NotNull] AntlrConfigParser.RuleTermConfigContext context)
         {
 
-            var extendedData = (context.identifier()?.Accept(this) as IdentifierConfig);
+            var extendedData = (context.identifier()?.Accept(this) as RuleTuneInherit);
 
             TokenTypeEnum v = TokenTypeEnum.Other; 
 
@@ -501,6 +501,7 @@ namespace Bb.Parsers
         /// ruleConfig
         ///     : NO? GENERATE
         ///       rule_tune_inherit?
+        ///       calculated_rule_tune_inherit?
         ///       template_setting
         ///       calculated_template_setting?
         ///     ;
@@ -513,13 +514,36 @@ namespace Bb.Parsers
 
             var generate = context.NO() == null;
 
-            var rule_tune_inherit = (IdentifierConfig)context.rule_tune_inherit()?.Accept(this);
+            var rule_tune_inherit = (RuleTuneInherit)context.rule_tune_inherit()?.Accept(this);
+            var calculated_rule_tune_inherit = (CalculatedRuleTuneInherit)context.calculated_rule_tune_inherit()?.Accept(this);
 
             var templateSetting = (TemplateSetting)context.optional_template_setting()?.Accept(this);
             var calculatedTemplateSetting = (CalculatedTemplateSetting)context.calculated_template_setting()?.Accept(this);
 
-            return new GrammarRuleConfig(context, generate, rule_tune_inherit, templateSetting, calculatedTemplateSetting);
+            return new GrammarRuleConfig(context, generate, rule_tune_inherit, templateSetting, calculatedTemplateSetting, calculated_rule_tune_inherit);
 
+        }
+
+        /// <summary>
+        /// Visit a parse tree produced by <see cref="M:Bb.ParserConfigurations.Antlr.AntlrConfigParser.calculated_rule_tune_inherit" />.
+        /// <para>
+        /// The default implementation returns the result of calling <see cref="M:Antlr4.Runtime.Tree.AbstractParseTreeVisitor`1.VisitChildren(Antlr4.Runtime.Tree.IRuleNode)" />
+        /// on <paramref name="context" />.
+        /// </para>
+        /// </summary>
+        /// <param name="context">The parse tree.</param>
+        /// <returns></returns>
+        /// <return>The visitor result.</return>
+        public override AntlrConfigAstBase VisitCalculated_rule_tune_inherit([NotNull] AntlrConfigParser.Calculated_rule_tune_inheritContext context)
+        {
+            if (context != null)
+            {
+
+                var rule_tune_inherit = (RuleTuneInherit)context.rule_tune_inherit()?.Accept(this);
+                    return new CalculatedRuleTuneInherit(context, rule_tune_inherit);
+            }
+
+            return null;
         }
 
         /// <summary>
@@ -540,7 +564,7 @@ namespace Bb.Parsers
             {
                 var constant = context.STRING_LITERAL();
                 if (constant != null)
-                    return new IdentifierConfig(constant);
+                    return new RuleTuneInherit(constant);
             }
 
             return null;
@@ -559,7 +583,7 @@ namespace Bb.Parsers
 
         public override AntlrConfigAstBase VisitIdentifier([NotNull] AntlrConfigParser.IdentifierContext context)
         {
-            return new IdentifierConfig(context);
+            return new RuleTuneInherit(context);
         }
 
     }

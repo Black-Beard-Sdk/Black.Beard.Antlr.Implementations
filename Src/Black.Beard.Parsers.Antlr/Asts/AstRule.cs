@@ -13,14 +13,14 @@ namespace Bb.Asts
     {
 
         public AstRuleBase(ParserRuleContext ctx
-            , IdentifierConfig ruleName
+            , RuleTuneInherit ruleName
             )
             : base(ctx)
         {
             this.Name = ruleName;
         }
 
-        public IdentifierConfig Name { get; }
+        public RuleTuneInherit Name { get; }
 
 
         public override string ResolveName()
@@ -50,7 +50,7 @@ namespace Bb.Asts
             , AstPrequelList? prequels
             , AstRuleAltList? ruleBlock
             , AstExceptionGroup? exceptionGroup
-            ) : base(ctx, new IdentifierConfig(ruleName.ToString()))
+            ) : base(ctx, new RuleTuneInherit(ruleName.ToString()))
         {
             this.Modifiers = modifiers;
             this.Rule = rule;

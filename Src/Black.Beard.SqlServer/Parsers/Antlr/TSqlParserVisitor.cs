@@ -345,12 +345,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitMultiple_local_files([NotNull] TSqlParser.Multiple_local_filesContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.multiple_local_file_start"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitMultiple_local_file_start([NotNull] TSqlParser.Multiple_local_file_startContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_assembly"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -513,6 +507,24 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitAlter_availability_group_options_database([NotNull] TSqlParser.Alter_availability_group_options_databaseContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAlter_availability_group_options_listener([NotNull] TSqlParser.Alter_availability_group_options_listenerContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.restart_listener"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitRestart_listener([NotNull] TSqlParser.Restart_listenerContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.alter_listener"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAlter_listener([NotNull] TSqlParser.Alter_listenerContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.range_ip_v4"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -525,41 +537,53 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitRange_ip_comma_v4([NotNull] TSqlParser.Range_ip_comma_v4Context context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.ip_listener"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener([NotNull] TSqlParser.Alter_availability_group_options_listenerContext context);
+	Result VisitIp_listener([NotNull] TSqlParser.Ip_listenerContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener_restart"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.ip_listener_comma"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener_restart([NotNull] TSqlParser.Alter_availability_group_options_listener_restartContext context);
+	Result VisitIp_listener_comma([NotNull] TSqlParser.Ip_listener_commaContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener_modify"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.add_listener"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener_modify([NotNull] TSqlParser.Alter_availability_group_options_listener_modifyContext context);
+	Result VisitAdd_listener([NotNull] TSqlParser.Add_listenerContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener_add"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.address_listener"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener_add([NotNull] TSqlParser.Alter_availability_group_options_listener_addContext context);
+	Result VisitAddress_listener([NotNull] TSqlParser.Address_listenerContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener_dhcp"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.listener_name"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener_dhcp([NotNull] TSqlParser.Alter_availability_group_options_listener_dhcpContext context);
+	Result VisitListener_name([NotNull] TSqlParser.Listener_nameContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener_ip"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.listener_dhcp"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAlter_availability_group_options_listener_ip([NotNull] TSqlParser.Alter_availability_group_options_listener_ipContext context);
+	Result VisitListener_dhcp([NotNull] TSqlParser.Listener_dhcpContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.listener_ip_address"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitListener_ip_address([NotNull] TSqlParser.Listener_ip_addressContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.ips"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIps([NotNull] TSqlParser.IpsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_replicat_modify"/>.
 	/// </summary>
@@ -572,6 +596,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlter_availability_replicat_primary([NotNull] TSqlParser.Alter_availability_replicat_primaryContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.url"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUrl([NotNull] TSqlParser.UrlContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_primary_role"/>.
 	/// </summary>
@@ -752,12 +782,6 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAlter_certificate([NotNull] TSqlParser.Alter_certificateContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.private_key"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitPrivate_key([NotNull] TSqlParser.Private_keyContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_column_encryption_key"/>.
 	/// </summary>
@@ -3639,6 +3663,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDbcc_special([NotNull] TSqlParser.Dbcc_specialContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.dbcc_special_size"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDbcc_special_size([NotNull] TSqlParser.Dbcc_special_sizeContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.dbcc_clause"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -5792,6 +5822,12 @@ public interface ITSqlParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitPrivate_keys([NotNull] TSqlParser.Private_keysContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.privatekey"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPrivatekey([NotNull] TSqlParser.PrivatekeyContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.server_audit_file_specs"/>.
 	/// </summary>

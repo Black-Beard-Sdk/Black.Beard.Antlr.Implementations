@@ -12,13 +12,7 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstTerminalIdentifier\"");
-
-            return config.Inherit.Text;
-
+            return GetInherit_Impl("AstTerminalIdentifier", ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassIdentifiers";
@@ -71,19 +65,7 @@ namespace Generate.Scripts
                                       .Attribute(MemberAttributes.Private)
                                       .Type(GetType(ctx, model))
                                       ;
-
-                                  //var p = model as TreeRuleItem;
-                                  //string template = p?.Origin?.Link.GetTemplate() ?? string.Empty;
-
-                                  //if (template == "ClassIdentifiers")
-                                  //{
-                                  //    field.Type(() => "AstTerminalIdentifier");
-                                  //}
-                                  //else
-                                  //{
-                                  //    field.Type(GetType(ctx, model));
-                                  //}
-
+                                 
                               })
 
                               .Ctors(() => ctx.Variables.Get<IEnumerable<TreeRuleItem>>("combinaisons"), (ctor, model) =>

@@ -11,7 +11,8 @@
         void VisitGamarDeclaration(GrammarConfigDeclaration a);
         void VisitGammarTermDeclaration(GrammarConfigTermDeclaration a);
         void VisitGrammarSpec(GrammarSpec a);
-        void VisitIdentifier(IdentifierConfig a);
+        void VisitCalculatedTuneInherit(CalculatedRuleTuneInherit a);
+        void VisitTuneInherit(RuleTuneInherit a);
         void VisitListDeclaration(ListDeclaration a);
         void VisitRule(GrammarRuleConfig a);
         void VisitRuleTerm(GrammarRuleTermConfig a);

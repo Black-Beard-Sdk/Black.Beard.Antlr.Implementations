@@ -228,6 +228,9 @@ namespace Bb.Generators
                     else if (last == '_')
                         s = char.ToUpper(s);
 
+                    else
+                        s = char.ToLower(s);
+
                     sb.Append(s);
                     last = s;
 
@@ -239,7 +242,7 @@ namespace Bb.Generators
 
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
 
         public static string FormatCsharpField(this string code)

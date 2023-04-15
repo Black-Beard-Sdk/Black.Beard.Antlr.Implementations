@@ -7,13 +7,13 @@ namespace Bb.ParsersConfiguration.Ast
     public class GrammarConfigTermDeclaration : GrammarConfigBaseDeclaration
     {
 
-        public GrammarConfigTermDeclaration(ParserRuleContext ctx, IdentifierConfig ruleName, GrammarRuleTermConfig template)
+        public GrammarConfigTermDeclaration(ParserRuleContext ctx, RuleTuneInherit ruleName, GrammarRuleTermConfig template)
             : base(ctx, ruleName)
         {
             this.Config = template;
         }
 
-        public GrammarConfigTermDeclaration(Position position, IdentifierConfig ruleName, GrammarRuleTermConfig template)
+        public GrammarConfigTermDeclaration(Position position, RuleTuneInherit ruleName, GrammarRuleTermConfig template)
             : base(position, ruleName)
         {
             this.Config = template;

@@ -11,17 +11,9 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-            {
-                var astChild = ast.GetRules().FirstOrDefault();
-                config.Inherit = new IdentifierConfig("\"AstRuleList<Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + ">\"");
-            }
-
-            return config.Inherit.Text;
-
+            var astChild = ast.GetRules().FirstOrDefault();
+            var txt = "AstRuleList<Ast" + CodeHelper.FormatCsharp(astChild.Name.Text) + ">";
+            return GetInherit_Impl(txt, ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassList";

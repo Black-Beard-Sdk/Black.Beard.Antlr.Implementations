@@ -650,7 +650,7 @@ RESUMABLE:                             'RESUMABLE';
 RETENTION:                             'RETENTION';
 REVERSE:                               'REVERSE';
 ROBUST:                                'ROBUST';
-ROOT:                                  'ROOT';
+ROOTWORD:                              'ROOT';
 ROUTE:                                 'ROUTE';
 ROW:                                   'ROW';
 ROW_NUMBER:                            'ROW_NUMBER';

@@ -6,19 +6,19 @@ namespace Bb.ParsersConfiguration.Ast
     public abstract class GrammarConfigBaseDeclaration : AntlrConfigAstBase
     {
 
-        public GrammarConfigBaseDeclaration(ParserRuleContext ctx, IdentifierConfig ruleName)
+        public GrammarConfigBaseDeclaration(ParserRuleContext ctx, RuleTuneInherit ruleName)
             : base(ctx)
         {
             this.RuleName = ruleName;
         }
 
-        public GrammarConfigBaseDeclaration(Position position, IdentifierConfig ruleName)
+        public GrammarConfigBaseDeclaration(Position position, RuleTuneInherit ruleName)
             : base(position)
         {
             this.RuleName = ruleName;
         }
 
-        public IdentifierConfig RuleName { get; }
+        public RuleTuneInherit RuleName { get; }
 
 
     }

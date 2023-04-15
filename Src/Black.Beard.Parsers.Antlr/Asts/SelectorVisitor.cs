@@ -723,6 +723,11 @@ namespace Bb.Asts
             foreach (var item in _predicates)
                 if (item(a))
                     yield return a;
+
+            if (a.Value != null)
+                foreach (var c in a.Value.Accept(this))
+                    yield return c;
+
         }
 
         public IEnumerable<AstBase> VisitTerminalText(AstTerminalText a)

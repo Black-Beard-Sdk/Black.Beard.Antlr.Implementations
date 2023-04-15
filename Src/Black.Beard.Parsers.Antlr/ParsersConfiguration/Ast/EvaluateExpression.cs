@@ -26,6 +26,11 @@ namespace Bb.ParsersConfiguration.Ast
             throw new NotImplementedException();
         }
 
+        public bool VisitCalculatedTuneInherit(CalculatedRuleTuneInherit a)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool VisitDefaultTemplateSetting(DefaultTemplateSetting a)
         {
             throw new NotImplementedException();
@@ -41,7 +46,7 @@ namespace Bb.ParsersConfiguration.Ast
             throw new NotImplementedException();
         }
 
-        public bool VisitIdentifier(IdentifierConfig a)
+        public bool VisitTuneInherit(RuleTuneInherit a)
         {
             throw new NotImplementedException();
         }

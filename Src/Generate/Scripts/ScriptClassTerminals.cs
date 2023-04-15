@@ -15,14 +15,9 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
-
-            var config = ast.Configuration.Config;
-
-            if (config.Inherit == null)
-                config.Inherit = new IdentifierConfig("\"AstTerminalString\"");
-
-            return config.Inherit.Text;
-
+            if (IsConstant(ast))
+                return GetInherit_Impl("AstBnfRule", ast, context);
+            return GetInherit_Impl("AstTerminalString", ast, context);
         }
 
         public override string StrategyTemplateKey => "ClassTerminalAlias";
@@ -40,41 +35,67 @@ namespace Generate.Scripts
                       .Using("Antlr4.Runtime")
                       .Using("Antlr4.Runtime.Tree")
 
-                      .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
+                      .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), ast =>
+                      {
+                          ctx.Variables["combinaisons"] = ast.ResolveAllCombinations();
+
+                      }, (ast, type) =>
                       {
 
                           type.AddTemplateSelector(() => TemplateSelector(ast, ctx))
                               .Documentation(c => c.Summary(() => ast.ToString()))
-                              .Name(() => "Ast" + CodeHelper.FormatCsharp(ast.Name.Text))
+                              .Name(() => ast.Type())
                               .Inherit(() => GetInherit(ast, ctx))
 
-
-                              .Ctor((f) =>
+                              .CtorWhen(() => IsDynamic(ast)
+                              ,(f) =>
                               {
                                   f.Argument(() => "ITerminalNode", "t")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "t".Var().Call("GetText"));
                               })
-                              .Ctor((f) =>
+
+
+                              .CtorWhen(() => IsDynamic(ast)
+                              ,(f) =>
                               {
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx".Var(), "ctx".Var().Call("GetText"));
                               })
-                              .Ctor((f) =>
-                              {
+
+
+                              .CtorWhen(() => IsDynamic(ast)
+                             ,(f) =>
+                              {                                                                   
                                   f.Argument(() => "ParserRuleContext", "ctx")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx".Var(), "value".Var());
                               })
-                              .Ctor((f) =>
+                              .CtorWhen(() => IsDynamic(ast), (f) =>
                               {
                                   f.Argument(() => "Position", "t")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "value".Var());
                               })
+
+
+                              .CtorWhen(() => IsDynamic(ast), (f) =>
+                              {
+                                  f.Argument(() => typeof(string), "value")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("Position.Default".Var(), "value".Var());
+                              })
+                              .CtorWhen(() => IsConstant(ast), (f) =>
+                              {
+                                  f
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("Position.Default".Var());
+                              })
+
+
                               .Method(method =>
                               {
                                   method
@@ -98,25 +119,27 @@ namespace Generate.Scripts
                                   HashSet<string> _h = new HashSet<string>();
                                   List<CodeMemberMethod> methods = new List<CodeMemberMethod>();
 
-                                  var alternatives = ast.GetAlternatives(ctx);
+                                  var alternatives = ctx.Variables.Get<List<TreeRuleItem>>("combinaisons");
 
                                   foreach (var alt in alternatives)
                                   {
 
-                                      var n1 = CodeHelper.FormatCsharp(alt.Name);
+                                      var txt = alt.ToString().Trim();
+                                      var n1 = CodeHelper.FormatCsharp(txt);
                                       var n2 = "Ast" + n1;
                                       var t1 = n2.AsType();
 
                                       StringBuilder uniqeConstraintKeyMethod = new StringBuilder();
                                       List<string> arguments = new List<string>();
 
-                                      var method = n1.AsMethod(t1, MemberAttributes.Public | MemberAttributes.Static)
+                                      var method1 = n1.AsMethod(ast.Type().AsType(), MemberAttributes.Public | MemberAttributes.Static)
                                         .BuildDocumentation(ast.Name.Text, alt, ctx);
 
                                       if (alt.Count > 0)
                                       {
+
                                           foreach (var itemAlt in alt)
-                                              itemAlt.BuildStaticMethod(ast, method, arguments);
+                                              itemAlt.BuildStaticMethod(ast, method1, arguments, uniqeConstraintKeyMethod);
 
                                           var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
 
@@ -126,31 +149,13 @@ namespace Generate.Scripts
                                               foreach (var itemArg in arguments)
                                                   args.Add(itemArg.Var());
 
-                                              methods.Add(method);
-                                              var ret = CodeHelper.Call(t1, n1, args.ToArray());
-                                              method.Statements.Return(ret);
-
+                                              methods.Add(method1);
+                                              //var ret = CodeHelper.Call(t1, n1);
+                                              method1.Statements.Return(CodeHelper.Create(ast.Type().AsType(), args.ToArray()));
                                           }
 
                                       }
-                                      else
-                                      {
-
-                                          //var noDuplicateKey = uniqeConstraintKeyMethod.ToString();
-
-                                          //if (_h.Add(noDuplicateKey))
-                                          //{
-                                          //    List<CodeExpression> args = new List<CodeExpression>(arguments.Count);
-                                          //    foreach (var itemArg in arguments)
-                                          //        args.Add(itemArg.Var());
-
-                                          //    methods.Add(method);
-                                          //    var ret = CodeHelper.Call(t1, n1, args.ToArray());
-                                          //    method.Statements.Return(ret);
-
-                                          //}
-                                      }
-
+                                      
                                   }
 
                                   foreach (var item in methods)
@@ -166,6 +171,63 @@ namespace Generate.Scripts
             });
 
         }
+
+
+        private static bool IsConstant(AstRule ast)
+        {
+            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
+            if (l != null)
+            {
+                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
+                if (m != null)
+                {
+                    var t = m.Link.TerminalKind;
+                    return t == TokenTypeEnum.Constant;
+                }
+            }
+
+            return false;
+
+        }
+        private static bool IsDynamic(AstRule ast)
+        {
+            var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
+            if (l != null)
+            {
+                var m = l.Select(c => c.Type == "TOKEN_REF").FirstOrDefault();
+                if (m != null)
+                {
+                    var t = m.Link.TerminalKind;
+                    switch (t)
+                    {
+
+
+                        case TokenTypeEnum.Identifier:
+                        case TokenTypeEnum.Boolean:
+                        case TokenTypeEnum.String:
+                        case TokenTypeEnum.Decimal:
+                        case TokenTypeEnum.Int:
+                        case TokenTypeEnum.Real:
+                        case TokenTypeEnum.Hexa:
+                        case TokenTypeEnum.Binary:
+                        case TokenTypeEnum.Pattern:
+                        case TokenTypeEnum.Operator:
+                            return true;
+
+                        case TokenTypeEnum.Other:
+                        case TokenTypeEnum.Constant:
+                        case TokenTypeEnum.Comment:
+                        case TokenTypeEnum.Ponctuation:
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            return false;
+
+        }
+
 
     }
 

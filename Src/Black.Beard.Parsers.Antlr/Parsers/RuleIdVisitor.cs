@@ -79,11 +79,7 @@ namespace Bb.Parsers
         public TreeRuleItem VisitLabeledAlt(AstLabeledAlt a)
         {
 
-            if (a.Name != null)
-            {
-
-
-            }
+            if (a.Name != null) { }
 
             var result = a.Rule.Accept(this);
 
@@ -110,8 +106,8 @@ namespace Bb.Parsers
             if (result.Count == 0)
                 return null;
 
-            if (result.Count == 1)
-                return result[0];
+            //if (result.Count == 1)
+            //    return result[0];
 
             return result;
 

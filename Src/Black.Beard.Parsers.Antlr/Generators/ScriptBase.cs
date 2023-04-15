@@ -21,6 +21,28 @@ namespace Bb.Generators
             this.Usings = new HashSet<string>();
         }
 
+
+        protected string GetInherit_Impl(string classBaseName, AstRule ast, Context context)
+        {
+
+            var config = ast.Configuration.Config;
+
+            config.CalculatedInherit = new CalculatedRuleTuneInherit("\"" + classBaseName + "\"");
+
+            if (config.Inherit != null && !string.IsNullOrEmpty(config.Inherit.Text))
+            {
+                if (config.Inherit.Text != config.CalculatedInherit.RuleTuneInherit.Text)
+                    return config.Inherit.Text;
+
+                config.Inherit = null;
+
+            }
+
+            return classBaseName;
+
+        }
+
+
         public bool SplitObjectOnDisk { get; set; }
 
         public string Namespace { get; set; }
@@ -85,7 +107,9 @@ namespace Bb.Generators
         private string _templateSelector(AstRule ast, Context context)
         {
 
-            var t = ast.Configuration.Config.TemplateSetting.TemplateName;
+            var c1 = ast.Configuration.Config;
+
+            var t = c1.TemplateSetting.TemplateName;
             if (t != null)
                 return t;
 

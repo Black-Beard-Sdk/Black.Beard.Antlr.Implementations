@@ -11,6 +11,7 @@
     <Compile Remove="Scripts\ScriptClassEnum.cs" />
     <Compile Remove="Scripts\ScriptClassToString.cs" />
     <Compile Remove="Scripts\ScriptInterfaceVisitor2.cs" />
+    <Compile Remove="Scripts\ScriptTSqlVisitor1.ClassIdentifierWithProperties.cs" />
   </ItemGroup>
 
   <ItemGroup>

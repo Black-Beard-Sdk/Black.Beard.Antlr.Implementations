@@ -60,6 +60,9 @@ namespace Bb.Asts
 
         public override string ResolveName()
         {
+            if (this.Count == 1)
+                return this[0].ResolveName();
+
             return base.ResolveName();
         }
 

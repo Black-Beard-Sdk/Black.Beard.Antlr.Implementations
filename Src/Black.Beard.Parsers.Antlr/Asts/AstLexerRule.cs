@@ -12,7 +12,7 @@ namespace Bb.Asts
         public AstLexerRule(ParserRuleContext ctx
             , AstTerminalText ruleName
             , AstLexerAlternativeList value
-            ) : base(ctx, new IdentifierConfig(ruleName.ToString()))
+            ) : base(ctx, new RuleTuneInherit(ruleName.ToString()))
         {
 
             this.Value = value;

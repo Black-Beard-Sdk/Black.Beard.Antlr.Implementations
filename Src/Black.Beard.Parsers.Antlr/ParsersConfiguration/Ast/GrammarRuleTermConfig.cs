@@ -7,14 +7,14 @@ namespace Bb.ParsersConfiguration.Ast
     public class GrammarRuleTermConfig : AntlrConfigAstBase
     {
 
-        public GrammarRuleTermConfig(ParserRuleContext ctx, TokenTypeEnum type, IdentifierConfig? extendedDatas)
+        public GrammarRuleTermConfig(ParserRuleContext ctx, TokenTypeEnum type, RuleTuneInherit? extendedDatas)
             : base(ctx)
         {
             this.Kind = type;
             this.ExtendedPattern = extendedDatas;
         }
 
-        public GrammarRuleTermConfig(Position position, TokenTypeEnum type, IdentifierConfig? extendedDatas)
+        public GrammarRuleTermConfig(Position position, TokenTypeEnum type, RuleTuneInherit? extendedDatas)
             : base(position)
         {
             this.Kind = type;
@@ -33,7 +33,7 @@ namespace Bb.ParsersConfiguration.Ast
 
         public TokenTypeEnum Kind { get; internal set; }
 
-        public IdentifierConfig? ExtendedPattern { get; }
+        public RuleTuneInherit? ExtendedPattern { get; }
 
         public override void ToString(Writer writer)
         {

@@ -79,13 +79,19 @@ namespace Bb.ParsersConfiguration.Ast
             {
                 this._list.Add(name.Text,
                     g = new GrammarConfigDeclaration(Position.Default, name,
-                        new GrammarRuleConfig(Position.Default, true, new IdentifierConfig(""), new TemplateSetting(Position.Default, null), new CalculatedTemplateSetting(Position.Default, new TemplateSetting(Position.Default, null)))
+                        new GrammarRuleConfig(Position.Default, true
+                            , new RuleTuneInherit(string.Empty)
+                            , new TemplateSetting(Position.Default, null)
+                            , new CalculatedTemplateSetting(Position.Default
+                            , new TemplateSetting(Position.Default, null))
+                            , null
+                        )
                     )
                     );
             }
             else
                 g = (GrammarConfigDeclaration)grammar;
-            
+
             g.Rule = rule;
             rule.Configuration = g;
 
@@ -240,7 +246,7 @@ namespace Bb.ParsersConfiguration.Ast
                 throw new NotImplementedException();
             }
 
-            public void VisitIdentifier(IdentifierConfig a)
+            public void VisitTuneInherit(RuleTuneInherit a)
             {
                 throw new NotImplementedException();
             }
@@ -280,7 +286,7 @@ namespace Bb.ParsersConfiguration.Ast
                 a.List = _root.GetList(a.ListName);
 
                 if (a.List == null)
-                    throw new KeyNotFoundException(a.ListName);                               
+                    throw new KeyNotFoundException(a.ListName);
 
             }
 
@@ -311,6 +317,11 @@ namespace Bb.ParsersConfiguration.Ast
             }
 
             public void VisitConstant(ConstantStringConfig a)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void VisitCalculatedTuneInherit(CalculatedRuleTuneInherit a)
             {
                 throw new NotImplementedException();
             }
