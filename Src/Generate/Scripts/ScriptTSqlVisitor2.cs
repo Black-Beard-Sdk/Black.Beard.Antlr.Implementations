@@ -25,10 +25,8 @@ namespace Generate.Scripts
                 {
                     ns.Using(this.Usings)
                       .Using(
-                        "Bb.Parsers.Tsql",
                         "Antlr4.Runtime.Misc",
-                        "Antlr4.Runtime.Tree",
-                        "Bb.Parsers.TSql.Antlr"
+                        "Antlr4.Runtime.Tree"
                       )
 
                       .CreateOneType<AstLabeledAlt>(null, null, (ast, type) =>

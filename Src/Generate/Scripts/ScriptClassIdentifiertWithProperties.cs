@@ -27,9 +27,8 @@ namespace Generate.Scripts
                 {
                     ns.Using(Usings)
                       .Using("Antlr4.Runtime")
-                      .Using("System.Collections")
                       .Using("Antlr4.Runtime.Tree")
-                      .Using("Bb.Parsers")
+                      .Using("System.Collections")
 
                       .CreateTypeFrom<AstRule>(ast => Generate(ast, ctx), null, (ast, type) =>
                       {

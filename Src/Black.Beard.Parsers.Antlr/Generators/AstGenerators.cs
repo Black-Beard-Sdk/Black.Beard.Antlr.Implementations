@@ -38,7 +38,7 @@ namespace Bb.Generators
             this._asts.Clear();
         }
 
-        public IEnumerable<string> Generate(Context ctx)
+        public void Generate(Context ctx, HashSet<string> generateds)
         {
 
             foreach (AstGenerator g in this._generators)
@@ -47,38 +47,27 @@ namespace Bb.Generators
                 foreach (var item in _asts)
                     g.Generate(ctx, item);
 
-                foreach (var file in WriteFile(ctx, g))
-                    yield return file;
-
+                WriteFile(ctx, g, generateds);
+                  
             }
 
         }
 
-        private List<string> WriteFile(Context ctx, AstGenerator g)
+        private void WriteFile(Context ctx, AstGenerator g, HashSet<string> generateds)
         {
 
-            var filenames = new List<string>();
             var compileUnit = g.CompileUnit;
 
-
             foreach (CodeNamespace @namespace in compileUnit.Namespaces)
-            {
-
-
                 foreach (CodeTypeDeclaration type in @namespace.Types)
                 {
-
                     var toConvert = type.Members.OfType<CodeClassNested>().ToList();
-
                     foreach (var item in toConvert)
                     {
                         type.Members.Add(WriteMemory(item));
                         type.Members.Remove(item);
                     }
-
                 }
-
-            }
 
 
             if (g._root.SplitObjectOnDisk)
@@ -100,8 +89,7 @@ namespace Bb.Generators
 
                         // Write
                         var filename = Path.Combine(ctx.OutputPath, g.Name + "." + type.Name + ".generated.cs");
-                        WriteFile(g, compileUnit, filename);
-                        filenames.Add(filename);
+                        WriteFile(g, compileUnit, filename, generateds);
 
                     }
 
@@ -111,11 +99,8 @@ namespace Bb.Generators
             else
             {
                 var filename = Path.Combine(ctx.OutputPath, g.Name + ".generated.cs");
-                WriteFile(g, compileUnit, filename);
-                filenames.Add(filename);
+                WriteFile(g, compileUnit, filename, generateds);                
             }
-
-            return filenames;
 
         }
 
@@ -145,8 +130,27 @@ namespace Bb.Generators
             };
         }
 
-        private void WriteFile(AstGenerator g, CodeCompileUnit compileUnit, string filename)
+        private void WriteFile(AstGenerator g, CodeCompileUnit compileUnit, string filename, HashSet<string> generateds)
         {
+
+            if (generateds.Contains(filename))
+            {
+                var f = new FileInfo(filename);
+                int i = 1;
+
+                string name = Path.GetFileNameWithoutExtension(f.Name);
+                string extension = f.Extension;
+
+                var f2 = Path.Combine(f.Directory.FullName, name + (i++).ToString() + extension);
+                while (File.Exists(f2))
+                {
+                    f2 = Path.Combine(f.Directory.FullName, name + (i++).ToString() + extension);
+                }
+
+                filename = f2;
+
+            }
+
             using (StreamWriter sw = new StreamWriter(filename, false))
             {
                 IndentedTextWriter tw = new IndentedTextWriter(sw, "    ");
@@ -156,7 +160,11 @@ namespace Bb.Generators
                 tw.WriteLine();
                 _provider.GenerateCodeFromCompileUnit(compileUnit, tw, _options);
                 tw.Close();
-            }
+
+                generateds.Add(filename);
+
+            }            
+
         }
 
         private CodeSnippetTypeMember WriteMemory(CodeClassNested member)
@@ -191,6 +199,7 @@ namespace Bb.Generators
         private readonly List<AstBase> _asts;
         private readonly CSharpCodeProvider _provider;
         private readonly CodeGeneratorOptions _options;
+   
     }
 
 

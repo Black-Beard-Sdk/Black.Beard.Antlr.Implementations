@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Bb.SqlServer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Asts\Astadd_or_modify_filegroups.generated.cs" />
+    <Compile Remove="Asts\Astadd_or_modify_files.generated.cs" />
+    <Compile Remove="Asts\Astaggregate_windowed_function.generated.cs" />
+    <Compile Remove="Asts\Astall_distinct_expression.generated.cs" />
+    <Compile Remove="Asts\Astalter_credential.generated.cs" />
+    <Compile Remove="Asts\Astalter_cryptographic_provider.generated.cs" />
+    <Compile Remove="Asts\Astalter_database.generated.cs" />
+    <Compile Remove="Asts\Astalter_db_role.generated.cs" />
+    <Compile Remove="Asts\Astalter_endpoint.generated.cs" />
+    <Compile Remove="Asts\Astalter_external_data_source.generated.cs" />
+    <Compile Remove="Asts\Astalter_external_library.generated.cs" />
+    <Compile Remove="Asts\Astalter_external_resource_pool.generated.cs" />
+    <Compile Remove="Asts\Astalter_fulltext_catalog.generated.cs" />
+    <Compile Remove="Asts\Astalter_fulltext_stoplist.generated.cs" />
+    <Compile Remove="Asts\Astalter_index.generated.cs" />
+    <Compile Remove="Asts\Astalter_login_azure_sql.generated.cs" />
+    <Compile Remove="Asts\Astalter_login_azure_sql_dw_and_pdw.generated.cs" />
+    <Compile Remove="Asts\Astalter_login_sql_server.generated.cs" />
+    <Compile Remove="Asts\Astalter_master_key_azure_sql.generated.cs" />
+    <Compile Remove="Asts\Astalter_master_key_sql_server.generated.cs" />
+    <Compile Remove="Asts\Astalter_message_type.generated.cs" />
+    <Compile Remove="Asts\Astalter_partition_function.generated.cs" />
+    <Compile Remove="Asts\Astalter_partition_scheme.generated.cs" />
+    <Compile Remove="Asts\Astalter_queue.generated.cs" />
+    <Compile Remove="Asts\Astalter_remote_service_binding.generated.cs" />
+    <Compile Remove="Asts\Astalter_resource_governor.generated.cs" />
+    <Compile Remove="Asts\Astalter_schema_azure_sql_dw_and_pdw.generated.cs" />
+    <Compile Remove="Asts\Astalter_schema_sql.generated.cs" />
+    <Compile Remove="Asts\Models.Manuels.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.11.1" />
+    <PackageReference Include="Black.Beard.Helpers.ContentLoaders.Files" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Black.Beard.Parsers\Black.Beard.Parsers.csproj" />
+  </ItemGroup>
+
+</Project>

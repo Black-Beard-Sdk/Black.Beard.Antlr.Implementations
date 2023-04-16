@@ -265,8 +265,9 @@ namespace Generate.Scripts
                 {
 
                     var p = model as TreeRuleItem;
+                    var b = p.Origin.Select(c => c.TerminalKind == TokenTypeEnum.Identifier).Any();
 
-                    if (p.Origin.IsTerminal)
+                    if (b)
                         result = () => "AstTerminalString";
 
                     else

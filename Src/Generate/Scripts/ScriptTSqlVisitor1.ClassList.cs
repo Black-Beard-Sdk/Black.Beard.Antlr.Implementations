@@ -33,8 +33,6 @@ namespace Generate.Scripts
                 {
                     ns.Using(Usings)
                       .Using(
-                        "Bb.Asts",
-                        "Bb.Parsers.TSql.Antlr",
                         "Antlr4.Runtime.Misc",
                         "Antlr4.Runtime.Tree",
                         "System.Collections"

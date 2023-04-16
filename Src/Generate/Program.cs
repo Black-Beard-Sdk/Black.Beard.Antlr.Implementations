@@ -13,13 +13,13 @@ var DirRoot = new DirectoryInfo
     )
 );
 var file = new FileInfo(Path.Combine(DirRoot.FullName, @"Parsers\Grammar\TSqlParser.g4"));
-var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\Generateds");
+var configDirOutput = Path.Combine(DirRoot.FullName, @"Asts\Generated");
 
 
 var ctx = new Context()
 {
     OutputPath = configDirOutput,
-    Namespace = "Bb.Asts",
+    Namespace = "Bb.SqlServer.Asts",
 };
 
 var p = new Process();

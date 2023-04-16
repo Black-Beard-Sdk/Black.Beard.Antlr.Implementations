@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Antlr", "Antlr", "{DA904F8A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers", "Black.Beard.Parsers\Black.Beard.Parsers.csproj", "{D25C9409-451D-4803-93F9-3C7AA2624038}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Parsers.SqlServer", "Black.Beard.SqlServer\Black.Beard.Parsers.SqlServer.csproj", "{9E33795A-479A-47CB-88CC-1A678C8F116A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.SqlServer", "Black.Beard.SqlServer\Black.Beard.SqlServer.csproj", "{9E33795A-479A-47CB-88CC-1A678C8F116A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TSql", "TSql\TSql.csproj", "{2B03EDEA-C991-4385-845F-B32B854CA59A}"
 EndProject

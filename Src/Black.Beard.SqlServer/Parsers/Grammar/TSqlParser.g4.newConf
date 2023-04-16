@@ -383,7 +383,7 @@ RULE try_catch_statement
 
 RULE waitfor_statement 
 //** waitfor_statement
-	 : WAITFOR  receive_statement?  COMMA?  (delay_time_timeout  time)?  expression?
+	 : WAITFOR  receive_statement?  COMMA?  (delay_time_timeout  timespan)?  expression?
   **// 
 	GENERATE
 	INHERIT 
@@ -394,7 +394,7 @@ RULE waitfor_statement
 
 RULE while_statement 
 //** while_statement
-	 : WHILE  search_condition  while_statement_content  SEMI*
+	 : WHILE  search_condition  while_statement_content
   **// 
 	GENERATE
 	INHERIT 
@@ -432,14 +432,14 @@ RULE empty_statement
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
 
 RULE alter_application_role 
 //** alter_application_role
-	 : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  password_setting)?  (COMMA?  default_schema)?
+	 : ALTER  APPLICATION  ROLE  role_id  WITH  (COMMA?  NAME  EQUAL  new_role = role_id)?  (COMMA?  password_setting)?  (COMMA?  default_schema_set)?
   **// 
 	GENERATE
 	INHERIT 
@@ -450,7 +450,7 @@ RULE alter_application_role
 
 RULE create_application_role 
 //** create_application_role
-	 : CREATE  APPLICATION  ROLE  role_id  WITH  (COMMA?  password_setting)?  (COMMA?  default_schema)?
+	 : CREATE  APPLICATION  ROLE  role_id  WITH  (COMMA?  password_setting)?  (COMMA?  default_schema_set)?
   **// 
 	GENERATE
 	INHERIT 
@@ -981,7 +981,7 @@ RULE drop_availability_group
 
 RULE alter_availability_group 
 //** alter_availability_group
-	 : alter_availability_group_start  alter_availability_group_options
+	 : alter_availability_group_start  add_remove_database
   **// 
 	GENERATE
 	INHERIT 
@@ -1004,11 +1004,11 @@ RULE alter_availability_group_start
 RULE alter_availability_group_options 
 //** alter_availability_group_options
 	 : SET  LR_BRACKET  alter_availability_group_option_set  RR_BRACKET
-	 | alter_availability_group_options_database
-	 | alter_availability_group_options_replicat
-	 | alter_availability_group_options_listener
-	 | alter_availability_group_options_role
-	 | alter_availability_group_options_group
+	 | add_remove_database
+	 | alter_availability_replicat
+	 | alter_options_listener
+	 | alter_role
+	 | availability_group_options
 	 | grant_deny  CREATE  ANY  DATABASE
 	 | FAILOVER
 	 | FORCE_FAILOVER_ALLOW_DATA_LOSS
@@ -1442,7 +1442,7 @@ RULE drop_rule
 
 RULE drop_schema 
 //** drop_schema
-	 : DROP  SCHEMA  (IF  EXISTS)?  schema_id
+	 : DROP  SCHEMA  (IF  EXISTS)?  schema_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -2132,7 +2132,7 @@ RULE create_rule
 
 RULE alter_schema_sql 
 //** alter_schema_sql
-	 : ALTER  SCHEMA  schema_id  TRANSFER  transfert_target?  id_dot_id
+	 : ALTER  SCHEMA  schema_identifier  TRANSFER  transfert_target?  id_dot_id
   **// 
 	GENERATE
 	INHERIT 
@@ -2180,7 +2180,7 @@ RULE grant_deny
 
 RULE create_schema_azure_sql_dw_and_pdw 
 //** create_schema_azure_sql_dw_and_pdw
-	 : CREATE  SCHEMA  schema_id  (AUTHORIZATION  owner_id)?
+	 : CREATE  SCHEMA  schema_identifier  (AUTHORIZATION  owner_id)?
   **// 
 	GENERATE
 	INHERIT 
@@ -2191,7 +2191,7 @@ RULE create_schema_azure_sql_dw_and_pdw
 
 RULE alter_schema_azure_sql_dw_and_pdw 
 //** alter_schema_azure_sql_dw_and_pdw
-	 : ALTER  SCHEMA  schema_id  TRANSFER  (OBJECT  DOUBLE_COLON)?  id_dot_id
+	 : ALTER  SCHEMA  schema_identifier  TRANSFER  (OBJECT  DOUBLE_COLON)?  id_dot_id
   **// 
 	GENERATE
 	INHERIT 
@@ -2224,7 +2224,7 @@ RULE create_security_policy
 
 RULE alter_sequence 
 //** alter_sequence
-	 : ALTER  SEQUENCE  schema_sequence_ref  alter_sequence_restart?  alter_sequence_increment?  alter_sequence_min_value?  alter_sequence_max_value  cycle?  sequence_cache?
+	 : ALTER  SEQUENCE  schema_sequence_ref  alter_sequence_restart?  alter_sequence_increment?  alter_sequence_min_value?  alter_sequence_max_value  sequence_cycle?  sequence_cache?
   **// 
 	GENERATE
 	INHERIT 
@@ -2235,7 +2235,7 @@ RULE alter_sequence
 
 RULE create_sequence 
 //** create_sequence
-	 : CREATE  SEQUENCE  schema_sequence_ref  (AS  data_type)?  create_sequence_start?  create_sequence_increment?  create_sequence_min_value?  create_sequence_max_value?  cycle?  sequence_cache?
+	 : CREATE  SEQUENCE  schema_sequence_ref  (AS  data_type)?  create_sequence_start?  create_sequence_increment?  create_sequence_min_value?  create_sequence_max_value?  sequence_cycle?  sequence_cache?
   **// 
 	GENERATE
 	INHERIT 
@@ -2345,7 +2345,7 @@ RULE alter_service
 
 RULE create_service 
 //** create_service
-	 : CREATE  SERVICE  service_id  (AUTHORIZATION  owner_id)?  ON  QUEUE  schema_queue_ref  (LR_BRACKET  contracts  RR_BRACKET)?
+	 : CREATE  SERVICE  service_id  (AUTHORIZATION  owner_id)?  ON  QUEUE  schema_queue_ref  (LR_BRACKET  contract_refs  RR_BRACKET)?
   **// 
 	GENERATE
 	INHERIT 
@@ -2413,8 +2413,8 @@ RULE create_user
 
 RULE create_user_azure_sql_dw 
 //** create_user_azure_sql_dw
-	 : CREATE  USER  user_id  user_strategy?  (WITH  default_schema)?
-	 | CREATE  USER  user_id  FROM  EXTERNAL  PROVIDER  (WITH  default_schema)?
+	 : CREATE  USER  user_id  user_strategy?  (WITH  default_schema_set)?
+	 | CREATE  USER  user_id  FROM  EXTERNAL  PROVIDER  (WITH  default_schema_set)?
   **// 
 	GENERATE
 	INHERIT 
@@ -2704,17 +2704,6 @@ RULE select_statement
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE time 
-//** time
-	 : (local_id | constant)
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE update_statement 
@@ -3406,18 +3395,6 @@ RULE table_options
 	CALCULATED TEMPLATE ClassList
 ;
 
-RULE distribution 
-//** distribution
-	 : DISTRIBUTION  EQUAL  HASH  LR_BRACKET  id_  RR_BRACKET
-	 | CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
 RULE create_table_index_options 
 //** create_table_index_options
 	 : WITH  LR_BRACKET  create_table_index_option  (COMMA  create_table_index_option)*  RR_BRACKET
@@ -3508,7 +3485,7 @@ RULE switch_partition
 
 RULE low_priority_lock_wait 
 //** low_priority_lock_wait
-	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL  max_duration = time  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wait = abord_after_mode  RR_BRACKET
+	 : WAIT_AT_LOW_PRIORITY  LR_BRACKET  MAX_DURATION  EQUAL  max_duration = timespan  MINUTES?  COMMA  ABORT_AFTER_WAIT  EQUAL  abort_after_wait = abord_after_mode  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -3594,7 +3571,7 @@ RULE filegroup_updatability_option
 RULE database_optionspec 
 //** database_optionspec
 	 : auto_option
-	 | change_tracking
+	 | change_tracking_set
 	 | containment_option
 	 | cursor_option
 	 | database_mirroring_option
@@ -3605,7 +3582,7 @@ RULE database_optionspec
 	 | db_user_access_option
 	 | delayed_durability_option
 	 | external_access_option
-	 | FILESTREAM  database_filestream_option
+	 | database_filestream
 	 | hadr_options
 	 | mixed_page_allocation_option
 	 | parameterization_option
@@ -3698,7 +3675,7 @@ RULE local_global
 
 RULE alter_endpoint 
 //** alter_endpoint
-	 : ALTER  ENDPOINT  endpoint_id  (AUTHORIZATION  login_id)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  decimal  (COMMA  listener_ip)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
+	 : ALTER  ENDPOINT  endpoint_id  (AUTHORIZATION  login_id)?  (STATE  EQUAL  state_enum)?  AS  TCP  LR_BRACKET  LISTENER_PORT  EQUAL  decimal  (COMMA  listener_ip_addr)?  RR_BRACKET  (TSQL | alter_endpoint_service_broker | alter_endpoint_database_mirroring)
   **// 
 	GENERATE
 	INHERIT 
@@ -3758,7 +3735,7 @@ RULE witness_partner_equal
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -4107,7 +4084,7 @@ RULE drop_relational_or_xml_or_spatial_index
 
 RULE drop_backward_compatible_index 
 //** drop_backward_compatible_index
-	 : (schema_id  DOT)?  table_or_view_id  DOT  index_id
+	 : (schema_identifier  DOT)?  table_or_view_id  DOT  index_id
   **// 
 	GENERATE
 	INHERIT 
@@ -4239,36 +4216,14 @@ RULE drop_type
 
 RULE rowset_function_limited 
 //** rowset_function_limited
-	 : openquery
-	 | opendatasource
+	 : openquery_args
+	 | open_data_source
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
-;
-
-RULE openquery 
-//** openquery
-	 : OPENQUERY  LR_BRACKET  server_id  COMMA  query = stringtext  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE opendatasource 
-//** opendatasource
-	 : OPENDATASOURCE  LR_BRACKET  provider = stringtext  COMMA  init = stringtext  RR_BRACKET  DOT  database_schema_table_ref
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE declare_statement 
@@ -4790,8 +4745,8 @@ RULE transaction_statement
 	 | BEGIN  transaction  (transaction_ref  (WITH  MARK  mark = stringtext)?)?
 	 | COMMIT  transaction  (transaction_ref  (WITH  LR_BRACKET  DELAYED_DURABILITY  EQUAL  on_off  RR_BRACKET)?)?
 	 | COMMIT  WORK?
-	 | COMMIT  transaction_id
-	 | ROLLBACK  transaction_id
+	 | COMMIT  transaction_identifier
+	 | ROLLBACK  transaction_identifier
 	 | ROLLBACK  transaction  transaction_ref?
 	 | ROLLBACK  WORK?
 	 | SAVE  transaction  transaction_ref?
@@ -5192,7 +5147,7 @@ RULE alter_table_index_option
 	 | MAXDOP  EQUAL  max_degree_of_parallelism = decimal
 	 | DATA_COMPRESSION  EQUAL  index_strategy  on_partitions?
 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
-	 | distribution
+	 | table_distribution
 	 | ONLINE  EQUAL  online_value
 	 | RESUMABLE  EQUAL  on_off
 	 | MAX_DURATION  EQUAL  times = decimal  MINUTES?
@@ -5378,7 +5333,7 @@ RULE parameter
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -5521,25 +5476,6 @@ RULE search_condition
 //** search_condition
 	 : NOT*  sub_search_condition
 	 | left = search_condition  and_or  right = search_condition
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE predicate 
-//** predicate
-	 : EXISTS  LR_BRACKET  subquery  RR_BRACKET
-	 | freetext_predicate
-	 | predicate_binary
-	 | predicate_multi_assign
-	 | expression  comparison_operator  all_some_any  LR_BRACKET  subquery  RR_BRACKET
-	 | predicate_tier
-	 | predicate_not_in
-	 | predicate_not_like
-	 | expression  IS  null_notnull
   **// 
 	GENERATE
 	INHERIT 
@@ -5796,7 +5732,7 @@ RULE star_asterisk
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -6071,8 +6007,8 @@ RULE join_part
 	 : join_on
 	 | cross_join
 	 | apply_enum
-	 | pivot
-	 | unpivot
+	 | pivot_join
+	 | unpivot_join
   **// 
 	GENERATE
 	INHERIT 
@@ -6106,28 +6042,6 @@ RULE cross_join
 RULE apply_enum 
 //** apply_enum
 	 : apply_style  APPLY  source = table_source
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE pivot 
-//** pivot
-	 : PIVOT  pivot_clause  as_table_alias
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE unpivot 
-//** unpivot
-	 : UNPIVOT  unpivot_clause  as_table_alias
   **// 
 	GENERATE
 	INHERIT 
@@ -6977,7 +6891,7 @@ RULE file_group
 
 RULE file_spec 
 //** file_spec
-	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = stringtext  COMMA?  (SIZE  EQUAL  size = file_size  COMMA?)?  (MAXSIZE  EQUAL  max_size  COMMA?)?  (FILEGROWTH  EQUAL  filegrowth = file_size  COMMA?)?  RR_BRACKET
+	 : LR_BRACKET  NAME  EQUAL  id_or_string  COMMA?  FILENAME  EQUAL  file = stringtext  COMMA?  (SIZE  EQUAL  size = file_size  COMMA?)?  (MAXSIZE  EQUAL  max_file_size_value  COMMA?)?  (FILEGROWTH  EQUAL  filegrowth = file_size  COMMA?)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -6988,7 +6902,7 @@ RULE file_spec
 
 RULE entity_name 
 //** entity_name
-	 : (server_id  DOT  database_id  DOT  schema_id  DOT | database_id  DOT  schema_id?  DOT | schema_id  DOT)?  object_id
+	 : (server_id  DOT  database_id  DOT  schema_identifier  DOT | database_id  DOT  schema_identifier?  DOT | schema_identifier  DOT)?  object_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -7149,7 +7063,7 @@ RULE scalar_function_name
 
 RULE begin_conversation_timer 
 //** begin_conversation_timer
-	 : BEGIN  CONVERSATION  TIMER  LR_BRACKET  conversation = local_id  RR_BRACKET  TIMEOUT  EQUAL  time
+	 : BEGIN  CONVERSATION  TIMER  LR_BRACKET  conversation = local_id  RR_BRACKET  TIMEOUT  EQUAL  timespan
   **// 
 	GENERATE
 	INHERIT 
@@ -7160,25 +7074,13 @@ RULE begin_conversation_timer
 
 RULE begin_conversation_dialog 
 //** begin_conversation_dialog
-	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = local_id  FROM  SERVICE  initiator_service_name = service_name  TO  SERVICE  target_service_name = service_name  (COMMA  service_broker_guid = stringtext)?  ON  CONTRACT  contract_name_expression  (WITH  (relayed_conversation  EQUAL  group = local_id  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?
+	 : BEGIN  DIALOG  (CONVERSATION)?  dialog_handle = local_id  FROM  SERVICE  initiator_service_name = service_name_expr  TO  SERVICE  target_service_name = service_name_expr  (COMMA  service_broker_guid = stringtext)?  ON  CONTRACT  contract_name_expression  (WITH  (relayed_conversation  EQUAL  group = local_id  COMMA?)?  (LIFETIME  EQUAL  decimal_local_id  COMMA?)?  (ENCRYPTION  EQUAL  on_off)?)?
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE service_name 
-//** service_name
-	 : id_
-	 | expression
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE end_conversation 
@@ -7194,7 +7096,7 @@ RULE end_conversation
 
 RULE waitfor_conversation 
 //** waitfor_conversation
-	 : WAITFOR?  LR_BRACKET  get_conversation  RR_BRACKET  (COMMA?  TIMEOUT  timeout = time)?
+	 : WAITFOR?  LR_BRACKET  get_conversation  RR_BRACKET  (COMMA?  TIMEOUT  timeout = timespan)?
   **// 
 	GENERATE
 	INHERIT 
@@ -8209,17 +8111,6 @@ RULE file_size_unity
 	CALCULATED TEMPLATE _
 ;
 
-RULE language 
-//** language
-	 : id_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
-	CALCULATED TEMPLATE ClassTerminalAlias
-;
-
 RULE master_key 
 //** master_key
 	 : id_
@@ -8264,30 +8155,6 @@ RULE assembly_file_name
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE alter_availability_group_options_database 
-//** alter_availability_group_options_database
-	 : add_remove  DATABASE  database_id
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE alter_availability_group_options_listener 
-//** alter_availability_group_options_listener
-	 : add_listener
-	 | MODIFY  LISTENER  alter_listener
-	 | restart_listener
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE add_remove 
@@ -8388,68 +8255,9 @@ RULE alter_availability_replicat_modify
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE backup_priority 
-//** backup_priority
-	 : BACKUP_PRIORITY  EQUAL  decimal
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE alter_availability_replicat_add 
 //** alter_availability_replicat_add
-	 : ADD  REPLICA  ON  server_instance_txt  WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  stringtext)?  (COMMA?  availability_mode)?  (COMMA?  FAILOVER_MODE  EQUAL  auto_manual)?  (COMMA?  seeding_mode)?  (COMMA?  backup_priority)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET)?  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE alter_availability_group_options_replicat 
-//** alter_availability_group_options_replicat
-	 : alter_availability_replicat_add
-	 | REMOVE  REPLICA  ON  server_instance_txt
-	 | alter_availability_replicat_modify
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE alter_availability_group_options_group 
-//** alter_availability_group_options_group
-	 : JOIN
-	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = stringtext  WITH  LR_BRACKET  (listener_url  COMMA  availability_mode  COMMA  failover_mode_manuel  COMMA  seeding_mode)  RR_BRACKET)+
-	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url  (COMMA?  availability_mode)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode)?)  RR_BRACKET)+
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE listener_url 
-//** listener_url
-	 : LISTENER_URL  EQUAL  url
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE availability_mode 
-//** availability_mode
-	 : AVAILABILITY_MODE  EQUAL  synch_asynch
+	 : ADD  REPLICA  ON  server_instance_txt  WITH  LR_BRACKET  (ENDPOINT_URL  EQUAL  stringtext)?  (COMMA?  availability_mode_set)?  (COMMA?  FAILOVER_MODE  EQUAL  auto_manual)?  (COMMA?  seeding_mode_set)?  (COMMA?  backup_priority_set)?  (COMMA?  PRIMARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  real_write_all  RR_BRACKET)?  (COMMA?  SECONDARY_ROLE  LR_BRACKET  ALLOW_CONNECTIONS  EQUAL  READ_ONLY  RR_BRACKET)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -8467,40 +8275,6 @@ RULE failover_mode_manuel
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
-;
-
-RULE seeding_mode 
-//** seeding_mode
-	 : SEEDING_MODE  EQUAL  auto_manual
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE alter_availability_group_options_role 
-//** alter_availability_group_options_role
-	 : secondary_role
-	 | primary_role
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE allow_connections 
-//** allow_connections
-	 : ALLOW_CONNECTIONS  EQUAL  no_real_write_all
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
 ;
 
 RULE string_list 
@@ -8764,29 +8538,7 @@ RULE code_language
 
 RULE external_resource_with 
 //** external_resource_with
-	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | decimal_ranges) | NUMANODE  EQUAL  decimal_ranges)  (COMMA?  max_memory)?  (COMMA?  maw_process)?  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE maw_process 
-//** maw_process
-	 : MAX_PROCESSES  EQUAL  decimal
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE max_memory 
-//** max_memory
-	 : MAX_MEMORY_PERCENT  EQUAL  decimal
+	 : LR_BRACKET  max_cpu  (COMMA?  AFFINITY  CPU  EQUAL  (AUTO | decimal_ranges) | NUMANODE  EQUAL  decimal_ranges)  (COMMA?  max_memory_set)?  (COMMA?  max_process_set)?  RR_BRACKET
   **// 
 	GENERATE
 	INHERIT 
@@ -8808,7 +8560,7 @@ RULE max_cpu
 
 RULE alter_login_sql_server_settings 
 //** alter_login_sql_server_settings
-	 : pwd_settings?  old_pwd_strategies?  (DEFAULT_DATABASE  EQUAL  database_id)?  (DEFAULT_LANGUAGE  EQUAL  language)?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
+	 : pwd_settings?  old_pwd_strategies?  (DEFAULT_DATABASE  EQUAL  database_id)?  (DEFAULT_LANGUAGE  EQUAL  language_id)?  (NAME  EQUAL  login_id)?  (CHECK_POLICY  EQUAL  check_policy = on_off)?  (CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (CREDENTIAL  EQUAL  credential_id)?  (NO  CREDENTIAL)?
   **// 
 	GENERATE
 	INHERIT 
@@ -8819,7 +8571,7 @@ RULE alter_login_sql_server_settings
 
 RULE create_login_sql_server_settings 
 //** create_login_sql_server_settings
-	 : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
+	 : (PASSWORD  EQUAL  pwd_value  pwd_strategies?)?  (COMMA?  SID  EQUAL  sid = binary_)?  (COMMA?  DEFAULT_DATABASE  EQUAL  database_id)?  (COMMA?  DEFAULT_LANGUAGE  EQUAL  language_id)?  (COMMA?  CHECK_EXPIRATION  EQUAL  check_expiration = on_off)?  (COMMA?  CHECK_POLICY  EQUAL  check_policy = on_off)?  (COMMA?  CREDENTIAL  EQUAL  credential_id)?
   **// 
 	GENERATE
 	INHERIT 
@@ -8861,18 +8613,6 @@ RULE create_sequence_start
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE cycle 
-//** cycle
-	 : CYCLE
-	 | NO  CYCLE
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE size_unity 
@@ -8993,7 +8733,7 @@ RULE for_from
 
 RULE user_settings_short 
 //** user_settings_short
-	 : default_schema
+	 : default_schema_set
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
 	GENERATE
@@ -9144,17 +8884,6 @@ RULE state_enum
 	CALCULATED TEMPLATE ClassEnum
 ;
 
-RULE listener_ip 
-//** listener_ip
-	 : LISTENER_IP  EQUAL  (ALL | ipv4 | ipv6 | stringtext)
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
 RULE authentication_configuration 
 //** authentication_configuration
 	 : AUTHENTICATION  EQUAL  (WINDOWS  authentication_mode?  (CERTIFICATE  certificate_id)? | CERTIFICATE  certificate_id  WINDOWS?  authentication_mode?)
@@ -9301,7 +9030,7 @@ RULE file_file_group
 	 | FILEGROUP
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstFileFileGroupEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -9313,7 +9042,7 @@ RULE load_moun_load
 	 | NOUNLOAD
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstLoadMounLoadEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -9447,7 +9176,7 @@ RULE log_seterror_nowait
 	 | NOWAIT
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstLogSeterrorNowaitEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -16942,7 +16671,7 @@ RULE for_after
 	 | AFTER
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstForAfterEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -17128,8 +16857,8 @@ RULE id_dot_id
 
 RULE create_schema_name 
 //** create_schema_name
-	 : schema_id  schema_authorization?
-	 | schema_id?  schema_authorization
+	 : schema_identifier  schema_authorization?
+	 | schema_identifier?  schema_authorization
   **// 
 	GENERATE
 	INHERIT 
@@ -17142,8 +16871,8 @@ RULE create_schema_target
 //** create_schema_target
 	 : create_table
 	 | create_view
-	 | grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_id  TO  owner_id
-	 | REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_id  FROM  owner_id
+	 | grant_deny  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_identifier  TO  owner_id
+	 | REVOKE  enum_dml  ON  (SCHEMA  DOUBLE_COLON)?  object_identifier  FROM  owner_id
   **// 
 	GENERATE
 	INHERIT 
@@ -17318,7 +17047,7 @@ RULE filter_block
 	 | BLOCK
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstFilterBlockEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -17346,7 +17075,7 @@ RULE datacompression_mode
 	 | COLUMNSTORE_ARCHIVE
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstDatacompressionModeEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -17391,7 +17120,7 @@ RULE asc_desc
 	 | DESC
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstAscDescEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -17421,17 +17150,6 @@ RULE action_id
 
 RULE aggregate_id 
 //** aggregate_id
-	 : id_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
-	CALCULATED TEMPLATE ClassTerminalAlias
-;
-
-RULE schema_id 
-//** schema_id
 	 : id_
   **// 
 	GENERATE
@@ -17881,17 +17599,6 @@ RULE method_id
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
 
-RULE modified_contract_id 
-//** modified_contract_id
-	 : id_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
-	CALCULATED TEMPLATE ClassTerminalAlias
-;
-
 RULE module_id 
 //** module_id
 	 : id_
@@ -17938,17 +17645,6 @@ RULE non_static_attr_id
 
 RULE notification_id 
 //** notification_id
-	 : id_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
-	CALCULATED TEMPLATE ClassTerminalAlias
-;
-
-RULE object_id 
-//** object_id
 	 : id_
   **// 
 	GENERATE
@@ -18400,7 +18096,7 @@ RULE stringtext
 
 RULE server_database_schema_object_ref 
 //** server_database_schema_object_ref
-	 : (server_id  DOT)?  (database_id  DOT)?  (schema_id  DOT)?  object_id
+	 : (server_id  DOT)?  (database_id  DOT)?  (schema_identifier  DOT)?  object_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -18433,7 +18129,7 @@ RULE event_module_package_action_ref
 
 RULE schema_sequence_ref 
 //** schema_sequence_ref
-	 : (schema_id  DOT)?  sequence_id
+	 : (schema_identifier  DOT)?  sequence_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18444,7 +18140,7 @@ RULE schema_sequence_ref
 
 RULE schema_queue_ref 
 //** schema_queue_ref
-	 : (schema_id  DOT)  queue_id
+	 : (schema_identifier  DOT)  queue_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18466,7 +18162,7 @@ RULE module_package_event_ref
 
 RULE schema_rule_ref 
 //** schema_rule_ref
-	 : (schema_id  DOT)?  rule_id
+	 : (schema_identifier  DOT)?  rule_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18477,7 +18173,7 @@ RULE schema_rule_ref
 
 RULE schema_module_ref 
 //** schema_module_ref
-	 : (schema_id  DOT)?  module_id
+	 : (schema_identifier  DOT)?  module_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18510,7 +18206,7 @@ RULE schema_object_statistics_ref
 
 RULE schema_synonym_ref 
 //** schema_synonym_ref
-	 : (schema_id  DOT)?  synonym_id
+	 : (schema_identifier  DOT)?  synonym_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18521,7 +18217,7 @@ RULE schema_synonym_ref
 
 RULE schema_sql_identifier_id 
 //** schema_sql_identifier_id
-	 : (schema_id  DOT)?  sql_identifier_id
+	 : (schema_identifier  DOT)?  sql_identifier_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18532,7 +18228,7 @@ RULE schema_sql_identifier_id
 
 RULE schema_trigger_ref 
 //** schema_trigger_ref
-	 : (schema_id  DOT)?  trigger_id
+	 : (schema_identifier  DOT)?  trigger_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18543,7 +18239,7 @@ RULE schema_trigger_ref
 
 RULE schema_object_ref 
 //** schema_object_ref
-	 : (schema_id  DOT)?  object_id
+	 : (schema_identifier  DOT)?  object_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -18554,7 +18250,7 @@ RULE schema_object_ref
 
 RULE schema_security_policy_ref 
 //** schema_security_policy_ref
-	 : (schema_id  DOT)?  security_policy_id
+	 : (schema_identifier  DOT)?  security_policy_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18565,7 +18261,7 @@ RULE schema_security_policy_ref
 
 RULE schema_aggregate_ref 
 //** schema_aggregate_ref
-	 : (schema_id  DOT)?  aggregate_id
+	 : (schema_identifier  DOT)?  aggregate_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18587,7 +18283,7 @@ RULE database_schema_queue_ref
 
 RULE database_schema_ref 
 //** database_schema_ref
-	 : (database_id  DOT)?  schema_id
+	 : (database_id  DOT)?  schema_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -18598,7 +18294,7 @@ RULE database_schema_ref
 
 RULE complete_table_ref 
 //** complete_table_ref
-	 : (server_id  DOT  DOT  schema_id  DOT | server_id  DOT  database_id  DOT  schema_id  DOT | database_id  DOT  schema_id?  DOT | schema_id  DOT)?  table_id
+	 : (server_id  DOT  DOT  schema_identifier  DOT | server_id  DOT  database_id  DOT  schema_identifier  DOT | database_id  DOT  schema_identifier?  DOT | schema_identifier  DOT)?  table_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18621,7 +18317,7 @@ RULE full_table_ref
 
 RULE database_schema_table_ref 
 //** database_schema_table_ref
-	 : database_id?  DOT  schema_id?  DOT  table_id
+	 : database_id?  DOT  schema_identifier?  DOT  table_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18632,8 +18328,8 @@ RULE database_schema_table_ref
 
 RULE entity_name_for_azure_dw_ref 
 //** entity_name_for_azure_dw_ref
-	 : schema_id
-	 | schema_id  DOT  object_id
+	 : schema_identifier
+	 | schema_identifier  DOT  object_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -18644,8 +18340,8 @@ RULE entity_name_for_azure_dw_ref
 
 RULE entity_name_for_parallel_dw_ref 
 //** entity_name_for_parallel_dw_ref
-	 : schema_id
-	 | schema_id  DOT  object_id
+	 : schema_identifier
+	 | schema_identifier  DOT  object_identifier
   **// 
 	GENERATE
 	INHERIT 
@@ -18668,7 +18364,7 @@ RULE func_proc_name_database_schema_ref
 
 RULE database_schema_function_ref 
 //** database_schema_function_ref
-	 : database_id?  DOT  schema_id?  DOT  function_id
+	 : database_id?  DOT  schema_identifier?  DOT  function_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18679,8 +18375,8 @@ RULE database_schema_function_ref
 
 RULE full_column_ref 
 //** full_column_ref
-	 : server_id?  DOT  schema_id?  DOT  table_id?  DOT  column_id
-	 | schema_id?  DOT  table_id?  DOT  column_id
+	 : server_id?  DOT  schema_identifier?  DOT  table_id?  DOT  column_id
+	 | schema_identifier?  DOT  table_id?  DOT  column_id
 	 | table_id?  DOT  column_id
 	 | column_id
   **// 
@@ -18704,7 +18400,7 @@ RULE column_or_argument_ids
 
 RULE schema_view_ref 
 //** schema_view_ref
-	 : (schema_id  DOT)?  view_id
+	 : (schema_identifier  DOT)?  view_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18715,7 +18411,7 @@ RULE schema_view_ref
 
 RULE schema_type_ref 
 //** schema_type_ref
-	 : (schema_id  DOT)?  id_
+	 : (schema_identifier  DOT)?  id_
   **// 
 	GENERATE
 	INHERIT 
@@ -18726,7 +18422,7 @@ RULE schema_type_ref
 
 RULE schema_func_proc_ref 
 //** schema_func_proc_ref
-	 : (schema_id  DOT)?  function_id
+	 : (schema_identifier  DOT)?  function_id
   **// 
 	GENERATE
 	INHERIT 
@@ -18925,25 +18621,13 @@ RULE alter_server_role_new_name
 
 RULE alter_service_contract 
 //** alter_service_contract
-	 : add_drop  modified_contract_id
+	 : add_drop  contract_id
   **// 
 	GENERATE
 	INHERIT 
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE ClassWithProperties
 	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE contract 
-//** contract
-	 : modified_contract_id
-	 | DEFAULT
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
 ;
 
 RULE alter_user_item 
@@ -19014,7 +18698,7 @@ RULE transaction
 	 | TRANSACTION
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstTransactionEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -19030,17 +18714,6 @@ RULE transaction_ref
 	CALCULATED INHERIT "AstTerminalIdentifier"
 	TEMPLATE ClassIdentifiers
 	CALCULATED TEMPLATE _
-;
-
-RULE transaction_id 
-//** transaction_id
-	 : id_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstTerminalIdentifier"
-	TEMPLATE ClassIdentifiers
-	CALCULATED TEMPLATE ClassTerminalAlias
 ;
 
 RULE column_ordered 
@@ -19065,24 +18738,13 @@ RULE alter_user_items
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE contracts 
-//** contracts
-	 : contract  (COMMA  contract)*
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstRuleList<AstContract>"
-	TEMPLATE ClassList
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE alter_service_contracts 
 //** alter_service_contracts
-	 : modified_contract_id  (COMMA  modified_contract_id)
+	 : contract_id  (COMMA  contract_id)
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstRuleList<AstModifiedContractId>"
+	CALCULATED INHERIT "AstRuleList<AstContractId>"
 	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
@@ -19136,18 +18798,6 @@ RULE decimal_default
 //** decimal_default
 	 : decimal
 	 | DEFAULT
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
-RULE max_size 
-//** max_size
-	 : file_size
-	 | UNLIMITED
   **// 
 	GENERATE
 	INHERIT 
@@ -19220,7 +18870,7 @@ RULE alter_user_azure_sql_infos
 RULE alter_user_azure_sql_info 
 //** alter_user_azure_sql_info
 	 : NAME  EQUAL  user_id
-	 | default_schema
+	 | default_schema_set
 	 | LOGIN  EQUAL  login_id
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
   **// 
@@ -19350,7 +19000,7 @@ RULE importance_level
 	 | HIGH
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstImportanceLevelEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -19369,11 +19019,11 @@ RULE alter_workload_group_using
 
 RULE alter_availability_replicat_primary 
 //** alter_availability_replicat_primary
-	 : ENDPOINT_URL  EQUAL  url
-	 | availability_mode
+	 : ENDPOINT_URL  EQUAL  url_value
+	 | availability_mode_set
 	 | FAILOVER_MODE  EQUAL  failover = auto_manual
-	 | seeding_mode
-	 | backup_priority
+	 | seeding_mode_set
+	 | backup_priority_set
   **// 
 	GENERATE
 	INHERIT 
@@ -19384,7 +19034,7 @@ RULE alter_availability_replicat_primary
 
 RULE alter_availability_primary_role 
 //** alter_availability_primary_role
-	 : allow_connections
+	 : allow_connections_set
 	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routing_list  RR_BRACKET
 	 | SESSION_TIMEOUT  EQUAL  session_timeout = decimal
   **// 
@@ -19409,7 +19059,7 @@ RULE routing_list
 
 RULE alter_availability_secondary_role 
 //** alter_availability_secondary_role
-	 : allow_connections
+	 : allow_connections_set
 	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  routingList = stringtext  RR_BRACKET
   **// 
 	GENERATE
@@ -19432,7 +19082,7 @@ RULE if_exists
 
 RULE default_ref 
 //** default_ref
-	 : (schema_id  DOT)?  id_
+	 : (schema_identifier  DOT)?  id_
   **// 
 	GENERATE
 	INHERIT 
@@ -19458,7 +19108,7 @@ RULE pwd_strategy
 	 | UNLOCK
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstPwdStrategyEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE ClassEnum
 	CALCULATED TEMPLATE ClassEnum
@@ -19493,7 +19143,7 @@ RULE decimal
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstTerminalDecimal"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -19785,7 +19435,7 @@ RULE encryption_decryption
 	 | ENCRYPTION
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstEncryptionDecryptionEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -20017,17 +19667,6 @@ RULE server_audit_file_spec
 	CALCULATED TEMPLATE _
 ;
 
-RULE change_tracking 
-//** change_tracking
-	 : CHANGE_TRACKING  EQUAL  (OFF | ON  change_tracking_option_list)
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE _
-;
-
 RULE clause_json_info 
 //** clause_json_info
 	 : ROOTWORD  (LR_BRACKET  stringtext  RR_BRACKET)
@@ -20131,17 +19770,6 @@ RULE pwd_value
 	CALCULATED TEMPLATE _
 ;
 
-RULE null 
-//** null
-	 : NULL_
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassTerminalAlias
-;
-
 RULE create_schema_targets 
 //** create_schema_targets
 	 : create_schema_target+
@@ -20183,7 +19811,7 @@ RULE tableoption
 	 : table_opt_varname  EQUAL  table_opt_var_value
 	 | tableoption_cluster_mode
 	 | FILLFACTOR  EQUAL  decimal
-	 | distribution
+	 | table_distribution
 	 | DATA_COMPRESSION  EQUAL  compression_mode  on_partitions?
 	 | XML_COMPRESSION  EQUAL  on_off  on_partitions?
   **// 
@@ -20238,7 +19866,7 @@ RULE float
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstTerminalString"
+	CALCULATED INHERIT "AstTerminalDouble"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassTerminalAlias
 ;
@@ -20378,7 +20006,7 @@ RULE database_object_server
 	 | SERVER
   **// 
 	GENERATE
-	INHERIT "AstTerminal<AstDatabaseObjectServerEnum>"
+	INHERIT 
 	CALCULATED INHERIT "AstTerminalKeyword"
 	TEMPLATE 
 	CALCULATED TEMPLATE ClassEnum
@@ -21788,7 +21416,7 @@ TERM HOST
 
 RULE server_database_schema_function_ref 
 //** server_database_schema_function_ref
-	 : server_id?  DOT  database_id?  DOT  schema_id?  DOT  function_id
+	 : server_id?  DOT  database_id?  DOT  schema_identifier?  DOT  function_id
   **// 
 	GENERATE
 	INHERIT 
@@ -21835,20 +21463,9 @@ RULE asymetric_key_from
 	CALCULATED TEMPLATE _
 ;
 
-RULE primary_role 
-//** primary_role
-	 : PRIMARY_ROLE  LR_BRACKET  primary_role_config  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE primary_role_config 
 //** primary_role_config
-	 : allow_connections
+	 : allow_connections_set
 	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  string_list_not  RR_BRACKET
 	 | SESSION_TIMEOUT  EQUAL  session_timeout = decimal
   **// 
@@ -21871,20 +21488,9 @@ RULE string_list_not
 	CALCULATED TEMPLATE _
 ;
 
-RULE secondary_role 
-//** secondary_role
-	 : SECONDARY_ROLE  LR_BRACKET  secondary_role_config  RR_BRACKET
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE secondary_role_config 
 //** secondary_role_config
-	 : allow_connections
+	 : allow_connections_set
 	 | READ_ONLY_ROUTING_LIST  EQUAL  LR_BRACKET  stringtext  RR_BRACKET
   **// 
 	GENERATE
@@ -22054,7 +21660,7 @@ RULE service_master_key_items
 RULE regenerate_account 
 //** regenerate_account
 	 : OLD_ACCOUNT  EQUAL  acold_account_name = stringtext  COMMA  old_pwd
-	 | NEW_ACCOUNT  EQUAL  new_account_name = stringtext  COMMA  new_password
+	 | NEW_ACCOUNT  EQUAL  new_account_name = stringtext  COMMA  new_password_set
   **// 
 	GENERATE
 	INHERIT 
@@ -22065,7 +21671,7 @@ RULE regenerate_account
 
 RULE schema_id_null 
 //** schema_id_null
-	 : schema_id
+	 : schema_identifier
 	 | NULL_
   **// 
 	GENERATE
@@ -22108,17 +21714,6 @@ RULE password_setting
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
-RULE new_password 
-//** new_password
-	 : NEW_PASSWORD  EQUAL  pwd
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE old_pwd 
 //** old_pwd
 	 : OLD_PASSWORD  EQUAL  pwd
@@ -22152,20 +21747,9 @@ RULE user_settings_shorts
 	CALCULATED TEMPLATE ClassList
 ;
 
-RULE default_schema 
-//** default_schema
-	 : DEFAULT_SCHEMA  EQUAL  schema_id
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
 RULE user_setting 
 //** user_setting
-	 : default_schema
+	 : default_schema_set
 	 | DEFAULT_LANGUAGE  EQUAL  language_setting_value
 	 | SID  EQUAL  binary_
 	 | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS  EQUAL  on_off
@@ -22359,7 +21943,7 @@ RULE language_setting_value
 //** language_setting_value
 	 : NONE
 	 | lcid = decimal
-	 | language
+	 | language_id
   **// 
 	GENERATE
 	INHERIT 
@@ -22539,7 +22123,7 @@ RULE update_operator
 
 RULE sub_search_condition 
 //** sub_search_condition
-	 : predicate
+	 : predicate_expr
 	 | LR_BRACKET  search_condition  RR_BRACKET
   **// 
 	GENERATE
@@ -22907,19 +22491,8 @@ RULE ips
   **// 
 	GENERATE
 	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
-	CALCULATED TEMPLATE ClassWithProperties
-;
-
-RULE url 
-//** url
-	 : stringtext
-  **// 
-	GENERATE
-	INHERIT 
-	CALCULATED INHERIT "AstBnfRule"
-	TEMPLATE 
+	CALCULATED INHERIT "AstRuleList<AstIpListenerComma>"
+	TEMPLATE ClassList
 	CALCULATED TEMPLATE ClassWithProperties
 ;
 
@@ -22945,5 +22518,432 @@ RULE privatekey
 	CALCULATED INHERIT "AstBnfRule"
 	TEMPLATE 
 	CALCULATED TEMPLATE _
+;
+
+RULE database_filestream 
+//** database_filestream
+	 : FILESTREAM  database_filestream_option
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE change_tracking_set 
+//** change_tracking_set
+	 : CHANGE_TRACKING  EQUAL  (OFF | ON  change_tracking_option_list)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE contract_ref 
+//** contract_ref
+	 : contract_id
+	 | DEFAULT
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE timespan 
+//** timespan
+	 : (local_id | constant)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE table_distribution 
+//** table_distribution
+	 : DISTRIBUTION  EQUAL  HASH  LR_BRACKET  id_  RR_BRACKET
+	 | CLUSTERED  INDEX  LR_BRACKET  column_name_list_with_order  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE listener_ip_addr 
+//** listener_ip_addr
+	 : LISTENER_IP  EQUAL  (ALL | ipv4 | ipv6 | stringtext)
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE predicate_expr 
+//** predicate_expr
+	 : EXISTS  LR_BRACKET  subquery  RR_BRACKET
+	 | freetext_predicate
+	 | predicate_binary
+	 | predicate_multi_assign
+	 | expression  comparison_operator  all_some_any  LR_BRACKET  subquery  RR_BRACKET
+	 | predicate_tier
+	 | predicate_not_in
+	 | predicate_not_like
+	 | expression  IS  null_notnull
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE max_file_size_value 
+//** max_file_size_value
+	 : file_size
+	 | UNLIMITED
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE service_name_expr 
+//** service_name_expr
+	 : id_
+	 | expression
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE contract_id 
+//** contract_id
+	 : id_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstTerminalIdentifier"
+	TEMPLATE ClassIdentifiers
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE contract_refs 
+//** contract_refs
+	 : contract_ref  (COMMA  contract_ref)*
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstRuleList<AstContractRef>"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassList
+;
+
+RULE sequence_cycle 
+//** sequence_cycle
+	 : CYCLE
+	 | NO  CYCLE
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE add_remove_database 
+//** add_remove_database
+	 : add_remove  DATABASE  database_id
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE alter_options_listener 
+//** alter_options_listener
+	 : add_listener
+	 | MODIFY  LISTENER  alter_listener
+	 | restart_listener
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE url_value 
+//** url_value
+	 : stringtext
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE backup_priority_set 
+//** backup_priority_set
+	 : BACKUP_PRIORITY  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE alter_availability_replicat 
+//** alter_availability_replicat
+	 : alter_availability_replicat_add
+	 | REMOVE  REPLICA  ON  server_instance_txt
+	 | alter_availability_replicat_modify
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE availability_group_options 
+//** availability_group_options
+	 : JOIN
+	 | JOIN  AVAILABILITY  GROUP  ON  (COMMA?  ag_name = stringtext  WITH  LR_BRACKET  (listener_url_set  COMMA  availability_mode_set  COMMA  failover_mode_manuel  COMMA  seeding_mode_set)  RR_BRACKET)+
+	 | MODIFY  AVAILABILITY  GROUP  ON  (COMMA?  ag_name_modified = stringtext  WITH  LR_BRACKET  (listener_url_set  (COMMA?  availability_mode_set)?  (COMMA?  failover_mode_manuel)?  (COMMA?  seeding_mode_set)?)  RR_BRACKET)+
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE listener_url_set 
+//** listener_url_set
+	 : LISTENER_URL  EQUAL  url_value
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE availability_mode_set 
+//** availability_mode_set
+	 : AVAILABILITY_MODE  EQUAL  synch_asynch
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE seeding_mode_set 
+//** seeding_mode_set
+	 : SEEDING_MODE  EQUAL  auto_manual
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE alter_role 
+//** alter_role
+	 : secondary_role_args
+	 | primary_role_args
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE _
+;
+
+RULE primary_role_args 
+//** primary_role_args
+	 : PRIMARY_ROLE  LR_BRACKET  primary_role_config  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE secondary_role_args 
+//** secondary_role_args
+	 : SECONDARY_ROLE  LR_BRACKET  secondary_role_config  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE allow_connections_set 
+//** allow_connections_set
+	 : ALLOW_CONNECTIONS  EQUAL  no_real_write_all
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE max_process_set 
+//** max_process_set
+	 : MAX_PROCESSES  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE max_memory_set 
+//** max_memory_set
+	 : MAX_MEMORY_PERCENT  EQUAL  decimal
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE new_password_set 
+//** new_password_set
+	 : NEW_PASSWORD  EQUAL  pwd
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE default_schema_set 
+//** default_schema_set
+	 : DEFAULT_SCHEMA  EQUAL  schema_identifier
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE openquery_args 
+//** openquery_args
+	 : OPENQUERY  LR_BRACKET  server_id  COMMA  query = stringtext  RR_BRACKET
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE open_data_source 
+//** open_data_source
+	 : OPENDATASOURCE  LR_BRACKET  provider = stringtext  COMMA  init = stringtext  RR_BRACKET  DOT  database_schema_table_ref
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE pivot_join 
+//** pivot_join
+	 : PIVOT  pivot_clause  as_table_alias
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE unpivot_join 
+//** unpivot_join
+	 : UNPIVOT  unpivot_clause  as_table_alias
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstBnfRule"
+	TEMPLATE 
+	CALCULATED TEMPLATE ClassWithProperties
+;
+
+RULE schema_identifier 
+//** schema_identifier
+	 : id_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstTerminalIdentifier"
+	TEMPLATE ClassIdentifiers
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE language_id 
+//** language_id
+	 : id_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstTerminalIdentifier"
+	TEMPLATE ClassIdentifiers
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE object_identifier 
+//** object_identifier
+	 : id_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstTerminalIdentifier"
+	TEMPLATE ClassIdentifiers
+	CALCULATED TEMPLATE ClassTerminalAlias
+;
+
+RULE transaction_identifier 
+//** transaction_identifier
+	 : id_
+  **// 
+	GENERATE
+	INHERIT 
+	CALCULATED INHERIT "AstTerminalIdentifier"
+	TEMPLATE ClassIdentifiers
+	CALCULATED TEMPLATE ClassTerminalAlias
 ;
 

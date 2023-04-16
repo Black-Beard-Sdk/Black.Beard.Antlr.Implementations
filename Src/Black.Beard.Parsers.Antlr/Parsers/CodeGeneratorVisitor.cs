@@ -38,16 +38,11 @@ namespace Bb.Parsers
 
         }
 
-        public IEnumerable<string> Visit(AstBase a)
+        public void Visit(AstBase a, HashSet<string> generateds)
         {
             this._items.Clear();
             a.Accept(this);
-            return Generate().ToList();
-        }
-
-        private IEnumerable<string> Generate()
-        {
-            return _items.Generate(_ctx);
+            _items.Generate(_ctx, generateds);
         }
 
         public void VisitRules(AstRules a)

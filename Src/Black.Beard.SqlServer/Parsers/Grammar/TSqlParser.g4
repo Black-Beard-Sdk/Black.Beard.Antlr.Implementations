@@ -329,12 +329,12 @@ try_catch_statement
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/waitfor-transact-sql
 waitfor_statement
-    : WAITFOR receive_statement? COMMA? (delay_time_timeout time)?  expression?
+    : WAITFOR receive_statement? COMMA? (delay_time_timeout timespan)?  expression?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/language-elements/while-transact-sql
 while_statement
-    : WHILE search_condition while_statement_content SEMI*
+    : WHILE search_condition while_statement_content
     ;
 
 while_statement_content
@@ -362,7 +362,6 @@ raiseerror_statement
 constant_local_ids : constant_local_id_or_null (COMMA constant_local_id_or_null)+;
 constant_local_id_or_null : constant_local_id | NULL_;
 
-null :  NULL_;
 empty_statement
     : SEMI
     ;
@@ -372,11 +371,11 @@ alter_application_role
     : ALTER APPLICATION ROLE role_id WITH 
       (COMMA? NAME EQUAL new_role=role_id)? 
       (COMMA? password_setting)? 
-      (COMMA? default_schema)?
+      (COMMA? default_schema_set)?
     ;
 
 create_application_role
-    : CREATE APPLICATION ROLE role_id WITH (COMMA? password_setting)? (COMMA? default_schema)?
+    : CREATE APPLICATION ROLE role_id WITH (COMMA? password_setting)? (COMMA? default_schema_set)?
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-aggregate-transact-sql
@@ -648,18 +647,18 @@ drop_availability_group
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-availability-group-transact-sql
 alter_availability_group
-    : alter_availability_group_start alter_availability_group_options
+    : alter_availability_group_start add_remove_database
     ;
 
 alter_availability_group_start
     : ALTER AVAILABILITY GROUP group_id
     ;
 
-alter_availability_group_options_database
+add_remove_database
     : add_remove DATABASE database_id
     ;
 
-alter_availability_group_options_listener
+alter_options_listener
     : add_listener
     | MODIFY LISTENER alter_listener
     | restart_listener
@@ -710,113 +709,113 @@ alter_availability_replicat_modify
     ;
 
 alter_availability_replicat_primary
-    : ENDPOINT_URL EQUAL url
-    | availability_mode
+    : ENDPOINT_URL EQUAL url_value
+    | availability_mode_set
     | FAILOVER_MODE EQUAL failover=auto_manual 
-    | seeding_mode
-    | backup_priority
+    | seeding_mode_set
+    | backup_priority_set
     ;
 
-url : stringtext;
+url_value: stringtext;
 
 alter_availability_primary_role
-    : allow_connections
+    : allow_connections_set
     | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routing_list RR_BRACKET
     | SESSION_TIMEOUT EQUAL session_timeout=decimal
     ;
 routing_list : string_list | NONE;
 
 alter_availability_secondary_role
-    : allow_connections
+    : allow_connections_set
     | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET routingList=stringtext RR_BRACKET
     ;
 
 
-backup_priority : BACKUP_PRIORITY EQUAL decimal ;
+backup_priority_set : BACKUP_PRIORITY EQUAL decimal ;
 
 alter_availability_replicat_add
     : ADD REPLICA ON server_instance_txt WITH 
     LR_BRACKET 
         (ENDPOINT_URL EQUAL stringtext)?   
-        (COMMA? availability_mode)?    
+        (COMMA? availability_mode_set)?    
         (COMMA? FAILOVER_MODE EQUAL auto_manual )?  
-        (COMMA? seeding_mode)?  
-        (COMMA? backup_priority)?  
+        (COMMA? seeding_mode_set)?  
+        (COMMA? backup_priority_set)?  
         (COMMA? PRIMARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL real_write_all RR_BRACKET)?   
         (COMMA? SECONDARY_ROLE LR_BRACKET ALLOW_CONNECTIONS EQUAL READ_ONLY RR_BRACKET)? 
     RR_BRACKET
     ;
 
-alter_availability_group_options_replicat
+alter_availability_replicat
     : alter_availability_replicat_add
     | REMOVE REPLICA ON server_instance_txt
     | alter_availability_replicat_modify
     ;
 
-alter_availability_group_options_group
+availability_group_options
     : JOIN
     | JOIN AVAILABILITY GROUP ON 
         (
             COMMA? ag_name=stringtext WITH LR_BRACKET 
             ( 
-                listener_url
-                COMMA availability_mode
+                listener_url_set
+                COMMA availability_mode_set
                 COMMA failover_mode_manuel
-                COMMA seeding_mode
+                COMMA seeding_mode_set
             ) RR_BRACKET
         )+
     | MODIFY AVAILABILITY GROUP ON 
         (
             COMMA? ag_name_modified=stringtext WITH LR_BRACKET 
             (
-                listener_url
-                (COMMA? availability_mode)? 
+                listener_url_set
+                (COMMA? availability_mode_set)? 
                 (COMMA? failover_mode_manuel)? 
-                (COMMA? seeding_mode)?
+                (COMMA? seeding_mode_set)?
             ) RR_BRACKET
         )+
     ;
 
-listener_url : LISTENER_URL EQUAL url;
-availability_mode : AVAILABILITY_MODE EQUAL synch_asynch;
+listener_url_set : LISTENER_URL EQUAL url_value;
+availability_mode_set : AVAILABILITY_MODE EQUAL synch_asynch;
 failover_mode_manuel :  FAILOVER_MODE EQUAL MANUAL;
-seeding_mode : SEEDING_MODE EQUAL auto_manual;
+seeding_mode_set : SEEDING_MODE EQUAL auto_manual;
 
-alter_availability_group_options_role
-    : secondary_role
-    | primary_role 
+alter_role
+    : secondary_role_args
+    | primary_role_args 
     ;
 
-primary_role
+primary_role_args
     : PRIMARY_ROLE LR_BRACKET primary_role_config RR_BRACKET
     ;
 
 primary_role_config 
-    : allow_connections
+    : allow_connections_set
     | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET string_list_not RR_BRACKET
     | SESSION_TIMEOUT EQUAL session_timeout=decimal
     ;
 
 string_list_not : string_list | NONE;
 
-secondary_role
+secondary_role_args
     : SECONDARY_ROLE LR_BRACKET secondary_role_config RR_BRACKET
     ;
 
 secondary_role_config 
-    : allow_connections
+    : allow_connections_set
     | READ_ONLY_ROUTING_LIST EQUAL LR_BRACKET stringtext RR_BRACKET
     ;
 
-allow_connections : ALLOW_CONNECTIONS EQUAL no_real_write_all;
+allow_connections_set : ALLOW_CONNECTIONS EQUAL no_real_write_all;
 
 alter_availability_group_options
     : SET LR_BRACKET alter_availability_group_option_set RR_BRACKET  
-    | alter_availability_group_options_database
-    | alter_availability_group_options_replicat
-    | alter_availability_group_options_listener
-    | alter_availability_group_options_role
-    | alter_availability_group_options_group
+    | add_remove_database
+    | alter_availability_replicat
+    | alter_options_listener
+    | alter_role
+    | availability_group_options
     | grant_deny CREATE ANY DATABASE    
     | FAILOVER
     | FORCE_FAILOVER_ALLOW_DATA_LOSS
@@ -1068,7 +1067,7 @@ drop_rule
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-schema-transact-sql
 drop_schema
-    :  DROP SCHEMA ( IF EXISTS )? schema_id
+    :  DROP SCHEMA ( IF EXISTS )? schema_identifier
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/drop-search-property-list-transact-sql
@@ -1392,13 +1391,13 @@ external_resource_with
               COMMA? AFFINITY CPU EQUAL (AUTO | decimal_ranges) 
             | NUMANODE EQUAL decimal_ranges
         )
-        (COMMA? max_memory)?
-        (COMMA? maw_process)?
+        (COMMA? max_memory_set)?
+        (COMMA? max_process_set)?
 
         RR_BRACKET
     ;
-maw_process : MAX_PROCESSES EQUAL decimal;
-max_memory : MAX_MEMORY_PERCENT EQUAL decimal;
+max_process_set : MAX_PROCESSES EQUAL decimal;
+max_memory_set : MAX_MEMORY_PERCENT EQUAL decimal;
 max_cpu : MAX_CPU_PERCENT EQUAL decimal;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-fulltext-catalog-transact-sql
@@ -1450,7 +1449,7 @@ alter_login_sql_server_settings
     :  pwd_settings? 
        old_pwd_strategies? 
       (DEFAULT_DATABASE EQUAL database_id)? 
-      (DEFAULT_LANGUAGE EQUAL language)?  
+      (DEFAULT_LANGUAGE EQUAL language_id)?  
       (NAME EQUAL login_id)? 
       (CHECK_POLICY EQUAL check_policy=on_off )? 
       (CHECK_EXPIRATION EQUAL check_expiration=on_off )? 
@@ -1468,7 +1467,7 @@ create_login_sql_server_settings
     (PASSWORD EQUAL pwd_value pwd_strategies? )?
     (COMMA? SID EQUAL sid=binary_)?
     (COMMA? DEFAULT_DATABASE EQUAL database_id)?
-    (COMMA? DEFAULT_LANGUAGE EQUAL language)?
+    (COMMA? DEFAULT_LANGUAGE EQUAL language_id)?
     (COMMA? CHECK_EXPIRATION EQUAL check_expiration=on_off )?
     (COMMA? CHECK_POLICY EQUAL check_policy=on_off )?
     (COMMA? CREDENTIAL EQUAL credential_id)?
@@ -1675,7 +1674,7 @@ create_rule
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-schema-transact-sql
 alter_schema_sql
-    : ALTER SCHEMA schema_id TRANSFER transfert_target? id_dot_id
+    : ALTER SCHEMA schema_identifier TRANSFER transfert_target? id_dot_id
     ;
 
 id_dot_id : id_ (DOT id_)?;
@@ -1686,8 +1685,8 @@ create_schema
     ;
 
 create_schema_name
-    : schema_id schema_authorization?
-    | schema_id? schema_authorization
+    : schema_identifier schema_authorization?
+    | schema_identifier? schema_authorization
     ;
 
 create_schema_targets : create_schema_target+;
@@ -1695,8 +1694,8 @@ create_schema_targets : create_schema_target+;
 create_schema_target
     : create_table
     | create_view
-    | grant_deny enum_dml ON (SCHEMA DOUBLE_COLON)? object_id TO owner_id
-    | REVOKE enum_dml ON (SCHEMA DOUBLE_COLON)? object_id FROM owner_id
+    | grant_deny enum_dml ON (SCHEMA DOUBLE_COLON)? object_identifier TO owner_id
+    | REVOKE enum_dml ON (SCHEMA DOUBLE_COLON)? object_identifier FROM owner_id
     ;
 
 schema_authorization : AUTHORIZATION owner_id;
@@ -1708,11 +1707,11 @@ enum_dml
     | UPDATE;
 
 create_schema_azure_sql_dw_and_pdw
-    : CREATE SCHEMA schema_id (AUTHORIZATION owner_id )?
+    : CREATE SCHEMA schema_identifier (AUTHORIZATION owner_id )?
     ;
 
 alter_schema_azure_sql_dw_and_pdw
-    : ALTER SCHEMA schema_id TRANSFER (OBJECT DOUBLE_COLON )? id_dot_id
+    : ALTER SCHEMA schema_identifier TRANSFER (OBJECT DOUBLE_COLON )? id_dot_id
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-search-property-list-transact-sql
@@ -1749,7 +1748,7 @@ alter_sequence
       alter_sequence_restart? 
       alter_sequence_increment? 
       alter_sequence_min_value? 
-      alter_sequence_max_value cycle? 
+      alter_sequence_max_value sequence_cycle? 
       sequence_cache?
     ;
 
@@ -1784,7 +1783,7 @@ create_sequence
         create_sequence_increment?
         create_sequence_min_value?
         create_sequence_max_value?
-        cycle?
+        sequence_cycle?
         sequence_cache?
     ;
 
@@ -1983,17 +1982,17 @@ alter_service
     : ALTER SERVICE service_id (ON QUEUE schema_queue_ref)? alter_service_contracts?
     ;
 
-alter_service_contract : add_drop modified_contract_id;
+alter_service_contract : add_drop contract_id;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-service-transact-sql
 create_service
     : CREATE SERVICE service_id
         (AUTHORIZATION owner_id)?
         ON QUEUE schema_queue_ref
-        ( LR_BRACKET contracts RR_BRACKET )?
+        ( LR_BRACKET contract_refs RR_BRACKET )?
     ;
 
-contract : modified_contract_id | DEFAULT;
+contract_ref : contract_id | DEFAULT;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-service-master-key-transact-sql
 alter_service_master_key
@@ -2007,7 +2006,7 @@ service_master_key_items
 
 regenerate_account 
     : OLD_ACCOUNT EQUAL acold_account_name=stringtext COMMA old_pwd 
-    | NEW_ACCOUNT EQUAL new_account_name=stringtext COMMA new_password
+    | NEW_ACCOUNT EQUAL new_account_name=stringtext COMMA new_password_set
     ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-symmetric-key-transact-sql
@@ -2048,7 +2047,7 @@ alter_user_item
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off
     ;
 
-schema_id_null : schema_id | NULL_ ;
+schema_id_null : schema_identifier | NULL_ ;
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/create-user-transact-sql
 create_user
@@ -2077,7 +2076,7 @@ old_pwd_strategies : old_pwd pwd_strategies?;
 pwd_settings : PASSWORD EQUAL pwd_value pwd_strategies?;
 
 password_setting : PASSWORD EQUAL pwd;
-new_password : NEW_PASSWORD EQUAL pwd;
+new_password_set : NEW_PASSWORD EQUAL pwd;
 old_pwd : OLD_PASSWORD EQUAL pwd;
 
 pwd_value : pwd | binary_ HASHED;
@@ -2086,17 +2085,17 @@ pwd : stringtext;
 user_settings_shorts : user_settings_short (COMMA user_settings_short)+;
 
 user_settings_short
-    : default_schema
+    : default_schema_set
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off    
     ;
 
 user_settings : user_setting (COMMA user_setting)+;
 
 
-default_schema : DEFAULT_SCHEMA EQUAL schema_id;
+default_schema_set : DEFAULT_SCHEMA EQUAL schema_identifier;
 
 user_setting
-    : default_schema
+    : default_schema_set
     | DEFAULT_LANGUAGE EQUAL language_setting_value
     | SID EQUAL binary_
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off                    
@@ -2105,11 +2104,11 @@ user_setting
 create_user_azure_sql_dw
     : CREATE USER user_id
         user_strategy?
-        ( WITH default_schema)?
+        ( WITH default_schema_set)?
 
     | CREATE USER user_id
         FROM EXTERNAL PROVIDER
-        ( WITH default_schema)?
+        ( WITH default_schema_set)?
     ;
 
 user_strategy
@@ -2125,7 +2124,7 @@ alter_user_azure_sql_infos : alter_user_azure_sql_info (COMMA alter_user_azure_s
 
 alter_user_azure_sql_info
     : NAME EQUAL user_id 
-    | default_schema
+    | default_schema_set
     | LOGIN EQUAL login_id  
     | ALLOW_ENCRYPTED_VALUE_MODIFICATIONS EQUAL on_off 
     ;
@@ -2338,7 +2337,7 @@ select_statement
     : query_expression select_order_by_clause? for_clause? update_option_clause? SEMI?
     ;
 
-time
+timespan
     : (local_id | constant)
     ;
 
@@ -2721,7 +2720,7 @@ tableoption
     : table_opt_varname EQUAL table_opt_var_value
     | tableoption_cluster_mode
     | FILLFACTOR EQUAL decimal
-    | distribution
+    | table_distribution
     | DATA_COMPRESSION EQUAL compression_mode on_partitions?
     | XML_COMPRESSION EQUAL on_off on_partitions?
     ;
@@ -2729,7 +2728,7 @@ tableoption
 table_opt_varname : (simple_id | keyword);
 table_opt_var_value : (simple_id | keyword | on_off | decimal);
 
-distribution
+table_distribution
     : DISTRIBUTION EQUAL HASH LR_BRACKET id_ RR_BRACKET 
     | CLUSTERED INDEX LR_BRACKET column_name_list_with_order RR_BRACKET
     ;
@@ -2800,7 +2799,7 @@ switch_partition
 
 low_priority_lock_wait
     : WAIT_AT_LOW_PRIORITY LR_BRACKET
-      MAX_DURATION EQUAL max_duration=time MINUTES? COMMA
+      MAX_DURATION EQUAL max_duration=timespan MINUTES? COMMA
       ABORT_AFTER_WAIT EQUAL abort_after_wait=abord_after_mode RR_BRACKET
     ;
 
@@ -2861,7 +2860,7 @@ filegroup_updatability_option
 // Runtime check.
 database_optionspec
     : auto_option
-    | change_tracking
+    | change_tracking_set
     | containment_option
     | cursor_option
     | database_mirroring_option
@@ -2872,7 +2871,7 @@ database_optionspec
     | db_user_access_option
     | delayed_durability_option
     | external_access_option
-    | FILESTREAM database_filestream_option
+    | database_filestream
     | hadr_options
     | mixed_page_allocation_option
     | parameterization_option
@@ -2886,6 +2885,8 @@ database_optionspec
     | termination
     ;
 
+database_filestream : FILESTREAM database_filestream_option;
+
 auto_option
     : AUTO_CLOSE on_off
     | AUTO_CREATE_STATISTICS  statistic_value
@@ -2894,7 +2895,7 @@ auto_option
     | AUTO_UPDATE_STATISTICS_ASYNC  on_off
     ;
 
-change_tracking
+change_tracking_set
     : CHANGE_TRACKING EQUAL ( OFF | ON change_tracking_option_list)
     ;
 
@@ -2914,12 +2915,12 @@ cursor_option
     | CURSOR_DEFAULT local_global
     ;
 
-listener_ip : LISTENER_IP EQUAL (ALL | ipv4 | ipv6 | stringtext);
+listener_ip_addr : LISTENER_IP EQUAL (ALL | ipv4 | ipv6 | stringtext);
 
 // https://docs.microsoft.com/en-us/sql/t-sql/statements/alter-endpoint-transact-sql
 alter_endpoint
     : ALTER ENDPOINT endpoint_id (AUTHORIZATION login_id)? ( STATE EQUAL state_enum )? 
-        AS TCP LR_BRACKET LISTENER_PORT EQUAL decimal ( COMMA listener_ip )? RR_BRACKET
+        AS TCP LR_BRACKET LISTENER_PORT EQUAL decimal ( COMMA listener_ip_addr )? RR_BRACKET
         (     TSQL
             | alter_endpoint_service_broker
             | alter_endpoint_database_mirroring
@@ -3033,7 +3034,7 @@ language_setting : id_or_string;
 language_setting_value
     : NONE 
     | lcid=decimal 
-    | language
+    | language_id
     ;
 
 id_or_string
@@ -3157,17 +3158,17 @@ drop_type:
     ;
 
 rowset_function_limited
-    : openquery
-    | opendatasource
+    : openquery_args
+    | open_data_source
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms188427(v=sql.120).aspx
-openquery
+openquery_args
     : OPENQUERY LR_BRACKET server_id COMMA query=stringtext RR_BRACKET
     ;
 
 // https://msdn.microsoft.com/en-us/library/ms179856.aspx
-opendatasource
+open_data_source
     : OPENDATASOURCE LR_BRACKET provider=stringtext COMMA init=stringtext RR_BRACKET DOT database_schema_table_ref
     ;
 
@@ -3569,8 +3570,8 @@ transaction_statement
     | COMMIT transaction (transaction_ref (WITH LR_BRACKET DELAYED_DURABILITY EQUAL on_off RR_BRACKET)?)?
     // https://msdn.microsoft.com/en-us/library/ms178628.aspx
     | COMMIT WORK?
-    | COMMIT transaction_id
-    | ROLLBACK transaction_id
+    | COMMIT transaction_identifier
+    | ROLLBACK transaction_identifier
     // https://msdn.microsoft.com/en-us/library/ms181299.aspx
     | ROLLBACK transaction transaction_ref?
     // https://msdn.microsoft.com/en-us/library/ms174973.aspx
@@ -3823,7 +3824,7 @@ alter_table_index_option
     | MAXDOP EQUAL max_degree_of_parallelism=decimal
     | DATA_COMPRESSION EQUAL index_strategy on_partitions?
     | XML_COMPRESSION EQUAL on_off on_partitions?
-    | distribution
+    | table_distribution
     | ONLINE EQUAL online_value
     | RESUMABLE EQUAL on_off
     | MAX_DURATION EQUAL times=decimal MINUTES?
@@ -3972,11 +3973,11 @@ search_condition
     ;
 
 sub_search_condition 
-    : predicate 
+    : predicate_expr
     | LR_BRACKET search_condition RR_BRACKET
     ;
 
-predicate
+predicate_expr
     : EXISTS LR_BRACKET subquery RR_BRACKET
     | freetext_predicate
     | predicate_binary
@@ -4233,8 +4234,8 @@ join_part
     : join_on
     | cross_join
     | apply_enum
-    | pivot
-    | unpivot
+    | pivot_join
+    | unpivot_join
     ;
 join_on
     : (inner=INNER? | join_type outer=OUTER?) join_hint?
@@ -4249,11 +4250,11 @@ apply_enum
     : apply_style APPLY source=table_source
     ;
 
-pivot
+pivot_join
     : PIVOT pivot_clause as_table_alias
     ;
 
-unpivot
+unpivot_join
     : UNPIVOT unpivot_clause as_table_alias
     ;
 
@@ -4824,12 +4825,12 @@ file_spec
       NAME EQUAL id_or_string COMMA?
       FILENAME EQUAL file = stringtext COMMA?
       ( SIZE EQUAL size=file_size COMMA? )?
-      ( MAXSIZE EQUAL max_size COMMA? )?
+      ( MAXSIZE EQUAL max_file_size_value COMMA? )?
       ( FILEGROWTH EQUAL filegrowth=file_size COMMA? )?
       RR_BRACKET
     ;
 
-max_size : file_size | UNLIMITED;
+max_file_size_value : file_size | UNLIMITED;
 
 cursor_name
     : id_
@@ -4846,13 +4847,13 @@ scalar_function_name
     ;
 
 begin_conversation_timer
-    : BEGIN CONVERSATION TIMER LR_BRACKET conversation=local_id RR_BRACKET TIMEOUT EQUAL time
+    : BEGIN CONVERSATION TIMER LR_BRACKET conversation=local_id RR_BRACKET TIMEOUT EQUAL timespan
     ;
 
 begin_conversation_dialog
     : BEGIN DIALOG (CONVERSATION)? dialog_handle=local_id
-      FROM SERVICE initiator_service_name=service_name
-      TO SERVICE target_service_name=service_name (COMMA service_broker_guid=stringtext)?
+      FROM SERVICE initiator_service_name=service_name_expr
+      TO SERVICE target_service_name=service_name_expr (COMMA service_broker_guid=stringtext)?
       ON CONTRACT contract_name_expression
       (WITH
         (relayed_conversation EQUAL group=local_id COMMA?)?
@@ -4866,7 +4867,7 @@ contract_name_expression
     | expression
     ;
 
-service_name
+service_name_expr
     : id_ 
     | expression
     ;
@@ -4883,7 +4884,7 @@ end_conversation
     ;
 
 waitfor_conversation
-    : WAITFOR? LR_BRACKET get_conversation RR_BRACKET (COMMA? TIMEOUT timeout=time)?
+    : WAITFOR? LR_BRACKET get_conversation RR_BRACKET (COMMA? TIMEOUT timeout=timespan)?
     ;
 
 get_conversation
@@ -5784,7 +5785,7 @@ id_simple : ID;
 filestream_filegroup_or_partition_schema_id : id_;
 action_id : id_;
 aggregate_id : id_;
-schema_id : id_;
+schema_identifier : id_;
 assembly_id : id_;
 asym_key_id : id_;
 audit_action_group_id : id_;
@@ -5820,21 +5821,21 @@ external_pool_id : id_;
 function_id : id_;
 group_id : id_;
 index_id : id_;
-language : id_;
+language_id : id_;
 library_id : id_;
 server_id : id_;
 logical_device_id : id_;
 login_id : id_;
 master_key : id_;
 method_id : id_;
-modified_contract_id : id_;
+contract_id : id_;
 module_id : id_;
 network_computer : id_;
 role_id : id_;
 file_group_id : id_;
 non_static_attr_id : id_;
 notification_id : id_;
-object_id : id_;
+object_identifier : id_;
 owner_id : id_;
 partition_column_id : id_;
 pool_id : id_;
@@ -5874,7 +5875,7 @@ queue_id : id_;
 partition_function_id: id_;
 message_type_id:id_;
 code_location_id : id_;
-transaction_id : id_;
+transaction_identifier : id_;
 
 schema_security_predicate_function_id : tvf_schema_id DOT security_predicate_function_id;
 
@@ -5894,52 +5895,52 @@ string_local_id_double_quote_id : stringtext | local_id | empty_value;
 
 // ---------------  Composites Ids ---------------
 
-server_database_schema_object_ref : (server_id DOT)? (database_id DOT)? (schema_id DOT)? object_id;
+server_database_schema_object_ref : (server_id DOT)? (database_id DOT)? (schema_identifier DOT)? object_identifier;
 
 database_stoplist_ref : (database_id DOT)? stoplist_id;
 
 event_module_package_action_ref : (event_module_guid_id DOT)? event_package_id DOT action_id;
 
-schema_sequence_ref : (schema_id DOT)? sequence_id;
+schema_sequence_ref : (schema_identifier DOT)? sequence_id;
 
-schema_queue_ref : (schema_id DOT) queue_id;
+schema_queue_ref : (schema_identifier DOT) queue_id;
 
 module_package_event_ref : (event_module_guid_id DOT)? event_package_id DOT target_id;
 
-schema_rule_ref : (schema_id DOT)? rule_id;
+schema_rule_ref : (schema_identifier DOT)? rule_id;
 
-schema_module_ref : (schema_id DOT)? module_id;
+schema_module_ref : (schema_identifier DOT)? module_id;
 
 database_schema_sequence_ref : (database_id DOT)? schema_sequence_ref;
 
 schema_object_statistics_ref : schema_object_ref DOT statistics_id;
-schema_synonym_ref : ( schema_id DOT )? synonym_id;
+schema_synonym_ref : ( schema_identifier DOT )? synonym_id;
 
-default_ref : (schema_id DOT)? id_;
+default_ref : (schema_identifier DOT)? id_;
 
-schema_sql_identifier_id : ( schema_id DOT )?  sql_identifier_id;
+schema_sql_identifier_id : ( schema_identifier DOT )?  sql_identifier_id;
 
-schema_trigger_ref : (schema_id DOT)? trigger_id;
+schema_trigger_ref : (schema_identifier DOT)? trigger_id;
 
-schema_object_ref : (schema_id DOT)? object_id;
+schema_object_ref : (schema_identifier DOT)? object_identifier;
 
-schema_security_policy_ref : (schema_id DOT)? security_policy_id;
+schema_security_policy_ref : (schema_identifier DOT)? security_policy_id;
 
-schema_aggregate_ref : ( schema_id DOT )? aggregate_id;
+schema_aggregate_ref : ( schema_identifier DOT )? aggregate_id;
 
 database_schema_queue_ref  : (database_schema_ref DOT)? queue_id
     ;
 
-database_schema_ref : (database_id DOT)? schema_id;
+database_schema_ref : (database_id DOT)? schema_identifier;
 
-drop_backward_compatible_index : (schema_id DOT )? table_or_view_id DOT index_id
+drop_backward_compatible_index : (schema_identifier DOT )? table_or_view_id DOT index_id
     ;
 
 complete_table_ref
-    : ( server_id DOT DOT schema_id DOT
-    |   server_id DOT database_id DOT schema_id  DOT
-    |                 database_id DOT schema_id? DOT
-    |                                 schema_id  DOT 
+    : ( server_id DOT DOT schema_identifier DOT
+    |   server_id DOT database_id DOT schema_identifier  DOT
+    |                 database_id DOT schema_identifier? DOT
+    |                                 schema_identifier  DOT 
       )? table_id
     ;
 
@@ -5948,16 +5949,16 @@ full_table_ref
     | database_schema_ref? blocking_hierarchy=BLOCKING_HIERARCHY
     ;
 
-database_schema_table_ref : database_id? DOT schema_id? DOT table_id;
+database_schema_table_ref : database_id? DOT schema_identifier? DOT table_id;
 
 entity_name_for_azure_dw_ref
-    : schema_id
-    | schema_id DOT object_id
+    : schema_identifier
+    | schema_identifier DOT object_identifier
     ;
 
 entity_name_for_parallel_dw_ref
-    : schema_id
-    | schema_id DOT object_id
+    : schema_identifier
+    | schema_identifier DOT object_identifier
     ;
 
 
@@ -5971,9 +5972,9 @@ func_proc_name_database_schema_ref
     | schema_func_proc_ref
     ;
 
-server_database_schema_function_ref : server_id? DOT database_id? DOT schema_id? DOT function_id;
-database_schema_function_ref : database_id? DOT schema_id? DOT function_id;
-schema_func_proc_ref : (schema_id DOT )? function_id;
+server_database_schema_function_ref : server_id? DOT database_id? DOT schema_identifier? DOT function_id;
+database_schema_function_ref : database_id? DOT schema_identifier? DOT function_id;
+schema_func_proc_ref : (schema_identifier DOT )? function_id;
 
 ddl_object
     : complete_table_ref
@@ -5988,16 +5989,16 @@ full_column_name
 deleteed_inserted_column_id : deleteed_inserted DOT column_id;
 
 full_column_ref
-    : server_id? DOT schema_id? DOT table_id? DOT column_id
-    |                schema_id? DOT table_id? DOT column_id
+    : server_id? DOT schema_identifier? DOT table_id? DOT column_id
+    |                schema_identifier? DOT table_id? DOT column_id
     |                               table_id? DOT column_id
     |                                             column_id
     ;
 
 entity_name
-    : (server_id DOT database_id DOT schema_id  DOT
-    |                database_id DOT schema_id? DOT
-    |                                schema_id  DOT )? object_id
+    : (server_id DOT database_id DOT schema_identifier  DOT
+    |                database_id DOT schema_identifier? DOT
+    |                                schema_identifier  DOT )? object_identifier
     ;
 
 column_name_list_with_order
@@ -6010,11 +6011,11 @@ column_or_argument_ids : column_or_argument_id (COMMA? column_or_argument_id)*;
 
 
 // ---------------  Listes ---------------
-schema_view_ref : (schema_id DOT )? view_id;
+schema_view_ref : (schema_identifier DOT )? view_id;
 
 decimals : decimal (COMMA decimal)+;
 
-schema_type_ref : (schema_id DOT )? id_;
+schema_type_ref : (schema_identifier DOT )? id_;
 
 database_source_list_ref : (database_id DOT)? source_list_id;
 
@@ -6208,9 +6209,9 @@ tableoptions : tableoption (COMMA tableoption)*;
 
 alter_user_items : alter_user_item (COMMA alter_user_item)*;
 
-contracts : contract (COMMA contract)*;
+contract_refs : contract_ref (COMMA contract_ref)*;
 
-alter_service_contracts : modified_contract_id (COMMA modified_contract_id);
+alter_service_contracts : contract_id (COMMA contract_id);
 
 decimal_ranges : decimal_range (COMMA? decimal_range )*;
 
@@ -6558,7 +6559,7 @@ message_validation_value_enum
     | WELL_FORMED_XML
     ;
 
-cycle : CYCLE | NO CYCLE;
+sequence_cycle : CYCLE | NO CYCLE;
 
 size_unity : MB | GB | TB;
 

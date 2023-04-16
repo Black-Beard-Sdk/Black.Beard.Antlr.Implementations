@@ -15,9 +15,16 @@ namespace Generate.Scripts
 
         public override string GetInherit(AstRule ast, Context context)
         {
+
             if (IsConstant(ast))
                 return GetInherit_Impl("AstBnfRule", ast, context);
+
+            var type2 = ast.Select(c => c.Type == "TOKEN_REF").FirstOrDefault()?.Type();
+            if (type2 != null)
+                return GetInherit_Impl("AstTerminal" + type2, ast, context);
+
             return GetInherit_Impl("AstTerminalString", ast, context);
+
         }
 
         public override string StrategyTemplateKey => "ClassTerminalAlias";
@@ -47,15 +54,33 @@ namespace Generate.Scripts
                               .Name(() => ast.Type())
                               .Inherit(() => GetInherit(ast, ctx))
 
-                              .CtorWhen(() => IsDynamic(ast)
+                              // ITerminalNode
+                              .CtorWhen(() => IsDynamic(ast)                              
                               ,(f) =>
                               {
                                   f.Argument(() => "ITerminalNode", "t")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "t".Var().Call("GetText"));
                               })
+                              .CtorWhen(() => IsDynamic(ast)
+                              , (f) =>
+                              {
+                                  f.Argument(() => "ITerminalNode", "t")
+                                   .Argument(() => GetType(ast), "value")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("t".Var(), "value".Var());
+                              })
+                              .CtorWhen(() => IsDynamic(ast)
+                              , (f) =>
+                              {
+                                  f.Argument(() => "ITerminalNode", "t")
+                                   .Argument(() => nameof(String), "value")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("t".Var(), "value".Var());
+                              })
 
 
+                              // ParserRuleContext
                               .CtorWhen(() => IsDynamic(ast)
                               ,(f) =>
                               {
@@ -63,40 +88,66 @@ namespace Generate.Scripts
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx".Var(), "ctx".Var().Call("GetText"));
                               })
-
-
-                              .CtorWhen(() => IsDynamic(ast)
+                             .CtorWhen(() => IsDynamic(ast)
                              ,(f) =>
-                              {                                                                   
+                              {
                                   f.Argument(() => "ParserRuleContext", "ctx")
-                                   .Argument(() => typeof(string), "value")
+                                   .Argument(() => GetType(ast), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("ctx".Var(), "value".Var());
                               })
-                              .CtorWhen(() => IsDynamic(ast), (f) =>
+                             .CtorWhen(() => IsDynamic(ast)
+                             , (f) =>
+                             {
+                                 f.Argument(() => "ParserRuleContext", "ctx")
+                                  .Argument(() => nameof(String), "value")
+                                  .Attribute(MemberAttributes.Public)
+                                  .CallBase("ctx".Var(), "value".Var());
+                             })
+
+
+                             .CtorWhen(() => IsDynamic(ast), (f) =>
                               {
                                   f.Argument(() => "Position", "t")
                                    .Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("t".Var(), "value".Var());
                               })
+                             .CtorWhen(() => IsDynamic(ast) && GetType(ast) != "String", (f) =>
+                              {
+                                  f.Argument(() => "Position", "t")
+                                   .Argument(() => GetType(ast), "value")
+                                   .Attribute(MemberAttributes.Public)
+                                   .CallBase("t".Var(), "value".Var());
+                              })
 
 
-                              .CtorWhen(() => IsDynamic(ast), (f) =>
+                             .CtorWhen(() => IsDynamic(ast), (f) =>
                               {
                                   f.Argument(() => typeof(string), "value")
                                    .Attribute(MemberAttributes.Public)
                                    .CallBase("Position.Default".Var(), "value".Var());
                               })
-                              .CtorWhen(() => IsConstant(ast), (f) =>
+                             .CtorWhen(() => IsDynamic(ast) && GetType(ast) != "String", (f) =>
                               {
-                                  f
+                                  f.Argument(() => GetType(ast), "value")
                                    .Attribute(MemberAttributes.Public)
-                                   .CallBase("Position.Default".Var());
+                                   .CallBase("Position.Default".Var(), "value".Var());
                               })
 
 
-                              .Method(method =>
+                             .CtorWhen(() =>
+                              {
+                                  return IsConstant(ast);
+                              }, (f) =>
+                             {
+                                 f
+                                  .Attribute(MemberAttributes.Public)
+                                  .CallBase("Position.Default".Var());
+                             })
+
+
+                             .Method(method =>
                               {
                                   method
                                    .Name(g => "Accept")
@@ -113,7 +164,7 @@ namespace Generate.Scripts
                                    });
                               })
 
-                              .Make(t =>
+                             .Make(t =>
                               {
 
                                   HashSet<string> _h = new HashSet<string>();
@@ -173,6 +224,15 @@ namespace Generate.Scripts
         }
 
 
+        private static string GetType(AstBase ast)
+        {
+            string type = nameof(String);
+            var type2 = ast.Select(c => c.Type == "TOKEN_REF").FirstOrDefault()?.Type();
+            if (type2 != null)
+                type = type2;
+            return type;
+        }
+
         private static bool IsConstant(AstRule ast)
         {
             var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
@@ -182,13 +242,26 @@ namespace Generate.Scripts
                 if (m != null)
                 {
                     var t = m.Link.TerminalKind;
-                    return t == TokenTypeEnum.Constant;
+                    if (t == TokenTypeEnum.Constant)
+                        return true;
+
+                    if (t == TokenTypeEnum.Ponctuation)
+                        return true;
+
+                    if (t == TokenTypeEnum.Operator)
+                        return true;
+
+                    else
+                    {
+
+                    }
                 }
             }
 
             return false;
 
         }
+        
         private static bool IsDynamic(AstRule ast)
         {
             var l = ast.Select(c => c.Type == nameof(AstTerminal)).FirstOrDefault();
@@ -211,9 +284,9 @@ namespace Generate.Scripts
                         case TokenTypeEnum.Hexa:
                         case TokenTypeEnum.Binary:
                         case TokenTypeEnum.Pattern:
-                        case TokenTypeEnum.Operator:
                             return true;
 
+                        case TokenTypeEnum.Operator:
                         case TokenTypeEnum.Other:
                         case TokenTypeEnum.Constant:
                         case TokenTypeEnum.Comment:

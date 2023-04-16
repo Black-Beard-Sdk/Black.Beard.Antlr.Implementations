@@ -40,6 +40,17 @@ namespace Generate.Scripts
         public static string Type(this AstBase item)
         {
 
+            if (item.Type == "TOKEN_REF")
+            {
+                var link = item.Link;
+                if (link != null)
+                {
+                    var value1 = link.TerminalKind.Type();
+                    if (value1 != null)
+                        return value1;
+                }
+            }
+
             var ast = item;
             if (item is AstElementList a)
             {
@@ -47,7 +58,45 @@ namespace Generate.Scripts
                     ast = a[0];
             }
 
-            switch (ast.TerminalKind)
+
+            var value = ast.TerminalKind.Type();
+
+            if (value != null)
+                return value;
+
+            string _name = (ast as AstBase).ResolveName();
+
+            var result = "Ast" + CodeHelper.FormatCsharp(_name);
+            return result;
+
+        }
+
+        public static string Type(this TreeRuleItem ast)
+        {
+
+            if (ast.IsTerminal)
+            {
+
+                var link = ast.Origin.Link;
+
+                var value = link.TerminalKind.Type();
+
+                if (value != null)
+                    return value;
+
+            }
+
+            string _name = ast.Name;
+
+            var result = "Ast" + CodeHelper.FormatCsharp(_name);
+            return result;
+
+        }
+
+        public static string Type(this TokenTypeEnum self)
+        {
+
+            switch (self)
             {
 
                 case TokenTypeEnum.Hexa:
@@ -80,63 +129,9 @@ namespace Generate.Scripts
                     break;
             }
 
-            string _name = (ast as AstBase).ResolveName();
-
-            var result = "Ast" + CodeHelper.FormatCsharp(_name);
-            return result;
+            return null;
 
         }
-
-        public static string Type(this TreeRuleItem ast)
-        {
-
-            if (ast.IsTerminal)
-            {
-
-                var link = ast.Origin.Link;
-
-                switch (link.TerminalKind)
-                {
-
-                    case TokenTypeEnum.Hexa:
-                        break;
-
-                    case TokenTypeEnum.Boolean:
-                        return nameof(Boolean);
-
-                    case TokenTypeEnum.Decimal:
-                        return nameof(Decimal);
-
-                    case TokenTypeEnum.Int:
-                        return nameof(Int64);
-
-                    case TokenTypeEnum.Real:
-                        return nameof(Double);
-
-                    case TokenTypeEnum.Binary:
-                    case TokenTypeEnum.Identifier:
-                    case TokenTypeEnum.String:
-                    case TokenTypeEnum.Pattern:
-                        return nameof(String);
-
-                    case TokenTypeEnum.Comment:
-                    case TokenTypeEnum.Other:
-                    case TokenTypeEnum.Operator:
-                    case TokenTypeEnum.Constant:
-                    case TokenTypeEnum.Ponctuation:
-                    default:
-                        break;
-                }
-
-            }
-
-            string _name = ast.Name;
-
-            var result = "Ast" + CodeHelper.FormatCsharp(_name);
-            return result;
-
-        }
-
 
         public static string GetPropertyName(this AstBase ast)
         {
@@ -237,7 +232,6 @@ namespace Generate.Scripts
 
         }
 
-
         public static string GenerateDoc(this TreeRuleItem alt, Context ctx)
         {
 
@@ -321,7 +315,6 @@ namespace Generate.Scripts
             return _results;
 
         }
-                
 
         public static string ResolveKey(this TreeRuleItem item)
         {
@@ -466,7 +459,7 @@ namespace Generate.Scripts
                 else if (itemResult != null && itemResult is AstLexerRule r2 && r2?.Configuration != null)
                 {
 
-                    
+
 
                     name = itemAst.Type();
                     if (!string.IsNullOrEmpty(itemAst.Label))
@@ -548,11 +541,11 @@ namespace Generate.Scripts
                 case TokenTypeEnum.Boolean:
                     result = "boolean";
                     break;
-                
+
                 case TokenTypeEnum.Decimal:
                     result = "_decimal";
                     break;
-                
+
                 case TokenTypeEnum.Int:
                     result = "integer";
                     break;

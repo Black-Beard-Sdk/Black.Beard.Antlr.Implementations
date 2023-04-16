@@ -1,16 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Bb.Parsers;
-using Bb.Parsers.TSql;
-//using Bb.Asts.TSql;
+﻿//// See https://aka.ms/new-console-template for more information
+
+using Bb.SqlServer;
+using Bb.SqlServer.Asts;
+using Bb.SqlServer.Parser;
 using System.Text;
 
-Console.WriteLine("Hello, World!");
-
-
-//AstTsqlFile.
-
-
 var sb = new StringBuilder("SELECT * FROM [a]");
-var parser = SqlServerScriptParser.ParseString(sb);
 
-var result = parser.Visit(new ScriptTSqlVisitor());
+//var parser = SqlServerScriptParser.ParseString(sb);
+//var result = parser.GetModel();

@@ -83,11 +83,11 @@ namespace Bb.Generators
 
         public abstract string GetInherit(AstRule ast, Context context);
 
-        public IEnumerable<string> Generate(Context context)
+        public void Generate(Context context, HashSet<string> generateds)
         {
             var visitor = new CodeGeneratorVisitor(context, this);
             ConfigureTemplate(context, visitor);
-            return visitor.Visit(context.RootAst);
+            visitor.Visit(context.RootAst, generateds);
         }
 
         protected abstract void ConfigureTemplate(Context context, CodeGeneratorVisitor generator);
@@ -148,13 +148,6 @@ namespace Bb.Generators
 
         private static string TemplateSelectorCompute(AstRule ast, Context context)
         {
-
-            /*
-            
-                a:rule ('COMMA' {a}).any
-                a:rule {a}.any
-             
-             */
 
             if (ast.Alternatives.Count == 1)
             {

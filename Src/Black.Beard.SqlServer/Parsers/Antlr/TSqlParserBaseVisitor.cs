@@ -19,7 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace Bb.Parsers.TSql.Antlr {
+namespace Bb.SqlServer.Parser {
 using Antlr4.Runtime.Misc;
 using Antlr4.Runtime.Tree;
 using IToken = Antlr4.Runtime.IToken;
@@ -275,16 +275,6 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	public virtual Result VisitConstant_local_id_or_null([NotNull] TSqlParser.Constant_local_id_or_nullContext context) { return VisitChildren(context); }
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.null"/>.
-	/// <para>
-	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
-	/// on <paramref name="context"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	public virtual Result VisitNull([NotNull] TSqlParser.NullContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.empty_statement"/>.
 	/// <para>
@@ -816,7 +806,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAlter_availability_group_start([NotNull] TSqlParser.Alter_availability_group_startContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_database"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.add_remove_database"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -824,9 +814,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAlter_availability_group_options_database([NotNull] TSqlParser.Alter_availability_group_options_databaseContext context) { return VisitChildren(context); }
+	public virtual Result VisitAdd_remove_database([NotNull] TSqlParser.Add_remove_databaseContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_listener"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.alter_options_listener"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -834,7 +824,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAlter_availability_group_options_listener([NotNull] TSqlParser.Alter_availability_group_options_listenerContext context) { return VisitChildren(context); }
+	public virtual Result VisitAlter_options_listener([NotNull] TSqlParser.Alter_options_listenerContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.restart_listener"/>.
 	/// <para>
@@ -976,7 +966,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAlter_availability_replicat_primary([NotNull] TSqlParser.Alter_availability_replicat_primaryContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.url"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.url_value"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -984,7 +974,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitUrl([NotNull] TSqlParser.UrlContext context) { return VisitChildren(context); }
+	public virtual Result VisitUrl_value([NotNull] TSqlParser.Url_valueContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_primary_role"/>.
 	/// <para>
@@ -1016,7 +1006,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAlter_availability_secondary_role([NotNull] TSqlParser.Alter_availability_secondary_roleContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.backup_priority"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.backup_priority_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1024,7 +1014,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitBackup_priority([NotNull] TSqlParser.Backup_priorityContext context) { return VisitChildren(context); }
+	public virtual Result VisitBackup_priority_set([NotNull] TSqlParser.Backup_priority_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_replicat_add"/>.
 	/// <para>
@@ -1036,7 +1026,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAlter_availability_replicat_add([NotNull] TSqlParser.Alter_availability_replicat_addContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_replicat"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_replicat"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1044,9 +1034,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAlter_availability_group_options_replicat([NotNull] TSqlParser.Alter_availability_group_options_replicatContext context) { return VisitChildren(context); }
+	public virtual Result VisitAlter_availability_replicat([NotNull] TSqlParser.Alter_availability_replicatContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_group"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.availability_group_options"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1054,9 +1044,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAlter_availability_group_options_group([NotNull] TSqlParser.Alter_availability_group_options_groupContext context) { return VisitChildren(context); }
+	public virtual Result VisitAvailability_group_options([NotNull] TSqlParser.Availability_group_optionsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.listener_url"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.listener_url_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1064,9 +1054,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitListener_url([NotNull] TSqlParser.Listener_urlContext context) { return VisitChildren(context); }
+	public virtual Result VisitListener_url_set([NotNull] TSqlParser.Listener_url_setContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.availability_mode"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.availability_mode_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1074,7 +1064,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAvailability_mode([NotNull] TSqlParser.Availability_modeContext context) { return VisitChildren(context); }
+	public virtual Result VisitAvailability_mode_set([NotNull] TSqlParser.Availability_mode_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.failover_mode_manuel"/>.
 	/// <para>
@@ -1086,7 +1076,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitFailover_mode_manuel([NotNull] TSqlParser.Failover_mode_manuelContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.seeding_mode"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.seeding_mode_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1094,9 +1084,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSeeding_mode([NotNull] TSqlParser.Seeding_modeContext context) { return VisitChildren(context); }
+	public virtual Result VisitSeeding_mode_set([NotNull] TSqlParser.Seeding_mode_setContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options_role"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.alter_role"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1104,9 +1094,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAlter_availability_group_options_role([NotNull] TSqlParser.Alter_availability_group_options_roleContext context) { return VisitChildren(context); }
+	public virtual Result VisitAlter_role([NotNull] TSqlParser.Alter_roleContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.primary_role"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.primary_role_args"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1114,7 +1104,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitPrimary_role([NotNull] TSqlParser.Primary_roleContext context) { return VisitChildren(context); }
+	public virtual Result VisitPrimary_role_args([NotNull] TSqlParser.Primary_role_argsContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.primary_role_config"/>.
 	/// <para>
@@ -1136,7 +1126,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitString_list_not([NotNull] TSqlParser.String_list_notContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.secondary_role"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.secondary_role_args"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1144,7 +1134,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSecondary_role([NotNull] TSqlParser.Secondary_roleContext context) { return VisitChildren(context); }
+	public virtual Result VisitSecondary_role_args([NotNull] TSqlParser.Secondary_role_argsContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.secondary_role_config"/>.
 	/// <para>
@@ -1156,7 +1146,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitSecondary_role_config([NotNull] TSqlParser.Secondary_role_configContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.allow_connections"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.allow_connections_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -1164,7 +1154,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitAllow_connections([NotNull] TSqlParser.Allow_connectionsContext context) { return VisitChildren(context); }
+	public virtual Result VisitAllow_connections_set([NotNull] TSqlParser.Allow_connections_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_availability_group_options"/>.
 	/// <para>
@@ -2356,7 +2346,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitExternal_resource_with([NotNull] TSqlParser.External_resource_withContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.maw_process"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_process_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -2364,9 +2354,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitMaw_process([NotNull] TSqlParser.Maw_processContext context) { return VisitChildren(context); }
+	public virtual Result VisitMax_process_set([NotNull] TSqlParser.Max_process_setContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.max_memory"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_memory_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -2374,7 +2364,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitMax_memory([NotNull] TSqlParser.Max_memoryContext context) { return VisitChildren(context); }
+	public virtual Result VisitMax_memory_set([NotNull] TSqlParser.Max_memory_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.max_cpu"/>.
 	/// <para>
@@ -3426,7 +3416,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitCreate_service([NotNull] TSqlParser.Create_serviceContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.contract"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.contract_ref"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -3434,7 +3424,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitContract([NotNull] TSqlParser.ContractContext context) { return VisitChildren(context); }
+	public virtual Result VisitContract_ref([NotNull] TSqlParser.Contract_refContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_service_master_key"/>.
 	/// <para>
@@ -3586,7 +3576,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitPassword_setting([NotNull] TSqlParser.Password_settingContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.new_password"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.new_password_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -3594,7 +3584,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitNew_password([NotNull] TSqlParser.New_passwordContext context) { return VisitChildren(context); }
+	public virtual Result VisitNew_password_set([NotNull] TSqlParser.New_password_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.old_pwd"/>.
 	/// <para>
@@ -3656,7 +3646,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitUser_settings([NotNull] TSqlParser.User_settingsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.default_schema"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.default_schema_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -3664,7 +3654,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitDefault_schema([NotNull] TSqlParser.Default_schemaContext context) { return VisitChildren(context); }
+	public virtual Result VisitDefault_schema_set([NotNull] TSqlParser.Default_schema_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.user_setting"/>.
 	/// <para>
@@ -4106,7 +4096,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitSelect_statement([NotNull] TSqlParser.Select_statementContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.time"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.timespan"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -4114,7 +4104,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTime([NotNull] TSqlParser.TimeContext context) { return VisitChildren(context); }
+	public virtual Result VisitTimespan([NotNull] TSqlParser.TimespanContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.update_statement"/>.
 	/// <para>
@@ -4746,7 +4736,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitTable_opt_var_value([NotNull] TSqlParser.Table_opt_var_valueContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.distribution"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.table_distribution"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -4754,7 +4744,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitDistribution([NotNull] TSqlParser.DistributionContext context) { return VisitChildren(context); }
+	public virtual Result VisitTable_distribution([NotNull] TSqlParser.Table_distributionContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.create_table_index_option"/>.
 	/// <para>
@@ -4916,6 +4906,16 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitDatabase_optionspec([NotNull] TSqlParser.Database_optionspecContext context) { return VisitChildren(context); }
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="TSqlParser.database_filestream"/>.
+	/// <para>
+	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
+	/// on <paramref name="context"/>.
+	/// </para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	public virtual Result VisitDatabase_filestream([NotNull] TSqlParser.Database_filestreamContext context) { return VisitChildren(context); }
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.auto_option"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -4926,7 +4926,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAuto_option([NotNull] TSqlParser.Auto_optionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.change_tracking"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.change_tracking_set"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -4934,7 +4934,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitChange_tracking([NotNull] TSqlParser.Change_trackingContext context) { return VisitChildren(context); }
+	public virtual Result VisitChange_tracking_set([NotNull] TSqlParser.Change_tracking_setContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.change_tracking_option_item"/>.
 	/// <para>
@@ -4976,7 +4976,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitCursor_option([NotNull] TSqlParser.Cursor_optionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.listener_ip"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.listener_ip_addr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -4984,7 +4984,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitListener_ip([NotNull] TSqlParser.Listener_ipContext context) { return VisitChildren(context); }
+	public virtual Result VisitListener_ip_addr([NotNull] TSqlParser.Listener_ip_addrContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_endpoint"/>.
 	/// <para>
@@ -5436,7 +5436,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitRowset_function_limited([NotNull] TSqlParser.Rowset_function_limitedContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.openquery"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.openquery_args"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -5444,9 +5444,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitOpenquery([NotNull] TSqlParser.OpenqueryContext context) { return VisitChildren(context); }
+	public virtual Result VisitOpenquery_args([NotNull] TSqlParser.Openquery_argsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.opendatasource"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.open_data_source"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -5454,7 +5454,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitOpendatasource([NotNull] TSqlParser.OpendatasourceContext context) { return VisitChildren(context); }
+	public virtual Result VisitOpen_data_source([NotNull] TSqlParser.Open_data_sourceContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.declare_statement"/>.
 	/// <para>
@@ -6616,7 +6616,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitSub_search_condition([NotNull] TSqlParser.Sub_search_conditionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.predicate"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.predicate_expr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -6624,7 +6624,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitPredicate([NotNull] TSqlParser.PredicateContext context) { return VisitChildren(context); }
+	public virtual Result VisitPredicate_expr([NotNull] TSqlParser.Predicate_exprContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.predicate_multi_assign"/>.
 	/// <para>
@@ -7126,7 +7126,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitApply_enum([NotNull] TSqlParser.Apply_enumContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.pivot"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.pivot_join"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -7134,9 +7134,9 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitPivot([NotNull] TSqlParser.PivotContext context) { return VisitChildren(context); }
+	public virtual Result VisitPivot_join([NotNull] TSqlParser.Pivot_joinContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.unpivot"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.unpivot_join"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -7144,7 +7144,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitUnpivot([NotNull] TSqlParser.UnpivotContext context) { return VisitChildren(context); }
+	public virtual Result VisitUnpivot_join([NotNull] TSqlParser.Unpivot_joinContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.pivot_clause"/>.
 	/// <para>
@@ -7716,7 +7716,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitFile_spec([NotNull] TSqlParser.File_specContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.max_size"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.max_file_size_value"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -7724,7 +7724,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitMax_size([NotNull] TSqlParser.Max_sizeContext context) { return VisitChildren(context); }
+	public virtual Result VisitMax_file_size_value([NotNull] TSqlParser.Max_file_size_valueContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.cursor_name"/>.
 	/// <para>
@@ -7786,7 +7786,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitContract_name_expression([NotNull] TSqlParser.Contract_name_expressionContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.service_name"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.service_name_expr"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -7794,7 +7794,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitService_name([NotNull] TSqlParser.Service_nameContext context) { return VisitChildren(context); }
+	public virtual Result VisitService_name_expr([NotNull] TSqlParser.Service_name_exprContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.end_conversation"/>.
 	/// <para>
@@ -8026,7 +8026,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAggregate_id([NotNull] TSqlParser.Aggregate_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.schema_id"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.schema_identifier"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -8034,7 +8034,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitSchema_id([NotNull] TSqlParser.Schema_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitSchema_identifier([NotNull] TSqlParser.Schema_identifierContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.assembly_id"/>.
 	/// <para>
@@ -8386,7 +8386,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitIndex_id([NotNull] TSqlParser.Index_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.language"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.language_id"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -8394,7 +8394,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitLanguage([NotNull] TSqlParser.LanguageContext context) { return VisitChildren(context); }
+	public virtual Result VisitLanguage_id([NotNull] TSqlParser.Language_idContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.library_id"/>.
 	/// <para>
@@ -8456,7 +8456,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitMethod_id([NotNull] TSqlParser.Method_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.modified_contract_id"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.contract_id"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -8464,7 +8464,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitModified_contract_id([NotNull] TSqlParser.Modified_contract_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitContract_id([NotNull] TSqlParser.Contract_idContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.module_id"/>.
 	/// <para>
@@ -8526,7 +8526,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitNotification_id([NotNull] TSqlParser.Notification_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.object_id"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.object_identifier"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -8534,7 +8534,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitObject_id([NotNull] TSqlParser.Object_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitObject_identifier([NotNull] TSqlParser.Object_identifierContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.owner_id"/>.
 	/// <para>
@@ -8926,7 +8926,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitCode_location_id([NotNull] TSqlParser.Code_location_idContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.transaction_id"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.transaction_identifier"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -8934,7 +8934,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitTransaction_id([NotNull] TSqlParser.Transaction_idContext context) { return VisitChildren(context); }
+	public virtual Result VisitTransaction_identifier([NotNull] TSqlParser.Transaction_identifierContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.schema_security_predicate_function_id"/>.
 	/// <para>
@@ -10416,7 +10416,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitAlter_user_items([NotNull] TSqlParser.Alter_user_itemsContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.contracts"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.contract_refs"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -10424,7 +10424,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitContracts([NotNull] TSqlParser.ContractsContext context) { return VisitChildren(context); }
+	public virtual Result VisitContract_refs([NotNull] TSqlParser.Contract_refsContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.alter_service_contracts"/>.
 	/// <para>
@@ -11496,7 +11496,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitMessage_validation_value_enum([NotNull] TSqlParser.Message_validation_value_enumContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="TSqlParser.cycle"/>.
+	/// Visit a parse tree produced by <see cref="TSqlParser.sequence_cycle"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
 	/// on <paramref name="context"/>.
@@ -11504,7 +11504,7 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitCycle([NotNull] TSqlParser.CycleContext context) { return VisitChildren(context); }
+	public virtual Result VisitSequence_cycle([NotNull] TSqlParser.Sequence_cycleContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="TSqlParser.size_unity"/>.
 	/// <para>
@@ -12116,4 +12116,4 @@ public partial class TSqlParserBaseVisitor<Result> : AbstractParseTreeVisitor<Re
 	/// <return>The visitor result.</return>
 	public virtual Result VisitDeleteed_inserted([NotNull] TSqlParser.Deleteed_insertedContext context) { return VisitChildren(context); }
 }
-} // namespace Bb.Parsers.TSql.Antlr
+} // namespace Bb.SqlServer.Parser

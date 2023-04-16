@@ -19,7 +19,7 @@
 // Ambiguous reference in cref attribute
 #pragma warning disable 419
 
-namespace Bb.Parsers.TSql.Antlr {
+namespace Bb.SqlServer.Parser {
 using System;
 using System.IO;
 using System.Text;
@@ -5452,4 +5452,4 @@ public partial class TSqlLexer : Lexer {
 
 
 }
-} // namespace Bb.Parsers.TSql.Antlr
+} // namespace Bb.SqlServer.Parser

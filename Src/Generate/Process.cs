@@ -25,8 +25,10 @@ namespace Generate
             if (antlrParser.Exists)
             {
 
-                string namespaceParser = "Bb.Parsers.TSql";
-                string namespaceModels = "Bb.Asts.TSql";
+                bool splitObjectOnDisk = false;
+
+                string namespaceParser = "Bb.SqlServer.Parser";
+                string namespaceModels = "Bb.SqlServer.Asts";
 
 
                 ctx.RootAst = LoadGrammar(ctx, antlrParser);
@@ -38,52 +40,74 @@ namespace Generate
                 new ScriptList("Models")
                 {
                     Namespace = namespaceModels,
+                    
                 }
-                .Using("System", "Bb.Parsers")
+                .Using("System")
+                .Using("Bb.Asts")
+                .Using("Bb.Parsers")
 
-                .Add<ScriptClassBases>()
-                .Add<ScriptClassIdentifiers>()
+                //.Add<ScriptClassBases>()
+                .Add<ScriptClassIdentifiers>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
                 //.Add<ScriptClassEnum>()
-                .Add<ScriptClassTerminals>()
-                .Add<ScriptClassLists>()
-                .Add<ScriptClassIdentifiertWithProperties>()
-                .Add<ScriptClassWithProperties>()
-                .Add<ScriptClassDefaults>()
+                .Add<ScriptClassTerminals>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
+                .Add<ScriptClassLists>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
+                .Add<ScriptClassIdentifiertWithProperties>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
+                .Add<ScriptClassWithProperties>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
+                .Add<ScriptClassDefaults>(null, a =>
+                {
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                })
                 .Add<ScriptEnums>("Enums", a =>
                 {
-                    a.Using("Bb.Parsers");
+                    a.SplitObjectOnDisk = splitObjectOnDisk;
+                    a.Using(namespaceParser);
                     a.Using("Antlr4.Runtime");
                     a.Using("Antlr4.Runtime.Tree");
                 })
                 .Add<ScriptClassVisitorEnums>("ScriptTSqlVisitor.Enums", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
                 .Add<ScriptClassVisitorDefaults>("ScriptTSqlVisitor.Defaults", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
                 .Add<ScriptClassVisitorIdentifier>("ScriptTSqlVisitor.Identifiers", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
                 .Add<ScriptClassVisitorList>("ScriptTSqlVisitor.Lists", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
                 .Add<ScriptClassVisitorTerminalAlias>("ScriptTSqlVisitor.Terminals", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
                 .Add<ScriptClassVisitorWithProperties>("ScriptTSqlVisitor.WithProperties", a =>
                 {
                     a.Namespace = namespaceParser;
-                    a.Using("Bb.Asts.TSql");
+                    a.Using(namespaceModels);
                 })
 
                 .Add<ScriptTSqlVisitor2>("ScriptTSqlVisitor2", a => a.Namespace = namespaceParser)

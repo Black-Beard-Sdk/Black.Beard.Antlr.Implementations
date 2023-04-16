@@ -1,4 +1,5 @@
 ﻿using Bb.Parsers;
+using System.Xml.Linq;
 
 namespace Bb.Generators
 {
@@ -43,13 +44,17 @@ namespace Bb.Generators
 
             var names = context.GetGeneratedFiles();
 
+            HashSet<string> generateds = new HashSet<string>();
+
             foreach (var generator in this)
             {
                 generator.Configuration = context.Configuration;
-                foreach (var name in generator.Generate(context))
-                    if (names.Contains(name))
-                        names.Remove(name);
+                generator.Generate(context, generateds);
             }
+
+            foreach (var name in generateds)
+                if (names.Contains(name))
+                    names.Remove(name);
 
             context.RemoveFiles(names);
 
